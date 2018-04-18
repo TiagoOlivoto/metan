@@ -1,0 +1,68 @@
+\name{WAASB}
+\alias{WAASB}
+\title{Weighted Average of Absolute Scores for BLUP-based PCA analysis}
+\usage{
+WAASB(data, resp, random = "gen", prob = 0.95, weight.response = 50, weight.WAAS = 50)
+}
+\description{
+Compute the Weighted Average of Absolute Scores for PCA analysis based on the GE-interaction matrix.
+
+}
+
+\arguments{
+ \item{data}{The dataset. The imput must be in the following order: Environment, Genotype, replication/block and response variable(s)}
+
+  \item{resp}{The response variable, for example \code{resp = "RG"}.}
+
+  \item{random}{The effect to be considered as random. Default is genotype "gen". For considering both genotypes and environments as random inform \code{random = "all"}.}
+
+  \item{prob}{The probability for estimating confidence interval for BLUP's prediction. }
+
+  \item{weight.response}{The weight for the response variable. Defatul is 50}
+
+  \item{weight.WAAS}{The weight for the WAAS (stability). Default is 50}
+
+}
+
+\details{
+This function compute the weighted average of absolute scores considering all principal component axis from Singular Value Decomposition of BLUP-interaction effects matrix. As the matrix of genotypic effects (free from error and interaction effects) is used, all multiplicative terms can be used without a noise-adding  effetc. The main advantage of this procedure in relation to the \code{WAAS.AMMI} function is that, by using mixed model-based analysis, random effects can be included in the model. In addition, unbalanced datasets can also be modeled.
+}
+
+
+
+\value{
+
+\item{WAASB}{A data frame with the response variable, the scores of all Principal Components, the estimates of Weighted Average of Absolute Scores, and WAASY (the index that consider the weights for stability and productivity in the genotype ranking.}
+
+\item{BLUPgen}{The estimated BLUPS for genotypes.}
+
+\item{BLUPgge}{The estimated BLUPS of all genotypes in all environments "BLUPij".}
+
+\item{PCA}{The results of Principal Component Analysis with eigenvalues and explained variance of BLUP-interaction matrix.}
+
+\item{MeansGxE}{The phenotypic means of genotypes in the environments, with observed, predicted and OLS residual prediction.}
+
+
+\item{Details}{A list summarizing the results. The following information are showed. \code{WgtResponse}, the weight for the response variable in estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the number of genotypes, \code{Nenv} the number of environments, \code{OVmean} the overall mean, \code{Min} the minimum observed (returning the genotype and environment), \code{Max} the maximum observed, \code{Max} the maximum observed, \code{MinENV} the environment with the lower mean, \code{MaxENV} the environment with the larger mean observed, \code{MinGEN} the genotype with the lower mean,  \code{MaxGEN} the genotype with the larger.}
+
+\item{REML}{A list with the following data frames: \code{fixed} (estimates for fixed effects);  \code{random} (the variance components for random effects);  \code{statistics} (some statistics such as sigma, logLik, AIC, BIC, deviance...)}
+
+\item{ESTIMATES}{A list with the following values: \code{GEV} the genotype-by-environment variance (and percentage of phenotypic variance); \code{GV} the genotypic variance (and percentage of phenotypic variance); \code{EV} the environmental variance;\code{RV} the residual variance (and percentage of phenotypic variance); \code{FV} the phenotypic variance;  \code{h2g} the heritability of the trait; \code{GEr2} the coefficient of determination of the interaction effects; \code{h2mg} the heritability of the mean; \code{AccuGen} the selective accuracy; \code{rge} the genotype-environment correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr} the residual coefficient of variation; \code{CVratio} the ratio between genotypic and residual coefficient of variation.}
+}
+
+
+\author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
+
+\examples{
+# solely genotypes as random effects and equal weights for both response variable and stability
+library(WAASB)
+model = WAASB(WAASBdata, resp = "GY",prob = 0.95)
+
+# both genotypes and environemts as random effects and a higher weight for stability
+library(WAASB)
+model = WAASB(WAASBdata, resp = "GY", random = "all", weight.response = 70, weight.WAAS = 30)
+
+
+}
+
+
