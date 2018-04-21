@@ -250,7 +250,6 @@ WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50){
 
   }
     close(pb)
-    utils::winDialog(type = "ok", "Procedure sucessful! Check the results in R environment")
   ######################################## DO NOT CHANGE ############################################
   ########################### Code to set some important data frames ################################
   Rank= final[,-(SigPC2)]                                                                            #
@@ -284,5 +283,5 @@ WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50){
               WAASY=genotypes,hetcomb=hetcomb, hetdata=hetdata, CorcombWAASY = CorcombWAASY, Ranks=Rank))
 
 
-  utils::winDialog(type = "ok", "Procedure sucessful! Check the results in R environment")
+  #utils::winDialog(type = "ok", "Procedure sucessful! Check the results in R environment")
 }
