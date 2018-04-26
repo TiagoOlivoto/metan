@@ -13,7 +13,7 @@ plot.WAASBYratio=function(data,
 ){
   if(type==1){
 
-    if(export==T|TRUE){
+    if(export!=T|TRUE){
       if(file.type=="pdf"){
         pdf("Heat Ranks PCA.pdf", width = width, height = height)
 
@@ -92,7 +92,7 @@ dev.off()
 
   if (type==2){
 
-    if(export==T|TRUE){
+    if(export!=T|TRUE){
       if(file.type=="pdf"){
         pdf("Heat map Ranks WAAS-GY.pdf", width = width, height = height)
 
