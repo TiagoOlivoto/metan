@@ -96,10 +96,10 @@ plot.scores=function(data,
     }
 
     if (file.type=="pptx"){
-      doc <- pptx()
-      doc <- addSlide(doc, "Two Content" )
-      doc <- addPlot(doc, function() print(p1), vector.graphic = TRUE )
-      writeDoc(doc, file = "PC1 x PC2.pptx")
+      doc <- ReporteRs::pptx()
+      doc <- ReporteRs::addSlide(doc, "Two Content" )
+      doc <- ReporteRs::addPlot(doc, function() print(p1), vector.graphic = TRUE )
+      ReporteRs::writeDoc(doc, file = "PC1 x PC2.pptx")
 
     }
 
@@ -154,10 +154,10 @@ plot.scores=function(data,
     }
 
     if (file.type=="pptx"){
-      doc <- pptx()
-      doc <- addSlide(doc, "Two Content" )
-      doc <- addPlot(doc, function() print(p2), vector.graphic = TRUE )
-      writeDoc(doc, file = "GY x PC1.pptx")
+      doc <- ReporteRs::pptx()
+      doc <- ReporteRs::addSlide(doc, "Two Content" )
+      doc <- ReporteRs::addPlot(doc, function() print(p2), vector.graphic = TRUE )
+      ReporteRs::writeDoc(doc, file = "GY x PC1.pptx")
 
     }
 
@@ -217,10 +217,10 @@ plot.scores=function(data,
     }
 
     if (file.type=="pptx"){
-      doc <- pptx()
-      doc <- addSlide(doc, "Two Content" )
-      doc <- addPlot(doc, function() print(p3), vector.graphic = TRUE )
-      writeDoc(doc, file = "GY x WAAS.pptx")
+      doc <- ReporteRs::pptx()
+      doc <- ReporteRs::addSlide(doc, "Two Content" )
+      doc <- ReporteRs::addPlot(doc, function() print(p3), vector.graphic = TRUE )
+      ReporteRs::writeDoc(doc, file = "GY x WAAS.pptx")
     }
   }
 }
