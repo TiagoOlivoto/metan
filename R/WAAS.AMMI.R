@@ -14,10 +14,6 @@ Nenv = length(unique(ENV))
 Ngen = length(unique(GEN))
 minimo = min(Nenv, Ngen)-1
 
-if(naxis > minimo){
-  stop("The number of axis to be used must be lesser than or equal to ", minimo, " [min(GEN-1;ENV-1)]")
-} else{
-
 
   model = agricolae::AMMI(ENV, GEN, REP, Y)
   PC=model$analysis
@@ -59,7 +55,13 @@ if(naxis > minimo){
   SigPC1=nrow(PC[which(PC[,5]<p.valuePC),])
   } else{
     SigPC1 = naxis
-}
+  }
+
+  if(SigPC1 > minimo){
+    stop("The number of axis to be used must be lesser than or equal to ", minimo, " [min(GEN-1;ENV-1)]")
+  } else{
+
+
   Pesos=model$analysis[1]
   Pesos=as.data.frame(Pesos[c(1:SigPC1), ])
   colnames(Pesos)="Percent"
