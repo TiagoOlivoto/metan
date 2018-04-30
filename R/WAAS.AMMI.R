@@ -1,4 +1,4 @@
-WAAS.AMMI=function(data, resp, p.valuePC = 0.05, naxis = NULL, weight.response, weight.WAAS){
+WAASB.AMMI=function(data, resp, p.valuePC = 0.05, naxis = NULL, weight.response, weight.WAASB){
 
   Y = data[paste(resp)]
   data = as.data.frame(data[,1:3])
@@ -65,58 +65,58 @@ minimo = min(Nenv, Ngen)-1
   Pesos=model$analysis[1]
   Pesos=as.data.frame(Pesos[c(1:SigPC1), ])
   colnames(Pesos)="Percent"
-  WAAS=Escores
-  WAASAbs=Escores
-  for (i in 4:ncol(WAAS)){
-    WAAS[,i] <- abs(WAAS[i])
+  WAASB=Escores
+  WAASBAbs=Escores
+  for (i in 4:ncol(WAASB)){
+    WAASB[,i] <- abs(WAASB[i])
   }
-  t_WAAS = transpose(WAAS)
-  colnames(t_WAAS)  = rownames(WAAS)
-  rownames(t_WAAS)  = colnames(WAAS)
-    t_WAAS=t_WAAS[-c(1, 2, 3), ]
-  t_WAAS=t_WAAS[c(1:SigPC1), ]
-    t_WAAS=cbind(t_WAAS, Pesos)
-  for (i in 1:ncol(t_WAAS)){
-    t_WAAS[,i] <- as.numeric(as.character(t_WAAS[,i]))
+  t_WAASB = transpose(WAASB)
+  colnames(t_WAASB)  = rownames(WAASB)
+  rownames(t_WAASB)  = colnames(WAASB)
+    t_WAASB=t_WAASB[-c(1, 2, 3), ]
+  t_WAASB=t_WAASB[c(1:SigPC1), ]
+    t_WAASB=cbind(t_WAASB, Pesos)
+  for (i in 1:ncol(t_WAASB)){
+    t_WAASB[,i] <- as.numeric(as.character(t_WAASB[,i]))
   }
-  Ponderado=transpose(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,  w = t_WAAS$Percent)))
-  rownames(Ponderado)=c("WAAS")
-  t_WAAS=subset(t_WAAS, select = -Percent)
-  colnames(Ponderado)=colnames(t_WAAS)
-  t_WAAS=rbind(t_WAAS, Ponderado)
-  t_WAAS2=transpose(t_WAAS)
-  colnames(t_WAAS2)  = rownames(t_WAAS)
-  rownames(t_WAAS2)  = colnames(t_WAAS)
-  WAASAbs=cbind(WAASAbs, subset(t_WAAS2, select = WAAS))
-  WAASAbs2=subset(WAASAbs, type=="ENV")
-  WAASAbs2$PctResp = (WAASAbs2$Y / max(WAASAbs2$Y))*100
-  WAASAbs2$PctWAAS = (100-WAASAbs2$WAAS / min(WAASAbs2$WAAS))
-  WAASAbs3=subset(WAASAbs, type=="GEN")
-  WAASAbs3$PctResp = (WAASAbs3$Y / max(WAASAbs3$Y))*100
-  WAASAbs3$PctWAAS = (100-WAASAbs3$WAAS / min(WAASAbs3$WAAS))
-  WAASAbs=rbind(WAASAbs3, WAASAbs2)
-  WAASAbs=setDT(WAASAbs)[, OrResp:=rank(-Y), by = type][]
-  WAASAbs=setDT(WAASAbs)[, OrWAAS:=rank(WAAS), by = type][]
-  WAASAbs=setDT(WAASAbs)[, OrPC1:=rank(abs(PC1)), by = type][]
-  WAASAbs$PesRes=as.vector(weight.response)
-  WAASAbs$PesWAAS=as.vector(weight.WAAS)
-  for (i in 1:nrow(WAASAbs)){
-    WAASAbs$WAASY[i] = (WAASAbs$PctResp[i]*WAASAbs$PesRes[i]+WAASAbs$PctWAAS[i]*WAASAbs$PesWAAS[i])/
-      sum(WAASAbs$PesRes[i]+WAASAbs$PesWAAS[i])
+  Ponderado=transpose(as.data.frame(sapply(t_WAASB[ ,-ncol(t_WAASB)], weighted.mean,  w = t_WAASB$Percent)))
+  rownames(Ponderado)=c("WAASB")
+  t_WAASB=subset(t_WAASB, select = -Percent)
+  colnames(Ponderado)=colnames(t_WAASB)
+  t_WAASB=rbind(t_WAASB, Ponderado)
+  t_WAASB2=transpose(t_WAASB)
+  colnames(t_WAASB2)  = rownames(t_WAASB)
+  rownames(t_WAASB2)  = colnames(t_WAASB)
+  WAASBAbs=cbind(WAASBAbs, subset(t_WAASB2, select = WAASB))
+  WAASBAbs2=subset(WAASBAbs, type=="ENV")
+  WAASBAbs2$PctResp = (WAASBAbs2$Y / max(WAASBAbs2$Y))*100
+  WAASBAbs2$PctWAASB = (100-WAASBAbs2$WAASB / min(WAASBAbs2$WAASB))
+  WAASBAbs3=subset(WAASBAbs, type=="GEN")
+  WAASBAbs3$PctResp = (WAASBAbs3$Y / max(WAASBAbs3$Y))*100
+  WAASBAbs3$PctWAASB = (100-WAASBAbs3$WAASB / min(WAASBAbs3$WAASB))
+  WAASBAbs=rbind(WAASBAbs3, WAASBAbs2)
+  WAASBAbs=setDT(WAASBAbs)[, OrResp:=rank(-Y), by = type][]
+  WAASBAbs=setDT(WAASBAbs)[, OrWAASB:=rank(WAASB), by = type][]
+  WAASBAbs=setDT(WAASBAbs)[, OrPC1:=rank(abs(PC1)), by = type][]
+  WAASBAbs$PesRes=as.vector(weight.response)
+  WAASBAbs$PesWAASB=as.vector(weight.WAASB)
+  for (i in 1:nrow(WAASBAbs)){
+    WAASBAbs$WAASBY[i] = (WAASBAbs$PctResp[i]*WAASBAbs$PesRes[i]+WAASBAbs$PctWAASB[i]*WAASBAbs$PesWAASB[i])/
+      sum(WAASBAbs$PesRes[i]+WAASBAbs$PesWAASB[i])
   }
-  WAAS=data.table::setDT(WAASAbs)[, OrWAASY:=rank(-WAASY), by = type][]
+  WAASB=data.table::setDT(WAASBAbs)[, OrWAASBY:=rank(-WAASBY), by = type][]
 
-  MinENV = WAASAbs2[which(WAASAbs2[,3] <=min(WAASAbs2$Y)),]
+  MinENV = WAASBAbs2[which(WAASBAbs2[,3] <=min(WAASBAbs2$Y)),]
   MinENV = paste0("Environment ", MinENV$Code , " (", round(MinENV$Y,4), ") ")
 
-  MaxENV = WAASAbs2[which(WAASAbs2[,3] >=max(WAASAbs2$Y)),]
+  MaxENV = WAASBAbs2[which(WAASBAbs2[,3] >=max(WAASBAbs2$Y)),]
   MaxENV = paste0("Environment ", MaxENV$Code , " (", round(MaxENV$Y,4), ") ")
 
-  MinGEN = WAASAbs3[which(WAASAbs3[,3] <=min(WAASAbs3$Y)),]
+  MinGEN = WAASBAbs3[which(WAASBAbs3[,3] <=min(WAASBAbs3$Y)),]
   MinGEN = paste0("Genotype ", MinGEN$Code , " (", round(MinGEN$Y,4), ") ")
 
 
-  MaxGEN = WAASAbs3[which(WAASAbs3[,3] >=max(WAASAbs3$Y)),]
+  MaxGEN = WAASBAbs3[which(WAASBAbs3[,3] >=max(WAASBAbs3$Y)),]
   MaxGEN = paste0("Genotype ", MaxGEN$Code , " (", round(MaxGEN$Y,4), ") ")
 
 
@@ -131,8 +131,8 @@ minimo = min(Nenv, Ngen)-1
 
   PCA = PC[,4:7]
 
-  return(list(model = WAAS, MeansGxE = MeansGxE, PCA = PCA, anova = anova, WgtResponse=weight.response,
-              WgtWAAS=weight.WAAS, Ngen=Ngen, Nenv = Nenv, OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV,
+  return(list(model = WAASB, MeansGxE = MeansGxE, PCA = PCA, anova = anova, WgtResponse=weight.response,
+              WgtWAASB=weight.WAASB, Ngen=Ngen, Nenv = Nenv, OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV,
               MinGEN=MinGEN, MaxGEN=MaxGEN ))
 }
 }
