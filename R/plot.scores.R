@@ -165,7 +165,7 @@ plot.scores=function(data,
 
 
   if (type==3){
-
+    if (data$object == "WAASB"){
     m1 = mean(data$model$Y)
     m2 = mean(data$model$WAASB)
     I = grid::grobTree(textGrob("I", x=0.02,  y=0.98, hjust=0))
@@ -199,6 +199,43 @@ plot.scores=function(data,
       annotation_custom(II)+
       annotation_custom(III)+
       annotation_custom(IV)
+    }
+
+    if (data$object == "WAAS"){
+      m1 = mean(data$model$Y)
+      m2 = mean(data$model$WAAS)
+      I = grid::grobTree(textGrob("I", x=0.02,  y=0.98, hjust=0))
+      II = grid::grobTree(textGrob("II", x=0.97,  y=0.97, hjust=0))
+      III = grid::grobTree(textGrob("III", x=0.01,  y=0.03, hjust=0))
+      IV = grid::grobTree(textGrob("IV", x=0.96,  y=0.03, hjust=0))
+      p3 = ggplot2::ggplot(data$model, aes(Y, WAAS, shape = type, fill = type)) +
+        geom_point(size = size.shape, aes(fill = type), alpha=col.alpha) +
+        scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env)) +
+        scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env))+
+        ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)), size = size.tex) +
+        theme_bw()+
+        theme(axis.ticks.length = unit(.2, "cm"),
+              axis.text = element_text(size = size.lab, colour = "black"),
+              axis.title = element_text(size = size.lab, colour = "black"),
+              axis.ticks = element_line(colour = "black"),
+              legend.position = leg.pos,
+              plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
+              axis.title.y = element_text(margin = margin(r=16)),
+              legend.title = element_blank(),
+              legend.text = element_text(size=size.leg),
+              panel.border = element_rect(colour = "black", fill=NA, size=1),
+              panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
+              panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank())+
+        labs(x = paste("\n", x.lab), y = "Weighted average of the absolute scores")+
+        scale_x_continuous(limits = x.lim, breaks = x.breaks)+
+        scale_y_continuous(limits = y.lim, breaks = y.breaks)+
+        geom_vline(xintercept = m1, linetype=line.type, color=col.line, size=size.line, alpha=line.alpha)+
+        geom_hline(yintercept = m2, linetype=line.type, color=col.line, size=size.line, alpha=line.alpha)+
+        annotation_custom(I)+
+        annotation_custom(II)+
+        annotation_custom(III)+
+        annotation_custom(IV)
+    }
 
     if(export == F|FALSE) {
       plot(p3)

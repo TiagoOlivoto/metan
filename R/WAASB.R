@@ -493,7 +493,7 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge", "Predicted", "LL", "UL")
 
     return(list(model = WAASAbsInicial, BLUPgen = blupGEN, BLUPgge = selectioNenv, PCA = Eigenvalue,
-                MeansGxE = MEDIAS, Details = Details, REML = REML, ESTIMATES = ESTIMATES))
+                MeansGxE = MEDIAS, Details = Details, REML = REML, ESTIMATES = ESTIMATES, object = "WAASB"))
 
   }
 
