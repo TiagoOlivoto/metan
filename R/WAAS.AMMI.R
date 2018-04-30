@@ -1,4 +1,4 @@
-WAASB.AMMI=function(data, resp, p.valuePC = 0.05, naxis = NULL, weight.response, weight.WAASB){
+WAAS.AMMI = function(data, resp, p.valuePC = 0.05, naxis = NULL, weight.response, weight.WAAS){
 
   Y = data[paste(resp)]
   data = as.data.frame(data[,1:3])
@@ -99,7 +99,7 @@ minimo = min(Nenv, Ngen)-1
   WAASBAbs=setDT(WAASBAbs)[, OrWAASB:=rank(WAASB), by = type][]
   WAASBAbs=setDT(WAASBAbs)[, OrPC1:=rank(abs(PC1)), by = type][]
   WAASBAbs$PesRes=as.vector(weight.response)
-  WAASBAbs$PesWAASB=as.vector(weight.WAASB)
+  WAASBAbs$PesWAASB=as.vector(weight.WAAS)
   for (i in 1:nrow(WAASBAbs)){
     WAASBAbs$WAASBY[i] = (WAASBAbs$PctResp[i]*WAASBAbs$PesRes[i]+WAASBAbs$PctWAASB[i]*WAASBAbs$PesWAASB[i])/
       sum(WAASBAbs$PesRes[i]+WAASBAbs$PesWAASB[i])
@@ -132,7 +132,7 @@ minimo = min(Nenv, Ngen)-1
   PCA = PC[,4:7]
 
   return(list(model = WAASB, MeansGxE = MeansGxE, PCA = PCA, anova = anova, WgtResponse=weight.response,
-              WgtWAASB=weight.WAASB, Ngen=Ngen, Nenv = Nenv, OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV,
+              WgtWAASB=weight.WAAS, Ngen=Ngen, Nenv = Nenv, OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV,
               MinGEN=MinGEN, MaxGEN=MaxGEN ))
 }
 }
