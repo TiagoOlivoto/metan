@@ -10,7 +10,6 @@ License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
 Imports: agricolae,
-         ReporteRs,
          corrplot,
          Formula,
          dplyr,
@@ -33,5 +32,6 @@ Suggests:
     testthat,
     xlsx,
     readxl,
-    rJava
+    rJava,
+    ReporteRs
 URL: https://github.com/TiagoOlivoto/WAASB

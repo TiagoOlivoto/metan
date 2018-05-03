@@ -2,29 +2,29 @@
 \alias{summary.WAASB}
 \title{Summary a WAASB object}
 \usage{
-\method{summary}{WAASB}(data)
+\method{summary}{WAASB}(data, export, file.name)
 }
 
 \description{
-Summary the  \code{WAAS} object in two ways. By default, the results are shown in the R console. The results can also be exported to the directory.
+Summary the  \code{WAASB} object in two ways. By default, the results are shown in the R console. The results can also be exported to the directory.
 
 }
 
 \arguments{
 
-  \item{data}{The \code{WAAS object} }
+  \item{data}{The \code{WAASB} object}
+  \item{export}{A logical argument. If \code{TRUE|T}, a *.txt file is exported to the working directory}
+  \item{file.name}{The name of the file if \code{export = TRUE} }
 
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 
-\seealso{\code{\link{write.WAASB}}}
-
 \examples{
 library(WAASB)
-model = WAASB(WAASBdata, prob = 0.95, weight.response = 50, weight.WAAS = 50)
-summary.WAASB(model)
+model = WAASB(WAASBdata, resp = "GY", prob = 0.95, weight.response = 50, weight.WAAS = 50)
+summary.WAASB(model, export = T, file.name = "my results")
 }
 
 
