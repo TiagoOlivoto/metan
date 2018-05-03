@@ -80,7 +80,11 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
                      FV = FV, h2g = h2g, GEr2 = GEr2, h2mg = h2mg,
                      AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
 
-
+    ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
+    names(ESTIMATES) = "Values"
+    rownames(ESTIMATES) = c("GEI variance", "Genotypic variance", "Residual variance",
+                    "Phenotypic variance", "Heritability", "GEIr2",
+                    "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio")
 
     ## BLUPS
     # estimate BLUPS
@@ -232,6 +236,11 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
                    Nenv = Nenv, OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV,
                    MinGEN=MinGEN, MaxGEN=MaxGEN)
 
+    Details = do.call(rbind.data.frame, Details)
+    names(Details) = "Values"
+    rownames(Details) = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
+                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN")
+
     ## Creating plots with the BLUPs
     # Create a numeric vector with the BLUP for each GEN
     blupGEN=cbind(GEN=MGEN$Code, BLUP=blupGEN)
@@ -313,6 +322,12 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
     ESTIMATES = list(GEV = GEV, GV = GV, RV = RV,
                      FV = FV, h2g = h2g, GEr2 = GEr2, h2mg = h2mg,
                      AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
+
+    ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
+    names(ESTIMATES) = "Values"
+    rownames(ESTIMATES) = c("GEI variance", "Genotypic variance", "Residual variance",
+                            "Phenotypic variance", "Heritability", "GEIr2",
+                            "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio")
 
 
 
@@ -464,6 +479,11 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
     Details = list(WgtResponse=weight.response, WgtWAAS=weight.WAAS, Ngen=Ngen,
                    Nenv = Nenv, OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV,
                    MinGEN=MinGEN, MaxGEN=MaxGEN)
+
+    Details = do.call(rbind.data.frame, Details)
+    names(Details) = "Values"
+    rownames(Details) = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
+                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN")
 
     ## Creating plots with the BLUPs
     # Create a numeric vector with the BLUP for each GEN
