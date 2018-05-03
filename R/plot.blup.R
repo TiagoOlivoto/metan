@@ -21,8 +21,8 @@ plot.blup = function(data,
  {
   PROB = ((1-prob)/2)+prob
   t = qt(PROB, 100)
-  GV = as.numeric(substr(data$ESTIMATES$GV, start = 1, stop = 9))
-  AccuGen = data$ESTIMATES$AccuGen
+  GV = as.numeric(substr(data$ESTIMATES[2,2], start = 1, stop = 9))
+  AccuGen = as.numeric(substr(data$ESTIMATES[8,2], start = 1, stop = 9))
   Limits = t*sqrt(((1-AccuGen)*GV))
 
   blup = data$BLUPgen
@@ -31,8 +31,7 @@ plot.blup = function(data,
                  LL = Predicted - Limits,
                  UL = Predicted + Limits)
 
-
-  blup=blup[order(blup$BLUPg), ]
+    blup=blup[order(blup$BLUPg), ]
   blup$GEN=factor(blup$GEN, levels = blup$GEN)
   blup$Mean=ifelse(blup$Predicted < mean(blup$Predicted), "below", "above")
   blup$CI=blup$Predicted-blup$LL
