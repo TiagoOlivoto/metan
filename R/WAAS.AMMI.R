@@ -135,8 +135,11 @@ minimo = min(Nenv, Ngen)-1
                  OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV, MinGEN=MinGEN, MaxGEN=MaxGEN)
   Details = do.call(rbind.data.frame, Details)
   names(Details) = "Values"
-    rownames(Details) = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
-                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN")
+  Details = plyr::mutate(Details,
+                         Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
+                                        "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
+  Details = Details %>%
+    select(Parameters, everything())
 
   return(list(model = WAAS, MeansGxE = MeansGxE, PCA = PCA,
               anova = anova, Details = Details, object = "WAAS"))

@@ -82,9 +82,12 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
 
     ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
     names(ESTIMATES) = "Values"
-    rownames(ESTIMATES) = c("GEI variance", "Genotypic variance", "Residual variance",
-                    "Phenotypic variance", "Heritability", "GEIr2",
-                    "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio")
+    ESTIMATES = plyr::mutate(ESTIMATES,
+                             Parameters =c("GEI variance", "Genotypic variance", "Residual variance",
+                                    "Phenotypic variance", "Heritability", "GEIr2",
+                                    "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
+    ESTIMATES = ESTIMATES %>%
+      select(Parameters, everything())
 
     ## BLUPS
     # estimate BLUPS
@@ -238,8 +241,11 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
 
     Details = do.call(rbind.data.frame, Details)
     names(Details) = "Values"
-    rownames(Details) = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
-                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN")
+    Details = plyr::mutate(Details,
+                           Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
+                                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
+    Details = Details %>%
+      select(Parameters, everything())
 
     ## Creating plots with the BLUPs
     # Create a numeric vector with the BLUP for each GEN
@@ -325,11 +331,12 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
 
     ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
     names(ESTIMATES) = "Values"
-    rownames(ESTIMATES) = c("GEI variance", "Genotypic variance", "Residual variance",
-                            "Phenotypic variance", "Heritability", "GEIr2",
-                            "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio")
-
-
+    ESTIMATES = plyr::mutate(ESTIMATES,
+                             Parameters = c("GEI variance", "Genotypic variance", "Residual variance",
+                                           "Phenotypic variance", "Heritability", "GEIr2",
+                                           "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
+    ESTIMATES = ESTIMATES %>%
+      select(Parameters, everything())
 
     ## BLUPS
     # estimate BLUPS
@@ -482,8 +489,11 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
 
     Details = do.call(rbind.data.frame, Details)
     names(Details) = "Values"
-    rownames(Details) = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
-                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN")
+    Details = plyr::mutate(Details,
+                           Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
+                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
+    Details = Details %>%
+      select(Parameters, everything())
 
     ## Creating plots with the BLUPs
     # Create a numeric vector with the BLUP for each GEN
