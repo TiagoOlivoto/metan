@@ -81,11 +81,7 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
                      AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
 
     ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
-<<<<<<< HEAD
     names(ESTIMATES) = "Values"
-=======
-    names(ESTIMATES) = "Estimates"
->>>>>>> 00c547eaee4bb7e2e5124fe52f5917edbe50ae31
     rownames(ESTIMATES) = c("GEI variance", "Genotypic variance", "Residual variance",
                     "Phenotypic variance", "Heritability", "GEIr2",
                     "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio")
@@ -328,11 +324,7 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
                      AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
 
     ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
-<<<<<<< HEAD
     names(ESTIMATES) = "Values"
-=======
-    names(ESTIMATES) = "Estimates"
->>>>>>> 00c547eaee4bb7e2e5124fe52f5917edbe50ae31
     rownames(ESTIMATES) = c("GEI variance", "Genotypic variance", "Residual variance",
                             "Phenotypic variance", "Heritability", "GEIr2",
                             "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio")
