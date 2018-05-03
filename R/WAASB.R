@@ -80,7 +80,11 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
                      FV = FV, h2g = h2g, GEr2 = GEr2, h2mg = h2mg,
                      AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
 
-
+    ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
+    names(ESTIMATES) = "Estimates"
+    rownames(ESTIMATES) = c("GEI variance", "Genotypic variance", "Residual variance",
+                    "Phenotypic variance", "Heritability", "GEIr2",
+                    "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio")
 
     ## BLUPS
     # estimate BLUPS
@@ -313,6 +317,12 @@ WAASB = function(data, resp, random = "gen", prob = 0.95, weight.response = 50, 
     ESTIMATES = list(GEV = GEV, GV = GV, RV = RV,
                      FV = FV, h2g = h2g, GEr2 = GEr2, h2mg = h2mg,
                      AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
+
+    ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
+    names(ESTIMATES) = "Estimates"
+    rownames(ESTIMATES) = c("GEI variance", "Genotypic variance", "Residual variance",
+                            "Phenotypic variance", "Heritability", "GEIr2",
+                            "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio")
 
 
 

@@ -7,19 +7,20 @@ summary.WAASB = function(data, export = FALSE, file.name = "WAASB"){
   cat("WAASY = Weighted average of Absolute Scores and Yield (this index allow weighting the productivity and the stability) ","\n")
   cat("-----------------------------------------------------------------------------------------------------------------------------\n")
   cat("------------------------------------------------- Summary of analysis of variance--- ----------------------------------------\n")
-  cat("\nFixed effects")
+  cat("\nFixed effects\n")
   print.data.frame(data$REML$fixed, row.names = FALSE)
   cat("\n")
-  cat("\nRandom effects")
-
+  cat("\nRandom effects\n")
   print.data.frame(data$REML$random, row.names = FALSE)
   cat("\n")
-  cat("\nStatistics")
-
+  cat("\nStatistics\n")
   print.data.frame(data$REML$statistics, row.names = FALSE)
   cat("\n")
+  cat("\nSome estimates\n")
+  print.data.frame(data$ESTIMATES, row.names = FALSE)
+  cat("\n")
   cat("--------------------------------------------- Weighted average of the absolute scores ----------------------------------------\n")
-  print.data.frame(data$WAASB, row.names = FALSE)
+  print.data.frame(data$model, row.names = FALSE)
   cat("\n")
   cat("---------------------------------- Principal component analysis of the G x E interaction matrix-------------------------------\n")
   print.data.frame(data$PCA, row.names = FALSE)
@@ -34,11 +35,11 @@ summary.WAASB = function(data, export = FALSE, file.name = "WAASB"){
   print.data.frame(data$MeansGxE, row.names = FALSE)
   cat("\n")
   cat("\n")
-  cat("The analysis consisted of ", data$Ngen, " genotypes and ", data$Nenv, " environments. The Weighted Average of Absolute scores was computed considering", length(data$PCA$PC),
-      "PCs. The values of WAASY were estimated considering the weights for Response variable and stability equal to ", data$WgtResponse, "% and ", data$WgtWAAS, "%, respectively. The overall mean was ", round(data$OVmean, 4),
-      ". The minimum and maximum values were", data$Min," and ", data$Max, ", respectively. Regarding the environments, that one with the lower mean was the", data$MinENV,
-      ". The Environment with the largest mean was", data$MaxENV,". Regarding the Genotypes, that one  with the lower mean across the environmnets was the", data$MinGEN,
-      ". The Genotype with the largest mean across, the tested environment was the",  data$MaxGEN, ".")
+  cat("The analysis consisted of ", data$Details$Ngen, " genotypes and ", data$Details$Nenv, " environments. The Weighted Average of Absolute scores was computed considering", length(data$PCA$PC),
+      "PCs. The values of WAASY were estimated considering the weights for Response variable and stability equal to ", data$Details$WgtResponse, "% and ", data$Details$WgtWAAS, "%, respectively. The overall mean was ", round(data$Details$OVmean, 4),
+      ". The minimum and maximum values were", data$Details$Min," and ", data$Details$Max, ", respectively. Regarding the environments, that one with the lower mean was the", data$Details$MinENV,
+      ". The Environment with the largest mean was", data$Details$MaxENV,". Regarding the Genotypes, that one  with the lower mean across the environmnets was the", data$Details$MinGEN,
+      ". The Genotype with the largest mean across, the tested environment was the",  data$Details$MaxGEN, ".")
   cat("\n")
   cat("\n")
   cat("------------------------------------------------------ End of data -----------------------------------------------------------\n")
@@ -46,7 +47,7 @@ summary.WAASB = function(data, export = FALSE, file.name = "WAASB"){
   if(export == TRUE|T){
 
     sink(paste0(file.name,".txt"))
-    options(max.print=99999999)
+    options(max.print=99999999, width = 130)
 
     cat("----------------------------------------- Some informations related to the analysis -----------------------------------------\n")
     cat("WAAS = Weighted average of Absolute Scores ","\n")
@@ -54,20 +55,25 @@ summary.WAASB = function(data, export = FALSE, file.name = "WAASB"){
     cat("PctWAAS = Percentage of the i-th observation in relation to the minimum WAAS ","\n")
     cat("WAASY = Weighted average of Absolute Scores and Yield (this index allow weighting the productivity and the stability) ","\n")
     cat("-----------------------------------------------------------------------------------------------------------------------------\n")
-    cat("------------------------------------------------- Summary of analysis of variance--- ----------------------------------------\n")
-    cat("\nFixed effects")
+    cat("-------------------------------------------------------- Summary of analysis ------- ----------------------------------------\n")
+    cat("\nFixed effects\n")
+    cat("----------------------------------------------------------\n")
     print.data.frame(data$REML$fixed, row.names = FALSE)
     cat("\n")
-    cat("\nRandom effects")
-
+    cat("\nRandom effects\n")
+    cat("----------------------------------------------------------\n")
     print.data.frame(data$REML$random, row.names = FALSE)
     cat("\n")
-    cat("\nStatistics")
-
+    cat("\nStatistics\n")
+    cat("----------------------------------------------------------\n")
     print.data.frame(data$REML$statistics, row.names = FALSE)
     cat("\n")
+    cat("\nSome estimates\n")
+    cat("----------------------------------------------------------\n")
+    print.data.frame(data$ESTIMATES, row.names = FALSE)
+    cat("\n")
     cat("--------------------------------------------- Weighted average of the absolute scores ----------------------------------------\n")
-    print.data.frame(data$WAASB, row.names = FALSE)
+    print.data.frame(data$model, row.names = FALSE)
     cat("\n")
     cat("---------------------------------- Principal component analysis of the G x E interaction matrix-------------------------------\n")
     print.data.frame(data$PCA, row.names = FALSE)
@@ -82,11 +88,11 @@ summary.WAASB = function(data, export = FALSE, file.name = "WAASB"){
     print.data.frame(data$MeansGxE, row.names = FALSE)
     cat("\n")
     cat("\n")
-    cat("The analysis consisted of ", data$Ngen, " genotypes and ", data$Nenv, " environments. The Weighted Average of Absolute scores was computed considering", length(data$PCA$PC),
-        "PCs. The values of WAASY were estimated considering the weights for Response variable and stability equal to ", data$WgtResponse, "% and ", data$WgtWAAS, "%, respectively. The overall mean was ", round(data$OVmean, 4),
-        ". The minimum and maximum values were", data$Min," and ", data$Max, ", respectively. Regarding the environments, that one with the lower mean was the", data$MinENV,
-        ". The Environment with the largest mean was", data$MaxENV,". Regarding the Genotypes, that one  with the lower mean across the environmnets was the", data$MinGEN,
-        ". The Genotype with the largest mean across, the tested environment was the",  data$MaxGEN, ".")
+    cat("The analysis consisted of ", data$Details$Ngen, " genotypes and ", data$Details$Nenv, " environments. The Weighted Average of Absolute scores was computed considering", length(data$PCA$PC),
+        "PCs. The values of WAASY were estimated considering the weights for Response variable and stability equal to ", data$Details$WgtResponse, "% and ", data$Details$WgtWAAS, "%, respectively. The overall mean was ", round(data$Details$OVmean, 4),
+        ". The minimum and maximum values were", data$Details$Min," and ", data$Details$Max, ", respectively. Regarding the environments, that one with the lower mean was the", data$Details$MinENV,
+        ". The Environment with the largest mean was", data$Details$MaxENV,". Regarding the Genotypes, that one  with the lower mean across the environmnets was the", data$Details$MinGEN,
+        ". The Genotype with the largest mean across, the tested environment was the",  data$Details$MaxGEN, ".")
     cat("\n")
     cat("\n")
     cat("------------------------------------------------------ End of data -----------------------------------------------------------\n")

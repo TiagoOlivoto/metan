@@ -131,9 +131,15 @@ minimo = min(Nenv, Ngen)-1
 
   PCA = PC[,4:7]
 
-  return(list(model = WAAS, MeansGxE = MeansGxE, PCA = PCA, anova = anova, WgtResponse=weight.response,
-              WgtWAAS=weight.WAAS, Ngen=Ngen, Nenv = Nenv, OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV,
-              MinGEN=MinGEN, MaxGEN=MaxGEN, object = "WAAS"))
+  Details = list(WgtResponse=weight.response, WgtWAAS=weight.WAAS, Ngen=Ngen, Nenv = Nenv,
+                 OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV, MinGEN=MinGEN, MaxGEN=MaxGEN)
+  Details = do.call(rbind.data.frame, Details)
+  names(Details) = "Estimates"
+  rownames(Details) = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
+                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN")
+
+  return(list(model = WAAS, MeansGxE = MeansGxE, PCA = PCA,
+              anova = anova, Details = Details, object = "WAAS"))
 }
 }
 
