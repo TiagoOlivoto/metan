@@ -17,9 +17,7 @@ Imports: agricolae,
          plyr,
          data.table,
          dendextend,
-         xlsx,
          heatmaply,
-         readxl,
          svDialogs,
          pvclust,
          gplots,
@@ -29,9 +27,11 @@ Imports: agricolae,
          ggrepel, 
          lme4,
          broom,
-         gtools,
-         rJava
+         gtools
 RoxygenNote: 6.0.1
 Suggests: 
-    testthat
+    testthat,
+    xlsx,
+    readxl,
+    rJava
 URL: https://github.com/TiagoOlivoto/WAASB
