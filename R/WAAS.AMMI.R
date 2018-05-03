@@ -134,7 +134,11 @@ minimo = min(Nenv, Ngen)-1
   Details = list(WgtResponse=weight.response, WgtWAAS=weight.WAAS, Ngen=Ngen, Nenv = Nenv,
                  OVmean=mean, Min=min, Max=max, MinENV=MinENV, MaxENV=MaxENV, MinGEN=MinGEN, MaxGEN=MaxGEN)
   Details = do.call(rbind.data.frame, Details)
+<<<<<<< HEAD
   names(Details) = "Values"
+=======
+  names(Details) = "Estimates"
+>>>>>>> 00c547eaee4bb7e2e5124fe52f5917edbe50ae31
   rownames(Details) = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
                           "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN")
 
