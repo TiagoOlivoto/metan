@@ -1,5 +1,5 @@
 
-validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval){
+validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval, progbar = TRUE){
 
 
   Y = data[paste(resp)]
@@ -21,7 +21,7 @@ validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval){
 
   AMMIval =data.frame(matrix(".",nboot,1))
   for(n in c(1,1:ncol(AMMIval))) {
-    AMMIval[,n] <- as.numeric(AMMIval[,n])
+    AMMIval[,n] = as.numeric(AMMIval[,n])
   }
 
 
@@ -30,16 +30,16 @@ validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval){
       stop("The number replications used for validation must be equal to total number of replications -1 (In this case ", (Nbloc-1),").")
     } else{
 
-
+if (progbar == TRUE){
       pb = winProgressBar(title = "the model is being built, please, wait.",
                           min = 1, max = totalboot, width = 570)
-
+}
 
       for (y in 1:naxisvalidation){
 
         RMSEres =data.frame(matrix(".",nboot,1))
         for(n in c(1,1:ncol(RMSEres))) {
-          RMSEres[,n] <- as.numeric(RMSEres[,n])
+          RMSEres[,n] = as.numeric(RMSEres[,n])
         }
 
         for (b in 1:nboot) {
@@ -57,7 +57,7 @@ validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval){
           if (design == "RCBD"){
             temp = data.frame(matrix(".",0,ncol(data)))
             for(n in c(4:5)) {
-              temp[,n] <- as.numeric(temp[,n])
+              temp[,n] = as.numeric(temp[,n])
             }
             names(temp) = names(data)
             actualenv = 0
@@ -82,8 +82,8 @@ validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval){
 
           testing = suppressWarnings(dplyr::anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "ID")))
           testing = suppressWarnings(testing[order(testing[,1], testing[,2], testing[,3] ),])
-          x1  <- factor(testing$ENV)
-          z1  <- factor(testing$GEN)
+          x1  = factor(testing$ENV)
+          z1  = factor(testing$GEN)
 
 
           ENV = as.factor(modeling$ENV)
@@ -91,39 +91,39 @@ validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval){
           BLOCO = as.factor(modeling$REP)
           Resp = as.numeric(modeling$Y)
           ovmean = mean(Resp)
-          raw <- data.frame(ENV, GEN, Resp)
-          MEDIAS <- tapply(raw[, 3], raw[, c(1, 2)], mean)
-          xx <- rownames(MEDIAS)
-          yy <- colnames(MEDIAS)
-          fila <- length(xx)
-          col <- length(yy)
-          total <- fila * col
-          x <- numeric(length = total)
-          y <- numeric(length = total)
-          z <- numeric(length = total)
-          k <- 0
+          raw = data.frame(ENV, GEN, Resp)
+          MEDIAS = tapply(raw[, 3], raw[, c(1, 2)], mean)
+          xx = rownames(MEDIAS)
+          yy = colnames(MEDIAS)
+          fila = length(xx)
+          col = length(yy)
+          total = fila * col
+          x = numeric(length = total)
+          y = numeric(length = total)
+          z = numeric(length = total)
+          k = 0
           for (i in 1:fila) {
             for (j in 1:col) {
-              k <- k + 1
-              x[k] <- xx[i]
-              y[k] <- yy[j]
-              z[k] <- MEDIAS[i, j]
+              k = k + 1
+              x[k] = xx[i]
+              y[k] = yy[j]
+              z[k] = MEDIAS[i, j]
             }
           }
-          MEDIAS <- data.frame(ENV = x, GEN = y, Y = z)
-          modelo1 <- lm(Y ~ ENV + GEN, data = MEDIAS)
-          residual <- modelo1$residuals
-          MEDIAS <- data.frame(MEDIAS, resOLS = residual)
+          MEDIAS = data.frame(ENV = x, GEN = y, Y = z)
+          modelo1 = lm(Y ~ ENV + GEN, data = MEDIAS)
+          residual = modelo1$residuals
+          MEDIAS = data.frame(MEDIAS, resOLS = residual)
 
           intmatrix = t(matrix(MEDIAS$resOLS, Nenv, byrow = T))
-          s <- svd(intmatrix)
-          U <- s$u[,1:NAXIS]                    # initial guess for singular vector G
-          LL <- s$d[1:NAXIS]              # initial guess for singular value
-          V <- s$v[,1:NAXIS]
-          x1  <- model.matrix(~x1 -1)
-          z1  <- model.matrix(~z1 -1)
+          s = svd(intmatrix)
+          U = s$u[,1:NAXIS]                    # initial guess for singular vector G
+          LL = s$d[1:NAXIS]              # initial guess for singular value
+          V = s$v[,1:NAXIS]
+          x1  = model.matrix(~x1 -1)
+          z1  = model.matrix(~z1 -1)
 
-          AMMI <- ((z1%*%U)*(x1%*%V))%*%LL
+          AMMI = ((z1%*%U)*(x1%*%V))%*%LL
           MEDIAS = mutate(MEDIAS,
                           Ypred = Y - resOLS,
                           ResAMMI =  AMMI,
@@ -143,11 +143,14 @@ validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval){
             ACTUAL = "AMMIF"
           }else
             ACTUAL = sprintf("AMMI%.0f",NAXIS)
-          ProcdAtua = b
           initial = initial+1
+
+          if (progbar == TRUE){
+          ProcdAtua = b
           setWinProgressBar(pb, initial, title=paste("|Family = ",ACTUAL,"| Validating ",ProcdAtua,
                                                      " of ",nboot,"validation datasets, considering", NAXIS, "PC-Axis",
                                                      "-",round(initial/totalboot*100,2),"% Concluded -"))
+          }
         }
 
         if (NAXIS == minimo){
@@ -158,30 +161,30 @@ validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval){
         NAXIS = NAXIS - 1
         initial = initial
       }
-
+      if (progbar == TRUE){
       close(pb)
      # utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
-
+}
 
     }
 
     RMSE = AMMIval[,-c(1)]
 
-    xx <- rownames(RMSE)
-    yy <- colnames(RMSE)
-    fila <- length(xx)
-    col <- length(yy)
-    total <- fila * col
-    x <- character(length = total)
-    y <- character(length = total)
-    z <- numeric(length = total)
-    k <- 0
+    xx = rownames(RMSE)
+    yy = colnames(RMSE)
+    fila = length(xx)
+    col = length(yy)
+    total = fila * col
+    x = character(length = total)
+    y = character(length = total)
+    z = numeric(length = total)
+    k = 0
     for (i in 1:fila) {
       for (j in 1:col) {
-        k <- k + 1
-        x[k] <- xx[i]
-        y[k] <- yy[j]
-        z[k] <- RMSE[i, j]
+        k = k + 1
+        x[k] = xx[i]
+        y[k] = yy[j]
+        z[k] = RMSE[i, j]
       }
     }
     RMSE = data.frame(MODEL = y, RMSE = z)

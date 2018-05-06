@@ -1,5 +1,5 @@
 
-validation.blup = function(data, resp, nboot, nrepval){
+validation.blup = function(data, resp, nboot, nrepval, progbar = TRUE){
 
 RMSEres =data.frame(RMSE = matrix(".",nboot,1))
 for(n in c(1,1:ncol(RMSEres))) {
@@ -22,8 +22,10 @@ if(nrepval != Nbloc-1){
   stop("The number replications used for validation must be equal to total number of replications -1 (In this case ", (Nbloc-1),").")
 } else{
 
+if (progbar == TRUE){
 pb=winProgressBar(title = "the model is being built, please, wait.",
                   min = 1, max = nboot, width = 570)
+}
 
 for (b in 1:nboot) {
 
@@ -155,11 +157,12 @@ validation  = mutate(selectioNenv,
 RMSE = sqrt(sum(validation$error^2)/length(validation$error))
 RMSEres[,1][b]=RMSE
 
+if (progbar == TRUE){
 ProcdAtua=b
 setWinProgressBar(pb, b, title=paste("Estimating BLUPs for ",ProcdAtua,
                                      " of ",nboot," total validation datasets",
                                      "-",round(b/nboot*100,3),"% Concluded -"))
-
+}
 
 }
 RMSEres = dplyr::mutate(RMSEres,
@@ -168,9 +171,11 @@ RMSEres = RMSEres %>%
   dplyr::select(MODEL, everything())
 
 RMSEmean = plyr::ddply(RMSEres, .(MODEL), summarize, mean=mean(RMSE))
+if (progbar == TRUE){
 close(pb)
 #utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
-return(list(RMSE = RMSEres, RMSEmean = RMSEmean))
+}
+  return(list(RMSE = RMSEres, RMSEmean = RMSEmean))
 }
 }
 
