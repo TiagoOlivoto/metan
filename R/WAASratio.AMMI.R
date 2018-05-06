@@ -1,4 +1,9 @@
-WAASratio.AMMI=function(data, resp, p.valuePC = 0.05, increment = 5, saveWAASY = 50){
+WAASratio.AMMI=function(data,
+                        resp,
+                        p.valuePC = 0.05,
+                        increment = 5,
+                        saveWAASY = 50,
+                        progbar = TRUE){
 
   PesoWAAS=100
   PesoResp=0
@@ -43,8 +48,10 @@ WAASratio.AMMI=function(data, resp, p.valuePC = 0.05, increment = 5, saveWAASY =
     MeansGxE=model$means
     totalcomb = ncomb*nrow(PC)
     initial = 0
+    if (progbar == TRUE){
     pb=winProgressBar(title = "the model is being built, please, wait.",
                       min = 1, max = totalcomb, width = 570)
+    }
     for (k in 1:ncomb){
 
 
@@ -165,13 +172,13 @@ WAASratio.AMMI=function(data, resp, p.valuePC = 0.05, increment = 5, saveWAASY =
       ProcdAtua=j
       initial = initial+1
       Sys.sleep(0.1)
+      if (progbar == TRUE){
       setWinProgressBar(pb, initial, title=paste("Obtaining the Ranks considering",ProcdAtua,
                                            " of ",nrow(PC),"Principal components:",
                                            "|WAAS:",PesoWAAS,"% ",
                                            "GY:",PesoResp,"%|" ,
                                            "-",round(initial/totalcomb*100,2),"% Concluded -"))
-
-
+        }
     }
     initial = initial
     WAAS=WAASAbsInicial
@@ -193,9 +200,7 @@ WAASratio.AMMI=function(data, resp, p.valuePC = 0.05, increment = 5, saveWAASY =
 
 
 
-  }
-    close(pb)
-    utils::winDialog(type = "ok", "Procedure suceful! Check the results in R environment")
+    }
 
 
   ######################################## DO NOT CHANGE ############################################
@@ -225,6 +230,10 @@ WAASratio.AMMI=function(data, resp, p.valuePC = 0.05, increment = 5, saveWAASY =
   mean=mean(WAAS$Y)                                                                              #
   ###################################################################################################
 
+  if (progbar == TRUE){
+    close(pb)
+    utils::winDialog(type = "ok", "Procedure suceful! Check the results in R environment")
+  }
   return(list(anova=anova, PC=PC, MeansGxE=MeansGxE,  WAAS=WAAS, WAASxGY=WAASY.Values,
                        WAASY=genotypes,hetcomb=hetcomb, hetdata=hetdata, Ranks=Rank))
 

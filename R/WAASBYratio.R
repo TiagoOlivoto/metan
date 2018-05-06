@@ -1,5 +1,5 @@
 
-WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50){
+WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50, progbar = TRUE){
 
 
   PesoWAAS=100
@@ -105,12 +105,12 @@ WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50){
                        NEscores)
     Escores <- rbind(MGEN, MENV)
 
-
-
     Pesos=data.frame(Percent=Eigenvalue$Proportion)
 
+    if (progbar = TRUE){
     pb=winProgressBar(title = "the model is being built, please, wait.",
                       min = 1, max = totalcomb, width = 570)
+    }
     for (k in 1:ncomb){
 
 
@@ -131,9 +131,6 @@ WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50){
     }
 
     Ponderado=transpose(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,  w = t_WAAS$Percent)))
-
-
-
     rownames(Ponderado)=c("WAAS")
     t_WAAS=subset(t_WAAS, select = -Percent)
     colnames(Ponderado)=colnames(t_WAAS)
@@ -224,12 +221,13 @@ WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50){
       ProcdAtua=j
       Sys.sleep(0.1)
       initial = initial + 1
+      if (progbar = TRUE){
       setWinProgressBar(pb, initial, title=paste("Obtaining the Ranks considering",ProcdAtua,
                                            " of ",minimo,"Principal components:",
                                            "|WAAS:",PesoWAAS,"% ",
                                            "GY:",PesoResp,"%|" ,
                                            "-",round(initial/totalcomb*100,2),"% Concluded -"))
-
+}
     }
     initial = initial
     WAAS=WAASAbsInicial
@@ -248,8 +246,10 @@ WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50){
       genotypes$Mean=ifelse(genotypes$WAASY < mean(genotypes$WAASY), "below", "above")}
 
 
-  }
+    }
+    if (progbar = TRUE){
     close(pb)
+    }
   ######################################## DO NOT CHANGE ############################################
   ########################### Code to set some important data frames ################################
   Rank= final[,-(SigPC2)]                                                                            #
@@ -282,6 +282,7 @@ WAASBYratio = function(data, resp, increment = 5, saveWAASY = 50){
   return(list(MeansGxE = MEDIAS, WAASxGY=WAASY.Values, WAAS=WAAS,
               WAASY=genotypes,hetcomb=hetcomb, hetdata=hetdata, CorcombWAASY = CorcombWAASY, Ranks=Rank))
 
-
+  if (progbar = TRUE){
   #utils::winDialog(type = "ok", "Procedure sucessful! Check the results in R environment")
+ }
 }
