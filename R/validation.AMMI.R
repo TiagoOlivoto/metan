@@ -1,8 +1,8 @@
 
-validation.AMMI = function(data, resp, design = "RCBD", nboot, nrepval, naxis){
+validation.AMMI = function(data, resp, design = "RCBD", nboot, nrepval, naxis, progbar = TRUE){
 
-  RMSEres =data.frame(RMSE =matrix(".",nboot,1))
-  for(n in c(1,1:ncol(RMSEres))) {
+  RMSEres  = data.frame(RMSE  = matrix(".",nboot,1))
+  for (n in c(1,1:ncol(RMSEres))) {
     RMSEres[,n] <- as.numeric(RMSEres[,n])
   }
 
@@ -12,42 +12,43 @@ validation.AMMI = function(data, resp, design = "RCBD", nboot, nrepval, naxis){
   names(data) = c("ENV", "GEN", "REP", "Y")
   data$ENV = as.factor(data$ENV)
   data$GEN = as.factor(data$GEN)
-  data$REP= as.factor(data$REP)
+  data$REP =  as.factor(data$REP)
   data$ID = as.numeric(rownames(data))
 
   Nenv = length(unique(data$ENV))
   Ngen = length(unique(data$GEN))
   Nbloc = length(unique(data$REP))
-  minimo = min(Nenv, Ngen)-1
+  minimo = min(Nenv, Ngen) - 1
 
   if(design == "RCBD" | design == "CRD"){
-  if(nrepval > Nbloc-1){
+  if(nrepval > Nbloc - 1){
     stop("The number replications used for validation must be equal to total number of replications -1 (In this case ", (Nbloc-1),").")
   } else{
 
-    if(naxis > minimo){
+    if (naxis > minimo){
       stop("The number of axis to be used must be lesser than or equal to ", minimo, " [min(GEN-1;ENV-1)]")
     } else{
 
-      pb=winProgressBar(title = "the model is being built, please, wait.",
+      if (progbar == TRUE | T){
+      pb = winProgressBar(title = "the model is being built, please, wait.",
                         min = 1, max = nboot, width = 570)
-
+} else
 
       for (b in 1:nboot) {
 
         if (design == "CRD"){
-          X = sample (1:10000,1)
+          X = sample(1:10000,1)
           set.seed(X)
           modeling = data %>%
             dplyr::group_by(ENV, GEN) %>%
-            dplyr::sample_n(nrepval, replace=F)
+            dplyr::sample_n(nrepval, replace = F)
           modeling = as.data.frame(modeling[order(modeling$ID),])
           rownames(modeling) = modeling$ID
         }
 
         if (design == "RCBD"){
           temp = data.frame(matrix(".",0,ncol(data)))
-          for(n in c(4:5)) {
+          for (n in c(4:5)) {
             temp[,n] <- as.numeric(temp[,n])
           }
           names(temp) = names(data)
@@ -60,7 +61,7 @@ validation.AMMI = function(data, resp, design = "RCBD", nboot, nrepval, naxis){
             names = factor(data$ENV)
             names = levels(names)[actualenv + 1]
             actualenv = actualenv + 1
-            temp2 = dplyr::filter(data, ENV == names)
+            temp2 = dplyr::filter(data, ENV  ==   names)
             modeling = temp2 %>%
               dplyr::group_by(GEN) %>%
               dplyr::filter(REP %in% c(X2))
@@ -134,7 +135,7 @@ validation.AMMI = function(data, resp, design = "RCBD", nboot, nrepval, naxis){
                         errrorAMMI0 = Ypred - testing )
 
 
-        if(naxis == 0){
+        if (naxis == 0){
           RMSE = sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
         } else{
           RMSE = sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
@@ -143,20 +144,22 @@ validation.AMMI = function(data, resp, design = "RCBD", nboot, nrepval, naxis){
 
         RMSEres[,1][b] = RMSE
 
-        ProcdAtua=b
-        setWinProgressBar(pb, b, title=paste("Validating ",ProcdAtua,
+        if (progbar == TRUE | T){
+        ProcdAtua = b
+        setWinProgressBar(pb, b, title = paste("Validating ",ProcdAtua,
                                              " of ",nboot,"validation datasets, considering", naxis, "naxiss",
                                              "-",round(b/nboot*100,2),"% Concluded -"))
-
+}
 
       }
+      if (progbar == TRUE | T){
       close(pb)
       utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
-
+}
     }
   }
   RSMEmean = mean(RMSEres$RMSE)
-  return(list(RMSE = RMSEres, RSMEmean =RSMEmean, Estimated = MEDIAS, Modeling = modeling, Testing = testing))
+  return(list(RMSE = RMSEres, RSMEmean  = RSMEmean, Estimated = MEDIAS, Modeling = modeling, Testing = testing))
   }
   else{
     stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
