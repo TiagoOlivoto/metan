@@ -17,6 +17,8 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis in different c
   \item{increment}{The range of the increment for WAASB/GY ratio. Default is 5. The function compute the WAASBY  values starting with a weight o 100 for stability and 0 for response variable. With the default, the first scenario will be a WAASB/GY ratio = 100/0. In the next scenario, the WAASBY values are computed based on a WAASB/GY ratio = 95/5.}
 
   \item{saveWAASY}{Automatically save the WAASY values when the wheight for WAAS (stability) in the WAAS/GY ratio is "saveWAASY". Default is 100. The value of "saveWAASY" must be multiple of "Increment". If this assumption is not valid, an error will be occour.}
+
+   \item{progbar}{A logical argument to define if a progress bar is shown. Default is \code{TRUE}.}
 }
 
 \details{

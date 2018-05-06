@@ -21,6 +21,9 @@ Cross-validation for estimation of all AMMI-family models
   \item{nboot}{The number of resamples to be used in the cross-validation }
 
   \item{nrepval}{The number of replicates (r) from total number of replicates (R) to be used in the modeling dataset. Only one replicate is used as validating data each step, so, \code{Nrepval} must be equal \code{R-1} }
+
+  \item{progbar}{A logical argument to define if a progress bar is shown. Default is \code{TRUE}.}
+}
 }
 
 \details{
