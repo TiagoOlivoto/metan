@@ -23,6 +23,7 @@ Imports: agricolae,
          lme4,
          broom,
          gtools
+         magrittr
 RoxygenNote: 6.0.1
 Suggests: 
     testthat,

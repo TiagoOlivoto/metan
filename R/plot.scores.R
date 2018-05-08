@@ -1,6 +1,6 @@
-#' @method
+#' @method plot scores
 #' @export
-plot.scores = function(data,
+plot.scores = function(x,
                      type,
                      file.type = "pdf",
                      export = FALSE,
@@ -29,7 +29,7 @@ plot.scores = function(data,
                      col.alpha = 0.9,
                      col.segm.gen = "transparent",
                      col.segm.env = "grey50",
-                     resolution = 300){
+                     resolution = 300, ...){
 
 
   if (leg.position  ==  "tr"){
@@ -52,7 +52,7 @@ plot.scores = function(data,
 
 if (type == 1){
 
-p1 = ggplot2::ggplot(data$model, aes(PC1, PC2, shape = type, fill = type))  +
+p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
@@ -69,13 +69,13 @@ p1 = ggplot2::ggplot(data$model, aes(PC1, PC2, shape = type, fill = type))  +
             panel.border = element_rect(colour = "black", fill = NA, size = 1),
             panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
             panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
-      labs(x = paste0("\nPC1 (", round(data$PCA[1,3],2), "%)"),
-           y = paste0("PC2 (", round(data$PCA[2,3],2), "%)")) +
+      labs(x = paste0("\nPC1 (", round(x$PCA[1,3],2), "%)"),
+           y = paste0("PC2 (", round(x$PCA[2,3],2), "%)")) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
       geom_hline(yintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
-      geom_segment(data = data$WAAS, aes(x = 0, y = 0, xend = PC1, yend = PC2, size =  type, color = type, group = type),
+      geom_segment(x = x$WAAS, aes(x = 0, y = 0, xend = PC1, yend = PC2, size =  type, color = type, group = type),
                    arrow = arrow(length = unit(0.15, 'cm'))) +
       scale_color_manual(name = "", values = c( col.segm.gen, col.segm.env), theme(legend.position = "none")) +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
@@ -99,8 +99,8 @@ p1 = ggplot2::ggplot(data$model, aes(PC1, PC2, shape = type, fill = type))  +
   }
 
 if (type == 2){
-    mean = mean(data$model$Y)
-p2 = ggplot2::ggplot(data$model, aes(Y, PC1, shape = type, fill = type))  +
+    mean = mean(x$model$Y)
+p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
@@ -117,12 +117,12 @@ p2 = ggplot2::ggplot(data$model, aes(Y, PC1, shape = type, fill = type))  +
             panel.border = element_rect(colour = "black", fill = NA, size = 1),
             panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
             panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
-      labs(x = paste("\n", x.lab), y = paste0("PC1 (", round(data$PCA[1,3],2), "%)")) +
+      labs(x = paste("\n", x.lab), y = paste0("PC1 (", round(x$PCA[1,3],2), "%)")) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-      geom_vline(xintercept = mean(data$model$Y), linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
+      geom_vline(xintercept = mean(x$model$Y), linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
       geom_hline(yintercept = 0, linetype = line.type, size = size.line, color = col.line, alpha = line.alpha) +
-      geom_segment(data = data$model, aes(x = mean, y = 0, xend = Y, yend = PC1, size = type, color = type, group = type),
+      geom_segment(x = x$model, aes(x = mean, y = 0, xend = Y, yend = PC1, size = type, color = type, group = type),
                    arrow = arrow(length = unit(0.15, 'cm'))) +
       scale_color_manual(name = "", values = c( col.segm.gen, col.segm.env), theme(legend.position = "none")) +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
@@ -147,14 +147,14 @@ p2 = ggplot2::ggplot(data$model, aes(Y, PC1, shape = type, fill = type))  +
 
 
 if (type == 3){
-    if (data$object  ==  "WAASB"){
-    m1 = mean(data$model$Y)
-    m2 = mean(data$model$WAASB)
+    if (x$object  ==  "WAASB"){
+    m1 = mean(x$model$Y)
+    m2 = mean(x$model$WAASB)
     I = grid::grobTree(textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
     II = grid::grobTree(textGrob("II", x = 0.97,  y = 0.97, hjust = 0))
     III = grid::grobTree(textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
     IV = grid::grobTree(textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
-    p3 = ggplot2::ggplot(data$model, aes(Y, WAASB, shape = type, fill = type))  +
+    p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
@@ -183,14 +183,14 @@ if (type == 3){
       annotation_custom(IV)
     }
 
-if (data$object  ==  "WAAS"){
-      m1 = mean(data$model$Y)
-      m2 = mean(data$model$WAAS)
+if (x$object  ==  "WAAS"){
+      m1 = mean(x$model$Y)
+      m2 = mean(x$model$WAAS)
       I = grid::grobTree(textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
       II = grid::grobTree(textGrob("II", x = 0.97,  y = 0.97, hjust = 0))
       III = grid::grobTree(textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
       IV = grid::grobTree(textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
-p3 = ggplot2::ggplot(data$model, aes(Y, WAAS, shape = type, fill = type))  +
+p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
         geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
         scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
         scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +

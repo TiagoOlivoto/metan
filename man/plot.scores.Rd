@@ -9,13 +9,13 @@
 }
 
 \usage{
-\method{plot}{WAASB}(data, type, file.type, export, width, height, export, x.lim, \dots)
+\method{plot}{scores}(x, type, file.type, export, width, height, export, x.lim, \dots)
 
 }
 
 \arguments{
 
-  \item{data}{The object \code{WAASB} or \code{WAAS.AMMI}}
+  \item{x}{The object \code{WAASB} or \code{WAAS.AMMI}}
 
   \item{type}{Three types of graphics can be generated: \code{1 = PC1 x PC2}, to make inferences related to the interaction effects; \code{2 = GY x PC1} to make inferences related to stability and productivity; and \code{3 = GY x WAASB}. In this plot, the scores of both genotypes and environements are plotted considering the response variable and the WAASB (stability index that consider all significant principal component axis of traditional AMMI models or all principal component axis estimated with BLUP-interaction effects.}
 
