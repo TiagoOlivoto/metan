@@ -225,14 +225,15 @@ CorcombWAASY = as.matrix(CorcombWAASY)
 PC1 = Pesos[1,1]
 PC2 = Pesos[2,1]
 mean = mean(WAAS$Y)
-return(list(MeansGxE = MEDIAS,
+return(structure(list(MeansGxE = MEDIAS,
             WAASxGY = WAASY.Values,
             WAAS = WAAS,
             WAASY = genotypes,
             hetcomb = hetcomb,
             hetdata = hetdata,
             CorcombWAASY = CorcombWAASY,
-            Ranks = Rank))
+            Ranks = Rank),
+            class = "WAASBYratio"))
 if (progbar == TRUE){
 #utils::winDialog(type = "ok", "Procedure sucessful! Check the results in R environment")
  }
