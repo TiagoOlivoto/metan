@@ -1,4 +1,4 @@
-plot.WAASBY = function(data,
+plot.WAASBY = function(x,
                       export = F,
                       file.type = "pdf",
                       width = 6,
@@ -9,8 +9,9 @@ plot.WAASBY = function(data,
                       col.shape = c("blue", "red"),
                       y.lab = "Genotypes",
                       x.breaks = waiver(),
-                      resolution = 300){
-
+                      resolution = 300,
+                      ...){
+  data = x
 p1 = ggplot2::ggplot(data$WAASY, aes(x = Code, y = WAASY)) +
     geom_point(stat = 'identity', aes(col = Mean), size = size.shape)  +
     geom_segment(aes(y = min(data$WAASY$WAASY),
