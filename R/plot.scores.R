@@ -1,5 +1,3 @@
-#' @method plot scores
-#' @export
 plot.scores = function(x,
                      type,
                      file.type = "pdf",
@@ -29,8 +27,8 @@ plot.scores = function(x,
                      col.alpha = 0.9,
                      col.segm.gen = "transparent",
                      col.segm.env = "grey50",
-                     resolution = 300, ...){
-
+                     resolution = 300,
+                     ...){
 
   if (leg.position  ==  "tr"){
     leg.pos = c(.87, 0.9) #lt
@@ -48,6 +46,8 @@ plot.scores = function(x,
   if (leg.position  ==  "bl"){
     leg.pos = c(0.12, 0.12)
   }
+
+  class = class(x)
 
 
 if (type == 1){
@@ -75,7 +75,7 @@ p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
       geom_hline(yintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
-      geom_segment(x = x$WAAS, aes(x = 0, y = 0, xend = PC1, yend = PC2, size =  type, color = type, group = type),
+      geom_segment(data = x$WAAS, aes(x = 0, y = 0, xend = PC1, yend = PC2, size =  type, color = type, group = type),
                    arrow = arrow(length = unit(0.15, 'cm'))) +
       scale_color_manual(name = "", values = c( col.segm.gen, col.segm.env), theme(legend.position = "none")) +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
@@ -122,7 +122,7 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = mean(x$model$Y), linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
       geom_hline(yintercept = 0, linetype = line.type, size = size.line, color = col.line, alpha = line.alpha) +
-      geom_segment(x = x$model, aes(x = mean, y = 0, xend = Y, yend = PC1, size = type, color = type, group = type),
+      geom_segment(data = x$model, aes(x = mean, y = 0, xend = Y, yend = PC1, size = type, color = type, group = type),
                    arrow = arrow(length = unit(0.15, 'cm'))) +
       scale_color_manual(name = "", values = c( col.segm.gen, col.segm.env), theme(legend.position = "none")) +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
@@ -147,18 +147,18 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
 
 
 if (type == 3){
-    if (x$object  ==  "WAASB"){
+    if (class  ==  "WAASB"){
     m1 = mean(x$model$Y)
     m2 = mean(x$model$WAASB)
     I = grid::grobTree(textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
     II = grid::grobTree(textGrob("II", x = 0.97,  y = 0.97, hjust = 0))
     III = grid::grobTree(textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
     IV = grid::grobTree(textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
-    p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
+p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
-      ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
+ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
       theme_bw() +
       theme(axis.ticks.length = unit(.2, "cm"),
             axis.text = element_text(size = size.lab, colour = "black"),
@@ -183,7 +183,7 @@ if (type == 3){
       annotation_custom(IV)
     }
 
-if (x$object  ==  "WAAS"){
+if (class  ==  "WAAS"){
       m1 = mean(x$model$Y)
       m2 = mean(x$model$WAAS)
       I = grid::grobTree(textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
