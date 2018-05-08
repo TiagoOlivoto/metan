@@ -2,8 +2,9 @@ WAAS.AMMI = function(data,
                      resp,
                      p.valuePC = 0.05,
                      naxis = NULL,
-                     weight.response,
-                     weight.WAAS){
+                     weight.response = 50,
+                     weight.WAAS = 50){
+utils::globalVariables(c("percent", "Percent", "acum"))
 
 Y = data[paste(resp)]
 data = as.data.frame(data[,1:3])
@@ -131,12 +132,12 @@ Details = plyr::mutate(Details,
                                         "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
 Details = Details %>%
           dplyr::select(Parameters, everything())
-  return(list(model = WAAS,
+  return(structure(list(model = WAAS,
               MeansGxE = MeansGxE,
               PCA = PCA,
               anova = anova,
-              Details = Details,
-              object = "WAAS"))
+              Details = Details),
+              class = "WAAS.AMMI"))
   }
 }
 
