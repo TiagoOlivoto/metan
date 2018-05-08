@@ -25,10 +25,13 @@ Imports: agricolae,
          gtools,
          magrittr
 RoxygenNote: 6.0.1
-Suggests: 
+Suggests:
+    knitr,
+    rmarkdown,
     testthat,
     xlsx,
     readxl,
     rJava,
     ReporteRs
 URL: https://github.com/TiagoOlivoto/WAASB
+VignetteBuilder: knitr
