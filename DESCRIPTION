@@ -10,15 +10,11 @@ License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
 Imports: agricolae,
-         corrplot,
-         Formula,
          dplyr,
          plyr,
          data.table,
          dendextend,
          heatmaply,
-         svDialogs,
-         pvclust,
          gplots,
          ggExtra,
          grid,

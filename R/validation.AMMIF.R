@@ -1,7 +1,9 @@
-
-validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval, progbar = TRUE){
-
-
+validation.AMMIF = function(data,
+                            resp,
+                            design = "RCBD",
+                            nboot,
+                            nrepval,
+                            progbar = TRUE){
   Y = data[paste(resp)]
   data = as.data.frame(data[,1:3])
   data = cbind(data, Y)
@@ -18,15 +20,13 @@ validation.AMMIF = function(data, resp, design = "RCBD", nboot, nrepval, progbar
   totalboot = naxisvalidation * nboot
   initial = 0
   NAXIS = minimo
-
   AMMIval =data.frame(matrix(".",nboot,1))
   for(n in c(1,1:ncol(AMMIval))) {
     AMMIval[,n] = as.numeric(AMMIval[,n])
   }
 
-
-  if(design == "RCBD" | design == "CRD"){
-    if(nrepval != Nbloc-1){
+  if (design == "RCBD" | design == "CRD"){
+    if (nrepval != Nbloc-1){
       stop("The number replications used for validation must be equal to total number of replications -1 (In this case ", (Nbloc-1),").")
     } else{
 
@@ -37,15 +37,15 @@ if (progbar == TRUE){
 
       for (y in 1:naxisvalidation){
 
-        RMSEres =data.frame(matrix(".",nboot,1))
-        for(n in c(1,1:ncol(RMSEres))) {
+        RMSEres = data.frame(matrix(".",nboot,1))
+        for (n in c(1,1:ncol(RMSEres))) {
           RMSEres[,n] = as.numeric(RMSEres[,n])
         }
 
         for (b in 1:nboot) {
 
           if (design == "CRD"){
-            X = sample (1:10000,1)
+            X = sample(1:10000,1)
             set.seed(X)
             modeling = data %>%
               dplyr::group_by(ENV, GEN) %>%
@@ -56,20 +56,19 @@ if (progbar == TRUE){
 
           if (design == "RCBD"){
             temp = data.frame(matrix(".",0,ncol(data)))
-            for(n in c(4:5)) {
+            for (n in c(4:5)) {
               temp[,n] = as.numeric(temp[,n])
             }
             names(temp) = names(data)
             actualenv = 0
-
             for (K in 1:Nenv){
-              X = sample (1:10000,1)
+              X = sample(1:10000,1)
               set.seed(X)
               X2 = sample(1:Nbloc,nrepval , replace = F)
               names = factor(data$ENV)
               names = levels(names)[actualenv + 1]
               actualenv = actualenv + 1
-              temp2 = dplyr::filter(data, ENV==names)
+              temp2 = dplyr::filter(data, ENV == names)
               modeling = temp2 %>%
                 dplyr::group_by(GEN) %>%
                 dplyr::filter(REP %in% c(X2))
@@ -77,15 +76,12 @@ if (progbar == TRUE){
               modeling = rbind(temp, modeling)
               temp = modeling
             }
-            rownames(modeling)= modeling$ID
+            rownames(modeling) = modeling$ID
           }
-
           testing = suppressWarnings(dplyr::anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "ID")))
           testing = suppressWarnings(testing[order(testing[,1], testing[,2], testing[,3] ),])
           x1  = factor(testing$ENV)
           z1  = factor(testing$GEN)
-
-
           ENV = as.factor(modeling$ENV)
           GEN = as.factor(modeling$GEN)
           BLOCO = as.factor(modeling$REP)
@@ -114,16 +110,14 @@ if (progbar == TRUE){
           modelo1 = lm(Y ~ ENV + GEN, data = MEDIAS)
           residual = modelo1$residuals
           MEDIAS = data.frame(MEDIAS, resOLS = residual)
-
           intmatrix = t(matrix(MEDIAS$resOLS, Nenv, byrow = T))
           s = svd(intmatrix)
-          U = s$u[,1:NAXIS]                    # initial guess for singular vector G
-          LL = s$d[1:NAXIS]              # initial guess for singular value
+          U = s$u[,1:NAXIS]
+          LL = s$d[1:NAXIS]
           V = s$v[,1:NAXIS]
           x1  = model.matrix(~x1 -1)
           z1  = model.matrix(~z1 -1)
-
-          AMMI = ((z1%*%U)*(x1%*%V))%*%LL
+          AMMI = ((z1 %*% U) * (x1 %*% V)) %*% LL
           MEDIAS = mutate(MEDIAS,
                           Ypred = Y - resOLS,
                           ResAMMI =  AMMI,
@@ -131,7 +125,7 @@ if (progbar == TRUE){
                           testing = testing$Y,
                           error = YpredAMMI - testing,
                           errrorAMMI0 = Ypred - testing )
-          if(NAXIS == 0){
+          if (NAXIS == 0){
             RMSE = sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
           } else{
             RMSE = sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
@@ -143,18 +137,17 @@ if (progbar == TRUE){
             ACTUAL = "AMMIF"
           }else
             ACTUAL = sprintf("AMMI%.0f",NAXIS)
-          initial = initial+1
-
+          initial = initial + 1
           if (progbar == TRUE){
           ProcdAtua = b
           setWinProgressBar(pb, initial, title=paste("|Family = ",ACTUAL,"| Validating ",ProcdAtua,
-                                                     " of ",nboot,"validation datasets, considering", NAXIS, "PC-Axis",
+                                                     " of ",nboot,"validation datasets, considering", NAXIS, "axes",
                                                      "-",round(initial/totalboot*100,2),"% Concluded -"))
           }
         }
 
         if (NAXIS == minimo){
-          AMMIval[["AMMIF"]]=RMSEres[,1]
+          AMMIval[["AMMIF"]] = RMSEres[,1]
         }else
 
           AMMIval[[sprintf("AMMI%.0f",NAXIS)]]=RMSEres[,1]
@@ -164,12 +157,9 @@ if (progbar == TRUE){
       if (progbar == TRUE){
       close(pb)
      # utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
+ }
 }
-
-    }
-
     RMSE = AMMIval[,-c(1)]
-
     xx = rownames(RMSE)
     yy = colnames(RMSE)
     fila = length(xx)
@@ -189,14 +179,15 @@ if (progbar == TRUE){
     }
     RMSE = data.frame(MODEL = y, RMSE = z)
     RMSE = RMSE[mixedorder(RMSE[,1]),]
-    RMSEmean = plyr::ddply(RMSE, .(MODEL), summarize, mean=mean(RMSE))
+    RMSEmean = plyr::ddply(RMSE, .(MODEL), summarize, mean = mean(RMSE))
     RMSEmean = RMSEmean[order(RMSEmean[,2]),]
-
-    return(list(RMSE = RMSE, RMSEmean = RMSEmean, Estimated = MEDIAS, Modeling = modeling, Testing = testing))
+    return(list(RMSE = RMSE,
+                RMSEmean = RMSEmean,
+                Estimated = MEDIAS,
+                Modeling = modeling,
+                Testing = testing))
   } else{
     stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
   }
-
-
 }
 

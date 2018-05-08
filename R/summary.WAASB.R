@@ -1,4 +1,6 @@
-summary.WAASB = function(data, export = FALSE, file.name = "WAASB"){
+summary.WAASB = function(data,
+                         export = FALSE,
+                         file.name = "WAASB"){
 
   cat("----------------------------------------- Some informations related to the analysis -----------------------------------------\n")
   cat("WAAS = Weighted average of Absolute Scores ","\n")
@@ -40,10 +42,10 @@ summary.WAASB = function(data, export = FALSE, file.name = "WAASB"){
   cat("\n")
   cat("------------------------------------------------------ End of data -----------------------------------------------------------\n")
 
-  if(export == TRUE|T){
+  if(export  ==  TRUE|T){
 
     sink(paste0(file.name,".txt"))
-    options(max.print=99999999, width = 130)
+    options(max.print = 99999999, width = 130)
 
     cat("----------------------------------------- Some informations related to the analysis -----------------------------------------\n")
     cat("WAAS = Weighted average of Absolute Scores ","\n")
