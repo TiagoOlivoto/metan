@@ -9,7 +9,7 @@
 }
 
 \usage{
-\method{plot}{scores}(data, type, file.type, export, width, height, export, x.lim, \dots)
+\method{plot}{WAASB}(data, type, file.type, export, width, height, export, x.lim, \dots)
 
 }
 

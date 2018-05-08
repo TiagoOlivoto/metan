@@ -1,8 +1,6 @@
 #' @method
 #' @export
-plot.scores = function(x,
-                     ...,
-                     data,
+plot.scores = function(data,
                      type,
                      file.type = "pdf",
                      export = FALSE,

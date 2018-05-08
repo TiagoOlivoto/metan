@@ -431,7 +431,6 @@ WAASB = function(data,
                 MeansGxE = MEDIAS,
                 Details = Details,
                 REML = REML,
-                ESTIMATES = ESTIMATES,
-                object = "WAASB")), class = "WAASB")
+                ESTIMATES = ESTIMATES), class = "WAASB"))
   }
 }
