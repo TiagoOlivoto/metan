@@ -204,13 +204,14 @@ if (progbar == TRUE){
 close(pb)
 utils::winDialog(type = "ok", "Procedure suceful! Check the results in R environment")
 }
-return(list(anova = anova,
-            PC = PC,
-            MeansGxE = MeansGxE,
-            WAAS = WAAS,
-            WAASxGY = WAASY.Values,
-            WAASY = genotypes,
-            hetcomb = hetcomb,
-            hetdata = hetdata,
-            Ranks = Rank))
+return(structure(list(anova = anova,
+                      PC = PC,
+                      MeansGxE = MeansGxE,
+                      WAAS = WAAS,
+                      WAASxGY = WAASY.Values,
+                      WAASY = genotypes,
+                      hetcomb = hetcomb,
+                      hetdata = hetdata,
+                      Ranks = Rank),
+                      class = "WAASratio.AMMI"))
 }
