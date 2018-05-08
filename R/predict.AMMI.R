@@ -1,9 +1,10 @@
-predict.AMMI = function(data,
+predict.AMMI = function(object,
                         resp,
-                        naxis){
+                        naxis,
+                        ...){
 
-  Y = data[paste(resp)]
-  data = as.data.frame(data[,1:3])
+  Y = object[paste(resp)]
+  data = as.data.frame(object[,1:3])
   data = cbind(data, Y)
   names(data) = c("ENV", "GEN", "REP", "Y")
   data$ENV = as.factor(data$ENV)
@@ -62,7 +63,7 @@ predict.AMMI = function(data,
                         ResAMMI =  AMMI,
                         YpredAMMI = Ypred + ResAMMI,
                         AMMI0 = Ypred)
-        return(Estimated)
+        return(structure(Estimated), class = "predic.AMMI")
       }
     }
   }
