@@ -424,7 +424,7 @@ WAASB = function(data,
                                                  UL = Predicted + Limits))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge", "Predicted", "LL", "UL")
 
-    return(list(model = WAASAbsInicial,
+    return(structure(list(model = WAASAbsInicial,
                 BLUPgen = blupGEN,
                 BLUPgge = selectioNenv,
                 PCA = Eigenvalue,
@@ -432,6 +432,6 @@ WAASB = function(data,
                 Details = Details,
                 REML = REML,
                 ESTIMATES = ESTIMATES,
-                object = "WAASB"))
+                object = "WAASB")), class = "WAASB")
   }
 }

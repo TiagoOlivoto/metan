@@ -2,7 +2,7 @@
 \alias{WAASratio.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio}
 \usage{
-WAASratio.AMMI(data, resp, p.valuePC = 0.05, increment = 5, saveWAASY = 50)
+WAASratio.AMMI(data, resp, p.valuePC = 0.05, increment = 5, saveWAASY = 50, progbar = TRUE)
 }
 
 \description{

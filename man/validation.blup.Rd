@@ -2,7 +2,7 @@
 \alias{validation.blup}
 \title{Cross-validation for blup prediction }
 \usage{
-validation.blup(data, resp, nboot, nrepval)
+validation.blup(data, resp, nboot, nrepval, progbar = TRUE)
 }
 \description{
 Cross-validation for blup prediction.

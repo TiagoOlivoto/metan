@@ -2,7 +2,7 @@
 \alias{WAASBYratio}
 \title{Weighted Average of Absolute Scores from SVD of BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio}
 \usage{
-WAASBYratio(data, resp, increment = 5, saveWAASY = 50)
+WAASBYratio(data, resp, increment = 5, saveWAASY = 50, progbar = TRUE)
 }
 
 \description{
