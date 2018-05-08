@@ -183,7 +183,7 @@ ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
       annotation_custom(IV)
     }
 
-if (class  ==  "WAAS"){
+if (class  ==  "WAAS.AMMI"){
       m1 = mean(x$model$Y)
       m2 = mean(x$model$WAAS)
       I = grid::grobTree(textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
