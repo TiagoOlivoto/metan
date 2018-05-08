@@ -30,7 +30,8 @@ AMMI = ((z1 %*% U)*(x1 %*% V)) %*% LL
 MODEL = dplyr::mutate(MODEL,
                       ResAMMI = AMMI,
                       PredAMMI = PredOLS + ResAMMI)
-return(structure(MODEL), class = "predict.AMMImean")
+class(MODEL) = "predict.AMMImean"
+return(MODEL)
  }
 }
 
