@@ -2,7 +2,7 @@
 \alias{predict.AMMI}
 \title{Predict means in AMMI analysis}
 \usage{
-\method{predict}{AMMI}(data, resp, naxis)
+\method{predict}{AMMI}(object, resp, naxis, ...)
 }
 
 \description{
@@ -11,11 +11,13 @@ Predict the means of i-genotypes in j-environment considering a specific number 
 }
 \arguments{
 
-  \item{data}{The data set. Must be in the following order. Environment, Genotype, Block/Rep, and response variable(s). }
+  \item{object}{The data set. Must be in the following order. Environment, Genotype, Block/Rep, and response variable(s). }
 
   \item{resp}{The response variable, for example \code{resp = "RG"}.}
 
   \item{naxis}{The the number of axis to be use in the prediction. }
+
+  \item{...}{Additional parameter for the function}
   }
 
 \details{

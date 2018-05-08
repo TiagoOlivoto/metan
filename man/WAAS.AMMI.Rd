@@ -2,7 +2,7 @@
 \alias{WAAS.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis}
 \usage{
-WAAS.AMMI(data, resp, p.valuePC = 0.05, naxis = NULL, weight.response, weight.WAAS)
+WAAS.AMMI(data, resp, p.valuePC = 0.05, naxis = NULL, weight.response = 50, weight.WAAS = 50)
 }
 \description{
 Compute the Weighted Average of Absolute Scores for AMMI analysis.

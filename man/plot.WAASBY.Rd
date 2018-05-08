@@ -1,9 +1,9 @@
 \name{plot.WAASBY}
 \alias{plot.WAASBY}
+\alias{WAASratio.AMMI}
 \title{Plot WAASBY values for genotype ranking}
 \usage{
-\method{plot}{WAASBY}(data, export , file.type,  width , height , size.lab,
-            size.shape , leg.pos, col.shape, y.lab, x.breaks, resolution)
+\method{plot}{WAASBYratio}(x, export = F , file.type = "pdf",  width = 6, height = 6, size.lab = 12, size.shape = 3.5, legend.pos = c(0.9, 0.1), col.shape = c("blue", "red"), y.lab = "Genotypes", x.breaks = waiver(), resolution = 300, \dots)
 }
 
 \description{
@@ -12,7 +12,7 @@ Plot heat maps with genotype ranking in two ways.
 }
 \arguments{
 
-  \item{data}{The \code{WAASBYratio object} }
+  \item{x}{The \code{WAASBYratio object} }
 
   \item{export}{Export (or not) the plot. Default is \code{T}.}
 
@@ -35,6 +35,8 @@ Plot heat maps with genotype ranking in two ways.
   \item{x.breaks}{The breaks to be plotted in the x-axis. Default is \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
   \item{resolution}{The resolution of the plot. Parameter valid if \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
+
+  \item{...}{Other parameters of the plot.}
   }
 
 

@@ -2,7 +2,7 @@
 \alias{WAASratio.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio}
 \usage{
-WAASratio.AMMI(data, resp, p.valuePC = 0.05, increment = 5, saveWAASY = 50, progbar = TRUE)
+WAASratio.AMMI(data, resp, p.valuePC = 0.05, increment = 5,saveWAASY = 50, progbar = TRUE, \dots)
 }
 
 \description{
@@ -21,6 +21,8 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis in different c
   \item{saveWAASY}{Automatically save the WAASY values when the wheight for WAAS (stability) in the WAAS/GY ratio is "saveWAASY". Default is 100. The value of "saveWAASY" must be multiple of "Increment". If this assumption is not valid, an error will be occour.}
 
   \item{progbar}{A logical argument to define if a progress bar is shown. Default is \code{TRUE}.}
+
+\item{...}{Additional parameter for the function}
 }
 
 \details{

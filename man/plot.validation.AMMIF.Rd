@@ -3,9 +3,7 @@
 \title{Plot the RMSE of all AMMI-family tested models}
 \usage{
 
-\method{plot}{validation.AMMIF}(data, violin, col.violin, col.boxplot,  export,
-                    file.type, width, height, resolution, size.text,
-                    size.title, width.boxplot, x.lim, x.breaks)
+\method{plot}{validation.AMMIF}(x, violin = TRUE, export = FALSE, file.type = "pdf", width = 6, height = 6, resolution = 300, col.violin = "gray90", col.boxplot = "gray70", size.text = 12, size.title = 12, width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), \dots)
 }
 
 \description{
@@ -15,7 +13,7 @@ Plot the Root Means Square Error of all AMMI-family tested models
 
 \arguments{
 
-  \item{data}{A \code{validation.AMMIF} object}
+  \item{x}{A \code{validation.AMMIF} object}
 
   \item{violin}{Define if a violine plot is used with boxplot. Default is "TRUE"}
 

@@ -2,7 +2,7 @@
 \alias{plot.eigen}
 \title{Plot the eigenvalues }
 \usage{
-\method{plot}{eigen}(data, export, file.type, width, height, \dots)
+\method{plot}{eigen}(x, export = FALSE, file.type = "pdf", width = 6, height = 6, size.lab = 12, size.tex = 12, size.shape = 3.5, size.line = 1, col.shape = "blue", col.line = "blue", y.lab = "Eigenvalue", x.lab = "Number of multiplicative terms", resolution = 300, \dots)
 }
 
 \description{
@@ -12,7 +12,7 @@ Plot the eigenvalues for from singular value decomposition of BLUP interaction e
 }
 \arguments{
 
-  \item{data}{The \code{WAASB object} }
+  \item{x}{The \code{WAASB object} }
 
   \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
 

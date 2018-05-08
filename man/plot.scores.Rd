@@ -9,7 +9,7 @@
 }
 
 \usage{
-\method{plot}{scores}(x, type, file.type, export, width, height, export, x.lim, \dots)
+\method{plot}{WAASB, WAAS.AMMI}(x, type, file.type = "pdf", export = FALSE, width = 8, height = 7, x.lim = NULL, x.breaks = waiver(), x.lab = "Grain yield", y.lim = NULL, y.breaks = waiver(), shape.gen = 21, shape.env = 23, size.shape = 3.5, size.lab = 18, size.tex = 3.5, size.line = 0.5, size.leg = 14, size.segm.line = 0.5, leg.position = "tr", leg.lab = c("Gen", "Env"), line.type = "dashed", line.alpha = 0.9, col.line = "gray", col.gen = "gray75", col.env = "red", col.alpha = 0.9, col.segm.gen = "transparent", col.segm.env = "grey50", resolution = 300, \dots)
 
 }
 

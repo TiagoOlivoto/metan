@@ -2,7 +2,7 @@
 \alias{plot.blup}
 \title{Plot the estimated BLUPs of genotypes }
 \usage{
-\method{plot}{blup}(data, prob, export, width, height, \dots)
+\method{plot}{blup}(x, prob  =  0.95, export  =  FALSE, file.type  =  "pdf", width  =  6, height  =  6, size.lab  =  12, size.tex  =  12, size.leg  =  12, size.err.bar  =  0.5, size.shape  =  3.5, height.err.bar  =  0.3, x.lim  =  NULL, x.breaks  =  waiver(), leg.pos  =  c(0.9, 0.1), col.shape  =  c("blue", "red"), y.lab  =  "Genotypes", x.lab  =  "Predicted Grain Yield", resolution  =  300, \dots)
 }
 
 \description{
@@ -12,7 +12,7 @@ Plot the predicted BLUP of the genotypes.
 }
 \arguments{
 
-  \item{data}{The \code{WAASB object} }
+  \item{x}{The \code{WAASB object} }
 
   \item{prob}{The probability to be considered in confidence interval prediction. }
 
