@@ -22,7 +22,7 @@ Imports: agricolae,
          ggrepel, 
          lme4,
          broom,
-         gtools
+         gtools,
          magrittr
 RoxygenNote: 6.0.1
 Suggests: 
