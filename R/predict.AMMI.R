@@ -63,7 +63,8 @@ predict.AMMI = function(object,
                         ResAMMI =  AMMI,
                         YpredAMMI = Ypred + ResAMMI,
                         AMMI0 = Ypred)
-        return(structure(Estimated), class = "predic.AMMI")
+        class(Estimated) = "predict.AMMI"
+        return(Estimated)
       }
     }
   }
