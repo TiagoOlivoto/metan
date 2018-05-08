@@ -181,11 +181,12 @@ if (progbar == TRUE){
     RMSE = RMSE[mixedorder(RMSE[,1]),]
     RMSEmean = plyr::ddply(RMSE, .(MODEL), summarize, mean = mean(RMSE))
     RMSEmean = RMSEmean[order(RMSEmean[,2]),]
-    return(list(RMSE = RMSE,
+return(structure(list(RMSE = RMSE,
                 RMSEmean = RMSEmean,
                 Estimated = MEDIAS,
                 Modeling = modeling,
-                Testing = testing))
+                Testing = testing),
+                class = "validation.AMMIF"))
   } else{
     stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
   }
