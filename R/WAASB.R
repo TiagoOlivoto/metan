@@ -4,6 +4,7 @@ WAASB = function(data,
                  prob = 0.95,
                  weight.response = 50,
                  weight.WAAS = 50){
+
   Y = data[paste(resp)]
   data = as.data.frame(data[,1:3])
   data = cbind(data, Y)
@@ -424,13 +425,14 @@ WAASB = function(data,
                                                  UL = Predicted + Limits))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge", "Predicted", "LL", "UL")
 
-    return(structure(list(model = WAASAbsInicial,
+return(structure(list(model = WAASAbsInicial,
                 BLUPgen = blupGEN,
                 BLUPgge = selectioNenv,
                 PCA = Eigenvalue,
                 MeansGxE = MEDIAS,
                 Details = Details,
                 REML = REML,
-                ESTIMATES = ESTIMATES), class = "WAASB"))
+                ESTIMATES = ESTIMATES),
+                class = "WAASB"))
   }
 }
