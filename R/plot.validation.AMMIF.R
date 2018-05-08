@@ -1,6 +1,6 @@
-plot.validation.AMMIF = function(data,
-                                violin = T,
-                                export = F,
+plot.validation.AMMIF = function(x,
+                                violin = TRUE,
+                                export = FALSE,
                                 file.type = "pdf",
                                 width = 6,
                                 height = 6,
@@ -11,11 +11,12 @@ plot.validation.AMMIF = function(data,
                                 size.title = 12,
                                 width.boxplot = 0.2,
                                 x.lim = NULL,
-                                x.breaks = waiver()){
+                                x.breaks = waiver(),
+                                ...){
 
 if (violin == T|FALSE){
 dodge = position_dodge(width = 1)
-p1 = ggplot2::ggplot(data$RMSE, aes(x = MODEL, y = RMSE)) +
+p1 = ggplot2::ggplot(x$RMSE, aes(x = MODEL, y = RMSE)) +
      geom_violin(position = dodge, fill = col.violin) +
      geom_boxplot(width = width.boxplot, position = dodge, fill = col.boxplot) +
   theme_bw() +
@@ -35,7 +36,7 @@ p1 = ggplot2::ggplot(data$RMSE, aes(x = MODEL, y = RMSE)) +
   labs(x = "\nTested models",
        y = expression(paste("Root mean square error (Mg ha"^-1,")")) )
   }else{dodge = position_dodge(width = 1)
-p1 = ggplot2::ggplot(data$RMSE, aes(x = MODEL, y = RMSE)) +
+p1 = ggplot2::ggplot(x$RMSE, aes(x = MODEL, y = RMSE)) +
       geom_boxplot(width = 0.2, position = dodge, fill = col.boxplot) +
       theme_bw() +
       theme(axis.ticks.length = unit(.2, "cm"),
