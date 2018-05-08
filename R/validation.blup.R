@@ -131,8 +131,9 @@ if (progbar  ==  TRUE){
 close(pb)
 #utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
   }
-  return(list(RMSE = RMSEres,
-              RMSEmean = RMSEmean))
+  return(sctructure(list(RMSE = RMSEres,
+              RMSEmean = RMSEmean),
+              class = "validation.blup"))
  }
 }
 
