@@ -1,4 +1,4 @@
-plot.blup  =  function(data,
+plot.blup  =  function(x,
                       prob  =  0.95,
                       export  =  FALSE,
                       file.type  =  "pdf",
@@ -16,14 +16,15 @@ plot.blup  =  function(data,
                       col.shape  =  c("blue", "red"),
                       y.lab  =  "Genotypes",
                       x.lab  =  "Predicted Grain Yield",
-                      resolution  =  300){
+                      resolution  =  300,
+                      ...){
 
   PROB  =  ((1 - prob)/2) + prob
   t  =  qt(PROB, 100)
-  GV  =  as.numeric(substr(data$ESTIMATES[2,2], start  =  1, stop  =  9))
-  AccuGen  =  as.numeric(substr(data$ESTIMATES[8,2], start  =  1, stop  =  9))
+  GV  =  as.numeric(substr(x$ESTIMATES[2,2], start  =  1, stop  =  9))
+  AccuGen  =  as.numeric(substr(x$ESTIMATES[8,2], start  =  1, stop  =  9))
   Limits  =  t * sqrt(((1 - AccuGen) * GV))
-  blup  =  data$BLUPgen
+  blup  =  x$BLUPgen
   blup  =  dplyr::mutate(blup,
                  LL  =  Predicted - Limits,
                  UL  =  Predicted + Limits)
