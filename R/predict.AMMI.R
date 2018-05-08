@@ -63,7 +63,6 @@ predict.AMMI = function(object,
                         ResAMMI =  AMMI,
                         YpredAMMI = Ypred + ResAMMI,
                         AMMI0 = Ypred)
-        class(Estimated) = "predict.AMMI"
         return(Estimated)
       }
     }
