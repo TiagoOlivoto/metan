@@ -46,3 +46,10 @@ plot.validation.AMMIF(RMSEweat,
                       violin = FALSE,
                       col.boxplot = "gray75")
 
+## ----echo = TRUE---------------------------------------------------------
+# Predicting the yield of 10 oat cultivars in 16 environments using 5 multiplicative terms.
+predictoat = predict.AMMI(dataset,
+                          resp = "GY",
+                          naxis = 5)
+
+
