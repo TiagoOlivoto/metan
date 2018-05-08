@@ -1,8 +1,9 @@
-predict.AMMImean = function(data,
+predict.AMMImean = function(object,
                             resp,
-                            naxis){
-Y = data[paste(resp)]
-data = as.data.frame(data[,1:2])
+                            naxis,
+                            ...){
+Y = object[paste(resp)]
+data = as.data.frame(object[,1:2])
 data = cbind(data, Y)
 names(data) = c("ENV", "GEN", "Y")
 data$ENV = as.factor(data$ENV)
@@ -29,7 +30,7 @@ AMMI = ((z1 %*% U)*(x1 %*% V)) %*% LL
 MODEL = dplyr::mutate(MODEL,
                       ResAMMI = AMMI,
                       PredAMMI = PredOLS + ResAMMI)
-return(MODEL)
+return(structure(MODEL), class = "predict.AMMImean")
  }
 }
 
