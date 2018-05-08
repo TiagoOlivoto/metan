@@ -1,4 +1,4 @@
-plot.eigen = function(data,
+plot.eigen = function(x,
                      export = FALSE,
                      file.type = "pdf",
                      width = 6,
@@ -7,12 +7,13 @@ plot.eigen = function(data,
                      size.tex = 12,
                      size.shape = 3.5,
                      size.line = 1,
-                     col.shape = c("blue"),
-                     col.line = c("blue"),
+                     col.shape = "blue",
+                     col.line = "blue",
                      y.lab = "Eigenvalue",
                      x.lab = "Number of multiplicative terms",
-                     resolution = 300){
-eigen = data$PCA
+                     resolution = 300,
+                     ...){
+eigen = x$PCA
 p = ggplot2::ggplot(eigen, aes(x = PC, y = Eigenvalue, group = 1))  +
     geom_point(stat = 'identity', col = col.shape,  size = size.shape)   +
     geom_line(col = col.line, size = size.line) +
