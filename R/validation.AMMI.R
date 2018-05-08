@@ -142,11 +142,12 @@ validation.AMMI = function(data,
       }
     }
     RSMEmean = mean(RMSEres$RMSE)
-    return(list(RMSE = RMSEres,
+return(structure(list(RMSE = RMSEres,
                 RSMEmean  = RSMEmean,
                 Estimated = MEDIAS,
                 Modeling = modeling,
-                Testing = testing))
+                Testing = testing),
+                class = "validation.AMMI"))
   }
   else{
     stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
