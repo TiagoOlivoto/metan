@@ -1,4 +1,4 @@
-plot.WAASBYratio = function(data,
+plot.WAASBYratio = function(x,
                             type,
                             export = FALSE,
                             file.type = "pdf",
@@ -8,7 +8,9 @@ plot.WAASBYratio = function(data,
                             margins = c(5, 4),
                             y.lab = "Genotypes",
                             key.lab = "Genotype ranking",
-                            resolution = 300){
+                            resolution = 300,
+                            ...){
+  data = x
   if (type == 1){
 
     if (export  ==  F|FALSE) {
