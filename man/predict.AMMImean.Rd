@@ -21,7 +21,7 @@ Predict the means of i-genotypes in j-environment considering a specific number 
 
 \examples{
 library(WAASB)
-predmean = predict.AMMImean(datameans, resp = "Resp", naxis = 3)
+predmean = predict.AMMImean(MEANS, resp = "Resp", naxis = 3)
 
 }
 

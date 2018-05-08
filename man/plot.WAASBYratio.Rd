@@ -43,7 +43,7 @@ The first type of heatmap shows the genotype ranking depending on the number of 
 
 \examples{
 library(WAASB)
-model = WAASBYratio(WAASBdata, increment = 5, saveWAASY = 60)
+model = WAASBYratio(WAASBdata, resp = "GY")
 
 # plot the heatmap considering the ranks in different number of PC axis.
 plot.WAASBYratio(model, type = 1)
