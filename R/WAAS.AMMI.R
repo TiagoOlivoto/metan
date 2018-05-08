@@ -4,7 +4,6 @@ WAAS.AMMI = function(data,
                      naxis = NULL,
                      weight.response = 50,
                      weight.WAAS = 50){
-utils::globalVariables(c("percent", "Percent", "acum"))
 
 Y = data[paste(resp)]
 data = as.data.frame(data[,1:3])
