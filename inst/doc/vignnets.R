@@ -1,4 +1,4 @@
-## ---- eval = FALSE-------------------------------------------------------
+## ---- eval = FALSE, collapse=TRUE, comment = "#"-------------------------
 #  # download the package from Github
 #  devtools::install_github("TiagoOlivoto/WAASB")
 #  
@@ -9,17 +9,17 @@ require(WAASB)
 dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/1/files/07764a07-172a-4285-85db-c31bc39ae480/WAASBdata.csv?dl=1")
 
 
-## ----eval = TRUE---------------------------------------------------------
+## ----eval = TRUE, collapse=TRUE, comment = "#"---------------------------
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
 
@@ -307,7 +307,7 @@ plot.scores(WAASB,
 
 WAASBYratio = WAASBYratio(dataset,
                           resp = "GY",
-                          increment = 10,
+                          increment = 5,
                           saveWAASY = 50)
 
 
