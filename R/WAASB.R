@@ -5,8 +5,8 @@ WAASB = function(data,
                  weight.response = 50,
                  weight.WAAS = 50){
 
-  Y = data[paste(resp)]
-  data = as.data.frame(data[,1:3])
+  Y = dataset[paste("GY")]
+  data = as.data.frame(dataset[,1:3])
   data = cbind(data, Y)
   names(data) = c("ENV", "GEN", "REP", "Y")
   ENV = as.factor(data$ENV)
@@ -21,13 +21,22 @@ WAASB = function(data,
   PesoWAASB = weight.WAAS
   PesoResp = weight.response
   options(lmerControl = list(check.nobs.vs.rankZ = "warning",
-                           check.nobs.vs.nlev = "warning",
-                           check.nobs.vs.nRE = "warning",
-                           check.nlev.gtreq.5 = "warning",
-                           check.nlev.gtr.1 = "warning"))
+                             check.nobs.vs.nlev = "warning",
+                             check.nobs.vs.nRE = "warning",
+                             check.nlev.gtreq.5 = "warning",
+                             check.nlev.gtr.1 = "warning"))
 
   if (random  ==  "all"){
-    model = suppressWarnings(suppressMessages(lme4::lmer(Y~  REP%in%ENV + (1|GEN) + (1|ENV)  + (1|GEN:ENV))))
+
+    Complete = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + (1|ENV) + (1|GEN) + (1|GEN:ENV))))
+    reducedG = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + (1|ENV) + (1|GEN:ENV))))
+    reducedE = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + (1|GEN) + (1|GEN:ENV))))
+    ReducedGE = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + (1|ENV) + (1|GEN))))
+    gtest = suppressWarnings(suppressMessages(data.frame(t(anova(Complete, reducedG)))))
+    etest = suppressWarnings(suppressMessages(data.frame(t(anova(Complete, reducedE)))))
+    geatest = suppressWarnings(suppressMessages(data.frame(t(anova(Complete, ReducedGE)))))
+    LRT = cbind(gtest, etest, geatest)
+    model = Complete
     summary(model)
     fixed = broom::tidy(model, effects = "fixed", conf.int = TRUE)
     random = broom::tidy(model, effects = "ran_pars")
@@ -73,10 +82,10 @@ WAASB = function(data,
     names(ESTIMATES) = "Values"
     ESTIMATES = plyr::mutate(ESTIMATES,
                              Parameters  = c("GEI variance", "Genotypic variance", "Residual variance",
-                                    "Phenotypic variance", "Heritability", "GEIr2",
-                                    "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
+                                             "Phenotypic variance", "Heritability", "GEIr2",
+                                             "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
     ESTIMATES = ESTIMATES %>%
-                dplyr::select(Parameters, everything())
+      dplyr::select(Parameters, everything())
     bups = lme4::ranef(model)
     blupGEN = bups$GEN
     blupINT = bups$`GEN:ENV`
@@ -124,13 +133,13 @@ WAASB = function(data,
     }
     MEDIAS = data.frame(ENV = x, GEN = y, Y = z)
     OUTMED = by(MEDIAS[, 3], MEDIAS[, c(2, 1)], function(x) sum(x,
-                                                                 na.rm = TRUE))
+                                                                na.rm = TRUE))
     MEscores = Escores[1:Ngen, ]
     NEscores = Escores[(Ngen + 1):(Ngen + Nenv), ]
     MGEN = data.frame(type = "GEN", Code = rownames(OUTMED),  Y = apply(OUTMED, 1, mean),
-                       MEscores)
+                      MEscores)
     MENV = data.frame(type = "ENV", Code = colnames(OUTMED), Y = apply(OUTMED, 2, mean),
-                       NEscores)
+                      NEscores)
     Escores = rbind(MGEN, MENV)
     Pesos = data.frame(Percent = Eigenvalue$Proportion)
     WAAS = Escores
@@ -202,16 +211,16 @@ WAASB = function(data,
                            Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
                                           "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
     Details = Details %>%
-              dplyr::select(Parameters, everything())
+      dplyr::select(Parameters, everything())
     blupGEN = cbind(GEN = MGEN$Code, BLUP = blupGEN)
     colnames(blupGEN) = c("GEN", "BLUPg")
     blupGEN = mutate(blupGEN,
-                   Predicted = BLUPg + ovmean)
+                     Predicted = BLUPg + ovmean)
     blupGEN = blupGEN[order(-blupGEN[,3]),]
     blupGEN = mutate(blupGEN,
-                   Rank = rank(-blupGEN[,3]),
-                   LL = Predicted - Limits,
-                   UL = Predicted + Limits)
+                     Rank = rank(-blupGEN[,3]),
+                     LL = Predicted - Limits,
+                     UL = Predicted + Limits)
     blupGEN = blupGEN %>%
       dplyr::select(Rank, everything())
     selectioNenv = suppressMessages(dplyr::left_join(blups,
@@ -222,17 +231,26 @@ WAASB = function(data,
                                                  LL = Predicted - Limits,
                                                  UL = Predicted + Limits))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge", "Predicted", "LL", "UL")
-    return(list(WAASB = WAASAbsInicial,
-                BLUPgen = blupGEN,
-                BLUPgge = selectioNenv,
-                PCA = Eigenvalue,
-                MeansGxE = MEDIAS,
-                Details = Details,
-                REML = REML,
-                ESTIMATES = ESTIMATES))
+    return(structure(list(WAASB = WAASAbsInicial,
+                          BLUPgen = blupGEN,
+                          BLUPgge = selectioNenv,
+                          PCA = Eigenvalue,
+                          MeansGxE = MEDIAS,
+                          Details = Details,
+                          REML = REML,
+                          ESTIMATES = ESTIMATES,
+                          LRT = LRT),
+                     class = "WAASB"))
   }
   if (random  ==  "gen"){
-    model = suppressWarnings(suppressMessages(lme4::lmer(Y~  REP%in%ENV + (1|GEN) + ENV + (1|GEN:ENV))))
+
+    Complete = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + ENV + (1|GEN)+ (1|GEN:ENV))))
+    reducedG = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + ENV + (1|GEN:ENV))))
+    ReducedGE = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + ENV + (1|GEN))))
+    gtest = suppressWarnings(suppressMessages(t(anova(Complete, reducedG))))
+    geatest = suppressWarnings(suppressMessages(t(anova(Complete, ReducedGE))))
+    LRT = cbind(gtest, geatest)
+    model = Complete
     summary(model)
     fixed = broom::tidy(model, effects = "fixed", conf.int = TRUE)
     random = broom::tidy(model, effects = "ran_pars")
@@ -276,17 +294,17 @@ WAASB = function(data,
     names(ESTIMATES) = "Values"
     ESTIMATES = plyr::mutate(ESTIMATES,
                              Parameters = c("GEI variance", "Genotypic variance", "Residual variance",
-                                           "Phenotypic variance", "Heritability", "GEIr2",
-                                           "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
+                                            "Phenotypic variance", "Heritability", "GEIr2",
+                                            "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
     ESTIMATES = ESTIMATES %>%
-             dplyr::select(Parameters, everything())
+      dplyr::select(Parameters, everything())
     bups = lme4::ranef(model)
     blupGEN = bups$GEN
     blupINT = bups$`GEN:ENV`
     blups = data.frame(Names = rownames(blupINT))
     blups = data.frame(do.call('rbind', strsplit(as.character(blups$Names),':',fixed = TRUE)))
     blups = blups %>%
-            dplyr::select(-X1, everything())
+      dplyr::select(-X1, everything())
     blups = cbind(blups, blupINT)
     names(blups) = c("Code", "GEN", "BLUPge")
     blups = blups[gtools::mixedorder(blups[,1]),]
@@ -300,7 +318,7 @@ WAASB = function(data,
     Eigenvalue = mutate(group_by(Eigenvalue), Accumulated = cumsum(Proportion))
     Eigenvalue$PC  = rownames(Eigenvalue)
     Eigenvalue = Eigenvalue %>%
-                dplyr::select(PC, everything())
+      dplyr::select(PC, everything())
     Eigenvalue = as.data.frame(Eigenvalue)
     SCOREG = U %*% LL
     SCOREE = V %*% LL
@@ -327,13 +345,13 @@ WAASB = function(data,
     }
     MEDIAS = data.frame(ENV = x, GEN = y, Y = z)
     OUTMED = by(MEDIAS[, 3], MEDIAS[, c(2, 1)], function(x) sum(x,
-                                                                 na.rm = TRUE))
+                                                                na.rm = TRUE))
     MEscores = Escores[1:Ngen, ]
     NEscores = Escores[(Ngen + 1):(Ngen + Nenv), ]
     MGEN = data.frame(type = "GEN", Code = rownames(OUTMED),  Y = apply(OUTMED, 1, mean),
-                       MEscores)
+                      MEscores)
     MENV = data.frame(type = "ENV", Code = colnames(OUTMED), Y = apply(OUTMED, 2, mean),
-                       NEscores)
+                      NEscores)
     Escores = rbind(MGEN, MENV)
     Pesos = data.frame(Percent = Eigenvalue$Proportion)
     WAAS = Escores
@@ -402,20 +420,20 @@ WAASB = function(data,
     names(Details) = "Values"
     Details = plyr::mutate(Details,
                            Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
-                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
+                                          "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
     Details = Details %>%
-             dplyr::select(Parameters, everything())
+      dplyr::select(Parameters, everything())
     blupGEN = cbind(GEN = MGEN$Code, BLUP = blupGEN)
     colnames(blupGEN) = c("GEN", "BLUPg")
     blupGEN = mutate(blupGEN,
-                   Predicted = BLUPg+ovmean)
+                     Predicted = BLUPg+ovmean)
     blupGEN = blupGEN[order(-blupGEN[,3]),]
     blupGEN = mutate(blupGEN,
-                   Rank = rank(-blupGEN[,3]),
-                   LL = Predicted - Limits,
-                   UL = Predicted + Limits)
+                     Rank = rank(-blupGEN[,3]),
+                     LL = Predicted - Limits,
+                     UL = Predicted + Limits)
     blupGEN = blupGEN %>%
-             dplyr::select(Rank, everything())
+      dplyr::select(Rank, everything())
     selectioNenv = suppressMessages(dplyr::left_join(blups,
                                                      blupGEN %>% select(GEN, BLUPg)))
     selectioNenv = suppressMessages(plyr::mutate(selectioNenv,
@@ -425,14 +443,15 @@ WAASB = function(data,
                                                  UL = Predicted + Limits))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge", "Predicted", "LL", "UL")
 
-return(structure(list(model = WAASAbsInicial,
-                BLUPgen = blupGEN,
-                BLUPgge = selectioNenv,
-                PCA = Eigenvalue,
-                MeansGxE = MEDIAS,
-                Details = Details,
-                REML = REML,
-                ESTIMATES = ESTIMATES),
-                class = "WAASB"))
+    return(structure(list(model = WAASAbsInicial,
+                          BLUPgen = blupGEN,
+                          BLUPgge = selectioNenv,
+                          PCA = Eigenvalue,
+                          MeansGxE = MEDIAS,
+                          Details = Details,
+                          REML = REML,
+                          ESTIMATES = ESTIMATES,
+                          LRT = LRT),
+                     class = "WAASB"))
   }
 }
