@@ -81,7 +81,7 @@ WAASB = function(data,
     ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
     names(ESTIMATES) = "Values"
     ESTIMATES = plyr::mutate(ESTIMATES,
-                             Parameters  = c("GEI variance", "Genotypic variance", "Residual variance",
+                             Parameters  = c("GEI variance", "Genotypic variance", "Environmental variance", "Residual variance",
                                              "Phenotypic variance", "Heritability", "GEIr2",
                                              "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
     ESTIMATES = ESTIMATES %>%
