@@ -247,8 +247,8 @@ WAASB = function(data,
     Complete = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + ENV + (1|GEN)+ (1|GEN:ENV))))
     reducedG = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + ENV + (1|GEN:ENV))))
     ReducedGE = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + ENV + (1|GEN))))
-    gtest = suppressWarnings(suppressMessages(t(anova(Complete, reducedG))))
-    geatest = suppressWarnings(suppressMessages(t(anova(Complete, ReducedGE))))
+    gtest = suppressWarnings(suppressMessages(data.frame(t(anova(Complete, reducedG)))))
+    geatest = suppressWarnings(suppressMessages(data.frame(t(anova(Complete, ReducedGE)))))
     LRT = cbind(gtest, geatest)
     model = Complete
     summary(model)

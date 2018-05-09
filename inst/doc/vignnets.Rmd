@@ -1,30 +1,25 @@
 ---
-title: "Extending WAASB"
+title: "Extending WAASB package"
+subtitle: "Examples with code and outputs"
+author: "Tiago Olivoto"
+date: "`r Sys.Date()`"
 output:
-  html_document:
-    fig_caption: yes
-    highlight: tango
-    number_sections: yes
-    theme: journal
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: vignette
+    readme: TRUE
     toc: yes
-    toc_float:
-      collapsed: yes
-      smooth_scroll: yes
-lof: true
+    number_sections: yes
+    keep_md: TRUE
 fig_caption: yes
 link-citations: true
-bibliography: WAASBref.bib      
+bibliography: WAASBref.bib    
 vignette: >
-  %\VignetteIndexEntry{Extending WAASB}
+  %\VignetteIndexEntry{Extending WAASB package}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 <style>
-#TOC {
-  color: gray75;
-  margin: 0px 0px 0px 0px;
-   font-size: 16px;
-}
 .column-left{
   float: left;
   width: 49%;
@@ -41,9 +36,6 @@ vignette: >
 <style type = "text/css">
 
 body{ /* Normal  */
-      font-size: 18px;
-     font-family:  Helvetica;
-     margin: px;
   color: black;
   }
 body .main-container {
@@ -52,43 +44,16 @@ body .main-container {
 body {
 text-align: justify}
 
-h1.title {
-  font-size: 28px;
-  color: black;
-}
-
-h1 { /* Header 1 */
-  font-size: 28px;
-    font-family: Helvetica;
-  color: black;
-}
-h2 { /* Header 2 */
-    font-size: 22px;
-      font-family:  Helvetica;
-  color: black;
-}
-h3 { /* Header 3 */
-  font-size: 18px;
-  font-family: Helvetica;
-  color: black;
-}
-code.r{ /* Code block */
-    font-size: 12px;
-    font-family: Helvetica;
-}
-pre { /* Code block - determines code spacing between lines */
-    font-size: 12px;
-}
 </style>
 
 # Introducing the `WAASB` R package
 The WAASB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions to reproduce the methods proposed in the paper, as well as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/WAASB/archive/master.zip) or running the following code in the R console:
 
 ## Overview of the `WAASB` package.
-  * Package `WAASB` available at `github`.
-  * Installation
+> Package `WAASB` available at `github`.
+> Installation
   
-```{r, eval = FALSE}
+```{r, eval = FALSE, collapse=TRUE, comment = "#"}
 # download the package from Github
 devtools::install_github("TiagoOlivoto/WAASB")
 
@@ -138,17 +103,17 @@ The function  `validation.blup` provides a cross-validation of replicate-based d
 
 The following code computes computes the cross-validation of oat data set based on 1000 re-sampling procedures. This number can be changed.
 
-```{r eval = TRUE}
+```{r eval = TRUE, collapse=TRUE, comment = "#"}
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
     ```
@@ -592,7 +557,7 @@ This function provide the option of attributing weights for stability and produc
 
 WAASBYratio = WAASBYratio(dataset,
                           resp = "GY",
-                          increment = 10,
+                          increment = 5,
                           saveWAASY = 50)
 
 ```
