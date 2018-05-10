@@ -1,21 +1,8 @@
 Extending WAASB package
 ================
 Tiago Olivoto
-WAASB 1.0.1 2018-05-09
+WAASB 1.0.1 2018-05-10
 
-<style>
-.column-left{
-  float: left;
-  width: 49%;
-  text-align: left;
-}
-.column-right{
-  float: right;
-  width: 49%;
-  text-align: left;
-}
-
-</style>
 <style type = "text/css">
 
 body{ /* Normal  */
@@ -194,13 +181,13 @@ CROP
 <tbody>
 <tr>
 <td style="text-align:left;">
-11
+1
 </td>
 <td style="text-align:left;">
-BLUP
+AMMI3
 </td>
 <td style="text-align:right;">
-0.4021
+0.4134
 </td>
 <td style="text-align:left;">
 Wheat
@@ -208,13 +195,13 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
-1
+11
 </td>
 <td style="text-align:left;">
-AMMI3
+BLUP
 </td>
 <td style="text-align:right;">
-0.4156
+0.4167
 </td>
 <td style="text-align:left;">
 Wheat
@@ -225,10 +212,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4200
+0.4251
 </td>
 <td style="text-align:left;">
 Wheat
@@ -242,7 +229,7 @@ Wheat
 AMMI2
 </td>
 <td style="text-align:right;">
-0.4234
+0.4273
 </td>
 <td style="text-align:left;">
 Wheat
@@ -253,10 +240,10 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4274
+0.4273
 </td>
 <td style="text-align:left;">
 Wheat
@@ -267,10 +254,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI0
+AMMIF
 </td>
 <td style="text-align:right;">
-0.4284
+0.4285
 </td>
 <td style="text-align:left;">
 Wheat
@@ -281,10 +268,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI6
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4302
+0.4287
 </td>
 <td style="text-align:left;">
 Wheat
@@ -295,10 +282,10 @@ Wheat
 7
 </td>
 <td style="text-align:left;">
-AMMIF
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4309
+0.4293
 </td>
 <td style="text-align:left;">
 Wheat
@@ -323,10 +310,10 @@ Wheat
 9
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMI1
 </td>
 <td style="text-align:right;">
-0.4314
+0.4386
 </td>
 <td style="text-align:left;">
 Wheat
@@ -337,10 +324,10 @@ Wheat
 10
 </td>
 <td style="text-align:left;">
-AMMI1
+AMMI0
 </td>
 <td style="text-align:right;">
-0.4353
+0.4493
 </td>
 <td style="text-align:left;">
 Wheat
@@ -673,8 +660,6 @@ G9
 </tbody>
 </table>
 Only the first ten values are shown. The following values are presented: **ENV** is the environment; **GEN** is the genotype; **Y** is the response variable; **resOLS** is the residual ($\\hat{z}\_{ij}$) estimated by the Ordinary Least Square (OLS), where $\\hat{z}\_{ij} = y\_{ij} - \\bar{y}\_{i.} - \\bar{y}\_{.j} + \\bar{y}\_{ij}$; **Ypred** is the predicted value by OLS ($\\hat{y}\_{ij} = y\_{ij} -\\hat{z}\_{ij}$); **ResAMMI** is the residual estimated by the AMMI model ($\\hat{a}\_{ij}$) considering the number of multiplicative terms informed in the function (in this case 5), where $\\hat{a}\_{ij} = \\lambda\_1\\alpha\_{i1}\\tau\_{j1}+...+\\lambda\_5\\alpha\_{i5}\\tau\_{j5}$; **YpredAMMI** is the predicted value by AMMI model $\\hat{ya}\_{ij} = \\bar{y}\_{i.} + \\bar{y}\_{.j} - \\bar{y}\_{ij}+\\hat{a}\_{ij}$; and **AMMI0** is the predicted value when no multiplicative terms are used, i.e., $\\hat{y}\_{ij} = \\bar{y}\_{i.} + \\bar{y}\_{.j} - \\bar{y}\_{ij}$.
-
-<br />
 
 Estimating the WAAS (based on traditional AMMI model)
 =====================================================
@@ -4705,7 +4690,6 @@ G10
 </tr>
 </tbody>
 </table>
-
 > plotting the estimated BLUP for genotypes
 
 ``` r
@@ -5172,7 +5156,6 @@ Accumulated
 </tr>
 </tbody>
 </table>
-
 > Plotting the eigenvalues
 
 ``` r
