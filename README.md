@@ -1,7 +1,7 @@
 Extending WAASB package
 ================
 Tiago Olivoto
-2018-05-08
+WAASB 1.0.1 2018-05-09
 
 <style>
 .column-left{
@@ -142,19 +142,19 @@ where $\\widehat{y}\_{ij}$ is the model predicted value; and *y*<sub>*i**j*</sub
 
 The function `validation.blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected each environment. The procedure for computing the RSME is identical to the above function.
 
-The following code computes computes the cross-validation of oat data set based on 1000 re-sampling procedures. This number can be changed.
+> The following codeS computes computes the cross-validation of oat data set based on 1000 re-sampling procedures. This number can be changed.
 
 ``` r
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
                             resp = "GY",
-                            nboot = 1000,
+                            nboot = 10,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
                             resp = "GY",
-                            nboot = 1000,
+                            nboot = 10,
                             nrepval = 2)
 ```
 
@@ -200,7 +200,7 @@ CROP
 BLUP
 </td>
 <td style="text-align:right;">
-0.4025
+0.3847
 </td>
 <td style="text-align:left;">
 Wheat
@@ -211,10 +211,10 @@ Wheat
 1
 </td>
 <td style="text-align:left;">
-AMMI3
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4127
+0.3960
 </td>
 <td style="text-align:left;">
 Wheat
@@ -225,10 +225,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI3
 </td>
 <td style="text-align:right;">
-0.4146
+0.3981
 </td>
 <td style="text-align:left;">
 Wheat
@@ -239,10 +239,10 @@ Wheat
 3
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4173
+0.4015
 </td>
 <td style="text-align:left;">
 Wheat
@@ -253,10 +253,10 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4203
+0.4021
 </td>
 <td style="text-align:left;">
 Wheat
@@ -267,10 +267,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI6
+AMMI8
 </td>
 <td style="text-align:right;">
-0.4224
+0.4050
 </td>
 <td style="text-align:left;">
 Wheat
@@ -281,10 +281,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4256
+0.4104
 </td>
 <td style="text-align:left;">
 Wheat
@@ -295,10 +295,10 @@ Wheat
 7
 </td>
 <td style="text-align:left;">
-AMMI8
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4257
+0.4114
 </td>
 <td style="text-align:left;">
 Wheat
@@ -309,10 +309,10 @@ Wheat
 8
 </td>
 <td style="text-align:left;">
-AMMIF
+AMMI0
 </td>
 <td style="text-align:right;">
-0.4261
+0.4136
 </td>
 <td style="text-align:left;">
 Wheat
@@ -326,7 +326,7 @@ Wheat
 AMMI1
 </td>
 <td style="text-align:right;">
-0.4310
+0.4153
 </td>
 <td style="text-align:left;">
 Wheat
@@ -337,10 +337,10 @@ Wheat
 10
 </td>
 <td style="text-align:left;">
-AMMI0
+AMMIF
 </td>
 <td style="text-align:right;">
-0.4344
+0.4224
 </td>
 <td style="text-align:left;">
 Wheat
@@ -372,8 +372,9 @@ Predicting the yield using traditional AMMI model
 
 The function `predict.AMMI` can be used to predict the response variable of a two-way table (for examples the yielding of the *i*th genotype in the *j*th environment) based on the traditional AMMI model. This prediction is based on the number of multiplicative terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In this case, the predicted mean will be the predicted value from OLS estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is used for predicting the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the cell mean, i.e., the mean of R replicates of the *i*th genotype in the *j*th environment. The number of axes to be used must be carefully chosen. Procedures based on postdictive success (such as Gollobs's d.f.) or predictive success (such as cross-validation) should be used to do this. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSE of all AMMI model family based on re-sampling procedures.
 
+> Predicting the yield of 10 oat cultivars in 16 environments using 5 multiplicative terms.
+
 ``` r
-# Predicting the yield of 10 oat cultivars in 16 environments using 5 multiplicative terms.
 predictoat = predict.AMMI(dataset,
                           resp = "GY",
                           naxis = 5)
@@ -1139,9 +1140,10 @@ NA
 </table>
 The above table is the traditional AMMI analysis. Nine principal component axis were fitted and five were significant at 5% probability error. Based on this result, the AMMI5 model would be the best model to predict the yielding of the genotypes in the studied environments. This is confirmed by the cross-validation in the [section 3](#predictive-accuracy). The AMMI model with the smallest RMSE was the AMMI5. The predicted values (first ten observations) can be seen in [section 4](#predicting-the-yield-using-traditional-ammi-model)
 
+> printing the WAASB object
+
 ``` r
 options (digits = 4)
-# printing the WAASB object
 print(WAAS1$model[, c(1:3,13:17, 21:22)])
 ```
 
@@ -2017,8 +2019,9 @@ SF2017
 </table>
 In this example, the scores of the nine PCA were not shown. The output generated by the `WAAS.AMMI` function shows the following results: **type**, genotype (GEN) or environment (ENV); **Code**, the code attributed to each level of the factors; **Y**, the response variable (in this case the grain yield); **WAAS** the weighted average of the absolute scores, estimated with all PCA axes with *P*-value ≤ 0.05; **PctWAAS** and **PctResp** that are the percentage values for the WAAS and Y, respectively; **OrResp** and **OrWAAS** that are the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; **WAASY** is the weighted average of absolute scores and response variable. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 is estimated by: *W**A**A**S*<sub>*G*1</sub> = \[(86.32 × 50)+(98.88 × 50)\]/50 + 50 = 92.60. Then the \*\*OrWAASY\* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked. See [Estimating the WAASBY index](#estimating-the-waasby-index) for a detailed explanation.
 
+> Biplot WAAS x GY
+
 ``` r
-# Biplot WAAS x GY
 plot.scores(WAAS1,
             type = 3)
 ```
@@ -2032,8 +2035,9 @@ Declaring a specific number of axis to be used
 
 Here it is possible to inform a specific number of multiplicative terms to be used in the WAAS estimation. In this example, the number of terms informed is used independently of its significance. Let us, for the moment, assume that two multiplicative terms should be used.
 
+> Declaring that five PCA must be used to compute the WAAS
+
 ``` r
-# Declaring that five PCA must be used to compute the WAAS
 WAAS2 = WAAS.AMMI(dataset,
                  resp = "GY",
                  naxis = 7,
@@ -2919,8 +2923,9 @@ SF2017
 </table>
 The only difference of this output compared tho those from the [section 5.1](#assuming-a-given-probability-error-for-chosing-the-number-of-axes) is that here we declared that seven PCA axes should be used for computing the WAAS value. Thus, only the values of WAAS, OrWAAS, WAASY and OrWAASY are changed. The magnitude of changes, however are too small. This is explained because only two multiplicative terms were included here compared to the previous examples. In addition, these multiplicative terms (PCA6 and PCA7) explained only 3.7% and 1.8%, respectively of the GEI pattern. See section [section 5.1](#assuming-a-given-probability-error-for-chosing-the-number-of-axes).
 
+> Biplot WAAS x GY
+
 ``` r
-# Biplot WAAS x GY
 plot.scores(WAAS2,
             type = 3)
 ```
@@ -2958,14 +2963,410 @@ WAASB2 = WAASB(dataset,
               prob = 0.95,
               weight.response = 30,
               weight.WAAS = 70)
+
+# Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
+# no output for this script
+WAASB3 = WAASB(dataset,
+              resp = "GY",
+              random = "all",
+              prob = 0.95,
+              weight.response = 30,
+              weight.WAAS = 70)
 ```
 
 Printing the model outputs
 --------------------------
 
+> Likelihood ratio tests on linear mixed-effect models
+
+``` r
+print(WAASB$LRT)
+```
+
+<table class="table table-striped" style="font-size: 12px; width: auto !important; ">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+Genotype random effect
+
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+Genotype and environment random effects
+
+</th>
+</tr>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+Genotype LRT
+
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+Interaction LRT
+
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+Genotype LRT
+
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+Environment LRT
+
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+Interaction LRT
+
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+reducedG<sup>\*</sup>
+</th>
+<th style="text-align:center;">
+Complete<sup>†</sup>
+</th>
+<th style="text-align:center;">
+ReducedGE<sup>‡</sup>
+</th>
+<th style="text-align:center;">
+Complete
+</th>
+<th style="text-align:center;">
+reducedG
+</th>
+<th style="text-align:center;">
+Complete
+</th>
+<th style="text-align:center;">
+reducedE<sup>§</sup>
+</th>
+<th style="text-align:center;">
+Complete
+</th>
+<th style="text-align:center;">
+ReducedGE
+</th>
+<th style="text-align:center;">
+Complete
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Df
+</td>
+<td style="text-align:center;">
+50.00
+</td>
+<td style="text-align:center;">
+51.00000
+</td>
+<td style="text-align:center;">
+50.00
+</td>
+<td style="text-align:center;">
+51.000
+</td>
+<td style="text-align:center;">
+51.00
+</td>
+<td style="text-align:center;">
+52.00000
+</td>
+<td style="text-align:center;">
+51.00
+</td>
+<td style="text-align:center;">
+52.00
+</td>
+<td style="text-align:center;">
+51.00
+</td>
+<td style="text-align:center;">
+52.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AIC
+</td>
+<td style="text-align:center;">
+524.48
+</td>
+<td style="text-align:center;">
+507.25568
+</td>
+<td style="text-align:center;">
+566.37
+</td>
+<td style="text-align:center;">
+507.256
+</td>
+<td style="text-align:center;">
+526.48
+</td>
+<td style="text-align:center;">
+509.25568
+</td>
+<td style="text-align:center;">
+507.26
+</td>
+<td style="text-align:center;">
+509.26
+</td>
+<td style="text-align:center;">
+568.37
+</td>
+<td style="text-align:center;">
+509.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BIC
+</td>
+<td style="text-align:center;">
+733.17
+</td>
+<td style="text-align:center;">
+720.11877
+</td>
+<td style="text-align:center;">
+775.06
+</td>
+<td style="text-align:center;">
+720.119
+</td>
+<td style="text-align:center;">
+739.35
+</td>
+<td style="text-align:center;">
+726.29255
+</td>
+<td style="text-align:center;">
+720.12
+</td>
+<td style="text-align:center;">
+726.29
+</td>
+<td style="text-align:center;">
+781.24
+</td>
+<td style="text-align:center;">
+726.293
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+logLik
+</td>
+<td style="text-align:center;">
+-212.24
+</td>
+<td style="text-align:center;">
+-202.62784
+</td>
+<td style="text-align:center;">
+-233.19
+</td>
+<td style="text-align:center;">
+-202.628
+</td>
+<td style="text-align:center;">
+-212.24
+</td>
+<td style="text-align:center;">
+-202.62784
+</td>
+<td style="text-align:center;">
+-202.63
+</td>
+<td style="text-align:center;">
+-202.63
+</td>
+<td style="text-align:center;">
+-233.19
+</td>
+<td style="text-align:center;">
+-202.628
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+deviance
+</td>
+<td style="text-align:center;">
+424.48
+</td>
+<td style="text-align:center;">
+405.25568
+</td>
+<td style="text-align:center;">
+466.37
+</td>
+<td style="text-align:center;">
+405.256
+</td>
+<td style="text-align:center;">
+424.48
+</td>
+<td style="text-align:center;">
+405.25568
+</td>
+<td style="text-align:center;">
+405.26
+</td>
+<td style="text-align:center;">
+405.26
+</td>
+<td style="text-align:center;">
+466.37
+</td>
+<td style="text-align:center;">
+405.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chisq
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+19.22808
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+61.117
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+19.22808
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+61.117
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chi Df
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+1.00000
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+1.000
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+1.00000
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+1.00
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pr(&gt;Chisq)
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0.00001
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0.00001
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+1.00
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>\*</sup> Reduced model without genotype effect;
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>†</sup> Complete model;
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>‡</sup> Reduced model without genotype-vs-environment interaction effect;
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>§</sup> Reduced model without environment effect;
+</td>
+</tr>
+</tfoot>
+</table>
+The output `LRT` contains the Likelihood Ratio Tests on linear mixed-effect models depending on the random effects argument in the function `WAASB` (`random = "all"`or `random  = "gen"`). In the case when `random = "gen"` (default) the LRT is computed for genotype and genotype-vs-environment effects. When `random = "all"`, the LRT is computed for genotype, environment and genotype-vs-environment interaction.
+
+> Variance components and some parameters
+
 ``` r
 options (digits = 4)
-# Variance components and some parameters
 print(WAASB$ESTIMATES)
 ```
 
@@ -3079,11 +3480,12 @@ CV ratio
 </tr>
 </tbody>
 </table>
-In the output `ESTIMATES` list with some important parameters is shown. **GEIr2** is the coefficient of determination of the interaction effects; **rge** is the genotype-environment correlation; **CVg** is the the genotypic coefficient of variation; **CVr** is the residual coefficient of variation; **CV ratio** is the ratio between genotypic and residual coefficient of variation.
+In the output `ESTIMATES` some important parameters is shown. **GEIr2** is the coefficient of determination of the interaction effects; **rge** is the genotype-environment correlation; **CVg** is the the genotypic coefficient of variation; **CVr** is the residual coefficient of variation; **CV ratio** is the ratio between genotypic and residual coefficient of variation.
+
+> A detailed infromation regarding the analyzed experiment.
 
 ``` r
 options (digits = 4)
-# A detailed infromation 
 print(WAASB$Details)
 ```
 
@@ -3191,9 +3593,10 @@ Genotype G8 (3.0393)
 </table>
 The following information are showed in `Details` output. **WgtResponse** is the weight for the response variable in estimating WAASB; **WgtWAAS** the weight for stability; **Ngen** is the number of genotypes; **Nenv** is the number of environments; **OVmean** is the overall mean; **Min** is the minimum value observed (returning the genotype and environment); **Max** is the maximum observed; **MinENV** is the environment with the lower mean; **MaxENV** is the environment with the largest mean observed; **MinGEN** is the genotype with the lower mean; **MaxGEN** is the genotype with the largest mean.
 
+> printing the WAASB object
+
 ``` r
 options (digits = 4)
-# printing the WAASB object
 print(WAASB$model[, c(1:3,13:17, 21:22)])
 ```
 
@@ -4069,9 +4472,10 @@ SF2017
 </table>
 This output generated by the `WAASB` function is very similar to those shown in the [sections 5.1](#assuming-a-given-probability-error-for-chosing-the-number-of-axes) and [5.2](#declaring-a-specific-number-of-axis-to-be-used). The main difference here, is that the singular value decomposition is based on the BLUP interaction effect matrix and the **WAASB** in this output is the weighted average of the absolute scores, estimated with all estimated PCA axes instead **WAAS** that is estimated considering only PCA axes with *P*-value ≤ 0.05.
 
+> printing the estimated BLUP for genotypes
+
 ``` r
 options(digits = 4)
-# printing the estimated BLUP for genotypes
 print(WAASB$BLUPgen[1:10,])
 ```
 
@@ -4302,19 +4706,21 @@ G10
 </tbody>
 </table>
 
+> plotting the estimated BLUP for genotypes
+
 ``` r
 # No file exported
 plot.blup(WAASB)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-30-1.png" style="display: block; margin: auto;" />
 
 This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\\hat{g}\_{i})$ estimated by $\\hat{g}\_{i} = h\_g^2(\\bar{y}\_{i.}-\\bar{y}\_{..})$ where *h*<sub>*g*</sub><sup>2</sup> is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by $\\hat{g}\_{i}+\\mu$ where is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by $(\\hat{g}\_{i}+\\mu)\\pm{CI}$. *C**I* is the confidence interval for BLUP prediction assuming a given probability error, where $CI = t\\times\\sqrt{((1-Ac)\\times{GV)}}$ where *t* is the Student's *t* value for a two-tailed t test at a given probability error; *A**c* is the genotypic accuracy and *G**V* is the genotypic variance.
 
+> printing the estimated BLUP for genotypes X environment
+
 ``` r
 options (digits = 4)
-
-# printing the estimated BLUP for genotypes X environment 
 print(WAASB$BLUPgge[1:10,])
 ```
 
@@ -4612,9 +5018,11 @@ G9
 </table>
 This output shows the predicted means for each genotype and environment combination **BLUPg** is the genotypic effect described above. **BLUPge** is the genotypic effect of the *i*th genotype in the *j*th environment $(\\hat{g}\_{ij})$ estimated by $\\hat{g}\_{ij} = h\_g^2(\\bar{y}\_{i.}-\\bar{y}\_{..})+h\_{ge}^2(y\_{ij}-\\bar{y}\_{i.}-\\bar{y}\_{.j}+\\bar{y}\_{..})$, where *h*<sub>*g**e*</sub><sup>2</sup> is the shrinkage effect for genotype-by-environment interaction; **BLUPg+ge** is *B**L**U**P*<sub>*g*</sub> + *B**L**U**P*<sub>*g**e*</sub>; **Predicted** is the predicted mean ($\\hat{y}\_{ij}$) estimated by $\\hat{y}\_{ij} = \\bar{y}\_{.j}+BLUP\_{g+ge}$.
 
+> printing the eigenvalues
+
 ``` r
 options (digits = 4)
-# printing the eigenvalues
+
 print(WAASB$PCA)
 ```
 
@@ -4765,19 +5173,20 @@ Accumulated
 </tbody>
 </table>
 
+> Plotting the eigenvalues
+
 ``` r
-# Plotting the eigenvalues
-# No exported file
 plot.eigen(WAASB, size.lab = 14, size.tex = 14)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-33-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-35-1.png" style="display: block; margin: auto;" />
 
 The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.
 
+> printing the phenotypic means for all genotype x environment combinations
+
 ``` r
 options (digits = 4)
-# printing the phenotypic means for all genotype x environment combinations 
 print(WAASB$MeansGxE[1:10,])
 ```
 
@@ -4923,7 +5332,7 @@ plot.scores(WAASB,
             type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-36-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
 
 ### biplot type 2: GY x PC1
 
@@ -4932,7 +5341,7 @@ plot.scores(WAASB,
             type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-37-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # Save to *.pdf file (default)
@@ -4950,7 +5359,7 @@ plot.scores(WAASB,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-40-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # Save to a *.tiff file with resolution of 600 dpi.
@@ -4984,15 +5393,16 @@ This function provide the option of attributing weights for stability and produc
 ``` r
 WAASBYratio = WAASBYratio(dataset,
                           resp = "GY",
-                          increment = 5,
+                          increment = 10,
                           saveWAASY = 50)
 ```
 
 Printing the model outputs
 --------------------------
 
+> printing the WAASY values
+
 ``` r
-# printing the WAASY valuesobject
 print(WAASBYratio$WAASY)
 ```
 
@@ -5189,8 +5599,9 @@ above
 </tr>
 </tbody>
 </table>
+> Printing the genotype ranking for each scenario
+
 ``` r
-# printing the genotype ranking for each scenario 
 print(WAASBYratio$hetcomb)
 ```
 
@@ -5203,61 +5614,31 @@ print(WAASBYratio$hetcomb)
 100/0
 </th>
 <th style="text-align:right;">
-95/5
-</th>
-<th style="text-align:right;">
 90/10
-</th>
-<th style="text-align:right;">
-85/15
 </th>
 <th style="text-align:right;">
 80/20
 </th>
 <th style="text-align:right;">
-75/25
-</th>
-<th style="text-align:right;">
 70/30
-</th>
-<th style="text-align:right;">
-65/35
 </th>
 <th style="text-align:right;">
 60/40
 </th>
 <th style="text-align:right;">
-55/45
-</th>
-<th style="text-align:right;">
 50/50
-</th>
-<th style="text-align:right;">
-45/55
 </th>
 <th style="text-align:right;">
 40/60
 </th>
 <th style="text-align:right;">
-35/65
-</th>
-<th style="text-align:right;">
 30/70
-</th>
-<th style="text-align:right;">
-25/75
 </th>
 <th style="text-align:right;">
 20/80
 </th>
 <th style="text-align:right;">
-15/85
-</th>
-<th style="text-align:right;">
 10/90
-</th>
-<th style="text-align:right;">
-5/95
 </th>
 <th style="text-align:right;">
 0/100
@@ -5276,40 +5657,10 @@ G1
 3
 </td>
 <td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
 4
 </td>
 <td style="text-align:right;">
 5
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
 </td>
 <td style="text-align:right;">
 6
@@ -5370,36 +5721,6 @@ G10
 <td style="text-align:right;">
 10
 </td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -5409,9 +5730,6 @@ G2
 6
 </td>
 <td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
 4
 </td>
 <td style="text-align:right;">
@@ -5431,33 +5749,6 @@ G2
 </td>
 <td style="text-align:right;">
 3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
 </td>
 <td style="text-align:right;">
 4
@@ -5478,36 +5769,6 @@ G3
 </td>
 <td style="text-align:right;">
 1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
 </td>
 <td style="text-align:right;">
 2
@@ -5548,40 +5809,10 @@ G4
 7
 </td>
 <td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
 6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
 </td>
 <td style="text-align:right;">
 5
@@ -5616,15 +5847,6 @@ G5
 6
 </td>
 <td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
 8
 </td>
 <td style="text-align:right;">
@@ -5644,27 +5866,6 @@ G5
 </td>
 <td style="text-align:right;">
 7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-8
 </td>
 <td style="text-align:right;">
 8
@@ -5681,21 +5882,12 @@ G6
 2
 </td>
 <td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
 5
 </td>
 <td style="text-align:right;">
 7
 </td>
 <td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
 8
 </td>
 <td style="text-align:right;">
@@ -5709,27 +5901,6 @@ G6
 </td>
 <td style="text-align:right;">
 8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
 </td>
 <td style="text-align:right;">
 9
@@ -5752,15 +5923,6 @@ G7
 8
 </td>
 <td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
 5
 </td>
 <td style="text-align:right;">
@@ -5777,27 +5939,6 @@ G7
 </td>
 <td style="text-align:right;">
 4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
 </td>
 <td style="text-align:right;">
 3
@@ -5818,36 +5959,6 @@ G8
 </td>
 <td style="text-align:right;">
 2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
 </td>
 <td style="text-align:right;">
 1
@@ -5906,37 +6017,7 @@ G9
 9
 </td>
 <td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
 8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-7
 </td>
 <td style="text-align:right;">
 7
@@ -5947,8 +6028,9 @@ G9
 </tr>
 </tbody>
 </table>
+> Printing the genotype ranking depending on the number of multiplicative terms used to estimate the WAASB index.
+
 ``` r
-# printing the genotype ranking depending on the number of multiplicative terms used to estimate the WAASB index.
 print(WAASBYratio$hetdata)
 ```
 
@@ -6317,7 +6399,7 @@ plot.WAASBY(WAASBYratio,
             legend.pos = c(0.9, 0.2))
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-46-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-48-1.png" style="display: block; margin: auto;" />
 
 Plotting the heat map graphics
 ------------------------------
@@ -6331,7 +6413,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-47-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-49-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # save to a *.pdf file (default)
@@ -6347,7 +6429,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-48-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-50-1.png" style="display: block; margin: auto;" />
 
 ``` r
 #save to a *tiff file

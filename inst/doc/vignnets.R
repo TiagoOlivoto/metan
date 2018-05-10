@@ -13,13 +13,13 @@ dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/1/files/07764a
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
                             resp = "GY",
-                            nboot = 1000,
+                            nboot = 10,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
                             resp = "GY",
-                            nboot = 1000,
+                            nboot = 10,
                             nrepval = 2)
 
 
@@ -47,7 +47,6 @@ plot.validation.AMMIF(RMSEweat,
                       col.boxplot = "gray75")
 
 ## ----echo = TRUE---------------------------------------------------------
-# Predicting the yield of 10 oat cultivars in 16 environments using 5 multiplicative terms.
 predictoat = predict.AMMI(dataset,
                           resp = "GY",
                           naxis = 5)
@@ -97,7 +96,6 @@ kable(data, "html") %>%
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
-#  # printing the WAASB object
 #  print(WAAS1$model[, c(1:3,13:17, 21:22)])
 #  
 
@@ -110,12 +108,12 @@ kable(data, "html") %>%
 
 
 ## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
-# Biplot WAAS x GY
+
 plot.scores(WAAS1,
             type = 3)
 
 ## ----echo = TRUE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Declaring that five PCA must be used to compute the WAAS
+
 WAAS2 = WAAS.AMMI(dataset,
                  resp = "GY",
                  naxis = 7,
@@ -138,7 +136,6 @@ kable(data, "html") %>%
 
 
 ## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
-# Biplot WAAS x GY
 plot.scores(WAAS2,
             type = 3)
 
@@ -158,15 +155,57 @@ WAASB2 = WAASB(dataset,
               weight.response = 30,
               weight.WAAS = 70)
 
+# Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
+# no output for this script
+WAASB3 = WAASB(dataset,
+              resp = "GY",
+              random = "all",
+              prob = 0.95,
+              weight.response = 30,
+              weight.WAAS = 70)
+
+## ----eval = FALSE, warning=F, message=F---------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  print(WAASB$LRT)
+
+## ----echo = FALSE, warning=F, message=F---------------------------------------------------------------------------------------------------------------------------------------------------------------
+library(kableExtra)
+options (digits = 5)
+dt_footnote = cbind(WAASB$LRT, WAASB3$LRT)
+
+names(dt_footnote)[1] <- paste0(names(dt_footnote)[1], 
+                                footnote_marker_symbol(1))
+names(dt_footnote)[2] <- paste0(names(dt_footnote)[2], 
+                                footnote_marker_symbol(2))
+names(dt_footnote)[3] <- paste0(names(dt_footnote)[3], 
+                                footnote_marker_symbol(3))
+names(dt_footnote)[7] <- paste0(names(dt_footnote)[7], 
+                                footnote_marker_symbol(4))
+
+kable(dt_footnote, "html", align = "c", escape = F) %>%
+  kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12) %>%
+  add_header_above(c(" ", "Genotype LRT" = 2,
+                     "Interaction LRT" = 2,
+                     "Genotype LRT" = 2,
+                     "Environment LRT" = 2,
+                     "Interaction LRT" = 2)) %>%
+  
+  add_header_above(c(" ", "Genotype random effect" = 4,
+                     "Genotype and environment random effects" = 6)) %>%
+  
+  footnote(symbol = c("Reduced model without genotype effect; ",
+                      "Complete model; ",
+                      "Reduced model without genotype-vs-environment interaction effect; ",
+                      "Reduced model without environment effect; "),
+           footnote_as_chunk = F)
+
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
-#  # Variance components and some parameters
 #  print(WAASB$ESTIMATES)
 #  
 
 ## ----echo = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 library(kableExtra)
-options(digits = 4)
+options(digits = 7)
 data = WAASB$ESTIMATES
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
@@ -174,7 +213,6 @@ kable(data, "html") %>%
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
-#  # A detailed infromation
 #  print(WAASB$Details)
 #  
 
@@ -188,7 +226,6 @@ kable(data, "html") %>%
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
-#  # printing the WAASB object
 #  print(WAASB$model[, c(1:3,13:17, 21:22)])
 #  
 
@@ -202,7 +239,6 @@ kable(data, "html") %>%
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options(digits = 4)
-#  # printing the estimated BLUP for genotypes
 #  print(WAASB$BLUPgen[1:10,])
 #  
 
@@ -218,15 +254,12 @@ kable(data, "html") %>%
 
 
 ## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
-
 # No file exported
 plot.blup(WAASB)
 
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
-#  
-#  # printing the estimated BLUP for genotypes X environment
 #  print(WAASB$BLUPgge[1:10,])
 #  
 
@@ -240,7 +273,7 @@ kable(data, "html") %>%
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
-#  # printing the eigenvalues
+#  
 #  print(WAASB$PCA)
 #  
 
@@ -254,14 +287,11 @@ kable(data, "html") %>%
 
 ## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
 
-# Plotting the eigenvalues
-# No exported file
 plot.eigen(WAASB, size.lab = 14, size.tex = 14)
 
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
-#  # printing the phenotypic means for all genotype x environment combinations
 #  print(WAASB$MeansGxE[1:10,])
 
 ## ----echo = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -273,7 +303,6 @@ kable(data, "html") %>%
 
 
 ## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
-
 # No file exported
 plot.scores(WAASB,
             type = 1)
@@ -290,7 +319,7 @@ plot.scores(WAASB,
             export = TRUE)
 
 
-## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
+## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F---------------------------------------------------------------------------------------------------------
 
 plot.scores(WAASB,
             type = 3)
@@ -307,13 +336,13 @@ plot.scores(WAASB,
 
 WAASBYratio = WAASBYratio(dataset,
                           resp = "GY",
-                          increment = 5,
+                          increment = 10,
                           saveWAASY = 50)
 
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  
-#  # printing the WAASY valuesobject
+#  
 #  print(WAASBYratio$WAASY)
 #  
 
@@ -326,7 +355,7 @@ kable(data, "html") %>%
 
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#  # printing the genotype ranking for each scenario
+#  
 #  print(WAASBYratio$hetcomb)
 #  
 
@@ -339,7 +368,7 @@ kable(data, "html") %>%
 
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#  # printing the genotype ranking depending on the number of multiplicative terms used to estimate the WAASB index.
+#  
 #  print(WAASBYratio$hetdata)
 #  
 
@@ -368,7 +397,7 @@ plot.WAASBYratio(WAASBYratio,
                  export = T)
 
 
-## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
+## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F-----------------------------------------------------------------------------------------------------
 
 plot.WAASBYratio(WAASBYratio,
                  type = 2)
