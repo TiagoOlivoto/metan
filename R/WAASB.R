@@ -5,8 +5,8 @@ WAASB = function(data,
                  weight.response = 50,
                  weight.WAAS = 50){
 
-  Y = dataset[paste("GY")]
-  data = as.data.frame(dataset[,1:3])
+  Y = data[paste("GY")]
+  data = as.data.frame(data[,1:3])
   data = cbind(data, Y)
   names(data) = c("ENV", "GEN", "REP", "Y")
   ENV = as.factor(data$ENV)
