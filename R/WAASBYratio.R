@@ -1,8 +1,8 @@
 WAASBYratio = function(data,
-                        resp,
-                        increment = 5,
-                        saveWAASY = 50,
-                        progbar = TRUE){
+                      resp,
+                      increment = 5,
+                      saveWAASY = 50,
+                      progbar = TRUE){
 PesoWAAS = 100
 PesoResp = 0
 Y = data[paste(resp)]
@@ -20,6 +20,13 @@ ncomb = (100/increment) + 1
 totalcomb = ((100/increment) + 1) * minimo
 CombWAASY = data.frame(type = matrix(".",(Ngen + Nenv),1))
 ovmean = mean(Y)
+
+test = saveWAASY %% increment == 0
+
+if (test == FALSE){
+  stop("The argument 'saveWAASY = ", saveWAASY,"' must be divisible by 'increment' (", increment, "). Please, consider changing the values.")
+} else{
+
 WAASY.Values = list()
 initial = 0
 model = suppressWarnings(suppressMessages(lme4::lmer(Y~REP%in%ENV + (1|GEN) + (1|ENV)+ (1|GEN:ENV))))
@@ -236,5 +243,6 @@ return(structure(list(MeansGxE = MEDIAS,
             class = "WAASBYratio"))
 if (progbar == TRUE){
 #utils::winDialog(type = "ok", "Procedure sucessful! Check the results in R environment")
+  }
  }
 }
