@@ -13,6 +13,13 @@ names(data) = c("ENV", "GEN", "REP", "Y")
 Ngen = nrow(plyr::count(data, "GEN"))
 Nenv = nrow(plyr::count(data, "ENV"))
 ncomb = (100/increment) + 1
+
+test = saveWAASY %% increment == 0
+if (test == FALSE){
+  stop("The argument 'saveWAASY = ", saveWAASY,"' must be divisible by 'increment' (", increment, "). Please, consider changing the values.")
+} else{
+
+
 CombWAASY = data.frame(type = matrix(".",(Ngen + Nenv),1))
 WAASY.Values = list()
 model = with(data, agricolae::AMMI(ENV, GEN, REP, Y))
@@ -214,4 +221,5 @@ return(structure(list(anova = anova,
                       hetdata = hetdata,
                       Ranks = Rank),
                       class = "WAASratio.AMMI"))
+}
 }
