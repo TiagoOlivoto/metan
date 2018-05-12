@@ -14,11 +14,16 @@ Ngen = nrow(plyr::count(data, "GEN"))
 Nenv = nrow(plyr::count(data, "ENV"))
 ncomb = (100/increment) + 1
 
-test = saveWAASY %% increment == 0
+test = PesoWAAS %% increment == 0
+test2 = saveWAASY %% increment == 0
+
 if (test == FALSE){
-  stop("The argument 'saveWAASY = ", saveWAASY,"' must be divisible by 'increment' (", increment, "). Please, consider changing the values.")
+  stop("The argument 'increment = ", increment,"' is invalid. Please, note that this value must result in an integer in the expression '100 / increment'. Please, consider changing the values.")
 } else{
 
+  if (test2 == FALSE){
+    stop("The argument 'saveWAASY = ", saveWAASY,"' must be divisible by 'increment' (", increment, "). Please, consider changing the values.")
+  } else{
 
 CombWAASY = data.frame(type = matrix(".",(Ngen + Nenv),1))
 WAASY.Values = list()
@@ -221,5 +226,6 @@ return(structure(list(anova = anova,
                       hetdata = hetdata,
                       Ranks = Rank),
                       class = "WAASratio.AMMI"))
-}
+  }
+ }
 }
