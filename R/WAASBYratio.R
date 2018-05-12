@@ -21,9 +21,14 @@ totalcomb = ((100/increment) + 1) * minimo
 CombWAASY = data.frame(type = matrix(".",(Ngen + Nenv),1))
 ovmean = mean(Y)
 
-test = saveWAASY %% increment == 0
+test = PesoWAAS %% increment == 0
+test2 = saveWAASY %% increment == 0
 
 if (test == FALSE){
+  stop("The argument 'increment = ", increment,"' is invalid. Please, note that this value must result in an integer in the expression '100 / increment'. Please, consider changing the values.")
+} else{
+
+if (test2 == FALSE){
   stop("The argument 'saveWAASY = ", saveWAASY,"' must be divisible by 'increment' (", increment, "). Please, consider changing the values.")
 } else{
 
@@ -243,6 +248,7 @@ return(structure(list(MeansGxE = MEDIAS,
             class = "WAASBYratio"))
 if (progbar == TRUE){
 #utils::winDialog(type = "ok", "Procedure sucessful! Check the results in R environment")
+   }
   }
  }
 }
