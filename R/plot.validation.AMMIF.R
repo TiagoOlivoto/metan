@@ -2,6 +2,7 @@ plot.validation.AMMIF = function(x,
                                 violin = TRUE,
                                 export = FALSE,
                                 file.type = "pdf",
+                                file.name = NULL,
                                 width = 6,
                                 height = 6,
                                 resolution = 300,
@@ -61,13 +62,19 @@ p1 = ggplot2::ggplot(x$RMSE, aes(x = MODEL, y = RMSE)) +
   } else
 
     if(file.type == "pdf"){
+      if (is.null(file.name)){
       pdf("RMSE validation.pdf",width = width, height = height)
+      } else
+      pdf(paste0(file.name, ".pdf"), width = width, height = height)
       plot(p1)
       dev.off()
     }
 
   if (file.type == "tiff"){
+    if (is.null(file.name)){
     tiff(filename = "RMSE validation.tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
+    } else
+    tiff(filename = paste0(file.name, ".tiff"), width = width, height = height, units = "in", compression = "lzw", res = resolution)
     plot(p1)
     dev.off()
   }
