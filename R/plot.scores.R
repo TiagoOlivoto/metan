@@ -2,6 +2,7 @@ plot.scores = function(x,
                      type,
                      file.type = "pdf",
                      export = FALSE,
+                     file.name = NULL,
                      width = 8,
                      height = 7,
                      x.lim = NULL,
@@ -85,13 +86,19 @@ p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
     } else
 
       if (file.type == "pdf"){
+        if (is.null(file.name)){
         pdf("PC1 x PC2.pdf",width = width, height = height)
+        } else
+        pdf(paste0(file.name, ".pdf"), width = width, height = height)
         plot(p1)
         dev.off()
       }
 
     if (file.type == "tiff"){
+      if (is.null(file.name)){
       tiff(filename = "PC1 x PC2.tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
+      } else
+      tiff(filename = paste0(file.name, ".tiff"), width = width, height = height, units = "in", compression = "lzw", res = resolution)
       plot(p1)
       dev.off()
     }
@@ -132,19 +139,24 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
     } else
 
       if (file.type == "pdf"){
-        pdf("GY x PC1.pdf",width = width, height = height)
+        if (is.null(file.name)){
+          pdf("GY x PC1.pdf",width = width, height = height)
+        } else
+          pdf(paste0(file.name, ".pdf"), width = width, height = height)
         plot(p2)
         dev.off()
+
       }
 
     if (file.type == "tiff"){
-      tiff(filename = "GY x PC1.tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
+      if (is.null(file.name)){
+        tiff(filename = "GY x PC1.tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
+      } else
+        tiff(filename = paste0(file.name, ".tiff"), width = width, height = height, units = "in", compression = "lzw", res = resolution)
       plot(p2)
       dev.off()
     }
-
-  }
-
+}
 
 if (type == 3){
     if (class  ==  "WAASB"){
@@ -224,16 +236,22 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
     } else
 
       if (file.type == "pdf"){
-        pdf("GY x WAASB.pdf",width = width, height = height)
+        if (is.null(file.name)){
+          pdf("GY x WAASB.pdf",width = width, height = height)
+        } else
+          pdf(paste0(file.name, ".pdf"), width = width, height = height)
         plot(p3)
         dev.off()
       }
 
     if (file.type == "tiff"){
-      tiff(filename = "GY x WAAS.tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
+      if (is.null(file.name)){
+        tiff(filename = "GY x WAAS.tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
+      } else
+        tiff(filename = paste0(file.name, ".tiff"), width = width, height = height, units = "in", compression = "lzw", res = resolution)
       plot(p3)
       dev.off()
-    }
+     }
   }
 }
 
