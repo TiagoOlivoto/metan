@@ -2,6 +2,7 @@ plot.blup  =  function(x,
                       prob  =  0.95,
                       export  =  FALSE,
                       file.type  =  "pdf",
+                      file.name = NULL,
                       width  =  6,
                       height  =  6,
                       size.lab  =  12,
@@ -65,13 +66,19 @@ if (export  ==  F|FALSE) {
 } else
 
 if (file.type == "pdf"){
-  pdf("BLUPs genotypes.pdf",width = width, height = height)
+  if (is.null(file.name)){
+    pdf("BLUPs genotypes.pdf",width = width, height = height)
+  } else
+    pdf(paste0(file.name, ".pdf"), width = width, height = height)
   plot(p1)
   dev.off()
   }
 
 if (file.type == "tiff"){
-    tiff(filename = "BLUPs genotypes.tiff",width = width, height = height, units  =  "in", compression  =  "lzw", res = resolution)
+  if (is.null(file.name)){
+    tiff(filename = "BLUPs genotypes.tiff", width = width, height = height, units  =  "in", compression  =  "lzw", res = resolution)
+  } else
+    tiff(filename = paste0(file.name,".tiff"), width = width, height = height, units  =  "in", compression  =  "lzw", res = resolution)
     plot(p1)
     dev.off()
  }
