@@ -1,4 +1,4 @@
-plot.WAASBYratio2 = function(x,
+plot.WAASBYratio = function(x,
                             type,
                             export = FALSE,
                             file.type = "pdf",
