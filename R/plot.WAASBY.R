@@ -1,6 +1,7 @@
 plot.WAASBY = function(x,
                       export = F,
                       file.type = "pdf",
+                      file.name = NULL,
                       width = 6,
                       height = 6,
                       size.lab = 12,
@@ -41,13 +42,20 @@ p1 = ggplot2::ggplot(data$WAASY, aes(x = Code, y = WAASY)) +
   } else
 
   if(file.type == "pdf"){
+    if (is.null(file.name)){
       pdf("WAASY values.pdf",  width = width, height = height)
+    } else
+      pdf(paste0(file.name, ".pdf"),  width = width, height = height)
       plot(p1)
       dev.off()
     }
 
   if (file.type == "tiff"){
+    if (is.null(file.name)){
       tiff(filename = "WAASY values.tiff",width = width, height = height,
+           units = "in", compression = "lzw", res = resolution)
+    } else
+      tiff(filename = paste0(file.name, ".tiff"), width = width, height = height,
            units = "in", compression = "lzw", res = resolution)
       plot(p1)
       dev.off()
