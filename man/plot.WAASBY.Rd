@@ -3,7 +3,7 @@
 \alias{WAASratio.AMMI}
 \title{Plot WAASBY values for genotype ranking}
 \usage{
-\method{plot}{WAASBYratio}(x, export = F , file.type = "pdf",  width = 6, height = 6, size.lab = 12, size.shape = 3.5, legend.pos = c(0.9, 0.1), col.shape = c("blue", "red"), y.lab = "Genotypes", x.breaks = waiver(), resolution = 300, \dots)
+\method{plot}{WAASBYratio}(x, export = F , file.type = "pdf", file.name = NULL,  width = 6, height = 6, size.lab = 12, size.shape = 3.5, legend.pos = c(0.9, 0.1), col.shape = c("blue", "red"), y.lab = "Genotypes", x.breaks = waiver(), resolution = 300, \dots)
 }
 
 \description{
@@ -16,7 +16,9 @@ Plot heat maps with genotype ranking in two ways.
 
   \item{export}{Export (or not) the plot. Default is \code{T}.}
 
-  \item{file.type}{The type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}. Editable vector-based graphics can be saved into a *.pptx file using \code{file.type = "pptx"}}
+  \item{file.type}{The type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
+
+  \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
   \item{width}{The width "inch" of the plot. Default is \code{8}.}
 

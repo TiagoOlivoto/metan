@@ -2,7 +2,7 @@
 \alias{plot.blup}
 \title{Plot the estimated BLUPs of genotypes }
 \usage{
-\method{plot}{blup}(x, prob  =  0.95, export  =  FALSE, file.type  =  "pdf", width  =  6, height  =  6, size.lab  =  12, size.tex  =  12, size.leg  =  12, size.err.bar  =  0.5, size.shape  =  3.5, height.err.bar  =  0.3, x.lim  =  NULL, x.breaks  =  waiver(), leg.pos  =  c(0.9, 0.1), col.shape  =  c("blue", "red"), y.lab  =  "Genotypes", x.lab  =  "Predicted Grain Yield", resolution  =  300, \dots)
+\method{plot}{blup}(x, prob  =  0.95, export  =  FALSE, file.type  =  "pdf", file.name = NULL, width  =  6, height  =  6, size.lab  =  12, size.tex  =  12, size.leg  =  12, size.err.bar  =  0.5, size.shape  =  3.5, height.err.bar  =  0.3, x.lim  =  NULL, x.breaks  =  waiver(), leg.pos  =  c(0.9, 0.1), col.shape  =  c("blue", "red"), y.lab  =  "Genotypes", x.lab  =  "Predicted Grain Yield", resolution  =  300, \dots)
 }
 
 \description{
@@ -18,7 +18,9 @@ Plot the predicted BLUP of the genotypes.
 
   \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
 
-  \item{file.type}{If \code{export = TRUE}, define the type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}. Editable vector-based graphics can be saved into a *.pptx file using \code{file.type = "pptx"}}
+  \item{file.type}{If \code{export = TRUE}, define the type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
+
+  \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
   \item{width}{The width "inch" of the plot. Default is \code{6}.}
 

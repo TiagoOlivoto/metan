@@ -3,7 +3,7 @@
 \title{Plot the RMSE of all AMMI-family tested models}
 \usage{
 
-\method{plot}{validation.AMMIF}(x, violin = TRUE, export = FALSE, file.type = "pdf", width = 6, height = 6, resolution = 300, col.violin = "gray90", col.boxplot = "gray70", size.text = 12, size.title = 12, width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), \dots)
+\method{plot}{validation.AMMIF}(x, violin = TRUE, export = FALSE, file.type = "pdf", file.name = NULL, width = 6, height = 6, resolution = 300, col.violin = "gray90", col.boxplot = "gray70", size.text = 12, size.title = 12, width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), \dots)
 }
 
 \description{
@@ -19,7 +19,9 @@ Plot the Root Means Square Error of all AMMI-family tested models
 
     \item{export}{Export (or not) the plot. Default is \code{T}.}
 
-  \item{file.type}{The type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}. Editable vector-based graphics can be saved into a *.pptx file using \code{file.type = "pptx"}}
+  \item{file.type}{The type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
+
+  \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
   \item{width}{The width "inch" of the plot. Default is \code{6}.}
 

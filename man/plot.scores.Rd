@@ -9,7 +9,7 @@
 }
 
 \usage{
-\method{plot}{WAASB, WAAS.AMMI}(x, type, file.type = "pdf", export = FALSE, width = 8, height = 7, x.lim = NULL, x.breaks = waiver(), x.lab = "Grain yield", y.lim = NULL, y.breaks = waiver(), shape.gen = 21, shape.env = 23, size.shape = 3.5, size.lab = 18, size.tex = 3.5, size.line = 0.5, size.leg = 14, size.segm.line = 0.5, leg.position = "tr", leg.lab = c("Gen", "Env"), line.type = "dashed", line.alpha = 0.9, col.line = "gray", col.gen = "gray75", col.env = "red", col.alpha = 0.9, col.segm.gen = "transparent", col.segm.env = "grey50", resolution = 300, \dots)
+\method{plot}{WAASB, WAAS.AMMI}(x, type, file.type = "pdf", file.name = NULL, export = FALSE, width = 8, height = 7, x.lim = NULL, x.breaks = waiver(), x.lab = "Grain yield", y.lim = NULL, y.breaks = waiver(), shape.gen = 21, shape.env = 23, size.shape = 3.5, size.lab = 18, size.tex = 3.5, size.line = 0.5, size.leg = 14, size.segm.line = 0.5, leg.position = "tr", leg.lab = c("Gen", "Env"), line.type = "dashed", line.alpha = 0.9, col.line = "gray", col.gen = "gray75", col.env = "red", col.alpha = 0.9, col.segm.gen = "transparent", col.segm.env = "grey50", resolution = 300, \dots)
 
 }
 
@@ -19,10 +19,11 @@
 
   \item{type}{Three types of graphics can be generated: \code{1 = PC1 x PC2}, to make inferences related to the interaction effects; \code{2 = GY x PC1} to make inferences related to stability and productivity; and \code{3 = GY x WAASB}. In this plot, the scores of both genotypes and environements are plotted considering the response variable and the WAASB (stability index that consider all significant principal component axis of traditional AMMI models or all principal component axis estimated with BLUP-interaction effects.}
 
-    \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
+  \item{file.type}{The type of file to be exported. Valid parameter if \code{export = T|TRUE}.  Default is \code{"pdf"}. The graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
 
-  \item{file.type}{The type of file to be exported. Valid parameter if \code{export = T|TRUE}.  Default is \code{"pdf"}. The graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}. Editable vector-based graphics can be saved into a *.pptx file using \code{file.type = "pptx"}}
+  \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
+  \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
 
   \item{width}{The width "inch" of the plot. Default is \code{8}.}
 

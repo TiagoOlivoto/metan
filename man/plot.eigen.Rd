@@ -2,7 +2,7 @@
 \alias{plot.eigen}
 \title{Plot the eigenvalues }
 \usage{
-\method{plot}{eigen}(x, export = FALSE, file.type = "pdf", width = 6, height = 6, size.lab = 12, size.tex = 12, size.shape = 3.5, size.line = 1, col.shape = "blue", col.line = "blue", y.lab = "Eigenvalue", x.lab = "Number of multiplicative terms", resolution = 300, \dots)
+\method{plot}{eigen}(x, export = FALSE, file.type = "pdf", file.name = NULL, width = 6, height = 6, size.lab = 12, size.tex = 12, size.shape = 3.5, size.line = 1, col.shape = "blue", col.line = "blue", y.lab = "Eigenvalue", x.lab = "Number of multiplicative terms", resolution = 300, \dots)
 }
 
 \description{
@@ -16,7 +16,9 @@ Plot the eigenvalues for from singular value decomposition of BLUP interaction e
 
   \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
 
-  \item{file.type}{If \code{export = TRUE}, define the type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}. Editable vector-based graphics can be saved into a *.pptx file using \code{file.type = "pptx"}}
+  \item{file.type}{If \code{export = TRUE}, define the type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
+
+  \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
   \item{width}{The width "inch" of the plot. Default is \code{6}.}
 
