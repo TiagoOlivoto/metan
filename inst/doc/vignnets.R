@@ -13,13 +13,13 @@ dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/1/files/07764a
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
 
@@ -62,6 +62,24 @@ kable(predictoat, "html") %>%
 
 ## ----echo = TRUE---------------------------------------------------------
 library(WAASB)
+predmeans = predict.AMMImean(MEANS,
+                             resp = "Resp",
+                             naxis = 4)
+
+
+## ----eval = FALSE--------------------------------------------------------
+#  print(predmeans)
+#  
+
+## ----echo = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+library(kableExtra)
+options(digits = 4, width = 200)
+data = predmeans
+kable(data, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
+
+## ----echo = TRUE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+library(WAASB)
 # Assuming equal weights for productivity and stability
 WAAS1 = WAAS.AMMI(dataset,
                  resp = "GY",
@@ -78,7 +96,7 @@ WAAS11 = WAAS.AMMI(dataset,
                  weight.WAAS = 30)
 
 
-## ----eval = FALSE--------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
 #  # printing the WAASB object
 #  print(WAAS1$anova)

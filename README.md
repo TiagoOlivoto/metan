@@ -1,7 +1,7 @@
 Extending WAASB package
 ================
 Tiago Olivoto
-WAASB 1.0.1 2018-05-10
+WAASB 1.0.1 2018-05-21
 
 <style type = "text/css">
 
@@ -18,7 +18,7 @@ text-align: justify}
 Introducing the `WAASB` R package
 =================================
 
-The WAASB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions to reproduce the methods proposed in the paper, as well as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/WAASB/archive/master.zip) or running the following code in the R console:
+The WAASB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions provide de singular value decomposition of BLUP-interaction effects matrix as weel as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/WAASB/archive/master.zip) or running the following code in the R console:
 
 Overview of the `WAASB` package.
 --------------------------------
@@ -75,7 +75,7 @@ Main functions of `WAASB` package.
 </tr>
 <tr class="even">
 <td align="left"><code>predict.AMMImean()</code></td>
-<td align="left">Predict means in AMMI analysis with data from single observation</td>
+<td align="left">Predict means in AMMI analysis using unreplicated data</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>plot.blup()</code></td>
@@ -107,7 +107,7 @@ Main functions of `WAASB` package.
 Get started
 ===========
 
-The data set from experiment 1 (oat) was provided to make reproducible examples. This data is available in Olivoto ([2018](#ref-Olivoto:2018)). An own data set can be used provided that the columns are in the following order: environment, genotype, block/replicate and response variable(s).
+A data set with data on 10 oat genotypes conducted in 16 environments is provided to make reproducible examples. This data is available in Olivoto ([2018](#ref-Olivoto:2018)). An own data set can be used provided that the columns are in the following order: environment, genotype, block/replicate and response variable(s).
 
 ``` r
 # Importing data
@@ -118,7 +118,7 @@ dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/1/files/07764a
 Predictive accuracy
 ===================
 
-The functions `validation.AMMIF` provides a complete cross-validation for AMMI model family using replicate-based data. Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split into two data sets: modelling and validating data. The data set "modelling" has all combinations (genotype x environment) with the number of replications informed in `nrepval` argument. The data set "validating" has one replication. The splitting of the data set into modelling and validating data depends on the design informed. For Completely Randomized Block Design (default), completely blocks are selected within environments, as suggested by Piepho ([1994](#ref-Piepho:1994)). The remained block serves validation data. If `design = "RCD"` is informed, thus declaring that the a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by Gauch and Zobel ([1988](#ref-Gauch:1988)). The estimated values (for each AMMI model family) are compared with the "validating" data. the Root Means Square error is computed according to the following equation:
+The functions `validation.AMMIF` provides a complete cross-validation for AMMI model family using replicate-based data. Automatically the first validation is carried out considering the AMMIF model (all possible axis is used). Considering this model, the original data set is split into two data sets: modelling and validating data. The "modelling" data set has all combinations (genotype x environment) with the number of replications informed in the argument `nrepval`. The data set "validating" has one replication. The splitting of the data set into modelling and validating data depends on the design informed. For Completely Randomized Block Design (default), completely blocks are selected within environments, as suggested by Piepho ([1994](#ref-Piepho:1994)). The remained block serves as validation data. If `design = "RCD"` is informed, thus declaring that the a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by Gauch and Zobel ([1988](#ref-Gauch:1988)). The estimated values (for each AMMI model family) are compared with the "validating" data. the Root Means Square error is computed according to the following equation:
 
 $$
    RMSE = 
@@ -129,19 +129,19 @@ where $\\widehat{y}\_{ij}$ is the model predicted value; and *y*<sub>*i**j*</sub
 
 The function `validation.blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected each environment. The procedure for computing the RSME is identical to the above function.
 
-> The following codeS computes computes the cross-validation of oat data set based on 1000 re-sampling procedures. This number can be changed.
+> The following codes computes the cross-validation of oat data set based on 1000 re-sampling procedures. This number can be changed.
 
 ``` r
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 ```
 
@@ -181,13 +181,13 @@ CROP
 <tbody>
 <tr>
 <td style="text-align:left;">
-1
+11
 </td>
 <td style="text-align:left;">
-AMMI3
+BLUP
 </td>
 <td style="text-align:right;">
-0.4134
+0.4142
 </td>
 <td style="text-align:left;">
 Wheat
@@ -195,13 +195,13 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
-11
+1
 </td>
 <td style="text-align:left;">
-BLUP
+AMMI3
 </td>
 <td style="text-align:right;">
-0.4167
+0.4162
 </td>
 <td style="text-align:left;">
 Wheat
@@ -212,10 +212,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI6
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4251
+0.4256
 </td>
 <td style="text-align:left;">
 Wheat
@@ -226,10 +226,10 @@ Wheat
 3
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4273
+0.4262
 </td>
 <td style="text-align:left;">
 Wheat
@@ -240,10 +240,10 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4273
+0.4269
 </td>
 <td style="text-align:left;">
 Wheat
@@ -254,10 +254,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMIF
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4285
+0.4275
 </td>
 <td style="text-align:left;">
 Wheat
@@ -268,10 +268,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4287
+0.4283
 </td>
 <td style="text-align:left;">
 Wheat
@@ -282,10 +282,10 @@ Wheat
 7
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMI8
 </td>
 <td style="text-align:right;">
-0.4293
+0.4301
 </td>
 <td style="text-align:left;">
 Wheat
@@ -296,10 +296,10 @@ Wheat
 8
 </td>
 <td style="text-align:left;">
-AMMI8
+AMMIF
 </td>
 <td style="text-align:right;">
-0.4309
+0.4304
 </td>
 <td style="text-align:left;">
 Wheat
@@ -313,7 +313,7 @@ Wheat
 AMMI1
 </td>
 <td style="text-align:right;">
-0.4386
+0.4391
 </td>
 <td style="text-align:left;">
 Wheat
@@ -327,7 +327,7 @@ Wheat
 AMMI0
 </td>
 <td style="text-align:right;">
-0.4493
+0.4525
 </td>
 <td style="text-align:left;">
 Wheat
@@ -335,10 +335,12 @@ Wheat
 </tr>
 </tbody>
 </table>
-The results shown above are the mean of the 50 RMSE estimates for each tested model and are presented from the most accurate model (smallest RSME value) to the lowest accurate model (highest RMSE value).
+The results shown above are the mean of 1000 RMSE estimates for each tested model and are presented from the most accurate model (smallest RSME value) to the lowest accurate model (highest RMSE value).
 
 Plotting the RMSE values
 ------------------------
+
+> It is also possible plotting the RMSE values in a boxplot graphic. Let's to do it.
 
 ``` r
 # binding AMMI and BLUP RMSEs
@@ -354,10 +356,10 @@ plot.validation.AMMIF(RMSEweat,
 
 Five statistics are shown in this boxplot. The median, the lower and upper hinges correspond to the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than 1.5 × *I**Q**R* from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most 1.5 × *I**Q**R* of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added joint with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
 
-Predicting the yield using traditional AMMI model
-=================================================
+Predicting the yield by traditional AMMI model using replicate-based data
+=========================================================================
 
-The function `predict.AMMI` can be used to predict the response variable of a two-way table (for examples the yielding of the *i*th genotype in the *j*th environment) based on the traditional AMMI model. This prediction is based on the number of multiplicative terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In this case, the predicted mean will be the predicted value from OLS estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is used for predicting the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the cell mean, i.e., the mean of R replicates of the *i*th genotype in the *j*th environment. The number of axes to be used must be carefully chosen. Procedures based on postdictive success (such as Gollobs's d.f.) or predictive success (such as cross-validation) should be used to do this. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSE of all AMMI model family based on re-sampling procedures.
+The function `predict.AMMI` can be used to predict the response variable of a two-way table (for example, the yielding of the *i*th genotype in the *j*th environment) based on the traditional AMMI model. This prediction is based on the number of multiplicative terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In this case, the predicted mean will be the predicted value from OLS estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is used for predicting the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the cell mean, i.e., the mean of R replicates of the *i*th genotype in the *j*th environment. The number of axes to be used must be carefully chosen. Procedures based on postdictive success (such as Gollobs's d.f.) or predictive success (such as cross-validation) should be used to do this. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSE of all AMMI model family based on re-sampling procedures.
 
 > Predicting the yield of 10 oat cultivars in 16 environments using 5 multiplicative terms.
 
@@ -661,10 +663,1205 @@ G9
 </table>
 Only the first ten values are shown. The following values are presented: **ENV** is the environment; **GEN** is the genotype; **Y** is the response variable; **resOLS** is the residual ($\\hat{z}\_{ij}$) estimated by the Ordinary Least Square (OLS), where $\\hat{z}\_{ij} = y\_{ij} - \\bar{y}\_{i.} - \\bar{y}\_{.j} + \\bar{y}\_{ij}$; **Ypred** is the predicted value by OLS ($\\hat{y}\_{ij} = y\_{ij} -\\hat{z}\_{ij}$); **ResAMMI** is the residual estimated by the AMMI model ($\\hat{a}\_{ij}$) considering the number of multiplicative terms informed in the function (in this case 5), where $\\hat{a}\_{ij} = \\lambda\_1\\alpha\_{i1}\\tau\_{j1}+...+\\lambda\_5\\alpha\_{i5}\\tau\_{j5}$; **YpredAMMI** is the predicted value by AMMI model $\\hat{ya}\_{ij} = \\bar{y}\_{i.} + \\bar{y}\_{.j} - \\bar{y}\_{ij}+\\hat{a}\_{ij}$; and **AMMI0** is the predicted value when no multiplicative terms are used, i.e., $\\hat{y}\_{ij} = \\bar{y}\_{i.} + \\bar{y}\_{.j} - \\bar{y}\_{ij}$.
 
+Predicting the yield by traditional AMMI model using unreplicated data
+======================================================================
+
+In this procedure we will use the data `MEANS`, available with the WAASB package. This data contains the yield of 10 genotypes conducted in five environments. Only one observation is available for each treatment (combination of genotypes and environments.)
+
+``` r
+library(WAASB)
+predmeans = predict.AMMImean(MEANS,
+                             resp = "Resp",
+                             naxis = 4)
+```
+
+``` r
+print(predmeans)
+```
+
+<table class="table table-striped" style="font-size: 12px; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:right;">
+Y
+</th>
+<th style="text-align:right;">
+ResOLS
+</th>
+<th style="text-align:right;">
+PredOLS
+</th>
+<th style="text-align:right;">
+ResAMMI
+</th>
+<th style="text-align:right;">
+PredAMMI
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1587.9
+</td>
+<td style="text-align:right;">
+64.79
+</td>
+<td style="text-align:right;">
+1523.1
+</td>
+<td style="text-align:right;">
+64.79
+</td>
+<td style="text-align:right;">
+1587.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1386.7
+</td>
+<td style="text-align:right;">
+-127.81
+</td>
+<td style="text-align:right;">
+1514.5
+</td>
+<td style="text-align:right;">
+-127.81
+</td>
+<td style="text-align:right;">
+1386.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1572.9
+</td>
+<td style="text-align:right;">
+-167.15
+</td>
+<td style="text-align:right;">
+1740.0
+</td>
+<td style="text-align:right;">
+-167.15
+</td>
+<td style="text-align:right;">
+1572.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+1139.7
+</td>
+<td style="text-align:right;">
+-132.79
+</td>
+<td style="text-align:right;">
+1272.5
+</td>
+<td style="text-align:right;">
+-132.79
+</td>
+<td style="text-align:right;">
+1139.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+1348.9
+</td>
+<td style="text-align:right;">
+125.85
+</td>
+<td style="text-align:right;">
+1223.0
+</td>
+<td style="text-align:right;">
+125.85
+</td>
+<td style="text-align:right;">
+1348.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+1061.5
+</td>
+<td style="text-align:right;">
+-51.79
+</td>
+<td style="text-align:right;">
+1113.3
+</td>
+<td style="text-align:right;">
+-51.79
+</td>
+<td style="text-align:right;">
+1061.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+1590.9
+</td>
+<td style="text-align:right;">
+-57.43
+</td>
+<td style="text-align:right;">
+1648.3
+</td>
+<td style="text-align:right;">
+-57.43
+</td>
+<td style="text-align:right;">
+1590.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+1223.9
+</td>
+<td style="text-align:right;">
+12.09
+</td>
+<td style="text-align:right;">
+1211.8
+</td>
+<td style="text-align:right;">
+12.09
+</td>
+<td style="text-align:right;">
+1223.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+1402.0
+</td>
+<td style="text-align:right;">
+239.91
+</td>
+<td style="text-align:right;">
+1162.1
+</td>
+<td style="text-align:right;">
+239.91
+</td>
+<td style="text-align:right;">
+1402.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+1313.6
+</td>
+<td style="text-align:right;">
+94.31
+</td>
+<td style="text-align:right;">
+1219.3
+</td>
+<td style="text-align:right;">
+94.31
+</td>
+<td style="text-align:right;">
+1313.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+560.9
+</td>
+<td style="text-align:right;">
+-247.11
+</td>
+<td style="text-align:right;">
+808.0
+</td>
+<td style="text-align:right;">
+-247.11
+</td>
+<td style="text-align:right;">
+560.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+691.7
+</td>
+<td style="text-align:right;">
+-107.71
+</td>
+<td style="text-align:right;">
+799.4
+</td>
+<td style="text-align:right;">
+-107.71
+</td>
+<td style="text-align:right;">
+691.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+770.4
+</td>
+<td style="text-align:right;">
+-254.55
+</td>
+<td style="text-align:right;">
+1024.9
+</td>
+<td style="text-align:right;">
+-254.55
+</td>
+<td style="text-align:right;">
+770.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+734.5
+</td>
+<td style="text-align:right;">
+177.11
+</td>
+<td style="text-align:right;">
+557.4
+</td>
+<td style="text-align:right;">
+177.11
+</td>
+<td style="text-align:right;">
+734.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+458.2
+</td>
+<td style="text-align:right;">
+-49.75
+</td>
+<td style="text-align:right;">
+507.9
+</td>
+<td style="text-align:right;">
+-49.75
+</td>
+<td style="text-align:right;">
+458.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+459.4
+</td>
+<td style="text-align:right;">
+61.21
+</td>
+<td style="text-align:right;">
+398.2
+</td>
+<td style="text-align:right;">
+61.21
+</td>
+<td style="text-align:right;">
+459.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+1104.0
+</td>
+<td style="text-align:right;">
+170.77
+</td>
+<td style="text-align:right;">
+933.2
+</td>
+<td style="text-align:right;">
+170.77
+</td>
+<td style="text-align:right;">
+1104.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+546.9
+</td>
+<td style="text-align:right;">
+50.19
+</td>
+<td style="text-align:right;">
+496.7
+</td>
+<td style="text-align:right;">
+50.19
+</td>
+<td style="text-align:right;">
+546.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+570.9
+</td>
+<td style="text-align:right;">
+123.91
+</td>
+<td style="text-align:right;">
+447.0
+</td>
+<td style="text-align:right;">
+123.91
+</td>
+<td style="text-align:right;">
+570.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+580.1
+</td>
+<td style="text-align:right;">
+75.91
+</td>
+<td style="text-align:right;">
+504.2
+</td>
+<td style="text-align:right;">
+75.91
+</td>
+<td style="text-align:right;">
+580.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1020.6
+</td>
+<td style="text-align:right;">
+-21.92
+</td>
+<td style="text-align:right;">
+1042.5
+</td>
+<td style="text-align:right;">
+-21.92
+</td>
+<td style="text-align:right;">
+1020.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1160.8
+</td>
+<td style="text-align:right;">
+126.88
+</td>
+<td style="text-align:right;">
+1033.9
+</td>
+<td style="text-align:right;">
+126.88
+</td>
+<td style="text-align:right;">
+1160.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1316.2
+</td>
+<td style="text-align:right;">
+56.74
+</td>
+<td style="text-align:right;">
+1259.5
+</td>
+<td style="text-align:right;">
+56.74
+</td>
+<td style="text-align:right;">
+1316.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+862.7
+</td>
+<td style="text-align:right;">
+70.80
+</td>
+<td style="text-align:right;">
+791.9
+</td>
+<td style="text-align:right;">
+70.80
+</td>
+<td style="text-align:right;">
+862.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+663.8
+</td>
+<td style="text-align:right;">
+-78.66
+</td>
+<td style="text-align:right;">
+742.5
+</td>
+<td style="text-align:right;">
+-78.66
+</td>
+<td style="text-align:right;">
+663.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+576.7
+</td>
+<td style="text-align:right;">
+-56.00
+</td>
+<td style="text-align:right;">
+632.7
+</td>
+<td style="text-align:right;">
+-56.00
+</td>
+<td style="text-align:right;">
+576.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+1286.3
+</td>
+<td style="text-align:right;">
+118.56
+</td>
+<td style="text-align:right;">
+1167.7
+</td>
+<td style="text-align:right;">
+118.56
+</td>
+<td style="text-align:right;">
+1286.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+674.3
+</td>
+<td style="text-align:right;">
+-56.92
+</td>
+<td style="text-align:right;">
+731.2
+</td>
+<td style="text-align:right;">
+-56.92
+</td>
+<td style="text-align:right;">
+674.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+664.4
+</td>
+<td style="text-align:right;">
+-17.10
+</td>
+<td style="text-align:right;">
+681.5
+</td>
+<td style="text-align:right;">
+-17.10
+</td>
+<td style="text-align:right;">
+664.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+596.3
+</td>
+<td style="text-align:right;">
+-142.40
+</td>
+<td style="text-align:right;">
+738.7
+</td>
+<td style="text-align:right;">
+-142.40
+</td>
+<td style="text-align:right;">
+596.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1449.7
+</td>
+<td style="text-align:right;">
+41.99
+</td>
+<td style="text-align:right;">
+1407.7
+</td>
+<td style="text-align:right;">
+41.99
+</td>
+<td style="text-align:right;">
+1449.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1591.2
+</td>
+<td style="text-align:right;">
+192.09
+</td>
+<td style="text-align:right;">
+1399.1
+</td>
+<td style="text-align:right;">
+192.09
+</td>
+<td style="text-align:right;">
+1591.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1835.9
+</td>
+<td style="text-align:right;">
+211.25
+</td>
+<td style="text-align:right;">
+1624.6
+</td>
+<td style="text-align:right;">
+211.25
+</td>
+<td style="text-align:right;">
+1835.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+1143.8
+</td>
+<td style="text-align:right;">
+-13.29
+</td>
+<td style="text-align:right;">
+1157.1
+</td>
+<td style="text-align:right;">
+-13.29
+</td>
+<td style="text-align:right;">
+1143.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+1021.2
+</td>
+<td style="text-align:right;">
+-86.45
+</td>
+<td style="text-align:right;">
+1107.6
+</td>
+<td style="text-align:right;">
+-86.45
+</td>
+<td style="text-align:right;">
+1021.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+948.3
+</td>
+<td style="text-align:right;">
+-49.59
+</td>
+<td style="text-align:right;">
+997.9
+</td>
+<td style="text-align:right;">
+-49.59
+</td>
+<td style="text-align:right;">
+948.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+1250.9
+</td>
+<td style="text-align:right;">
+-282.03
+</td>
+<td style="text-align:right;">
+1532.9
+</td>
+<td style="text-align:right;">
+-282.03
+</td>
+<td style="text-align:right;">
+1250.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+1053.7
+</td>
+<td style="text-align:right;">
+-42.71
+</td>
+<td style="text-align:right;">
+1096.4
+</td>
+<td style="text-align:right;">
+-42.71
+</td>
+<td style="text-align:right;">
+1053.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+993.4
+</td>
+<td style="text-align:right;">
+-53.29
+</td>
+<td style="text-align:right;">
+1046.7
+</td>
+<td style="text-align:right;">
+-53.29
+</td>
+<td style="text-align:right;">
+993.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+1185.9
+</td>
+<td style="text-align:right;">
+82.01
+</td>
+<td style="text-align:right;">
+1103.9
+</td>
+<td style="text-align:right;">
+82.01
+</td>
+<td style="text-align:right;">
+1185.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1489.6
+</td>
+<td style="text-align:right;">
+162.24
+</td>
+<td style="text-align:right;">
+1327.4
+</td>
+<td style="text-align:right;">
+162.24
+</td>
+<td style="text-align:right;">
+1489.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1235.3
+</td>
+<td style="text-align:right;">
+-83.46
+</td>
+<td style="text-align:right;">
+1318.8
+</td>
+<td style="text-align:right;">
+-83.46
+</td>
+<td style="text-align:right;">
+1235.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1698.0
+</td>
+<td style="text-align:right;">
+153.70
+</td>
+<td style="text-align:right;">
+1544.3
+</td>
+<td style="text-align:right;">
+153.70
+</td>
+<td style="text-align:right;">
+1698.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+974.9
+</td>
+<td style="text-align:right;">
+-101.84
+</td>
+<td style="text-align:right;">
+1076.7
+</td>
+<td style="text-align:right;">
+-101.84
+</td>
+<td style="text-align:right;">
+974.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+1116.3
+</td>
+<td style="text-align:right;">
+89.00
+</td>
+<td style="text-align:right;">
+1027.3
+</td>
+<td style="text-align:right;">
+89.00
+</td>
+<td style="text-align:right;">
+1116.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+1013.7
+</td>
+<td style="text-align:right;">
+96.16
+</td>
+<td style="text-align:right;">
+917.5
+</td>
+<td style="text-align:right;">
+96.16
+</td>
+<td style="text-align:right;">
+1013.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+1502.7
+</td>
+<td style="text-align:right;">
+50.12
+</td>
+<td style="text-align:right;">
+1452.6
+</td>
+<td style="text-align:right;">
+50.12
+</td>
+<td style="text-align:right;">
+1502.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+1053.4
+</td>
+<td style="text-align:right;">
+37.34
+</td>
+<td style="text-align:right;">
+1016.1
+</td>
+<td style="text-align:right;">
+37.34
+</td>
+<td style="text-align:right;">
+1053.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+672.9
+</td>
+<td style="text-align:right;">
+-293.44
+</td>
+<td style="text-align:right;">
+966.3
+</td>
+<td style="text-align:right;">
+-293.44
+</td>
+<td style="text-align:right;">
+672.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+913.7
+</td>
+<td style="text-align:right;">
+-109.84
+</td>
+<td style="text-align:right;">
+1023.5
+</td>
+<td style="text-align:right;">
+-109.84
+</td>
+<td style="text-align:right;">
+913.7
+</td>
+</tr>
+</tbody>
+</table>
 Estimating the WAAS (based on traditional AMMI model)
 =====================================================
 
-The `WAAS.AMMI` function compute the weighted average of absolute scores considering (i) all principal component axes that are significant at a given probability error level; or (ii) declaring a specific number of axes to be used, according to the following equation:
+The `WAAS.AMMI` function compute the weighted average of absolute scores considering: (i) all principal component axes that are significant at a given probability error level; or (ii) declaring a specific number of axes to be used, according to the following equation:
 
 $$
         WAAS\_i  = 
@@ -2011,7 +3208,7 @@ plot.scores(WAAS1,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
 
 The biplot above shows the coordinates of the genotypes and environments regarding the grain yield and the WAAS values. It is in fact the plot of the columns Y and WAAS from the above table. A detailed discussion on the interpretation of this biplot can be seen in [section 6.2.3](#biplot-type-3-gy-x-waasb).
 
@@ -2915,7 +4112,7 @@ plot.scores(WAAS2,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
 In this biplot, we can see that the changes in the coordinates were also too small.
 
@@ -4697,7 +5894,7 @@ G10
 plot.blup(WAASB)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-30-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-33-1.png" style="display: block; margin: auto;" />
 
 This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\\hat{g}\_{i})$ estimated by $\\hat{g}\_{i} = h\_g^2(\\bar{y}\_{i.}-\\bar{y}\_{..})$ where *h*<sub>*g*</sub><sup>2</sup> is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by $\\hat{g}\_{i}+\\mu$ where is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by $(\\hat{g}\_{i}+\\mu)\\pm{CI}$. *C**I* is the confidence interval for BLUP prediction assuming a given probability error, where $CI = t\\times\\sqrt{((1-Ac)\\times{GV)}}$ where *t* is the Student's *t* value for a two-tailed t test at a given probability error; *A**c* is the genotypic accuracy and *G**V* is the genotypic variance.
 
@@ -5162,7 +6359,7 @@ Accumulated
 plot.eigen(WAASB, size.lab = 14, size.tex = 14)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-35-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
 
 The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.
 
@@ -5315,7 +6512,7 @@ plot.scores(WAASB,
             type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-41-1.png" style="display: block; margin: auto;" />
 
 ### biplot type 2: GY x PC1
 
@@ -5324,7 +6521,7 @@ plot.scores(WAASB,
             type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-42-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # Save to *.pdf file (default)
@@ -5342,7 +6539,7 @@ plot.scores(WAASB,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-40-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-43-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # Save to a *.tiff file with resolution of 600 dpi.
@@ -6382,7 +7579,7 @@ plot.WAASBY(WAASBYratio,
             legend.pos = c(0.9, 0.2))
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-48-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-51-1.png" style="display: block; margin: auto;" />
 
 Plotting the heat map graphics
 ------------------------------
@@ -6396,7 +7593,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-49-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-52-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # save to a *.pdf file (default)
@@ -6412,7 +7609,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-50-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
 
 ``` r
 #save to a *tiff file

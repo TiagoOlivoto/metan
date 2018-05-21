@@ -34,7 +34,7 @@ text-align: justify}
 </style>
 
 # Introducing the `WAASB` R package
-The WAASB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions to reproduce the methods proposed in the paper, as well as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/WAASB/archive/master.zip) or running the following code in the R console:
+The WAASB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions provide de singular value decomposition of BLUP-interaction effects matrix as weel as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/WAASB/archive/master.zip) or running the following code in the R console:
 
 ## Overview of the `WAASB` package.
 > Package `WAASB` available at `github`.
@@ -57,7 +57,7 @@ devtools::install_github("TiagoOlivoto/WAASB")
 | `validation.blup()` | Cross-validation for blup prediction                                          |
 | `validation.AMMIF()`| BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio      |
 | `predict.AMMI()`	  | Predict means in replicated-based MET using AMMI analysis                   	|
-| `predict.AMMImean()`| Predict means in AMMI analysis with data from single observation              |
+| `predict.AMMImean()`| Predict means in AMMI analysis using unreplicated data                        |
 | `plot.blup()`       | Plot the estimated BLUPs of genotypes                                         |
 | `plot.validation.AMMIF()`	    | Plot the RMSE of all AMMI-family tested models                     	|
 | `plot.WAASBY()`	    | Plot WAASBY values for genotype ranking                                      	|
@@ -67,7 +67,7 @@ devtools::install_github("TiagoOlivoto/WAASB")
 
 
 # Get started
-The data set from experiment 1 (oat) was provided to make reproducible examples. This data is available in @Olivoto:2018. An own data set can be used provided that the columns are in the following order: environment, genotype, block/replicate and response variable(s).
+A data set with data on 10 oat genotypes conducted in 16 environments is provided to make reproducible examples. This data is available in @Olivoto:2018. An own data set can be used provided that the columns are in the following order: environment, genotype, block/replicate and response variable(s).
 
 ```{r warning = FALSE, message = FALSE}
 # Importing data
@@ -77,7 +77,7 @@ dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/1/files/07764a
 ```
 
 # Predictive accuracy 
-The functions `validation.AMMIF` provides a complete cross-validation for AMMI model family using replicate-based data. Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split into two data sets: modelling and validating data. The data set "modelling" has all combinations (genotype x environment) with the number of replications informed in `nrepval` argument. The data set "validating" has one replication. The splitting of the data set into modelling and validating data depends on the design informed. For Completely Randomized Block Design (default), completely blocks are selected within environments, as suggested by @Piepho:1994. The remained block serves validation data. If `design = "RCD"` is informed, thus declaring that the a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by @Gauch:1988. The estimated values (for each AMMI model family) are compared with the "validating" data. the Root Means Square error is computed according to the following equation:
+The functions `validation.AMMIF` provides a complete cross-validation for AMMI model family using replicate-based data. Automatically the first validation is carried out considering the AMMIF model (all possible axis is used). Considering this model, the original data set is split into two data sets: modelling and validating data. The "modelling" data set has all combinations (genotype x environment) with the number of replications informed in the argument `nrepval`. The data set "validating" has one replication. The splitting of the data set into modelling and validating data depends on the design informed. For Completely Randomized Block Design (default), completely blocks are selected within environments, as suggested by @Piepho:1994. The remained block serves as validation data. If `design = "RCD"` is informed, thus declaring that the a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by @Gauch:1988. The estimated values (for each AMMI model family) are compared with the "validating" data. the Root Means Square error is computed according to the following equation:
 
 $$
    RMSE = 
@@ -88,19 +88,19 @@ where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the obser
 
 The function  `validation.blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected each environment. The procedure for computing the RSME is identical to the above function.
 
->The following codeS computes computes the cross-validation of oat data set based on 1000 re-sampling procedures. This number can be changed.
+>The following codes computes the cross-validation of oat data set based on 1000 re-sampling procedures. This number can be changed.
 
 ```{r eval = TRUE, collapse=TRUE, comment = "#"}
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
                             resp = "GY",
-                            nboot = 10,
+                            nboot = 1000,
                             nrepval = 2)
 
     ```
@@ -129,10 +129,12 @@ kable(RMSEweat, "html") %>%
 
     ```
 
-The results shown above are the mean of the 50 RMSE estimates for each tested model and are presented from the most accurate model (smallest RSME value) to the lowest accurate model (highest RMSE value). 
+The results shown above are the mean of 1000 RMSE estimates for each tested model and are presented from the most accurate model (smallest RSME value) to the lowest accurate model (highest RMSE value). 
 
 
 ## Plotting the RMSE values
+
+>It is also possible plotting the RMSE values in a boxplot graphic. Let's to do it.
 
 ```{r eval = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 # binding AMMI and BLUP RMSEs
@@ -147,8 +149,8 @@ plot.validation.AMMIF(RMSEweat,
 Five statistics are shown in this boxplot. The median, the lower and upper hinges correspond to the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than $1.5\times{IQR}$ from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most $1.5\times{IQR}$ of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added joint with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
 
 
-# Predicting the yield using traditional AMMI model
-The function `predict.AMMI` can be used to predict the response variable of a two-way table (for examples the yielding of the *i*th genotype in the *j*th environment) based on the traditional AMMI model. This prediction is based on the number of multiplicative terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In this case, the predicted mean will be the predicted value from OLS estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is used for predicting the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the cell mean, i.e., the mean of R replicates of the *i*th genotype in the *j*th environment. The number of axes to be used must be carefully chosen. Procedures based on postdictive success (such as Gollobs's d.f.) or predictive success (such as cross-validation) should be used to do this. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSE of all AMMI model family based on re-sampling procedures.
+# Predicting the yield by traditional AMMI model using replicate-based data
+The function `predict.AMMI` can be used to predict the response variable of a two-way table (for example, the yielding of the *i*th genotype in the *j*th environment) based on the traditional AMMI model. This prediction is based on the number of multiplicative terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In this case, the predicted mean will be the predicted value from OLS estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is used for predicting the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the cell mean, i.e., the mean of R replicates of the *i*th genotype in the *j*th environment. The number of axes to be used must be carefully chosen. Procedures based on postdictive success (such as Gollobs's d.f.) or predictive success (such as cross-validation) should be used to do this. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSE of all AMMI model family based on re-sampling procedures.
 
 > Predicting the yield of 10 oat cultivars in 16 environments using 5 multiplicative terms.
 
@@ -171,9 +173,32 @@ kable(predictoat, "html") %>%
 
 Only the first ten values are shown. The following values are presented: **ENV** is the environment; **GEN** is the genotype; **Y** is the response variable; **resOLS** is the residual ($\hat{z}_{ij}$) estimated by the Ordinary Least Square (OLS), where $\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}$; **Ypred** is the predicted value by OLS ($\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}$); **ResAMMI** is the residual estimated by the AMMI model ($\hat{a}_{ij}$) considering the number of multiplicative terms informed in the function (in this case 5), where $\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}$; **YpredAMMI** is the predicted value by AMMI model  $\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}$; and **AMMI0** is the predicted value when no multiplicative terms are used, i.e., $\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}$.
 
+# Predicting the yield by traditional AMMI model using unreplicated data
+In this procedure we will use the data `MEANS`, available with the WAASB package. This data contains the yield of 10 genotypes conducted in five environments. Only one observation is available for each treatment (combination of genotypes and environments.)
+
+```{r echo = TRUE}
+library(WAASB)
+predmeans = predict.AMMImean(MEANS,
+                             resp = "Resp",
+                             naxis = 4)
+
+    ```
+
+```{r eval = FALSE}
+print(predmeans)
+
+    ```
+
+```{r echo = FALSE}
+library(kableExtra)
+options(digits = 4, width = 200)
+data = predmeans
+kable(data, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
+    ```
 
 # Estimating the WAAS (based on traditional AMMI model)
-The `WAAS.AMMI` function compute the weighted average of absolute scores considering (i) all principal component axes that are significant at a given probability error level; or (ii)  declaring a specific number of axes to be used, according to the following equation:
+The `WAAS.AMMI` function compute the weighted average of absolute scores considering: (i) all principal component axes that are significant at a given probability error level; or (ii)  declaring a specific number of axes to be used, according to the following equation:
 
 $$
         WAAS_i  = 
