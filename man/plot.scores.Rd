@@ -9,7 +9,7 @@
 }
 
 \usage{
-\method{plot}{WAASB, WAAS.AMMI}(x, type, file.type = "pdf", file.name = NULL, export = FALSE, width = 8, height = 7, x.lim = NULL, x.breaks = waiver(), x.lab = "Grain yield", y.lim = NULL, y.breaks = waiver(), shape.gen = 21, shape.env = 23, size.shape = 3.5, size.lab = 18, size.tex = 3.5, size.line = 0.5, size.leg = 14, size.segm.line = 0.5, leg.position = "tr", leg.lab = c("Gen", "Env"), line.type = "dashed", line.alpha = 0.9, col.line = "gray", col.gen = "gray75", col.env = "red", col.alpha = 0.9, col.segm.gen = "transparent", col.segm.env = "grey50", resolution = 300, \dots)
+\method{plot}{WAASB, WAAS.AMMI}(x, type, file.type = "pdf", file.name = NULL, export = FALSE, width = 8, height = 7, x.lim = NULL, x.breaks = waiver(), x.lab = "Grain yield", y.lab = NULL, y.lim = NULL, y.breaks = waiver(), shape.gen = 21, shape.env = 23, size.shape = 3.5, size.lab = 18, size.tex = 3.5, size.line = 0.5, size.leg = 14, size.segm.line = 0.5, leg.position = "tr", leg.lab = c("Gen", "Env"), line.type = "dashed", line.alpha = 0.9, col.line = "gray", col.gen = "gray75", col.env = "red", col.alpha = 0.9, col.segm.gen = "transparent", col.segm.env = "grey50", resolution = 300, \dots)
 
 }
 
@@ -33,7 +33,9 @@
 
   \item{x.breaks}{The breaks to be plotted in the x-axis. Default is \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
-  \item{x.lab}{The label of x-axis for the plot \code{type = 2 and 3} . Default is \code{Grain yield}. New arguments can be inserted as \code{x.lab = c(my label)}}
+  \item{x.lab}{The label of x-axis. Each plot has a default value. New arguments can be inserted as \code{x.lab = "my label"}.}
+
+  \item{y.lab}{The label of y-axis. Each plot has a default value. New arguments can be inserted as \code{y.lab = "my label"}.}
 
   \item{y.lim}{The range of x-axis. Default is \code{NULL}. The same arguments than \code{x.lim} can be used.}
 
