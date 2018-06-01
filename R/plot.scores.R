@@ -7,7 +7,8 @@ plot.scores = function(x,
                      height = 7,
                      x.lim = NULL,
                      x.breaks = waiver(),
-                     x.lab = "Grain yield",
+                     x.lab = NULL,
+                     y.lab = NULL,
                      y.lim = NULL,
                      y.breaks = waiver(),
                      shape.gen = 21,
@@ -53,6 +54,18 @@ plot.scores = function(x,
 
 if (type == 1){
 
+  if (is.null(y.lab) == F){
+    y.lab = y.lab
+  } else
+    y.lab = paste0("PC2 (", round(x$PCA[2,3],2), "%)")
+
+  if (is.null(x.lab) == F){
+    x.lab = x.lab
+  } else
+    x.lab = paste0("\nPC1 (", round(x$PCA[1,3],2), "%)")
+
+
+
 p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
@@ -70,8 +83,7 @@ p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
             panel.border = element_rect(colour = "black", fill = NA, size = 1),
             panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
             panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
-      labs(x = paste0("\nPC1 (", round(x$PCA[1,3],2), "%)"),
-           y = paste0("PC2 (", round(x$PCA[2,3],2), "%)")) +
+      labs(x = paste("\n", x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
@@ -106,7 +118,18 @@ p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
   }
 
 if (type == 2){
-    mean = mean(x$model$Y)
+
+  if (is.null(y.lab) == F){
+    y.lab = y.lab
+  } else
+    y.lab = paste0("PC1 (", round(x$PCA[1,3],2), "%)")
+
+  if (is.null(x.lab) == F){
+    x.lab = x.lab
+  } else
+    x.lab = paste0("Grain yield")
+
+     mean = mean(x$model$Y)
 p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
@@ -124,7 +147,7 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
             panel.border = element_rect(colour = "black", fill = NA, size = 1),
             panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
             panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
-      labs(x = paste("\n", x.lab), y = paste0("PC1 (", round(x$PCA[1,3],2), "%)")) +
+      labs(x = paste("\n", x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = mean(x$model$Y), linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
@@ -159,6 +182,17 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
 }
 
 if (type == 3){
+
+  if (is.null(y.lab) == F){
+    y.lab = y.lab
+  } else
+    y.lab = paste0("Weighted average of the absolute scores")
+
+  if (is.null(x.lab) == F){
+    x.lab = x.lab
+  } else
+    x.lab = paste0("Grain yield")
+
     if (class  ==  "WAASB"){
     m1 = mean(x$model$Y)
     m2 = mean(x$model$WAASB)
