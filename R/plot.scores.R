@@ -218,7 +218,7 @@ ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
             panel.border = element_rect(colour = "black", fill = NA, size = 1),
             panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
             panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
-      labs(x = paste("\n", x.lab), y = "Weighted average of the absolute scores") +
+      labs(x = paste("\n", x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = m1, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
@@ -254,7 +254,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
               panel.border = element_rect(colour = "black", fill = NA, size = 1),
               panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
               panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
-        labs(x = paste("\n", x.lab), y = "Weighted average of the absolute scores") +
+        labs(x = paste("\n", x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
         geom_vline(xintercept = m1, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
