@@ -181,18 +181,18 @@ WAASB = function(data,
     WAASAbs = plyr::mutate(WAASAbs,
                            WAASY = (PctResp * PesRes + PctWAASB * PesWAASB)/(PesRes + PesWAASB))
     WAASAbsInicial = data.table::setDT(WAASAbs)[, OrWAASY:= rank(-WAASY), by = type][]
-    MinENV = WAASAbs2[which(WAASAbs2[,3] <= min(WAASAbs2$Y)),]
+    MinENV = WAASAbs2[head(which(WAASAbs2[,3] <= min(WAASAbs2$Y)), n = 1),]
     MinENV = paste0("Environment ", MinENV$Code , " (", round(MinENV$Y,4), ") ")
-    MaxENV = WAASAbs2[which(WAASAbs2[,3] >= max(WAASAbs2$Y)),]
+    MaxENV = WAASAbs2[head(which(WAASAbs2[,3] >= max(WAASAbs2$Y)), n = 1),]
     MaxENV = paste0("Environment ", MaxENV$Code , " (", round(MaxENV$Y,4), ") ")
-    MinGEN = WAASAbs3[which(WAASAbs3[,3] <= min(WAASAbs3$Y)),]
+    MinGEN = WAASAbs3[head(which(WAASAbs3[,3] <= min(WAASAbs3$Y)),n = 1),]
     MinGEN = paste0("Genotype ", MinGEN$Code , " (", round(MinGEN$Y,4), ") ")
-    MaxGEN = WAASAbs3[which(WAASAbs3[,3] >= max(WAASAbs3$Y)),]
+    MaxGEN = WAASAbs3[head(which(WAASAbs3[,3] >= max(WAASAbs3$Y)), n =1),]
     MaxGEN = paste0("Genotype ", MaxGEN$Code , " (", round(MaxGEN$Y,4), ") ")
     mean = round(mean(MEDIAS$Y),4)
-    min = MEDIAS[which(MEDIAS[,3] <= min(MEDIAS$Y)),]
+    min = MEDIAS[head(which(MEDIAS[,3] <= min(MEDIAS$Y)),n = 1),]
     min = paste0(round(min$Y,4), " (Genotype ", min$GEN , " in ", min$ENV, " )")
-    max = MEDIAS[which(MEDIAS[,3] >= max(MEDIAS$Y)),]
+    max = MEDIAS[head(which(MEDIAS[,3] >= max(MEDIAS$Y)),n = 1),]
     max = paste0(round(max$Y,4), " (Genotype ", max$GEN , " in ", max$ENV, " )")
     Details = list(WgtResponse = weight.response,
                    WgtWAAS = weight.WAAS,
@@ -392,18 +392,18 @@ WAASB = function(data,
     WAASAbs = plyr::mutate(WAASAbs,
                            WAASY = (PctResp * PesRes + PctWAASB * PesWAASB)/(PesRes + PesWAASB))
     WAASAbsInicial = data.table::setDT(WAASAbs)[, OrWAASY:= rank(-WAASY), by = type][]
-    MinENV = WAASAbs2[which(WAASAbs2[,3] <= min(WAASAbs2$Y)),]
+    MinENV = WAASAbs2[head(which(WAASAbs2[,3] <= min(WAASAbs2$Y)), n = 1),]
     MinENV = paste0("Environment ", MinENV$Code , " (", round(MinENV$Y,4), ") ")
-    MaxENV = WAASAbs2[which(WAASAbs2[,3] >= max(WAASAbs2$Y)),]
+    MaxENV = WAASAbs2[head(which(WAASAbs2[,3] >= max(WAASAbs2$Y)), n = 1),]
     MaxENV = paste0("Environment ", MaxENV$Code , " (", round(MaxENV$Y,4), ") ")
-    MinGEN = WAASAbs3[which(WAASAbs3[,3] <= min(WAASAbs3$Y)),]
+    MinGEN = WAASAbs3[head(which(WAASAbs3[,3] <= min(WAASAbs3$Y)),n = 1),]
     MinGEN = paste0("Genotype ", MinGEN$Code , " (", round(MinGEN$Y,4), ") ")
-    MaxGEN = WAASAbs3[which(WAASAbs3[,3] >= max(WAASAbs3$Y)),]
+    MaxGEN = WAASAbs3[head(which(WAASAbs3[,3] >= max(WAASAbs3$Y)), n =1),]
     MaxGEN = paste0("Genotype ", MaxGEN$Code , " (", round(MaxGEN$Y,4), ") ")
     mean = round(mean(MEDIAS$Y),4)
-    min = MEDIAS[which(MEDIAS[,3] <= min(MEDIAS$Y)),]
+    min = MEDIAS[head(which(MEDIAS[,3] <= min(MEDIAS$Y)),n = 1),]
     min = paste0(round(min$Y,4), " (Genotype ", min$GEN , " in ", min$ENV, " )")
-    max = MEDIAS[which(MEDIAS[,3] >= max(MEDIAS$Y)),]
+    max = MEDIAS[head(which(MEDIAS[,3] >= max(MEDIAS$Y)),n = 1),]
     max = paste0(round(max$Y,4), " (Genotype ", max$GEN , " in ", max$ENV, " )")
     Details = list(WgtResponse = weight.response,
                    WgtWAAS = weight.WAAS,
