@@ -3,6 +3,7 @@ Type: Package
 Title: Weighted Average of Absolute Scores from SVD of BLUP-Interaction Effects
 Version: 1.0.1
 Author: Tiago Olivoto
+Date: 2018-07-05
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
 Description: This package compute stability analysis based on AMMI and BLUP methods. Several procedures, including prediction for AMMI family models and cross-validation for AMMI and BLUP models are available. Tools for personalized graphics is also provided.  
 Depends: R (>= 3.4.2)
