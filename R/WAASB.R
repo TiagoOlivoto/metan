@@ -5,7 +5,7 @@ WAASB = function(data,
                  weight.response = 50,
                  weight.WAAS = 50){
 
-  Y = data[paste(resp)]
+Y = data[paste(resp)]
   data = as.data.frame(data[,1:3])
   data = cbind(data, Y)
   names(data) = c("ENV", "GEN", "REP", "Y")
@@ -141,6 +141,19 @@ WAASB = function(data,
     MENV = data.frame(type = "ENV", Code = colnames(OUTMED), Y = apply(OUTMED, 2, mean),
                       NEscores)
     Escores = rbind(MGEN, MENV)
+
+
+    names(MENV)[2] = c("ENV")
+    names(MGEN)[2] = c("GEN")
+    MEDIAS = suppressMessages(dplyr::mutate(MEDIAS,
+                                            envPC1 = left_join(MEDIAS, MENV %>% select(ENV, PC1))$PC1,
+                                            genPC1 = left_join(MEDIAS, MGEN %>% select(GEN, PC1))$PC1,
+                                            nominal = Y + genPC1*envPC1))
+    names(MENV)[2] = c("Code")
+    names(MGEN)[2] = c("Code")
+
+
+
     Pesos = data.frame(Percent = Eigenvalue$Proportion)
     WAAS = Escores
     WAASAbs = Escores
@@ -353,6 +366,16 @@ WAASB = function(data,
     MENV = data.frame(type = "ENV", Code = colnames(OUTMED), Y = apply(OUTMED, 2, mean),
                       NEscores)
     Escores = rbind(MGEN, MENV)
+
+    names(MENV)[2] = c("ENV")
+    names(MGEN)[2] = c("GEN")
+    MEDIAS = suppressMessages(dplyr::mutate(MEDIAS,
+                           envPC1 = left_join(MEDIAS, MENV %>% select(ENV, PC1))$PC1,
+                           genPC1 = left_join(MEDIAS, MGEN %>% select(GEN, PC1))$PC1,
+                           nominal = Y + genPC1*envPC1))
+    names(MENV)[2] = c("Code")
+    names(MGEN)[2] = c("Code")
+
     Pesos = data.frame(Percent = Eigenvalue$Proportion)
     WAAS = Escores
     WAASAbs = Escores

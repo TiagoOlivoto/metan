@@ -286,6 +286,73 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
       plot(p3)
       dev.off()
      }
+}
+
+  if (type == 4){
+
+    if (is.null(y.lab) == F){
+      y.lab = y.lab
+    } else
+      y.lab = paste0("Nominal Yield (Mg/ha)")
+
+    if (is.null(x.lab) == F){
+      x.lab = x.lab
+    } else
+      x.lab = paste0("Environment PC1 [square root of  (Mg/ha)]")
+
+
+    min = min(x$MeansGxE$nominal)
+
+    p4 = ggplot2::ggplot(x$MeansGxE, aes(x = envPC1, y = nominal, group = GEN))  +
+      geom_line(size = 1, aes(colour = GEN),
+                data = subset(x$MeansGxE, envPC1 %in% c(max(envPC1), min(envPC1))))+
+      geom_point(aes(x = envPC1, y = min),
+                 data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2]))+
+      ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 %in% c(max(envPC1), min(envPC1))) %>%
+                                  filter(envPC1==min(envPC1)),
+                                aes(label=GEN, fill=GEN),
+                                size=3, color='white',
+                                force=5, segment.color='#bbbbbb') +
+      ggrepel::geom_text_repel(aes(x = envPC1,
+                                   y = min,
+                                   label = ENV),
+                               force = 5,
+                               data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
+      theme_bw() +
+      theme(axis.ticks.length = unit(.2, "cm"),
+            axis.text = element_text(size = size.lab, colour = "black"),
+            axis.title = element_text(size = size.lab, colour = "black"),
+            axis.ticks = element_line(colour = "black"),
+            legend.position = "none",
+            plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
+            panel.border = element_rect(colour = "black", fill = NA, size = 1),
+            panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
+            panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
+      labs(x = x.lab, y = y.lab)
+
+    if (export  ==  F|FALSE) {
+      plot(p4)
+    } else
+
+      if (file.type == "pdf"){
+        if (is.null(file.name)){
+          pdf("Adaptative reponses (AMMI1 model).pdf",width = width, height = height)
+        } else
+          pdf(paste0(file.name, ".pdf"), width = width, height = height)
+        plot(p4)
+        dev.off()
+
+      }
+
+    if (file.type == "tiff"){
+      if (is.null(file.name)){
+        tiff(filename = "Adaptative reponses (AMMI1 model).tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
+      } else
+        tiff(filename = paste0(file.name, ".tiff"), width = width, height = height, units = "in", compression = "lzw", res = resolution)
+      plot(p4)
+      dev.off()
+    }
   }
+
 }
 

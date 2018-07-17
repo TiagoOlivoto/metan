@@ -4,7 +4,8 @@ WAAS.AMMI = function(data,
                      naxis = NULL,
                      weight.response = 50,
                      weight.WAAS = 50){
-
+  data = aveias
+  resp = "RG"
 Y = data[paste(resp)]
 data = as.data.frame(data[,1:3])
 data = cbind(data, Y)
@@ -43,11 +44,22 @@ anova = rbind(anova, ERRO)
 anova$`Pr(>F)` = format(anova$`Pr(>F)`, scipen = 0, digits = 5, scientific = FALSE)
 anova$Percent = format(anova$Percent, scipen = 0, digits = 3, scientific = FALSE)
 anova$Accumul = format(anova$Accumul, scipen = 0, digits = 3, scientific = FALSE)
-MeansGxE = model$means
+MeansGxE = model$means[,1:3]
 Escores = model$biplot
 Escores = cbind(Code = row.names(Escores), Escores)
 Escores = Escores %>%
           dplyr::select(type, everything())
+
+EscGEN = subset(Escores, type == "GEN")
+names(EscGEN)[2] = "GEN"
+EscENV = subset(Escores, type == "ENV")
+names(EscENV)[2] = "ENV"
+MeansGxE = suppressMessages(suppressWarnings(dplyr::mutate(MeansGxE,
+                                        envPC1 = left_join(MeansGxE, EscENV %>% select(ENV, PC1))$PC1,
+                                        genPC1 = left_join(MeansGxE, EscGEN %>% select(GEN, PC1))$PC1,
+                                        nominal = Y + genPC1*envPC1)))
+
+
   if (is.null(naxis)){
   SigPC1 = nrow(PC[which(PC[,5]<p.valuePC),])
   } else{
