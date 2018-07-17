@@ -308,8 +308,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
                 data = subset(x$MeansGxE, envPC1 %in% c(max(envPC1), min(envPC1))))+
       geom_point(aes(x = envPC1, y = min),
                  data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2]))+
-      ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 %in% c(max(envPC1), min(envPC1))) %>%
-                                  filter(envPC1==min(envPC1)),
+      ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 == min(envPC1)),
                                 aes(label=GEN, fill=GEN),
                                 size=3, color='white',
                                 force=5, segment.color='#bbbbbb') +
@@ -328,6 +327,8 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
             panel.border = element_rect(colour = "black", fill = NA, size = 1),
             panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
             panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
+      scale_x_continuous(limits = x.lim, breaks = x.breaks) +
+      scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       labs(x = x.lab, y = y.lab)
 
     if (export  ==  F|FALSE) {
