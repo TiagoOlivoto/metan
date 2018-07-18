@@ -1,4 +1,4 @@
-WAASB2 = function(data,
+WAASB = function(data,
                  resp,
                  random = "gen",
                  prob = 0.95,
