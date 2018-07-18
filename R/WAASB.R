@@ -43,10 +43,10 @@ Y = data[paste(resp)]
     random = random[with(random, order(group)), ]
     statistics = broom::glance(model)
     REML =  list(fixed = fixed, random = random, statistics = statistics)
-    EV = random[1,3]^2
-    GV = random[2,3]^2
-    GEV = random[3,3]^2
-    RV = random[4,3]^2
+    EV = as.numeric(random[1,3]^2)
+    GV = as.numeric(random[2,3]^2)
+    GEV = as.numeric(random[3,3]^2)
+    RV = as.numeric(random[4,3]^2)
     FV =  GEV + GV + RV
     h2g = GV / (GV + GEV + RV)
     h2mg = GV/(GV + GEV/Nbloc + RV/(Nbloc * nrow(data)))
@@ -80,7 +80,7 @@ Y = data[paste(resp)]
                      CVratio = CVratio)
     ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
     names(ESTIMATES) = "Values"
-    ESTIMATES = plyr::mutate(ESTIMATES,
+    ESTIMATES = dplyr::mutate(ESTIMATES,
                              Parameters  = c("GEI variance", "Genotypic variance", "Environmental variance", "Residual variance",
                                              "Phenotypic variance", "Heritability", "GEIr2",
                                              "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
@@ -102,8 +102,8 @@ Y = data[paste(resp)]
     LL = diag(s$d[1:minimo])
     V = s$v[,1:minimo]
     Eigenvalue = data.frame(Eigenvalue = s$d[1:minimo]^2)
-    Eigenvalue = mutate(Eigenvalue, Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100)
-    Eigenvalue = mutate(group_by(Eigenvalue), Accumulated = cumsum(Proportion))
+    Eigenvalue =dplyr::mutate(Eigenvalue, Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100)
+    Eigenvalue =dplyr::mutate(group_by(Eigenvalue), Accumulated = cumsum(Proportion))
     Eigenvalue$PC  = rownames(Eigenvalue)
     Eigenvalue = Eigenvalue %>%
       dplyr::select(PC, everything())
@@ -191,7 +191,7 @@ Y = data[paste(resp)]
     WAASAbs = data.table::setDT(WAASAbs)[, OrPC1:= rank(abs(PC1)), by = type][]
     WAASAbs$PesRes = as.vector(PesoResp)
     WAASAbs$PesWAASB = as.vector(PesoWAASB)
-    WAASAbs = plyr::mutate(WAASAbs,
+    WAASAbs = dplyr::mutate(WAASAbs,
                            WAASY = (PctResp * PesRes + PctWAASB * PesWAASB)/(PesRes + PesWAASB))
     WAASAbsInicial = data.table::setDT(WAASAbs)[, OrWAASY:= rank(-WAASY), by = type][]
     MinENV = WAASAbs2[head(which(WAASAbs2[,3] <= min(WAASAbs2$Y)), n = 1),]
@@ -220,17 +220,17 @@ Y = data[paste(resp)]
                    MaxGEN = MaxGEN)
     Details = do.call(rbind.data.frame, Details)
     names(Details) = "Values"
-    Details = plyr::mutate(Details,
+    Details = dplyr::mutate(Details,
                            Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
                                           "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
     Details = Details %>%
       dplyr::select(Parameters, everything())
     blupGEN = cbind(GEN = MGEN$Code, BLUP = blupGEN)
     colnames(blupGEN) = c("GEN", "BLUPg")
-    blupGEN = mutate(blupGEN,
+    blupGEN =dplyr::mutate(blupGEN,
                      Predicted = BLUPg + ovmean)
     blupGEN = blupGEN[order(-blupGEN[,3]),]
-    blupGEN = mutate(blupGEN,
+    blupGEN =dplyr::mutate(blupGEN,
                      Rank = rank(-blupGEN[,3]),
                      LL = Predicted - Limits,
                      UL = Predicted + Limits)
@@ -238,7 +238,7 @@ Y = data[paste(resp)]
       dplyr::select(Rank, everything())
     selectioNenv = suppressMessages(dplyr::left_join(blups,
                                                      blupGEN %>% select(GEN, BLUPg)))
-    selectioNenv = suppressMessages(plyr::mutate(selectioNenv,
+    selectioNenv = suppressMessages(dplyr::mutate(selectioNenv,
                                                  gge = BLUPge + BLUPg,
                                                  Predicted = BLUPge + BLUPg + left_join(blups, MENV %>% select(Code, Y))$Y,
                                                  LL = Predicted - Limits,
@@ -270,9 +270,9 @@ Y = data[paste(resp)]
     random = random[with(random, order(group)), ]
     statistics = broom::glance(model)
     REML =  list(fixed = fixed, random = random, statistics = statistics)
-    GV = random[1,3]^2
-    GEV = random[2,3]^2
-    RV = random[3,3]^2
+    GV = as.numeric(random[1,3]^2)
+    GEV = as.numeric(random[2,3]^2)
+    RV = as.numeric(random[3,3]^2)
     FV =  GEV + GV + RV
     h2g = GV / (GV + GEV + RV)
     h2mg = GV/(GV + GEV/Nbloc + RV/(Nbloc * nrow(data)))
@@ -305,7 +305,7 @@ Y = data[paste(resp)]
                      CVratio = CVratio)
     ESTIMATES = do.call(rbind.data.frame, ESTIMATES)
     names(ESTIMATES) = "Values"
-    ESTIMATES = plyr::mutate(ESTIMATES,
+    ESTIMATES = dplyr::mutate(ESTIMATES,
                              Parameters = c("GEI variance", "Genotypic variance", "Residual variance",
                                             "Phenotypic variance", "Heritability", "GEIr2",
                                             "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio") )
@@ -327,8 +327,8 @@ Y = data[paste(resp)]
     LL = diag(s$d[1:minimo])
     V = s$v[,1:minimo]
     Eigenvalue = data.frame(Eigenvalue = s$d[1:minimo]^2)
-    Eigenvalue = mutate(Eigenvalue, Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100)
-    Eigenvalue = mutate(group_by(Eigenvalue), Accumulated = cumsum(Proportion))
+    Eigenvalue =dplyr::mutate(Eigenvalue, Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100)
+    Eigenvalue =dplyr::mutate(group_by(Eigenvalue), Accumulated = cumsum(Proportion))
     Eigenvalue$PC  = rownames(Eigenvalue)
     Eigenvalue = Eigenvalue %>%
       dplyr::select(PC, everything())
@@ -414,7 +414,7 @@ Y = data[paste(resp)]
     WAASAbs = data.table::setDT(WAASAbs)[, OrPC1:= rank(abs(PC1)), by = type][]
     WAASAbs$PesRes = as.vector(PesoResp)
     WAASAbs$PesWAASB = as.vector(PesoWAASB)
-    WAASAbs = plyr::mutate(WAASAbs,
+    WAASAbs = dplyr::mutate(WAASAbs,
                            WAASY = (PctResp * PesRes + PctWAASB * PesWAASB)/(PesRes + PesWAASB))
     WAASAbsInicial = data.table::setDT(WAASAbs)[, OrWAASY:= rank(-WAASY), by = type][]
     MinENV = WAASAbs2[head(which(WAASAbs2[,3] <= min(WAASAbs2$Y)), n = 1),]
@@ -443,25 +443,29 @@ Y = data[paste(resp)]
                    MaxGEN = MaxGEN)
     Details = do.call(rbind.data.frame, Details)
     names(Details) = "Values"
-    Details = plyr::mutate(Details,
+    Details = dplyr::mutate(Details,
                            Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
                                           "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
     Details = Details %>%
       dplyr::select(Parameters, everything())
     blupGEN = cbind(GEN = MGEN$Code, BLUP = blupGEN)
     colnames(blupGEN) = c("GEN", "BLUPg")
-    blupGEN = mutate(blupGEN,
+    blupGEN = dplyr::mutate(blupGEN,
                      Predicted = BLUPg+ovmean)
     blupGEN = blupGEN[order(-blupGEN[,3]),]
-    blupGEN = mutate(blupGEN,
+
+
+    blupGEN = dplyr::mutate(blupGEN,
                      Rank = rank(-blupGEN[,3]),
                      LL = Predicted - Limits,
                      UL = Predicted + Limits)
+
+
     blupGEN = blupGEN %>%
       dplyr::select(Rank, everything())
     selectioNenv = suppressMessages(dplyr::left_join(blups,
                                                      blupGEN %>% select(GEN, BLUPg)))
-    selectioNenv = suppressMessages(plyr::mutate(selectioNenv,
+    selectioNenv = suppressMessages(dplyr::mutate(selectioNenv,
                                                  gge = BLUPge + BLUPg,
                                                  Predicted = BLUPge + BLUPg + left_join(blups, MENV %>% select(Code, Y))$Y,
                                                  LL = Predicted - Limits,
