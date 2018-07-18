@@ -49,6 +49,14 @@ plot.scores = function(x,
     leg.pos = c(0.12, 0.12)
   }
 
+  if (leg.position  ==  "bl"){
+    leg.pos = c(0.12, 0.12)
+  }
+
+  if (leg.position  ==  "none"){
+    leg.pos = "none"
+  }
+
   class = class(x)
 
 
@@ -307,8 +315,10 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
       geom_line(size = 1, aes(colour = GEN),
                 data = subset(x$MeansGxE, envPC1 %in% c(max(envPC1), min(envPC1))))+
       geom_point(aes(x = envPC1, y = min),
-                 data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2]))+
-      ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 == min(envPC1)),
+                 data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2]))
+
+    if(leg.position != "none"){
+      p4 = p4 + ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 == min(envPC1)),
                                 aes(label=GEN, fill=GEN),
                                 size=3, color='white',
                                 force=5, segment.color='#bbbbbb') +
@@ -316,8 +326,9 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
                                    y = min,
                                    label = ENV),
                                force = 5,
-                               data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
-      theme_bw() +
+                               data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2]))
+    }
+p4 = p4 + theme_bw() +
       theme(axis.ticks.length = unit(.2, "cm"),
             axis.text = element_text(size = size.lab, colour = "black"),
             axis.title = element_text(size = size.lab, colour = "black"),
