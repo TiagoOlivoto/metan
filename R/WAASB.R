@@ -108,8 +108,8 @@ Y = data[paste(resp)]
     Eigenvalue = Eigenvalue %>%
       dplyr::select(PC, everything())
     Eigenvalue = as.data.frame(Eigenvalue)
-    SCOREG = U%*%LL
-    SCOREE = V%*%LL
+    SCOREG = U%*%LL^0.5
+    SCOREE = V%*%LL^0.5
     Escores = rbind(SCOREG, SCOREE)
     colnames(Escores) = paste("PC", 1:minimo, sep = "")
     raw = data.frame(ENV, GEN, Y)
@@ -333,8 +333,8 @@ Y = data[paste(resp)]
     Eigenvalue = Eigenvalue %>%
       dplyr::select(PC, everything())
     Eigenvalue = as.data.frame(Eigenvalue)
-    SCOREG = U %*% LL
-    SCOREE = V %*% LL
+    SCOREG = U %*% LL^0.5
+    SCOREE = V %*% LL^0.5
     Escores = rbind(SCOREG, SCOREE)
     colnames(Escores) = paste("PC", 1:minimo, sep = "")
     raw = data.frame(ENV, GEN, Y)

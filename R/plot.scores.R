@@ -335,12 +335,13 @@ p4 = p4 + theme_bw() +
             axis.ticks = element_line(colour = "black"),
             legend.position = "none",
             plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
+            axis.title.y = element_text(margin = margin(r = 16)),
             panel.border = element_rect(colour = "black", fill = NA, size = 1),
             panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
             panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-      labs(x = x.lab, y = y.lab)
+      labs(x = paste("\n", x.lab), y = y.lab)
 
     if (export  ==  F|FALSE) {
       plot(p4)
