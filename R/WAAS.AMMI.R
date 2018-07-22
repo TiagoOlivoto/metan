@@ -16,6 +16,49 @@ Y = as.numeric(data$Y)
 Nenv = length(unique(ENV))
 Ngen = length(unique(GEN))
 minimo = min(Nenv, Ngen) - 1
+
+for (n in c(1:3)) {
+  data[,n] = as.factor(data[,n])
+}
+
+temp = data.frame(matrix(".",length(unique(data$ENV)),13))
+actualenv = 0
+for (n in c(1:13)) {
+  temp[,n] = as.numeric(temp[,n])
+}
+names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)", "Pr>F(Blo)","Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS", "R2")
+for (i in 1:length(unique(data$ENV))){
+  envnam = levels(data$ENV)[actualenv + 1]
+  data2 = subset(data, ENV == paste0(envnam))
+  anova = anova(aov(Y ~ GEN + REP, data = data2))
+  MSB = anova[2, 3]
+  MSG = anova[1, 3]
+  MSE = anova[3, 3]
+  NR = length(unique(data2$REP))
+  CV = sqrt(MSE)/mean(data2$Y)*100
+  h2 = (MSG - MSE)/MSG
+  AS = sqrt(h2)
+  temp[i,1] = paste(envnam)
+  temp[i,2] = mean(data2$Y)
+  temp[i,3] = MSB
+  temp[i,4] = MSG
+  temp[i,5] = MSE
+  temp[i,6] = anova[2, 4]
+  temp[i,7] = anova[2, 5]
+  temp[i,8] = anova[1, 4]
+  temp[i,9] = anova[1, 5]
+  temp[i,10] = CV
+  temp[i,11] = h2
+  temp[i,12] = AS
+  temp[i,13] = 1/(2-AS^2)
+
+  actualenv = actualenv + 1
+
+}
+MSEratio = max(temp$MSres) / min(temp$MSres)
+individual = list(individual = temp,
+                  MSEratio = MSEratio)
+
 model = agricolae::AMMI(ENV, GEN, REP, Y)
 PC = model$analysis
 PC = PC %>%
@@ -143,12 +186,13 @@ Details = plyr::mutate(Details,
                                         "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
 Details = Details %>%
           dplyr::select(Parameters, everything())
-  return(structure(list(model = WAAS,
-              MeansGxE = MeansGxE,
-              PCA = PCA,
-              anova = anova,
-              Details = Details),
-              class = "WAAS.AMMI"))
+return(structure(list(individual = individual,
+                      model = WAAS,
+                      MeansGxE = MeansGxE,
+                      PCA = PCA,
+                      anova = anova,
+                      Details = Details),
+                 class = "WAAS.AMMI"))
   }
 }
 
