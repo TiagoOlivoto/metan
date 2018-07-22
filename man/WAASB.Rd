@@ -32,7 +32,9 @@ This function compute the weighted average of absolute scores considering all pr
 
 \value{
 
-\item{WAASB}{A data frame with the response variable, the scores of all Principal Components, the estimates of Weighted Average of Absolute Scores, and WAASY (the index that consider the weights for stability and productivity in the genotype ranking.}
+\item{individual}{A within-environments ANOVA considering a fixed-effect model.}
+
+\item{model}{A data frame with the response variable, the scores of all Principal Components, the estimates of Weighted Average of Absolute Scores, and WAASY (the index that consider the weights for stability and productivity in the genotype ranking.}
 
 \item{BLUPgen}{The estimated BLUPS for genotypes.}
 
@@ -48,8 +50,10 @@ This function compute the weighted average of absolute scores considering all pr
 \item{REML}{A list with the following data frames: \code{fixed} (estimates for fixed effects);  \code{random} (the variance components for random effects);  \code{statistics} (some statistics such as sigma, logLik, AIC, BIC, deviance...)}
 
 \item{ESTIMATES}{A list with the following values: \code{GEV} the genotype-by-environment variance (and percentage of phenotypic variance); \code{GV} the genotypic variance (and percentage of phenotypic variance); \code{EV} the environmental variance;\code{RV} the residual variance (and percentage of phenotypic variance); \code{FV} the phenotypic variance;  \code{h2g} the heritability of the trait; \code{GEr2} the coefficient of determination of the interaction effects; \code{h2mg} the heritability of the mean; \code{AccuGen} the selective accuracy; \code{rge} the genotype-environment correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr} the residual coefficient of variation; \code{CVratio} the ratio between genotypic and residual coefficient of variation.}
-}
 
+
+\item{LRT}{The Likelihood Ratio Test for the random effects of the model.}
+}
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 

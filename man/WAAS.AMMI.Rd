@@ -29,34 +29,19 @@ This function compute the weighted average of absolute scores considering the si
 }
 
 \value{
-\item{anova}{Joint analysis of variance for the main effects and Principal Component analysis of the interaction effect.}
 
-\item{PC}{Principal Component Analysis.}
+\item{individual}{A within-environments ANOVA considering a fixed-effect model.}
 
+\item{model}{A data frame with the response variable, the scores of all Principal Components, the estimates of Weighted Average of Absolute Scores, and WAASY (the index that consider the weights for stability and productivity in the genotype ranking.}
 
 \item{MeansGxE}{The means of genotypes in the environments, with observed, predicted and residual values.}
 
-\item{WAAS}{A data frame with the response variable, the scores of all Principal Components, the estimates of Weighted Average of Absolute Scores, and WAASY (the index that consider the weights for stability and productivity in the genotype ranking.}
+\item{PCA}{Principal Component Analysis.}
 
-\item{WgtResponse}{The weight for the response variable declared. This value is used to create a summary of the analysis.}
 
-\item{WgtWAAS}{The weight for the WAAS (stability) declared. This value is used to create a summary of the analysis.}
+\item{anova}{Joint analysis of variance for the main effects and Principal Component analysis of the interaction effect.}
 
-\item{Ngen}{The number of genotypes included in the analysis.}
-
-\item{Nenv}{The number of environment included in the analysis.}
-
-\item{NSPC}{The number Principal Components that are the p-value lesser than declared in \\code{pvaluePC}. This number of PC is used to estimate de values of WAAS.}
-
-\item{OVmean}{The overall mean.}
-
-\item{MinENV}{Return both the name and mean of the environment with the lower mean across all environments.}
-
-\item{MaxENV}{Return both the name and mean of the environment with the higher mean across all environments.}
-
-\item{MinGEN}{Return both the name and mean of the genotype with the lower mean across all genotypes.}
-
-\item{MaxGEN}{Return both the name and mean of the genotype with the higher mean across all genotypes.}
+\item{Details}{A list summarizing the results. The following information are showed. \code{WgtResponse}, the weight for the response variable in estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the number of genotypes, \code{Nenv} the number of environments, \code{OVmean} the overall mean, \code{Min} the minimum observed (returning the genotype and environment), \code{Max} the maximum observed, \code{Max} the maximum observed, \code{MinENV} the environment with the lower mean, \code{MaxENV} the environment with the larger mean observed, \code{MinGEN} the genotype with the lower mean,  \code{MaxGEN} the genotype with the larger.}
 
 }
 
