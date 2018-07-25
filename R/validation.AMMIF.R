@@ -37,9 +37,9 @@ if (progbar == TRUE){
 
       for (y in 1:naxisvalidation){
 
-        RMSEres = data.frame(matrix(".",nboot,1))
-        for (n in c(1,1:ncol(RMSEres))) {
-          RMSEres[,n] = as.numeric(RMSEres[,n])
+        RMSPDres = data.frame(matrix(".",nboot,1))
+        for (n in c(1,1:ncol(RMSPDres))) {
+          RMSPDres[,n] = as.numeric(RMSPDres[,n])
         }
 
         for (b in 1:nboot) {
@@ -126,12 +126,12 @@ if (progbar == TRUE){
                           error = YpredAMMI - testing,
                           errrorAMMI0 = Ypred - testing )
           if (NAXIS == 0){
-            RMSE = sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
+            RMSPD = sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
           } else{
-            RMSE = sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
+            RMSPD = sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
           }
 
-          RMSEres[,1][b] = RMSE
+          RMSPDres[,1][b] = RMSPD
 
           if (NAXIS == minimo){
             ACTUAL = "AMMIF"
@@ -147,10 +147,10 @@ if (progbar == TRUE){
         }
 
         if (NAXIS == minimo){
-          AMMIval[["AMMIF"]] = RMSEres[,1]
+          AMMIval[["AMMIF"]] = RMSPDres[,1]
         }else
 
-          AMMIval[[sprintf("AMMI%.0f",NAXIS)]]=RMSEres[,1]
+          AMMIval[[sprintf("AMMI%.0f",NAXIS)]]=RMSPDres[,1]
         NAXIS = NAXIS - 1
         initial = initial
       }
@@ -159,9 +159,9 @@ if (progbar == TRUE){
      # utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
  }
 }
-    RMSE = AMMIval[,-c(1)]
-    xx = rownames(RMSE)
-    yy = colnames(RMSE)
+    RMSPD = AMMIval[,-c(1)]
+    xx = rownames(RMSPD)
+    yy = colnames(RMSPD)
     fila = length(xx)
     col = length(yy)
     total = fila * col
@@ -174,15 +174,15 @@ if (progbar == TRUE){
         k = k + 1
         x[k] = xx[i]
         y[k] = yy[j]
-        z[k] = RMSE[i, j]
+        z[k] = RMSPD[i, j]
       }
     }
-    RMSE = data.frame(MODEL = y, RMSE = z)
-    RMSE = RMSE[mixedorder(RMSE[,1]),]
-    RMSEmean = plyr::ddply(RMSE, .(MODEL), summarize, mean = mean(RMSE))
-    RMSEmean = RMSEmean[order(RMSEmean[,2]),]
-return(structure(list(RMSE = RMSE,
-                RMSEmean = RMSEmean,
+    RMSPD = data.frame(MODEL = y, RMSPD = z)
+    RMSPD = RMSPD[mixedorder(RMSPD[,1]),]
+    RMSPDmean = plyr::ddply(RMSPD, .(MODEL), summarize, mean = mean(RMSPD))
+    RMSPDmean = RMSPDmean[order(RMSPDmean[,2]),]
+return(structure(list(RMSPD = RMSPD,
+                RMSPDmean = RMSPDmean,
                 Estimated = MEDIAS,
                 Modeling = modeling,
                 Testing = testing),

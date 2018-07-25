@@ -6,9 +6,9 @@ validation.AMMI = function(data,
                            naxis,
                            progbar = TRUE){
 
-  RMSEres  = data.frame(RMSE  = matrix(".",nboot,1))
-  for (n in c(1,1:ncol(RMSEres))) {
-    RMSEres[,n] = as.numeric(RMSEres[,n])
+  RMSPDres  = data.frame(RMSPD  = matrix(".",nboot,1))
+  for (n in c(1,1:ncol(RMSPDres))) {
+    RMSPDres[,n] = as.numeric(RMSPDres[,n])
   }
   Y = data[paste(resp)]
   data = as.data.frame(data[,1:3])
@@ -122,11 +122,11 @@ validation.AMMI = function(data,
                           error = YpredAMMI - testing,
                           errrorAMMI0 = Ypred - testing )
           if (naxis == 0){
-            RMSE = sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
+            RMSPD = sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
           } else{
-            RMSE = sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
+            RMSPD = sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
           }
-          RMSEres[,1][b] = RMSE
+          RMSPDres[,1][b] = RMSPD
           if (progbar == TRUE){
             ProcdAtua = b
             setWinProgressBar(pb, b, title = paste("Validating ",ProcdAtua,
@@ -141,8 +141,8 @@ validation.AMMI = function(data,
         }
       }
     }
-    RSMEmean = mean(RMSEres$RMSE)
-return(structure(list(RMSE = RMSEres,
+    RSMEmean = mean(RMSPDres$RMSPD)
+return(structure(list(RMSPD = RMSPDres,
                 RSMEmean  = RSMEmean,
                 Estimated = MEDIAS,
                 Modeling = modeling,

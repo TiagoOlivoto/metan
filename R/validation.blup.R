@@ -3,9 +3,9 @@ validation.blup = function(data,
                            nboot,
                            nrepval,
                            progbar = TRUE){
-RMSEres  = data.frame(RMSE = matrix(".",nboot,1))
-for (n in c(1,1:ncol(RMSEres))) {
-  RMSEres[,n] = as.numeric(RMSEres[,n])
+RMSPDres  = data.frame(RMSPD = matrix(".",nboot,1))
+for (n in c(1,1:ncol(RMSPDres))) {
+  RMSPDres[,n] = as.numeric(RMSPDres[,n])
 }
 Y = data[paste(resp)]
 data = as.data.frame(data[,1:3])
@@ -113,8 +113,8 @@ names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge", "Predicted"
 validation  = mutate(selectioNenv,
                       testing = testing$Y,
                       error = Predicted - testing)
-RMSE = sqrt(sum(validation$error^2)/length(validation$error))
-RMSEres[,1][b] = RMSE
+RMSPD = sqrt(sum(validation$error^2)/length(validation$error))
+RMSPDres[,1][b] = RMSPD
 if (progbar  ==  TRUE){
 ProcdAtua = b
 setWinProgressBar(pb, b, title = paste("Estimating BLUPs for ",ProcdAtua,
@@ -122,17 +122,17 @@ setWinProgressBar(pb, b, title = paste("Estimating BLUPs for ",ProcdAtua,
                                      "-",round(b/nboot*100,3),"% Concluded -"))
  }
 }
-RMSEres = dplyr::mutate(RMSEres,
+RMSPDres = dplyr::mutate(RMSPDres,
                         MODEL = "BLUP")
-RMSEres = RMSEres %>%
+RMSPDres = RMSPDres %>%
           dplyr::select(MODEL, everything())
-RMSEmean = plyr::ddply(RMSEres, .(MODEL), summarize, mean = mean(RMSE))
+RMSPDmean = plyr::ddply(RMSPDres, .(MODEL), summarize, mean = mean(RMSPD))
 if (progbar  ==  TRUE){
 close(pb)
 #utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
   }
-return(structure(list(RMSE = RMSEres,
-              RMSEmean = RMSEmean),
+return(structure(list(RMSPD = RMSPDres,
+              RMSPDmean = RMSPDmean),
               class = "validation.blup"))
  }
 }

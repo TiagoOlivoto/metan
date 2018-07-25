@@ -17,7 +17,7 @@ plot.validation.AMMIF = function(x,
 
 if (violin == T|FALSE){
 dodge = position_dodge(width = 1)
-p1 = ggplot2::ggplot(x$RMSE, aes(x = MODEL, y = RMSE)) +
+p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
      geom_violin(position = dodge, fill = col.violin) +
      geom_boxplot(width = width.boxplot, position = dodge, fill = col.boxplot) +
   theme_bw() +
@@ -37,7 +37,7 @@ p1 = ggplot2::ggplot(x$RMSE, aes(x = MODEL, y = RMSE)) +
   labs(x = "\nTested models",
        y = expression(paste("Root mean square error (Mg ha"^-1,")")) )
   }else{dodge = position_dodge(width = 1)
-p1 = ggplot2::ggplot(x$RMSE, aes(x = MODEL, y = RMSE)) +
+p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
       geom_boxplot(width = 0.2, position = dodge, fill = col.boxplot) +
       theme_bw() +
       theme(axis.ticks.length = unit(.2, "cm"),
@@ -63,7 +63,7 @@ p1 = ggplot2::ggplot(x$RMSE, aes(x = MODEL, y = RMSE)) +
 
     if(file.type == "pdf"){
       if (is.null(file.name)){
-      pdf("RMSE validation.pdf",width = width, height = height)
+      pdf("RMSPD validation.pdf",width = width, height = height)
       } else
       pdf(paste0(file.name, ".pdf"), width = width, height = height)
       plot(p1)
@@ -72,7 +72,7 @@ p1 = ggplot2::ggplot(x$RMSE, aes(x = MODEL, y = RMSE)) +
 
   if (file.type == "tiff"){
     if (is.null(file.name)){
-    tiff(filename = "RMSE validation.tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
+    tiff(filename = "RMSPD validation.tiff",width = width, height = height, units = "in", compression = "lzw", res = resolution)
     } else
     tiff(filename = paste0(file.name, ".tiff"), width = width, height = height, units = "in", compression = "lzw", res = resolution)
     plot(p1)
