@@ -35,7 +35,7 @@ p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
   coord_flip() +
   scale_y_continuous(limits = x.lim, breaks = x.breaks) +
   labs(x = "\nTested models",
-       y = expression(paste("Root mean square error (Mg ha"^-1,")")) )
+       y = expression(paste("Root mean square prediction difference (Mg ha"^-1,")")) )
   }else{dodge = position_dodge(width = 1)
 p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
       geom_boxplot(width = 0.2, position = dodge, fill = col.boxplot) +
@@ -54,7 +54,7 @@ p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
       coord_flip() +
       scale_y_continuous(limits = x.lim, breaks = x.breaks) +
       labs(x = "\nTested models",
-           y = expression(paste("Root mean square error (Mg ha"^-1,")")) )
+           y = expression(paste("Root mean square prediction difference (Mg ha"^-1,")")) )
   }
 
   if(export  ==  F|FALSE) {
