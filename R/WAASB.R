@@ -27,7 +27,7 @@ Y = data[paste(resp)]
                              check.nlev.gtr.1 = "warning"))
 
   if (minimo < 2) {
-    cat("\nWarning. The analysis AMMI is not possible.")
+    cat("\nWarning. The analysis is not possible.")
     cat("\nThe number of environments and number of genotypes must be greater than 2\n")
   }
 
