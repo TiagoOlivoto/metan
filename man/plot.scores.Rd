@@ -17,7 +17,7 @@
 
   \item{x}{The object \code{WAASB} or \code{WAAS.AMMI}}
 
-  \item{type}{Three types of graphics can be generated: \code{1 = PC1 x PC2}, to make inferences related to the interaction effects; \code{2 = GY x PC1} to make inferences related to stability and productivity; and \code{3 = GY x WAASB}. In this plot, the scores of both genotypes and environements are plotted considering the response variable and the WAASB (stability index that consider all significant principal component axis of traditional AMMI models or all principal component axis estimated with BLUP-interaction effects.}
+  \item{type}{Three types of graphics can be generated: \code{1 = PC1 x PC2}, to make inferences related to the interaction effects; \code{2 = GY x PC1} to make inferences related to stability and productivity; \code{3 = GY x WAASB}, and \code{4 = Nominal yield x Environment PC1}.}
 
   \item{file.type}{The type of file to be exported. Valid parameter if \code{export = T|TRUE}.  Default is \code{"pdf"}. The graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
 
@@ -84,6 +84,10 @@
 
 }
 
+\details{
+The plots type 1 and 2 have the same interpretation than those used in traditional-usage AMMI analysis (well know as AMMI2 and AMMI1, respectively). In the plot type 3, the scores of both genotypes and environments are plotted considering the response variable and the WAASB (stability index that considers all significant principal component axis of traditional AMMI models or all principal component axis estimated with BLUP-interaction effects. Plot type 4 may be used to better understand the well known "which-won-where" pattern, facilitating the recommendation of appropriate genotypes targeted for specific environments, thus allowing the exploitation of narrow adaptations.
+}
+
 \examples{
   library(WAASB)
   model = WAASB(WAASBdata, resp = "GY", weight.response = 50, weight.WAAS = 50)
@@ -95,6 +99,9 @@
 
   plot.scores(model, 3, col.gen = "blue", col.env = "red", size.leg = 17)
   # GY x WAAS.pdf
+
+  plot.scores(model, 4)
+  # no file exported
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
