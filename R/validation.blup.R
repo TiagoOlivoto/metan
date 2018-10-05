@@ -1,4 +1,4 @@
-validation.blup = function(data,
+validation.blup2 = function(data,
                            resp,
                            gen,
                            env,
@@ -15,8 +15,8 @@ Y = eval(substitute(resp), eval(data))
 GEN = factor(eval(substitute(gen), eval(data)))
 ENV = factor(eval(substitute(env), eval(data)))
 REP = factor(eval(substitute(rep), eval(data)))
-data = data.frame(cbind(ENV, GEN, REP, Y))
-data$ID = as.numeric(rownames(data))
+data = data.frame(ENV, GEN, REP, Y)
+data = mutate(data, ID = rownames(data))
 Nbloc = length(unique(REP))
 Nenv = length(unique(ENV))
 
@@ -58,7 +58,7 @@ GEN = as.factor(modeling$GEN)
 BLOCO = as.factor(modeling$REP)
 Resp = as.numeric(modeling$Y)
 ovmean = mean(Resp)
-model = suppressWarnings(suppressMessages(lme4::lmer(Resp~  BLOCO%in%ENV + (1|GEN) + (1|ENV)  + (1|GEN:ENV))))
+model = suppressWarnings(suppressMessages(lme4::lmer(Resp~  BLOCO%in%ENV + (1|GEN) + ENV + (1|GEN:ENV))))
 bups = suppressWarnings(suppressMessages(lme4::ranef(model)))
 blupGEN = bups$GEN
 blupGEN = mutate(blupGEN,
