@@ -6,7 +6,7 @@ Author: Tiago Olivoto
 Date: 2018-07-05
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
 Description: This package compute stability analysis based on AMMI and BLUP methods. Several procedures, including prediction for AMMI family models and cross-validation for AMMI and BLUP models are available. Tools for personalized graphics is also provided.  
-Depends: R (>= 3.4.2)
+Depends: R (>= 3.5.0)
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
