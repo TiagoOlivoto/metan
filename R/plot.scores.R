@@ -3,6 +3,7 @@ plot.scores = function(x,
                      file.type = "pdf",
                      export = FALSE,
                      file.name = NULL,
+                     theme = theme_waasb(),
                      width = 8,
                      height = 7,
                      x.lim = NULL,
@@ -14,12 +15,9 @@ plot.scores = function(x,
                      shape.gen = 21,
                      shape.env = 23,
                      size.shape = 3.5,
-                     size.lab = 18,
                      size.tex = 3.5,
                      size.line = 0.5,
-                     size.leg = 14,
                      size.segm.line = 0.5,
-                     leg.position = "tr",
                      leg.lab = c("Gen", "Env"),
                      line.type = "dashed",
                      line.alpha = 0.9,
@@ -32,30 +30,6 @@ plot.scores = function(x,
                      resolution = 300,
                      ...){
 
-  if (leg.position  ==  "tr"){
-    leg.pos = c(.87, 0.9) #lt
-  }
-
-  if (leg.position  ==  "tl"){
-    leg.pos = c(.12, 0.9) #lt
-  }
-
-  if (leg.position  ==  "br"){
-    leg.pos = c(0.87, 0.12)
-  }
-
-
-  if (leg.position  ==  "bl"){
-    leg.pos = c(0.12, 0.12)
-  }
-
-  if (leg.position  ==  "bl"){
-    leg.pos = c(0.12, 0.12)
-  }
-
-  if (leg.position  ==  "none"){
-    leg.pos = "none"
-  }
 
   class = class(x)
 
@@ -79,18 +53,7 @@ p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
       ggrepel::geom_text_repel(aes(PC1, PC2, label = (Code)), size = size.tex)  +
-      theme_bw() +
-      theme(axis.ticks.length = unit(.2, "cm"),
-            axis.text = element_text(size = size.lab, colour = "black"),
-            axis.title = element_text(size = size.lab, colour = "black"),
-            axis.ticks = element_line(colour = "black"),
-            legend.position = leg.pos,
-            plot.margin = margin(0.5, 0.5, 0.2, 0.2, "cm"),
-            legend.title = element_blank(),
-            legend.text = element_text(size = size.leg),
-            panel.border = element_rect(colour = "black", fill = NA, size = 1),
-            panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
-            panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
+      theme +
       labs(x = paste("\n", x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -102,7 +65,7 @@ p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
 
     if (export  ==  F|FALSE) {
-      plot(p1)
+      return(p1)
     } else
 
       if (file.type == "pdf"){
@@ -143,18 +106,7 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
       ggrepel::geom_text_repel(aes(Y, PC1, label = (Code)), size = size.tex)  +
-      theme_bw() +
-      theme(axis.ticks.length = unit(.2, "cm"),
-            axis.text = element_text(size = size.lab, colour = "black"),
-            axis.title = element_text(size = size.lab, colour = "black"),
-            axis.ticks = element_line(colour = "black"),
-            legend.position = leg.pos,
-            plot.margin = margin(0.5, 0.5, 0.2, 0.2, "cm"),
-            legend.title = element_blank(),
-            legend.text = element_text(size = size.leg),
-            panel.border = element_rect(colour = "black", fill = NA, size = 1),
-            panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
-            panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
+      theme +
       labs(x = paste("\n", x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -166,7 +118,7 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
 
     if (export  ==  F|FALSE) {
-      plot(p2)
+      return(p2)
     } else
 
       if (file.type == "pdf"){
@@ -204,28 +156,16 @@ if (type == 3){
     if (class  ==  "WAASB"){
     m1 = mean(x$model$Y)
     m2 = mean(x$model$WAASB)
-    I = grid::grobTree(textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
-    II = grid::grobTree(textGrob("II", x = 0.97,  y = 0.97, hjust = 0))
-    III = grid::grobTree(textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
-    IV = grid::grobTree(textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
+    I = grid::grobTree(grid::textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
+    II = grid::grobTree(grid::textGrob("II", x = 0.97,  y = 0.97, hjust = 0))
+    III = grid::grobTree(grid::textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
+    IV = grid::grobTree(grid::textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
 p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
 ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
-      theme_bw() +
-      theme(axis.ticks.length = unit(.2, "cm"),
-            axis.text = element_text(size = size.lab, colour = "black"),
-            axis.title = element_text(size = size.lab, colour = "black"),
-            axis.ticks = element_line(colour = "black"),
-            legend.position = leg.pos,
-            plot.margin = margin(0.5, 0.5, 0.2, 0.2, "cm"),
-            axis.title.y = element_text(margin = margin(r = 16)),
-            legend.title = element_blank(),
-            legend.text = element_text(size = size.leg),
-            panel.border = element_rect(colour = "black", fill = NA, size = 1),
-            panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
-            panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
+     theme +
       labs(x = paste("\n", x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -240,28 +180,16 @@ ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
 if (class  ==  "WAAS.AMMI"){
       m1 = mean(x$model$Y)
       m2 = mean(x$model$WAAS)
-      I = grid::grobTree(textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
-      II = grid::grobTree(textGrob("II", x = 0.97,  y = 0.97, hjust = 0))
-      III = grid::grobTree(textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
-      IV = grid::grobTree(textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
+      I = grid::grobTree(grid::textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
+      II = grid::grobTree(grid::textGrob("II", x = 0.97,  y = 0.97, hjust = 0))
+      III = grid::grobTree(grid::textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
+      IV = grid::grobTree(grid::textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
 p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
         geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
         scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
         scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
         ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)), size = size.tex)  +
-        theme_bw() +
-        theme(axis.ticks.length = unit(.2, "cm"),
-              axis.text = element_text(size = size.lab, colour = "black"),
-              axis.title = element_text(size = size.lab, colour = "black"),
-              axis.ticks = element_line(colour = "black"),
-              legend.position = leg.pos,
-              plot.margin = margin(0.5, 0.5, 0.2, 0.2, "cm"),
-              axis.title.y = element_text(margin = margin(r = 16)),
-              legend.title = element_blank(),
-              legend.text = element_text(size = size.leg),
-              panel.border = element_rect(colour = "black", fill = NA, size = 1),
-              panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
-              panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
+        theme +
         labs(x = paste("\n", x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -274,7 +202,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
     }
 
     if (export  ==  F|FALSE) {
-      plot(p3)
+      return(p3)
     } else
 
       if (file.type == "pdf"){
@@ -315,36 +243,24 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
       geom_line(size = 1, aes(colour = GEN),
                 data = subset(x$MeansGxE, envPC1 %in% c(max(envPC1), min(envPC1))))+
       geom_point(aes(x = envPC1, y = min),
-                 data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2]))
-
-    if(leg.position != "none"){
-      p4 = p4 + ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 == min(envPC1)),
-                                aes(label=GEN, fill=GEN),
-                                size=3, color='white',
-                                force=5, segment.color='#bbbbbb') +
+                 data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
+      ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 == min(envPC1)),
+                                aes(label = GEN, fill = GEN),
+                                size = 3, color = 'white',
+                                force = 5, segment.color = '#bbbbbb') +
       ggrepel::geom_text_repel(aes(x = envPC1,
                                    y = min,
                                    label = ENV),
                                force = 5,
-                               data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2]))
-    }
-p4 = p4 + theme_bw() +
-      theme(axis.ticks.length = unit(.2, "cm"),
-            axis.text = element_text(size = size.lab, colour = "black"),
-            axis.title = element_text(size = size.lab, colour = "black"),
-            axis.ticks = element_line(colour = "black"),
-            legend.position = "none",
-            plot.margin = margin(0.5, 0.5, 0.2, 0.2, "cm"),
-            axis.title.y = element_text(margin = margin(r = 16)),
-            panel.border = element_rect(colour = "black", fill = NA, size = 1),
-            panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
-            panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
+                               data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
+      theme +
+      theme(legend.position = "none") +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       labs(x = paste("\n", x.lab), y = y.lab)
 
     if (export  ==  F|FALSE) {
-      plot(p4)
+      return(p4)
     } else
 
       if (file.type == "pdf"){

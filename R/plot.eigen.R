@@ -1,11 +1,10 @@
 plot.eigen = function(x,
                      export = FALSE,
+                     theme = theme_waasb(),
                      file.type = "pdf",
                      file.name = NULL,
                      width = 6,
                      height = 6,
-                     size.lab = 12,
-                     size.tex = 12,
                      size.shape = 3.5,
                      size.line = 1,
                      col.shape = "blue",
@@ -14,24 +13,19 @@ plot.eigen = function(x,
                      x.lab = "Number of multiplicative terms",
                      resolution = 300,
                      ...){
+  class = class(x)
+  if(class != "WAASB"){
+    stop("The object 'x' must be a 'WAASB' object.")
+  }
 eigen = x$PCA
 p = ggplot2::ggplot(eigen, aes(x = PC, y = Eigenvalue, group = 1))  +
     geom_point(stat = 'identity', col = col.shape,  size = size.shape)   +
     geom_line(col = col.line, size = size.line) +
-    theme_bw() +
-    theme(axis.ticks.length = unit(.2, "cm"),
-          axis.text = element_text(size = size.tex, colour = "black"),
-          axis.text.x = element_text(size = size.tex, colour = "black"),
-          axis.title = element_text(size = size.lab, colour = "black"),
-          axis.ticks = element_line(colour = "black"),
-          plot.margin = margin(0.2, 0.2, 0.2, 0.7, "cm"),
-          panel.border = element_rect(colour = "black", fill = NA, size = 1),
-          panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
-          panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank()) +
+    theme +
     labs(x = x.lab, y = y.lab)
 
   if (export  ==  F|FALSE) {
-    plot(p)
+    return(p)
   } else
 
     if(file.type == "pdf"){
