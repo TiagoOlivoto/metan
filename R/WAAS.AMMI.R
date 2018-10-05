@@ -1,18 +1,18 @@
 WAAS.AMMI = function(data,
                      resp,
+                     gen,
+                     env,
+                     rep,
                      p.valuePC = 0.05,
                      naxis = NULL,
                      weight.response = 50,
                      weight.WAAS = 50){
 
-Y = data[paste(resp)]
-data = as.data.frame(data[,1:3])
-data = cbind(data, Y)
-names(data) = c("ENV", "GEN", "REP", "Y")
-ENV = as.factor(data$ENV)
-GEN = as.factor(data$GEN)
-REP = as.factor(data$REP)
-Y = as.numeric(data$Y)
+Y = eval(substitute(resp), eval(data))
+GEN = factor(eval(substitute(gen), eval(data)))
+ENV = factor(eval(substitute(env), eval(data)))
+REP = factor(eval(substitute(rep), eval(data)))
+data = data.frame(ENV, GEN, REP, Y)
 Nenv = length(unique(ENV))
 Ngen = length(unique(GEN))
 minimo = min(Nenv, Ngen) - 1
@@ -20,10 +20,6 @@ minimo = min(Nenv, Ngen) - 1
 if (minimo < 2) {
   cat("\nWarning. The analysis is not possible.")
   cat("\nThe number of environments and number of genotypes must be greater than 2\n")
-}
-
-for (n in c(1:3)) {
-  data[,n] = as.factor(data[,n])
 }
 
 temp = data.frame(matrix(".",length(unique(data$ENV)),13))
@@ -64,33 +60,9 @@ MSEratio = max(temp$MSres) / min(temp$MSres)
 individual = list(individual = temp,
                   MSEratio = MSEratio)
 
-model = agricolae::AMMI(ENV, GEN, REP, Y)
-PC = model$analysis
-PC = PC %>%
-dplyr::select(-percent, -acum, everything())
+model = performs_ammi(ENV, GEN, REP, Y)
 anova = model$ANOVA
-anova = cbind(Percent = ".", anova)
-anova = anova %>%
-dplyr::select(-Percent, everything())
-anova = cbind(Accumul = ".", anova)
-anova = anova %>%
-dplyr::select(-Accumul, everything())
-sum = as.data.frame(anova[nrow(anova),])
-sum$Df = sum(anova$Df)
-sum$`Sum Sq` = sum(anova$`Sum Sq`)
-sum$`Mean Sq` = sum$`Sum Sq`/sum$Df
-rownames(sum) = "Total"
-ERRO = anova[nrow(anova),]
-ERRO = rbind(ERRO, sum)
-anova = anova[-nrow(anova),]
-names(PC)  = colnames(anova)
-anova2 = suppressWarnings(suppressMessages(rbind(anova, PC)))
-anova = plyr::rbind.fill(anova, PC)
-rownames(anova) = rownames(anova2)
-anova = rbind(anova, ERRO)
-anova$`Pr(>F)` = format(anova$`Pr(>F)`, scipen = 0, digits = 5, scientific = FALSE)
-anova$Percent = format(anova$Percent, scipen = 0, digits = 3, scientific = FALSE)
-anova$Accumul = format(anova$Accumul, scipen = 0, digits = 3, scientific = FALSE)
+PC = model$analysis
 MeansGxE = model$means[,1:3]
 Escores = model$biplot
 Escores = cbind(Code = row.names(Escores), Escores)

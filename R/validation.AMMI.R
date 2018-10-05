@@ -1,5 +1,8 @@
 validation.AMMI = function(data,
                            resp,
+                           gen,
+                           env,
+                           rep,
                            design = "RCBD",
                            nboot,
                            nrepval,
@@ -10,17 +13,16 @@ validation.AMMI = function(data,
   for (n in c(1,1:ncol(RMSPDres))) {
     RMSPDres[,n] = as.numeric(RMSPDres[,n])
   }
-  Y = data[paste(resp)]
-  data = as.data.frame(data[,1:3])
-  data = cbind(data, Y)
-  names(data) = c("ENV", "GEN", "REP", "Y")
-  data$ENV = as.factor(data$ENV)
-  data$GEN = as.factor(data$GEN)
-  data$REP =  as.factor(data$REP)
+
+  Y = eval(substitute(resp), eval(data))
+  GEN = factor(eval(substitute(gen), eval(data)))
+  ENV = factor(eval(substitute(env), eval(data)))
+  REP = factor(eval(substitute(rep), eval(data)))
+  data = data.frame(cbind(ENV, GEN, REP, Y))
   data$ID = as.numeric(rownames(data))
-  Nenv = length(unique(data$ENV))
-  Ngen = length(unique(data$GEN))
-  Nbloc = length(unique(data$REP))
+  Nenv = length(unique(ENV))
+  Ngen = length(unique(GEN))
+  Nbloc = length(unique(REP))
   minimo = min(Nenv, Ngen) - 1
 
   if (design == "RCBD" | design == "CRD"){

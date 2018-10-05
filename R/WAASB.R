@@ -1,22 +1,22 @@
 WAASB = function(data,
                  resp,
+                 gen,
+                 env,
+                 rep,
                  random = "gen",
                  prob = 0.95,
                  weight.response = 50,
                  weight.WAAS = 50){
 
-Y = data[paste(resp)]
-  data = as.data.frame(data[,1:3])
-  data = cbind(data, Y)
-  names(data) = c("ENV", "GEN", "REP", "Y")
-  ENV = as.factor(data$ENV)
-  GEN = as.factor(data$GEN)
-  REP = as.factor(data$REP)
-  Y = as.numeric(data$Y)
+  Y = eval(substitute(resp), eval(data))
+  GEN = factor(eval(substitute(gen), eval(data)))
+  ENV = factor(eval(substitute(env), eval(data)))
+  REP = factor(eval(substitute(rep), eval(data)))
+  data = data.frame(ENV, GEN, REP, Y)
   Nenv = length(unique(ENV))
   Ngen = length(unique(GEN))
   Nbloc = length(unique(REP))
-  minimo = min(Nenv, Ngen)-1
+  minimo = min(Nenv, Ngen) - 1
   ovmean = mean(Y)
   PesoWAASB = weight.WAAS
   PesoResp = weight.response
@@ -29,11 +29,6 @@ Y = data[paste(resp)]
   if (minimo < 2) {
     cat("\nWarning. The analysis is not possible.")
     cat("\nThe number of environments and number of genotypes must be greater than 2\n")
-  }
-
-
-  for (n in c(1:3)) {
-    data[,n] = as.factor(data[,n])
   }
 
   temp = data.frame(matrix(".",length(unique(data$ENV)),13))

@@ -1,20 +1,22 @@
 validation.AMMIF = function(data,
                             resp,
+                            gen,
+                            env,
+                            rep,
                             design = "RCBD",
                             nboot,
                             nrepval,
                             progbar = TRUE){
-  Y = data[paste(resp)]
-  data = as.data.frame(data[,1:3])
-  data = cbind(data, Y)
-  names(data) = c("ENV", "GEN", "REP", "Y")
-  data$ENV = as.factor(data$ENV)
-  data$GEN = as.factor(data$GEN)
-  data$REP= as.factor(data$REP)
+
+  Y = eval(substitute(resp), eval(data))
+  GEN = factor(eval(substitute(gen), eval(data)))
+  ENV = factor(eval(substitute(env), eval(data)))
+  REP = factor(eval(substitute(rep), eval(data)))
+  data = data.frame(cbind(ENV, GEN, REP, Y))
   data$ID = as.numeric(rownames(data))
-  Nenv = length(unique(data$ENV))
-  Ngen = length(unique(data$GEN))
-  Nbloc = length(unique(data$REP))
+  Nenv = length(unique(ENV))
+  Ngen = length(unique(GEN))
+  Nbloc = length(unique(REP))
   minimo = min(Nenv, Ngen)-1
   naxisvalidation = minimo + 1
   totalboot = naxisvalidation * nboot
@@ -178,7 +180,7 @@ if (progbar == TRUE){
       }
     }
     RMSPD = data.frame(MODEL = y, RMSPD = z)
-    RMSPD = RMSPD[mixedorder(RMSPD[,1]),]
+    RMSPD = RMSPD[gtools::mixedorder(RMSPD[,1]),]
     RMSPDmean = plyr::ddply(RMSPD, .(MODEL), summarize, mean = mean(RMSPD))
     RMSPDmean = RMSPDmean[order(RMSPDmean[,2]),]
 return(structure(list(RMSPD = RMSPD,

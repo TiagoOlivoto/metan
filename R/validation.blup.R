@@ -1,22 +1,24 @@
 validation.blup = function(data,
                            resp,
+                           gen,
+                           env,
+                           rep,
                            nboot,
                            nrepval,
                            progbar = TRUE){
+
 RMSPDres  = data.frame(RMSPD = matrix(".",nboot,1))
 for (n in c(1,1:ncol(RMSPDres))) {
   RMSPDres[,n] = as.numeric(RMSPDres[,n])
 }
-Y = data[paste(resp)]
-data = as.data.frame(data[,1:3])
-data = cbind(data, Y)
-names(data) = c("ENV", "GEN", "REP", "Y")
-data$ENV = as.factor(data$ENV)
-data$GEN = as.factor(data$GEN)
-data$REP =  as.factor(data$REP)
+Y = eval(substitute(resp), eval(data))
+GEN = factor(eval(substitute(gen), eval(data)))
+ENV = factor(eval(substitute(env), eval(data)))
+REP = factor(eval(substitute(rep), eval(data)))
+data = data.frame(cbind(ENV, GEN, REP, Y))
 data$ID = as.numeric(rownames(data))
-Nbloc = length(unique(data$REP))
-Nenv = length(unique(data$ENV))
+Nbloc = length(unique(REP))
+Nenv = length(unique(ENV))
 
 if (nrepval !=  Nbloc - 1){
   stop("The number replications used for validation must be equal to total number of replications -1 (In this case ", (Nbloc-1),").")

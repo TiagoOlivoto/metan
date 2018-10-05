@@ -1,18 +1,17 @@
 WAASBYratio = function(data,
-                      resp,
-                      increment = 5,
-                      saveWAASY = 50,
-                      progbar = TRUE){
+                       resp,
+                       gen,
+                       env,
+                       rep,
+                       increment = 5,
+                       saveWAASY = 50,
+                       progbar = TRUE){
 PesoWAAS = 100
 PesoResp = 0
-Y = data[paste(resp)]
-data = as.data.frame(data[,1:3])
-data = cbind(data, Y)
-names(data) = c("ENV", "GEN", "REP", "Y")
-ENV = as.factor(data$ENV)
-GEN = as.factor(data$GEN)
-REP = as.factor(data$REP)
-Y = as.numeric(data$Y)
+Y = eval(substitute(resp), eval(data))
+GEN = factor(eval(substitute(gen), eval(data)))
+ENV = factor(eval(substitute(env), eval(data)))
+REP = factor(eval(substitute(rep), eval(data)))
 Nenv = length(unique(ENV))
 Ngen = length(unique(GEN))
 minimo = min(Nenv, Ngen) - 1
