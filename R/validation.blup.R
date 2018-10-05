@@ -1,4 +1,4 @@
-validation.blup2 = function(data,
+validation.blup = function(data,
                            resp,
                            gen,
                            env,
