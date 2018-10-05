@@ -2,7 +2,8 @@
 \alias{WAASB}
 \title{Weighted Average of Absolute Scores for BLUP-based PCA analysis}
 \usage{
-WAASB(data, resp, random = "gen", prob = 0.95, weight.response = 50, weight.WAAS = 50)
+WAASB(data, resp, gen, env, rep, random = "gen", prob = 0.95,
+      weight.response = 50, weight.WAAS = 50)
 }
 \description{
 Compute the Weighted Average of Absolute Scores for PCA analysis based on the GE-interaction matrix.
@@ -10,17 +11,24 @@ Compute the Weighted Average of Absolute Scores for PCA analysis based on the GE
 }
 
 \arguments{
- \item{data}{The dataset. The imput must be in the following order: Environment, Genotype, replication/block and response variable(s)}
 
-  \item{resp}{The response variable, for example \code{resp = "RG"}.}
+ \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
+
+  \item{resp}{The response variable, for example \code{resp = RG}.}
+
+  \item{gen}{The name of the column that contains the levels of the genotypes.}
+
+  \item{env}{The name of the column that contains the levels of the environments.}
+
+  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
   \item{random}{The effect to be considered as random. Default is genotype "gen". For considering both genotypes and environments as random inform \code{random = "all"}.}
 
   \item{prob}{The probability for estimating confidence interval for BLUP's prediction. }
 
-  \item{weight.response}{The weight for the response variable. Defatul is 50}
+  \item{weight.response}{The weight for the response variable. Defatul is 50.}
 
-  \item{weight.WAAS}{The weight for the WAAS (stability). Default is 50}
+  \item{weight.WAAS}{The weight for the WAAS (stability). Default is 50.}
 
 }
 
@@ -59,12 +67,14 @@ This function compute the weighted average of absolute scores considering all pr
 
 \examples{
 # solely genotypes as random effects and equal weights for both response variable and stability
-#library(WAASB)
-#model = WAASB(WAASBdata, resp = "GY",prob = 0.95)
 
-# both genotypes and environemts as random effects and a higher weight for stability
+library(WAASB)
+model = WAASB(WAASBdata, GY, GEN, ENV, REP)
+
+# Higher weight for stability
 #library(WAASB)
-#model = WAASB(WAASBdata, resp = "GY", weight.response = 70, weight.WAAS = 30)
+model2 = WAASB(WAASBdata, rep = REP, env = ENV, resp = GY, gen = GEN,
+               weight.response = 70, weight.WAAS = 30)
 
 
 }

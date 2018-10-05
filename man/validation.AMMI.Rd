@@ -2,7 +2,8 @@
 \alias{validation.AMMI}
 \title{Cross-validation for estimation of AMMI model}
 \usage{
-validation.AMMI(data, resp, design = "RCBD", nboot, nrepval, naxis, progbar = TRUE)
+validation.AMMI(data, resp, gen, env, rep, design = "RCBD",
+                nboot, nrepval, naxis, progbar = TRUE)
 }
 
 \description{
@@ -11,9 +12,15 @@ Cross-validation for estimation of AMMI models
 }
 \arguments{
 
- \item{data}{The dataset. The imput must be in the following order: Environment, Genotype, replication/block and response variable(s)}
+ \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
   \item{resp}{The response variable, for example \code{resp = "RG"}.}
+
+  \item{gen}{The name of the column that contains the levels of the genotypes.}
+
+  \item{env}{The name of the column that contains the levels of the environments.}
+
+  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
   \item{design}{The experimental desig to be considered. Default is \code{RCBD} (Randomized complete Block Design). For Completely Randomized Designs inform \code{design = "CRD"}.}
 
@@ -46,7 +53,8 @@ For each iteration, the original dataset is split into two datasets: modeling an
 
 \examples{
 library(WAASB)
-validation = validation.AMMI(WAASBdata, resp = "GY", nboot = 100, nrepval = 2, naxis = 4)
+validation = validation.AMMI(WAASBdata, GY, GEN, ENV, REP,
+                             nboot = 100, nrepval = 2, naxis = 4)
 
 }
 

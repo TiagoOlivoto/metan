@@ -2,7 +2,8 @@
 \alias{validation.AMMIF}
 \title{Cross-validation for estimation of all AMMI-family models}
 \usage{
-validation.AMMIF(data, resp, design = "RCBD", nboot, nrepval, progbar = TRUE)
+validation.AMMIF(data, resp, gen, env, rep, design = "RCBD",
+                 nboot, nrepval, progbar = TRUE)
 }
 
 \description{
@@ -12,9 +13,15 @@ Cross-validation for estimation of all AMMI-family models
 
 \arguments{
 
- \item{data}{The dataset. The imput must be in the following order: Environment, Genotype, replication/block and response variable(s)}
+ \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable, for example \code{resp = "RG"}.}
+  \item{resp}{The response variable, for example \code{resp = GY}.}
+
+  \item{gen}{The name of the column that contains the levels of the genotypes.}
+
+  \item{env}{The name of the column that contains the levels of the environments.}
+
+  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
   \item{design}{The experimental desig to be considered. Default is \code{RCBD} (Randomized complete Block Design). For Completely Randomized Designs inform \code{design = "CRD"}.}
 
@@ -31,7 +38,8 @@ This function provides a complete cross-validation of replicate-based data using
 
 \examples{
 library(WAASB)
-validation = validation.AMMIF(WAASBdata, resp = "GY", nboot = 100, nrepval = 2)
+validation = validation.AMMIF(WAASBdata, GY, GEN, ENV, REP,
+                              nboot = 100, nrepval = 2)
 
 }
 

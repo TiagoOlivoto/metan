@@ -2,8 +2,8 @@
 \alias{WAASratio.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio}
 \usage{
-WAASratio.AMMI(data, resp, p.valuePC = 0.05, increment = 5,saveWAASY = 50,
-progbar = TRUE)
+WAASratio.AMMI(data, resp, gen, env, rep, p.valuePC = 0.05,
+               increment = 5, saveWAASY = 50, progbar = TRUE)
 }
 
 \description{
@@ -11,9 +11,15 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis in different c
 
 }
 \arguments{
- \item{data}{The dataset. The imput must be in the following order: Environment, Genotype, replication/block and response variable(s)}
+ \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable, for example \code{resp = "RG"}.}
+  \item{resp}{The response variable, for example \code{resp = RG}.}
+
+  \item{gen}{The name of the column that contains the levels of the genotypes.}
+
+  \item{env}{The name of the column that contains the levels of the environments.}
+
+  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
   \item{p.valuePC}{The p-value for considering the PC significant. Default is 0.05. The number of significant Principal Components to be used for calculating the WAASB will be chosen based on this probability. }
 
@@ -51,10 +57,11 @@ This function is very similar to the \code{WAASBYratio}. The main difference is 
 
 \examples{
 # Default, with increment of 5 and saving the WAASY values when weight is 50
-#library(WAASB)
-#model= WAASratio.AMMI(WAASBdata, resp = "GY")
+library(WAASB)
+model= WAASratio.AMMI(WAASBdata, GY, GEN, ENV, REP)
 
 # Incrementing 2-by-2 and saving the WAASY values when weight is 70
-#library(WAASB)
-#model= WAASratio.AMMI(WAASBdata, resp = "GY", increment = 2, saveWAASY = 70)
+library(WAASB)
+model2 = WAASratio.AMMI(WAASBdata, GY, GEN, ENV, REP,
+                        increment = 2, saveWAASY = 70)
 }

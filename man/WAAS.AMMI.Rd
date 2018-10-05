@@ -2,8 +2,8 @@
 \alias{WAAS.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis}
 \usage{
-WAAS.AMMI(data, resp, p.valuePC = 0.05, naxis = NULL,
-          weight.response = 50, weight.WAAS = 50)
+WAAS.AMMI(data, resp, gen, env, rep,  p.valuePC = 0.05,
+          naxis = NULL, weight.response = 50, weight.WAAS = 50)
 }
 \description{
 Compute the Weighted Average of Absolute Scores for AMMI analysis.
@@ -11,9 +11,15 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
 }
 
 \arguments{
-  \item{data}{The data frame. Data must be in the following order: Environment, Genotype, Block, Response variable.}
+  \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
- \item{resp}{The response variable, for example \code{resp = "RG"}.}
+ \item{resp}{The response variable, for example \code{resp = GY}.}
+
+  \item{gen}{The name of the column that contains the levels of the genotypes.}
+
+  \item{env}{The name of the column that contains the levels of the environments.}
+
+  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
   \item{p.valuePC}{The p-value for considering the PC significant. The number of significant Principal Components to be used for calculating the WAAS will be chosen based on this probability. }
 
@@ -49,14 +55,16 @@ This function compute the weighted average of absolute scores considering the si
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-# considering p-value <= 0.05 to compute the WAAS
+# Considering p-value <= 0.05 to compute the WAAS
 library(WAASB)
-model = WAAS.AMMI(WAASBdata, resp = "GY", weight.response = 40, weight.WAAS = 60)
+model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP,
+                  weight.response = 40, weight.WAAS = 60)
 
 
-# considering declaring the number of axis to be used for computing WAAS
+# Declaring the number of axis to be used for computing WAAS
 library(WAASB)
-model = WAAS.AMMI(WAASBdata, resp = "GY", naxis = 3, weight.response = 40, weight.WAAS = 60)
+model = WAAS.AMMI(resp = GY, gen = GEN, env = ENV, rep = REP,
+                 naxis = 3, weight.response = 40, weight.WAAS = 60)
 
 }
 

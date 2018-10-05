@@ -2,7 +2,8 @@
 \alias{validation.blup}
 \title{Cross-validation for blup prediction }
 \usage{
-validation.blup(data, resp, nboot, nrepval, progbar = TRUE)
+validation.blup(data, resp, gen, env, rep,
+                nboot, nrepval, progbar = TRUE)
 }
 \description{
 Cross-validation for blup prediction.
@@ -11,9 +12,15 @@ Cross-validation for blup prediction.
 
 \arguments{
 
-  \item{data}{The dataset. The imput must be in the following order: Environment, Genotype, replication/block and response variable(s).}
+  \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable, for example \code{resp = "RG"}.}
+  \item{resp}{The response variable, for example \code{resp = GY}.}
+
+  \item{gen}{The name of the column that contains the levels of the genotypes.}
+
+  \item{env}{The name of the column that contains the levels of the environments.}
+
+  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
   \item{nboot}{The number of resamples to be used in the cross-validation }
 
@@ -32,7 +39,8 @@ This function provides a  cross-validation of replicate-based data using mixed m
 
 \examples{
 library(WAASB)
-validation = validation.blup(WAASBdata, resp = "GY", nboot = 100, nrepval = 2)
+validation = validation.blup(WAASBdata, GY, GEN, ENV, REP,
+                             nboot = 100, nrepval = 2)
 
 
 }
