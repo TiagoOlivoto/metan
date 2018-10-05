@@ -10,8 +10,7 @@ Depends: R (>= 3.5.0)
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
-Imports: agricolae,
-         dplyr,
+Imports: dplyr,
          plyr,
          data.table,
          dendextend,
@@ -33,6 +32,7 @@ Suggests:
     xlsx,
     readxl,
     rJava,
-    ReporteRs
+    ReporteRs,
+    cowplot
 URL: https://github.com/TiagoOlivoto/WAASB
 VignetteBuilder: knitr
