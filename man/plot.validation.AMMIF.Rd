@@ -3,7 +3,11 @@
 \title{Plot the RMSE of all AMMI-family tested models}
 \usage{
 
-\method{plot}{validation.AMMIF}(x, violin = TRUE, export = FALSE, file.type = "pdf", file.name = NULL, width = 6, height = 6, resolution = 300, col.violin = "gray90", col.boxplot = "gray70", size.text = 12, size.title = 12, width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), \dots)
+\method{plot}{validation.AMMIF}(x, violin = TRUE, export = FALSE,
+    file.type = "pdf", file.name = NULL, theme = theme_waasb(),
+    width = 6, height = 6, resolution = 300, col.violin = "gray90",
+    col.boxplot = "gray70", width.boxplot = 0.2, x.lim = NULL,
+    x.breaks = waiver(), ...)
 }
 
 \description{
@@ -23,6 +27,9 @@ Plot the Root Means Square Error of all AMMI-family tested models
 
   \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
+  \item{theme}{The graphical theme of the plot. Default is `theme = theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be applied using the arguments: `theme = theme_waasb() + theme(some stuff here)`. For more details, please, see `?ggplot2::theme`}
+
+
   \item{width}{The width "inch" of the plot. Default is \code{6}.}
 
   \item{height}{The height "inch" of the plot. Default is \code{6}. }
@@ -34,10 +41,6 @@ Plot the Root Means Square Error of all AMMI-family tested models
 
    \item{col.boxplot}{Define the color for boxplot. Default is "gray70".}
 
-  \item{size.text}{The size of the tick labels in the plot. Default is \code{12}.}
-
-
-  \item{size.title}{The size of the plot labels. Default is  \code{12}.}
 
    \item{width.boxplot}{The width of boxplots. Default is \code{0.2}.}
 
@@ -46,7 +49,7 @@ Plot the Root Means Square Error of all AMMI-family tested models
 
   \item{x.breaks}{The breaks to be plotted in the x-axis. Default is \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
-  \item{...}{Other parameters of the plot.}
+  \item{...}{Other arguments of the function}
 
 }
 

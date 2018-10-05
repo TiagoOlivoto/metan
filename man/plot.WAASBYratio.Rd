@@ -2,7 +2,10 @@
 \alias{plot.WAASBYratio}
 \title{Plot heat maps with genotype ranking}
 \usage{
-\method{plot}{WAASBYratio}(x, type, export = FALSE, file.type = "pdf", file.name = NULL, width = 6, height = 5, size.lab = 1, margins = c(5, 4), y.lab = "Genotypes", x.lab = "Number of axes", key.lab = "Genotype ranking", resolution = 300, \dots)
+\method{plot}{WAASBYratio}(x, type, export = FALSE, file.type = "pdf",
+     file.name = NULL, width = 6, height = 5, size.lab = 1,
+     margins = c(5, 4),  y.lab = NULL, x.lab = NULL,
+     key.lab = "Genotype ranking", resolution = 300, ...)
 }
 
 \description{
@@ -37,7 +40,8 @@ Plot heat maps with genotype ranking in two ways.
 
   \item{resolution}{Valid parameter if \code{file.type = "tiff"}. Define the resolution of the plot. Default is "300".}
 
-  \item{...}{Other parameters of the plot.}
+  \item{...}{Other arguments of the function}
+
 }
 
 \details{

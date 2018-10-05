@@ -59,12 +59,12 @@ This function compute the weighted average of absolute scores considering all pr
 
 \examples{
 # solely genotypes as random effects and equal weights for both response variable and stability
-library(WAASB)
-model = WAASB(WAASBdata, resp = "GY",prob = 0.95)
+#library(WAASB)
+#model = WAASB(WAASBdata, resp = "GY",prob = 0.95)
 
 # both genotypes and environemts as random effects and a higher weight for stability
-library(WAASB)
-model = WAASB(WAASBdata, resp = "GY", random = "all", weight.response = 70, weight.WAAS = 30)
+#library(WAASB)
+#model = WAASB(WAASBdata, resp = "GY", weight.response = 70, weight.WAAS = 30)
 
 
 }

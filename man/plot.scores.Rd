@@ -4,12 +4,20 @@
 
 \description{
 
-  Plot scores of genotypes and environments in different graphics. \code{1 = PC1 x PC2}, \code{2 =  GY x PC1}, and \code{3 = GY x WAASB}.)
+  Plot scores of genotypes and environments in different graphics. \code{1 = PC1 x PC2}, \code{2 =  GY x PC1},  \code{3 = GY x WAASB}, and \code{4 = Nominal yield x EPCA1}.
 
 }
 
 \usage{
-\method{plot}{WAASB, WAAS.AMMI}(x, type, file.type = "pdf", file.name = NULL, export = FALSE, width = 8, height = 7, x.lim = NULL, x.breaks = waiver(), x.lab = "Grain yield", y.lab = NULL, y.lim = NULL, y.breaks = waiver(), shape.gen = 21, shape.env = 23, size.shape = 3.5, size.lab = 18, size.tex = 3.5, size.line = 0.5, size.leg = 14, size.segm.line = 0.5, leg.position = "tr", leg.lab = c("Gen", "Env"), line.type = "dashed", line.alpha = 0.9, col.line = "gray", col.gen = "gray75", col.env = "red", col.alpha = 0.9, col.segm.gen = "transparent", col.segm.env = "grey50", resolution = 300, \dots)
+\method{plot}{scores}(x, type, file.type = "pdf", export = FALSE,
+   file.name = NULL, theme = theme_waasb(),  width = 8, height = 7,
+   x.lim = NULL, x.breaks = waiver(), x.lab = NULL, y.lab = NULL,
+   y.lim = NULL, y.breaks = waiver(), shape.gen = 21, shape.env = 23,
+   size.shape = 3.5, size.tex = 3.5, size.line = 0.5, size.segm.line = 0.5,
+   leg.lab = c("Gen", "Env"), line.type = "dashed", line.alpha = 0.9,
+   col.line = "gray", col.gen = "gray75", col.env = "red", col.alpha = 0.9,
+   col.segm.gen = "transparent", col.segm.env = "grey50", resolution = 300,
+   ...)
 
 }
 
@@ -21,9 +29,11 @@
 
   \item{file.type}{The type of file to be exported. Valid parameter if \code{export = T|TRUE}.  Default is \code{"pdf"}. The graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
 
+  \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
+
   \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
-  \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
+  \item{theme}{The graphical theme of the plot. Default is `theme = theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be applied using the arguments: `theme = theme_waasb() + theme(some stuff here)`. For more details, please, see `?ggplot2::theme`}
 
   \item{width}{The width "inch" of the plot. Default is \code{8}.}
 
@@ -45,20 +55,14 @@
 
   \item{shape.env}{The shape for environment indication in the biplot. Default is \code{23} (diamond). The same arguments than \code{"shape.gen"}.}
 
-  \item{sizes.hape}{The size of the shape (both for genotypes and environments). Default is \code{3.5}.}
-
-  \item{size.lab}{The size of the plot label. Default is \code{18}.}
+  \item{size.shape}{The size of the shape (both for genotypes and environments). Default is \code{3.5}.}
 
   \item{size.tex}{The size of the text in the background of the plot. Default is \code{3.5}.}
 
   \item{size.line}{The size of the line that indicate the means in the biplot. Default is \code{0.5}.}
 
-  \item{size.leg}{The size of the legend text. Default is \code{16}.}
-
   \item{size.segm.line}{The size of the segment that start in the origin of the biplot and end in the scores values. Default is \code{0.5}.}
 
-
-  \item{leg.position}{The position of the legend in the graphic. Default is \code{tr} (top right). Possible values: \code{tr} (top right), \code{tl} (top left), \code{br} (bottom right) and \code{bl} (bottom left). }
 
   \item{leg.lab}{The labs of legend. Default is \code{Gen} and \code{Env}. }
 
@@ -80,7 +84,7 @@
 
   \item{resolution}{The resolution of the plot. Parameter valid if \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
 
-  \item{...}{Additional parameter for the function}
+  \item{...}{Other arguments of the function}
 
 }
 
@@ -97,7 +101,8 @@ The plots type 1 and 2 have the same interpretation than those used in tradition
   plot.scores(model, 2, width = 8, height = 7, col.gen = "green", shape.gen = 23)
   # GY x PC1.pdf
 
-  plot.scores(model, 3, col.gen = "blue", col.env = "red", size.leg = 17)
+  plot.scores(model, 3, col.gen = "blue", col.env = "red",
+  theme = theme_waasb() + theme(axis.title = element_text(size = 14)))
   # GY x WAAS.pdf
 
   plot.scores(model, 4)

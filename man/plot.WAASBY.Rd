@@ -1,18 +1,22 @@
 \name{plot.WAASBY}
 \alias{plot.WAASBY}
-\alias{WAASratio.AMMI}
 \title{Plot WAASBY values for genotype ranking}
-\usage{
-\method{plot}{WAASBYratio}(x, export = F , file.type = "pdf", file.name = NULL,  width = 6, height = 6, size.lab = 12, size.shape = 3.5, legend.pos = c(0.9, 0.1), col.shape = c("blue", "red"), y.lab = "Genotypes", x.breaks = waiver(), resolution = 300, \dots)
-}
 
 \description{
 Plot heat maps with genotype ranking in two ways.
 
 }
+
+\usage{
+\method{plot}{WAASBY}(x, export = F , file.type = "pdf", file.name = NULL,
+    theme = theme_waasb(), width = 6, height = 6, size.shape = 3.5,
+    col.shape = c("blue", "red"), y.lab = "Genotypes", x.breaks = waiver(),
+    resolution = 300, ...)}
+
+
 \arguments{
 
-  \item{x}{The \code{WAASBYratio object} }
+  \item{x}{The \code{WAASBY object} }
 
   \item{export}{Export (or not) the plot. Default is \code{T}.}
 
@@ -20,15 +24,13 @@ Plot heat maps with genotype ranking in two ways.
 
   \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
+  \item{theme}{The graphical theme of the plot. Default is `theme = theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be applied using the arguments: `theme = theme_waasb() + theme(some stuff here)`. For more details, please, see ` ?ggplot2::theme`}
+
   \item{width}{The width "inch" of the plot. Default is \code{8}.}
 
   \item{height}{The height "inch" of the plot. Default is \code{7}. }
 
-  \item{size.lab}{The size of the labels in the plot. Default is \code{12}.}
-
   \item{size.shape}{The size of the shape in the plot. Default is \code{3.5}.}
-
-  \item{leg.pos}{A vector of length 2 to configure, respectively, the horizontal and vertical,  position of the legend in the plot. Default is \code{c(0.9, 0.1)} (bottom-right. }
 
   \item{col.shape}{A vector of length 2 that contains the color of shapes for genotypes above and below of the mean, respectively. Default is \code{c("blue", "red")}. }
 
@@ -38,7 +40,8 @@ Plot heat maps with genotype ranking in two ways.
 
   \item{resolution}{The resolution of the plot. Parameter valid if \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
 
-  \item{...}{Other parameters of the plot.}
+  \item{...}{Other arguments of the function}
+
   }
 
 
@@ -46,12 +49,12 @@ Plot heat maps with genotype ranking in two ways.
 \examples{
 library(WAASB)
 # plotting the WAASBY values based on blup procedure
-model = WAASBYratio(WAASBdata, resp = "GY", increment = 5, saveWAASY = 60)
-plot.WAASBY(model)
+#model = WAASBYratio(WAASBdata, resp = "GY", increment = 5, saveWAASY = 60)
+#plot.WAASBY(model)
 
 # plotting the WAASY value based on traditional AMMI model
-model2 = WAASratio.AMMI(WAASBdata, resp = "GY", increment = 5, saveWAASY = 60)
-plot.WAASBY(model2)
+#model2 = WAASratio.AMMI(WAASBdata, resp = "GY", increment = 5, saveWAASY = 60)
+#plot.WAASBY(model2)
 
 }
 

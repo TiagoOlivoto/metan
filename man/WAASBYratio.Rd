@@ -48,10 +48,10 @@ This function considers both stability (weighted average of absolute scores base
 
 \examples{
 # Default, with increment of 5 and saving the WAASY values when weight is 50
-library(WAASB)
-model= WAASBYratio(WAASBdata, resp = "GY")
+#library(WAASB)
+#model= WAASBYratio(WAASBdata, resp = "GY")
 
 # Incrementing 2-by-2 and saving the WAASY values when weight is 70
-library(WAASB)
-model= WAASBYratio(WAASBdata, resp = "GY", increment = 2, saveWAASY = 70)
+#library(WAASB)
+#model= WAASBYratio(WAASBdata, resp = "GY", increment = 2, saveWAASY = 70)
 }

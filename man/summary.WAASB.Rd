@@ -2,7 +2,7 @@
 \alias{summary.WAASB}
 \title{Summary a WAASB object}
 \usage{
-\method{summary}{WAASB}(object, export = FALSE, file.name = "WAASB", ...)
+\method{summary}{WAASB}(object, export = FALSE, file.name = NULL, digits = 4, ...)
 }
 
 \description{
@@ -18,7 +18,9 @@ Summary the  \code{WAASB} object in two ways. By default, the results are shown 
 
   \item{file.name}{The name of the file if \code{export = TRUE} }
 
-  \item{...}{Other parameters of the plot.}
+  \item{digits}{The significant digits to be shown.}
+
+  \item{...}{Other arguments of the function}
 
 }
 

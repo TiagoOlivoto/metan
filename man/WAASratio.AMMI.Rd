@@ -2,7 +2,8 @@
 \alias{WAASratio.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio}
 \usage{
-WAASratio.AMMI(data, resp, p.valuePC = 0.05, increment = 5,saveWAASY = 50, progbar = TRUE, \dots)
+WAASratio.AMMI(data, resp, p.valuePC = 0.05, increment = 5,saveWAASY = 50,
+progbar = TRUE)
 }
 
 \description{
@@ -22,7 +23,6 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis in different c
 
   \item{progbar}{A logical argument to define if a progress bar is shown. Default is \code{TRUE}.}
 
-\item{...}{Additional parameter for the function}
 }
 
 \details{
@@ -51,10 +51,10 @@ This function is very similar to the \code{WAASBYratio}. The main difference is 
 
 \examples{
 # Default, with increment of 5 and saving the WAASY values when weight is 50
-library(WAASB)
-model= WAASratio.AMMI(WAASBdata, resp = "GY")
+#library(WAASB)
+#model= WAASratio.AMMI(WAASBdata, resp = "GY")
 
 # Incrementing 2-by-2 and saving the WAASY values when weight is 70
-library(WAASB)
-model= WAASratio.AMMI(WAASBdata, resp = "GY", increment = 2, saveWAASY = 70)
+#library(WAASB)
+#model= WAASratio.AMMI(WAASBdata, resp = "GY", increment = 2, saveWAASY = 70)
 }
