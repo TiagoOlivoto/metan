@@ -14,9 +14,8 @@ plot.validation.AMMIF = function(x,
                                 x.breaks = waiver(),
                                 ...){
 
-class = class(x)
-if (class != "validation.AMMIF" & class != "validation.blup"){
-  stop("The object 'x' must be a 'validation.AMMIF' or a 'validation.blup' object.")
+if (class(x) != "validation.AMMIF" & class(x) != "validation.blup"){
+  warning("The object 'x' should be a 'validation.AMMIF' or a 'validation.blup' object.")
 }
 
 if (violin == T|FALSE){
