@@ -15,7 +15,8 @@ importFrom(plyr, ddply, ., summarize)
 importFrom("grDevices", "colorRampPalette", "dev.off", "pdf", "tiff")
 importFrom("graphics", "plot")
 importFrom("stats", "aov", "filter", "as.dendrogram", "dist", "hclust", "lm",
-             "model.matrix", "qt", "weighted.mean")
+           "model.matrix", "qt", "weighted.mean", "deviance", "df.residual",
+           "pf", "predict")
 importFrom("utils", "head", "setWinProgressBar", "winProgressBar")
 S3method(plot, WAASBY)
 S3method(plot, WAASBYratio)

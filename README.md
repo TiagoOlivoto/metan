@@ -1,7 +1,7 @@
 Extending WAASB package
 ================
 Tiago Olivoto
-WAASB 1.0.1 2018-10-05
+WAASB 1.0.1 2018-10-06
 
 <style type = "text/css">
 
@@ -197,7 +197,7 @@ CROP
 BLUP
 </td>
 <td style="text-align:right;">
-0.4114
+0.4141
 </td>
 <td style="text-align:left;">
 Wheat
@@ -208,10 +208,10 @@ Wheat
 1
 </td>
 <td style="text-align:left;">
-AMMI3
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4206
+0.4320
 </td>
 <td style="text-align:left;">
 Wheat
@@ -222,10 +222,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI3
 </td>
 <td style="text-align:right;">
-0.4218
+0.4322
 </td>
 <td style="text-align:left;">
 Wheat
@@ -236,10 +236,10 @@ Wheat
 3
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4245
+0.4322
 </td>
 <td style="text-align:left;">
 Wheat
@@ -250,10 +250,10 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4254
+0.4345
 </td>
 <td style="text-align:left;">
 Wheat
@@ -264,10 +264,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI6
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4271
+0.4351
 </td>
 <td style="text-align:left;">
 Wheat
@@ -281,7 +281,7 @@ Wheat
 AMMI7
 </td>
 <td style="text-align:right;">
-0.4297
+0.4369
 </td>
 <td style="text-align:left;">
 Wheat
@@ -292,10 +292,10 @@ Wheat
 7
 </td>
 <td style="text-align:left;">
-AMMI8
+AMMIF
 </td>
 <td style="text-align:right;">
-0.4304
+0.4384
 </td>
 <td style="text-align:left;">
 Wheat
@@ -306,10 +306,10 @@ Wheat
 8
 </td>
 <td style="text-align:left;">
-AMMIF
+AMMI8
 </td>
 <td style="text-align:right;">
-0.4319
+0.4385
 </td>
 <td style="text-align:left;">
 Wheat
@@ -320,10 +320,10 @@ Wheat
 9
 </td>
 <td style="text-align:left;">
-AMMI1
+AMMI0
 </td>
 <td style="text-align:right;">
-0.4428
+0.4399
 </td>
 <td style="text-align:left;">
 Wheat
@@ -334,10 +334,10 @@ Wheat
 10
 </td>
 <td style="text-align:left;">
-AMMI0
+AMMI1
 </td>
 <td style="text-align:right;">
-0.4461
+0.4447
 </td>
 <td style="text-align:left;">
 Wheat
@@ -362,9 +362,8 @@ plot.validation.AMMIF(RMSPDweat,
                       col.boxplot = "gray75")
 ```
 
-    ## Warning in plot.validation.AMMIF(RMSPDweat, violin = FALSE, col.boxplot
-    ## = "gray75"): The object 'x' should be a 'validation.AMMIF' or a
-    ## 'validation.blup' object.
+    ## Warning in plot.validation.AMMIF(RMSPDweat, violin = FALSE, col.boxplot = "gray75"):
+    ## The object 'x' should be a 'validation.AMMIF' or a 'validation.blup' object.
 
 <img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 

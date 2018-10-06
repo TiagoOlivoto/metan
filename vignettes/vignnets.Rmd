@@ -591,9 +591,9 @@ plot.scores(WAASB,
 
 
 
-### Nominal yield vs environmentPC1 scores
+### Nominal yield vs environment IPCA1 scores
 
-Aiming at identifying possible mega-environments as well as visualizing the "which-won-where" pattern of the dataset, a graphic with the nominal yield ($\mathop {\hat y}\nolimits_{ij}^*$) as a function of the environment IPC1 scores is also produced. In this graphic, each genotype is depicted by a straight line with the equation $\mathop {\hat y}\nolimits_{ij}^*  = {\mu _i} + PCA{1_i} \times PCA{1_j}$], where $\mathop {\hat y}\nolimits_{ij}^*$ is the nominal yield for the ith genotype in the jth environment; ${\mu _i}$is the grand mean of the ith genotype; $PC{1_i}$ is the IPC1 score of the ith genotype and $PCA{1_j}$ is the IPC1 score of the jth environment. The winner genotype in a given environment has the highest nominal yield in that environment. This is the type 4 graphic and can be obtained by the following code.
+Aiming at identifying possible mega-environments as well as visualizing the "which-won-where" pattern of the dataset, a graphic with the nominal yield ($\mathop {\hat y}\nolimits_{ij}^*$) as a function of the environment IPCA1 scores is also produced. In this graphic, each genotype is depicted by a straight line with the equation $\mathop {\hat y}\nolimits_{ij}^*  = {\mu _i} + PCA{1_i} \times PCA{1_j}$, where $\mathop {\hat y}\nolimits_{ij}^*$ is the nominal yield for the ith genotype in the jth environment; ${\mu _i}$is the grand mean of the ith genotype; $PC{1_i}$ is the IPCA1 score of the ith genotype and $PCA{1_j}$ is the IPC1 score of the jth environment. The winner genotype in a given environment has the highest nominal yield in that environment. This is the type 4 graphic and can be obtained by the following code.
 
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F}

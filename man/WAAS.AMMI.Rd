@@ -63,8 +63,8 @@ model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP,
 
 # Declaring the number of axis to be used for computing WAAS
 library(WAASB)
-model = WAAS.AMMI(resp = GY, gen = GEN, env = ENV, rep = REP,
-                 naxis = 3, weight.response = 40, weight.WAAS = 60)
+model = WAAS.AMMI(WAASBdata, resp = GY, gen = GEN, env = ENV, rep = REP,
+                  naxis = 3, weight.response = 40, weight.WAAS = 60)
 
 }
 
