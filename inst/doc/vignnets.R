@@ -12,20 +12,26 @@ dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/1/files/07764a
 ## ----eval = TRUE, collapse=TRUE, comment = "#"---------------------------
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
-                            resp = "GY",
-                            nboot = 1000,
+                            resp = GY,
+                            gen = GEN,
+                            env = ENV,
+                            rep = BLOCK,
+                            nboot = 100,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
-                            resp = "GY",
-                            nboot = 1000,
+                            resp = GY,
+                            gen = GEN,
+                            env = ENV,
+                            rep = BLOCK,
+                            nboot = 100,
                             nrepval = 2)
 
 
 ## ----echo = TRUE---------------------------------------------------------
 options(digits = 4)
-RMSEweat = rbind(AMMIweat$RMSEmean, BLUPweat$RMSEmean)
+RMSEweat = rbind(AMMIweat$RMSPDmean, BLUPweat$RMSPDmean)
 RMSEweat = dplyr::mutate(RMSEweat, CROP = "Wheat")
 RMSEweat = RMSEweat[order(RMSEweat[,2], decreasing = F),]
 #print(RMSEweat)
@@ -39,17 +45,20 @@ kable(RMSEweat, "html") %>%
 
 ## ----eval = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"----
 # binding AMMI and BLUP RMSEs
-RMSEweat = list(RMSE = rbind(AMMIweat$RMSE, 
-                           BLUPweat$RMSE))
-# Plotting the RMSE values
-plot.validation.AMMIF(RMSEweat,
+RMSPDweat = list(RMSPD = rbind(AMMIweat$RMSPD, 
+                           BLUPweat$RMSPD))
+# Plotting the RMSPD values
+plot.validation.AMMIF(RMSPDweat,
                       violin = FALSE,
                       col.boxplot = "gray75")
 
 ## ----echo = TRUE---------------------------------------------------------
-predictoat = predict.AMMI(dataset,
-                          resp = "GY",
-                          naxis = 5)
+model =  WAAS.AMMI(dataset,
+                   resp = GY,
+                   gen = GEN,
+                   env = ENV,
+                   rep = BLOCK)
+predictoat = predict(model, naxis = 5)
 
 
 ## ----echo = FALSE--------------------------------------------------------
@@ -62,41 +71,29 @@ kable(predictoat, "html") %>%
 
 ## ----echo = TRUE---------------------------------------------------------
 library(WAASB)
-predmeans = predict.AMMImean(MEANS,
-                             resp = "Resp",
-                             naxis = 4)
-
-
-## ----eval = FALSE--------------------------------------------------------
-#  print(predmeans)
-#  
-
-## ----echo = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-library(kableExtra)
-options(digits = 4, width = 200)
-data = predmeans
-kable(data, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
-
-## ----echo = TRUE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-library(WAASB)
 # Assuming equal weights for productivity and stability
 WAAS1 = WAAS.AMMI(dataset,
-                 resp = "GY",
-                 p.valuePC = 0.05,
-                 weight.response = 50,
-                 weight.WAAS = 50)
+                  resp = GY,
+                  gen = GEN,
+                  env = ENV,
+                  rep = BLOCK,
+                  p.valuePC = 0.05,
+                  weight.response = 50,
+                  weight.WAAS = 50)
 
 # Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
 # no output for this script
 WAAS11 = WAAS.AMMI(dataset,
-                 resp = "GY",
-                 p.valuePC = 0.05,
-                 weight.response = 70,
-                 weight.WAAS = 30)
+                  resp = GY,
+                  gen = GEN,
+                  env = ENV,
+                  rep = BLOCK,
+                  p.valuePC = 0.05,
+                  weight.response = 70,
+                  weight.WAAS = 30)
 
 
-## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval = FALSE--------------------------------------------------------
 #  options (digits = 4)
 #  # printing the WAASB object
 #  print(WAAS1$anova)
@@ -133,10 +130,12 @@ plot.scores(WAAS1,
 ## ----echo = TRUE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 WAAS2 = WAAS.AMMI(dataset,
-                 resp = "GY",
-                 naxis = 7,
-                 weight.response = 50,
-                 weight.WAAS = 50)
+                  resp = GY,
+                  gen = GEN,
+                  env = ENV,
+                  rep = BLOCK,
+                  weight.response = 50,
+                  weight.WAAS = 50)
 
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -160,7 +159,10 @@ plot.scores(WAAS2,
 ## ----echo = TRUE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Assuming equal weights for productivity and stability
 WAASB = WAASB(dataset,
-              resp = "GY",
+              resp = GY,
+              gen = GEN,
+              env = ENV,
+              rep = BLOCK,
               prob = 0.95,
               weight.response = 50,
               weight.WAAS = 50)
@@ -168,19 +170,14 @@ WAASB = WAASB(dataset,
 # Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
 # no output for this script
 WAASB2 = WAASB(dataset,
-              resp = "GY",
+              resp = GY,
+              gen = GEN,
+              env = ENV,
+              rep = BLOCK,
               prob = 0.95,
               weight.response = 30,
               weight.WAAS = 70)
 
-# Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
-# no output for this script
-WAASB3 = WAASB(dataset,
-              resp = "GY",
-              random = "all",
-              prob = 0.95,
-              weight.response = 30,
-              weight.WAAS = 70)
 
 ## ----eval = FALSE, warning=F, message=F---------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  print(WAASB$LRT)
@@ -188,7 +185,7 @@ WAASB3 = WAASB(dataset,
 ## ----echo = FALSE, warning=F, message=F---------------------------------------------------------------------------------------------------------------------------------------------------------------
 library(kableExtra)
 options (digits = 5)
-dt_footnote = cbind(WAASB$LRT, WAASB3$LRT)
+dt_footnote = WAASB$LRT
 
 names(dt_footnote)[1] <- paste0(names(dt_footnote)[1], 
                                 footnote_marker_symbol(1))
@@ -196,24 +193,15 @@ names(dt_footnote)[2] <- paste0(names(dt_footnote)[2],
                                 footnote_marker_symbol(2))
 names(dt_footnote)[3] <- paste0(names(dt_footnote)[3], 
                                 footnote_marker_symbol(3))
-names(dt_footnote)[7] <- paste0(names(dt_footnote)[7], 
-                                footnote_marker_symbol(4))
 
 kable(dt_footnote, "html", align = "c", escape = F) %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12) %>%
   add_header_above(c(" ", "Genotype LRT" = 2,
-                     "Interaction LRT" = 2,
-                     "Genotype LRT" = 2,
-                     "Environment LRT" = 2,
                      "Interaction LRT" = 2)) %>%
-  
-  add_header_above(c(" ", "Genotype random effect" = 4,
-                     "Genotype and environment random effects" = 6)) %>%
-  
+
   footnote(symbol = c("Reduced model without genotype effect; ",
                       "Complete model; ",
-                      "Reduced model without genotype-vs-environment interaction effect; ",
-                      "Reduced model without environment effect; "),
+                      "Reduced model without genotype-vs-environment interaction effect;"),
            footnote_as_chunk = F)
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -267,8 +255,6 @@ options(digits = 4)
 data = WAASB$BLUPgen[1:10,]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
-
-  
 
 
 ## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
@@ -331,10 +317,13 @@ plot.scores(WAASB,
 plot.scores(WAASB,
             type = 2)
 
-# Save to *.pdf file (default)
+# dafault theme of ggplot2
+library(ggplot2)
 plot.scores(WAASB,
             type = 2,
-            export = TRUE)
+            col.gen = "black",
+            col.env = "blue",
+            theme = theme_gray())
 
 
 ## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F---------------------------------------------------------------------------------------------------------
@@ -350,10 +339,20 @@ plot.scores(WAASB,
             resolution = 600)
 
 
+## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F---------------------------------------------------------------------------------------------------------
+
+plot.scores(WAASB,
+            type = 4)
+
+
+
 ## ----echo = TRUE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 WAASBYratio = WAASBYratio(dataset,
-                          resp = "GY",
+                          resp = GY,
+                          gen = GEN,
+                          env = ENV,
+                          rep = BLOCK,
                           increment = 10,
                           saveWAASY = 50)
 
@@ -398,10 +397,12 @@ kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
 
-## ----echo = TRUE, fig.height = 3, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------
+## ----echo = TRUE, fig.height = 3, fig.width = 6, fig.align = "center"---------------------------------------------------------------------------------------------------------------------------------
 
 plot.WAASBY(WAASBYratio,
-            legend.pos = c(0.9, 0.2))
+            theme = theme_waasb() +
+                    theme(aspect.ratio = NULL,
+                          legend.position = c(0.85, 0.2)))
 
 
 ## ----echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"-------------------------------------------------------------------------------------------------------------------------------

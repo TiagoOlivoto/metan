@@ -1,7 +1,7 @@
 Extending WAASB package
 ================
 Tiago Olivoto
-WAASB 1.0.1 2018-05-21
+WAASB 1.0.1 2018-10-05
 
 <style type = "text/css">
 
@@ -46,36 +46,12 @@ Main functions of `WAASB` package.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>WAASB()</code></td>
-<td align="left">Weighted Average of Absolute Scores for BLUP-based PCA analysis</td>
+<td align="left"><code>performs_ammi()</code></td>
+<td align="left">Performs Additive Main effects and Multiplicative Interaction</td>
 </tr>
 <tr class="even">
-<td align="left"><code>WAASBYratio()</code></td>
-<td align="left">BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>WAAS.AMMI()</code></td>
-<td align="left">Weighted Average of Absolute Scores for AMMI analysis</td>
-</tr>
-<tr class="even">
-<td align="left"><code>WAASratio.AMMI()</code></td>
-<td align="left">Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>validation.blup()</code></td>
-<td align="left">Cross-validation for blup prediction</td>
-</tr>
-<tr class="even">
-<td align="left"><code>validation.AMMIF()</code></td>
-<td align="left">BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>predict.AMMI()</code></td>
-<td align="left">Predict means in replicated-based MET using AMMI analysis</td>
-</tr>
-<tr class="even">
-<td align="left"><code>predict.AMMImean()</code></td>
-<td align="left">Predict means in AMMI analysis using unreplicated data</td>
+<td align="left"><code>plot.eigen()</code></td>
+<td align="left">Plot the eigenvalues of singular value decomposition</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>plot.blup()</code></td>
@@ -94,18 +70,46 @@ Main functions of `WAASB` package.
 <td align="left">Plot heat maps with genotype ranking</td>
 </tr>
 <tr class="odd">
+<td align="left"><code>predict.WAAS.AMMI()</code></td>
+<td align="left">Predict the means of a <code>WAAS.AMMI</code> object</td>
+</tr>
+<tr class="even">
 <td align="left"><code>summary.WAASB()</code></td>
 <td align="left">Summary a WAASB object</td>
 </tr>
+<tr class="odd">
+<td align="left"><code>theme_waasb()</code></td>
+<td align="left">A personalized theme for the WAASB ggplot2-based graphics</td>
+</tr>
 <tr class="even">
-<td align="left"><code>plot.eigen()</code></td>
-<td align="left">Plot the eigenvalues of singular value decomposition</td>
+<td align="left"><code>validation.blup()</code></td>
+<td align="left">Cross-validation for blup prediction</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>validation.AMMIF()</code></td>
+<td align="left">BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio</td>
+</tr>
+<tr class="even">
+<td align="left"><code>WAASBYratio()</code></td>
+<td align="left">BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>WAAS.AMMI()</code></td>
+<td align="left">Weighted Average of Absolute Scores for AMMI analysis</td>
+</tr>
+<tr class="even">
+<td align="left"><code>WAASratio.AMMI()</code></td>
+<td align="left">Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>WAASB()</code></td>
+<td align="left">Weighted Average of Absolute Scores for BLUP-based PCA analysis</td>
 </tr>
 </tbody>
 </table>
 
-Get started
-===========
+Getting started
+===============
 
 A data set with data on 10 oat genotypes conducted in 16 environments is provided to make reproducible examples. This data is available in Olivoto ([2018](#ref-Olivoto:2018)). An own data set can be used provided that the columns are in the following order: environment, genotype, block/replicate and response variable(s).
 
@@ -118,10 +122,10 @@ dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/1/files/07764a
 Predictive accuracy
 ===================
 
-The functions `validation.AMMIF` provides a complete cross-validation for AMMI model family using replicate-based data. Automatically the first validation is carried out considering the AMMIF model (all possible axis is used). Considering this model, the original data set is split into two data sets: modelling and validating data. The "modelling" data set has all combinations (genotype x environment) with the number of replications informed in the argument `nrepval`. The data set "validating" has one replication. The splitting of the data set into modelling and validating data depends on the design informed. For Completely Randomized Block Design (default), completely blocks are selected within environments, as suggested by Piepho ([1994](#ref-Piepho:1994)). The remained block serves as validation data. If `design = "RCD"` is informed, thus declaring that the a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by Gauch and Zobel ([1988](#ref-Gauch:1988)). The estimated values (for each AMMI model family) are compared with the "validating" data. the Root Means Square error is computed according to the following equation:
+The functions `validation.AMMIF` provides a complete cross-validation for AMMI model family using replicate-based data. Automatically the first validation is carried out considering the AMMIF model (all possible axis is used). Considering this model, the original data set is split into two data sets: modelling and validating data. The "modelling" data set has all combinations (genotype x environment) with the number of replications informed in the argument `nrepval`. The data set "validating" has one replication. The splitting of the data set into modelling and validating data depends on the design informed. For Completely Randomized Block Design (default), completely blocks are selected within environments, as suggested by Piepho ([1994](#ref-Piepho:1994)). The remained block serves as validation data. If `design = "RCD"` is informed, thus declaring that the a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by Gauch and Zobel ([1988](#ref-Gauch:1988)). The estimated values (for each AMMI model family) are compared with the "validating" data. the Root Means Square Prediction Difference is computed according to the following equation:
 
 $$
-   RMSE = 
+   RMSPD = 
    \\sqrt{\\frac{\\sum\_{i = 1}^n(\\widehat{y}\_{ij}-y\_{ij})^2} {n}}
 $$
 
@@ -134,14 +138,20 @@ The function `validation.blup` provides a cross-validation of replicate-based da
 ``` r
 # cross-validation for AMMI model family
 AMMIweat = validation.AMMIF(dataset,
-                            resp = "GY",
-                            nboot = 1000,
+                            resp = GY,
+                            gen = GEN,
+                            env = ENV,
+                            rep = BLOCK,
+                            nboot = 100,
                             nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = validation.blup(dataset,
-                            resp = "GY",
-                            nboot = 1000,
+                            resp = GY,
+                            gen = GEN,
+                            env = ENV,
+                            rep = BLOCK,
+                            nboot = 100,
                             nrepval = 2)
 ```
 
@@ -156,7 +166,7 @@ Printting the means of RMSE estimates
 
 ``` r
 options(digits = 4)
-RMSEweat = rbind(AMMIweat$RMSEmean, BLUPweat$RMSEmean)
+RMSEweat = rbind(AMMIweat$RMSPDmean, BLUPweat$RMSPDmean)
 RMSEweat = dplyr::mutate(RMSEweat, CROP = "Wheat")
 RMSEweat = RMSEweat[order(RMSEweat[,2], decreasing = F),]
 #print(RMSEweat)
@@ -187,7 +197,7 @@ CROP
 BLUP
 </td>
 <td style="text-align:right;">
-0.4142
+0.4114
 </td>
 <td style="text-align:left;">
 Wheat
@@ -201,7 +211,7 @@ Wheat
 AMMI3
 </td>
 <td style="text-align:right;">
-0.4162
+0.4206
 </td>
 <td style="text-align:left;">
 Wheat
@@ -212,10 +222,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4256
+0.4218
 </td>
 <td style="text-align:left;">
 Wheat
@@ -226,10 +236,10 @@ Wheat
 3
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4262
+0.4245
 </td>
 <td style="text-align:left;">
 Wheat
@@ -240,10 +250,10 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI6
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4269
+0.4254
 </td>
 <td style="text-align:left;">
 Wheat
@@ -254,10 +264,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4275
+0.4271
 </td>
 <td style="text-align:left;">
 Wheat
@@ -271,7 +281,7 @@ Wheat
 AMMI7
 </td>
 <td style="text-align:right;">
-0.4283
+0.4297
 </td>
 <td style="text-align:left;">
 Wheat
@@ -285,7 +295,7 @@ Wheat
 AMMI8
 </td>
 <td style="text-align:right;">
-0.4301
+0.4304
 </td>
 <td style="text-align:left;">
 Wheat
@@ -299,7 +309,7 @@ Wheat
 AMMIF
 </td>
 <td style="text-align:right;">
-0.4304
+0.4319
 </td>
 <td style="text-align:left;">
 Wheat
@@ -313,7 +323,7 @@ Wheat
 AMMI1
 </td>
 <td style="text-align:right;">
-0.4391
+0.4428
 </td>
 <td style="text-align:left;">
 Wheat
@@ -327,7 +337,7 @@ Wheat
 AMMI0
 </td>
 <td style="text-align:right;">
-0.4525
+0.4461
 </td>
 <td style="text-align:left;">
 Wheat
@@ -335,22 +345,26 @@ Wheat
 </tr>
 </tbody>
 </table>
-The results shown above are the mean of 1000 RMSE estimates for each tested model and are presented from the most accurate model (smallest RSME value) to the lowest accurate model (highest RMSE value).
+The results shown above are the mean of 100 RMSE estimates for each tested model and are presented from the most accurate model (smallest RSME value) to the lowest accurate model (highest RMSE value).
 
-Plotting the RMSE values
-------------------------
+Plotting the RMSPD values
+-------------------------
 
-> It is also possible plotting the RMSE values in a boxplot graphic. Let's to do it.
+> It is also possible plotting the RMSPD values in a boxplot graphic. Let's to do it.
 
 ``` r
 # binding AMMI and BLUP RMSEs
-RMSEweat = list(RMSE = rbind(AMMIweat$RMSE, 
-                           BLUPweat$RMSE))
-# Plotting the RMSE values
-plot.validation.AMMIF(RMSEweat,
+RMSPDweat = list(RMSPD = rbind(AMMIweat$RMSPD, 
+                           BLUPweat$RMSPD))
+# Plotting the RMSPD values
+plot.validation.AMMIF(RMSPDweat,
                       violin = FALSE,
                       col.boxplot = "gray75")
 ```
+
+    ## Warning in plot.validation.AMMIF(RMSPDweat, violin = FALSE, col.boxplot
+    ## = "gray75"): The object 'x' should be a 'validation.AMMIF' or a
+    ## 'validation.blup' object.
 
 <img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
@@ -359,14 +373,17 @@ Five statistics are shown in this boxplot. The median, the lower and upper hinge
 Predicting the yield by traditional AMMI model using replicate-based data
 =========================================================================
 
-The function `predict.AMMI` can be used to predict the response variable of a two-way table (for example, the yielding of the *i*th genotype in the *j*th environment) based on the traditional AMMI model. This prediction is based on the number of multiplicative terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In this case, the predicted mean will be the predicted value from OLS estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is used for predicting the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the cell mean, i.e., the mean of R replicates of the *i*th genotype in the *j*th environment. The number of axes to be used must be carefully chosen. Procedures based on postdictive success (such as Gollobs's d.f.) or predictive success (such as cross-validation) should be used to do this. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSE of all AMMI model family based on re-sampling procedures.
+The function `predict.AMMI` (or the generic function `predict()`) can be used to predict the response variable of a two-way table (for example, the yielding of the *i*th genotype in the *j*th environment) based on the traditional AMMI model. This prediction is based on the number of multiplicative terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In this case, the predicted mean will be the predicted value from OLS estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is used for predicting the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the cell mean, i.e., the mean of R replicates of the *i*th genotype in the *j*th environment. The number of axes to be used must be carefully chosen. Procedures based on postdictive success (such as Gollobs's d.f.) or predictive success (such as cross-validation) should be used to do this. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSE of all AMMI model family based on re-sampling procedures.
 
 > Predicting the yield of 10 oat cultivars in 16 environments using 5 multiplicative terms.
 
 ``` r
-predictoat = predict.AMMI(dataset,
-                          resp = "GY",
-                          naxis = 5)
+model =  WAAS.AMMI(dataset,
+                   resp = GY,
+                   gen = GEN,
+                   env = ENV,
+                   rep = BLOCK)
+predictoat = predict(model, naxis = 5)
 ```
 
 <table class="table table-striped" style="font-size: 12px; width: auto !important; float: left; margin-right: 10px;">
@@ -663,1201 +680,6 @@ G9
 </table>
 Only the first ten values are shown. The following values are presented: **ENV** is the environment; **GEN** is the genotype; **Y** is the response variable; **resOLS** is the residual ($\\hat{z}\_{ij}$) estimated by the Ordinary Least Square (OLS), where $\\hat{z}\_{ij} = y\_{ij} - \\bar{y}\_{i.} - \\bar{y}\_{.j} + \\bar{y}\_{ij}$; **Ypred** is the predicted value by OLS ($\\hat{y}\_{ij} = y\_{ij} -\\hat{z}\_{ij}$); **ResAMMI** is the residual estimated by the AMMI model ($\\hat{a}\_{ij}$) considering the number of multiplicative terms informed in the function (in this case 5), where $\\hat{a}\_{ij} = \\lambda\_1\\alpha\_{i1}\\tau\_{j1}+...+\\lambda\_5\\alpha\_{i5}\\tau\_{j5}$; **YpredAMMI** is the predicted value by AMMI model $\\hat{ya}\_{ij} = \\bar{y}\_{i.} + \\bar{y}\_{.j} - \\bar{y}\_{ij}+\\hat{a}\_{ij}$; and **AMMI0** is the predicted value when no multiplicative terms are used, i.e., $\\hat{y}\_{ij} = \\bar{y}\_{i.} + \\bar{y}\_{.j} - \\bar{y}\_{ij}$.
 
-Predicting the yield by traditional AMMI model using unreplicated data
-======================================================================
-
-In this procedure we will use the data `MEANS`, available with the WAASB package. This data contains the yield of 10 genotypes conducted in five environments. Only one observation is available for each treatment (combination of genotypes and environments.)
-
-``` r
-library(WAASB)
-predmeans = predict.AMMImean(MEANS,
-                             resp = "Resp",
-                             naxis = 4)
-```
-
-``` r
-print(predmeans)
-```
-
-<table class="table table-striped" style="font-size: 12px; width: auto !important; ">
-<thead>
-<tr>
-<th style="text-align:left;">
-ENV
-</th>
-<th style="text-align:left;">
-GEN
-</th>
-<th style="text-align:right;">
-Y
-</th>
-<th style="text-align:right;">
-ResOLS
-</th>
-<th style="text-align:right;">
-PredOLS
-</th>
-<th style="text-align:right;">
-ResAMMI
-</th>
-<th style="text-align:right;">
-PredAMMI
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:right;">
-1587.9
-</td>
-<td style="text-align:right;">
-64.79
-</td>
-<td style="text-align:right;">
-1523.1
-</td>
-<td style="text-align:right;">
-64.79
-</td>
-<td style="text-align:right;">
-1587.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:right;">
-1386.7
-</td>
-<td style="text-align:right;">
--127.81
-</td>
-<td style="text-align:right;">
-1514.5
-</td>
-<td style="text-align:right;">
--127.81
-</td>
-<td style="text-align:right;">
-1386.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:right;">
-1572.9
-</td>
-<td style="text-align:right;">
--167.15
-</td>
-<td style="text-align:right;">
-1740.0
-</td>
-<td style="text-align:right;">
--167.15
-</td>
-<td style="text-align:right;">
-1572.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:right;">
-1139.7
-</td>
-<td style="text-align:right;">
--132.79
-</td>
-<td style="text-align:right;">
-1272.5
-</td>
-<td style="text-align:right;">
--132.79
-</td>
-<td style="text-align:right;">
-1139.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:right;">
-1348.9
-</td>
-<td style="text-align:right;">
-125.85
-</td>
-<td style="text-align:right;">
-1223.0
-</td>
-<td style="text-align:right;">
-125.85
-</td>
-<td style="text-align:right;">
-1348.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:right;">
-1061.5
-</td>
-<td style="text-align:right;">
--51.79
-</td>
-<td style="text-align:right;">
-1113.3
-</td>
-<td style="text-align:right;">
--51.79
-</td>
-<td style="text-align:right;">
-1061.5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:right;">
-1590.9
-</td>
-<td style="text-align:right;">
--57.43
-</td>
-<td style="text-align:right;">
-1648.3
-</td>
-<td style="text-align:right;">
--57.43
-</td>
-<td style="text-align:right;">
-1590.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:right;">
-1223.9
-</td>
-<td style="text-align:right;">
-12.09
-</td>
-<td style="text-align:right;">
-1211.8
-</td>
-<td style="text-align:right;">
-12.09
-</td>
-<td style="text-align:right;">
-1223.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:right;">
-1402.0
-</td>
-<td style="text-align:right;">
-239.91
-</td>
-<td style="text-align:right;">
-1162.1
-</td>
-<td style="text-align:right;">
-239.91
-</td>
-<td style="text-align:right;">
-1402.0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:right;">
-1313.6
-</td>
-<td style="text-align:right;">
-94.31
-</td>
-<td style="text-align:right;">
-1219.3
-</td>
-<td style="text-align:right;">
-94.31
-</td>
-<td style="text-align:right;">
-1313.6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:right;">
-560.9
-</td>
-<td style="text-align:right;">
--247.11
-</td>
-<td style="text-align:right;">
-808.0
-</td>
-<td style="text-align:right;">
--247.11
-</td>
-<td style="text-align:right;">
-560.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:right;">
-691.7
-</td>
-<td style="text-align:right;">
--107.71
-</td>
-<td style="text-align:right;">
-799.4
-</td>
-<td style="text-align:right;">
--107.71
-</td>
-<td style="text-align:right;">
-691.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:right;">
-770.4
-</td>
-<td style="text-align:right;">
--254.55
-</td>
-<td style="text-align:right;">
-1024.9
-</td>
-<td style="text-align:right;">
--254.55
-</td>
-<td style="text-align:right;">
-770.4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:right;">
-734.5
-</td>
-<td style="text-align:right;">
-177.11
-</td>
-<td style="text-align:right;">
-557.4
-</td>
-<td style="text-align:right;">
-177.11
-</td>
-<td style="text-align:right;">
-734.5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:right;">
-458.2
-</td>
-<td style="text-align:right;">
--49.75
-</td>
-<td style="text-align:right;">
-507.9
-</td>
-<td style="text-align:right;">
--49.75
-</td>
-<td style="text-align:right;">
-458.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:right;">
-459.4
-</td>
-<td style="text-align:right;">
-61.21
-</td>
-<td style="text-align:right;">
-398.2
-</td>
-<td style="text-align:right;">
-61.21
-</td>
-<td style="text-align:right;">
-459.4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:right;">
-1104.0
-</td>
-<td style="text-align:right;">
-170.77
-</td>
-<td style="text-align:right;">
-933.2
-</td>
-<td style="text-align:right;">
-170.77
-</td>
-<td style="text-align:right;">
-1104.0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:right;">
-546.9
-</td>
-<td style="text-align:right;">
-50.19
-</td>
-<td style="text-align:right;">
-496.7
-</td>
-<td style="text-align:right;">
-50.19
-</td>
-<td style="text-align:right;">
-546.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:right;">
-570.9
-</td>
-<td style="text-align:right;">
-123.91
-</td>
-<td style="text-align:right;">
-447.0
-</td>
-<td style="text-align:right;">
-123.91
-</td>
-<td style="text-align:right;">
-570.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:right;">
-580.1
-</td>
-<td style="text-align:right;">
-75.91
-</td>
-<td style="text-align:right;">
-504.2
-</td>
-<td style="text-align:right;">
-75.91
-</td>
-<td style="text-align:right;">
-580.1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:right;">
-1020.6
-</td>
-<td style="text-align:right;">
--21.92
-</td>
-<td style="text-align:right;">
-1042.5
-</td>
-<td style="text-align:right;">
--21.92
-</td>
-<td style="text-align:right;">
-1020.6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:right;">
-1160.8
-</td>
-<td style="text-align:right;">
-126.88
-</td>
-<td style="text-align:right;">
-1033.9
-</td>
-<td style="text-align:right;">
-126.88
-</td>
-<td style="text-align:right;">
-1160.8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:right;">
-1316.2
-</td>
-<td style="text-align:right;">
-56.74
-</td>
-<td style="text-align:right;">
-1259.5
-</td>
-<td style="text-align:right;">
-56.74
-</td>
-<td style="text-align:right;">
-1316.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:right;">
-862.7
-</td>
-<td style="text-align:right;">
-70.80
-</td>
-<td style="text-align:right;">
-791.9
-</td>
-<td style="text-align:right;">
-70.80
-</td>
-<td style="text-align:right;">
-862.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:right;">
-663.8
-</td>
-<td style="text-align:right;">
--78.66
-</td>
-<td style="text-align:right;">
-742.5
-</td>
-<td style="text-align:right;">
--78.66
-</td>
-<td style="text-align:right;">
-663.8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:right;">
-576.7
-</td>
-<td style="text-align:right;">
--56.00
-</td>
-<td style="text-align:right;">
-632.7
-</td>
-<td style="text-align:right;">
--56.00
-</td>
-<td style="text-align:right;">
-576.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:right;">
-1286.3
-</td>
-<td style="text-align:right;">
-118.56
-</td>
-<td style="text-align:right;">
-1167.7
-</td>
-<td style="text-align:right;">
-118.56
-</td>
-<td style="text-align:right;">
-1286.3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:right;">
-674.3
-</td>
-<td style="text-align:right;">
--56.92
-</td>
-<td style="text-align:right;">
-731.2
-</td>
-<td style="text-align:right;">
--56.92
-</td>
-<td style="text-align:right;">
-674.3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:right;">
-664.4
-</td>
-<td style="text-align:right;">
--17.10
-</td>
-<td style="text-align:right;">
-681.5
-</td>
-<td style="text-align:right;">
--17.10
-</td>
-<td style="text-align:right;">
-664.4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:right;">
-596.3
-</td>
-<td style="text-align:right;">
--142.40
-</td>
-<td style="text-align:right;">
-738.7
-</td>
-<td style="text-align:right;">
--142.40
-</td>
-<td style="text-align:right;">
-596.3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:right;">
-1449.7
-</td>
-<td style="text-align:right;">
-41.99
-</td>
-<td style="text-align:right;">
-1407.7
-</td>
-<td style="text-align:right;">
-41.99
-</td>
-<td style="text-align:right;">
-1449.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:right;">
-1591.2
-</td>
-<td style="text-align:right;">
-192.09
-</td>
-<td style="text-align:right;">
-1399.1
-</td>
-<td style="text-align:right;">
-192.09
-</td>
-<td style="text-align:right;">
-1591.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:right;">
-1835.9
-</td>
-<td style="text-align:right;">
-211.25
-</td>
-<td style="text-align:right;">
-1624.6
-</td>
-<td style="text-align:right;">
-211.25
-</td>
-<td style="text-align:right;">
-1835.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:right;">
-1143.8
-</td>
-<td style="text-align:right;">
--13.29
-</td>
-<td style="text-align:right;">
-1157.1
-</td>
-<td style="text-align:right;">
--13.29
-</td>
-<td style="text-align:right;">
-1143.8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:right;">
-1021.2
-</td>
-<td style="text-align:right;">
--86.45
-</td>
-<td style="text-align:right;">
-1107.6
-</td>
-<td style="text-align:right;">
--86.45
-</td>
-<td style="text-align:right;">
-1021.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:right;">
-948.3
-</td>
-<td style="text-align:right;">
--49.59
-</td>
-<td style="text-align:right;">
-997.9
-</td>
-<td style="text-align:right;">
--49.59
-</td>
-<td style="text-align:right;">
-948.3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:right;">
-1250.9
-</td>
-<td style="text-align:right;">
--282.03
-</td>
-<td style="text-align:right;">
-1532.9
-</td>
-<td style="text-align:right;">
--282.03
-</td>
-<td style="text-align:right;">
-1250.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:right;">
-1053.7
-</td>
-<td style="text-align:right;">
--42.71
-</td>
-<td style="text-align:right;">
-1096.4
-</td>
-<td style="text-align:right;">
--42.71
-</td>
-<td style="text-align:right;">
-1053.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:right;">
-993.4
-</td>
-<td style="text-align:right;">
--53.29
-</td>
-<td style="text-align:right;">
-1046.7
-</td>
-<td style="text-align:right;">
--53.29
-</td>
-<td style="text-align:right;">
-993.4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:right;">
-1185.9
-</td>
-<td style="text-align:right;">
-82.01
-</td>
-<td style="text-align:right;">
-1103.9
-</td>
-<td style="text-align:right;">
-82.01
-</td>
-<td style="text-align:right;">
-1185.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:right;">
-1489.6
-</td>
-<td style="text-align:right;">
-162.24
-</td>
-<td style="text-align:right;">
-1327.4
-</td>
-<td style="text-align:right;">
-162.24
-</td>
-<td style="text-align:right;">
-1489.6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:right;">
-1235.3
-</td>
-<td style="text-align:right;">
--83.46
-</td>
-<td style="text-align:right;">
-1318.8
-</td>
-<td style="text-align:right;">
--83.46
-</td>
-<td style="text-align:right;">
-1235.3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:right;">
-1698.0
-</td>
-<td style="text-align:right;">
-153.70
-</td>
-<td style="text-align:right;">
-1544.3
-</td>
-<td style="text-align:right;">
-153.70
-</td>
-<td style="text-align:right;">
-1698.0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:right;">
-974.9
-</td>
-<td style="text-align:right;">
--101.84
-</td>
-<td style="text-align:right;">
-1076.7
-</td>
-<td style="text-align:right;">
--101.84
-</td>
-<td style="text-align:right;">
-974.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:right;">
-1116.3
-</td>
-<td style="text-align:right;">
-89.00
-</td>
-<td style="text-align:right;">
-1027.3
-</td>
-<td style="text-align:right;">
-89.00
-</td>
-<td style="text-align:right;">
-1116.3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:right;">
-1013.7
-</td>
-<td style="text-align:right;">
-96.16
-</td>
-<td style="text-align:right;">
-917.5
-</td>
-<td style="text-align:right;">
-96.16
-</td>
-<td style="text-align:right;">
-1013.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:right;">
-1502.7
-</td>
-<td style="text-align:right;">
-50.12
-</td>
-<td style="text-align:right;">
-1452.6
-</td>
-<td style="text-align:right;">
-50.12
-</td>
-<td style="text-align:right;">
-1502.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:right;">
-1053.4
-</td>
-<td style="text-align:right;">
-37.34
-</td>
-<td style="text-align:right;">
-1016.1
-</td>
-<td style="text-align:right;">
-37.34
-</td>
-<td style="text-align:right;">
-1053.4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:right;">
-672.9
-</td>
-<td style="text-align:right;">
--293.44
-</td>
-<td style="text-align:right;">
-966.3
-</td>
-<td style="text-align:right;">
--293.44
-</td>
-<td style="text-align:right;">
-672.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:right;">
-913.7
-</td>
-<td style="text-align:right;">
--109.84
-</td>
-<td style="text-align:right;">
-1023.5
-</td>
-<td style="text-align:right;">
--109.84
-</td>
-<td style="text-align:right;">
-913.7
-</td>
-</tr>
-</tbody>
-</table>
 Estimating the WAAS (based on traditional AMMI model)
 =====================================================
 
@@ -1879,18 +701,24 @@ In this example only PCA with *P*-value ≤ 0.05 will be used in the WAAS estima
 library(WAASB)
 # Assuming equal weights for productivity and stability
 WAAS1 = WAAS.AMMI(dataset,
-                 resp = "GY",
-                 p.valuePC = 0.05,
-                 weight.response = 50,
-                 weight.WAAS = 50)
+                  resp = GY,
+                  gen = GEN,
+                  env = ENV,
+                  rep = BLOCK,
+                  p.valuePC = 0.05,
+                  weight.response = 50,
+                  weight.WAAS = 50)
 
 # Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
 # no output for this script
 WAAS11 = WAAS.AMMI(dataset,
-                 resp = "GY",
-                 p.valuePC = 0.05,
-                 weight.response = 70,
-                 weight.WAAS = 30)
+                  resp = GY,
+                  gen = GEN,
+                  env = ENV,
+                  rep = BLOCK,
+                  p.valuePC = 0.05,
+                  weight.response = 70,
+                  weight.WAAS = 30)
 ```
 
 ``` r
@@ -1945,7 +773,7 @@ ENV
 60.239
 </td>
 <td style="text-align:left;">
-0.00000000000000000000000
+0.0000000000000000000000
 </td>
 <td style="text-align:left;">
 .
@@ -1971,7 +799,7 @@ REP(ENV)
 3.066
 </td>
 <td style="text-align:left;">
-0.00000031778918565985957
+0.0000003177891856598596
 </td>
 <td style="text-align:left;">
 .
@@ -1997,7 +825,7 @@ GEN
 14.085
 </td>
 <td style="text-align:left;">
-0.00000000000000000083806
+0.0000000000000000008381
 </td>
 <td style="text-align:left;">
 .
@@ -2023,7 +851,7 @@ ENV:GEN
 2.853
 </td>
 <td style="text-align:left;">
-0.00000000000005639378097
+0.0000000000000563937810
 </td>
 <td style="text-align:left;">
 .
@@ -2049,7 +877,7 @@ PC1
 5.500
 </td>
 <td style="text-align:left;">
-0.00000000000000000000000
+0.0000000000000000000000
 </td>
 <td style="text-align:left;">
 32.9
@@ -2075,7 +903,7 @@ PC2
 4.930
 </td>
 <td style="text-align:left;">
-0.00000000000000000000000
+0.0000000000000000000000
 </td>
 <td style="text-align:left;">
 26.9
@@ -2101,7 +929,7 @@ PC3
 3.470
 </td>
 <td style="text-align:left;">
-0.00000000000000000000000
+0.0000000000000000000000
 </td>
 <td style="text-align:left;">
 17.1
@@ -2121,13 +949,13 @@ PC4
 3.6847
 </td>
 <td style="text-align:right;">
-0.2167
+0.2168
 </td>
 <td style="text-align:right;">
 2.100
 </td>
 <td style="text-align:left;">
-0.00719999999999999980294
+0.0071999999999999998029
 </td>
 <td style="text-align:left;">
 9.3
@@ -2153,7 +981,7 @@ PC5
 1.720
 </td>
 <td style="text-align:left;font-weight: bold;">
-0.04660000000000000253131
+0.0466000000000000025313
 </td>
 <td style="text-align:left;font-weight: bold;">
 6.7
@@ -2179,7 +1007,7 @@ PC6
 1.080
 </td>
 <td style="text-align:left;">
-0.37609999999999998987477
+0.3760999999999999898748
 </td>
 <td style="text-align:left;">
 3.7
@@ -2205,7 +1033,7 @@ PC7
 0.640
 </td>
 <td style="text-align:left;">
-0.79390000000000005009326
+0.7939000000000000500933
 </td>
 <td style="text-align:left;">
 1.8
@@ -2222,7 +1050,7 @@ PC8
 9
 </td>
 <td style="text-align:right;">
-0.4653
+0.4652
 </td>
 <td style="text-align:right;">
 0.0517
@@ -2231,7 +1059,7 @@ PC8
 0.500
 </td>
 <td style="text-align:left;">
-0.87399999999999999911182
+0.8739999999999999991118
 </td>
 <td style="text-align:left;">
 1.2
@@ -2257,7 +1085,7 @@ PC9
 0.280
 </td>
 <td style="text-align:left;">
-0.96150000000000002131628
+0.9615000000000000213163
 </td>
 <td style="text-align:left;">
 0.5
@@ -2376,22 +1204,22 @@ G1
 2.624
 </td>
 <td style="text-align:right;">
-0.1878
+0.1778
 </td>
 <td style="text-align:right;">
 86.32
 </td>
 <td style="text-align:right;">
-98.88
+99.00
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
-2
+1
 </td>
 <td style="text-align:right;">
-92.60
+92.66
 </td>
 <td style="text-align:right;">
 6
@@ -2408,13 +1236,13 @@ G10
 2.506
 </td>
 <td style="text-align:right;">
-0.5979
+0.5003
 </td>
 <td style="text-align:right;">
 82.46
 </td>
 <td style="text-align:right;">
-96.43
+97.19
 </td>
 <td style="text-align:right;">
 10
@@ -2423,7 +1251,7 @@ G10
 10
 </td>
 <td style="text-align:right;">
-89.45
+89.82
 </td>
 <td style="text-align:right;">
 10
@@ -2440,13 +1268,13 @@ G2
 2.703
 </td>
 <td style="text-align:right;">
-0.2820
+0.3124
 </td>
 <td style="text-align:right;">
 88.93
 </td>
 <td style="text-align:right;">
-98.32
+98.24
 </td>
 <td style="text-align:right;">
 4
@@ -2455,7 +1283,7 @@ G2
 6
 </td>
 <td style="text-align:right;">
-93.62
+93.59
 </td>
 <td style="text-align:right;">
 3
@@ -2472,22 +1300,22 @@ G3
 2.941
 </td>
 <td style="text-align:right;">
-0.1676
+0.2037
 </td>
 <td style="text-align:right;">
 96.77
 </td>
 <td style="text-align:right;">
-99.00
+98.85
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-1
+2
 </td>
 <td style="text-align:right;">
-97.88
+97.81
 </td>
 <td style="text-align:right;">
 2
@@ -2504,13 +1332,13 @@ G4
 2.697
 </td>
 <td style="text-align:right;">
-0.3880
+0.3682
 </td>
 <td style="text-align:right;">
 88.74
 </td>
 <td style="text-align:right;">
-97.69
+97.93
 </td>
 <td style="text-align:right;">
 5
@@ -2519,7 +1347,7 @@ G4
 7
 </td>
 <td style="text-align:right;">
-93.21
+93.33
 </td>
 <td style="text-align:right;">
 5
@@ -2536,22 +1364,22 @@ G5
 2.566
 </td>
 <td style="text-align:right;">
-0.2213
+0.2143
 </td>
 <td style="text-align:right;">
 84.41
 </td>
 <td style="text-align:right;">
-98.68
+98.79
 </td>
 <td style="text-align:right;">
 8
 </td>
 <td style="text-align:right;">
-4
+3
 </td>
 <td style="text-align:right;">
-91.55
+91.60
 </td>
 <td style="text-align:right;">
 7
@@ -2568,22 +1396,22 @@ G6
 2.549
 </td>
 <td style="text-align:right;">
-0.2070
+0.2439
 </td>
 <td style="text-align:right;">
 83.88
 </td>
 <td style="text-align:right;">
-98.76
+98.63
 </td>
 <td style="text-align:right;">
 9
 </td>
 <td style="text-align:right;">
-3
+4
 </td>
 <td style="text-align:right;">
-91.32
+91.25
 </td>
 <td style="text-align:right;">
 8
@@ -2600,13 +1428,13 @@ G7
 2.710
 </td>
 <td style="text-align:right;">
-0.4005
+0.3843
 </td>
 <td style="text-align:right;">
 89.17
 </td>
 <td style="text-align:right;">
-97.61
+97.84
 </td>
 <td style="text-align:right;">
 3
@@ -2615,7 +1443,7 @@ G7
 8
 </td>
 <td style="text-align:right;">
-93.39
+93.50
 </td>
 <td style="text-align:right;">
 4
@@ -2632,13 +1460,13 @@ G8
 3.039
 </td>
 <td style="text-align:right;">
-0.2488
+0.2465
 </td>
 <td style="text-align:right;">
 100.00
 </td>
 <td style="text-align:right;">
-98.52
+98.61
 </td>
 <td style="text-align:right;">
 1
@@ -2647,7 +1475,7 @@ G8
 5
 </td>
 <td style="text-align:right;">
-99.26
+99.31
 </td>
 <td style="text-align:right;">
 1
@@ -2664,13 +1492,13 @@ G9
 2.574
 </td>
 <td style="text-align:right;">
-0.5208
+0.4473
 </td>
 <td style="text-align:right;">
 84.68
 </td>
 <td style="text-align:right;">
-96.89
+97.48
 </td>
 <td style="text-align:right;">
 7
@@ -2679,7 +1507,7 @@ G9
 9
 </td>
 <td style="text-align:right;">
-90.79
+91.08
 </td>
 <td style="text-align:right;">
 9
@@ -2696,25 +1524,25 @@ CF2010
 2.521
 </td>
 <td style="text-align:right;">
-0.2078
+0.1787
 </td>
 <td style="text-align:right;">
 62.02
 </td>
 <td style="text-align:right;">
-98.07
+98.47
 </td>
 <td style="text-align:right;">
 10
 </td>
 <td style="text-align:right;">
-7
+6
 </td>
 <td style="text-align:right;">
-80.04
+80.24
 </td>
 <td style="text-align:right;">
-10
+9
 </td>
 </tr>
 <tr>
@@ -2728,22 +1556,22 @@ CF2011
 3.180
 </td>
 <td style="text-align:right;">
-0.2021
+0.2086
 </td>
 <td style="text-align:right;">
 78.24
 </td>
 <td style="text-align:right;">
-98.12
+98.21
 </td>
 <td style="text-align:right;">
 4
 </td>
 <td style="text-align:right;">
-6
+7
 </td>
 <td style="text-align:right;">
-88.18
+88.22
 </td>
 <td style="text-align:right;">
 4
@@ -2760,22 +1588,22 @@ CF2012
 4.064
 </td>
 <td style="text-align:right;">
-0.3268
+0.3627
 </td>
 <td style="text-align:right;">
 100.00
 </td>
 <td style="text-align:right;">
-96.96
+96.89
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-13
+15
 </td>
 <td style="text-align:right;">
-98.48
+98.44
 </td>
 <td style="text-align:right;">
 1
@@ -2792,22 +1620,22 @@ CF2013
 3.675
 </td>
 <td style="text-align:right;">
-0.3300
+0.2564
 </td>
 <td style="text-align:right;">
 90.43
 </td>
 <td style="text-align:right;">
-96.93
+97.80
 </td>
 <td style="text-align:right;">
 3
 </td>
 <td style="text-align:right;">
-14
+11
 </td>
 <td style="text-align:right;">
-93.68
+94.11
 </td>
 <td style="text-align:right;">
 3
@@ -2824,22 +1652,22 @@ CF2014
 2.507
 </td>
 <td style="text-align:right;">
-0.2925
+0.2429
 </td>
 <td style="text-align:right;">
 61.69
 </td>
 <td style="text-align:right;">
-97.28
+97.91
 </td>
 <td style="text-align:right;">
 11
 </td>
 <td style="text-align:right;">
-11
+10
 </td>
 <td style="text-align:right;">
-79.48
+79.80
 </td>
 <td style="text-align:right;">
 11
@@ -2856,22 +1684,22 @@ CF2015
 3.107
 </td>
 <td style="text-align:right;">
-0.3169
+0.3486
 </td>
 <td style="text-align:right;">
 76.45
 </td>
 <td style="text-align:right;">
-97.05
+97.01
 </td>
 <td style="text-align:right;">
 5
 </td>
 <td style="text-align:right;">
-12
+14
 </td>
 <td style="text-align:right;">
-86.75
+86.73
 </td>
 <td style="text-align:right;">
 5
@@ -2888,22 +1716,22 @@ CF2016
 3.910
 </td>
 <td style="text-align:right;">
-0.2370
+0.2115
 </td>
 <td style="text-align:right;">
 96.22
 </td>
 <td style="text-align:right;">
-97.80
+98.18
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-9
+8
 </td>
 <td style="text-align:right;">
-97.01
+97.20
 </td>
 <td style="text-align:right;">
 2
@@ -2920,7 +1748,7 @@ CF2017
 2.663
 </td>
 <td style="text-align:right;">
-0.1075
+0.1167
 </td>
 <td style="text-align:right;">
 65.53
@@ -2932,7 +1760,7 @@ CF2017
 8
 </td>
 <td style="text-align:right;">
-1
+2
 </td>
 <td style="text-align:right;">
 82.26
@@ -2952,22 +1780,22 @@ SF2010
 1.989
 </td>
 <td style="text-align:right;">
-0.2560
+0.2973
 </td>
 <td style="text-align:right;">
 48.94
 </td>
 <td style="text-align:right;">
-97.62
+97.45
 </td>
 <td style="text-align:right;">
 13
 </td>
 <td style="text-align:right;">
-10
+12
 </td>
 <td style="text-align:right;">
-73.28
+73.19
 </td>
 <td style="text-align:right;">
 13
@@ -2984,25 +1812,25 @@ SF2011
 2.536
 </td>
 <td style="text-align:right;">
-0.2173
+0.2263
 </td>
 <td style="text-align:right;">
 62.41
 </td>
 <td style="text-align:right;">
-97.98
+98.06
 </td>
 <td style="text-align:right;">
 9
 </td>
 <td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-80.19
-</td>
-<td style="text-align:right;">
 9
+</td>
+<td style="text-align:right;">
+80.23
+</td>
+<td style="text-align:right;">
+10
 </td>
 </tr>
 <tr>
@@ -3016,13 +1844,13 @@ SF2012
 3.057
 </td>
 <td style="text-align:right;">
-0.4817
+0.4128
 </td>
 <td style="text-align:right;">
 75.21
 </td>
 <td style="text-align:right;">
-95.52
+96.45
 </td>
 <td style="text-align:right;">
 6
@@ -3031,7 +1859,7 @@ SF2012
 16
 </td>
 <td style="text-align:right;">
-85.36
+85.83
 </td>
 <td style="text-align:right;">
 6
@@ -3048,13 +1876,13 @@ SF2013
 2.175
 </td>
 <td style="text-align:right;">
-0.1992
+0.1623
 </td>
 <td style="text-align:right;">
 53.52
 </td>
 <td style="text-align:right;">
-98.15
+98.61
 </td>
 <td style="text-align:right;">
 12
@@ -3063,7 +1891,7 @@ SF2013
 4
 </td>
 <td style="text-align:right;">
-75.83
+76.06
 </td>
 <td style="text-align:right;">
 12
@@ -3080,22 +1908,22 @@ SF2014
 1.368
 </td>
 <td style="text-align:right;">
-0.1116
+0.1164
 </td>
 <td style="text-align:right;">
 33.66
 </td>
 <td style="text-align:right;">
-98.96
+99.00
 </td>
 <td style="text-align:right;">
 16
 </td>
 <td style="text-align:right;">
-2
+1
 </td>
 <td style="text-align:right;">
-66.31
+66.33
 </td>
 <td style="text-align:right;">
 16
@@ -3112,13 +1940,13 @@ SF2015
 1.609
 </td>
 <td style="text-align:right;">
-0.2011
+0.1663
 </td>
 <td style="text-align:right;">
 39.58
 </td>
 <td style="text-align:right;">
-98.13
+98.57
 </td>
 <td style="text-align:right;">
 15
@@ -3127,7 +1955,7 @@ SF2015
 5
 </td>
 <td style="text-align:right;">
-68.85
+69.07
 </td>
 <td style="text-align:right;">
 15
@@ -3144,22 +1972,22 @@ SF2016
 2.910
 </td>
 <td style="text-align:right;">
-0.3728
+0.3235
 </td>
 <td style="text-align:right;">
 71.59
 </td>
 <td style="text-align:right;">
-96.53
+97.22
 </td>
 <td style="text-align:right;">
 7
 </td>
 <td style="text-align:right;">
-15
+13
 </td>
 <td style="text-align:right;">
-84.06
+84.41
 </td>
 <td style="text-align:right;">
 7
@@ -3176,13 +2004,13 @@ SF2017
 1.782
 </td>
 <td style="text-align:right;">
-0.1529
+0.1588
 </td>
 <td style="text-align:right;">
 43.84
 </td>
 <td style="text-align:right;">
-98.58
+98.64
 </td>
 <td style="text-align:right;">
 14
@@ -3191,7 +2019,7 @@ SF2017
 3
 </td>
 <td style="text-align:right;">
-71.21
+71.24
 </td>
 <td style="text-align:right;">
 14
@@ -3208,7 +2036,7 @@ plot.scores(WAAS1,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
 The biplot above shows the coordinates of the genotypes and environments regarding the grain yield and the WAAS values. It is in fact the plot of the columns Y and WAAS from the above table. A detailed discussion on the interpretation of this biplot can be seen in [section 6.2.3](#biplot-type-3-gy-x-waasb).
 
@@ -3221,10 +2049,12 @@ Here it is possible to inform a specific number of multiplicative terms to be us
 
 ``` r
 WAAS2 = WAAS.AMMI(dataset,
-                 resp = "GY",
-                 naxis = 7,
-                 weight.response = 50,
-                 weight.WAAS = 50)
+                  resp = GY,
+                  gen = GEN,
+                  env = ENV,
+                  rep = BLOCK,
+                  weight.response = 50,
+                  weight.WAAS = 50)
 ```
 
 ``` r
@@ -3280,22 +2110,22 @@ G1
 2.624
 </td>
 <td style="text-align:right;">
-0.1939
+0.1778
 </td>
 <td style="text-align:right;">
 86.32
 </td>
 <td style="text-align:right;">
-98.84
+99.00
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
-2
+1
 </td>
 <td style="text-align:right;">
-92.58
+92.66
 </td>
 <td style="text-align:right;">
 6
@@ -3312,13 +2142,13 @@ G10
 2.506
 </td>
 <td style="text-align:right;">
-0.5694
+0.5003
 </td>
 <td style="text-align:right;">
 82.46
 </td>
 <td style="text-align:right;">
-96.60
+97.19
 </td>
 <td style="text-align:right;">
 10
@@ -3327,7 +2157,7 @@ G10
 10
 </td>
 <td style="text-align:right;">
-89.53
+89.82
 </td>
 <td style="text-align:right;">
 10
@@ -3344,13 +2174,13 @@ G2
 2.703
 </td>
 <td style="text-align:right;">
-0.2696
+0.3124
 </td>
 <td style="text-align:right;">
 88.93
 </td>
 <td style="text-align:right;">
-98.39
+98.24
 </td>
 <td style="text-align:right;">
 4
@@ -3359,7 +2189,7 @@ G2
 6
 </td>
 <td style="text-align:right;">
-93.66
+93.59
 </td>
 <td style="text-align:right;">
 3
@@ -3376,22 +2206,22 @@ G3
 2.941
 </td>
 <td style="text-align:right;">
-0.1675
+0.2037
 </td>
 <td style="text-align:right;">
 96.77
 </td>
 <td style="text-align:right;">
-99.00
+98.85
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-1
+2
 </td>
 <td style="text-align:right;">
-97.88
+97.81
 </td>
 <td style="text-align:right;">
 2
@@ -3408,13 +2238,13 @@ G4
 2.697
 </td>
 <td style="text-align:right;">
-0.3767
+0.3682
 </td>
 <td style="text-align:right;">
 88.74
 </td>
 <td style="text-align:right;">
-97.75
+97.93
 </td>
 <td style="text-align:right;">
 5
@@ -3423,7 +2253,7 @@ G4
 7
 </td>
 <td style="text-align:right;">
-93.25
+93.33
 </td>
 <td style="text-align:right;">
 5
@@ -3440,22 +2270,22 @@ G5
 2.566
 </td>
 <td style="text-align:right;">
-0.2299
+0.2143
 </td>
 <td style="text-align:right;">
 84.41
 </td>
 <td style="text-align:right;">
-98.63
+98.79
 </td>
 <td style="text-align:right;">
 8
 </td>
 <td style="text-align:right;">
-4
+3
 </td>
 <td style="text-align:right;">
-91.52
+91.60
 </td>
 <td style="text-align:right;">
 7
@@ -3472,22 +2302,22 @@ G6
 2.549
 </td>
 <td style="text-align:right;">
-0.2002
+0.2439
 </td>
 <td style="text-align:right;">
 83.88
 </td>
 <td style="text-align:right;">
-98.81
+98.63
 </td>
 <td style="text-align:right;">
 9
 </td>
 <td style="text-align:right;">
-3
+4
 </td>
 <td style="text-align:right;">
-91.34
+91.25
 </td>
 <td style="text-align:right;">
 8
@@ -3504,13 +2334,13 @@ G7
 2.710
 </td>
 <td style="text-align:right;">
-0.3870
+0.3843
 </td>
 <td style="text-align:right;">
 89.17
 </td>
 <td style="text-align:right;">
-97.69
+97.84
 </td>
 <td style="text-align:right;">
 3
@@ -3519,7 +2349,7 @@ G7
 8
 </td>
 <td style="text-align:right;">
-93.43
+93.50
 </td>
 <td style="text-align:right;">
 4
@@ -3536,13 +2366,13 @@ G8
 3.039
 </td>
 <td style="text-align:right;">
-0.2556
+0.2465
 </td>
 <td style="text-align:right;">
 100.00
 </td>
 <td style="text-align:right;">
-98.47
+98.61
 </td>
 <td style="text-align:right;">
 1
@@ -3551,7 +2381,7 @@ G8
 5
 </td>
 <td style="text-align:right;">
-99.24
+99.31
 </td>
 <td style="text-align:right;">
 1
@@ -3568,13 +2398,13 @@ G9
 2.574
 </td>
 <td style="text-align:right;">
-0.5070
+0.4473
 </td>
 <td style="text-align:right;">
 84.68
 </td>
 <td style="text-align:right;">
-96.97
+97.48
 </td>
 <td style="text-align:right;">
 7
@@ -3583,7 +2413,7 @@ G9
 9
 </td>
 <td style="text-align:right;">
-90.83
+91.08
 </td>
 <td style="text-align:right;">
 9
@@ -3600,13 +2430,13 @@ CF2010
 2.521
 </td>
 <td style="text-align:right;">
-0.1993
+0.1787
 </td>
 <td style="text-align:right;">
 62.02
 </td>
 <td style="text-align:right;">
-98.15
+98.47
 </td>
 <td style="text-align:right;">
 10
@@ -3615,10 +2445,10 @@ CF2010
 6
 </td>
 <td style="text-align:right;">
-80.08
+80.24
 </td>
 <td style="text-align:right;">
-10
+9
 </td>
 </tr>
 <tr>
@@ -3632,22 +2462,22 @@ CF2011
 3.180
 </td>
 <td style="text-align:right;">
-0.1952
+0.2086
 </td>
 <td style="text-align:right;">
 78.24
 </td>
 <td style="text-align:right;">
-98.18
+98.21
 </td>
 <td style="text-align:right;">
 4
 </td>
 <td style="text-align:right;">
-5
+7
 </td>
 <td style="text-align:right;">
-88.21
+88.22
 </td>
 <td style="text-align:right;">
 4
@@ -3664,22 +2494,22 @@ CF2012
 4.064
 </td>
 <td style="text-align:right;">
-0.3200
+0.3627
 </td>
 <td style="text-align:right;">
 100.00
 </td>
 <td style="text-align:right;">
-97.02
+96.89
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-14
+15
 </td>
 <td style="text-align:right;">
-98.51
+98.44
 </td>
 <td style="text-align:right;">
 1
@@ -3696,22 +2526,22 @@ CF2013
 3.675
 </td>
 <td style="text-align:right;">
-0.3180
+0.2564
 </td>
 <td style="text-align:right;">
 90.43
 </td>
 <td style="text-align:right;">
-97.04
+97.80
 </td>
 <td style="text-align:right;">
 3
 </td>
 <td style="text-align:right;">
-13
+11
 </td>
 <td style="text-align:right;">
-93.73
+94.11
 </td>
 <td style="text-align:right;">
 3
@@ -3728,22 +2558,22 @@ CF2014
 2.507
 </td>
 <td style="text-align:right;">
-0.2833
+0.2429
 </td>
 <td style="text-align:right;">
 61.69
 </td>
 <td style="text-align:right;">
-97.36
+97.91
 </td>
 <td style="text-align:right;">
 11
 </td>
 <td style="text-align:right;">
-11
+10
 </td>
 <td style="text-align:right;">
-79.52
+79.80
 </td>
 <td style="text-align:right;">
 11
@@ -3760,22 +2590,22 @@ CF2015
 3.107
 </td>
 <td style="text-align:right;">
-0.3012
+0.3486
 </td>
 <td style="text-align:right;">
 76.45
 </td>
 <td style="text-align:right;">
-97.20
+97.01
 </td>
 <td style="text-align:right;">
 5
 </td>
 <td style="text-align:right;">
-12
+14
 </td>
 <td style="text-align:right;">
-86.82
+86.73
 </td>
 <td style="text-align:right;">
 5
@@ -3792,22 +2622,22 @@ CF2016
 3.910
 </td>
 <td style="text-align:right;">
-0.2435
+0.2115
 </td>
 <td style="text-align:right;">
 96.22
 </td>
 <td style="text-align:right;">
-97.73
+98.18
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-9
+8
 </td>
 <td style="text-align:right;">
-96.97
+97.20
 </td>
 <td style="text-align:right;">
 2
@@ -3824,13 +2654,13 @@ CF2017
 2.663
 </td>
 <td style="text-align:right;">
-0.1096
+0.1167
 </td>
 <td style="text-align:right;">
 65.53
 </td>
 <td style="text-align:right;">
-98.98
+99.00
 </td>
 <td style="text-align:right;">
 8
@@ -3839,7 +2669,7 @@ CF2017
 2
 </td>
 <td style="text-align:right;">
-82.25
+82.26
 </td>
 <td style="text-align:right;">
 8
@@ -3856,22 +2686,22 @@ SF2010
 1.989
 </td>
 <td style="text-align:right;">
-0.2507
+0.2973
 </td>
 <td style="text-align:right;">
 48.94
 </td>
 <td style="text-align:right;">
-97.67
+97.45
 </td>
 <td style="text-align:right;">
 13
 </td>
 <td style="text-align:right;">
-10
+12
 </td>
 <td style="text-align:right;">
-73.30
+73.19
 </td>
 <td style="text-align:right;">
 13
@@ -3888,25 +2718,25 @@ SF2011
 2.536
 </td>
 <td style="text-align:right;">
-0.2204
+0.2263
 </td>
 <td style="text-align:right;">
 62.41
 </td>
 <td style="text-align:right;">
-97.95
+98.06
 </td>
 <td style="text-align:right;">
 9
 </td>
 <td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-80.18
-</td>
-<td style="text-align:right;">
 9
+</td>
+<td style="text-align:right;">
+80.23
+</td>
+<td style="text-align:right;">
+10
 </td>
 </tr>
 <tr>
@@ -3920,13 +2750,13 @@ SF2012
 3.057
 </td>
 <td style="text-align:right;">
-0.4616
+0.4128
 </td>
 <td style="text-align:right;">
 75.21
 </td>
 <td style="text-align:right;">
-95.70
+96.45
 </td>
 <td style="text-align:right;">
 6
@@ -3935,7 +2765,7 @@ SF2012
 16
 </td>
 <td style="text-align:right;">
-85.45
+85.83
 </td>
 <td style="text-align:right;">
 6
@@ -3952,13 +2782,13 @@ SF2013
 2.175
 </td>
 <td style="text-align:right;">
-0.1913
+0.1623
 </td>
 <td style="text-align:right;">
 53.52
 </td>
 <td style="text-align:right;">
-98.22
+98.61
 </td>
 <td style="text-align:right;">
 12
@@ -3967,7 +2797,7 @@ SF2013
 4
 </td>
 <td style="text-align:right;">
-75.87
+76.06
 </td>
 <td style="text-align:right;">
 12
@@ -3984,7 +2814,7 @@ SF2014
 1.368
 </td>
 <td style="text-align:right;">
-0.1075
+0.1164
 </td>
 <td style="text-align:right;">
 33.66
@@ -4016,22 +2846,22 @@ SF2015
 1.609
 </td>
 <td style="text-align:right;">
-0.2103
+0.1663
 </td>
 <td style="text-align:right;">
 39.58
 </td>
 <td style="text-align:right;">
-98.04
+98.57
 </td>
 <td style="text-align:right;">
 15
 </td>
 <td style="text-align:right;">
-7
+5
 </td>
 <td style="text-align:right;">
-68.81
+69.07
 </td>
 <td style="text-align:right;">
 15
@@ -4048,22 +2878,22 @@ SF2016
 2.910
 </td>
 <td style="text-align:right;">
-0.3590
+0.3235
 </td>
 <td style="text-align:right;">
 71.59
 </td>
 <td style="text-align:right;">
-96.66
+97.22
 </td>
 <td style="text-align:right;">
 7
 </td>
 <td style="text-align:right;">
-15
+13
 </td>
 <td style="text-align:right;">
-84.12
+84.41
 </td>
 <td style="text-align:right;">
 7
@@ -4080,13 +2910,13 @@ SF2017
 1.782
 </td>
 <td style="text-align:right;">
-0.1537
+0.1588
 </td>
 <td style="text-align:right;">
 43.84
 </td>
 <td style="text-align:right;">
-98.57
+98.64
 </td>
 <td style="text-align:right;">
 14
@@ -4095,7 +2925,7 @@ SF2017
 3
 </td>
 <td style="text-align:right;">
-71.21
+71.24
 </td>
 <td style="text-align:right;">
 14
@@ -4112,7 +2942,7 @@ plot.scores(WAAS2,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 In this biplot, we can see that the changes in the coordinates were also too small.
 
@@ -4133,7 +2963,10 @@ As the matrix of genotypic effects (free from error) is used, all multiplicative
 ``` r
 # Assuming equal weights for productivity and stability
 WAASB = WAASB(dataset,
-              resp = "GY",
+              resp = GY,
+              gen = GEN,
+              env = ENV,
+              rep = BLOCK,
               prob = 0.95,
               weight.response = 50,
               weight.WAAS = 50)
@@ -4141,16 +2974,10 @@ WAASB = WAASB(dataset,
 # Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
 # no output for this script
 WAASB2 = WAASB(dataset,
-              resp = "GY",
-              prob = 0.95,
-              weight.response = 30,
-              weight.WAAS = 70)
-
-# Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
-# no output for this script
-WAASB3 = WAASB(dataset,
-              resp = "GY",
-              random = "all",
+              resp = GY,
+              gen = GEN,
+              env = ENV,
+              rep = BLOCK,
               prob = 0.95,
               weight.response = 30,
               weight.WAAS = 70)
@@ -4170,32 +2997,8 @@ print(WAASB$LRT)
 <tr>
 <th style="border-bottom:hidden" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
-Genotype random effect
-
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
-Genotype and environment random effects
-
-</th>
-</tr>
-<tr>
-<th style="border-bottom:hidden" colspan="1">
-</th>
 <th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 Genotype LRT
-
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-Interaction LRT
-
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-Genotype LRT
-
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-Environment LRT
 
 </th>
 <th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
@@ -4214,24 +3017,6 @@ Complete<sup>†</sup>
 </th>
 <th style="text-align:center;">
 ReducedGE<sup>‡</sup>
-</th>
-<th style="text-align:center;">
-Complete
-</th>
-<th style="text-align:center;">
-reducedG
-</th>
-<th style="text-align:center;">
-Complete
-</th>
-<th style="text-align:center;">
-reducedE<sup>§</sup>
-</th>
-<th style="text-align:center;">
-Complete
-</th>
-<th style="text-align:center;">
-ReducedGE
 </th>
 <th style="text-align:center;">
 Complete
@@ -4255,24 +3040,6 @@ Df
 <td style="text-align:center;">
 51.000
 </td>
-<td style="text-align:center;">
-51.00
-</td>
-<td style="text-align:center;">
-52.00000
-</td>
-<td style="text-align:center;">
-51.00
-</td>
-<td style="text-align:center;">
-52.00
-</td>
-<td style="text-align:center;">
-51.00
-</td>
-<td style="text-align:center;">
-52.000
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4289,24 +3056,6 @@ AIC
 </td>
 <td style="text-align:center;">
 507.256
-</td>
-<td style="text-align:center;">
-526.48
-</td>
-<td style="text-align:center;">
-509.25568
-</td>
-<td style="text-align:center;">
-507.26
-</td>
-<td style="text-align:center;">
-509.26
-</td>
-<td style="text-align:center;">
-568.37
-</td>
-<td style="text-align:center;">
-509.256
 </td>
 </tr>
 <tr>
@@ -4325,24 +3074,6 @@ BIC
 <td style="text-align:center;">
 720.119
 </td>
-<td style="text-align:center;">
-739.35
-</td>
-<td style="text-align:center;">
-726.29255
-</td>
-<td style="text-align:center;">
-720.12
-</td>
-<td style="text-align:center;">
-726.29
-</td>
-<td style="text-align:center;">
-781.24
-</td>
-<td style="text-align:center;">
-726.293
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4353,24 +3084,6 @@ logLik
 </td>
 <td style="text-align:center;">
 -202.62784
-</td>
-<td style="text-align:center;">
--233.19
-</td>
-<td style="text-align:center;">
--202.628
-</td>
-<td style="text-align:center;">
--212.24
-</td>
-<td style="text-align:center;">
--202.62784
-</td>
-<td style="text-align:center;">
--202.63
-</td>
-<td style="text-align:center;">
--202.63
 </td>
 <td style="text-align:center;">
 -233.19
@@ -4395,24 +3108,6 @@ deviance
 <td style="text-align:center;">
 405.256
 </td>
-<td style="text-align:center;">
-424.48
-</td>
-<td style="text-align:center;">
-405.25568
-</td>
-<td style="text-align:center;">
-405.26
-</td>
-<td style="text-align:center;">
-405.26
-</td>
-<td style="text-align:center;">
-466.37
-</td>
-<td style="text-align:center;">
-405.256
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4423,24 +3118,6 @@ NA
 </td>
 <td style="text-align:center;">
 19.22808
-</td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-61.117
-</td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-19.22808
-</td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-0.00
 </td>
 <td style="text-align:center;">
 NA
@@ -4465,24 +3142,6 @@ NA
 <td style="text-align:center;">
 1.000
 </td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-1.00000
-</td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-1.00
-</td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-1.000
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4493,24 +3152,6 @@ NA
 </td>
 <td style="text-align:center;">
 0.00001
-</td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-0.00001
-</td>
-<td style="text-align:center;">
-NA
-</td>
-<td style="text-align:center;">
-1.00
 </td>
 <td style="text-align:center;">
 NA
@@ -4536,14 +3177,9 @@ NA
 <sup>‡</sup> Reduced model without genotype-vs-environment interaction effect;
 </td>
 </tr>
-<tr>
-<td style="padding: 0; border: 0;" colspan="100%">
-<sup>§</sup> Reduced model without environment effect;
-</td>
-</tr>
 </tfoot>
 </table>
-The output `LRT` contains the Likelihood Ratio Tests on linear mixed-effect models depending on the random effects argument in the function `WAASB` (`random = "all"`or `random  = "gen"`). In the case when `random = "gen"` (default) the LRT is computed for genotype and genotype-vs-environment effects. When `random = "all"`, the LRT is computed for genotype, environment and genotype-vs-environment interaction.
+The output `LRT` contains the Likelihood Ratio Tests on the random effects of the linear mixed-effect.
 
 > Variance components and some parameters
 
@@ -4829,22 +3465,22 @@ G1
 2.624
 </td>
 <td style="text-align:right;">
-0.1602
+0.1586
 </td>
 <td style="text-align:right;">
 86.32
 </td>
 <td style="text-align:right;">
-98.82
+98.88
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
-3
+2
 </td>
 <td style="text-align:right;">
-92.57
+92.60
 </td>
 <td style="text-align:right;">
 6
@@ -4861,13 +3497,13 @@ G10
 2.506
 </td>
 <td style="text-align:right;">
-0.4968
+0.4496
 </td>
 <td style="text-align:right;">
 82.46
 </td>
 <td style="text-align:right;">
-96.34
+96.82
 </td>
 <td style="text-align:right;">
 10
@@ -4876,7 +3512,7 @@ G10
 10
 </td>
 <td style="text-align:right;">
-89.40
+89.64
 </td>
 <td style="text-align:right;">
 10
@@ -4893,13 +3529,13 @@ G2
 2.703
 </td>
 <td style="text-align:right;">
-0.2125
+0.2135
 </td>
 <td style="text-align:right;">
 88.93
 </td>
 <td style="text-align:right;">
-98.43
+98.49
 </td>
 <td style="text-align:right;">
 4
@@ -4908,7 +3544,7 @@ G2
 6
 </td>
 <td style="text-align:right;">
-93.68
+93.71
 </td>
 <td style="text-align:right;">
 3
@@ -4925,7 +3561,7 @@ G3
 2.941
 </td>
 <td style="text-align:right;">
-0.1356
+0.1415
 </td>
 <td style="text-align:right;">
 96.77
@@ -4957,22 +3593,22 @@ G4
 2.697
 </td>
 <td style="text-align:right;">
-0.3151
+0.2996
 </td>
 <td style="text-align:right;">
 88.74
 </td>
 <td style="text-align:right;">
-97.68
+97.88
 </td>
 <td style="text-align:right;">
 5
 </td>
 <td style="text-align:right;">
-7
+8
 </td>
 <td style="text-align:right;">
-93.21
+93.31
 </td>
 <td style="text-align:right;">
 5
@@ -4989,13 +3625,13 @@ G5
 2.566
 </td>
 <td style="text-align:right;">
-0.1858
+0.1837
 </td>
 <td style="text-align:right;">
 84.41
 </td>
 <td style="text-align:right;">
-98.63
+98.70
 </td>
 <td style="text-align:right;">
 8
@@ -5004,7 +3640,7 @@ G5
 4
 </td>
 <td style="text-align:right;">
-91.52
+91.56
 </td>
 <td style="text-align:right;">
 7
@@ -5021,22 +3657,22 @@ G6
 2.549
 </td>
 <td style="text-align:right;">
-0.1602
+0.1627
 </td>
 <td style="text-align:right;">
 83.88
 </td>
 <td style="text-align:right;">
-98.82
+98.85
 </td>
 <td style="text-align:right;">
 9
 </td>
 <td style="text-align:right;">
-2
+3
 </td>
 <td style="text-align:right;">
-91.35
+91.37
 </td>
 <td style="text-align:right;">
 8
@@ -5053,22 +3689,22 @@ G7
 2.710
 </td>
 <td style="text-align:right;">
-0.3218
+0.2994
 </td>
 <td style="text-align:right;">
 89.17
 </td>
 <td style="text-align:right;">
-97.63
+97.88
 </td>
 <td style="text-align:right;">
 3
 </td>
 <td style="text-align:right;">
-8
+7
 </td>
 <td style="text-align:right;">
-93.40
+93.53
 </td>
 <td style="text-align:right;">
 4
@@ -5085,13 +3721,13 @@ G8
 3.039
 </td>
 <td style="text-align:right;">
-0.2077
+0.2063
 </td>
 <td style="text-align:right;">
 100.00
 </td>
 <td style="text-align:right;">
-98.47
+98.54
 </td>
 <td style="text-align:right;">
 1
@@ -5100,7 +3736,7 @@ G8
 5
 </td>
 <td style="text-align:right;">
-99.23
+99.27
 </td>
 <td style="text-align:right;">
 1
@@ -5117,13 +3753,13 @@ G9
 2.574
 </td>
 <td style="text-align:right;">
-0.4338
+0.4017
 </td>
 <td style="text-align:right;">
 84.68
 </td>
 <td style="text-align:right;">
-96.80
+97.16
 </td>
 <td style="text-align:right;">
 7
@@ -5132,7 +3768,7 @@ G9
 9
 </td>
 <td style="text-align:right;">
-90.74
+90.92
 </td>
 <td style="text-align:right;">
 9
@@ -5149,13 +3785,13 @@ CF2010
 2.521
 </td>
 <td style="text-align:right;">
-0.1870
+0.1750
 </td>
 <td style="text-align:right;">
 62.02
 </td>
 <td style="text-align:right;">
-97.85
+98.02
 </td>
 <td style="text-align:right;">
 10
@@ -5164,7 +3800,7 @@ CF2010
 7
 </td>
 <td style="text-align:right;">
-79.94
+80.02
 </td>
 <td style="text-align:right;">
 10
@@ -5181,13 +3817,13 @@ CF2011
 3.180
 </td>
 <td style="text-align:right;">
-0.1488
+0.1435
 </td>
 <td style="text-align:right;">
 78.24
 </td>
 <td style="text-align:right;">
-98.29
+98.38
 </td>
 <td style="text-align:right;">
 4
@@ -5196,7 +3832,7 @@ CF2011
 4
 </td>
 <td style="text-align:right;">
-88.27
+88.31
 </td>
 <td style="text-align:right;">
 4
@@ -5213,13 +3849,13 @@ CF2012
 4.064
 </td>
 <td style="text-align:right;">
-0.2546
+0.2494
 </td>
 <td style="text-align:right;">
 100.00
 </td>
 <td style="text-align:right;">
-97.08
+97.18
 </td>
 <td style="text-align:right;">
 1
@@ -5228,7 +3864,7 @@ CF2012
 13
 </td>
 <td style="text-align:right;">
-98.54
+98.59
 </td>
 <td style="text-align:right;">
 1
@@ -5245,13 +3881,13 @@ CF2013
 3.675
 </td>
 <td style="text-align:right;">
-0.2903
+0.2617
 </td>
 <td style="text-align:right;">
 90.43
 </td>
 <td style="text-align:right;">
-96.67
+97.04
 </td>
 <td style="text-align:right;">
 3
@@ -5260,7 +3896,7 @@ CF2013
 14
 </td>
 <td style="text-align:right;">
-93.55
+93.73
 </td>
 <td style="text-align:right;">
 3
@@ -5277,22 +3913,22 @@ CF2014
 2.507
 </td>
 <td style="text-align:right;">
-0.2539
+0.2304
 </td>
 <td style="text-align:right;">
 61.69
 </td>
 <td style="text-align:right;">
-97.09
+97.39
 </td>
 <td style="text-align:right;">
 11
 </td>
 <td style="text-align:right;">
-12
+11
 </td>
 <td style="text-align:right;">
-79.39
+79.54
 </td>
 <td style="text-align:right;">
 11
@@ -5309,22 +3945,22 @@ CF2015
 3.107
 </td>
 <td style="text-align:right;">
-0.2374
+0.2362
 </td>
 <td style="text-align:right;">
 76.45
 </td>
 <td style="text-align:right;">
-97.28
+97.33
 </td>
 <td style="text-align:right;">
 5
 </td>
 <td style="text-align:right;">
-11
+12
 </td>
 <td style="text-align:right;">
-86.86
+86.89
 </td>
 <td style="text-align:right;">
 5
@@ -5341,13 +3977,13 @@ CF2016
 3.910
 </td>
 <td style="text-align:right;">
-0.2201
+0.2109
 </td>
 <td style="text-align:right;">
 96.22
 </td>
 <td style="text-align:right;">
-97.47
+97.61
 </td>
 <td style="text-align:right;">
 2
@@ -5356,7 +3992,7 @@ CF2016
 10
 </td>
 <td style="text-align:right;">
-96.85
+96.91
 </td>
 <td style="text-align:right;">
 2
@@ -5373,7 +4009,7 @@ CF2017
 2.663
 </td>
 <td style="text-align:right;">
-0.0872
+0.0884
 </td>
 <td style="text-align:right;">
 65.53
@@ -5405,13 +4041,13 @@ SF2010
 1.989
 </td>
 <td style="text-align:right;">
-0.1967
+0.1974
 </td>
 <td style="text-align:right;">
 48.94
 </td>
 <td style="text-align:right;">
-97.74
+97.77
 </td>
 <td style="text-align:right;">
 13
@@ -5420,7 +4056,7 @@ SF2010
 9
 </td>
 <td style="text-align:right;">
-73.34
+73.35
 </td>
 <td style="text-align:right;">
 13
@@ -5437,13 +4073,13 @@ SF2011
 2.536
 </td>
 <td style="text-align:right;">
-0.1663
+0.1660
 </td>
 <td style="text-align:right;">
 62.41
 </td>
 <td style="text-align:right;">
-98.09
+98.12
 </td>
 <td style="text-align:right;">
 9
@@ -5452,7 +4088,7 @@ SF2011
 5
 </td>
 <td style="text-align:right;">
-80.25
+80.26
 </td>
 <td style="text-align:right;">
 9
@@ -5469,13 +4105,13 @@ SF2012
 3.057
 </td>
 <td style="text-align:right;">
-0.3912
+0.3628
 </td>
 <td style="text-align:right;">
 75.21
 </td>
 <td style="text-align:right;">
-95.51
+95.89
 </td>
 <td style="text-align:right;">
 6
@@ -5484,7 +4120,7 @@ SF2012
 16
 </td>
 <td style="text-align:right;">
-85.36
+85.55
 </td>
 <td style="text-align:right;">
 6
@@ -5501,13 +4137,13 @@ SF2013
 2.175
 </td>
 <td style="text-align:right;">
-0.1835
+0.1673
 </td>
 <td style="text-align:right;">
 53.52
 </td>
 <td style="text-align:right;">
-97.89
+98.11
 </td>
 <td style="text-align:right;">
 12
@@ -5516,7 +4152,7 @@ SF2013
 6
 </td>
 <td style="text-align:right;">
-75.71
+75.81
 </td>
 <td style="text-align:right;">
 12
@@ -5533,13 +4169,13 @@ SF2014
 1.368
 </td>
 <td style="text-align:right;">
-0.1031
+0.0985
 </td>
 <td style="text-align:right;">
 33.66
 </td>
 <td style="text-align:right;">
-98.82
+98.89
 </td>
 <td style="text-align:right;">
 16
@@ -5548,7 +4184,7 @@ SF2014
 2
 </td>
 <td style="text-align:right;">
-66.24
+66.28
 </td>
 <td style="text-align:right;">
 16
@@ -5565,13 +4201,13 @@ SF2015
 1.609
 </td>
 <td style="text-align:right;">
-0.1883
+0.1776
 </td>
 <td style="text-align:right;">
 39.58
 </td>
 <td style="text-align:right;">
-97.84
+97.99
 </td>
 <td style="text-align:right;">
 15
@@ -5580,7 +4216,7 @@ SF2015
 8
 </td>
 <td style="text-align:right;">
-68.71
+68.78
 </td>
 <td style="text-align:right;">
 15
@@ -5597,13 +4233,13 @@ SF2016
 2.910
 </td>
 <td style="text-align:right;">
-0.3256
+0.3004
 </td>
 <td style="text-align:right;">
 71.59
 </td>
 <td style="text-align:right;">
-96.26
+96.60
 </td>
 <td style="text-align:right;">
 7
@@ -5612,7 +4248,7 @@ SF2016
 15
 </td>
 <td style="text-align:right;">
-83.93
+84.09
 </td>
 <td style="text-align:right;">
 7
@@ -5629,13 +4265,13 @@ SF2017
 1.782
 </td>
 <td style="text-align:right;">
-0.1089
+0.1091
 </td>
 <td style="text-align:right;">
 43.84
 </td>
 <td style="text-align:right;">
-98.75
+98.77
 </td>
 <td style="text-align:right;">
 14
@@ -5894,7 +4530,7 @@ G10
 plot.blup(WAASB)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-33-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-30-1.png" style="display: block; margin: auto;" />
 
 This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\\hat{g}\_{i})$ estimated by $\\hat{g}\_{i} = h\_g^2(\\bar{y}\_{i.}-\\bar{y}\_{..})$ where *h*<sub>*g*</sub><sup>2</sup> is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by $\\hat{g}\_{i}+\\mu$ where is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by $(\\hat{g}\_{i}+\\mu)\\pm{CI}$. *C**I* is the confidence interval for BLUP prediction assuming a given probability error, where $CI = t\\times\\sqrt{((1-Ac)\\times{GV)}}$ where *t* is the Student's *t* value for a two-tailed t test at a given probability error; *A**c* is the genotypic accuracy and *G**V* is the genotypic variance.
 
@@ -6359,7 +4995,7 @@ Accumulated
 plot.eigen(WAASB, size.lab = 14, size.tex = 14)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-35-1.png" style="display: block; margin: auto;" />
 
 The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.
 
@@ -6382,6 +5018,15 @@ GEN
 <th style="text-align:right;">
 Y
 </th>
+<th style="text-align:right;">
+envPC1
+</th>
+<th style="text-align:right;">
+genPC1
+</th>
+<th style="text-align:right;">
+nominal
+</th>
 </tr>
 </thead>
 <tbody>
@@ -6395,6 +5040,15 @@ G1
 <td style="text-align:right;">
 2.366
 </td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+0.1097
+</td>
+<td style="text-align:right;">
+2.649
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -6405,6 +5059,15 @@ G10
 </td>
 <td style="text-align:right;">
 1.974
+</td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+-0.7340
+</td>
+<td style="text-align:right;">
+2.335
 </td>
 </tr>
 <tr>
@@ -6417,6 +5080,15 @@ G2
 <td style="text-align:right;">
 2.902
 </td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+0.0630
+</td>
+<td style="text-align:right;">
+2.717
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -6427,6 +5099,15 @@ G3
 </td>
 <td style="text-align:right;">
 2.888
+</td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+-0.0830
+</td>
+<td style="text-align:right;">
+2.922
 </td>
 </tr>
 <tr>
@@ -6439,6 +5120,15 @@ G4
 <td style="text-align:right;">
 2.589
 </td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+0.2908
+</td>
+<td style="text-align:right;">
+2.765
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -6449,6 +5139,15 @@ G5
 </td>
 <td style="text-align:right;">
 2.189
+</td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+0.0776
+</td>
+<td style="text-align:right;">
+2.584
 </td>
 </tr>
 <tr>
@@ -6461,6 +5160,15 @@ G6
 <td style="text-align:right;">
 2.301
 </td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+0.1195
+</td>
+<td style="text-align:right;">
+2.577
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -6471,6 +5179,15 @@ G7
 </td>
 <td style="text-align:right;">
 2.774
+</td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+0.6690
+</td>
+<td style="text-align:right;">
+2.866
 </td>
 </tr>
 <tr>
@@ -6483,6 +5200,15 @@ G8
 <td style="text-align:right;">
 2.899
 </td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+-0.0203
+</td>
+<td style="text-align:right;">
+3.034
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -6494,6 +5220,15 @@ G9
 <td style="text-align:right;">
 2.326
 </td>
+<td style="text-align:right;">
+0.2326
+</td>
+<td style="text-align:right;">
+-0.4923
+</td>
+<td style="text-align:right;">
+2.459
+</td>
 </tr>
 </tbody>
 </table>
@@ -6502,7 +5237,7 @@ Is the phenotypic mean for each genotype and environment combination (*y*<sub>*i
 plotting the scores
 -------------------
 
-For both `WAAS.AMMI` and `WAASB` functions three types of graphics can be generated: 1 = PC1 x PC2, to make inferences related to the interaction effects; 2 = GY x PC1 to make inferences related to stability and productivity; and 3 = GY x WAASB. These graphics can be plotted as follows:
+For both `WAAS.AMMI` and `WAASB` functions three types of graphics can be generated: 1 = PC1 x PC2, to make inferences related to the interaction effects; 2 = GY x PC1 to make inferences related to stability and productivity; 3 = GY x WAASB and 4 = nominal yield x environment PCA1 scores. These are ggplot2-based graphics; so, the apprareance of the graphics can be be personalized by using the function `theme()`
 
 ### biplot type 1: PC1 x PC2
 
@@ -6512,7 +5247,7 @@ plot.scores(WAASB,
             type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-41-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
 
 ### biplot type 2: GY x PC1
 
@@ -6521,14 +5256,19 @@ plot.scores(WAASB,
             type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-42-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
 
 ``` r
-# Save to *.pdf file (default)
+# dafault theme of ggplot2
+library(ggplot2)
 plot.scores(WAASB,
             type = 2,
-            export = TRUE)
+            col.gen = "black",
+            col.env = "blue",
+            theme = theme_gray())
 ```
+
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-39-2.png" style="display: block; margin: auto;" />
 
 ### biplot type 3: GY x WAASB
 
@@ -6539,7 +5279,7 @@ plot.scores(WAASB,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-43-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-40-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # Save to a *.tiff file with resolution of 600 dpi.
@@ -6550,8 +5290,16 @@ plot.scores(WAASB,
             resolution = 600)
 ```
 
-    ## png 
-    ##   2
+### Nominal yield vs environmentPC1 scores
+
+Aiming at identifying possible mega-environments as well as visualizing the "which-won-where" pattern of the dataset, a graphic with the nominal yield ($\\mathop {\\hat y}\\nolimits\_{ij}^\*$) as a function of the environment IPC1 scores is also produced. In this graphic, each genotype is depicted by a straight line with the equation $\\mathop {\\hat y}\\nolimits\_{ij}^\* = {\\mu \_i} + PCA{1\_i} \\times PCA{1\_j}$\], where $\\mathop {\\hat y}\\nolimits\_{ij}^\*$ is the nominal yield for the ith genotype in the jth environment; *μ*<sub>*i*</sub>is the grand mean of the ith genotype; *P**C*1<sub>*i*</sub> is the IPC1 score of the ith genotype and *P**C**A*1<sub>*j*</sub> is the IPC1 score of the jth environment. The winner genotype in a given environment has the highest nominal yield in that environment. This is the type 4 graphic and can be obtained by the following code.
+
+``` r
+plot.scores(WAASB,
+            type = 4)
+```
+
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-41-1.png" style="display: block; margin: auto;" />
 
 Estimating the WAASBY index
 ===========================
@@ -6572,7 +5320,10 @@ This function provide the option of attributing weights for stability and produc
 
 ``` r
 WAASBYratio = WAASBYratio(dataset,
-                          resp = "GY",
+                          resp = GY,
+                          gen = GEN,
+                          env = ENV,
+                          rep = BLOCK,
                           increment = 10,
                           saveWAASY = 50)
 ```
@@ -7576,10 +6327,12 @@ plotting the WAASBY values
 
 ``` r
 plot.WAASBY(WAASBYratio,
-            legend.pos = c(0.9, 0.2))
+            theme = theme_waasb() +
+                    theme(aspect.ratio = NULL,
+                          legend.position = c(0.85, 0.2)))
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-51-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-49-1.png" style="display: block; margin: auto;" />
 
 Plotting the heat map graphics
 ------------------------------
@@ -7593,7 +6346,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-52-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-50-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # save to a *.pdf file (default)
@@ -7609,7 +6362,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-51-1.png" style="display: block; margin: auto;" />
 
 ``` r
 #save to a *tiff file
