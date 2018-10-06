@@ -197,7 +197,7 @@ CROP
 BLUP
 </td>
 <td style="text-align:right;">
-0.4141
+0.4286
 </td>
 <td style="text-align:left;">
 Wheat
@@ -208,10 +208,10 @@ Wheat
 1
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI3
 </td>
 <td style="text-align:right;">
-0.4320
+0.4371
 </td>
 <td style="text-align:left;">
 Wheat
@@ -222,10 +222,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI3
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4322
+0.4385
 </td>
 <td style="text-align:left;">
 Wheat
@@ -239,7 +239,7 @@ Wheat
 AMMI5
 </td>
 <td style="text-align:right;">
-0.4322
+0.4392
 </td>
 <td style="text-align:left;">
 Wheat
@@ -253,7 +253,7 @@ Wheat
 AMMI6
 </td>
 <td style="text-align:right;">
-0.4345
+0.4400
 </td>
 <td style="text-align:left;">
 Wheat
@@ -264,10 +264,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4351
+0.4430
 </td>
 <td style="text-align:left;">
 Wheat
@@ -278,10 +278,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4369
+0.4435
 </td>
 <td style="text-align:left;">
 Wheat
@@ -295,7 +295,7 @@ Wheat
 AMMIF
 </td>
 <td style="text-align:right;">
-0.4384
+0.4438
 </td>
 <td style="text-align:left;">
 Wheat
@@ -309,7 +309,7 @@ Wheat
 AMMI8
 </td>
 <td style="text-align:right;">
-0.4385
+0.4444
 </td>
 <td style="text-align:left;">
 Wheat
@@ -320,10 +320,10 @@ Wheat
 9
 </td>
 <td style="text-align:left;">
-AMMI0
+AMMI1
 </td>
 <td style="text-align:right;">
-0.4399
+0.4614
 </td>
 <td style="text-align:left;">
 Wheat
@@ -334,10 +334,10 @@ Wheat
 10
 </td>
 <td style="text-align:left;">
-AMMI1
+AMMI0
 </td>
 <td style="text-align:right;">
-0.4447
+0.4658
 </td>
 <td style="text-align:left;">
 Wheat
@@ -362,8 +362,9 @@ plot.validation.AMMIF(RMSPDweat,
                       col.boxplot = "gray75")
 ```
 
-    ## Warning in plot.validation.AMMIF(RMSPDweat, violin = FALSE, col.boxplot = "gray75"):
-    ## The object 'x' should be a 'validation.AMMIF' or a 'validation.blup' object.
+    ## Warning in plot.validation.AMMIF(RMSPDweat, violin = FALSE, col.boxplot
+    ## = "gray75"): The object 'x' should be a 'validation.AMMIF' or a
+    ## 'validation.blup' object.
 
 <img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
@@ -5260,6 +5261,11 @@ plot.scores(WAASB,
 ``` r
 # dafault theme of ggplot2
 library(ggplot2)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 3.5.1
+
+``` r
 plot.scores(WAASB,
             type = 2,
             col.gen = "black",
@@ -5289,9 +5295,9 @@ plot.scores(WAASB,
             resolution = 600)
 ```
 
-### Nominal yield vs environmentPC1 scores
+### Nominal yield vs environment IPCA1 scores
 
-Aiming at identifying possible mega-environments as well as visualizing the "which-won-where" pattern of the dataset, a graphic with the nominal yield ($\\mathop {\\hat y}\\nolimits\_{ij}^\*$) as a function of the environment IPC1 scores is also produced. In this graphic, each genotype is depicted by a straight line with the equation $\\mathop {\\hat y}\\nolimits\_{ij}^\* = {\\mu \_i} + PCA{1\_i} \\times PCA{1\_j}$\], where $\\mathop {\\hat y}\\nolimits\_{ij}^\*$ is the nominal yield for the ith genotype in the jth environment; *μ*<sub>*i*</sub>is the grand mean of the ith genotype; *P**C*1<sub>*i*</sub> is the IPC1 score of the ith genotype and *P**C**A*1<sub>*j*</sub> is the IPC1 score of the jth environment. The winner genotype in a given environment has the highest nominal yield in that environment. This is the type 4 graphic and can be obtained by the following code.
+Aiming at identifying possible mega-environments as well as visualizing the "which-won-where" pattern of the dataset, a graphic with the nominal yield ($\\mathop {\\hat y}\\nolimits\_{ij}^\*$) as a function of the environment IPCA1 scores is also produced. In this graphic, each genotype is depicted by a straight line with the equation $\\mathop {\\hat y}\\nolimits\_{ij}^\* = {\\mu \_i} + PCA{1\_i} \\times PCA{1\_j}$, where $\\mathop {\\hat y}\\nolimits\_{ij}^\*$ is the nominal yield for the ith genotype in the jth environment; *μ*<sub>*i*</sub>is the grand mean of the ith genotype; *P**C*1<sub>*i*</sub> is the IPCA1 score of the ith genotype and *P**C**A*1<sub>*j*</sub> is the IPC1 score of the jth environment. The winner genotype in a given environment has the highest nominal yield in that environment. This is the type 4 graphic and can be obtained by the following code.
 
 ``` r
 plot.scores(WAASB,
