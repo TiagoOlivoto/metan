@@ -59,9 +59,9 @@ devtools::install_github("TiagoOlivoto/WAASB")
 | `plot.WAASBYratio()`| Plot heat maps with genotype ranking                                          |
 | `predict.WAAS.AMMI()`| Predict the means of a `WAAS.AMMI` object                                  	|
 | `summary.WAASB()`   | Summary a WAASB object                                                        |
-| `theme_waasb()`     | A personalized theme for the WAASB ggplot2-based graphics                       |
-| `validation.blup()` | Cross-validation for blup prediction                                          |
-| `validation.AMMIF()`| BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio      |
+| `theme_waasb()`     | A personalized theme for the WAASB ggplot2-based graphics                     |
+| `validation.blup()` | Cross-validation for BLUP prediction                                          |
+| `validation.AMMIF()`| Cross-validation for the AMMI-family models                                   |
 | `WAASBYratio()`     | BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio      |
 | `WAAS.AMMI()`	      | Weighted Average of Absolute Scores for AMMI analysis                       	|
 | `WAASratio.AMMI()`  | Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio      |

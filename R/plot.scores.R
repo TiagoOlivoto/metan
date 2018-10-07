@@ -44,7 +44,7 @@ if (type == 1){
   if (is.null(x.lab) == F){
     x.lab = x.lab
   } else
-    x.lab = paste0("\nPC1 (", round(x$PCA[1,3],2), "%)")
+    x.lab = paste0("PC1 (", round(x$PCA[1,3],2), "%)")
 
 
 
@@ -54,7 +54,7 @@ p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
       ggrepel::geom_text_repel(aes(PC1, PC2, label = (Code)), size = size.tex)  +
       theme +
-      labs(x = paste("\n", x.lab), y = paste(y.lab)) +
+      labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
@@ -107,7 +107,7 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
       ggrepel::geom_text_repel(aes(Y, PC1, label = (Code)), size = size.tex)  +
       theme +
-      labs(x = paste("\n", x.lab), y = paste(y.lab)) +
+      labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = mean(x$model$Y), linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
@@ -166,7 +166,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
 ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
      theme +
-      labs(x = paste("\n", x.lab), y = paste(y.lab)) +
+      labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = m1, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
@@ -190,7 +190,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
         scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
         ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)), size = size.tex)  +
         theme +
-        labs(x = paste("\n", x.lab), y = paste(y.lab)) +
+        labs(x = paste(x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
         geom_vline(xintercept = m1, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
@@ -257,7 +257,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
       theme(legend.position = "none") +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-      labs(x = paste("\n", x.lab), y = y.lab)
+      labs(x = paste(x.lab), y = y.lab)
 
     if (export  ==  F|FALSE) {
       return(p4)
