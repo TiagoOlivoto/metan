@@ -29,7 +29,8 @@ Summary the  \code{WAASB} object in two ways. By default, the results are shown 
 
 \examples{
 library(WAASB)
-model = WAASB(WAASBdata, resp = "GY", prob = 0.95, weight.response = 50, weight.WAAS = 50)
+model = WAASB(WAASBdata, GY, GEN, ENV, REP)
+summary.WAASB(model, digits = 2)
 summary.WAASB(model, export = T, file.name = "my results")
 }
 
