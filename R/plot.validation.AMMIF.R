@@ -1,5 +1,5 @@
 plot.validation.AMMIF = function(x,
-                                violin = TRUE,
+                                violin = FALSE,
                                 export = FALSE,
                                 x.lab = NULL,
                                 y.lab = NULL,

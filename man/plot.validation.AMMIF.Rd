@@ -3,7 +3,7 @@
 \title{Plot the RMSPD of all AMMI-family tested models}
 \usage{
 
-\method{plot}{validation.AMMIF}(x, violin = TRUE, export = FALSE,  x.lab = NULL,
+\method{plot}{validation.AMMIF}(x, violin = FALSE, export = FALSE,  x.lab = NULL,
      y.lab = NULL, file.type = "pdf", file.name = NULL,
      theme = theme_waasb(),width = 6, height = 6, resolution = 300,
      col.violin = "gray90", col.boxplot = "gray70", width.boxplot = 0.2,
