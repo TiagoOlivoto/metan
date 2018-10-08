@@ -42,7 +42,7 @@ p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
           y = y.lab)
   }else{dodge = position_dodge(width = 1)
 p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
-      geom_boxplot(width = 0.2, position = dodge, fill = col.boxplot) +
+      geom_boxplot(width = width.boxplot, position = dodge, fill = col.boxplot) +
       stat_summary(fun.y = mean,
                    geom = "point",
                    shape = 23,
