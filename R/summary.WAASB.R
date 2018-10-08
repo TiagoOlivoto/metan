@@ -98,7 +98,8 @@ summary.WAASB = function(object,
     print.data.frame(object$Details, row.names = FALSE)
     cat("\n")
     cat("\n")
-    cat("-------------------------------------- End of data -------------------------------------\n")sink()
+    cat("-------------------------------------- End of data -------------------------------------\n")
+    sink()
   }
 
 }
