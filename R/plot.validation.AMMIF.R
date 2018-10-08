@@ -1,6 +1,8 @@
 plot.validation.AMMIF = function(x,
                                 violin = TRUE,
                                 export = FALSE,
+                                x.lab = NULL,
+                                y.lab = NULL,
                                 file.type = "pdf",
                                 file.name = NULL,
                                 theme = theme_waasb(),
@@ -14,28 +16,42 @@ plot.validation.AMMIF = function(x,
                                 x.breaks = waiver(),
                                 ...){
 
-if (class(x) != "validation.AMMIF" & class(x) != "validation.blup"){
-  warning("The object 'x' should be a 'validation.AMMIF' or a 'validation.blup' object.")
-}
+  if (is.null(y.lab) == F){
+    y.lab = y.lab
+  } else
+    y.lab = expression(paste("Root mean square prediction difference (Mg ha"^-1,")"))
 
-if (violin == T|FALSE){
+  if (is.null(x.lab) == F){
+    x.lab = x.lab
+  } else
+    x.lab = "AMMI family models"
+
+if (violin == TRUE){
 dodge = position_dodge(width = 1)
 p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
      geom_violin(position = dodge, fill = col.violin) +
      geom_boxplot(width = width.boxplot, position = dodge, fill = col.boxplot) +
+     stat_summary(fun.y = mean,
+                  geom = "point",
+                  shape = 23,
+                  fill = "black")+
      theme +
      coord_flip() +
      scale_y_continuous(limits = x.lim, breaks = x.breaks) +
-     labs(x = "\nTested models",
-          y = expression(paste("Root mean square prediction difference (Mg ha"^-1,")")) )
+     labs(x = x.lab,
+          y = y.lab)
   }else{dodge = position_dodge(width = 1)
 p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
       geom_boxplot(width = 0.2, position = dodge, fill = col.boxplot) +
+      stat_summary(fun.y = mean,
+                   geom = "point",
+                   shape = 23,
+                   fill = "black")+
       theme +
       coord_flip() +
       scale_y_continuous(limits = x.lim, breaks = x.breaks) +
-      labs(x = "\nTested models",
-           y = expression(paste("Root mean square prediction difference (Mg ha"^-1,")")) )
+      labs(x = x.lab,
+           y = y.lab)
   }
 
   if(export  ==  F|FALSE) {

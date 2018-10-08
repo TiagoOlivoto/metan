@@ -30,8 +30,6 @@ summary.WAAS.AMMI = function(object,
   cat("\n")
   cat("------------------------- Some information regarding the analysis ----------------------\n")
   print.data.frame(object$Details, row.names = FALSE)
-  cat("\n")
-  cat("\n")
   cat("-------------------------------------- End of data -------------------------------------\n")
 
   if(export  ==  TRUE|T){
@@ -60,8 +58,6 @@ summary.WAAS.AMMI = function(object,
     cat("\n")
     cat("------------------------- Some information regarding the analysis ----------------------\n")
     print.data.frame(object$Details, row.names = FALSE)
-    cat("\n")
-    cat("\n")
     cat("------------------------------------ End of data ---------------------------------------\n")
     sink()
   }

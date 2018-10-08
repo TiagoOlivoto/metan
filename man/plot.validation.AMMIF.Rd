@@ -1,27 +1,31 @@
 \name{plot.validation.AMMIF}
 \alias{plot.validation.AMMIF}
-\title{Plot the RMSE of all AMMI-family tested models}
+\title{Plot the RMSPD of all AMMI-family tested models}
 \usage{
 
-\method{plot}{validation.AMMIF}(x, violin = TRUE, export = FALSE,
-    file.type = "pdf", file.name = NULL, theme = theme_waasb(),
-    width = 6, height = 6, resolution = 300, col.violin = "gray90",
-    col.boxplot = "gray70", width.boxplot = 0.2, x.lim = NULL,
-    x.breaks = waiver(), ...)
+\method{plot}{validation.AMMIF}(x, violin = TRUE, export = FALSE,  x.lab = NULL,
+     y.lab = NULL, file.type = "pdf", file.name = NULL,
+     theme = theme_waasb(),width = 6, height = 6, resolution = 300,
+     col.violin = "gray90", col.boxplot = "gray70", width.boxplot = 0.2,
+     x.lim = NULL, x.breaks = waiver(), ...)
 }
 
 \description{
-Plot the Root Means Square Error of all AMMI-family tested models
+Boxplot showing the Root Means Square Prediction Difference of all AMMI family models obtained in a cross-validation procedure.
 
 }
 
 \arguments{
 
-  \item{x}{A \code{validation.AMMIF} object}
+  \item{x}{An object of class \code{validation.AMMIF}.}
 
   \item{violin}{Define if a violine plot is used with boxplot. Default is "TRUE"}
 
     \item{export}{Export (or not) the plot. Default is \code{T}.}
+
+   \item{x.lab}{The label of x-axis. New arguments can be inserted as \code{x.lab = "my x label"}.}
+
+  \item{y.lab}{The label of y-axis. New arguments can be inserted as \code{y.lab = "my y label"}.}
 
   \item{file.type}{The type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
 
@@ -62,10 +66,11 @@ Five statistics are shown in this type of plot. The lower and upper hinges corre
 
 \examples{
 library(WAASB)
-validation = validation.AMMIF(WAASBdata, resp = "GY", nboot = 100, nrepval = 2)
+validation = validation.AMMIF(WAASBdata, GY, GEN, ENV, REP,
+                              nboot = 100, nrepval = 2)
 
 #A plot without a violin plot exported to a *.pdf file
-plot.validation.AMMIF(validation, violin = F, export = T)
+plot(validation, violin = F, export = T)
 }
 
 \seealso{\code{\link{plot.scores}}, \code{\link{plot.WAASBY}}}
