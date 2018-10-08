@@ -1,10 +1,13 @@
 predict.WAAS.AMMI = function(object,
                              naxis,
+                             digits = 4,
                              ...){
 
 if (class(object) != "WAAS.AMMI"){
   stop("The object must be an object of the class 'WAAS.AMMI'")
 }
+  options(digits = digits)
+
   resp = object$MeansGxE$Y
   ENV = factor(object$MeansGxE$ENV)
   GEN = factor(object$MeansGxE$GEN)

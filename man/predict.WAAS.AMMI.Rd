@@ -2,7 +2,7 @@
 \alias{predict.WAAS.AMMI}
 \title{Predict the means of a WAAS.AMMI object}
 \usage{
-\method{predict}{WAAS.AMMI}(object, naxis, ...)
+\method{predict}{WAAS.AMMI}(object, naxis, digits = 4, ...)
 }
 
 \description{
@@ -14,6 +14,8 @@ Predict the means of a WAAS.AMMI object considering a specific number of axis.
   \item{object}{An object of class WAAS.AMMI}
 
   \item{naxis}{The the number of axis to be use in the prediction. }
+
+  \item{digits}{The significant digits to be shown.}
 
   \item{...}{Additional parameter for the function}
   }
