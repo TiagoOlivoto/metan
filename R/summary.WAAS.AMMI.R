@@ -11,12 +11,12 @@ summary.WAAS.AMMI = function(object,
 
   options(digits = digits)
 
-  cat("------------------------ Some informations related to the analysis ----------------------\n")
+  cat("------------------------ Some informations related to the analysis ---------------------\n")
   cat("WAAS = Weighted average of Absolute Scores ","\n")
   cat("PctResp = Percentage of the i-th observation in relation to the maximum productivity","\n")
   cat("PctWAAS = Percentage of the i-th observation in relation to the minimum WAAS ","\n")
   cat("WAASY = Weighted average of Absolute Scores and Yield (this index allow weighting the productivity and the stability) ","\n")
-  cat("--------------------------- Individual analysis of variance--- ---------------------\n")
+  cat("------------------------------ Individual analysis of variance--- ---------------------\n")
   print.data.frame(object$individual$individual, row.names = FALSE)
   cat("\n")
   cat("-------------------------------------- AMMI analysis -----------------------------------\n")
@@ -32,7 +32,7 @@ summary.WAAS.AMMI = function(object,
   print.data.frame(object$Details, row.names = FALSE)
   cat("\n")
   cat("\n")
-  cat("------------------------------------ End of data ---------------------------------------\n")
+  cat("-------------------------------------- End of data -------------------------------------\n")
 
   if(export  ==  TRUE|T){
     if(is.null(file.name)==T){
@@ -41,7 +41,7 @@ summary.WAAS.AMMI = function(object,
     sink(paste0(file.name,".txt"))
     options(max.print = 99999999, width = 90)
 
-    cat("------------------------ Some informations related to the analysis ----------------------\n")
+    cat("------------------------ Some informations related to the analysis ---------------------\n")
     cat("WAAS = Weighted average of Absolute Scores ","\n")
     cat("PctResp = Percentage of the i-th observation in relation to the maximum productivity","\n")
     cat("PctWAAS = Percentage of the i-th observation in relation to the minimum WAAS ","\n")
