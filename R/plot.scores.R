@@ -1,9 +1,11 @@
 plot.scores = function(x,
                      type,
+                     polygon = FALSE,
                      file.type = "pdf",
                      export = FALSE,
                      file.name = NULL,
                      theme = theme_waasb(),
+                     axis.expand = 1.1,
                      width = 8,
                      height = 7,
                      x.lim = NULL,
@@ -14,25 +16,30 @@ plot.scores = function(x,
                      y.breaks = waiver(),
                      shape.gen = 21,
                      shape.env = 23,
-                     size.shape = 3.5,
+                     size.shape = 2.5,
                      size.tex = 3.5,
                      size.line = 0.5,
                      size.segm.line = 0.5,
                      leg.lab = c("Gen", "Env"),
-                     line.type = "dashed",
+                     line.type = "solid",
                      line.alpha = 0.9,
                      col.line = "gray",
-                     col.gen = "gray75",
+                     col.gen = "blue",
                      col.env = "red",
                      col.alpha = 0.9,
                      col.segm.gen = "transparent",
-                     col.segm.env = "grey50",
+                     col.segm.env = "red",
                      resolution = 300,
                      ...){
 
 
-  class = class(x)
+  if(polygon == TRUE & type != 1){
+    stop("The polygon can be drawn with type 1 graphic only.")
+  }
 
+  class = class(x)
+ nenv = nrow(subset(x$model, type == "ENV"))
+ ngen = nrow(subset(x$model, type == "GEN"))
 
 if (type == 1){
 
@@ -47,22 +54,98 @@ if (type == 1){
     x.lab = paste0("PC1 (", round(x$PCA[1,3],2), "%)")
 
 
+    if (is.null(x.lim) == F){
+    x.lim = x.lim
+  } else {
+    x.lim = c(min(x$model$PC1 * axis.expand),
+              max(x$model$PC1 * axis.expand))
+  }
 
-p1 = ggplot2::ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
+  if (is.null(y.lim) == F){
+    y.lim = y.lim
+  } else {
+    y.lim = c(min(x$model$PC2 * axis.expand),
+              max(x$model$PC2 * axis.expand))
+  }
+
+
+p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
-      scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
-      ggrepel::geom_text_repel(aes(PC1, PC2, label = (Code)), size = size.tex)  +
+      scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
+      ggrepel::geom_text_repel(aes(PC1, PC2, label = (Code)),
+                               size = size.tex, col = c(rep(col.gen, ngen),
+                                                        rep(col.env, nenv))) +
       theme +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       geom_vline(xintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
       geom_hline(yintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
-      geom_segment(data = x$WAAS, aes(x = 0, y = 0, xend = PC1, yend = PC2, size =  type, color = type, group = type),
+      geom_segment(data = x$model, aes(x = 0, y = 0, xend = PC1, yend = PC2, size =  type, color = type, group = type),
                    arrow = arrow(length = unit(0.15, 'cm'))) +
-      scale_color_manual(name = "", values = c( col.segm.gen, col.segm.env), theme(legend.position = "none")) +
+      scale_color_manual(name = "", values = c(col.segm.gen, col.segm.env), theme(legend.position = "none")) +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
+
+if(polygon == TRUE){
+
+  gen = data.frame(subset(x$model, type == "GEN"))
+  coordgenotype = data.frame(subset(x$model, type == "GEN"))[,4:5]
+  coordenviroment = data.frame(subset(x$model, type == "ENV"))[,4:5]
+
+  hull <- chull(gen[,4:5])
+  indice <- c(hull, hull[1])
+  segs <- NULL
+  limx <- x.lim
+  limy <- y.lim
+  i <- 1
+  while (is.na(indice[i + 1]) == FALSE) {
+    m <- (coordgenotype[indice[i], 2] - coordgenotype[indice[i +
+                                                               1], 2])/(coordgenotype[indice[i], 1] - coordgenotype[indice[i +
+                                                                                                                             1], 1])
+    mperp <- -1/m
+    c2 <- coordgenotype[indice[i + 1], 2] - m * coordgenotype[indice[i +
+                                                                       1], 1]
+    xint <- -c2/(m - mperp)
+    xint <- ifelse(xint < 0, min(coordenviroment[, 1],
+                                 coordgenotype[, 1]), max(coordenviroment[, 1],
+                                                          coordgenotype[, 1]))
+    yint <- mperp * xint
+    xprop <- ifelse(xint < 0, xint/limx[1], xint/limx[2])
+    yprop <- ifelse(yint < 0, yint/limy[1], yint/limy[2])
+    m3 <- which(c(xprop, yprop) == max(c(xprop, yprop)))
+    m2 <- abs(c(xint, yint)[m3])
+    if (m3 == 1 & xint < 0)
+      sl1 <- (c(xint, yint)/m2) * abs(limx[1])
+    if (m3 == 1 & xint > 0)
+      sl1 <- (c(xint, yint)/m2) * limx[2]
+    if (m3 == 2 & yint < 0)
+      sl1 <- (c(xint, yint)/m2) * abs(limy[1])
+    if (m3 == 2 & yint > 0)
+      sl1 <- (c(xint, yint)/m2) * limy[2]
+    segs <- rbind(segs, sl1)
+    i <- i + 1
+  }
+  rownames(segs) <- NULL
+  colnames(segs) <- NULL
+  segs <- data.frame(segs)
+
+p1 = p1 + geom_segment(aes(x = X1, y = X2),
+               xend = 0,
+               yend = 0,
+               linetype = 2,
+               size = size.segm.line,
+               color = "black",
+               data = segs,
+               inherit.aes = FALSE) +
+          geom_polygon(data = gen[indice,],
+                       fill = NA,
+                       col = col.gen,
+                       linetype = 2)
+
+
+}
+
 
     if (export  ==  F|FALSE) {
       return(p1)
@@ -100,12 +183,27 @@ if (type == 2){
   } else
     x.lab = paste0("Grain yield")
 
+  if (is.null(x.lim) == F){
+    x.lim = x.lim
+  } else {
+    x.lim = c(min(x$model$Y) - (min(x$model$Y) * axis.expand - min(x$model$Y)),
+              max(x$model$Y) + (max(x$model$Y) * axis.expand - max(x$model$Y)))
+  }
+
+  if (is.null(y.lim) == F){
+    y.lim = y.lim
+  } else {
+    y.lim = c(min(x$model$PC1 * axis.expand),
+              max(x$model$PC1 * axis.expand))
+  }
      mean = mean(x$model$Y)
 p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
-      ggrepel::geom_text_repel(aes(Y, PC1, label = (Code)), size = size.tex)  +
+      ggrepel::geom_text_repel(aes(Y, PC1, label = (Code)),
+                               size = size.tex, col = c(rep(col.gen, ngen),
+                                                        rep(col.env, nenv)))  +
       theme +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
@@ -153,7 +251,22 @@ if (type == 3){
   } else
     x.lab = paste0("Grain yield")
 
+
     if (class  ==  "WAASB"){
+
+      if (is.null(x.lim) == F){
+        x.lim = x.lim
+      } else {
+        x.lim = c(min(x$model$Y) - (min(x$model$Y) * axis.expand - min(x$model$Y)),
+                  max(x$model$Y) + (max(x$model$Y) * axis.expand - max(x$model$Y)))
+      }
+
+      if (is.null(y.lim) == F){
+        y.lim = y.lim
+      } else {
+        y.lim = c(min(x$model$WAASB) - (min(x$model$WAASB) * axis.expand - min(x$model$WAASB)),
+                  max(x$model$WAASB) + (max(x$model$WAASB) * axis.expand - max(x$model$WAASB)))
+      }
     m1 = mean(x$model$Y)
     m2 = mean(x$model$WAASB)
     I = grid::grobTree(grid::textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
@@ -164,7 +277,9 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
-ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
+ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)),
+                         size = size.tex, col = c(rep(col.gen, ngen),
+                                                  rep(col.env, nenv)))  +
      theme +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
@@ -178,6 +293,19 @@ ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)), size = size.tex)  +
     }
 
 if (class  ==  "WAAS.AMMI"){
+  if (is.null(x.lim) == F){
+    x.lim = x.lim
+  } else {
+    x.lim = c(min(x$model$Y) - (min(x$model$Y) * axis.expand - min(x$model$Y)),
+              max(x$model$Y) + (max(x$model$Y) * axis.expand - max(x$model$Y)))
+  }
+
+  if (is.null(y.lim) == F){
+    y.lim = y.lim
+  } else {
+    y.lim = c(min(x$model$WAAS) - (min(x$model$WAAS) * axis.expand - min(x$model$WAAS)),
+              max(x$model$WAAS) + (max(x$model$WAAS) * axis.expand - max(x$model$WAAS)))
+  }
       m1 = mean(x$model$Y)
       m2 = mean(x$model$WAAS)
       I = grid::grobTree(grid::textGrob("I", x = 0.02,  y = 0.98, hjust = 0))
@@ -188,7 +316,9 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
         geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
         scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
         scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
-        ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)), size = size.tex)  +
+        ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)),
+                                 size = size.tex, col = c(rep(col.gen, ngen),
+                                                          rep(col.env, nenv)))  +
         theme +
         labs(x = paste(x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
@@ -236,6 +366,20 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
     } else
       x.lab = paste0("Environment PC1 [square root of  (Mg/ha)]")
 
+    if (is.null(x.lim) == F){
+      x.lim = x.lim
+    } else {
+      x.lim = c(min(x$MeansGxE$envPC1),
+                max(x$MeansGxE$envPC1))
+    }
+
+    if (is.null(y.lim) == F){
+      y.lim = y.lim
+    } else {
+      y.lim = c(min(x$MeansGxE$nominal),
+                max(x$MeansGxE$nominal))
+
+    }
 
     min = min(x$MeansGxE$nominal)
 

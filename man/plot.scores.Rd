@@ -9,15 +9,17 @@
 }
 
 \usage{
-\method{plot}{scores}(x, type, file.type = "pdf", export = FALSE,
-   file.name = NULL, theme = theme_waasb(),  width = 8, height = 7,
-   x.lim = NULL, x.breaks = waiver(), x.lab = NULL, y.lab = NULL,
-   y.lim = NULL, y.breaks = waiver(), shape.gen = 21, shape.env = 23,
-   size.shape = 3.5, size.tex = 3.5, size.line = 0.5, size.segm.line = 0.5,
-   leg.lab = c("Gen", "Env"), line.type = "dashed", line.alpha = 0.9,
-   col.line = "gray", col.gen = "gray75", col.env = "red", col.alpha = 0.9,
-   col.segm.gen = "transparent", col.segm.env = "grey50", resolution = 300,
-   ...)
+\method{plot}{scores}(x, type, polygon = FALSE, file.type = "pdf",
+   export = FALSE, file.name = NULL, theme = theme_waasb(),
+   axis.expand = 1.1,  width = 8, height = 7, x.lim = NULL,
+   x.breaks = waiver(), x.lab = NULL, y.lab = NULL,
+   y.lim = NULL, y.breaks = waiver(), shape.gen = 21,
+   shape.env = 23, size.shape = 2.5, size.tex = 3.5,
+   size.line = 0.5, size.segm.line = 0.5, leg.lab = c("Gen", "Env"),
+   line.type = "solid", line.alpha = 0.9, col.line = "gray",
+   col.gen = "blue", col.env = "red", col.alpha = 0.9,
+   col.segm.gen = "transparent", col.segm.env = "red",
+   resolution = 300, ...)
 
 }
 
@@ -27,6 +29,8 @@
 
   \item{type}{Three types of graphics can be generated: \code{1 = PC1 x PC2}, to make inferences related to the interaction effects; \code{2 = GY x PC1} to make inferences related to stability and productivity; \code{3 = GY x WAASB}, and \code{4 = Nominal yield x Environment PC1}.}
 
+  \item{polygon}{Logical argument. If \code{TRUE}, a polygon is drawn when \code{type 1}.}
+
   \item{file.type}{The type of file to be exported. Valid parameter if \code{export = T|TRUE}.  Default is \code{"pdf"}. The graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
 
   \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
@@ -34,6 +38,8 @@
   \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
   \item{theme}{The graphical theme of the plot. Default is `theme = theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be applied using the arguments: `theme = theme_waasb() + theme(some stuff here)`. For more details, please, see `?ggplot2::theme`}
+
+  \item{axis.expand}{Multiplication factor to expand the axis limits by to enable fitting of labels. Default is \code{1.1}.}
 
   \item{width}{The width "inch" of the plot. Default is \code{8}.}
 
@@ -55,7 +61,7 @@
 
   \item{shape.env}{The shape for environment indication in the biplot. Default is \code{23} (diamond). The same arguments than \code{"shape.gen"}.}
 
-  \item{size.shape}{The size of the shape (both for genotypes and environments). Default is \code{3.5}.}
+  \item{size.shape}{The size of the shape (both for genotypes and environments). Default is \code{2.5}.}
 
   \item{size.tex}{The size of the text in the background of the plot. Default is \code{3.5}.}
 
@@ -72,7 +78,7 @@
 
   \item{col.line}{The color of the line that indicate the means in the biplot. Default is \code{"gray"}}
 
-  \item{col.gen}{The shape color for genotypes. Default is \code{"gray75"}. Other values can be attributed. For example, \code{"transparent"}, will make a plot with only an outline around the shape area.}
+  \item{col.gen}{The shape color for genotypes. Default is \code{"blue"}. Other values can be attributed. For example, \code{"transparent"}, will make a plot with only an outline around the shape area.}
 
   \item{col.env}{The shape color for environments. Default is \code{"red"}. The same usability than \code{"col.gen"}.}
 
