@@ -31,8 +31,8 @@ WAASB = function(data,
     cat("\nThe number of environments and number of genotypes must be greater than 2\n")
   }
 
-  temp = NULL
-  actualenv = 0
+actualenv = 0
+temp = NULL
   for (i in 1:length(unique(data$ENV))){
     envnam = levels(data$ENV)[actualenv + 1]
     data2 = subset(data, ENV == paste0(envnam))
@@ -62,6 +62,7 @@ WAASB = function(data,
   }
   names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
                   "Pr>F(Blo)","Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+
   MSEratio = max(temp$MSres) / min(temp$MSres)
   individual = list(individual = temp,
                     MSEratio = MSEratio)
