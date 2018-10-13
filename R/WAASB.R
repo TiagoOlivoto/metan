@@ -31,12 +31,12 @@ WAASB = function(data,
     cat("\nThe number of environments and number of genotypes must be greater than 2\n")
   }
 
-  temp = data.frame(matrix(".",length(unique(data$ENV)),13))
+  temp = data.frame(matrix(".",length(unique(data$ENV)),12))
   actualenv = 0
   for (n in c(1:13)) {
     temp[,n] = as.numeric(temp[,n])
   }
-  names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)", "Pr>F(Blo)","Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS", "R2")
+  names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)", "Pr>F(Blo)","Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
   for (i in 1:length(unique(data$ENV))){
     envnam = levels(data$ENV)[actualenv + 1]
     data2 = subset(data, ENV == paste0(envnam))
@@ -47,7 +47,7 @@ WAASB = function(data,
     NR = length(unique(data2$REP))
     CV = sqrt(MSE)/mean(data2$Y)*100
     h2 = (MSG - MSE)/MSG
-    AS = sqrt(h2)
+    if (h2 < 0) {AS = 0} else {AS = sqrt(h2)}
     temp[i,1] = paste(envnam)
     temp[i,2] = mean(data2$Y)
     temp[i,3] = MSB
@@ -60,7 +60,6 @@ WAASB = function(data,
     temp[i,10] = CV
     temp[i,11] = h2
     temp[i,12] = AS
-    temp[i,13] = 1/(2-AS^2)
 
     actualenv = actualenv + 1
 
