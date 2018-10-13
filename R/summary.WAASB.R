@@ -50,7 +50,7 @@ summary.WAASB = function(object,
   print.data.frame(object$Details, row.names = FALSE)
   cat("-------------------------------------- End of data -------------------------------------\n")
 
-  if(export  ==  TRUE|T){
+  if(export  ==  TRUE){
     if(is.null(file.name) == T){
       file.name = "WAASB summary"
     } else{file.name = file.name}
