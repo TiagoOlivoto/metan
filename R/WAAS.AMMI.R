@@ -168,7 +168,8 @@ return(structure(list(individual = individual,
                       MeansGxE = MeansGxE,
                       PCA = PCA,
                       anova = anova,
-                      Details = Details),
+                      Details = Details,
+                      residuals = model$residuals),
                  class = "WAAS.AMMI"))
   }
 }

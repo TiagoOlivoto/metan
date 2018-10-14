@@ -8,6 +8,8 @@ performs_ammi = function (ENV, GEN, REP, Y){
   minimo = min(ngen, nenv)
   nrep = length(unique(REP))
   model = aov(Y ~ ENV + REP %in% ENV + GEN + ENV:GEN)
+  residuals = list(residuals = ggplot2::fortify(model),
+                   DFe = model$df.residual)
   mm = anova(model)
   nn = mm[2, ]
   mm[2, ] = mm[3, ]
@@ -146,7 +148,8 @@ performs_ammi = function (ENV, GEN, REP, Y){
   object = list(ANOVA = anova,
                 analysis = PC,
                 means = MEANS,
-                biplot = bplot)
+                biplot = bplot,
+                residuals = residuals)
   class(object) = "WAASB"
   return(object)
 }
