@@ -67,9 +67,10 @@ WAASB = function(data,
 
   if (random  ==  "all"){
 
-    Complete = suppressWarnings(suppressMessages(lmerTest::lmer(Y ~   (1|ENV) + (1|GEN) + (1|REP%in%ENV) + (1|GEN:ENV))))
+    Complete = suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ (1|ENV) + (1|GEN) + (1|REP/ENV) + (1|GEN:ENV))))
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
-    rownames(LRT) = c("Complete", "Environment", "Genotype", "Gen vs Env")
+    rownames(LRT) = c("Complete", "Environment", "Genotype",
+                      "Env:Rep", "Rep", "Gen:Env")
     random = as.data.frame(VarCorr(Complete))[,c(1,4)]
     random = random[with(random, order(grp)), ]
     names(random) = c("Group", "Variance")
@@ -270,7 +271,6 @@ WAASB = function(data,
       dplyr::select(Rank, everything())
 
 
-
     blupENV = bups$ENV
     blupENV = cbind(ENV = MENV$Code, BLUP = blupENV)
     colnames(blupENV) = c("Code", "BLUPe")
@@ -283,7 +283,6 @@ WAASB = function(data,
       dplyr::select(Rank, everything())
 
     selectioNenv = suppressMessages(dplyr::left_join(blups, blupGEN %>% select(GEN, BLUPg)))
-
     selectioNenv = suppressMessages(dplyr::mutate(selectioNenv,
                                                  BLUPe = left_join(blups, blupENV %>% select(Code, BLUPe))$BLUPe,
                                                  ggee = BLUPge + BLUPg + BLUPe,
