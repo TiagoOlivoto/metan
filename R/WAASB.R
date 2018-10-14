@@ -94,9 +94,11 @@ WAASB = function(data,
     GEVper = (GEV/FV) * 100
     GVper = (GV/FV) * 100
     RVper = (RV/FV) * 100
+    EVper = (EV/FV) * 100
     GEV = paste0(round(GEV, 6), " (", round(GEVper,2), "% of fenotypic variance.)")
     GV = paste0(round(GV,6), " (", round(GVper,2), "% of fenotypic variance.)")
     RV = paste0(round(RV,6), " (", round(RVper,2), "% of fenotypic variance.)")
+    EV = paste0(round(EV,6), " (", round(EVper,2), "% of fenotypic variance.)")
     ESTIMATES = list(GEV = GEV,
                      GV = GV,
                      EV = EV,
