@@ -289,6 +289,13 @@ WAASB = function(data,
                                                  ggee = BLUPge + BLUPg + BLUPe,
                                                  Predicted = ggee + ovmean ))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPe", "BLUPge+g+e", "Predicted")
+    data = Complete@frame
+    data$factors = paste(data$ENV, data$GEN)
+    df = lme4::fortify.merMod(Complete)
+    df = data.frame(fitted = df$.fitted,
+                     resid = df$.resid,
+                     stdres = df$.scresid)
+    residuals = cbind(data, df)
     return(structure(list(individual = individual,
                           model = WAASAbsInicial,
                           BLUPgen = blupGEN,
@@ -299,7 +306,8 @@ WAASB = function(data,
                           Details = Details,
                           REML = random,
                           ESTIMATES = ESTIMATES,
-                          LRT = LRT),
+                          LRT = LRT,
+                          residuals = residuals),
                      class = "WAASB"))
   }
   if (random  ==  "gen"){
@@ -514,6 +522,13 @@ WAASB = function(data,
                                                  UL = Predicted + Limits))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge", "Predicted", "LL", "UL")
 
+    data = Complete@frame
+    data$factors = paste(data$ENV, data$GEN)
+    df = fortify(Complete)
+    df = data.frame(fitted = df$.fitted,
+                     resid = df$.resid,
+                     stdres = df$.scresid)
+    residuals = cbind(data, df)
     return(structure(list(individual = individual,
                           model = WAASAbsInicial,
                           BLUPgen = blupGEN,
@@ -523,7 +538,8 @@ WAASB = function(data,
                           Details = Details,
                           REML = REML,
                           ESTIMATES = ESTIMATES,
-                          LRT = LRT),
+                          LRT = LRT,
+                          residuals = residuals),
                      class = "WAASB"))
   }
 }
