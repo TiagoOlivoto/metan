@@ -2,7 +2,8 @@
 \alias{WAASB}
 \title{Weighted Average of Absolute Scores for BLUP-based PCA analysis}
 \usage{
-WAASB(data, resp, gen, env, rep, random = "gen", prob = 0.95,
+WAASB(data, resp, gen, env, rep, random = "gen",
+      ddf = "Kenward-Roger", prob = 0.95,
       weight.response = 50, weight.WAAS = 50)
 }
 \description{
@@ -22,7 +23,9 @@ Compute the Weighted Average of Absolute Scores for PCA analysis based on the GE
 
   \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
-  \item{random}{The effect to be considered as random. Default is genotype "gen". For considering both genotypes and environments as random inform \code{random = "all"}.}
+  \item{random}{The effect to be considered as random. Default is genotype "gen". A random effects model can be fitted using \code{random = "all"}.}
+
+  \item{ddf}{The method for computing the denominator degrees of freedom and F-statistics for fixed effect when \code{random = "gen"}. Default is \code{ddf = "Kenward-Roger"} that uses Kenward-Roger's method. See \code{\link[lmerTest]{anova.lmerModLmerTest}} for more details.}
 
   \item{prob}{The probability for estimating confidence interval for BLUP's prediction. }
 
@@ -46,7 +49,9 @@ This function compute the weighted average of absolute scores considering all pr
 
 \item{BLUPgen}{The estimated BLUPS for genotypes.}
 
-\item{BLUPgge}{The estimated BLUPS of all genotypes in all environments "BLUPij".}
+\item{BLUPenv}{The estimated BLUPS for environments (If \code{random = "all}.}
+
+\item{BLUPge}{The estimated BLUPS of all genotypes in all environments "BLUPij".}
 
 \item{PCA}{The results of Principal Component Analysis with eigenvalues and explained variance of BLUP-interaction matrix.}
 
@@ -55,7 +60,7 @@ This function compute the weighted average of absolute scores considering all pr
 
 \item{Details}{A list summarizing the results. The following information are showed. \code{WgtResponse}, the weight for the response variable in estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the number of genotypes, \code{Nenv} the number of environments, \code{OVmean} the overall mean, \code{Min} the minimum observed (returning the genotype and environment), \code{Max} the maximum observed, \code{Max} the maximum observed, \code{MinENV} the environment with the lower mean, \code{MaxENV} the environment with the larger mean observed, \code{MinGEN} the genotype with the lower mean,  \code{MaxGEN} the genotype with the larger.}
 
-\item{REML}{A list with the following data frames: \code{fixed} (estimates for fixed effects);  \code{random} (the variance components for random effects);  \code{statistics} (some statistics such as sigma, logLik, AIC, BIC, deviance...)}
+\item{REML}{A list with the following data frames: \code{fixed}, that contains the ANOVA table with F-tests and p-values for fixed effects (If \code{random = "gen"}); and \code{random} that contains the estimated variance components of the random effects}
 
 \item{ESTIMATES}{A list with the following values: \code{GEV} the genotype-by-environment variance (and percentage of phenotypic variance); \code{GV} the genotypic variance (and percentage of phenotypic variance); \code{EV} the environmental variance;\code{RV} the residual variance (and percentage of phenotypic variance); \code{FV} the phenotypic variance;  \code{h2g} the heritability of the trait; \code{GEr2} the coefficient of determination of the interaction effects; \code{h2mg} the heritability of the mean; \code{AccuGen} the selective accuracy; \code{rge} the genotype-environment correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr} the residual coefficient of variation; \code{CVratio} the ratio between genotypic and residual coefficient of variation.}
 
@@ -66,16 +71,17 @@ This function compute the weighted average of absolute scores considering all pr
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-# solely genotypes as random effects and equal weights for both response variable and stability
+# Ggenotypes as random effects and equal weights for both response variable and stability
 
 library(WAASB)
 model = WAASB(WAASBdata, GY, GEN, ENV, REP)
 
 # Higher weight for stability
-#library(WAASB)
 model2 = WAASB(WAASBdata, rep = REP, env = ENV, resp = GY, gen = GEN,
                weight.response = 70, weight.WAAS = 30)
 
+# A random-effect model
+model3 = WAASB(WAASBdata, GY, GEN, ENV, REP, random = "all")
 
 }
 

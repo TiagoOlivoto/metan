@@ -74,7 +74,6 @@ WAASB = function(data,
     random = as.data.frame(VarCorr(Complete))[,c(1,4)]
     random = random[with(random, order(grp)), ]
     names(random) = c("Group", "Variance")
-    REML =  list(random = random)
     EV = as.numeric(random[1,2])
     GV = as.numeric(random[2,2])
     GEV = as.numeric(random[3,2])
@@ -298,7 +297,7 @@ WAASB = function(data,
                           PCA = Eigenvalue,
                           MeansGxE = MEDIAS,
                           Details = Details,
-                          REML = REML,
+                          REML = random,
                           ESTIMATES = ESTIMATES,
                           LRT = LRT),
                      class = "WAASB"))
