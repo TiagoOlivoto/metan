@@ -4,12 +4,15 @@ autoplot.WAASB = function(x, ...,
                           alpha = 0.2,
                           fill.hist = "gray",
                           col.hist = "black",
+                          col.point = "black",
+                          col.line = "red",
                           col.lab.out = "red",
                           bins = 30,
-                          which=c(1:3, 5),
-                          mfrow = c(1 , 1)){
+                          which = c(1:4),
+                          mfrow = c(2 , 2)){
 
   df = x$residuals
+  df$id = rownames(df)
   df = data.frame(df[order(df$stdres),])
   P <- ppoints(nrow(df))
   df$z = qnorm(P)
@@ -29,8 +32,8 @@ autoplot.WAASB = function(x, ...,
   # residuals vs fitted
 
 p1 = ggplot(df, aes(fitted, resid)) +
-    geom_point()  +
-    geom_smooth(se = F, method = "loess", col = "red") +
+    geom_point(col = col.point)  +
+    geom_smooth(se = F, method = "loess", col = col.line) +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
     labs(x = "Fitted Values",
          y = "Residual") +
@@ -42,9 +45,9 @@ p1 = ggplot(df, aes(fitted, resid)) +
 
   # normal qq
 p2 = ggplot(df, aes(z, stdres)) +
-    geom_point() +
+    geom_point(col = col.point) +
     geom_abline(intercept = coef[1], slope = coef[2],
-                col = "red",
+                col = col.line,
                 size = 1) +
     geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = 0.2) +
     labs(x = "Theoretical Quantiles",
@@ -57,8 +60,8 @@ p2 = ggplot(df, aes(z, stdres)) +
 
 # scale-location
 p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
-  geom_point()  +
-  geom_smooth(se = F, method = "loess", col = "red") +
+  geom_point(col = col.point)  +
+  geom_smooth(se = F, method = "loess", col = col.line) +
   labs(x = "Fitted Values",
        y = expression(sqrt("|Standardized Residuals|"))) +
   geom_text(aes(label = label), hjust = "inward", col = col.lab.out)+
@@ -67,7 +70,7 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
 
 # Residuals vs Factor-levels
 p4 = ggplot(df, aes(ENV, stdres))+
-  geom_point()  +
+  geom_point(col = col.point)  +
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted Values",
        y = "Standardized Residuals") +
@@ -88,8 +91,19 @@ p5 = ggplot(df, aes(x = resid)) +
   theme_waasb()+
   labs(x = "Raw residuals", y = "Density")
 
+# Residuals vs order
+p6 = ggplot(df, aes(as.numeric(id), stdres, group = 1))+
+  geom_point(col = col.point)  +
+  geom_line() +
+  geom_hline(yintercept = 0, linetype = 2, col = col.line)+
+  labs(x = "Observation order",
+       y = "Standardized Residuals") +
+  ggtitle("Residuals vs Observation order") +
+  theme_waasb()
 
-plots <- list(p1, p2, p3, p4, p5)
+
+
+plots <- list(p1, p2, p3, p4, p5, p6)
 
   # making the plots
 grid::grid.newpage()
