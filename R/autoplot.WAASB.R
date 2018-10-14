@@ -9,9 +9,10 @@ autoplot.WAASB = function(x, ...,
                           which=c(1:3, 5),
                           mfrow = c(1 , 1)){
 
-  df = x
+  df = x$residuals
   df = data.frame(df[order(df$stdres),])
-  df$z = qnorm(ppoints(nrow(df)))
+  P <- ppoints(nrow(df))
+  df$z = qnorm(P)
   n <- nrow(df)
   Q.x <- quantile(df$stdres, c(0.25, 0.75))
   Q.z <- qnorm(c(0.25, 0.75))
@@ -65,7 +66,7 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
   theme_waasb()
 
 # Residuals vs Factor-levels
-p4 = ggplot(df, aes(factors, stdres))+
+p4 = ggplot(df, aes(ENV, stdres))+
   geom_point()  +
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted Values",
