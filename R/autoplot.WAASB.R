@@ -31,17 +31,17 @@ autoplot.WAASB = function(x,
   df$label <- ifelse(df$stdres > df$upper | df$stdres < df$lower, rownames(df),"")
 
 
-  # residuals vs fitted
+  # Residuals vs fitted
 
 p1 = ggplot(df, aes(fitted, resid)) +
     geom_point(col = col.point)  +
     geom_smooth(se = F, method = "loess", col = col.line) +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
-    labs(x = "Fitted Values",
+    labs(x = "Fitted values",
          y = "Residual") +
     geom_text(aes(label = label), size = size.lab.out,
               hjust = "inward", col = col.lab.out) +
-    ggtitle("Residuals vs Fitted") +
+    ggtitle("Residuals vs fitted") +
     theme
 
 
@@ -52,9 +52,9 @@ p2 = ggplot(df, aes(z, stdres)) +
     geom_abline(intercept = coef[1], slope = coef[2],
                 col = col.line,
                 size = 1) +
-    geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = 0.2) +
-    labs(x = "Theoretical Quantiles",
-         y = "Standardized Residuals") +
+    geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = alpha) +
+    labs(x = "Theoretical quantiles",
+         y = "Sample quantiles") +
     ggtitle("Normal Q-Q") +
   geom_text(aes(label = label), size = size.lab.out,
             hjust = "inward", col = col.lab.out) +
@@ -67,7 +67,7 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
   geom_point(col = col.point)  +
   geom_smooth(se = F, method = "loess", col = col.line) +
   labs(x = "Fitted Values",
-       y = expression(sqrt("|Standardized Residuals|"))) +
+       y = expression(sqrt("|Standardized residuals|"))) +
   geom_text(aes(label = label), size = size.lab.out,
             hjust = "inward", col = col.lab.out) +
   ggtitle("Scale-location") +
@@ -77,11 +77,11 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
 p4 = ggplot(df, aes(factors, stdres))+
   geom_point(col = col.point)  +
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
-  labs(x = "Fitted Values",
-       y = "Standardized Residuals") +
+  labs(x = "Fitted values",
+       y = "Standardized residuals") +
   geom_text(aes(label = label), size = size.lab.out,
             hjust = "inward", col = col.lab.out) +
-  ggtitle("Residuals vs Factor-levels") +
+  ggtitle("Residuals vs factor-levels") +
   theme
 
 
@@ -90,12 +90,12 @@ p5 = ggplot(df, aes(x = resid)) +
   geom_histogram(bins = bins, colour = col.hist, fill = fill.hist,
                  aes(y = ..density..)) +
   stat_function(fun = dnorm,
-                color = "red",
+                color = col.line,
                 size = 1,
                 args = list(mean = mean(df$resid),
                             sd = sd(df$resid))) +
   labs(x = "Raw residuals", y = "Density")+
-  ggtitle("Histogram of standardized residuals") +
+  ggtitle("Histogram of residuals") +
   theme
 
 # Residuals vs order
@@ -105,7 +105,7 @@ p6 = ggplot(df, aes(as.numeric(id), stdres, group = 1))+
   geom_hline(yintercept = 0, linetype = 2, col = col.line) +
   labs(x = "Observation order",
        y = "Standardized residuals") +
-  ggtitle("Residuals vs Observation order") +
+  ggtitle("Residuals vs observation order") +
   theme
 
 
