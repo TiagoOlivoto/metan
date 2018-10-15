@@ -63,8 +63,11 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
 
   if (random == "all") {
 
-    Complete = suppressWarnings(suppressMessages(lmerTest::lmer(Y ~
-                                                                  (1 | ENV) + (1 | GEN) + (1 | REP/ENV) + (1 | GEN:ENV))))
+    Complete = suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
+                                                                Y ~ (1 | ENV) +
+                                                                    (1 | GEN) +
+                                                                    (1 | REP/ENV) +
+                                                                    (1 | GEN:ENV))))
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
     rownames(LRT) = c("Complete", "Environment", "Genotype", "Env:Rep",
                       "Rep", "Gen:Env")
@@ -286,7 +289,7 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
   }
   if (random == "gen") {
 
-    Complete = suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
+    Complete = suppressWarnings(suppressMessages(lmerTest::lmer(data = data, Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
     rownames(LRT) = c("Complete", "Genotype", "Gen vs Env")
     random = as.data.frame(VarCorr(Complete))[, c(1, 4)]
@@ -490,7 +493,7 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
                                                     Limits))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge",
                             "Predicted", "LL", "UL")
-    residuals = fortify.merMod(Complete)
+    residuals = data.frame(fortify.merMod(Complete))
     return(structure(list(individual = individual, model = WAASAbsInicial,
                           BLUPgen = blupGEN, BLUPgge = selectioNenv, PCA = Eigenvalue,
                           MeansGxE = MEDIAS, Details = Details, REML = REML, ESTIMATES = ESTIMATES,
