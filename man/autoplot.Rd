@@ -1,6 +1,6 @@
 \name{autoplot}
 \alias{autoplot.WAAS.AMMI}
-\alias{autoplot.WAAB}
+\alias{autoplot.WAASB}
 \title{Set of plots residuals for models of class WAAS.AMMI and WAASB}
 \usage{
 \method{autoplot}{WAAS.AMMI}(x, conf = 0.95, theme = theme_waasb(), alpha = 0.2,
@@ -61,6 +61,9 @@ Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of 
 library(WAASB)
 model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP)
 autoplot(model)
+
+model2 = WAASB(WAASBdata, GY, GEN, ENV, REP)
+autoplot(model2)
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}

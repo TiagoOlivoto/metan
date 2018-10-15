@@ -13,13 +13,13 @@ autoplot.WAASB = function(x,
                           mfrow = c(2 , 2),
                           ...){
 
-  df = x$residuals
+  df = res
   df$id = rownames(df)
-  df = data.frame(df[order(df$stdres),])
+  df = data.frame(df[order(df$.scresid),])
   P <- ppoints(nrow(df))
   df$z = qnorm(P)
   n <- nrow(df)
-  Q.x <- quantile(df$stdres, c(0.25, 0.75))
+  Q.x <- quantile(df$.scresid, c(0.25, 0.75))
   Q.z <- qnorm(c(0.25, 0.75))
   b <- diff(Q.x)/diff(Q.z)
   coef <- c(Q.x[1] - b * Q.z[1], b)
@@ -28,12 +28,12 @@ autoplot.WAASB = function(x,
   fit.value <- coef[1] + coef[2] * df$z
   df$upper <- fit.value + zz * SE
   df$lower <- fit.value - zz * SE
-  df$label <- ifelse(df$stdres > df$upper | df$stdres < df$lower, rownames(df),"")
+  df$label <- ifelse(df$.scresid > df$.scresid | df$.scresid < df$lower, rownames(df),"")
+  df$factors = paste(df$ENV, df$GEN)
 
+  # Residuals vs .fitted
 
-  # Residuals vs fitted
-
-p1 = ggplot(df, aes(fitted, resid)) +
+p1 = ggplot(df, aes(.fitted, .resid)) +
     geom_point(col = col.point)  +
     geom_smooth(se = F, method = "loess", col = col.line) +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
@@ -41,29 +41,27 @@ p1 = ggplot(df, aes(fitted, resid)) +
          y = "Residual") +
     geom_text(aes(label = label), size = size.lab.out,
               hjust = "inward", col = col.lab.out) +
-    ggtitle("Residuals vs fitted") +
+    ggtitle("Residuals vs Fitted") +
     theme
 
 
 
   # normal qq
-p2 = ggplot(df, aes(z, stdres)) +
-    geom_point(col = col.point) +
+p1 = ggplot(df, aes(z, .scresid)) +
+    geom_point() +
     geom_abline(intercept = coef[1], slope = coef[2],
-                col = col.line,
                 size = 1) +
-    geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = alpha) +
+    geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = 0.2)+
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
     ggtitle("Normal Q-Q") +
-  geom_text(aes(label = label), size = size.lab.out,
-            hjust = "inward", col = col.lab.out) +
-  theme
-
+  geom_text(aes(label = label), size = 4,
+            hjust = "inward", col = "red") +
+theme
 
 
 # scale-location
-p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
+p3 = ggplot(df, aes(.fitted, sqrt(abs(.resid))))+
   geom_point(col = col.point)  +
   geom_smooth(se = F, method = "loess", col = col.line) +
   labs(x = "Fitted Values",
@@ -74,7 +72,7 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
   theme
 
 # Residuals vs Factor-levels
-p4 = ggplot(df, aes(factors, stdres))+
+p4 = ggplot(df, aes(factors, .scresid))+
   geom_point(col = col.point)  +
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted values",
@@ -86,20 +84,20 @@ p4 = ggplot(df, aes(factors, stdres))+
 
 
 # Histogram of residuals
-p5 = ggplot(df, aes(x = resid)) +
+p5 = ggplot(df, aes(x = .resid)) +
   geom_histogram(bins = bins, colour = col.hist, fill = fill.hist,
                  aes(y = ..density..)) +
   stat_function(fun = dnorm,
                 color = col.line,
                 size = 1,
-                args = list(mean = mean(df$resid),
-                            sd = sd(df$resid))) +
+                args = list(mean = mean(df$.resid),
+                            sd = sd(df$.resid))) +
   labs(x = "Raw residuals", y = "Density")+
   ggtitle("Histogram of residuals") +
   theme
 
 # Residuals vs order
-p6 = ggplot(df, aes(as.numeric(id), stdres, group = 1))+
+p6 = ggplot(df, aes(as.numeric(id), .scresid, group = 1))+
   geom_point(col = col.point)  +
   geom_line() +
   geom_hline(yintercept = 0, linetype = 2, col = col.line) +

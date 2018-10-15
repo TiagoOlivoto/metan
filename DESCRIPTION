@@ -21,7 +21,7 @@ Imports: dplyr,
          ggplot2,
          ggrepel, 
          lme4,
-         broom,
+         lmerTest,
          gtools,
          magrittr
 RoxygenNote: 6.0.1

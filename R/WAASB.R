@@ -1,4 +1,4 @@
-WAASB = function(data, resp, gen, env, rep, random = "gen", ddf = "Kenward-Roger",
+WAASB = function(data, resp, gen, env, rep, random = "gen",
                  prob = 0.95, weight.response = 50, weight.WAAS = 50) {
 
   Y = eval(substitute(resp), eval(data))
@@ -278,11 +278,7 @@ WAASB = function(data, resp, gen, env, rep, random = "gen", ddf = "Kenward-Roger
                                                     BLUPe, Predicted = ggee + ovmean))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPe",
                             "BLUPge+g+e", "Predicted")
-    data = Complete@frame
-    data$factors = paste(data$ENV, data$GEN)
-    df = fortify.merMod(Complete)
-    df = data.frame(fitted = df$.fitted, resid = df$.resid, stdres = df$.scresid)
-    residuals = cbind(data, df)
+    residuals = fortify.merMod(Complete)
     return(structure(list(individual = individual, model = WAASAbsInicial,
                           BLUPgen = blupGEN, BLUPenv = blupENV, BLUPge = selectioNenv,
                           PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, REML = random,
@@ -290,14 +286,13 @@ WAASB = function(data, resp, gen, env, rep, random = "gen", ddf = "Kenward-Roger
   }
   if (random == "gen") {
 
-    Complete = suppressWarnings(suppressMessages(lmerTest::lmer(Y ~
-                                                                  REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
+    Complete = suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
     rownames(LRT) = c("Complete", "Genotype", "Gen vs Env")
     random = as.data.frame(VarCorr(Complete))[, c(1, 4)]
     random = random[with(random, order(grp)), ]
     names(random) = c("Group", "Variance")
-    fixed = anova(Complete, ddf = ddf)
+    fixed = anova(Complete)
     REML = list(LRT = LRT, fixed = fixed, random = random)
     GV = as.numeric(random[1, 2])
     GEV = as.numeric(random[2, 2])
@@ -495,12 +490,7 @@ WAASB = function(data, resp, gen, env, rep, random = "gen", ddf = "Kenward-Roger
                                                     Limits))
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge",
                             "Predicted", "LL", "UL")
-
-    data = Complete@frame
-    data$factors = paste(data$ENV, data$GEN)
-    df = fortify.merMod(Complete)
-    df = data.frame(fitted = df$.fitted, resid = df$.resid, stdres = df$.scresid)
-    residuals = cbind(data, df)
+    residuals = fortify.merMod(Complete)
     return(structure(list(individual = individual, model = WAASAbsInicial,
                           BLUPgen = blupGEN, BLUPgge = selectioNenv, PCA = Eigenvalue,
                           MeansGxE = MEDIAS, Details = Details, REML = REML, ESTIMATES = ESTIMATES,

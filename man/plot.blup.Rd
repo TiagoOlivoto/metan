@@ -5,7 +5,7 @@
 \method{plot}{blup}(x, prob  =  0.95, export  =  FALSE, file.type  =  "pdf",
        file.name = NULL, theme = theme_waasb(), width  =  6, height  =  6,
        size.err.bar  =  0.5, size.shape  =  3.5, height.err.bar  =  0.3,
-       x.lim  =  NULL, x.breaks  =  waiver(), leg.pos  =  c(0.9, 0.1),
+       x.lim  =  NULL, x.breaks  =  waiver(),
        col.shape  =  c("blue", "red"), y.lab  =  "Genotypes",
        x.lab  =  "Predicted Grain Yield", resolution  =  300, ...)
 }
@@ -43,9 +43,6 @@ Plot the predicted BLUP of the genotypes.
 
   \item{x.breaks}{The breaks to be plotted in the x-axis. Default is \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
-
-
-  \item{leg.pos}{A vector of length 2 to configure, respectively, the horizontal and vertical,  position of the legend in the plot. Default is \code{c(0.9, 0.1)} (bottom-right. }
 
   \item{col.shape}{A vector of length 2 that contains the color of shapes for genotypes above and below of the mean, respectively. Default is \code{c("blue", "red")}. }
 

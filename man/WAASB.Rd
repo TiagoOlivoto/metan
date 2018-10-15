@@ -3,8 +3,7 @@
 \title{Weighted Average of Absolute Scores for BLUP-based PCA analysis}
 \usage{
 WAASB(data, resp, gen, env, rep, random = "gen",
-      ddf = "Kenward-Roger", prob = 0.95,
-      weight.response = 50, weight.WAAS = 50)
+      prob = 0.95, weight.response = 50, weight.WAAS = 50)
 }
 \description{
 Compute the Weighted Average of Absolute Scores for PCA analysis based on the GE-interaction matrix.
@@ -24,8 +23,6 @@ Compute the Weighted Average of Absolute Scores for PCA analysis based on the GE
   \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
   \item{random}{The effect to be considered as random. Default is genotype "gen". A random effects model can be fitted using \code{random = "all"}.}
-
-  \item{ddf}{The method for computing the denominator degrees of freedom and F-statistics for fixed effect when \code{random = "gen"}. Default is \code{ddf = "Kenward-Roger"} that uses Kenward-Roger's method. See \code{anova.lmerModLmerTest} for more details.}
 
   \item{prob}{The probability for estimating confidence interval for BLUP's prediction. }
 
