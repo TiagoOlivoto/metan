@@ -66,7 +66,7 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
   labs(x = "Fitted Values",
        y = expression(sqrt("|Standardized Residuals|"))) +
   geom_text(aes(label = label), hjust = "inward", col = col.lab.out)+
-  ggtitle("Residuals vs Fitted") +
+  ggtitle("Scale-location") +
   theme
 
 # Residuals vs Factor-levels
