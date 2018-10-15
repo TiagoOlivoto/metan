@@ -1,7 +1,7 @@
 Extending WAASB package
 ================
 Tiago Olivoto
-WAASB 1.0.1 2018-10-06
+WAASB 1.0.1 2018-10-15
 
 <style type = "text/css">
 
@@ -83,11 +83,11 @@ Main functions of `WAASB` package.
 </tr>
 <tr class="even">
 <td align="left"><code>validation.blup()</code></td>
-<td align="left">Cross-validation for blup prediction</td>
+<td align="left">Cross-validation for BLUP prediction</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>validation.AMMIF()</code></td>
-<td align="left">BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio</td>
+<td align="left">Cross-validation for the AMMI-family models</td>
 </tr>
 <tr class="even">
 <td align="left"><code>WAASBYratio()</code></td>
@@ -197,7 +197,7 @@ CROP
 BLUP
 </td>
 <td style="text-align:right;">
-0.4286
+0.4141
 </td>
 <td style="text-align:left;">
 Wheat
@@ -208,10 +208,10 @@ Wheat
 1
 </td>
 <td style="text-align:left;">
-AMMI3
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4371
+0.4320
 </td>
 <td style="text-align:left;">
 Wheat
@@ -222,10 +222,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI3
 </td>
 <td style="text-align:right;">
-0.4385
+0.4322
 </td>
 <td style="text-align:left;">
 Wheat
@@ -239,7 +239,7 @@ Wheat
 AMMI5
 </td>
 <td style="text-align:right;">
-0.4392
+0.4322
 </td>
 <td style="text-align:left;">
 Wheat
@@ -253,7 +253,7 @@ Wheat
 AMMI6
 </td>
 <td style="text-align:right;">
-0.4400
+0.4345
 </td>
 <td style="text-align:left;">
 Wheat
@@ -264,10 +264,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4430
+0.4351
 </td>
 <td style="text-align:left;">
 Wheat
@@ -278,10 +278,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4435
+0.4369
 </td>
 <td style="text-align:left;">
 Wheat
@@ -295,7 +295,7 @@ Wheat
 AMMIF
 </td>
 <td style="text-align:right;">
-0.4438
+0.4379
 </td>
 <td style="text-align:left;">
 Wheat
@@ -309,7 +309,7 @@ Wheat
 AMMI8
 </td>
 <td style="text-align:right;">
-0.4444
+0.4385
 </td>
 <td style="text-align:left;">
 Wheat
@@ -320,10 +320,10 @@ Wheat
 9
 </td>
 <td style="text-align:left;">
-AMMI1
+AMMI0
 </td>
 <td style="text-align:right;">
-0.4614
+0.4399
 </td>
 <td style="text-align:left;">
 Wheat
@@ -334,10 +334,10 @@ Wheat
 10
 </td>
 <td style="text-align:left;">
-AMMI0
+AMMI1
 </td>
 <td style="text-align:right;">
-0.4658
+0.4447
 </td>
 <td style="text-align:left;">
 Wheat
@@ -362,11 +362,7 @@ plot.validation.AMMIF(RMSPDweat,
                       col.boxplot = "gray75")
 ```
 
-    ## Warning in plot.validation.AMMIF(RMSPDweat, violin = FALSE, col.boxplot
-    ## = "gray75"): The object 'x' should be a 'validation.AMMIF' or a
-    ## 'validation.blup' object.
-
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 Five statistics are shown in this boxplot. The median, the lower and upper hinges correspond to the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than 1.5 × *I**Q**R* from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most 1.5 × *I**Q**R* of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added joint with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
 
@@ -2036,7 +2032,7 @@ plot.scores(WAAS1,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 The biplot above shows the coordinates of the genotypes and environments regarding the grain yield and the WAAS values. It is in fact the plot of the columns Y and WAAS from the above table. A detailed discussion on the interpretation of this biplot can be seen in [section 6.2.3](#biplot-type-3-gy-x-waasb).
 
@@ -2942,7 +2938,7 @@ plot.scores(WAAS2,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
 
 In this biplot, we can see that the changes in the coordinates were also too small.
 
@@ -2995,189 +2991,99 @@ print(WAASB$LRT)
 <table class="table table-striped" style="font-size: 12px; width: auto !important; ">
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-Genotype LRT
-
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-Interaction LRT
-
-</th>
-</tr>
-<tr>
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-reducedG<sup>\*</sup>
+npar
 </th>
 <th style="text-align:center;">
-Complete<sup>†</sup>
+logLik
 </th>
 <th style="text-align:center;">
-ReducedGE<sup>‡</sup>
+AIC
 </th>
 <th style="text-align:center;">
-Complete
+LRT
+</th>
+<th style="text-align:center;">
+Df
+</th>
+<th style="text-align:center;">
+Pr(&gt;Chisq)
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-Df
+Complete
 </td>
 <td style="text-align:center;">
-50.00
+51
 </td>
 <td style="text-align:center;">
-51.00000
+-260.38
 </td>
 <td style="text-align:center;">
-50.00
-</td>
-<td style="text-align:center;">
-51.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AIC
-</td>
-<td style="text-align:center;">
-524.48
-</td>
-<td style="text-align:center;">
-507.25568
-</td>
-<td style="text-align:center;">
-566.37
-</td>
-<td style="text-align:center;">
-507.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BIC
-</td>
-<td style="text-align:center;">
-733.17
-</td>
-<td style="text-align:center;">
-720.11877
-</td>
-<td style="text-align:center;">
-775.06
-</td>
-<td style="text-align:center;">
-720.119
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-logLik
-</td>
-<td style="text-align:center;">
--212.24
-</td>
-<td style="text-align:center;">
--202.62784
-</td>
-<td style="text-align:center;">
--233.19
-</td>
-<td style="text-align:center;">
--202.628
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-deviance
-</td>
-<td style="text-align:center;">
-424.48
-</td>
-<td style="text-align:center;">
-405.25568
-</td>
-<td style="text-align:center;">
-466.37
-</td>
-<td style="text-align:center;">
-405.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chisq
+622.77
 </td>
 <td style="text-align:center;">
 NA
 </td>
 <td style="text-align:center;">
-19.22808
-</td>
-<td style="text-align:center;">
 NA
 </td>
 <td style="text-align:center;">
-61.117
+NA
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Chi Df
+Genotype
 </td>
 <td style="text-align:center;">
-NA
+50
 </td>
 <td style="text-align:center;">
-1.00000
+-269.04
 </td>
 <td style="text-align:center;">
-NA
+638.08
 </td>
 <td style="text-align:center;">
-1.000
+17.305
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+3e-05
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Pr(&gt;Chisq)
+Gen vs Env
 </td>
 <td style="text-align:center;">
-NA
+50
 </td>
 <td style="text-align:center;">
-0.00001
+-287.89
 </td>
 <td style="text-align:center;">
-NA
+675.78
 </td>
 <td style="text-align:center;">
-0.000
+55.005
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0e+00
 </td>
 </tr>
 </tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border: 0;" colspan="100%">
-<sup>\*</sup> Reduced model without genotype effect;
-</td>
-</tr>
-<tr>
-<td style="padding: 0; border: 0;" colspan="100%">
-<sup>†</sup> Complete model;
-</td>
-</tr>
-<tr>
-<td style="padding: 0; border: 0;" colspan="100%">
-<sup>‡</sup> Reduced model without genotype-vs-environment interaction effect;
-</td>
-</tr>
-</tfoot>
 </table>
 The output `LRT` contains the Likelihood Ratio Tests on the random effects of the linear mixed-effect.
 
@@ -3253,7 +3159,7 @@ GEIr2
 Heribatility of means
 </td>
 <td style="text-align:left;">
-0.531083326297866
+0.797430714258779
 </td>
 </tr>
 <tr>
@@ -3261,7 +3167,7 @@ Heribatility of means
 Accuracy
 </td>
 <td style="text-align:left;">
-0.728754640669867
+0.892989761564364
 </td>
 </tr>
 <tr>
@@ -4335,10 +4241,10 @@ G8
 2.969
 </td>
 <td style="text-align:right;">
-2.808
+2.868
 </td>
 <td style="text-align:right;">
-3.129
+3.070
 </td>
 </tr>
 <tr>
@@ -4355,10 +4261,10 @@ G3
 2.890
 </td>
 <td style="text-align:right;">
-2.730
+2.789
 </td>
 <td style="text-align:right;">
-3.051
+2.991
 </td>
 </tr>
 <tr>
@@ -4375,10 +4281,10 @@ G7
 2.706
 </td>
 <td style="text-align:right;">
-2.546
+2.605
 </td>
 <td style="text-align:right;">
-2.867
+2.807
 </td>
 </tr>
 <tr>
@@ -4395,10 +4301,10 @@ G2
 2.700
 </td>
 <td style="text-align:right;">
-2.540
+2.599
 </td>
 <td style="text-align:right;">
-2.861
+2.801
 </td>
 </tr>
 <tr>
@@ -4415,10 +4321,10 @@ G4
 2.696
 </td>
 <td style="text-align:right;">
-2.535
+2.595
 </td>
 <td style="text-align:right;">
-2.856
+2.797
 </td>
 </tr>
 <tr>
@@ -4435,10 +4341,10 @@ G1
 2.637
 </td>
 <td style="text-align:right;">
-2.477
+2.536
 </td>
 <td style="text-align:right;">
-2.798
+2.738
 </td>
 </tr>
 <tr>
@@ -4455,10 +4361,10 @@ G9
 2.597
 </td>
 <td style="text-align:right;">
-2.437
+2.497
 </td>
 <td style="text-align:right;">
-2.758
+2.698
 </td>
 </tr>
 <tr>
@@ -4475,10 +4381,10 @@ G5
 2.591
 </td>
 <td style="text-align:right;">
-2.430
+2.490
 </td>
 <td style="text-align:right;">
-2.752
+2.692
 </td>
 </tr>
 <tr>
@@ -4495,10 +4401,10 @@ G6
 2.578
 </td>
 <td style="text-align:right;">
-2.417
+2.477
 </td>
 <td style="text-align:right;">
-2.739
+2.679
 </td>
 </tr>
 <tr>
@@ -4515,10 +4421,10 @@ G10
 2.543
 </td>
 <td style="text-align:right;">
-2.383
+2.443
 </td>
 <td style="text-align:right;">
-2.704
+2.644
 </td>
 </tr>
 </tbody>
@@ -4530,7 +4436,7 @@ G10
 plot.blup(WAASB)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-30-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-34-1.png" style="display: block; margin: auto;" />
 
 This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\\hat{g}\_{i})$ estimated by $\\hat{g}\_{i} = h\_g^2(\\bar{y}\_{i.}-\\bar{y}\_{..})$ where *h*<sub>*g*</sub><sup>2</sup> is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by $\\hat{g}\_{i}+\\mu$ where is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by $(\\hat{g}\_{i}+\\mu)\\pm{CI}$. *C**I* is the confidence interval for BLUP prediction assuming a given probability error, where $CI = t\\times\\sqrt{((1-Ac)\\times{GV)}}$ where *t* is the Student's *t* value for a two-tailed t test at a given probability error; *A**c* is the genotypic accuracy and *G**V* is the genotypic variance.
 
@@ -4591,10 +4497,10 @@ G1
 2.401
 </td>
 <td style="text-align:right;">
-2.241
+2.300
 </td>
 <td style="text-align:right;">
-2.562
+2.502
 </td>
 </tr>
 <tr>
@@ -4617,10 +4523,10 @@ G10
 2.114
 </td>
 <td style="text-align:right;">
-1.953
+2.013
 </td>
 <td style="text-align:right;">
-2.275
+2.215
 </td>
 </tr>
 <tr>
@@ -4643,10 +4549,10 @@ G2
 2.772
 </td>
 <td style="text-align:right;">
-2.611
+2.671
 </td>
 <td style="text-align:right;">
-2.932
+2.873
 </td>
 </tr>
 <tr>
@@ -4669,10 +4575,10 @@ G3
 2.829
 </td>
 <td style="text-align:right;">
-2.669
+2.728
 </td>
 <td style="text-align:right;">
-2.990
+2.930
 </td>
 </tr>
 <tr>
@@ -4695,10 +4601,10 @@ G4
 2.567
 </td>
 <td style="text-align:right;">
-2.406
+2.466
 </td>
 <td style="text-align:right;">
-2.727
+2.667
 </td>
 </tr>
 <tr>
@@ -4721,10 +4627,10 @@ G5
 2.270
 </td>
 <td style="text-align:right;">
-2.109
+2.169
 </td>
 <td style="text-align:right;">
-2.431
+2.371
 </td>
 </tr>
 <tr>
@@ -4747,10 +4653,10 @@ G6
 2.338
 </td>
 <td style="text-align:right;">
-2.178
+2.237
 </td>
 <td style="text-align:right;">
-2.499
+2.439
 </td>
 </tr>
 <tr>
@@ -4773,10 +4679,10 @@ G7
 2.690
 </td>
 <td style="text-align:right;">
-2.530
+2.590
 </td>
 <td style="text-align:right;">
-2.851
+2.791
 </td>
 </tr>
 <tr>
@@ -4799,10 +4705,10 @@ G8
 2.864
 </td>
 <td style="text-align:right;">
-2.703
+2.763
 </td>
 <td style="text-align:right;">
-3.025
+2.965
 </td>
 </tr>
 <tr>
@@ -4825,10 +4731,10 @@ G9
 2.361
 </td>
 <td style="text-align:right;">
-2.201
+2.261
 </td>
 <td style="text-align:right;">
-2.522
+2.462
 </td>
 </tr>
 </tbody>
@@ -4995,7 +4901,7 @@ Accumulated
 plot.eigen(WAASB, size.lab = 14, size.tex = 14)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-35-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
 
 The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.
 
@@ -5247,7 +5153,7 @@ plot.scores(WAASB,
             type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-42-1.png" style="display: block; margin: auto;" />
 
 ### biplot type 2: GY x PC1
 
@@ -5256,16 +5162,11 @@ plot.scores(WAASB,
             type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-43-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # dafault theme of ggplot2
 library(ggplot2)
-```
-
-    ## Warning: package 'ggplot2' was built under R version 3.5.1
-
-``` r
 plot.scores(WAASB,
             type = 2,
             col.gen = "black",
@@ -5273,7 +5174,7 @@ plot.scores(WAASB,
             theme = theme_gray())
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-39-2.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-43-2.png" style="display: block; margin: auto;" />
 
 ### biplot type 3: GY x WAASB
 
@@ -5284,7 +5185,7 @@ plot.scores(WAASB,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-40-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-44-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # Save to a *.tiff file with resolution of 600 dpi.
@@ -5304,7 +5205,7 @@ plot.scores(WAASB,
             type = 4)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-41-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-45-1.png" style="display: block; margin: auto;" />
 
 Estimating the WAASBY index
 ===========================
@@ -6337,7 +6238,7 @@ plot.WAASBY(WAASBYratio,
                           legend.position = c(0.85, 0.2)))
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-49-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
 
 Plotting the heat map graphics
 ------------------------------
@@ -6351,7 +6252,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-50-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-54-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # save to a *.pdf file (default)
@@ -6367,7 +6268,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-51-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-55-1.png" style="display: block; margin: auto;" />
 
 ``` r
 #save to a *tiff file
@@ -6378,8 +6279,8 @@ plot.WAASBYratio(WAASBYratio,
              resolution = 600)
 ```
 
-    ## png 
-    ##   2
+    ## RStudioGD 
+    ##         2
 
 References
 ==========

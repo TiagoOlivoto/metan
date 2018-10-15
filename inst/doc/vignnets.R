@@ -184,25 +184,11 @@ WAASB2 = WAASB(dataset,
 
 ## ----echo = FALSE, warning=F, message=F---------------------------------------------------------------------------------------------------------------------------------------------------------------
 library(kableExtra)
-options (digits = 5)
+options(digits = 5)
 dt_footnote = WAASB$LRT
 
-names(dt_footnote)[1] <- paste0(names(dt_footnote)[1], 
-                                footnote_marker_symbol(1))
-names(dt_footnote)[2] <- paste0(names(dt_footnote)[2], 
-                                footnote_marker_symbol(2))
-names(dt_footnote)[3] <- paste0(names(dt_footnote)[3], 
-                                footnote_marker_symbol(3))
-
 kable(dt_footnote, "html", align = "c", escape = F) %>%
-  kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12) %>%
-  add_header_above(c(" ", "Genotype LRT" = 2,
-                     "Interaction LRT" = 2)) %>%
-
-  footnote(symbol = c("Reduced model without genotype effect; ",
-                      "Complete model; ",
-                      "Reduced model without genotype-vs-environment interaction effect;"),
-           footnote_as_chunk = F)
+  kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
 ## ----eval = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  options (digits = 4)
