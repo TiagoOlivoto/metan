@@ -68,6 +68,7 @@ WAASB = function(data,
   if (random  ==  "all"){
 
     Complete = suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ (1|ENV) + (1|GEN) + (1|REP/ENV) + (1|GEN:ENV))))
+    Complete2 = suppressWarnings(suppressMessages(lme4::lmer(Y ~ (1|ENV) + (1|GEN) + (1|REP/ENV) + (1|GEN:ENV))))
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
     rownames(LRT) = c("Complete", "Environment", "Genotype",
                       "Env:Rep", "Rep", "Gen:Env")
@@ -291,7 +292,7 @@ WAASB = function(data,
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPe", "BLUPge+g+e", "Predicted")
     data = Complete@frame
     data$factors = paste(data$ENV, data$GEN)
-    df = fortify(Complete)
+    df = fortify(Complete2)
     df = data.frame(fitted = df$.fitted,
                     resid = df$.resid,
                     stdres = df$.scresid)
@@ -313,6 +314,7 @@ WAASB = function(data,
   if (random  ==  "gen"){
 
     Complete = suppressWarnings(suppressMessages(lmerTest::lmer(Y ~  REP%in%ENV + ENV + (1|GEN)+ (1|GEN:ENV))))
+    Complete2 = suppressWarnings(suppressMessages(lme4::lmer(Y ~  REP%in%ENV + ENV + (1|GEN)+ (1|GEN:ENV))))
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
     rownames(LRT) = c("Complete", "Genotype", "Gen vs Env")
     random = as.data.frame(VarCorr(Complete))[,c(1,4)]
@@ -524,7 +526,7 @@ WAASB = function(data,
 
     data = Complete@frame
     data$factors = paste(data$ENV, data$GEN)
-    df = fortify(Complete)
+    df = fortify(Complete2)
     df = data.frame(fitted = df$.fitted,
                      resid = df$.resid,
                      stdres = df$.scresid)
