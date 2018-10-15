@@ -1,4 +1,4 @@
-autoplot.WAASB = function(x, ...,
+autoplot.WAASB = function(x,
                           conf = 0.95,
                           theme = theme_waasb(),
                           alpha = 0.2,
@@ -9,7 +9,8 @@ autoplot.WAASB = function(x, ...,
                           col.lab.out = "red",
                           bins = 30,
                           which = c(1:4),
-                          mfrow = c(2 , 2)){
+                          mfrow = c(2 , 2),
+                          ...){
 
   df = x$residuals
   df$id = rownames(df)
@@ -69,7 +70,7 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
   theme_waasb()
 
 # Residuals vs Factor-levels
-p4 = ggplot(df, aes(ENV, stdres))+
+p4 = ggplot(df, aes(factors, stdres))+
   geom_point(col = col.point)  +
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted Values",
@@ -95,7 +96,7 @@ p5 = ggplot(df, aes(x = resid)) +
 p6 = ggplot(df, aes(as.numeric(id), stdres, group = 1))+
   geom_point(col = col.point)  +
   geom_line() +
-  geom_hline(yintercept = 0, linetype = 2, col = col.line)+
+  geom_hline(yintercept = 0, linetype = 2, col = col.line) +
   labs(x = "Observation order",
        y = "Standardized Residuals") +
   ggtitle("Residuals vs Observation order") +
@@ -125,7 +126,7 @@ grid::grid.newpage()
   j <- 1
   for (i in which){
     formatter()
-    print(plots[[i]], vp = viewport(layout.pos.row=mypos[j,][1], layout.pos.col=mypos[j,][2]))
+    print(plots[[i]], vp = viewport(layout.pos.row = mypos[j,][1], layout.pos.col=mypos[j,][2]))
     j <- j + 1
   }
 }
