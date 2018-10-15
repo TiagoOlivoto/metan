@@ -53,7 +53,7 @@ p2 = ggplot(df, aes(z, .scresid)) +
     geom_point(col = col.point) +
     geom_abline(intercept = coef[1], slope = coef[2],
                 size = 1,
-                col = col.point) +
+                col = col.line) +
     geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = 0.2)+
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
@@ -108,7 +108,7 @@ p5 = ggplot(df, aes(x = .resid)) +
 # Residuals vs order
 p6 = ggplot(df, aes(as.numeric(id), .scresid, group = 1))+
   geom_point(col = col.point)  +
-  geom_line() +
+  geom_line(col = col.line) +
   geom_hline(yintercept = 0, linetype = 2, col = col.line) +
   labs(x = "Observation order",
        y = "Standardized residuals") +
