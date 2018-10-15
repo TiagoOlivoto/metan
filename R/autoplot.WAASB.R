@@ -13,7 +13,7 @@ autoplot.WAASB = function(x,
                           mfrow = c(2 , 2),
                           ...){
 
-  df = x$residuals
+  df = data.frame(modellll$residuals)
   df$id = rownames(df)
   df = data.frame(df[order(df$.scresid),])
   P <- ppoints(nrow(df))
@@ -34,15 +34,17 @@ autoplot.WAASB = function(x,
   # Residuals vs .fitted
 
 p1 = ggplot(df, aes(.fitted, .resid)) +
-    geom_point(col = col.point)  +
-    geom_smooth(se = F, method = "loess", col = col.line) +
+    geom_point()  +
+    geom_smooth(se = F, method = "loess") +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
-    labs(x = "Fitted values",
-         y = "Residual") +
-    geom_text(aes(label = label), size = size.lab.out,
-              hjust = "inward", col = col.lab.out) +
-    ggtitle("Residuals vs Fitted") +
+    labs(x = "Fitted values",  y = "Residual") +
+  ggrepel::geom_text_repel(aes(.fitted, .resid,
+                               label = (label)),
+                               color = col.lab.out,
+                               size = size.lab.out) +
+
     theme
+
 
 
 
@@ -55,8 +57,10 @@ p2 = ggplot(df, aes(z, .scresid)) +
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
     ggtitle("Normal Q-Q") +
-  geom_text(aes(label = label), size = 4,
-            hjust = "inward", col = "red") +
+  ggrepel::geom_text_repel(aes(z, .scresid,
+                               label = (label)),
+                           color = col.lab.out,
+                           size = size.lab.out) +
 theme
 
 
@@ -66,8 +70,10 @@ p3 = ggplot(df, aes(.fitted, sqrt(abs(.resid))))+
   geom_smooth(se = F, method = "loess", col = col.line) +
   labs(x = "Fitted Values",
        y = expression(sqrt("|Standardized residuals|"))) +
-  geom_text(aes(label = label), size = size.lab.out,
-            hjust = "inward", col = col.lab.out) +
+  ggrepel::geom_text_repel(aes(.fitted, sqrt(abs(.resid)),
+                               label = (label)),
+                           color = col.lab.out,
+                           size = size.lab.out) +
   ggtitle("Scale-location") +
   theme
 
@@ -77,8 +83,10 @@ p4 = ggplot(df, aes(factors, .scresid))+
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted values",
        y = "Standardized residuals") +
-  geom_text(aes(label = label), size = size.lab.out,
-            hjust = "inward", col = col.lab.out) +
+  ggrepel::geom_text_repel(aes(factors, .scresid,
+                               label = (label)),
+                           color = col.lab.out,
+                           size = size.lab.out) +
   ggtitle("Residuals vs factor-levels") +
   theme
 
