@@ -47,7 +47,7 @@ p1 = ggplot(df, aes(.fitted, .resid)) +
 
 
   # normal qq
-p1 = ggplot(df, aes(z, .scresid)) +
+p2 = ggplot(df, aes(z, .scresid)) +
     geom_point() +
     geom_abline(intercept = coef[1], slope = coef[2],
                 size = 1) +
