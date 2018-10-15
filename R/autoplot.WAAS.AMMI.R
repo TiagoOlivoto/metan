@@ -38,7 +38,8 @@ p1 = ggplot(df, aes(fitted, resid)) +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
     labs(x = "Fitted Values",
          y = "Residual") +
-    geom_text(aes(label = label), hjust = "inward", col = col.lab.out)+
+  geom_text(aes(label = label), size = size.lab.out,
+            hjust = "inward", col = col.lab.out) +
     ggtitle("Residuals vs Fitted") +
     theme
 
@@ -54,7 +55,8 @@ p2 = ggplot(df, aes(z, stdres)) +
     labs(x = "Theoretical Quantiles",
          y = "Standardized Residuals") +
     ggtitle("Normal Q-Q") +
-    geom_text(aes(label = label), hjust = "inward", col = col.lab.out)+
+  geom_text(aes(label = label), size = size.lab.out,
+            hjust = "inward", col = col.lab.out) +
   theme
 
 
@@ -65,7 +67,8 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
   geom_smooth(se = F, method = "loess", col = col.line) +
   labs(x = "Fitted Values",
        y = expression(sqrt("|Standardized Residuals|"))) +
-  geom_text(aes(label = label), hjust = "inward", col = col.lab.out)+
+  geom_text(aes(label = label), size = size.lab.out,
+            hjust = "inward", col = col.lab.out) +
   ggtitle("Scale-location") +
   theme
 
@@ -75,7 +78,8 @@ p4 = ggplot(df, aes(factors, stdres))+
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted Values",
        y = "Standardized Residuals") +
-  geom_text(aes(label = label), hjust = "inward", col = col.lab.out)+
+  geom_text(aes(label = label), size = size.lab.out,
+            hjust = "inward", col = col.lab.out) +
   ggtitle("Residuals vs Factor-levels") +
   theme
 
