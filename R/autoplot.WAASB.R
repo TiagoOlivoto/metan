@@ -13,7 +13,7 @@ autoplot.WAASB = function(x,
                           mfrow = c(2 , 2),
                           ...){
 
-  df = res
+  df = x$residuals
   df$id = rownames(df)
   df = data.frame(df[order(df$.scresid),])
   P <- ppoints(nrow(df))
