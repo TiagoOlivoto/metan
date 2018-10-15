@@ -8,8 +8,13 @@ performs_ammi = function (ENV, GEN, REP, Y){
   minimo = min(ngen, nenv)
   nrep = length(unique(REP))
   model = aov(Y ~ ENV + REP %in% ENV + GEN + ENV:GEN)
-  residuals = list(residuals = ggplot2::fortify(model),
-                   DFe = model$df.residual)
+  datares = model$model
+  datares$factors = paste(datares$ENV, datares$GEN)
+  df = fortify(model)
+  df = data.frame(fitted = df[,8],
+                  resid = df[,9],
+                  stdres = df[,10])
+  residuals = cbind(datares, df)
   mm = anova(model)
   nn = mm[2, ]
   mm[2, ] = mm[3, ]

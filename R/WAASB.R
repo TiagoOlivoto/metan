@@ -291,10 +291,10 @@ WAASB = function(data,
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPe", "BLUPge+g+e", "Predicted")
     data = Complete@frame
     data$factors = paste(data$ENV, data$GEN)
-    df = lme4::fortify.merMod(Complete)
+    df = fortify(Complete)
     df = data.frame(fitted = df$.fitted,
-                     resid = df$.resid,
-                     stdres = df$.scresid)
+                    resid = df$.resid,
+                    stdres = df$.scresid)
     residuals = cbind(data, df)
     return(structure(list(individual = individual,
                           model = WAASAbsInicial,

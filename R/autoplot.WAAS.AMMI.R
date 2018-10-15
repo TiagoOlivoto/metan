@@ -1,16 +1,16 @@
-autoplot.WAASB = function(x,
-                          conf = 0.95,
-                          theme = theme_waasb(),
-                          alpha = 0.2,
-                          fill.hist = "gray",
-                          col.hist = "black",
-                          col.point = "black",
-                          col.line = "red",
-                          col.lab.out = "red",
-                          bins = 30,
-                          which = c(1:4),
-                          mfrow = c(2 , 2),
-                          ...){
+autoplot.WAAS.AMMI = function(x,
+                              conf = 0.95,
+                              theme = theme_waasb(),
+                              alpha = 0.2,
+                              fill.hist = "gray",
+                              col.hist = "black",
+                              col.point = "black",
+                              col.line = "red",
+                              col.lab.out = "red",
+                              bins = 30,
+                              which = c(1:4),
+                              mfrow = c(2 , 2),
+                              ...){
 
   df = x$residuals
   df$id = rownames(df)
