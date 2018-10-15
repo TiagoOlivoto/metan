@@ -34,8 +34,8 @@ autoplot.WAASB = function(x,
   # Residuals vs .fitted
 
 p1 = ggplot(df, aes(.fitted, .resid)) +
-    geom_point()  +
-    geom_smooth(se = F, method = "loess") +
+    geom_point(col = col.point)  +
+    geom_smooth(se = F, method = "loess", col = col.line) +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
     labs(x = "Fitted values",  y = "Residual") +
   ggrepel::geom_text_repel(aes(.fitted, .resid,
@@ -50,9 +50,10 @@ p1 = ggplot(df, aes(.fitted, .resid)) +
 
   # normal qq
 p2 = ggplot(df, aes(z, .scresid)) +
-    geom_point() +
+    geom_point(col = col.point) +
     geom_abline(intercept = coef[1], slope = coef[2],
-                size = 1) +
+                size = 1,
+                col = col.point) +
     geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = 0.2)+
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
