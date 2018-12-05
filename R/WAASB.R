@@ -65,9 +65,9 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
 
     Complete = suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
                                                                 Y ~ (1 | ENV) +
-                                                                    (1 | GEN) +
-                                                                    (1 | REP/ENV) +
-                                                                    (1 | GEN:ENV))))
+                                                                  (1 | GEN) +
+                                                                  (1 | REP/ENV) +
+                                                                  (1 | GEN:ENV))))
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
     rownames(LRT) = c("Complete", "Environment", "Genotype", "Env:Rep",
                       "Rep", "Gen:Env")
@@ -203,11 +203,11 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
     rownames(t_WAAS2) = colnames(t_WAAS)
     WAASAbs = cbind(WAASAbs, subset(t_WAAS2, select = WAASB))
     WAASAbs2 = subset(WAASAbs, type == "ENV")
-    WAASAbs2$PctResp = (WAASAbs2$Y/max(WAASAbs2$Y)) * 100
-    WAASAbs2$PctWAASB = (100 - WAASAbs2$WAASB/min(WAASAbs2$WAASB))
+    WAASAbs2$PctResp = resca(WAASAbs2$Y, 0, 100)
+    WAASAbs2$PctWAASB = resca(WAASAbs2$WAASB, 100, 0)
     WAASAbs3 = subset(WAASAbs, type == "GEN")
-    WAASAbs3$PctResp = (WAASAbs3$Y/max(WAASAbs3$Y)) * 100
-    WAASAbs3$PctWAASB = (100 - WAASAbs3$WAASB/min(WAASAbs3$WAASB))
+    WAASAbs3$PctResp = resca(WAASAbs3$Y, 0, 100)
+    WAASAbs3$PctWAASB = resca(WAASAbs3$WAASB, 100, 0)
     WAASAbs = rbind(WAASAbs3, WAASAbs2)
     WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrResp, rank(-Y)),
                                          by = type][]
@@ -422,11 +422,11 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
     rownames(t_WAAS2) = colnames(t_WAAS)
     WAASAbs = cbind(WAASAbs, subset(t_WAAS2, select = WAASB))
     WAASAbs2 = subset(WAASAbs, type == "ENV")
-    WAASAbs2$PctResp = (WAASAbs2$Y/max(WAASAbs2$Y)) * 100
-    WAASAbs2$PctWAASB = (100 - WAASAbs2$WAASB/min(WAASAbs2$WAASB))
+    WAASAbs2$PctResp = resca(WAASAbs2$Y, 0, 100)
+    WAASAbs2$PctWAASB = resca(WAASAbs2$WAASB, 100, 0)
     WAASAbs3 = subset(WAASAbs, type == "GEN")
-    WAASAbs3$PctResp = (WAASAbs3$Y/max(WAASAbs3$Y)) * 100
-    WAASAbs3$PctWAASB = (100 - WAASAbs3$WAASB/min(WAASAbs3$WAASB))
+    WAASAbs3$PctResp = resca(WAASAbs3$Y, 0, 100)
+    WAASAbs3$PctWAASB = resca(WAASAbs3$WAASB, 100, 0)
     WAASAbs = rbind(WAASAbs3, WAASAbs2)
     WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrResp, rank(-Y)),
                                          by = type][]
