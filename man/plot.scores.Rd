@@ -33,7 +33,7 @@
 
   \item{file.type}{The type of file to be exported. Valid parameter if \code{export = T|TRUE}.  Default is \code{"pdf"}. The graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
 
-  \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
+  \item{export}{Export (or not) the plot. Default is \code{FALSE}.}
 
   \item{file.name}{The name of the file for exportation, default is \code{NULL}, i.e. the files are automatically named.}
 
