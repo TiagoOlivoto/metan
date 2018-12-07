@@ -11,6 +11,5 @@ theme_waasb = function () {
           legend.text = element_text(size = 10),
           panel.border = element_rect(colour = "black", fill = NA, size = 1),
           panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
-          panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-          aspect.ratio = 1)
+          panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank())
 }

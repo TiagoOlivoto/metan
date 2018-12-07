@@ -1,4 +1,4 @@
-plot.scores = function(x,
+plot.scores2 = function(x,
                      type,
                      polygon = FALSE,
                      file.type = "pdf",
@@ -76,7 +76,8 @@ p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       ggrepel::geom_text_repel(aes(PC1, PC2, label = (Code)),
                                size = size.tex, col = c(rep(col.gen, ngen),
                                                         rep(col.env, nenv))) +
-      theme +
+      theme %+replace%
+      theme(aspect.ratio = 1) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -204,7 +205,8 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       ggrepel::geom_text_repel(aes(Y, PC1, label = (Code)),
                                size = size.tex, col = c(rep(col.gen, ngen),
                                                         rep(col.env, nenv)))  +
-      theme +
+      theme %+replace%
+      theme(aspect.ratio = 1) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -280,7 +282,8 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
 ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)),
                          size = size.tex, col = c(rep(col.gen, ngen),
                                                   rep(col.env, nenv)))  +
-     theme +
+      theme %+replace%
+      theme(aspect.ratio = 1) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -319,7 +322,8 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
         ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)),
                                  size = size.tex, col = c(rep(col.gen, ngen),
                                                           rep(col.env, nenv)))  +
-        theme +
+        theme %+replace%
+        theme(aspect.ratio = 1) +
         labs(x = paste(x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -397,7 +401,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
                                    label = ENV),
                                force = 5,
                                data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
-      theme +
+      theme %+replace%
       theme(legend.position = "none") +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
