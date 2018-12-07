@@ -16,29 +16,25 @@ plot.WAASBY = function(x,
     stop("The object 'x' must be a 'WAASratio.AMMI' or a 'WAASBYratio' object.")
   }
   if (class == "WAASB"){
-    data = x$model %>%
-      filter(type == "GEN") %>%
-      as.data.frame() %>%
-      subset(select = c(Code, PesRes, PesWAASB, WAASBY)) %>%
-      mutate(Mean = ifelse(WAASBY < mean(WAASBY), "below", "above"))
-    data = data[order(data$WAASBY),]
-    names(data) = c("Code", "PesRes", "PesWAAS", "WAASY")
+    data = subset(x$model, type  ==  "GEN", select = c(Code, PesRes, PesWAASB, WAASBY))
+    data = data[order(data$WAASBY), ]
+    data$Code = factor(data$Code, levels = data$Code)
+    data$Mean = ifelse(data$WAASBY < mean(data$WAASBY), "below", "above")
+    names(data) = c("Code", "PesRes", "PesWAAS", "WAASY", "Mean")
+
   } else if (class == "WAAS.AMMI"){
-    data = x$model %>%
-      filter(type == "GEN") %>%
-      as.data.frame() %>%
-      subset(select = c(Code, PesRes, PesWAAS, WAASY)) %>%
-      mutate(Mean = ifelse(WAASY < mean(WAASY), "below", "above"))
-    data = data[order(data$WAASY),]
-    names(data) = c("Code", "PesRes", "PesWAAS", "WAASY")
+    data = subset(x$model, type  ==  "GEN", select = c(Code, PesRes, PesWAAS, WAASY))
+    data = data[order(data$WAASY), ]
+    data$Code = factor(data$Code, levels = data$Code)
+    data$Mean = ifelse(data$WAASY < mean(data$WAASY), "below", "above")
   } else {
-    data = x
+    data = x$WAASY
   }
 
 
-p1 = ggplot2::ggplot(data$WAASY, aes(x = Code, y = WAASY)) +
+p1 = ggplot2::ggplot(data, aes(x = Code, y = WAASY)) +
     geom_point(stat = 'identity', aes(col = Mean), size = size.shape)  +
-    geom_segment(aes(y = min(data$WAASY$WAASY),
+    geom_segment(aes(y = min(data$WAASY),
                      x = `Code`,
                      yend = WAASY,
                      xend = `Code`),
@@ -48,7 +44,7 @@ p1 = ggplot2::ggplot(data$WAASY, aes(x = Code, y = WAASY)) +
                        values = col.shape,
                        labels = c("Above", "Below")) +
     theme +
-    scale_y_continuous(limits = c(min(data$WAASY$WAASY), 100), breaks = x.breaks) +
+    scale_y_continuous(limits = c(min(data$WAASY), 100), breaks = x.breaks) +
     labs(x = y.lab, y = "\nWAASBY (%)")
 
   if(export  ==  F|FALSE) {
