@@ -1,4 +1,4 @@
-plot.WAASBY2 = function(x,
+plot.WAASBY = function(x,
                       export = F,
                       file.type = "pdf",
                       file.name = NULL,
