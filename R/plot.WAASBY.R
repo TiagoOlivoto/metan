@@ -1,4 +1,4 @@
-plot.WAASBY = function(x,
+plot.WAASBY2 = function(x,
                       export = F,
                       file.type = "pdf",
                       file.name = NULL,
@@ -12,10 +12,30 @@ plot.WAASBY = function(x,
                       resolution = 300,
                       ...){
   class = class(x)
-  if (class != "WAASratio.AMMI" & class != "WAASBYratio") {
+  if (!class  %in% c("WAASratio.AMMI", "WAASBYratio", "WAASB", "WAAS.AMMI")) {
     stop("The object 'x' must be a 'WAASratio.AMMI' or a 'WAASBYratio' object.")
   }
-  data = x
+  if (class == "WAASB"){
+    data = x$model %>%
+      filter(type == "GEN") %>%
+      as.data.frame() %>%
+      subset(select = c(Code, PesRes, PesWAASB, WAASBY)) %>%
+      mutate(Mean = ifelse(WAASBY < mean(WAASBY), "below", "above"))
+    data = data[order(data$WAASBY),]
+    names(data) = c("Code", "PesRes", "PesWAAS", "WAASY")
+  } else if (class == "WAAS.AMMI"){
+    data = x$model %>%
+      filter(type == "GEN") %>%
+      as.data.frame() %>%
+      subset(select = c(Code, PesRes, PesWAAS, WAASY)) %>%
+      mutate(Mean = ifelse(WAASY < mean(WAASY), "below", "above"))
+    data = data[order(data$WAASY),]
+    names(data) = c("Code", "PesRes", "PesWAAS", "WAASY")
+  } else {
+    data = x
+  }
+
+
 p1 = ggplot2::ggplot(data$WAASY, aes(x = Code, y = WAASY)) +
     geom_point(stat = 'identity', aes(col = Mean), size = size.shape)  +
     geom_segment(aes(y = min(data$WAASY$WAASY),

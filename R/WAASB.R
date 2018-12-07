@@ -217,9 +217,9 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
                                          by = type][]
     WAASAbs$PesRes = as.vector(PesoResp)
     WAASAbs$PesWAASB = as.vector(PesoWAASB)
-    WAASAbs = dplyr::mutate(WAASAbs, WAASY = (PctResp * PesRes + PctWAASB *
+    WAASAbs = dplyr::mutate(WAASAbs, WAASBY = (PctResp * PesRes + PctWAASB *
                                                 PesWAASB)/(PesRes + PesWAASB))
-    WAASAbsInicial = data.table::setDT(WAASAbs)[, `:=`(OrWAASY, rank(-WAASY)),
+    WAASAbsInicial = data.table::setDT(WAASAbs)[, `:=`(OrWAASBY, rank(-WAASBY)),
                                                 by = type][]
     MinENV = WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)),
                            n = 1), ]
@@ -436,9 +436,9 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
                                          by = type][]
     WAASAbs$PesRes = as.vector(PesoResp)
     WAASAbs$PesWAASB = as.vector(PesoWAASB)
-    WAASAbs = dplyr::mutate(WAASAbs, WAASY = (PctResp * PesRes + PctWAASB *
+    WAASAbs = dplyr::mutate(WAASAbs, WAASBY = (PctResp * PesRes + PctWAASB *
                                                 PesWAASB)/(PesRes + PesWAASB))
-    WAASAbsInicial = data.table::setDT(WAASAbs)[, `:=`(OrWAASY, rank(-WAASY)),
+    WAASAbsInicial = data.table::setDT(WAASAbs)[, `:=`(OrWAASBY, rank(-WAASBY)),
                                                 by = type][]
     MinENV = WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)),
                            n = 1), ]
