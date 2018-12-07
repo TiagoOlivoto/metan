@@ -1,4 +1,4 @@
-plot.scores2 = function(x,
+plot.scores = function(x,
                      type,
                      polygon = FALSE,
                      file.type = "pdf",
