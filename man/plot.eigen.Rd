@@ -5,7 +5,8 @@
 \method{plot}{eigen}(x, export = FALSE, theme = theme_waasb(),
      file.type = "pdf", file.name = NULL, width = 6, height = 6,
      size.shape = 3.5, size.line = 1, y.lab = "Eigenvalue",
-     x.lab = "Number of multiplicative terms", resolution = 300, ...)
+     y2.lab = "Accumulated variance", x.lab = "Number of multiplicative terms",
+     resolution = 300, ...)
 }
 
 \description{
@@ -35,6 +36,8 @@ Plot the eigenvalues for from singular value decomposition of BLUP interaction e
 
   \item{y.lab}{The label of the y-axis in the plot. Default is \code{"Eigenvalue"}.}
 
+  \item{y2.lab}{The label of the second y-axis in the plot. Default is \code{"Accumulated variance"}.}
+
   \item{x.lab}{The label of the x-axis in the plot. Default is \code{"Number of multiplicative terms"}.}
 
   \item{resolution}{The resolution of the plot. Parameter valid if \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
@@ -44,7 +47,7 @@ Plot the eigenvalues for from singular value decomposition of BLUP interaction e
 }
 \examples{
 library(WAASB)
-model = WAASB(WAASBdata, resp = "GY", weight.response = 50, weight.WAAS = 50)
+model = WAASB(WAASBdata, GY, GEN, ENV, REP)
 plot.eigen(model)
 
 
