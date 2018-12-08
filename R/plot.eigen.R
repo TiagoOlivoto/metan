@@ -7,8 +7,6 @@ plot.eigen = function(x,
                      height = 6,
                      size.shape = 3.5,
                      size.line = 1,
-                     col.shape = "blue",
-                     col.line = "blue",
                      y.lab = "Eigenvalue",
                      x.lab = "Number of multiplicative terms",
                      resolution = 300,
@@ -18,11 +16,19 @@ plot.eigen = function(x,
     stop("The object 'x' must be a 'WAASB' object.")
   }
 eigen = x$PCA
-p = ggplot2::ggplot(eigen, aes(x = PC, y = Eigenvalue, group = 1))  +
-    geom_point(stat = 'identity', col = col.shape,  size = size.shape)   +
-    geom_line(col = col.line, size = size.line) +
-    theme +
-    labs(x = x.lab, y = y.lab)
+eigen$PC = factor(eigen$PC, levels = eigen$PC)
+scaleFactor <- 100/max(eigen$Eigenvalue)
+
+p = ggplot2::ggplot(eigen, aes(x =  PC, group = 1)) +
+  geom_line(aes(y = Eigenvalue, col = "Eigenvalue"), size = size.line) +
+  geom_point(aes(y = Eigenvalue, col = "Eigenvalue"), size = size.shape) +
+  geom_line(aes(y = Accumulated/scaleFactor, col = "Percentage"), size = size.line) +
+  geom_point(aes(y = Accumulated/scaleFactor, col = "Percentage"), size = size.shape) +
+  scale_y_continuous(sec.axis = sec_axis(~.*scaleFactor,
+                                         name = "Accumulated variance (%)")) +
+theme %+replace%
+  theme(legend.position = c(0.15, 0.1))+
+labs(x = x.lab, y = y.lab)
 
   if (export  ==  F|FALSE) {
     return(p)
