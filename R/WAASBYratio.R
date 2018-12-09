@@ -33,7 +33,7 @@ if (test2 == FALSE){
 
 WAASY.Values = list()
 initial = 0
-model = suppressWarnings(suppressMessages(lme4::lmer(Y~REP%in%ENV + (1|GEN) + (1|ENV)+ (1|GEN:ENV))))
+model = suppressWarnings(suppressMessages(lme4::lmer(Y ~ REP%in%ENV + ENV + (1|GEN) + (1|GEN:ENV))))
 summ = summary(model)
 bups = lme4::ranef(model)
 blupGEN = bups$GEN
