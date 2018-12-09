@@ -121,12 +121,12 @@ t_WAAS2 = data.table::transpose(t_WAAS)
 colnames(t_WAAS2) = rownames(t_WAAS)
 rownames(t_WAAS2) = colnames(t_WAAS)
 WAASAbs = cbind(WAASAbs, subset(t_WAAS2, select = WAAS))
-WAASAbs2 = subset(WAASAbs, type  ==  "ENV")
-WAASAbs2$PctResp = (WAASAbs2$Y / max(WAASAbs2$Y))*100
-WAASAbs2$PctWAAS = (100 - WAASAbs2$WAAS / min(WAASAbs2$WAAS))
-WAASAbs3 = subset(WAASAbs, type  ==  "GEN")
-WAASAbs3$PctResp = (WAASAbs3$Y / max(WAASAbs3$Y))*100
-WAASAbs3$PctWAAS = (100 - WAASAbs3$WAAS / min(WAASAbs3$WAAS))
+WAASAbs2 = subset(WAASAbs, type == "ENV")
+WAASAbs2$PctResp = resca(WAASAbs2$Y, 0, 100)
+WAASAbs2$PctWAAS = resca(WAASAbs2$WAAS, 100, 0)
+WAASAbs3 = subset(WAASAbs, type == "GEN")
+WAASAbs3$PctResp = resca(WAASAbs3$Y, 0, 100)
+WAASAbs3$PctWAAS = resca(WAASAbs3$WAAS, 100, 0)
 WAASAbs = rbind(WAASAbs3, WAASAbs2)
 WAASAbs = data.table::setDT(WAASAbs)[, OrResp := rank(-Y), by = type][]
 WAASAbs = data.table::setDT(WAASAbs)[, OrWAAS := rank(WAAS), by = type][]
