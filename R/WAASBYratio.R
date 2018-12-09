@@ -56,8 +56,8 @@ Eigenvalue = mutate(group_by(Eigenvalue, Proportion), Accumulated = cumsum(Propo
 Eigenvalue$PC = rownames(Eigenvalue)
 Eigenvalue = Eigenvalue %>%
 select(PC, everything())
-SCOREG = U %*% LL
-SCOREE = V %*% LL
+SCOREG = U %*% LL^0.5
+SCOREE = V %*% LL^0.5
 Escores = rbind(SCOREG, SCOREE)
 colnames(Escores) = paste("PC", 1:minimo, sep = "")
 raw = data.frame(ENV, GEN, Y)
