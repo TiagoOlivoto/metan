@@ -15,7 +15,7 @@ GEPRED = make_matrix(x, "GEN", "ENV", "Predicted")
 HMGV = data.frame(HMGV = apply(GEPRED, 1, FUN = hmean_fun),
                   HMGV_order = rank(-apply(GEPRED, 1, FUN = hmean_fun)))
 ## Relative performance
-y = model_mil_2$MeansGxE
+y = x$MeansGxE
 GEMEAN = make_matrix(y, "GEN", "ENV", "Y")
 ovmean = mean(y$Y)
 mean_env = apply(GEMEAN, 2, FUN = mean)
