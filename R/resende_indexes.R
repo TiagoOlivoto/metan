@@ -1,5 +1,5 @@
 resende_indexes =  function(x){
-x = x$BLUPgge
+gge = x$BLUPgge
 # Helper functions
 hmean_fun = function(x){
 hmean = length(x)/sum(1/x)
@@ -11,7 +11,7 @@ make_matrix = function(data, row, col, value){
   return(data.frame(tapply(data[, 3], data[, c(1, 2)], mean)))
 }
 # Harmonic mean
-GEPRED = make_matrix(x, "GEN", "ENV", "Predicted")
+GEPRED = make_matrix(gge, "GEN", "ENV", "Predicted")
 HMGV = data.frame(HMGV = apply(GEPRED, 1, FUN = hmean_fun),
                   HMGV_order = rank(-apply(GEPRED, 1, FUN = hmean_fun)))
 ## Relative performance
