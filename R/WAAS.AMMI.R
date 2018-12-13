@@ -155,12 +155,13 @@ Details = list(WgtResponse = weight.response,
                MinENV = MinENV,
                MaxENV = MaxENV,
                MinGEN = MinGEN,
-               MaxGEN = MaxGEN)
+               MaxGEN = MaxGEN,
+               SigPC = SigPC1)
 Details = do.call(rbind.data.frame, Details)
 names(Details) = "Values"
 Details = plyr::mutate(Details,
                          Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
-                                        "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
+                                        "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"))
 Details = Details %>%
           dplyr::select(Parameters, everything())
 return(structure(list(individual = individual,
