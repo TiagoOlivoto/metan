@@ -48,4 +48,4 @@ return(data.frame(GEN = mean[1],
                   rEV = rEV,
                   ssiEV))
 }
-D = AMMI_indexes(model_mil_2)
+
