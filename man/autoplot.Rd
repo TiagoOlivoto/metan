@@ -3,16 +3,18 @@
 \alias{autoplot.WAASB}
 \title{Set of plots residuals for models of class WAAS.AMMI and WAASB}
 \usage{
-\method{autoplot}{WAAS.AMMI}(x, conf = 0.95, theme = theme_waasb(), alpha = 0.2,
-         fill.hist = "gray", col.hist = "black", col.point = "black",
-         col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
-         bins = 30, which = c(1:4), mfrow = c(2, 2), ...)
+\method{autoplot}{WAAS.AMMI}(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
+         alpha = 0.2, fill.hist = "gray", col.hist = "black",
+         col.point = "black", col.line = "red", col.lab.out = "red",
+         size.lab.out = 2.5, bins = 30, which = c(1:4),
+         mfrow = c(2, 2), ...)
 
 
-\method{autoplot}{WAASB}(x, conf = 0.95, theme = theme_waasb(), alpha = 0.2,
-         fill.hist = "gray", col.hist = "black", col.point = "black",
-         col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
-         bins = 30, which = c(1:4), mfrow = c(2, 2), ...)
+\method{autoplot}{WAASB}(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
+         alpha = 0.2, fill.hist = "gray", col.hist = "black",
+         col.point = "black", col.line = "red", col.lab.out = "red",
+         size.lab.out = 2.5, bins = 30, which = c(1:4),
+         mfrow = c(2, 2), ...)
 }
 
 \description{
@@ -22,9 +24,11 @@ Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of 
 
 \arguments{
 
-  \item{x}{An object of class WAAS.AMMI or "WAASB"}
+  \item{x}{An object of class \code{WAAS.AMMI} or \code{WAASB}.}
 
   \item{conf}{Level of confidence interval to use in the Q-Q plot (0.95 by default). }
+
+  \item{labels}{Logical argument. If \code{TRUE} labels the points outside confidence interval limits.}
 
   \item{theme}{The theme to use in the graphics. Default is \code{theme = theme_waasb()}.}
 

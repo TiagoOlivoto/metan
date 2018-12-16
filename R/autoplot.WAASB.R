@@ -1,5 +1,6 @@
 autoplot.WAASB = function(x,
                           conf = 0.95,
+                          labels = FALSE,
                           theme = theme_waasb(),
                           alpha = 0.2,
                           fill.hist = "gray",
@@ -37,16 +38,14 @@ p1 = ggplot(df, aes(.fitted, .resid)) +
     geom_point(col = col.point)  +
     geom_smooth(se = F, method = "loess", col = col.line) +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
-    labs(x = "Fitted values",  y = "Residual") +
-  ggrepel::geom_text_repel(aes(.fitted, .resid,
-                               label = (label)),
-                               color = col.lab.out,
-                               size = size.lab.out) +
-
+    labs(x = "Fitted values",  y = "Residual")+
     theme
-
-
-
+if (labels != FALSE){
+  p1 = p1 + ggrepel::geom_text_repel(aes(.fitted, .resid,
+                                      label = (label)),
+                                  color = col.lab.out,
+                                  size = size.lab.out)
+} else{p1 = p1}
 
   # normal qq
 p2 = ggplot(df, aes(z, .scresid)) +
@@ -57,12 +56,14 @@ p2 = ggplot(df, aes(z, .scresid)) +
     geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = 0.2)+
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
-    ggtitle("Normal Q-Q") +
-  ggrepel::geom_text_repel(aes(z, .scresid,
+    ggtitle("Normal Q-Q")+
+    theme
+if (labels != FALSE){
+p2 = p2 + ggrepel::geom_text_repel(aes(z, .scresid,
                                label = (label)),
                            color = col.lab.out,
-                           size = size.lab.out) +
-theme
+                           size = size.lab.out)
+} else {p2 = p2}
 
 
 # scale-location
@@ -71,12 +72,14 @@ p3 = ggplot(df, aes(.fitted, sqrt(abs(.resid))))+
   geom_smooth(se = F, method = "loess", col = col.line) +
   labs(x = "Fitted Values",
        y = expression(sqrt("|Standardized residuals|"))) +
-  ggrepel::geom_text_repel(aes(.fitted, sqrt(abs(.resid)),
-                               label = (label)),
-                           color = col.lab.out,
-                           size = size.lab.out) +
   ggtitle("Scale-location") +
   theme
+if (labels != FALSE){
+p3 = p3 + ggrepel::geom_text_repel(aes(.fitted, sqrt(abs(.resid)),
+                               label = (label)),
+                           color = col.lab.out,
+                           size = size.lab.out)
+} else {p3 = p3}
 
 # Residuals vs Factor-levels
 p4 = ggplot(df, aes(factors, .scresid))+
@@ -84,13 +87,14 @@ p4 = ggplot(df, aes(factors, .scresid))+
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted values",
        y = "Standardized residuals") +
-  ggrepel::geom_text_repel(aes(factors, .scresid,
-                               label = (label)),
-                           color = col.lab.out,
-                           size = size.lab.out) +
   ggtitle("Residuals vs factor-levels") +
   theme
-
+if (labels != FALSE){
+p4 = p4 + ggrepel::geom_text_repel(aes(factors, .scresid,
+                               label = (label)),
+                           color = col.lab.out,
+                           size = size.lab.out)
+} else {p4 = p4}
 
 # Histogram of residuals
 p5 = ggplot(df, aes(x = .resid)) +

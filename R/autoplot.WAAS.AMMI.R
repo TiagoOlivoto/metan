@@ -1,5 +1,6 @@
 autoplot.WAAS.AMMI = function(x,
                               conf = 0.95,
+                              labels = FALSE,
                               theme = theme_waasb(),
                               alpha = 0.2,
                               fill.hist = "gray",
@@ -30,7 +31,6 @@ autoplot.WAAS.AMMI = function(x,
   df$lower <- fit.value - zz * SE
   df$label <- ifelse(df$stdres > df$upper | df$stdres < df$lower, rownames(df),"")
 
-
   # residuals vs fitted
 
 p1 = ggplot(df, aes(fitted, resid)) +
@@ -39,12 +39,12 @@ p1 = ggplot(df, aes(fitted, resid)) +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
     labs(x = "Fitted values",
          y = "Residual") +
-  geom_text(aes(label = label), size = size.lab.out,
-            hjust = "inward", col = col.lab.out) +
-    ggtitle("Residuals vs fitted") +
-    theme
-
-
+  ggtitle("Residuals vs fitted") +
+  theme
+if (labels != FALSE){
+  p1 = p1 + geom_text(aes(label = label), size = size.lab.out,
+            hjust = "inward", col = col.lab.out)
+} else{p1 = p1}
 
   # normal qq
 p2 = ggplot(df, aes(z, stdres)) +
@@ -56,11 +56,11 @@ p2 = ggplot(df, aes(z, stdres)) +
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
     ggtitle("Normal Q-Q") +
-  geom_text(aes(label = label), size = size.lab.out,
-            hjust = "inward", col = col.lab.out) +
-  theme
-
-
+    theme
+if (labels != FALSE){
+  p2 = p2 + geom_text(aes(label = label), size = size.lab.out,
+            hjust = "inward", col = col.lab.out)
+} else{p2 = p2}
 
 # scale-location
 p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
@@ -68,10 +68,12 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
   geom_smooth(se = F, method = "loess", col = col.line) +
   labs(x = "Fitted values",
        y = expression(sqrt("|Standardized residuals|"))) +
-  geom_text(aes(label = label), size = size.lab.out,
-            hjust = "inward", col = col.lab.out) +
   ggtitle("Scale-location") +
   theme
+if (labels != FALSE){
+  p3 = p3 + geom_text(aes(label = label), size = size.lab.out,
+            hjust = "inward", col = col.lab.out)
+} else{p3 = p3}
 
 # Residuals vs Factor-levels
 p4 = ggplot(df, aes(factors, stdres))+
@@ -79,10 +81,12 @@ p4 = ggplot(df, aes(factors, stdres))+
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted values",
        y = "Standardized residuals") +
-  geom_text(aes(label = label), size = size.lab.out,
-            hjust = "inward", col = col.lab.out) +
   ggtitle("Residuals vs factor-levels") +
   theme
+if (labels != FALSE){
+  p4 = p4 + geom_text(aes(label = label), size = size.lab.out,
+            hjust = "inward", col = col.lab.out)
+} else{p4 = p4}
 
 
 # Histogram of residuals
