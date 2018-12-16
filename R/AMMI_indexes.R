@@ -1,4 +1,8 @@
 AMMI_indexes = function(x){
+
+  if (!is(x, "WAAS.AMMI")) {
+      stop("The object 'x' must be an object of class \"WAAS.AMMI\"")
+   }
 model = x
 meange = model$MeansGxE
 effects = residuals(lm(Y ~ ENV + GEN, data = meange))

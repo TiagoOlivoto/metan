@@ -1,4 +1,8 @@
 resende_indexes =  function(x){
+  if (!is(x, "WAASB")) {
+    stop("The object 'x' must be an object of class \"WAASB\"")
+  }
+
 gge = x$BLUPgge
 # Helper functions
 hmean_fun = function(x){
