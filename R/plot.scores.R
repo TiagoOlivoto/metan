@@ -25,10 +25,10 @@ plot.scores = function(x,
                      line.alpha = 0.9,
                      col.line = "gray",
                      col.gen = "blue",
-                     col.env = "red",
+                     col.env = "darkgreen",
                      col.alpha = 0.9,
                      col.segm.gen = "transparent",
-                     col.segm.env = "red",
+                     col.segm.env = "darkgreen",
                      resolution = 300,
                      ...){
 
