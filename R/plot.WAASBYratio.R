@@ -1,5 +1,5 @@
 plot.WAASBYratio = function(x,
-                            type,
+                            type = 2,
                             export = FALSE,
                             file.type = "pdf",
                             file.name = NULL,
