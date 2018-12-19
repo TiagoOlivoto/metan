@@ -1,8 +1,8 @@
-\name{resende_indexes}
-\alias{resende_indexes}
+\name{Resende_indexes}
+\alias{Resende_indexes}
 \title{Stability indexes proposed by Resende based on a mixed-effect model.}
 \usage{
-resende_indexes(x)
+Resende_indexes(x)
 }
 
 \description{
@@ -41,7 +41,7 @@ A dataframe contaning the indexes
 \examples{
 library(WAASB)
 model = WAASB(WAASBdata, GY, GEN, ENV, REP)
-model_indexes = resende_indexes(model)
+model_indexes = Resende_indexes(model)
 
 }
 
@@ -54,7 +54,7 @@ Dias, P.C., A. Xavier, M.D.V. de Resende, M.H.P. Barbosa, F.A. Biernaski, R.A. E
 
 Azevedo Peixoto, L. de, P.E. Teodoro, L.A. Silva, E.V. Rodrigues, B.G. Laviola, and L.L. Bhering. 2018. Jatropha half-sib family selection with high adaptability and genotypic stability. PLoS One 13:e0199880. \href{https://dx.plos.org/10.1371/journal.pone.0199880}{doi:10.1371/journal.pone.0199880}.
 
-Resende MDV (2007) Matemática e estatística na análise de experimentos e no melhoramento genético. Embrapa Florestas, Colombo
+Resende MDV (2007) Matematica e estatistica na analise de experimentos e no melhoramento genetico. Embrapa Florestas, Colombo
 
 }
 

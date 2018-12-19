@@ -1,4 +1,4 @@
-resende_indexes =  function(x){
+Resende_indexes =  function(x){
   if (!is(x, "WAASB")) {
     stop("The object 'x' must be an object of class \"WAASB\"")
   }
