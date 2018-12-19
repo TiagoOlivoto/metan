@@ -2,8 +2,9 @@ AMMI_indexes = function(x){
 
   if (!is(x, "WAAS.AMMI")) {
       stop("The object 'x' must be an object of class \"WAAS.AMMI\"")
-   }
+  }
 model = x
+n = sum(model$PCA$`Pr(>F)` <= 0.05, na.rm = TRUE)
 meange = model$MeansGxE
 effects = residuals(lm(Y ~ ENV + GEN, data = meange))
 meange$residual = effects
@@ -15,7 +16,6 @@ gamma.n = svdge$u[, 1:n]
 theta.n = model$PCA$Percent[1:n]/100
 
 # sum of absolute scores
-n = sum(model$PCA$`Pr(>F)` <= 0.05, na.rm = TRUE)
 PCA = data.frame(model$model)
 SCOR = PCA[PCA[, 1] == "GEN", c(seq(4, n+3))]
 SIPC = unname(rowSums(apply(SCOR, 2, FUN = abs)))
