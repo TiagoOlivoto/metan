@@ -114,7 +114,16 @@ p6 = ggplot(df, aes(as.numeric(id), stdres, group = 1))+
 
 
 
-plots <- list(p1, p2, p3, p4, p5, p6)
+p7 = ggplot(df, aes(.fitted, Y)) +
+  geom_point(col = col.point) +
+  facet_wrap(~GEN) +
+  geom_abline(intercept = 0,slope = 1, col = col.line) +
+  theme_waasb() +
+  theme(panel.spacing = unit(0, "cm")) +
+  labs(x = "Fitted values", y = "Observed values")
+
+
+plots <- list(p1, p2, p3, p4, p5, p6, p7)
 
   # making the plots
 grid::grid.newpage()
