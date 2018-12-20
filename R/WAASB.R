@@ -282,6 +282,7 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPe",
                             "BLUPge+g+e", "Predicted")
     residuals = fortify.merMod(Complete)
+    residuals$reff = selectioNenv$BLUPge
     return(structure(list(individual = individual, model = WAASAbsInicial,
                           BLUPgen = blupGEN, BLUPenv = blupENV, BLUPge = selectioNenv,
                           PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, REML = random,
@@ -494,6 +495,7 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
     names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge",
                             "Predicted", "LL", "UL")
     residuals = data.frame(fortify.merMod(Complete))
+    residuals$reff = selectioNenv$BLUPge
     return(structure(list(individual = individual, model = WAASAbsInicial,
                           BLUPgen = blupGEN, BLUPgge = selectioNenv, PCA = Eigenvalue,
                           MeansGxE = MEDIAS, Details = Details, REML = REML, ESTIMATES = ESTIMATES,
