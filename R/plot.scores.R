@@ -394,11 +394,12 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
                  data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
       ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 == min(envPC1)),
                                 aes(label = GEN, fill = GEN),
-                                size = 3, color = 'white',
+                                size = size.tex, color = 'white',
                                 force = 5, segment.color = '#bbbbbb') +
       ggrepel::geom_text_repel(aes(x = envPC1,
                                    y = min,
                                    label = ENV),
+                               size = size.tex,
                                force = 5,
                                data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
       theme %+replace%
