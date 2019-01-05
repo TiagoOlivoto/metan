@@ -1,8 +1,8 @@
 ---
-title: "Extending WAASB package"
+title: "Extending METAAB package"
 subtitle: "Examples with code and outputs"
 author: "Tiago Olivoto"
-date: "`r paste('WAASB', packageVersion('WAASB'), Sys.Date())`"
+date: "`r paste('METAAB', packageVersion('METAAB'), Sys.Date())`"
 always_allow_html: yes
 output:
   prettydoc::html_pretty:
@@ -14,9 +14,9 @@ output:
     keep_md: TRUE
 fig_caption: yes
 link-citations: true
-bibliography: WAASBref.bib    
+bibliography: METAABref.bib    
 vignette: >
-  %\VignetteIndexEntry{Extending WAASB package}
+  %\VignetteIndexEntry{Extending METAAB package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -34,72 +34,91 @@ text-align: justify}
 
 </style>
 
-# Introducing the `WAASB` R package
-The WAASB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions provide de singular value decomposition of BLUP-interaction effects matrix as weel as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/WAASB/archive/master.zip) or running the following code in the R console:
+# Introducing the `METAAB` R package
+The METAAB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions provide de singular value decomposition of BLUP-interaction effects matrix as weel as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/METAAB/archive/master.zip) or running the following code in the R console:
 
-## Overview of the `WAASB` package.
-> Package `WAASB` available at `github`.
+## Overview of the `METAAB` package.
+> Package `METAAB` available at `github`.
 > Installation
   
 ```{r, eval = FALSE, collapse=TRUE, comment = "#"}
 # download the package from Github
-devtools::install_github("TiagoOlivoto/WAASB")
+devtools::install_github("TiagoOlivoto/METAAB")
 
 ```
 
-## Main functions of `WAASB` package.
+## Main functions of `METAAB` package.
 
-| Functions       	  | Description                                                        	          |
-|:------------------  |:------------------------------------------------------------------------------|
-| `performs_ammi()`   | Performs Additive Main effects and Multiplicative Interaction   	            |
-| `plot.eigen()`      | Plot the eigenvalues of singular value decomposition                          |
-| `plot.blup()`       | Plot the estimated BLUPs of genotypes                                         |
-| `plot.validation.AMMIF()`	    | Plot the RMSE of all AMMI-family tested models                     	|
-| `plot.WAASBY()`	    | Plot WAASBY values for genotype ranking                                      	|
-| `plot.WAASBYratio()`| Plot heat maps with genotype ranking                                          |
-| `predict.WAAS.AMMI()`| Predict the means of a `WAAS.AMMI` object                                  	|
-| `summary.WAASB()`   | Summary a WAASB object                                                        |
-| `theme_waasb()`     | A personalized theme for the WAASB ggplot2-based graphics                     |
-| `validation.blup()` | Cross-validation for BLUP prediction                                          |
-| `validation.AMMIF()`| Cross-validation for the AMMI-family models                                   |
-| `WAASBYratio()`     | BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio      |
-| `WAAS.AMMI()`	      | Weighted Average of Absolute Scores for AMMI analysis                       	|
-| `WAASratio.AMMI()`  | Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio      |
-| `WAASB()`    	      | Weighted Average of Absolute Scores for BLUP-based PCA analysis   	          |
+| Functions       	            | Description                                                        	          |
+|:------------------------------|:------------------------------------------------------------------------------|
+| `AMMI_indexes()`    	        | AMMI-based stability indexes |
+| `resca()`    	                | Helper function to rescale a vector to have specified minimum and maximum values|
+| `Resende_indexes()`    	      | Stability indexes proposed by Resende based on a mixed-effect model|
+| `WAASB()`    	                | Weighted Average of Absolute Scores from SVD of BLUP-based GEI effects        |
+| `WAASBYratio()`               | Different scenarios for weighting between mean performance and stability (mixed models)     |
+| `WAAS.AMMI()`	                | Weighted Average of Absolute Scores for AMMI analysis                       	|
+| `WAASratio.AMMI()`            | Different scenarios for weighting between mean performance and stability (fixed models)|
+| `validation.blup()`           | Cross-validation for BLUP prediction                                          |
+| `validation.AMMIF()`          | Cross-validation for all member of AMMI family models       |
+| `plot.blup()`                 | Plot the estimated BLUPs of genotypes                                         |
+| `performs_ammi()`             | Helper function for computing AMMI analysis |
+| `plot.eigen()`                | Plot the eigenvalues of singular value decomposition                          |
+| `theme_waasb()`               | The default theme for the ggplot-based graphics generated in the package     |
+|  Methods        	            | Description                                                        	          |
+| `autoplot()`                  | Plot for diagnostic of residuals  | 
+| `plot.validation.AMMIF()`     | Plot the RMSPD obtained in the cross-validation process                     	|
+| `plot.WAASBY()`	              | Plot WAASBY values for genotype ranking                                      	|
+| `plot.WAASBYratio()`          | Plot heat maps with genotype ranking                                          |
+| `predict.WAAS.AMMI()`         | Predict the response variable of an object of class `WAAS.AMMI`              	|
+| `summary.WAASB()`             | Summarize an object of class `WAASB`                                             |
+| `summary.WAAS.AMMI()`         | Summarize an object of class `WAAS.AMMI`                                             |
 
 
 # Getting started
-A data set with data on 10 oat genotypes conducted in 16 environments is provided to make reproducible examples. This data is available in @Olivoto:2018. An own data set can be used provided that the columns are in the following order: environment, genotype, block/replicate and response variable(s).
+The data set from experiment 1 (oat) was provided to make reproducible examples. This data is available in @Olivoto:2018. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The order of collumns doesn't need necessarily be the same since in each function the user will need to inform the columns to be evaluated.
 
 ```{r warning = FALSE, message = FALSE}
 # Importing data
-require(WAASB)
-dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/1/files/07764a07-172a-4285-85db-c31bc39ae480/WAASBdata.csv?dl=1")
+require(METAAB)
+require(ggplot2)
+require(cowplot) # used in this material to arrange the graphics
+dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/2/files/1561de7f-b8fd-4093-b4d1-bfcef299dd22/WAASBdata.csv?dl=1")
 
 ```
 
+\pagebreak
+
 # Predictive accuracy 
-The functions `validation.AMMIF` provides a complete cross-validation for AMMI model family using replicate-based data. Automatically the first validation is carried out considering the AMMIF model (all possible axis is used). Considering this model, the original data set is split into two data sets: modelling and validating data. The "modelling" data set has all combinations (genotype x environment) with the number of replications informed in the argument `nrepval`. The data set "validating" has one replication. The splitting of the data set into modelling and validating data depends on the design informed. For Completely Randomized Block Design (default), completely blocks are selected within environments, as suggested by @Piepho:1994. The remained block serves as validation data. If `design = "RCD"` is informed, thus declaring that the a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by @Gauch:1988. The estimated values (for each AMMI model family) are compared with the "validating" data. the Root Means Square Prediction Difference is computed according to the following equation:
+
+\Begin{multicols}{2}
+\setlength{\parindent}{0em}
+
+The first steap in the article was to evaluate the predictive accucary of both AMMI and BLUP models. We will show in details how we can do that using the functions `validation.AMMIF()` and `validation.blup()` functions. The `validation.AMMIF()` function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below:
+![Diagrama demonstrando o proceso de validação cruzada dos membros da família AMMI de modelos.](validation.png).
+Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set. The training set has all combinations (genotype x environment) with the number of replications informed in `nrepval` argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by @Piepho:1994. The remaining block serves as validation data. If `design = "CRD"` is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by @Gauch:1988. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:
 
 $$
    RMSPD = 
-   \sqrt{\frac{\sum_{i = 1}^n(\widehat{y}_{ij}-y_{ij})^2} {n}}
+   {\left[ {\left( {\sum\nolimits_{i = 1}^n {{{\left( {{{\hat y}_{ij}} - {y_{ij}}} \right)}^2}} } \right)/n} \right]^{0.5}}
 $$
 
-where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the observed value of the validating data set. At the end of boots, a list with all estimated RMSE and the average of RMSE is returned.
+where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the observed value in the validation set. The number of random selection of blocks/replicates (*n*) is defined in the argument `nboot`. At the end of the *n* cycles for all models, a list with all estimated RMSPD and the average of RMSPD is returned.
 
-The function  `validation.blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected each environment. The procedure for computing the RSME is identical to the above function.
+\End{multicols}
+\setlength{\parindent}{3em}
 
->The following codes computes the cross-validation of oat data set based on 1000 re-sampling procedures. This number can be changed.
+The function  `validation.blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.
+
+The following code computes the cross-validation of the oat data set based on 1000 re-sampling procedures. This number can be changed.
 
 ```{r eval = TRUE, collapse=TRUE, comment = "#"}
-# cross-validation for AMMI model family
+
 AMMIweat = validation.AMMIF(dataset,
                             resp = GY,
                             gen = GEN,
                             env = ENV,
                             rep = BLOCK,
-                            nboot = 100,
+                            nboot = 10,
                             nrepval = 2)
 
 # cross-validation for BLUP model
@@ -108,18 +127,20 @@ BLUPweat = validation.blup(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = BLOCK,
-                            nboot = 100,
+                            nboot = 10,
                             nrepval = 2)
 
     ```
 
-A progress bar is shown by default (the examples are bellow). Thus, it is possible to verify the status of the cross-validation process. If necessary, the progress bar can be disabled by informing the argument `progbar = FALSE` in the function.
+A progress bar is shown by default (the examples are below). Thus, it is possible to verify the status of the cross-validation process. If necessary, the progress bar can be disabled by informing the argument `progbar = FALSE` in the function.
 
 ![Progress bar for AMMI model family cross-validation process.](printAMMI.png)
 
 ![Progress bar for BLUP cross-validation process.](printBLUP.png)
 
-## Printting the means of RMSE estimates
+## Printing the means of RMSPD estimates
+
+All outputs shown in tables were laid out using the R package kableExtra. The pdf file of this package can be found [here](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf).
 
 ```{r echo = TRUE}
 options(digits = 4)
@@ -137,42 +158,52 @@ kable(RMSEweat, "html") %>%
 
     ```
 
-The results shown above are the mean of 100 RMSE estimates for each tested model and are presented from the most accurate model (smallest RSME value) to the lowest accurate model (highest RMSE value). 
+The results shown above are the means of the 1000 RMSPD estimates for each tested model and are presented from the most accurate model (smallest RSME value) to the least accurate model (highest RMSPD value). 
 
+We can print the result from `RMSPDweat` in basically two distinct ways. First, printing the results in the R environment using `print(RMSPDweat)` (this is not a good idea since we probably will need work with these results). The second option is to export the results to an editable file, such as a .csv, or .xlsx file. We have R packages that facilitate this procedure. Let's do it. For example, to export the results to a .csv file, the command to be run is: `utils::write.csv(RMSPDweat, file = "myfile.csv")`. This command will create a .csv file called "myfile" in the R directory. To export the results to a .xlsx file, the package `xlsx` is needed. After properly installed, the command will be then `xlsx::write.xls(RMSPDweat, file = "myfile2.xlsx")`.
 
 ## Plotting the RMSPD values
 
->It is also possible plotting the RMSPD values in a boxplot graphic. Let's to do it.
-
-```{r eval = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
-# binding AMMI and BLUP RMSEs
+The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function`plot()` may be used. 
+```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
+# binding AMMI and BLUP RMSPDs
 RMSPDweat = list(RMSPD = rbind(AMMIweat$RMSPD, 
-                           BLUPweat$RMSPD))
+                               BLUPweat$RMSPD))
+class(RMSPDweat) = "validation.AMMIF"
+
 # Plotting the RMSPD values
-plot.validation.AMMIF(RMSPDweat,
-                      violin = FALSE,
-                      col.boxplot = "gray75")
+p1 = plot(RMSPDweat)
+p2 = plot(RMSPDweat, width.boxplot = 0.5, col.boxplot = "transparent")
+plot_grid(p1, p2, labels = c("p1", "p2"))
     ```
 
-Five statistics are shown in this boxplot. The median, the lower and upper hinges correspond to the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than $1.5\times{IQR}$ from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most $1.5\times{IQR}$ of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added joint with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
+Six statistics are shown in this boxplot. The mean (black rhombus), the median (black line), the lower and upper hinges that correspond sto the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than $1.5\times{IQR}$ from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most $1.5\times{IQR}$ of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added along with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
 
 
-# Predicting the yield by traditional AMMI model using replicate-based data
-The function `predict.AMMI` (or the generic function `predict()`) can be used to predict the response variable of a two-way table (for example, the yielding of the *i*th genotype in the *j*th environment) based on the traditional AMMI model. This prediction is based on the number of multiplicative terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In this case, the predicted mean will be the predicted value from OLS estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is used for predicting the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the cell mean, i.e., the mean of R replicates of the *i*th genotype in the *j*th environment. The number of axes to be used must be carefully chosen. Procedures based on postdictive success (such as Gollobs's d.f.) or predictive success (such as cross-validation) should be used to do this. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSE of all AMMI model family based on re-sampling procedures.
+# Estimating the response variable using traditional AMMI model
 
-> Predicting the yield of 10 oat cultivars in 16 environments using 5 multiplicative terms.
+An interesting feature of `WAASB` package for traditional AMMI model estimation is the implementation of the S3 method `predict()`. The response variable of a two-way table (for example, the yield of *m* genotypes in *n* environments) may be estimated using the function `predict(model)`, where `model` is an object of class `WAAS.AMMI`. This estimation is based on the number of multiplicative terms declared in the function. If `naxis = 0` is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If `naxis = 1`, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If `naxis = min(gen-1;env-1)`, the AMMIF is fitted. A summary of all possible AMMI models is presented below.
 
-```{r echo = TRUE}
-model =  WAAS.AMMI(dataset,
-                   resp = GY,
-                   gen = GEN,
-                   env = ENV,
-                   rep = BLOCK)
-predictoat = predict(model, naxis = 5)
+| Member of AMMI family  | Espected response of the *i*-th genotype in the *j*th environment|
+|:------------------------|:------------------------------------------------------------------------------|
+| AMMI0            | $\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..}$                   |
+| AMMI1            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}$ |
+| AMMI2            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}$ |
+| ...              |                                                                               |
+| AMMIF            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}$ 
 
-    ```
 
+The number of axes used in the estimation must be carefully chosen. Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] or predictive success, such as cross-validation procedures [@Piepho:1994] should be used. This package provides both. `WAAS.AMMI` function compute traditional AMMI analysis showing the number of significant axes according Gollobs's test. On the other hand, `validation.AMMIF` function provides a cross-validation, estimating the RMSPD for all AMMI model family based on re-sampling procedures, considering an completely randomized desing or a randomized complete block design.
+
+* Estimating the yield of the 10 oat cultivars in 16 environments using 5 multiplicative terms.
 ```{r echo = FALSE}
+AMMI_model = WAAS.AMMI(dataset,
+                       resp = GY,
+                       gen = GEN,
+                       env = ENV,
+                       rep = BLOCK)
+predictoat = predict(AMMI_model, naxis = 5)
+
 library(kableExtra)
 options(digits = 4)
 predictoat = predictoat[1:10,]
@@ -184,203 +215,175 @@ kable(predictoat, "html") %>%
 
 Only the first ten values are shown. The following values are presented: **ENV** is the environment; **GEN** is the genotype; **Y** is the response variable; **resOLS** is the residual ($\hat{z}_{ij}$) estimated by the Ordinary Least Square (OLS), where $\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}$; **Ypred** is the predicted value by OLS ($\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}$); **ResAMMI** is the residual estimated by the AMMI model ($\hat{a}_{ij}$) considering the number of multiplicative terms informed in the function (in this case 5), where $\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}$; **YpredAMMI** is the predicted value by AMMI model  $\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}$; and **AMMI0** is the predicted value when no multiplicative terms are used, i.e., $\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}$.
 
-# Estimating the WAAS (based on traditional AMMI model)
-The `WAAS.AMMI` function compute the weighted average of absolute scores considering: (i) all principal component axes that are significant at a given probability error level; or (ii)  declaring a specific number of axes to be used, according to the following equation:
+
+# Estimating the WAAS
+The `WAAS.AMMI` function computes the Weighted Average of Absolute Scores considering (i) all principal component axes that were significant ($p < 0.05$ by default); or (ii) declaring a specific number of axes to be used, according to the following equation:
 
 $$
         WAAS_i  = 
-        \sum_{k = 1}^{s} |PCA_{ik} \times EP_k|/ \sum_{k = 1}^{s}EP_k
+        \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
 $$
 
-where $WAAS_i$ is the weighted average of absolute scores of the *i*th genotype; $PCA_{ik}$ is the score of the *i*th genotype in the *k*th PCA; and $EP_k$ is the explained variance of the *k*th PCA for $k = 1,2,..,s$, considering *s* the number of significant PCA, or a a declared number of PCA. The following functions can be used to do this.
+where $WAAS_i$ is the weighted average of absolute scores of the *i*th genotype; $PCA_{ik}$ is the score of the *i*th genotype in the *k*th IPCA; and $EP_k$ is the explained variance of the *k*th IPCA for $k = 1,2,..,p$, considering *p* the number of significant PCAs, or a declared number of PCAs. The following functions may be used to do that.
 
-## Assuming a given probability error for chosing the number of axes
-In this example only PCA with *P*-value $\le$ 0.05 will be used in the WAAS estimation.
+## Number of axes based on F-test
+In this example only IPCAs with *P*-value < 0.05 will be considered in the WAAS estimation.
 
 ```{r echo = TRUE}
-library(WAASB)
-# Assuming equal weights for productivity and stability
+# Assuming equal weights for productivity and stability (default)
 WAAS1 = WAAS.AMMI(dataset,
                   resp = GY,
                   gen = GEN,
                   env = ENV,
-                  rep = BLOCK,
-                  p.valuePC = 0.05,
-                  weight.response = 50,
-                  weight.WAAS = 50)
-
-# Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
-# no output for this script
-WAAS11 = WAAS.AMMI(dataset,
-                  resp = GY,
-                  gen = GEN,
-                  env = ENV,
-                  rep = BLOCK,
-                  p.valuePC = 0.05,
-                  weight.response = 70,
-                  weight.WAAS = 30)
-
+                  rep = BLOCK)
     ```
 
 
-```{r eval = FALSE}
-options (digits = 4)
-# printing the WAASB object
-print(WAAS1$anova)
-
-    ```
-
-```{r echo = FALSE}
-library(kableExtra)
-options(digits = 4, width = 200)
-data = WAAS1$anova
+```{r }
+# printing the WAAS object
+options(digits = 3)
+data = WAAS1$individual$individual
 kable(data, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12) %>%
-  row_spec(9, bold = T) %>%
-  add_indent(c(5:13))
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F, position = "left", font_size = 12)
+
+    ```
+
+
+The above table shows the within-environment ANOVA considering a fixed-effect model. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, $CV = (\sqrt{MS_{res}}/Mean) \times 100$; the heritability, $h2 = (MS_{gen} - MS_{res})/MS_{gen}$; the accuracy of selection, $As = \sqrt{h2}$; and the coefficient of determination (R2).
+
+
+```{r }
+# printing the WAAS object
+data = WAAS1$anova
+kable(data,  align  = "l", booktabs = T, format = "html", linesep = "") %>%
+kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12) %>%
+row_spec(9, bold = T) %>%
+add_indent(c(5:13))
 
     ```
 
 The above table is the traditional AMMI analysis. Nine principal component axis were fitted and five were significant at 5% probability error. Based on this result, the AMMI5 model would be the best model to predict the yielding of the genotypes in the studied environments. This is confirmed by the cross-validation in the [section 3](#predictive-accuracy). The AMMI model with the smallest RMSE was the AMMI5. The predicted values (first ten observations) can be seen in [section 4](#predicting-the-yield-using-traditional-ammi-model) 
 
-> printing the WAASB object
+> printing the METAAB object
 
-```{r eval = FALSE}
-options (digits = 4)
-print(WAAS1$model[, c(1:3,13:17, 21:22)])
 
-    ```
-
-```{r echo = FALSE}
-library(kableExtra)
+```{r }
 options(digits = 4)
 data = WAAS1$model[, c(1:3,13:17, 21:22)]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
+
     ```
 
 In this example, the scores of the nine PCA were not shown. The output generated by the `WAAS.AMMI` function shows the following results: **type**, genotype (GEN) or environment (ENV); **Code**, the code attributed to each level of the factors; **Y**, the response variable (in this case the grain yield); **WAAS** the weighted average of the absolute scores, estimated with all PCA axes with *P*-value $\le$ 0.05; **PctWAAS** and **PctResp** that are the percentage values for the WAAS and Y, respectively; **OrResp** and **OrWAAS** that are the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; **WAASY** is the weighted average of absolute scores and response variable. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 is estimated by: $WAAS_{G1} = [(86.32\times50)+(98.88\times50)]/50+50 = 92.60$. Then the **OrWAASY* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked. See [Estimating the WAASBY index](#estimating-the-waasby-index) for a detailed explanation.
 
-> Biplot WAAS x GY
+In this example, the scores of the nine PCAs were not shown. The output generated by the `WAAS.AMMI` function shows the following results: **type**, genotype (GEN) or environment (ENV); **Code**, the code attributed to each level of the factors; **Y**, the response variable (in this case the grain yield); **WAAS** the weighted average of the absolute scores, estimated with all significant IPCA; **PctWAAS** and **PctResp**, the rescaled variable for the WAAS and Y, respectively; **OrResp** and **OrWAAS**, the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; **WAASY** is the simultanteous selection index that weights between response variable and stability. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 would be then: $WAASY_{G1} = [(22.043\times50)+(100\times50)]/50+50 = 92.60$, which, with equal weights is equivalente to the aritmetic mean of pctResp and PctWAAS. Then the *OrWAASY* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked. Please, refer to [Estimating the WAASBY index](#estimating-the-waasby-index) for a detailed explanation.
 
-```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
-
-plot.scores(WAAS1,
-            type = 3)
-    ```
-
-The biplot above shows the coordinates of the genotypes and environments regarding the grain yield and the WAAS values. It is in fact the plot of the columns Y and WAAS from the above table. A detailed discussion on the interpretation of this biplot can be seen in [section 6.2.3](#biplot-type-3-gy-x-waasb).
-
-## Declaring a specific number of axis to be used
-Here it is possible to inform a specific number of multiplicative terms to be used in the WAAS estimation. In this example, the number of terms informed is used independently of its significance. Let us, for the moment, assume that two multiplicative terms should be used.
-
-> Declaring that five PCA must be used to compute the WAAS
+## Number of axes declared manually
+The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument `naxis` in the function `WAAS.AMMI` is then used to overwrite the default chose of significant terms. 
 
 ```{r echo = TRUE}
-
 WAAS2 = WAAS.AMMI(dataset,
                   resp = GY,
                   gen = GEN,
                   env = ENV,
                   rep = BLOCK,
-                  weight.response = 50,
-                  weight.WAAS = 50)
+                  naxis = 7)
 
     ```
 
-```{r eval = FALSE}
-options (digits = 4)
-# printing the WAASB object
-print(WAAS2$model[, c(1:3,13:17, 21:22)])
+The only difference in this output compared to those from  [section 5.1](#assuming-a-given-probability-error-for-chosing-the-number-of-axes) is that here we declared that seven PCA axes should be used for computing the WAAS value. Thus, only the values of WAAS, OrWAAS, WAASY and OrWAASY may have significant changes.
 
-    ```
 
-```{r echo = FALSE}
-library(kableExtra)
-options(digits = 4)
-data = WAAS2$model[, c(1:3,13:17, 21:22)]
-kable(data, "html") %>%
+# Other AMMI-based stability indexes
+The following AMMI-based stability indexes tested in the article may be computed using the function `AMMI_indexes()`:
+ 
+ * **AMMI stability value, ASV, [@Purchase2000].**
+
+$$
+ASV = \sqrt {{{\left[ {\frac{{IPCA{1_{ss}}}}{{IPCA{2_{ss}}}} \times \left( {IPCA{1_{score}}} \right)} \right]}^2} + {{\left( {IPCA{2_{score}}} \right)}^2}}
+$$
+
+* **Sums of the absolute value of the IPCA scores**
+
+$$
+SIP{C_i} = \sum\nolimits_{k = 1}^P {\left| {\mathop {|\lambda }\nolimits_k^{0.5} {a_{ik}}} \right|}
+$$
+
+* **Averages of the squared eigenvector values**
+
+$$
+E{V_i} = \sum\nolimits_{k = 1}^P {\mathop a\nolimits_{ik}^2 } /P
+$$
+described by @Sneller1997, where *P* is the number of IPCA retained via F-tests;
+
+* **absolute value of the relative contribution of IPCAs to the interaction [@Zali2012].**
+
+$$
+Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
+$$
+
+where ${\theta _k}$ is the percentage sum of squares explained by the *k*-th IPCA. Simultaneous selection indexes (ssi), are computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields [@Farshadfar2008], which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.
+
+
+```{r }
+stab_indexes = AMMI_indexes(AMMI_model)
+kable(stab_indexes, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
     ```
 
-The only difference of this output compared tho those from the [section 5.1](#assuming-a-given-probability-error-for-chosing-the-number-of-axes) is that here we declared that seven PCA axes should be used for computing the WAAS value. Thus, only the values of WAAS, OrWAAS, WAASY and OrWAASY are changed. The magnitude of changes, however are too small. This is explained because only two multiplicative terms were included here compared to the previous examples. In addition, these multiplicative terms (PCA6 and PCA7) explained only 3.7% and 1.8%, respectively of the GEI pattern. See section [section 5.1](#assuming-a-given-probability-error-for-chosing-the-number-of-axes).
-
-> Biplot WAAS x GY
-
-```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
-plot.scores(WAAS2,
-            type = 3)
-    ```
-
-In this biplot, we can see that the changes in the coordinates were also too small.  
 
 # Estimating the WAASB (based on SVD of BLUP-interaction effects)
-The `WAASB` function compute the weighted average of absolute scores considering all principal component axes from Singular Value Decomposition of BLUP-interaction effects matrix, considering the following model:
+
+The `WAASB()` function computes the weighted average of absolute scores considering all possible IPCA from the Singular Value Decomposition of the genotype-vs-environment interaction random effects (BLUPs), considering the following equation:
 
 $$
         WAASB_i  = 
-        \sum_{k = 1}^{p} |PCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
+        \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
 $$
 
-where $WAASB_i$ is the weighted average of absolute scores of the *i*th genotype; $PCA_{ik}$ is the scores of the *i*th genotype in the *k*th PCA; and $EP_k$ is the explained variance of the *k*th PCA for $k = 1,2,..,p$, and $p = min(G-1;E-1)$.
-
-As the matrix of genotypic effects (free from error) is used, all multiplicative terms can be used without a noise-adding effect. The main advantage of `WAASB` over `WAAS` function is that, by using a mixed model, random effects can be included in the model. In addition, unbalanced data sets can also be modeled.
+where $WAASB_i$ is the weighted average of absolute scores of the *i*th genotype; $IPCA_{ik}$ is the scores of the *i*th genotype in the *k*th IPCA; and $EP_k$ is the explained variance of the *k*th PCA for $k = 1,2,..,p$, $p = min(G-1;E-1)$.
 
 
 ```{r echo = TRUE}
-# Assuming equal weights for productivity and stability
+# Assuming equal weights for productivity and stability (default)
 WAASB = WAASB(dataset,
               resp = GY,
               gen = GEN,
               env = ENV,
-              rep = BLOCK,
-              prob = 0.95,
-              weight.response = 50,
-              weight.WAAS = 50)
-
-# Priorizing productivity for genotype ranking (WAASB/GY ratio = 30/70)
-# no output for this script
-WAASB2 = WAASB(dataset,
-              resp = GY,
-              gen = GEN,
-              env = ENV,
-              rep = BLOCK,
-              prob = 0.95,
-              weight.response = 30,
-              weight.WAAS = 70)
+              rep = BLOCK)
 
     ```
+
+## Diagnostic plot for residuals
+The function `autoplot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`.
+```{r echo = TRUE, fig.width=10, fig.height=10, fig.align="center"}
+autoplot(WAASB)
+autoplot(WAASB, type = "re")
+
+    ```
+
 
 ## Printing the model outputs
-> Likelihood ratio tests on linear mixed-effect models
 
-```{r eval = FALSE, warning=F, message=F}
-print(WAASB$LRT)
-    ```
+### Likelihood Ratio Tests
 
-```{r echo = FALSE, warning=F, message=F}
-library(kableExtra)
+```{r warning=F, message=F}
 options(digits = 5)
-dt_footnote = WAASB$LRT
-
-kable(dt_footnote, "html", align = "c", escape = F) %>%
+data = WAASB$LRT
+kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
     ```
 
-The output `LRT` contains the Likelihood Ratio Tests on the random effects of the linear mixed-effect.
 
-> Variance components and some parameters
+The output `LRT` contains the Likelihood Ratio Tests for genotype and genotype-vs-environment random effects.
 
-```{r eval = FALSE}
-options (digits = 4)
-print(WAASB$ESTIMATES)
 
-    ```
+### Variance components and genetic parameters
 
-```{r echo = FALSE}
-library(kableExtra)
+```{r }
 options(digits = 7)
 data = WAASB$ESTIMATES
 kable(data, "html") %>%
@@ -388,18 +391,13 @@ kable(data, "html") %>%
 
     ```
 
-In the output `ESTIMATES` some important parameters is shown. **GEIr2** is the coefficient of determination of the interaction effects; **rge** is the genotype-environment correlation; **CVg** is the the genotypic coefficient of variation; **CVr** is the residual coefficient of variation; **CV ratio** is the ratio between genotypic and residual coefficient of variation.
 
-> A detailed infromation regarding the analyzed experiment.
+In the output `ESTIMATES`, beyond the variance components for the declared random effects, some important parameters are also shown. **Heribatility** is the broad-sense heritability, $\mathop h\nolimits_g^2$, estimated by $\mathop h\nolimits_g^2  = \mathop {\hat\sigma} \nolimits_g^2 /\left( {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 } \right)$ where $\mathop {\hat\sigma} \nolimits_g^2$ is the genotypic variance; $\mathop {\hat\sigma} \nolimits_i^2$ is the genotype-by-environment interaction variance; and $\mathop {\hat\sigma} \nolimits_e^2$ is the residual variance. **GEIr2** is the coefficient of determination of the interaction effects, $\mathop r\nolimits_i^2$, estimated by $\mathop r\nolimits_i^2  = \mathop {\hat\sigma} \nolimits_i^2 /\left( {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 } \right)$; **Heribatility of means** is the heribability on the mean basis, $\mathop h\nolimits_{gm}^2$, estimated by $\mathop h\nolimits_{gm}^2  = \mathop {\hat\sigma} \nolimits_g^2 /\left[ {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2 /e + \mathop {\hat\sigma} \nolimits_e^2 /\left( {eb} \right)} \right]$, where *e* and *b* are the number of environments and blocks, respectively; **Accuracy** is the accuracy of selection, *Ac*, estimated by $Ac = \sqrt{\mathop h\nolimits_{gm}^2}$ ;   **rge** is the genotype-environment correlation,  $\mathop r\nolimits_{ge}$, estimated by $\mathop r\nolimits_{ge} = \mathop {\hat\sigma} \nolimits_g^2 /\left({\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2} \right)$; **CVg** is the the genotypic coefficient of variation, estimated by \(\left( {\sqrt {\mathop {\hat \sigma }\nolimits_g^2 } /\mu } \right) \times 100\) , where $\mu$ is the grand mean;  **CVr** is the residual coefficient of variation, estimated by $\left( {\sqrt {\mathop {\hat \sigma }\nolimits_e^2 } /\mu } \right) \times 100$ ; **CV ratio** is the ratio between genotypic and residual coefficient of variation.
 
-```{r eval = FALSE}
-options (digits = 4)
-print(WAASB$Details)
 
-    ```
+### Some useful information
 
-```{r echo = FALSE}
-library(kableExtra)
+```{r }
 options(digits = 4)
 data = WAASB$Details
 kable(data, "html") %>%
@@ -407,18 +405,12 @@ kable(data, "html") %>%
 
     ```
 
-The following information are showed in `Details` output. **WgtResponse** is the weight for the response variable in estimating WAASB; **WgtWAAS** the weight for stability; **Ngen** is the number of genotypes; **Nenv** is the number of environments; **OVmean** is the overall mean; **Min** is the minimum value observed (returning the genotype and environment); **Max** is the maximum observed; **MinENV** is the environment with the lower mean; **MaxENV** is the environment with the largest mean observed; **MinGEN** is the genotype with the lower mean; **MaxGEN** is the genotype with the largest mean.    
 
-> printing the WAASB object
+The following pieces of information are provided in `Details` output. **WgtResponse** is the weight for the response variable in estimating WAASB; **WgtWAAS** is the weight for stability; **Ngen** is the number of genotypes; **Nenv** is the number of environments; **OVmean** is the overall mean; **Min** is the minimum value observed (returning the genotype and environment); **Max** is the maximum observed; **MinENV** is the environment with the lower mean; **MaxENV** is the environment with the largest mean observed; **MinGEN** is the genotype with the lower mean; **MaxGEN** is the genotype with the largest mean.    
 
-```{r eval = FALSE}
-options (digits = 4)
-print(WAASB$model[, c(1:3,13:17, 21:22)])
+### The WAASB object
 
-    ```
-
-```{r echo = FALSE}
-library(kableExtra)
+```{r }
 options(digits = 4)
 data = WAASB$model[, c(1:3,13:17, 21:22)]
 kable(data, "html") %>%
@@ -426,19 +418,11 @@ kable(data, "html") %>%
 
     ```
 
-This output generated by the `WAASB` function is very similar to those shown in the [sections 5.1](#assuming-a-given-probability-error-for-chosing-the-number-of-axes) and [5.2](#declaring-a-specific-number-of-axis-to-be-used). The main difference here, is that the singular value decomposition is based on the BLUP interaction effect matrix and the **WAASB** in this output is the weighted average of the absolute scores, estimated with all estimated PCA axes instead **WAAS** that is estimated considering only PCA axes with *P*-value $\le$ 0.05.
+This output generated by the `WAASB` function is very similar to those shown in the [sections 5.1](#assuming-a-given-probability-error-for-chosing-the-number-of-axes) and [5.2](#declaring-a-specific-number-of-axis-to-be-used). The main difference here, is that the singular value decomposition is based on the BLUP interaction effect matrix and the **WAASB** in this output is the weighted average of the absolute scores, estimated with all estimated PCA axes, where instead **WAAS** that is estimated considering only PCA axes with *P*-value $\le$ 0.05.
 
-> printing the estimated BLUP for genotypes
+### BLUP for genotypes
 
-```{r eval = FALSE}
-options(digits = 4)
-print(WAASB$BLUPgen[1:10,])
-
-    ```
-
-```{r echo = FALSE}
-
-library(kableExtra)
+```{r }
 options(digits = 4)
 data = WAASB$BLUPgen[1:10,]
 kable(data, "html") %>%
@@ -447,27 +431,23 @@ kable(data, "html") %>%
     ```
 
 
-> plotting the estimated BLUP for genotypes
+### Plotting the BLUP for genotypes
 
-```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
+```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 # No file exported
-plot.blup(WAASB)
+p1 = plot.blup(WAASB)
+p2 = plot.blup(WAASB, 
+               col.shape  =  c("gray20", "gray80")) + coord_flip()
+plot_grid(p1, p2,
+          labels = c("p1", "p2"))
 
 ```
 
+This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\hat{g}_{i})$ estimated by $\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})$ where $h_g^2$ is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by $\hat{g}_{i}+\mu$ where $\mu$ is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by $(\hat{g}_{i}+\mu)\pm{CI}$. $CI$ is the confidence interval for BLUP prediction assuming a given probability error, where  $CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}$ where $t$ is the Student's *t* value for a two-tailed t test at a given probability error; $Ac$ is the accuracy of selection and $\mathop \sigma \nolimits_g^2$ is the genotypic variance.
 
-This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\hat{g}_{i})$ estimated by $\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})$ where $h_g^2$ is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by $\hat{g}_{i}+\mu$ where \mu is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by $(\hat{g}_{i}+\mu)\pm{CI}$. $CI$ is the confidence interval for BLUP prediction assuming a given probability error, where  $CI = t\times\sqrt{((1-Ac)\times{GV)}}$ where $t$ is the Student's *t* value for a two-tailed t test at a given probability error; $Ac$ is the genotypic accuracy and $GV$ is the genotypic variance.
+### BLUP for genotypes X environment combination
 
-> printing the estimated BLUP for genotypes X environment 
-
-```{r eval = FALSE}
-options (digits = 4)
-print(WAASB$BLUPgge[1:10,])
-
-    ```
-
-```{r echo = FALSE}
-library(kableExtra)
+```{r }
 options(digits = 4)
 data = WAASB$BLUPgge[1:10,]
 kable(data, "html") %>%
@@ -475,21 +455,11 @@ kable(data, "html") %>%
 
     ```
 
-This output shows the predicted means for each genotype and environment combination **BLUPg** is the genotypic effect described above. **BLUPge** is the genotypic effect of the *i*th genotype in the *j*th environment $(\hat{g}_{ij})$ estimated by $\hat{g}_{ij} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})+h_{ge}^2(y_{ij}-\bar{y}_{i.}-\bar{y}_{.j}+\bar{y}_{..})$, where $h_{ge}^2$ is the shrinkage effect for genotype-by-environment interaction; **BLUPg+ge** is $BLUP_g+BLUP_{ge}$; **Predicted** is the predicted mean ($\hat{y}_{ij}$) estimated by $\hat{y}_{ij} = \bar{y}_{.j}+BLUP_{g+ge}$.
+This output shows the predicted means for each genotype and environment combination. **BLUPg** is the genotypic effect described above. **BLUPge** is the genotypic effect of the *i*th genotype in the *j*th environment $(\hat{g}_{ij})$ estimated by $\hat{g}_{ij} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})+h_{ge}^2(y_{ij}-\bar{y}_{i.}-\bar{y}_{.j}+\bar{y}_{..})$, where $h_{ge}^2$ is the shrinkage effect for the genotype-by-environment interaction; **BLUPg+ge** is $BLUP_g+BLUP_{ge}$; **Predicted** is the predicted mean ($\hat{y}_{ij}$) estimated by $\hat{y}_{ij} = \bar{y}_{.j}+BLUP_{g+ge}$.
 
+## Eigenvalues from the SVD
 
-
-> printing the eigenvalues
-
-```{r eval = FALSE}
-options (digits = 4)
-
-print(WAASB$PCA)
-
-    ```
-
-```{r echo = FALSE}
-library(kableExtra)
+```{r }
 options(digits = 4)
 data = WAASB$PCA
 kable(data, "html") %>%
@@ -497,9 +467,8 @@ kable(data, "html") %>%
 
     ```
 
-> Plotting the eigenvalues
 
-```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
+```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
 plot.eigen(WAASB, size.lab = 14, size.tex = 14)
 
@@ -507,213 +476,195 @@ plot.eigen(WAASB, size.lab = 14, size.tex = 14)
 
 The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.
 
-> printing the phenotypic means for all genotype x environment combinations 
+### Phenotypic means
 
-```{r eval = FALSE}
-options (digits = 4)
-print(WAASB$MeansGxE[1:10,])
-    ```
-
-```{r echo = FALSE}
-library(kableExtra)
+```{r }
 options(digits = 4)
 data = WAASB$MeansGxE[1:10,]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
-
     ```
 
-Is the phenotypic mean for each genotype and environment combination ($y_{ij}$), estimated by $y_{ij} = \sum_k{y_{ij}}/B$ with $k = 1,2,...B$.
+In this output, *Y* is the phenotypic mean for each genotype and environment combination ($y_{ij}$), estimated by $y_{ij} = \sum_k{y_{ij}}/B$ with $k = 1,2,...B$.
 
 
-## plotting the scores
-For both `WAAS.AMMI` and `WAASB` functions three types of graphics can be generated: 1 = PC1 x PC2, to make inferences related to the interaction effects; 2 = GY x PC1 to make inferences related to stability and productivity; 3 = GY x WAASB and 4 = nominal yield x environment PCA1 scores. These are ggplot2-based graphics; so, the apprareance of the graphics can be be personalized by using the function `theme()`
+## Biplots
+
+We will show how biplots may be obtained for both traditional AMMI model, fitted by the function `WAAS.AMMI()` and the mixed-effect model fitted by the function `WAASB()`. Provided that an object of class "WAAS.AMMI" or "WAASB" is available in the global environment, the graphics may be obtained using the function `plot.scores()`. To do that, we will revisit the previusly fitted model `WAASB` . Please, refer to `?plot.scores` for more details. Four types of graphics can be generated: 1 = $PC1 \times PC2$;  2 = $GY \times PC1$; 3 = $GY \times WAASB$; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.
 
 ### biplot type 1: PC1 x PC2
 
-```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
-# No file exported
-plot.scores(WAASB,
-            type = 1)
-
+```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
+library(cowplot)
+p1 = plot.scores(WAASB, type = 1)
+p2 = plot.scores(WAASB,
+                 type = 1,
+                 polygon = TRUE,
+                 col.gen = "black",
+                 col.env = "gray70",
+                 col.segm.env = "gray70",
+                 axis.expand = 1.5)
+plot_grid(p1, p2, labels = c("p1","p2"))
 ```
 
 
 ### biplot type 2: GY x PC1
 
-```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
+```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 
-plot.scores(WAASB,
-            type = 2)
+p3 = plot.scores(WAASB, type = 2)
+p4 = plot.scores(WAASB, type = 2,
+                 col.segm.env = "transparent") +
+                 theme_gray() +
+                 theme(legend.position = c(0.1, 0.9),
+                       legend.background = element_rect(fill = NA))
 
-# dafault theme of ggplot2
-library(ggplot2)
-plot.scores(WAASB,
-            type = 2,
-            col.gen = "black",
-            col.env = "blue",
-            theme = theme_gray())
-
+plot_grid(p3, p4, labels = c("p3","p4"))
 ```
 
 ### biplot type 3: GY x WAASB
 
-The quadrants proposed in the following biplot represent the four classifications proposed here regarding the joint interpretation of productivity and stability. The genotypes or environments included in the quadrant I can be considered unstable genotypes or environments with high discrimination ability, however with productivity below the grand mean. In quadrant II are included unstable genotypes, however, with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within the quadrant III have low productivity, but can be considered stable due to lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV the genotypes can be considered an "ideal" genotype due to the high magnitude of the response variable and high stability performance (lower values of WAASB).    
+The quadrants proposed in the following biplot represent the four classifications proposed here regarding the joint interpretation of productivity and stability. The genotypes or environments included in quadrant I can be considered unstable genotypes or environments with high discrimination ability, and with productivity below the grand mean. In quadrant II are included unstable genotypes, although with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within quadrant III have low productivity, but can be considered stable due to the lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV are higly productive and broadly adapted due to the high magnitude of the response variable and high stability performance (lower values of WAASB).    
 
+```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message=F, warning=F}
 
-```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F}
-
-plot.scores(WAASB,
-            type = 3)
-
-# Save to a *.tiff file with resolution of 600 dpi.
-plot.scores(WAASB,
-            type = 3,
-            export = TRUE,
-            file.type = "tiff",
-            resolution = 600)
-
+p5 = plot.scores(WAASB, type = 3)
+p6 = plot.scores(WAASB, type = 3,
+                 x.lab = "My customized x label",
+                 size.shape = 3,
+                 size.tex = 2,
+                 x.lim = c(1.2, 4.7),
+                 x.breaks = seq(1.5, 4.5, by = 0.5)) + 
+                 theme(legend.position = c(0.1, 0.9))
+plot_grid(p5, p6, labels = c("p5","p6"))
 ```
 
 
 
-### Nominal yield vs environment IPCA1 scores
-
-Aiming at identifying possible mega-environments as well as visualizing the "which-won-where" pattern of the dataset, a graphic with the nominal yield ($\mathop {\hat y}\nolimits_{ij}^*$) as a function of the environment IPCA1 scores is also produced. In this graphic, each genotype is depicted by a straight line with the equation $\mathop {\hat y}\nolimits_{ij}^*  = {\mu _i} + PCA{1_i} \times PCA{1_j}$, where $\mathop {\hat y}\nolimits_{ij}^*$ is the nominal yield for the ith genotype in the jth environment; ${\mu _i}$is the grand mean of the ith genotype; $PC{1_i}$ is the IPCA1 score of the ith genotype and $PCA{1_j}$ is the IPC1 score of the jth environment. The winner genotype in a given environment has the highest nominal yield in that environment. This is the type 4 graphic and can be obtained by the following code.
-
+### biplot type 4 : nominal yield and environment PCA1
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F}
 
 plot.scores(WAASB,
-            type = 4)
+            type = 4, size.tex = 1.5)
 
 
 ```
-
 
 
 # Estimating the WAASBY index
-The function `WAASBratio` considers both stability (weighted average of absolute scores based on SVD of BLUP-interaction effects matrix) and productivity for genotype ranking considering the following model:
+The function `WAASBratio` considers both stability (WAASB) and productivity for genotype ranking considering the following model:
 
 $$
-            \begin{aligned}
-              WAASBY_I = 
-            \frac{\left[W_{GY}\times\left(\left(\frac{GY_i}{GY_{max}}\right)\times 100\right)\right] + 
-              \left[W_{S}\times\left(100-\frac{WAASB_i}{WAASB_{min}}\right)\right]} {W_{GY}+W_{S}}
-           \end{aligned}
+WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _S}} \right)}}{{{\theta _Y} + {\theta _S}}}
 $$
 
-where $WAASBY_i$ is the weighted average of absolute scores and productivity of the *i*th genotype; $W_{GY}$ is the weight for grain yield; $GY_i$ is the average grain yield of the *i*th genotype; $GY_{max}$ is the largest average grain yield among the genotypes; $W_S$ is the weight for the stability; $WAASB_i$ is the weighted average of absolute scores of the *i*th genotype; and $WAASB_{min}$ is the smallest value of WAASB.
+where $WAASBY_i$ is the superiority index for the *i*-th genotype that weights between performance and stability; $rG_i$ and $rW_i$ are the rescaled values (0-100) for GY and WAASB, respectively;  $\theta _Y$ and $\theta_S$ are the weights for GY and WAASB, respectively.
 
-This function provide the option of attributing weights for stability and productivity in genotype ranking. This is important depending on the goal of a selection strategy. For example, if a goal of a breeding program is to select a genotype whit high yielding (independently on the stability performance), that genotype with the first rank in an WAASB/GY = 0/100 ratio should be selected. The reciprocal is true. Aiming at selecting a high-stable genotype (independently on the productivity), that genotype with the first rank in an WAASB/GY = 100/0 ratio should be selected. By default, the increment on the WAASB/GY ratio is equal to 5. In other words, twenty one different combinations are computed. Each combination, the genotypes are ranked regarding the WAASY value.
+This function provides the option of attributing weights for stability and productivity in genotype ranking. This is important depending on the goal of a selection strategy or cultivar reccomendation. For example, if the goal is to select a genotype with high yield (independently of the stability performance), that genotype with the first rank in a WAASB/GY = 0/100 ratio should be selected. The reciprocal is true. Aiming at selecting high-stable genotypes (independently of the productivity), that genotype with the first rank in a WAASB/GY = 100/0 ratio should be selected. By default, the increment on the WAASB/GY ratio is equal to 5 and the WAASBY values are saved when the WAASB/GY ratio is equal to 50/50. Thus, twenty one different scenarios are computed, and for each scenario, the genotypes are ranked based on the WAASBY values.
+
+In the following example we will assume that we want to obtain the ranks changing the WAASB/GY ratio in 10% each scenario and to plot the WAASBY values considering a WAASB/GY ratio equal 30/70. **Important! THE ARGUMENT `saveWAASY` MUST BE DIVISIBLE BY `increment`!**
 
 ```{r echo = TRUE}
-
 WAASBYratio = WAASBYratio(dataset,
                           resp = GY,
                           gen = GEN,
                           env = ENV,
                           rep = BLOCK,
                           increment = 10,
-                          saveWAASY = 50)
+                          saveWAASY = 30)
 
 ```
+
+This procedure can also be used with the traditional AMMI analysis. This approach is easily implemented using the `WAASratio.AMMI` function shown in the following example. 
+
+```{r echo = TRUE, eval=FALSE}
+WAASBYratio2 = WAASratio.AMMI(dataset,
+                              resp = GY,
+                              gen = GEN,
+                              env = ENV,
+                              rep = BLOCK,
+                              increment = 10,
+                              saveWAASY = 30)
+
+```
+
 
 ## Printing the model outputs
-> printing the WAASY values
 
-```{r eval = FALSE}
+* WAASBY values
 
-
-print(WAASBYratio$WAASY)
-
-```
-
-```{r echo = FALSE}
-library(kableExtra)
+```{r }
 options(digits = 4)
 data = WAASBYratio$WAASY
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
-    ```
-
-> Printing the genotype ranking for each scenario 
-
-```{r eval = FALSE}
-
-print(WAASBYratio$hetcomb)
-
 ```
 
-```{r echo = FALSE}
-library(kableExtra)
+In this output, **PesResp** and **PesWAAS** are the weights attributed to response variable and stability, respecively, to compute de WAASY values.
+
+* Genotype ranking for each scenario of WAASBY/GY ratio.
+
+```{r }
+
 options(digits = 4)
 data = WAASBYratio$hetcomb
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
-    ```
-
-> Printing the genotype ranking depending on the number of multiplicative terms used to estimate the WAASB index.
-
-```{r eval = FALSE}
-
-print(WAASBYratio$hetdata)
-
 ```
 
-```{r echo = FALSE}
-library(kableExtra)
+* Genotype ranking depending on the number of multiplicative terms used to estimate the WAASB index.
+
+```{r }
+
 options(digits = 4)
 data = WAASBYratio$hetdata
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
-    ```
+```
 
 
-## plotting the WAASBY values
+## Plotting the WAASBY values
 
-```{r echo = TRUE, fig.height = 3, fig.width = 6, fig.align = "center"}
+```{r echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
 
-plot.WAASBY(WAASBYratio,
-            theme = theme_waasb() +
-                    theme(aspect.ratio = NULL,
-                          legend.position = c(0.85, 0.2)))
-
+p1 = plot.WAASBY(WAASBYratio)
+p2 = plot.WAASBY(WAASBYratio, col.shape = c("gray20", "gray80")) 
+plot_grid(p1, p2, labels = c("p1", "p2"))
     ```
 
 
 ## Plotting the heat map graphics
-The first type of heatmap shows the genotype ranking depending on the number of principal component axis used for estimating the WAASB index. A euclidean distance-based dendrogram is used for grouping the genotype ranking for both genotypes and principal component axis. The second type of heatmap shows the genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a ratio of 100/0 considers exclusively the stability for genotype ranking. On the other hand, a ratio of 0/100 considers exclusively the productivity for genotype ranking. Four clusters are estimated (1) unproductive and unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but unproductive genotypes; and (4), productive and stable genotypes.
+The first type of heatmap shows the genotype ranking depending on the number of principal component axes used for estimating the WAASB index. An euclidean distance-based dendrogram is used for grouping the genotype ranking for both genotypes and principal component axes. The second type of heatmap shows the genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a ratio of 100/0 considers exclusively the stability for genotype ranking. On the other hand, a ratio of 0/100 considers exclusively the productivity for genotype ranking. Four clusters are estimated (1) unproductive and unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but unproductive genotypes; and (4), productive and stable genotypes.
 
-### Ranks of genotypes depending on the number PCAs used to estimate the WAASB
-```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 
-plot.WAASBYratio(WAASBYratio,
-                 type = 1)
 
-# save to a *.pdf file (default)
-plot.WAASBYratio(WAASBYratio,
-                 type = 1,
-                 export = T)
+### Ranks of genotypes depending on the number of PCA used to estimate the WAASB
+```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
+
+plot(WAASBYratio, type = 1)
+
 
     ```
 
 ### Ranks of genotypes depending on the WAASB/GY ratio
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot.WAASBYratio(WAASBYratio,
-                 type = 2)
+plot(WAASBYratio, type = 2)
 
-#save to a *tiff file
-plot.WAASBYratio(WAASBYratio,
-                type = 2,
-               export = T,
-              file.type = "tiff",
-             resolution = 600)
 
 ```
+
+# Stability indexes proposed by Resende 2007
+
+```{r }
+res_inde = Resende_indexes(WAASB)
+kable(res_inde, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
+
+    ```
 
 # References
