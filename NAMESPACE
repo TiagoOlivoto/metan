@@ -14,11 +14,12 @@ importFrom(gplots, heatmap.2)
 importFrom(plyr, ddply, ., summarize)
 importFrom("grDevices", "colorRampPalette", "dev.off", "pdf",
            "chull", "tiff")
+importFrom("methods", "is")
 importFrom("graphics", "plot")
 importFrom("stats", "aov", "filter", "as.dendrogram", "dist", "hclust", "lm",
            "model.matrix", "qt", "weighted.mean", "deviance", "df.residual",
            "pf", "predict", "dnorm", "fitted", "ppoints", "qnorm", "quantile",
-            "resid", "sd")
+            "resid", "sd", "residuals")
 importFrom("utils", "head", "setWinProgressBar", "winProgressBar")
 S3method(plot, WAASBY)
 S3method(plot, WAASBYratio)
