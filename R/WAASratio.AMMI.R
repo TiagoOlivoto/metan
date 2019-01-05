@@ -193,7 +193,6 @@ PC2 = Pesos[2,1]
 mean = mean(WAAS$Y)
 if (progbar == TRUE){
 close(pb)
-utils::winDialog(type = "ok", "Procedure suceful! Check the results in R environment")
 }
 return(structure(list(anova = anova,
                       PC = PC,
