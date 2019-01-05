@@ -21,18 +21,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-<style type = "text/css">
-
-body{ /* Normal  */
-  color: black;
-  }
-body .main-container {
-        max-width: 100%;
-    }
-body {
-text-align: justify}
-
-</style>
 
 # Introducing the `METAAB` R package
 The METAAB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions provide de singular value decomposition of BLUP-interaction effects matrix as weel as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/METAAB/archive/master.zip) or running the following code in the R console:
@@ -94,7 +82,7 @@ dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/2/files/1561de
 \setlength{\parindent}{0em}
 
 The first steap in the article was to evaluate the predictive accucary of both AMMI and BLUP models. We will show in details how we can do that using the functions `validation.AMMIF()` and `validation.blup()` functions. The `validation.AMMIF()` function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below:
-![Diagrama demonstrando o proceso de validação cruzada dos membros da família AMMI de modelos.](validation.png).
+![Diagram for cross-validation of AMMI models.](validation.png)
 Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set. The training set has all combinations (genotype x environment) with the number of replications informed in `nrepval` argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by @Piepho:1994. The remaining block serves as validation data. If `design = "CRD"` is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by @Gauch:1988. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:
 
 $$

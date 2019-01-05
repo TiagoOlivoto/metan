@@ -3,18 +3,6 @@ Extending METAAB package
 Tiago Olivoto
 METAAB 1.0.0 2019-01-05
 
-<style type = "text/css">
-
-body{ /* Normal  */
-  color: black;
-  }
-body .main-container {
-        max-width: 100%;
-    }
-body {
-text-align: justify}
-
-</style>
 Introducing the `METAAB` R package
 ==================================
 
@@ -148,7 +136,7 @@ dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/2/files/1561de
 Predictive accuracy
 ===================
 
-The first steap in the article was to evaluate the predictive accucary of both AMMI and BLUP models. We will show in details how we can do that using the functions `validation.AMMIF()` and `validation.blup()` functions. The `validation.AMMIF()` function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below: ![Diagrama demonstrando o proceso de validação cruzada dos membros da família AMMI de modelos.](validation.png). Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set. The training set has all combinations (genotype x environment) with the number of replications informed in `nrepval` argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by Piepho ([1994](#ref-Piepho:1994)). The remaining block serves as validation data. If `design = "CRD"` is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by Gauch and Zobel ([1988](#ref-Gauch:1988)). The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:
+The first steap in the article was to evaluate the predictive accucary of both AMMI and BLUP models. We will show in details how we can do that using the functions `validation.AMMIF()` and `validation.blup()` functions. The `validation.AMMIF()` function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below: ![Diagram for cross-validation of AMMI models.](validation.png) Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set. The training set has all combinations (genotype x environment) with the number of replications informed in `nrepval` argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by Piepho ([1994](#ref-Piepho:1994)). The remaining block serves as validation data. If `design = "CRD"` is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by Gauch and Zobel ([1988](#ref-Gauch:1988)). The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:
 
 $$
    RMSPD = 
@@ -225,7 +213,7 @@ CROP
 BLUP
 </td>
 <td style="text-align:right;">
-0.4123
+0.4034
 </td>
 <td style="text-align:left;">
 Wheat
@@ -239,7 +227,7 @@ Wheat
 AMMI3
 </td>
 <td style="text-align:right;">
-0.4183
+0.4163
 </td>
 <td style="text-align:left;">
 Wheat
@@ -253,7 +241,7 @@ Wheat
 AMMI4
 </td>
 <td style="text-align:right;">
-0.4195
+0.4177
 </td>
 <td style="text-align:left;">
 Wheat
@@ -264,10 +252,10 @@ Wheat
 3
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4207
+0.4235
 </td>
 <td style="text-align:left;">
 Wheat
@@ -278,21 +266,7 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI5
-</td>
-<td style="text-align:right;">
-0.4215
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-AMMI6
+AMMI0
 </td>
 <td style="text-align:right;">
 0.4239
@@ -303,13 +277,27 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+AMMI5
+</td>
+<td style="text-align:right;">
+0.4284
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 6
 </td>
 <td style="text-align:left;">
-AMMI8
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4243
+0.4287
 </td>
 <td style="text-align:left;">
 Wheat
@@ -320,10 +308,10 @@ Wheat
 7
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI8
 </td>
 <td style="text-align:right;">
-0.4301
+0.4293
 </td>
 <td style="text-align:left;">
 Wheat
@@ -334,10 +322,10 @@ Wheat
 8
 </td>
 <td style="text-align:left;">
-AMMIF
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4317
+0.4316
 </td>
 <td style="text-align:left;">
 Wheat
@@ -351,7 +339,7 @@ Wheat
 AMMI1
 </td>
 <td style="text-align:right;">
-0.4415
+0.4359
 </td>
 <td style="text-align:left;">
 Wheat
@@ -362,10 +350,10 @@ Wheat
 10
 </td>
 <td style="text-align:left;">
-AMMI0
+AMMIF
 </td>
 <td style="text-align:right;">
-0.4478
+0.4365
 </td>
 <td style="text-align:left;">
 Wheat
