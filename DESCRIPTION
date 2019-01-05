@@ -1,11 +1,11 @@
-Package: WAASB
+Package: METAAB
 Type: Package
-Title: Weighted Average of Absolute Scores from SVD of BLUP-Interaction Effects
-Version: 1.0.1
+Title: Multi Environment Trial Analysis using AMMI and BLUP
+Version: 1.0.0
 Author: Tiago Olivoto
-Date: 2018-07-05
+Date: 2019-01-05
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
-Description: This package compute stability analysis based on AMMI and BLUP methods. Several procedures, including prediction for AMMI family models and cross-validation for AMMI and BLUP models are available. Tools for personalized graphics is also provided.  
+Description: This package compute has useful functions for computing stability analysis using AMMI and BLUP methods. Several procedures, including cross-validation, prediction, and stability parameters for AMMI and BLUP models are available. Tools for personalized graphics is also provided.  
 Depends: R (>= 3.5.0)
 License: GPL (>=3)
 Encoding: UTF-8
@@ -34,5 +34,5 @@ Suggests:
     rJava,
     ReporteRs,
     cowplot
-URL: https://github.com/TiagoOlivoto/WAASB
+URL: https://github.com/TiagoOlivoto/METAAB
 VignetteBuilder: knitr
