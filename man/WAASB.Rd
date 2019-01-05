@@ -70,7 +70,7 @@ This function compute the weighted average of absolute scores considering all pr
 \examples{
 # Ggenotypes as random effects and equal weights for both response variable and stability
 
-library(WAASB)
+library(METAAB)
 model = WAASB(WAASBdata, GY, GEN, ENV, REP)
 
 # Higher weight for stability

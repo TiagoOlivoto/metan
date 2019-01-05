@@ -37,7 +37,7 @@ This function provides a complete cross-validation of replicate-based data using
 
 
 \examples{
-library(WAASB)
+library(METAAB)
 validation = validation.AMMIF(WAASBdata, GY, GEN, ENV, REP,
                               nboot = 100, nrepval = 2)
 

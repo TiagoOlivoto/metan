@@ -65,7 +65,7 @@ Five statistics are shown in this type of plot. The lower and upper hinges corre
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-library(WAASB)
+library(METAAB)
 validation = validation.AMMIF(WAASBdata, GY, GEN, ENV, REP,
                               nboot = 100, nrepval = 2)
 

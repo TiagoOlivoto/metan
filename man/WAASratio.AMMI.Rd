@@ -57,11 +57,11 @@ This function is very similar to the \code{WAASBYratio}. The main difference is 
 
 \examples{
 # Default, with increment of 5 and saving the WAASY values when weight is 50
-library(WAASB)
+library(METAAB)
 model= WAASratio.AMMI(WAASBdata, GY, GEN, ENV, REP)
 
 # Incrementing 2-by-2 and saving the WAASY values when weight is 70
-library(WAASB)
+
 model2 = WAASratio.AMMI(WAASBdata, GY, GEN, ENV, REP,
                         increment = 2, saveWAASY = 70)
 }

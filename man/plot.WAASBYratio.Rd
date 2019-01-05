@@ -50,7 +50,7 @@ The first type of heatmap shows the genotype ranking depending on the number of 
 }
 
 \examples{
-library(WAASB)
+library(METAAB)
 model = WAASBYratio(WAASBdata, resp = "GY")
 
 # plot the heatmap considering the ranks in different number of PC axis.

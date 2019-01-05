@@ -28,10 +28,10 @@ Summary the  \code{WAAS.AMMI} object in two ways. By default, the results are sh
 
 
 \examples{
-library(WAASB)
+library(METAAB)
 model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP)
-summary.WAAS.AMMI(model, digits = 2)
-summary.WAAS.AMMI(model, export = T, file.name = "my results")
+summary(model, digits = 2)
+summary(model, export = T, file.name = "my results")
 }
 
 

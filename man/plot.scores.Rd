@@ -17,8 +17,8 @@
    shape.env = 23, size.shape = 2.5, size.tex = 3.5,
    size.line = 0.5, size.segm.line = 0.5, leg.lab = c("Gen", "Env"),
    line.type = "solid", line.alpha = 0.9, col.line = "gray",
-   col.gen = "blue", col.env = "red", col.alpha = 0.9,
-   col.segm.gen = "transparent", col.segm.env = "red",
+   col.gen = "blue", col.env = "darkgreen", col.alpha = 0.9,
+   col.segm.gen = "transparent", col.segm.env = "darkgreen",
    resolution = 300, ...)
 
 }
@@ -99,7 +99,7 @@ The plots type 1 and 2 have the same interpretation than those used in tradition
 }
 
 \examples{
-  library(WAASB)
+  library(METAAB)
   model = WAASB(WAASBdata, resp = "GY", weight.response = 50, weight.WAAS = 50)
   plot.scores(model, 1, file.type = "tiff", width = 8, height = 7, col.gen = "green")
   # PC1 x PC2.tiff

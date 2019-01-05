@@ -28,10 +28,10 @@ Summary the  \code{WAASB} object in two ways. By default, the results are shown 
 
 
 \examples{
-library(WAASB)
+library(METAAB)
 model = WAASB(WAASBdata, GY, GEN, ENV, REP)
-summary.WAASB(model, digits = 2)
-summary.WAASB(model, export = T, file.name = "my results")
+summary(model, digits = 2)
+summary(model, export = T, file.name = "my results")
 }
 
 

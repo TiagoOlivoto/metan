@@ -46,7 +46,7 @@ Plot the eigenvalues for from singular value decomposition of BLUP interaction e
 
 }
 \examples{
-library(WAASB)
+library(METAAB)
 model = WAASB(WAASBdata, GY, GEN, ENV, REP)
 plot.eigen(model)
 

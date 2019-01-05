@@ -56,13 +56,13 @@ This function compute the weighted average of absolute scores considering the si
 
 \examples{
 # Considering p-value <= 0.05 to compute the WAAS
-library(WAASB)
+library(METAAB)
 model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP,
                   weight.response = 40, weight.WAAS = 60)
 
 
 # Declaring the number of axis to be used for computing WAAS
-library(WAASB)
+
 model = WAAS.AMMI(WAASBdata, resp = GY, gen = GEN, env = ENV, rep = REP,
                   naxis = 3, weight.response = 40, weight.WAAS = 60)
 

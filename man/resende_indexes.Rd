@@ -39,7 +39,7 @@ A dataframe contaning the indexes
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-library(WAASB)
+library(METAAB)
 model = WAASB(WAASBdata, GY, GEN, ENV, REP)
 model_indexes = Resende_indexes(model)
 

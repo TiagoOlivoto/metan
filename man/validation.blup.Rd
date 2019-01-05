@@ -38,7 +38,7 @@ This function provides a  cross-validation of replicate-based data using mixed m
 }
 
 \examples{
-library(WAASB)
+library(METAAB)
 validation = validation.blup(WAASBdata, GY, GEN, ENV, REP,
                              nboot = 100, nrepval = 2)
 

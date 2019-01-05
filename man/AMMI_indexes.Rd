@@ -60,7 +60,7 @@ Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012. Evaluation o
 
 
 \examples{
-library(WAASB)
+library(METAAB)
 model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP)
 model_indexes = AMMI_indexes(model)
 

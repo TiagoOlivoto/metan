@@ -10,7 +10,7 @@
          mfrow = c(2, 2), ...)
 
 
-\method{autoplot}{WAASB}(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
+\method{autoplot}{WAASB}(x, type = "res", conf = 0.95, labels = FALSE, theme = theme_waasb(),
          alpha = 0.2, fill.hist = "gray", col.hist = "black",
          col.point = "black", col.line = "red", col.lab.out = "red",
          size.lab.out = 2.5, bins = 30, which = c(1:4),
@@ -18,13 +18,15 @@
 }
 
 \description{
-Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the residuals, (3) scale-location plot (standardized residuals vs Fitted Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals and (6) standardized residuals vs observation order
+Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the residuals, (3) scale-location plot (standardized residuals vs Fitted Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals and (6) standardized residuals vs observation order. For a "WAASB" object, normal Q-Q plot for random effects may also be obtained declaring \code{type = "re"}
 
 }
 
 \arguments{
 
   \item{x}{An object of class \code{WAAS.AMMI} or \code{WAASB}.}
+
+  \item{type}{If \code{type = "re"}, normal Q-Q plots for the random effects are obtained.}
 
   \item{conf}{Level of confidence interval to use in the Q-Q plot (0.95 by default). }
 
@@ -62,7 +64,7 @@ Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of 
 
 
 \examples{
-library(WAASB)
+library(METAAB)
 model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP)
 autoplot(model)
 

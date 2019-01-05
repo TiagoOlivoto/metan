@@ -56,7 +56,7 @@ Plot the predicted BLUP of the genotypes.
 
 }
 \examples{
-library(WAASB)
+library(METAAB)
 model = WAASB(WAASBdata, resp = "GY", weight.response = 50, weight.WAAS = 50)
 plot.blup(model)
 

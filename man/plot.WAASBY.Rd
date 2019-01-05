@@ -47,7 +47,7 @@ Plot heat maps with genotype ranking in two ways.
 
 
 \examples{
-library(WAASB)
+library(METAAB)
 # plotting the WAASBY values based on blup procedure
 #model = WAASBYratio(WAASBdata, resp = "GY", increment = 5, saveWAASY = 60)
 #plot.WAASBY(model)
