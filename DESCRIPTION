@@ -1,6 +1,6 @@
 Package: METAAB
 Type: Package
-Title: Multi Environment Trial Analysis using AMMI and BLUP
+Title: Multi Environment Trials Analysis using AMMI and BLUP
 Version: 1.0.0
 Author: Tiago Olivoto
 Date: 2019-01-05
@@ -23,7 +23,8 @@ Imports: dplyr,
          lme4,
          lmerTest,
          gtools,
-         magrittr
+         magrittr,
+         methods
 RoxygenNote: 6.0.1
 Suggests:
     knitr,
