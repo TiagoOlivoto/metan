@@ -8,7 +8,7 @@ plot.eigen = function(x,
                      size.shape = 3.5,
                      size.line = 1,
                      y.lab = "Eigenvalue",
-                     y2.lab = "Accumulated variance (%)",
+                     y2.lab = "Accumulated variance",
                      x.lab = "Number of multiplicative terms",
                      resolution = 300,
                      ...){
