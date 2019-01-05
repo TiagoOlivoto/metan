@@ -1,7 +1,7 @@
-Extending WAASB package
+Extending METAAB package
 ================
 Tiago Olivoto
-WAASB 1.0.1 2018-10-15
+METAAB 1.0.0 2019-01-05
 
 <style type = "text/css">
 
@@ -15,22 +15,22 @@ body {
 text-align: justify}
 
 </style>
-Introducing the `WAASB` R package
+Introducing the `METAAB` R package
 =================================
 
-The WAASB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions provide de singular value decomposition of BLUP-interaction effects matrix as weel as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/WAASB/archive/master.zip) or running the following code in the R console:
+The METAAB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions provide de singular value decomposition of BLUP-interaction effects matrix as weel as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking [here](https://github.com/TiagoOlivoto/METAAB/archive/master.zip) or running the following code in the R console:
 
-Overview of the `WAASB` package.
+Overview of the `METAAB` package.
 --------------------------------
 
-> Package `WAASB` available at `github`. Installation
+> Package `METAAB` available at `github`. Installation
 
 ``` r
 # download the package from Github
-devtools::install_github("TiagoOlivoto/WAASB")
+devtools::install_github("TiagoOlivoto/METAAB")
 ```
 
-Main functions of `WAASB` package.
+Main functions of `METAAB` package.
 ----------------------------------
 
 <table>
@@ -362,7 +362,7 @@ plot.validation.AMMIF(RMSPDweat,
                       col.boxplot = "gray75")
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 Five statistics are shown in this boxplot. The median, the lower and upper hinges correspond to the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than 1.5 × *I**Q**R* from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most 1.5 × *I**Q**R* of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added joint with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
 
@@ -694,7 +694,7 @@ Assuming a given probability error for chosing the number of axes
 In this example only PCA with *P*-value ≤ 0.05 will be used in the WAAS estimation.
 
 ``` r
-library(WAASB)
+library(METAAB)
 # Assuming equal weights for productivity and stability
 WAAS1 = WAAS.AMMI(dataset,
                   resp = GY,
@@ -2032,7 +2032,7 @@ plot.scores(WAAS1,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 The biplot above shows the coordinates of the genotypes and environments regarding the grain yield and the WAAS values. It is in fact the plot of the columns Y and WAAS from the above table. A detailed discussion on the interpretation of this biplot can be seen in [section 6.2.3](#biplot-type-3-gy-x-waasb).
 
@@ -2938,7 +2938,7 @@ plot.scores(WAAS2,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
 
 In this biplot, we can see that the changes in the coordinates were also too small.
 
@@ -4436,7 +4436,7 @@ G10
 plot.blup(WAASB)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-34-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-34-1.png" style="display: block; margin: auto;" />
 
 This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\\hat{g}\_{i})$ estimated by $\\hat{g}\_{i} = h\_g^2(\\bar{y}\_{i.}-\\bar{y}\_{..})$ where *h*<sub>*g*</sub><sup>2</sup> is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by $\\hat{g}\_{i}+\\mu$ where is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by $(\\hat{g}\_{i}+\\mu)\\pm{CI}$. *C**I* is the confidence interval for BLUP prediction assuming a given probability error, where $CI = t\\times\\sqrt{((1-Ac)\\times{GV)}}$ where *t* is the Student's *t* value for a two-tailed t test at a given probability error; *A**c* is the genotypic accuracy and *G**V* is the genotypic variance.
 
@@ -4901,7 +4901,7 @@ Accumulated
 plot.eigen(WAASB, size.lab = 14, size.tex = 14)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
 
 The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.
 
@@ -5153,7 +5153,7 @@ plot.scores(WAASB,
             type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-42-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-42-1.png" style="display: block; margin: auto;" />
 
 ### biplot type 2: GY x PC1
 
@@ -5162,7 +5162,7 @@ plot.scores(WAASB,
             type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-43-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-43-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # dafault theme of ggplot2
@@ -5174,7 +5174,7 @@ plot.scores(WAASB,
             theme = theme_gray())
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-43-2.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-43-2.png" style="display: block; margin: auto;" />
 
 ### biplot type 3: GY x WAASB
 
@@ -5185,7 +5185,7 @@ plot.scores(WAASB,
             type = 3)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-44-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-44-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # Save to a *.tiff file with resolution of 600 dpi.
@@ -5205,7 +5205,7 @@ plot.scores(WAASB,
             type = 4)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-45-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-45-1.png" style="display: block; margin: auto;" />
 
 Estimating the WAASBY index
 ===========================
@@ -6238,7 +6238,7 @@ plot.WAASBY(WAASBYratio,
                           legend.position = c(0.85, 0.2)))
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
 
 Plotting the heat map graphics
 ------------------------------
@@ -6252,7 +6252,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 1)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-54-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-54-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # save to a *.pdf file (default)
@@ -6268,7 +6268,7 @@ plot.WAASBYratio(WAASBYratio,
                  type = 2)
 ```
 
-<img src="D:\Desktop\WAASB\README_files/figure-markdown_github/unnamed-chunk-55-1.png" style="display: block; margin: auto;" />
+<img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-55-1.png" style="display: block; margin: auto;" />
 
 ``` r
 #save to a *tiff file
