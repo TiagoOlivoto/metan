@@ -23,7 +23,7 @@ The HMGV index is computed as
 where \eqn{E} is the number of environments included in the analysis, \eqn{Gv_{ij}} is the genotypic value (BLUP) for the ith genotype in the jth environment.
 
 The RPGV index is computed as
-\deqn{RPGV_i = \frac{1}{E}\left( {\sum\limits_{j = 1}^E {G{v_{ij}}} /\mathop \mu \nolimits_j } \right)}
+\deqn{RPGV_i = \frac{1}{e}{\sum\limits_{j = 1}^e {BLUP_{ij}} /\mathop \mu \nolimits_j }}
 
 The HMRPGV index is computed as
 \deqn{HMRPGV_i = \frac{1}{E}\sum\limits_{j = 1}^E {\frac{1}{{G{v_{ij}}/{\mu _j}}}}}
@@ -31,6 +31,7 @@ The HMRPGV index is computed as
 }
 
 \value{
+
 
 A dataframe contaning the indexes
 
