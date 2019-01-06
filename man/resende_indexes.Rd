@@ -5,6 +5,7 @@
 Resende_indexes(x)
 }
 
+
 \description{
 This function computes the following indexes proposed by Resende (2007): the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV).
 
@@ -15,7 +16,7 @@ This function computes the following indexes proposed by Resende (2007): the har
 }
 
 \details{
-The indexes computed with this function have been used for to select genotypes with stability performance in a mixed-effect model framewor. Some examples are in Alves et al (2018), Azevedo Peixoto et al. (2018), Dias et al. (2018) and Colombari Filho et al. (2013).
+The indexes computed with this function have been used to select genotypes with stability performance in a mixed-effect model framework. Some examples are in Alves et al (2018), Azevedo Peixoto et al. (2018), Dias et al. (2018) and Colombari Filho et al. (2013).
 
 The HMGV index is computed as
 \deqn{HMGV_i = \frac{1}{E}\sum\limits_{j = 1}^E {\frac{1}{{G{v_{ij}}}}}}
