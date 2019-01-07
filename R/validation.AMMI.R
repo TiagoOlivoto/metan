@@ -81,44 +81,19 @@ validation.AMMI = function(data,
           testing = testing[order(testing[,1], testing[,2], testing[,3] ),]
           x1  = factor(testing$ENV)
           z1  = factor(testing$GEN)
-          ENV = as.factor(modeling$ENV)
-          GEN = as.factor(modeling$GEN)
-          BLOCO = as.factor(modeling$REP)
-          Resp = as.numeric(modeling$Y)
-          ovmean = mean(Resp)
-          raw = data.frame(ENV, GEN, Resp)
-          MEDIAS = tapply(raw[, 3], raw[, c(1, 2)], mean)
-          xx = rownames(MEDIAS)
-          yy = colnames(MEDIAS)
-          fila = length(xx)
-          col = length(yy)
-          total = fila * col
-          x = numeric(length = total)
-          y = numeric(length = total)
-          z = numeric(length = total)
-          k = 0
-          for (i in 1:fila) {
-            for (j in 1:col) {
-              k = k + 1
-              x[k] = xx[i]
-              y[k] = yy[j]
-              z[k] = MEDIAS[i, j]
-            }
-          }
-          MEDIAS = data.frame(ENV = x, GEN = y, Y = z)
+          MEDIAS = data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
           modelo1 = lm(Y ~ ENV + GEN, data = MEDIAS)
           residual = modelo1$residuals
-          MEDIAS = data.frame(MEDIAS, resOLS = residual)
-          intmatrix = t(matrix(MEDIAS$resOLS, Nenv, byrow = T))
+          intmatrix = t(matrix(residual, Nenv, byrow = T))
           s = svd(intmatrix)
-          U = s$u[,1:naxis]
-          LL = s$d[1:naxis]
-          V = s$v[,1:naxis]
+          U = s$u[,1:NAXIS]
+          LL = s$d[1:NAXIS]
+          V = s$v[,1:NAXIS]
           x1  = model.matrix(~x1 -1)
           z1  = model.matrix(~z1 -1)
-          AMMI = ((z1 %*% U)*(x1 %*% V)) %*% LL
+          AMMI = ((z1 %*% U) * (x1 %*% V)) %*% LL
           MEDIAS = mutate(MEDIAS,
-                          Ypred = Y - resOLS,
+                          Ypred = Y - residual,
                           ResAMMI =  AMMI,
                           YpredAMMI = Ypred + ResAMMI,
                           testing = testing$Y,
