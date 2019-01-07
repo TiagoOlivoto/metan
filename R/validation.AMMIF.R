@@ -65,8 +65,6 @@ if (progbar == TRUE){
             names(temp) = names(data)
             actualenv = 0
             for (K in 1:Nenv){
-              X = sample(1:10000,1)
-              set.seed(X)
               X2 = sample(unique(REPS), nrepval, replace = F)
               names = factor(data$ENV)
               names = levels(names)[actualenv + 1]

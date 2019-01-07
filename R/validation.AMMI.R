@@ -86,9 +86,9 @@ validation.AMMI = function(data,
           residual = modelo1$residuals
           intmatrix = t(matrix(residual, Nenv, byrow = T))
           s = svd(intmatrix)
-          U = s$u[,1:NAXIS]
-          LL = s$d[1:NAXIS]
-          V = s$v[,1:NAXIS]
+          U = s$u[,1:naxis]
+          LL = s$d[1:naxis]
+          V = s$v[,1:naxis]
           x1  = model.matrix(~x1 -1)
           z1  = model.matrix(~z1 -1)
           AMMI = ((z1 %*% U) * (x1 %*% V)) %*% LL
