@@ -17,7 +17,7 @@ plot.scores = function(x,
                      shape.gen = 21,
                      shape.env = 23,
                      size.shape = 2.5,
-                     size.tex.lab = 3.5,
+                     size.tex.lab = 10,
                      size.tex.pa = 3.5,
                      size.line = 0.5,
                      size.segm.line = 0.5,
@@ -69,6 +69,7 @@ if (type == 1){
               max(x$model$PC2 * axis.expand))
   }
 
+size.tex.leg = size.tex.pa/0.2917
 
 p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
@@ -81,7 +82,7 @@ p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
-            legend.text = element_text(size = size.tex.lab),
+            legend.text = element_text(size = size.tex.leg),
             plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
@@ -214,7 +215,7 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
-            legend.text = element_text(size = size.tex.lab),
+            legend.text = element_text(size = size.tex.leg),
             plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
@@ -295,7 +296,7 @@ ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)),
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
-            legend.text = element_text(size = size.tex.lab),
+            legend.text = element_text(size = size.tex.leg),
             plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
@@ -339,7 +340,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
         theme(aspect.ratio = 1,
               axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
-              legend.text = element_text(size = size.tex.lab),
+              legend.text = element_text(size = size.tex.leg),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
         labs(x = paste(x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
@@ -423,7 +424,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
       theme(legend.position = "none",
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
-            legend.text = element_text(size = size.tex.lab),
+            legend.text = element_text(size = size.tex.leg),
             plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
