@@ -14,12 +14,12 @@
    axis.expand = 1.1,  width = 8, height = 7, x.lim = NULL,
    x.breaks = waiver(), x.lab = NULL, y.lab = NULL,
    y.lim = NULL, y.breaks = waiver(), shape.gen = 21,
-   shape.env = 23, size.shape = 2.5, size.tex = 3.5,
-   size.line = 0.5, size.segm.line = 0.5, leg.lab = c("Gen", "Env"),
-   line.type = "solid", line.alpha = 0.9, col.line = "gray",
-   col.gen = "blue", col.env = "darkgreen", col.alpha = 0.9,
-   col.segm.gen = "transparent", col.segm.env = "darkgreen",
-   resolution = 300, ...)
+   shape.env = 23, size.shape = 2.5, size.tex.lab = 10,
+   size.tex.pa = 3.5, size.line = 0.5, size.segm.line = 0.5,
+   leg.lab = c("Gen", "Env"), line.type = "solid", line.alpha = 0.9,
+   col.line = "gray", col.gen = "blue", col.env = "darkgreen",
+   col.alpha = 0.9, col.segm.gen = "transparent",
+   col.segm.env = "darkgreen", resolution = 300, ...)
 
 }
 
@@ -63,7 +63,9 @@
 
   \item{size.shape}{The size of the shape (both for genotypes and environments). Default is \code{2.5}.}
 
-  \item{size.tex}{The size of the text in the background of the plot. Default is \code{3.5}.}
+  \item{size.tex.lab}{The size of the text in the axes text and labels. Default is \code{10}.}
+
+  \item{size.tex.pa}{The size of the text of the plot area. Default is \code{3.5}.}
 
   \item{size.line}{The size of the line that indicate the means in the biplot. Default is \code{0.5}.}
 

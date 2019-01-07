@@ -38,6 +38,7 @@ plot.scores = function(x,
     stop("The polygon can be drawn with type 1 graphic only.")
   }
 
+  size.tex.leg = size.tex.pa/0.2917
   class = class(x)
  nenv = nrow(subset(x$model, type == "ENV"))
  ngen = nrow(subset(x$model, type == "GEN"))
@@ -68,8 +69,6 @@ if (type == 1){
     y.lim = c(min(x$model$PC2 * axis.expand),
               max(x$model$PC2 * axis.expand))
   }
-
-size.tex.leg = size.tex.pa/0.2917
 
 p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
@@ -424,7 +423,6 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
       theme(legend.position = "none",
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
-            legend.text = element_text(size = size.tex.leg),
             plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
