@@ -8,6 +8,7 @@ plot.blup  =  function(x,
                       height  =  6,
                       size.err.bar  =  0.5,
                       size.shape  =  3.5,
+                      size.tex.lab = 12,
                       height.err.bar  =  0.3,
                       x.lim  =  NULL,
                       x.breaks  =  waiver(),
@@ -41,10 +42,13 @@ p1  =  ggplot2::ggplot(blup, aes(x = Predicted, y = GEN)) +
     scale_color_manual(name = "Average",
                        values  =  col.shape,
                        labels  =  c("Above", "Below")) +
-    theme +
     labs(x  =  x.lab, y  =  y.lab) +
     geom_vline(xintercept  =  mean(blup$Predicted)) +
-    scale_x_continuous(limits  =  x.lim, breaks  =  x.breaks)
+    scale_x_continuous(limits  =  x.lim, breaks  =  x.breaks) +
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"))
+
 
 if (export  ==  F|FALSE) {
   return(p1)

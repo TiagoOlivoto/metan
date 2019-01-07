@@ -1,13 +1,14 @@
 \name{plot.blup}
 \alias{plot.blup}
-\title{Plot the estimated BLUPs of genotypes }
+\title{Plot the BLUPs for genotypes }
 \usage{
 \method{plot}{blup}(x, prob  =  0.95, export  =  FALSE, file.type  =  "pdf",
-       file.name = NULL, theme = theme_waasb(), width  =  6, height  =  6,
-       size.err.bar  =  0.5, size.shape  =  3.5, height.err.bar  =  0.3,
-       x.lim  =  NULL, x.breaks  =  waiver(),
-       col.shape  =  c("blue", "red"), y.lab  =  "Genotypes",
-       x.lab  =  "Predicted Grain Yield", resolution  =  300, ...)
+       file.name = NULL, theme = theme_waasb(), width  =  6,
+       height  =  6, size.err.bar  =  0.5, size.shape  =  3.5,
+       size.tex.lab = 12, height.err.bar  =  0.3, x.lim  =  NULL,
+       x.breaks  =  waiver(), col.shape  =  c("blue", "red"),
+       y.lab  =  "Genotypes", x.lab  =  "Predicted Grain Yield",
+       resolution  =  300, ...)
 }
 
 \description{
@@ -36,6 +37,8 @@ Plot the predicted BLUP of the genotypes.
   \item{size.err.bar}{The size of the error bar for the plot. Default is \code{0.5}.}
 
   \item{size.shape}{The size of the shape (both for genotypes and environments). Default is \code{3.5}.}
+
+\item{size.tex.lab}{The size of the text in axis text and labels.}
 
   \item{height.err.bar}{The height for error bar. Default is \code{0.3}.}
 
