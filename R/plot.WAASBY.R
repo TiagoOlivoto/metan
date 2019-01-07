@@ -6,6 +6,7 @@ plot.WAASBY = function(x,
                       width = 6,
                       height = 6,
                       size.shape = 3.5,
+                      size.tex.lab = 12,
                       col.shape = c("blue", "red"),
                       y.lab = "Genotypes",
                       x.breaks = waiver(),
@@ -43,7 +44,9 @@ p1 = ggplot2::ggplot(data, aes(x = Code, y = WAASY)) +
     scale_color_manual(name = "Average",
                        values = col.shape,
                        labels = c("Above", "Below")) +
-    theme +
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black")) +
     scale_y_continuous(limits = c(min(data$WAASY), 100), breaks = x.breaks) +
     labs(x = y.lab, y = "\nWAASBY (%)")
 

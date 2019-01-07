@@ -10,8 +10,8 @@ Plot heat maps with genotype ranking in two ways.
 \usage{
 \method{plot}{WAASBY}(x, export = F , file.type = "pdf", file.name = NULL,
     theme = theme_waasb(), width = 6, height = 6, size.shape = 3.5,
-    col.shape = c("blue", "red"), y.lab = "Genotypes", x.breaks = waiver(),
-    resolution = 300, ...)}
+    size.tex.lab = 12, col.shape = c("blue", "red"), y.lab = "Genotypes",
+    x.breaks = waiver(), resolution = 300, ...)}
 
 
 \arguments{
@@ -31,6 +31,8 @@ Plot heat maps with genotype ranking in two ways.
   \item{height}{The height "inch" of the plot. Default is \code{7}. }
 
   \item{size.shape}{The size of the shape in the plot. Default is \code{3.5}.}
+
+  \item{size.tex.lab}{The size of the text in axis text and labels.}
 
   \item{col.shape}{A vector of length 2 that contains the color of shapes for genotypes above and below of the mean, respectively. Default is \code{c("blue", "red")}. }
 
