@@ -1,4 +1,4 @@
-validation.blup = function(data,
+validation.blup2 = function(data,
                            resp,
                            gen,
                            env,
@@ -54,68 +54,13 @@ for (b in 1:nboot) {
 rownames(modeling ) = modeling$ID
 testing = suppressWarnings(dplyr::anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "ID")))
 testing = testing[order(testing[,1], testing[,2], testing[,3] ),]
-ENV = as.factor(modeling$ENV)
-GEN = as.factor(modeling$GEN)
-BLOCO = as.factor(modeling$REP)
-Resp = as.numeric(modeling$Y)
-ovmean = mean(Resp)
-model = suppressWarnings(suppressMessages(lme4::lmer(Resp~  BLOCO%in%ENV + (1|GEN) + ENV + (1|GEN:ENV))))
-bups = suppressWarnings(suppressMessages(lme4::ranef(model)))
-blupGEN = bups$GEN
-blupGEN = mutate(blupGEN,
-                 GEN = factor(rownames(blupGEN)))
-blupGEN = blupGEN %>%
-  dplyr::select(GEN, everything())
-colnames(blupGEN) = c("GEN", "BLUPg")
-blupGEN = mutate(blupGEN,
-               Predicted = BLUPg + ovmean)
-blupGEN = blupGEN[order(-blupGEN[,3]),]
-blupGEN = mutate(blupGEN,
-               Rank = rank(-blupGEN[,3]))
-blupGEN = blupGEN %>%
-  dplyr::select(Rank, everything())
-blupINT = bups$`GEN:ENV`
-blups = data.frame(Names = rownames(blupINT))
-blups = data.frame(do.call('rbind', strsplit(as.character(blups$Names),':',fixed = TRUE)))
-blups = blups %>%
-  dplyr::select(-X1, everything())
-blups = cbind(blups, blupINT)
-names(blups) = c("Code", "GEN", "BLUPge")
-blups = blups[gtools::mixedorder(blups[,1]),]
-raw = data.frame(ENV, GEN, Resp)
-MEDIAS = tapply(raw[, 3], raw[, c(1, 2)], mean)
-xx = rownames(MEDIAS)
-yy = colnames(MEDIAS)
-fila = length(xx)
-col = length(yy)
-total = fila * col
-x = character(length = total)
-y = character(length = total)
-z = numeric(length = total)
-k = 0
-for (i in 1:fila) {
-  for (j in 1:col) {
-    k = k + 1
-    x[k] = xx[i]
-    y[k] = yy[j]
-    z[k] = MEDIAS[i, j]
-  }
-}
-MEDIAS = data.frame(ENV = x, GEN = y, Resp = z)
-OUTMED = by(MEDIAS[, 3], MEDIAS[, c(2, 1)], function(x) sum(x,
-                                                             na.rm = TRUE))
-MGEN = data.frame(type = "GEN", Code = rownames(OUTMED),  Resp = apply(OUTMED, 1, mean))
-MENV = data.frame(type = "ENV", Code = colnames(OUTMED), Resp = apply(OUTMED, 2, mean))
-selectioNenv = suppressMessages(dplyr::left_join(blups, blupGEN  %>%
-                                            dplyr::select(GEN, BLUPg)))
-selectioNenv = suppressMessages(mutate(selectioNenv,
-                      gge = BLUPge + BLUPg,
-                      Predicted = BLUPge + BLUPg +
-                      left_join(blups, MENV %>% dplyr::select(Code, Resp))$Resp))
-names(selectioNenv) = c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge", "Predicted")
-validation  = mutate(selectioNenv,
-                      testing = testing$Y,
-                      error = Predicted - testing)
+MEDIAS = data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
+
+model = suppressWarnings(suppressMessages(lme4::lmer(Y~  REP%in%ENV + (1|GEN) + ENV + (1|GEN:ENV), data = modeling)))
+validation  = data.frame(mutate(modeling, pred = predict(model)) %>%
+              dplyr::group_by(ENV, GEN) %>% dplyr::summarise(pred = mean(pred)))
+validation = mutate(validation, error = pred - testing$Y)
+
 RMSPD = sqrt(sum(validation$error^2)/length(validation$error))
 RMSPDres[,1][b] = RMSPD
 if (progbar  ==  TRUE){
