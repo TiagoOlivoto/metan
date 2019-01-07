@@ -405,7 +405,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
     min = min(x$MeansGxE$nominal)
 
     p4 = ggplot2::ggplot(x$MeansGxE, aes(x = envPC1, y = nominal, group = GEN))  +
-      geom_line(size = 1, aes(colour = GEN),
+      geom_line(size = size.line, aes(colour = GEN),
                 data = subset(x$MeansGxE, envPC1 %in% c(max(envPC1), min(envPC1))))+
       geom_point(aes(x = envPC1, y = min),
                  data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
