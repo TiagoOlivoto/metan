@@ -3,6 +3,7 @@ plot.validation.AMMIF = function(x,
                                 export = FALSE,
                                 x.lab = NULL,
                                 y.lab = NULL,
+                                size.tex.lab = 12,
                                 file.type = "pdf",
                                 file.name = NULL,
                                 theme = theme_waasb(),
@@ -35,7 +36,9 @@ p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
                   geom = "point",
                   shape = 23,
                   fill = "black")+
-     theme +
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black")) +
      coord_flip() +
      scale_y_continuous(limits = x.lim, breaks = x.breaks) +
      labs(x = x.lab,
@@ -47,7 +50,9 @@ p1 = ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
                    geom = "point",
                    shape = 23,
                    fill = "black")+
-      theme +
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black")) +
       coord_flip() +
       scale_y_continuous(limits = x.lim, breaks = x.breaks) +
       labs(x = x.lab,

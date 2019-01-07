@@ -4,9 +4,10 @@
 \usage{
 
 \method{plot}{validation.AMMIF}(x, violin = FALSE, export = FALSE,  x.lab = NULL,
-     y.lab = NULL, file.type = "pdf", file.name = NULL,
-     theme = theme_waasb(),width = 6, height = 6, resolution = 300,
-     col.violin = "gray90", col.boxplot = "gray70", width.boxplot = 0.2,
+     y.lab = NULL, size.tex.lab = 12, file.type = "pdf",
+     file.name = NULL, theme = theme_waasb(),width = 6,
+     height = 6, resolution = 300, col.violin = "gray90",
+     col.boxplot = "gray70", width.boxplot = 0.2,
      x.lim = NULL, x.breaks = waiver(), ...)
 }
 
@@ -26,6 +27,8 @@ Boxplot showing the Root Means Square Prediction Difference of all AMMI family m
    \item{x.lab}{The label of x-axis. New arguments can be inserted as \code{x.lab = "my x label"}.}
 
   \item{y.lab}{The label of y-axis. New arguments can be inserted as \code{y.lab = "my y label"}.}
+
+\item{size.tex.lab}{The size of the text in axis text and labels.}
 
   \item{file.type}{The type of file to be exported. Default is \code{pdf}, Graphic can also be exported in \code{*.tiff} format by declaring  \code{file.type = "tiff"}.}
 
