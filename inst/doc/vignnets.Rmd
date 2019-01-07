@@ -97,7 +97,7 @@ where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the obser
 
 The function  `validation.blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.
 
-The following code computes the cross-validation of the oat data set based on 1000 re-sampling procedures. This number can be changed.
+The following code computes the cross-validation of the oat data set that, for simplicity, will use 50 re-sampling procedures. I suggest using a larger number, say, 1000.
 
 ```{r eval = TRUE, collapse=TRUE, comment = "#"}
 
@@ -106,7 +106,7 @@ AMMIweat = validation.AMMIF(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = BLOCK,
-                            nboot = 10,
+                            nboot = 50,
                             nrepval = 2)
 
 # cross-validation for BLUP model
@@ -115,7 +115,7 @@ BLUPweat = validation.blup(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = BLOCK,
-                            nboot = 10,
+                            nboot = 50,
                             nrepval = 2)
 
     ```
@@ -529,7 +529,7 @@ plot_grid(p5, p6, labels = c("p5","p6"))
 
 
 
-### biplot type 4 : nominal yield and environment PCA1
+### biplot type 4 : nominal yield and environment IPCA1
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F}
 
@@ -646,7 +646,27 @@ plot(WAASBYratio, type = 2)
 
 ```
 
-# Stability indexes proposed by Resende 2007
+
+# Others BLUP-based stability indexes
+
+@ColombariFilho2013 have shown the use of three BLUP-based indexes for selecting genotypes with performance and stability. The first is the harmonic mean of genotypic values -or BLUPS- (HMGV) a stability index that considers the genotype with the highest harmonic mean across environments as the most stable, as follows:
+
+$$
+HMGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}}}}
+$$
+
+The second is the relative performance of genotypic values (RPGV), an adaptability index estimated as follows:
+
+$$
+RPGV_i = \frac{1}{e}{\sum\limits_{j = 1}^e {BLUP_{ij}} /\mathop \mu \nolimits_j }
+$$
+
+The third and last is the harmonic mean of relative performance of genotypic values (HMRPGV), a simultaneous selection index for stability, adaptability and mean performance, estimated as follows:
+
+$$
+HMRPGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}/{\mu _j}}}}
+$$
+
 
 ```{r }
 res_inde = Resende_indexes(WAASB)
@@ -656,3 +676,8 @@ kable(res_inde, "html") %>%
     ```
 
 # References
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+\setlength{\parskip}{8pt}
+\noindent
+

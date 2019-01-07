@@ -1,7 +1,7 @@
 Extending METAAB package
 ================
 Tiago Olivoto
-METAAB 1.0.0 2019-01-05
+METAAB 1.0.0 2019-01-07
 
 Introducing the `METAAB` R package
 ==================================
@@ -147,7 +147,7 @@ where $\\widehat{y}\_{ij}$ is the model predicted value; and *y*<sub>*i**j*</sub
 
 The function `validation.blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.
 
-The following code computes the cross-validation of the oat data set based on 1000 re-sampling procedures. This number can be changed.
+The following code computes the cross-validation of the oat data set that, for simplicity, will use 50 re-sampling procedures. I suggest using a larger number, say, 1000.
 
 ``` r
 
@@ -156,7 +156,7 @@ AMMIweat = validation.AMMIF(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = BLOCK,
-                            nboot = 10,
+                            nboot = 50,
                             nrepval = 2)
 
 # cross-validation for BLUP model
@@ -165,7 +165,7 @@ BLUPweat = validation.blup(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = BLOCK,
-                            nboot = 10,
+                            nboot = 50,
                             nrepval = 2)
 ```
 
@@ -213,7 +213,7 @@ CROP
 BLUP
 </td>
 <td style="text-align:right;">
-0.4034
+0.4042
 </td>
 <td style="text-align:left;">
 Wheat
@@ -227,7 +227,7 @@ Wheat
 AMMI3
 </td>
 <td style="text-align:right;">
-0.4163
+0.4180
 </td>
 <td style="text-align:left;">
 Wheat
@@ -238,10 +238,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4177
+0.4207
 </td>
 <td style="text-align:left;">
 Wheat
@@ -252,10 +252,10 @@ Wheat
 3
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4235
+0.4217
 </td>
 <td style="text-align:left;">
 Wheat
@@ -266,10 +266,10 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI0
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4239
+0.4255
 </td>
 <td style="text-align:left;">
 Wheat
@@ -280,10 +280,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4284
+0.4281
 </td>
 <td style="text-align:left;">
 Wheat
@@ -294,10 +294,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMI0
 </td>
 <td style="text-align:right;">
-0.4287
+0.4307
 </td>
 <td style="text-align:left;">
 Wheat
@@ -308,10 +308,10 @@ Wheat
 7
 </td>
 <td style="text-align:left;">
-AMMI8
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4293
+0.4314
 </td>
 <td style="text-align:left;">
 Wheat
@@ -322,10 +322,10 @@ Wheat
 8
 </td>
 <td style="text-align:left;">
-AMMI6
+AMMI8
 </td>
 <td style="text-align:right;">
-0.4316
+0.4325
 </td>
 <td style="text-align:left;">
 Wheat
@@ -339,7 +339,7 @@ Wheat
 AMMI1
 </td>
 <td style="text-align:right;">
-0.4359
+0.4326
 </td>
 <td style="text-align:left;">
 Wheat
@@ -353,7 +353,7 @@ Wheat
 AMMIF
 </td>
 <td style="text-align:right;">
-0.4365
+0.4345
 </td>
 <td style="text-align:left;">
 Wheat
@@ -5523,7 +5523,7 @@ plot_grid(p5, p6, labels = c("p5","p6"))
 
 <img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
 
-### biplot type 4 : nominal yield and environment PCA1
+### biplot type 4 : nominal yield and environment IPCA1
 
 ``` r
 plot.scores(WAASB,
@@ -6606,8 +6606,26 @@ plot(WAASBYratio, type = 2)
 
 <img src="D:\Desktop\METAAB\README_files/figure-markdown_github/unnamed-chunk-37-1.png" style="display: block; margin: auto;" />
 
-Stability indexes proposed by Resende 2007
-==========================================
+Others BLUP-based stability indexes
+===================================
+
+Colombari Filho et al. ([2013](#ref-ColombariFilho2013)) have shown the use of three BLUP-based indexes for selecting genotypes with performance and stability. The first is the harmonic mean of genotypic values -or BLUPS- (HMGV) a stability index that considers the genotype with the highest harmonic mean across environments as the most stable, as follows:
+
+$$
+HMGV\_i = \\frac{1}{e}\\sum\\limits\_{j = 1}^e {\\frac{1}{{BLUP\_{ij}}}}
+$$
+
+The second is the relative performance of genotypic values (RPGV), an adaptability index estimated as follows:
+
+$$
+RPGV\_i = \\frac{1}{e}{\\sum\\limits\_{j = 1}^e {BLUP\_{ij}} /\\mathop \\mu \\nolimits\_j }
+$$
+
+The third and last is the harmonic mean of relative performance of genotypic values (HMRPGV), a simultaneous selection index for stability, adaptability and mean performance, estimated as follows:
+
+$$
+HMRPGV\_i = \\frac{1}{e}\\sum\\limits\_{j = 1}^e {\\frac{1}{{BLUP\_{ij}/{\\mu \_j}}}}
+$$
 
 ``` r
 res_inde = Resende_indexes(WAASB)
@@ -6941,6 +6959,8 @@ G9
 </table>
 References
 ==========
+
+Colombari Filho, J. M., M. D. V. Resende, O. P. Morais, A. P. Castro, É. P. Guimarães, J. A. Pereira, M. M. Utumi, and F. Breseghello. 2013. “Upland rice breeding in Brazil: a simultaneous genotypic evaluation of stability, adaptability and grain yield.” *Euphytica* 192 (1): 117–29. doi:[10.1007/s10681-013-0922-2](https://doi.org/10.1007/s10681-013-0922-2).
 
 Farshadfar, E. 2008. “Incorporation of AMMI stability value and grain yield in a single non-parametric index (GSI) in bread wheat.” *Pakistan Journal of Biological Sciences* 11 (14): 1791–6. <http://www.ncbi.nlm.nih.gov/pubmed/18817218>.
 

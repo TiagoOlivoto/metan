@@ -18,7 +18,7 @@ AMMIweat = validation.AMMIF(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = BLOCK,
-                            nboot = 10,
+                            nboot = 50,
                             nrepval = 2)
 
 # cross-validation for BLUP model
@@ -27,7 +27,7 @@ BLUPweat = validation.blup(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = BLOCK,
-                            nboot = 10,
+                            nboot = 50,
                             nrepval = 2)
 
 
