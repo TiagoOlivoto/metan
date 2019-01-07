@@ -6,15 +6,15 @@
 \method{autoplot}{WAAS.AMMI}(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
          alpha = 0.2, fill.hist = "gray", col.hist = "black",
          col.point = "black", col.line = "red", col.lab.out = "red",
-         size.lab.out = 2.5, bins = 30, which = c(1:4),
-         mfrow = c(2, 2), ...)
+         size.lab.out = 2.5, size.tex.lab = 10, size.shape = 1.5,
+         bins = 30, which = c(1:4), mfrow = c(2, 2), ...)
 
 
 \method{autoplot}{WAASB}(x, type = "res", conf = 0.95, labels = FALSE, theme = theme_waasb(),
          alpha = 0.2, fill.hist = "gray", col.hist = "black",
          col.point = "black", col.line = "red", col.lab.out = "red",
-         size.lab.out = 2.5, bins = 30, which = c(1:4),
-         mfrow = c(2, 2), ...)
+         size.lab.out = 2.5, size.tex.lab = 10, size.shape = 1.5,
+         bins = 30, which = c(1:4), mfrow = c(2, 2), ...)
 }
 
 \description{
@@ -47,7 +47,9 @@ Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of 
 
   \item{col.lab.out}{The color of the labels for the "outlying" points.}
 
-  \item{size.lab.out}{The size of the labels for the "outlying" points.}
+  \item{size.tex.lab}{The size of the text in axis text and labels.}
+
+  \item{size.shape}{The size of the shape in the plots.}
 
   \item{bins}{The number of bins to use in the histogram. Default is 30.}
 

@@ -9,6 +9,8 @@ autoplot.WAAS.AMMI = function(x,
                               col.line = "red",
                               col.lab.out = "red",
                               size.lab.out = 2.5,
+                              size.tex.lab = 10,
+                              size.shape = 1.5,
                               bins = 30,
                               which = c(1:4),
                               mfrow = c(2, 2),
@@ -40,7 +42,10 @@ p1 = ggplot(df, aes(fitted, resid)) +
     labs(x = "Fitted values",
          y = "Residual") +
   ggtitle("Residuals vs fitted") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
   p1 = p1 + geom_text(aes(label = label), size = size.lab.out,
             hjust = "inward", col = col.lab.out)
@@ -56,7 +61,10 @@ p2 = ggplot(df, aes(z, stdres)) +
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
     ggtitle("Normal Q-Q") +
-    theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
   p2 = p2 + geom_text(aes(label = label), size = size.lab.out,
             hjust = "inward", col = col.lab.out)
@@ -69,7 +77,10 @@ p3 = ggplot(df, aes(fitted, sqrt(abs(resid))))+
   labs(x = "Fitted values",
        y = expression(sqrt("|Standardized residuals|"))) +
   ggtitle("Scale-location") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
   p3 = p3 + geom_text(aes(label = label), size = size.lab.out,
             hjust = "inward", col = col.lab.out)
@@ -82,7 +93,10 @@ p4 = ggplot(df, aes(factors, stdres))+
   labs(x = "Fitted values",
        y = "Standardized residuals") +
   ggtitle("Residuals vs factor-levels") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
   p4 = p4 + geom_text(aes(label = label), size = size.lab.out,
             hjust = "inward", col = col.lab.out)
@@ -110,7 +124,10 @@ p6 = ggplot(df, aes(as.numeric(id), stdres, group = 1))+
   labs(x = "Observation order",
        y = "Standardized Residuals") +
   ggtitle("Residuals vs observation order") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 
 
 
@@ -118,10 +135,12 @@ p7 = ggplot(df, aes(.fitted, Y)) +
   geom_point(col = col.point) +
   facet_wrap(~GEN) +
   geom_abline(intercept = 0,slope = 1, col = col.line) +
-  theme_waasb() +
-  theme(panel.spacing = unit(0, "cm")) +
-  labs(x = "Fitted values", y = "Observed values")
-
+  labs(x = "Fitted values", y = "Observed values") +
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
+        panel.spacing = unit(0, "cm"))
 
 plots <- list(p1, p2, p3, p4, p5, p6, p7)
 

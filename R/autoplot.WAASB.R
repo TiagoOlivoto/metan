@@ -10,6 +10,8 @@ autoplot.WAASB = function(x,
                           col.line = "red",
                           col.lab.out = "red",
                           size.lab.out = 2.5,
+                          size.tex.lab = 10,
+                          size.shape = 1.5,
                           bins = 30,
                           which = c(1:4),
                           mfrow = c(2 , 2),
@@ -39,11 +41,15 @@ if (type == "res"){
   # Residuals vs .fitted
 
 p1 = ggplot(df, aes(.fitted, .resid)) +
-    geom_point(col = col.point)  +
+    geom_point(col = col.point, size = size.shape)  +
     geom_smooth(se = F, method = "loess", col = col.line) +
     geom_hline(yintercept = 0, linetype = 2, col = "gray")+
     labs(x = "Fitted values",  y = "Residual")+
-    theme
+    ggtitle("Residual vs fitted")+
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
   p1 = p1 + ggrepel::geom_text_repel(aes(.fitted, .resid,
                                       label = (label)),
@@ -53,7 +59,7 @@ if (labels != FALSE){
 
   # normal qq
 p2 = ggplot(df, aes(z, .scresid)) +
-    geom_point(col = col.point) +
+    geom_point(col = col.point, size = size.shape) +
     geom_abline(intercept = coef[1], slope = coef[2],
                 size = 1,
                 col = col.line) +
@@ -61,7 +67,10 @@ p2 = ggplot(df, aes(z, .scresid)) +
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
     ggtitle("Normal Q-Q")+
-    theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
 p2 = p2 + ggrepel::geom_text_repel(aes(z, .scresid,
                                label = (label)),
@@ -72,12 +81,15 @@ p2 = p2 + ggrepel::geom_text_repel(aes(z, .scresid,
 
 # scale-location
 p3 = ggplot(df, aes(.fitted, sqrt(abs(.resid))))+
-  geom_point(col = col.point)  +
+  geom_point(col = col.point, size = size.shape)  +
   geom_smooth(se = F, method = "loess", col = col.line) +
   labs(x = "Fitted Values",
        y = expression(sqrt("|Standardized residuals|"))) +
   ggtitle("Scale-location") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
 p3 = p3 + ggrepel::geom_text_repel(aes(.fitted, sqrt(abs(.resid)),
                                label = (label)),
@@ -87,12 +99,15 @@ p3 = p3 + ggrepel::geom_text_repel(aes(.fitted, sqrt(abs(.resid)),
 
 # Residuals vs Factor-levels
 p4 = ggplot(df, aes(factors, .scresid))+
-  geom_point(col = col.point)  +
+  geom_point(col = col.point, size = size.shape)  +
   geom_hline(yintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Fitted values",
        y = "Standardized residuals") +
   ggtitle("Residuals vs factor-levels") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
 p4 = p4 + ggrepel::geom_text_repel(aes(factors, .scresid,
                                label = (label)),
@@ -111,27 +126,37 @@ p5 = ggplot(df, aes(x = .resid)) +
                             sd = sd(df$.resid))) +
   labs(x = "Raw residuals", y = "Density")+
   ggtitle("Histogram of residuals") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 
 # Residuals vs order
 p6 = ggplot(df, aes(as.numeric(id), .scresid, group = 1))+
-  geom_point(col = col.point)  +
+  geom_point(col = col.point, size = size.shape)  +
   geom_line(col = col.line) +
   geom_hline(yintercept = 0, linetype = 2, col = col.line) +
   labs(x = "Observation order",
        y = "Standardized residuals") +
   ggtitle("Residuals vs observation order") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 
 
 
 p7 = ggplot(df, aes(.fitted, Y)) +
-  geom_point(col = col.point) +
+  geom_point(col = col.point, size = size.shape) +
   facet_wrap(~GEN) +
   geom_abline(intercept = 0,slope = 1, col = col.line) +
-  theme_waasb() +
-  theme(panel.spacing = unit(0, "cm")) +
-  labs(x = "Fitted values", y = "Observed values")
+  labs(x = "Fitted values", y = "Observed values") +
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
+        panel.spacing = unit(0, "cm"))
+
 
 
 plots <- list(p1, p2, p3, p4, p5, p6, p7)
@@ -175,7 +200,7 @@ if (type == "re"){
 
   # normal qq GEI effects
 p1 = ggplot(df, aes(z, BLUPge)) +
-    geom_point(col = col.point) +
+    geom_point(col = col.point, size = size.shape) +
     geom_abline(intercept = coef[1], slope = coef[2],
                 size = 1,
                 col = col.line) +
@@ -183,7 +208,10 @@ p1 = ggplot(df, aes(z, BLUPge)) +
     labs(x = "Theoretical quantiles",
          y = "Sample quantiles") +
     ggtitle("Q-Q | GEI effects") +
-    theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
   if (labels != FALSE){
     p1 = p1 + ggrepel::geom_text_repel(aes(z, BLUPge,
                                            label = (label)),
@@ -194,7 +222,7 @@ p1 = ggplot(df, aes(z, BLUPge)) +
 
 # normal qq Genotype effects
 p2 = ggplot(dfgen, aes(z, BLUPg)) +
-  geom_point(col = col.point) +
+  geom_point(col = col.point, size = size.shape) +
   geom_abline(intercept = coef2[1], slope = coef2[2],
               size = 1,
               col = col.line) +
@@ -202,7 +230,10 @@ p2 = ggplot(dfgen, aes(z, BLUPg)) +
   labs(x = "Theoretical quantiles",
        y = "Sample quantiles") +
   ggtitle("Q-Q | genotype effects") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 if (labels != FALSE){
   p2 = p2 + ggrepel::geom_text_repel(aes(z, BLUPg,
                                          label = (label)),
@@ -212,23 +243,29 @@ if (labels != FALSE){
 
 # random effects vs Factor-levels
 p3 = ggplot(df, aes(BLUPge, factors))+
-  geom_point(col = col.point)  +
+  geom_point(col = col.point, size = size.shape)  +
   geom_vline(xintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Random effects",
        y = "Factor-levels") +
   ggtitle("Random effects vs factor-levels") +
-  theme +
-theme(axis.text.y = element_blank())
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
+        axis.text.y = element_blank())
 
 
 # random effects vs genotypes
 p4 = ggplot(dfgen, aes(BLUPg, GEN))+
-  geom_point(col = col.point)  +
+  geom_point(col = col.point, size = size.shape)  +
   geom_vline(xintercept = 0, linetype = 2, col = "gray")+
   labs(x = "Random effects ",
        y = "Genotypes") +
   ggtitle("Random effects vs Genotypes") +
-  theme
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 
 plots <- list(p1, p2, p3, p4)
 
