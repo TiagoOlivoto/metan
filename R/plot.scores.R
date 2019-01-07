@@ -78,7 +78,11 @@ p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
                                size = size.tex.pa, col = c(rep(col.gen, ngen),
                                                         rep(col.env, nenv))) +
       theme %+replace%
-      theme(aspect.ratio = 1) +
+      theme(aspect.ratio = 1,
+            axis.text = element_text(size = size.tex.lab, colour = "black"),
+            axis.title = element_text(size = size.tex.lab, colour = "black"),
+            legend.text = element_text(size = size.tex.lab),
+            plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -207,7 +211,11 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
                                size = size.tex.pa, col = c(rep(col.gen, ngen),
                                                         rep(col.env, nenv)))  +
       theme %+replace%
-      theme(aspect.ratio = 1) +
+      theme(aspect.ratio = 1,
+            axis.text = element_text(size = size.tex.lab, colour = "black"),
+            axis.title = element_text(size = size.tex.lab, colour = "black"),
+            legend.text = element_text(size = size.tex.lab),
+            plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -284,7 +292,11 @@ ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)),
                          size = size.tex.pa, col = c(rep(col.gen, ngen),
                                                   rep(col.env, nenv)))  +
       theme %+replace%
-      theme(aspect.ratio = 1) +
+      theme(aspect.ratio = 1,
+            axis.text = element_text(size = size.tex.lab, colour = "black"),
+            axis.title = element_text(size = size.tex.lab, colour = "black"),
+            legend.text = element_text(size = size.tex.lab),
+            plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -324,7 +336,11 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
                                  size = size.tex.pa, col = c(rep(col.gen, ngen),
                                                           rep(col.env, nenv)))  +
         theme %+replace%
-        theme(aspect.ratio = 1) +
+        theme(aspect.ratio = 1,
+              axis.text = element_text(size = size.tex.lab, colour = "black"),
+              axis.title = element_text(size = size.tex.lab, colour = "black"),
+              legend.text = element_text(size = size.tex.lab),
+              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
         labs(x = paste(x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -404,7 +420,11 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
                                force = 5,
                                data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
       theme %+replace%
-      theme(legend.position = "none") +
+      theme(legend.position = "none",
+            axis.text = element_text(size = size.tex.lab, colour = "black"),
+            axis.title = element_text(size = size.tex.lab, colour = "black"),
+            legend.text = element_text(size = size.tex.lab),
+            plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       labs(x = paste(x.lab), y = y.lab)
