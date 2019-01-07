@@ -17,7 +17,8 @@ plot.scores = function(x,
                      shape.gen = 21,
                      shape.env = 23,
                      size.shape = 2.5,
-                     size.tex = 3.5,
+                     size.tex.lab = 3.5,
+                     size.tex.pa = 3.5,
                      size.line = 0.5,
                      size.segm.line = 0.5,
                      leg.lab = c("Gen", "Env"),
@@ -74,7 +75,7 @@ p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
       ggrepel::geom_text_repel(aes(PC1, PC2, label = (Code)),
-                               size = size.tex, col = c(rep(col.gen, ngen),
+                               size = size.tex.pa, col = c(rep(col.gen, ngen),
                                                         rep(col.env, nenv))) +
       theme %+replace%
       theme(aspect.ratio = 1) +
@@ -203,7 +204,7 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
       ggrepel::geom_text_repel(aes(Y, PC1, label = (Code)),
-                               size = size.tex, col = c(rep(col.gen, ngen),
+                               size = size.tex.pa, col = c(rep(col.gen, ngen),
                                                         rep(col.env, nenv)))  +
       theme %+replace%
       theme(aspect.ratio = 1) +
@@ -280,7 +281,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
 ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)),
-                         size = size.tex, col = c(rep(col.gen, ngen),
+                         size = size.tex.pa, col = c(rep(col.gen, ngen),
                                                   rep(col.env, nenv)))  +
       theme %+replace%
       theme(aspect.ratio = 1) +
@@ -320,7 +321,7 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
         scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
         scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
         ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)),
-                                 size = size.tex, col = c(rep(col.gen, ngen),
+                                 size = size.tex.pa, col = c(rep(col.gen, ngen),
                                                           rep(col.env, nenv)))  +
         theme %+replace%
         theme(aspect.ratio = 1) +
@@ -394,12 +395,12 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
                  data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
       ggrepel::geom_label_repel(data=subset(x$MeansGxE, envPC1 == min(envPC1)),
                                 aes(label = GEN, fill = GEN),
-                                size = size.tex, color = 'white',
+                                size = size.tex.pa, color = 'white',
                                 force = 5, segment.color = '#bbbbbb') +
       ggrepel::geom_text_repel(aes(x = envPC1,
                                    y = min,
                                    label = ENV),
-                               size = size.tex,
+                               size = size.tex.pa,
                                force = 5,
                                data = subset(x$MeansGxE, GEN == x$MeansGxE[1,2])) +
       theme %+replace%
