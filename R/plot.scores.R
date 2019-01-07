@@ -1,5 +1,5 @@
 plot.scores = function(x,
-                     type,
+                     type = 1,
                      polygon = FALSE,
                      file.type = "pdf",
                      export = FALSE,

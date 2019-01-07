@@ -9,7 +9,7 @@
 }
 
 \usage{
-\method{plot}{scores}(x, type, polygon = FALSE, file.type = "pdf",
+\method{plot}{scores}(x, type = 1, polygon = FALSE, file.type = "pdf",
    export = FALSE, file.name = NULL, theme = theme_waasb(),
    axis.expand = 1.1,  width = 8, height = 7, x.lim = NULL,
    x.breaks = waiver(), x.lab = NULL, y.lab = NULL,
@@ -27,7 +27,7 @@
 
   \item{x}{The object \code{WAASB} or \code{WAAS.AMMI}}
 
-  \item{type}{Three types of graphics can be generated: \code{1 = PC1 x PC2}, to make inferences related to the interaction effects; \code{2 = GY x PC1} to make inferences related to stability and productivity; \code{3 = GY x WAASB}, and \code{4 = Nominal yield x Environment PC1}.}
+  \item{type}{Three types of graphics can be generated: \code{1 = PC1 x PC2}, default, to make inferences related to the interaction effects; \code{2 = GY x PC1} to make inferences related to stability and productivity; \code{3 = GY x WAASB}, and \code{4 = Nominal yield x Environment PC1}.}
 
   \item{polygon}{Logical argument. If \code{TRUE}, a polygon is drawn when \code{type 1}.}
 
