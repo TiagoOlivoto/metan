@@ -18,6 +18,7 @@ validation.AMMI = function(data,
   GEN = factor(eval(substitute(gen), eval(data)))
   ENV = factor(eval(substitute(env), eval(data)))
   REP = factor(eval(substitute(rep), eval(data)))
+  REPS = eval(substitute(rep), eval(data))
   data = data.frame(ENV, GEN, REP, Y)
   data = mutate(data, ID = rownames(data))
   Nenv = length(unique(ENV))
@@ -62,7 +63,7 @@ validation.AMMI = function(data,
             for (K in 1:Nenv){
               X = sample(1:10000,1)
               set.seed(X)
-              X2 = sample(1:Nbloc,nrepval , replace = F)
+              X2 = sample(unique(REPS),nrepval , replace = F)
               names = factor(data$ENV)
               names = levels(names)[actualenv + 1]
               actualenv = actualenv + 1
