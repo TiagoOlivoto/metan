@@ -4,9 +4,9 @@
 \usage{
 \method{plot}{eigen}(x, export = FALSE, theme = theme_waasb(),
      file.type = "pdf", file.name = NULL, width = 6, height = 6,
-     size.shape = 3.5, size.line = 1, y.lab = "Eigenvalue",
-     y2.lab = "Accumulated variance", x.lab = "Number of multiplicative terms",
-     resolution = 300, ...)
+     size.shape = 3.5, size.line = 1, size.tex.lab = 12,
+     y.lab = "Eigenvalue",  y2.lab = "Accumulated variance",
+     x.lab = "Number of multiplicative terms", resolution = 300, ...)
 }
 
 \description{
@@ -33,6 +33,8 @@ Plot the eigenvalues for from singular value decomposition of BLUP interaction e
   \item{size.shape}{The size of the shape. Default is \code{3.5}.}
 
   \item{size.line}{The size of the line. Default is \code{1}.}
+
+  \item{size.tex.lab}{The size of the text in axis text and labels.}
 
   \item{y.lab}{The label of the y-axis in the plot. Default is \code{"Eigenvalue"}.}
 

@@ -7,6 +7,7 @@ plot.eigen = function(x,
                      height = 6,
                      size.shape = 3.5,
                      size.line = 1,
+                     size.tex.lab = 12,
                      y.lab = "Eigenvalue",
                      y2.lab = "Accumulated variance",
                      x.lab = "Number of multiplicative terms",
@@ -27,9 +28,12 @@ p = ggplot2::ggplot(eigen, aes(x =  PC, group = 1)) +
   geom_point(aes(y = Accumulated/scaleFactor, col = "Percentage"), size = size.shape) +
   scale_y_continuous(sec.axis = sec_axis(~.*scaleFactor,
                                          name = y2.lab)) +
-theme %+replace%
-  theme(legend.position = c(0.15, 0.1))+
-labs(x = x.lab, y = y.lab)
+  labs(x = x.lab, y = y.lab) +
+  theme %+replace%
+  theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+        axis.title = element_text(size = size.tex.lab, colour = "black"),
+        legend.position = c(0.15, 0.1))
+
 
   if (export  ==  F|FALSE) {
     return(p)
