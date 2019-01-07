@@ -136,6 +136,7 @@ p7 = ggplot(df, aes(.fitted, Y)) +
   facet_wrap(~GEN) +
   geom_abline(intercept = 0,slope = 1, col = col.line) +
   labs(x = "Fitted values", y = "Observed values") +
+  ggtitle("1:1 line plot")+
   theme %+replace%
   theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
         axis.title = element_text(size = size.tex.lab, colour = "black"),
