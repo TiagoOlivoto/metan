@@ -8,11 +8,21 @@ WAAS.AMMI = function(data,
                      weight.response = 50,
                      weight.WAAS = 50){
 
-Y = eval(substitute(resp), eval(data))
-GEN = factor(eval(substitute(gen), eval(data)))
-ENV = factor(eval(substitute(env), eval(data)))
-REP = factor(eval(substitute(rep), eval(data)))
+datain = data
+GEN = factor(eval(substitute(gen), eval(datain)))
+ENV = factor(eval(substitute(env), eval(datain)))
+REP = factor(eval(substitute(rep), eval(datain)))
+listres = list()
+d = match.call()
+
+for (var in 2:length(d$resp)){
+if(length(d$resp)>1){
+Y = eval(substitute(resp)[[var]], eval(datain))
 data = data.frame(ENV, GEN, REP, Y)
+} else{
+Y = eval(substitute(resp), eval(datain))
+data = data.frame(ENV, GEN, REP, Y)
+}
 Nenv = length(unique(ENV))
 Ngen = length(unique(GEN))
 minimo = min(Nenv, Ngen) - 1
@@ -56,6 +66,7 @@ for (i in 1:length(unique(data$ENV))){
   actualenv = actualenv + 1
 
 }
+
 MSEratio = max(temp$MSres) / min(temp$MSres)
 individual = list(individual = temp,
                   MSEratio = MSEratio)
@@ -164,16 +175,26 @@ Details = plyr::mutate(Details,
                                         "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"))
 Details = Details %>%
           dplyr::select(Parameters, everything())
-return(structure(list(individual = individual,
+
+temp = list(individual = individual,
                       model = WAAS,
                       MeansGxE = MeansGxE,
                       PCA = PCA,
                       anova = anova,
                       Details = Details,
-                      residuals = model$residuals),
-                 class = "WAAS.AMMI"))
+                      residuals = model$residuals)
+
+
   }
+if(length(d$resp)>1){
+listres[[paste(d$resp[var])]] = temp
+} else{
+listres[[paste(d$resp)]] = temp
+}
 }
 
+return(structure(listres, class = "WAAS.AMMI"))
+
+}
 
 

@@ -1,67 +1,78 @@
 WAASB = function(data, resp, gen, env, rep, random = "gen",
                  prob = 0.95, weight.response = 50, weight.WAAS = 50) {
 
-  Y = eval(substitute(resp), eval(data))
-  GEN = factor(eval(substitute(gen), eval(data)))
-  ENV = factor(eval(substitute(env), eval(data)))
-  REP = factor(eval(substitute(rep), eval(data)))
-  data = data.frame(ENV, GEN, REP, Y)
-  Nenv = length(unique(ENV))
-  Ngen = length(unique(GEN))
-  Nbloc = length(unique(REP))
-  minimo = min(Nenv, Ngen) - 1
-  ovmean = mean(Y)
-  PesoWAASB = weight.WAAS
-  PesoResp = weight.response
+  datain = data
+  GEN = factor(eval(substitute(gen), eval(datain)))
+  ENV = factor(eval(substitute(env), eval(datain)))
+  REP = factor(eval(substitute(rep), eval(datain)))
+  listres = list()
+  d = match.call()
 
-  if (minimo < 2) {
-    cat("\nWarning. The analysis is not possible.")
-    cat("\nThe number of environments and number of genotypes must be greater than 2\n")
-  }
-
-  temp = data.frame(matrix(".", length(unique(data$ENV)), 12))
-
-  for (n in c(1:12)) {
-    temp[, n] = as.numeric(temp[, n])
-  }
-  names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
-                  "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
-  actualenv = 0
-  for (i in 1:length(unique(data$ENV))) {
-    envnam = levels(data$ENV)[actualenv + 1]
-    data2 = subset(data, ENV == paste0(envnam))
-    anova = anova(aov(Y ~ GEN + REP, data = data2))
-    MSB = anova[2, 3]
-    MSG = anova[1, 3]
-    MSE = anova[3, 3]
-    NR = length(unique(data2$REP))
-    CV = sqrt(MSE)/mean(data2$Y) * 100
-    h2 = (MSG - MSE)/MSG
-    if (h2 < 0) {
-      AS = 0
-    } else {
-      AS = sqrt(h2)
-    }
-    temp[i, 1] = paste(envnam)
-    temp[i, 2] = mean(data2$Y)
-    temp[i, 3] = MSB
-    temp[i, 4] = MSG
-    temp[i, 5] = MSE
-    temp[i, 6] = anova[2, 4]
-    temp[i, 7] = anova[2, 5]
-    temp[i, 8] = anova[1, 4]
-    temp[i, 9] = anova[1, 5]
-    temp[i, 10] = CV
-    temp[i, 11] = h2
-    temp[i, 12] = AS
-
-    actualenv = actualenv + 1
-
-  }
-  MSEratio = max(temp$MSres)/min(temp$MSres)
-  individual = list(individual = temp, MSEratio = MSEratio)
 
   if (random == "all") {
+    for (var in 2:length(d$resp)){
+      if(length(d$resp)>1){
+        Y = eval(substitute(resp)[[var]], eval(datain))
+        data = data.frame(ENV, GEN, REP, Y)
+      } else{
+        Y = eval(substitute(resp), eval(datain))
+        data = data.frame(ENV, GEN, REP, Y)
+      }
+      Nenv = length(unique(ENV))
+      Ngen = length(unique(GEN))
+      minimo = min(Nenv, Ngen) - 1
+
+      Nbloc = length(unique(REP))
+      ovmean = mean(Y)
+      PesoWAASB = weight.WAAS
+      PesoResp = weight.response
+
+      if (minimo < 2) {
+        cat("\nWarning. The analysis is not possible.")
+        cat("\nThe number of environments and number of genotypes must be greater than 2\n")
+      }
+
+      temp = data.frame(matrix(".", length(unique(data$ENV)), 12))
+
+      for (n in c(1:12)) {
+        temp[, n] = as.numeric(temp[, n])
+      }
+      names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
+                      "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+      actualenv = 0
+      for (i in 1:length(unique(data$ENV))) {
+        envnam = levels(data$ENV)[actualenv + 1]
+        data2 = subset(data, ENV == paste0(envnam))
+        anova = anova(aov(Y ~ GEN + REP, data = data2))
+        MSB = anova[2, 3]
+        MSG = anova[1, 3]
+        MSE = anova[3, 3]
+        NR = length(unique(data2$REP))
+        CV = sqrt(MSE)/mean(data2$Y) * 100
+        h2 = (MSG - MSE)/MSG
+        if (h2 < 0) {
+          AS = 0
+        } else {
+          AS = sqrt(h2)
+        }
+        temp[i, 1] = paste(envnam)
+        temp[i, 2] = mean(data2$Y)
+        temp[i, 3] = MSB
+        temp[i, 4] = MSG
+        temp[i, 5] = MSE
+        temp[i, 6] = anova[2, 4]
+        temp[i, 7] = anova[2, 5]
+        temp[i, 8] = anova[1, 4]
+        temp[i, 9] = anova[1, 5]
+        temp[i, 10] = CV
+        temp[i, 11] = h2
+        temp[i, 12] = AS
+
+        actualenv = actualenv + 1
+
+      }
+      MSEratio = max(temp$MSres)/min(temp$MSres)
+      individual = list(individual = temp, MSEratio = MSEratio)
 
     Complete = suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
                                                                 Y ~ (1 | ENV) +
@@ -71,7 +82,7 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
     rownames(LRT) = c("Complete", "Environment", "Genotype", "Env:Rep",
                       "Rep", "Gen:Env")
-    random = as.data.frame(VarCorr(Complete))[, c(1, 4)]
+    random = as.data.frame(lme4::VarCorr(Complete))[, c(1, 4)]
     random = random[with(random, order(grp)), ]
     names(random) = c("Group", "Variance")
     EV = as.numeric(random[1, 2])
@@ -283,17 +294,86 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
                             "BLUPge+g+e", "Predicted")
     residuals = fortify.merMod(Complete)
     residuals$reff = selectioNenv$BLUPge
-    return(structure(list(individual = individual, model = WAASAbsInicial,
-                          BLUPgen = blupGEN, BLUPenv = blupENV, BLUPge = selectioNenv,
-                          PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, REML = random,
-                          ESTIMATES = ESTIMATES, LRT = LRT, residuals = residuals), class = "WAASB"))
+    temp = list(individual = individual, model = WAASAbsInicial,
+                BLUPgen = blupGEN, BLUPgge = selectioNenv, PCA = Eigenvalue,
+                MeansGxE = MEDIAS, Details = Details, REML = REML, ESTIMATES = ESTIMATES,
+                LRT = LRT, residuals = residuals)
+    if(length(d$resp)>1){
+      listres[[paste(d$resp[var])]] = temp
+    } else{
+      listres[[paste(d$resp)]] = temp
+    }
+    }
   }
   if (random == "gen") {
+    for (var in 2:length(d$resp)){
+      if(length(d$resp)>1){
+        Y = eval(substitute(resp)[[var]], eval(datain))
+        data = data.frame(ENV, GEN, REP, Y)
+      } else{
+        Y = eval(substitute(resp), eval(datain))
+        data = data.frame(ENV, GEN, REP, Y)
+      }
+      Nenv = length(unique(ENV))
+      Ngen = length(unique(GEN))
+      minimo = min(Nenv, Ngen) - 1
+
+      Nbloc = length(unique(REP))
+      ovmean = mean(Y)
+      PesoWAASB = weight.WAAS
+      PesoResp = weight.response
+
+      if (minimo < 2) {
+        cat("\nWarning. The analysis is not possible.")
+        cat("\nThe number of environments and number of genotypes must be greater than 2\n")
+      }
+
+      temp = data.frame(matrix(".", length(unique(data$ENV)), 12))
+
+      for (n in c(1:12)) {
+        temp[, n] = as.numeric(temp[, n])
+      }
+      names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
+                      "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+      actualenv = 0
+      for (i in 1:length(unique(data$ENV))) {
+        envnam = levels(data$ENV)[actualenv + 1]
+        data2 = subset(data, ENV == paste0(envnam))
+        anova = anova(aov(Y ~ GEN + REP, data = data2))
+        MSB = anova[2, 3]
+        MSG = anova[1, 3]
+        MSE = anova[3, 3]
+        NR = length(unique(data2$REP))
+        CV = sqrt(MSE)/mean(data2$Y) * 100
+        h2 = (MSG - MSE)/MSG
+        if (h2 < 0) {
+          AS = 0
+        } else {
+          AS = sqrt(h2)
+        }
+        temp[i, 1] = paste(envnam)
+        temp[i, 2] = mean(data2$Y)
+        temp[i, 3] = MSB
+        temp[i, 4] = MSG
+        temp[i, 5] = MSE
+        temp[i, 6] = anova[2, 4]
+        temp[i, 7] = anova[2, 5]
+        temp[i, 8] = anova[1, 4]
+        temp[i, 9] = anova[1, 5]
+        temp[i, 10] = CV
+        temp[i, 11] = h2
+        temp[i, 12] = AS
+
+        actualenv = actualenv + 1
+
+      }
+      MSEratio = max(temp$MSres)/min(temp$MSres)
+      individual = list(individual = temp, MSEratio = MSEratio)
 
     Complete = suppressWarnings(suppressMessages(lmerTest::lmer(data = data, Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
     LRT = lmerTest::ranova(Complete, reduce.terms = FALSE)
     rownames(LRT) = c("Complete", "Genotype", "Gen vs Env")
-    random = as.data.frame(VarCorr(Complete))[, c(1, 4)]
+    random = as.data.frame(lme4::VarCorr(Complete))[, c(1, 4)]
     random = random[with(random, order(grp)), ]
     names(random) = c("Group", "Variance")
     fixed = anova(Complete)
@@ -496,9 +576,18 @@ WAASB = function(data, resp, gen, env, rep, random = "gen",
                             "Predicted", "LL", "UL")
     residuals = data.frame(fortify.merMod(Complete))
     residuals$reff = selectioNenv$BLUPge
-    return(structure(list(individual = individual, model = WAASAbsInicial,
+    temp = list(individual = individual, model = WAASAbsInicial,
                           BLUPgen = blupGEN, BLUPgge = selectioNenv, PCA = Eigenvalue,
                           MeansGxE = MEDIAS, Details = Details, REML = REML, ESTIMATES = ESTIMATES,
-                          LRT = LRT, residuals = residuals), class = "WAASB"))
+                          LRT = LRT, residuals = residuals)
+  if(length(d$resp)>1){
+    listres[[paste(d$resp[var])]] = temp
+  } else{
+    listres[[paste(d$resp)]] = temp
   }
+  }
+  }
+
+  return(structure(listres, class = "WAASB"))
+
 }
