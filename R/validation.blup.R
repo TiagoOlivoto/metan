@@ -67,7 +67,7 @@ if (progbar  ==  TRUE){
 ProcdAtua = b
 setWinProgressBar(pb, b, title = paste("Estimating BLUPs for ",ProcdAtua,
                                      " of ",nboot," total validation datasets",
-                                     "-",round(b/nboot*100,3),"% Concluded -"))
+                                     "-",round(b/nboot*100,1),"% Concluded -"))
  }
 }
 RMSPDres = dplyr::mutate(RMSPDres,
