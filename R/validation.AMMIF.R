@@ -118,7 +118,7 @@ if (progbar == TRUE){
           ProcdAtua = b
           setWinProgressBar(pb, initial, title=paste("|Family = ",ACTUAL,"| Validating ",ProcdAtua,
                                                      " of ",nboot,"validation datasets, considering", NAXIS, "axes",
-                                                     "-",round(initial/totalboot*100,2),"% Concluded -"))
+                                                     "-",round(initial/totalboot*100,1),"% Concluded -"))
           }
         }
 

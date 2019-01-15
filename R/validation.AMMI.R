@@ -109,7 +109,7 @@ validation.AMMI = function(data,
             ProcdAtua = b
             setWinProgressBar(pb, b, title = paste("Validating ",ProcdAtua,
                                                    " of ",nboot,"validation datasets, considering", naxis, "axes",
-                                                   "-",round(b/nboot*100,2),"% Concluded -"))
+                                                   "-",round(b/nboot*100,1),"% Concluded -"))
           }
 
         }
