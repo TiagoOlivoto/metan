@@ -2,7 +2,7 @@
 \alias{AMMI_indexes}
 \title{AMMI-based indexes for stability and simultaneous selection}
 \usage{
-AMMI_indexes(x)
+AMMI_indexes(x, order.y = NULL)
 }
 
 \description{
@@ -11,6 +11,8 @@ This function computes the following AMMI-based stability indexes: ASV, AMMI sta
 
 \arguments{
   \item{x}{An object of class \code{WAAS.AMMI}}
+
+  \item{order.y}{A vector of the same length of x used to order the response variable. Each element of the vector must be one of the "h" or "l". If "h" is used, the response variable will be ordered from maximum to minimum. If "l" is used the response variable will be ordered from minimum to maximum.}
 }
 
 \details{
