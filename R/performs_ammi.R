@@ -1,4 +1,5 @@
-performs_ammi = function (ENV, GEN, REP, Y){
+performs_ammi = function (ENV, GEN, REP, Y)
+{
   resp = paste(deparse(substitute(Y)))
   ENV = as.factor(ENV)
   GEN = as.factor(GEN)
@@ -11,9 +12,8 @@ performs_ammi = function (ENV, GEN, REP, Y){
   datares = model$model
   datares$factors = paste(datares$ENV, datares$GEN)
   df = fortify(model)
-  df = data.frame(fitted = df[,8],
-                  resid = df[,9],
-                  stdres = df[,10])
+  df = data.frame(fitted = df[, 8], resid = df[, 9], stdres = df[,
+                                                                 10])
   residuals = cbind(datares, df)
   mm = anova(model)
   nn = mm[2, ]
@@ -24,6 +24,7 @@ performs_ammi = function (ENV, GEN, REP, Y){
   mm[1, 4] = mm[1, 3]/mm[2, 3]
   mm[1, 5] = 1 - pf(mm[1, 4], mm[1, 1], mm[2, 1])
   anova = mm
+  probint = anova[4, 5]
   DFE = df.residual(model)
   MSE = deviance(model)/DFE
   raw = data.frame(ENV, GEN, Y)
@@ -52,8 +53,9 @@ performs_ammi = function (ENV, GEN, REP, Y){
   model2 = lm(z ~ x + y)
   for (i in 1:length(z)) {
     if (is.na(z[i]))
-      z[i] = predict(model2, data.frame(x = MEANS[i,
-                                                     1], y = MEANS[i, 2]))}
+      z[i] = predict(model2, data.frame(x = MEANS[i, 1],
+                                        y = MEANS[i, 2]))
+  }
   MEANS = data.frame(ENV = x, GEN = y, Y = z)
   model1 = lm(Y ~ ENV + GEN, data = MEANS)
   residual = model1$residuals
@@ -62,9 +64,9 @@ performs_ammi = function (ENV, GEN, REP, Y){
   names(MEANS) = c(mlabel[1:2], resp, mlabel[4])
   OUTRES = MEANS[order(MEANS[, 1], MEANS[, 2]), ]
   OUTRES2 = by(OUTRES[, 4], OUTRES[, c(2, 1)], function(x) sum(x,
-                                                                na.rm = TRUE))
-  OUTMED = by(OUTRES[, 3], OUTRES[, c(2, 1)], function(x) sum(x,
                                                                na.rm = TRUE))
+  OUTMED = by(OUTRES[, 3], OUTRES[, c(2, 1)], function(x) sum(x,
+                                                              na.rm = TRUE))
   s = svd(OUTRES2)
   U = s$u
   L = s$d
@@ -92,7 +94,7 @@ performs_ammi = function (ENV, GEN, REP, Y){
     else F.AMMI[i] = NA
     if (DFE > 0)
       PROBF[i] = round(1 - pf(F.AMMI[i], DFAMMI[i], DFE),
-                        4)
+                       4)
     else PROBF[i] = NA
   }
   percent = round(percent, 1)
@@ -100,7 +102,7 @@ performs_ammi = function (ENV, GEN, REP, Y){
   SS = round(SS, 5)
   MSAMMI = round(MSAMMI, 5)
   SSAMMI = data.frame(percent, acum, Df = DFAMMI, `Sum Sq` = SS,
-                       `Mean Sq` = MSAMMI, `F value` = F.AMMI, Pr.F = PROBF)
+                      `Mean Sq` = MSAMMI, `F value` = F.AMMI, Pr.F = PROBF)
   nssammi = nrow(SSAMMI)
   SSAMMI = SSAMMI[SSAMMI$Df > 0, ]
   nss = nrow(SSAMMI)
@@ -113,9 +115,9 @@ performs_ammi = function (ENV, GEN, REP, Y){
   MSCORES = SCORES[1:ngen, ]
   NSCORES = SCORES[(ngen + 1):(ngen + nenv), ]
   MGEN = data.frame(type = "GEN", Y = apply(OUTMED, 1, mean),
-                     MSCORES)
+                    MSCORES)
   MENV = data.frame(type = "ENV", Y = apply(OUTMED, 2, mean),
-                     NSCORES)
+                    NSCORES)
   bplot = rbind(MGEN, MENV)
   bplot = bplot[, 1:(nss + 2)]
   mlabel = names(bplot)
@@ -124,37 +126,37 @@ performs_ammi = function (ENV, GEN, REP, Y){
     cat("\nWarning. The analysis AMMI is not possible.")
     cat("\nThe number of environments and number of genotypes must be greater than 2\n")
   }
-
-  PC = SSAMMI %>%
-    dplyr::select(-percent, -acum, everything())
+  PC = SSAMMI %>% dplyr::select(-percent, -acum, everything())
   anova = mm
   anova = cbind(Percent = ".", anova)
-  anova = anova %>%
-    dplyr::select(-Percent, everything())
+  anova = anova %>% dplyr::select(-Percent, everything())
   anova = cbind(Accumul = ".", anova)
-  anova = anova %>%
-    dplyr::select(-Accumul, everything())
-  sum = as.data.frame(anova[nrow(anova),])
+  anova = anova %>% dplyr::select(-Accumul, everything())
+  sum = as.data.frame(anova[nrow(anova), ])
   sum$Df = sum(anova$Df)
   sum$`Sum Sq` = sum(anova$`Sum Sq`)
   sum$`Mean Sq` = sum$`Sum Sq`/sum$Df
   rownames(sum) = "Total"
-  ERRO = anova[nrow(anova),]
+  ERRO = anova[nrow(anova), ]
   ERRO = rbind(ERRO, sum)
-  anova = anova[-nrow(anova),]
-  names(PC)  = colnames(anova)
+  anova = anova[-nrow(anova), ]
+  names(PC) = colnames(anova)
   anova2 = suppressWarnings(suppressMessages(rbind(anova, PC)))
   anova = plyr::rbind.fill(anova, PC)
   rownames(anova) = rownames(anova2)
   anova = rbind(anova, ERRO)
-  anova$`Pr(>F)` = format(anova$`Pr(>F)`, scipen = 0, digits = 4, scientific = FALSE)
-  anova$Percent = format(anova$Percent, scipen = 0, digits = 2, scientific = FALSE)
-  anova$Accumul = format(anova$Accumul, scipen = 0, digits = 2, scientific = FALSE)
+  anova$`Pr(>F)` = format(anova$`Pr(>F)`, scipen = 0, digits = 4,
+                          scientific = FALSE)
+  anova$Percent = format(anova$Percent, scipen = 0, digits = 2,
+                         scientific = FALSE)
+  anova$Accumul = format(anova$Accumul, scipen = 0, digits = 2,
+                         scientific = FALSE)
   object = list(ANOVA = anova,
                 analysis = PC,
                 means = MEANS,
                 biplot = bplot,
-                residuals = residuals)
+                residuals = residuals,
+                probint = probint)
   class(object) = "WAASB"
   return(object)
 }
