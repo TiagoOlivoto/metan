@@ -51,6 +51,10 @@ MTSI <- function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1){
     data = data.frame(subset(bind, type == "GEN") %>% select(-type) %>% select(gen, everything()))
   }
 
+if (any(apply(data, 2, is.na)) == TRUE) {
+  stop("The MTSI index cannot be computed because the genotype-vs-environment interaction effect was not significant for some variable.")
+}
+
 if(is.null(SI)){
   ngs = NULL
 } else {
