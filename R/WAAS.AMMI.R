@@ -3,10 +3,11 @@ WAAS.AMMI = function(data,
                      gen,
                      env,
                      rep,
-                     p.valuePC = 0.05,
+                     mresp = NULL,
+                     prob = 0.05,
                      naxis = NULL,
-                     weight.response = 50,
-                     weight.WAAS = 50){
+                     wresp = NULL,
+                     verbose = TRUE){
 
 datain = data
 GEN = factor(eval(substitute(gen), eval(datain)))
@@ -14,19 +15,46 @@ ENV = factor(eval(substitute(env), eval(datain)))
 REP = factor(eval(substitute(rep), eval(datain)))
 listres = list()
 d = match.call()
+nvar = as.numeric(ifelse(length(d$resp)>1, length(d$resp) -1, length(d$resp)))
+if (is.null(mresp)) {
+  mresp = replicate(nvar, 100)
+  minresp = 100 - mresp
+} else {
+  if (length(mresp) != nvar) {
+    stop("The length of the numeric vector 'mresp' must be equal the number of variables in argument 'resp'")
+  }
+  if (sum(mresp == 100) + sum(mresp == 0) != nvar) {
+    stop("The values of the numeric vector 'mresp' must be 0 or 100.")
+  }
+  mresp = mresp
+  minresp = 100 - mresp
+}
 
+if (is.null(wresp)) {
+  PesoResp = replicate(nvar, 50)
+  PesoWAASB = 100 - PesoResp
+} else{
+  if (length(wresp) != nvar) {
+    stop("The length of the numeric vector 'wresp' must be equal the number of variables in argument 'resp'")
+  }
+  if (min(wresp) < 0 | max(wresp) > 100) {
+    stop("The range of the numeric vector 'wresp' must be equal between 0 and 100.")
+  }
+  PesoResp = wresp
+  PesoWAASB = 100 - PesoResp
+}
+vin = 0
 for (var in 2:length(d$resp)){
 if(length(d$resp)>1){
 Y = eval(substitute(resp)[[var]], eval(datain))
-data = data.frame(ENV, GEN, REP, Y)
 } else{
 Y = eval(substitute(resp), eval(datain))
-data = data.frame(ENV, GEN, REP, Y)
 }
+data = data.frame(ENV, GEN, REP, Y)
 Nenv = length(unique(ENV))
 Ngen = length(unique(GEN))
 minimo = min(Nenv, Ngen) - 1
-
+vin = vin + 1
 if (minimo < 2) {
   cat("\nWarning. The analysis is not possible.")
   cat("\nThe number of environments and number of genotypes must be greater than 2\n")
@@ -41,14 +69,17 @@ names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)", "Pr>F(B
 for (i in 1:length(unique(data$ENV))){
   envnam = levels(data$ENV)[actualenv + 1]
   data2 = subset(data, ENV == paste0(envnam))
-  anova = anova(aov(Y ~ GEN + REP, data = data2))
+  anova = suppressWarnings(anova(aov(Y ~ GEN + REP, data = data2)))
   MSB = anova[2, 3]
   MSG = anova[1, 3]
   MSE = anova[3, 3]
-  NR = length(unique(data2$REP))
   CV = sqrt(MSE)/mean(data2$Y)*100
   h2 = (MSG - MSE)/MSG
-  AS = sqrt(h2)
+  if (h2 < 0) {
+    AS = 0
+  } else {
+    AS = sqrt(h2)
+  }
   temp[i,1] = paste(envnam)
   temp[i,2] = mean(data2$Y)
   temp[i,3] = MSB
@@ -92,7 +123,7 @@ MeansGxE = suppressMessages(suppressWarnings(dplyr::mutate(MeansGxE,
 
 
   if (is.null(naxis)){
-  SigPC1 = nrow(PC[which(PC[,5]<p.valuePC),])
+  SigPC1 = nrow(PC[which(PC[,5]<prob),])
   } else{
     SigPC1 = naxis
   }
@@ -126,39 +157,50 @@ colnames(t_WAAS2)  = rownames(t_WAAS)
 rownames(t_WAAS2)  = colnames(t_WAAS)
 WAASAbs = cbind(WAASAbs, subset(t_WAAS2, select = WAAS))
 WAASAbs2 = subset(WAASAbs, type == "ENV")
-WAASAbs2$PctResp = resca(WAASAbs2$Y, 0, 100)
-WAASAbs2$PctWAAS = resca(WAASAbs2$WAAS, 100, 0)
+if (nvar > 1){
+WAASAbs2$PctResp = resca(WAASAbs2$Y, new_min = minresp[vin], new_max = mresp[vin])
+} else{
+WAASAbs2$PctResp = resca(WAASAbs2$Y, new_min = minresp, new_max = mresp)
+}
+WAASAbs2$PctWAAS = resca(WAASAbs2$WAAS, new_min =  100, new_max = 0)
 WAASAbs3 = subset(WAASAbs, type == "GEN")
-WAASAbs3$PctResp = resca(WAASAbs3$Y, 0, 100)
+if (nvar > 1){
+WAASAbs3$PctResp = resca(WAASAbs3$Y, new_min = minresp[vin], new_max = mresp[vin])
+} else {
+WAASAbs3$PctResp = resca(WAASAbs3$Y, new_min = minresp, new_max = mresp)
+}
 WAASAbs3$PctWAAS = resca(WAASAbs3$WAAS, 100, 0)
 WAASAbs = rbind(WAASAbs3, WAASAbs2)
 WAASAbs = data.table::setDT(WAASAbs)[, OrResp:= rank(-Y), by = type][]
 WAASAbs = data.table::setDT(WAASAbs)[, OrWAAS:= rank(WAAS), by = type][]
 WAASAbs = data.table::setDT(WAASAbs)[, OrPC1:= rank(abs(PC1)), by = type][]
-WAASAbs$PesRes = as.vector(weight.response)
-WAASAbs$PesWAAS = as.vector(weight.WAAS)
+if (nvar > 1) {
+WAASAbs$PesRes = as.vector(PesoResp)[vin]
+WAASAbs$PesWAAS = as.vector(PesoWAASB)[vin]
+} else {
+WAASAbs$PesRes = as.vector(PesoResp)
+WAASAbs$PesWAAS = as.vector(PesoWAASB)
+}
   for (i in 1:nrow(WAASAbs)){
     WAASAbs$WAASY[i] = (WAASAbs$PctResp[i]*WAASAbs$PesRes[i] + WAASAbs$PctWAAS[i]*WAASAbs$PesWAAS[i])/
       sum(WAASAbs$PesRes[i] + WAASAbs$PesWAAS[i])
   }
 WAAS = data.table::setDT(WAASAbs)[, OrWAASY:= rank(-WAASY), by = type][]
-MinENV = WAASAbs2[which(WAASAbs2[,3] <=  min(WAASAbs2$Y)),]
+MinENV = WAASAbs2[head(which(WAASAbs2[,3] <=  min(WAASAbs2$Y)), n = 1),]
 MinENV = paste0("Environment ", MinENV$Code , " (", round(MinENV$Y,4), ") ")
-MaxENV = WAASAbs2[which(WAASAbs2[,3] >=  max(WAASAbs2$Y)),]
+MaxENV = WAASAbs2[head(which(WAASAbs2[,3] >=  max(WAASAbs2$Y)), n = 1),]
 MaxENV = paste0("Environment ", MaxENV$Code , " (", round(MaxENV$Y,4), ") ")
-MinGEN = WAASAbs3[which(WAASAbs3[,3] <=  min(WAASAbs3$Y)),]
+MinGEN = WAASAbs3[head(which(WAASAbs3[,3] <=  min(WAASAbs3$Y)), n = 1),]
 MinGEN = paste0("Genotype ", MinGEN$Code , " (", round(MinGEN$Y,4), ") ")
-MaxGEN = WAASAbs3[which(WAASAbs3[,3] >=  max(WAASAbs3$Y)),]
+MaxGEN = WAASAbs3[head(which(WAASAbs3[,3] >=  max(WAASAbs3$Y)), n = 1),]
 MaxGEN = paste0("Genotype ", MaxGEN$Code , " (", round(MaxGEN$Y,4), ") ")
 mean = round(mean(MeansGxE$Y),4)
-min = MeansGxE[which(MeansGxE[,3] <=  min(MeansGxE$Y)),]
+min = MeansGxE[head(which(MeansGxE[,3] <=  min(MeansGxE$Y)), n = 1),]
 min = paste0(round(min$Y,4), " (Genotype ", min$GEN , " in ", min$ENV, " )")
-max = MeansGxE[which(MeansGxE[,3] >=  max(MeansGxE$Y)),]
+max = MeansGxE[head(which(MeansGxE[, 3] >= max(MeansGxE$Y)), n = 1),]
 max = paste0(round(max$Y,4), " (Genotype ", max$GEN , " in ", max$ENV, " )")
 PCA = PC[,4:7]
-Details = list(WgtResponse = weight.response,
-               WgtWAAS = weight.WAAS,
-               Ngen = Ngen,
+Details = list(Ngen = Ngen,
                Nenv = Nenv,
                OVmean = mean,
                Min = min,
@@ -171,29 +213,45 @@ Details = list(WgtResponse = weight.response,
 Details = do.call(rbind.data.frame, Details)
 names(Details) = "Values"
 Details = plyr::mutate(Details,
-                         Parameters = c("WgtResponse", "WgtWAAS", "Ngen", "Nenv", "OVmean", "Min",
+                         Parameters = c("Ngen", "Nenv", "OVmean", "Min",
                                         "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"))
 Details = Details %>%
           dplyr::select(Parameters, everything())
 
-temp = list(individual = individual,
+temp = structure(list(individual = individual,
                       model = WAAS,
                       MeansGxE = MeansGxE,
                       PCA = PCA,
                       anova = anova,
                       Details = Details,
-                      residuals = model$residuals)
+                      residuals = model$residuals,
+                      probint = model$probint),
+                 class = "WAAS.AMMI")
 
-
-  }
 if(length(d$resp)>1){
 listres[[paste(d$resp[var])]] = temp
+if (verbose == TRUE){
+cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) - 1)*100, 1), "%", "\n")
+}
 } else{
 listres[[paste(d$resp)]] = temp
 }
+  }
 }
-
-return(structure(listres, class = "WAAS.AMMI"))
+if (verbose == T){
+  if(length(which(unlist(lapply(listres, function(x){
+    x[["probint"]]
+  })) > prob)) > 0){
+  cat("------------------------------------------------------------\n")
+  cat("Variables with nonsignificant GxE interaction\n")
+  cat(names(which(unlist(lapply(listres, function(x){
+    x[["probint"]]
+  })) > prob)), "\n")
+  cat("------------------------------------------------------------\n")
+  }
+  cat("Done!\n")
+}
+invisible(structure(listres, class = "WAAS.AMMI"))
 
 }
 
