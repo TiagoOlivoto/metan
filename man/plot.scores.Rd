@@ -80,7 +80,7 @@
 
   \item{col.line}{The color of the line that indicate the means in the biplot. Default is \code{"gray"}}
 
-  \item{col.gen}{The shape color for genotypes. Default is \code{"blue"}. Other values can be attributed. For example, \code{"transparent"}, will make a plot with only an outline around the shape area.}
+  \item{col.gen}{The shape color for genotypes. Must be one value or a vector of colours with the same length of the number of genotypes. Default is \code{"blue"}. Other values can be attributed. For example, \code{"transparent"}, will make a plot with only an outline around the shape area.}
 
   \item{col.env}{The shape color for environments. Default is \code{"red"}. The same usability than \code{"col.gen"}.}
 

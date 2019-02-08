@@ -2,8 +2,9 @@
 \alias{WAAS.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis}
 \usage{
-WAAS.AMMI(data, resp, gen, env, rep,  p.valuePC = 0.05,
-          naxis = NULL, weight.response = 50, weight.WAAS = 50)
+WAAS.AMMI(data, resp, gen, env, rep, maxresp = NULL,
+      minresp = NULL, p.valuePC = 0.05, naxis = NULL,
+      weight.response = 50, weight.WAAS = 50)
 }
 \description{
 Compute the Weighted Average of Absolute Scores for AMMI analysis.
@@ -20,6 +21,8 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
   \item{env}{The name of the column that contains the levels of the environments.}
 
   \item{rep}{The name of the column that contains the levels of the replications/blocks.}
+
+  \item{maxresp, minresp}{A numeric value or a numeric vector of length equal the number of variables in the argument \code{resp}. \code{maxresp} and \code{minresp} values will be the new maximum and minimum values, respectively, of the original response variable. By default, all variables in \code{resp} are rescaled so that de maximum value is 100 and the minimum value is 0.}
 
   \item{p.valuePC}{The p-value for considering the PC significant. The number of significant Principal Components to be used for calculating the WAAS will be chosen based on this probability. }
 

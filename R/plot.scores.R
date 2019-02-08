@@ -16,7 +16,8 @@ plot.scores = function(x,
                      y.breaks = waiver(),
                      shape.gen = 21,
                      shape.env = 23,
-                     size.shape = 2.5,
+                     size.shape = 2.2,
+                     size.bor.tick = 0.3,
                      size.tex.lab = 12,
                      size.tex.pa = 3.5,
                      size.line = 0.5,
@@ -71,7 +72,11 @@ if (type == 1){
   }
 
 p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
-      geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
+  geom_vline(xintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
+  geom_hline(yintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
+  geom_segment(data = x$model, aes(x = 0, y = 0, xend = PC1, yend = PC2, size =  type, color = type, group = type),
+               arrow = arrow(length = unit(0.15, 'cm'))) +
+      geom_point(size = size.shape, stroke = size.bor.tick, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
       ggrepel::geom_text_repel(aes(PC1, PC2, label = (Code)),
@@ -86,10 +91,6 @@ p1 = ggplot(x$model, aes(PC1, PC2, shape = type, fill = type))  +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-      geom_vline(xintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
-      geom_hline(yintercept = 0, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
-      geom_segment(data = x$model, aes(x = 0, y = 0, xend = PC1, yend = PC2, size =  type, color = type, group = type),
-                   arrow = arrow(length = unit(0.15, 'cm'))) +
       scale_color_manual(name = "", values = c(col.segm.gen, col.segm.env), theme(legend.position = "none")) +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
 
@@ -204,7 +205,11 @@ if (type == 2){
   }
      mean = mean(x$model$Y)
 p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
-      geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
+  geom_vline(xintercept = mean(x$model$Y), linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
+  geom_hline(yintercept = 0, linetype = line.type, size = size.line, color = col.line, alpha = line.alpha) +
+  geom_segment(data = x$model, aes(x = mean, y = 0, xend = Y, yend = PC1, size = type, color = type, group = type),
+               arrow = arrow(length = unit(0.15, 'cm'))) +
+      geom_point(size = size.shape, stroke = size.bor.tick, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c( col.gen, col.env)) +
       ggrepel::geom_text_repel(aes(Y, PC1, label = (Code)),
@@ -219,10 +224,6 @@ p2 = ggplot2::ggplot(x$model, aes(Y, PC1, shape = type, fill = type))  +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-      geom_vline(xintercept = mean(x$model$Y), linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
-      geom_hline(yintercept = 0, linetype = line.type, size = size.line, color = col.line, alpha = line.alpha) +
-      geom_segment(data = x$model, aes(x = mean, y = 0, xend = Y, yend = PC1, size = type, color = type, group = type),
-                   arrow = arrow(length = unit(0.15, 'cm'))) +
       scale_color_manual(name = "", values = c( col.segm.gen, col.segm.env), theme(legend.position = "none")) +
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line),theme(legend.position = "none"))
 
@@ -285,7 +286,9 @@ if (type == 3){
     III = grid::grobTree(grid::textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
     IV = grid::grobTree(grid::textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
 p3 = ggplot2::ggplot(x$model, aes(Y, WAASB, shape = type, fill = type))  +
-      geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
+  geom_vline(xintercept = m1, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
+  geom_hline(yintercept = m2, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
+      geom_point(size = size.shape, stroke = size.bor.tick, aes(fill = type), alpha = col.alpha)  +
       scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
       scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
 ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)),
@@ -300,8 +303,6 @@ ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)),
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-      geom_vline(xintercept = m1, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
-      geom_hline(yintercept = m2, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
       annotation_custom(I) +
       annotation_custom(II) +
       annotation_custom(III) +
@@ -329,7 +330,9 @@ if (class  ==  "WAAS.AMMI"){
       III = grid::grobTree(grid::textGrob("III", x = 0.01,  y = 0.03, hjust = 0))
       IV = grid::grobTree(grid::textGrob("IV", x = 0.96,  y = 0.03, hjust = 0))
 p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
-        geom_point(size = size.shape, aes(fill = type), alpha = col.alpha)  +
+  geom_vline(xintercept = m1, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
+  geom_hline(yintercept = m2, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
+        geom_point(size = size.shape, stroke = size.bor.tick, aes(fill = type), alpha = col.alpha)  +
         scale_shape_manual(labels = leg.lab, values = c(shape.gen,  shape.env))  +
         scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
         ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)),
@@ -344,8 +347,6 @@ p3 = ggplot2::ggplot(x$model, aes(Y, WAAS, shape = type, fill = type))  +
         labs(x = paste(x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-        geom_vline(xintercept = m1, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
-        geom_hline(yintercept = m2, linetype = line.type, color = col.line, size = size.line, alpha = line.alpha) +
         annotation_custom(I) +
         annotation_custom(II) +
         annotation_custom(III) +

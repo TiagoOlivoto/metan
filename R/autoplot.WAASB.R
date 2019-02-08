@@ -1,6 +1,7 @@
 autoplot.WAASB = function(x,
                           type = "res",
                           conf = 0.95,
+                          out = "return",
                           labels = FALSE,
                           theme = theme_waasb(),
                           alpha = 0.2,
@@ -272,7 +273,13 @@ plots <- list(p1, p2, p3, p4)
 
 }
 
-  # making the plots
+  if(out == "return"){
+    for (i in which){
+    return(plots[[i]])
+    }
+  }
+
+  if(out == "print"){
 grid::grid.newpage()
 
   if (prod(mfrow)>1) {
@@ -284,7 +291,6 @@ grid::grid.newpage()
     mypos <- data.frame(matrix(1, length(which), 2))
     grid::pushViewport(viewport(layout = grid.layout(1, 1)))
     formatter <- function(.) {
-      .dontcare <- readline("Hit <Return> to see next plot: ")
       grid::grid.newpage()
     }
   }
@@ -294,6 +300,7 @@ grid::grid.newpage()
     formatter()
     print(plots[[i]], vp = viewport(layout.pos.row = mypos[j,][1], layout.pos.col=mypos[j,][2]))
     j <- j + 1
+    }
   }
 }
 
