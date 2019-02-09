@@ -5,6 +5,7 @@
 AMMI_indexes(x, order.y = NULL)
 }
 
+
 \description{
 This function computes the following AMMI-based stability indexes: ASV, AMMI stability value (Purchase et al., 2000);  SIPC, sums of the absolute value of the IPCA scores (Sneller et al. 1997); EV, averages of the squared eigenvector values (Sneller et al. 1997); and Za, absolute value of the relative contribution of IPCAs to the interaction (Zali et al. 2012).
 }
