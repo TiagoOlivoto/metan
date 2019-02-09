@@ -1,25 +1,34 @@
 predict.WAAS.AMMI = function(object,
                              naxis,
-                             digits = 4,
                              ...){
-
+cal = match.call()
 if (class(object) != "WAAS.AMMI"){
-  stop("The object must be an object of the class 'WAAS.AMMI'")
+  stop("The objectin must be an objectin of the class 'WAAS.AMMI'")
 }
-  options(digits = digits)
 
-  resp = object$MeansGxE$Y
-  ENV = factor(object$MeansGxE$ENV)
-  GEN = factor(object$MeansGxE$GEN)
+if (length(object) != length(naxis)){
+  stop("The argument 'naxix = ", cal[3], "' must length of ", length(object),
+", the same number of variables in object '", cal[2], "'.")
+}
+
+  listres = list()
+  varin = 1
+  for (var in 1:length(object)){
+
+    objectin = object[[var]]
+
+  resp = objectin$MeansGxE$Y
+  ENV = factor(objectin$MeansGxE$ENV)
+  GEN = factor(objectin$MeansGxE$GEN)
   Nenv = length(unique(ENV))
   Ngen = length(unique(GEN))
   minimo = min(Nenv, Ngen) - 1
 
-    if (naxis > minimo){
+    if (naxis[var] > minimo){
       stop("The number of axis to be used must be lesser than or equal to min(GEN-1;ENV-1), in this case, ", minimo,".")
     } else{
 
-      if (naxis == 0){
+      if (naxis[var] == 0){
         stop("Invalid argument. The AMMI0 model is calculated automatically. Please, inform naxis > 0")
       } else{
 
@@ -51,16 +60,24 @@ if (class(object) != "WAAS.AMMI"){
         MEDIAS = data.frame(MEDIAS, resOLS = residual)
         intmatrix = t(matrix(MEDIAS$resOLS, Nenv, byrow = T))
         s = svd(intmatrix)
+        if(length(object) > 1){
+        U = s$u[,1:naxis[var]]
+        LL = s$d[1:naxis[var]]
+        V = s$v[,1:naxis[var]]
+        } else{
         U = s$u[,1:naxis]
         LL = s$d[1:naxis]
         V = s$v[,1:naxis]
+        }
         AMMI = ((z1 %*% U)*(x1 %*% V)) %*% LL
-        Estimated = mutate(MEDIAS,
+        temp = dplyr::mutate(MEDIAS,
                         Ypred = Y - resOLS,
                         ResAMMI =  AMMI,
                         YpredAMMI = Ypred + ResAMMI,
                         AMMI0 = Ypred)
-        return(Estimated)
+        listres[[paste(names(object[var]))]] = temp
       }
     }
   }
+  invisible(listres)
+}
