@@ -7,7 +7,7 @@ WAASB(data, resp, gen, env, rep, mresp = NULL,
       verbose = TRUE)
 }
 \description{
-Compute the Weighted Average of Absolute Scores for PCA analysis based on the GE-interaction matrix.
+Compute the Weighted Average of Absolute Scores for quantifying the stability in multienvironment trials using mixed-effect models.
 
 }
 
@@ -15,7 +15,7 @@ Compute the Weighted Average of Absolute Scores for PCA analysis based on the GE
 
  \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable(s). To analyze multiple variables in a single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3}.}
+  \item{resp}{The response variable(s). To analyze multiple variables in a single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
   \item{gen}{The name of the column that contains the levels of the genotypes.}
 
@@ -44,9 +44,17 @@ The function returns the results in a list for each analyzed variable. For each 
 
 \item{individual}{A within-environments ANOVA considering a fixed-effect model.}
 
+\item{fixed}{Test for fixed effects.}
+
+\item{random}{Variance components for random effects.}
+
+
+\item{LRT}{The Likelihood Ratio Test for the random effects.}
+
+
 \item{model}{A data frame with the response variable, the scores of all Principal Components, the estimates of Weighted Average of Absolute Scores, and WAASY (the index that consider the weights for stability and productivity in the genotype ranking.}
 
-\item{BLUPgen}{The estimated BLUPS for genotypes (If \code{random = "gen"} or \code{random = "all"})}
+\item{blupGEN}{The estimated BLUPS for genotypes (If \code{random = "gen"} or \code{random = "all"})}
 
 \item{BLUPenv}{The estimated BLUPS for environments, (If \code{random = "env"} or \code{random = "all"}).}
 
@@ -59,28 +67,55 @@ The function returns the results in a list for each analyzed variable. For each 
 
 \item{Details}{A list summarizing the results. The following information are showed. \code{WgtResponse}, the weight for the response variable in estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the number of genotypes, \code{Nenv} the number of environments, \code{OVmean} the overall mean, \code{Min} the minimum observed (returning the genotype and environment), \code{Max} the maximum observed, \code{Max} the maximum observed, \code{MinENV} the environment with the lower mean, \code{MaxENV} the environment with the larger mean observed, \code{MinGEN} the genotype with the lower mean,  \code{MaxGEN} the genotype with the larger.}
 
-\item{REML}{A list with the following data frames: \code{fixed}, that contains the ANOVA table with F-tests and p-values for fixed effects (If \code{random = "gen"}); and \code{random} that contains the estimated variance components of the random effects.}
 
 \item{ESTIMATES}{A list with the following values: \code{GEV} the genotype-by-environment variance (and percentage of phenotypic variance); \code{GV} the genotypic variance (and percentage of phenotypic variance); \code{EV} the environmental variance;\code{RV} the residual variance (and percentage of phenotypic variance); \code{FV} the phenotypic variance;  \code{h2g} the heritability of the trait; \code{GEr2} the coefficient of determination of the interaction effects; \code{h2mg} the heritability of the mean; \code{AccuGen} the selective accuracy; \code{rge} the genotype-environment correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr} the residual coefficient of variation; \code{CVratio} the ratio between genotypic and residual coefficient of variation.}
 
-\item{LRT}{The Likelihood Ratio Test for the random effects of the model.}
+\item{residuals}{The residuals of the model.}
+
 
 }
+
+\seealso{\code{\link{WAAS.AMMI}}}
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-# Ggenotypes as random effects and equal weights for both response variable and stability
-
 library(METAAB)
-model = WAASB(WAASBdata, GY, GEN, ENV, REP)
 
-# Higher weight for stability
-model2 = WAASB(WAASBdata, rep = REP, env = ENV, resp = GY, gen = GEN,
-               weight.response = 70, weight.WAAS = 30)
+# Genotypes as random effects and equal weights for both
 
-# A random-effect model
-model3 = WAASB(WAASBdata, GY, GEN, ENV, REP, random = "all")
+# response variable and stability
+
+model <-  WAASB(WAASBdata,
+               resp = GY,
+               gen = GEN,
+               env = ENV,
+               rep = REP,
+               wresp = 70)
+
+# Higher weight for response variable
+
+model2 <- WAASB(WAASBdata,
+               resp = GY,
+               gen = GEN,
+               env = ENV,
+               rep = REP,
+               wresp = 65)
+
+# Environment as random effects analyzing more than one variables
+# considering that smaller values of HM are better and higher
+# values of GY are better, assigning a larger weight for the GY
+# and a smaller weight for HM when computing WAASBY index.
+
+model3 <- WAASB(WAASBdata,
+                random = "env",
+                resp = c(GY, HM)
+                gen = GEN,
+                env = ENV,
+                rep = REP,
+                mresp = c(100, 0)
+                wresp = c(60, 40))
+
 
 }
 

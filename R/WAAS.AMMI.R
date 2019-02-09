@@ -16,6 +16,12 @@ REP = factor(eval(substitute(rep), eval(datain)))
 listres = list()
 d = match.call()
 nvar = as.numeric(ifelse(length(d$resp)>1, length(d$resp) -1, length(d$resp)))
+
+if(length(naxis) != length(nvar)){
+    stop("The argument 'naxix' must length of ", nvar,
+         ", the same number of variables in object 'resp'.")
+}
+
 if (is.null(mresp)) {
   mresp = replicate(nvar, 100)
   minresp = 100 - mresp
@@ -125,8 +131,12 @@ MeansGxE = suppressMessages(suppressWarnings(dplyr::mutate(MeansGxE,
   if (is.null(naxis)){
   SigPC1 = nrow(PC[which(PC[,5]<prob),])
   } else{
+    if(nvar == 1){
     SigPC1 = naxis
+    } else{
+    SigPC1 = naxis[vin]
   }
+}
   if (SigPC1 > minimo){
     stop("The number of axis to be used must be lesser than or equal to ", minimo, " [min(GEN-1;ENV-1)]")
   } else{

@@ -2,9 +2,9 @@
 \alias{WAAS.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis}
 \usage{
-WAAS.AMMI(data, resp, gen, env, rep, maxresp = NULL,
-      minresp = NULL, p.valuePC = 0.05, naxis = NULL,
-      weight.response = 50, weight.WAAS = 50)
+WAAS.AMMI(data, resp, gen, env, rep, mresp = NULL,
+          prob = 0.05, naxis = NULL,
+          wresp = 50, verbose = TRUE)
 }
 \description{
 Compute the Weighted Average of Absolute Scores for AMMI analysis.
@@ -14,7 +14,7 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
 \arguments{
   \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
- \item{resp}{The response variable, for example \code{resp = GY}.}
+  \item{resp}{The response variable(s). To analyze multiple variables in a single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3}.}
 
   \item{gen}{The name of the column that contains the levels of the genotypes.}
 
@@ -22,20 +22,23 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
 
   \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
-  \item{maxresp, minresp}{A numeric value or a numeric vector of length equal the number of variables in the argument \code{resp}. \code{maxresp} and \code{minresp} values will be the new maximum and minimum values, respectively, of the original response variable. By default, all variables in \code{resp} are rescaled so that de maximum value is 100 and the minimum value is 0.}
+  \item{mresp}{A numeric vector of the same length of \code{resp}. The \code{mresp} will be the new maximum value after reescaling. By default, all variables in \code{resp} are rescaled so that de maximum value is 100 and the minimum value is 0.}
 
-  \item{p.valuePC}{The p-value for considering the PC significant. The number of significant Principal Components to be used for calculating the WAAS will be chosen based on this probability. }
+  \item{prob}{The p-value for considering a IPCA significant.}
 
-  \item{naxis}{The number of axis to be used for computing the WAAS value. Defaul it \code{NULL}. If informed some values, the number of axis informed is used for computing the WAAS.}
+  \item{naxis}{The number of IPCAs to be used for computing the WAAS index. Default is \code{NULL} (Significant IPCAs are used). If values are informed, the number of IPCAS will be used independently on its significance. Note that if two or more variables are included in \code{resp}, then \code{naxis} must be a vector.}
 
-  \item{weight.response}{The weight for the response variable.}
 
-  \item{weight.WAAS}{The weight for the WAAS (stability).}
+  \item{wresp}{The weight for the response variable(s) for computing the WAASBY index. Must be a numeric vector of the same length of \code{resp}. Defatul is 50, i.e., equal weights for stability and mean performance.}
 
 }
 
 \details{
-This function compute the weighted average of absolute scores considering the significant principal component axis. The number of axis to be used depends on the probability level informed in \code{p.valuePC}. For example if \code{p.valuePC = 0.05}, all axis that are significant considering this probability level are used. The number of axis can be also informed by declaring \code{naxis = x}. This comand ignores the \code{p.valuePC} comand.
+This function compute the weighted average of absolute scores, estimated as follows:
+
+\deqn{ WAAS_i  = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k}
+
+where \eqn{WAAS_i} is the weighted average of absolute scores of the \emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the *k*th IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant PCAs, or a declared number of PCAs. For example if \code{prob = 0.05}, all axis that are significant considering this probability level are used. The number of axis can be also informed by declaring \code{naxis = x}. This comand ignores the \code{p.valuePC} comand.
 }
 
 \value{
@@ -55,19 +58,46 @@ This function compute the weighted average of absolute scores considering the si
 
 }
 
+\seealso{\code{\link{WAAS.AMMI}}}
+
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-# Considering p-value <= 0.05 to compute the WAAS
 library(METAAB)
-model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP,
-                  weight.response = 40, weight.WAAS = 60)
+
+# Considering p-value <= 0.05 to compute the WAAS
+
+model <- WAAS.AMMI(WAASBdata,
+                  resp = GY,
+                  gen = GEN,
+                  env = ENV,
+                  rep = REP)
 
 
 # Declaring the number of axis to be used for computing WAAS
+# and assigning a larger weight for the response variable when
+# computing the WAASBY index.
 
-model = WAAS.AMMI(WAASBdata, resp = GY, gen = GEN, env = ENV, rep = REP,
-                  naxis = 3, weight.response = 40, weight.WAAS = 60)
+model2 <- WAAS.AMMI(WAASBdata,
+                   resp = GY,
+                   gen = GEN,
+                   env = ENV,
+                   rep = REP,
+                   naxis = 3,
+                   wresp = 60)
+
+# Analyzing multiple variables (GY and HM) at the same time
+# considering that smaller values of HM are better and higher
+# values of GY are better, assigning a larger weight for the GY
+# and a smaller weight for HM when computing WAASBY index.
+
+model3 <- WAAS.AMMI(WAASBdata,
+                  resp = c(GY, HM),
+                  gen = GEN,
+                  env = ENV,
+                  rep = REP,
+                  mresp = c(100, 0)
+                  wresp = c(60, 40))
 
 }
 
