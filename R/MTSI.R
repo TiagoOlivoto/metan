@@ -1,4 +1,4 @@
-MTSI <- function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1){
+MTSI = function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1){
   if (length(x) == 1){
     stop("The multitrait stability index cannot be computed with one single variable.")
   }
