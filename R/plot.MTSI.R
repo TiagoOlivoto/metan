@@ -4,6 +4,7 @@ plot.MTSI = function(x, SI = 15,
                      col.sel = "red",
                      col.nonsel = "black",
                      ...){
+
   if (!class(x) == "MTSI") {
     stop("The object 'x' is not of class 'MTSI'")
   }
