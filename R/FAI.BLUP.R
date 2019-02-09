@@ -1,4 +1,5 @@
 FAI.BLUP <- function(data, DI, UI, show = TRUE, SI = NULL, mineval = 1){
+
   if(length(data) == 1){
     stop("The multitrait stability index cannot be computed with one single variable.")
   }
