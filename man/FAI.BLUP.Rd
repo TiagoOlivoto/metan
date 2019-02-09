@@ -12,6 +12,7 @@ Multitrait index based on factor analysis and ideotype-design proposed by Rocha 
 }
 \arguments{
 
+
   \item{x}{An object of class \code{WAASB} }
 
   \item{DI, UI}{A vector of the same length of x to construct the desirable/undesirable ideotype. For each element of the vector, allowed values are "max", "min", "mean", or a numeric value.}
