@@ -355,7 +355,8 @@ WAASB = WAASB(dataset,
 ## Diagnostic plot for residuals
 The function `autoplot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`.
 ```{r echo = TRUE, fig.width=7, fig.height=7, fig.align="center"}
-autoplot(WAASB)
+library(ggplot2)
+autoplot(WAASB$GY)
 
     ```
 
@@ -698,19 +699,6 @@ FAI = FAI.BLUP(multivariate,
 plot.FAI.BLUP(FAI)
     ```
 
-
-```{r }
-multivariate = WAASB = WAASB(dataset,
-               resp = c(GY, HM),
-               gen = GEN,
-               env = ENV,
-               rep = REP)
-FAI = FAI.BLUP(multivariate,
-               SI = 10,
-               DI = c("max", "max"), 
-               UI = c("min", "min"))
-plot.FAI.BLUP(FAI)
-    ```
 
 
 
