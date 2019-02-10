@@ -64,42 +64,26 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
         cat("\nThe number of environments and number of genotypes must be greater than 2\n")
       }
 
-      temp = data.frame(matrix(".", length(unique(data$ENV)), 12))
-
-      for (n in c(1:12)) {
-        temp[, n] = as.numeric(temp[, n])
-      }
-      names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
-                      "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+      temp = data.frame(matrix(0,length(unique(data$ENV)),12))
       actualenv = 0
-      for (i in 1:length(unique(data$ENV))) {
+      names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)", "Pr>F(Blo)","Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+      for (i in 1:length(unique(data$ENV))){
         envnam = levels(data$ENV)[actualenv + 1]
         data2 = subset(data, ENV == paste0(envnam))
         anova = suppressWarnings(anova(aov(Y ~ GEN + REP, data = data2)))
-        MSB = anova[2, 3]
-        MSG = anova[1, 3]
-        MSE = anova[3, 3]
-        NR = length(unique(data2$REP))
-        CV = sqrt(MSE)/mean(data2$Y) * 100
-        h2 = (MSG - MSE)/MSG
-        if (h2 < 0) {
-          AS = 0
-        } else {
-          AS = sqrt(h2)
-        }
-        temp[i, 1] = paste(envnam)
-        temp[i, 2] = mean(data2$Y)
-        temp[i, 3] = MSB
-        temp[i, 4] = MSG
-        temp[i, 5] = MSE
-        temp[i, 6] = anova[2, 4]
-        temp[i, 7] = anova[2, 5]
-        temp[i, 8] = anova[1, 4]
-        temp[i, 9] = anova[1, 5]
-        temp[i, 10] = CV
-        temp[i, 11] = h2
-        temp[i, 12] = AS
-
+        h2 = (anova[1, 3] - anova[3, 3])/anova[1, 3]
+        temp[i,1] = paste(envnam)
+        temp[i,2] = mean(data2$Y)
+        temp[i,3] = anova[2, 3]
+        temp[i,4] = anova[1, 3]
+        temp[i,5] = anova[3, 3]
+        temp[i,6] = anova[2, 4]
+        temp[i,7] = anova[2, 5]
+        temp[i,8] = anova[1, 4]
+        temp[i,9] = anova[1, 5]
+        temp[i,10] = sqrt(anova[3, 3])/mean(data2$Y)*100
+        temp[i,11] = ifelse(h2 < 0, 0, h2)
+        temp[i,12] = ifelse(h2 < 0, 0, sqrt(h2))
         actualenv = actualenv + 1
 
       }
@@ -181,10 +165,8 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
       Pesos = data.frame(Percent = Eigenvalue$Proportion)
       WAAS = Escores
       WAASAbs = Escores
-      for (i in 4:ncol(WAAS)) {
-        WAAS[, i] = abs(WAAS[i])
-      }
-      t_WAAS = data.table::transpose(WAAS)
+      WAAS[, 4:ncol(WAAS)] = lapply(WAAS[,4:ncol(WAAS)], abs)
+      t_WAAS = data.frame(t(WAAS))
       colnames(t_WAAS) = rownames(WAAS)
       rownames(t_WAAS) = colnames(WAAS)
       t_WAAS = t_WAAS[-c(1, 2, 3), ]
@@ -193,13 +175,12 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
       for (i in 1:ncol(t_WAAS)) {
         t_WAAS[, i] = as.numeric(as.character(t_WAAS[, i]))
       }
-      Ponderado = data.table::transpose(as.data.frame(sapply(t_WAAS[,
-                                                                    -ncol(t_WAAS)], weighted.mean, w = t_WAAS$Percent)))
+      Ponderado = t(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,  w = t_WAAS$Percent)))
       rownames(Ponderado) = c("WAASB")
       t_WAAS = subset(t_WAAS, select = -Percent)
       colnames(Ponderado) = colnames(t_WAAS)
       t_WAAS = rbind(t_WAAS, Ponderado)
-      t_WAAS2 = data.table::transpose(t_WAAS)
+      t_WAAS2 = data.frame(t(t_WAAS))
       colnames(t_WAAS2) = rownames(t_WAAS)
       rownames(t_WAAS2) = colnames(t_WAAS)
       WAASAbs = cbind(WAASAbs, subset(t_WAAS2, select = WAASB))
@@ -217,13 +198,13 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
         WAASAbs3$PctResp = resca(WAASAbs3$Y, new_min = minresp, new_max = mresp)
       }
       WAASAbs3$PctWAASB = resca(WAASAbs3$WAASB, new_min =  100, new_max = 0)
-      WAASAbs = rbind(WAASAbs3, WAASAbs2)
-      WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrResp, rank(-Y)),
-                                           by = type][]
-      WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrWAASB, rank(WAASB)),
-                                           by = type][]
-      WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrPC1, rank(abs(PC1))),
-                                           by = type][]
+
+      WAASAbs = rbind(WAASAbs3, WAASAbs2) %>%
+        dplyr::group_by(type) %>%
+        dplyr::mutate(OrResp = rank(-Y),
+                      OrWAASB = rank(WAASB),
+                      OrPC1 = rank(abs(PC1)))
+
       if (nvar > 1) {
         WAASAbs$PesRes = as.vector(PesoResp)[vin]
         WAASAbs$PesWAASB = as.vector(PesoWAASB)[vin]
@@ -231,10 +212,14 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
         WAASAbs$PesRes = as.vector(PesoResp)
         WAASAbs$PesWAASB = as.vector(PesoWAASB)
       }
+
       WAASAbs = dplyr::mutate(WAASAbs, WAASBY = (PctResp * PesRes + PctWAASB *
                                                    PesWAASB)/(PesRes + PesWAASB))
-      WAASAbsInicial = data.table::setDT(WAASAbs)[, `:=`(OrWAASBY, rank(-WAASBY)),
-                                                  by = type][]
+
+      WAASAbsInicial = WAASAbs %>%
+        dplyr::group_by(type) %>%
+        dplyr::mutate(OrWAASBY = rank(-WAASBY))
+
       MinENV = WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)),
                              n = 1), ]
       MinENV = paste0("Environment ", MinENV$Code, " (", round(MinENV$Y,
@@ -305,45 +290,30 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
         cat("\nThe number of environments and number of genotypes must be greater than 2\n")
       }
 
-      temp = data.frame(matrix(".", length(unique(data$ENV)), 12))
-
-      for (n in c(1:12)) {
-        temp[, n] = as.numeric(temp[, n])
-      }
-      names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
-                      "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+      temp = data.frame(matrix(0,length(unique(data$ENV)),12))
       actualenv = 0
-      for (i in 1:length(unique(data$ENV))) {
+      names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)", "Pr>F(Blo)","Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+      for (i in 1:length(unique(data$ENV))){
         envnam = levels(data$ENV)[actualenv + 1]
         data2 = subset(data, ENV == paste0(envnam))
         anova = suppressWarnings(anova(aov(Y ~ GEN + REP, data = data2)))
-        MSB = anova[2, 3]
-        MSG = anova[1, 3]
-        MSE = anova[3, 3]
-        NR = length(unique(data2$REP))
-        CV = sqrt(MSE)/mean(data2$Y) * 100
-        h2 = (MSG - MSE)/MSG
-        if (h2 < 0) {
-          AS = 0
-        } else {
-          AS = sqrt(h2)
-        }
-        temp[i, 1] = paste(envnam)
-        temp[i, 2] = mean(data2$Y)
-        temp[i, 3] = MSB
-        temp[i, 4] = MSG
-        temp[i, 5] = MSE
-        temp[i, 6] = anova[2, 4]
-        temp[i, 7] = anova[2, 5]
-        temp[i, 8] = anova[1, 4]
-        temp[i, 9] = anova[1, 5]
-        temp[i, 10] = CV
-        temp[i, 11] = h2
-        temp[i, 12] = AS
-
+        h2 = (anova[1, 3] - anova[3, 3])/anova[1, 3]
+        temp[i,1] = paste(envnam)
+        temp[i,2] = mean(data2$Y)
+        temp[i,3] = anova[2, 3]
+        temp[i,4] = anova[1, 3]
+        temp[i,5] = anova[3, 3]
+        temp[i,6] = anova[2, 4]
+        temp[i,7] = anova[2, 5]
+        temp[i,8] = anova[1, 4]
+        temp[i,9] = anova[1, 5]
+        temp[i,10] = sqrt(anova[3, 3])/mean(data2$Y)*100
+        temp[i,11] = ifelse(h2 < 0, 0, h2)
+        temp[i,12] = ifelse(h2 < 0, 0, sqrt(h2))
         actualenv = actualenv + 1
 
       }
+
       MSEratio = max(temp$MSres)/min(temp$MSres)
       individual = list(individual = temp, MSEratio = MSEratio)
 
@@ -438,10 +408,8 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
     Pesos = data.frame(Percent = Eigenvalue$Proportion)
     WAAS = Escores
     WAASAbs = Escores
-    for (i in 4:ncol(WAAS)) {
-      WAAS[, i] = abs(WAAS[i])
-    }
-    t_WAAS = data.table::transpose(WAAS)
+    WAAS[, 4:ncol(WAAS)] = lapply(WAAS[,4:ncol(WAAS)], abs)
+    t_WAAS = data.frame(t(WAAS))
     colnames(t_WAAS) = rownames(WAAS)
     rownames(t_WAAS) = colnames(WAAS)
     t_WAAS = t_WAAS[-c(1, 2, 3), ]
@@ -450,13 +418,12 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
     for (i in 1:ncol(t_WAAS)) {
       t_WAAS[, i] = as.numeric(as.character(t_WAAS[, i]))
     }
-    Ponderado = data.table::transpose(as.data.frame(sapply(t_WAAS[,
-                                                                  -ncol(t_WAAS)], weighted.mean, w = t_WAAS$Percent)))
+    Ponderado = t(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,  w = t_WAAS$Percent)))
     rownames(Ponderado) = c("WAASB")
     t_WAAS = subset(t_WAAS, select = -Percent)
     colnames(Ponderado) = colnames(t_WAAS)
     t_WAAS = rbind(t_WAAS, Ponderado)
-    t_WAAS2 = data.table::transpose(t_WAAS)
+    t_WAAS2 = data.frame(t(t_WAAS))
     colnames(t_WAAS2) = rownames(t_WAAS)
     rownames(t_WAAS2) = colnames(t_WAAS)
     WAASAbs = cbind(WAASAbs, subset(t_WAAS2, select = WAASB))
@@ -474,13 +441,13 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
       WAASAbs3$PctResp = resca(WAASAbs3$Y, new_min = minresp, new_max = mresp)
     }
     WAASAbs3$PctWAASB = resca(WAASAbs3$WAASB, new_min =  100, new_max = 0)
-    WAASAbs = rbind(WAASAbs3, WAASAbs2)
-    WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrResp, rank(-Y)),
-                                         by = type][]
-    WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrWAASB, rank(WAASB)),
-                                         by = type][]
-    WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrPC1, rank(abs(PC1))),
-                                         by = type][]
+
+    WAASAbs = rbind(WAASAbs3, WAASAbs2) %>%
+      dplyr::group_by(type) %>%
+      dplyr::mutate(OrResp = rank(-Y),
+                    OrWAASB = rank(WAASB),
+                    OrPC1 = rank(abs(PC1)))
+
     if (nvar > 1) {
       WAASAbs$PesRes = as.vector(PesoResp)[vin]
       WAASAbs$PesWAASB = as.vector(PesoWAASB)[vin]
@@ -488,10 +455,14 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
       WAASAbs$PesRes = as.vector(PesoResp)
       WAASAbs$PesWAASB = as.vector(PesoWAASB)
     }
+
     WAASAbs = dplyr::mutate(WAASAbs, WAASBY = (PctResp * PesRes + PctWAASB *
-                                                PesWAASB)/(PesRes + PesWAASB))
-    WAASAbsInicial = data.table::setDT(WAASAbs)[, `:=`(OrWAASBY, rank(-WAASBY)),
-                                                by = type][]
+                                                 PesWAASB)/(PesRes + PesWAASB))
+
+    WAASAbsInicial = WAASAbs %>%
+      dplyr::group_by(type) %>%
+      dplyr::mutate(OrWAASBY = rank(-WAASBY))
+
     MinENV = WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)),
                            n = 1), ]
     MinENV = paste0("Environment ", MinENV$Code, " (", round(MinENV$Y,
@@ -581,45 +552,30 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
         cat("\nThe number of environments and number of genotypes must be greater than 2\n")
       }
 
-      temp = data.frame(matrix(".", length(unique(data$ENV)), 12))
-
-      for (n in c(1:12)) {
-        temp[, n] = as.numeric(temp[, n])
-      }
-      names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
-                      "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+      temp = data.frame(matrix(0,length(unique(data$ENV)),12))
       actualenv = 0
-      for (i in 1:length(unique(data$ENV))) {
+      names(temp) = c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)", "Pr>F(Blo)","Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
+      for (i in 1:length(unique(data$ENV))){
         envnam = levels(data$ENV)[actualenv + 1]
         data2 = subset(data, ENV == paste0(envnam))
         anova = suppressWarnings(anova(aov(Y ~ GEN + REP, data = data2)))
-        MSB = anova[2, 3]
-        MSG = anova[1, 3]
-        MSE = anova[3, 3]
-        NR = length(unique(data2$REP))
-        CV = sqrt(MSE)/mean(data2$Y) * 100
-        h2 = (MSG - MSE)/MSG
-        if (h2 < 0) {
-          AS = 0
-        } else {
-          AS = sqrt(h2)
-        }
-        temp[i, 1] = paste(envnam)
-        temp[i, 2] = mean(data2$Y)
-        temp[i, 3] = MSB
-        temp[i, 4] = MSG
-        temp[i, 5] = MSE
-        temp[i, 6] = anova[2, 4]
-        temp[i, 7] = anova[2, 5]
-        temp[i, 8] = anova[1, 4]
-        temp[i, 9] = anova[1, 5]
-        temp[i, 10] = CV
-        temp[i, 11] = h2
-        temp[i, 12] = AS
-
+        h2 = (anova[1, 3] - anova[3, 3])/anova[1, 3]
+        temp[i,1] = paste(envnam)
+        temp[i,2] = mean(data2$Y)
+        temp[i,3] = anova[2, 3]
+        temp[i,4] = anova[1, 3]
+        temp[i,5] = anova[3, 3]
+        temp[i,6] = anova[2, 4]
+        temp[i,7] = anova[2, 5]
+        temp[i,8] = anova[1, 4]
+        temp[i,9] = anova[1, 5]
+        temp[i,10] = sqrt(anova[3, 3])/mean(data2$Y)*100
+        temp[i,11] = ifelse(h2 < 0, 0, h2)
+        temp[i,12] = ifelse(h2 < 0, 0, sqrt(h2))
         actualenv = actualenv + 1
 
       }
+
       MSEratio = max(temp$MSres)/min(temp$MSres)
       individual = list(individual = temp, MSEratio = MSEratio)
 
@@ -719,10 +675,8 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
       Pesos = data.frame(Percent = Eigenvalue$Proportion)
       WAAS = Escores
       WAASAbs = Escores
-      for (i in 4:ncol(WAAS)) {
-        WAAS[, i] = abs(WAAS[i])
-      }
-      t_WAAS = data.table::transpose(WAAS)
+      WAAS[, 4:ncol(WAAS)] = lapply(WAAS[,4:ncol(WAAS)], abs)
+      t_WAAS = data.frame(t(WAAS))
       colnames(t_WAAS) = rownames(WAAS)
       rownames(t_WAAS) = colnames(WAAS)
       t_WAAS = t_WAAS[-c(1, 2, 3), ]
@@ -731,14 +685,12 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
       for (i in 1:ncol(t_WAAS)) {
         t_WAAS[, i] = as.numeric(as.character(t_WAAS[, i]))
       }
-
-      Ponderado = data.table::transpose(as.data.frame(sapply(t_WAAS[,
-                                                                    -ncol(t_WAAS)], weighted.mean, w = t_WAAS$Percent)))
+      Ponderado = t(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,  w = t_WAAS$Percent)))
       rownames(Ponderado) = c("WAASB")
       t_WAAS = subset(t_WAAS, select = -Percent)
       colnames(Ponderado) = colnames(t_WAAS)
       t_WAAS = rbind(t_WAAS, Ponderado)
-      t_WAAS2 = data.table::transpose(t_WAAS)
+      t_WAAS2 = data.frame(t(t_WAAS))
       colnames(t_WAAS2) = rownames(t_WAAS)
       rownames(t_WAAS2) = colnames(t_WAAS)
       WAASAbs = cbind(WAASAbs, subset(t_WAAS2, select = WAASB))
@@ -756,13 +708,13 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
         WAASAbs3$PctResp = resca(WAASAbs3$Y, new_min = minresp, new_max = mresp)
       }
       WAASAbs3$PctWAASB = resca(WAASAbs3$WAASB, new_min =  100, new_max = 0)
-      WAASAbs = rbind(WAASAbs3, WAASAbs2)
-      WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrResp, rank(-Y)),
-                                           by = type][]
-      WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrWAASB, rank(WAASB)),
-                                           by = type][]
-      WAASAbs = data.table::setDT(WAASAbs)[, `:=`(OrPC1, rank(abs(PC1))),
-                                           by = type][]
+
+      WAASAbs = rbind(WAASAbs3, WAASAbs2) %>%
+        dplyr::group_by(type) %>%
+        dplyr::mutate(OrResp = rank(-Y),
+                      OrWAASB = rank(WAASB),
+                      OrPC1 = rank(abs(PC1)))
+
       if (nvar > 1) {
         WAASAbs$PesRes = as.vector(PesoResp)[vin]
         WAASAbs$PesWAASB = as.vector(PesoWAASB)[vin]
@@ -770,10 +722,14 @@ WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
         WAASAbs$PesRes = as.vector(PesoResp)
         WAASAbs$PesWAASB = as.vector(PesoWAASB)
       }
+
       WAASAbs = dplyr::mutate(WAASAbs, WAASBY = (PctResp * PesRes + PctWAASB *
                                                    PesWAASB)/(PesRes + PesWAASB))
-      WAASAbsInicial = data.table::setDT(WAASAbs)[, `:=`(OrWAASBY, rank(-WAASBY)),
-                                                  by = type][]
+
+      WAASAbsInicial = WAASAbs %>%
+        dplyr::group_by(type) %>%
+        dplyr::mutate(OrWAASBY = rank(-WAASBY))
+
       MinENV = WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)),
                              n = 1), ]
       MinENV = paste0("Environment ", MinENV$Code, " (", round(MinENV$Y,
