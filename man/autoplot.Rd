@@ -10,7 +10,8 @@
          bins = 30, which = c(1:4), mfrow = c(2, 2), ...)
 
 
-\method{autoplot}{WAASB}(x, type = "res", conf = 0.95, labels = FALSE, theme = theme_waasb(),
+\method{autoplot}{WAASB}(x, type = "res", conf = 0.95, out = "print",
+         labels = FALSE, theme = theme_waasb(),
          alpha = 0.2, fill.hist = "gray", col.hist = "black",
          col.point = "black", col.line = "red", col.lab.out = "red",
          size.lab.out = 2.5, size.tex.lab = 10, size.shape = 1.5,
@@ -29,6 +30,8 @@ Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of 
   \item{type}{If \code{type = "re"}, normal Q-Q plots for the random effects are obtained.}
 
   \item{conf}{Level of confidence interval to use in the Q-Q plot (0.95 by default). }
+
+    \item{out}{How the output is returned. Must be one of the "print" (default) or "return".}
 
   \item{labels}{Logical argument. If \code{TRUE} labels the points outside confidence interval limits.}
 
@@ -70,8 +73,11 @@ library(METAAB)
 model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP)
 autoplot(model)
 
-model2 = WAASB(WAASBdata, GY, GEN, ENV, REP)
-autoplot(model2)
+model2 = WAASB(WAASBdata, c(GY, HM), GEN, ENV, REP)
+lapply(model_oat, function(x){
+  autoplot.WAASB(x, which = 2, out = "return")
+})
+
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}

@@ -1,7 +1,7 @@
 autoplot.WAASB = function(x,
                           type = "res",
                           conf = 0.95,
-                          out = "return",
+                          out = "print",
                           labels = FALSE,
                           theme = theme_waasb(),
                           alpha = 0.2,
