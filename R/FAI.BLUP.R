@@ -1,24 +1,24 @@
-FAI.BLUP <- function(data, DI, UI, show = TRUE, SI = NULL, mineval = 1){
+FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1){
 
-  if(length(data) == 1){
+  if(length(x) == 1){
     stop("The multitrait stability index cannot be computed with one single variable.")
   }
-  if(length(DI)!= length(data) || length(UI) != length(data)){
+  if(length(DI)!= length(x) || length(UI) != length(x)){
     stop("The length of DI and UI must be the same length of data.")
   }
-  if(!class(data) == "WAASB"){
-    stop("The data must be an object of class 'WAASB'.")
+  if(!class(x) == "WAASB"){
+    stop("The x must be an object of class 'WAASB'.")
   }
     ideotype.D = DI
     ideotype.U = UI
 
       bind = data.frame(do.call(cbind,
-                                lapply(data, function(x) {
-                                  val = x[["BLUPgen"]][order(x[["BLUPgen"]][,2]),]$Predicted
+                                lapply(x, function(x) {
+                                  val = x[["blupGEN"]][order(x[["blupGEN"]][,2]),]$Predicted
                                 })
       )
       )
-    bind$gen = data[[1]][["BLUPgen"]][order(data[[1]][["BLUPgen"]][,2]),]$GEN
+    bind$gen = x[[1]][["blupGEN"]][order(x[[1]][["blupGEN"]][,2]),]$GEN
     data = data.frame(bind  %>% select(gen, everything()))
 
   if(is.null(SI)){

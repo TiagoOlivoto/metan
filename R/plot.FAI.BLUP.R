@@ -1,13 +1,21 @@
-plot.FAI.BLUP = function(x, ideotype = 1, SI = 15, radar = TRUE, ...){
-  if (!class(x) == "WAASB") {
-    stop("The object 'x' is not of class 'WAASB'")
+plot.FAI.BLUP = function(x,
+                         ideotype = 1,
+                         SI = 15,
+                         radar = TRUE,
+                         size.point = 2,
+                         col.sel = "red",
+                         col.nonsel = "black",
+                         ...){
+
+  if (!class(x) == "FAI.BLUP") {
+    stop("The object 'x' is not of class 'FAI.BLUP'")
   }
   data = data.frame(FAI = x$FAI[[ideotype]],
                     Genotype = names(x$FAI[[ideotype]]))
   ngsel = round(nrow(data)*(SI/100),0)
   data$sel = "Selected"
   data$sel[(ngsel + 1):nrow(data)] = "Nonselected"
-  cutpoint = min(subset(data, sel == "Selected")$MTSI)
+  cutpoint = min(subset(data, sel == "Selected")$FAI)
   p = ggplot(data = data,  aes(x = reorder(Genotype, FAI), y = FAI)) +
     geom_hline(yintercept = cutpoint, col = "red")+
     geom_path(colour = "black", group = 1) +
@@ -18,9 +26,9 @@ plot.FAI.BLUP = function(x, ideotype = 1, SI = 15, radar = TRUE, ...){
           legend.title = element_blank(),
           axis.title.x = element_blank(),
           panel.border = element_blank(),
-          panel.grid = element_line(colour = "gray80"),
           axis.text = element_text(colour = "black")) +
-    labs(x = "", y = "FAI-BLUP")
+    labs(x = "", y = "FAI-BLUP") +
+    scale_color_manual(values = c(col.nonsel, col.sel))
   if (radar == TRUE) {
     p = p + coord_polar()
   }
