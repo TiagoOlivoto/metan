@@ -17,9 +17,11 @@ listres = list()
 d = match.call()
 nvar = as.numeric(ifelse(length(d$resp)>1, length(d$resp) -1, length(d$resp)))
 
-if(length(naxis) != length(nvar)){
+if (!is.null(naxis)){
+if(length(naxis) != length(d$resp) -1){
     stop("The argument 'naxix' must length of ", nvar,
          ", the same number of variables in object 'resp'.")
+}
 }
 
 if (is.null(mresp)) {
