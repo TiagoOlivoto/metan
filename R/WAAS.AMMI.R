@@ -18,9 +18,16 @@ d = match.call()
 nvar = as.numeric(ifelse(length(d$resp)>1, length(d$resp) -1, length(d$resp)))
 
 if (!is.null(naxis)){
+  if(length(d$resp) > 1) {
 if(length(naxis) != length(d$resp) -1){
     stop("The argument 'naxix' must length of ", nvar,
          ", the same number of variables in object 'resp'.")
+}
+} else{
+    if(length(naxis) != length(d$resp)){
+      stop("The argument 'naxix' must length of ", nvar,
+           ", the same number of variables in object 'resp'.")
+}
 }
 }
 
