@@ -35,11 +35,13 @@ devtools::install_github("TiagoOlivoto/METAAB")
 
 ```
 
-## Main functions of `METAAB` package.
+## Functions implemented in the `METAAB` R package.
 
 | Functions       	            | Description                                                        	          |
 |:------------------------------|:------------------------------------------------------------------------------|
 | `AMMI_indexes()`    	        | AMMI-based stability indexes |
+| `FAI.BLUP()`    	        | Multitrait index based on factor analysis and ideotype-design |
+| `MTSI()`    	        | Multi-trait stability index |
 | `resca()`    	                | Helper function to rescale a vector to have specified minimum and maximum values|
 | `Resende_indexes()`    	      | Stability indexes proposed by Resende based on a mixed-effect model|
 | `WAASB()`    	                | Weighted Average of Absolute Scores from SVD of BLUP-based GEI effects        |
@@ -52,8 +54,15 @@ devtools::install_github("TiagoOlivoto/METAAB")
 | `performs_ammi()`             | Helper function for computing AMMI analysis |
 | `plot.eigen()`                | Plot the eigenvalues of singular value decomposition                          |
 | `theme_waasb()`               | The default theme for the ggplot-based graphics generated in the package     |
-|  Methods        	            | Description                                                        	          |
-| `autoplot()`                  | Plot for diagnostic of residuals  | 
+
+## S3 methods implemented in the `METAAB` R package.
+
+| Methods       	            | Description                                                        	          |
+|:------------------------------|:------------------------------------------------------------------------------|
+| `autoplot.WAAS.AMMI()`                  | Plot for diagnostic of residuals  |
+| `autoplot.WAASB()`                  | Plot for diagnostic of residuals  |
+| `plot.FAI.BLUP()`                  | Plot the FAI-BLUP index  |
+| `plot.MTSI()`                  | Plot the MTSI index  | 
 | `plot.validation.AMMIF()`     | Plot the RMSPD obtained in the cross-validation process                     	|
 | `plot.WAASBY()`	              | Plot WAASBY values for genotype ranking                                      	|
 | `plot.WAASBYratio()`          | Plot heat maps with genotype ranking                                          |
@@ -61,9 +70,8 @@ devtools::install_github("TiagoOlivoto/METAAB")
 | `summary.WAASB()`             | Summarize an object of class `WAASB`                                             |
 | `summary.WAAS.AMMI()`         | Summarize an object of class `WAAS.AMMI`                                             |
 
-
 # Getting started
-The data set from experiment 1 (oat) was provided to make reproducible examples. This data is available in @Olivoto:2018. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The order of collumns doesn't need necessarily be the same since in each function the user will need to inform the columns to be evaluated.
+A dataset called `WAASBd from experiment 1 (oat) was provided to make reproducible examples. This data is available in @Olivoto:2018. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The order of collumns doesn't need necessarily be the same since in each function the user will need to inform the columns to be evaluated.
 
 ```{r warning = FALSE, message = FALSE}
 # Importing data
