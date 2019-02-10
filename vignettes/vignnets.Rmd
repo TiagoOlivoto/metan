@@ -71,15 +71,14 @@ devtools::install_github("TiagoOlivoto/METAAB")
 | `summary.WAAS.AMMI()`         | Summarize an object of class `WAAS.AMMI`                                             |
 
 # Getting started
-A dataset called `WAASBd from experiment 1 (oat) was provided to make reproducible examples. This data is available in @Olivoto:2018. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The order of collumns doesn't need necessarily be the same since in each function the user will need to inform the columns to be evaluated.
+A dataset called `data_ge` is provided to make reproducible examples. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
 ```{r warning = FALSE, message = FALSE}
 # Importing data
 require(METAAB)
 require(ggplot2)
 require(cowplot) # used in this material to arrange the graphics
-dataset = read.csv("https://data.mendeley.com/datasets/2sjz32k3s3/2/files/1561de7f-b8fd-4093-b4d1-bfcef299dd22/WAASBdata.csv?dl=1")
-
+dataset = data_ge
 ```
 
 \pagebreak
@@ -113,7 +112,7 @@ AMMIweat = validation.AMMIF(dataset,
                             resp = GY,
                             gen = GEN,
                             env = ENV,
-                            rep = BLOCK,
+                            rep = REP,
                             nboot = 50,
                             nrepval = 2)
 
@@ -122,7 +121,7 @@ BLUPweat = validation.blup(dataset,
                             resp = GY,
                             gen = GEN,
                             env = ENV,
-                            rep = BLOCK,
+                            rep = REP,
                             nboot = 50,
                             nrepval = 2)
 
@@ -197,12 +196,12 @@ AMMI_model = WAAS.AMMI(dataset,
                        resp = GY,
                        gen = GEN,
                        env = ENV,
-                       rep = BLOCK)
+                       rep = REP)
 predictoat = predict(AMMI_model, naxis = 5)
 
 library(kableExtra)
 options(digits = 4)
-predictoat = predictoat[1:10,]
+predictoat = predictoat[[1]][1:10,]
 kable(predictoat, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", full_width = F, position = "float_left", font_size = 12)
 
@@ -231,14 +230,14 @@ WAAS1 = WAAS.AMMI(dataset,
                   resp = GY,
                   gen = GEN,
                   env = ENV,
-                  rep = BLOCK)
+                  rep = REP)
     ```
 
 
 ```{r }
 # printing the WAAS object
 options(digits = 3)
-data = WAAS1$individual$individual
+data = WAAS1$GY$individual$individual
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", full_width = F, position = "left", font_size = 12)
 
@@ -250,7 +249,7 @@ The above table shows the within-environment ANOVA considering a fixed-effect mo
 
 ```{r }
 # printing the WAAS object
-data = WAAS1$anova
+data = WAAS1$GY$anova
 kable(data,  align  = "l", booktabs = T, format = "html", linesep = "") %>%
 kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12) %>%
 row_spec(9, bold = T) %>%
@@ -265,7 +264,7 @@ The above table is the traditional AMMI analysis. Nine principal component axis 
 
 ```{r }
 options(digits = 4)
-data = WAAS1$model[, c(1:3,13:17, 21:22)]
+data = WAAS1$GY$model[, c(1:3,13:17, 21:22)]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
@@ -284,8 +283,8 @@ WAAS2 = WAAS.AMMI(dataset,
                   resp = GY,
                   gen = GEN,
                   env = ENV,
-                  rep = BLOCK,
-                  naxis = 7)
+                  rep = REP,
+                  naxis = 1)
 
     ```
 
@@ -349,7 +348,7 @@ WAASB = WAASB(dataset,
               resp = GY,
               gen = GEN,
               env = ENV,
-              rep = BLOCK)
+              rep = REP)
 
     ```
 
@@ -357,7 +356,6 @@ WAASB = WAASB(dataset,
 The function `autoplot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`.
 ```{r echo = TRUE, fig.width=7, fig.height=7, fig.align="center"}
 autoplot(WAASB)
-autoplot(WAASB, type = "re")
 
     ```
 
@@ -368,7 +366,7 @@ autoplot(WAASB, type = "re")
 
 ```{r warning=F, message=F}
 options(digits = 5)
-data = WAASB$LRT
+data = WAASB$GY$LRT
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
     ```
@@ -381,7 +379,7 @@ The output `LRT` contains the Likelihood Ratio Tests for genotype and genotype-v
 
 ```{r }
 options(digits = 7)
-data = WAASB$ESTIMATES
+data = WAASB$GY$ESTIMATES
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
@@ -395,7 +393,7 @@ In the output `ESTIMATES`, beyond the variance components for the declared rando
 
 ```{r }
 options(digits = 4)
-data = WAASB$Details
+data = WAASB$GY$Details
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
@@ -408,7 +406,7 @@ The following pieces of information are provided in `Details` output. **WgtRespo
 
 ```{r }
 options(digits = 4)
-data = WAASB$model[, c(1:3,13:17, 21:22)]
+data = WAASB$GY$model[, c(1:3,13:17, 21:22)]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
@@ -420,7 +418,7 @@ This output generated by the `WAASB` function is very similar to those shown in 
 
 ```{r }
 options(digits = 4)
-data = WAASB$BLUPgen[1:10,]
+data = WAASB$GY$blupGEN[1:10,]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
@@ -431,8 +429,8 @@ kable(data, "html") %>%
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 # No file exported
-p1 = plot.blup(WAASB)
-p2 = plot.blup(WAASB, 
+p1 = plot.blup(WAASB$GY)
+p2 = plot.blup(WAASB$GY, 
                col.shape  =  c("gray20", "gray80")) + coord_flip()
 plot_grid(p1, p2,
           labels = c("p1", "p2"))
@@ -445,7 +443,7 @@ This output shows the predicted means for genotypes. **BLUPg** is the genotypic 
 
 ```{r }
 options(digits = 4)
-data = WAASB$BLUPgge[1:10,]
+data = WAASB$GY$BLUPgge[1:10,]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
@@ -457,7 +455,7 @@ This output shows the predicted means for each genotype and environment combinat
 
 ```{r }
 options(digits = 4)
-data = WAASB$PCA
+data = WAASB$GY$PCA
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
@@ -466,7 +464,7 @@ kable(data, "html") %>%
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot.eigen(WAASB, size.lab = 14, size.tex.lab = 14)
+plot.eigen(WAASB$GY, size.lab = 14, size.tex.lab = 14)
 
 ```
 
@@ -476,7 +474,7 @@ The above output shows the eigenvalues and the proportion of variance explained 
 
 ```{r }
 options(digits = 4)
-data = WAASB$MeansGxE[1:10,]
+data = WAASB$GY$MeansGxE[1:10,]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
     ```
@@ -492,8 +490,8 @@ We will show how biplots may be obtained for both traditional AMMI model, fitted
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 library(cowplot)
-p1 = plot.scores(WAASB, type = 1)
-p2 = plot.scores(WAASB,
+p1 = plot.scores(WAASB$GY, type = 1)
+p2 = plot.scores(WAASB$GY,
                  type = 1,
                  polygon = TRUE,
                  col.gen = "black",
@@ -508,8 +506,8 @@ plot_grid(p1, p2, labels = c("p1","p2"))
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 
-p3 = plot.scores(WAASB, type = 2)
-p4 = plot.scores(WAASB, type = 2,
+p3 = plot.scores(WAASB$GY, type = 2)
+p4 = plot.scores(WAASB$GY, type = 2,
                  col.segm.env = "transparent") +
                  theme_gray() +
                  theme(legend.position = c(0.1, 0.9),
@@ -524,8 +522,8 @@ The quadrants proposed in the following biplot represent the four classification
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message=F, warning=F}
 
-p5 = plot.scores(WAASB, type = 3)
-p6 = plot.scores(WAASB, type = 3,
+p5 = plot.scores(WAASB$GY, type = 3)
+p6 = plot.scores(WAASB$GY, type = 3,
                  x.lab = "My customized x label",
                  size.shape = 3,
                  size.tex.pa = 2,
@@ -566,7 +564,7 @@ WAASBYratio = WAASBYratio(dataset,
                           resp = GY,
                           gen = GEN,
                           env = ENV,
-                          rep = BLOCK,
+                          rep = REP,
                           increment = 10,
                           saveWAASY = 30)
 
@@ -579,7 +577,7 @@ WAASBYratio2 = WAASratio.AMMI(dataset,
                               resp = GY,
                               gen = GEN,
                               env = ENV,
-                              rep = BLOCK,
+                              rep = REP,
                               increment = 10,
                               saveWAASY = 30)
 
@@ -626,9 +624,9 @@ kable(data, "html") %>%
 ## Plotting the WAASBY values
 
 ```{r echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
-
+library(ggplot2)
 p1 = plot.WAASBY(WAASBYratio)
-p2 = plot.WAASBY(WAASBYratio, col.shape = c("gray20", "gray80")) 
+p2 = plot.WAASBY(WAASBYratio, col.shape = c("gray20", "gray80"))
 plot_grid(p1, p2, labels = c("p1", "p2"))
     ```
 
@@ -682,6 +680,39 @@ kable(res_inde, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", position = "left", full_width = F, font_size = 12)
 
     ```
+
+# FAI-BLUP index
+
+The FAI-BLUP index [@Rocha2018] is a multi-trait indexes for selimultaneous selection based on several variales. The BLUPs from genotypes are obtained with the function `WAASB()` and then the function `FAI.BLUP()` is used to compute the index.
+
+```{r }
+multivariate = WAASB = WAASB(dataset,
+               resp = c(GY, HM),
+               gen = GEN,
+               env = ENV,
+               rep = REP)
+FAI = FAI.BLUP(multivariate,
+               SI = 10,
+               DI = c("max", "max"), 
+               UI = c("min", "min"))
+plot.FAI.BLUP(FAI)
+    ```
+
+
+```{r }
+multivariate = WAASB = WAASB(dataset,
+               resp = c(GY, HM),
+               gen = GEN,
+               env = ENV,
+               rep = REP)
+FAI = FAI.BLUP(multivariate,
+               SI = 10,
+               DI = c("max", "max"), 
+               UI = c("min", "min"))
+plot.FAI.BLUP(FAI)
+    ```
+
+
 
 # References
 \setlength{\parindent}{-0.5in}
