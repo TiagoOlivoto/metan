@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -52,7 +52,7 @@
   <body>
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -70,37 +70,61 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../index.html">Home</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
+    Examples
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes.html">Extending METAAB package</a>
+      <a href="../articles/vignettes_CROSS-VALIDATION.html">Cross-validation procedure</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_AMMI.html">AMMI</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_BLUP.html">BLUP</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../reference/index.html">Functions</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    More
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../CODE_OF_CONDUCT.html">Code of Conduct</a>
+    </li>
+    <li>
+      <a href="../news/index.html">News</a>
+    </li>
+    <li>
+      <a href="../LICENSE.html">Licence</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/TiagoOlivoto/METAAB">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">ResearchGate</a>
+</li>
+<li>
+  <a href="https://www.mendeley.com/profiles/tiago-olivoto/">Mendeley</a>
+</li>
+<li>
+  <a href="https://github.com/TiagoOlivoto">Github</a>
 </li>
       </ul>
       
@@ -170,36 +194,21 @@
 #&gt; Done!</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable GY 
 #&gt; -----------------------------------------------------------------------------------------
 #&gt; ----------------------- Individual fixed-model analysis of variance ---------------------
-#&gt;  ENV  Mean MSblock  MSgen   MSres Fcal(Blo) Pr&gt;F(Blo) Fcal(Gen) Pr&gt;F(Gen)  CV(%)     h2
-#&gt;   E1 2.521 0.06522 0.3374 0.14401    0.4529 6.428e-01     2.343 5.936e-02 15.055 0.5732
-#&gt;  E10 2.175 0.65367 0.2958 0.02667   24.5080 7.275e-06    11.090 1.097e-05  7.508 0.9098
-#&gt;  E11 1.368 0.37731 0.1509 0.10498    3.5943 4.860e-02     1.438 2.443e-01 23.680 0.3044
-#&gt;  E12 1.609 0.09190 0.3202 0.05352    1.7171 2.077e-01     5.982 6.474e-04 14.382 0.8328
-#&gt;  E13 2.910 0.07674 0.7134 0.09937    0.7722 4.767e-01     7.179 2.095e-04 10.834 0.8607
-#&gt;  E14 1.782 0.10352 0.1305 0.07533    1.3742 2.784e-01     1.732 1.535e-01 15.403 0.4227
-#&gt;   E2 3.180 0.69829 0.2066 0.17851    3.9117 3.885e-02     1.157 3.763e-01 13.287 0.1360
-#&gt;   E3 4.064 0.48864 0.3351 0.17894    2.7308 9.209e-02     1.872 1.230e-01 10.408 0.4659
-#&gt;   E4 3.675 0.11646 0.5313 0.13769    0.8458 4.456e-01     3.859 7.123e-03 10.096 0.7409
-#&gt;   E5 3.910 0.21881 0.5261 0.06636    3.2974 6.024e-02     7.929 1.101e-04  6.587 0.8739
-#&gt;   E6 2.663 0.15985 0.1346 0.05857    2.7294 9.219e-02     2.299 6.345e-02  9.087 0.5650
-#&gt;   E7 1.989 0.38099 0.3369 0.09103    4.1852 3.217e-02     3.701 8.727e-03 15.170 0.7298
-#&gt;   E8 2.536 0.81677 0.2146 0.02781   29.3693 2.149e-06     7.717 1.314e-04  6.575 0.8704
-#&gt;   E9 3.057 0.58259 0.6793 0.11091    5.2526 1.596e-02     6.124 5.622e-04 10.896 0.8367
-#&gt;      AS
-#&gt;  0.7571
-#&gt;  0.9538
-#&gt;  0.5518
-#&gt;  0.9126
-#&gt;  0.9277
-#&gt;  0.6502
-#&gt;  0.3688
-#&gt;  0.6826
-#&gt;  0.8607
-#&gt;  0.9348
-#&gt;  0.7517
-#&gt;  0.8543
-#&gt;  0.9330
-#&gt;  0.9147
+#&gt;  ENV  Mean MSblock  MSgen   MSres Fcal(Blo) Pr&gt;F(Blo) Fcal(Gen) Pr&gt;F(Gen)  CV(%)     h2     AS
+#&gt;   E1 2.521 0.06522 0.3374 0.14401    0.4529 6.428e-01     2.343 5.936e-02 15.055 0.5732 0.7571
+#&gt;  E10 2.175 0.65367 0.2958 0.02667   24.5080 7.275e-06    11.090 1.097e-05  7.508 0.9098 0.9538
+#&gt;  E11 1.368 0.37731 0.1509 0.10498    3.5943 4.860e-02     1.438 2.443e-01 23.680 0.3044 0.5518
+#&gt;  E12 1.609 0.09190 0.3202 0.05352    1.7171 2.077e-01     5.982 6.474e-04 14.382 0.8328 0.9126
+#&gt;  E13 2.910 0.07674 0.7134 0.09937    0.7722 4.767e-01     7.179 2.095e-04 10.834 0.8607 0.9277
+#&gt;  E14 1.782 0.10352 0.1305 0.07533    1.3742 2.784e-01     1.732 1.535e-01 15.403 0.4227 0.6502
+#&gt;   E2 3.180 0.69829 0.2066 0.17851    3.9117 3.885e-02     1.157 3.763e-01 13.287 0.1360 0.3688
+#&gt;   E3 4.064 0.48864 0.3351 0.17894    2.7308 9.209e-02     1.872 1.230e-01 10.408 0.4659 0.6826
+#&gt;   E4 3.675 0.11646 0.5313 0.13769    0.8458 4.456e-01     3.859 7.123e-03 10.096 0.7409 0.8607
+#&gt;   E5 3.910 0.21881 0.5261 0.06636    3.2974 6.024e-02     7.929 1.101e-04  6.587 0.8739 0.9348
+#&gt;   E6 2.663 0.15985 0.1346 0.05857    2.7294 9.219e-02     2.299 6.345e-02  9.087 0.5650 0.7517
+#&gt;   E7 1.989 0.38099 0.3369 0.09103    4.1852 3.217e-02     3.701 8.727e-03 15.170 0.7298 0.8543
+#&gt;   E8 2.536 0.81677 0.2146 0.02781   29.3693 2.149e-06     7.717 1.314e-04  6.575 0.8704 0.9330
+#&gt;   E9 3.057 0.58259 0.6793 0.11091    5.2526 1.596e-02     6.124 5.622e-04 10.896 0.8367 0.9147
 #&gt; 
 #&gt; ---------------------------------- Fixed effects --------------------------------------
 #&gt;         Sum Sq Mean Sq NumDF DenDF F value    Pr(&gt;F)
@@ -260,36 +269,21 @@
 #&gt; Variable HM 
 #&gt; -----------------------------------------------------------------------------------------
 #&gt; ----------------------- Individual fixed-model analysis of variance ---------------------
-#&gt;  ENV  Mean MSblock  MSgen MSres Fcal(Blo) Pr&gt;F(Blo) Fcal(Gen) Pr&gt;F(Gen) CV(%)     h2
-#&gt;   E1 47.42  3.1063  5.221 1.852    1.6773 2.148e-01     2.819 2.928e-02 2.870 0.6453
-#&gt;  E10 44.30  9.1000 28.774 2.174    4.1857 3.216e-02    13.235 3.024e-06 3.328 0.9244
-#&gt;  E11 54.20  2.8101  6.057 3.087    0.9103 4.202e-01     1.962 1.069e-01 3.242 0.4903
-#&gt;  E12 49.60  2.7661 10.405 5.322    0.5198 6.033e-01     1.955 1.081e-01 4.651 0.4885
-#&gt;  E13 46.56 25.4523 13.883 1.342   18.9637 3.705e-05    10.344 1.798e-05 2.488 0.9033
-#&gt;  E14 41.03 10.0151  5.278 1.217    8.2304 2.894e-03     4.338 3.935e-03 2.688 0.7695
-#&gt;   E2 44.12  6.6986 13.168 3.049    2.1970 1.400e-01     4.319 4.025e-03 3.958 0.7685
-#&gt;   E3 52.90  7.3000  8.004 2.781    2.6245 9.996e-02     2.877 2.692e-02 3.153 0.6525
-#&gt;   E4 50.00  2.1000  7.926 1.248    1.6825 2.139e-01     6.350 4.510e-04 2.234 0.8425
-#&gt;   E5 52.23  6.8602 11.834 6.371    1.0768 3.616e-01     1.858 1.260e-01 4.833 0.4617
-#&gt;   E6 45.89 12.8640 15.835 2.122    6.0628 9.706e-03     7.463 1.633e-04 3.174 0.8660
-#&gt;   E7 48.49  0.7052  4.997 4.738    0.1488 8.627e-01     1.055 4.382e-01 4.489 0.0518
-#&gt;   E8 45.16 11.9541 11.567 2.168    5.5137 1.356e-02     5.335 1.266e-03 3.260 0.8126
-#&gt;   E9 51.33  5.7333  9.333 2.289    2.5049 1.097e-01     4.078 5.408e-03 2.947 0.7548
-#&gt;      AS
-#&gt;  0.8033
-#&gt;  0.9615
-#&gt;  0.7002
-#&gt;  0.6989
-#&gt;  0.9504
-#&gt;  0.8772
-#&gt;  0.8766
-#&gt;  0.8078
-#&gt;  0.9179
-#&gt;  0.6795
-#&gt;  0.9306
-#&gt;  0.2276
-#&gt;  0.9014
-#&gt;  0.8688
+#&gt;  ENV  Mean MSblock  MSgen MSres Fcal(Blo) Pr&gt;F(Blo) Fcal(Gen) Pr&gt;F(Gen) CV(%)     h2     AS
+#&gt;   E1 47.42  3.1063  5.221 1.852    1.6773 2.148e-01     2.819 2.928e-02 2.870 0.6453 0.8033
+#&gt;  E10 44.30  9.1000 28.774 2.174    4.1857 3.216e-02    13.235 3.024e-06 3.328 0.9244 0.9615
+#&gt;  E11 54.20  2.8101  6.057 3.087    0.9103 4.202e-01     1.962 1.069e-01 3.242 0.4903 0.7002
+#&gt;  E12 49.60  2.7661 10.405 5.322    0.5198 6.033e-01     1.955 1.081e-01 4.651 0.4885 0.6989
+#&gt;  E13 46.56 25.4523 13.883 1.342   18.9637 3.705e-05    10.344 1.798e-05 2.488 0.9033 0.9504
+#&gt;  E14 41.03 10.0151  5.278 1.217    8.2304 2.894e-03     4.338 3.935e-03 2.688 0.7695 0.8772
+#&gt;   E2 44.12  6.6986 13.168 3.049    2.1970 1.400e-01     4.319 4.025e-03 3.958 0.7685 0.8766
+#&gt;   E3 52.90  7.3000  8.004 2.781    2.6245 9.996e-02     2.877 2.692e-02 3.153 0.6525 0.8078
+#&gt;   E4 50.00  2.1000  7.926 1.248    1.6825 2.139e-01     6.350 4.510e-04 2.234 0.8425 0.9179
+#&gt;   E5 52.23  6.8602 11.834 6.371    1.0768 3.616e-01     1.858 1.260e-01 4.833 0.4617 0.6795
+#&gt;   E6 45.89 12.8640 15.835 2.122    6.0628 9.706e-03     7.463 1.633e-04 3.174 0.8660 0.9306
+#&gt;   E7 48.49  0.7052  4.997 4.738    0.1488 8.627e-01     1.055 4.382e-01 4.489 0.0518 0.2276
+#&gt;   E8 45.16 11.9541 11.567 2.168    5.5137 1.356e-02     5.335 1.266e-03 3.260 0.8126 0.9014
+#&gt;   E9 51.33  5.7333  9.333 2.289    2.5049 1.097e-01     4.078 5.408e-03 2.947 0.7548 0.8688
 #&gt; 
 #&gt; ---------------------------------- Fixed effects --------------------------------------
 #&gt;         Sum Sq Mean Sq NumDF DenDF F value    Pr(&gt;F)
@@ -346,9 +340,7 @@
 #&gt;      MaxENV    Environment E11 (54.1983) 
 #&gt;      MinGEN        Genotype G2 (46.6598) 
 #&gt;      MaxGEN        Genotype G5 (49.2976) 
-#&gt; -------------------------------------- End of data -------------------------------------</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>model</span>,
-        <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"my results"</span>)</div></pre>
+#&gt; -------------------------------------- End of data -------------------------------------</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -365,7 +357,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Tiago Olivoto.</p>
+  <p>Developed by <a href='https://www.mendeley.com/profiles/tiago-olivoto/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
