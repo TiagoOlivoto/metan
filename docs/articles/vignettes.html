@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Extending METAAB package • METAAB</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Extending METAAB package">
@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -37,36 +37,42 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/vignettes.html">Examples</a>
+</li>
+<li>
+  <a href="../reference/index.html">Functions</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
+    More
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/vignettes.html">Extending METAAB package</a>
+      <a href="../CODE_OF_CONDUCT.html">Code of Conduct</a>
+    </li>
+    <li>
+      <a href="../news/index.html">News</a>
+    </li>
+    <li>
+      <a href="../LICENSE.html">Licence</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/TiagoOlivoto/METAAB">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">ResearchGate</a>
+</li>
+<li>
+  <a href="https://www.mendeley.com/profiles/tiago-olivoto/">Mendeley</a>
+</li>
+<li>
+  <a href="https://github.com/TiagoOlivoto">Github</a>
 </li>
       </ul>
 </div>
@@ -93,155 +99,7 @@
 
     
     
-<div id="introducing-the-metaab-r-package" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introducing-the-metaab-r-package" class="anchor"></a>Introducing the <code>METAAB</code> R package</h1>
-<p>The METAAB R package was developed in R language and is distributed under the GPL 3.0 licence. Our main motivation for the package development was to provide friendly, easy and reliable functions provide de singular value decomposition of BLUP-interaction effects matrix as weel as to share codes used for traditional AMMI analysis and BLUP prediction. The package can be downloaded by clicking <a href="https://github.com/TiagoOlivoto/METAAB/archive/master.zip">here</a> or running the following code in the R console:</p>
-<div id="overview-of-the-metaab-package-" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview-of-the-metaab-package-" class="anchor"></a>Overview of the <code>METAAB</code> package.</h2>
-<blockquote>
-<p>Package <code>METAAB</code> available at <code>github</code>. Installation</p>
-</blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># download the package from Github</span>
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"TiagoOlivoto/METAAB"</span>)</code></pre></div>
-</div>
-<div id="functions-implemented-in-the-metaab-r-package-" class="section level2">
-<h2 class="hasAnchor">
-<a href="#functions-implemented-in-the-metaab-r-package-" class="anchor"></a>Functions implemented in the <code>METAAB</code> R package.</h2>
-<table class="table">
-<colgroup>
-<col width="28%">
-<col width="71%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">Functions</th>
-<th align="left">Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code><a href="../reference/AMMI_indexes.html">AMMI_indexes()</a></code></td>
-<td align="left">AMMI-based stability indexes</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/FAI.BLUP.html">FAI.BLUP()</a></code></td>
-<td align="left">Multitrait index based on factor analysis and ideotype-design</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/MTSI.html">MTSI()</a></code></td>
-<td align="left">Multi-trait stability index</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/resca.html">resca()</a></code></td>
-<td align="left">Helper function to rescale a vector to have specified minimum and maximum values</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/Resende_indexes.html">Resende_indexes()</a></code></td>
-<td align="left">Stability indexes proposed by Resende based on a mixed-effect model</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/WAASB.html">WAASB()</a></code></td>
-<td align="left">Weighted Average of Absolute Scores from SVD of BLUP-based GEI effects</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/WAASBYratio.html">WAASBYratio()</a></code></td>
-<td align="left">Different scenarios for weighting between mean performance and stability (mixed models)</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code></td>
-<td align="left">Weighted Average of Absolute Scores for AMMI analysis</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/WAASratio.AMMI.html">WAASratio.AMMI()</a></code></td>
-<td align="left">Different scenarios for weighting between mean performance and stability (fixed models)</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/validation.blup.html">validation.blup()</a></code></td>
-<td align="left">Cross-validation for BLUP prediction</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/validation.AMMIF.html">validation.AMMIF()</a></code></td>
-<td align="left">Cross-validation for all member of AMMI family models</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/plot.blup.html">plot.blup()</a></code></td>
-<td align="left">Plot the estimated BLUPs of genotypes</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/performs_ammi.html">performs_ammi()</a></code></td>
-<td align="left">Helper function for computing AMMI analysis</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/plot.eigen.html">plot.eigen()</a></code></td>
-<td align="left">Plot the eigenvalues of singular value decomposition</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/theme_waasb.html">theme_waasb()</a></code></td>
-<td align="left">The default theme for the ggplot-based graphics generated in the package</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="s3-methods-implemented-in-the-metaab-r-package-" class="section level2">
-<h2 class="hasAnchor">
-<a href="#s3-methods-implemented-in-the-metaab-r-package-" class="anchor"></a>S3 methods implemented in the <code>METAAB</code> R package.</h2>
-<table class="table">
-<colgroup>
-<col width="28%">
-<col width="71%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">Methods</th>
-<th align="left">Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code><a href="../reference/autoplot.html">autoplot.WAAS.AMMI()</a></code></td>
-<td align="left">Plot for diagnostic of residuals</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/autoplot.html">autoplot.WAASB()</a></code></td>
-<td align="left">Plot for diagnostic of residuals</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/plot.FAI.BLUP.html">plot.FAI.BLUP()</a></code></td>
-<td align="left">Plot the FAI-BLUP index</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/plot.MTSI.html">plot.MTSI()</a></code></td>
-<td align="left">Plot the MTSI index</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/plot.validation.AMMIF.html">plot.validation.AMMIF()</a></code></td>
-<td align="left">Plot the RMSPD obtained in the cross-validation process</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/plot.WAASBY.html">plot.WAASBY()</a></code></td>
-<td align="left">Plot WAASBY values for genotype ranking</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/plot.ratios.html">plot.WAASBYratio()</a></code></td>
-<td align="left">Plot heat maps with genotype ranking</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/predict.WAAS.AMMI.html">predict.WAAS.AMMI()</a></code></td>
-<td align="left">Predict the response variable of an object of class <code>WAAS.AMMI</code>
-</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="../reference/summary.WAASB.html">summary.WAASB()</a></code></td>
-<td align="left">Summarize an object of class <code>WAASB</code>
-</td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/summary.WAAS.AMMI.html">summary.WAAS.AMMI()</a></code></td>
-<td align="left">Summarize an object of class <code>WAAS.AMMI</code>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<pre><code>      |</code></pre>
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
@@ -251,19 +109,16 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(ggplot2)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(cowplot) <span class="co"># used in this material to arrange the graphics</span>
 dataset =<span class="st"> </span>data_ge</code></pre></div>
-
 </div>
 <div id="predictive-accuracy" class="section level1">
 <h1 class="hasAnchor">
 <a href="#predictive-accuracy" class="anchor"></a>Predictive accuracy</h1>
-<p> </p>
 <p>The first steap in the article was to evaluate the predictive accucary of both AMMI and BLUP models. We will show in details how we can do that using the functions <code><a href="../reference/validation.AMMIF.html">validation.AMMIF()</a></code> and <code><a href="../reference/validation.blup.html">validation.blup()</a></code> functions. The <code><a href="../reference/validation.AMMIF.html">validation.AMMIF()</a></code> function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below: <img src="validation.png" alt="Diagram for cross-validation of AMMI models."> Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set. The training set has all combinations (genotype x environment) with the number of replications informed in <code>nrepval</code> argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by <span class="citation">Piepho (<a href="#ref-Piepho:1994">1994</a>)</span>. The remaining block serves as validation data. If <code>design = "CRD"</code> is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by <span class="citation">Gauch and Zobel (<a href="#ref-Gauch:1988">1988</a>)</span>. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:</p>
 <p><span class="math display">\[
    RMSPD = 
    {\left[ {\left( {\sum\nolimits_{i = 1}^n {{{\left( {{{\hat y}_{ij}} - {y_{ij}}} \right)}^2}} } \right)/n} \right]^{0.5}}
 \]</span></p>
 <p>where <span class="math inline">\(\widehat{y}_{ij}\)</span> is the model predicted value; and <span class="math inline">\(y_{ij}\)</span> is the observed value in the validation set. The number of random selection of blocks/replicates (<em>n</em>) is defined in the argument <code>nboot</code>. At the end of the <em>n</em> cycles for all models, a list with all estimated RMSPD and the average of RMSPD is returned.</p>
-<p> </p>
 <p>The function <code>validation.blup</code> provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.</p>
 <p>The following code computes the cross-validation of the oat data set that, for simplicity, will use 50 re-sampling procedures. I suggest using a larger number, say, 1000.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
@@ -319,10 +174,10 @@ CROP
 1
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI4
 </td>
 <td style="text-align:right;">
-0.3987
+0.4089
 </td>
 <td style="text-align:left;">
 Wheat
@@ -333,24 +188,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4032
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-AMMI6
-</td>
-<td style="text-align:right;">
-0.4086
+0.4177
 </td>
 <td style="text-align:left;">
 Wheat
@@ -364,7 +205,21 @@ Wheat
 BLUP
 </td>
 <td style="text-align:right;">
-0.4197
+0.4188
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+AMMI7
+</td>
+<td style="text-align:right;">
+0.4207
 </td>
 <td style="text-align:left;">
 Wheat
@@ -375,10 +230,10 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMI3
 </td>
 <td style="text-align:right;">
-0.4198
+0.4238
 </td>
 <td style="text-align:left;">
 Wheat
@@ -389,10 +244,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI1
+AMMI8
 </td>
 <td style="text-align:right;">
-0.4211
+0.4287
 </td>
 <td style="text-align:left;">
 Wheat
@@ -403,10 +258,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI0
+AMMIF
 </td>
 <td style="text-align:right;">
-0.4253
+0.4309
 </td>
 <td style="text-align:left;">
 Wheat
@@ -417,10 +272,10 @@ Wheat
 7
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4267
+0.4310
 </td>
 <td style="text-align:left;">
 Wheat
@@ -431,10 +286,10 @@ Wheat
 8
 </td>
 <td style="text-align:left;">
-AMMI8
+AMMI0
 </td>
 <td style="text-align:right;">
-0.4320
+0.4376
 </td>
 <td style="text-align:left;">
 Wheat
@@ -445,10 +300,10 @@ Wheat
 9
 </td>
 <td style="text-align:left;">
-AMMI3
+AMMI1
 </td>
 <td style="text-align:right;">
-0.4338
+0.4389
 </td>
 <td style="text-align:left;">
 Wheat
@@ -459,10 +314,10 @@ Wheat
 10
 </td>
 <td style="text-align:left;">
-AMMIF
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4367
+0.4449
 </td>
 <td style="text-align:left;">
 Wheat
@@ -486,7 +341,7 @@ RMSPDweat =<span class="st"> </span><span class="kw"><a href="https://www.rdocum
 p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(RMSPDweat)
 p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(RMSPDweat, <span class="dt">width.boxplot =</span> <span class="fl">0.5</span>, <span class="dt">col.boxplot =</span> <span class="st">"transparent"</span>)
 <span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>Six statistics are shown in this boxplot. The mean (black rhombus), the median (black line), the lower and upper hinges that correspond sto the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than <span class="math inline">\(1.5\times{IQR}\)</span> from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most <span class="math inline">\(1.5\times{IQR}\)</span> of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition <code>violin = TRUE</code>, a violin plot is added along with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.</p>
 </div>
 </div>
@@ -3175,7 +3030,7 @@ WAASB =<span class="st"> </span><span class="kw"><a href="../reference/WAASB.htm
 <p>The function <code>autoplot()</code> is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using <code>type = "re"</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
 <span class="kw">autoplot</span>(WAASB<span class="op">$</span>GY)</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="printing-the-model-outputs" class="section level2">
 <h2 class="hasAnchor">
@@ -4553,7 +4408,7 @@ p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.blup.ht
                <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()
 <span class="kw">plot_grid</span>(p1, p2,
           <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-21-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-20-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>This output shows the predicted means for genotypes. <strong>BLUPg</strong> is the genotypic effect <span class="math inline">\((\hat{g}_{i})\)</span> estimated by <span class="math inline">\(\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})\)</span> where <span class="math inline">\(h_g^2\)</span> is the shrinkage effect for genotype. <strong>Predicted</strong> is the predicted mean estimated by <span class="math inline">\(\hat{g}_{i}+\mu\)</span> where <span class="math inline">\(\mu\)</span> is the grand mean. <strong>LL</strong> and <strong>UL</strong> are the lower and upper limits, respectively, estimated by <span class="math inline">\((\hat{g}_{i}+\mu)\pm{CI}\)</span>. <span class="math inline">\(CI\)</span> is the confidence interval for BLUP prediction assuming a given probability error, where <span class="math inline">\(CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}\)</span> where <span class="math inline">\(t\)</span> is the Student’s <em>t</em> value for a two-tailed t test at a given probability error; <span class="math inline">\(Ac\)</span> is the accuracy of selection and <span class="math inline">\(\mathop \sigma \nolimits_g^2\)</span> is the genotypic variance.</p>
 </div>
 <div id="blup-for-genotypes-x-environment-combination" class="section level3">
@@ -5010,7 +4865,7 @@ Accumulated
 </tbody>
 </table>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot.eigen.html">plot.eigen</a></span>(WAASB<span class="op">$</span>GY, <span class="dt">size.lab =</span> <span class="dv">14</span>, <span class="dt">size.tex.lab =</span> <span class="dv">14</span>)</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-24-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-23-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.</p>
 <div id="phenotypic-means" class="section level3">
 <h3 class="hasAnchor">
@@ -5264,7 +5119,7 @@ p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.
                  <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,
                  <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)
 <span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-26-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-25-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-gy-x-pc1" class="section level3">
 <h3 class="hasAnchor">
@@ -5277,7 +5132,7 @@ p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.
                        <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))
 
 <span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-27-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-26-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-3-gy-x-waasb" class="section level3">
 <h3 class="hasAnchor">
@@ -5292,14 +5147,14 @@ p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.
                  <span class="dt">x.breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))
 <span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-28-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-27-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-4-nominal-yield-and-environment-ipca1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-4-nominal-yield-and-environment-ipca1" class="anchor"></a>biplot type 4 : nominal yield and environment IPCA1</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(WAASB<span class="op">$</span>GY,
             <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">size.tex.pa =</span> <span class="fl">1.5</span>)</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-29-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-28-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -6067,7 +5922,7 @@ G9
 p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(WAASBYratio)
 p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(WAASBYratio, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))
 <span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-35-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-34-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="plotting-the-heat-map-graphics" class="section level2">
 <h2 class="hasAnchor">
@@ -6077,13 +5932,13 @@ p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waasb" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAASB</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASBYratio, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-36-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-35-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="ranks-of-genotypes-depending-on-the-waasbgy-ratio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-waasbgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAASB/GY ratio</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASBYratio, <span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-37-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-36-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -6485,7 +6340,7 @@ G9
 ## G4
 ## -----------------------------------------------------------------------------------</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-39-1.png" width="700"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-38-1.png" width="700"></p>
 </div>
 <div id="multi-trait-stability-index" class="section level1">
 <h1 class="hasAnchor">
@@ -6544,7 +6399,7 @@ G9
 ## G3 G1
 ## -------------------------------------------------------------------------------</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-40-1.png" width="700"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-39-1.png" width="700"></p>
 </div>
 <div id="based-on-mean-performance-and-stability" class="section level2">
 <h2 class="hasAnchor">
@@ -6603,7 +6458,7 @@ G9
 ## G8 G3
 ## -------------------------------------------------------------------------------</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</code></pre></div>
-<p><img src="vignettes_files/figure-html/unnamed-chunk-41-1.png" width="700"></p>
+<p><img src="vignettes_files/figure-html/unnamed-chunk-40-1.png" width="700"></p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
@@ -6646,14 +6501,7 @@ G9
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#introducing-the-metaab-r-package">Introducing the <code>METAAB</code> R package</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#overview-of-the-metaab-package-">Overview of the <code>METAAB</code> package.</a></li>
-      <li><a href="#functions-implemented-in-the-metaab-r-package-">Functions implemented in the <code>METAAB</code> R package.</a></li>
-      <li><a href="#s3-methods-implemented-in-the-metaab-r-package-">S3 methods implemented in the <code>METAAB</code> R package.</a></li>
-      </ul>
-</li>
-      <li><a href="#getting-started">Getting started</a></li>
+<li><a href="#getting-started">Getting started</a></li>
       <li>
 <a href="#predictive-accuracy">Predictive accuracy</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#printing-the-means-of-rmspd-estimates">Printing the means of RMSPD estimates</a></li>
@@ -6700,7 +6548,7 @@ G9
 
 
       <footer><div class="copyright">
-  <p>Developed by Tiago Olivoto.</p>
+  <p>Developed by <a href="https://www.mendeley.com/profiles/tiago-olivoto/">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
