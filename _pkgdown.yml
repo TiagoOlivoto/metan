@@ -1,0 +1,96 @@
+url: https://tiagoolivoto.github.io/METAAB/
+title: METAAB
+template:
+  params:
+    bootswatch: flatly
+
+development:
+  mode: auto
+
+authors:
+  Tiago Olivoto:
+    href: https://www.mendeley.com/profiles/tiago-olivoto/
+
+
+reference:
+  - title: AMMI
+    desc: Functions for AMMI analysis
+    contents:
+      - '`AMMI_indexes`'
+      - '`validation.AMMI`'
+      - '`validation.AMMIF`'
+      - '`WAAS.AMMI`'
+      - '`WAASratio.AMMI`'
+      - '`predict.WAAS.AMMI`'
+      - '`plot.validation.AMMIF`'
+      - '`plot.WAASratio.AMMI`'
+      - '`summary.WAAS.AMMI`'
+      - '`autoplot.WAAS.AMMI`'
+  - title: BLUP
+    desc: Functions for BLUP analysis
+    contents:
+      - '`Resende_indexes`'
+      - '`validation.blup`'
+      - '`WAASB`'
+      - '`WAASBYratio`'
+      - '`plot.blup`'
+      - '`plot.eigen`'
+      - '`plot.scores`'
+      - '`plot.WAASBYratio`'
+      - '`plot.WAASBY`'
+      - '`autoplot.WAASB`'
+      - '`summary.WAASB`'
+  - title: MTSI
+    desc: Multi-trait indexes
+    contents:
+      - '`FAI.BLUP`'
+      - '`MTSI`'
+      - '`plot.FAI.BLUP`'
+      - '`plot.MTSI`'
+      - '`summary.MTSI`'
+  - title: Help
+    desc: Helper functions
+    contents:
+      - '`resca`'
+      - '`theme_waasb`'
+      - '`performs_ammi`'
+  - title: Datasets
+    desc: Data for reproducible examples
+    contents:
+      - '`data_ge`'
+      - '`int.effects`'
+      - '`meansGxE`'
+
+navbar:
+  title: "sparklyr"
+  type: inverse
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Examples"
+      menu:
+      - text: "Cross-validation procedure"
+        href: articles/vignettes_CROSS-VALIDATION.html
+      - text: "AMMI"
+        href: articles/vignettes_AMMI.html
+      - text: "BLUP"
+        href: articles/vignettes_BLUP.html
+      - text: "Multivariate indexes"
+        href: articles/vignettes_INDEXES.html
+    - text: "Functions"
+      href: reference/index.html
+    - text: More
+      menu:
+      - text: Code of Conduct
+        href: CODE_OF_CONDUCT.html
+      - text: News
+        href: news/index.html
+      - text: Licence
+        href: LICENSE.html
+  right:
+    - text: "ResearchGate"
+      href: https://www.researchgate.net/profile/Tiago_Olivoto2
+    - text: "Mendeley"
+      href: https://www.mendeley.com/profiles/tiago-olivoto/
+    - text: "Github"
+      href: https://github.com/TiagoOlivoto
