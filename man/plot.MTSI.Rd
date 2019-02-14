@@ -2,7 +2,8 @@
 \alias{plot.MTSI}
 \title{Plot the multitrait stability index}
 \usage{
-\method{plot}{MTSI}(x, SI = 15, radar = TRUE, ...)
+\method{plot}{MTSI}(x,  SI = 15, radar = TRUE, size.point = 2,
+     col.sel = "red", col.nonsel = "black", ...)
 }
 
 \description{
@@ -18,11 +19,29 @@ Plot the multitrait stability index using ggplot-generated graphics. .
 
   \item{radar}{Logical argument. If true (default) a radar plot is generated after using \code{coord_polar()}.}
 
+  \item{size.point}{The size of the point in graphic.}
 
-  \item{...}{Other arguments of the function}
+  \item{col.sel}{The colour for selected genotypes.}
+
+  \item{col.nonsel}{The colour for nonselected genotypes.}
+
+  \item{...}{Other arguments of the function.}
 
 }
 
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
+
+\examples{
+library(METAAB)
+MTSI_MODEL = WAASB(data_ge,
+                   resp = c(GY, HM),
+                   gen = GEN,
+                   env = ENV,
+                   rep = REP)
+
+MTSI_index = MTSI(MTSI_MODEL)
+plot(MTSI_index)
+
+}

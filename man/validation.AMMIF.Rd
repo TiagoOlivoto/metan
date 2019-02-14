@@ -33,13 +33,18 @@ Cross-validation for estimation of all AMMI-family models
 }
 
 \details{
-This function provides a complete cross-validation of replicate-based data using AMMI-family models. Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original dataset is split into two datasets: modeling and validating data. The dataset "modeling" has all combinations (genotype x environment) with the number of replications informed in \code{nrepval}. The dataset "validating" has one replication. The splitting of the dataset into modeling and validating data depends on the design informed. For Completely Randomized Block Design (default), compltely blocks are selected within environments. The remained block serves validation data. If \code{design = "RCD"} is informed, completely randomly samples are made for each genotype-by-environment combination. The estimated values (depending on naxis informed) are compared with the "validating" data. the Root Means Square error is computed. At the end of boots, a list is returned with the following values.}
+This function provides a complete cross-validation of replicate-based data using AMMI-family models. By default, the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original dataset is split up into two datasets: training set and validation set. The "training" set has all combinations (genotype x environment) with the number of replications informed in \code{nrepval}. The dataset "validation" set has the remaining replication. The splitting of the dataset into modeling and validating data depends on the design informed. For Completely Randomized Block Design (default), completely blocks are selected within environments. The remained block serves validation data. If \code{design = "RCD"} is informed, completely randomly samples are made for each genotype-by-environment combination. The estimated values (depending on the \code{naxis} informed) are compared with the "validation" data. the Root Mean Square Prediction Difference (RMSPD) is computed. At the end of boots, a list is returned.}
 
 
 \examples{
 library(METAAB)
-validation = validation.AMMIF(WAASBdata, GY, GEN, ENV, REP,
-                              nboot = 100, nrepval = 2)
+model = validation.AMMIF(data_ge,
+                        resp = GY,
+                        gen = GEN,
+                        env = ENV,
+                        rep = REP,
+                        nboot = 100,
+                        nrepval = 2)
 
 }
 

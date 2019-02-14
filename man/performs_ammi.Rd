@@ -5,7 +5,7 @@
 performs_ammi(ENV, GEN, REP, Y)
 }
 \description{
-Compute the Additive Main effects and Multiplicative interaction. This is a helper function for other procedures performed in the WAASB package.
+Compute the Additive Main effects and Multiplicative interaction. This is a helper function for other procedures performed in the WAASB package such as \code{\link{WAAS.AMMI}}, \code{\link{validation.AMMI}}, \code{\link{validation.AMMIF}}, and \code{\link{predict.WAAS.AMMI}}.
 
 }
 
@@ -37,7 +37,8 @@ Compute the Additive Main effects and Multiplicative interaction. This is a help
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-ammi_model = with(WAASBdata, performs_ammi(ENV, GEN, REP, GY))
+library(METAAB)
+ammi_model = with(data_ge, performs_ammi(ENV, GEN, REP, GY))
 
 }
 

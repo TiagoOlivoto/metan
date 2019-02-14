@@ -9,11 +9,7 @@ validation.AMMI = function(data,
                            naxis,
                            progbar = TRUE){
 
-  RMSPDres  = data.frame(RMSPD  = matrix(".",nboot,1))
-  for (n in c(1,1:ncol(RMSPDres))) {
-    RMSPDres[,n] = as.numeric(RMSPDres[,n])
-  }
-
+  RMSPDres  = data.frame(RMSPD  = matrix(0,nboot,1))
   Y = eval(substitute(resp), eval(data))
   GEN = factor(eval(substitute(gen), eval(data)))
   ENV = factor(eval(substitute(env), eval(data)))
@@ -82,8 +78,7 @@ validation.AMMI = function(data,
           x1  = factor(testing$ENV)
           z1  = factor(testing$GEN)
           MEDIAS = data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
-          modelo1 = lm(Y ~ ENV + GEN, data = MEDIAS)
-          residual = modelo1$residuals
+          residual = residuals(lm(Y ~ ENV + GEN, data = MEDIAS))
           intmatrix = t(matrix(residual, Nenv, byrow = T))
           s = svd(intmatrix)
           U = s$u[,1:naxis]
@@ -115,7 +110,6 @@ validation.AMMI = function(data,
         }
         if (progbar == TRUE){
           close(pb)
-          utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
         }
       }
     }

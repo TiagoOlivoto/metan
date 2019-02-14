@@ -42,8 +42,12 @@ A dataframe contaning the indexes
 
 \examples{
 library(METAAB)
-model = WAASB(WAASBdata, GY, GEN, ENV, REP)
-model_indexes = Resende_indexes(model)
+res_ind = WAASB(data_ge,
+                resp = c(GY, HM),
+                gen = GEN,
+                env = ENV,
+                rep = REP)
+model_indexes = Resende_indexes(res_ind)
 
 }
 

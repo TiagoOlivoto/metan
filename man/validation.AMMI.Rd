@@ -53,8 +53,14 @@ For each iteration, the original dataset is split into two datasets: modeling an
 
 \examples{
 library(METAAB)
-validation = validation.AMMI(WAASBdata, GY, GEN, ENV, REP,
-                             nboot = 100, nrepval = 2, naxis = 4)
+model = validation.AMMI(data_ge,
+                        resp = GY,
+                        gen = GEN,
+                        env = ENV,
+                        rep = REP,
+                        nboot = 100,
+                        nrepval = 2,
+                        naxis = 2)
 
 }
 

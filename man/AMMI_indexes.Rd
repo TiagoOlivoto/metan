@@ -13,7 +13,7 @@ This function computes the following AMMI-based stability indexes: ASV, AMMI sta
 \arguments{
   \item{x}{An object of class \code{WAAS.AMMI}}
 
-  \item{order.y}{A vector of the same length of x used to order the response variable. Each element of the vector must be one of the "h" or "l". If "h" is used, the response variable will be ordered from maximum to minimum. If "l" is used the response variable will be ordered from minimum to maximum.}
+  \item{order.y}{A vector of the same length of \code{x} used to order the response variable. Each element of the vector must be one of the \code{"h"} or \code{"l"}. If \code{"h"} is used, the response variable will be ordered from maximum to minimum. If \code{"l"} is used then the response variable will be ordered from minimum to maximum.}
 }
 
 \details{
@@ -64,7 +64,11 @@ Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012. Evaluation o
 
 \examples{
 library(METAAB)
-model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP)
+model = WAAS.AMMI(data_ge,
+                  resp = c(GY, HM),
+                  gen = GEN,
+                  env = ENV,
+                  rep = REP)
 model_indexes = AMMI_indexes(model)
 
 }

@@ -54,12 +54,20 @@ This function considers both stability (weighted average of absolute scores base
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-# Default, with increment of 5 and saving the WAASY values when weight is 50
 library(METAAB)
-model = WAASBYratio(WAASBdata, GY, GEN, ENV, REP)
 
-# Incrementing 2-by-2 and saving the WAASY values when weight is 70
+# Default, with increment of 5 and saving the WAASY values when weight is 50
+wratio = WAASBYratio(data_ge,
+                     resp = GY,
+                     gen = GEN,
+                     env = ENV,
+                     rep = REP)
 
-model2 = WAASBYratio(WAASBdata, GY, GEN, ENV, REP,
-                     increment = 2, saveWAASY = 70)
+# Incrementing 2-by-2
+wratio2 = WAASBYratio(data_ge,
+                      resp = GY,
+                      gen = GEN,
+                      env = ENV,
+                      rep = REP,
+                      increment = 2)
 }

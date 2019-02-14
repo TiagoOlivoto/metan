@@ -2,7 +2,8 @@
 \alias{plot.FAI.BLUP}
 \title{Multitrait index based on factor analysis and ideotype-design}
 \usage{
-\method{plot}{FAI.BLUP}(x, ideotype = 1, SI = 15, radar = TRUE, ...)
+\method{plot}{FAI.BLUP}(x,  SI = 15, radar = TRUE, size.point = 2,
+     col.sel = "red", col.nonsel = "black", ...)
 }
 
 \description{
@@ -16,13 +17,17 @@ Plot the multitrait index based on factor analysis and ideotype-design proposed 
 
   \item{ideotype}{The ideotype to be plotted. Default is 1.}
 
-  \item{SI}{An integer [0-100]. The selection intensity in percentage of the total number of genotypes.}
+   \item{SI}{An integer [0-100]. The selection intensity in percentage of the total number of genotypes.}
 
   \item{radar}{Logical argument. If true (default) a radar plot is generated after using \code{coord_polar()}.}
 
+  \item{size.point}{The size of the point in graphic.}
 
-  \item{...}{Other arguments of the function}
+  \item{col.sel}{The colour for selected genotypes.}
 
+  \item{col.nonsel}{The colour for nonselected genotypes.}
+
+  \item{...}{Other arguments of the function.}
 }
 
 
@@ -30,4 +35,19 @@ Plot the multitrait index based on factor analysis and ideotype-design proposed 
 
 \references{
 Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018. Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy. GCB Bioenergy 10:52-60. doi: \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
+}
+
+
+\examples{
+  multivariate = WAASB(data_ge,
+                       resp = c(GY, HM),
+                       gen = GEN,
+                       env = ENV,
+                       rep = REP)
+
+  FAI = FAI.BLUP(multivariate,
+                 SI = 15,
+                 DI = c("max", "max"),
+                 UI = c("min", "min"))
+  plot(FAI)
 }

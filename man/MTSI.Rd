@@ -27,3 +27,27 @@ Multitrait stability index in analysis of multi-environment trials using AMMI or
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 
+\examples{
+library(METAAB)
+# Based on stability only
+MTSI_MODEL = WAASB(data_ge,
+                   resp = c(GY, HM),
+                   gen = GEN,
+                   env = ENV,
+                   rep = REP)
+
+MTSI_index = MTSI(MTSI_MODEL)
+
+
+# Based on mean performance and stability
+MTSI_MODEL2 = WAASB(data_ge,
+                    resp = c(GY, HM),
+                    gen = GEN,
+                    env = ENV,
+                    rep = REP,
+                    mresp = c(100, 100), #Default
+                    wresp = c(65, 65))
+MTSI_index2 = MTSI(MTSI_MODEL2,
+                   index = "WAASBY")
+
+}

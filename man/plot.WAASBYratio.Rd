@@ -6,6 +6,11 @@
      file.name = NULL, width = 6, height = 5, size.lab = 1,
      margins = c(5, 4),  y.lab = NULL, x.lab = NULL,
      key.lab = "Genotype ranking", resolution = 300, ...)
+
+\method{plot}{WAASratio.AMMI}(x, type, export = FALSE, file.type = "pdf",
+     file.name = NULL, width = 6, height = 5, size.lab = 1,
+     margins = c(5, 4),  y.lab = NULL, x.lab = NULL,
+     key.lab = "Genotype ranking", resolution = 300, ...)
 }
 
 \description{
@@ -51,17 +56,22 @@ The first type of heatmap shows the genotype ranking depending on the number of 
 
 \examples{
 library(METAAB)
-model = WAASBYratio(WAASBdata, resp = "GY")
+wratio = WAASBYratio(data_ge,
+                     resp = GY,
+                     gen = GEN,
+                     env = ENV,
+                     rep = REP,
+                     increment = 10)
+plot(wratio, type = 1)
 
-# plot the heatmap considering the ranks in different number of PC axis.
-plot.WAASBYratio(model, type = 1)
-
-# plot the heatmap considering the ranks in WAASY/GY ratio and export to a *.tiff file
-plot.WAASBYratio(model, type = 2, export = TRUE, file.type = "tiff")
-
+wratio2 = WAASratio.AMMI(data_ge,
+                         resp = GY,
+                         gen = GEN,
+                         env = ENV,
+                         rep = REP,
+                         increment = 5)
+plot(wratio2, type = 2)
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
-
-\seealso{\code{\link{plot.scores}}}

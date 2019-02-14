@@ -29,9 +29,15 @@ Summary the  \code{WAASB} object in two ways. By default, the results are shown 
 
 \examples{
 library(METAAB)
-model = WAASB(WAASBdata, GY, GEN, ENV, REP)
-summary(model, digits = 2)
-summary(model, export = T, file.name = "my results")
+model = WAASB(data_ge,
+              resp = c(GY, HM),
+              gen = GEN,
+              env = ENV,
+              rep = REP)
+summary(model)
+summary(model,
+        export = T,
+        file.name = "my results")
 }
 
 

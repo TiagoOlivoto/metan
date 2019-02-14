@@ -101,24 +101,35 @@ The plots type 1 and 2 have the same interpretation than those used in tradition
 }
 
 \examples{
-  library(METAAB)
-  model = WAASB(WAASBdata, resp = "GY", weight.response = 50, weight.WAAS = 50)
-  plot.scores(model, 1, file.type = "tiff", width = 8, height = 7, col.gen = "green")
-  # PC1 x PC2.tiff
+library(METAAB)
+library(ggplot2)
+scores = WAASB(data_ge,
+               resp = GY,
+               gen = GEN,
+               env = ENV,
+               rep = REP)
+# PC1 x PC2
+plot.scores(model$GY,
+            type = 1,
+            polygon = TRUE)
 
-  plot.scores(model, 2, width = 8, height = 7, col.gen = "green", shape.gen = 23)
-  # GY x PC1.pdf
+# GY x PC1
+plot.scores(model$GY,
+            type = 2,
+            col.env = "olivedrab",
+            col.gen = "orange2",
+            x.lab = "My own x label")
 
-  plot.scores(model, 3, col.gen = "blue", col.env = "red",
-  theme = theme_waasb() + theme(axis.title = element_text(size = 14)))
-  # GY x WAAS.pdf
+# GY x WAASB
+plot.scores(model$GY,
+            type = 3,
+            size.tex.pa = 2,
+            size.tex.lab = 16)
 
-  plot.scores(model, 4)
-  # no file exported
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
-\seealso{\code{\link{plot.WAASBY}}}
+\seealso{\code{\link{plot.eigen}}, \code{\link{plot.validation.AMMIF}}}
 
 

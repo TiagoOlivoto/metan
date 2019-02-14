@@ -1,7 +1,7 @@
 \name{autoplot}
 \alias{autoplot.WAAS.AMMI}
 \alias{autoplot.WAASB}
-\title{Set of plots residuals for models of class WAAS.AMMI and WAASB}
+\title{Several types of residual plots}
 \usage{
 \method{autoplot}{WAAS.AMMI}(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
          alpha = 0.2, fill.hist = "gray", col.hist = "black",
@@ -70,11 +70,20 @@ Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of 
 
 \examples{
 library(METAAB)
-model = WAAS.AMMI(WAASBdata, GY, GEN, ENV, REP)
-autoplot(model)
+model = WAAS.AMMI(data_ge,
+                  resp = GY),
+                  gen = GEN,
+                  env = ENV,
+                  rep = REP)
+autoplot(model$GY)
 
-model2 = WAASB(WAASBdata, c(GY, HM), GEN, ENV, REP)
-lapply(model_oat, function(x){
+
+model2 = WAASB(data_ge,
+               resp = C(GY, HM),
+               gen = GEN,
+               env = ENV,
+               rep = REP)
+lapply(model2, function(x){
   autoplot.WAASB(x, which = 2, out = "return")
 })
 

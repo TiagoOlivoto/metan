@@ -50,13 +50,24 @@ Plot heat maps with genotype ranking in two ways.
 
 \examples{
 library(METAAB)
-# plotting the WAASBY values based on blup procedure
-#model = WAASBYratio(WAASBdata, resp = "GY", increment = 5, saveWAASY = 60)
-#plot.WAASBY(model)
-
-# plotting the WAASY value based on traditional AMMI model
-#model2 = WAASratio.AMMI(WAASBdata, resp = "GY", increment = 5, saveWAASY = 60)
-#plot.WAASBY(model2)
+library(ggplot2)
+waasby = WAASB(data_ge,
+               resp = GY,
+               gen = GEN,
+               env = ENV,
+               rep = REP)
+waasby2 = WAAS.AMMI(data_ge,
+                    resp = GY,
+                    gen = GEN,
+                    env = ENV,
+                    rep = REP)
+plot.WAASBY(waasby$GY)
+plot.WAASBY(waasby2$GY) +
+            theme_gray() +
+            theme(legend.position = "bottom",
+                  legend.background = element_blank(),
+                  legend.title = element_blank(),
+                  legend.direction = "horizontal")
 
 }
 

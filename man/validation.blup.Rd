@@ -31,17 +31,17 @@ Cross-validation for blup prediction.
 
 
 \details{
-This function provides a  cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selecte each evironment. In each iteraction, the original dataset is split into two datasets: modeling and validating data. The dataset "modeling" has all combinations (genotype x environment) with the number of replications informed in \code{nrepval}. The dataset "validating" has one replication. The estimated values are compared with the "validating" data. the Root Means Square error is computed. At the end of boots, a list is returned.}
-
- \value{
-\item{RMSE}{The root mean squared error estimated with the difference between predicted and validating data.}
-}
+This function provides a  cross-validation procedure for mixed models using replicate-based data. By default, complete blocks are randomly selected within each evironment. In each iteraction, the original dataset is split up into two datasets: training and validation data. The "training" set has all combinations (genotype x environment) with the number of replications informed in \code{nrepval}. The "validation" set has the remaining replication. The estimated values are compared with the "validation" data and the Root Means Square Prediction Difference is computed. At the end of boots, a list is returned.}
 
 \examples{
 library(METAAB)
-validation = validation.blup(WAASBdata, GY, GEN, ENV, REP,
-                             nboot = 100, nrepval = 2)
-
+model = validation.blup(data_ge,
+                        resp = GY,
+                        gen = GEN,
+                        env = ENV,
+                        rep = REP,
+                        nboot = 100,
+                        nrepval = 2)
 
 }
 

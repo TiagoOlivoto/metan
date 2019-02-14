@@ -54,7 +54,7 @@ WAASAbs = Escores
 for (i in 4:ncol(WAAS)){
 WAAS[,i] <- abs(WAAS[i])
 }
-t_WAAS = data.table::transpose(WAAS)
+t_WAAS = data.frame(t(WAAS))
 colnames(t_WAAS) = rownames(WAAS)
 rownames(t_WAAS) = colnames(WAAS)
 t_WAAS = t_WAAS[-c(1, 2, 3), ]
@@ -63,12 +63,12 @@ t_WAAS = cbind(t_WAAS, Pesos)
 for (i in 1:ncol(t_WAAS)){
 t_WAAS[,i] <- as.numeric(as.character(t_WAAS[,i]))
 }
-Ponderado = data.table::transpose(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,w = t_WAAS$Percent)))
+Ponderado = t(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,  w = t_WAAS$Percent)))
 rownames(Ponderado) = c("WAAS")
 t_WAAS = subset(t_WAAS, select = -Percent)
 colnames(Ponderado) = colnames(t_WAAS)
 t_WAAS = rbind(t_WAAS, Ponderado)
-t_WAAS2 = data.table::transpose(t_WAAS)
+t_WAAS2 = data.frame(t(t_WAAS))
 colnames(t_WAAS2) = rownames(t_WAAS)
 rownames(t_WAAS2) = colnames(t_WAAS)
 WAASAbs = cbind(WAASAbs, subset(t_WAAS2, select = WAAS))
@@ -78,15 +78,18 @@ WAASAbs2$PctWAAS = resca(WAASAbs2$WAAS, 100, 0)
 WAASAbs3 = subset(WAASAbs, type == "GEN")
 WAASAbs3$PctResp = resca(WAASAbs3$Y, 0, 100)
 WAASAbs3$PctWAAS = resca(WAASAbs3$WAAS, 100, 0)
-WAASAbs = rbind(WAASAbs3, WAASAbs2)
-WAASAbs = data.table::setDT(WAASAbs)[, OrResp := rank(-Y), by = type][]
-WAASAbs = data.table::setDT(WAASAbs)[, OrWAAS := rank(WAAS), by = type][]
-WAASAbs = data.table::setDT(WAASAbs)[, OrPC1 := rank(abs(PC1)), by = type][]
-WAASAbs$PesRes = as.vector(PesoResp)
-WAASAbs$PesWAAS = as.vector(PesoWAAS)
-WAASAbs = plyr::mutate(WAASAbs,
-WAASY = (PctResp * PesRes + PctWAAS * PesWAAS)/(PesRes + PesWAAS))
-WAASAbsInicial = data.table::setDT(WAASAbs)[, OrWAASY := rank(-WAASY), by = type][]
+WAASAbs = rbind(WAASAbs3, WAASAbs2) %>%
+  dplyr::group_by(type) %>%
+  dplyr::mutate(OrResp = rank(-Y),
+                OrWAAS = rank(WAAS),
+                OrPC1 = rank(abs(PC1)),
+                PesRes = as.vector(PesoResp),
+                PesWAAS = as.vector(PesoWAAS),
+                WAASY = (PctResp * PesRes + PctWAAS * PesWAAS)/(PesRes + PesWAAS))
+WAASAbsInicial = WAASAbs %>%
+  dplyr::group_by(type) %>%
+  dplyr::mutate(OrWAASY = rank(-WAASY))%>%
+  dplyr::ungroup()
 inicial = as.data.frame(WAASAbsInicial$OrWAAS)
 colnames(inicial) = paste0(SigPC1,"PC")
 SigPC2 = 1
@@ -103,7 +106,7 @@ WAASAbs = Escores
 for (i in 4:ncol(WAAS)){
 WAAS[,i] <- abs(WAAS[i])
 }
-t_WAAS = data.table::transpose(WAAS)
+t_WAAS = data.frame(t(WAAS))
 colnames(t_WAAS) = rownames(WAAS)
 rownames(t_WAAS) = colnames(WAAS)
 t_WAAS = t_WAAS[-c(1, 2, 3), ]
@@ -112,7 +115,7 @@ t_WAAS = cbind(t_WAAS, Pesos)
 for (i in 1:ncol(t_WAAS)){
 t_WAAS[,i] <- as.numeric(as.character(t_WAAS[,i]))
 }
-Ponderado = data.table::transpose(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,w = t_WAAS$Percent)))
+Ponderado = t(as.data.frame(sapply(t_WAAS[ ,-ncol(t_WAAS)], weighted.mean,  w = t_WAAS$Percent)))
 rownames(Ponderado) = c("WAAS")
 t_WAAS = subset(t_WAAS, select = -Percent)
 colnames(Ponderado) = colnames(t_WAAS)
@@ -127,17 +130,16 @@ WAASAbs2$PctWAAS = resca(WAASAbs2$WAAS, 100, 0)
 WAASAbs3 = subset(WAASAbs, type == "GEN")
 WAASAbs3$PctResp = resca(WAASAbs3$Y, 0, 100)
 WAASAbs3$PctWAAS = resca(WAASAbs3$WAAS, 100, 0)
-WAASAbs = rbind(WAASAbs3, WAASAbs2)
-WAASAbs = data.table::setDT(WAASAbs)[, OrResp := rank(-Y), by = type][]
-WAASAbs = data.table::setDT(WAASAbs)[, OrWAAS := rank(WAAS), by = type][]
-WAASAbs = data.table::setDT(WAASAbs)[, OrPC1 := rank(abs(PC1)), by = type][]
-WAASAbs$PesRes = as.vector(PesoResp)
-WAASAbs$PesWAAS = as.vector(PesoWAAS)
-for (i in 1:nrow(WAASAbs)){
-WAASAbs$WAASY[i] = (WAASAbs$PctResp[i]*WAASAbs$PesRes[i] + WAASAbs$PctWAAS[i]*WAASAbs$PesWAAS[i]) /
-sum(WAASAbs$PesRes[i] + WAASAbs$PesWAAS[i])
-}
-WAASAbs = data.table::setDT(WAASAbs)[, OrWAASY := rank(-WAASY), by = type][]
+WAASAbs = rbind(WAASAbs3, WAASAbs2) %>%
+  dplyr::mutate(PesRes = as.vector(PesoResp),
+                PesWAAS = as.vector(PesoWAAS),
+                WAASY = (PctResp * PesRes + PctWAAS * PesWAAS)/(PesRes + PesWAAS)) %>%
+  dplyr::group_by(type) %>%
+  dplyr::mutate(OrResp = rank(-Y),
+                OrWAAS = rank(WAAS),
+                OrPC1 = rank(abs(PC1)),
+                OrWAASY = rank(-WAASY)) %>%
+  dplyr::ungroup()
 results = as.data.frame(WAASAbs$OrWAAS)
 names(results) = paste0(SigPC2,"PC")
 final = cbind(results, inicial)
