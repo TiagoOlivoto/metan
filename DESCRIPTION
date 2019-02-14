@@ -7,12 +7,11 @@ Date: 2019-01-05
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
 Description: This package compute has useful functions for computing stability analysis using AMMI and BLUP methods. Several procedures, including cross-validation, prediction, and stability parameters for AMMI and BLUP models are available. Tools for personalized graphics is also provided.  
 Depends: R (>= 3.5.0)
-License: GPL (>=3)
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: dplyr,
          plyr,
-         data.table,
          dendextend,
          heatmaply,
          gplots,
@@ -26,7 +25,7 @@ Imports: dplyr,
          magrittr,
          methods,
          MASS
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Suggests:
     knitr,
     rmarkdown,
@@ -35,6 +34,8 @@ Suggests:
     readxl,
     rJava,
     ReporteRs,
-    cowplot
+    cowplot,
+    prettydoc,
+    kableExtra
 URL: https://github.com/TiagoOlivoto/METAAB
 VignetteBuilder: knitr
