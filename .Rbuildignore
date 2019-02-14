@@ -1,2 +1,10 @@
+^doc$
+^LICENSE\.md$
+^vignettes/vignnets\.Rmd$
+^README_file$
+^Meta$
+^vignettes$
+^README_files$
+^LICENCE$
 ^.*\.Rproj$
 ^\.Rproj\.user$
