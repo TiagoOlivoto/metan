@@ -6,7 +6,4 @@ articles:
   vignettes_BLUP: vignettes_BLUP.html
   vignettes_CROSS-VALIDATION: vignettes_CROSS-VALIDATION.html
   vignettes_INDEXES: vignettes_INDEXES.html
-urls:
-  reference: https://tiagoolivoto.github.io/METAAB//reference
-  article: https://tiagoolivoto.github.io/METAAB//articles
 
