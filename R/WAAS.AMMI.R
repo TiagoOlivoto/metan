@@ -4,9 +4,9 @@ WAAS.AMMI = function(data,
                      env,
                      rep,
                      mresp = NULL,
+                     wresp = NULL,
                      prob = 0.05,
                      naxis = NULL,
-                     wresp = NULL,
                      verbose = TRUE){
 
 datain = data

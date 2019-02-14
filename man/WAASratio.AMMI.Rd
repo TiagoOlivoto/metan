@@ -64,10 +64,10 @@ wratio = WAASratio.AMMI(data_ge,
                         rep = REP)
 
 # Incrementing 2-by-2
-wratio2 = WAASratio(data_ge,
-                    resp = GY,
-                    gen = GEN,
-                    env = ENV,
-                    rep = REP,
-                    increment = 2)
+wratio2 = WAASratio.AMMI(data_ge,
+                         resp = GY,
+                         gen = GEN,
+                         env = ENV,
+                         rep = REP,
+                         increment = 50)
 }

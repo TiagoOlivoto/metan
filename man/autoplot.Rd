@@ -50,6 +50,8 @@ Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of 
 
   \item{col.lab.out}{The color of the labels for the "outlying" points.}
 
+  \item{size.lab.out}{The size of the labels for the "outlying" points.}
+
   \item{size.tex.lab}{The size of the text in axis text and labels.}
 
   \item{size.shape}{The size of the shape in the plots.}
@@ -70,8 +72,9 @@ Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets of 
 
 \examples{
 library(METAAB)
+library(ggplot2)
 model = WAAS.AMMI(data_ge,
-                  resp = GY),
+                  resp = GY,
                   gen = GEN,
                   env = ENV,
                   rep = REP)
@@ -79,7 +82,7 @@ autoplot(model$GY)
 
 
 model2 = WAASB(data_ge,
-               resp = C(GY, HM),
+               resp = c(GY, HM),
                gen = GEN,
                env = ENV,
                rep = REP)

@@ -2,8 +2,9 @@
 \alias{plot.FAI.BLUP}
 \title{Multitrait index based on factor analysis and ideotype-design}
 \usage{
-\method{plot}{FAI.BLUP}(x,  SI = 15, radar = TRUE, size.point = 2,
-     col.sel = "red", col.nonsel = "black", ...)
+\method{plot}{FAI.BLUP}(x, ideotype = 1, SI = 15, radar = TRUE,
+     size.point = 2, col.sel = "red",
+     col.nonsel = "black", ...)
 }
 
 \description{

@@ -10,16 +10,16 @@
 
 \usage{
 \method{plot}{scores}(x, type = 1, polygon = FALSE, file.type = "pdf",
-   export = FALSE, file.name = NULL, theme = theme_waasb(),
-   axis.expand = 1.1,  width = 8, height = 7, x.lim = NULL,
-   x.breaks = waiver(), x.lab = NULL, y.lab = NULL,
-   y.lim = NULL, y.breaks = waiver(), shape.gen = 21,
-   shape.env = 23, size.shape = 2.5, size.tex.lab = 12,
-   size.tex.pa = 3.5, size.line = 0.5, size.segm.line = 0.5,
-   leg.lab = c("Gen", "Env"), line.type = "solid", line.alpha = 0.9,
-   col.line = "gray", col.gen = "blue", col.env = "darkgreen",
-   col.alpha = 0.9, col.segm.gen = "transparent",
-   col.segm.env = "darkgreen", resolution = 300, ...)
+     export = FALSE, file.name = NULL, theme = theme_waasb(),
+     axis.expand = 1.1, width = 8, height = 7, x.lim = NULL,
+     x.breaks = waiver(), x.lab = NULL, y.lab = NULL, y.lim = NULL,
+     y.breaks = waiver(), shape.gen = 21, shape.env = 23,
+     size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
+     size.tex.pa = 3.5, size.line = 0.5, size.segm.line = 0.5,
+     leg.lab = c("Gen", "Env"), line.type = "solid", line.alpha = 0.9,
+     col.line = "gray", col.gen = "blue", col.env = "darkgreen",
+     col.alpha = 0.9, col.segm.gen = "transparent",
+     col.segm.env = "darkgreen", resolution = 300, ...)
 
 }
 
@@ -61,7 +61,9 @@
 
   \item{shape.env}{The shape for environment indication in the biplot. Default is \code{23} (diamond). The same arguments than \code{"shape.gen"}.}
 
-  \item{size.shape}{The size of the shape (both for genotypes and environments). Default is \code{2.5}.}
+  \item{size.shape}{The size of the shape (both for genotypes and environments). Default is \code{2.2}.}
+
+  \item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The size of the shape will be \code{size.shape + size.bor.tick}}
 
   \item{size.tex.lab}{The size of the text in the axes text and labels. Default is \code{12}.}
 
@@ -109,19 +111,19 @@ scores = WAASB(data_ge,
                env = ENV,
                rep = REP)
 # PC1 x PC2
-plot.scores(model$GY,
+plot.scores(scores$GY,
             type = 1,
             polygon = TRUE)
 
 # GY x PC1
-plot.scores(model$GY,
+plot.scores(scores$GY,
             type = 2,
             col.env = "olivedrab",
             col.gen = "orange2",
             x.lab = "My own x label")
 
 # GY x WAASB
-plot.scores(model$GY,
+plot.scores(scores$GY,
             type = 3,
             size.tex.pa = 2,
             size.tex.lab = 16)

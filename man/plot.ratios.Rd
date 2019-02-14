@@ -1,5 +1,6 @@
-\name{plot.WAASBYratio}
+\name{plot.ratios}
 \alias{plot.WAASBYratio}
+\alias{plot.WAASratio.AMMI}
 \title{Plot heat maps with genotype ranking}
 \usage{
 \method{plot}{WAASBYratio}(x, type, export = FALSE, file.type = "pdf",

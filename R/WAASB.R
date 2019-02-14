@@ -1,5 +1,15 @@
-WAASB = function(data, resp, gen, env, rep, mresp = NULL, random = "gen",
-                 prob = 0.05, wresp = NULL, verbose = TRUE) {
+
+WAASB = function(data,
+                 resp,
+                 gen,
+                 env,
+                 rep,
+                 mresp = NULL,
+                 wresp = NULL,
+                 random = "gen",
+                 prob = 0.05,
+                 verbose = TRUE) {
+
 
   if (!random %in% c("env", "gen", "all")) {
     stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.")

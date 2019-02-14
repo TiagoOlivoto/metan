@@ -73,7 +73,7 @@ validation <- validation.AMMIF(data_ge,
                                gen = GEN,
                                env = ENV,
                                rep = REP,
-                               nboot = 50,
+                               nboot = 5,
                                nrepval = 2)
 plot(validation)
 

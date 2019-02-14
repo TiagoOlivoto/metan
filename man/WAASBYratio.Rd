@@ -69,5 +69,5 @@ wratio2 = WAASBYratio(data_ge,
                       gen = GEN,
                       env = ENV,
                       rep = REP,
-                      increment = 2)
+                      increment = 50)
 }

@@ -2,7 +2,8 @@
 \alias{summary.WAASB}
 \title{Summary a WAASB object}
 \usage{
-\method{summary}{WAASB}(object, export = FALSE, file.name = NULL, digits = 4, ...)
+\method{summary}{WAASB}(object, export = FALSE, blup = FALSE,
+        file.name = NULL, digits = 4, ...)
 }
 
 \description{
@@ -15,6 +16,8 @@ Summary the  \code{WAASB} object in two ways. By default, the results are shown 
   \item{object}{The \code{WAASB} object}
 
   \item{export}{A logical argument. If \code{TRUE|T}, a *.txt file is exported to the working directory}
+
+  \item{blup}{A logical argument. If \code{TRUE|T}, the blups are shown.}
 
   \item{file.name}{The name of the file if \code{export = TRUE} }
 
@@ -36,7 +39,7 @@ model = WAASB(data_ge,
               rep = REP)
 summary(model)
 summary(model,
-        export = T,
+        export = TRUE,
         file.name = "my results")
 }
 

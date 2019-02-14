@@ -40,7 +40,7 @@ model = validation.blup(data_ge,
                         gen = GEN,
                         env = ENV,
                         rep = REP,
-                        nboot = 100,
+                        nboot = 5,
                         nrepval = 2)
 
 }

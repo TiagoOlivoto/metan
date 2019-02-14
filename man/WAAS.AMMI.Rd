@@ -3,8 +3,8 @@
 \title{Weighted Average of Absolute Scores for AMMI analysis}
 \usage{
 WAAS.AMMI(data, resp, gen, env, rep, mresp = NULL,
-          prob = 0.05, naxis = NULL,
-          wresp = 50, verbose = TRUE)
+          wresp = NULL, prob = 0.05, naxis = NULL,
+          verbose = TRUE)
 }
 \description{
 Compute the Weighted Average of Absolute Scores for AMMI analysis.
@@ -24,12 +24,14 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
 
   \item{mresp}{A numeric vector of the same length of \code{resp}. The \code{mresp} will be the new maximum value after reescaling. By default, all variables in \code{resp} are rescaled so that de maximum value is 100 and the minimum value is 0.}
 
+  \item{wresp}{The weight for the response variable(s) for computing the WAASBY index. Must be a numeric vector of the same length of \code{resp}. Defatul is 50, i.e., equal weights for stability and mean performance.}
+
   \item{prob}{The p-value for considering a IPCA significant.}
 
   \item{naxis}{The number of IPCAs to be used for computing the WAAS index. Default is \code{NULL} (Significant IPCAs are used). If values are informed, the number of IPCAS will be used independently on its significance. Note that if two or more variables are included in \code{resp}, then \code{naxis} must be a vector.}
 
 
-  \item{wresp}{The weight for the response variable(s) for computing the WAASBY index. Must be a numeric vector of the same length of \code{resp}. Defatul is 50, i.e., equal weights for stability and mean performance.}
+  \item{verbose}{Logical argument. If \code{verbose = FALSE} the code are run silently.}
 
 }
 
@@ -67,7 +69,7 @@ library(METAAB)
 
 # Considering p-value <= 0.05 to compute the WAAS
 
-model <- WAAS.AMMI(WAASBdata,
+model <- WAAS.AMMI(data_ge,
                   resp = GY,
                   gen = GEN,
                   env = ENV,
@@ -78,7 +80,7 @@ model <- WAAS.AMMI(WAASBdata,
 # and assigning a larger weight for the response variable when
 # computing the WAASBY index.
 
-model2 <- WAAS.AMMI(WAASBdata,
+model2 <- WAAS.AMMI(data_ge,
                    resp = GY,
                    gen = GEN,
                    env = ENV,
@@ -91,12 +93,12 @@ model2 <- WAAS.AMMI(WAASBdata,
 # values of GY are better, assigning a larger weight for the GY
 # and a smaller weight for HM when computing WAASBY index.
 
-model3 <- WAAS.AMMI(WAASBdata,
+model3 <- WAAS.AMMI(data_ge,
                   resp = c(GY, HM),
                   gen = GEN,
                   env = ENV,
                   rep = REP,
-                  mresp = c(100, 0)
+                  mresp = c(100, 0),
                   wresp = c(60, 40))
 
 }
