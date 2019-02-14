@@ -241,13 +241,13 @@ CROP
 <tbody>
 <tr>
 <td style="text-align:left;">
-1
+11
 </td>
 <td style="text-align:left;">
-AMMI6
+BLUP
 </td>
 <td style="text-align:right;">
-0.3967
+0.4019
 </td>
 <td style="text-align:left;">
 Wheat
@@ -255,13 +255,13 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
-11
+1
 </td>
 <td style="text-align:left;">
-BLUP
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4046
+0.4097
 </td>
 <td style="text-align:left;">
 Wheat
@@ -272,10 +272,10 @@ Wheat
 2
 </td>
 <td style="text-align:left;">
-AMMI3
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4074
+0.4115
 </td>
 <td style="text-align:left;">
 Wheat
@@ -286,21 +286,7 @@ Wheat
 3
 </td>
 <td style="text-align:left;">
-AMMI2
-</td>
-<td style="text-align:right;">
-0.4107
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-AMMI4
+AMMI8
 </td>
 <td style="text-align:right;">
 0.4144
@@ -311,13 +297,27 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+AMMI6
+</td>
+<td style="text-align:right;">
+0.4186
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 5
 </td>
 <td style="text-align:left;">
-AMMIF
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4245
+0.4251
 </td>
 <td style="text-align:left;">
 Wheat
@@ -328,10 +328,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI8
+AMMIF
 </td>
 <td style="text-align:right;">
-0.4252
+0.4255
 </td>
 <td style="text-align:left;">
 Wheat
@@ -345,7 +345,7 @@ Wheat
 AMMI7
 </td>
 <td style="text-align:right;">
-0.4257
+0.4261
 </td>
 <td style="text-align:left;">
 Wheat
@@ -356,10 +356,10 @@ Wheat
 8
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI3
 </td>
 <td style="text-align:right;">
-0.4282
+0.4290
 </td>
 <td style="text-align:left;">
 Wheat
@@ -373,7 +373,7 @@ Wheat
 AMMI1
 </td>
 <td style="text-align:right;">
-0.4381
+0.4345
 </td>
 <td style="text-align:left;">
 Wheat
@@ -387,7 +387,7 @@ Wheat
 AMMI0
 </td>
 <td style="text-align:right;">
-0.4512
+0.4417
 </td>
 <td style="text-align:left;">
 Wheat
