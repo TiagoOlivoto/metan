@@ -1,7 +1,8 @@
+^docs$
+^_pkgdown\.yml$
 ^CODE_OF_CONDUCT\.md$
 ^doc$
 ^LICENSE\.md$
-^vignettes/vignnets\.Rmd$
 ^README_file$
 ^Meta$
 ^vignettes$
