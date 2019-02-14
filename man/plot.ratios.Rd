@@ -57,21 +57,21 @@ The first type of heatmap shows the genotype ranking depending on the number of 
 
 \examples{
 library(METAAB)
-wratio = WAASBYratio(data_ge,
-                     resp = GY,
-                     gen = GEN,
-                     env = ENV,
-                     rep = REP,
-                     increment = 10)
-plot(wratio, type = 1)
+#wratio = WAASBYratio(data_ge,
+#                     resp = GY,
+#                     gen = GEN,
+#                     env = ENV,
+#                     rep = REP,
+#                     increment = 10)
+#plot(wratio, type = 1)
 
-wratio2 = WAASratio.AMMI(data_ge,
-                         resp = GY,
-                         gen = GEN,
-                         env = ENV,
-                         rep = REP,
-                         increment = 5)
-plot(wratio2, type = 2)
+#wratio2 = WAASratio.AMMI(data_ge,
+#                         resp = GY,
+#                         gen = GEN,
+#                         env = ENV,
+#                         rep = REP,
+#                         increment = 5)
+#plot(wratio2, type = 2)
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}

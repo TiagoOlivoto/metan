@@ -45,4 +45,5 @@ FAI = FAI.BLUP(multivariate,
                SI = 15,
                DI = c("max", "max"),
                UI = c("min", "min"))
+plot(FAI)
 }

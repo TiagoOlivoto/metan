@@ -35,9 +35,6 @@ model = WAAS.AMMI(data_ge,
                   env = ENV,
                   rep = REP)
 summary(model)
-summary(model,
-        export = TRUE,
-        file.name = "my results")
 }
 
 

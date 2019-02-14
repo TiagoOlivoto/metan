@@ -49,5 +49,5 @@ MTSI_MODEL2 = WAASB(data_ge,
                     wresp = c(65, 65))
 MTSI_index2 = MTSI(MTSI_MODEL2,
                    index = "WAASBY")
-
+plot(MTSI_index2)
 }

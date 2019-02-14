@@ -43,7 +43,7 @@ model = validation.AMMIF(data_ge,
                         gen = GEN,
                         env = ENV,
                         rep = REP,
-                        nboot = 5,
+                        nboot = 2,
                         nrepval = 2)
 
 }
