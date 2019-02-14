@@ -1,7 +1,7 @@
 Extending METAAB package
 ================
 Tiago Olivoto
-METAAB 1.0.0 2019-02-10
+METAAB 1.0.0 2019-02-14
 
 Introducing the `METAAB` R package
 ==================================
@@ -244,24 +244,10 @@ CROP
 1
 </td>
 <td style="text-align:left;">
-AMMI2
+AMMI6
 </td>
 <td style="text-align:right;">
-0.4010
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-AMMI3
-</td>
-<td style="text-align:right;">
-0.4023
+0.3967
 </td>
 <td style="text-align:left;">
 Wheat
@@ -275,7 +261,21 @@ Wheat
 BLUP
 </td>
 <td style="text-align:right;">
-0.4050
+0.4046
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+AMMI3
+</td>
+<td style="text-align:right;">
+0.4074
 </td>
 <td style="text-align:left;">
 Wheat
@@ -286,10 +286,10 @@ Wheat
 3
 </td>
 <td style="text-align:left;">
-AMMIF
+AMMI2
 </td>
 <td style="text-align:right;">
-0.4228
+0.4107
 </td>
 <td style="text-align:left;">
 Wheat
@@ -300,10 +300,10 @@ Wheat
 4
 </td>
 <td style="text-align:left;">
-AMMI6
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4248
+0.4144
 </td>
 <td style="text-align:left;">
 Wheat
@@ -314,10 +314,10 @@ Wheat
 5
 </td>
 <td style="text-align:left;">
-AMMI7
+AMMIF
 </td>
 <td style="text-align:right;">
-0.4291
+0.4245
 </td>
 <td style="text-align:left;">
 Wheat
@@ -328,10 +328,10 @@ Wheat
 6
 </td>
 <td style="text-align:left;">
-AMMI1
+AMMI8
 </td>
 <td style="text-align:right;">
-0.4346
+0.4252
 </td>
 <td style="text-align:left;">
 Wheat
@@ -342,10 +342,10 @@ Wheat
 7
 </td>
 <td style="text-align:left;">
-AMMI4
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4362
+0.4257
 </td>
 <td style="text-align:left;">
 Wheat
@@ -356,10 +356,10 @@ Wheat
 8
 </td>
 <td style="text-align:left;">
-AMMI8
+AMMI5
 </td>
 <td style="text-align:right;">
-0.4375
+0.4282
 </td>
 <td style="text-align:left;">
 Wheat
@@ -370,10 +370,10 @@ Wheat
 9
 </td>
 <td style="text-align:left;">
-AMMI5
+AMMI1
 </td>
 <td style="text-align:right;">
-0.4399
+0.4381
 </td>
 <td style="text-align:left;">
 Wheat
@@ -387,7 +387,7 @@ Wheat
 AMMI0
 </td>
 <td style="text-align:right;">
-0.4535
+0.4512
 </td>
 <td style="text-align:left;">
 Wheat
@@ -851,9 +851,6 @@ h2
 <th style="text-align:right;">
 AS
 </th>
-<th style="text-align:right;">
-R2
-</th>
 </tr>
 </thead>
 <tbody>
@@ -894,9 +891,6 @@ E1
 <td style="text-align:right;">
 0.757
 </td>
-<td style="text-align:right;">
-0.701
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -934,9 +928,6 @@ E10
 </td>
 <td style="text-align:right;">
 0.954
-</td>
-<td style="text-align:right;">
-0.917
 </td>
 </tr>
 <tr>
@@ -976,9 +967,6 @@ E11
 <td style="text-align:right;">
 0.552
 </td>
-<td style="text-align:right;">
-0.590
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -1016,9 +1004,6 @@ E12
 </td>
 <td style="text-align:right;">
 0.913
-</td>
-<td style="text-align:right;">
-0.857
 </td>
 </tr>
 <tr>
@@ -1058,9 +1043,6 @@ E13
 <td style="text-align:right;">
 0.928
 </td>
-<td style="text-align:right;">
-0.878
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -1098,9 +1080,6 @@ E14
 </td>
 <td style="text-align:right;">
 0.650
-</td>
-<td style="text-align:right;">
-0.634
 </td>
 </tr>
 <tr>
@@ -1140,9 +1119,6 @@ E2
 <td style="text-align:right;">
 0.369
 </td>
-<td style="text-align:right;">
-0.536
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -1180,9 +1156,6 @@ E3
 </td>
 <td style="text-align:right;">
 0.683
-</td>
-<td style="text-align:right;">
-0.652
 </td>
 </tr>
 <tr>
@@ -1222,9 +1195,6 @@ E4
 <td style="text-align:right;">
 0.861
 </td>
-<td style="text-align:right;">
-0.794
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -1262,9 +1232,6 @@ E5
 </td>
 <td style="text-align:right;">
 0.935
-</td>
-<td style="text-align:right;">
-0.888
 </td>
 </tr>
 <tr>
@@ -1304,9 +1271,6 @@ E6
 <td style="text-align:right;">
 0.752
 </td>
-<td style="text-align:right;">
-0.697
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -1344,9 +1308,6 @@ E7
 </td>
 <td style="text-align:right;">
 0.854
-</td>
-<td style="text-align:right;">
-0.787
 </td>
 </tr>
 <tr>
@@ -1386,9 +1347,6 @@ E8
 <td style="text-align:right;">
 0.933
 </td>
-<td style="text-align:right;">
-0.885
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -1426,9 +1384,6 @@ E9
 </td>
 <td style="text-align:right;">
 0.915
-</td>
-<td style="text-align:right;">
-0.860
 </td>
 </tr>
 </tbody>
@@ -1940,7 +1895,7 @@ G1
 1
 </td>
 <td style="text-align:right;">
-62.44
+51.17
 </td>
 <td style="text-align:right;">
 3
@@ -2004,10 +1959,10 @@ G2
 7
 </td>
 <td style="text-align:right;">
-47.54
+48.66
 </td>
 <td style="text-align:right;">
-5
+4
 </td>
 </tr>
 <tr>
@@ -2036,7 +1991,7 @@ G3
 2
 </td>
 <td style="text-align:right;">
-94.95
+93.75
 </td>
 <td style="text-align:right;">
 1
@@ -2068,10 +2023,10 @@ G4
 4
 </td>
 <td style="text-align:right;">
-48.86
+43.82
 </td>
 <td style="text-align:right;">
-4
+5
 </td>
 </tr>
 <tr>
@@ -2100,10 +2055,10 @@ G5
 3
 </td>
 <td style="text-align:right;">
-41.01
+32.43
 </td>
 <td style="text-align:right;">
-6
+7
 </td>
 </tr>
 <tr>
@@ -2132,7 +2087,7 @@ G6
 5
 </td>
 <td style="text-align:right;">
-38.41
+30.43
 </td>
 <td style="text-align:right;">
 8
@@ -2149,7 +2104,7 @@ G7
 2.741
 </td>
 <td style="text-align:right;">
-0.4345
+0.4344
 </td>
 <td style="text-align:right;">
 50.654
@@ -2164,10 +2119,10 @@ G7
 9
 </td>
 <td style="text-align:right;">
-39.02
+42.51
 </td>
 <td style="text-align:right;">
-7
+6
 </td>
 </tr>
 <tr>
@@ -2196,7 +2151,7 @@ G8
 6
 </td>
 <td style="text-align:right;">
-78.76
+85.14
 </td>
 <td style="text-align:right;">
 2
@@ -2228,7 +2183,7 @@ G9
 8
 </td>
 <td style="text-align:right;">
-21.35
+17.14
 </td>
 <td style="text-align:right;">
 9
@@ -2260,7 +2215,7 @@ E1
 5
 </td>
 <td style="text-align:right;">
-57.93
+53.37
 </td>
 <td style="text-align:right;">
 6
@@ -2292,10 +2247,10 @@ E10
 4
 </td>
 <td style="text-align:right;">
-52.28
+45.58
 </td>
 <td style="text-align:right;">
-7
+8
 </td>
 </tr>
 <tr>
@@ -2324,10 +2279,10 @@ E11
 2
 </td>
 <td style="text-align:right;">
-42.67
+29.87
 </td>
 <td style="text-align:right;">
-11
+14
 </td>
 </tr>
 <tr>
@@ -2356,7 +2311,7 @@ E12
 3
 </td>
 <td style="text-align:right;">
-41.99
+32.06
 </td>
 <td style="text-align:right;">
 12
@@ -2388,10 +2343,10 @@ E13
 12
 </td>
 <td style="text-align:right;">
-49.62
+51.88
 </td>
 <td style="text-align:right;">
-8
+7
 </td>
 </tr>
 <tr>
@@ -2420,10 +2375,10 @@ E14
 6
 </td>
 <td style="text-align:right;">
-43.51
+35.06
 </td>
 <td style="text-align:right;">
-10
+11
 </td>
 </tr>
 <tr>
@@ -2452,7 +2407,7 @@ E2
 8
 </td>
 <td style="text-align:right;">
-58.32
+60.98
 </td>
 <td style="text-align:right;">
 5
@@ -2484,10 +2439,10 @@ E3
 11
 </td>
 <td style="text-align:right;">
-72.59
+80.81
 </td>
 <td style="text-align:right;">
-3
+2
 </td>
 </tr>
 <tr>
@@ -2516,10 +2471,10 @@ E4
 13
 </td>
 <td style="text-align:right;">
-60.97
+68.35
 </td>
 <td style="text-align:right;">
-4
+3
 </td>
 </tr>
 <tr>
@@ -2548,7 +2503,7 @@ E5
 7
 </td>
 <td style="text-align:right;">
-76.62
+81.92
 </td>
 <td style="text-align:right;">
 1
@@ -2580,10 +2535,10 @@ E6
 1
 </td>
 <td style="text-align:right;">
-74.02
+66.22
 </td>
 <td style="text-align:right;">
-2
+4
 </td>
 </tr>
 <tr>
@@ -2612,7 +2567,7 @@ E7
 9
 </td>
 <td style="text-align:right;">
-35.33
+31.64
 </td>
 <td style="text-align:right;">
 13
@@ -2644,7 +2599,7 @@ E8
 10
 </td>
 <td style="text-align:right;">
-44.90
+44.43
 </td>
 <td style="text-align:right;">
 9
@@ -2676,10 +2631,10 @@ E9
 14
 </td>
 <td style="text-align:right;">
-31.31
+40.70
 </td>
 <td style="text-align:right;">
-14
+10
 </td>
 </tr>
 </tbody>
@@ -3888,7 +3843,7 @@ G9
 7.320
 </td>
 <td style="text-align:right;">
-25.32
+25.33
 </td>
 <td style="text-align:right;">
 9
@@ -4272,7 +4227,7 @@ E7
 23.020
 </td>
 <td style="text-align:right;">
-67.61
+67.62
 </td>
 <td style="text-align:right;">
 11
@@ -6739,7 +6694,7 @@ MTSI_index = MTSI(MTSI_MODEL, index = "WAASBY")
     ## -------------------------------------------------------------------------------
     ##    Factor    Xo    Xs    SD SDperc
     ## GY    FA1 45.28 89.11 43.83  96.80
-    ## HM    FA1 57.04 74.72 17.69  31.01
+    ## HM    FA1 57.03 74.72 17.69  31.01
     ## 
     ## ------------------------------------------------------------------------------
     ## Mean of selection differential
