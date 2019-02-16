@@ -5,27 +5,26 @@ METAAB - Multienvironment Trial Analyzis using AMMI and BLUP
 Introduction
 ============
 
-The METAAB package provide useful functions for analyzing multienvironment trial data using AMMI and BLUP models. The main features includes, but are not limited to:
+The METAAB package provides useful functions for analyzing multi-environment trial data using AMMI and BLUP models. The main features include, but are not limited to:
 
 -   Cross-validation procedures for AMMI-family and BLUP models;
 -   Estimation AMMI models based on number of IPCAs;
 -   Prediction in mixed-effect models;
 -   Variance components and genetic parameters in mixed-effect models;
--   Graphic tools for generating biplots
+-   Graphics tools for generating biplots
 
 Dependences
 ===========
 
 METAAB depends on the following R packages.
 
--   `grid` for
+-   `grid` for arranging plots
 -   `ggplot2` for graphics
 -   `ggrepel` for avoiding overlaps text in plots
 -   `magrittr` for the %&gt;% opperator
 -   `dendexted` and `gplots` for dendrograms
 -   `dplyr` for data manipulation
-
-The package `kableExtra` and `cowplot` were used to generate the tables and arranging the graphics of these material.
+-   `lme4` and `lmerTest` for mixed-effect models
 
 Installing
 ==========
@@ -40,7 +39,9 @@ devtools::install_github("TiagoOlivoto/METAAB")
 Brief examples
 ==============
 
-The `METAAB` contains some datasets for examples. Most of the functions uses the `data_ge` that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`
+The package `kableExtra` and `cowplot` were used to generate the tables and arranging the graphics of this material.
+
+The `METAAB` contains some datasets for examples. We will use the example `data_ge` that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`
 
 ``` r
 library(METAAB)
@@ -104,7 +105,7 @@ plot_grid(p1, p2, labels = c("p1","p2"))
 
 ### S3 method `predict()`
 
-The S3 method `predict()` is implemented for objects of class `WAAS.AMMI`and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object.
+The S3 method `predict()` is implemented for objects of class `WAAS.AMMI` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object.
 
 ``` r
 library(kableExtra)
