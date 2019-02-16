@@ -10,8 +10,6 @@ importFrom(lmerTest, ranova, lmer)
 importFrom(gtools, mixedorder)
 importFrom(dplyr, select, everything, mutate, group_by, left_join, sample_n, anti_join)
 importFrom(gplots, heatmap.2)
-importFrom(MASS, ginv)
-importFrom(plyr, ddply, ., summarize)
 importFrom("grDevices", "colorRampPalette", "dev.off", "pdf",
            "chull", "tiff")
 importFrom("methods", "is")
