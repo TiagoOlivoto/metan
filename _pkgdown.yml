@@ -52,8 +52,8 @@ reference:
       - '`corr.ci`'
       - '`corr.ss`'
       - '`partial.corr`'
-  - title: Help
-    desc: Helper functions
+  - title: Helper
+    desc: Helper functions for METAAB package
     contents:
       - '`mmat`'
       - '`performs_ammi`'
