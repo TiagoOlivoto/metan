@@ -183,9 +183,24 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="biplots" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h3>
-<p>ggplot2-based graphics are easily obtained in METAAB package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2,…), the output <code>model</code> is a list, in this case with one element, GY.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/plot.scores.html">plot.scores</a></span>(model<span class="op">$</span>GY)</code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p>ggplot2-based graphics are easily obtained in METAAB package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, …), the output <code>model</code> is a list, in this case with one element, GY.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</code></pre></div>
+<pre><code>## Carregando pacotes exigidos: ggplot2</code></pre>
+<pre><code>## 
+## Attaching package: 'cowplot'</code></pre>
+<pre><code>## The following object is masked from 'package:ggplot2':
+## 
+##     ggsave</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot.scores.html">plot.scores</a></span>(model<span class="op">$</span>GY)
+p2 =<span class="st"> </span><span class="kw"><a href="reference/plot.scores.html">plot.scores</a></span>(model<span class="op">$</span>GY,
+                 <span class="dt">type =</span> <span class="dv">1</span>,
+                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,
+                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,
+                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,
+                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,
+                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="768"></p>
 </div>
 <div id="s3-method-predict" class="section level3">
 <h3 class="hasAnchor">
@@ -373,8 +388,13 @@ G4
 <div id="plotting-the-blups-for-genotypes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-the-blups-for-genotypes" class="anchor"></a>Plotting the BLUPs for genotypes</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/plot.blup.html">plot.blup</a></span>(model2<span class="op">$</span>GY)</code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot.blup.html">plot.blup</a></span>(model2<span class="op">$</span>GY)
+p2 =<span class="st"> </span><span class="kw"><a href="reference/plot.blup.html">plot.blup</a></span>(model2<span class="op">$</span>GY,
+               <span class="dt">prob =</span> <span class="fl">0.1</span>,
+               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()
+<span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(p1, p2,
+          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="768"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level2">
 <h2 class="hasAnchor">
@@ -548,7 +568,7 @@ G4
 <div id="extending-the-metaab-package" class="section level1">
 <h1 class="hasAnchor">
 <a href="#extending-the-metaab-package" class="anchor"></a>Extending the METAAB package</h1>
-<p>The complete functionality of the METAAB package may be view at <a href="https://tiagoolivoto.github.io/METAAB/index.html" class="uri">https://tiagoolivoto.github.io/METAAB/index.html</a>.</p>
+<p>The complete functionality of the METAAB package may be view at <a href="https://tiagoolivoto.github.io/METAAB/index.html" class="uri">https://tiagoolivoto.github.io/METAAB/index.html</a>. You are welcome to visit it.</p>
 </div>
   </div>
 
