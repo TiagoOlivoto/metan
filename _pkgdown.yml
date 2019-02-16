@@ -46,26 +46,26 @@ reference:
       - '`plot.FAI.BLUP`'
       - '`plot.MTSI`'
       - '`summary.MTSI`'
-  - title: Help
-    desc: Helper functions
-    contents:
-      - '`resca`'
-      - '`theme_waasb`'
-      - '`performs_ammi`'
-      - '`mmat`'
   - title: Biometry
     desc: Useful functions for biometry (under development)
     contents:
       - '`corr.ci`'
       - '`corr.ss`'
       - '`partial.corr`'
+  - title: Helper functions
+    desc: Helper functions
+    contents:
+      - '`mmat`'
+      - '`performs_ammi`'
+      - '`rbind_fill`'
+      - '`resca`'
+      - '`theme_waasb`'
   - title: Datasets
     desc: Data for reproducible examples
     contents:
       - '`data_ge`'
       - '`int.effects`'
       - '`meansGxE`'
-
 
 navbar:
   title: "sparklyr"
