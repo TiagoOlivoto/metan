@@ -25,7 +25,7 @@ This function help users to easely make a two-way table from a "long format" dat
 datage = expand.grid(ENV = paste("E", 1:8, sep = ""),
                      GEN = paste("G", 1:20, sep = ""),
                      REP = paste(c("I", "II", "III")))
-datage$Y = rnorm(600, 50, 20)
+datage$Y = rnorm(480, 50, 20)
 matrix = mmat(datage, row = GEN, col = ENV, val = Y)
 matrix
 }
