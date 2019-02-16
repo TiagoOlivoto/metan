@@ -181,53 +181,32 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>datage</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expand.grid'>expand.grid</a></span>(<span class='kw'>ENV</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"E"</span>, <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>),
+    <pre class="examples"><div class='input'><span class='no'>datage</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expand.grid'>expand.grid</a></span>(<span class='kw'>ENV</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"E"</span>, <span class='fl'>1</span>:<span class='fl'>8</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>),
                      <span class='kw'>GEN</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"G"</span>, <span class='fl'>1</span>:<span class='fl'>20</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>),
                      <span class='kw'>REP</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"I"</span>, <span class='st'>"II"</span>, <span class='st'>"III"</span>)))
-<span class='no'>datage</span>$<span class='no'>Y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>600</span>, <span class='fl'>50</span>, <span class='fl'>20</span>)
+<span class='no'>datage</span>$<span class='no'>Y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>480</span>, <span class='fl'>50</span>, <span class='fl'>20</span>)
 <span class='no'>matrix</span> <span class='kw'>=</span> <span class='fu'>mmat</span>(<span class='no'>datage</span>, <span class='kw'>row</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>ENV</span>, <span class='kw'>val</span> <span class='kw'>=</span> <span class='no'>Y</span>)
 <span class='no'>matrix</span></div><div class='output co'>#&gt;           E1       E2       E3       E4       E5       E6       E7       E8
-#&gt; G1  49.37792 55.13687 26.86872 54.93177 27.85879 50.19386 34.73272 58.13833
-#&gt; G2  38.54974 47.54559 64.54569 27.46606 65.82683 42.32438 53.67220 40.74286
-#&gt; G3  54.73357 50.73037 46.51085 49.09756 36.34063 62.36640 41.37715 34.11481
-#&gt; G4  60.84411 36.75305 60.37944 58.08828 46.17929 41.58140 23.85776 49.44226
-#&gt; G5  35.06387 59.25126 48.72921 53.89305 46.50404 75.43664 41.74962 46.46521
-#&gt; G6  62.07543 47.59868 34.54384 34.55412 59.34229 34.24102 36.79485 62.31155
-#&gt; G7  64.94803 34.25248 68.41461 41.78521 29.94772 27.64309 65.76679 43.60839
-#&gt; G8  36.40383 31.99226 52.39314 37.86502 49.66895 62.72347 64.55902 52.88366
-#&gt; G9  67.82920 56.87818 63.74018 61.83512 58.71812 60.53978 29.88967 55.39298
-#&gt; G10 52.09763 53.84140 47.27893 43.54614 60.56092 49.25397 30.96307 64.56856
-#&gt; G11 40.30092 42.08188 52.07673 53.89328 31.59034 42.46160 54.96397 64.28507
-#&gt; G12 36.74856 50.57351 54.40484 32.10242 55.09038 58.49455 66.72528 37.58964
-#&gt; G13 63.06083 54.02148 72.65474 56.99202 68.55809 35.91037 57.12614 38.82211
-#&gt; G14 44.94567 46.61960 55.21905 41.97309 48.78396 66.29785 40.82194 36.42788
-#&gt; G15 59.44293 57.83702 70.88862 41.64106 47.47358 65.61784 39.03675 54.55872
-#&gt; G16 43.77709 43.49035 57.87468 60.16360 68.40200 59.26617 48.40105 57.58096
-#&gt; G17 38.95419 62.32172 41.95457 73.31722 19.72751 44.41158 26.30806 42.20715
-#&gt; G18 44.90854 29.81715 46.61770 45.67361 58.30730 66.60716 61.58867 32.39811
-#&gt; G19 41.76389 39.40835 21.53838 61.51729 58.60537 72.98428 54.12915 81.08515
-#&gt; G20 64.87630 51.39179 56.42256 37.68514 56.85594 63.72094 39.82656 66.57126
-#&gt;           E9      E10
-#&gt; G1  30.52273 54.87726
-#&gt; G2  49.89529 51.66780
-#&gt; G3  49.72176 35.55967
-#&gt; G4  56.36852 34.08503
-#&gt; G5  63.82475 40.42737
-#&gt; G6  51.20206 59.68185
-#&gt; G7  60.43873 44.54364
-#&gt; G8  59.50105 38.45377
-#&gt; G9  74.97079 31.16163
-#&gt; G10 60.70191 71.19628
-#&gt; G11 70.68821 53.56056
-#&gt; G12 36.22826 65.31534
-#&gt; G13 42.79836 50.42880
-#&gt; G14 58.17120 63.65424
-#&gt; G15 43.30579 60.82516
-#&gt; G16 62.48800 45.29835
-#&gt; G17 59.01660 50.18345
-#&gt; G18 46.76467 69.78182
-#&gt; G19 51.60204 56.43463
-#&gt; G20 61.91270 38.78349</div></pre>
+#&gt; G1  32.33619 60.23343 41.54145 52.19681 56.38270 42.55971 33.02033 60.06870
+#&gt; G2  48.86794 55.93009 52.63698 34.50238 80.29389 44.40397 60.50785 52.92840
+#&gt; G3  35.79171 33.60673 52.31579 64.33733 44.61432 58.68744 29.39473 55.80579
+#&gt; G4  58.66933 74.00183 42.19972 64.07451 50.77330 52.77839 59.86838 47.56040
+#&gt; G5  49.64588 68.52162 72.16323 60.11459 37.21603 67.91064 52.50884 55.42430
+#&gt; G6  45.31216 61.89476 54.61491 58.53231 35.95366 75.35572 31.56480 44.08341
+#&gt; G7  44.36688 53.75594 49.25000 41.45131 47.46551 35.15494 51.55417 61.84854
+#&gt; G8  41.26334 67.51361 37.02152 65.87496 57.12236 42.74833 57.03737 49.42114
+#&gt; G9  38.06754 51.85580 59.42046 53.93208 53.41755 30.72661 39.03034 49.37065
+#&gt; G10 76.16444 36.46239 59.31905 62.79043 39.46577 61.49525 57.48232 35.63426
+#&gt; G11 68.38426 61.80519 55.91606 68.51655 26.82945 58.72418 36.80684 62.45115
+#&gt; G12 51.74387 37.41556 47.22355 49.35335 44.57025 41.54390 71.74298 59.87228
+#&gt; G13 52.99827 41.43280 60.70396 59.24339 52.28855 34.02283 47.82618 36.63186
+#&gt; G14 12.65605 36.17550 54.24542 27.34057 51.33882 63.95815 52.03896 20.48198
+#&gt; G15 54.71253 55.48472 48.80192 73.43557 59.45042 40.30509 57.54489 43.31052
+#&gt; G16 60.95821 51.59720 54.76234 52.53815 56.24226 55.52865 39.16599 42.83431
+#&gt; G17 66.00825 51.03547 53.06104 56.74047 37.68997 33.94181 53.83624 29.02831
+#&gt; G18 34.88228 51.56074 67.76969 63.05596 53.32919 35.63004 80.74776 57.82619
+#&gt; G19 51.69607 54.30562 42.68696 65.77647 60.36898 53.90106 45.06424 37.63271
+#&gt; G20 40.40402 19.68933 50.46697 51.51124 54.24341 44.79646 51.41667 47.79862</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
