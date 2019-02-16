@@ -10,7 +10,6 @@ authors:
   Tiago Olivoto:
     href: https://www.mendeley.com/profiles/tiago-olivoto/
 
-
 reference:
   - title: AMMI
     desc: Functions for AMMI analysis
@@ -53,6 +52,13 @@ reference:
       - '`resca`'
       - '`theme_waasb`'
       - '`performs_ammi`'
+      - '`mmat`'
+  - title: Biometry
+    desc: Useful functions for biometry (under development)
+    contents:
+      - '`corr.ci`'
+      - '`corr.ss`'
+      - '`partial.corr`'
   - title: Datasets
     desc: Data for reproducible examples
     contents:
@@ -60,11 +66,13 @@ reference:
       - '`int.effects`'
       - '`meansGxE`'
 
+
 navbar:
   title: "sparklyr"
   type: inverse
   left:
-    - text: "Home"
+    - icon: fa-home
+      text: "Home"
       href: index.html
     - text: "Examples"
       menu:
@@ -76,6 +84,8 @@ navbar:
         href: articles/vignettes_BLUP.html
       - text: "Multivariate indexes"
         href: articles/vignettes_INDEXES.html
+      - text: "Biometry"
+        href: articles/vignettes_BIOMETRY.html
     - text: "Functions"
       href: reference/index.html
     - text: More
