@@ -8,7 +8,6 @@
 ^README_file$
 ^vignettes/vignettes_INDEXES\.Rmd$
 ^Meta$
-^vignettes$
 ^vignettes/vignettes_AMMI\.Rmd$
 ^vignettes/vignettes_BLUP\.Rmd$
 ^vignettes/vignettes_CROSS-VALIDATION\.Rmd$
