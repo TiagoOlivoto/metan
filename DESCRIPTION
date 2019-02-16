@@ -1,12 +1,12 @@
 Package: METAAB
 Type: Package
 Title: Multi Environment Trials Analysis using AMMI and BLUP
-Version: 1.0.0
+Version: 1.0.2
 Authors@R: c(
     person("Tiago", "Olivoto", , "tiagoolivoto@gmail.com", role = c("aut", "cre"), 
       comment = c(ORCID = "0000-0002-0241-9636")
     ))
-Date: 2019-01-05
+Date: 2019-02-16
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
 Description: This package compute has useful functions for computing stability analysis using AMMI and BLUP methods. Several procedures, including cross-validation, prediction, and stability parameters for AMMI and BLUP models are available. Tools for personalized graphics is also provided.  
 Depends: R (>= 3.5.0)
