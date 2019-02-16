@@ -30,20 +30,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a>
+  <a href="../index.html">
     <span class="fa fa-home"></span>
      
+    Home
   </a>
-</li>
-<li>
-  <a href="../index.html">Home</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -126,382 +124,40 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<p>A dataset called <code>data_ge</code> is provided to make reproducible examples. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importing data</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
+<p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used in this material to arrange the graphics</span>
-dataset =<span class="st"> </span>data_ge</code></pre></div>
-</div>
-<div id="estimating-the-response-variable-using-traditional-ammi-model" class="section level1">
-<h1 class="hasAnchor">
-<a href="#estimating-the-response-variable-using-traditional-ammi-model" class="anchor"></a>Estimating the response variable using traditional AMMI model</h1>
-<p>An interesting feature of <code>WAASB</code> package for traditional AMMI model estimation is the implementation of the S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code>. The response variable of a two-way table (for example, the yield of <em>m</em> genotypes in <em>n</em> environments) may be estimated using the function <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict(model)</a></code>, where <code>model</code> is an object of class <code>WAAS.AMMI</code>. This estimation is based on the number of multiplicative terms declared in the function. If <code>naxis = 0</code> is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If <code>naxis = 1</code>, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If <code>naxis = min(gen-1;env-1)</code>, the AMMIF is fitted. A summary of all possible AMMI models is presented below.</p>
-<table class="table">
-<colgroup>
-<col width="24%">
-<col width="75%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">Member of AMMI family</th>
-<th align="left">Espected response of the <em>i</em>-th genotype in the <em>j</em>th environment</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">AMMI0</td>
-<td align="left"><span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..}\)</span></td>
-</tr>
-<tr class="even">
-<td align="left">AMMI1</td>
-<td align="left"><span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}\)</span></td>
-</tr>
-<tr class="odd">
-<td align="left">AMMI2</td>
-<td align="left"><span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}\)</span></td>
-</tr>
-<tr class="even">
-<td align="left">…</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">AMMIF</td>
-<td align="left"><span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>The number of axes used in the estimation must be carefully chosen. Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968">1968</a>)</span> or predictive success, such as cross-validation procedures <span class="citation">(Piepho <a href="#ref-Piepho:1994">1994</a>)</span> should be used. This package provides both. <code>WAAS.AMMI</code> function compute traditional AMMI analysis showing the number of significant axes according Gollobs’s test. On the other hand, <code>validation.AMMIF</code> function provides a cross-validation, estimating the RMSPD for all AMMI model family based on re-sampling procedures, considering an completely randomized desing or a randomized complete block design.</p>
-<ul>
-<li>Estimating the yield of the 10 oat cultivars in 16 environments using 5 multiplicative terms.</li>
-</ul>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to </span>
+dataset =<span class="st"> </span>data_ge
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</code></pre></div>
+<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
+##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
+##  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
+##  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...
+##  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</code></pre>
+<div id="the-ammi-model" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-ammi-model" class="anchor"></a>The AMMI model</h2>
+<p>The estimate of the response for the <em>i</em>th genotype in the <em>j</em>th environment using The Additive Main Effect and Multiplicative interaction (AMMI) model, is given as follows:</p>
+<p><span class="math display">\[
+{y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^k {{\lambda _k}{a_{ik}}} {t_{jk}} + {\rho _{ij}} + {\varepsilon _{ij}}
+\]</span> where <span class="math inline">\({\lambda_k}\)</span> is the singular value for the <em>k</em>-th interaction principal component axis (IPCA); <span class="math inline">\(a_{ik}\)</span> is the <em>i</em>-th element of the <em>k</em>-th eigenvector; <span class="math inline">\(t_{jk}\)</span> is the <em>j</em>th element of the <em>k</em>th eigenvector. A residual <span class="math inline">\(\rho _{ij}\)</span> remains, if not all <em>k</em> IPCA are used, where <em>k</em> = <span class="math inline">\(min(g - 1; e - 1)\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AMMI_model =<span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(dataset,
                        <span class="dt">resp =</span> GY,
                        <span class="dt">gen =</span> GEN,
                        <span class="dt">env =</span> ENV,
                        <span class="dt">rep =</span> REP,
-                       <span class="dt">verbose =</span> <span class="ot">FALSE</span>)
-predictoat =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">5</span>)
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
-predictoat =<span class="st"> </span>predictoat[[<span class="dv">1</span>]][<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]
-<span class="kw">kable</span>(predictoat, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
-                <span class="dt">full_width =</span> F, <span class="dt">position =</span> <span class="st">"float_left"</span>, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
-<table class="table table table-striped">
-<thead><tr>
-<th style="text-align:left;">
-ENV
-</th>
-<th style="text-align:left;">
-GEN
-</th>
-<th style="text-align:right;">
-Y
-</th>
-<th style="text-align:right;">
-resOLS
-</th>
-<th style="text-align:right;">
-Ypred
-</th>
-<th style="text-align:right;">
-ResAMMI
-</th>
-<th style="text-align:right;">
-YpredAMMI
-</th>
-<th style="text-align:right;">
-AMMI0
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G1
-</td>
-<td style="text-align:right;">
-2.366
-</td>
-<td style="text-align:right;">
--0.0843
-</td>
-<td style="text-align:right;">
-2.450
-</td>
-<td style="text-align:right;">
-0.09642
-</td>
-<td style="text-align:right;">
-2.547
-</td>
-<td style="text-align:right;">
-2.450
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G10
-</td>
-<td style="text-align:right;">
-1.974
-</td>
-<td style="text-align:right;">
--0.3436
-</td>
-<td style="text-align:right;">
-2.318
-</td>
-<td style="text-align:right;">
--0.34387
-</td>
-<td style="text-align:right;">
-1.974
-</td>
-<td style="text-align:right;">
-2.318
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G2
-</td>
-<td style="text-align:right;">
-2.902
-</td>
-<td style="text-align:right;">
-0.3112
-</td>
-<td style="text-align:right;">
-2.591
-</td>
-<td style="text-align:right;">
-0.29424
-</td>
-<td style="text-align:right;">
-2.885
-</td>
-<td style="text-align:right;">
-2.591
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G3
-</td>
-<td style="text-align:right;">
-2.889
-</td>
-<td style="text-align:right;">
-0.0868
-</td>
-<td style="text-align:right;">
-2.802
-</td>
-<td style="text-align:right;">
--0.03492
-</td>
-<td style="text-align:right;">
-2.767
-</td>
-<td style="text-align:right;">
-2.802
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G4
-</td>
-<td style="text-align:right;">
-2.589
-</td>
-<td style="text-align:right;">
-0.1002
-</td>
-<td style="text-align:right;">
-2.488
-</td>
-<td style="text-align:right;">
-0.06498
-</td>
-<td style="text-align:right;">
-2.553
-</td>
-<td style="text-align:right;">
-2.488
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G5
-</td>
-<td style="text-align:right;">
-2.188
-</td>
-<td style="text-align:right;">
--0.1955
-</td>
-<td style="text-align:right;">
-2.384
-</td>
-<td style="text-align:right;">
--0.10861
-</td>
-<td style="text-align:right;">
-2.275
-</td>
-<td style="text-align:right;">
-2.384
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G6
-</td>
-<td style="text-align:right;">
-2.301
-</td>
-<td style="text-align:right;">
--0.0797
-</td>
-<td style="text-align:right;">
-2.381
-</td>
-<td style="text-align:right;">
--0.08705
-</td>
-<td style="text-align:right;">
-2.293
-</td>
-<td style="text-align:right;">
-2.381
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G7
-</td>
-<td style="text-align:right;">
-2.774
-</td>
-<td style="text-align:right;">
-0.1864
-</td>
-<td style="text-align:right;">
-2.587
-</td>
-<td style="text-align:right;">
-0.14563
-</td>
-<td style="text-align:right;">
-2.733
-</td>
-<td style="text-align:right;">
-2.587
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G8
-</td>
-<td style="text-align:right;">
-2.899
-</td>
-<td style="text-align:right;">
-0.0493
-</td>
-<td style="text-align:right;">
-2.850
-</td>
-<td style="text-align:right;">
-0.02101
-</td>
-<td style="text-align:right;">
-2.871
-</td>
-<td style="text-align:right;">
-2.850
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G9
-</td>
-<td style="text-align:right;">
-2.326
-</td>
-<td style="text-align:right;">
--0.0307
-</td>
-<td style="text-align:right;">
-2.357
-</td>
-<td style="text-align:right;">
--0.04783
-</td>
-<td style="text-align:right;">
-2.309
-</td>
-<td style="text-align:right;">
-2.357
-</td>
-</tr>
-</tbody>
-</table>
-<p>Only the first ten values are shown. The following values are presented: <strong>ENV</strong> is the environment; <strong>GEN</strong> is the genotype; <strong>Y</strong> is the response variable; <strong>resOLS</strong> is the residual (<span class="math inline">\(\hat{z}_{ij}\)</span>) estimated by the Ordinary Least Square (OLS), where <span class="math inline">\(\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}\)</span>; <strong>Ypred</strong> is the predicted value by OLS (<span class="math inline">\(\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}\)</span>); <strong>ResAMMI</strong> is the residual estimated by the AMMI model (<span class="math inline">\(\hat{a}_{ij}\)</span>) considering the number of multiplicative terms informed in the function (in this case 5), where <span class="math inline">\(\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}\)</span>; <strong>YpredAMMI</strong> is the predicted value by AMMI model <span class="math inline">\(\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}\)</span>; and <strong>AMMI0</strong> is the predicted value when no multiplicative terms are used, i.e., <span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}\)</span>.</p>
+                       <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
-<div id="estimating-the-waas-index" class="section level1">
-<h1 class="hasAnchor">
-<a href="#estimating-the-waas-index" class="anchor"></a>Estimating the WAAS index</h1>
-<p>The <code>WAAS.AMMI</code> function computes the Weighted Average of Absolute Scores considering (i) all principal component axes that were significant (<span class="math inline">\(p &lt; 0.05\)</span> by default); or (ii) declaring a specific number of axes to be used, according to the following equation:</p>
-<p><span class="math display">\[
-        WAAS_i  = 
-        \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
-\]</span></p>
-<p>where <span class="math inline">\(WAAS_i\)</span> is the weighted average of absolute scores of the <em>i</em>th genotype; <span class="math inline">\(PCA_{ik}\)</span> is the score of the <em>i</em>th genotype in the <em>k</em>th IPCA; and <span class="math inline">\(EP_k\)</span> is the explained variance of the <em>k</em>th IPCA for <span class="math inline">\(k = 1,2,..,p\)</span>, considering <em>p</em> the number of significant PCAs, or a declared number of PCAs. The following functions may be used to do that.</p>
-<div id="number-of-axes-based-on-f-test" class="section level2">
+<div id="within-environment-anova" class="section level2">
 <h2 class="hasAnchor">
-<a href="#number-of-axes-based-on-f-test" class="anchor"></a>Number of axes based on F-test</h2>
-<p>In this example only IPCAs with <em>P</em>-value &lt; 0.05 will be considered in the WAAS estimation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Assuming equal weights for productivity and stability (default)</span>
-WAAS1 =<span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(dataset,
-                  <span class="dt">resp =</span> GY,
-                  <span class="dt">gen =</span> GEN,
-                  <span class="dt">env =</span> ENV,
-                  <span class="dt">rep =</span> REP)</code></pre></div>
-<pre><code>## Done!</code></pre>
+<a href="#within-environment-anova" class="anchor"></a>within-environment ANOVA</h2>
+<p>A within-environment ANOVA considering a fixed-effect model is computed. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># printing the WAAS object</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">3</span>)
-data =<span class="st"> </span>WAAS1<span class="op">$</span>GY<span class="op">$</span>individual<span class="op">$</span>individual
+data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class="op">$</span>individual<span class="op">$</span>individual
 <span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
                 <span class="dt">full_width =</span> F, <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
@@ -1079,13 +735,15 @@ E9
 </tr>
 </tbody>
 </table>
-<p>The above table shows the within-environment ANOVA considering a fixed-effect model. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>; the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>; and the coefficient of determination (R2).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># printing the WAAS object</span>
-data =<span class="st"> </span>WAAS1<span class="op">$</span>GY<span class="op">$</span>anova
+</div>
+<div id="the-ammi-table" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-ammi-table" class="anchor"></a>The AMMI table</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class="op">$</span>anova
 <span class="kw">kable</span>(data,  <span class="dt">align  =</span> <span class="st">"l"</span>, <span class="dt">booktabs =</span> T, <span class="dt">format =</span> <span class="st">"html"</span>, <span class="dt">linesep =</span> <span class="st">""</span>) <span class="op">%&gt;%</span>
 <span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
               <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>) <span class="op">%&gt;%</span>
-<span class="kw">row_spec</span>(<span class="dv">9</span>, <span class="dt">bold =</span> T) <span class="op">%&gt;%</span>
+<span class="kw">row_spec</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">bold =</span> T) <span class="op">%&gt;%</span>
 <span class="kw">add_indent</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">5</span><span class="op">:</span><span class="dv">13</span>))</code></pre></div>
 <table class="table table table-striped">
 <thead><tr>
@@ -1219,132 +877,132 @@ ENV:GEN
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+<td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
 PC1
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;">
 21
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;">
 10.749
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;">
 0.512
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;">
 5.29
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;">
 0.000000000000000000000
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;">
 34.4
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;">
 34.4
-</td>
-</tr>
-<tr>
-<td style="text-align:left; padding-left: 2em;" indentlevel="1">
-PC2
-</td>
-<td style="text-align:left;">
-19
-</td>
-<td style="text-align:left;">
-9.924
-</td>
-<td style="text-align:left;">
-0.522
-</td>
-<td style="text-align:left;">
-5.40
-</td>
-<td style="text-align:left;">
-0.000000000000000000000
-</td>
-<td style="text-align:left;">
-31.8
-</td>
-<td style="text-align:left;">
-66.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left; padding-left: 2em;" indentlevel="1">
-PC3
-</td>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-4.039
-</td>
-<td style="text-align:left;">
-0.238
-</td>
-<td style="text-align:left;">
-2.46
-</td>
-<td style="text-align:left;">
-0.001399999999999999986
-</td>
-<td style="text-align:left;">
-12.9
-</td>
-<td style="text-align:left;">
-79.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left; padding-left: 2em;" indentlevel="1">
-PC4
-</td>
-<td style="text-align:left;">
-15
-</td>
-<td style="text-align:left;">
-3.074
-</td>
-<td style="text-align:left;">
-0.205
-</td>
-<td style="text-align:left;">
-2.12
-</td>
-<td style="text-align:left;">
-0.009599999999999999159
-</td>
-<td style="text-align:left;">
-9.8
-</td>
-<td style="text-align:left;">
-89
 </td>
 </tr>
 <tr>
 <td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
+PC2
+</td>
+<td style="text-align:left;font-weight: bold;">
+19
+</td>
+<td style="text-align:left;font-weight: bold;">
+9.924
+</td>
+<td style="text-align:left;font-weight: bold;">
+0.522
+</td>
+<td style="text-align:left;font-weight: bold;">
+5.40
+</td>
+<td style="text-align:left;font-weight: bold;">
+0.000000000000000000000
+</td>
+<td style="text-align:left;font-weight: bold;">
+31.8
+</td>
+<td style="text-align:left;font-weight: bold;">
+66.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
+PC3
+</td>
+<td style="text-align:left;font-weight: bold;">
+17
+</td>
+<td style="text-align:left;font-weight: bold;">
+4.039
+</td>
+<td style="text-align:left;font-weight: bold;">
+0.238
+</td>
+<td style="text-align:left;font-weight: bold;">
+2.46
+</td>
+<td style="text-align:left;font-weight: bold;">
+0.001399999999999999986
+</td>
+<td style="text-align:left;font-weight: bold;">
+12.9
+</td>
+<td style="text-align:left;font-weight: bold;">
+79.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
+PC4
+</td>
+<td style="text-align:left;font-weight: bold;">
+15
+</td>
+<td style="text-align:left;font-weight: bold;">
+3.074
+</td>
+<td style="text-align:left;font-weight: bold;">
+0.205
+</td>
+<td style="text-align:left;font-weight: bold;">
+2.12
+</td>
+<td style="text-align:left;font-weight: bold;">
+0.009599999999999999159
+</td>
+<td style="text-align:left;font-weight: bold;">
+9.8
+</td>
+<td style="text-align:left;font-weight: bold;">
+89
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
 PC5
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:left;">
 13
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:left;">
 1.446
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:left;">
 0.111
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:left;">
 1.15
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:left;">
 0.317599999999999993427
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:left;">
 4.6
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:left;">
 93.6
 </td>
 </tr>
@@ -1506,12 +1164,356 @@ NA
 </tr>
 </tbody>
 </table>
-<p>The above table is the traditional AMMI analysis. Nine principal component axis were fitted and five were significant at 5% probability error. Based on this result, the AMMI5 model would be the best model to predict the yielding of the genotypes in the studied environments. This is confirmed by the cross-validation in the <a href="#predictive-accuracy">section 3</a>. The AMMI model with the smallest RMSE was the AMMI5. The predicted values (first ten observations) can be seen in <a href="#predicting-the-yield-using-traditional-ammi-model">section 4</a></p>
-<blockquote>
-<p>printing the METAAB object</p>
-</blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
-data =<span class="st"> </span>WAAS1<span class="op">$</span>GY<span class="op">$</span>model[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">13</span><span class="op">:</span><span class="dv">17</span>, <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>)]
+<p>Nine interaction principal component axis (IPCA) were fitted and four were significant at 5% probability error. Based on this result, the AMMI4 model would be the best model to predict the yielding of the genotypes in the studied environments.</p>
+</div>
+</div>
+<div id="estimating-the-response-variable-based-on-significant-ipca-axes" class="section level1">
+<h1 class="hasAnchor">
+<a href="#estimating-the-response-variable-based-on-significant-ipca-axes" class="anchor"></a>Estimating the response variable based on significant IPCA axes</h1>
+<p>An interesting feature of <code>METAAB</code> is the implementation of the S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code>. The response variable of a two-way table (for example, the yield of <em>m</em> genotypes in <em>n</em> environments) may be estimated using the function <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict(model)</a></code>, where <code>model</code> is an object of class <code>WAAS.AMMI</code>. This estimation is based on the number of multiplicative terms declared in the function. If <code>naxis = 0</code> is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If <code>naxis = 1</code>, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If <code>naxis = min(g-1; e-1)</code>, the AMMIF is fitted. A summary of all possible AMMI models is presented below.</p>
+<table class="table">
+<colgroup>
+<col width="24%">
+<col width="75%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Member of AMMI family</th>
+<th align="left">Espected response of the <em>i</em>-th genotype in the <em>j</em>th environment</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">AMMI0</td>
+<td align="left"><span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">AMMI1</td>
+<td align="left"><span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">AMMI2</td>
+<td align="left"><span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">…</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">AMMIF</td>
+<td align="left"><span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968">1968</a>)</span> or predictive success, such as cross-validation procedures <span class="citation">(Piepho <a href="#ref-Piepho:1994">1994</a>)</span> should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function compute traditional AMMI analysis showing the number of significant axes according to Gollobs’s test. On the other hand, <code><a href="../reference/validation.AMMIF.html">validation.AMMIF()</a></code> function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">4</span>)
+predicted =<span class="st"> </span>predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]
+<span class="kw">kable</span>(predicted, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="dt">full_width =</span> F)</code></pre></div>
+<table class="table table table-striped">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:right;">
+Y
+</th>
+<th style="text-align:right;">
+resOLS
+</th>
+<th style="text-align:right;">
+Ypred
+</th>
+<th style="text-align:right;">
+ResAMMI
+</th>
+<th style="text-align:right;">
+YpredAMMI
+</th>
+<th style="text-align:right;">
+AMMI0
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:right;">
+2.37
+</td>
+<td style="text-align:right;">
+-0.084
+</td>
+<td style="text-align:right;">
+2.45
+</td>
+<td style="text-align:right;">
+0.07115
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+2.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:right;">
+1.97
+</td>
+<td style="text-align:right;">
+-0.344
+</td>
+<td style="text-align:right;">
+2.32
+</td>
+<td style="text-align:right;">
+-0.35391
+</td>
+<td style="text-align:right;">
+1.96
+</td>
+<td style="text-align:right;">
+2.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:right;">
+2.90
+</td>
+<td style="text-align:right;">
+0.311
+</td>
+<td style="text-align:right;">
+2.59
+</td>
+<td style="text-align:right;">
+0.29035
+</td>
+<td style="text-align:right;">
+2.88
+</td>
+<td style="text-align:right;">
+2.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:right;">
+2.89
+</td>
+<td style="text-align:right;">
+0.087
+</td>
+<td style="text-align:right;">
+2.80
+</td>
+<td style="text-align:right;">
+-0.04519
+</td>
+<td style="text-align:right;">
+2.76
+</td>
+<td style="text-align:right;">
+2.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:right;">
+2.59
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+2.49
+</td>
+<td style="text-align:right;">
+0.04942
+</td>
+<td style="text-align:right;">
+2.54
+</td>
+<td style="text-align:right;">
+2.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+2.19
+</td>
+<td style="text-align:right;">
+-0.196
+</td>
+<td style="text-align:right;">
+2.38
+</td>
+<td style="text-align:right;">
+-0.07092
+</td>
+<td style="text-align:right;">
+2.31
+</td>
+<td style="text-align:right;">
+2.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:right;">
+2.30
+</td>
+<td style="text-align:right;">
+-0.080
+</td>
+<td style="text-align:right;">
+2.38
+</td>
+<td style="text-align:right;">
+-0.08293
+</td>
+<td style="text-align:right;">
+2.30
+</td>
+<td style="text-align:right;">
+2.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:right;">
+2.77
+</td>
+<td style="text-align:right;">
+0.186
+</td>
+<td style="text-align:right;">
+2.59
+</td>
+<td style="text-align:right;">
+0.16433
+</td>
+<td style="text-align:right;">
+2.75
+</td>
+<td style="text-align:right;">
+2.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:right;">
+2.90
+</td>
+<td style="text-align:right;">
+0.049
+</td>
+<td style="text-align:right;">
+2.85
+</td>
+<td style="text-align:right;">
+-0.00536
+</td>
+<td style="text-align:right;">
+2.84
+</td>
+<td style="text-align:right;">
+2.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:right;">
+2.33
+</td>
+<td style="text-align:right;">
+-0.031
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+<td style="text-align:right;">
+-0.01696
+</td>
+<td style="text-align:right;">
+2.34
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+</tr>
+</tbody>
+</table>
+<p>Only the first ten values are shown. The following values are presented: <strong>ENV</strong> is the environment; <strong>GEN</strong> is the genotype; <strong>Y</strong> is the response variable; <strong>resOLS</strong> is the residual (<span class="math inline">\(\hat{z}_{ij}\)</span>) estimated by the Ordinary Least Square (OLS), where <span class="math inline">\(\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}\)</span>; <strong>Ypred</strong> is the predicted value by OLS (<span class="math inline">\(\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}\)</span>); <strong>ResAMMI</strong> is the residual estimated by the AMMI model (<span class="math inline">\(\hat{a}_{ij}\)</span>) considering the number of multiplicative terms informed in the function (in this case 5), where <span class="math inline">\(\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}\)</span>; <strong>YpredAMMI</strong> is the predicted value by AMMI model <span class="math inline">\(\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}\)</span>; and <strong>AMMI0</strong> is the predicted value when no multiplicative terms are used, i.e., <span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}\)</span>.</p>
+</div>
+<div id="estimating-the-waas-index" class="section level1">
+<h1 class="hasAnchor">
+<a href="#estimating-the-waas-index" class="anchor"></a>Estimating the WAAS index</h1>
+<p>The <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function computes the Weighted Average of Absolute Scores considering (i) all principal component axes that were significant (<span class="math inline">\(p &lt; 0.05\)</span> by default); or (ii) declaring a specific number of axes to be used, according to the following equation:</p>
+<p><span class="math display">\[
+        WAAS_i  = 
+        \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
+\]</span></p>
+<p>where <span class="math inline">\(WAAS_i\)</span> is the weighted average of absolute scores of the <em>i</em>th genotype; <span class="math inline">\(PCA_{ik}\)</span> is the score of the <em>i</em>th genotype in the <em>k</em>th IPCA; and <span class="math inline">\(EP_k\)</span> is the explained variance of the <em>k</em>th IPCA for <span class="math inline">\(k = 1,2,..,p\)</span>, considering <em>p</em> the number of significant PCAs, or a declared number of PCAs. The following functions may be used to do that.</p>
+<div id="number-of-axes-based-on-f-test" class="section level2">
+<h2 class="hasAnchor">
+<a href="#number-of-axes-based-on-f-test" class="anchor"></a>Number of axes based on F-test</h2>
+<p>In this example only IPCAs with <em>P</em>-value &lt; 0.05 will be considered in the WAAS estimation. This is the default setting and the model was already fitted and stored into AMMI_model&gt;GY&gt;model</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class="op">$</span>model[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">13</span><span class="op">:</span><span class="dv">17</span>, <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>)]
 <span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
                 <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
@@ -1557,16 +1559,16 @@ GEN
 G1
 </td>
 <td style="text-align:right;">
-2.604
+2.60
 </td>
 <td style="text-align:right;">
-0.1262
+0.126
 </td>
 <td style="text-align:right;">
-24.878
+24.88
 </td>
 <td style="text-align:right;">
-100.00
+100.0
 </td>
 <td style="text-align:right;">
 6
@@ -1575,7 +1577,7 @@ G1
 1
 </td>
 <td style="text-align:right;">
-51.17
+62.4
 </td>
 <td style="text-align:right;">
 3
@@ -1589,16 +1591,16 @@ GEN
 G10
 </td>
 <td style="text-align:right;">
-2.471
+2.47
 </td>
 <td style="text-align:right;">
-0.5507
-</td>
-<td style="text-align:right;">
-0.000
+0.551
 </td>
 <td style="text-align:right;">
 0.00
+</td>
+<td style="text-align:right;">
+0.0
 </td>
 <td style="text-align:right;">
 10
@@ -1607,7 +1609,7 @@ G10
 10
 </td>
 <td style="text-align:right;">
-0.00
+0.0
 </td>
 <td style="text-align:right;">
 10
@@ -1621,16 +1623,16 @@ GEN
 G2
 </td>
 <td style="text-align:right;">
-2.744
+2.74
 </td>
 <td style="text-align:right;">
-0.3647
+0.365
 </td>
 <td style="text-align:right;">
-51.262
+51.26
 </td>
 <td style="text-align:right;">
-43.82
+43.8
 </td>
 <td style="text-align:right;">
 3
@@ -1639,10 +1641,10 @@ G2
 7
 </td>
 <td style="text-align:right;">
-48.66
+47.5
 </td>
 <td style="text-align:right;">
-4
+5
 </td>
 </tr>
 <tr>
@@ -1653,25 +1655,25 @@ GEN
 G3
 </td>
 <td style="text-align:right;">
-2.955
+2.96
 </td>
 <td style="text-align:right;">
-0.1306
+0.131
 </td>
 <td style="text-align:right;">
-90.929
+90.93
 </td>
 <td style="text-align:right;">
-98.98
-</td>
-<td style="text-align:right;">
-2
+99.0
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-93.75
+2
+</td>
+<td style="text-align:right;">
+95.0
 </td>
 <td style="text-align:right;">
 1
@@ -1685,16 +1687,16 @@ GEN
 G4
 </td>
 <td style="text-align:right;">
-2.642
+2.64
 </td>
 <td style="text-align:right;">
-0.2720
+0.272
 </td>
 <td style="text-align:right;">
-32.060
+32.06
 </td>
 <td style="text-align:right;">
-65.67
+65.7
 </td>
 <td style="text-align:right;">
 5
@@ -1703,10 +1705,10 @@ G4
 4
 </td>
 <td style="text-align:right;">
-43.82
+48.9
 </td>
 <td style="text-align:right;">
-5
+4
 </td>
 </tr>
 <tr>
@@ -1717,16 +1719,16 @@ GEN
 G5
 </td>
 <td style="text-align:right;">
-2.537
+2.54
 </td>
 <td style="text-align:right;">
-0.2553
+0.255
 </td>
 <td style="text-align:right;">
-12.419
+12.42
 </td>
 <td style="text-align:right;">
-69.60
+69.6
 </td>
 <td style="text-align:right;">
 7
@@ -1735,10 +1737,10 @@ G5
 3
 </td>
 <td style="text-align:right;">
-32.43
+41.0
 </td>
 <td style="text-align:right;">
-7
+6
 </td>
 </tr>
 <tr>
@@ -1749,16 +1751,16 @@ GEN
 G6
 </td>
 <td style="text-align:right;">
-2.534
+2.53
 </td>
 <td style="text-align:right;">
-0.2747
+0.275
 </td>
 <td style="text-align:right;">
-11.797
+11.80
 </td>
 <td style="text-align:right;">
-65.02
+65.0
 </td>
 <td style="text-align:right;">
 8
@@ -1767,7 +1769,7 @@ G6
 5
 </td>
 <td style="text-align:right;">
-30.43
+38.4
 </td>
 <td style="text-align:right;">
 8
@@ -1781,16 +1783,16 @@ GEN
 G7
 </td>
 <td style="text-align:right;">
-2.741
+2.74
 </td>
 <td style="text-align:right;">
-0.4344
+0.434
 </td>
 <td style="text-align:right;">
-50.654
+50.65
 </td>
 <td style="text-align:right;">
-27.39
+27.4
 </td>
 <td style="text-align:right;">
 4
@@ -1799,10 +1801,10 @@ G7
 9
 </td>
 <td style="text-align:right;">
-42.51
+39.0
 </td>
 <td style="text-align:right;">
-6
+7
 </td>
 </tr>
 <tr>
@@ -1813,16 +1815,16 @@ GEN
 G8
 </td>
 <td style="text-align:right;">
-3.004
+3.00
 </td>
 <td style="text-align:right;">
-0.3065
+0.307
 </td>
 <td style="text-align:right;">
-100.000
+100.00
 </td>
 <td style="text-align:right;">
-57.53
+57.5
 </td>
 <td style="text-align:right;">
 1
@@ -1831,7 +1833,7 @@ G8
 6
 </td>
 <td style="text-align:right;">
-85.14
+78.8
 </td>
 <td style="text-align:right;">
 2
@@ -1845,16 +1847,16 @@ GEN
 G9
 </td>
 <td style="text-align:right;">
-2.510
+2.51
 </td>
 <td style="text-align:right;">
-0.4006
+0.401
 </td>
 <td style="text-align:right;">
-7.320
+7.32
 </td>
 <td style="text-align:right;">
-35.37
+35.4
 </td>
 <td style="text-align:right;">
 9
@@ -1863,7 +1865,7 @@ G9
 8
 </td>
 <td style="text-align:right;">
-17.14
+21.3
 </td>
 <td style="text-align:right;">
 9
@@ -1877,16 +1879,16 @@ ENV
 E1
 </td>
 <td style="text-align:right;">
-2.521
+2.52
 </td>
 <td style="text-align:right;">
-0.1994
+0.199
 </td>
 <td style="text-align:right;">
-42.744
+42.74
 </td>
 <td style="text-align:right;">
-73.11
+73.1
 </td>
 <td style="text-align:right;">
 9
@@ -1895,7 +1897,7 @@ E1
 5
 </td>
 <td style="text-align:right;">
-53.37
+57.9
 </td>
 <td style="text-align:right;">
 6
@@ -1909,16 +1911,16 @@ ENV
 E10
 </td>
 <td style="text-align:right;">
-2.175
+2.17
 </td>
 <td style="text-align:right;">
-0.1933
+0.193
 </td>
 <td style="text-align:right;">
-29.930
+29.93
 </td>
 <td style="text-align:right;">
-74.64
+74.6
 </td>
 <td style="text-align:right;">
 10
@@ -1927,10 +1929,10 @@ E10
 4
 </td>
 <td style="text-align:right;">
-45.58
+52.3
 </td>
 <td style="text-align:right;">
-8
+7
 </td>
 </tr>
 <tr>
@@ -1941,16 +1943,16 @@ ENV
 E11
 </td>
 <td style="text-align:right;">
-1.368
+1.37
 </td>
 <td style="text-align:right;">
-0.1509
+0.151
 </td>
 <td style="text-align:right;">
-0.000
+0.00
 </td>
 <td style="text-align:right;">
-85.34
+85.3
 </td>
 <td style="text-align:right;">
 14
@@ -1959,10 +1961,10 @@ E11
 2
 </td>
 <td style="text-align:right;">
-29.87
+42.7
 </td>
 <td style="text-align:right;">
-14
+11
 </td>
 </tr>
 <tr>
@@ -1973,16 +1975,16 @@ ENV
 E12
 </td>
 <td style="text-align:right;">
-1.609
+1.61
 </td>
 <td style="text-align:right;">
-0.1916
+0.192
 </td>
 <td style="text-align:right;">
-8.911
+8.91
 </td>
 <td style="text-align:right;">
-75.06
+75.1
 </td>
 <td style="text-align:right;">
 13
@@ -1991,7 +1993,7 @@ E12
 3
 </td>
 <td style="text-align:right;">
-32.06
+42.0
 </td>
 <td style="text-align:right;">
 12
@@ -2005,16 +2007,16 @@ ENV
 E13
 </td>
 <td style="text-align:right;">
-2.910
+2.91
 </td>
 <td style="text-align:right;">
-0.3224
+0.322
 </td>
 <td style="text-align:right;">
-57.171
+57.17
 </td>
 <td style="text-align:right;">
-42.06
+42.1
 </td>
 <td style="text-align:right;">
 6
@@ -2023,10 +2025,10 @@ E13
 12
 </td>
 <td style="text-align:right;">
-51.88
+49.6
 </td>
 <td style="text-align:right;">
-7
+8
 </td>
 </tr>
 <tr>
@@ -2037,16 +2039,16 @@ ENV
 E14
 </td>
 <td style="text-align:right;">
-1.782
+1.78
 </td>
 <td style="text-align:right;">
-0.2050
+0.205
 </td>
 <td style="text-align:right;">
-15.343
+15.34
 </td>
 <td style="text-align:right;">
-71.69
+71.7
 </td>
 <td style="text-align:right;">
 12
@@ -2055,10 +2057,10 @@ E14
 6
 </td>
 <td style="text-align:right;">
-35.06
+43.5
 </td>
 <td style="text-align:right;">
-11
+10
 </td>
 </tr>
 <tr>
@@ -2069,16 +2071,16 @@ ENV
 E2
 </td>
 <td style="text-align:right;">
-3.180
+3.18
 </td>
 <td style="text-align:right;">
-0.2932
+0.293
 </td>
 <td style="text-align:right;">
-67.198
+67.20
 </td>
 <td style="text-align:right;">
-49.44
+49.4
 </td>
 <td style="text-align:right;">
 4
@@ -2087,7 +2089,7 @@ E2
 8
 </td>
 <td style="text-align:right;">
-60.98
+58.3
 </td>
 <td style="text-align:right;">
 5
@@ -2101,16 +2103,16 @@ ENV
 E3
 </td>
 <td style="text-align:right;">
-4.064
+4.06
 </td>
 <td style="text-align:right;">
-0.3101
+0.310
 </td>
 <td style="text-align:right;">
-100.000
+100.00
 </td>
 <td style="text-align:right;">
-45.18
+45.2
 </td>
 <td style="text-align:right;">
 1
@@ -2119,10 +2121,10 @@ E3
 11
 </td>
 <td style="text-align:right;">
-80.81
+72.6
 </td>
 <td style="text-align:right;">
-2
+3
 </td>
 </tr>
 <tr>
@@ -2133,16 +2135,16 @@ ENV
 E4
 </td>
 <td style="text-align:right;">
-3.675
+3.67
 </td>
 <td style="text-align:right;">
-0.3450
+0.345
 </td>
 <td style="text-align:right;">
-85.569
+85.57
 </td>
 <td style="text-align:right;">
-36.37
+36.4
 </td>
 <td style="text-align:right;">
 3
@@ -2151,10 +2153,10 @@ E4
 13
 </td>
 <td style="text-align:right;">
-68.35
+61.0
 </td>
 <td style="text-align:right;">
-3
+4
 </td>
 </tr>
 <tr>
@@ -2165,16 +2167,16 @@ ENV
 E5
 </td>
 <td style="text-align:right;">
-3.910
+3.91
 </td>
 <td style="text-align:right;">
-0.2555
+0.255
 </td>
 <td style="text-align:right;">
-94.294
+94.29
 </td>
 <td style="text-align:right;">
-58.95
+59.0
 </td>
 <td style="text-align:right;">
 2
@@ -2183,7 +2185,7 @@ E5
 7
 </td>
 <td style="text-align:right;">
-81.92
+76.6
 </td>
 <td style="text-align:right;">
 1
@@ -2197,16 +2199,16 @@ ENV
 E6
 </td>
 <td style="text-align:right;">
-2.663
+2.66
 </td>
 <td style="text-align:right;">
-0.0928
+0.093
 </td>
 <td style="text-align:right;">
-48.031
+48.03
 </td>
 <td style="text-align:right;">
-100.00
+100.0
 </td>
 <td style="text-align:right;">
 7
@@ -2215,10 +2217,10 @@ E6
 1
 </td>
 <td style="text-align:right;">
-66.22
+74.0
 </td>
 <td style="text-align:right;">
-4
+2
 </td>
 </tr>
 <tr>
@@ -2229,16 +2231,16 @@ ENV
 E7
 </td>
 <td style="text-align:right;">
-1.989
+1.99
 </td>
 <td style="text-align:right;">
-0.3003
+0.300
 </td>
 <td style="text-align:right;">
-23.020
+23.02
 </td>
 <td style="text-align:right;">
-47.64
+47.6
 </td>
 <td style="text-align:right;">
 11
@@ -2247,7 +2249,7 @@ E7
 9
 </td>
 <td style="text-align:right;">
-31.64
+35.3
 </td>
 <td style="text-align:right;">
 13
@@ -2261,16 +2263,16 @@ ENV
 E8
 </td>
 <td style="text-align:right;">
-2.536
+2.54
 </td>
 <td style="text-align:right;">
-0.3050
+0.305
 </td>
 <td style="text-align:right;">
-43.327
+43.33
 </td>
 <td style="text-align:right;">
-46.47
+46.5
 </td>
 <td style="text-align:right;">
 8
@@ -2279,7 +2281,7 @@ E8
 10
 </td>
 <td style="text-align:right;">
-44.43
+44.9
 </td>
 <td style="text-align:right;">
 9
@@ -2293,16 +2295,16 @@ ENV
 E9
 </td>
 <td style="text-align:right;">
-3.057
+3.06
 </td>
 <td style="text-align:right;">
-0.4891
+0.489
 </td>
 <td style="text-align:right;">
-62.622
+62.62
 </td>
 <td style="text-align:right;">
-0.00
+0.0
 </td>
 <td style="text-align:right;">
 5
@@ -2311,29 +2313,952 @@ E9
 14
 </td>
 <td style="text-align:right;">
-40.70
+31.3
 </td>
 <td style="text-align:right;">
-10
+14
 </td>
 </tr>
 </tbody>
 </table>
-<p>In this example, the scores of the nine PCA were not shown. The output generated by the <code>WAAS.AMMI</code> function shows the following results: <strong>type</strong>, genotype (GEN) or environment (ENV); <strong>Code</strong>, the code attributed to each level of the factors; <strong>Y</strong>, the response variable (in this case the grain yield); <strong>WAAS</strong> the weighted average of the absolute scores, estimated with all PCA axes with <em>P</em>-value <span class="math inline">\(\le\)</span> 0.05; <strong>PctWAAS</strong> and <strong>PctResp</strong> that are the percentage values for the WAAS and Y, respectively; <strong>OrResp</strong> and <strong>OrWAAS</strong> that are the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; <strong>WAASY</strong> is the weighted average of absolute scores and response variable. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 is estimated by: <span class="math inline">\(WAAS_{G1} = [(86.32\times50)+(98.88\times50)]/50+50 = 92.60\)</span>. Then the **OrWAASY* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked. See <a href="#estimating-the-waasby-index">Estimating the WAASBY index</a> for a detailed explanation.</p>
-<p>In this example, the scores of the nine PCAs were not shown. The output generated by the <code>WAAS.AMMI</code> function shows the following results: <strong>type</strong>, genotype (GEN) or environment (ENV); <strong>Code</strong>, the code attributed to each level of the factors; <strong>Y</strong>, the response variable (in this case the grain yield); <strong>WAAS</strong> the weighted average of the absolute scores, estimated with all significant IPCA; <strong>PctWAAS</strong> and <strong>PctResp</strong>, the rescaled variable for the WAAS and Y, respectively; <strong>OrResp</strong> and <strong>OrWAAS</strong>, the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; <strong>WAASY</strong> is the simultanteous selection index that weights between response variable and stability. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 would be then: <span class="math inline">\(WAASY_{G1} = [(22.043\times50)+(100\times50)]/50+50 = 92.60\)</span>, which, with equal weights is equivalente to the aritmetic mean of pctResp and PctWAAS. Then the <em>OrWAASY</em> is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked. Please, refer to <a href="#estimating-the-waasby-index">Estimating the WAASBY index</a> for a detailed explanation.</p>
+<p>In this example, the scores of the nine PCA were not shown. The output generated by the <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function shows the following results: <strong>type</strong>, genotype (GEN) or environment (ENV); <strong>Code</strong>, the code attributed to each level of the factors; <strong>Y</strong>, the response variable (in this case the grain yield); <strong>WAAS</strong> the weighted average of the absolute scores, estimated with all PCA axes with <em>P</em>-value <span class="math inline">\(\le\)</span> 0.05; <strong>PctWAAS</strong> and <strong>PctResp</strong> that are the percentage values for the WAAS and Y, respectively; <strong>OrResp</strong> and <strong>OrWAAS</strong> that are the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; <strong>WAASY</strong> is the weighted average of absolute scores and response variable. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 is estimated by: <span class="math inline">\(WAAS_{G1} = [(86.32\times50)+(98.88\times50)]/50+50 = 92.60\)</span>. Then the **OrWAASY* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked. See <a href="#estimating-the-waasby-index">Estimating the WAASBY index</a> for a detailed explanation.</p>
 </div>
 <div id="number-of-axes-declared-manually" class="section level2">
 <h2 class="hasAnchor">
 <a href="#number-of-axes-declared-manually" class="anchor"></a>Number of axes declared manually</h2>
 <p>The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument <code>naxis</code> in the function <code>WAAS.AMMI</code> is then used to overwrite the default chose of significant terms.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">WAAS2 =<span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(dataset,
-                  <span class="dt">resp =</span> GY,
-                  <span class="dt">gen =</span> GEN,
-                  <span class="dt">env =</span> ENV,
-                  <span class="dt">rep =</span> REP,
-                  <span class="dt">naxis =</span> <span class="dv">7</span>,
-                  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p>The only difference in this output compared to those from <a href="#assuming-a-given-probability-error-for-chosing-the-number-of-axes">section 5.1</a> is that here we declared that seven PCA axes should be used for computing the WAAS value. Thus, only the values of WAAS, OrWAAS, WAASY and OrWAASY may have significant changes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AMMI_model_<span class="dv">2</span> =<span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(dataset,
+                         <span class="dt">resp =</span> GY,
+                         <span class="dt">gen =</span> GEN,
+                         <span class="dt">env =</span> ENV,
+                         <span class="dt">rep =</span> REP,
+                         <span class="dt">naxis =</span> <span class="dv">7</span>, <span class="co"># Use 7 IPCA for computing WAAS</span>
+                         <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>The only difference in this output is that here we declared that seven IPCA axes should be used for computing the WAAS value. Thus, only the values of WAAS, OrWAAS, WAASY and OrWAASY may have significant changes.</p>
+</div>
+<div id="biplots" class="section level2">
+<h2 class="hasAnchor">
+<a href="#biplots" class="anchor"></a>Biplots</h2>
+<p>Provided that an object of class “WAAS.AMMI” is available in the global environment, the graphics may be obtained using the function <code><a href="../reference/plot.scores.html">plot.scores()</a></code>. To do that, we will revisit the previusly fitted model <code>AMMI_model</code> . Please, refer to <code><a href="../reference/plot.scores.html">?plot.scores</a></code> for more details. Four types of graphics can be generated: 1 = <span class="math inline">\(PC1 \times PC2\)</span>; 2 = <span class="math inline">\(GY \times PC1\)</span>; 3 = <span class="math inline">\(GY \times WAASB\)</span>; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.</p>
+<div id="biplot-type-1-pc1-x-pc2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#biplot-type-1-pc1-x-pc2" class="anchor"></a>biplot type 1: PC1 x PC2</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)
+p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)
+p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY,
+                 <span class="dt">type =</span> <span class="dv">1</span>,
+                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,
+                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,
+                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,
+                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,
+                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)
+<span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</code></pre></div>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
+</div>
+<div id="biplot-type-2-gy-x-pc1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#biplot-type-2-gy-x-pc1" class="anchor"></a>biplot type 2: GY x PC1</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p3 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)
+p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>,
+                 <span class="dt">col.segm.env =</span> <span class="st">"transparent"</span>) <span class="op">+</span>
+<span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span>
+<span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),
+                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))
+
+<span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</code></pre></div>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
+</div>
+<div id="biplot-type-3-gy-x-waas" class="section level3">
+<h3 class="hasAnchor">
+<a href="#biplot-type-3-gy-x-waas" class="anchor"></a>biplot type 3: GY x WAAS</h3>
+<p>The quadrants in the following biplot represent four classes of genotypes/environments regarding the joint interpretation of mean performance and stability. The genotypes or environments included in quadrant I can be considered unstable genotypes or environments with high discrimination ability, and with productivity below the grand mean. In quadrant II are included unstable genotypes, although with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within quadrant III have low productivity, but can be considered stable due to the lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV are higly productive and broadly adapted due to the high magnitude of the response variable and high stability performance (lower values of WAASB).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p5 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)
+p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>,
+                 <span class="dt">x.lab =</span> <span class="st">"My customized x label"</span>,
+                 <span class="dt">size.shape =</span> <span class="dv">3</span>,
+                 <span class="dt">size.tex.pa =</span> <span class="dv">2</span>,
+                 <span class="dt">x.lim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">1.2</span>, <span class="fl">4.7</span>),
+                 <span class="dt">x.breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))
+<span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</code></pre></div>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
+</div>
+<div id="biplot-type-4-nominal-yield-and-environment-ipca1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#biplot-type-4-nominal-yield-and-environment-ipca1" class="anchor"></a>biplot type 4 : nominal yield and environment IPCA1</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY,
+            <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">size.tex.pa =</span> <span class="fl">1.5</span>)</code></pre></div>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-11-1.png" width="528" style="display: block; margin: auto;"></p>
+</div>
+</div>
+</div>
+<div id="simultaneous-selection-for-mean-performance-and-stability" class="section level1">
+<h1 class="hasAnchor">
+<a href="#simultaneous-selection-for-mean-performance-and-stability" class="anchor"></a>Simultaneous selection for mean performance and stability</h1>
+<p>The WAASY index is used for genotype ranking considering both the stability (WAAS) and mean performance based on the following model:</p>
+<p><span class="math display">\[
+WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _S}} \right)}}{{{\theta _Y} + {\theta _S}}}
+\]</span></p>
+<p>where <span class="math inline">\(WAASY_i\)</span> is the superiority index for the <em>i</em>-th genotype that weights between performance and stability; <span class="math inline">\(rG_i\)</span> and <span class="math inline">\(rW_i\)</span> are the rescaled values (0-100) for GY and WAASB, respectively; <span class="math inline">\(\theta _Y\)</span> and <span class="math inline">\(\theta_S\)</span> are the weights for GY and WAASB, respectively.</p>
+<p>This index was also already computed and stored into AMMI_model&gt;GY&gt;model. An intuitively plot may be obtained by running</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
+p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(AMMI_model<span class="op">$</span>GY)
+p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))
+<span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</code></pre></div>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;"></p>
+<p>The values of WAASY in the plot above were computed considering equal weights for mean performance and stability. Different weights may be assigned using the <code>wresp</code> argument of the <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function.</p>
+</div>
+<div id="estimating-the-waasy-in-different-scenarios" class="section level1">
+<h1 class="hasAnchor">
+<a href="#estimating-the-waasy-in-different-scenarios" class="anchor"></a>Estimating the WAASY in different scenarios</h1>
+<p>In the following example, we will assume that we want to obtain the ranks considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">WAASratio =<span class="st"> </span><span class="kw"><a href="../reference/WAASratio.AMMI.html">WAASratio.AMMI</a></span>(dataset,
+                           <span class="dt">resp =</span> GY,
+                           <span class="dt">gen =</span> GEN,
+                           <span class="dt">env =</span> ENV,
+                           <span class="dt">rep =</span> REP,
+                           <span class="dt">increment =</span> <span class="dv">10</span>)</code></pre></div>
+<div id="printing-the-model-outputs" class="section level2">
+<h2 class="hasAnchor">
+<a href="#printing-the-model-outputs" class="anchor"></a>Printing the model outputs</h2>
+<p>The genotype ranking for each scenario of WAASY/GY weight ratio is shown bellow</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
+data =<span class="st"> </span>WAASratio<span class="op">$</span>hetcomb
+<span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
+                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
+<table class="table table table-striped">
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+100/0
+</th>
+<th style="text-align:right;">
+90/10
+</th>
+<th style="text-align:right;">
+80/20
+</th>
+<th style="text-align:right;">
+70/30
+</th>
+<th style="text-align:right;">
+60/40
+</th>
+<th style="text-align:right;">
+50/50
+</th>
+<th style="text-align:right;">
+40/60
+</th>
+<th style="text-align:right;">
+30/70
+</th>
+<th style="text-align:right;">
+20/80
+</th>
+<th style="text-align:right;">
+10/90
+</th>
+<th style="text-align:right;">
+0/100
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
+data =<span class="st"> </span>WAASratio<span class="op">$</span>hetdata
+<span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
+                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
+<table class="table table table-striped">
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+WAAS
+</th>
+<th style="text-align:right;">
+9PC
+</th>
+<th style="text-align:right;">
+8PC
+</th>
+<th style="text-align:right;">
+7PC
+</th>
+<th style="text-align:right;">
+6PC
+</th>
+<th style="text-align:right;">
+5PC
+</th>
+<th style="text-align:right;">
+4PC
+</th>
+<th style="text-align:right;">
+3PC
+</th>
+<th style="text-align:right;">
+2PC
+</th>
+<th style="text-align:right;">
+1PC
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="plotting-the-heat-map-graphics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#plotting-the-heat-map-graphics" class="anchor"></a>Plotting the heat map graphics</h2>
+<p>The first type of heatmap shows the genotype ranking depending on the number of principal component axes used for estimating the WAASB index. An euclidean distance-based dendrogram is used for grouping the genotype ranking for both genotypes and principal component axes. The second type of heatmap shows the genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a ratio of 100/0 considers exclusively the stability for genotype ranking. On the other hand, a ratio of 0/100 considers exclusively the productivity for genotype ranking. Four clusters are estimated (1) unproductive and unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but unproductive genotypes; and (4), productive and stable genotypes.</p>
+<div id="ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="section level3">
+<h3 class="hasAnchor">
+<a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAAS</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASratio, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-16-1.png" width="528" style="display: block; margin: auto;"></p>
+</div>
+<div id="ranks-of-genotypes-depending-on-the-waasgy-ratio" class="section level3">
+<h3 class="hasAnchor">
+<a href="#ranks-of-genotypes-depending-on-the-waasgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAAS/GY ratio</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASratio, <span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-17-1.png" width="528" style="display: block; margin: auto;"></p>
+</div>
 </div>
 </div>
 <div id="other-ammi-based-stability-indexes" class="section level1">
@@ -2795,836 +3720,6 @@ G9
 </table>
 </td>
 </tr></tbody></table>
-<div id="biplots" class="section level2">
-<h2 class="hasAnchor">
-<a href="#biplots" class="anchor"></a>Biplots</h2>
-<p>Provided that an object of class “WAAS.AMMI” is available in the global environment, the graphics may be obtained using the function <code><a href="../reference/plot.scores.html">plot.scores()</a></code>. To do that, we will revisit the previusly fitted model <code>AMMI_model</code> . Please, refer to <code><a href="../reference/plot.scores.html">?plot.scores</a></code> for more details. Four types of graphics can be generated: 1 = <span class="math inline">\(PC1 \times PC2\)</span>; 2 = <span class="math inline">\(GY \times PC1\)</span>; 3 = <span class="math inline">\(GY \times WAASB\)</span>; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.</p>
-<div id="biplot-type-1-pc1-x-pc2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#biplot-type-1-pc1-x-pc2" class="anchor"></a>biplot type 1: PC1 x PC2</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)
-p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)
-p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY,
-                 <span class="dt">type =</span> <span class="dv">1</span>,
-                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,
-                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,
-                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,
-                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,
-                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)
-<span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
-</div>
-<div id="biplot-type-2-gy-x-pc1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#biplot-type-2-gy-x-pc1" class="anchor"></a>biplot type 2: GY x PC1</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p3 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)
-p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>,
-                 <span class="dt">col.segm.env =</span> <span class="st">"transparent"</span>) <span class="op">+</span>
-<span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span>
-<span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),
-                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))
-
-<span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
-</div>
-<div id="biplot-type-3-gy-x-waas" class="section level3">
-<h3 class="hasAnchor">
-<a href="#biplot-type-3-gy-x-waas" class="anchor"></a>biplot type 3: GY x WAAS</h3>
-<p>The quadrants proposed in the following biplot represent the four classifications proposed here regarding the joint interpretation of productivity and stability. The genotypes or environments included in quadrant I can be considered unstable genotypes or environments with high discrimination ability, and with productivity below the grand mean. In quadrant II are included unstable genotypes, although with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within quadrant III have low productivity, but can be considered stable due to the lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV are higly productive and broadly adapted due to the high magnitude of the response variable and high stability performance (lower values of WAASB).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p5 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)
-p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>,
-                 <span class="dt">x.lab =</span> <span class="st">"My customized x label"</span>,
-                 <span class="dt">size.shape =</span> <span class="dv">3</span>,
-                 <span class="dt">size.tex.pa =</span> <span class="dv">2</span>,
-                 <span class="dt">x.lim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">1.2</span>, <span class="fl">4.7</span>),
-                 <span class="dt">x.breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))
-<span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
-</div>
-<div id="biplot-type-4-nominal-yield-and-environment-ipca1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#biplot-type-4-nominal-yield-and-environment-ipca1" class="anchor"></a>biplot type 4 : nominal yield and environment IPCA1</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY,
-            <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">size.tex.pa =</span> <span class="fl">1.5</span>)</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-12-1.png" width="528" style="display: block; margin: auto;"></p>
-</div>
-</div>
-</div>
-<div id="estimating-the-waasy-index" class="section level1">
-<h1 class="hasAnchor">
-<a href="#estimating-the-waasy-index" class="anchor"></a>Estimating the WAASY index</h1>
-<p>The function <code>WAASratio.AMMI</code> considers both stability (WAAS) and productivity for genotype ranking considering the following model:</p>
-<p><span class="math display">\[
-WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _S}} \right)}}{{{\theta _Y} + {\theta _S}}}
-\]</span></p>
-<p>where <span class="math inline">\(WAASY_i\)</span> is the superiority index for the <em>i</em>-th genotype that weights between performance and stability; <span class="math inline">\(rG_i\)</span> and <span class="math inline">\(rW_i\)</span> are the rescaled values (0-100) for GY and WAASB, respectively; <span class="math inline">\(\theta _Y\)</span> and <span class="math inline">\(\theta_S\)</span> are the weights for GY and WAASB, respectively.</p>
-<p>In the following example we will assume that we want to obtain the ranks changing the WAAS/GY ratio in 10% each scenario and to plot the WAASBY values considering a WAAS/GY ratio equal 30/70. <strong>Important! THE ARGUMENT <code>saveWAASY</code> MUST BE DIVISIBLE BY <code>increment</code>!</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">WAASratio =<span class="st"> </span><span class="kw"><a href="../reference/WAASBYratio.html">WAASBYratio</a></span>(dataset,
-                          <span class="dt">resp =</span> GY,
-                          <span class="dt">gen =</span> GEN,
-                          <span class="dt">env =</span> ENV,
-                          <span class="dt">rep =</span> REP,
-                          <span class="dt">increment =</span> <span class="dv">50</span>,
-                          <span class="dt">saveWAASY =</span> <span class="dv">50</span>)</code></pre></div>
-<div id="printing-the-model-outputs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#printing-the-model-outputs" class="anchor"></a>Printing the model outputs</h2>
-<ul>
-<li>WAASY values</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
-data =<span class="st"> </span>WAASratio<span class="op">$</span>WAASY
-<span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
-                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
-<table class="table table table-striped">
-<thead><tr>
-<th style="text-align:left;">
-Code
-</th>
-<th style="text-align:right;">
-PesRes
-</th>
-<th style="text-align:right;">
-PesWAAS
-</th>
-<th style="text-align:right;">
-WAASY
-</th>
-<th style="text-align:left;">
-Mean
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-G10
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:left;">
-below
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G9
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-16.32
-</td>
-<td style="text-align:left;">
-below
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G5
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-39.95
-</td>
-<td style="text-align:left;">
-below
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G7
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-45.23
-</td>
-<td style="text-align:left;">
-below
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G4
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-45.71
-</td>
-<td style="text-align:left;">
-below
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G6
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-45.89
-</td>
-<td style="text-align:left;">
-below
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G1
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-57.62
-</td>
-<td style="text-align:left;">
-above
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G2
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-59.92
-</td>
-<td style="text-align:left;">
-above
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G8
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-77.30
-</td>
-<td style="text-align:left;">
-above
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G3
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-95.46
-</td>
-<td style="text-align:left;">
-above
-</td>
-</tr>
-</tbody>
-</table>
-<p>In this output, <strong>PesResp</strong> and <strong>PesWAAS</strong> are the weights attributed to response variable and stability, respecively, to compute de WAASY values.</p>
-<ul>
-<li>Genotype ranking for each scenario of WAASBY/GY ratio.</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
-data =<span class="st"> </span>WAASratio<span class="op">$</span>hetcomb
-<span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
-                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
-<table class="table table table-striped">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-100/0
-</th>
-<th style="text-align:right;">
-50/50
-</th>
-<th style="text-align:right;">
-0/100
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-G1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G2
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G3
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G6
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G8
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Genotype ranking depending on the number of multiplicative terms used to estimate the WAASB index.</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
-data =<span class="st"> </span>WAASratio<span class="op">$</span>hetdata
-<span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
-                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
-<table class="table table table-striped">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-9PCA
-</th>
-<th style="text-align:right;">
-8PCA
-</th>
-<th style="text-align:right;">
-7PCA
-</th>
-<th style="text-align:right;">
-6PCA
-</th>
-<th style="text-align:right;">
-5PCA
-</th>
-<th style="text-align:right;">
-4PCA
-</th>
-<th style="text-align:right;">
-3PCA
-</th>
-<th style="text-align:right;">
-2PCA
-</th>
-<th style="text-align:right;">
-1PCA
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-G1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G2
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G3
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G6
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G8
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-8
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="plotting-the-waasy-values" class="section level2">
-<h2 class="hasAnchor">
-<a href="#plotting-the-waasy-values" class="anchor"></a>Plotting the WAASY values</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
-p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(WAASratio)
-p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(WAASratio, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))
-<span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-17-1.png" width="960" style="display: block; margin: auto;"></p>
-</div>
-<div id="plotting-the-heat-map-graphics" class="section level2">
-<h2 class="hasAnchor">
-<a href="#plotting-the-heat-map-graphics" class="anchor"></a>Plotting the heat map graphics</h2>
-<p>The first type of heatmap shows the genotype ranking depending on the number of principal component axes used for estimating the WAASB index. An euclidean distance-based dendrogram is used for grouping the genotype ranking for both genotypes and principal component axes. The second type of heatmap shows the genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a ratio of 100/0 considers exclusively the stability for genotype ranking. On the other hand, a ratio of 0/100 considers exclusively the productivity for genotype ranking. Four clusters are estimated (1) unproductive and unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but unproductive genotypes; and (4), productive and stable genotypes.</p>
-<div id="ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAAS</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASratio, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-18-1.png" width="528" style="display: block; margin: auto;"></p>
-</div>
-<div id="ranks-of-genotypes-depending-on-the-waasgy-ratio" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ranks-of-genotypes-depending-on-the-waasgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAAS/GY ratio</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASratio, <span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-19-1.png" width="528" style="display: block; margin: auto;"></p>
-</div>
-</div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -3657,26 +3752,29 @@ p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#getting-started">Getting started</a></li>
-      <li><a href="#estimating-the-response-variable-using-traditional-ammi-model">Estimating the response variable using traditional AMMI model</a></li>
+<li>
+<a href="#getting-started">Getting started</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#the-ammi-model">The AMMI model</a></li>
+      <li><a href="#within-environment-anova">within-environment ANOVA</a></li>
+      <li><a href="#the-ammi-table">The AMMI table</a></li>
+      </ul>
+</li>
+      <li><a href="#estimating-the-response-variable-based-on-significant-ipca-axes">Estimating the response variable based on significant IPCA axes</a></li>
       <li>
 <a href="#estimating-the-waas-index">Estimating the WAAS index</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#number-of-axes-based-on-f-test">Number of axes based on F-test</a></li>
       <li><a href="#number-of-axes-declared-manually">Number of axes declared manually</a></li>
+      <li><a href="#biplots">Biplots</a></li>
       </ul>
 </li>
+      <li><a href="#simultaneous-selection-for-mean-performance-and-stability">Simultaneous selection for mean performance and stability</a></li>
       <li>
-<a href="#other-ammi-based-stability-indexes">Other AMMI-based stability indexes</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#biplots">Biplots</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#estimating-the-waasy-index">Estimating the WAASY index</a><ul class="nav nav-pills nav-stacked">
+<a href="#estimating-the-waasy-in-different-scenarios">Estimating the WAASY in different scenarios</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#printing-the-model-outputs">Printing the model outputs</a></li>
-      <li><a href="#plotting-the-waasy-values">Plotting the WAASY values</a></li>
       <li><a href="#plotting-the-heat-map-graphics">Plotting the heat map graphics</a></li>
       </ul>
 </li>
+      <li><a href="#other-ammi-based-stability-indexes">Other AMMI-based stability indexes</a></li>
       <li><a href="#references">References</a></li>
       </ul>
 </div>
