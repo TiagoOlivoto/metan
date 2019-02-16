@@ -73,10 +73,31 @@ model <- WAAS.AMMI(data_ge,
 
 ### Biplots
 
-ggplot2-based graphics are easily obtained in METAAB package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `WAAS.AMMI()` function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2,...), the output `model` is a list, in this case with one element, GY.
+ggplot2-based graphics are easily obtained in METAAB package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `WAAS.AMMI()` function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, ...), the output `model` is a list, in this case with one element, GY.
 
 ``` r
-plot.scores(model$GY)
+library(cowplot)
+```
+
+    ## Loading required package: ggplot2
+
+    ## 
+    ## Attaching package: 'cowplot'
+
+    ## The following object is masked from 'package:ggplot2':
+    ## 
+    ##     ggsave
+
+``` r
+p1 = plot.scores(model$GY)
+p2 = plot.scores(model$GY,
+                 type = 1,
+                 polygon = TRUE,
+                 col.gen = "black",
+                 col.env = "gray70",
+                 col.segm.env = "gray70",
+                 axis.expand = 1.5)
+plot_grid(p1, p2, labels = c("p1","p2"))
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
@@ -274,7 +295,12 @@ Plotting the BLUPs for genotypes
 --------------------------------
 
 ``` r
-plot.blup(model2$GY)
+p1 = plot.blup(model2$GY)
+p2 = plot.blup(model2$GY,
+               prob = 0.1,
+               col.shape  =  c("gray20", "gray80")) + coord_flip()
+plot_grid(p1, p2,
+          labels = c("p1", "p2"))
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
@@ -454,4 +480,4 @@ G4
 Extending the METAAB package
 ============================
 
-The complete functionality of the METAAB package may be view at <https://tiagoolivoto.github.io/METAAB/index.html>.
+The complete functionality of the METAAB package may be view at <https://tiagoolivoto.github.io/METAAB/index.html>. You are welcome to visit it.
