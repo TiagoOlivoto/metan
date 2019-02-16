@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -159,8 +159,8 @@
     <pre class="usage"><span class='co'># S3 method for WAASBY</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='no'>F</span> , <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
     <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>3.5</span>,
-    <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>), <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='st'>"Genotypes"</span>,
-    <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='no'>...</span>)</pre>
+    <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>), <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>"WAASBY"</span>,
+    <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='st'>"Genotypes"</span>, <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,8 +206,12 @@
       <td><p>A vector of length 2 that contains the color of shapes for genotypes above and below of the mean, respectively. Default is <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c("blue", "red")</a></code>.</p></td>
     </tr>
     <tr>
+      <th>x.lab</th>
+      <td><p>The label of the x axis in the plot. Default is <code>"WAASBY"</code>.</p></td>
+    </tr>
+    <tr>
       <th>y.lab</th>
-      <td><p>The label of the y-xix in the plot. Default is <code>"Genotypes"</code>.</p></td>
+      <td><p>The label of the y axis in the plot. Default is <code>"Genotypes"</code>.</p></td>
     </tr>
     <tr>
       <th>x.breaks</th>
