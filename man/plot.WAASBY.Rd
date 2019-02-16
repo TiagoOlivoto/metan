@@ -10,8 +10,8 @@ Plot heat maps with genotype ranking in two ways.
 \usage{
 \method{plot}{WAASBY}(x, export = F , file.type = "pdf", file.name = NULL,
     theme = theme_waasb(), width = 6, height = 6, size.shape = 3.5,
-    size.tex.lab = 12, col.shape = c("blue", "red"), y.lab = "Genotypes",
-    x.breaks = waiver(), resolution = 300, ...)}
+    size.tex.lab = 12, col.shape = c("blue", "red"), x.lab = "WAASBY",
+    y.lab = "Genotypes", x.breaks = waiver(), resolution = 300, ...)}
 
 
 \arguments{
@@ -36,7 +36,9 @@ Plot heat maps with genotype ranking in two ways.
 
   \item{col.shape}{A vector of length 2 that contains the color of shapes for genotypes above and below of the mean, respectively. Default is \code{c("blue", "red")}. }
 
-  \item{y.lab}{The label of the y-xix in the plot. Default is \code{"Genotypes"}.}
+  \item{x.lab}{The label of the x axis in the plot. Default is \code{"WAASBY"}.}
+
+  \item{y.lab}{The label of the y axis in the plot. Default is \code{"Genotypes"}.}
 
   \item{x.breaks}{The breaks to be plotted in the x-axis. Default is \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
