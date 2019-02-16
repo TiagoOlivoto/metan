@@ -1,5 +1,5 @@
 plot.blup  =  function(x,
-                      prob  =  0.95,
+                      prob  =  0.05,
                       export  =  FALSE,
                       file.type  =  "pdf",
                       file.name = NULL,
@@ -18,7 +18,7 @@ plot.blup  =  function(x,
                       resolution  =  300,
                       ...){
 
-  PROB  =  ((1 - prob)/2) + prob
+  PROB  =  ((1 - (1-prob))/2) + (1-prob)
   t  =  qt(PROB, 100)
   GV  =  as.numeric(substr(x$ESTIMATES[2,2], start  =  1, stop  =  5))
   AccuGen  =  as.numeric(substr(x$ESTIMATES[8,2], start  =  1, stop  =  5))
