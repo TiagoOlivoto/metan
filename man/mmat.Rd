@@ -22,7 +22,7 @@ This function help users to easely make a two-way table from a "long format" dat
  }
 
 \examples{
-datage = expand.grid(ENV = paste("E", 1:10, sep = ""),
+datage = expand.grid(ENV = paste("E", 1:8, sep = ""),
                      GEN = paste("G", 1:20, sep = ""),
                      REP = paste(c("I", "II", "III")))
 datage$Y = rnorm(600, 50, 20)
