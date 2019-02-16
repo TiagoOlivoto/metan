@@ -76,8 +76,7 @@ All outputs shown in tables were laid out using the R package kableExtra. The pd
 options(digits = 4)
 RMSEweat = rbind(AMMIweat$RMSPDmean, BLUPweat$RMSPDmean)
 RMSEweat = dplyr::mutate(RMSEweat, CROP = "Wheat")
-RMSEweat = RMSEweat[order(RMSEweat[,2], decreasing = F),]
-#print(RMSEweat)
+RMSEweat = RMSEweat[order(RMSEweat$mean, decreasing = F),]
     ```
 
 ```{r echo = FALSE, warning = FALSE}
