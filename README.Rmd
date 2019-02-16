@@ -1,0 +1,112 @@
+---
+always_allow_html: yes
+title: "METAAB - Multienvironment Trial Analyzis using AMMI and BLUP"
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# Introduction
+The METAAB package provide useful functions for analyzing multienvironment trial data using AMMI and BLUP models. The main features includes, but are not limited to:
+
+* Cross-validation procedures for AMMI-family and BLUP models;
+* Estimation AMMI models based on number of IPCAs;
+* Prediction in mixed-effect models;
+* Variance components and genetic parameters in mixed-effect models;
+* Graphic tools for generating biplots
+
+
+# Dependences
+
+METAAB depends on the following R packages.
+
+* `grid` for 
+* `ggplot2` for graphics
+* `ggrepel` for avoiding overlaps text in plots
+* `magrittr` for the %>% opperator
+* `dendexted` and `gplots` for dendrograms
+* `dplyr` for data manipulation
+
+The package `kableExtra` and `cowplot` were used to generate the tables and arranging the graphics of these material.
+
+# Installing
+
+The leatest development version can be download from githug by running
+```{r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("TiagoOlivoto/METAAB")
+```
+
+# Brief examples
+
+The `METAAB` contains some datasets for examples. Most of the functions uses the `data_ge` that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`
+
+```{r}
+library(METAAB)
+str(data_ge)
+```
+
+
+## AMMI model
+### Fitting the model
+The AMMI model is fitted with the function `WAAS.AMMI()`. For more details, please see `?WAAS.AMMI`.
+
+```{r}
+model <- WAAS.AMMI(data_ge,
+                  resp = GY,
+                  gen = GEN,
+                  env = ENV,
+                  rep = REP)
+```
+
+### Biplots
+
+ggplot2-based graphics are easily obtained in METAAB package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `WAAS.AMMI()` function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2,...), the output `model` is a list, in this case with one element, GY.
+
+```{r }
+plot.scores(model$GY)
+```
+
+### S3 method `predict()`
+The S3 method `predict()` is implemented for objects of class `WAAS.AMMI`and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object.
+
+```{r }
+library(kableExtra)
+predicted = predict(model, naxis = 4)
+predicted = predicted$GY[1:5,]
+kable(predicted, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+```
+
+## BLUP model
+The implementation of linear-mixed effect models to predict the response variable in MET is based on the `WAASB()` function. The "mixed-effect version" of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to be random effects is then obtained as follows
+
+```{r }
+model2 <- WAASB(data_ge,
+                resp = GY,
+                gen = GEN,
+                env = ENV,
+                rep = REP)
+```
+
+
+## Plotting the BLUPs for genotypes
+
+
+```{r }
+plot.blup(model2$GY)
+```
+
+
+## BLUPS for genotype-vs-environment interaction
+
+
+```{r }
+data = model2$GY$BLUPgge[1:5,]
+kable(data, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed",
+                position = "left", full_width = F, font_size = 12)
+```
+
+# Extending the METAAB package
+The complete functionality of the METAAB package may be view at <https://tiagoolivoto.github.io/METAAB/index.html>. 
