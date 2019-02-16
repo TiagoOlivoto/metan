@@ -51,7 +51,7 @@ AMMI_model = WAAS.AMMI(dataset,
 
     ```
 
-## within-environment ANOVA
+## Within-environment ANOVA
 
 A within-environment ANOVA considering a fixed-effect model is computed. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, $CV = (\sqrt{MS_{res}}/Mean) \times 100$; the heritability, $h2 = (MS_{gen} - MS_{res})/MS_{gen}$, and the accuracy of selection, $As = \sqrt{h2}$.
 
@@ -84,7 +84,7 @@ Nine interaction principal component axis (IPCA) were fitted and four were signi
 
 # Estimating the response variable based on significant IPCA axes
 
-An interesting feature of `METAAB` is the implementation of the S3 method `predict()`. The response variable of a two-way table (for example, the yield of *m* genotypes in *n* environments) may be estimated using the function `predict(model)`, where `model` is an object of class `WAAS.AMMI`. This estimation is based on the number of multiplicative terms declared in the function. If `naxis = 0` is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If `naxis = 1`, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If `naxis = min(g-1; e-1)`, the AMMIF is fitted. A summary of all possible AMMI models is presented below.
+An interesting feature of `METAAB` is the implementation of the S3 method `predict()`. The response variable of a two-way table (for example, the yield of *m* genotypes in *n* environments) may be estimated using the function `predict(object)`, where `object` is an object of class `WAAS.AMMI`. This estimation is based on the number of multiplicative terms declared in the function. If `naxis = 0` is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If `naxis = 1`, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If `naxis = min(g-1; e-1)`, the AMMIF is fitted. A summary of all possible AMMI models is presented below.
 
 | Member of AMMI family  | Espected response of the *i*-th genotype in the *j*th environment|
 |:------------------------|:------------------------------------------------------------------------------|
@@ -95,18 +95,18 @@ An interesting feature of `METAAB` is the implementation of the S3 method `predi
 | AMMIF            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}$ 
 
 
-Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] or predictive success, such as cross-validation procedures [@Piepho:1994] should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. `WAAS.AMMI()` function compute traditional AMMI analysis showing the number of significant axes according to Gollobs's test. On the other hand, `validation.AMMIF()` function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).
+Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] or predictive success, such as cross-validation [@Piepho:1994] should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The `WAAS.AMMI()` function compute traditional AMMI analysis showing the number of significant axes according to Gollobs's test. On the other hand, `validation.AMMIF()` function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).
 
 
 ```{r echo = TRUE}
 predicted = predict(AMMI_model, naxis = 4)
-predicted = predicted$GY[1:10,]
+predicted = predicted$GY[1:5,]
 kable(predicted, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
     ```
 
 
-Only the first ten values are shown. The following values are presented: **ENV** is the environment; **GEN** is the genotype; **Y** is the response variable; **resOLS** is the residual ($\hat{z}_{ij}$) estimated by the Ordinary Least Square (OLS), where $\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}$; **Ypred** is the predicted value by OLS ($\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}$); **ResAMMI** is the residual estimated by the AMMI model ($\hat{a}_{ij}$) considering the number of multiplicative terms informed in the function (in this case 5), where $\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}$; **YpredAMMI** is the predicted value by AMMI model  $\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}$; and **AMMI0** is the predicted value when no multiplicative terms are used, i.e., $\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}$.
+Only the first five values are shown. The following values are presented: **ENV** is the environment; **GEN** is the genotype; **Y** is the response variable; **resOLS** is the residual ($\hat{z}_{ij}$) estimated by the Ordinary Least Square (OLS), where $\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}$; **Ypred** is the predicted value by OLS ($\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}$); **ResAMMI** is the residual estimated by the AMMI model ($\hat{a}_{ij}$) considering the number of multiplicative terms informed in the function (in this case 5), where $\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}$; **YpredAMMI** is the predicted value by AMMI model  $\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}$; and **AMMI0** is the predicted value when no multiplicative terms are used, i.e., $\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}$.
 
 
 # Estimating the WAAS index
@@ -215,6 +215,7 @@ plot.scores(AMMI_model$GY,
 
 
 ```
+
 
 # Simultaneous selection for mean performance and stability
 

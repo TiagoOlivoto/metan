@@ -23,14 +23,14 @@ dataset = data_ge
 
 # FAI-BLUP index
 
-The FAI-BLUP index [@Rocha2018] is a multi-trait indexes for selimultaneous selection based on several variales. The BLUPs from genotypes are obtained with the function `WAASB()` and then the function `FAI.BLUP()` is used to compute the index.
+The FAI-BLUP index [@Rocha2018] is an index for simultaneous selection based on multitrait. The BLUPs from genotypes are obtained with the function `WAASB()` and then the function `FAI.BLUP()` is used to compute the FAI-BLUP index.
 
 ```{r }
-multivariate = WAASB = WAASB(dataset,
-               resp = c(GY, HM),
-               gen = GEN,
-               env = ENV,
-               rep = REP)
+multivariate = WAASB(dataset,
+                     resp = c(GY, HM),
+                     gen = GEN,
+                     env = ENV,
+                     rep = REP)
 
 FAI = FAI.BLUP(multivariate,
                SI = 10,
@@ -39,8 +39,6 @@ FAI = FAI.BLUP(multivariate,
 
 plot(FAI)
     ```
-
-
 
 
 

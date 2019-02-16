@@ -33,20 +33,20 @@ str(dataset)
 
 # The BLUP model
 
-The simplest and well-known linear model with interaction effect used to analyze data from multienvironment trials is
+The simplest and well-known linear model with interaction effect used to analyze data from multi-environment trials is
 	$$
 	{y_{ijk}} = {\rm{ }}\mu {\rm{ }} + \mathop \alpha \nolimits_i  + \mathop \tau \nolimits_j  + \mathop {(\alpha \tau )}\nolimits_{ij}  + \mathop \gamma \nolimits_{jk}  + {\rm{ }}\mathop \varepsilon \nolimits_{ijk}
 	$$
 	
-where${y_{ijk}}$is the response variable (e.g., grain yield) of the kth block of the ith genotype in the jth environment (*i* = 1, 2, ..., *g*;  *j* = 1, 2, ..., *e*; *k* = 1, 2, ..., *b*); $\mu$ is the grand mean; $\mathop \alpha \nolimits_i$ is the effect of the ith genotype; $\mathop \tau \nolimits_j$ is the effect of the jth environment; $\mathop {(\alpha \tau )}\nolimits_{ij}$ is the interaction effect of the ith genotype with the jth environment; $\mathop \gamma \nolimits_{jk}$ is the effect of the kth block within the jth environment; and$\mathop \varepsilon \nolimits_{ijk}$ is the random error. In a mixed-effect model assuming ${\alpha _i}$ and $\mathop {(\alpha \tau )}\nolimits_{ij}$ to be random effects the above model can be rewritten as follows
+where ${y_{ijk}}$ is the response variable (e.g., grain yield) observed in the *k*th block of the *i*th genotype in the *j*th environment (*i* = 1, 2, ..., *g*;  *j* = 1, 2, ..., *e*; *k* = 1, 2, ..., *b*); $\mu$ is the grand mean; $\mathop \alpha \nolimits_i$ is the effect of the ith genotype; $\mathop \tau \nolimits_j$ is the effect of the *j*th environment; $\mathop {(\alpha \tau )}\nolimits_{ij}$ is the interaction effect of the *i*th genotype with the *j*th environment; $\mathop \gamma \nolimits_{jk}$ is the effect of the *k*th block within the *j*th environment; and$\mathop \varepsilon \nolimits_{ijk}$ is the random error. In a mixed-effect model assuming ${\alpha _i}$ and $\mathop {(\alpha \tau )}\nolimits_{ij}$ to be random effects, the above model can be rewritten as follows
 
 $$
 {\bf{y  = X\beta  + Zu + \varepsilon }}
 $$
 
-where  **y ** is an $n[ = \sum\nolimits_{j = 1}^e {(gb)]}  \times 1$ vector of response variable ${\bf{y}} = {\rm{ }}{\left[ {{y_{111}},{\rm{ }}{y_{112}},{\rm{ }} \ldots ,{\rm{ }}{y_{geb}}} \right]^\prime }$; ${\bf{\beta }}$ is an $(eb) \times 1$ vector of unknown fixed effects ${\bf{\beta }} = [\mu  + \mathop \gamma \nolimits_{11} ,\mathop \gamma \nolimits_{12} ,...,\mathop \gamma \nolimits_{eb} ]'$;  **u ** is an $m[ = g + ge] \times 1$ vector of random effects ${\bf{u}} = {\rm{ }}{\left[ {{\alpha _1},{\alpha _2},...,{\alpha _g},\mathop {(\alpha \tau )}\nolimits_{11} ,\mathop {(\alpha \tau )}\nolimits_{12} ,...,\mathop {(\alpha \tau )}\nolimits_{ge} } \right]^\prime }$;  **X **  is an $n \times (eb)$ design matrix relating  **y ** to ${\bf{\beta }}$;  **Z ** is an $n \times m$ design matrix relating  **y ** to  **u **; ${\bf{\varepsilon }}$ is an $n \times 1$ vector of random errors ${\bf{\varepsilon }} = {\rm{ }}{\left[ {{y_{111}},{\rm{ }}{y_{112}},{\rm{ }} \ldots ,{\rm{ }}{y_{geb}}} \right]^\prime }$;
+where  **y ** is an $n[ = \sum\nolimits_{j = 1}^e {(gb)]}  \times 1$ vector of response variable ${\bf{y}} = {\rm{ }}{\left[ {{y_{111}},{\rm{ }}{y_{112}},{\rm{ }} \ldots ,{\rm{ }}{y_{geb}}} \right]^\prime }$; ${\bf{\beta }}$ is an $(eb) \times 1$ vector of unknown fixed effects ${\bf{\beta }} = [\mathop \gamma \nolimits_{11} ,\mathop \gamma \nolimits_{12} ,...,\mathop \gamma \nolimits_{eb} ]'$;  **u** is an $m[ = g + ge] \times 1$ vector of random effects ${\bf{u}} = {\rm{ }}{\left[ {{\alpha _1},{\alpha _2},...,{\alpha _g},\mathop {(\alpha \tau )}\nolimits_{11} ,\mathop {(\alpha \tau )}\nolimits_{12} ,...,\mathop {(\alpha \tau )}\nolimits_{ge} } \right]^\prime }$;  **X **  is an $n \times (eb)$ design matrix relating  **y** to ${\bf{\beta }}$;  **Z ** is an $n \times m$ design matrix relating  **y** to  **u **; ${\bf{\varepsilon }}$ is an $n \times 1$ vector of random errors ${\bf{\varepsilon }} = {\rm{ }}{\left[ {{y_{111}},{\rm{ }}{y_{112}},{\rm{ }} \ldots ,{\rm{ }}{y_{geb}}} \right]^\prime }$;
 
-The vectors ${\bf{\beta }}$ and **u** are estimated using the well-known mixed model equation (Henderson, 1975).
+The vectors ${\bf{\beta }}$ and **u** are estimated using the well-known mixed model equation [@Henderson1975].
 	$$
 	\left[ {\begin{array}{*{20}{c}}{{\bf{\hat \beta }}}\\{{\bf{\hat u}}}\end{array}} \right]{\bf{ = }}{\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z + }}{{\bf{G}}^{ - {\bf{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\end{array}} \right]
 	$$
@@ -78,6 +78,8 @@ autoplot(WAASB_model$GY, type = "re")
 
 ### Likelihood Ratio Tests
 
+The output `LRT` contains the Likelihood Ratio Tests for genotype and genotype-vs-environment random effects.
+
 ```{r warning=F, message=F}
 options(digits = 5)
 data = WAASB_model$GY$LRT
@@ -87,10 +89,12 @@ kable(data, "html") %>%
     ```
 
 
-The output `LRT` contains the Likelihood Ratio Tests for genotype and genotype-vs-environment random effects.
 
 
 ### Variance components and genetic parameters
+
+In the output `ESTIMATES`, beyond the variance components for the declared random effects, some important parameters are also shown. **Heribatility** is the broad-sense heritability, $\mathop h\nolimits_g^2$, estimated by $\mathop h\nolimits_g^2  = \mathop {\hat\sigma} \nolimits_g^2 /\left( {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 } \right)$ where $\mathop {\hat\sigma} \nolimits_g^2$ is the genotypic variance; $\mathop {\hat\sigma} \nolimits_i^2$ is the genotype-by-environment interaction variance; and $\mathop {\hat\sigma} \nolimits_e^2$ is the residual variance. **GEIr2** is the coefficient of determination of the interaction effects, $\mathop r\nolimits_i^2$, estimated by $\mathop r\nolimits_i^2  = \mathop {\hat\sigma} \nolimits_i^2 /\left( {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 } \right)$; **Heribatility of means** is the heribability on the mean basis, $\mathop h\nolimits_{gm}^2$, estimated by $\mathop h\nolimits_{gm}^2  = \mathop {\hat\sigma} \nolimits_g^2 /\left[ {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2 /e + \mathop {\hat\sigma} \nolimits_e^2 /\left( {eb} \right)} \right]$, where *e* and *b* are the number of environments and blocks, respectively; **Accuracy** is the accuracy of selection, *Ac*, estimated by $Ac = \sqrt{\mathop h\nolimits_{gm}^2}$ ;   **rge** is the genotype-environment correlation,  $\mathop r\nolimits_{ge}$, estimated by $\mathop r\nolimits_{ge} = \mathop {\hat\sigma} \nolimits_g^2 /\left({\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2} \right)$; **CVg** is the the genotypic coefficient of variation, estimated by \(\left( {\sqrt {\mathop {\hat \sigma }\nolimits_g^2 } /\mu } \right) \times 100\) , where $\mu$ is the grand mean;  **CVr** is the residual coefficient of variation, estimated by $\left( {\sqrt {\mathop {\hat \sigma }\nolimits_e^2 } /\mu } \right) \times 100$ ; **CV ratio** is the ratio between genotypic and residual coefficient of variation.
+
 
 ```{r }
 data = WAASB_model$GY$ESTIMATES
@@ -101,10 +105,11 @@ kable(data, "html") %>%
     ```
 
 
-In the output `ESTIMATES`, beyond the variance components for the declared random effects, some important parameters are also shown. **Heribatility** is the broad-sense heritability, $\mathop h\nolimits_g^2$, estimated by $\mathop h\nolimits_g^2  = \mathop {\hat\sigma} \nolimits_g^2 /\left( {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 } \right)$ where $\mathop {\hat\sigma} \nolimits_g^2$ is the genotypic variance; $\mathop {\hat\sigma} \nolimits_i^2$ is the genotype-by-environment interaction variance; and $\mathop {\hat\sigma} \nolimits_e^2$ is the residual variance. **GEIr2** is the coefficient of determination of the interaction effects, $\mathop r\nolimits_i^2$, estimated by $\mathop r\nolimits_i^2  = \mathop {\hat\sigma} \nolimits_i^2 /\left( {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 } \right)$; **Heribatility of means** is the heribability on the mean basis, $\mathop h\nolimits_{gm}^2$, estimated by $\mathop h\nolimits_{gm}^2  = \mathop {\hat\sigma} \nolimits_g^2 /\left[ {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2 /e + \mathop {\hat\sigma} \nolimits_e^2 /\left( {eb} \right)} \right]$, where *e* and *b* are the number of environments and blocks, respectively; **Accuracy** is the accuracy of selection, *Ac*, estimated by $Ac = \sqrt{\mathop h\nolimits_{gm}^2}$ ;   **rge** is the genotype-environment correlation,  $\mathop r\nolimits_{ge}$, estimated by $\mathop r\nolimits_{ge} = \mathop {\hat\sigma} \nolimits_g^2 /\left({\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2} \right)$; **CVg** is the the genotypic coefficient of variation, estimated by \(\left( {\sqrt {\mathop {\hat \sigma }\nolimits_g^2 } /\mu } \right) \times 100\) , where $\mu$ is the grand mean;  **CVr** is the residual coefficient of variation, estimated by $\left( {\sqrt {\mathop {\hat \sigma }\nolimits_e^2 } /\mu } \right) \times 100$ ; **CV ratio** is the ratio between genotypic and residual coefficient of variation.
-
 
 ### Some useful information
+
+
+The following pieces of information are provided in `Details` output. **WgtResponse** is the weight for the response variable in estimating WAASB; **WgtWAAS** is the weight for stability; **Ngen** is the number of genotypes; **Nenv** is the number of environments; **OVmean** is the overall mean; **Min** is the minimum value observed (returning the genotype and environment); **Max** is the maximum observed; **MinENV** is the environment with the lower mean; **MaxENV** is the environment with the largest mean observed; **MinGEN** is the genotype with the lower mean; **MaxGEN** is the genotype with the largest mean.    
 
 ```{r }
 data = WAASB_model$GY$Details
@@ -115,7 +120,6 @@ kable(data, "html") %>%
     ```
 
 
-The following pieces of information are provided in `Details` output. **WgtResponse** is the weight for the response variable in estimating WAASB; **WgtWAAS** is the weight for stability; **Ngen** is the number of genotypes; **Nenv** is the number of environments; **OVmean** is the overall mean; **Min** is the minimum value observed (returning the genotype and environment); **Max** is the maximum observed; **MinENV** is the environment with the lower mean; **MaxENV** is the environment with the largest mean observed; **MinGEN** is the genotype with the lower mean; **MaxGEN** is the genotype with the largest mean.    
 
 ### The WAASB object
 
@@ -142,8 +146,7 @@ The output generated by the `WAASB()` function is very similar to those generate
 ### BLUP for genotypes
 
 ```{r }
-options(digits = 4)
-data = WAASB_model$GY$blupGEN[1:10,]
+data = WAASB_model$GY$blupGEN[1:5,]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed",
                 position = "left", full_width = F, font_size = 12)
@@ -168,7 +171,7 @@ This output shows the predicted means for genotypes. **BLUPg** is the genotypic 
 ### BLUP for genotypes X environment combination
 
 ```{r }
-data = WAASB_model$GY$BLUPgge[1:10,]
+data = WAASB_model$GY$BLUPgge[1:5,]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed",
                 position = "left", full_width = F, font_size = 12)
@@ -271,8 +274,9 @@ plot.scores(WAASB_model$GY,
 ```
 
 
-# Estimating the WAASBY index
-The function `WAASBratio` considers both stability (WAASB) and productivity for genotype ranking considering the following model:
+# Simultaneous selection for mean performance and stability
+
+The WAASBY index (a "mixed-effect model version of the WAASY index") is used for genotype ranking considering both the stability (WAASB) and mean performance based on the following model:
 
 $$
 WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _S}} \right)}}{{{\theta _Y} + {\theta _S}}}
@@ -280,9 +284,15 @@ $$
 
 where $WAASBY_i$ is the superiority index for the *i*-th genotype that weights between performance and stability; $rG_i$ and $rW_i$ are the rescaled values (0-100) for GY and WAASB, respectively;  $\theta _Y$ and $\theta_S$ are the weights for GY and WAASB, respectively.
 
-This function provides the option of attributing weights for stability and productivity in genotype ranking. This is important depending on the goal of a selection strategy or cultivar reccomendation. For example, if the goal is to select a genotype with high yield (independently of the stability performance), that genotype with the first rank in a WAASB/GY = 0/100 ratio should be selected. The reciprocal is true. Aiming at selecting high-stable genotypes (independently of the productivity), that genotype with the first rank in a WAASB/GY = 100/0 ratio should be selected. By default, the increment on the WAASB/GY ratio is equal to 5 and the WAASBY values are saved when the WAASB/GY ratio is equal to 50/50. Thus, twenty one different scenarios are computed, and for each scenario, the genotypes are ranked based on the WAASBY values.
+This index was also already computed and stored into AMMI_model>GY>model. An intuitively plot may be obtained by running
 
-In the following example we will assume that we want to obtain the ranks changing the WAASB/GY ratio in 10% each scenario and to plot the WAASBY values considering a WAASB/GY ratio equal 30/70. **Important! THE ARGUMENT `saveWAASY` MUST BE DIVISIBLE BY `increment`!**
+```{r echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
+p1 = plot.WAASBY(WAASB_model$GY)
+p2 = plot.WAASBY(WAASB_model$GY, col.shape = c("gray20", "gray80"))
+plot_grid(p1, p2, labels = c("p1", "p2"))
+    ```
+
+In the following example, we will assume that we want to obtain the ranks for WAASBY considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.
 
 ```{r echo = TRUE}
 WAASBYratio = WAASBYratio(dataset,
@@ -297,7 +307,6 @@ WAASBYratio = WAASBYratio(dataset,
 
 ## Printing the model outputs
 
-* Genotype ranking for each scenario of WAASBY/GY ratio.
 
 ```{r }
 
@@ -309,7 +318,7 @@ kable(data, "html") %>%
 
 ```
 
-* Genotype ranking depending on the number of multiplicative terms used to estimate the WAASB index.
+In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.
 
 ```{r }
 
