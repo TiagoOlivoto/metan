@@ -40,7 +40,6 @@ multivariate = WAASB(data_ge,
                      env = ENV,
                      rep = REP)
 
-
 FAI = FAI.BLUP(multivariate,
                SI = 15,
                DI = c("max", "max"),
