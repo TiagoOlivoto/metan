@@ -29,7 +29,7 @@ METAAB depends on the following R packages.
 Installing
 ==========
 
-The leatest development version can be download from githug by running
+The latest development version can be download from GitHub by running
 
 ``` r
 install.packages("devtools")
