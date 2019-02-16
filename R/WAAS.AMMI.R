@@ -182,8 +182,8 @@ if (nvar > 1) {
 WAASAbs$PesRes = as.vector(PesoResp)[vin]
 WAASAbs$PesWAAS = as.vector(PesoWAASB)[vin]
 } else {
-WAASAbs$PesRes = as.vector(65)
-WAASAbs$PesWAAS = as.vector(35)
+WAASAbs$PesRes = as.vector(PesoResp)
+WAASAbs$PesWAAS = as.vector(PesoWAASB)
 }
 
 WAAS = WAASAbs %>% dplyr::mutate(WAASY = ((PctResp*PesRes) + (PctWAAS * PesWAAS)) / (PesRes + PesWAAS)) %>%
