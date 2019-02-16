@@ -19,8 +19,9 @@ importFrom("graphics", "plot")
 importFrom("stats", "aov", "filter", "as.dendrogram", "dist", "hclust", "lm",
            "model.matrix", "qt", "weighted.mean", "deviance", "df.residual",
            "pf", "predict", "dnorm", "fitted", "ppoints", "qnorm", "quantile",
-            "resid", "sd", "residuals", "cor", "reorder", "varimax")
-importFrom("utils", "head", "setWinProgressBar", "winProgressBar")
+           "resid", "sd", "residuals", "cor", "reorder", "varimax",
+           "cov2cor", "pt")
+importFrom("utils", "head", "setWinProgressBar", "winProgressBar", "combn")
 S3method(plot, WAASBY)
 S3method(plot, WAASBYratio)
 S3method(plot, WAASratio.AMMI)
