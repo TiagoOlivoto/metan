@@ -2,7 +2,7 @@
 \alias{plot.blup}
 \title{Plot the BLUPs for genotypes }
 \usage{
-\method{plot}{blup}(x, prob  =  0.95, export  =  FALSE, file.type  =  "pdf",
+\method{plot}{blup}(x, prob  =  0.05, export  =  FALSE, file.type  =  "pdf",
        file.name = NULL, theme = theme_waasb(), width  =  6,
        height  =  6, size.err.bar  =  0.5, size.shape  =  3.5,
        size.tex.lab = 12, height.err.bar  =  0.3, x.lim  =  NULL,
@@ -20,7 +20,7 @@ Plot the predicted BLUP of the genotypes.
 
   \item{x}{The \code{WAASB object} }
 
-  \item{prob}{The probability to be considered in confidence interval prediction. }
+  \item{prob}{The probability error for constructing confidence interval. }
 
   \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
 
