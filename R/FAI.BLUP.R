@@ -50,8 +50,8 @@ FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1){
   cumulative.var <- cumsum(eigen.values/sum(eigen.values))*100
   pca <- cbind(eigen.values,cumulative.var)
   rownames(pca) <- paste("PC",1:ncol(means),sep="")
-  fa <- cbind(finish.loadings,comunalits)
-  canonical.loadings <- MASS::ginv(finish.loadings %*% t(finish.loadings)) %*% finish.loadings
+  fa <- cbind(finish.loadings, comunalits)
+  canonical.loadings <- t(t(finish.loadings) %*% solve(cor.means))
   rownames(canonical.loadings) <- colnames(means)
   scores <- t(t(canonical.loadings)%*%t(normalize.means))
   colnames(scores) <- paste("SC",1:ncol(scores),sep="")

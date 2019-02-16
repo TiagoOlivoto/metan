@@ -216,7 +216,7 @@ Details = list(Ngen = Ngen,
                SigPC = SigPC1)
 Details = do.call(rbind.data.frame, Details)
 names(Details) = "Values"
-Details = plyr::mutate(Details,
+Details = dplyr::mutate(Details,
                          Parameters = c("Ngen", "Nenv", "OVmean", "Min",
                                         "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"))
 Details = Details %>%

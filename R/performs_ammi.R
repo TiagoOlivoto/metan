@@ -139,18 +139,9 @@ performs_ammi = function (ENV, GEN, REP, Y)
   rownames(sum) = "Total"
   ERRO = anova[nrow(anova), ]
   ERRO = rbind(ERRO, sum)
-  anova = anova[-nrow(anova), ]
-  names(PC) = colnames(anova)
-  anova2 = suppressWarnings(suppressMessages(rbind(anova, PC)))
-  anova = plyr::rbind.fill(anova, PC)
-  rownames(anova) = rownames(anova2)
-  anova = rbind(anova, ERRO)
-  anova$`Pr(>F)` = format(anova$`Pr(>F)`, scipen = 0, digits = 4,
-                          scientific = FALSE)
-  anova$Percent = format(anova$Percent, scipen = 0, digits = 2,
-                         scientific = FALSE)
-  anova$Accumul = format(anova$Accumul, scipen = 0, digits = 2,
-                         scientific = FALSE)
+  anova = anova[-nrow(anova), -c(6,7) ]
+  names(PC) = paste(c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "Percent", "Accumul"))
+  anova = rbind_fill(anova, PC, ERRO)
   object = list(ANOVA = anova,
                 analysis = PC,
                 means = MEANS,

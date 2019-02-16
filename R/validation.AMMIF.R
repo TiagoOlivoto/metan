@@ -155,8 +155,8 @@ if (progbar == TRUE){
     }
     RMSPD = data.frame(MODEL = y, RMSPD = z)
     RMSPD = RMSPD[gtools::mixedorder(RMSPD[,1]),]
-    RMSPDmean = plyr::ddply(RMSPD, .(MODEL), summarize, mean = mean(RMSPD))
-    RMSPDmean = RMSPDmean[order(RMSPDmean[,2]),]
+    RMSPDmean = RMSPD %>% dplyr::group_by(MODEL) %>% dplyr::summarise(mean = mean(RMSPD))
+    RMSPDmean = RMSPDmean[order(RMSPDmean$mean),]
 return(structure(list(RMSPD = RMSPD,
                 RMSPDmean = RMSPDmean,
                 Estimated = MEDIAS,

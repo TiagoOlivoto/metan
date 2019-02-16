@@ -659,7 +659,7 @@ WAASB = function(data,
       Escores = rbind(SCOREG, SCOREE)
       colnames(Escores) = paste("PC", 1:minimo, sep = "")
       raw = data.frame(ENV, GEN, Y)
-      MEDIAS = data.frame(raw %>% group_by(ENV, GEN) %>% summarize(Y = mean(Y)))
+      MEDIAS = data.frame(raw %>% group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
       OUTMED = by(MEDIAS[, 3], MEDIAS[, c(2, 1)], function(x) sum(x,
                                                                   na.rm = TRUE))
       MEscores = Escores[1:Ngen, ]

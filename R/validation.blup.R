@@ -71,10 +71,9 @@ setWinProgressBar(pb, b, title = paste("Estimating BLUPs for ",ProcdAtua,
  }
 }
 RMSPDres = dplyr::mutate(RMSPDres,
-                        MODEL = "BLUP")
-RMSPDres = RMSPDres %>%
-          dplyr::select(MODEL, everything())
-RMSPDmean = plyr::ddply(RMSPDres, .(MODEL), summarize, mean = mean(RMSPD))
+                        MODEL = "BLUP") %>%
+           dplyr::select(MODEL, everything())
+RMSPDmean = RMSPDres %>% dplyr::group_by(MODEL) %>% dplyr::summarise(mean = mean(RMSPD))
 if (progbar  ==  TRUE){
 close(pb)
 #utils::winDialog(type = "ok", "Validation sucessful! Check the results in R environment")
