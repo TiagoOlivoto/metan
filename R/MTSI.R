@@ -157,7 +157,7 @@ if(is.null(SI)){
     print(round(MTSI, 4))
     cat("\n-------------------------------------------------------------------------------\n")
     if(!is.null(ngs)){
-      cat("Selection differential\n")
+      cat("Selection differential for", index, "index\n")
       cat("-------------------------------------------------------------------------------\n")
       print(selection.diferential)
       cat("\n------------------------------------------------------------------------------\n")
