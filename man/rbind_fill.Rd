@@ -1,6 +1,6 @@
 \name{rbind_fill}
 \alias{rbind_fill}
-\title{Helper function for combining data.frames by row, filling in missing columns.}
+\title{Helper function for combining data.frames by row, filling missing values.}
 \usage{
 rbind_fill(...)
 }
