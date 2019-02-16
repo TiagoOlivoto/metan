@@ -8,6 +8,7 @@ plot.WAASBY = function(x,
                       size.shape = 3.5,
                       size.tex.lab = 12,
                       col.shape = c("blue", "red"),
+                      x.lab = "WAASBY",
                       y.lab = "Genotypes",
                       x.breaks = waiver(),
                       resolution = 300,
@@ -48,7 +49,7 @@ p1 = ggplot2::ggplot(data, aes(x = Code, y = WAASY)) +
   theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
         axis.title = element_text(size = size.tex.lab, colour = "black")) +
     scale_y_continuous(limits = c(min(data$WAASY), 100), breaks = x.breaks) +
-    labs(x = y.lab, y = "\nWAASBY (%)")
+    labs(x = y.lab, y = x.lab)
 
   if(export  ==  F|FALSE) {
     return(p1)
