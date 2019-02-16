@@ -173,12 +173,9 @@ BLUPweat =<span class="st"> </span><span class="kw"><a href="../reference/valida
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
 RMSEweat =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(AMMIweat<span class="op">$</span>RMSPDmean, BLUPweat<span class="op">$</span>RMSPDmean)
 RMSEweat =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(RMSEweat, <span class="dt">CROP =</span> <span class="st">"Wheat"</span>)
-RMSEweat =<span class="st"> </span>RMSEweat[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/order">order</a></span>(RMSEweat[,<span class="dv">2</span>], <span class="dt">decreasing =</span> F),]
-<span class="co">#print(RMSEweat)</span></code></pre></div>
+RMSEweat =<span class="st"> </span>RMSEweat[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/order">order</a></span>(RMSEweat<span class="op">$</span>mean, <span class="dt">decreasing =</span> F),]</code></pre></div>
 <table class="table table table-striped">
 <thead><tr>
-<th style="text-align:left;">
-</th>
 <th style="text-align:left;">
 MODEL
 </th>
@@ -192,55 +189,32 @@ CROP
 <tbody>
 <tr>
 <td style="text-align:left;">
-11
-</td>
-<td style="text-align:left;">
-BLUP
-</td>
-<td style="text-align:right;">
-0.3920
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
 AMMI2
 </td>
 <td style="text-align:right;">
-0.4041
+0.4026
 </td>
 <td style="text-align:left;">
 Wheat
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-2
-</td>
 <td style="text-align:left;">
 AMMI3
 </td>
 <td style="text-align:right;">
-0.4154
+0.4084
 </td>
 <td style="text-align:left;">
 Wheat
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-3
-</td>
 <td style="text-align:left;">
 AMMI4
 </td>
 <td style="text-align:right;">
-0.4160
+0.4158
 </td>
 <td style="text-align:left;">
 Wheat
@@ -248,13 +222,32 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
-4
+AMMI8
 </td>
+<td style="text-align:right;">
+0.4195
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BLUP
+</td>
+<td style="text-align:right;">
+0.4195
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 AMMI5
 </td>
 <td style="text-align:right;">
-0.4189
+0.4207
 </td>
 <td style="text-align:left;">
 Wheat
@@ -262,38 +255,18 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-AMMI6
+AMMI7
 </td>
 <td style="text-align:right;">
-0.4218
+0.4211
 </td>
 <td style="text-align:left;">
 Wheat
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-6
-</td>
 <td style="text-align:left;">
 AMMIF
-</td>
-<td style="text-align:right;">
-0.4265
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-AMMI0
 </td>
 <td style="text-align:right;">
 0.4291
@@ -304,13 +277,21 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
-8
+AMMI6
 </td>
+<td style="text-align:right;">
+0.4385
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 AMMI1
 </td>
 <td style="text-align:right;">
-0.4301
+0.4434
 </td>
 <td style="text-align:left;">
 Wheat
@@ -318,27 +299,10 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
-9
-</td>
-<td style="text-align:left;">
-AMMI7
+AMMI0
 </td>
 <td style="text-align:right;">
-0.4357
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:left;">
-AMMI8
-</td>
-<td style="text-align:right;">
-0.4390
+0.4568
 </td>
 <td style="text-align:left;">
 Wheat
