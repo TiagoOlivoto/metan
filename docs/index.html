@@ -118,13 +118,13 @@
 <div id="introduction" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1></div>
-<p>The METAAB package provide useful functions for analyzing multienvironment trial data using AMMI and BLUP models. The main features includes, but are not limited to:</p>
+<p>The METAAB package provides useful functions for analyzing multi-environment trial data using AMMI and BLUP models. The main features include, but are not limited to:</p>
 <ul>
 <li>Cross-validation procedures for AMMI-family and BLUP models;</li>
 <li>Estimation AMMI models based on number of IPCAs;</li>
 <li>Prediction in mixed-effect models;</li>
 <li>Variance components and genetic parameters in mixed-effect models;</li>
-<li>Graphic tools for generating biplots</li>
+<li>Graphics tools for generating biplots</li>
 </ul>
 </div>
 <div id="dependences" class="section level1">
@@ -133,7 +133,7 @@
 <p>METAAB depends on the following R packages.</p>
 <ul>
 <li>
-<code>grid</code> for</li>
+<code>grid</code> for arranging plots</li>
 <li>
 <code>ggplot2</code> for graphics</li>
 <li>
@@ -144,8 +144,9 @@
 <code>dendexted</code> and <code>gplots</code> for dendrograms</li>
 <li>
 <code>dplyr</code> for data manipulation</li>
+<li>
+<code>lme4</code> and <code>lmerTest</code> for mixed-effect models</li>
 </ul>
-<p>The package <code>kableExtra</code> and <code>cowplot</code> were used to generate the tables and arranging the graphics of these material.</p>
 </div>
 <div id="installing" class="section level1">
 <h1 class="hasAnchor">
@@ -157,7 +158,8 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="brief-examples" class="section level1">
 <h1 class="hasAnchor">
 <a href="#brief-examples" class="anchor"></a>Brief examples</h1>
-<p>The <code>METAAB</code> contains some datasets for examples. Most of the functions uses the <code>data_ge</code> that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code></p>
+<p>The package <code>kableExtra</code> and <code>cowplot</code> were used to generate the tables and arranging the graphics of this material.</p>
+<p>The <code>METAAB</code> contains some datasets for examples. We will use the example <code>data_ge</code> that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
@@ -206,7 +208,7 @@ p2 =<span class="st"> </span><span class="kw"><a href="reference/plot.scores.htm
 <h3 class="hasAnchor">
 <a href="#s3-method-predict" class="anchor"></a>S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code>
 </h3>
-<p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>WAAS.AMMI</code>and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
+<p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>WAAS.AMMI</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)
 predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)
 predicted =<span class="st"> </span>predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]
