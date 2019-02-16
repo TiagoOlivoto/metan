@@ -153,7 +153,7 @@ dataset =<span class="st"> </span>data_ge
 </div>
 <div id="within-environment-anova" class="section level2">
 <h2 class="hasAnchor">
-<a href="#within-environment-anova" class="anchor"></a>within-environment ANOVA</h2>
+<a href="#within-environment-anova" class="anchor"></a>Within-environment ANOVA</h2>
 <p>A within-environment ANOVA considering a fixed-effect model is computed. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># printing the WAAS object</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">3</span>)
@@ -1170,7 +1170,7 @@ NA
 <div id="estimating-the-response-variable-based-on-significant-ipca-axes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#estimating-the-response-variable-based-on-significant-ipca-axes" class="anchor"></a>Estimating the response variable based on significant IPCA axes</h1>
-<p>An interesting feature of <code>METAAB</code> is the implementation of the S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code>. The response variable of a two-way table (for example, the yield of <em>m</em> genotypes in <em>n</em> environments) may be estimated using the function <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict(model)</a></code>, where <code>model</code> is an object of class <code>WAAS.AMMI</code>. This estimation is based on the number of multiplicative terms declared in the function. If <code>naxis = 0</code> is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If <code>naxis = 1</code>, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If <code>naxis = min(g-1; e-1)</code>, the AMMIF is fitted. A summary of all possible AMMI models is presented below.</p>
+<p>An interesting feature of <code>METAAB</code> is the implementation of the S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code>. The response variable of a two-way table (for example, the yield of <em>m</em> genotypes in <em>n</em> environments) may be estimated using the function <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict(object)</a></code>, where <code>object</code> is an object of class <code>WAAS.AMMI</code>. This estimation is based on the number of multiplicative terms declared in the function. If <code>naxis = 0</code> is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If <code>naxis = 1</code>, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If <code>naxis = min(g-1; e-1)</code>, the AMMIF is fitted. A summary of all possible AMMI models is presented below.</p>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -1203,9 +1203,9 @@ NA
 </tr>
 </tbody>
 </table>
-<p>Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968">1968</a>)</span> or predictive success, such as cross-validation procedures <span class="citation">(Piepho <a href="#ref-Piepho:1994">1994</a>)</span> should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function compute traditional AMMI analysis showing the number of significant axes according to Gollobs’s test. On the other hand, <code><a href="../reference/validation.AMMIF.html">validation.AMMIF()</a></code> function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).</p>
+<p>Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968">1968</a>)</span> or predictive success, such as cross-validation <span class="citation">(Piepho <a href="#ref-Piepho:1994">1994</a>)</span> should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function compute traditional AMMI analysis showing the number of significant axes according to Gollobs’s test. On the other hand, <code><a href="../reference/validation.AMMIF.html">validation.AMMIF()</a></code> function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">4</span>)
-predicted =<span class="st"> </span>predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]
+predicted =<span class="st"> </span>predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]
 <span class="kw">kable</span>(predicted, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="dt">full_width =</span> F)</code></pre></div>
 <table class="table table table-striped">
@@ -1253,7 +1253,7 @@ G1
 2.45
 </td>
 <td style="text-align:right;">
-0.07115
+0.0712
 </td>
 <td style="text-align:right;">
 2.52
@@ -1279,7 +1279,7 @@ G10
 2.32
 </td>
 <td style="text-align:right;">
--0.35391
+-0.3539
 </td>
 <td style="text-align:right;">
 1.96
@@ -1305,7 +1305,7 @@ G2
 2.59
 </td>
 <td style="text-align:right;">
-0.29035
+0.2904
 </td>
 <td style="text-align:right;">
 2.88
@@ -1331,7 +1331,7 @@ G3
 2.80
 </td>
 <td style="text-align:right;">
--0.04519
+-0.0452
 </td>
 <td style="text-align:right;">
 2.76
@@ -1357,7 +1357,7 @@ G4
 2.49
 </td>
 <td style="text-align:right;">
-0.04942
+0.0494
 </td>
 <td style="text-align:right;">
 2.54
@@ -1366,139 +1366,9 @@ G4
 2.49
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G5
-</td>
-<td style="text-align:right;">
-2.19
-</td>
-<td style="text-align:right;">
--0.196
-</td>
-<td style="text-align:right;">
-2.38
-</td>
-<td style="text-align:right;">
--0.07092
-</td>
-<td style="text-align:right;">
-2.31
-</td>
-<td style="text-align:right;">
-2.38
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G6
-</td>
-<td style="text-align:right;">
-2.30
-</td>
-<td style="text-align:right;">
--0.080
-</td>
-<td style="text-align:right;">
-2.38
-</td>
-<td style="text-align:right;">
--0.08293
-</td>
-<td style="text-align:right;">
-2.30
-</td>
-<td style="text-align:right;">
-2.38
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G7
-</td>
-<td style="text-align:right;">
-2.77
-</td>
-<td style="text-align:right;">
-0.186
-</td>
-<td style="text-align:right;">
-2.59
-</td>
-<td style="text-align:right;">
-0.16433
-</td>
-<td style="text-align:right;">
-2.75
-</td>
-<td style="text-align:right;">
-2.59
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G8
-</td>
-<td style="text-align:right;">
-2.90
-</td>
-<td style="text-align:right;">
-0.049
-</td>
-<td style="text-align:right;">
-2.85
-</td>
-<td style="text-align:right;">
--0.00536
-</td>
-<td style="text-align:right;">
-2.84
-</td>
-<td style="text-align:right;">
-2.85
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:left;">
-G9
-</td>
-<td style="text-align:right;">
-2.33
-</td>
-<td style="text-align:right;">
--0.031
-</td>
-<td style="text-align:right;">
-2.36
-</td>
-<td style="text-align:right;">
--0.01696
-</td>
-<td style="text-align:right;">
-2.34
-</td>
-<td style="text-align:right;">
-2.36
-</td>
-</tr>
 </tbody>
 </table>
-<p>Only the first ten values are shown. The following values are presented: <strong>ENV</strong> is the environment; <strong>GEN</strong> is the genotype; <strong>Y</strong> is the response variable; <strong>resOLS</strong> is the residual (<span class="math inline">\(\hat{z}_{ij}\)</span>) estimated by the Ordinary Least Square (OLS), where <span class="math inline">\(\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}\)</span>; <strong>Ypred</strong> is the predicted value by OLS (<span class="math inline">\(\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}\)</span>); <strong>ResAMMI</strong> is the residual estimated by the AMMI model (<span class="math inline">\(\hat{a}_{ij}\)</span>) considering the number of multiplicative terms informed in the function (in this case 5), where <span class="math inline">\(\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}\)</span>; <strong>YpredAMMI</strong> is the predicted value by AMMI model <span class="math inline">\(\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}\)</span>; and <strong>AMMI0</strong> is the predicted value when no multiplicative terms are used, i.e., <span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}\)</span>.</p>
+<p>Only the first five values are shown. The following values are presented: <strong>ENV</strong> is the environment; <strong>GEN</strong> is the genotype; <strong>Y</strong> is the response variable; <strong>resOLS</strong> is the residual (<span class="math inline">\(\hat{z}_{ij}\)</span>) estimated by the Ordinary Least Square (OLS), where <span class="math inline">\(\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}\)</span>; <strong>Ypred</strong> is the predicted value by OLS (<span class="math inline">\(\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}\)</span>); <strong>ResAMMI</strong> is the residual estimated by the AMMI model (<span class="math inline">\(\hat{a}_{ij}\)</span>) considering the number of multiplicative terms informed in the function (in this case 5), where <span class="math inline">\(\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}\)</span>; <strong>YpredAMMI</strong> is the predicted value by AMMI model <span class="math inline">\(\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}\)</span>; and <strong>AMMI0</strong> is the predicted value when no multiplicative terms are used, i.e., <span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}\)</span>.</p>
 </div>
 <div id="estimating-the-waas-index" class="section level1">
 <h1 class="hasAnchor">
@@ -3755,7 +3625,7 @@ G9
 <li>
 <a href="#getting-started">Getting started</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#the-ammi-model">The AMMI model</a></li>
-      <li><a href="#within-environment-anova">within-environment ANOVA</a></li>
+      <li><a href="#within-environment-anova">Within-environment ANOVA</a></li>
       <li><a href="#the-ammi-table">The AMMI table</a></li>
       </ul>
 </li>

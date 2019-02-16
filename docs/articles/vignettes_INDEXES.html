@@ -132,12 +132,12 @@ dataset =<span class="st"> </span>data_ge</code></pre></div>
 <div id="fai-blup-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
-<p>The FAI-BLUP index <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span> is a multi-trait indexes for selimultaneous selection based on several variales. The BLUPs from genotypes are obtained with the function <code><a href="../reference/WAASB.html">WAASB()</a></code> and then the function <code><a href="../reference/FAI.BLUP.html">FAI.BLUP()</a></code> is used to compute the index.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multivariate =<span class="st"> </span>WAASB =<span class="st"> </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(dataset,
-               <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM),
-               <span class="dt">gen =</span> GEN,
-               <span class="dt">env =</span> ENV,
-               <span class="dt">rep =</span> REP)</code></pre></div>
+<p>The FAI-BLUP index <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span> is an index for simultaneous selection based on multitrait. The BLUPs from genotypes are obtained with the function <code><a href="../reference/WAASB.html">WAASB()</a></code> and then the function <code><a href="../reference/FAI.BLUP.html">FAI.BLUP()</a></code> is used to compute the FAI-BLUP index.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multivariate =<span class="st"> </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(dataset,
+                     <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM),
+                     <span class="dt">gen =</span> GEN,
+                     <span class="dt">env =</span> ENV,
+                     <span class="dt">rep =</span> REP)</code></pre></div>
 <pre><code>## Evaluating variable GY 50 % 
 ## Evaluating variable HM 100 % 
 ## Done!</code></pre>
