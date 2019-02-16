@@ -52,7 +52,7 @@ reference:
       - '`corr.ci`'
       - '`corr.ss`'
       - '`partial.corr`'
-  - title: Helper functions
+  - title: Help
     desc: Helper functions
     contents:
       - '`mmat`'
