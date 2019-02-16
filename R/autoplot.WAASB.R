@@ -183,7 +183,7 @@ if (type == "re"){
   df$label <- ifelse(df$BLUPg > df$BLUPg | df$BLUPg < df$lower, rownames(df),"")
   df$factors = paste(df$ENV, df$GEN)
 
-  dfgen = data.frame(x$BLUPgen)[,2:3]
+  dfgen = data.frame(x$blupGEN)[,2:3]
   dfgen$id = rownames(dfgen)
   dfgen = data.frame(dfgen[order(dfgen$BLUPg),])
   P2 <- ppoints(nrow(dfgen))
