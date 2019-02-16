@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Performs Additive Main effects and Multiplicative Interaction — performs_ammi • METAAB</title>
+<title>Sample size planning for a desired Pearson's correlation cofidence interval. — corr.ss • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Performs Additive Main effects and Multiplicative Interaction — performs_ammi" />
+<meta property="og:title" content="Sample size planning for a desired Pearson's correlation cofidence interval. — corr.ss" />
 
-<meta property="og:description" content="Compute the Additive Main effects and Multiplicative interaction. This is a helper function for other procedures performed in the WAASB package such as WAAS.AMMI, validation.AMMI, validation.AMMIF, and predict.WAAS.AMMI." />
+<meta property="og:description" content="Find the required (sufficient) sample size for computing a Pearson correlation coefficient with a desired confidence interval (Olivoto et al., 2018)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -145,66 +145,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Performs Additive Main effects and Multiplicative Interaction</h1>
+    <h1>Sample size planning for a desired Pearson's correlation cofidence interval.</h1>
     
-    <div class="hidden name"><code>performs_ammi.Rd</code></div>
+    <div class="hidden name"><code>corr.ss.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute the Additive Main effects and Multiplicative interaction. This is a helper function for other procedures performed in the WAASB package such as <code><a href='WAAS.AMMI.html'>WAAS.AMMI</a></code>, <code><a href='validation.AMMI.html'>validation.AMMI</a></code>, <code><a href='validation.AMMIF.html'>validation.AMMIF</a></code>, and <code><a href='predict.WAAS.AMMI.html'>predict.WAAS.AMMI</a></code>.</p>
+    <p>Find the required (sufficient) sample size for computing a Pearson correlation coefficient with a desired confidence interval (Olivoto et al., 2018).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>performs_ammi</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>Y</span>)</pre>
+    <pre class="usage"><span class='fu'>corr.ss</span>(<span class='no'>r</span>, <span class='no'>CI</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>ENV</th>
-      <td><p>The name of the collum that contains the levels of the environments</p></td>
+      <th>r</th>
+      <td><p>The magnitude of the correlation coefficient.</p></td>
     </tr>
     <tr>
-      <th>GEN</th>
-      <td><p>The name of the collum that contains the levels of the genotypes</p></td>
-    </tr>
-    <tr>
-      <th>REP</th>
-      <td><p>The name of the collum that contains the levels of the replications/blocks</p></td>
-    </tr>
-    <tr>
-      <th>Y</th>
-      <td><p>The response variable</p></td>
+      <th>CI</th>
+      <td><p>The half-width for confidence interval at p &lt; 0.05.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p>The required (sufficient) sample size is computed as follows:
+ $$n = [CI_w/ 0.45304^r \times 2.25152]^{-0.50089}$$</p>
+<p>where \(CI_w\) is desired confidence interval and <code>r</code> is the correlation coefficient.</p>
     
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-
-<dt>ANOVA</dt><dd><p>The analysis of variance for the AMMI model.</p></dd>
-
-<dt>analysis</dt><dd><p>The principal component analysis</p></dd>
-
-<dt>means</dt><dd><p>means of genotype vs environment</p></dd>
-
-<dt>biplot</dt><dd><p>escores for genotypes and environments in all the possible axes.</p></dd>
-
-
+    <p>Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel, B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence interval width for Pearson's correlation coefficient: a Gaussian-independent estimator based on sample size and strength of association. Agron. J. 110:1-8. <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2017.09.0566'>doi:10.2134/agronj2017.09.0566</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
-<span class='no'>ammi_model</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/with'>with</a></span>(<span class='no'>data_ge</span>, <span class='fu'>performs_ammi</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>))</div></pre>
+    <pre class="examples"><div class='input'>
+<span class='fu'>corr.ss</span>(<span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>0.60</span>, <span class='kw'>CI</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)</div><div class='output co'>#&gt; ------------------------------------------------- 
+#&gt; Sample size planning for correlation coefficient 
+#&gt; ------------------------------------------------- 
+#&gt; Level of significance: 5%
+#&gt; Correlation coefficient: 0.6
+#&gt; 95% half-width CI: 0.1
+#&gt; Required sample size: 194 
+#&gt; ------------------------------------------------- </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
