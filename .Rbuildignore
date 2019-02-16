@@ -4,8 +4,14 @@
 ^doc$
 ^LICENSE\.md$
 ^README_file$
+^vignettes/vignettes_INDEXES\.Rmd$
 ^Meta$
 ^vignettes$
+^vignettes/vignettes_AMMI\.Rmd$
+^vignettes/vignettes_BLUP\.Rmd$
+^vignettes/vignettes_CROSS-VALIDATION\.Rmd$
+^vignettes/vignettes_INDEXES\.Rmd$
+^vignettes/vignettes_BIOMETRY\.Rmd$
 ^README_files$
 ^LICENCE$
 ^.*\.Rproj$
