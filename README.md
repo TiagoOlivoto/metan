@@ -1,11 +1,9 @@
-METAAB - Multienvironment Trial Analyzis using AMMI and BLUP
-================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-Introduction
-============
+METAAB <img src="man/figures/logo.png" align="right" height=140/>
+=================================================================
 
-The METAAB package provides useful functions for analyzing multi-environment trial data using AMMI and BLUP models. The main features include, but are not limited to:
+The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B**LUP) package provides useful functions for analyzing multi-environment trial data using Additive Main Effects and Multiplicative Interaction (AMMI) and Best Linear Unbiased Prediction (BLUP) models. The main features include, but are not limited to:
 
 -   Cross-validation procedures for AMMI-family and BLUP models;
 -   Estimation AMMI models based on number of IPCAs;
