@@ -1,0 +1,84 @@
+---
+title: "Indexes for simultaneous selection"
+output: rmarkdown::html_vignette
+link-citations: true
+bibliography: METAABref.bib 
+vignette: >
+  %\VignetteIndexEntry{Indexes for simultaneous selection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+# Getting started
+A dataset called `data_ge` is provided to make reproducible examples. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+
+```{r warning = FALSE, message = FALSE}
+# Importing data
+library(METAAB)
+dataset = data_ge
+```
+
+
+# FAI-BLUP index
+
+The FAI-BLUP index [@Rocha2018] is an index for simultaneous selection based on multitrait. The BLUPs from genotypes are obtained with the function `WAASB()` and then the function `FAI.BLUP()` is used to compute the FAI-BLUP index.
+
+```{r }
+multivariate = WAASB(dataset,
+                     resp = c(GY, HM),
+                     gen = GEN,
+                     env = ENV,
+                     rep = REP)
+
+FAI = FAI.BLUP(multivariate,
+               SI = 10,
+               DI = c("max", "max"), 
+               UI = c("min", "min"))
+
+plot(FAI)
+    ```
+
+
+
+# Multi-trait stability index
+
+## Based on stability only
+
+```{r }
+MTSI_MODEL = WAASB(data_ge,
+                   resp = c(GY, HM),
+                   gen = GEN,
+                   env = ENV,
+                   rep = REP)
+
+MTSI_index = MTSI(MTSI_MODEL)
+
+plot(MTSI_index)
+    ```
+
+
+
+## Based on mean performance and stability
+
+The following code considers that a larger value for GY and HM is better, and a larger weigth for mean performance is considered for computing the WAASBY index.
+
+```{r }
+MTSI_MODEL = WAASB(data_ge,
+                   resp = c(GY, HM),
+                   gen = GEN,
+                   env = ENV,
+                   rep = REP,
+                   mresp = c(100, 100), #Default
+                   wresp = c(65, 65))
+
+MTSI_index = MTSI(MTSI_MODEL, index = "WAASBY")
+
+plot(MTSI_index)
+    ```
+
+
+
+# References
+
