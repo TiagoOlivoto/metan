@@ -14,7 +14,7 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
 \arguments{
   \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable(s). To analyze multiple variables in a single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3}.}
+  \item{resp}{The response variable(s). To analyze multiple variables in a single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
   \item{gen}{The name of the column that contains the levels of the genotypes.}
 
@@ -31,7 +31,7 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
   \item{naxis}{The number of IPCAs to be used for computing the WAAS index. Default is \code{NULL} (Significant IPCAs are used). If values are informed, the number of IPCAS will be used independently on its significance. Note that if two or more variables are included in \code{resp}, then \code{naxis} must be a vector.}
 
 
-  \item{verbose}{Logical argument. If \code{verbose = FALSE} the code are run silently.}
+  \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run silently.}
 
 }
 
