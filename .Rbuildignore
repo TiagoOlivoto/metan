@@ -3,7 +3,6 @@
 ^docs$
 ^_pkgdown\.yml$
 ^CODE_OF_CONDUCT\.md$
-^doc$
 ^LICENSE\.md$
 ^README_file$
 ^vignettes/vignettes_INDEXES\.Rmd$
