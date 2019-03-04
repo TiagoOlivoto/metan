@@ -7,11 +7,13 @@ dataset = data_ge
 str(dataset)
 
 ## ----echo = TRUE---------------------------------------------------------
-WAASB_model = WAASB(dataset,
+WAASB_model = WAASB(data = dataset,
+                    random = "gen", #Default
                     resp = GY,
                     gen = GEN,
                     env = ENV,
-                    rep = REP)
+                    rep = REP,
+                    verbose = TRUE) #Default
 
 
 ## ----echo = TRUE, fig.width=7, fig.height=7, fig.align="center"----------

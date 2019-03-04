@@ -38,29 +38,31 @@ The simplest and well-known linear model with interaction effect used to analyze
 	{y_{ijk}} = {\rm{ }}\mu {\rm{ }} + \mathop \alpha \nolimits_i  + \mathop \tau \nolimits_j  + \mathop {(\alpha \tau )}\nolimits_{ij}  + \mathop \gamma \nolimits_{jk}  + {\rm{ }}\mathop \varepsilon \nolimits_{ijk}
 	$$
 	
-where ${y_{ijk}}$ is the response variable (e.g., grain yield) observed in the *k*th block of the *i*th genotype in the *j*th environment (*i* = 1, 2, ..., *g*;  *j* = 1, 2, ..., *e*; *k* = 1, 2, ..., *b*); $\mu$ is the grand mean; $\mathop \alpha \nolimits_i$ is the effect of the ith genotype; $\mathop \tau \nolimits_j$ is the effect of the *j*th environment; $\mathop {(\alpha \tau )}\nolimits_{ij}$ is the interaction effect of the *i*th genotype with the *j*th environment; $\mathop \gamma \nolimits_{jk}$ is the effect of the *k*th block within the *j*th environment; and$\mathop \varepsilon \nolimits_{ijk}$ is the random error. In a mixed-effect model assuming ${\alpha _i}$ and $\mathop {(\alpha \tau )}\nolimits_{ij}$ to be random effects, the above model can be rewritten as follows
+where ${y_{ijk}}$ is the response variable (e.g., grain yield) observed in the *k*th block of the *i*th genotype in the *j*th environment (*i* = 1, 2, ..., *g*;  *j* = 1, 2, ..., *e*; *k* = 1, 2, ..., *b*); $\mu$ is the grand mean; $\mathop \alpha \nolimits_i$ is the effect of the ith genotype; $\mathop \tau \nolimits_j$ is the effect of the *j*th environment; $\mathop {(\alpha \tau )}\nolimits_{ij}$ is the interaction effect of the *i*th genotype with the *j*th environment; $\mathop \gamma \nolimits_{jk}$ is the effect of the *k*th block within the *j*th environment; and $\mathop \varepsilon \nolimits_{ijk}$ is the random error. In a mixed-effect model assuming ${\alpha _i}$ and $\mathop {(\alpha \tau )}\nolimits_{ij}$ to be random effects, the above model can be rewritten as follows
 
 $$
-{\bf{y  = X\beta  + Zu + \varepsilon }}
+{\boldsymbol{y  = X\beta  + Zu + \varepsilon }}
 $$
 
-where  **y ** is an $n[ = \sum\nolimits_{j = 1}^e {(gb)]}  \times 1$ vector of response variable ${\bf{y}} = {\rm{ }}{\left[ {{y_{111}},{\rm{ }}{y_{112}},{\rm{ }} \ldots ,{\rm{ }}{y_{geb}}} \right]^\prime }$; ${\bf{\beta }}$ is an $(eb) \times 1$ vector of unknown fixed effects ${\bf{\beta }} = [\mathop \gamma \nolimits_{11} ,\mathop \gamma \nolimits_{12} ,...,\mathop \gamma \nolimits_{eb} ]'$;  **u** is an $m[ = g + ge] \times 1$ vector of random effects ${\bf{u}} = {\rm{ }}{\left[ {{\alpha _1},{\alpha _2},...,{\alpha _g},\mathop {(\alpha \tau )}\nolimits_{11} ,\mathop {(\alpha \tau )}\nolimits_{12} ,...,\mathop {(\alpha \tau )}\nolimits_{ge} } \right]^\prime }$;  **X **  is an $n \times (eb)$ design matrix relating  **y** to ${\bf{\beta }}$;  **Z ** is an $n \times m$ design matrix relating  **y** to  **u **; ${\bf{\varepsilon }}$ is an $n \times 1$ vector of random errors ${\bf{\varepsilon }} = {\rm{ }}{\left[ {{y_{111}},{\rm{ }}{y_{112}},{\rm{ }} \ldots ,{\rm{ }}{y_{geb}}} \right]^\prime }$;
+where  **y ** is an $n[ = \sum\nolimits_{j = 1}^e {(gb)]}  \times 1$ vector of response variable ${\bf{y}} = {\rm{ }}{\left[ {{y_{111}},{\rm{ }}{y_{112}},{\rm{ }} \ldots ,{\rm{ }}{y_{geb}}} \right]^\prime }$; ${\bf{\beta }}$ is an $(eb) \times 1$ vector of unknown fixed effects ${\boldsymbol{\beta }} = [\mathop \gamma \nolimits_{11} ,\mathop \gamma \nolimits_{12} ,...,\mathop \gamma \nolimits_{eb} ]'$;  **u** is an $m[ = g + ge] \times 1$ vector of random effects ${\boldsymbol{u}} = {\rm{ }}{\left[ {{\alpha _1},{\alpha _2},...,{\alpha _g},\mathop {(\alpha \tau )}\nolimits_{11} ,\mathop {(\alpha \tau )}\nolimits_{12} ,...,\mathop {(\alpha \tau )}\nolimits_{ge} } \right]^\prime }$;  **X **  is an $n \times (eb)$ design matrix relating  **y** to ${\bf{\beta }}$;  **Z ** is an $n \times m$ design matrix relating  **y** to  **u **; ${\boldsymbol{\varepsilon }}$ is an $n \times 1$ vector of random errors ${\boldsymbol{\varepsilon }} = {\rm{ }}{\left[ {{y_{111}},{\rm{ }}{y_{112}},{\rm{ }} \ldots ,{\rm{ }}{y_{geb}}} \right]^\prime }$;
 
-The vectors ${\bf{\beta }}$ and **u** are estimated using the well-known mixed model equation [@Henderson1975].
+The vectors ${\boldsymbol{\beta }}$ and **u** are estimated using the well-known mixed model equation [@Henderson1975].
 	$$
-	\left[ {\begin{array}{*{20}{c}}{{\bf{\hat \beta }}}\\{{\bf{\hat u}}}\end{array}} \right]{\bf{ = }}{\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z + }}{{\bf{G}}^{ - {\bf{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\end{array}} \right]
+	\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{\hat \beta }}}\\{{\bf{\hat u}}}\end{array}} \right]{\bf{ = }}{\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z + }}{{\bf{G}}^{ - {\bf{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\end{array}} \right]
 	$$
 where **G** and **R** are the variance-covariance matrices for random-effect vector **u** and residual vector ${\bf{\varepsilon }}$, respectively.
 
 
-The `WAASB()` is used to fit the linear mixed-effect model, as follows: By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.
+The `WAASB()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `dataset`. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.  The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
 
 ```{r echo = TRUE}
-WAASB_model = WAASB(dataset,
+WAASB_model = WAASB(data = dataset,
+                    random = "gen", #Default
                     resp = GY,
                     gen = GEN,
                     env = ENV,
-                    rep = REP)
+                    rep = REP,
+                    verbose = TRUE) #Default
 
     ```
 
@@ -93,7 +95,45 @@ kable(data, "html") %>%
 
 ### Variance components and genetic parameters
 
-In the output `ESTIMATES`, beyond the variance components for the declared random effects, some important parameters are also shown. **Heribatility** is the broad-sense heritability, $\mathop h\nolimits_g^2$, estimated by $\mathop h\nolimits_g^2  = \mathop {\hat\sigma} \nolimits_g^2 /\left( {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 } \right)$ where $\mathop {\hat\sigma} \nolimits_g^2$ is the genotypic variance; $\mathop {\hat\sigma} \nolimits_i^2$ is the genotype-by-environment interaction variance; and $\mathop {\hat\sigma} \nolimits_e^2$ is the residual variance. **GEIr2** is the coefficient of determination of the interaction effects, $\mathop r\nolimits_i^2$, estimated by $\mathop r\nolimits_i^2  = \mathop {\hat\sigma} \nolimits_i^2 /\left( {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 } \right)$; **Heribatility of means** is the heribability on the mean basis, $\mathop h\nolimits_{gm}^2$, estimated by $\mathop h\nolimits_{gm}^2  = \mathop {\hat\sigma} \nolimits_g^2 /\left[ {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2 /e + \mathop {\hat\sigma} \nolimits_e^2 /\left( {eb} \right)} \right]$, where *e* and *b* are the number of environments and blocks, respectively; **Accuracy** is the accuracy of selection, *Ac*, estimated by $Ac = \sqrt{\mathop h\nolimits_{gm}^2}$ ;   **rge** is the genotype-environment correlation,  $\mathop r\nolimits_{ge}$, estimated by $\mathop r\nolimits_{ge} = \mathop {\hat\sigma} \nolimits_g^2 /\left({\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2} \right)$; **CVg** is the the genotypic coefficient of variation, estimated by \(\left( {\sqrt {\mathop {\hat \sigma }\nolimits_g^2 } /\mu } \right) \times 100\) , where $\mu$ is the grand mean;  **CVr** is the residual coefficient of variation, estimated by $\left( {\sqrt {\mathop {\hat \sigma }\nolimits_e^2 } /\mu } \right) \times 100$ ; **CV ratio** is the ratio between genotypic and residual coefficient of variation.
+In the output `ESTIMATES`, beyond the variance components for the declared random effects, some important parameters are also shown. **Heribatility** is the broad-sense heritability, $\mathop h\nolimits_g^2$, estimated by
+$$
+\mathop h\nolimits_g^2  = \frac{\mathop {\hat\sigma} \nolimits_g^2} {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 }
+$$
+
+where $\mathop {\hat\sigma} \nolimits_g^2$ is the genotypic variance; $\mathop {\hat\sigma} \nolimits_i^2$ is the genotype-by-environment interaction variance; and $\mathop {\hat\sigma} \nolimits_e^2$ is the residual variance. **GEIr2** is the coefficient of determination of the interaction effects, $\mathop r\nolimits_i^2$, estimated by 
+
+$$
+\mathop r\nolimits_i^2  = \frac{\mathop {\hat\sigma} \nolimits_i^2}
+{\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 }
+$$
+**Heribatility of means** is the heribability on the mean basis, $\mathop h\nolimits_{gm}^2$, estimated by 
+
+$$
+\mathop h\nolimits_{gm}^2  = \frac{\mathop {\hat\sigma} \nolimits_g^2}{[\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2 /e + \mathop {\hat\sigma} \nolimits_e^2 /\left( {eb} \right)]}
+$$
+
+where *e* and *b* are the number of environments and blocks, respectively; **Accuracy** is the accuracy of selection, *Ac*, estimated by
+$$
+Ac = \sqrt{\mathop h\nolimits_{gm}^2}
+$$
+
+**rge** is the genotype-environment correlation,  $\mathop r\nolimits_{ge}$, estimated by
+
+$$
+\mathop r\nolimits_{ge} = \frac{\mathop {\hat\sigma} \nolimits_g^2}{\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2}
+$$
+
+**CVg** and **CVr** are the the genotypic coefficient of variation and the residual coefficient of variation estimated, respectively, by 
+$$
+CVg  = \left( {\sqrt {\mathop {\hat \sigma }\nolimits_g^2 } /\mu } \right) \times 100
+$$
+and 
+$$
+CVr = \left( {\sqrt {\mathop {\hat \sigma }\nolimits_e^2 } /\mu } \right) \times 100
+$$
+where $\mu$ is the grand mean.
+
+**CV ratio** is the ratio between genotypic and residual coefficient of variation.
 
 
 ```{r }
@@ -166,7 +206,27 @@ plot_grid(p1, p2,
 
 ```
 
-This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\hat{g}_{i})$ estimated by $\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})$ where $h_g^2$ is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by $\hat{g}_{i}+\mu$ where $\mu$ is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by $(\hat{g}_{i}+\mu)\pm{CI}$. $CI$ is the confidence interval for BLUP prediction assuming a given probability error, where  $CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}$ where $t$ is the Student's *t* value for a two-tailed t test at a given probability error; $Ac$ is the accuracy of selection and $\mathop \sigma \nolimits_g^2$ is the genotypic variance.
+This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\hat{g}_{i})$, which considering balanced data and genotype as random effect is estimated by
+
+$$
+\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})
+$$
+
+where $h_g^2$ is the shrinkage effect for genotype. **Predicted** is the predicted mean estimated by
+$$
+\hat{g}_{i}+\mu
+$$
+
+where $\mu$ is the grand mean. **LL** and **UL** are the lower and upper limits, respectively, estimated by 
+$$
+(\hat{g}_{i}+\mu)\pm{CI}
+$$
+with
+$$
+CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}
+$$
+
+where $t$ is the Student's *t* value for a two-tailed *t* test at a given probability error; $Ac$ is the accuracy of selection and $\mathop \sigma \nolimits_g^2$ is the genotypic variance.
 
 ### BLUP for genotypes X environment combination
 
@@ -178,7 +238,12 @@ kable(data, "html") %>%
 
     ```
 
-This output shows the predicted means for each genotype and environment combination. **BLUPg** is the genotypic effect described above. **BLUPge** is the genotypic effect of the *i*th genotype in the *j*th environment $(\hat{g}_{ij})$ estimated by $\hat{g}_{ij} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})+h_{ge}^2(y_{ij}-\bar{y}_{i.}-\bar{y}_{.j}+\bar{y}_{..})$, where $h_{ge}^2$ is the shrinkage effect for the genotype-by-environment interaction; **BLUPg+ge** is $BLUP_g+BLUP_{ge}$; **Predicted** is the predicted mean ($\hat{y}_{ij}$) estimated by $\hat{y}_{ij} = \bar{y}_{.j}+BLUP_{g+ge}$.
+This output shows the predicted means for each genotype and environment combination. **BLUPg** is the genotypic effect described above. **BLUPge** is the genotypic effect of the *i*th genotype in the *j*th environment $(\hat{g}_{ij})$, which considering balanced data and genotype as random effect is estimated by
+$$\hat{g}_{ij} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})+h_{ge}^2(y_{ij}-\bar{y}_{i.}-\bar{y}_{.j}+\bar{y}_{..})$$
+where $h_{ge}^2$ is the shrinkage effect for the genotype-by-environment interaction; **BLUPg+ge** is $BLUP_g+BLUP_{ge}$; **Predicted** is the predicted mean ($\hat{y}_{ij}$) estimated by
+$$
+\hat{y}_{ij} = \bar{y}_{.j}+BLUP_{g+ge}
+$$
 
 ## Eigenvalues of the BLUP_GEI matrix
 

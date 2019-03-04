@@ -36,13 +36,14 @@ str(dataset)
 The estimate of the response for the *i*th genotype in the *j*th environment using The Additive Main Effect and Multiplicative interaction (AMMI) model, is given as follows:
 
 $$
-{y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^k {{\lambda _k}{a_{ik}}} {t_{jk}} + {\rho _{ij}} + {\varepsilon _{ij}}
+{y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^p {{\lambda _k}{a_{ik}}} {t_{jk}} + {\rho _{ij}} + {\varepsilon _{ij}}
 $$
-where ${\lambda_k}$ is the singular value for the *k*-th interaction principal component axis (IPCA); $a_{ik}$ is the *i*-th element of the *k*-th eigenvector; $t_{jk}$ is the *j*th element of the *k*th eigenvector. A residual $\rho _{ij}$ remains, if not all *k* IPCA are used, where *k* = $min(g - 1; e - 1)$.
+where ${\lambda_k}$ is the singular value for the *k*-th interaction principal component axis (IPCA); $a_{ik}$ is the *i*-th element of the *k*-th eigenvector; $t_{jk}$ is the *j*th element of the *k*th eigenvector. A residual $\rho _{ij}$ remains, if not all *p* IPCA are used, where $p \le min(g - 1; e - 1)$.
  
+The AMMI model is fitted with the `WAAS.AMMI()` function. The first argument is the data, in our example `dataset`. The second argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
 
 ```{r echo = TRUE}
-AMMI_model = WAAS.AMMI(dataset,
+AMMI_model = WAAS.AMMI(data = dataset,
                        resp = GY,
                        gen = GEN,
                        env = ENV,
@@ -102,7 +103,7 @@ Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] o
 predicted = predict(AMMI_model, naxis = 4)
 predicted = predicted$GY[1:5,]
 kable(predicted, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = T)
     ```
 
 
@@ -281,8 +282,7 @@ kable(data, "html") %>%
 
 
 ## Plotting the heat map graphics
-The first type of heatmap shows the genotype ranking depending on the number of principal component axes used for estimating the WAASB index. An euclidean distance-based dendrogram is used for grouping the genotype ranking for both genotypes and principal component axes. The second type of heatmap shows the genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a ratio of 100/0 considers exclusively the stability for genotype ranking. On the other hand, a ratio of 0/100 considers exclusively the productivity for genotype ranking. Four clusters are estimated (1) unproductive and unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but unproductive genotypes; and (4), productive and stable genotypes.
-
+The first type of heatmap shows the genotype ranking depending on the number of principal component axes used for estimating the WAASB index. An euclidean distance-based dendrogram is used for grouping the genotype ranking for both genotypes and principal component axes. The second type of heatmap shows the genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a ratio of 100/0 considers exclusively the stability for genotype ranking. On the other hand, a ratio of 0/100 considers exclusively the productivity for genotype ranking.
 
 
 ### Ranks of genotypes depending on the number of PCA used to estimate the WAAS
@@ -305,7 +305,7 @@ plot(WAASratio, type = 2)
 
 
 # Other AMMI-based stability indexes
-The following AMMI-based stability indexes tested in the article may be computed using the function `AMMI_indexes()`:
+The following AMMI-based stability indexes may be computed using the function `AMMI_indexes()`:
  
  * **AMMI stability value, ASV, [@Purchase2000].**
 
@@ -334,9 +334,10 @@ $$
 
 where ${\theta _k}$ is the percentage sum of squares explained by the *k*-th IPCA. Simultaneous selection indexes (ssi), are computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields [@Farshadfar2008], which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.
 
+The `AMMI_index()` function has two arguments. The first (x) is the model, which must be an object of the class `WAAS.AMMI`. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If `x` is a list with more than one variable, `order.y` must be a vector of the same length of x. Each element of the vector must be one of the "h" or "l". If "h" is used, the response variable will be ordered from maximum to minimum. If "l" is used then the response variable will be ordered from minimum to maximum.
 
 ```{r }
-stab_indexes = AMMI_indexes(AMMI_model)
+stab_indexes = AMMI_indexes(AMMI_model, order.y = NULL)
 kable(stab_indexes, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed",
                 position = "left", full_width = F, font_size = 12)

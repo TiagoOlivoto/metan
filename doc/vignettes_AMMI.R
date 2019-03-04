@@ -7,7 +7,7 @@ dataset = data_ge
 str(dataset)
 
 ## ----echo = TRUE---------------------------------------------------------
-AMMI_model = WAAS.AMMI(dataset,
+AMMI_model = WAAS.AMMI(data = dataset,
                        resp = GY,
                        gen = GEN,
                        env = ENV,
@@ -36,7 +36,7 @@ add_indent(c(5:13))
 predicted = predict(AMMI_model, naxis = 4)
 predicted = predicted$GY[1:5,]
 kable(predicted, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = T)
 
 ## ------------------------------------------------------------------------
 data = AMMI_model$GY$model[, c(1:3,13:17, 21:22)]
@@ -144,7 +144,7 @@ plot(WAASratio, type = 2)
 
 
 ## ------------------------------------------------------------------------
-stab_indexes = AMMI_indexes(AMMI_model)
+stab_indexes = AMMI_indexes(AMMI_model, order.y = NULL)
 kable(stab_indexes, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed",
                 position = "left", full_width = F, font_size = 12)
