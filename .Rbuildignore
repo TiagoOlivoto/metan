@@ -5,11 +5,11 @@
 ^_pkgdown\.yml$
 ^CODE_OF_CONDUCT\.md$
 ^LICENSE\.md$
-^vignettes\vignettes_CROSS-VALIDATION.md$
-^vignettes\vignettes_INDEXES.md$
-^vignettes\vignettes_BLUP.md$
-^vignettes\vignettes_BIOMETRY.md$
-^vignettes\vignettes_AMMI.md$
+^vignettes/vignettes_CROSS-VALIDATION\.Rmd$
+^vignettes/vignettes_INDEXES\.Rmd$
+^vignettes/vignettes_BLUP\.Rmd$
+^vignettes/vignettes_BIOMETRY\.Rmd$
+^vignettes/vignettes_AMMI\.Rmd$
 ^README_file$
 ^Meta$
 ^README_files$
