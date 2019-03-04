@@ -62,7 +62,7 @@ model <- WAAS.AMMI(data_ge,
 
 ggplot2-based graphics are easily obtained in METAAB package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `WAAS.AMMI()` function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, ...), the output `model` is a list, in this case with one element, GY.
 
-```{r, fig.width=8 }
+```{r, fig.width=8, message=FALSE, warning=FALSE}
 library(cowplot)
 p1 = plot.scores(model$GY)
 p2 = plot.scores(model$GY,
