@@ -6,11 +6,6 @@
 ^CODE_OF_CONDUCT\.md$
 ^LICENSE\.md$
 ^README_file$
-^vignettes/vignettes_INDEXES\.Rmd$
-^vignettes/vignettes_AMMI\.Rmd$
-^vignettes/vignettes_BLUP\.Rmd$
-^vignettes/vignettes_CROSS-VALIDATION\.Rmd$
-^vignettes/vignettes_BIOMETRY\.Rmd$
 ^Meta$
 ^README_files$
 ^LICENCE$
