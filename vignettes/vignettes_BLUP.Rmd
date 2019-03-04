@@ -2,13 +2,7 @@
 title: "Analyzing multienvironment trials using BLUP"
 always_allow_html: yes
 output:
-  prettydoc::html_pretty:
-    theme: cayman
-    highlight: vignette
-    readme: TRUE
-    toc: yes
-    number_sections: yes
-    keep_md: TRUE
+    rmarkdown::html_vignette
 fig_caption: yes
 link-citations: true
 bibliography: METAABref.bib  
