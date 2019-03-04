@@ -5,6 +5,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+
 # METAAB <img src="man/figures/logo.png" align="right" height=140/>
 
 The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B**LUP) package provides useful functions for analyzing multi-environment trial data using Additive Main Effects and Multiplicative Interaction (AMMI) and Best Linear Unbiased Prediction (BLUP) models. The main features include, but are not limited to:
@@ -13,7 +14,7 @@ The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B
 * Estimation AMMI models based on number of IPCAs;
 * Prediction in mixed-effect models;
 * Variance components and genetic parameters in mixed-effect models;
-* Graphics tools for generating biplots
+* Graphics tools for generating biplots.
 
 
 # Dependences

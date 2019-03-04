@@ -9,7 +9,7 @@ The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B
 -   Estimation AMMI models based on number of IPCAs;
 -   Prediction in mixed-effect models;
 -   Variance components and genetic parameters in mixed-effect models;
--   Graphics tools for generating biplots
+-   Graphics tools for generating biplots.
 
 Dependences
 ===========
