@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Indexes for simultaneous selection</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Indexes for simultaneous selection</h1>
+
+
+
+<div id="getting-started" class="section level1">
+<h1>Getting started</h1>
+<p>A dataset called <code>data_ge</code> is provided to make reproducible examples. For more information, please, see <code>?data_ge</code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importing data</span>
+<span class="kw">library</span>(METAAB)
+dataset =<span class="st"> </span>data_ge</code></pre></div>
+</div>
+<div id="fai-blup-index" class="section level1">
+<h1>FAI-BLUP index</h1>
+<p>The FAI-BLUP index <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span> is an index for simultaneous selection based on multitrait. The BLUPs from genotypes are obtained with the function <code>WAASB()</code> and then the function <code>FAI.BLUP()</code> is used to compute the FAI-BLUP index.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multivariate =<span class="st"> </span><span class="kw">WAASB</span>(dataset,
+                     <span class="dt">resp =</span> <span class="kw">c</span>(GY, HM),
+                     <span class="dt">gen =</span> GEN,
+                     <span class="dt">env =</span> ENV,
+                     <span class="dt">rep =</span> REP)</code></pre></div>
+<pre><code>## Evaluating variable GY 50 % 
+## Evaluating variable HM 100 % 
+## Done!</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAI =<span class="st"> </span><span class="kw">FAI.BLUP</span>(multivariate,
+               <span class="dt">SI =</span> <span class="dv">10</span>,
+               <span class="dt">DI =</span> <span class="kw">c</span>(<span class="st">&quot;max&quot;</span>, <span class="st">&quot;max&quot;</span>), 
+               <span class="dt">UI =</span> <span class="kw">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;min&quot;</span>))</code></pre></div>
+<pre><code>## 
+## -----------------------------------------------------------------------------------
+## Principal Component Analysis
+## -----------------------------------------------------------------------------------
+##     eigen.values cumulative.var
+## PC1       1.1046          55.23
+## PC2       0.8954         100.00
+## 
+## -----------------------------------------------------------------------------------
+## Factor Analysis
+## -----------------------------------------------------------------------------------
+##        FA1 comunalits
+## GY -0.7432     0.5523
+## HM  0.7432     0.5523
+## 
+## -----------------------------------------------------------------------------------
+## Comunalit Mean: 0.5523 
+## 
+## -----------------------------------------------------------------------------------
+## Multitrait stability index
+## -----------------------------------------------------------------------------------
+##     G4     G9     G6    G10     G5     G3     G2     G7     G1     G8 
+## 0.6084 0.5552 0.5315 0.5304 0.5237 0.4613 0.4608 0.3661 0.3170 0.0784 
+## 
+## -----------------------------------------------------------------------------------
+## Selection differential
+## -----------------------------------------------------------------------------------
+##    Factor Selection differential (%)
+## GY      1                   -0.98541
+## HM      1                   -0.08046
+## 
+## -----------------------------------------------------------------------------------
+## Selected genotypes
+## G4
+## -----------------------------------------------------------------------------------</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(FAI)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="multi-trait-stability-index" class="section level1">
+<h1>Multi-trait stability index</h1>
+<div id="based-on-stability-only" class="section level2">
+<h2>Based on stability only</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MTSI_MODEL =<span class="st"> </span><span class="kw">WAASB</span>(data_ge,
+                   <span class="dt">resp =</span> <span class="kw">c</span>(GY, HM),
+                   <span class="dt">gen =</span> GEN,
+                   <span class="dt">env =</span> ENV,
+                   <span class="dt">rep =</span> REP)</code></pre></div>
+<pre><code>## Evaluating variable GY 50 % 
+## Evaluating variable HM 100 % 
+## Done!</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MTSI_index =<span class="st"> </span><span class="kw">MTSI</span>(MTSI_MODEL)</code></pre></div>
+<pre><code>## 
+## -------------------------------------------------------------------------------
+## Principal Component Analysis
+## -------------------------------------------------------------------------------
+##     Eigenvalues Variance (%) Cum. variance (%)
+## PC1      1.6566        82.83             82.83
+## PC2      0.3434        17.17            100.00
+## 
+## -------------------------------------------------------------------------------
+## Factor Analysis - factorial loadings after rotation-
+## -------------------------------------------------------------------------------
+##       FA1 Communality Uniquenesses
+## GY 0.9101      0.8283       0.1717
+## HM 0.9101      0.8283       0.1717
+## 
+## -------------------------------------------------------------------------------
+## Comunalit Mean: 0.8283 
+## 
+## -------------------------------------------------------------------------------
+## Multitrait stability index
+## -------------------------------------------------------------------------------
+##     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
+## 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
+## 
+## -------------------------------------------------------------------------------
+## Selection differential for WAASB index
+## -------------------------------------------------------------------------------
+##    Factor     Xo     Xs      SD SDperc
+## GY    FA1 0.2505 0.1165 -0.1340 -53.49
+## HM    FA1 0.6142 0.3732 -0.2409 -39.23
+## 
+## ------------------------------------------------------------------------------
+## Mean of selection differential
+## -------------------------------------------------------------------------------
+##       Xo       Xs       SD   SDperc 
+##   0.4323   0.2449  -0.1874 -46.3575 
+## 
+## ------------------------------------------------------------------------------
+## Selected genotypes
+## G3 G1
+## -------------------------------------------------------------------------------</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(MTSI_index)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="based-on-mean-performance-and-stability" class="section level2">
+<h2>Based on mean performance and stability</h2>
+<p>The following code considers that a larger value for GY and HM is better, and a larger weigth for mean performance is considered for computing the WAASBY index.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MTSI_MODEL =<span class="st"> </span><span class="kw">WAASB</span>(data_ge,
+                   <span class="dt">resp =</span> <span class="kw">c</span>(GY, HM),
+                   <span class="dt">gen =</span> GEN,
+                   <span class="dt">env =</span> ENV,
+                   <span class="dt">rep =</span> REP,
+                   <span class="dt">mresp =</span> <span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">100</span>), <span class="co">#Default</span>
+                   <span class="dt">wresp =</span> <span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">65</span>))</code></pre></div>
+<pre><code>## Evaluating variable GY 50 % 
+## Evaluating variable HM 100 % 
+## Done!</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MTSI_index =<span class="st"> </span><span class="kw">MTSI</span>(MTSI_MODEL, <span class="dt">index =</span> <span class="st">&quot;WAASBY&quot;</span>)</code></pre></div>
+<pre><code>## 
+## -------------------------------------------------------------------------------
+## Principal Component Analysis
+## -------------------------------------------------------------------------------
+##     Eigenvalues Variance (%) Cum. variance (%)
+## PC1      1.1608        58.04             58.04
+## PC2      0.8392        41.96            100.00
+## 
+## -------------------------------------------------------------------------------
+## Factor Analysis - factorial loadings after rotation-
+## -------------------------------------------------------------------------------
+##       FA1 Communality Uniquenesses
+## GY 0.7618      0.5804       0.4196
+## HM 0.7618      0.5804       0.4196
+## 
+## -------------------------------------------------------------------------------
+## Comunalit Mean: 0.5804 
+## 
+## -------------------------------------------------------------------------------
+## Multitrait stability index
+## -------------------------------------------------------------------------------
+##     G8     G3     G6     G5     G4     G7     G1     G9     G2    G10 
+## 0.6247 1.3687 1.9646 2.3690 2.6194 2.6730 2.8470 3.3023 3.5643 3.9014 
+## 
+## -------------------------------------------------------------------------------
+## Selection differential for WAASBY index
+## -------------------------------------------------------------------------------
+##    Factor    Xo    Xs    SD SDperc
+## GY    FA1 45.28 89.11 43.83  96.80
+## HM    FA1 57.03 74.72 17.69  31.01
+## 
+## ------------------------------------------------------------------------------
+## Mean of selection differential
+## -------------------------------------------------------------------------------
+##     Xo     Xs     SD SDperc 
+##  51.16  81.91  30.76  63.90 
+## 
+## ------------------------------------------------------------------------------
+## Selected genotypes
+## G8 G3
+## -------------------------------------------------------------------------------</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(MTSI_index)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-Rocha2018">
+<p>Rocha, João Romero do Amaral Santos de Car, Juarez Campolina Machado, and Pedro Crescêncio Souza Carneiro. 2018. “Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy.” <em>GCB Bioenergy</em> 10 (1). Wiley/Blackwell (10.1111): 52–60. doi:<a href="https://doi.org/10.1111/gcbb.12443">10.1111/gcbb.12443</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
