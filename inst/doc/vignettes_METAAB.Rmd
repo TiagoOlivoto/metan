@@ -1,0 +1,43 @@
+---
+title: "Indexes for simultaneous selection"
+output: rmarkdown::html_vignette
+link-citations: true
+vignette: >
+  %\VignetteIndexEntry{Indexes for simultaneous selection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+# Getting started
+A dataset called `data_ge` is provided to make reproducible examples. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+
+```{r warning = FALSE, message = FALSE}
+# Importing data
+library(METAAB)
+dataset = data_ge
+```
+
+
+# FAI-BLUP index
+
+The FAI-BLUP index [@Rocha2018] is an index for simultaneous selection based on multitrait. The BLUPs from genotypes are obtained with the function `WAASB()` and then the function `FAI.BLUP()` is used to compute the FAI-BLUP index.
+
+```{r }
+multivariate = WAASB(dataset,
+                     resp = c(GY, HM),
+                     gen = GEN,
+                     env = ENV,
+                     rep = REP)
+
+FAI = FAI.BLUP(multivariate,
+               SI = 10,
+               DI = c("max", "max"), 
+               UI = c("min", "min"))
+
+plot(FAI)
+    ```
+
+
+

@@ -1,0 +1,38 @@
+---
+title: "Useful functions for biometrical models"
+output: rmarkdown::html_vignette
+link-citations: true
+bibliography: METAABref.bib 
+vignette: >
+  %\VignetteIndexEntry{Indexes for simultaneous selection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Partial correlation coefficient
+
+```{r }
+library(METAAB)
+partial.corr(iris[,1:4])
+    ```
+
+
+
+# Nonparametric confidence interval for Pearson's correlation
+
+The confidence interval is computed as proposed by @Olivoto2018.
+
+```{r }
+corr.ci(iris[,1:4])
+    ```
+
+
+# Sample size planning
+
+```{r }
+corr.ss(r = 0.6, CI = 0.1)
+    ```
+
+
+References
+
