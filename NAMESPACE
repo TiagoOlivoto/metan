@@ -1,5 +1,4 @@
 exportPattern("^[[:alpha:]]+")
-exportPattern("^[[:alpha:]]+")
 importFrom(grid, grobTree, textGrob, grid.newpage, pushViewport, viewport, grid.layout)
 import(ggplot2)
 importFrom(ggrepel, geom_text_repel)
