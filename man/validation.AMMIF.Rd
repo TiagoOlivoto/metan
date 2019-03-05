@@ -15,7 +15,7 @@ Cross-validation for estimation of all AMMI-family models
 
  \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable, for example \code{resp = GY}.}
+  \item{resp}{The response variable.}
 
   \item{gen}{The name of the column that contains the levels of the genotypes.}
 
