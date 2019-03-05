@@ -1,10 +1,16 @@
-## ---- eval=FALSE---------------------------------------------------------
-#  install.packages("devtools")
-#  devtools::install_github("TiagoOlivoto/METAAB")
-
 ## ------------------------------------------------------------------------
 library(METAAB)
 str(data_ge)
+
+## ---- fig.height=3.5, fig.width=5----------------------------------------
+CVAL = validation.AMMIF(data_ge,
+                        resp = GY,
+                        gen = GEN,
+                        env = ENV,
+                        rep = REP,
+                        nboot = 10,
+                        nrepval = 2)
+plot(CVAL)
 
 ## ------------------------------------------------------------------------
 model <- WAAS.AMMI(data_ge,
@@ -42,6 +48,23 @@ model2 <- WAASB(data_ge,
                 gen = GEN,
                 env = ENV,
                 rep = REP)
+
+## ------------------------------------------------------------------------
+LRT = model2$GY$LRT
+kable(LRT, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+
+VC = model2$GY$random
+kable(VC, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+
+ESTIMATES = model2$GY$ESTIMATES
+kable(ESTIMATES, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+
+BP = model2$GY$blupGEN
+kable(BP, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
 
 ## ---- fig.height=8, fig.width=5------------------------------------------
 p1 <- plot.blup(model2$GY)

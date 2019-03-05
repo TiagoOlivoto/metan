@@ -1,9 +1,9 @@
 ---
-title: "METAAB"
+title: "Multi-environment Trial Analysis using AMMI and BLUP"
 output: rmarkdown::html_vignette
 link-citations: true
 vignette: >
-  %\VignetteIndexEntry{METAAB}
+  %\VignetteIndexEntry{Multi-environment Trial Analysis using AMMI and BLUP}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -11,36 +11,18 @@ vignette: >
 The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B**LUP) package provides useful functions for analyzing multi-environment trial data using Additive Main Effects and Multiplicative Interaction (AMMI) and Best Linear Unbiased Prediction (BLUP) models. The main features include, but are not limited to:
 
 * Cross-validation procedures for AMMI-family and BLUP models;
-* Estimation AMMI models based on number of IPCAs;
+* Estimation of AMMI models based on number of IPCAs;
 * Prediction in mixed-effect models;
 * Variance components and genetic parameters in mixed-effect models;
 * Graphics tools for generating biplots.
 
 
-# Dependences
+# Extending the METAAB package
 
-METAAB depends on the following R packages.
-
-* `grid` for arranging plots
-* `ggplot2` for graphics
-* `ggrepel` for avoiding overlaps text in plots
-* `magrittr` for the %>% opperator
-* `dendexted` and `gplots` for dendrograms
-* `dplyr` for data manipulation
-* `lme4` and `lmerTest` for mixed-effect models
-
-# Installing
-
-The latest development version can be download from GitHub by running
-```{r, eval=FALSE}
-install.packages("devtools")
-devtools::install_github("TiagoOlivoto/METAAB")
-```
+The complete functionality of the METAAB package, combining theory, programming, and outputs may be view at <https://tiagoolivoto.github.io/METAAB/index.html>. You are welcome to visit it.
 
 # Brief examples
-The package `kableExtra` and `cowplot` were used to generate the tables and arranging the graphics of this material.
-
-The `METAAB` contains some datasets for examples. We will use the example `data_ge` that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`
+The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://github.com/wilkelab/cowplot) were used to generate the tables and arranging the graphics of this vignette. For reproducing brief examples we will use the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`.
 
 ```{r}
 library(METAAB)
@@ -49,6 +31,20 @@ str(data_ge)
 
 
 ## AMMI model
+## Cross-validation procedures
+
+```{r, fig.height=3.5, fig.width=5}
+CVAL = validation.AMMIF(data_ge,
+                        resp = GY,
+                        gen = GEN,
+                        env = ENV,
+                        rep = REP,
+                        nboot = 10,
+                        nrepval = 2)
+plot(CVAL)
+```
+
+
 ### Fitting the model
 The AMMI model is fitted with the function `WAAS.AMMI()`. For more details, please see `?WAAS.AMMI`.
 
@@ -62,7 +58,7 @@ model <- WAAS.AMMI(data_ge,
 
 ### Biplots
 
-ggplot2-based graphics are easily obtained in METAAB package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `WAAS.AMMI()` function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, ...), the output `model` is a list, in this case with one element, GY.
+ggplot2-based graphics are easily obtained in METAAB package. Please, note that since `WAAS.AMMI()` function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, ...), the output `model` is a list, in this case with one element, GY. For example, the well-known AMMI2 biplot may be obtained as follows. 
 
 ```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
 library(cowplot)
@@ -81,7 +77,7 @@ plot_grid(p1, p2,
 ```
 
 ### S3 method `predict()`
-The S3 method `predict()` is implemented for objects of class `WAAS.AMMI` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object.
+The S3 method `predict()` is implemented for objects of class `WAAS.AMMI` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted `model` object.
 
 ```{r }
 library(kableExtra)
@@ -93,7 +89,7 @@ kable(predicted, "html") %>%
 ```
 
 ## BLUP model
-The implementation of linear-mixed effect models to predict the response variable in MET is based on the `WAASB()` function. The "mixed-effect version" of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to be random effects is then obtained as follows
+The implementation of linear-mixed effect models to predict the response variable in MET is based on the `WAASB()` function. The "mixed-effect version" of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed have random effects is then obtained as follows.
 
 ```{r }
 model2 <- WAASB(data_ge,
@@ -103,9 +99,30 @@ model2 <- WAASB(data_ge,
                 rep = REP)
 ```
 
+The mixed-effect model fitted in `model2` has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects and the variance components, and the BLUPs for genotypes as follows:
+
+
+```{r }
+LRT = model2$GY$LRT
+kable(LRT, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+
+VC = model2$GY$random
+kable(VC, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+
+ESTIMATES = model2$GY$ESTIMATES
+kable(ESTIMATES, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+
+BP = model2$GY$blupGEN
+kable(BP, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+```
+
+
 
 ## Plotting the BLUPs for genotypes
-
 
 ```{r, fig.height=8, fig.width=5}
 p1 <- plot.blup(model2$GY)
@@ -121,16 +138,11 @@ plot_grid(p1, p2,
 
 ## BLUPS for genotype-vs-environment interaction
 
-
 ```{r }
 data <- model2$GY$BLUPgge[1:5,]
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed",
                 position = "left", full_width = F, font_size = 12)
 ```
-
-# Extending the METAAB package
-
-The complete functionality of the METAAB package may be view at <https://tiagoolivoto.github.io/METAAB/index.html>. You are welcome to visit it.
 
 
