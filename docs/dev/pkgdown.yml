@@ -1,0 +1,11 @@
+pandoc: 1.19.2.1
+pkgdown: 1.3.0
+pkgdown_sha: ~
+articles:
+  vignettes_AMMI: vignettes_AMMI.html
+  vignettes_BIOMETRY: vignettes_BIOMETRY.html
+  vignettes_BLUP: vignettes_BLUP.html
+  vignettes_CROSS-VALIDATION: vignettes_CROSS-VALIDATION.html
+  vignettes_INDEXES: vignettes_INDEXES.html
+  vignettes_METAAB: vignettes_METAAB.html
+
