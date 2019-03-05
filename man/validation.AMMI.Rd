@@ -3,7 +3,7 @@
 \title{Cross-validation for estimation of AMMI model}
 \usage{
 validation.AMMI(data, resp, gen, env, rep, design = "RCBD",
-                nboot, nrepval, naxis, progbar = TRUE)
+                nboot, nrepval, naxis, verbose = TRUE)
 }
 
 \description{
@@ -30,7 +30,7 @@ Cross-validation for estimation of AMMI models
 
 \item{naxis}{The number of axis to be considered for estimation of GE effects.}
 
-\item{progbar}{A logical argument to define if a progress bar is shown. Default is \code{TRUE}.}
+\item{verbose}{A logical argument to define if a progress bar is shown. Default is \code{TRUE}.}
 }
 
 
