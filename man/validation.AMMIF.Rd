@@ -3,7 +3,7 @@
 \title{Cross-validation for estimation of all AMMI-family models}
 \usage{
 validation.AMMIF(data, resp, gen, env, rep, design = "RCBD",
-                 nboot, nrepval, progbar = TRUE)
+                 nboot, nrepval, verbose = TRUE)
 }
 
 \description{
@@ -29,7 +29,7 @@ Cross-validation for estimation of all AMMI-family models
 
   \item{nrepval}{The number of replicates (r) from total number of replicates (R) to be used in the modeling dataset. Only one replicate is used as validating data each step, so, \code{Nrepval} must be equal \code{R-1} }
 
-  \item{progbar}{A logical argument to define if a progress bar is shown. Default is \code{TRUE}.}
+  \item{verbose}{A logical argument to define if a progress bar is shown. Default is \code{TRUE}.}
 }
 
 \details{
@@ -37,15 +37,16 @@ This function provides a complete cross-validation of replicate-based data using
 
 
 \examples{
+\dontrun{
 library(METAAB)
 model = validation.AMMIF(data_ge,
                         resp = GY,
                         gen = GEN,
                         env = ENV,
                         rep = REP,
-                        nboot = 2,
+                        nboot = 100,
                         nrepval = 2)
-
+}
 }
 
 

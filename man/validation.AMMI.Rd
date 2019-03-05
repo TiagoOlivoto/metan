@@ -52,16 +52,17 @@ For each iteration, the original dataset is split into two datasets: modeling an
 }
 
 \examples{
+\dontrun{
 library(METAAB)
 model = validation.AMMI(data_ge,
                         resp = GY,
                         gen = GEN,
                         env = ENV,
                         rep = REP,
-                        nboot = 5,
+                        nboot = 100,
                         nrepval = 2,
                         naxis = 2)
-
+}
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
