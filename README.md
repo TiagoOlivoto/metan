@@ -16,13 +16,13 @@ Dependences
 
 METAAB depends on the following R packages.
 
--   `grid` for arranging plots
--   `ggplot2` for graphics
--   `ggrepel` for avoiding overlaps text in plots
--   `magrittr` for the %&gt;% opperator
--   `dendexted` and `gplots` for dendrograms
--   `dplyr` for data manipulation
--   `lme4` and `lmerTest` for mixed-effect models
+-   [`grid`](https://www.rdocumentation.org/packages/grid/versions/3.5.2) for arranging plots;
+-   [`ggplot2`](https://ggplot2.tidyverse.org/) for graphics;
+-   [`ggrepel`](https://github.com/slowkow/ggrepel) for repel overlapping text labels in ggplot-based graphics;
+-   [`magrittr`](https://www.rdocumentation.org/packages/magrittr/versions/1.5) for the Forward-Pipe Operator `%>%` opperator;
+-   [`dendexted`](https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html) and [`gplots`](https://cran.r-project.org/web/packages/gplots/index.html) for dendrograms;
+-   [`dplyr`](https://github.com/tidyverse/dplyr) for data manipulation;
+-   [`lme4`](https://github.com/lme4/lme4) and [`lmerTest`](https://cran.r-project.org/web/packages/lmerTest/index.html) for mixed-effect models
 
 Installing
 ==========
@@ -30,7 +30,7 @@ Installing
 The latest development version can be download from GitHub by running
 
 ``` r
-install.packages("devtools")
+if (!require("devtools")) install.packages('devtools')
 devtools::install_github("TiagoOlivoto/METAAB")
 ```
 
