@@ -56,12 +56,13 @@ This function is very similar to the \code{WAASBYratio}. The main difference is 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
+\dontrun{
 # Default, with increment of 5 and saving the WAASY values when weight is 50
-#wratio = WAASratio.AMMI(data_ge,
-#                        resp = GY,
-#                        gen = GEN,
-#                        env = ENV,
-#                        rep = REP)
+wratio = WAASratio.AMMI(data_ge,
+                        resp = GY,
+                        gen = GEN,
+                        env = ENV,
+                        rep = REP)
 
 # Incrementing 2-by-2
 wratio2 = WAASratio.AMMI(data_ge,
@@ -70,4 +71,5 @@ wratio2 = WAASratio.AMMI(data_ge,
                          env = ENV,
                          rep = REP,
                          increment = 50)
+}
 }
