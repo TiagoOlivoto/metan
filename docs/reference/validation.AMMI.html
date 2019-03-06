@@ -159,7 +159,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>validation.AMMI</span>(<span class='no'>data</span>, <span class='no'>resp</span>, <span class='no'>gen</span>, <span class='no'>env</span>, <span class='no'>rep</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>,
-                <span class='no'>nboot</span>, <span class='no'>nrepval</span>, <span class='no'>naxis</span>, <span class='kw'>progbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+                <span class='no'>nboot</span>, <span class='no'>nrepval</span>, <span class='no'>naxis</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,7 +170,7 @@
     </tr>
     <tr>
       <th>resp</th>
-      <td><p>The response variable, for example <code>resp = "RG"</code>.</p></td>
+      <td><p>The response variable.</p></td>
     </tr>
     <tr>
       <th>gen</th>
@@ -201,7 +201,7 @@
       <td><p>The number of axis to be considered for estimation of GE effects.</p></td>
     </tr>
     <tr>
-      <th>progbar</th>
+      <th>verbose</th>
       <td><p>A logical argument to define if a progress bar is shown. Default is <code>TRUE</code>.</p></td>
     </tr>
     </table>
@@ -232,15 +232,17 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'>validation.AMMI</span>(<span class='no'>data_ge</span>,
                         <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
                         <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                         <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                         <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                        <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+                        <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
                         <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-                        <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div></pre>
+                        <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -263,7 +265,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.mendeley.com/profiles/tiago-olivoto/'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
