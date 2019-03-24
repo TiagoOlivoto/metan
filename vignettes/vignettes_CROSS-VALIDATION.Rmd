@@ -97,9 +97,7 @@ We can print the result from `RMSPDweat` in basically two distinct ways. First, 
 The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function`plot()` may be used. 
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 # binding AMMI and BLUP RMSPDs
-RMSPDweat = list(RMSPD = rbind(AMMIweat$RMSPD, 
-                               BLUPweat$RMSPD))
-class(RMSPDweat) = "validation.AMMIF"
+RMSPDweat = bind_val(AMMIweat, BLUPweat)
 
 # Plotting the RMSPD values
 p1 = plot(RMSPDweat)
