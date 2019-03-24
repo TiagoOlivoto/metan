@@ -56,6 +56,7 @@ reference:
     desc: Helper functions for METAAB package
     contents:
       - '`mmat`'
+      - '`bind_val`'
       - '`performs_ammi`'
       - '`rbind_fill`'
       - '`resca`'
