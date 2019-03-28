@@ -49,6 +49,7 @@ reference:
   - title: Biometry
     desc: Useful functions for biometry (under development)
     contents:
+      - '`colindiag`'
       - '`corr.ci`'
       - '`corr.ss`'
       - '`partial.corr`'
