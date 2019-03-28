@@ -142,14 +142,14 @@ dataset =<span class="st"> </span>data_ge</code></pre></div>
 \]</span></p>
 <p>where <span class="math inline">\(\widehat{y}_{ij}\)</span> is the model predicted value; and <span class="math inline">\(y_{ij}\)</span> is the observed value in the validation set. The number of random selection of blocks/replicates (<em>n</em>) is defined in the argument <code>nboot</code>. At the end of the <em>n</em> cycles for all models, a list with all estimated RMSPD and the average of RMSPD is returned.</p>
 <p>The function <code>validation.blup</code> provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.</p>
-<p>The following code computes the cross-validation of the oat data set that, for simplicity, will use 50 re-sampling procedures. I suggest using a larger number, say, 1000.</p>
+<p>The following code computes the cross-validation of the oat data set that, for simplicity, will use 200 re-sampling procedures. I suggest using a larger number, say, 1000.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 AMMIweat =<span class="st"> </span><span class="kw"><a href="../reference/validation.AMMIF.html">validation.AMMIF</a></span>(dataset,
                             <span class="dt">resp =</span> GY,
                             <span class="dt">gen =</span> GEN,
                             <span class="dt">env =</span> ENV,
                             <span class="dt">rep =</span> REP,
-                            <span class="dt">nboot =</span> <span class="dv">5</span>,
+                            <span class="dt">nboot =</span> <span class="dv">200</span>,
                             <span class="dt">nrepval =</span> <span class="dv">2</span>)
 
 <span class="co"># cross-validation for BLUP model</span>
@@ -158,7 +158,7 @@ BLUPweat =<span class="st"> </span><span class="kw"><a href="../reference/valida
                             <span class="dt">gen =</span> GEN,
                             <span class="dt">env =</span> ENV,
                             <span class="dt">rep =</span> REP,
-                            <span class="dt">nboot =</span> <span class="dv">5</span>,
+                            <span class="dt">nboot =</span> <span class="dv">200</span>,
                             <span class="dt">nrepval =</span> <span class="dv">2</span>)</code></pre></div>
 <p>A progress bar is shown by default (the examples are below). Thus, it is possible to verify the status of the cross-validation process. If necessary, the progress bar can be disabled by informing the argument <code>progbar = FALSE</code> in the function.</p>
 <div class="figure">
@@ -193,29 +193,7 @@ CROP
 BLUP
 </td>
 <td style="text-align:right;">
-0.4031
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI4
-</td>
-<td style="text-align:right;">
-0.4038
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMIF
-</td>
-<td style="text-align:right;">
-0.4166
+0.4071
 </td>
 <td style="text-align:left;">
 Wheat
@@ -226,18 +204,7 @@ Wheat
 AMMI2
 </td>
 <td style="text-align:right;">
-0.4170
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI6
-</td>
-<td style="text-align:right;">
-0.4172
+0.4104
 </td>
 <td style="text-align:left;">
 Wheat
@@ -248,7 +215,7 @@ Wheat
 AMMI3
 </td>
 <td style="text-align:right;">
-0.4193
+0.4176
 </td>
 <td style="text-align:left;">
 Wheat
@@ -256,32 +223,10 @@ Wheat
 </tr>
 <tr>
 <td style="text-align:left;">
-AMMI7
+AMMI4
 </td>
 <td style="text-align:right;">
-0.4225
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI1
-</td>
-<td style="text-align:right;">
-0.4240
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI8
-</td>
-<td style="text-align:right;">
-0.4360
+0.4181
 </td>
 <td style="text-align:left;">
 Wheat
@@ -292,7 +237,62 @@ Wheat
 AMMI5
 </td>
 <td style="text-align:right;">
-0.4397
+0.4211
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMIF
+</td>
+<td style="text-align:right;">
+0.4242
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI8
+</td>
+<td style="text-align:right;">
+0.4245
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI6
+</td>
+<td style="text-align:right;">
+0.4247
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI1
+</td>
+<td style="text-align:right;">
+0.4270
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI7
+</td>
+<td style="text-align:right;">
+0.4274
 </td>
 <td style="text-align:left;">
 Wheat
@@ -303,7 +303,7 @@ Wheat
 AMMI0
 </td>
 <td style="text-align:right;">
-0.4586
+0.4354
 </td>
 <td style="text-align:left;">
 Wheat
@@ -319,9 +319,7 @@ Wheat
 <a href="#plotting-the-rmspd-values" class="anchor"></a>Plotting the RMSPD values</h2>
 <p>The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function<code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> may be used.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># binding AMMI and BLUP RMSPDs</span>
-RMSPDweat =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">RMSPD =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(AMMIweat<span class="op">$</span>RMSPD, 
-                               BLUPweat<span class="op">$</span>RMSPD))
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(RMSPDweat) =<span class="st"> "validation.AMMIF"</span>
+RMSPDweat =<span class="st"> </span><span class="kw"><a href="../reference/bind_val.html">bind_val</a></span>(AMMIweat, BLUPweat)
 
 <span class="co"># Plotting the RMSPD values</span>
 p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(RMSPDweat)

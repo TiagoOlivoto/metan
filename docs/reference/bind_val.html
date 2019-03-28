@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A personalized theme for the WAASB ggplot2-based graphics — theme_waasb • METAAB</title>
+<title>Bind cross-validation objects. — bind_val • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="A personalized theme for the WAASB ggplot2-based graphics — theme_waasb" />
+<meta property="og:title" content="Bind cross-validation objects. — bind_val" />
 
-<meta property="og:description" content="The function theme_waasb() is a personalized theme for the WAASB ggplot2-based graphics. An own theme can be applied in all graphics by using the following arguments in the plot. functions of the package: theme = theme_waasb() + theme(some stuff here...). See ?ggplot2::theme for more details." />
+<meta property="og:description" content="Helper function that combines objects of class validation.AMMIF or validation.blup. It is useful when looking for a boxplot containing the RMSPD values of both AMMI and BLUP models." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -147,24 +147,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A personalized theme for the WAASB ggplot2-based graphics</h1>
+    <h1>Bind cross-validation objects.</h1>
     
-    <div class="hidden name"><code>theme_waasb.Rd</code></div>
+    <div class="hidden name"><code>bind_val.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>The function <code>theme_waasb()</code> is a personalized theme for the WAASB ggplot2-based graphics. An own theme can be applied in all graphics by using the following arguments in the <code>plot.</code> functions of the package: <code>theme = theme_waasb() + theme(some stuff here...)</code>. See <code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/theme'>?ggplot2::theme</a></code> for more details.</p>
+    <p>Helper function that combines objects of class <code>validation.AMMIF</code> or <code>validation.blup</code>. It is useful when looking for a boxplot containing the RMSPD values of both AMMI and BLUP models.</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>bind_val</span>(<span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>...</th>
+      <td><p>Input objects of class <code>validation.AMMIF</code> or <code>validation.blup</code>.</p></td>
+    </tr>
+    </table>
+    
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+<span class='no'>AMMI</span> <span class='kw'>=</span> <span class='fu'><a href='validation.AMMIF.html'>validation.AMMIF</a></span>(<span class='no'>data_ge</span>,
+                        <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
+                        <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                        <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                        <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                        <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+                        <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='no'>BLUP</span> <span class='kw'>=</span> <span class='fu'><a href='validation.blup.html'>validation.blup</a></span>(<span class='no'>data_ge</span>,
+                        <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
+                        <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                        <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                        <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                        <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+                        <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='no'>bind_data</span> <span class='kw'>=</span> <span class='fu'>bind_val</span>(<span class='no'>AMMI</span>, <span class='no'>BLUP</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>bind_data</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>

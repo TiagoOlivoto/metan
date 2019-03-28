@@ -122,11 +122,58 @@
 
     
     
+<div id="collinearity-diagnostic" class="section level1">
+<h1 class="hasAnchor">
+<a href="#collinearity-diagnostic" class="anchor"></a>Collinearity diagnostic</h1>
+<p>A complete collinearity diagnostic performed in a correlation matrix of predictor variables. More details may be found in the paper by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2017f">2017</a>)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
+<span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(iris, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## The factors  where excluded from the data</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(iris, <span class="dt">group_var =</span> Species)</code></pre></div>
+<pre><code>## The factors  where excluded from the data
+## The factors  where excluded from the data
+## The factors  where excluded from the data</code></pre>
+<pre><code>## 
+## ----------------------------------------------------------------------------
+## Level setosa 
+## ----------------------------------------------------------------------------
+## Weak multicollinearity in the matrix
+## NC = 8.186
+## Matrix determinant: 0.3533595 
+## Largest correlation: Sepal.Length x Sepal.Width = 0.743 
+## Smallest correlation: Sepal.Width x Petal.Length = 0.178 
+## Number of correlations with r &gt;= |0.8|: 0 
+## Variables with largest weight in the last eigenvalues: 
+## Sepal.Length &gt; Sepal.Width &gt; Petal.Length &gt; Petal.Width 
+## 
+## ----------------------------------------------------------------------------
+## Level versicolor 
+## ----------------------------------------------------------------------------
+## Weak multicollinearity in the matrix
+## NC = 22.104
+## Matrix determinant: 0.0835942 
+## Largest correlation: Petal.Length x Petal.Width = 0.787 
+## Smallest correlation: Sepal.Length x Sepal.Width = 0.526 
+## Number of correlations with r &gt;= |0.8|: 0 
+## Variables with largest weight in the last eigenvalues: 
+## Petal.Length &gt; Petal.Width &gt; Sepal.Length &gt; Sepal.Width 
+## 
+## ----------------------------------------------------------------------------
+## Level virginica 
+## ----------------------------------------------------------------------------
+## Weak multicollinearity in the matrix
+## NC = 19.136
+## Matrix determinant: 0.1373902 
+## Largest correlation: Sepal.Length x Petal.Length = 0.864 
+## Smallest correlation: Sepal.Length x Petal.Width = 0.281 
+## Number of correlations with r &gt;= |0.8|: 1 
+## Variables with largest weight in the last eigenvalues: 
+## Sepal.Length &gt; Petal.Length &gt; Sepal.Width &gt; Petal.Width</code></pre>
+</div>
 <div id="partial-correlation-coefficient" class="section level1">
 <h1 class="hasAnchor">
 <a href="#partial-correlation-coefficient" class="anchor"></a>Partial correlation coefficient</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
-<span class="kw"><a href="../reference/partial.corr.html">partial.corr</a></span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/partial.corr.html">partial.corr</a></span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</code></pre></div>
 <pre><code>## $linear.mat
 ##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
@@ -183,6 +230,9 @@
 <div id="ref-Olivoto2018">
 <p>Olivoto, T., A. D. C Lúcio, V. Q. Souza, M. Nardino, M. I. Diel, B. G. Sari, D .K. Krysczun, D. Meira, and C. Meier. 2018. “Confidence interval width for Pearson’s correlation coefficient: a Gaussian-independent estimator based on sample size and strength of association.” <em>Agronomy Journal</em> 110 (1): 1–8. doi:<a href="https://doi.org/10.2134/agronj2017.09.0566">10.2134/agronj2017.09.0566</a>.</p>
 </div>
+<div id="ref-Olivoto2017f">
+<p>Olivoto, T., V. Q. Souza, M. Nardino, I. R. Carvalho, M. Ferrari, A. J. Pelegrin, V. J. Szareski, and D. Schmidt. 2017. “Multicollinearity in path analysis: a simple method to reduce its effects.” <em>Agronomy Journal</em> 109 (1): 131–42. doi:<a href="https://doi.org/10.2134/agronj2016.04.0196">10.2134/agronj2016.04.0196</a>.</p>
+</div>
 </div>
 </div>
   </div>
@@ -192,7 +242,8 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#partial-correlation-coefficient">Partial correlation coefficient</a></li>
+<li><a href="#collinearity-diagnostic">Collinearity diagnostic</a></li>
+      <li><a href="#partial-correlation-coefficient">Partial correlation coefficient</a></li>
       <li><a href="#nonparametric-confidence-interval-for-pearsons-correlation">Nonparametric confidence interval for Pearson’s correlation</a></li>
       <li><a href="#sample-size-planning">Sample size planning</a></li>
       </ul>

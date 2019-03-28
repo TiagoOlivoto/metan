@@ -9,10 +9,18 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+# Collinearity diagnostic
+A complete collinearity diagnostic performed in a correlation matrix of predictor variables. More details may be found in the paper by @Olivoto2017f.
+```{r }
+library(METAAB)
+colindiag(iris, verbose = FALSE)
+colindiag(iris, group_var = Species)
+    ```
+
+
 # Partial correlation coefficient
 
 ```{r }
-library(METAAB)
 partial.corr(iris[,1:4])
     ```
 
