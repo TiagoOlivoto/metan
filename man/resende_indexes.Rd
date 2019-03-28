@@ -2,7 +2,7 @@
 \alias{Resende_indexes}
 \title{Stability indexes proposed by Resende based on a mixed-effect model.}
 \usage{
-Resende_indexes(x)
+Resende_indexes(.data)
 }
 
 
@@ -12,7 +12,7 @@ This function computes the following indexes proposed by Resende (2007): the har
 }
 
 \arguments{
-  \item{x}{An object of class \code{WAASB}}
+  \item{.data}{An object of class \code{WAASB}}
 }
 
 \details{
@@ -33,7 +33,7 @@ The HMRPGV index is computed as
 \value{
 
 
-A dataframe contaning the indexes
+A dataframe contaning the indexes.
 
 }
 
@@ -48,6 +48,15 @@ res_ind = WAASB(data_ge,
                 env = ENV,
                 rep = REP)
 model_indexes = Resende_indexes(res_ind)
+
+# Or using the pipe operator \%>\%
+
+res_ind = WAASB(data_ge,
+                resp = c(GY, HM),
+                gen = GEN,
+                env = ENV,
+                rep = REP) \%>\%
+          Resende_indexes()
 
 }
 

@@ -1,4 +1,4 @@
-WAASB <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, random = "gen",
+WAASB <- function(.data, resp, gen, env, rep, mresp = NULL, wresp = NULL, random = "gen",
     prob = 0.05, verbose = TRUE) {
 
 
@@ -6,7 +6,7 @@ WAASB <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, random 
         stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.")
     }
 
-    datain <- data
+    datain <- .data
     GEN <- factor(eval(substitute(gen), eval(datain)))
     ENV <- factor(eval(substitute(env), eval(datain)))
     REP <- factor(eval(substitute(rep), eval(datain)))

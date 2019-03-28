@@ -1,7 +1,7 @@
-WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, prob = 0.05,
+WAAS.AMMI <- function(.data, resp, gen, env, rep, mresp = NULL, wresp = NULL, prob = 0.05,
     naxis = NULL, verbose = TRUE) {
 
-    datain <- data
+    datain <- .data
     GEN <- factor(eval(substitute(gen), eval(datain)))
     ENV <- factor(eval(substitute(env), eval(datain)))
     REP <- factor(eval(substitute(rep), eval(datain)))
