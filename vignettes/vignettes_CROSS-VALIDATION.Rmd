@@ -39,7 +39,7 @@ where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the obser
 
 The function  `validation.blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.
 
-The following code computes the cross-validation of the oat data set that, for simplicity, will use 50 re-sampling procedures. I suggest using a larger number, say, 1000.
+The following code computes the cross-validation of the oat data set that, for simplicity, will use 200 re-sampling procedures. I suggest using a larger number, say, 1000.
 
 ```{r eval = TRUE, collapse=TRUE, comment = "#"}
 
@@ -48,7 +48,7 @@ AMMIweat = validation.AMMIF(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = REP,
-                            nboot = 5,
+                            nboot = 200,
                             nrepval = 2)
 
 # cross-validation for BLUP model
@@ -57,7 +57,7 @@ BLUPweat = validation.blup(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = REP,
-                            nboot = 5,
+                            nboot = 200,
                             nrepval = 2)
 
     ```
