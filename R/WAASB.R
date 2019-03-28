@@ -65,32 +65,7 @@ WAASB <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, random 
                 cat("\nThe number of environments and number of genotypes must be greater than 2\n")
             }
 
-            temp <- data.frame(matrix(0, length(unique(data$ENV)), 12))
-            actualenv <- 0
-            names(temp) <- c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
-                "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
-            for (i in 1:length(unique(data$ENV))) {
-                envnam <- levels(data$ENV)[actualenv + 1]
-                data2 <- subset(data, ENV == paste0(envnam))
-                anova <- suppressWarnings(anova(aov(Y ~ GEN + REP, data = data2)))
-                h2 <- (anova[1, 3] - anova[3, 3])/anova[1, 3]
-                temp[i, 1] <- paste(envnam)
-                temp[i, 2] <- mean(data2$Y)
-                temp[i, 3] <- anova[2, 3]
-                temp[i, 4] <- anova[1, 3]
-                temp[i, 5] <- anova[3, 3]
-                temp[i, 6] <- anova[2, 4]
-                temp[i, 7] <- anova[2, 5]
-                temp[i, 8] <- anova[1, 4]
-                temp[i, 9] <- anova[1, 5]
-                temp[i, 10] <- sqrt(anova[3, 3])/mean(data2$Y) * 100
-                temp[i, 11] <- ifelse(h2 < 0, 0, h2)
-                temp[i, 12] <- ifelse(h2 < 0, 0, sqrt(h2))
-                actualenv <- actualenv + 1
-
-            }
-            MSEratio <- max(temp$MSres)/min(temp$MSres)
-            individual <- list(individual = temp, MSEratio = MSEratio)
+            individual <- data %>% anova_ind(ENV, GEN, REP, Y)
 
             Complete <- lmerTest::lmer(data = data, Y ~ GEN + (1 | ENV/REP) + (1 |
                 GEN:ENV))
@@ -282,33 +257,7 @@ WAASB <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, random 
                 cat("\nThe number of environments and number of genotypes must be greater than 2\n")
             }
 
-            temp <- data.frame(matrix(0, length(unique(data$ENV)), 12))
-            actualenv <- 0
-            names(temp) <- c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
-                "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
-            for (i in 1:length(unique(data$ENV))) {
-                envnam <- levels(data$ENV)[actualenv + 1]
-                data2 <- subset(data, ENV == paste0(envnam))
-                anova <- suppressWarnings(anova(aov(Y ~ GEN + REP, data = data2)))
-                h2 <- (anova[1, 3] - anova[3, 3])/anova[1, 3]
-                temp[i, 1] <- paste(envnam)
-                temp[i, 2] <- mean(data2$Y)
-                temp[i, 3] <- anova[2, 3]
-                temp[i, 4] <- anova[1, 3]
-                temp[i, 5] <- anova[3, 3]
-                temp[i, 6] <- anova[2, 4]
-                temp[i, 7] <- anova[2, 5]
-                temp[i, 8] <- anova[1, 4]
-                temp[i, 9] <- anova[1, 5]
-                temp[i, 10] <- sqrt(anova[3, 3])/mean(data2$Y) * 100
-                temp[i, 11] <- ifelse(h2 < 0, 0, h2)
-                temp[i, 12] <- ifelse(h2 < 0, 0, sqrt(h2))
-                actualenv <- actualenv + 1
-
-            }
-
-            MSEratio <- max(temp$MSres)/min(temp$MSres)
-            individual <- list(individual = temp, MSEratio = MSEratio)
+            individual <- data %>% anova_ind(ENV, GEN, REP, Y)
 
             Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
                 Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
@@ -533,33 +482,7 @@ WAASB <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, random 
                 cat("\nThe number of environments and number of genotypes must be greater than 2\n")
             }
 
-            temp <- data.frame(matrix(0, length(unique(data$ENV)), 12))
-            actualenv <- 0
-            names(temp) <- c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)",
-                "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
-            for (i in 1:length(unique(data$ENV))) {
-                envnam <- levels(data$ENV)[actualenv + 1]
-                data2 <- subset(data, ENV == paste0(envnam))
-                anova <- suppressWarnings(anova(aov(Y ~ GEN + REP, data = data2)))
-                h2 <- (anova[1, 3] - anova[3, 3])/anova[1, 3]
-                temp[i, 1] <- paste(envnam)
-                temp[i, 2] <- mean(data2$Y)
-                temp[i, 3] <- anova[2, 3]
-                temp[i, 4] <- anova[1, 3]
-                temp[i, 5] <- anova[3, 3]
-                temp[i, 6] <- anova[2, 4]
-                temp[i, 7] <- anova[2, 5]
-                temp[i, 8] <- anova[1, 4]
-                temp[i, 9] <- anova[1, 5]
-                temp[i, 10] <- sqrt(anova[3, 3])/mean(data2$Y) * 100
-                temp[i, 11] <- ifelse(h2 < 0, 0, h2)
-                temp[i, 12] <- ifelse(h2 < 0, 0, sqrt(h2))
-                actualenv <- actualenv + 1
-
-            }
-
-            MSEratio <- max(temp$MSres)/min(temp$MSres)
-            individual <- list(individual = temp, MSEratio = MSEratio)
+            individual <- data %>% anova_ind(ENV, GEN, REP, Y)
 
             Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
                 Y ~ (1 | GEN) + (1 | ENV/REP) + (1 | GEN:ENV))))

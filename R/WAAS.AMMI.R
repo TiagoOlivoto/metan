@@ -1,6 +1,6 @@
-WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, prob = 0.05, 
+WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, prob = 0.05,
     naxis = NULL, verbose = TRUE) {
-    
+
     datain <- data
     GEN <- factor(eval(substitute(gen), eval(datain)))
     ENV <- factor(eval(substitute(env), eval(datain)))
@@ -8,7 +8,7 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
     listres <- list()
     d <- match.call()
     nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-    
+
     if (!is.null(naxis)) {
         if (length(d$resp) > 1) {
             if (length(naxis) != length(d$resp) - 1) {
@@ -20,7 +20,7 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
             }
         }
     }
-    
+
     if (is.null(mresp)) {
         mresp <- replicate(nvar, 100)
         minresp <- 100 - mresp
@@ -34,7 +34,7 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
         mresp <- mresp
         minresp <- 100 - mresp
     }
-    
+
     if (is.null(wresp)) {
         PesoResp <- replicate(nvar, 50)
         PesoWAASB <- 100 - PesoResp
@@ -64,35 +64,9 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
             cat("\nWarning. The analysis is not possible.")
             cat("\nThe number of environments and number of genotypes must be greater than 2\n")
         }
-        
-        temp <- data.frame(matrix(0, length(unique(data$ENV)), 12))
-        actualenv <- 0
-        names(temp) <- c("ENV", "Mean", "MSblock", "MSgen", "MSres", "Fcal(Blo)", 
-            "Pr>F(Blo)", "Fcal(Gen)", "Pr>F(Gen)", "CV(%)", "h2", "AS")
-        for (i in 1:length(unique(data$ENV))) {
-            envnam <- levels(data$ENV)[actualenv + 1]
-            data2 <- subset(data, ENV == paste0(envnam))
-            anova <- suppressWarnings(anova(aov(Y ~ GEN + REP, data = data2)))
-            h2 <- (anova[1, 3] - anova[3, 3])/anova[1, 3]
-            temp[i, 1] <- paste(envnam)
-            temp[i, 2] <- mean(data2$Y)
-            temp[i, 3] <- anova[2, 3]
-            temp[i, 4] <- anova[1, 3]
-            temp[i, 5] <- anova[3, 3]
-            temp[i, 6] <- anova[2, 4]
-            temp[i, 7] <- anova[2, 5]
-            temp[i, 8] <- anova[1, 4]
-            temp[i, 9] <- anova[1, 5]
-            temp[i, 10] <- sqrt(anova[3, 3])/mean(data2$Y) * 100
-            temp[i, 11] <- ifelse(h2 < 0, 0, h2)
-            temp[i, 12] <- ifelse(h2 < 0, 0, sqrt(h2))
-            actualenv <- actualenv + 1
-            
-        }
-        
-        MSEratio <- max(temp$MSres)/min(temp$MSres)
-        individual <- list(individual = temp, MSEratio = MSEratio)
-        
+
+        individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+
         model <- performs_ammi(ENV, GEN, REP, Y)
         anova <- model$ANOVA
         PC <- model$analysis
@@ -100,18 +74,18 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
         Escores <- model$biplot
         Escores <- cbind(Code = row.names(Escores), Escores)
         Escores <- Escores %>% dplyr::select(type, everything())
-        
+
         EscGEN <- subset(Escores, type == "GEN")
         names(EscGEN)[2] <- "GEN"
         names(EscGEN)[3] <- "y"
         EscENV <- subset(Escores, type == "ENV")
         names(EscENV)[2] <- "ENV"
-        MeansGxE <- suppressMessages(suppressWarnings(dplyr::mutate(MeansGxE, envPC1 = left_join(MeansGxE, 
-            EscENV %>% select(ENV, PC1))$PC1, genPC1 = left_join(MeansGxE, EscGEN %>% 
-            select(GEN, PC1))$PC1, nominal = left_join(MeansGxE, EscGEN %>% select(GEN, 
+        MeansGxE <- suppressMessages(suppressWarnings(dplyr::mutate(MeansGxE, envPC1 = left_join(MeansGxE,
+            EscENV %>% select(ENV, PC1))$PC1, genPC1 = left_join(MeansGxE, EscGEN %>%
+            select(GEN, PC1))$PC1, nominal = left_join(MeansGxE, EscGEN %>% select(GEN,
             y))$y + genPC1 * envPC1)))
-        
-        
+
+
         if (is.null(naxis)) {
             SigPC1 <- nrow(PC[which(PC[, 5] < prob), ])
         } else {
@@ -122,7 +96,7 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
             }
         }
         if (SigPC1 > minimo) {
-            stop("The number of axis to be used must be lesser than or equal to ", 
+            stop("The number of axis to be used must be lesser than or equal to ",
                 minimo, " [min(GEN-1;ENV-1)]")
         } else {
             Pesos <- model$analysis[1]
@@ -131,7 +105,7 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
             WAAS <- Escores
             WAASAbs <- Escores
             WAAS[, 4:ncol(WAAS)] <- lapply(WAAS[, 4:ncol(WAAS)], abs)
-            
+
             t_WAAS <- data.frame(t(WAAS))
             colnames(t_WAAS) <- rownames(WAAS)
             rownames(t_WAAS) <- colnames(WAAS)
@@ -141,7 +115,7 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
             for (i in 1:ncol(t_WAAS)) {
                 t_WAAS[, i] <- as.numeric(as.character(t_WAAS[, i]))
             }
-            Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean, 
+            Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean,
                 w = t_WAAS$Percent)))
             rownames(Ponderado) <- c("WAAS")
             t_WAAS <- subset(t_WAAS, select = -Percent)
@@ -163,9 +137,9 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
                 WAASAbs3$PctResp <- resca(WAASAbs3$Y, new_min = minresp, new_max = mresp)
             }
             WAASAbs3$PctWAAS <- resca(WAASAbs3$WAAS, 100, 0)
-            WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::group_by(type) %>% dplyr::mutate(OrResp = rank(-Y), 
+            WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::group_by(type) %>% dplyr::mutate(OrResp = rank(-Y),
                 OrWAAS = rank(WAAS), OrPC1 = rank(abs(PC1)))
-            
+
             if (nvar > 1) {
                 WAASAbs$PesRes <- as.vector(PesoResp)[vin]
                 WAASAbs$PesWAAS <- as.vector(PesoWAASB)[vin]
@@ -173,51 +147,51 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
                 WAASAbs$PesRes <- as.vector(PesoResp)
                 WAASAbs$PesWAAS <- as.vector(PesoWAASB)
             }
-            
-            WAAS <- WAASAbs %>% dplyr::mutate(WAASY = ((PctResp * PesRes) + (PctWAAS * 
+
+            WAAS <- WAASAbs %>% dplyr::mutate(WAASY = ((PctResp * PesRes) + (PctWAAS *
                 PesWAAS))/(PesRes + PesWAAS)) %>% dplyr::group_by(type) %>% dplyr::mutate(OrWAASY = rank(-WAASY))
-            
-            MinENV <- WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)), n = 1), 
+
+            MinENV <- WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)), n = 1),
                 ]
-            MinENV <- paste0("Environment ", MinENV$Code, " (", round(MinENV$Y, 4), 
+            MinENV <- paste0("Environment ", MinENV$Code, " (", round(MinENV$Y, 4),
                 ") ")
-            MaxENV <- WAASAbs2[head(which(WAASAbs2[, 3] >= max(WAASAbs2$Y)), n = 1), 
+            MaxENV <- WAASAbs2[head(which(WAASAbs2[, 3] >= max(WAASAbs2$Y)), n = 1),
                 ]
-            MaxENV <- paste0("Environment ", MaxENV$Code, " (", round(MaxENV$Y, 4), 
+            MaxENV <- paste0("Environment ", MaxENV$Code, " (", round(MaxENV$Y, 4),
                 ") ")
-            MinGEN <- WAASAbs3[head(which(WAASAbs3[, 3] <= min(WAASAbs3$Y)), n = 1), 
+            MinGEN <- WAASAbs3[head(which(WAASAbs3[, 3] <= min(WAASAbs3$Y)), n = 1),
                 ]
             MinGEN <- paste0("Genotype ", MinGEN$Code, " (", round(MinGEN$Y, 4), ") ")
-            MaxGEN <- WAASAbs3[head(which(WAASAbs3[, 3] >= max(WAASAbs3$Y)), n = 1), 
+            MaxGEN <- WAASAbs3[head(which(WAASAbs3[, 3] >= max(WAASAbs3$Y)), n = 1),
                 ]
             MaxGEN <- paste0("Genotype ", MaxGEN$Code, " (", round(MaxGEN$Y, 4), ") ")
             mean <- round(mean(MeansGxE$Y), 4)
-            min <- MeansGxE[head(which(MeansGxE[, 3] <= min(MeansGxE$Y)), n = 1), 
+            min <- MeansGxE[head(which(MeansGxE[, 3] <= min(MeansGxE$Y)), n = 1),
                 ]
-            min <- paste0(round(min$Y, 4), " (Genotype ", min$GEN, " in ", min$ENV, 
+            min <- paste0(round(min$Y, 4), " (Genotype ", min$GEN, " in ", min$ENV,
                 " )")
-            max <- MeansGxE[head(which(MeansGxE[, 3] >= max(MeansGxE$Y)), n = 1), 
+            max <- MeansGxE[head(which(MeansGxE[, 3] >= max(MeansGxE$Y)), n = 1),
                 ]
-            max <- paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV, 
+            max <- paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,
                 " )")
             PCA <- PC[, 4:7]
-            Details <- list(Ngen = Ngen, Nenv = Nenv, OVmean = mean, Min = min, Max = max, 
-                MinENV = MinENV, MaxENV = MaxENV, MinGEN = MinGEN, MaxGEN = MaxGEN, 
+            Details <- list(Ngen = Ngen, Nenv = Nenv, OVmean = mean, Min = min, Max = max,
+                MinENV = MinENV, MaxENV = MaxENV, MinGEN = MinGEN, MaxGEN = MaxGEN,
                 SigPC = SigPC1)
             Details <- do.call(rbind.data.frame, Details)
             names(Details) <- "Values"
-            Details <- dplyr::mutate(Details, Parameters = c("Ngen", "Nenv", "OVmean", 
+            Details <- dplyr::mutate(Details, Parameters = c("Ngen", "Nenv", "OVmean",
                 "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"))
             Details <- Details %>% dplyr::select(Parameters, everything())
-            
-            temp <- structure(list(individual = individual, model = WAAS, MeansGxE = MeansGxE, 
-                PCA = PCA, anova = anova, Details = Details, residuals = model$residuals, 
+
+            temp <- structure(list(individual = individual, model = WAAS, MeansGxE = MeansGxE,
+                PCA = PCA, anova = anova, Details = Details, residuals = model$residuals,
                 probint = model$probint), class = "WAAS.AMMI")
-            
+
             if (length(d$resp) > 1) {
                 listres[[paste(d$resp[var])]] <- temp
                 if (verbose == TRUE) {
-                  cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) - 
+                  cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
                     1) * 100, 1), "%", "\n")
                 }
             } else {
@@ -239,7 +213,7 @@ WAAS.AMMI <- function(data, resp, gen, env, rep, mresp = NULL, wresp = NULL, pro
         cat("Done!\n")
     }
     invisible(structure(listres, class = "WAAS.AMMI"))
-    
+
 }
 
 
