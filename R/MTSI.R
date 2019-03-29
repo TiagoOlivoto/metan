@@ -1,50 +1,50 @@
-MTSI <- function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1) {
-    if (length(x) == 1) {
+MTSI <- function(.data, index = "WAASB", SI = 15, mineval = 1, verbose = TRUE) {
+    if (length(.data) == 1) {
         stop("The multitrait stability index cannot be computed with one single variable.")
     }
     if (index == "WAASBY") {
-        ideotype.D <- rep(100, length(x))
+        ideotype.D <- rep(100, length(.data))
     }
-    
-    if (class(x) == "WAAS.AMMI") {
+
+    if (class(.data) == "WAAS.AMMI") {
         if (index == "WAASB") {
-            bind <- data.frame(do.call(cbind, lapply(x, function(x) {
+            bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
                 val <- x[["model"]][["WAAS"]]
             })))
         }
         if (index == "WAASBY") {
-            bind <- data.frame(do.call(cbind, lapply(x, function(x) {
+            bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
                 val <- x[["model"]][["WAASY"]]
             })))
         }
-        bind$gen <- x[[1]][["model"]][["Code"]]
-        bind$type <- x[[1]][["model"]][["type"]]
-        data <- data.frame(subset(bind, type == "GEN") %>% select(-type) %>% select(gen, 
+        bind$gen <- .data[[1]][["model"]][["Code"]]
+        bind$type <- .data[[1]][["model"]][["type"]]
+        data <- data.frame(subset(bind, type == "GEN") %>% select(-type) %>% select(gen,
             everything()))
     }
-    
-    
-    if (class(x) == "WAASB") {
+
+
+    if (class(.data) == "WAASB") {
         if (index == "WAASB") {
-            bind <- data.frame(do.call(cbind, lapply(x, function(x) {
+            bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
                 val <- x[["model"]][["WAASB"]]
             })))
         }
         if (index == "WAASBY") {
-            bind <- data.frame(do.call(cbind, lapply(x, function(x) {
+            bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
                 val <- x[["model"]][["WAASBY"]]
             })))
         }
-        bind$gen <- x[[1]][["model"]][["Code"]]
-        bind$type <- x[[1]][["model"]][["type"]]
-        data <- data.frame(subset(bind, type == "GEN") %>% select(-type) %>% select(gen, 
+        bind$gen <- .data[[1]][["model"]][["Code"]]
+        bind$type <- .data[[1]][["model"]][["type"]]
+        data <- data.frame(subset(bind, type == "GEN") %>% select(-type) %>% select(gen,
             everything()))
     }
-    
+
     if (any(apply(data, 2, is.na)) == TRUE) {
         stop("The MTSI index cannot be computed because the genotype-vs-environment interaction effect was not significant for some variable.")
     }
-    
+
     if (is.null(SI)) {
         ngs <- NULL
     } else {
@@ -59,12 +59,12 @@ MTSI <- function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1) {
     colnames(eigen.vectors) <- paste("PC", 1:ncol(cor.means), sep = "")
     rownames(eigen.vectors) <- colnames(means)
     if (length(eigen.values[eigen.values >= mineval]) == 1) {
-        eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >= 
+        eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >=
             mineval]))))
         initial.loadings <- cbind(eigen.vectors[, eigen.values >= mineval] * eigen.values.factors)
         A <- initial.loadings
     } else {
-        eigen.values.factors <- t(replicate(ncol(cor.means), c(as.matrix(sqrt(eigen.values[eigen.values >= 
+        eigen.values.factors <- t(replicate(ncol(cor.means), c(as.matrix(sqrt(eigen.values[eigen.values >=
             mineval])))))
         initial.loadings <- eigen.vectors[, eigen.values >= mineval] * eigen.values.factors
         A <- varimax(initial.loadings)[[1]][]
@@ -86,7 +86,7 @@ MTSI <- function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1) {
         sum((cor.means[i, -i])^2)/(sum((cor.means[i, -i])^2) + sum((partial[i, -i])^2))
     }))
     names(MSA) <- colnames(means)
-    
+
     colnames(A) <- paste("FA", 1:ncol(initial.loadings), sep = "")
     variance <- (eigen.values/sum(eigen.values)) * 100
     cumulative.var <- cumsum(eigen.values/sum(eigen.values)) * 100
@@ -120,9 +120,9 @@ MTSI <- function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1) {
     contr.factor <- (gen_ide^2/apply(gen_ide, 1, function(x) sum(x^2))) * 100
     means.factor <- means[, names.pos.var.factor]
     if (!is.null(ngs)) {
-        selection.diferential <- data.frame(cbind(Factor = pos.var.factor[, 2], Xo = colMeans(means.factor), 
-            Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]), SD = colMeans(means.factor[names(MTSI)[1:ngs], 
-                ]) - colMeans(means.factor), SDperc = (colMeans(means.factor[names(MTSI)[1:ngs], 
+        selection.diferential <- data.frame(cbind(Factor = pos.var.factor[, 2], Xo = colMeans(means.factor),
+            Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]), SD = colMeans(means.factor[names(MTSI)[1:ngs],
+                ]) - colMeans(means.factor), SDperc = (colMeans(means.factor[names(MTSI)[1:ngs],
                 ]) - colMeans(means.factor))/colMeans(means.factor) * 100))
         selection.diferential[, 1] <- paste("FA", selection.diferential[, 1], sep = "")
         sd_mean <- apply(selection.diferential[, 2:5], 2, mean)
@@ -130,7 +130,7 @@ MTSI <- function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1) {
     if (is.null(ngs)) {
         selection.diferential <- NULL
     }
-    if (show) {
+    if (verbose) {
         cat("\n-------------------------------------------------------------------------------\n")
         cat("Principal Component Analysis\n")
         cat("-------------------------------------------------------------------------------\n")
@@ -160,11 +160,11 @@ MTSI <- function(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1) {
             cat("\n-------------------------------------------------------------------------------\n")
         }
     }
-    
-    return(structure(list(data = data, cormat = as.matrix(cor.means), PCA = data.frame(pca), 
-        FA = data.frame(fa), KMO = KMO, MSA = MSA, comunalits = Communality, comunalits.mean = mean(Communality), 
-        initial.loadings = initial.loadings, finish.loadings = A, canonical.loadings = canonical.loadings, 
-        scores.gen = scores, scores.ide = ideotypes.scores, MTSI = MTSI, contri.fac = data.frame(contr.factor), 
-        selection.diferential = selection.diferential, selec.dif.mean = sd_mean, Selected = names(MTSI)[1:ngs]), 
+
+    return(structure(list(data = data, cormat = as.matrix(cor.means), PCA = data.frame(pca),
+        FA = data.frame(fa), KMO = KMO, MSA = MSA, comunalits = Communality, comunalits.mean = mean(Communality),
+        initial.loadings = initial.loadings, finish.loadings = A, canonical.loadings = canonical.loadings,
+        scores.gen = scores, scores.ide = ideotypes.scores, MTSI = MTSI, contri.fac = data.frame(contr.factor),
+        selection.diferential = selection.diferential, selec.dif.mean = sd_mean, Selected = names(MTSI)[1:ngs]),
         class = "MTSI"))
 }

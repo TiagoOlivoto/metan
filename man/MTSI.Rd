@@ -2,7 +2,7 @@
 \alias{MTSI}
 \title{Multitrait stability index}
 \usage{
-MTSI(x, index = "WAASB", show = TRUE, SI = 15, mineval = 1)
+MTSI(.data, index = "WAASB", SI = 15, mineval = 1, verbose = TRUE)
 }
 
 \description{
@@ -12,15 +12,15 @@ Multitrait stability index in analysis of multi-environment trials using AMMI or
 }
 \arguments{
 
-  \item{x}{An object of class \code{WAASB} or \code{WAAS.AMMI}.  }
+  \item{.data}{An object of class \code{WAASB} or \code{WAAS.AMMI}.  }
 
   \item{index}{If \code{index = "WAASB"} (Default) the multitrait index will be computed considering the stability of genotypes only. If \code{index = "WAASBY"} both stability and mean performance are considered. More details can be seen in \code{\link{WAASB}} and \code{\link{WAAS.AMMI}} functions.}
 
-  \item{show}{If \code{show = TRUE} (Default) some results are shown in the console.}
-
-    \item{SI}{An integer [0-100]. The selection intensity in percentage of the total number of genotypes.}
+  \item{SI}{An integer [0-100]. The selection intensity in percentage of the total number of genotypes.}
 
   \item{mineval}{The minimum value so that an eigenvector is retained in the factor analysis.}
+
+  \item{verbose}{If \code{verbose = TRUE} (Default) then some results are shown in the console.}
 
 }
 
@@ -29,25 +29,26 @@ Multitrait stability index in analysis of multi-environment trials using AMMI or
 
 \examples{
 library(METAAB)
-# Based on stability only
+library(dplyr)
+
+# Based on stability only, for both GY and HM, higher is better
 MTSI_MODEL = WAASB(data_ge,
                    resp = c(GY, HM),
                    gen = GEN,
                    env = ENV,
                    rep = REP)
-
 MTSI_index = MTSI(MTSI_MODEL)
+plot(MTSI_index)
 
 
-# Based on mean performance and stability
-MTSI_MODEL2 = WAASB(data_ge,
-                    resp = c(GY, HM),
+# Based on mean performance and stability (using pipe operator \%>\%)
+# GY: higher is better
+# HM: lower is better
+MTSI_index2 = data_ge \%>\%
+              WAASB(resp = c(GY, HM),
                     gen = GEN,
                     env = ENV,
                     rep = REP,
-                    mresp = c(100, 100), #Default
-                    wresp = c(65, 65))
-MTSI_index2 = MTSI(MTSI_MODEL2,
-                   index = "WAASBY")
-plot(MTSI_index2)
+                    mresp = c(100, 0))\%>\%
+              MTSI(index = "WAASBY")
 }
