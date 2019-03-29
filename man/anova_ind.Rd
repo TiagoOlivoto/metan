@@ -35,12 +35,11 @@ anova1 = anova_ind(data,
                    gen = GEN,
                    rep = REP,
                    resp = GY)
-anova1
 
 # Using the pipe operator \%>\%
+library(dplyr)
 data \%>\% anova_ind(ENV, GEN, REP, GY)
 
-}
 }
 
 
