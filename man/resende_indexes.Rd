@@ -49,13 +49,10 @@ res_ind = WAASB(data_ge,
                 rep = REP)
 model_indexes = Resende_indexes(res_ind)
 
-# Or using the pipe operator \%>\%
-
-res_ind = WAASB(data_ge,
-                resp = c(GY, HM),
-                gen = GEN,
-                env = ENV,
-                rep = REP) \%>\%
+# Alternatively (and more intuitively) using the pipe operator \%>\%
+library(dplyr)
+res_ind = data_ge \%>\%
+          WAASB(c(GY, HM), GEN, ENV, REP) \%>\%
           Resende_indexes()
 
 }
