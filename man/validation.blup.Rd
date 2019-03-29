@@ -2,7 +2,7 @@
 \alias{validation.blup}
 \title{Cross-validation for blup prediction }
 \usage{
-validation.blup(data, resp, gen, env, rep,
+validation.blup(.data, resp, gen, env, rep,
                 nboot, nrepval, verbose = TRUE)
 }
 \description{
@@ -12,7 +12,7 @@ Cross-validation for blup prediction.
 
 \arguments{
 
-  \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
+  \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
   \item{resp}{The response variable.}
 
@@ -43,6 +43,11 @@ model = validation.blup(data_ge,
                         rep = REP,
                         nboot = 100,
                         nrepval = 2)
+
+# Alternatively (and more intuitively) using the pipe operator \%>\%
+library(dplyr)
+model = data_ge \%>\%
+        validation.blup(GY, GEN, ENV, REP, 100, 2)
 
 }
 }

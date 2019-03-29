@@ -1,11 +1,11 @@
-validation.AMMIF <- function(data, resp, gen, env, rep, design = "RCBD", nboot, nrepval,
+validation.AMMIF <- function(.data, resp, gen, env, rep, design = "RCBD", nboot, nrepval,
     verbose = TRUE) {
 
-    Y <- eval(substitute(resp), eval(data))
-    GEN <- factor(eval(substitute(gen), eval(data)))
-    ENV <- factor(eval(substitute(env), eval(data)))
-    REP <- factor(eval(substitute(rep), eval(data)))
-    REPS <- eval(substitute(rep), eval(data))
+    Y <- eval(substitute(resp), eval(.data))
+    GEN <- factor(eval(substitute(gen), eval(.data)))
+    ENV <- factor(eval(substitute(env), eval(.data)))
+    REP <- factor(eval(substitute(rep), eval(.data)))
+    REPS <- eval(substitute(rep), eval(.data))
     data <- data.frame(ENV, GEN, REP, Y)
     data <- mutate(data, ID = rownames(data))
     Nenv <- length(unique(ENV))

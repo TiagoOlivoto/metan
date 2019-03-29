@@ -2,7 +2,7 @@
 \alias{validation.AMMIF}
 \title{Cross-validation for estimation of all AMMI-family models}
 \usage{
-validation.AMMIF(data, resp, gen, env, rep, design = "RCBD",
+validation.AMMIF(.data, resp, gen, env, rep, design = "RCBD",
                  nboot, nrepval, verbose = TRUE)
 }
 
@@ -13,7 +13,7 @@ Cross-validation for estimation of all AMMI-family models
 
 \arguments{
 
- \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
+ \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
   \item{resp}{The response variable.}
 
@@ -46,6 +46,11 @@ model = validation.AMMIF(data_ge,
                         rep = REP,
                         nboot = 100,
                         nrepval = 2)
+
+# Alternatively (and more intuitively) using the pipe operator \%>\%
+library(dplyr)
+model = data_ge \%>\%
+        validation.AMMIF(GY, GEN, ENV, REP, 100, 2)
 }
 }
 
