@@ -2,7 +2,7 @@
 \alias{AMMI_indexes}
 \title{AMMI-based indexes for stability and simultaneous selection}
 \usage{
-AMMI_indexes(x, order.y = NULL)
+AMMI_indexes(.data, order.y = NULL)
 }
 
 
@@ -11,7 +11,7 @@ This function computes the following AMMI-based stability indexes: ASV, AMMI sta
 }
 
 \arguments{
-  \item{x}{An object of class \code{WAAS.AMMI}}
+  \item{.data}{An object of class \code{WAAS.AMMI}}
 
   \item{order.y}{A vector of the same length of \code{x} used to order the response variable. Each element of the vector must be one of the \code{"h"} or \code{"l"}. If \code{"h"} is used, the response variable will be ordered from maximum to minimum. If \code{"l"} is used then the response variable will be ordered from minimum to maximum.}
 }
@@ -68,8 +68,16 @@ model = WAAS.AMMI(data_ge,
                   resp = c(GY, HM),
                   gen = GEN,
                   env = ENV,
-                  rep = REP)
+                  rep = REP,
+                  verbose = FALSE)
 model_indexes = AMMI_indexes(model)
+
+
+# Alternatively (and more intuitively) using \%>\%
+library(dplyr)
+res_ind = data_ge \%>\%
+          WAAS.AMMI(c(GY, HM), GEN, ENV, REP) \%>\%
+          AMMI_indexes()
 
 }
 
