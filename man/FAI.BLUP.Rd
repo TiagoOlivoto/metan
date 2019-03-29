@@ -2,7 +2,7 @@
 \alias{FAI.BLUP}
 \title{Multitrait index based on factor analysis and ideotype-design}
 \usage{
-FAI.BLUP(x, DI, UI, show = TRUE, SI = NULL, mineval = 1)
+FAI.BLUP(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE)
 }
 
 \description{
@@ -13,15 +13,16 @@ Multitrait index based on factor analysis and ideotype-design proposed by Rocha 
 \arguments{
 
 
-  \item{x}{An object of class \code{WAASB} }
+  \item{.data}{An object of class \code{WAASB} }
 
-  \item{DI, UI}{A vector of the same length of x to construct the desirable/undesirable ideotype. For each element of the vector, allowed values are \code{"max"}, \code{"min"}, \code{"mean"}, or a numeric value.}
+  \item{DI, UI}{A vector of the same length of \code{.data} to construct the desirable (DI) and undesirable (UI) ideotypes. For each element of the vector, allowed values are \code{"max"}, \code{"min"}, \code{"mean"}, or a numeric value.}
 
-  \item{show}{Logical value. If \code{TRUE} the results are shown in console.}
 
   \item{SI}{An integer [0-100]. The selection intensity in percentage of the total number of genotypes.}
 
   \item{mineval}{The minimum value so that an eigenvector is retained in the factor analysis.}
+
+  \item{verbose}{Logical value. If \code{TRUE} some results are shown in console.}
 
 }
 
@@ -34,15 +35,26 @@ Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018. Multitrait index ba
 }
 
 \examples{
-multivariate = WAASB(data_ge,
-                     resp = c(GY, HM),
-                     gen = GEN,
-                     env = ENV,
-                     rep = REP)
+library(METAAB)
+library(dplyr)
 
-FAI = FAI.BLUP(multivariate,
+mod = WAASB(data_ge,
+            resp = c(GY, HM),
+            gen = GEN,
+            env = ENV,
+            rep = REP)
+
+FAI = FAI.BLUP(mod,
                SI = 15,
                DI = c("max", "max"),
                UI = c("min", "min"))
+
+# Or using the pipe operator \%>\%
+
+FAI = data_ge \%>\%
+      WAASB(c(GY, HM), GEN, ENV, REP) \%>\%
+      FAI.BLUP(DI = c("max", "max"),
+               UI = c("min", "min"),
+               SI = 15)
 plot(FAI)
 }

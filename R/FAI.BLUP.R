@@ -1,23 +1,23 @@
-FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1) {
-    
-    if (length(x) == 1) {
+FAI.BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
+
+    if (length(.data) == 1) {
         stop("The multitrait stability index cannot be computed with one single variable.")
     }
-    if (length(DI) != length(x) || length(UI) != length(x)) {
+    if (length(DI) != length(.data) || length(UI) != length(.data)) {
         stop("The length of DI and UI must be the same length of data.")
     }
-    if (!class(x) == "WAASB") {
-        stop("The x must be an object of class 'WAASB'.")
+    if (!class(.data) == "WAASB") {
+        stop("The .data must be an object of class 'WAASB'.")
     }
     ideotype.D <- DI
     ideotype.U <- UI
-    
-    bind <- data.frame(do.call(cbind, lapply(x, function(x) {
+
+    bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
         val <- x[["blupGEN"]][order(x[["blupGEN"]][, 2]), ]$Predicted
     })))
-    bind$gen <- x[[1]][["blupGEN"]][order(x[[1]][["blupGEN"]][, 2]), ]$GEN
+    bind$gen <- .data[[1]][["blupGEN"]][order(.data[[1]][["blupGEN"]][, 2]), ]$GEN
     data <- data.frame(bind %>% select(gen, everything()))
-    
+
     if (is.null(SI)) {
         ngs <- NULL
     } else {
@@ -33,12 +33,12 @@ FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1) {
     colnames(eigen.vectors) <- paste("PC", 1:ncol(cor.means), sep = "")
     rownames(eigen.vectors) <- colnames(means)
     if (length(eigen.values[eigen.values >= mineval]) == 1) {
-        eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >= 
+        eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >=
             mineval]))))
         initial.loadings <- cbind(eigen.vectors[, eigen.values >= mineval] * eigen.values.factors)
         finish.loadings <- initial.loadings
     } else {
-        eigen.values.factors <- t(replicate(ncol(cor.means), c(as.matrix(sqrt(eigen.values[eigen.values >= 
+        eigen.values.factors <- t(replicate(ncol(cor.means), c(as.matrix(sqrt(eigen.values[eigen.values >=
             mineval])))))
         initial.loadings <- eigen.vectors[, eigen.values >= mineval] * eigen.values.factors
         finish.loadings <- varimax(initial.loadings)[[1]][]
@@ -56,7 +56,7 @@ FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1) {
     colnames(scores) <- paste("SC", 1:ncol(scores), sep = "")
     rownames(scores) <- data[, 1]
     IN <- 2^ncol(finish.loadings)
-    pos.var.factor <- which(abs(finish.loadings) == apply(abs(finish.loadings), 1, 
+    pos.var.factor <- which(abs(finish.loadings) == apply(abs(finish.loadings), 1,
         max), arr.ind = T)
     var.factor <- lapply(1:ncol(finish.loadings), function(i) {
         rownames(pos.var.factor)[pos.var.factor[, 2] == i]
@@ -81,7 +81,7 @@ FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1) {
         D.U[, i]
     })
     construction.ideotypes <- as.matrix(rev(expand.grid(groups.factor)))
-    colnames(construction.ideotypes) <- paste("Factor", 1:ncol(construction.ideotypes), 
+    colnames(construction.ideotypes) <- paste("Factor", 1:ncol(construction.ideotypes),
         sep = "")
     D <- numeric(0)
     U <- numeric(0)
@@ -134,7 +134,7 @@ FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1) {
     rownames(ideotypes.matrix) <- paste("ID", 1:IN, sep = "")
     colnames(ideotypes.matrix) <- colnames(normalize.means.factor)
     ideotypes.scores <- ideotypes.matrix %*% canonical.loadings.factor
-    sd.scores <- scale(rbind(scores, ideotypes.scores), center = FALSE, scale = apply(rbind(scores, 
+    sd.scores <- scale(rbind(scores, ideotypes.scores), center = FALSE, scale = apply(rbind(scores,
         ideotypes.scores), 2, sd))
     DE <- dist(sd.scores)
     DEM <- as.matrix(sqrt((1/ncol(scores)) * ((DE)^2)))
@@ -147,7 +147,7 @@ FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1) {
     means.factor <- means[, names.pos.var.factor]
     if (!is.null(ngs)) {
         selection.diferential <- lapply(1:IN, function(i) {
-            cbind(pos.var.factor[, 2], ((colMeans(means.factor[names(ideotype.rank[[i]])[1:ngs], 
+            cbind(pos.var.factor[, 2], ((colMeans(means.factor[names(ideotype.rank[[i]])[1:ngs],
                 ]) - colMeans(means.factor))/colMeans(means.factor)) * 100)
         })
         for (i in 1:IN) {
@@ -184,7 +184,7 @@ FAI.BLUP <- function(x, DI, UI, show = TRUE, SI = NULL, mineval = 1) {
             cat("\n-----------------------------------------------------------------------------------\n")
         }
     }
-    
-    return(structure(list(data = data, FA = data.frame(fa), canonical.loadings = data.frame(canonical.loadings), 
+
+    return(structure(list(data = data, FA = data.frame(fa), canonical.loadings = data.frame(canonical.loadings),
         FAI = ideotype.rank, selection.diferential = selection.diferential), class = "FAI.BLUP"))
 }
