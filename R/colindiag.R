@@ -1,11 +1,17 @@
-colindiag = function(x, group_var = NULL, n = NULL, verbose = TRUE){
-  if(!is.matrix(x) && !is.data.frame(x)){
+colindiag = function(.data, group_var = NULL, n = NULL, verbose = TRUE){
+  if(!is.matrix(.data) && !is.data.frame(.data)){
     stop("The object 'x' must be a correlation matrix or a data.frame")
   }
-  if(is.matrix(x) && is.null(n)){
+  if(is.matrix(.data) && is.null(n)){
     stop("You have a matrix but the sample size used to compute the correlations (n) was not declared.")
   }
-  
+  if(is.matrix(.data) && !missing(group_var)){
+    stop("You cannot use a grouping variables because a correlation matrix was used as input.")
+  }
+  if(is.data.frame(.data) && !is.null(n)){
+    stop("You cannot informe the sample size because a data frame was used as input.")
+  }
+
   internal = function(x){
     if(is.matrix(x)){
       cor.x = x
@@ -20,7 +26,7 @@ colindiag = function(x, group_var = NULL, n = NULL, verbose = TRUE){
     Aval = data.frame(eigen$values)
     names(Aval) = "Eigenvalues"
     Avet = data.frame(t(eigen$vectors))
-    names(Avet) = colnames(x) 
+    names(Avet) = colnames(x)
     AvAvet = cbind(Aval, Avet)
     VIF = data.frame(diag(solve(cor.x)))
     names(VIF) = "VIF"
@@ -63,7 +69,7 @@ colindiag = function(x, group_var = NULL, n = NULL, verbose = TRUE){
                  CN = NC,
                  det = Det,
                  largest_corr = largest_corr,
-                 smallest_corr = smallest_corr, 
+                 smallest_corr = smallest_corr,
                  weight_var = pesovarname)
     if(verbose == TRUE){
     cat(paste0("Matrix determinant: ", round(Det,7)),  "\n")
@@ -73,23 +79,24 @@ colindiag = function(x, group_var = NULL, n = NULL, verbose = TRUE){
     cat(paste0("Variables with largest weight in the last eigenvalues: ","\n",
                pesovarname),  "\n")
     }
-    
+
     return(invisible(final))
   }
-  
-  if(is.matrix(x)){
-    out = internal(x)
+
+  if(is.matrix(.data)){
+    out = internal(.data)
   }
-  
-  if(is.data.frame(x)){
+
+  if(is.data.frame(.data)){
   if(!missing(group_var)){
     group_var <- dplyr::enquo(group_var)
-  re =  x  %>%
+  re =  .data  %>%
     split(dplyr::pull(., !!group_var))
 data = lapply(re, function(x){
-     unlist(lapply(x, is.factor))
+  if(verbose == TRUE){
     message("The factors ", paste0(collapse = " ", names(x[ , unlist(lapply(x, is.factor)) ])),
             " where excluded from the data")
+  }
   x[ , unlist(lapply(x, is.numeric))]
   }
   )
@@ -103,11 +110,13 @@ out = lapply(seq_along(data), function(x){
 })
 names(out) = names(data)
   } else{
-    if(sum(lapply(x, is.factor)==TRUE)>0){
-    message("The factors ", paste0(collapse = " ", names(x[ , unlist(lapply(x, is.factor)) ])),
+    if(sum(lapply(.data, is.factor)==TRUE)>0){
+      if(verbose == TRUE){
+    message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
             " where excluded from the data")
+      }
     }
-    data = x[ , unlist(lapply(x, is.numeric))]
+    data = .data[ , unlist(lapply(.data, is.numeric))]
     out = internal(data)
   }
 }

@@ -2,7 +2,7 @@
 \alias{colindiag}
 \title{Collinearity Diagnostics}
 \usage{
-colindiag(x, group_var = NULL, n = NULL, verbose = TRUE)
+colindiag(.data, group_var = NULL, n = NULL, verbose = TRUE)
 }
 \description{
 Perform a (multi)collinearity diagnostic of a correlation matrix of predictor variables based several indicators, as shown by Olivoto et al. (2017).
@@ -10,7 +10,7 @@ Perform a (multi)collinearity diagnostic of a correlation matrix of predictor va
 }
 
 \arguments{
- \item{x}{The data to be analyzed. Must be a symmetric correlation matrix or a dataframe containing the predictor variables and one possible grouping variable.}
+ \item{.data}{The data to be analyzed. Must be a symmetric correlation matrix or a dataframe containing the predictor variables and one possible grouping variable.}
 
  \item{group_var}{A possible factor to group the data. If more than two factors are in the dataset, the extra factor column(s) will be excluded with a message.}
 
@@ -54,13 +54,14 @@ Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J. Pelegrin, V
 # Using the correlation matrix
 cor_iris = cor(iris[,1:4])
 n = nrow(iris)
-colindiag(cor_iris, n = n)
+colindiag(cor_iris, n = n, verbose = FALSE)
 
-# Using the original data, storing into an object
-col_diag = colindiag(iris, verbose = FALSE)
+# Using the pipe operator \%>\%
+library(dplyr)
+cor_iris \%>\% colindiag(n = n, verbose = FALSE)
 
 # Diagnostic by species, storing into an object
-col_diag_spec = colindiag(iris, group_var = Species)
+col_diag_spec = iris \%>\% colindiag(group_var = Species)
 
 }
 
