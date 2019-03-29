@@ -25,7 +25,9 @@ Imports: dplyr,
          lmerTest,
          gtools,
          magrittr,
-         methods
+         methods,
+         GGally,
+         ade4
 RoxygenNote: 6.1.1
 Suggests:
     knitr,
