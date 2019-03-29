@@ -2,7 +2,7 @@
 \alias{WAAS.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis}
 \usage{
-WAAS.AMMI(data, resp, gen, env, rep, mresp = NULL,
+WAAS.AMMI(.data, resp, gen, env, rep, mresp = NULL,
           wresp = NULL, prob = 0.05, naxis = NULL,
           verbose = TRUE)
 }
@@ -12,7 +12,7 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
 }
 
 \arguments{
-  \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
+  \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
   \item{resp}{The response variable(s). To analyze multiple variables in a single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
