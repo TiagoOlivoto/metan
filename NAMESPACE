@@ -3,6 +3,8 @@ importFrom(grid, grobTree, textGrob, grid.newpage, pushViewport, viewport, grid.
 import(ggplot2)
 importFrom(ggrepel, geom_text_repel)
 importFrom(magrittr, "%>%")
+importFrom(GGally, ggally_text, eval_data_col, ggpairs)
+importFrom(ade4, mantel.randtest)
 importFrom(dendextend, set, rotate_DendSer)
 importFrom(lme4, ranef, VarCorr, fortify.merMod)
 importFrom(lmerTest, ranova, lmer)
@@ -12,14 +14,16 @@ importFrom(dplyr, select, everything, mutate, group_by, left_join,
 importFrom(gplots, heatmap.2)
 importFrom("grDevices", "colorRampPalette", "dev.off", "pdf",
            "chull", "tiff")
-importFrom("methods", "is")
+importFrom("methods", "is", "as")
 importFrom("graphics", "plot")
 importFrom("stats", "aov", "filter", "as.dendrogram", "dist", "hclust", "lm",
            "model.matrix", "qt", "weighted.mean", "deviance", "df.residual",
            "pf", "predict", "dnorm", "fitted", "ppoints", "qnorm", "quantile",
            "resid", "sd", "residuals", "cor", "reorder", "varimax",
-           "cov2cor", "pt", "anova", "as.formula")
+           "cov2cor", "pt", "anova", "as.formula", "as.dist", "symnum")
 importFrom("utils", "head", "setWinProgressBar", "winProgressBar", "combn")
+S3method(as, lpcor)
+S3method(is, lpcor)
 S3method(plot, WAASBY)
 S3method(plot, WAASBYratio)
 S3method(plot, WAASratio.AMMI)
