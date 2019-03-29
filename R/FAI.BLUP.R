@@ -158,7 +158,7 @@ FAI.BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     if (is.null(ngs)) {
         selection.diferential <- NULL
     }
-    if (show) {
+    if (verbose == TRUE) {
         cat("\n-----------------------------------------------------------------------------------\n")
         cat("Principal Component Analysis\n")
         cat("-----------------------------------------------------------------------------------\n")
