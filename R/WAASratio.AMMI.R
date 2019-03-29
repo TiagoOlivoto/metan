@@ -1,5 +1,6 @@
-WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, increment = 5, 
+WAASratio.AMMI <- function(.data, resp, gen, env, rep, p.valuePC = 0.05, increment = 5,
     saveWAASY = 50, progbar = TRUE) {
+    data = .data
     PesoWAAS <- 100
     PesoResp <- 0
     Y <- eval(substitute(resp), eval(data))
@@ -9,19 +10,19 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
     Nenv <- length(unique(ENV))
     Ngen <- length(unique(GEN))
     ncomb <- (100/increment) + 1
-    
+
     test <- PesoWAAS%%increment == 0
     test2 <- saveWAASY%%increment == 0
-    
+
     if (test == FALSE) {
         stop("The argument 'increment = ", increment, "' is invalid. Please, note that this value must result in an integer in the expression '100 / increment'. Please, consider changing the values.")
     } else {
-        
+
         if (test2 == FALSE) {
-            stop("The argument 'saveWAASY = ", saveWAASY, "' must be divisible by 'increment' (", 
+            stop("The argument 'saveWAASY = ", saveWAASY, "' must be divisible by 'increment' (",
                 increment, "). Please, consider changing the values.")
         } else {
-            
+
             CombWAASY <- data.frame(type = matrix(".", (Ngen + Nenv), 1))
             WAASY.Values <- list()
             model <- performs_ammi(ENV, GEN, REP, Y)
@@ -31,7 +32,7 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
             totalcomb <- ncomb * nrow(PC)
             initial <- 0
             if (progbar == TRUE) {
-                pb <- winProgressBar(title = "the model is being built, please, wait.", 
+                pb <- winProgressBar(title = "the model is being built, please, wait.",
                   min = 1, max = totalcomb, width = 570)
             }
             for (k in 1:ncomb) {
@@ -56,7 +57,7 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
                 for (i in 1:ncol(t_WAAS)) {
                   t_WAAS[, i] <- as.numeric(as.character(t_WAAS[, i]))
                 }
-                Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean, 
+                Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean,
                   w = t_WAAS$Percent)))
                 rownames(Ponderado) <- c("WAAS")
                 t_WAAS <- subset(t_WAAS, select = -Percent)
@@ -72,11 +73,11 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
                 WAASAbs3 <- subset(WAASAbs, type == "GEN")
                 WAASAbs3$PctResp <- resca(WAASAbs3$Y, 0, 100)
                 WAASAbs3$PctWAAS <- resca(WAASAbs3$WAAS, 100, 0)
-                WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::group_by(type) %>% 
-                  dplyr::mutate(OrResp = rank(-Y), OrWAAS = rank(WAAS), OrPC1 = rank(abs(PC1)), 
-                    PesRes = as.vector(PesoResp), PesWAAS = as.vector(PesoWAAS), WAASY = (PctResp * 
+                WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::group_by(type) %>%
+                  dplyr::mutate(OrResp = rank(-Y), OrWAAS = rank(WAAS), OrPC1 = rank(abs(PC1)),
+                    PesRes = as.vector(PesoResp), PesWAAS = as.vector(PesoWAAS), WAASY = (PctResp *
                       PesRes + PctWAAS * PesWAAS)/(PesRes + PesWAAS))
-                WAASAbsInicial <- WAASAbs %>% dplyr::group_by(type) %>% dplyr::mutate(OrWAASY = rank(-WAASY)) %>% 
+                WAASAbsInicial <- WAASAbs %>% dplyr::group_by(type) %>% dplyr::mutate(OrWAASY = rank(-WAASY)) %>%
                   dplyr::ungroup()
                 inicial <- as.data.frame(WAASAbsInicial$OrWAAS)
                 colnames(inicial) <- paste0(SigPC1, "PC")
@@ -102,7 +103,7 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
                   for (i in 1:ncol(t_WAAS)) {
                     t_WAAS[, i] <- as.numeric(as.character(t_WAAS[, i]))
                   }
-                  Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean, 
+                  Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean,
                     w = t_WAAS$Percent)))
                   rownames(Ponderado) <- c("WAAS")
                   t_WAAS <- subset(t_WAAS, select = -Percent)
@@ -118,10 +119,10 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
                   WAASAbs3 <- subset(WAASAbs, type == "GEN")
                   WAASAbs3$PctResp <- resca(WAASAbs3$Y, 0, 100)
                   WAASAbs3$PctWAAS <- resca(WAASAbs3$WAAS, 100, 0)
-                  WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::mutate(PesRes = as.vector(PesoResp), 
-                    PesWAAS = as.vector(PesoWAAS), WAASY = (PctResp * PesRes + PctWAAS * 
-                      PesWAAS)/(PesRes + PesWAAS)) %>% dplyr::group_by(type) %>% dplyr::mutate(OrResp = rank(-Y), 
-                    OrWAAS = rank(WAAS), OrPC1 = rank(abs(PC1)), OrWAASY = rank(-WAASY)) %>% 
+                  WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::mutate(PesRes = as.vector(PesoResp),
+                    PesWAAS = as.vector(PesoWAAS), WAASY = (PctResp * PesRes + PctWAAS *
+                      PesWAAS)/(PesRes + PesWAAS)) %>% dplyr::group_by(type) %>% dplyr::mutate(OrResp = rank(-Y),
+                    OrWAAS = rank(WAAS), OrPC1 = rank(abs(PC1)), OrWAASY = rank(-WAASY)) %>%
                     dplyr::ungroup()
                   results <- as.data.frame(WAASAbs$OrWAAS)
                   names(results) <- paste0(SigPC2, "PC")
@@ -132,9 +133,9 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
                   initial <- initial + 1
                   Sys.sleep(0.1)
                   if (progbar == TRUE) {
-                    setWinProgressBar(pb, initial, title = paste("Obtaining the Ranks considering", 
-                      ProcdAtua, " of ", nrow(PC), "Principal components:", "|WAAS:", 
-                      PesoWAAS, "% ", "GY:", PesoResp, "%|", "-", round(initial/totalcomb * 
+                    setWinProgressBar(pb, initial, title = paste("Obtaining the Ranks considering",
+                      ProcdAtua, " of ", nrow(PC), "Principal components:", "|WAAS:",
+                      PesoWAAS, "% ", "GY:", PesoResp, "%|", "-", round(initial/totalcomb *
                         100, 2), "% Concluded -"))
                   }
                 }
@@ -150,7 +151,7 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
                   genotypes <- genotypes[, c("Code", "PesRes", "PesWAAS", "WAASY")]
                   genotypes <- genotypes[order(genotypes$WAASY), ]
                   genotypes$Code <- factor(genotypes$Code, levels = genotypes$Code)
-                  genotypes$Mean <- ifelse(genotypes$WAASY < mean(genotypes$WAASY), 
+                  genotypes$Mean <- ifelse(genotypes$WAASY < mean(genotypes$WAASY),
                     "below", "above")
                 }
             }
@@ -180,8 +181,8 @@ WAASratio.AMMI <- function(data, resp, gen, env, rep, p.valuePC = 0.05, incremen
             if (progbar == TRUE) {
                 close(pb)
             }
-            return(structure(list(anova = anova, PC = PC, MeansGxE = MeansGxE, WAAS = WAAS, 
-                WAASxGY = WAASY.Values, WAASY = genotypes, hetcomb = hetcomb, hetdata = hetdata, 
+            return(structure(list(anova = anova, PC = PC, MeansGxE = MeansGxE, WAAS = WAAS,
+                WAASxGY = WAASY.Values, WAASY = genotypes, hetcomb = hetcomb, hetdata = hetdata,
                 Ranks = Rank), class = "WAASratio.AMMI"))
         }
     }

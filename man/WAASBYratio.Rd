@@ -2,7 +2,7 @@
 \alias{WAASBYratio}
 \title{Weighted Average of Absolute Scores from SVD of BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio}
 \usage{
-WAASBYratio(data, resp, gen, env, rep, increment = 5,
+WAASBYratio(.data, resp, gen, env, rep, increment = 5,
             saveWAASY = 50, progbar = TRUE)
 }
 
@@ -11,7 +11,7 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis in different c
 
 }
 \arguments{
- \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
+ \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
   \item{resp}{The response variable, for example \code{resp = RG}.}
 

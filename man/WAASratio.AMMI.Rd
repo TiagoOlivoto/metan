@@ -2,7 +2,7 @@
 \alias{WAASratio.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio}
 \usage{
-WAASratio.AMMI(data, resp, gen, env, rep, p.valuePC = 0.05,
+WAASratio.AMMI(.data, resp, gen, env, rep, p.valuePC = 0.05,
                increment = 5, saveWAASY = 50, progbar = TRUE)
 }
 
@@ -11,7 +11,7 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis in different c
 
 }
 \arguments{
- \item{data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
+ \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
   \item{resp}{The response variable, for example \code{resp = RG}.}
 
