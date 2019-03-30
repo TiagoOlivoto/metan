@@ -30,6 +30,7 @@ If a grouping factor is used then a list is returned with the following values.
 
 \examples{
 library(METAAB)
+library(dplyr)
 partial1 = lpcor(iris[,1:4])
 
 # Alternatively using the pipe operator \%>\%
