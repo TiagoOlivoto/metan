@@ -13,9 +13,9 @@ importFrom(dplyr, select, everything, mutate, group_by, left_join,
            sample_n, anti_join, enquo, pull)
 importFrom(gplots, heatmap.2)
 importFrom("grDevices", "colorRampPalette", "dev.off", "pdf",
-           "chull", "tiff")
+           "chull", "tiff", "boxplot.stats")
 importFrom("methods", "is", "as")
-importFrom("graphics", "plot")
+importFrom("graphics", "plot", "boxplot", "hist", "par")
 importFrom("stats", "aov", "filter", "as.dendrogram", "dist", "hclust", "lm",
            "model.matrix", "qt", "weighted.mean", "deviance", "df.residual",
            "pf", "predict", "dnorm", "fitted", "ppoints", "qnorm", "quantile",
