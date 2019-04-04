@@ -18,7 +18,7 @@ Find the required (sufficient) sample size for computing a Pearson correlation c
  }
 
 \value{
-\item{A list where each element is a named level of the grouping factors.}
+A list where each element is a named level of the grouping factors.
 }
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
