@@ -32,6 +32,6 @@ library(dplyr)
 
 g1 = iris \%>\% group_factors(Species)
 
-g2 = CO2 \%>\% group_factors(Treatment, Type, keep_factors = T)
+g2 = CO2 \%>\% group_factors(Treatment, Type, keep_factors = TRUE)
 
 }
