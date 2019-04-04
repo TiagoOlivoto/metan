@@ -1,15 +1,16 @@
-lpcor <- function(.data, group_var = NULL, n = NULL, verbose = TRUE) {
+lpcor <- function(.data, n = NULL, verbose = TRUE) {
 
-  if(!is.matrix(.data) && !is.data.frame(.data)){
-    stop("The object 'x' must be a correlation matrix or a data.frame")
+  if(!is.matrix(.data) && !is.data.frame(.data) && !is.group_factors(.data)){
+    stop("The object 'x' must be a correlation matrix, a data.frame or an object of class group_factors")
   }
   if(is.matrix(.data) && is.null(n)){
     stop("You have a matrix but the sample size used to compute the correlations (n) was not declared.")
   }
-  if(is.matrix(.data) && !missing(group_var)){
-    stop("You cannot use a grouping variables because a correlation matrix was used as input.")
-  }
   if(is.data.frame(.data) && !is.null(n)){
+    stop("You cannot informe the sample size because a data frame was used as input.")
+  }
+
+  if(is.group_factors(.data) && !is.null(n)){
     stop("You cannot informe the sample size because a data frame was used as input.")
   }
 
@@ -51,40 +52,30 @@ lpcor <- function(.data, group_var = NULL, n = NULL, verbose = TRUE) {
        out = internal(.data)
     }
 
-    if(is.data.frame(.data)){
-      if(!missing(group_var)){
-        group_var <- dplyr::enquo(group_var)
-        re =  .data  %>%
-          split(dplyr::pull(., !!group_var))
-        data = lapply(re, function(x){
-          if(verbose == TRUE){
-            message("The factors ", paste0(collapse = " ", names(x[ , unlist(lapply(x, is.factor)) ])),
-                    " where excluded from the data")
-          }
-          x[ , unlist(lapply(x, is.numeric))]
+    if (class(.data) == "group_factors") {
+      out = lapply(seq_along(.data), function(x){
+        if(verbose == TRUE){
+          cat("\n----------------------------------------------------------------------------\n")
+          cat("Level:", names(.data)[[x]], "\n")
+          cat("----------------------------------------------------------------------------\n")
         }
-        )
-        out = lapply(seq_along(data), function(x){
-          if(verbose == TRUE){
-            cat("\n----------------------------------------------------------------------------\n")
-            cat("Level:", names(data)[[x]], "\n")
-            cat("----------------------------------------------------------------------------\n")
-          }
-          internal(data[[x]])
-        })
-        names(out) = names(data)
-      } else{
+        internal(.data[[x]])
+      })
+      names(out) = names(.data)
+    }
+
+    if (is.data.frame(.data)) {
         if(sum(lapply(.data, is.factor)==TRUE)>0){
-          if(verbose == TRUE){
-            message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-                    " where excluded from the data")
-          }
         }
         data = .data[ , unlist(lapply(.data, is.numeric))]
         out = internal(data)
-      }
+        if(verbose == TRUE){
+          message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
+                  " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.' ")
+        }
     }
-    if(!missing(group_var)){
+
+    if (class(.data) == "group_factors") {
     invisible(structure(out, class = "lpcor_group"))
     } else {
     invisible(structure(out, class = "lpcor"))
