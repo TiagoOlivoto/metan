@@ -81,19 +81,17 @@ library(dplyr)
 
 # iris dataset
 lpc = iris \%>\%
-      lpcor(group_var = Species)
-      pairs_mantel(lpc)
+      group_factors(Species) \%>\%
+      lpcor() \%>\%
+      pairs_mantel(names = c("setosa", "versicolor", "virginica"))
 
-iris \%>\%
-lpcor(group_var = Species) \%>\%
-pairs_mantel(names = c("setosa", "versicolor", "virginica"))
 
-## mtcars dataset
+# mtcars dataset
 mt_num = mtcars \%>\% select_if(., is.numeric)
 lpdata = as.lpcor(cor(mt_num[1:5]),
                   cor(mt_num[1:5]),
                   cor(mt_num[2:6]),
                   cor(mt_num[4:8])) \%>\%
-pairs_mantel()
+         pairs_mantel()
 }
 
