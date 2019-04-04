@@ -78,26 +78,21 @@ Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J. Pelegrin, V
 library(METAAB)
 library(dplyr)
 
-cor_iris = cor(iris[,1:4])
-n = nrow(iris)
-colindiag(cor_iris, n = n, verbose = FALSE)
-
-# Using the pipe operator \%>\%
-library(dplyr)
 pcoeff = data_ge2 \%>\%
-         path_coeff(resp = KW, pred = c("TWK", "NK"))
+         path_coeff(resp = KW, pred = c("TKW", "NKE"))
 
 pcoeff2 = data_ge2 \%>\%
          path_coeff(resp = KW,
-                    pred = c("TWK", "NK"),
+                    pred = c("PH", "EH", "NKE", "TKW"),
                     exclude = TRUE)
 
-pcoeff3 = data_ge2 \%>\% path_coeff(resp = KW,
-                                 brutstepwise = TRUE,
-                                 maxvif = 5)
+pcoeff3 = data_ge2 \%>\%
+          path_coeff(resp = KW,
+                     brutstepwise = TRUE,
+                     maxvif = 5)
 
 pcoeff4 = data_ge2 \%>\%
-          group_factors(AMB) \%>\%
+          group_factors(ENV) \%>\%
           path_coeff(resp = KW)
 
 }
