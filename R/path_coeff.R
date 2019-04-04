@@ -473,7 +473,7 @@ kincrement = 1 / knumber
                             Eigen = AvAvet,
                             VIF = VIF,
                             plot = p1,
-                            Predictors = pred,
+                            Predictors = names(pr),
                             CN = NC,
                             Det = Det,
                             R2 = R2,
@@ -536,9 +536,9 @@ kincrement = 1 / knumber
           cor.x = cor(x, use = missingval)
         }
         if (is.null(correction) == T){
-          betas = data.frame(matrix(nrow = knumber, ncol = length(pred)+1))
+          betas = data.frame(matrix(nrow = knumber, ncol = length(predstw)+1))
           cc = 0
-          nvar = length(pred) + 1
+          nvar = length(predstw) + 1
           for (i in 1:knumber){
             cor.x2 = cor.x
             diag(cor.x2) = diag(cor.x2) + cc
@@ -546,7 +546,7 @@ kincrement = 1 / knumber
             betas[i,2:nvar] = t(solve(cor.x2, cor.y))
             cc = cc + kincrement
           }
-          names(betas) = paste0(c("K", pred))
+          names(betas) = paste0(c("K", predstw))
           xx <- betas$K
           yy <- colnames(betas)
           fila <- knumber
@@ -566,7 +566,6 @@ kincrement = 1 / knumber
           }
           x = as.numeric(x)
           betas = data.frame(K = x, VAR = y, direct = z)
-
 
           p1 = ggplot2::ggplot(betas, ggplot2::aes(K, direct, col = VAR)) +
             ggplot2::geom_line(size = 1)+
@@ -620,7 +619,7 @@ kincrement = 1 / knumber
                        Eigen = AvAvet,
                        VIF = VIF,
                        plot = p1,
-                       Predictors = pred,
+                       Predictors = predstw,
                        CN = NC,
                        Det = Det,
                        R2 = R2,
