@@ -27,6 +27,9 @@ pairs_mantel = function(...,
                         pan.spacing = 0.15,
                         digits = 2){
   class = list(...)
+  if (!type %in% c(1:2)){
+    stop("The argument type must be 1 (linear correlation) or 2 (partial correlation).")
+  }
   if(sum(lapply(class, function(x) !class(x) %in% c("lpcor_group", "lpcor") == TRUE)>0)){
     stop("The object must be of the class lpcor. Please use 'as.lpcorr' to convert correlation matrices into the correct format.")
   }
@@ -188,7 +191,8 @@ pairs_mantel = function(...,
     lower = list(continuous = my_custom_cor),
     upper = list(continuous = my_custom_smooth),
     axisLabels="none")
-  ggplot2::theme_set(ggplot2::theme_gray()+theme(panel.spacing=grid::unit(pan.spacing,"lines")))
+  ggplot2::theme_set(ggplot2::theme_gray() +
+  ggplot2::theme(panel.spacing = grid::unit(pan.spacing, "lines")))
 
 
   if (export  ==  F|FALSE) {
