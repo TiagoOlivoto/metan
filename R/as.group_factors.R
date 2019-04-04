@@ -1,4 +1,4 @@
-as.group_factors = function(x, verbose = TRUE) {
+as.group_factors = function(x) {
   grouped <- group_by_if(x, is.factor)
   names <- rlang::eval_bare(rlang::expr(paste(!!!group_keys(grouped), sep = " / ")))
   gd =   grouped %>%
