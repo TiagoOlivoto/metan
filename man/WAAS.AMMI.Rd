@@ -83,7 +83,7 @@ model2 <- WAAS.AMMI(data_ge,
                     env = ENV,
                     gen = GEN,
                     rep = REP,
-                    resp = GY
+                    resp = GY,
                     naxis = 3,
                     wresp = 60)
 
