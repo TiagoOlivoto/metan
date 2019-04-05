@@ -4,9 +4,10 @@ path_coeff = function(.data,
                       exclude = FALSE,
                       correction = NULL,
                       knumber = 50,
-                      brutstepwise = FALSE,
+                      brutstep = FALSE,
                       maxvif = 10,
-                      missingval = "pairwise.complete.obs"){
+                      missingval = "pairwise.complete.obs",
+                      verbose = TRUE){
 if (missing(resp) == TRUE){
   stop("A response variable (dependent) must be declared.")
 }
@@ -21,7 +22,7 @@ kincrement = 1 / knumber
         prcod <- dplyr::quos(!!dplyr::enquo(pred))
       }
 
-      if (brutstepwise == FALSE){
+      if (brutstep == FALSE){
         if (missing(pred)){
           pr = data %>% dplyr::select(-!!resp)
 
@@ -116,6 +117,7 @@ kincrement = 1 / knumber
         Residual = 1 - t(Direct) %*% cor.y
         R2 = t(Direct) %*% cor.y
         VIF = data.frame(diag(solve(cor.x)))
+        if(verbose == TRUE){
         names(VIF) = "VIF"
         cat("\n----------------------------------------------------------------------------\n")
         cat("Level", nam, "\n")
@@ -123,13 +125,13 @@ kincrement = 1 / knumber
         if (NC > 1000){
           cat(paste0("Severe multicollinearity. \n",
                      "Condition Number = ", round(NC,3), "\n",
-                     "Please, see the other indicators \n"))
+                     "Please, consider using a correction factor, or use 'brutstep = TRUE'. \n"))
         }
 
         if (NC < 100){
           cat(paste0("Weak multicollinearity. \n",
                     "Condition Number = ", round(NC,3), "\n",
-                    "Please, see the other indicators \n"))
+                    "You will probably have path coefficients close to being unbiased. \n"))
         }
 
         if (NC > 100 & NC < 1000 ){
@@ -137,7 +139,7 @@ kincrement = 1 / knumber
                      "Condition Number = ", round(NC,3), "\n",
                      "Please, cautiosely evaluate the VIF and matrix determinant.", "\n"))
         }
-
+        }
         last = data.frame(weight = t(AvAvet[c(nrow(AvAvet)),])[-c(1),])
         abs = data.frame(weight = abs(last[,"weight"]))
         rownames(abs) = rownames(last)
@@ -162,7 +164,7 @@ kincrement = 1 / knumber
       }
 
 
-      if (brutstepwise == TRUE){
+      if (brutstep == TRUE){
         yyy = data %>% dplyr::select(!!resp)
         xxx = data %>% dplyr::select(-c(!!resp))
         cor.xx = cor(xxx, use = missingval)
@@ -187,14 +189,16 @@ kincrement = 1 / knumber
         ModelEstimates = list()
         modelcode = 1
         nproced = npred - 1
+        if (verbose == TRUE){
         cat("\n----------------------------------------------------------------------------\n")
         cat("Level", nam, "\n")
         cat("----------------------------------------------------------------------------\n")
-        cat(paste("\nThe brutestepwise algorithm have selected a set of ",nrow(VIF3),
-                  "predictors with largest VIF = ", round(max(VIF3$VIF),3)),".\n")
-        cat("Selected predictors:",paste0(selectedpred),"\n")
-        cat(paste("A forward stepwise-based selection procedure will fit ",nproced, " models.", "\n"))
-
+        cat(paste("The algorithm has selected a set of ",nrow(VIF3),
+                  "predictors with largest VIF = ", round(max(VIF3$VIF),3),".", sep = ""), "\n")
+        cat("Selected predictors:",paste0(selectedpred), "\n")
+        cat(paste("A forward stepwise-based selection procedure will fit",nproced, "models.", "\n"))
+        cat("--------------------------------------------------------------------------","\n")
+        }
         for (i in 1:nproced){
           FDSel =  FWDselect::selection(x = xxx,
                                         y = unlist(yyy),
@@ -216,7 +220,7 @@ kincrement = 1 / knumber
           if (is.null(correction) == T){
             betas = data.frame(matrix(nrow = knumber, ncol = length(predstw)+1))
             cc = 0
-            nvar = length(pred) + 1
+            nvar = length(predstw) + 1
             for (i in 1:knumber){
               cor.x2 = cor.x
               diag(cor.x2) = diag(cor.x2) + cc
@@ -224,7 +228,7 @@ kincrement = 1 / knumber
               betas[i,2:nvar] = t(solve(cor.x2, cor.y))
               cc = cc + kincrement
             }
-            names(betas) = paste0(c("K", pred))
+            names(betas) = paste0(c("K", predstw))
             xx <- betas$K
             yy <- colnames(betas)
             fila <- knumber
@@ -313,12 +317,13 @@ kincrement = 1 / knumber
           statistics[i, 7] = Residual
           statistics[i, 8] = max(VIF)
           cat(paste("Adjusting the model ",modelcode, " with ", npred,
-                    " predictor variables (",round(modelcode/nproced*100,2),"% concluded)","\n"))
+                    " predictor variables (",round(modelcode/nproced*100,2),"% concluded)","\n"), sep = "")
           npred = npred - 1
           modelcode = modelcode + 1
         }
         statistics = statistics[-c(1),]
         names(statistics) = c("Model", "AIC", "Numpred", "CN", "Determinant", "R2", "Residual", "maxVIF")
+        if(verbose == TRUE){
         cat("Done!","\n")
         cat("\n\n")
         cat("--------------------------------------------------------------------------","\n")
@@ -326,6 +331,7 @@ kincrement = 1 / knumber
         cat("--------------------------------------------------------------------------","\n")
         print(statistics)
         cat("--------------------------------------------------------------------------")
+        }
         temp = list(Models = ModelEstimates,
                     Summary = statistics,
                     Selectedpred = selectedpred)
@@ -336,8 +342,10 @@ kincrement = 1 / knumber
   } else{
 
     if(sum(lapply(.data, is.factor)==TRUE)>0){
+      if (verbose == TRUE){
       message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
               " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.' ")
+      }
     }
     data = .data[ , unlist(lapply(.data, is.numeric))]
     nam  = names(.data)
@@ -346,7 +354,7 @@ kincrement = 1 / knumber
       prcod <- dplyr::quos(!!dplyr::enquo(pred))
     }
 
-    if (brutstepwise == FALSE){
+    if (brutstep == FALSE){
       if (missing(pred)){
         pr = data %>% dplyr::select(-!!resp)
 
@@ -442,23 +450,24 @@ kincrement = 1 / knumber
       R2 = t(Direct) %*% cor.y
       VIF = data.frame(diag(solve(cor.x)))
       names(VIF) = "VIF"
+      if (verbose == TRUE){
+        if (NC > 1000){
+          cat(paste0("Severe multicollinearity. \n",
+                     "Condition Number = ", round(NC,3), "\n",
+                     "Please, consider using a correction factor, or use 'brutstep = TRUE'. \n"))
+        }
 
-      if (NC > 1000){
-        cat(paste0("Severe multicollinearity. \n",
-                   "Condition Number = ", round(NC,3), "\n",
-                   "Please, see the other indicators \n"))
-      }
+        if (NC < 100){
+          cat(paste0("Weak multicollinearity. \n",
+                     "Condition Number = ", round(NC,3), "\n",
+                     "You will probably have path coefficients close to being unbiased. \n"))
+        }
 
-      if (NC < 100){
-        cat(paste0("Weak multicollinearity. \n",
-                   "Condition Number = ", round(NC,3), "\n",
-                   "Please, see the other indicators \n"))
-      }
-
-      if (NC > 100 & NC < 1000 ){
-        cat(paste0("Moderate multicollinearity! \n",
-                   "Condition Number = ", round(NC,3), "\n",
-                   "Please, cautiosely evaluate the VIF and matrix determinant.", "\n"))
+        if (NC > 100 & NC < 1000 ){
+          cat(paste0("Moderate multicollinearity! \n",
+                     "Condition Number = ", round(NC,3), "\n",
+                     "Please, cautiosely evaluate the VIF and matrix determinant.", "\n"))
+        }
       }
 
       last = data.frame(weight = t(AvAvet[c(nrow(AvAvet)),])[-c(1),])
@@ -485,7 +494,7 @@ kincrement = 1 / knumber
     }
 
 
-    if (brutstepwise == TRUE){
+    if (brutstep == TRUE){
       yyy = data %>% dplyr::select(!!resp) %>% as.data.frame()
       xxx = data %>% dplyr::select(-c(!!resp)) %>% as.data.frame()
       cor.xx = cor(xxx, use = missingval)
@@ -510,12 +519,14 @@ kincrement = 1 / knumber
       ModelEstimates = list()
       modelcode = 1
       nproced = npred - 1
-
-      cat(paste("\nThe brutestepwise algorithm have selected a set of ",nrow(VIF3),
-                "predictors with largest VIF = ", round(max(VIF3$VIF),3)),".\n")
-      cat("Selected predictors:",paste0(selectedpred),"\n")
-      cat(paste("A forward stepwise-based selection procedure will fit ",nproced, " models.", "\n"))
-
+      if (verbose == TRUE){
+      cat("--------------------------------------------------------------------------","\n")
+      cat(paste("The algorithm has selected a set of ",nrow(VIF3),
+                "predictors with largest VIF = ", round(max(VIF3$VIF),3),".", sep = ""), "\n")
+      cat("Selected predictors:",paste0(selectedpred), "\n")
+      cat(paste("A forward stepwise-based selection procedure will fit",nproced, "models.", "\n"))
+      cat("--------------------------------------------------------------------------","\n")
+      }
       for (i in 1:nproced){
         FDSel =  FWDselect::selection(x = xxx,
                                       y = unlist(yyy),
@@ -635,20 +646,23 @@ kincrement = 1 / knumber
         statistics[i, 6] = R2
         statistics[i, 7] = Residual
         statistics[i, 8] = max(VIF)
+        if (verbose == TRUE){
         cat(paste("Adjusting the model ",modelcode, " with ", npred,
-                  " predictor variables (",round(modelcode/nproced*100,2),"% concluded)","\n"))
+                  " predictors (",round(modelcode/nproced*100,2),"% concluded)","\n", sep = ""))
+        }
         npred = npred - 1
         modelcode = modelcode + 1
       }
       statistics = statistics[-c(1),]
       names(statistics) = c("Model", "AIC", "Numpred", "CN", "Determinant", "R2", "Residual", "maxVIF")
+      if (verbose == TRUE){
       cat("Done!","\n")
-      cat("\n\n")
       cat("--------------------------------------------------------------------------","\n")
       cat("Summary of the adjusted models","\n")
       cat("--------------------------------------------------------------------------","\n")
       print(statistics)
       cat("--------------------------------------------------------------------------")
+      }
       temp = list(Models = ModelEstimates,
                   Summary = statistics,
                   Selectedpred = selectedpred)

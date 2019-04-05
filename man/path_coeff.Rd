@@ -3,8 +3,9 @@
 \title{Path coefficients with minimal multicollinearity}
 \usage{
 path_coeff(.data, resp, pred = NULL, exclude = FALSE,
-           correction = NULL, knumber = 50, brutstepwise = FALSE,
-           maxvif = 10, missingval = "pairwise.complete.obs")
+           correction = NULL, knumber = 50, brutstep = FALSE,
+           maxvif = 10, missingval = "pairwise.complete.obs",
+           verbose = TRUE)
 }
 \description{
 Estimates of direct and indirect effects. An algorithm to select a set of predictors with minimal multicollinearity and high explanatory power is implemented.
@@ -24,12 +25,14 @@ Estimates of direct and indirect effects. An algorithm to select a set of predic
 
   \item{knumber}{When \code{correction = NULL}, a plot showing the values of direct effects in a set of different k values (0-1) is produced. \code{knumber} is the number of k values used in the range of 0 to 1.}
 
-  \item{brutstepwise}{Logical argument, set to \code{FALSE}. If true, then an algorithm will select a subset of variables with minimal multicollinearity and fit a set of possible models. See the \bold{Details} section for more information.}
+  \item{brutstep}{Logical argument, set to \code{FALSE}. If true, then an algorithm will select a subset of variables with minimal multicollinearity and fit a set of possible models. See the \bold{Details} section for more information.}
 
   \item{maxvif}{The maximum value for the Variance Inflaction Factor (cut point) that will be accepted. See the \bold{Details} section for more information.}
 
 
   \item{missingval}{How to deal with missing values. For more information, please see \code{?cor}.}
+
+  \item{verbose}{If \code{verbose = TRUE} then some results are shown in the console.}
 
 }
 
@@ -63,7 +66,7 @@ Estimates of direct and indirect effects. An algorithm to select a set of predic
 }
 
 \details{
-When \code{brutstepwise = TRUE}, first, the algorithm will select a set of predictors with minimal multicollinearity. The selection is based on the variance inflation factor (VIF). An iterative process is performed until the maximum VIF observed is less than \code{maxvif}. The variables selected in this iterative process are then used in a series of stepwise-based regressions. The first model is fitted and p-1 predictor variables are retained (p is the number of variables selected in the iterative process. The second model adjusts a regression considering p-2 selected variables, and so on until the last model, which considers only two variables. Three objects are created. \code{Summary}, with the process summary, \code{Models}, containing the aforementioned values for all the adjusted models; and \code{Selectedpred}, a vector with the name of the selected variables in the iterative process.
+When \code{brutstep = TRUE}, first, the algorithm will select a set of predictors with minimal multicollinearity. The selection is based on the variance inflation factor (VIF). An iterative process is performed until the maximum VIF observed is less than \code{maxvif}. The variables selected in this iterative process are then used in a series of stepwise-based regressions. The first model is fitted and p-1 predictor variables are retained (p is the number of variables selected in the iterative process. The second model adjusts a regression considering p-2 selected variables, and so on until the last model, which considers only two variables. Three objects are created. \code{Summary}, with the process summary, \code{Models}, containing the aforementioned values for all the adjusted models; and \code{Selectedpred}, a vector with the name of the selected variables in the iterative process.
 }
 
 \references{
@@ -88,7 +91,7 @@ pcoeff2 = data_ge2 \%>\%
 
 pcoeff3 = data_ge2 \%>\%
           path_coeff(resp = KW,
-                     brutstepwise = TRUE,
+                     brutstep = TRUE,
                      maxvif = 5)
 
 pcoeff4 = data_ge2 \%>\%
