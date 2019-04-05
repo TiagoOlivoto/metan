@@ -1,4 +1,4 @@
-WAAS.AMMI <- function(.data, resp, gen, env, rep, mresp = NULL, wresp = NULL, prob = 0.05,
+WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
     naxis = NULL, verbose = TRUE) {
 
     datain <- .data

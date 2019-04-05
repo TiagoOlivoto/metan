@@ -2,7 +2,7 @@
 \alias{WAAS.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis}
 \usage{
-WAAS.AMMI(.data, resp, gen, env, rep, mresp = NULL,
+WAAS.AMMI(.data, env, gen, rep, resp, mresp = NULL,
           wresp = NULL, prob = 0.05, naxis = NULL,
           verbose = TRUE)
 }
@@ -12,15 +12,14 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis.
 }
 
 \arguments{
-  \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
-
-  \item{resp}{The response variable(s). To analyze multiple variables in a single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
-
-  \item{gen}{The name of the column that contains the levels of the genotypes.}
+ \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
   \item{env}{The name of the column that contains the levels of the environments.}
+  \item{gen}{The name of the column that contains the levels of the genotypes.}
 
   \item{rep}{The name of the column that contains the levels of the replications/blocks.}
+
+  \item{resp}{The response variable(s). To analyze multiple variables in a single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
   \item{mresp}{A numeric vector of the same length of \code{resp}. The \code{mresp} will be the new maximum value after reescaling. By default, all variables in \code{resp} are rescaled so that de maximum value is 100 and the minimum value is 0.}
 
