@@ -2,7 +2,7 @@
 \alias{WAASratio.AMMI}
 \title{Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio}
 \usage{
-WAASratio.AMMI(.data, resp, gen, env, rep, p.valuePC = 0.05,
+WAASratio.AMMI(.data, env, gen, rep, resp, p.valuePC = 0.05,
                increment = 5, saveWAASY = 50, progbar = TRUE)
 }
 
@@ -11,15 +11,16 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis in different c
 
 }
 \arguments{
+
  \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable, for example \code{resp = RG}.}
+\item{env}{The name of the column that contains the levels of the environments.}
 
-  \item{gen}{The name of the column that contains the levels of the genotypes.}
+\item{gen}{The name of the column that contains the levels of the genotypes.}
 
-  \item{env}{The name of the column that contains the levels of the environments.}
+\item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
-  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
+\item{resp}{The response variable.}
 
   \item{p.valuePC}{The p-value for considering the PC significant. Default is 0.05. The number of significant Principal Components to be used for calculating the WAASB will be chosen based on this probability. }
 

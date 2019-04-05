@@ -1,4 +1,4 @@
-WAASratio.AMMI <- function(.data, resp, gen, env, rep, p.valuePC = 0.05, increment = 5,
+WAASratio.AMMI <- function(.data, env, gen, rep, resp, p.valuePC = 0.05, increment = 5,
     saveWAASY = 50, progbar = TRUE) {
     data = .data
     PesoWAAS <- 100
