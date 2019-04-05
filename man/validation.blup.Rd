@@ -37,17 +37,17 @@ This function provides a  cross-validation procedure for mixed models using repl
 \dontrun{
 library(METAAB)
 model = validation.blup(data_ge,
-                        resp = GY,
-                        gen = GEN,
                         env = ENV,
+                        gen = GEN,
                         rep = REP,
+                        resp = GY,
                         nboot = 100,
                         nrepval = 2)
 
-# Alternatively (and more intuitively) using the pipe operator \%>\%
+# Alternatively using the pipe operator \%>\%
 library(dplyr)
 model = data_ge \%>\%
-        validation.blup(GY, GEN, ENV, REP, 100, 2)
+        validation.blup(ENV, GEN, REP, GY, 100, 2)
 
 }
 }
