@@ -2,7 +2,7 @@
 \alias{WAASBYratio}
 \title{Weighted Average of Absolute Scores from SVD of BLUP-interaction effects matrix in different scenarios of WAASB/GY ratio}
 \usage{
-WAASBYratio(.data, resp, gen, env, rep, increment = 5,
+WAASBYratio(.data, env, gen, rep, resp, increment = 5,
             saveWAASY = 50, progbar = TRUE)
 }
 
@@ -13,13 +13,13 @@ Compute the Weighted Average of Absolute Scores for AMMI analysis in different c
 \arguments{
  \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable, for example \code{resp = RG}.}
+\item{env}{The name of the column that contains the levels of the environments.}
 
-  \item{gen}{The name of the column that contains the levels of the genotypes.}
+\item{gen}{The name of the column that contains the levels of the genotypes.}
 
-  \item{env}{The name of the column that contains the levels of the environments.}
+\item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
-  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
+\item{resp}{The response variable.}
 
   \item{increment}{The range of the increment for WAASB/GY ratio. Default is 5. The function compute the WAASBY  values starting with a weight o 100 for stability and 0 for response variable. With the default, the first scenario will be a WAASB/GY ratio = 100/0. In the next scenario, the WAASBY values are computed based on a WAASB/GY ratio = 95/5.}
 
