@@ -38,7 +38,7 @@ library(METAAB)
 MTSI_MODEL = WAASB(data_ge,
                    env = ENV,
                    gen = GEN,
-                   rep = REP.
+                   rep = REP,
                    resp = c(GY, HM))
 
 MTSI_index = MTSI(MTSI_MODEL)
@@ -46,9 +46,10 @@ plot(MTSI_index)
 
 # Alternatively using the pipe operator \%>\%
 library(dplyr)
-res_ind = data_ge \%>\%
-          WAASB(ENV, GEN, REP, c(GY, HM)) \%>\%
-plot(MTSI_index)
+MTSI_index2 = data_ge \%>\%
+              WAASB(ENV, GEN, REP, c(GY, HM)) \%>\%
+              MTSI()
+plot(MTSI_index2)
 
 
 }
