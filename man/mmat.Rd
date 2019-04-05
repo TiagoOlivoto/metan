@@ -2,7 +2,7 @@
 \alias{mmat}
 \title{Make a two-way table based on categorical and numerical arguments}
 \usage{
-mmat(data, row, col, value)
+mmat(.data, row, col, value)
 }
 \description{
 This function help users to easely make a two-way table from a "long format" data.
@@ -10,7 +10,7 @@ This function help users to easely make a two-way table from a "long format" dat
 }
 
 \arguments{
- \item{data}{The dataset. Must contains at least two categorical columns.}
+ \item{.data}{The dataset. Must contains at least two categorical columns.}
 
  \item{row}{The column of data in which the mean of each level will correspond to \strong{one line} in the output.}
 
