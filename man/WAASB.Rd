@@ -88,19 +88,19 @@ library(METAAB)
 # response variable and stability
 
 model <-  WAASB(data_ge,
-               resp = GY,
-               gen = GEN,
                env = ENV,
+               gen = GEN,
                rep = REP,
+               resp = GY,
                wresp = 70)
 
 # Higher weight for response variable
 
 model2 <- WAASB(data_ge,
-               resp = GY,
-               gen = GEN,
                env = ENV,
+               gen = GEN,
                rep = REP,
+               resp = GY,
                wresp = 65)
 
 # Environment as random effects analyzing more than one variables
@@ -109,11 +109,11 @@ model2 <- WAASB(data_ge,
 # and a smaller weight for HM when computing WAASBY index.
 
 model3 <- WAASB(data_ge,
-                random = "env",
-                resp = c(GY, HM),
-                gen = GEN,
                 env = ENV,
+                gen = GEN,
                 rep = REP,
+                resp = c(GY, HM),
+                random = "env",
                 mresp = c(100, 0),
                 wresp = c(60, 40))
 
