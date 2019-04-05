@@ -1,6 +1,6 @@
 \name{Resende_indexes}
 \alias{Resende_indexes}
-\title{Stability indexes proposed by Resende based on a mixed-effect model.}
+\title{Stability indexes proposed by Resende based on a mixed-effect model}
 \usage{
 Resende_indexes(.data)
 }
@@ -43,16 +43,16 @@ A dataframe contaning the indexes.
 \examples{
 library(METAAB)
 res_ind = WAASB(data_ge,
-                resp = c(GY, HM),
-                gen = GEN,
                 env = ENV,
-                rep = REP)
+                gen = GEN,
+                rep = REP,
+                resp = c(GY, HM))
 model_indexes = Resende_indexes(res_ind)
 
-# Alternatively (and more intuitively) using the pipe operator \%>\%
+# Alternatively using the pipe operator \%>\%
 library(dplyr)
 res_ind = data_ge \%>\%
-          WAASB(c(GY, HM), GEN, ENV, REP) \%>\%
+          WAASB(ENV, GEN, REP, c(GY, HM)) \%>\%
           Resende_indexes()
 
 }
