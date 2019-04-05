@@ -2,7 +2,7 @@
 \alias{validation.blup}
 \title{Cross-validation for blup prediction }
 \usage{
-validation.blup(.data, resp, gen, env, rep,
+validation.blup(.data, env, gen, rep, resp,
                 nboot, nrepval, verbose = TRUE)
 }
 \description{
@@ -14,13 +14,13 @@ Cross-validation for blup prediction.
 
   \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable.}
+\item{env}{The name of the column that contains the levels of the environments.}
 
-  \item{gen}{The name of the column that contains the levels of the genotypes.}
+\item{gen}{The name of the column that contains the levels of the genotypes.}
 
-  \item{env}{The name of the column that contains the levels of the environments.}
+\item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
-  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
+\item{resp}{The response variable.}
 
   \item{nboot}{The number of resamples to be used in the cross-validation }
 

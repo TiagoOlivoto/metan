@@ -1,4 +1,4 @@
-validation.blup <- function(.data, resp, gen, env, rep, nboot, nrepval, verbose = TRUE) {
+validation.blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) {
 
 
     RMSPDres <- data.frame(RMSPD = matrix(".", nboot, 1))
