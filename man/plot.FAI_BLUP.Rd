@@ -1,8 +1,8 @@
-\name{plot.FAI.BLUP}
-\alias{plot.FAI.BLUP}
+\name{plot.FAI_BLUP}
+\alias{plot.FAI_BLUP}
 \title{Multitrait index based on factor analysis and ideotype-design}
 \usage{
-\method{plot}{FAI.BLUP}(x, ideotype = 1, SI = 15, radar = TRUE,
+\method{plot}{FAI_BLUP}(x, ideotype = 1, SI = 15, radar = TRUE,
      size.point = 2, col.sel = "red",
      col.nonsel = "black", ...)
 }
@@ -40,15 +40,18 @@ Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018. Multitrait index ba
 
 
 \examples{
-  multivariate = WAASB(data_ge,
-                       resp = c(GY, HM),
-                       gen = GEN,
-                       env = ENV,
-                       rep = REP)
+library(METAAB)
+library(dplyr)
+multivariate = WAASB(data_ge,
+                     resp = c(GY, HM),
+                     gen = GEN,
+                     env = ENV,
+                     rep = REP)
 
-  FAI = FAI.BLUP(multivariate,
-                 SI = 15,
-                 DI = c("max", "max"),
-                 UI = c("min", "min"))
-  plot(FAI)
+FAI = data_ge2 \%>\%
+      WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
+      FAI_BLUP(DI = c("max", "max", "max", "min"),
+               UI = c("min", "min", "min", "max"),
+               SI = 15)
+      plot(FAI)
 }

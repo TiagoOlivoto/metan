@@ -56,5 +56,4 @@ FAI = data_ge2 \%>\%
       FAI_BLUP(DI = c("max", "max", "max", "min"),
                UI = c("min", "min", "min", "max"),
                SI = 15)
-plot(FAI)
 }
