@@ -35,7 +35,7 @@ library(dplyr)
 MTSI_MODEL = WAASB(data_ge,
                    env = ENV,
                    gen = GEN,
-                   rep = REP.
+                   rep = REP,
                    resp = c(GY, HM))
 MTSI_index = MTSI(MTSI_MODEL)
 
