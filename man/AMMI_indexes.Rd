@@ -65,10 +65,10 @@ Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012. Evaluation o
 \examples{
 library(METAAB)
 model = WAAS.AMMI(data_ge,
-                  resp = c(GY, HM),
-                  gen = GEN,
                   env = ENV,
+                  gen = GEN,
                   rep = REP,
+                  resp = c(GY, HM),
                   verbose = FALSE)
 model_indexes = AMMI_indexes(model)
 
@@ -76,7 +76,7 @@ model_indexes = AMMI_indexes(model)
 # Alternatively (and more intuitively) using \%>\%
 library(dplyr)
 res_ind = data_ge \%>\%
-          WAAS.AMMI(c(GY, HM), GEN, ENV, REP) \%>\%
+          WAAS.AMMI(ENV, GEN, REP c(GY, HM)) \%>\%
           AMMI_indexes()
 
 }
