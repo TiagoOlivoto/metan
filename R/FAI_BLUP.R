@@ -9,6 +9,7 @@ FAI_BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     if (!class(.data) == "WAASB") {
         stop("The .data must be an object of class 'WAASB'.")
     }
+
     ideotype.D <- DI
     ideotype.U <- UI
 
@@ -24,8 +25,10 @@ FAI_BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
         ngs <- round(nrow(data) * (SI/100), 0)
     }
     means <- data[, 2:ncol(data)]
-    return(means)
-}
+    if (any(apply(means, 2, function(x) sd(x) == 0) == TRUE)){
+      nam = paste(names(means[, apply(means, 2, function(x) sd(x) == 0)]), collapse  = " ")
+      stop("The genotype effect was not significant for the variables ", nam, ". Please, remove them and try again.")
+    }
     rownames(means) <- data[, 1]
     normalize.means <- scale(means, center = FALSE, scale = apply(means, 2, sd))
     cor.means <- cor(normalize.means)
