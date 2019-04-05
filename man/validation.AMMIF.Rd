@@ -40,17 +40,17 @@ This function provides a complete cross-validation of replicate-based data using
 \dontrun{
 library(METAAB)
 model = validation.AMMIF(data_ge,
-                        resp = GY,
-                        gen = GEN,
-                        env = ENV,
-                        rep = REP,
-                        nboot = 100,
-                        nrepval = 2)
+                         env = ENV,
+                         gen = GEN,
+                         rep = REP,
+                         resp = GY,
+                         nboot = 100,
+                         nrepval = 2)
 
 # Alternatively (and more intuitively) using the pipe operator \%>\%
 library(dplyr)
 model = data_ge \%>\%
-        validation.AMMIF(GY, GEN, ENV, REP, 100, 2)
+        validation.AMMIF(ENV, GEN, REP, GY, 100, 2)
 }
 }
 
