@@ -52,7 +52,7 @@ lpcor <- function(.data, n = NULL, verbose = TRUE) {
        out = internal(.data)
     }
 
-    if (class(.data) == "group_factors") {
+    if (any(class(.data) == "group_factors")) {
       out = lapply(seq_along(.data), function(x){
         if(verbose == TRUE){
           cat("\n----------------------------------------------------------------------------\n")
