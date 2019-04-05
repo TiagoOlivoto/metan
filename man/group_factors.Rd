@@ -1,6 +1,6 @@
 \name{group_factors}
 \alias{group_factors}
-\title{Easily splitting a dataframe into subsets grouped by one or more factors}
+\title{Split a dataframe into subsets grouped by one or more factors}
 \usage{
 group_factors(.data, ..., keep_factors = FALSE)
 }
