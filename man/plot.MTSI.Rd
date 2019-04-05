@@ -1,6 +1,6 @@
 \name{plot.MTSI}
 \alias{plot.MTSI}
-\title{Plot the multitrait stability index}
+\title{Plot the multi-trait stability index}
 \usage{
 \method{plot}{MTSI}(x,  SI = 15, radar = TRUE, size.point = 2,
      col.sel = "red", col.nonsel = "black", ...)
