@@ -2,7 +2,7 @@
 \alias{validation.AMMI}
 \title{Cross-validation for estimation of AMMI model}
 \usage{
-validation.AMMI(.data, resp, gen, env, rep, design = "RCBD",
+validation.AMMI(.data, env, gen, rep, resp, design = "RCBD",
                 nboot, nrepval, naxis, verbose = TRUE)
 }
 
@@ -14,13 +14,13 @@ Cross-validation for estimation of AMMI models
 
  \item{.data}{The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).}
 
-  \item{resp}{The response variable.}
+\item{env}{The name of the column that contains the levels of the environments.}
 
-  \item{gen}{The name of the column that contains the levels of the genotypes.}
+\item{gen}{The name of the column that contains the levels of the genotypes.}
 
-  \item{env}{The name of the column that contains the levels of the environments.}
+\item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
-  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
+\item{resp}{The response variable.}
 
   \item{design}{The experimental desig to be considered. Default is \code{RCBD} (Randomized complete Block Design). For Completely Randomized Designs inform \code{design = "CRD"}.}
 

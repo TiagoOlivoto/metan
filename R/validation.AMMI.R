@@ -1,4 +1,4 @@
-validation.AMMI <- function(.data, resp, gen, env, rep, design = "RCBD", nboot, nrepval,
+validation.AMMI <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
     naxis, verbose = TRUE) {
 
     RMSPDres <- data.frame(RMSPD = matrix(0, nboot, 1))
