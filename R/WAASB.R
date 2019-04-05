@@ -1,4 +1,4 @@
-WAASB <- function(.data, resp, gen, env, rep, mresp = NULL, wresp = NULL, random = "gen",
+WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random = "gen",
     prob = 0.05, verbose = TRUE) {
 
 
