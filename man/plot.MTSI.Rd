@@ -44,4 +44,11 @@ MTSI_MODEL = WAASB(data_ge,
 MTSI_index = MTSI(MTSI_MODEL)
 plot(MTSI_index)
 
+# Alternatively using the pipe operator \%>\%
+library(dplyr)
+res_ind = data_ge \%>\%
+          WAASB(ENV, GEN, REP, c(GY, HM)) \%>\%
+plot(MTSI_index)
+
+
 }
