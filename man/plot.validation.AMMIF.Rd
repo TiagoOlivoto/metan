@@ -68,14 +68,16 @@ Five statistics are shown in this type of plot. The lower and upper hinges corre
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
+\dontrun{
 validation <- validation.AMMIF(data_ge,
                                resp = GY,
                                gen = GEN,
                                env = ENV,
                                rep = REP,
-                               nboot = 5,
+                               nboot = 500,
                                nrepval = 2)
 plot(validation)
+}
 
 }
 
