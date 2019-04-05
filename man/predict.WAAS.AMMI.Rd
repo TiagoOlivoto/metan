@@ -24,10 +24,10 @@ This function is used to predict the response variable of a two-way table (for e
 \examples{
 library(METAAB)
 model = WAAS.AMMI(data_ge,
-                  resp = c(GY, HM),
-                  gen = GEN,
                   env = ENV,
-                  rep = REP)
+                  gen = GEN,
+                  rep = REP,
+                  resp = c(GY, HM))
 # Predict GY with 3 IPCA and HM with 1 IPCA
 predict = predict.WAAS.AMMI(model, naxis = c(3, 1))
 }
