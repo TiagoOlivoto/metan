@@ -76,7 +76,7 @@ model_indexes = AMMI_indexes(model)
 # Alternatively (and more intuitively) using \%>\%
 library(dplyr)
 res_ind = data_ge \%>\%
-          WAAS.AMMI(ENV, GEN, REP c(GY, HM)) \%>\%
+          WAAS.AMMI(ENV, GEN, REP, c(GY, HM)) \%>\%
           AMMI_indexes()
 
 }
