@@ -1,4 +1,4 @@
-FAI.BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
+FAI_BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
 
     if (length(.data) == 1) {
         stop("The multitrait stability index cannot be computed with one single variable.")
@@ -24,9 +24,13 @@ FAI.BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
         ngs <- round(nrow(data) * (SI/100), 0)
     }
     means <- data[, 2:ncol(data)]
+    return(means)
+}
     rownames(means) <- data[, 1]
     normalize.means <- scale(means, center = FALSE, scale = apply(means, 2, sd))
     cor.means <- cor(normalize.means)
+
+
     eigen.decomposition <- eigen(cor.means)
     eigen.values <- eigen.decomposition$values
     eigen.vectors <- eigen.decomposition$vectors
@@ -186,5 +190,5 @@ FAI.BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     }
 
     return(structure(list(data = data, FA = data.frame(fa), canonical.loadings = data.frame(canonical.loadings),
-        FAI = ideotype.rank, selection.diferential = selection.diferential), class = "FAI.BLUP"))
+        FAI = ideotype.rank, selection.diferential = selection.diferential), class = "FAI_BLUP"))
 }

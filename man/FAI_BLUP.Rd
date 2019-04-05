@@ -1,8 +1,8 @@
-\name{FAI.BLUP}
-\alias{FAI.BLUP}
-\title{Multitrait index based on factor analysis and ideotype-design}
+\name{FAI_BLUP}
+\alias{FAI_BLUP}
+\title{Multi-trait index based on factor analysis and ideotype-design}
 \usage{
-FAI.BLUP(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE)
+FAI_BLUP(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE)
 }
 
 \description{
@@ -39,22 +39,22 @@ library(METAAB)
 library(dplyr)
 
 mod = WAASB(data_ge,
-            resp = c(GY, HM),
-            gen = GEN,
             env = ENV,
-            rep = REP)
+            gen = GEN,
+            rep = REP,
+            resp = c(GY, HM),)
 
-FAI = FAI.BLUP(mod,
+FAI = FAI_BLUP(mod,
                SI = 15,
                DI = c("max", "max"),
                UI = c("min", "min"))
 
 # Or using the pipe operator \%>\%
 
-FAI = data_ge \%>\%
-      WAASB(c(GY, HM), GEN, ENV, REP) \%>\%
-      FAI.BLUP(DI = c("max", "max"),
-               UI = c("min", "min"),
+FAI = data_ge2 \%>\%
+      WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
+      FAI_BLUP(DI = c("max", "max", "max", "min"),
+               UI = c("min", "min", "min", "max"),
                SI = 15)
 plot(FAI)
 }
