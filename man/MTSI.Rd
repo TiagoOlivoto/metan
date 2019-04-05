@@ -1,12 +1,12 @@
 \name{MTSI}
 \alias{MTSI}
-\title{Multitrait stability index}
+\title{Multi-trait stability index}
 \usage{
 MTSI(.data, index = "WAASB", SI = 15, mineval = 1, verbose = TRUE)
 }
 
 \description{
-Multitrait stability index in analysis of multi-environment trials using AMMI or BLUP methods.
+Multi-trait stability index in analysis of multi-environment trials using AMMI or BLUP methods.
 
 
 }
@@ -38,17 +38,12 @@ MTSI_MODEL = WAASB(data_ge,
                    env = ENV,
                    rep = REP)
 MTSI_index = MTSI(MTSI_MODEL)
-plot(MTSI_index)
 
 
 # Based on mean performance and stability (using pipe operator \%>\%)
 # GY: higher is better
 # HM: lower is better
 MTSI_index2 = data_ge \%>\%
-              WAASB(resp = c(GY, HM),
-                    gen = GEN,
-                    env = ENV,
-                    rep = REP,
-                    mresp = c(100, 0))\%>\%
+              WAASB(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) \%>\%
               MTSI(index = "WAASBY")
 }
