@@ -1,4 +1,4 @@
-validation.AMMIF <- function(.data, resp, gen, env, rep, design = "RCBD", nboot, nrepval,
+validation.AMMIF <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
     verbose = TRUE) {
 
     Y <- eval(substitute(resp), eval(.data))
