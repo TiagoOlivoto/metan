@@ -33,10 +33,10 @@ library(dplyr)
 
 # Based on stability only, for both GY and HM, higher is better
 MTSI_MODEL = WAASB(data_ge,
-                   resp = c(GY, HM),
-                   gen = GEN,
                    env = ENV,
-                   rep = REP)
+                   gen = GEN,
+                   rep = REP.
+                   resp = c(GY, HM))
 MTSI_index = MTSI(MTSI_MODEL)
 
 
