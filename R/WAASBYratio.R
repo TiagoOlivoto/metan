@@ -1,4 +1,4 @@
-WAASBYratio <- function(.data, resp, gen, env, rep, increment = 5, saveWAASY = 50,
+WAASBYratio <- function(.data, env, gen, rep, resp, increment = 5, saveWAASY = 50,
     progbar = TRUE) {
   data = .data
     PesoWAAS <- 100
