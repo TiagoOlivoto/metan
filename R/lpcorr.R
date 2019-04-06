@@ -43,8 +43,8 @@ lpcor <- function(.data, n = NULL, verbose = TRUE) {
     if(verbose == TRUE){
       print.data.frame(results)
     }
-    return(list(linear.mat = data.frame(m),
-                partial.mat = data.frame(X.resid),
+    return(list(linear.mat = m,
+                partial.mat = as.matrix(X.resid),
                 results = results))
     }
 
