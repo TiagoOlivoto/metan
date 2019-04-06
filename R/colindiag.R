@@ -46,7 +46,7 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
     smallest_corr = paste0(rownames(results)[which.min(abs(results$linear))], " = ",
                            round(results[which.min(abs(results$linear)),1],3))
     ncorhigh = sum(results$linear >= abs(0.8))
-    if(verbose == TRUE){
+    if (verbose == TRUE){
       if (NC > 1000){
       cat(paste0("Severe multicollinearity in the matrix! Pay attention on the variables listed bellow\n",
                  "CN = ", round(NC,3), "\n"))
@@ -75,7 +75,7 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
                  largest_corr = largest_corr,
                  smallest_corr = smallest_corr,
                  weight_var = pesovarname)
-    if(verbose == TRUE){
+    if (verbose == TRUE){
     cat(paste0("Matrix determinant: ", round(Det,7)),  "\n")
     cat(paste0("Largest correlation: ", largest_corr),  "\n")
     cat(paste0("Smallest correlation: ", smallest_corr),  "\n")
@@ -91,7 +91,7 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
     out = internal(.data)
   }
 
-  if (class(.data) == "group_factors") {
+  if (any(class(.data) == "group_factors")) {
     out = lapply(seq_along(.data), function(x){
       if(verbose == TRUE){
         cat("\n----------------------------------------------------------------------------\n")
@@ -104,11 +104,11 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
   }
 
   if (is.data.frame(.data)) {
-    if(sum(lapply(.data, is.factor)==TRUE)>0){
+    if (sum(lapply(.data, is.factor)==TRUE)>0){
     }
     data = .data[ , unlist(lapply(.data, is.numeric))]
     out = internal(data)
-    if(verbose == TRUE){
+    if (verbose == TRUE){
       message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
               " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.' ")
     }
