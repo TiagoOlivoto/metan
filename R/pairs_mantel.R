@@ -92,15 +92,11 @@ pairs_mantel = function(...,
     r = unname(ct$obs)
     rt = format(r, digits = digits)[1]
 
-    # since we can't print it to get the strsize, just use the max size range
     cex = max(sizeRange)
-
-    # helper function to calculate a useable size
     percent_of_range = function(percent, range) {
       percent * diff(range) + min(range, na.rm = TRUE)
     }
 
-    # plot the cor value
     GGally:: ggally_text(
       label = as.character(rt),
       mapping = aes(),
@@ -123,7 +119,7 @@ pairs_mantel = function(...,
       # remove all the background stuff and wrap it with a dashed line
       theme_classic() +
       theme(
-        panel.background = element_rect(color = col.up.panel),
+        panel.background = element_rect(color = col.lw.panel),
         axis.line = element_blank(),
         axis.ticks = element_blank(),
         axis.text.y = element_blank(),
@@ -157,7 +153,7 @@ pairs_mantel = function(...,
     }
     p = p + theme_classic() +
       theme(
-        panel.background = element_rect(fill = "white", color = col.lw.panel),
+        panel.background = element_rect(fill = "white", color = col.up.panel),
         axis.line = element_blank(),
         axis.ticks = element_blank(),
         axis.text.y = element_blank(),
