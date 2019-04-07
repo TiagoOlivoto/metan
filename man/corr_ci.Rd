@@ -2,7 +2,7 @@
 \alias{corr_ci}
 \title{Nonparametric confidence interval for Pearson's correlation coefficient}
 \usage{
-corr_ci(,data = NA, r = NULL, n = NULL, verbose = TRUE)
+corr_ci(.data = NA, r = NULL, n = NULL, verbose = TRUE)
 }
 \description{
 Computes the half-width confidence interval for correlation coefficient based on the nonparametri method proposed by Olivoto et al. (2018).
