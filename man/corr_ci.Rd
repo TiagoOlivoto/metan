@@ -1,8 +1,8 @@
-\name{corr.ci}
-\alias{corr.ci}
+\name{corr_ci}
+\alias{corr_ci}
 \title{Nonparametric confidence interval for Pearson's correlation coefficient}
 \usage{
-corr.ci(data = NA, r = NULL, n = NULL)
+corr_ci(,data = NA, r = NULL, n = NULL, verbose = TRUE)
 }
 \description{
 Computes the half-width confidence interval for correlation coefficient based on the nonparametri method proposed by Olivoto et al. (2018).
@@ -14,6 +14,7 @@ Computes the half-width confidence interval for correlation coefficient based on
   \item{r}{If \code{data} is not available, provide the value for correlation coefficient.}
 
    \item{n}{The sample size if \code{data} is a correlation matrix or if r is informed.}
+  \item{verbose}{If \code{verbose = TRUE} then some results are shown in the console.}
  }
 
  \details{The half-width confidence interval is computed according to the following equation:
@@ -31,8 +32,15 @@ Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel, B.G. Sari, D.. K. 
 }
 
 \examples{
+\dontrun{
+library(METAAB)
+library(dplyr)
 
-corr.ci(iris[,1:3])
 
+corr_ci(data_ge)
+
+ci = data_ge \%>\% group_factors(ENV) \%>\% corr_ci()
+
+}
 }
 
