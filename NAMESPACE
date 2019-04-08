@@ -9,13 +9,15 @@ importFrom(dendextend, set, rotate_DendSer)
 importFrom(lme4, ranef, VarCorr, fortify.merMod)
 importFrom(lmerTest, ranova, lmer)
 importFrom(gtools, mixedorder)
-importFrom(dplyr, select, everything, mutate, group_by, left_join,
-           sample_n, anti_join, enquo, pull)
+importFrom(dplyr, select, everything, mutate, group_by, group_by_if, group_keys,
+           group_split, left_join, sample_n, anti_join, enquo, pull)
 importFrom(gplots, heatmap.2)
+importFrom(rlang, eval_bare, expr)
+importFrom(FWDselect, selection)
 importFrom("grDevices", "colorRampPalette", "dev.off", "pdf",
            "chull", "tiff", "boxplot.stats")
 importFrom("methods", "is", "as")
-importFrom("graphics", "plot", "boxplot", "hist", "par")
+importFrom("graphics", "plot", "boxplot", "hist", "par", "mtext")
 importFrom("stats", "aov", "filter", "as.dendrogram", "dist", "hclust", "lm",
            "model.matrix", "qt", "weighted.mean", "deviance", "df.residual",
            "pf", "predict", "dnorm", "fitted", "ppoints", "qnorm", "quantile",
@@ -31,7 +33,7 @@ S3method(plot, blup)
 S3method(plot, eigen)
 S3method(plot, scores)
 S3method(plot, MTSI)
-S3method(plot, FAI.BLUP)
+S3method(plot, FAI_BLUP)
 S3method(plot, validation.AMMIF)
 S3method(predict, WAAS.AMMI)
 S3method(summary, WAASB)
