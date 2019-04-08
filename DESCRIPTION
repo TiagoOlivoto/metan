@@ -1,7 +1,7 @@
 Package: METAAB
 Type: Package
 Title: Multi Environment Trials Analysis using AMMI and BLUP
-Version: 1.0.2
+Version: 1.0.3
 Authors@R: c(
     person("Tiago", "Olivoto", , "tiagoolivoto@gmail.com", role = c("aut", "cre"), 
       comment = c(ORCID = "0000-0002-0241-9636")
@@ -27,7 +27,9 @@ Imports: dplyr,
          magrittr,
          methods,
          GGally,
-         ade4
+         ade4,
+         FWDselect,
+         rlang
 RoxygenNote: 6.1.1
 Suggests:
     knitr,
