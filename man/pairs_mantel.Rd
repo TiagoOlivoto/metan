@@ -10,7 +10,7 @@ pairs_mantel(..., type = 1, nrepet = 1000, names = NULL,
           col.point = "black", minsize = 2, maxsize = 3,
           signcol = "green", alpha = 0.15, diagcol = "gray",
           col.up.panel = "gray", col.lw.panel = "gray",
-          col.dia.panel = "black", pan.spacing = 0.15, digits = 2)
+          col.dia.panel = "gray", pan.spacing = 0.15, digits = 2)
 }
 \description{
 This function generate a pairwise matrix of plots to compare the similarity of two or more correlation matrices. In the upper diagonal are presented the plots and in the lower diagonal the result of Mantel test based on permutations.
@@ -65,7 +65,7 @@ This function generate a pairwise matrix of plots to compare the similarity of t
 
   \item{diagcol}{The color in the kernel distribution. Set to "gray".}
 
-  \item{col.up.panel, col.lw.panel, col.dia.panel}{The color for the opper, lower and diagonal pannels. Set to "gray", "gray", and "black", respectively.}
+  \item{col.up.panel, col.lw.panel, col.dia.panel}{The color for the opper, lower and diagonal pannels. Set to "gray", "gray", and "gray", respectively.}
 
   \item{pan.spacing}{The space between the pannels. Set to 0.15.}
 
