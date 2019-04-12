@@ -1,4 +1,22 @@
-# METAAB 1.0.2.9000
+# METAAB 1.0.3
+In the latest development version, some useful functions were included. One of the most interesting features included in this version was allowing the functions to receive data from the forward-pipe operator %>%. Bellow are the functions included in this version.
+
+* `anova_ind()` to perform a within-environment analysis of variance easely;
+* `colindiag()` to perform a collinearity diagnostic of a set of predictors;
+* `find_outliers()` to easily find possible outliers in the dataset;
+* `group_factors()` to split a dataset into a list of subsets using one or more grouping factors. This function may be used befor some functions (e.g., `find_outliers()`, `colindiag()`, `path_coeff()` ) to compute the statistics for each level of the factor (or combination of levels of factors).
+* `plcor()` to compute linear and partial correlation coefficients.
+* `pairs_mantel()` to compute a graphic pairwise Mantel's test using a set of correlation matrices;
+* `path_coeff()` to compute path coefficients with minimal multicollinearity;
+
+The following S3 Methods were also implemented:
+
+* `is.group_factors()` and `as.group_factors()` to check or easily coerce a dataframe that has one or more factor columns to an object of `group_factors`;
+* `is.lpcorr()` and `as.lpcorr()`  to check or easily coerce a list of correlation matrice to an object of `lpcorr`;
+
+
+
+# METAAB 1.0.2
 * AMMI-based stability indexes;
 * Allow analizing multiple variables at the same time;
 * S3 methods such as `plot()`, `predict()`, `summary()` implemented.
