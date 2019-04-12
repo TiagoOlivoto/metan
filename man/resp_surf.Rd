@@ -22,6 +22,9 @@ Compute a surface model and find the best combination of factor1 and factor2 to 
 
   \item{resp}{The response variable(s).}
 
+  \item{prob}{The probability error.}
+
+  \item{verbose}{If \code{verbose = TRUE} then some results are shown in the console.}
 }
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
