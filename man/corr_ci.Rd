@@ -9,7 +9,7 @@ Computes the half-width confidence interval for correlation coefficient based on
 }
 
 \arguments{
- \item{data}{A dataset containing variables only or a symetric correlation matrix.}
+ \item{.data}{A dataset containing variables only or a symetric correlation matrix.}
 
   \item{r}{If \code{data} is not available, provide the value for correlation coefficient.}
 
