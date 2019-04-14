@@ -2,7 +2,7 @@
 \alias{ge_stats}
 \title{Parametric statistics for genotype-vs-environment interaction}
 \usage{
-ge_stats(.data, env, gen, rep, resp)
+ge_stats(.data, env, gen, rep, resp, verbose = TRUE)
 }
 \description{
 Compute statistics for genotype vs environment interaction, including, but not limited to within-environment analysis of variance, Ecovalence (Wricke, 1965)  regression-based stability (Eberhart and Eberhart, 1966).
@@ -18,6 +18,8 @@ Compute statistics for genotype vs environment interaction, including, but not l
   \item{rep}{The name of the column that contains the levels of the replications/blocks.}
 
   \item{resp}{The response variable(s). To analyze multiple variables in a single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
+
+  \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
 
 }
 
