@@ -2,7 +2,7 @@
 \alias{anova_ind}
 \title{Within-environment analysis of variance}
 \usage{
-anova_ind(.data, env, gen, rep, resp)
+anova_ind(.data, env, gen, rep, resp, verbose = TRUE)
 }
 \description{
 This is a helper function that performs a within-environment analysis of variance and returns values such as Mean Squares, p-values, coefficient of variation, heritability, and accuracy of selection.
@@ -20,6 +20,7 @@ This is a helper function that performs a within-environment analysis of varianc
 
   \item{resp}{The response variable.}
 
+  \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
 
 }
 
@@ -30,15 +31,16 @@ This is a helper function that performs a within-environment analysis of varianc
 library(METAAB)
 # traditional usage approach
 data = data_ge
-anova1 = anova_ind(data,
+anova1 = anova_ind(data_ge,
                    env = ENV,
                    gen = GEN,
                    rep = REP,
                    resp = GY)
 
 # Using the pipe operator \%>\%
+# Two variables, one run.
 library(dplyr)
-data \%>\% anova_ind(ENV, GEN, REP, GY)
+anova2 = data_ge \%>\% anova_ind(ENV, GEN, REP, c(GY, HM))
 
 }
 
