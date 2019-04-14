@@ -5,7 +5,7 @@
 group_factors(.data, ..., keep_factors = FALSE)
 }
 \description{
-Find the required (sufficient) sample size for computing a Pearson correlation coefficient with a desired confidence interval (Olivoto et al., 2018).
+Split a dataframe into subsets grouped by one or more factors
 
 }
 
