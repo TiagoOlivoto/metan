@@ -184,7 +184,7 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
                 "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"))
             Details <- Details %>% dplyr::select(Parameters, everything())
 
-            temp <- structure(list(individual = individual, model = WAAS, MeansGxE = MeansGxE,
+            temp <- structure(list(individual = individual[[1]], model = WAAS, MeansGxE = MeansGxE,
                 PCA = PCA, anova = anova, Details = Details, residuals = model$residuals,
                 probint = model$probint), class = "WAAS.AMMI")
 

@@ -222,7 +222,7 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             Details <- Details %>% dplyr::select(Parameters, everything())
             Predicted <- data %>% mutate(Predicted = predict(Complete))
             residuals <- data.frame(fortify.merMod(Complete))
-            temp <- structure(list(individual = individual, fixed = fixed, random = random,
+            temp <- structure(list(individual = individual[[1]], fixed = fixed, random = random,
                 LRT = LRT, model = WAASAbsInicial, BLUPgen = NULL, BLUPgge = Predicted,
                 PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
                 residuals = residuals), class = "WAASB")
@@ -446,7 +446,7 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 "Predicted", "LL", "UL")
             residuals <- data.frame(fortify.merMod(Complete))
             residuals$reff <- selectioNenv$BLUPge
-            temp <- structure(list(individual = individual, fixed = fixed, random = random,
+            temp <- structure(list(individual = individual[[1]], fixed = fixed, random = random,
                 LRT = LRT, model = WAASAbsInicial, blupGEN = blupGEN, BLUPgge = selectioNenv,
                 PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
                 residuals = residuals), class = "WAASB")
@@ -683,7 +683,7 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 "Predicted")
             residuals <- fortify.merMod(Complete)
             residuals$reff <- selectioNenv$BLUPge
-            temp <- structure(list(individual = individual, fixed = NULL, random = random,
+            temp <- structure(list(individual = individual[[1]], fixed = NULL, random = random,
                 LRT = LRT, model = WAASAbsInicial, blupGEN = blupGEN, BLUPgge = selectioNenv,
                 PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
                 residuals = residuals), class = "WAASB")
