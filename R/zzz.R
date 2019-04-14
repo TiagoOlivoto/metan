@@ -8,5 +8,5 @@ if (getRversion() >= "2.15.1") {
         "factors", "gen", "genPC1", "ggee", "id", "label", "nominal", "pred", "resOLS",
         "sel", "stdres", "type", "y", "z", "Corr", "combn", "cov2cor", "partial",
         "pt", ".", "linear", "my_custom_cor", "my_custom_smooth", "K", "direct", "VAR",
-        "eq"))
+        "eq", "IndAmb", "REP", "gge"))
 }
