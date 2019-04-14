@@ -3,7 +3,7 @@
 \alias{as.group_factors}
 \title{Coerce to an object of class group_factors}
 \usage{
-\method{as}{group_factors}(x)
+\method{as}{group_factors}(x, verbose = TRUE)
 
 \method{is}{group_factors}(x)
 
@@ -15,6 +15,7 @@ Functions to check if an object is of class \code{group_factors}, or coerce it i
 \arguments{
  \item{x}{The input data.}
 
+  \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
 }
 
 \details{
