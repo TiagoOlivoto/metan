@@ -20,6 +20,7 @@ library(METAAB)
 library(ggplot2)
 library(cowplot)
 library(kableExtra)
+library(magrittr)
 dataset = data_ge
 str(dataset)
 ```
@@ -50,12 +51,12 @@ where **G** and **R** are the variance-covariance matrices for random-effect vec
 The `WAASB()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `dataset`. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.  The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
 
 ```{r echo = TRUE}
-WAASB_model = WAASB(data = dataset,
-                    random = "gen", #Default
-                    resp = GY,
-                    gen = GEN,
+WAASB_model = WAASB(.data = dataset,
                     env = ENV,
+                    gen = GEN,
                     rep = REP,
+                    resp = GY,
+                    random = "gen", #Default
                     verbose = TRUE) #Default
 
     ```
@@ -355,10 +356,10 @@ In the following example, we will assume that we want to obtain the ranks for WA
 
 ```{r echo = TRUE}
 WAASBYratio = WAASBYratio(dataset,
-                          resp = GY,
-                          gen = GEN,
                           env = ENV,
+                          gen = GEN,
                           rep = REP,
+                          resp = GY,
                           increment = 50)
 
 ```
@@ -444,18 +445,31 @@ $$
 
 
 ```{r }
-Resende_model = WAASB(dataset,
-                      resp = c(GY, HM),
-                      gen = GEN,
-                      env = ENV,
-                      rep = REP)
-res_inde = Resende_indexes(Resende_model)
-kable(res_inde, "html") %>%
+Resende_indexes = dataset %>%
+                  WAASB(GEN, ENV, REP, resp = c(GY, HM)) %>% 
+                  Resende_indexes()
+
+
+kable(Resende_indexes, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed",
                 position = "left", full_width = F, font_size = 12)
 
     ```
 
+
+
+# FAI-BLUP selection index
+
+The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018].
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
+FAI = data_ge2 %>%
+      WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
+      FAI_BLUP(DI = c("max", "max", "max", "min"),
+               UI = c("min", "min", "min", "max"),
+               SI = 15)
+plot(FAI)
+    ```
 
 
 

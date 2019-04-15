@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -65,6 +65,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -125,7 +128,7 @@
 <p>The METAAB (<strong>M</strong>ulti-environment <strong>T</strong>rials <strong>A</strong>nalysis using <strong>A</strong>MMI and <strong>B</strong>LUP) package provides useful functions for analyzing multi-environment trial data using Additive Main Effects and Multiplicative Interaction (AMMI) and Best Linear Unbiased Prediction (BLUP) models. The main features include, but are not limited to:</p>
 <ul>
 <li>Cross-validation procedures for AMMI-family and BLUP models;</li>
-<li>Estimation of AMMI models based on number of IPCAs;</li>
+<li>Estimation of AMMI models using different numbers of interation principal component axes; IPCAs;</li>
 <li>Prediction in mixed-effect models;</li>
 <li>Variance components and genetic parameters in mixed-effect models;</li>
 <li>Graphics tools for generating biplots.</li>
@@ -138,8 +141,11 @@
 <div id="brief-examples" class="section level1">
 <h1 class="hasAnchor">
 <a href="#brief-examples" class="anchor"></a>Brief examples</h1>
-<p>The package <a href="https://haozhu233.github.io/kableExtra/"><code>kableExtra</code></a> and <a href="https://github.com/wilkelab/cowplot"><code>cowplot</code></a> were used to generate the tables and arranging the graphics of this vignette. For reproducing brief examples we will use the dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in in 11 environments. For more details see <code><a href="../reference/data_ge.html">?data_ge</a></code>.</p>
+<p>The package <a href="https://haozhu233.github.io/kableExtra/"><code>kableExtra</code></a> and <a href="https://github.com/wilkelab/cowplot"><code>cowplot</code></a> were used to generate the tables and arranging the graphics of this vignette. The forward-pipe operators <code>%&gt;%</code> and <code>%&lt;&gt;%</code> may be used in some functions, provided that the package <a href="https://magrittr.tidyverse.org/"><code>magrittr</code></a> is loaded. Brief examples will be run using the dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see <code><a href="../reference/data_ge.html">?data_ge</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
 ##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
@@ -159,27 +165,22 @@
                         <span class="dt">gen =</span> GEN,
                         <span class="dt">env =</span> ENV,
                         <span class="dt">rep =</span> REP,
-                        <span class="dt">nboot =</span> <span class="dv">10</span>,
+                        <span class="dt">nboot =</span> <span class="dv">50</span>,
                         <span class="dt">nrepval =</span> <span class="dv">2</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(CVAL)</code></pre></div>
 <p><img src="vignettes_METAAB_files/figure-html/unnamed-chunk-2-1.png" width="480"></p>
 <div id="fitting-the-model" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h3>
-<p>The AMMI model is fitted with the function <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code>. For more details, please see <code><a href="../reference/WAAS.AMMI.html">?WAAS.AMMI</a></code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(data_ge,
-                  <span class="dt">resp =</span> GY,
-                  <span class="dt">gen =</span> GEN,
-                  <span class="dt">env =</span> ENV,
-                  <span class="dt">rep =</span> REP)</code></pre></div>
+<p>The AMMI model is fitted with the function <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code>. Note that a model may be fitted easier and faster using <code>%&gt;%</code> and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). For more details, please see <code><a href="../reference/WAAS.AMMI.html">?WAAS.AMMI</a></code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(ENV, GEN, REP, GY)</code></pre></div>
 <pre><code>## Done!</code></pre>
 </div>
 <div id="biplots" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h3>
-<p>ggplot2-based graphics are easily obtained in METAAB package. Please, note that since <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, …), the output <code>model</code> is a list, in this case with one element, GY. For example, the well-known AMMI2 biplot may be obtained as follows.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)
-p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(model<span class="op">$</span>GY)
+<p>The well-known AMMI2 biplot may be obtained using the function <code><a href="../reference/plot.scores.html">plot.scores()</a></code>. ggplot2-based graphics are obtained. Please, note that since <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> and <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> functions allow analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>model</code> is a list that in this case has one element, GY.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(model<span class="op">$</span>GY)
 p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(model<span class="op">$</span>GY,
                  <span class="dt">type =</span> <span class="dv">1</span>,
                  <span class="dt">polygon =</span> <span class="ot">TRUE</span>,
@@ -197,11 +198,9 @@ p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot.sco
 <h3 class="hasAnchor">
 <a href="#s3-method-predict" class="anchor"></a>S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code>
 </h3>
-<p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>WAAS.AMMI</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted <code>model</code> object.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)
-predicted &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)
-predicted &lt;-<span class="st"> </span>predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]
+<p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>WAAS.AMMI</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted <code>model</code> object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">predicted &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)
+predicted &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(predicted<span class="op">$</span>GY)
 <span class="kw">kable</span>(predicted, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="dt">full_width =</span> F)</code></pre></div>
 <table class="table table table-striped">
@@ -240,22 +239,22 @@ E1
 G1
 </td>
 <td style="text-align:right;">
-2.366
+2.365787
 </td>
 <td style="text-align:right;">
--0.0843
+-0.0843311
 </td>
 <td style="text-align:right;">
-2.450
+2.450118
 </td>
 <td style="text-align:right;">
-0.07115
+0.07115484
 </td>
 <td style="text-align:right;">
-2.521
+2.521273
 </td>
 <td style="text-align:right;">
-2.450
+2.450118
 </td>
 </tr>
 <tr>
@@ -266,22 +265,22 @@ E1
 G10
 </td>
 <td style="text-align:right;">
-1.974
+1.974073
 </td>
 <td style="text-align:right;">
--0.3436
+-0.3435891
 </td>
 <td style="text-align:right;">
-2.318
+2.317662
 </td>
 <td style="text-align:right;">
--0.35391
+-0.35391141
 </td>
 <td style="text-align:right;">
-1.964
+1.963751
 </td>
 <td style="text-align:right;">
-2.318
+2.317662
 </td>
 </tr>
 <tr>
@@ -292,22 +291,22 @@ E1
 G2
 </td>
 <td style="text-align:right;">
-2.902
+2.901747
 </td>
 <td style="text-align:right;">
-0.3112
+0.3111581
 </td>
 <td style="text-align:right;">
-2.591
+2.590589
 </td>
 <td style="text-align:right;">
-0.29035
+0.29035016
 </td>
 <td style="text-align:right;">
-2.881
+2.880939
 </td>
 <td style="text-align:right;">
-2.591
+2.590589
 </td>
 </tr>
 <tr>
@@ -318,22 +317,22 @@ E1
 G3
 </td>
 <td style="text-align:right;">
-2.889
+2.888587
 </td>
 <td style="text-align:right;">
-0.0868
+0.0868009
 </td>
 <td style="text-align:right;">
-2.802
+2.801786
 </td>
 <td style="text-align:right;">
--0.04519
+-0.04518795
 </td>
 <td style="text-align:right;">
-2.757
+2.756598
 </td>
 <td style="text-align:right;">
-2.802
+2.801786
 </td>
 </tr>
 <tr>
@@ -344,22 +343,48 @@ E1
 G4
 </td>
 <td style="text-align:right;">
-2.589
+2.588567
 </td>
 <td style="text-align:right;">
-0.1002
+0.1002096
 </td>
 <td style="text-align:right;">
-2.488
+2.488357
 </td>
 <td style="text-align:right;">
-0.04942
+0.04942370
 </td>
 <td style="text-align:right;">
-2.538
+2.537781
 </td>
 <td style="text-align:right;">
-2.488
+2.488357
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+2.188260
+</td>
+<td style="text-align:right;">
+-0.1955261
+</td>
+<td style="text-align:right;">
+2.383786
+</td>
+<td style="text-align:right;">
+-0.07091881
+</td>
+<td style="text-align:right;">
+2.312867
+</td>
+<td style="text-align:right;">
+2.383786
 </td>
 </tr>
 </tbody>
@@ -369,14 +394,10 @@ G4
 <div id="blup-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h2>
-<p>The implementation of linear-mixed effect models to predict the response variable in MET is based on the <code><a href="../reference/WAASB.html">WAASB()</a></code> function. The “mixed-effect version” of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed have random effects is then obtained as follows.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(data_ge,
-                <span class="dt">resp =</span> GY,
-                <span class="dt">gen =</span> GEN,
-                <span class="dt">env =</span> ENV,
-                <span class="dt">rep =</span> REP)</code></pre></div>
+<p>The implementation of linear-mixed effect models to predict the response variable in MET is made with <code><a href="../reference/WAASB.html">WAASB()</a></code> function. The <em>mixed-effect version</em> of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model2 &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP, GY)</code></pre></div>
 <pre><code>## Done!</code></pre>
-<p>The mixed-effect model fitted in <code>model2</code> has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects and the variance components, and the BLUPs for genotypes as follows:</p>
+<p>The mixed-effect model fitted in <code>model2</code> has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LRT =<span class="st"> </span>model2<span class="op">$</span>GY<span class="op">$</span>LRT
 <span class="kw">kable</span>(LRT, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="dt">full_width =</span> F)</code></pre></div>
@@ -412,10 +433,10 @@ Complete
 45
 </td>
 <td style="text-align:right;">
--214.7
+-214.7173
 </td>
 <td style="text-align:right;">
-519.4
+519.4345
 </td>
 <td style="text-align:right;">
 NA
@@ -435,19 +456,19 @@ Genotype
 44
 </td>
 <td style="text-align:right;">
--224.4
+-224.3750
 </td>
 <td style="text-align:right;">
-536.7
+536.7499
 </td>
 <td style="text-align:right;">
-19.32
+19.31544
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-0
+1.11e-05
 </td>
 </tr>
 <tr>
@@ -458,19 +479,19 @@ Gen vs Env
 44
 </td>
 <td style="text-align:right;">
--237.1
+-237.1332
 </td>
 <td style="text-align:right;">
-562.3
+562.2665
 </td>
 <td style="text-align:right;">
-44.83
+44.83199
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-0
+0.00e+00
 </td>
 </tr>
 </tbody>
@@ -498,7 +519,7 @@ Variance
 GEN
 </td>
 <td style="text-align:right;">
-0.0280
+0.0280252
 </td>
 </tr>
 <tr>
@@ -509,7 +530,7 @@ GEN
 GEN:ENV
 </td>
 <td style="text-align:right;">
-0.0567
+0.0567137
 </td>
 </tr>
 <tr>
@@ -520,7 +541,7 @@ GEN:ENV
 Residual
 </td>
 <td style="text-align:right;">
-0.0967
+0.0966931
 </td>
 </tr>
 </tbody>
@@ -669,16 +690,16 @@ UL
 G8
 </td>
 <td style="text-align:right;">
-0.2685
+0.2685229
 </td>
 <td style="text-align:right;">
-2.943
+2.942765
 </td>
 <td style="text-align:right;">
-2.839
+2.839261
 </td>
 <td style="text-align:right;">
-3.046
+3.046269
 </td>
 </tr>
 <tr>
@@ -689,16 +710,16 @@ G8
 G3
 </td>
 <td style="text-align:right;">
-0.2292
+0.2291542
 </td>
 <td style="text-align:right;">
-2.903
+2.903396
 </td>
 <td style="text-align:right;">
-2.800
+2.799892
 </td>
 <td style="text-align:right;">
-3.007
+3.006900
 </td>
 </tr>
 <tr>
@@ -709,16 +730,16 @@ G3
 G2
 </td>
 <td style="text-align:right;">
-0.0570
+0.0569866
 </td>
 <td style="text-align:right;">
-2.731
+2.731228
 </td>
 <td style="text-align:right;">
-2.628
+2.627724
 </td>
 <td style="text-align:right;">
-2.835
+2.834732
 </td>
 </tr>
 <tr>
@@ -729,16 +750,16 @@ G2
 G7
 </td>
 <td style="text-align:right;">
-0.0543
+0.0543473
 </td>
 <td style="text-align:right;">
-2.729
+2.728589
 </td>
 <td style="text-align:right;">
-2.625
+2.625085
 </td>
 <td style="text-align:right;">
-2.832
+2.832093
 </td>
 </tr>
 <tr>
@@ -749,16 +770,16 @@ G7
 G4
 </td>
 <td style="text-align:right;">
--0.0264
+-0.0263523
 </td>
 <td style="text-align:right;">
-2.648
+2.647889
 </td>
 <td style="text-align:right;">
-2.544
+2.544385
 </td>
 <td style="text-align:right;">
-2.751
+2.751393
 </td>
 </tr>
 <tr>
@@ -769,16 +790,16 @@ G4
 G1
 </td>
 <td style="text-align:right;">
--0.0575
+-0.0575249
 </td>
 <td style="text-align:right;">
-2.617
+2.616717
 </td>
 <td style="text-align:right;">
-2.513
+2.513213
 </td>
 <td style="text-align:right;">
-2.720
+2.720221
 </td>
 </tr>
 <tr>
@@ -789,16 +810,16 @@ G1
 G5
 </td>
 <td style="text-align:right;">
--0.1116
+-0.1115984
 </td>
 <td style="text-align:right;">
-2.563
+2.562643
 </td>
 <td style="text-align:right;">
-2.459
+2.459139
 </td>
 <td style="text-align:right;">
-2.666
+2.666147
 </td>
 </tr>
 <tr>
@@ -809,16 +830,16 @@ G5
 G6
 </td>
 <td style="text-align:right;">
--0.1143
+-0.1143000
 </td>
 <td style="text-align:right;">
-2.560
+2.559942
 </td>
 <td style="text-align:right;">
-2.456
+2.456438
 </td>
 <td style="text-align:right;">
-2.663
+2.663446
 </td>
 </tr>
 <tr>
@@ -829,16 +850,16 @@ G6
 G9
 </td>
 <td style="text-align:right;">
--0.1337
+-0.1337332
 </td>
 <td style="text-align:right;">
-2.541
+2.540509
 </td>
 <td style="text-align:right;">
-2.437
+2.437005
 </td>
 <td style="text-align:right;">
-2.644
+2.644013
 </td>
 </tr>
 <tr>
@@ -849,16 +870,16 @@ G9
 G10
 </td>
 <td style="text-align:right;">
--0.1655
+-0.1655022
 </td>
 <td style="text-align:right;">
-2.509
+2.508739
 </td>
 <td style="text-align:right;">
-2.405
+2.405235
 </td>
 <td style="text-align:right;">
-2.612
+2.612243
 </td>
 </tr>
 </tbody>
@@ -880,7 +901,7 @@ p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot.blu
 <div id="blups-for-genotype-vs-environment-interaction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blups-for-genotype-vs-environment-interaction" class="anchor"></a>BLUPS for genotype-vs-environment interaction</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span>model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge)
 <span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
                 <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
@@ -920,22 +941,22 @@ E1
 G1
 </td>
 <td style="text-align:right;">
--0.0621
+-0.0620870
 </td>
 <td style="text-align:right;">
--0.0575
+-0.0575249
 </td>
 <td style="text-align:right;">
--0.1196
+-0.1196119
 </td>
 <td style="text-align:right;">
-2.401
+2.401071
 </td>
 <td style="text-align:right;">
-2.298
+2.297567
 </td>
 <td style="text-align:right;">
-2.505
+2.504575
 </td>
 </tr>
 <tr>
@@ -946,22 +967,22 @@ E1
 G10
 </td>
 <td style="text-align:right;">
--0.2430
+-0.2430051
 </td>
 <td style="text-align:right;">
--0.1655
+-0.1655022
 </td>
 <td style="text-align:right;">
--0.4085
+-0.4085073
 </td>
 <td style="text-align:right;">
-2.112
+2.112176
 </td>
 <td style="text-align:right;">
-2.009
+2.008672
 </td>
 <td style="text-align:right;">
-2.216
+2.215680
 </td>
 </tr>
 <tr>
@@ -972,22 +993,22 @@ E1
 G2
 </td>
 <td style="text-align:right;">
-0.2066
+0.2066405
 </td>
 <td style="text-align:right;">
-0.0570
+0.0569866
 </td>
 <td style="text-align:right;">
-0.2636
+0.2636271
 </td>
 <td style="text-align:right;">
-2.784
+2.784311
 </td>
 <td style="text-align:right;">
-2.681
+2.680807
 </td>
 <td style="text-align:right;">
-2.888
+2.887814
 </td>
 </tr>
 <tr>
@@ -998,22 +1019,22 @@ E1
 G3
 </td>
 <td style="text-align:right;">
-0.0885
+0.0884704
 </td>
 <td style="text-align:right;">
-0.2292
+0.2291542
 </td>
 <td style="text-align:right;">
-0.3176
+0.3176246
 </td>
 <td style="text-align:right;">
-2.838
+2.838308
 </td>
 <td style="text-align:right;">
-2.735
+2.734804
 </td>
 <td style="text-align:right;">
-2.942
+2.941812
 </td>
 </tr>
 <tr>
@@ -1024,22 +1045,48 @@ E1
 G4
 </td>
 <td style="text-align:right;">
-0.0601
+0.0600873
 </td>
 <td style="text-align:right;">
--0.0264
+-0.0263523
 </td>
 <td style="text-align:right;">
-0.0337
+0.0337350
 </td>
 <td style="text-align:right;">
-2.554
+2.554418
 </td>
 <td style="text-align:right;">
-2.451
+2.450914
 </td>
 <td style="text-align:right;">
-2.658
+2.657922
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+-0.1408042
+</td>
+<td style="text-align:right;">
+-0.1115984
+</td>
+<td style="text-align:right;">
+-0.2524026
+</td>
+<td style="text-align:right;">
+2.268281
+</td>
+<td style="text-align:right;">
+2.164777
+</td>
+<td style="text-align:right;">
+2.371785
 </td>
 </tr>
 </tbody>

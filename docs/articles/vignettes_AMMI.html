@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -65,6 +65,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -128,8 +131,9 @@
 <p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used in this material to arrange the graphics</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to </span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr) <span class="co"># used for the forward-pipe operator %&gt;%</span>
 dataset =<span class="st"> </span>data_ge
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
@@ -145,13 +149,15 @@ dataset =<span class="st"> </span>data_ge
 <p><span class="math display">\[
 {y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^p {{\lambda _k}{a_{ik}}} {t_{jk}} + {\rho _{ij}} + {\varepsilon _{ij}}
 \]</span> where <span class="math inline">\({\lambda_k}\)</span> is the singular value for the <em>k</em>-th interaction principal component axis (IPCA); <span class="math inline">\(a_{ik}\)</span> is the <em>i</em>-th element of the <em>k</em>-th eigenvector; <span class="math inline">\(t_{jk}\)</span> is the <em>j</em>th element of the <em>k</em>th eigenvector. A residual <span class="math inline">\(\rho _{ij}\)</span> remains, if not all <em>p</em> IPCA are used, where <span class="math inline">\(p \le min(g - 1; e - 1)\)</span>.</p>
-<p>The AMMI model is fitted with the <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function. The first argument is the data, in our example <code>dataset</code>. The second argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code is run silently or not.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AMMI_model =<span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(<span class="dt">data =</span> dataset,
-                       <span class="dt">resp =</span> GY,
-                       <span class="dt">gen =</span> GEN,
+<p>The AMMI model is fitted with the <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function. The first argument is the data, in our example <code>dataset</code>. The second argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code will run silently.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AMMI_model =<span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(<span class="dt">.data =</span> dataset,
                        <span class="dt">env =</span> ENV,
+                       <span class="dt">gen =</span> GEN,
                        <span class="dt">rep =</span> REP,
+                       <span class="dt">resp =</span> GY,
                        <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Note that using the arguments in the correct order, the model above may be fitted cleanly using the forward-pipe operator %&gt;%.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AMMI_model =<span class="st"> </span>dataset <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
 <div id="within-environment-anova" class="section level2">
 <h2 class="hasAnchor">
@@ -166,34 +172,33 @@ data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class=
 <table class="table table table-striped">
 <thead><tr>
 <th style="text-align:left;">
-ENV
 </th>
 <th style="text-align:right;">
-Mean
+MEAN
 </th>
 <th style="text-align:right;">
-MSblock
+MSB
 </th>
 <th style="text-align:right;">
-MSgen
+MSG
 </th>
 <th style="text-align:right;">
-MSres
+MSR
 </th>
 <th style="text-align:right;">
-Fcal(Blo)
+FCB
 </th>
 <th style="text-align:right;">
-Pr&gt;F(Blo)
+PRFB
 </th>
 <th style="text-align:right;">
-Fcal(Gen)
+FCG
 </th>
 <th style="text-align:right;">
-Pr&gt;F(Gen)
+PRFG
 </th>
 <th style="text-align:right;">
-CV(%)
+CV
 </th>
 <th style="text-align:right;">
 h2
@@ -2193,19 +2198,15 @@ E9
 </tr>
 </tbody>
 </table>
-<p>In this example, the scores of the nine PCA were not shown. The output generated by the <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function shows the following results: <strong>type</strong>, genotype (GEN) or environment (ENV); <strong>Code</strong>, the code attributed to each level of the factors; <strong>Y</strong>, the response variable (in this case the grain yield); <strong>WAAS</strong> the weighted average of the absolute scores, estimated with all PCA axes with <em>P</em>-value <span class="math inline">\(\le\)</span> 0.05; <strong>PctWAAS</strong> and <strong>PctResp</strong> that are the percentage values for the WAAS and Y, respectively; <strong>OrResp</strong> and <strong>OrWAAS</strong> that are the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; <strong>WAASY</strong> is the weighted average of absolute scores and response variable. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 is estimated by: <span class="math inline">\(WAAS_{G1} = [(86.32\times50)+(98.88\times50)]/50+50 = 92.60\)</span>. Then the **OrWAASY* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked. See <a href="#estimating-the-waasby-index">Estimating the WAASBY index</a> for a detailed explanation.</p>
+<p>In this example, the scores of the nine PCA were not shown. The output generated by the <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function shows the following results: <strong>type</strong>, genotype (GEN) or environment (ENV); <strong>Code</strong>, the code attributed to each level of the factors; <strong>Y</strong>, the response variable (in this case the grain yield); <strong>WAAS</strong> the weighted average of the absolute scores, estimated with all PCA axes with <em>P</em>-value <span class="math inline">\(\le\)</span> 0.05; <strong>PctWAAS</strong> and <strong>PctResp</strong> that are the percentage values for the WAAS and Y, respectively; <strong>OrResp</strong> and <strong>OrWAAS</strong> that are the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; <strong>WAASY</strong> is the weighted average of absolute scores and response variable. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 is estimated by: <span class="math inline">\(WAAS_{G1} = [(86.32\times50)+(98.88\times50)]/50+50 = 92.60\)</span>. Then the **OrWAASY* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked.</p>
 </div>
 <div id="number-of-axes-declared-manually" class="section level2">
 <h2 class="hasAnchor">
 <a href="#number-of-axes-declared-manually" class="anchor"></a>Number of axes declared manually</h2>
 <p>The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument <code>naxis</code> in the function <code>WAAS.AMMI</code> is then used to overwrite the default chose of significant terms.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AMMI_model_<span class="dv">2</span> =<span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(dataset,
-                         <span class="dt">resp =</span> GY,
-                         <span class="dt">gen =</span> GEN,
-                         <span class="dt">env =</span> ENV,
-                         <span class="dt">rep =</span> REP,
-                         <span class="dt">naxis =</span> <span class="dv">7</span>, <span class="co"># Use 7 IPCA for computing WAAS</span>
-                         <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AMMI_model_<span class="dv">2</span> =<span class="st"> </span>dataset <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(ENV, GEN, REP, GY,
+                                     <span class="dt">naxis =</span> <span class="dv">7</span>, <span class="co"># Use 7 IPCA for computing WAAS</span>
+                                     <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>The only difference in this output is that here we declared that seven IPCA axes should be used for computing the WAAS value. Thus, only the values of WAAS, OrWAAS, WAASY and OrWAASY may have significant changes.</p>
 </div>
 <div id="biplots" class="section level2">
@@ -2225,7 +2226,7 @@ p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.
                  <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,
                  <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)
 <span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-gy-x-pc1" class="section level3">
 <h3 class="hasAnchor">
@@ -2238,7 +2239,7 @@ p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.
                        <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))
 
 <span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-3-gy-x-waas" class="section level3">
 <h3 class="hasAnchor">
@@ -2253,14 +2254,14 @@ p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.
                  <span class="dt">x.breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))
 <span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-4-nominal-yield-and-environment-ipca1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-4-nominal-yield-and-environment-ipca1" class="anchor"></a>biplot type 4 : nominal yield and environment IPCA1</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(AMMI_model<span class="op">$</span>GY,
             <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">size.tex.pa =</span> <span class="fl">1.5</span>)</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-11-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-12-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -2277,7 +2278,7 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(AMMI_model<span class="op">$</span>GY)
 p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))
 <span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>The values of WAASY in the plot above were computed considering equal weights for mean performance and stability. Different weights may be assigned using the <code>wresp</code> argument of the <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function.</p>
 </div>
 <div id="estimating-the-waasy-in-different-scenarios" class="section level1">
@@ -2285,10 +2286,10 @@ p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.
 <a href="#estimating-the-waasy-in-different-scenarios" class="anchor"></a>Estimating the WAASY in different scenarios</h1>
 <p>In the following example, we will assume that we want to obtain the ranks considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">WAASratio =<span class="st"> </span><span class="kw"><a href="../reference/WAASratio.AMMI.html">WAASratio.AMMI</a></span>(dataset,
-                           <span class="dt">resp =</span> GY,
-                           <span class="dt">gen =</span> GEN,
                            <span class="dt">env =</span> ENV,
+                           <span class="dt">gen =</span> GEN,
                            <span class="dt">rep =</span> REP,
+                           <span class="dt">resp =</span> GY,
                            <span class="dt">increment =</span> <span class="dv">10</span>)</code></pre></div>
 <div id="printing-the-model-outputs" class="section level2">
 <h2 class="hasAnchor">
@@ -3123,13 +3124,13 @@ G9
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAAS</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASratio, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-16-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-17-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="ranks-of-genotypes-depending-on-the-waasgy-ratio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-waasgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAAS/GY ratio</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASratio, <span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-17-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_AMMI_files/figure-html/unnamed-chunk-18-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -3162,11 +3163,14 @@ E{V_i} = \sum\nolimits_{k = 1}^P {\mathop a\nolimits_{ik}^2 } /P
 Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 \]</span></p>
 <p>where <span class="math inline">\({\theta _k}\)</span> is the percentage sum of squares explained by the <em>k</em>-th IPCA. Simultaneous selection indexes (ssi), are computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields <span class="citation">(E. Farshadfar <a href="#ref-Farshadfar2008">2008</a>)</span>, which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.</p>
-<p>The <code>AMMI_index()</code> function has two arguments. The first (x) is the model, which must be an object of the class <code>WAAS.AMMI</code>. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If <code>x</code> is a list with more than one variable, <code>order.y</code> must be a vector of the same length of x. Each element of the vector must be one of the “h” or “l”. If “h” is used, the response variable will be ordered from maximum to minimum. If “l” is used then the response variable will be ordered from minimum to maximum.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stab_indexes =<span class="st"> </span><span class="kw"><a href="../reference/AMMI_indexes.html">AMMI_indexes</a></span>(AMMI_model, <span class="dt">order.y =</span> <span class="ot">NULL</span>)
+<p>The <code>AMMI_index()</code> function has two arguments. The first (x) is the model, which must be an object of the class <code>WAAS.AMMI</code>. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If <code>x</code> is a list with more than one variable, <code>order.y</code> must be a vector of the same length of x. Each element of the vector must be one of the “h” or “l”. If “h” is used, the response variable will be ordered from maximum to minimum. If “l” is used then the response variable will be ordered from minimum to maximum. Using the forward-pipe operator <em>%&gt;%</em> it is possible to structure sequences of data operations left-to-right. The operators pipe their left-hand side values forward into expressions that appear on the right-hand side. When coupling several function calls with the pipe-operator, the benefit will become more apparent. Let’s construct this model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stab_indexes =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
+<span class="st">               </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+<span class="st">               </span><span class="kw"><a href="../reference/AMMI_indexes.html">AMMI_indexes</a></span>()
+
 <span class="kw">kable</span>(stab_indexes, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
-                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
+<span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
+              <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
 <table class="table kable_wrapper table table-striped"><tbody><tr>
 <td>
 <table class="table">

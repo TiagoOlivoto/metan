@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multitrait stability index — MTSI • METAAB</title>
+<title>Multi-trait stability index — MTSI • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Multitrait stability index — MTSI" />
+<meta property="og:title" content="Multi-trait stability index — MTSI" />
 
-<meta property="og:description" content="Multitrait stability index in analysis of multi-environment trials using AMMI or BLUP methods." />
+<meta property="og:description" content="Multi-trait stability index in analysis of multi-environment trials using AMMI or BLUP methods." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -99,6 +99,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -147,33 +150,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Multitrait stability index</h1>
+    <h1>Multi-trait stability index</h1>
     
     <div class="hidden name"><code>MTSI.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Multitrait stability index in analysis of multi-environment trials using AMMI or BLUP methods.</p>
+    <p>Multi-trait stability index in analysis of multi-environment trials using AMMI or BLUP methods.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>MTSI</span>(<span class='no'>x</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"WAASB"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>MTSI</span>(<span class='no'>.data</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"WAASB"</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
+      <th>.data</th>
       <td><p>An object of class <code>WAASB</code> or <code>WAAS.AMMI</code>.</p></td>
     </tr>
     <tr>
       <th>index</th>
       <td><p>If <code>index = "WAASB"</code> (Default) the multitrait index will be computed considering the stability of genotypes only. If <code>index = "WAASBY"</code> both stability and mean performance are considered. More details can be seen in <code><a href='WAASB.html'>WAASB</a></code> and <code><a href='WAAS.AMMI.html'>WAAS.AMMI</a></code> functions.</p></td>
-    </tr>
-    <tr>
-      <th>show</th>
-      <td><p>If <code>show = TRUE</code> (Default) some results are shown in the console.</p></td>
     </tr>
     <tr>
       <th>SI</th>
@@ -183,20 +182,25 @@
       <th>mineval</th>
       <td><p>The minimum value so that an eigenvector is retained in the factor analysis.</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>If <code>verbose = TRUE</code> (Default) then some results are shown in the console.</p></td>
+    </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
-<span class='co'># Based on stability only</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+
+<span class='co'># Based on stability only, for both GY and HM, higher is better</span>
 <span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
-                   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-                   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+                   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
-#&gt; Done!</div><div class='input'>
-<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'>MTSI</span>(<span class='no'>MTSI_MODEL</span>)</div><div class='output co'>#&gt; 
+#&gt; Done!</div><div class='input'><span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'>MTSI</span>(<span class='no'>MTSI_MODEL</span>)</div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
@@ -238,57 +242,55 @@
 #&gt; G3 G1
 #&gt; -------------------------------------------------------------------------------</div><div class='input'>
 
-<span class='co'># Based on mean performance and stability</span>
-<span class='no'>MTSI_MODEL2</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
-                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                    <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>100</span>), <span class='co'>#Default</span>
-                    <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>65</span>, <span class='fl'>65</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+<span class='co'># Based on mean performance and stability (using pipe operator %&gt;%)</span>
+<span class='co'># GY: higher is better</span>
+<span class='co'># HM: lower is better</span>
+<span class='no'>MTSI_index2</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+              <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>), <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>)) <span class='kw'>%&gt;%</span>
+              <span class='fu'>MTSI</span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"WAASBY"</span>)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
-#&gt; Done!</div><div class='input'><span class='no'>MTSI_index2</span> <span class='kw'>=</span> <span class='fu'>MTSI</span>(<span class='no'>MTSI_MODEL2</span>,
-                   <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"WAASBY"</span>)</div><div class='output co'>#&gt; 
+#&gt; Done!
+#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
 #&gt;     Eigenvalues Variance (%) Cum. variance (%)
-#&gt; PC1   1.1607779     58.03889          58.03889
-#&gt; PC2   0.8392221     41.96111         100.00000
+#&gt; PC1   1.5844965     79.22483          79.22483
+#&gt; PC2   0.4155035     20.77517         100.00000
 #&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
 #&gt;          FA1 Communality Uniquenesses
-#&gt; GY 0.7618326   0.5803889    0.4196111
-#&gt; HM 0.7618326   0.5803889    0.4196111
+#&gt; GY 0.8900833   0.7922483    0.2077517
+#&gt; HM 0.8900833   0.7922483    0.2077517
 #&gt; 
 #&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.5803889 
+#&gt; Comunalit Mean: 0.7922483 
 #&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Multitrait stability index
 #&gt; -------------------------------------------------------------------------------
-#&gt;     G8     G3     G6     G5     G4     G7     G1     G9     G2    G10 
-#&gt; 0.6247 1.3687 1.9646 2.3690 2.6194 2.6730 2.8470 3.3023 3.5643 3.9014 
+#&gt;     G3     G1     G2     G8     G6     G4     G7     G9     G5    G10 
+#&gt; 0.4901 1.0853 1.5365 1.6202 2.0663 2.0779 2.1950 2.5718 3.2045 3.9391 
 #&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for WAASBY index
 #&gt; -------------------------------------------------------------------------------
 #&gt;    Factor       Xo       Xs       SD   SDperc
-#&gt; GY    FA1 45.27838 89.10815 43.82978 96.80068
-#&gt; HM    FA1 57.03502 74.72083 17.68581 31.00868
+#&gt; GY    FA1 48.34113 76.54450 28.20337 58.34239
+#&gt; HM    FA1 54.11473 86.20436 32.08962 59.29924
 #&gt; 
 #&gt; ------------------------------------------------------------------------------
 #&gt; Mean of selection differential
 #&gt; -------------------------------------------------------------------------------
 #&gt;       Xo       Xs       SD   SDperc 
-#&gt; 51.15670 81.91449 30.75779 63.90468 
+#&gt; 51.22793 81.37443 30.14650 58.82081 
 #&gt; 
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
-#&gt; G8 G3
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>MTSI_index2</span>)</div><div class='img'><img src='MTSI-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; G3 G1
+#&gt; -------------------------------------------------------------------------------</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Helper function for combining data.frames by row, filling missing values. — rbind_fill • METAAB</title>
+<title>Helper function for combining data.frames by row, filling missing values — rbind_fill • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Helper function for combining data.frames by row, filling missing values. — rbind_fill" />
+<meta property="og:title" content="Helper function for combining data.frames by row, filling missing values — rbind_fill" />
 
 <meta property="og:description" content="Helper function similar to plyr::rbind.fill that combines data.frames by row and fills with . missing values" />
 
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -99,6 +99,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -147,7 +150,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Helper function for combining data.frames by row, filling missing values.</h1>
+    <h1>Helper function for combining data.frames by row, filling missing values</h1>
     
     <div class="hidden name"><code>rbind_fill.Rd</code></div>
     </div>
@@ -158,7 +161,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>rbind_fill</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>rbind_fill</span>(<span class='no'>...</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"."</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,6 +170,10 @@
       <th>...</th>
       <td><p>Input dataframes.</p></td>
     </tr>
+    <tr>
+      <th>fill</th>
+      <td><p>What use to fill? Default is <code>"."</code></p></td>
+    </tr>
     </table>
     
 
@@ -174,10 +181,14 @@
     <pre class="examples"><div class='input'><span class='no'>df1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>v1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='kw'>v2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>3</span>))
 <span class='no'>df2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>v3</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>5</span>))
 <span class='fu'>rbind_fill</span>(<span class='no'>df1</span>, <span class='no'>df2</span>)</div><div class='output co'>#&gt;   v1 v2 v3
-#&gt; 1  1  2  .
-#&gt; 2  2  3  .
-#&gt; 3  .  .  4
-#&gt; 4  .  .  5</div></pre>
+#&gt; 1  1  2  -
+#&gt; 2  2  3  -
+#&gt; 3  -  -  4
+#&gt; 4  -  -  5</div><div class='input'><span class='fu'>rbind_fill</span>(<span class='no'>df1</span>, <span class='no'>df2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"NA"</span>)</div><div class='output co'>#&gt;   v1 v2 v3
+#&gt; 1  1  2 NA
+#&gt; 2  2  3 NA
+#&gt; 3 NA NA  4
+#&gt; 4 NA NA  5</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

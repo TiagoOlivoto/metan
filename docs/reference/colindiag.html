@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -99,6 +99,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -158,18 +161,14 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>colindiag</span>(<span class='no'>x</span>, <span class='kw'>group_var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>colindiag</span>(<span class='no'>.data</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>The data to be analyzed. Must be a symmetric correlation matrix or a dataframe containing the predictor variables and one possible grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>group_var</th>
-      <td><p>A possible factor to group the data. If more than two factors are in the dataset, the extra factor column(s) will be excluded with a message.</p></td>
+      <th>.data</th>
+      <td><p>The data to be analyzed. Must be a symmetric correlation matrix or, a dataframe containing the predictor variables, or an object of class <code>group_factors</code>.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -212,23 +211,21 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Using the correlation matrix</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>cor_iris</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>iris</span>[,<span class='fl'>1</span>:<span class='fl'>4</span>])
 <span class='no'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>iris</span>)
-<span class='fu'>colindiag</span>(<span class='no'>cor_iris</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>)</div><div class='output co'>#&gt; The multicollinearity in the matrix should be investigated.
-#&gt; NC = 140.889
-#&gt; Largest VIF = 31.2614977749214
-#&gt; Matrix determinant: 0.0081096 
-#&gt; Largest correlation: Petal.Length x Petal.Width = 0.963 
-#&gt; Smallest correlation: Sepal.Length x Sepal.Width = -0.118 
-#&gt; Number of correlations with r &gt;= |0.8|: 3 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; Petal.Length &gt; Petal.Width &gt; Sepal.Length &gt; Sepal.Width </div><div class='input'>
-<span class='co'># Using the original data, storing into an object</span>
-<span class='no'>col_diag</span> <span class='kw'>=</span> <span class='fu'>colindiag</span>(<span class='no'>iris</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded from the data</span></div><div class='input'>
+<span class='fu'>colindiag</span>(<span class='no'>cor_iris</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='co'># Using the pipe operator %&gt;%</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='no'>cor_iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>colindiag</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
 <span class='co'># Diagnostic by species, storing into an object</span>
-<span class='no'>col_diag_spec</span> <span class='kw'>=</span> <span class='fu'>colindiag</span>(<span class='no'>iris</span>, <span class='kw'>group_var</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded from the data</span></div><div class='output co'>#&gt; <span class='message'>The factors  where excluded from the data</span></div><div class='output co'>#&gt; <span class='message'>The factors  where excluded from the data</span></div><div class='output co'>#&gt; 
+<span class='no'>col_diag_spec</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+                <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+                <span class='fu'>colindiag</span>()</div><div class='output co'>#&gt; <span class='message'>The factors  where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Level setosa 
+#&gt; Level: setosa 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Weak multicollinearity in the matrix
 #&gt; NC = 8.186
@@ -240,7 +237,7 @@
 #&gt; Sepal.Length &gt; Sepal.Width &gt; Petal.Length &gt; Petal.Width 
 #&gt; 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Level versicolor 
+#&gt; Level: versicolor 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Weak multicollinearity in the matrix
 #&gt; NC = 22.104
@@ -252,7 +249,7 @@
 #&gt; Petal.Length &gt; Petal.Width &gt; Sepal.Length &gt; Sepal.Width 
 #&gt; 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Level virginica 
+#&gt; Level: virginica 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Weak multicollinearity in the matrix
 #&gt; NC = 19.136

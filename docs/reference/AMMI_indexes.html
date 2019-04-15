@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -99,6 +99,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -158,13 +161,13 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>AMMI_indexes</span>(<span class='no'>x</span>, <span class='kw'>order.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>AMMI_indexes</span>(<span class='no'>.data</span>, <span class='kw'>order.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
+      <th>.data</th>
       <td><p>An object of class <code>WAAS.AMMI</code></p></td>
     </tr>
     <tr>
@@ -205,12 +208,26 @@ $$Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}} $$</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='WAAS.AMMI.html'>WAAS.AMMI</a></span>(<span class='no'>data_ge</span>,
-                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
+                  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='no'>model_indexes</span> <span class='kw'>=</span> <span class='fu'>AMMI_indexes</span>(<span class='no'>model</span>)
+
+
+<span class='co'># Alternatively (and more intuitively) using %&gt;%</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: 'dplyr'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>res_ind</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+          <span class='fu'><a href='WAAS.AMMI.html'>WAAS.AMMI</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
+          <span class='fu'>AMMI_indexes</span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
-#&gt; Done!</div><div class='input'><span class='no'>model_indexes</span> <span class='kw'>=</span> <span class='fu'>AMMI_indexes</span>(<span class='no'>model</span>)</div></pre>
+#&gt; Done!</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

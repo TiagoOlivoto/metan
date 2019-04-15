@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -65,6 +65,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -130,6 +133,7 @@
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)
 dataset =<span class="st"> </span>data_ge
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
@@ -154,12 +158,12 @@ dataset =<span class="st"> </span>data_ge
     \left[ {\begin{array}{*{20}{c}}{{\boldsymbol{\hat \beta }}}\\{{\bf{\hat u}}}\end{array}} \right]{\bf{ = }}{\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&amp;{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&amp;{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z + }}{{\bf{G}}^{ - {\bf{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\end{array}} \right]
     \]</span> where <strong>G</strong> and <strong>R</strong> are the variance-covariance matrices for random-effect vector <strong>u</strong> and residual vector <span class="math inline">\({\bf{\varepsilon }}\)</span>, respectively.</p>
 <p>The <code><a href="../reference/WAASB.html">WAASB()</a></code> is used to fit the linear mixed-effect model. The first argument is the data, in our example <code>dataset</code>. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the <code>random</code> argument. Please, see <code><a href="../reference/WAASB.html">?WAASB</a></code> for more details. The argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code is run silently or not.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">WAASB_model =<span class="st"> </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(<span class="dt">data =</span> dataset,
-                    <span class="dt">random =</span> <span class="st">"gen"</span>, <span class="co">#Default</span>
-                    <span class="dt">resp =</span> GY,
-                    <span class="dt">gen =</span> GEN,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">WAASB_model =<span class="st"> </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(<span class="dt">.data =</span> dataset,
                     <span class="dt">env =</span> ENV,
+                    <span class="dt">gen =</span> GEN,
                     <span class="dt">rep =</span> REP,
+                    <span class="dt">resp =</span> GY,
+                    <span class="dt">random =</span> <span class="st">"gen"</span>, <span class="co">#Default</span>
                     <span class="dt">verbose =</span> <span class="ot">TRUE</span>) <span class="co">#Default</span></code></pre></div>
 <pre><code>## Done!</code></pre>
 <div id="diagnostic-plot-for-residuals" class="section level2">
@@ -2117,10 +2121,10 @@ p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.
 <p><img src="vignettes_BLUP_files/figure-html/unnamed-chunk-18-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>In the following example, we will assume that we want to obtain the ranks for WAASBY considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">WAASBYratio =<span class="st"> </span><span class="kw"><a href="../reference/WAASBYratio.html">WAASBYratio</a></span>(dataset,
-                          <span class="dt">resp =</span> GY,
-                          <span class="dt">gen =</span> GEN,
                           <span class="dt">env =</span> ENV,
+                          <span class="dt">gen =</span> GEN,
                           <span class="dt">rep =</span> REP,
+                          <span class="dt">resp =</span> GY,
                           <span class="dt">increment =</span> <span class="dv">50</span>)</code></pre></div>
 <div id="printing-the-model-outputs-1" class="section level2">
 <h2 class="hasAnchor">
@@ -2690,16 +2694,13 @@ RPGV_i = \frac{1}{e}{\sum\limits_{j = 1}^e {BLUP_{ij}} /\mathop \mu \nolimits_j 
 <p><span class="math display">\[
 HMRPGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}/{\mu _j}}}}
 \]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Resende_model =<span class="st"> </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(dataset,
-                      <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM),
-                      <span class="dt">gen =</span> GEN,
-                      <span class="dt">env =</span> ENV,
-                      <span class="dt">rep =</span> REP)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Resende_indexes =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(GEN, ENV, REP, <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                  </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>()</code></pre></div>
 <pre><code>## Evaluating variable GY 50 % 
 ## Evaluating variable HM 100 % 
 ## Done!</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res_inde =<span class="st"> </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>(Resende_model)
-<span class="kw">kable</span>(res_inde, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(Resende_indexes, <span class="st">"html"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,
                 <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</code></pre></div>
 <table class="table kable_wrapper table table-striped"><tbody><tr>
@@ -2736,260 +2737,231 @@ HMRPGV_order
 <tbody>
 <tr>
 <td style="text-align:left;">
-G1
+E1
 </td>
 <td style="text-align:right;">
-2.316
+2.497
 </td>
 <td style="text-align:right;">
-6
+9
 </td>
 <td style="text-align:right;">
-0.9690
+0.9412
 </td>
 <td style="text-align:right;">
-2.591
+2.517
 </td>
 <td style="text-align:right;">
-6
+9
 </td>
 <td style="text-align:right;">
-0.9667
+0.9394
 </td>
 <td style="text-align:right;">
-2.585
+2.512
 </td>
 <td style="text-align:right;">
-6
+9
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-G10
+E10
 </td>
 <td style="text-align:right;">
-2.112
+2.152
 </td>
 <td style="text-align:right;">
 10
 </td>
 <td style="text-align:right;">
-0.9130
+0.8129
 </td>
 <td style="text-align:right;">
-2.442
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-0.8964
-</td>
-<td style="text-align:right;">
-2.397
+2.174
 </td>
 <td style="text-align:right;">
 10
 </td>
+<td style="text-align:right;">
+0.8098
+</td>
+<td style="text-align:right;">
+2.166
+</td>
+<td style="text-align:right;">
+10
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-G2
+E11
 </td>
 <td style="text-align:right;">
-2.466
+1.349
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.5124
+</td>
+<td style="text-align:right;">
+1.370
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.5087
+</td>
+<td style="text-align:right;">
+1.360
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:right;">
+1.579
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.6012
+</td>
+<td style="text-align:right;">
+1.608
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.5953
+</td>
+<td style="text-align:right;">
+1.592
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:right;">
+2.870
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1.0853
+</td>
+<td style="text-align:right;">
+2.902
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1.0801
+</td>
+<td style="text-align:right;">
+2.888
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:right;">
+1.773
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0.6679
+</td>
+<td style="text-align:right;">
+1.786
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0.6658
+</td>
+<td style="text-align:right;">
+1.781
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:right;">
+3.167
 </td>
 <td style="text-align:right;">
 4
 </td>
 <td style="text-align:right;">
-1.0253
+1.1898
 </td>
 <td style="text-align:right;">
-2.742
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-1.0197
-</td>
-<td style="text-align:right;">
-2.727
+3.182
 </td>
 <td style="text-align:right;">
 4
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G3
+<td style="text-align:right;">
+1.1873
 </td>
 <td style="text-align:right;">
-2.681
+3.175
 </td>
 <td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1.1050
-</td>
-<td style="text-align:right;">
-2.955
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1.1040
-</td>
-<td style="text-align:right;">
-2.952
-</td>
-<td style="text-align:right;">
-2
+4
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-G4
+E3
 </td>
 <td style="text-align:right;">
-2.388
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-0.9905
-</td>
-<td style="text-align:right;">
-2.649
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-0.9882
-</td>
-<td style="text-align:right;">
-2.643
-</td>
-<td style="text-align:right;">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G5
-</td>
-<td style="text-align:right;">
-2.302
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.9542
-</td>
-<td style="text-align:right;">
-2.552
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-0.9520
-</td>
-<td style="text-align:right;">
-2.546
-</td>
-<td style="text-align:right;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G6
-</td>
-<td style="text-align:right;">
-2.304
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-0.9542
-</td>
-<td style="text-align:right;">
-2.552
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.9521
-</td>
-<td style="text-align:right;">
-2.546
-</td>
-<td style="text-align:right;">
-7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G7
-</td>
-<td style="text-align:right;">
-2.520
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-1.0369
-</td>
-<td style="text-align:right;">
-2.773
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-1.0308
-</td>
-<td style="text-align:right;">
-2.757
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G8
-</td>
-<td style="text-align:right;">
-2.740
+4.046
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-1.1257
+1.5204
 </td>
 <td style="text-align:right;">
-3.010
+4.066
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-1.1222
+1.5158
 </td>
 <td style="text-align:right;">
-3.001
+4.054
 </td>
 <td style="text-align:right;">
 1
@@ -2997,31 +2969,176 @@ G8
 </tr>
 <tr>
 <td style="text-align:left;">
-G9
+E4
 </td>
 <td style="text-align:right;">
-2.177
+3.653
 </td>
 <td style="text-align:right;">
-9
+3
 </td>
 <td style="text-align:right;">
-0.9262
+1.3749
 </td>
 <td style="text-align:right;">
-2.477
+3.677
 </td>
 <td style="text-align:right;">
-9
+3
 </td>
 <td style="text-align:right;">
-0.9172
+1.3690
 </td>
 <td style="text-align:right;">
-2.453
+3.661
 </td>
 <td style="text-align:right;">
-9
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:right;">
+3.884
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1.4598
+</td>
+<td style="text-align:right;">
+3.904
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1.4582
+</td>
+<td style="text-align:right;">
+3.900
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:right;">
+2.652
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.9964
+</td>
+<td style="text-align:right;">
+2.664
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.9954
+</td>
+<td style="text-align:right;">
+2.662
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:right;">
+1.966
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.7441
+</td>
+<td style="text-align:right;">
+1.990
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.7393
+</td>
+<td style="text-align:right;">
+1.977
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:right;">
+2.525
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.9499
+</td>
+<td style="text-align:right;">
+2.540
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.9468
+</td>
+<td style="text-align:right;">
+2.532
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:right;">
+3.026
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1.1438
+</td>
+<td style="text-align:right;">
+3.059
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1.1349
+</td>
+<td style="text-align:right;">
+3.035
+</td>
+<td style="text-align:right;">
+5
 </td>
 </tr>
 </tbody>
@@ -3060,115 +3177,28 @@ HMRPGV_order
 <tbody>
 <tr>
 <td style="text-align:left;">
-G1
+E1
 </td>
 <td style="text-align:right;">
-46.88
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-0.9810
-</td>
-<td style="text-align:right;">
-47.17
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-0.9807
-</td>
-<td style="text-align:right;">
-47.16
-</td>
-<td style="text-align:right;">
-9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G10
-</td>
-<td style="text-align:right;">
-48.02
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-1.0068
-</td>
-<td style="text-align:right;">
-48.42
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-1.0056
-</td>
-<td style="text-align:right;">
-48.36
-</td>
-<td style="text-align:right;">
-4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G2
-</td>
-<td style="text-align:right;">
-46.49
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-0.9732
-</td>
-<td style="text-align:right;">
-46.80
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-0.9725
-</td>
-<td style="text-align:right;">
-46.77
-</td>
-<td style="text-align:right;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G3
-</td>
-<td style="text-align:right;">
-47.34
+47.40
 </td>
 <td style="text-align:right;">
 8
 </td>
 <td style="text-align:right;">
-0.9908
+0.9861
 </td>
 <td style="text-align:right;">
-47.65
+47.42
 </td>
 <td style="text-align:right;">
 8
 </td>
 <td style="text-align:right;">
-0.9905
+0.9860
 </td>
 <td style="text-align:right;">
-47.63
+47.42
 </td>
 <td style="text-align:right;">
 8
@@ -3176,57 +3206,57 @@ G3
 </tr>
 <tr>
 <td style="text-align:left;">
-G4
+E10
 </td>
 <td style="text-align:right;">
-47.76
+44.24
 </td>
 <td style="text-align:right;">
-5
+12
 </td>
 <td style="text-align:right;">
-0.9994
+0.9218
 </td>
 <td style="text-align:right;">
-48.06
+44.33
 </td>
 <td style="text-align:right;">
-5
+12
 </td>
 <td style="text-align:right;">
-0.9988
+0.9202
 </td>
 <td style="text-align:right;">
-48.03
+44.25
 </td>
 <td style="text-align:right;">
-5
+12
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-G5
+E11
 </td>
 <td style="text-align:right;">
-48.94
+54.14
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-1.0237
+1.1263
 </td>
 <td style="text-align:right;">
-49.23
+54.16
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-1.0229
+1.1259
 </td>
 <td style="text-align:right;">
-49.19
+54.14
 </td>
 <td style="text-align:right;">
 1
@@ -3234,57 +3264,28 @@ G5
 </tr>
 <tr>
 <td style="text-align:left;">
-G6
+E12
 </td>
 <td style="text-align:right;">
-48.35
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-1.0120
-</td>
-<td style="text-align:right;">
-48.66
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-1.0117
-</td>
-<td style="text-align:right;">
-48.65
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G7
-</td>
-<td style="text-align:right;">
-47.71
+49.55
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
-0.9981
+1.0311
 </td>
 <td style="text-align:right;">
-48.00
+49.58
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
-0.9975
+1.0307
 </td>
 <td style="text-align:right;">
-47.97
+49.56
 </td>
 <td style="text-align:right;">
 6
@@ -3292,28 +3293,115 @@ G7
 </tr>
 <tr>
 <td style="text-align:left;">
-G8
+E13
 </td>
 <td style="text-align:right;">
-48.72
+46.52
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0.9683
+</td>
+<td style="text-align:right;">
+46.56
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0.9678
+</td>
+<td style="text-align:right;">
+46.54
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:right;">
+41.06
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.8544
+</td>
+<td style="text-align:right;">
+41.09
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.8541
+</td>
+<td style="text-align:right;">
+41.07
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:right;">
+44.10
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.9179
+</td>
+<td style="text-align:right;">
+44.14
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.9174
+</td>
+<td style="text-align:right;">
+44.12
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:right;">
+52.84
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-1.0194
+1.0993
 </td>
 <td style="text-align:right;">
-49.02
+52.87
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-1.0190
+1.0991
 </td>
 <td style="text-align:right;">
-49.00
+52.85
 </td>
 <td style="text-align:right;">
 2
@@ -3321,37 +3409,242 @@ G8
 </tr>
 <tr>
 <td style="text-align:left;">
-G9
+E4
 </td>
 <td style="text-align:right;">
-47.52
+49.95
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1.0393
+</td>
+<td style="text-align:right;">
+49.98
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1.0392
+</td>
+<td style="text-align:right;">
+49.97
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:right;">
+52.17
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1.0857
+</td>
+<td style="text-align:right;">
+52.21
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1.0850
+</td>
+<td style="text-align:right;">
+52.17
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:right;">
+45.85
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.9547
+</td>
+<td style="text-align:right;">
+45.91
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.9538
+</td>
+<td style="text-align:right;">
+45.87
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:right;">
+48.47
 </td>
 <td style="text-align:right;">
 7
 </td>
 <td style="text-align:right;">
-0.9956
+1.0084
 </td>
 <td style="text-align:right;">
-47.88
+48.49
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1.0082
+</td>
+<td style="text-align:right;">
+48.48
 </td>
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-0.9950
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
 </td>
 <td style="text-align:right;">
-47.85
+45.14
 </td>
 <td style="text-align:right;">
-7
+11
+</td>
+<td style="text-align:right;">
+0.9396
+</td>
+<td style="text-align:right;">
+45.18
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.9390
+</td>
+<td style="text-align:right;">
+45.15
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:right;">
+51.28
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1.0671
+</td>
+<td style="text-align:right;">
+51.31
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1.0666
+</td>
+<td style="text-align:right;">
+51.29
+</td>
+<td style="text-align:right;">
+4
 </td>
 </tr>
 </tbody>
 </table>
 </td>
 </tr></tbody></table>
+</div>
+<div id="fai-blup-selection-index" class="section level1">
+<h1 class="hasAnchor">
+<a href="#fai-blup-selection-index" class="anchor"></a>FAI-BLUP selection index</h1>
+<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),
+               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),
+               <span class="dt">SI =</span> <span class="dv">15</span>)</code></pre></div>
+<pre><code>## Evaluating variable KW 25 % 
+## Evaluating variable NKE 50 % 
+## Evaluating variable PH 75 % 
+## Evaluating variable EH 100 % 
+## Done!
+## 
+## -----------------------------------------------------------------------------------
+## Principal Component Analysis
+## -----------------------------------------------------------------------------------
+##     eigen.values cumulative.var
+## PC1      3.14414          78.60
+## PC2      0.66041          95.11
+## PC3      0.13858          98.58
+## PC4      0.05687         100.00
+## 
+## -----------------------------------------------------------------------------------
+## Factor Analysis
+## -----------------------------------------------------------------------------------
+##         FA1 comunalits
+## KW  -0.9475     0.8977
+## NKE -0.7430     0.5520
+## PH  -0.9430     0.8892
+## EH  -0.8973     0.8052
+## 
+## -----------------------------------------------------------------------------------
+## Comunalit Mean: 0.786 
+## 
+## -----------------------------------------------------------------------------------
+## Multitrait stability index
+## -----------------------------------------------------------------------------------
+##    H13     H6     H2     H5     H1     H4     H3     H8     H9    H10 
+## 0.9807 0.8843 0.8413 0.8409 0.8023 0.7972 0.6222 0.2623 0.2354 0.1810 
+##     H7    H12    H11 
+## 0.1163 0.1014 0.0780 
+## 
+## -----------------------------------------------------------------------------------
+## Selection differential
+## -----------------------------------------------------------------------------------
+##     Factor Selection differential (%)
+## KW       1                  1.298e+00
+## NKE      1                  2.261e-07
+## PH       1                  8.941e-02
+## EH       1                  1.603e-08
+## 
+## -----------------------------------------------------------------------------------
+## Selected genotypes
+## H13 H6
+## -----------------------------------------------------------------------------------</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</code></pre></div>
+<p><img src="vignettes_BLUP_files/figure-html/unnamed-chunk-26-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -3362,6 +3655,9 @@ G9
 </div>
 <div id="ref-Henderson1975">
 <p>Henderson, C. R. 1975. “Best Linear Unbiased Estimation and Prediction under a Selection Model.” <em>Biometrics</em> 31 (2): 423–47. doi:<a href="https://doi.org/10.2307/2529430">10.2307/2529430</a>.</p>
+</div>
+<div id="ref-Rocha2018">
+<p>Rocha, João Romero do Amaral Santos de Car, Juarez Campolina Machado, and Pedro Crescêncio Souza Carneiro. 2018. “Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy.” <em>GCB Bioenergy</em> 10 (1). Wiley/Blackwell (10.1111): 52–60. doi:<a href="https://doi.org/10.1111/gcbb.12443">10.1111/gcbb.12443</a>.</p>
 </div>
 </div>
 </div>
@@ -3389,6 +3685,7 @@ G9
       </ul>
 </li>
       <li><a href="#others-blup-based-stability-indexes">Others BLUP-based stability indexes</a></li>
+      <li><a href="#fai-blup-selection-index">FAI-BLUP selection index</a></li>
       <li><a href="#references">References</a></li>
       </ul>
 </div>

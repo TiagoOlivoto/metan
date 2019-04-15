@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -65,6 +65,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -122,101 +125,228 @@
 
     
     
+<div id="find-possible-outliers-in-a-data-frame" class="section level1">
+<h1 class="hasAnchor">
+<a href="#find-possible-outliers-in-a-data-frame" class="anchor"></a>Find possible outliers in a data frame</h1>
+<p>The function <code>find_outlier()</code> may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
+data_out =<span class="st"> </span>data_ge2
+data_out[<span class="dv">12</span>, <span class="dv">5</span>] =<span class="st"> </span><span class="dv">26</span>
+<span class="kw"><a href="../reference/find_outliers.html">find_outliers</a></span>(data_out, <span class="dt">var =</span> PH, <span class="dt">plots =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;"></p>
+<pre><code>## Number of possible outliers: 5 
+## Lines: 12 308 345 526 541 
+## Proportion: 0.6%
+## Mean of the outliers: 6.032 
+## With outliers:    mean = 2.515 | CV = 36.65%
+## Without outliers: mean = 2.492 | CV = 14.502%</code></pre>
+<p>To check the outliers in different levels of a factor, the function <code><a href="../reference/group_factors.html">group_factors()</a></code> is used. As an example, we will find possible outliers for each level of the factor <code>ENV</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_ge2 <span class="op">%&gt;%</span>
+<span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span>
+<span class="kw"><a href="../reference/find_outliers.html">find_outliers</a></span>(PH)</code></pre></div>
+<pre><code>## 
+## ----------------------------------------------------------------------------
+## Level: A1 
+## ----------------------------------------------------------------------------
+## Number of possible outliers: 5 
+## Lines: 6 81 97 145 171 
+## Proportion: 2.6%
+## Mean of the outliers: 2.084 
+## With outliers:    mean = 2.793 | CV = 7.756%
+## Without outliers: mean = 2.812 | CV = 6.593%
+## 
+## ----------------------------------------------------------------------------
+## Level: A2 
+## ----------------------------------------------------------------------------
+## No outlier identified. 
+## 
+## ----------------------------------------------------------------------------
+## Level: A3 
+## ----------------------------------------------------------------------------
+## Number of possible outliers: 12 
+## Lines: 71 136 151 171 172 173 174 175 190 191 193 194 
+## Proportion: 6.6%
+## Mean of the outliers: 2.492 
+## With outliers:    mean = 2.167 | CV = 12.288%
+## Without outliers: mean = 2.145 | CV = 9.252%
+## 
+## ----------------------------------------------------------------------------
+## Level: A4 
+## ----------------------------------------------------------------------------
+## Number of possible outliers: 1 
+## Lines: 184 
+## Proportion: 0.5%
+## Mean of the outliers: 1.64 
+## With outliers:    mean = 2.518 | CV = 9.895%
+## Without outliers: mean = 2.522 | CV = 9.579%</code></pre>
+</div>
+<div id="linear-and-partial-correlation-coefficients" class="section level1">
+<h1 class="hasAnchor">
+<a href="#linear-and-partial-correlation-coefficients" class="anchor"></a>Linear and partial correlation coefficients</h1>
+<p>Pearson’s linear correlation does not consider the influence a set of variables on the relationship between two variables. For example, the * r * = 0.9 observed between <em>x</em> and <em>y</em> may be due to the influence of a third variable or group of variables acting together. To identify this linear effect, the partial correlation is used. From Pearson’s simple correlation matrix, the partial correlation is calculated by the following equation:</p>
+<p><span class="math display">\[
+    {r_{xy.m}} = \frac{{ - {a_{xy}}}}{{\sqrt {{a_{xx}}{a_{yy}}} }}
+\]</span></p>
+<p>Where <span class="math inline">\({r_{xy.m}}\)</span> is the partial correlation coefficient between the variables * x * and * y <em>, excluding the effects of the </em> m * remaining variables of the set; <span class="math inline">\(- {a_{ij}}\)</span> is the inverse element of the correlation matrix corresponding to xy, <span class="math inline">\({a_{ii}}{a_{jj}}\)</span> are the diagonal elements of the inverse matrix of correlation associated with variable x and y , respectively. The significance of this correlation is also tested by the test * t * according to the following expression:</p>
+<p><span class="math display">\[
+t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2} 
+\]</span></p>
+<p>Where $ t_{calc} $ is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the variables x and y excluding the effect of the other * m * variables; * n * is the number of observations; and * v * is the number of variables. Both the linear and partial correlation coefficients may be obtained using the function <code><a href="../reference/lpcor.html">lpcor()</a></code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
+dataset =<span class="st"> </span>data_ge2
+
+lpc1 =<span class="st"> </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(dataset[,<span class="dv">5</span><span class="op">:</span><span class="dv">10</span>])</code></pre></div>
+<pre><code>##             linear      partial           t         prob
+## PH x EH 0.84076988  0.983719074 152.2866876 0.000000e+00
+## PH x EP 0.32233748 -0.956657582 -91.3930168 0.000000e+00
+## PH x EL 0.23498170  0.023465990   0.6530237 5.139349e-01
+## PH x ED 0.46930127  0.163281409   4.6044220 4.833731e-06
+## PH x CL 0.24190786 -0.097830313  -2.7348417 6.383776e-03
+## EH x EP 0.77395760  0.980934660 140.4278355 0.000000e+00
+## EH x EL 0.20805515 -0.010739303  -0.2987938 7.651776e-01
+## EH x ED 0.45888935 -0.098629827  -2.7574108 5.963398e-03
+## EH x CL 0.29611536  0.077176773   2.1535470 3.158391e-02
+## EP x EL 0.09966413  0.003907009   0.1086972 9.134709e-01
+## EP x ED 0.27750523  0.108052540   3.0238180 2.578519e-03
+## EP x CL 0.24044063 -0.054643567  -1.5225055 1.282909e-01
+## EL x ED 0.39852625  0.227920650   6.5123545 1.330602e-10
+## EL x CL 0.30317197  0.072224486   2.0146083 4.429111e-02
+## ED x CL 0.65213809  0.587052003  20.1745471 0.000000e+00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute the correlations for each level of the factor ENV</span>
+lpc2 =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
+<span class="st">       </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span>
+<span class="st">       </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="co"># Don't show the result in the console</span></code></pre></div>
+<p>Using the <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> function, it is possible to compute a Mantel’s test <span class="citation">(Mantel <a href="#ref-Mantel1967">1967</a>)</span> for all pairwise correlation matrices of the above example.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lpc2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"H"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">""</span>))</code></pre></div>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-4-1.png" width="528" style="display: block; margin: auto;"></p>
+<p>This same plot may be obtained by passing correlation matrices with the same dimension to an object of class <code>lpcor</code> and then applying the function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/as.lpcorr.html">as.lpcor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),
+         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">51</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),
+         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">101</span><span class="op">:</span><span class="dv">150</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),
+         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">151</span><span class="op">:</span><span class="dv">200</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),
+         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">201</span><span class="op">:</span><span class="dv">250</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),
+         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">251</span><span class="op">:</span><span class="dv">300</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">diag =</span> <span class="ot">TRUE</span>,
+               <span class="dt">pan.spacing =</span> <span class="dv">0</span>,
+               <span class="dt">shape.point =</span> <span class="dv">21</span>,
+               <span class="dt">col.point =</span> <span class="st">"black"</span>,
+               <span class="dt">fill.point =</span> <span class="st">"red"</span>,
+               <span class="dt">size.point =</span> <span class="fl">1.5</span>,
+               <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,
+               <span class="dt">main =</span> <span class="st">"My own plots"</span>,
+               <span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-5-1.png" width="528" style="display: block; margin: auto;"></p>
+</div>
 <div id="collinearity-diagnostic" class="section level1">
 <h1 class="hasAnchor">
 <a href="#collinearity-diagnostic" class="anchor"></a>Collinearity diagnostic</h1>
-<p>A complete collinearity diagnostic performed in a correlation matrix of predictor variables. More details may be found in the paper by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2017f">2017</a>)</span>.</p>
+<p>The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor variables. Several indicators, such as Variance Inflaction Factor, Condition Number, and Matrix Determinant are considered <span class="citation">(T. Olivoto et al. <a href="#ref-Olivoto2017f">2017</a>; Tiago Olivoto et al. <a href="#ref-Olivoto2017c">2017</a>)</span> The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class <code>group_factor</code>, which split a dataframe into subsets based on one or more grouping factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
-<span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(iris, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>## The factors  where excluded from the data</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(iris, <span class="dt">group_var =</span> Species)</code></pre></div>
-<pre><code>## The factors  where excluded from the data
-## The factors  where excluded from the data
-## The factors  where excluded from the data</code></pre>
-<pre><code>## 
-## ----------------------------------------------------------------------------
-## Level setosa 
-## ----------------------------------------------------------------------------
-## Weak multicollinearity in the matrix
-## NC = 8.186
-## Matrix determinant: 0.3533595 
-## Largest correlation: Sepal.Length x Sepal.Width = 0.743 
-## Smallest correlation: Sepal.Width x Petal.Length = 0.178 
-## Number of correlations with r &gt;= |0.8|: 0 
-## Variables with largest weight in the last eigenvalues: 
-## Sepal.Length &gt; Sepal.Width &gt; Petal.Length &gt; Petal.Width 
-## 
-## ----------------------------------------------------------------------------
-## Level versicolor 
-## ----------------------------------------------------------------------------
-## Weak multicollinearity in the matrix
-## NC = 22.104
-## Matrix determinant: 0.0835942 
-## Largest correlation: Petal.Length x Petal.Width = 0.787 
-## Smallest correlation: Sepal.Length x Sepal.Width = 0.526 
-## Number of correlations with r &gt;= |0.8|: 0 
-## Variables with largest weight in the last eigenvalues: 
-## Petal.Length &gt; Petal.Width &gt; Sepal.Length &gt; Sepal.Width 
-## 
-## ----------------------------------------------------------------------------
-## Level virginica 
-## ----------------------------------------------------------------------------
-## Weak multicollinearity in the matrix
-## NC = 19.136
-## Matrix determinant: 0.1373902 
-## Largest correlation: Sepal.Length x Petal.Length = 0.864 
-## Smallest correlation: Sepal.Length x Petal.Width = 0.281 
+<span class="co"># getting the correlation matrix estimated in the previous example.</span>
+cor_data =<span class="st"> </span>lpc1<span class="op">$</span>linear.mat
+n =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(dataset)
+
+<span class="co"># Using a correlation matrix</span>
+cold1 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(cor_data, <span class="dt">n =</span> n)</code></pre></div>
+<pre><code>## The multicollinearity in the matrix should be investigated.
+## NC = 497.723
+## Largest VIF = 93.4476625536273
+## Matrix determinant: 0.003428 
+## Largest correlation: PH x EH = 0.841 
+## Smallest correlation: EP x EL = 0.1 
 ## Number of correlations with r &gt;= |0.8|: 1 
 ## Variables with largest weight in the last eigenvalues: 
-## Sepal.Length &gt; Petal.Length &gt; Sepal.Width &gt; Petal.Width</code></pre>
-</div>
-<div id="partial-correlation-coefficient" class="section level1">
-<h1 class="hasAnchor">
-<a href="#partial-correlation-coefficient" class="anchor"></a>Partial correlation coefficient</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/partial.corr.html">partial.corr</a></span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</code></pre></div>
-<pre><code>## $linear.mat
-##              Sepal.Length Sepal.Width Petal.Length Petal.Width
-## Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
-## Sepal.Width    -0.1175698   1.0000000   -0.4284401  -0.3661259
-## Petal.Length    0.8717538  -0.4284401    1.0000000   0.9628654
-## Petal.Width     0.8179411  -0.3661259    0.9628654   1.0000000
+## EH &gt; PH &gt; EP &gt; ED &gt; CL &gt; EL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using a dataframe</span>
+cold2 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(dataset)</code></pre></div>
+<pre><code>## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+## CN = 3173.42
+## Matrix determinant: 0 
+## Largest correlation: EL x CD = 0.901 
+## Smallest correlation: EH x PERK = -0.014 
+## Number of correlations with r &gt;= |0.8|: 2 
+## Variables with largest weight in the last eigenvalues: 
+## CL &gt; ED &gt; CDED &gt; CW &gt; KW &gt; PERK &gt; EH &gt; NKE &gt; PH &gt; TKW &gt; EP &gt; CD &gt; NKR &gt; NR &gt; EL</code></pre>
+<pre><code>## The factors ENV GEN REP PLA where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.'</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Perform the diagnostic for each level of the factor ENV</span>
+cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span>
+<span class="st">         </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span>
+<span class="st">         </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>()</code></pre></div>
+<pre><code>## The factors GEN REP PLA where ignored. Use 'keep_factors = FALSE' to keep this columns in the grouped data.</code></pre>
+<pre><code>## 
+## ----------------------------------------------------------------------------
+## Level: A1 
+## ----------------------------------------------------------------------------
+## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+## CN = 4033.517
+## Matrix determinant: 0 
+## Largest correlation: EL x CD = 0.906 
+## Smallest correlation: PH x PERK = 0 
+## Number of correlations with r &gt;= |0.8|: 1 
+## Variables with largest weight in the last eigenvalues: 
+## CL &gt; CDED &gt; ED &gt; NKE &gt; CW &gt; EH &gt; TKW &gt; EP &gt; PH &gt; PERK &gt; KW &gt; CD &gt; NKR &gt; NR &gt; EL 
 ## 
-## $partial.mat
-##              Sepal.Length Sepal.Width Petal.Length Petal.Width
-## Sepal.Length    1.0000000   0.6285707    0.7190656  -0.3396174
-## Sepal.Width     0.6285707   1.0000000   -0.6152919   0.3526260
-## Petal.Length    0.7190656  -0.6152919    1.0000000   0.8707698
-## Petal.Width    -0.3396174   0.3526260    0.8707698   1.0000000
+## ----------------------------------------------------------------------------
+## Level: A2 
+## ----------------------------------------------------------------------------
+## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+## CN = 1777.154
+## Matrix determinant: 0 
+## Largest correlation: EL x CD = 0.962 
+## Smallest correlation: CL x NKR = 0.002 
+## Number of correlations with r &gt;= |0.8|: 2 
+## Variables with largest weight in the last eigenvalues: 
+## CL &gt; ED &gt; CDED &gt; KW &gt; CW &gt; PERK &gt; EH &gt; PH &gt; EP &gt; EL &gt; CD &gt; NKR &gt; NKE &gt; TKW &gt; NR 
 ## 
-## $results
-##                                 linear    partial         t         prob
-## Sepal.Length x Sepal.Width  -0.1175698  0.6285707  9.765380 0.000000e+00
-## Sepal.Length x Petal.Length  0.8717538  0.7190656 12.502483 0.000000e+00
-## Sepal.Length x Petal.Width   0.8179411 -0.3396174 -4.362929 2.412876e-05
-## Sepal.Width x Petal.Length  -0.4284401 -0.6152919 -9.431189 0.000000e+00
-## Sepal.Width x Petal.Width   -0.3661259  0.3526260  4.553279 1.104958e-05
-## Petal.Length x Petal.Width   0.9628654  0.8707698 21.398708 0.000000e+00
+## ----------------------------------------------------------------------------
+## Level: A3 
+## ----------------------------------------------------------------------------
+## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+## CN = 5151.61
+## Matrix determinant: 0 
+## Largest correlation: EL x CD = 0.843 
+## Smallest correlation: PH x CD = 0 
+## Number of correlations with r &gt;= |0.8|: 1 
+## Variables with largest weight in the last eigenvalues: 
+## CL &gt; CDED &gt; ED &gt; CW &gt; KW &gt; PERK &gt; EH &gt; PH &gt; CD &gt; EL &gt; EP &gt; NR &gt; NKE &gt; NKR &gt; TKW 
 ## 
-## $call
-## partial.corr(data = iris[, 1:4])</code></pre>
+## ----------------------------------------------------------------------------
+## Level: A4 
+## ----------------------------------------------------------------------------
+## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+## CN = 5121.689
+## Matrix determinant: 0 
+## Largest correlation: EL x CD = 0.896 
+## Smallest correlation: NR x NKR = -0.013 
+## Number of correlations with r &gt;= |0.8|: 2 
+## Variables with largest weight in the last eigenvalues: 
+## CL &gt; ED &gt; CDED &gt; EH &gt; EP &gt; CW &gt; PH &gt; KW &gt; PERK &gt; TKW &gt; NR &gt; EL &gt; NKE &gt; NKR &gt; CD</code></pre>
 </div>
 <div id="nonparametric-confidence-interval-for-pearsons-correlation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#nonparametric-confidence-interval-for-pearsons-correlation" class="anchor"></a>Nonparametric confidence interval for Pearson’s correlation</h1>
-<p>The confidence interval is computed as proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018">2018</a>)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/corr.ci.html">corr.ci</a></span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</code></pre></div>
-<pre><code>##                                   Corr         CI         LL          UL
-## Sepal.Length x Sepal.Width  -0.1175698 0.16674987 -0.2843197  0.04918009
-## Sepal.Length x Petal.Length  0.8717538 0.09177601  0.7799778  0.96352979
-## Sepal.Length x Petal.Width   0.8179411 0.09577086  0.7221703  0.91371199
-## Sepal.Width x Petal.Length  -0.4284401 0.13036727 -0.5588074 -0.29807284
-## Sepal.Width x Petal.Width   -0.3661259 0.13696075 -0.5030867 -0.22916518
-## Petal.Length x Petal.Width   0.9628654 0.08538847  0.8774770  1.04825390</code></pre>
+<p>Recently, a Gaussian-independent estimator for the confidence interval for Pearson’s correlation coefficient was based proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018">2018</a>)</span>. This estimator is based on sample size and strength of associations and may be estimated using the function <code>corr.ci()</code>. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (), or using a dataframe.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">n =</span> <span class="dv">145</span>, <span class="dt">r =</span> <span class="fl">0.34</span>)</code></pre></div>
+<pre><code>## ------------------------------------------------- 
+## Nonparametric 95% half-width confidence interval 
+## ------------------------------------------------- 
+## Level of significance: 5%
+## Correlation coefficient: 0.34
+## Sample size: 145
+## Confidence interval: 0.1422
+## True parameter range from: 0.1978 to 0.4822 
+## -------------------------------------------------</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ci1 =<span class="st"> </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(data_ge2)</code></pre></div>
+<pre><code>## The factors ENV GEN REP PLA where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.'</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ci2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>()</code></pre></div>
+<pre><code>## The factors GEN REP PLA where ignored. Use 'keep_factors = FALSE' to keep this columns in the grouped data.</code></pre>
 </div>
 <div id="sample-size-planning" class="section level1">
 <h1 class="hasAnchor">
 <a href="#sample-size-planning" class="anchor"></a>Sample size planning</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/corr.ss.html">corr.ss</a></span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/corr_ss.html">corr_ss</a></span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</code></pre></div>
 <pre><code>## ------------------------------------------------- 
 ## Sample size planning for correlation coefficient 
 ## ------------------------------------------------- 
@@ -225,13 +355,22 @@
 ## 95% half-width CI: 0.1
 ## Required sample size: 194 
 ## -------------------------------------------------</code></pre>
-<p>References</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
+<div id="ref-Mantel1967">
+<p>Mantel, N. 1967. “The detection of disease clustering and a generalized regression approach.” <em>Cancer Research</em> 27 (2). American Association for Cancer Research: 209–20. <a href="http://www.ncbi.nlm.nih.gov/pubmed/6018555" class="uri">http://www.ncbi.nlm.nih.gov/pubmed/6018555</a>.</p>
+</div>
 <div id="ref-Olivoto2018">
 <p>Olivoto, T., A. D. C Lúcio, V. Q. Souza, M. Nardino, M. I. Diel, B. G. Sari, D .K. Krysczun, D. Meira, and C. Meier. 2018. “Confidence interval width for Pearson’s correlation coefficient: a Gaussian-independent estimator based on sample size and strength of association.” <em>Agronomy Journal</em> 110 (1): 1–8. doi:<a href="https://doi.org/10.2134/agronj2017.09.0566">10.2134/agronj2017.09.0566</a>.</p>
 </div>
 <div id="ref-Olivoto2017f">
 <p>Olivoto, T., V. Q. Souza, M. Nardino, I. R. Carvalho, M. Ferrari, A. J. Pelegrin, V. J. Szareski, and D. Schmidt. 2017. “Multicollinearity in path analysis: a simple method to reduce its effects.” <em>Agronomy Journal</em> 109 (1): 131–42. doi:<a href="https://doi.org/10.2134/agronj2016.04.0196">10.2134/agronj2016.04.0196</a>.</p>
+</div>
+<div id="ref-Olivoto2017c">
+<p>Olivoto, Tiago, Maicon Nardino, Ivan Ivan Ricardo Carvalho, Diego Nicolau Follmann, Maurício Ferrari, Alan Júnior de Pelegrin, Vinícius Jardel Szareski, Antônio Costa de Oliveira, Braulio Otomar Caron, and Velcio Queiroz de Souza. 2017. “Optimal sample size and data arrangement method in estimating correlation matrices with lesser collinearity: A statistical focus in maize breeding.” <em>African Journal of Agricultural Research</em> 12 (2). Academic Journals: 93–103. doi:<a href="https://doi.org/10.5897/AJAR2016.11799">10.5897/AJAR2016.11799</a>.</p>
 </div>
 </div>
 </div>
@@ -242,10 +381,12 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#collinearity-diagnostic">Collinearity diagnostic</a></li>
-      <li><a href="#partial-correlation-coefficient">Partial correlation coefficient</a></li>
+<li><a href="#find-possible-outliers-in-a-data-frame">Find possible outliers in a data frame</a></li>
+      <li><a href="#linear-and-partial-correlation-coefficients">Linear and partial correlation coefficients</a></li>
+      <li><a href="#collinearity-diagnostic">Collinearity diagnostic</a></li>
       <li><a href="#nonparametric-confidence-interval-for-pearsons-correlation">Nonparametric confidence interval for Pearson’s correlation</a></li>
       <li><a href="#sample-size-planning">Sample size planning</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>

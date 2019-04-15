@@ -1,0 +1,71 @@
+---
+title: "Helper functions for METAAB"
+output: rmarkdown::html_vignette
+link-citations: true
+bibliography: METAABref.bib 
+vignette: >
+  %\VignetteIndexEntry{Helper functions for METAAB}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Bind cross-validation objects
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+library(METAAB)
+library(dplyr)
+AMMI = data_ge %>% validation.AMMIF(ENV, GEN, REP, GY, nboot = 10, nrepval = 2)
+BLUP = data_ge %>% validation.blup(ENV, GEN, REP, GY, nboot = 10, nrepval = 2)
+bind_data = bind_val(AMMI, BLUP)
+plot(bind_data)
+    ```
+
+# Split a dataframe into subsets grouped by one or more factors
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+g1 = data_ge %>% group_factors(ENV)
+names(g1)
+g2 = data_ge2 %>% group_factors(GEN, keep_factors = TRUE)
+is.group_factors(g2)
+g3 = CO2 %>% as.group_factors()
+names(g3)
+    ```
+
+
+# Parametric statistics for genotype-vs-environment interaction
+
+
+```{r, message=FALSE }
+options(digits = 3)
+model2 = data_ge %>% ge_stats(ENV, GEN, REP, GY)
+summary(model2, digits = 3)
+    ```
+
+# Make a two-way table based on categorical and numerical arguments
+
+```{r, message=FALSE }
+head(data_ge)
+matrix = data_ge %>% mmat(row = GEN, col = ENV, val = GY)
+matrix
+    ```
+
+
+# Combining data.frames by row, filling missing values
+
+```{r, message=FALSE }
+df1 = data.frame(v1 = c(1, 2), v2 = c(2, 3))
+df2 = data.frame(v3 = c(4, 5))
+rbind_fill(df1, df2)
+rbind_fill(df1, df2, fill = "NA")
+    ```
+
+# Rescale a continuous vector to have specified minimum and maximum values
+
+```{r, message=FALSE }
+
+resca(1:10)
+resca(c(20, 30, 40), new_min = 5, new_max = 10)
+resca(c(20, 30, 40), new_min = 0, new_max = 100)
+```
+
+

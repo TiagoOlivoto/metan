@@ -9,38 +9,133 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Collinearity diagnostic
-A complete collinearity diagnostic performed in a correlation matrix of predictor variables. More details may be found in the paper by @Olivoto2017f.
-```{r }
+# Find possible outliers in a data frame
+The function `find_outlier()` may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked.
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+
 library(METAAB)
-colindiag(iris, verbose = FALSE)
-colindiag(iris, group_var = Species)
+library(dplyr)
+data_out = data_ge2
+data_out[12, 5] = 26
+find_outliers(data_out, var = PH, plots = TRUE)
+    ```
+
+To check the outliers in different levels of a factor, the function `group_factors()` is used. As an example, we will find possible outliers for each level of the factor `ENV`.
+
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+data_ge2 %>%
+group_factors(ENV) %>%
+find_outliers(PH)
+```
+    
+
+# Linear and partial correlation coefficients
+
+Pearson's linear correlation does not consider the influence a set of variables on the relationship between two variables. For example, the * r * = 0.9 observed between *x* and *y* may be due to the influence of a third variable or group of variables acting together. To identify this linear effect, the partial correlation is used. From Pearson's simple correlation matrix, the partial correlation is calculated by the following equation:
+
+$$
+	{r_{xy.m}} = \frac{{ - {a_{xy}}}}{{\sqrt {{a_{xx}}{a_{yy}}} }}
+$$
+
+Where ${r_{xy.m}}$ is the partial correlation coefficient between the variables * x * and * y *, excluding the effects of the * m * remaining variables of the set; $- {a_{ij}}$ is the inverse element of the correlation matrix corresponding to xy, ${a_{ii}}{a_{jj}}$ are the diagonal elements of the inverse matrix of correlation associated with variable x and y , respectively. The significance of this correlation is also tested by the test * t * according to the following expression:
+
+
+$$
+t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2} 
+$$
+
+Where $ t_{calc} $ is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the variables x and y excluding the effect of the other * m * variables; * n * is the number of observations; and * v * is the number of variables. Both the linear and partial correlation coefficients may be obtained using the function `lpcor()`.
+
+
+```{r, message=FALSE }
+library(METAAB)
+library(dplyr)
+dataset = data_ge2
+
+lpc1 = lpcor(dataset[,5:10])
+
+# Compute the correlations for each level of the factor ENV
+lpc2 = dataset %>%
+       group_factors(ENV) %>%
+       lpcor(verbose = FALSE) # Don't show the result in the console
+
     ```
 
 
-# Partial correlation coefficient
+Using the `pairs_mantel()` function, it is possible to compute a Mantel's test [@Mantel1967] for all pairwise correlation matrices of the above example. 
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+lpc2 %>% pairs_mantel(names = paste("H", 1:4, sep = ""))
+
+
+    ```
+
+This same plot may be obtained by passing correlation matrices with the same dimension to an object of class `lpcor` and then applying the function `pairs_mantel()`.
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+as.lpcor(cor(dataset[1:50, 5:ncol(dataset)]),
+         cor(dataset[51:100, 5:ncol(dataset)]),
+         cor(dataset[101:150, 5:ncol(dataset)]),
+         cor(dataset[151:200, 5:ncol(dataset)]),
+         cor(dataset[201:250, 5:ncol(dataset)]),
+         cor(dataset[251:300, 5:ncol(dataset)])) %>%
+  pairs_mantel(diag = TRUE,
+               pan.spacing = 0,
+               shape.point = 21,
+               col.point = "black",
+               fill.point = "red",
+               size.point = 1.5,
+               alpha.point = 0.6,
+               main = "My own plots",
+               alpha = 0.2)
+    ```
+
+
+
+# Collinearity diagnostic
+
+The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor variables. Several indicators, such as Variance Inflaction Factor, Condition Number, and Matrix Determinant are considered [@Olivoto2017f; @Olivoto2017c] The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class `group_factor`, which split a dataframe into subsets based on one or more grouping factors.
 
 ```{r }
-partial.corr(iris[,1:4])
+library(METAAB)
+# getting the correlation matrix estimated in the previous example.
+cor_data = lpc1$linear.mat
+n = nrow(dataset)
+
+# Using a correlation matrix
+cold1 = colindiag(cor_data, n = n)
+# Using a dataframe
+cold2 = colindiag(dataset)
+
+# Perform the diagnostic for each level of the factor ENV
+cold3 =  dataset %>%
+         group_factors(ENV) %>%
+         colindiag()
     ```
 
 
 
 # Nonparametric confidence interval for Pearson's correlation
 
-The confidence interval is computed as proposed by @Olivoto2018.
+Recently, a Gaussian-independent estimator for the confidence interval for Pearson's correlation coefficient was based proposed by @Olivoto2018. This estimator is based on sample size and strength of associations and may be estimated using the function `corr.ci()`. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (), or using a dataframe.
 
 ```{r }
-corr.ci(iris[,1:4])
+corr_ci(n = 145, r = 0.34)
+
+ci1 = corr_ci(data_ge2)
+
+ci2 = data_ge2 %>% group_factors(ENV) %>% corr_ci()
     ```
 
 
 # Sample size planning
 
 ```{r }
-corr.ss(r = 0.6, CI = 0.1)
+corr_ss(r = 0.6, CI = 0.1)
     ```
 
 
-References
+#References
 

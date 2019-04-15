@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -97,6 +97,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -149,9 +152,37 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="metaab-1-0-2-9000" class="section level1">
+    <div id="metaab-1-0-3" class="section level1">
 <h1 class="page-header">
-<a href="#metaab-1-0-2-9000" class="anchor"></a>METAAB 1.0.2.9000</h1>
+<a href="#metaab-1-0-3" class="anchor"></a>METAAB 1.0.3</h1>
+<p>In the latest development version, some useful functions were included. One of the most interesting features included in this version was allowing the functions to receive data from the forward-pipe operator %&gt;%. Bellow are the functions included in this version.</p>
+<ul>
+<li>
+<code><a href="../reference/anova_ind.html">anova_ind()</a></code> to perform a within-environment analysis of variance easely;</li>
+<li>
+<code><a href="../reference/colindiag.html">colindiag()</a></code> to perform a collinearity diagnostic of a set of predictors;</li>
+<li>
+<code><a href="../reference/find_outliers.html">find_outliers()</a></code> to easily find possible outliers in the dataset;</li>
+<li>
+<code><a href="../reference/group_factors.html">group_factors()</a></code> to split a dataset into a list of subsets using one or more grouping factors. This function may be used befor some functions, e.g., <code><a href="../reference/find_outliers.html">find_outliers()</a></code>, <code><a href="../reference/colindiag.html">colindiag()</a></code>, <code><a href="../reference/path_coeff.html">path_coeff()</a></code> to compute the statistics for each level of the factor (or combination of levels of factors).</li>
+<li>
+<code>plcor()</code> to compute linear and partial correlation coefficients.</li>
+<li>
+<code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> to compute a graphic pairwise Mantel’s test using a set of correlation matrices;</li>
+<li>
+<code><a href="../reference/path_coeff.html">path_coeff()</a></code> to compute path coefficients with minimal multicollinearity;</li>
+</ul>
+<p>The following S3 Methods were also implemented:</p>
+<ul>
+<li>
+<code><a href="../reference/is.group_factors.html">is.group_factors()</a></code> and <code><a href="../reference/is.group_factors.html">as.group_factors()</a></code> to check or easily coerce a dataframe that has one or more factor columns to an object of <code>group_factors</code>;</li>
+<li>
+<code>is.lpcorr()</code> and <code>as.lpcorr()</code> to check or easily coerce a list of correlation matrice to an object of <code>lpcorr</code>;</li>
+</ul>
+</div>
+    <div id="metaab-1-0-2" class="section level1">
+<h1 class="page-header">
+<a href="#metaab-1-0-2" class="anchor"></a>METAAB 1.0.2</h1>
 <ul>
 <li>AMMI-based stability indexes;</li>
 <li>Allow analizing multiple variables at the same time;</li>
@@ -179,7 +210,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#metaab-1-0-2-9000">1.0.2.9000</a></li>
+        <li><a href="#metaab-1-0-3">1.0.3</a></li>
+        <li><a href="#metaab-1-0-2">1.0.2</a></li>
         <li><a href="#metaab-1-0-1">1.0.1</a></li>
         <li><a href="#metaab-1-0-0">1.0.0</a></li>
       </ul>

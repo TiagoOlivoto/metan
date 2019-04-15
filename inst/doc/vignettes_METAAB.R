@@ -1,5 +1,8 @@
-## ------------------------------------------------------------------------
+## ---- message=FALSE, warning=FALSE---------------------------------------
 library(METAAB)
+library(kableExtra)
+library(cowplot)
+library(magrittr)
 str(data_ge)
 
 ## ---- fig.height=3.5, fig.width=5----------------------------------------
@@ -8,19 +11,14 @@ CVAL = validation.AMMIF(data_ge,
                         gen = GEN,
                         env = ENV,
                         rep = REP,
-                        nboot = 10,
+                        nboot = 50,
                         nrepval = 2)
 plot(CVAL)
 
 ## ------------------------------------------------------------------------
-model <- WAAS.AMMI(data_ge,
-                  resp = GY,
-                  gen = GEN,
-                  env = ENV,
-                  rep = REP)
+model <- data_ge %>% WAAS.AMMI(ENV, GEN, REP, GY)
 
 ## ---- fig.height=8, fig.width=5,  message=FALSE, warning=FALSE-----------
-library(cowplot)
 p1 <- plot.scores(model$GY)
 p2 <- plot.scores(model$GY,
                  type = 1,
@@ -35,19 +33,13 @@ plot_grid(p1, p2,
           ncol = 1)
 
 ## ------------------------------------------------------------------------
-library(kableExtra)
-options(digits = 4)
 predicted <- predict(model, naxis = 4)
-predicted <- predicted$GY[1:5,]
+predicted <- head(predicted$GY)
 kable(predicted, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
 
 ## ------------------------------------------------------------------------
-model2 <- WAASB(data_ge,
-                resp = GY,
-                gen = GEN,
-                env = ENV,
-                rep = REP)
+model2 <- data_ge %>% WAASB(ENV, GEN, REP, GY)
 
 ## ------------------------------------------------------------------------
 LRT = model2$GY$LRT
@@ -77,7 +69,7 @@ plot_grid(p1, p2,
           ncol = 1)
 
 ## ------------------------------------------------------------------------
-data <- model2$GY$BLUPgge[1:5,]
+data <- head(model2$GY$BLUPgge)
 kable(data, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed",
                 position = "left", full_width = F, font_size = 12)

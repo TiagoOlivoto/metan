@@ -10,6 +10,7 @@
 ^vignettes/vignettes_BLUP\.Rmd$
 ^vignettes/vignettes_BIOMETRY\.Rmd$
 ^vignettes/vignettes_AMMI\.Rmd$
+^vignettes/vignettes_HELPER\.Rmd$
 ^README_file$
 ^Meta$
 ^README_files$

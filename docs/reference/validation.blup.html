@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -99,6 +99,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -158,31 +161,31 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>validation.blup</span>(<span class='no'>data</span>, <span class='no'>resp</span>, <span class='no'>gen</span>, <span class='no'>env</span>, <span class='no'>rep</span>,
+    <pre class="usage"><span class='fu'>validation.blup</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>,
                 <span class='no'>nboot</span>, <span class='no'>nrepval</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
+      <th>.data</th>
       <td><p>The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).</p></td>
-    </tr>
-    <tr>
-      <th>resp</th>
-      <td><p>The response variable.</p></td>
-    </tr>
-    <tr>
-      <th>gen</th>
-      <td><p>The name of the column that contains the levels of the genotypes.</p></td>
     </tr>
     <tr>
       <th>env</th>
       <td><p>The name of the column that contains the levels of the environments.</p></td>
     </tr>
     <tr>
+      <th>gen</th>
+      <td><p>The name of the column that contains the levels of the genotypes.</p></td>
+    </tr>
+    <tr>
       <th>rep</th>
       <td><p>The name of the column that contains the levels of the replications/blocks.</p></td>
+    </tr>
+    <tr>
+      <th>resp</th>
+      <td><p>The response variable.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -211,12 +214,17 @@
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'>validation.blup</span>(<span class='no'>data_ge</span>,
-                        <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                        <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                         <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                        <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                         <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                        <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
                         <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
                         <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+
+<span class='co'># Alternatively using the pipe operator %&gt;%</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='no'>model</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+        <span class='fu'>validation.blup</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='fl'>100</span>, <span class='fl'>2</span>)
 
 <span class='co'># }</span></pre>
   </div>

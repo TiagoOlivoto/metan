@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -99,6 +99,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -253,14 +256,16 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>validation</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='validation.AMMIF.html'>validation.AMMIF</a></span>(<span class='no'>data_ge</span>,
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>validation</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='validation.AMMIF.html'>validation.AMMIF</a></span>(<span class='no'>data_ge</span>,
                                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
                                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                                <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                               <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+                               <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
                                <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>validation</span>)</div><div class='img'><img src='plot.validation.AMMIF-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>validation</span>)
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

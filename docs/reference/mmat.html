@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">METAAB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -99,6 +99,9 @@
     </li>
     <li>
       <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_HELPER.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -158,13 +161,13 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>mmat</span>(<span class='no'>data</span>, <span class='no'>row</span>, <span class='no'>col</span>, <span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>mmat</span>(<span class='no'>.data</span>, <span class='no'>row</span>, <span class='no'>col</span>, <span class='no'>value</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
+      <th>.data</th>
       <td><p>The dataset. Must contains at least two categorical columns.</p></td>
     </tr>
     <tr>
@@ -183,32 +186,31 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>datage</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expand.grid'>expand.grid</a></span>(<span class='kw'>ENV</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"E"</span>, <span class='fl'>1</span>:<span class='fl'>8</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>),
-                     <span class='kw'>GEN</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"G"</span>, <span class='fl'>1</span>:<span class='fl'>20</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>),
-                     <span class='kw'>REP</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"I"</span>, <span class='st'>"II"</span>, <span class='st'>"III"</span>)))
-<span class='no'>datage</span>$<span class='no'>Y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>480</span>, <span class='fl'>50</span>, <span class='fl'>20</span>)
-<span class='no'>matrix</span> <span class='kw'>=</span> <span class='fu'>mmat</span>(<span class='no'>datage</span>, <span class='kw'>row</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>ENV</span>, <span class='kw'>val</span> <span class='kw'>=</span> <span class='no'>Y</span>)
-<span class='no'>matrix</span></div><div class='output co'>#&gt;           E1       E2       E3       E4       E5       E6       E7       E8
-#&gt; G1  32.33619 60.23343 41.54145 52.19681 56.38270 42.55971 33.02033 60.06870
-#&gt; G2  48.86794 55.93009 52.63698 34.50238 80.29389 44.40397 60.50785 52.92840
-#&gt; G3  35.79171 33.60673 52.31579 64.33733 44.61432 58.68744 29.39473 55.80579
-#&gt; G4  58.66933 74.00183 42.19972 64.07451 50.77330 52.77839 59.86838 47.56040
-#&gt; G5  49.64588 68.52162 72.16323 60.11459 37.21603 67.91064 52.50884 55.42430
-#&gt; G6  45.31216 61.89476 54.61491 58.53231 35.95366 75.35572 31.56480 44.08341
-#&gt; G7  44.36688 53.75594 49.25000 41.45131 47.46551 35.15494 51.55417 61.84854
-#&gt; G8  41.26334 67.51361 37.02152 65.87496 57.12236 42.74833 57.03737 49.42114
-#&gt; G9  38.06754 51.85580 59.42046 53.93208 53.41755 30.72661 39.03034 49.37065
-#&gt; G10 76.16444 36.46239 59.31905 62.79043 39.46577 61.49525 57.48232 35.63426
-#&gt; G11 68.38426 61.80519 55.91606 68.51655 26.82945 58.72418 36.80684 62.45115
-#&gt; G12 51.74387 37.41556 47.22355 49.35335 44.57025 41.54390 71.74298 59.87228
-#&gt; G13 52.99827 41.43280 60.70396 59.24339 52.28855 34.02283 47.82618 36.63186
-#&gt; G14 12.65605 36.17550 54.24542 27.34057 51.33882 63.95815 52.03896 20.48198
-#&gt; G15 54.71253 55.48472 48.80192 73.43557 59.45042 40.30509 57.54489 43.31052
-#&gt; G16 60.95821 51.59720 54.76234 52.53815 56.24226 55.52865 39.16599 42.83431
-#&gt; G17 66.00825 51.03547 53.06104 56.74047 37.68997 33.94181 53.83624 29.02831
-#&gt; G18 34.88228 51.56074 67.76969 63.05596 53.32919 35.63004 80.74776 57.82619
-#&gt; G19 51.69607 54.30562 42.68696 65.77647 60.36898 53.90106 45.06424 37.63271
-#&gt; G20 40.40402 19.68933 50.46697 51.51124 54.24341 44.79646 51.41667 47.79862</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='no'>matrix</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span> <span class='fu'>mmat</span>(<span class='kw'>row</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>ENV</span>, <span class='kw'>val</span> <span class='kw'>=</span> <span class='no'>GY</span>)
+<span class='no'>matrix</span></div><div class='output co'>#&gt;           E1      E10      E11      E12      E13      E14       E2       E3
+#&gt; G1  2.365787 2.307633 1.355667 1.342333 2.998259 1.533333 3.040690 4.080333
+#&gt; G10 1.974073 1.536253 0.899100 1.022136 1.830667 1.859210 3.145840 4.114333
+#&gt; G2  2.901747 2.297053 1.490720 1.993333 3.028309 1.426580 3.231053 4.568667
+#&gt; G3  2.888587 2.336727 1.567727 1.764358 3.469148 2.059654 3.608280 4.132333
+#&gt; G4  2.588567 2.167353 1.370000 1.527333 2.635716 1.861333 3.190080 3.854333
+#&gt; G5  2.188260 2.139833 1.325667 1.689000 2.568099 1.784296 3.140137 3.741333
+#&gt; G6  2.300800 2.208147 1.500667 1.385667 2.911667 1.798852 3.291173 3.434667
+#&gt; G7  2.773727 2.441893 1.364333 1.951630 3.183840 1.936333 2.612677 4.101333
+#&gt; G8  2.899360 2.574867 1.683433 2.000000 3.519975 1.991864 3.444797 4.110000
+#&gt; G9  2.325927 1.742333 1.125333 1.409333 2.950630 1.567877 3.094863 4.506000
+#&gt;           E4       E5       E6       E7       E8       E9
+#&gt; G1  3.494333 4.170531 2.809086 1.897880 2.271933 2.783667
+#&gt; G10 4.271000 3.365667 2.484877 2.243627 2.700310 3.150000
+#&gt; G2  3.715573 3.827432 2.541333 1.987627 2.045297 3.363333
+#&gt; G3  4.134000 4.126654 2.984716 2.158547 2.850420 3.293667
+#&gt; G4  3.302167 3.782605 2.701185 1.980887 2.300590 3.724667
+#&gt; G5  3.379113 3.469000 2.433321 1.656767 2.708330 3.299667
+#&gt; G6  3.403473 3.568926 2.335556 1.757787 2.539380 3.039667
+#&gt; G7  3.018953 4.047914 2.665901 2.550813 2.583383 3.140000
+#&gt; G8  4.137773 4.812099 2.908123 2.261780 2.878853 2.828000
+#&gt; G9  3.896340 3.934173 2.768037 1.393247 2.485260 1.943333</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
