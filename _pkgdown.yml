@@ -15,49 +15,61 @@ reference:
     desc: Functions for AMMI analysis
     contents:
       - '`AMMI_indexes`'
+      - '`anova_ind`'
+      - '`autoplot.WAAS.AMMI`'
+      - '`plot.validation.AMMIF`'
+      - '`plot.WAASratio.AMMI`'
+      - '`predict.WAAS.AMMI`'
+      - '`summary.WAAS.AMMI`'
       - '`validation.AMMI`'
       - '`validation.AMMIF`'
       - '`WAAS.AMMI`'
       - '`WAASratio.AMMI`'
-      - '`predict.WAAS.AMMI`'
-      - '`plot.validation.AMMIF`'
-      - '`plot.WAASratio.AMMI`'
-      - '`summary.WAAS.AMMI`'
-      - '`autoplot.WAAS.AMMI`'
   - title: BLUP
     desc: Functions for BLUP analysis
     contents:
-      - '`Resende_indexes`'
-      - '`validation.blup`'
-      - '`WAASB`'
-      - '`WAASBYratio`'
+      - '`autoplot.WAASB`'
       - '`plot.blup`'
       - '`plot.eigen`'
       - '`plot.scores`'
       - '`plot.WAASBYratio`'
       - '`plot.WAASBY`'
-      - '`autoplot.WAASB`'
+      - '`Resende_indexes`'
       - '`summary.WAASB`'
+      - '`validation.blup`'
+      - '`WAASB`'
+      - '`WAASBYratio`'
   - title: MTSI
     desc: Multi-trait indexes
     contents:
-      - '`FAI.BLUP`'
+      - '`FAI_BLUP`'
       - '`MTSI`'
-      - '`plot.FAI.BLUP`'
+      - '`plot.FAI_BLUP`'
       - '`plot.MTSI`'
       - '`summary.MTSI`'
   - title: Biometry
-    desc: Useful functions for biometry (under development)
+    desc: Useful functions for biometric models
     contents:
+      - '`as.group_factors`'
+      - '`as.lpcorr`'
       - '`colindiag`'
-      - '`corr.ci`'
-      - '`corr.ss`'
+      - '`corr_ci`'
+      - '`corr_ss`'
+      - '`find_outliers`'
+      - '`is.lpcorr`'
+      - '`lpcorr`'
+      - '`pairs_mantel`'
+      - '`path_coeff`'
       - '`partial.corr`'
   - title: Helper
     desc: Helper functions for METAAB package
     contents:
-      - '`mmat`'
+      - '`as.group_factors`'
       - '`bind_val`'
+      - '`ge_stats`'
+      - '`group_factors`'
+      - '`is.group_factors`'
+      - '`mmat`'
       - '`performs_ammi`'
       - '`rbind_fill`'
       - '`resca`'
@@ -66,6 +78,7 @@ reference:
     desc: Data for reproducible examples
     contents:
       - '`data_ge`'
+      - '`data_ge2`'
       - '`int.effects`'
       - '`meansGxE`'
 
@@ -88,6 +101,8 @@ navbar:
         href: articles/vignettes_INDEXES.html
       - text: "Biometry"
         href: articles/vignettes_BIOMETRY.html
+      - text: "Helper"
+        href: articles/vignettes_HELPER.html
     - text: "Functions"
       href: reference/index.html
     - text: More
