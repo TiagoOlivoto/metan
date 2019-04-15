@@ -5,7 +5,7 @@ as.group_factors = function(x, verbose = TRUE) {
     group_split(keep = FALSE) %>%
     rlang::set_names(names)
   if (verbose == TRUE){
-    message("The data was splitted up considering the factors ", paste0(collapse = " ", names(x[ , unlist(lapply(x, is.factor)) ])))
+    message("The data was splitted up considering the factors ", paste0(collapse = " ", names(x[ , unlist(lapply(x, is.factor)) ])), ".")
   }
   return(structure(gd, class = "group_factors"))
 }
