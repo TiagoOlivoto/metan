@@ -6,7 +6,7 @@ group_factors = function(.data, ..., keep_factors = FALSE) {
     rlang::set_names(names)
   if (keep_factors == FALSE){
       message("The factors ", paste0(collapse = " ", names(gd[[1]][ , unlist(lapply(gd[[1]], is.factor)) ])),
-            " where ignored. Use 'keep_factors = FALSE' to keep this columns in the grouped data. ")
+            " where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data. ")
     gd = lapply(gd, function(x){
       x[ , unlist(lapply(x, is.numeric))] %>% as.data.frame()
     })
