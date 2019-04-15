@@ -1,4 +1,4 @@
-rbind_fill <- function(..., fill = ".") {
+rbind_fill <- function(..., fill = "-") {
     df <- list(...)
     ns <- unique(unlist(sapply(df, names)))
     do.call(rbind, lapply(df, function(x) {
