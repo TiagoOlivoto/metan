@@ -41,6 +41,7 @@ summary.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 
     }
     sink()
   } else {
+    options(max.print = 99999999, width = 90, digits = digits)
     for (i in 1:length(object)) {
       var <- object[[i]]
       cat("Variable", names(object)[i], "\n")
