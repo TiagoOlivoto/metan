@@ -23,7 +23,7 @@ importFrom("stats", "aov", "filter", "as.dendrogram", "dist", "hclust", "lm",
            "pf", "predict", "dnorm", "fitted", "ppoints", "qnorm", "quantile",
            "resid", "sd", "residuals", "cor", "reorder", "varimax",
            "cov2cor", "pt", "anova", "as.formula", "as.dist", "symnum",
-           "shapiro.test")
+           "shapiro.test", "aggregate")
 importFrom("utils", "head", "setWinProgressBar", "winProgressBar", "combn")
 S3method(as, lpcor)
 S3method(is, lpcor)
@@ -40,5 +40,6 @@ S3method(predict, WAAS.AMMI)
 S3method(summary, WAASB)
 S3method(summary, WAAS.AMMI)
 S3method(summary, MTSI)
+S3method(summary, ge_stats)
 S3method(autoplot, WAAS.AMMI)
 S3method(autoplot, WAASB)
