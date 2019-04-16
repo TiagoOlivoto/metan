@@ -12,7 +12,7 @@ Split a dataframe into subsets grouped by one or more factors
 \arguments{
  \item{.data}{The data that will be split. Must contain at least one grouping variable..}
 
- \item{...}{The name of grouping variable(s). If more than one grouping variable is used, they must be unquoted and separated by a comma.}
+ \item{...}{Comma-separated list of unquoted variable names that will be used to group the data.}
 
  \item{keep_factors}{If more than two factors are in the dataframe, should the columns of the non-grouping factors be kept?.}
 
