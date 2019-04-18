@@ -1,0 +1,51 @@
+\name{mahala_design}
+\alias{mahala_design}
+\title{Mahalanobis distance using data from a designed experiment}
+\usage{
+mahala_design(.data, gen, rep, resp, design = "RCBD", return = "distance")
+}
+\description{
+Compute the Mahalanobis distance using data from an experiment conducted in a randomized complete block design or completely randomized design.
+
+}
+
+\arguments{
+ \item{.data}{The dataset containing the columns related to Genotypes, replication/block and response variables. Alternatively, it is possible to use an object of class 'group_factors' to compute the distance for each level of the grouping factor. See \code{?group_factors}.}
+
+  \item{gen}{The name of the column that contains the levels of the genotypes.}
+
+  \item{rep}{The name of the column that contains the levels of the replications/blocks.}
+
+  \item{resp}{The response variables. For example \code{resp = c(var1, var2, var3)}.}
+
+  \item{design}{The experimental design. Must be RCBD or CRD.}
+
+  \item{return}{What the function return? Default is "distance", i.e., the Mahalanobis distance. Alternatively, it is possible to return the matrix of means \code{return = "means"}, or the variance-covariance matrix of residuals \code{return = "covmat"}.}
+
+}
+
+
+\author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
+
+\examples{
+library(METAAB)
+library(dplyr)
+maha_group = mahala_design(data_ge,
+                           gen = GEN,
+                           rep = REP,
+                           resp = c(GY, HM))
+
+# Compute one distance for each environment
+maha_group = data_ge \%>\%
+             group_factors(ENV, keep_factors = TRUE) \%>\%
+             mahala_design(GEN, REP, c(GY, HM))
+
+# Return the variance-covariance matrix of residuals
+cov_mat = mahala_design(data_ge,
+                           gen = GEN,
+                           rep = REP,
+                           resp = c(GY, HM),
+                           return = "covmat")
+}
+
+
