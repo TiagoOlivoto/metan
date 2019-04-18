@@ -30,7 +30,7 @@ pairs_mantel = function(...,
   if (!type %in% c(1:2)){
     stop("The argument type must be 1 (linear correlation) or 2 (partial correlation).")
   }
-  if(sum(lapply(class, function(x) !class(x) %in% c("lpcor_group", "lpcor") == TRUE)>0)){
+  if(sum(lapply(class, function(x) !class(x) %in% c("lpcor_group", "lpcor", "mahala_group") == TRUE)>0)){
     stop("The object must be of the class lpcor. Please use 'as.lpcorr' to convert correlation matrices into the correct format.")
   }
   if(class(...) == "lpcor_group"){
