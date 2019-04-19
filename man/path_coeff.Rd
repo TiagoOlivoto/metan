@@ -77,27 +77,33 @@ Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J. Pelegrin, V
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
 \examples{
-# Using the correlation matrix
+\dontrun{
 library(METAAB)
 library(dplyr)
 
-pcoeff = data_ge2 \%>\%
-         path_coeff(resp = KW, pred = c("TKW", "NKE"))
+# Using KW as response variable and all other ones as predictors
+pcoeff = data_ge2 \%>\% path_coeff(resp = KW)
 
+
+# Selecting variables to be excluded from the analysis
 pcoeff2 = data_ge2 \%>\%
-         path_coeff(resp = KW,
-                    pred = c("PH", "EH", "NKE", "TKW"),
-                    exclude = TRUE)
+          path_coeff(resp = KW,
+                     pred = c(PH, EH, NKE, TKW),
+                     exclude = TRUE)
 
+# Selecting a set of predictors with minimal multicollinearity
+# Maximum variance inflaction factor of 5
 pcoeff3 = data_ge2 \%>\%
           path_coeff(resp = KW,
                      brutstep = TRUE,
                      maxvif = 5)
 
+# Compute the analysis for each level of environment
 pcoeff4 = data_ge2 \%>\%
           group_factors(ENV) \%>\%
           path_coeff(resp = KW)
 
+}
 }
 
 

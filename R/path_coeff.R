@@ -33,23 +33,22 @@ kincrement = 1 / knumber
             pr = data %>% dplyr::select(!!!prcod)
           }
         }
-        pv = pr
-        names = colnames(pv)
+        names = colnames(pr)
         y = data %>% select(!!resp)
-        cor.y = cor(pv, y, use = missingval)
-        cor.x = cor(pv, use = missingval)
+        cor.y = cor(pr, y, use = missingval)
+        cor.x = cor(pr, use = missingval)
         if (is.null(correction) == FALSE){
           diag(cor.x) = diag(cor.x) + correction
 
         } else {
-          cor.x = cor(pv, use = missingval)
+          cor.x = cor(pr, use = missingval)
         }
 
 
         if (is.null(correction) == TRUE){
-          betas = data.frame(matrix(nrow = knumber, ncol = length(pv)+1))
+          betas = data.frame(matrix(nrow = knumber, ncol = length(pr)+1))
           cc = 0
-          nvar = length(pv) + 1
+          nvar = length(pr) + 1
           for (i in 1:knumber){
             cor.x2 = cor.x
             diag(cor.x2) = diag(cor.x2) + cc
@@ -57,7 +56,7 @@ kincrement = 1 / knumber
             betas[i,2:nvar] = t(solve(cor.x2, cor.y))
             cc = cc + kincrement
           }
-          names(betas) = paste0(c("K", names(pv)))
+          names(betas) = paste0(c("K", names(pr)))
           xx <- betas$K
           yy <- colnames(betas)
           fila <- knumber
@@ -152,7 +151,7 @@ kincrement = 1 / knumber
                               Eigen = AvAvet,
                               VIF = VIF,
                               plot = p1,
-                              Predictors = pred,
+                              Predictors = names(pr),
                               CN = NC,
                               Det = Det,
                               R2 = R2,
@@ -194,7 +193,7 @@ kincrement = 1 / knumber
         cat("Level", nam, "\n")
         cat("----------------------------------------------------------------------------\n")
         cat(paste("The algorithm has selected a set of ",nrow(VIF3),
-                  "predictors with largest VIF = ", round(max(VIF3$VIF),3),".", sep = ""), "\n")
+                  " predictors with largest VIF = ", round(max(VIF3$VIF),3),".", sep = ""), "\n")
         cat("Selected predictors:",paste0(selectedpred), "\n")
         cat(paste("A forward stepwise-based selection procedure will fit",nproced, "models.", "\n"))
         cat("--------------------------------------------------------------------------","\n")
