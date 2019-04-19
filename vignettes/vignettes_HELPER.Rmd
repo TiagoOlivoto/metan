@@ -49,6 +49,19 @@ matrix = data_ge %>% mmat(row = GEN, col = ENV, val = GY)
 matrix
     ```
 
+# Generate pairwise combinations of variables by applying one function to each pair
+```{r, message=FALSE }
+data = data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
+                  B = rnorm(n = 5, mean = 120, sd = 30),
+                  C = rnorm(n = 5, mean = 40, sd = 10),
+                  D = rnorm(n = 5, mean = 1100, sd = 200),
+                  E = rnorm(n = 5, mean = 2, sd = 1))
+comb_vars(data)
+comb_vars(data, FUN = "*", order = "first")
+    ```
+
+
+
 
 # Combining data.frames by row, filling missing values
 

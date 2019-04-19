@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Split a dataframe into subsets grouped by one or more factors — group_factors • METAAB</title>
+<title>Generate pairwise combinations of variables by applying one function to each pair — comb_vars • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Split a dataframe into subsets grouped by one or more factors — group_factors" />
+<meta property="og:title" content="Generate pairwise combinations of variables by applying one function to each pair — comb_vars" />
 
-<meta property="og:description" content="Split a dataframe into subsets grouped by one or more factors" />
+<meta property="og:description" content="Pairwise combinations of variables that will be the result of a function applied to each combination." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -150,33 +150,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Split a dataframe into subsets grouped by one or more factors</h1>
+    <h1>Generate pairwise combinations of variables by applying one function to each pair</h1>
     
-    <div class="hidden name"><code>group_factors.Rd</code></div>
+    <div class="hidden name"><code>comb_vars.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Split a dataframe into subsets grouped by one or more factors</p>
+    <p>Pairwise combinations of variables that will be the result of a function applied to each combination.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>group_factors</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>comb_vars</span>(<span class='no'>.data</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>"second"</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='st'>"+"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data that will be split. Must contain at least one grouping variable..</p></td>
+      <td><p>A matrix of data with, say, p columns.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Comma-separated list of unquoted variable names that will be used to group the data.</p></td>
+      <th>order</th>
+      <td><p>The order on how the results will appear in the output. Default is <code>order = "second"</code>. In this case, assuming that .data has four columns, namely, <code>V1, V2, V3, V4</code>, the order of columns in the output will be <code>V1.V2, V1.V3, V2.V3, V1.V4, V2.V4, V3.V4</code>. If 'order' is set to "first", the result will be then <code>V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4</code>.</p></td>
     </tr>
     <tr>
-      <th>keep_factors</th>
-      <td><p>If more than two factors are in the dataframe, should the columns of the non-grouping factors be kept?.</p></td>
+      <th>FUN</th>
+      <td><p>The function that will be applied to each combination. The default is <code>+</code>, i.e., V1 + V2.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -184,27 +184,24 @@
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A list where each element is a named level of the grouping factors.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-
-<span class='no'>g1</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>group_factors</span>(<span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='message'>The factors  where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='input'>
-<span class='no'>g2</span> <span class='kw'>=</span> <span class='no'>CO2</span> <span class='kw'>%&gt;%</span> <span class='fu'>group_factors</span>(<span class='no'>Treatment</span>, <span class='no'>Type</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>The factors  where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='input'>
-</div></pre>
+<span class='no'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>A</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>3</span>),
+                  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>30</span>),
+                  <span class='kw'>C</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>10</span>),
+                  <span class='kw'>D</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>1100</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>200</span>),
+                  <span class='kw'>E</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>))
+<span class='fu'>comb_vars</span>(<span class='no'>data</span>)
+<span class='fu'>comb_vars</span>(<span class='no'>data</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='st'>"*"</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>"first"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

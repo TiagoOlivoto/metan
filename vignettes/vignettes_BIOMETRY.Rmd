@@ -46,15 +46,13 @@ $$
 t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2} 
 $$
 
-Where $ t_{calc} $ is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the variables x and y excluding the effect of the other * m * variables; * n * is the number of observations; and * v * is the number of variables. Both the linear and partial correlation coefficients may be obtained using the function `lpcor()`.
+Where $t_{calc}$ is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the variables x and y excluding the effect of the other * m * variables; * n * is the number of observations; and * v * is the number of variables. Both the linear and partial correlation coefficients may be obtained using the function `lpcor()`.
 
 
 ```{r, message=FALSE }
-library(METAAB)
-library(dplyr)
 dataset = data_ge2
 
-lpc1 = lpcor(dataset[,5:10])
+lpc1 = lpcor(dataset[,5:8])
 
 # Compute the correlations for each level of the factor ENV
 lpc2 = dataset %>%
@@ -88,7 +86,7 @@ as.lpcor(cor(dataset[1:50, 5:ncol(dataset)]),
                fill.point = "red",
                size.point = 1.5,
                alpha.point = 0.6,
-               main = "My own plots",
+               main = "My own plot",
                alpha = 0.2)
     ```
 
@@ -117,6 +115,46 @@ cold3 =  dataset %>%
 
 
 
+# Path analysis
+## Using KW as response variable and all other ones as predictors.
+
+```{r }
+pcoeff = data_ge2 %>%
+         path_coeff(resp = KW)
+names(pcoeff)
+```
+
+
+## Selecting variables to be excluded from the analysis.
+
+```{r }
+pcoeff2 = data_ge2 %>%
+  path_coeff(resp = KW,
+             pred = c(PH, EH, NKE, TKW),
+             exclude = TRUE,
+             verbose = FALSE)
+```
+
+
+## Selecting a set of predictors with minimal multicollinearity .
+```{r }
+pcoeff3 = data_ge2 %>%
+  path_coeff(resp = KW,
+             brutstep = TRUE,
+             maxvif = 5)
+```
+
+
+## Compute the analysis for each level of environment
+```{r }
+pcoeff4 = data_ge2 %>%
+  group_factors(ENV) %>%
+  path_coeff(resp = KW,
+             pred = c(PH, EH, NKE, TKW))
+```
+
+
+
 # Nonparametric confidence interval for Pearson's correlation
 
 Recently, a Gaussian-independent estimator for the confidence interval for Pearson's correlation coefficient was based proposed by @Olivoto2018. This estimator is based on sample size and strength of associations and may be estimated using the function `corr.ci()`. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (), or using a dataframe.
@@ -124,16 +162,59 @@ Recently, a Gaussian-independent estimator for the confidence interval for Pears
 ```{r }
 corr_ci(n = 145, r = 0.34)
 
-ci1 = corr_ci(data_ge2)
+corr_ci(data_ge2)
 
-ci2 = data_ge2 %>% group_factors(ENV) %>% corr_ci()
-    ```
+data_ge2 %>% group_factors(ENV) %>% corr_ci()
+```
+
+
 
 
 # Sample size planning
 
 ```{r }
 corr_ss(r = 0.6, CI = 0.1)
+    ```
+
+
+# Mahalanobis distance
+## Based on designed experiments
+
+```{r }
+options(digits = 2)
+mahala_design(data_ge,
+              gen = GEN,
+              rep = REP,
+              resp = c(GY, HM))
+
+# Compute one distance for each environment
+maha_group = data_ge %>%
+             group_factors(ENV, keep_factors = TRUE) %>%
+             mahala_design(GEN, REP, c(GY, HM))
+
+    ```
+
+
+## If I have the matrices of means and covariances
+
+```{r }
+# Compute the mean for genotypes
+means = data_ge %>%
+        select(-c(ENV, REP)) %>%
+        group_by(GEN) %>%
+        summarise_all(mean) %>%
+        select(-GEN)
+
+# Compute the covariance matrix
+covmat = cov(means)
+
+# Compute the distance
+dist = mahala(means, covmat)
+
+# Dendrogram
+dend = as.dendrogram(hclust(as.dist(dist)))
+plot(dend)
+
     ```
 
 

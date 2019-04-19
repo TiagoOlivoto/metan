@@ -192,28 +192,17 @@ data_out[<span class="dv">12</span>, <span class="dv">5</span>] =<span class="st
 <p><span class="math display">\[
 t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2} 
 \]</span></p>
-<p>Where $ t_{calc} $ is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the variables x and y excluding the effect of the other * m * variables; * n * is the number of observations; and * v * is the number of variables. Both the linear and partial correlation coefficients may be obtained using the function <code><a href="../reference/lpcor.html">lpcor()</a></code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
-dataset =<span class="st"> </span>data_ge2
+<p>Where <span class="math inline">\(t_{calc}\)</span> is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the variables x and y excluding the effect of the other * m * variables; * n * is the number of observations; and * v * is the number of variables. Both the linear and partial correlation coefficients may be obtained using the function <code><a href="../reference/lpcor.html">lpcor()</a></code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataset =<span class="st"> </span>data_ge2
 
-lpc1 =<span class="st"> </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(dataset[,<span class="dv">5</span><span class="op">:</span><span class="dv">10</span>])</code></pre></div>
-<pre><code>##             linear      partial           t         prob
-## PH x EH 0.84076988  0.983719074 152.2866876 0.000000e+00
-## PH x EP 0.32233748 -0.956657582 -91.3930168 0.000000e+00
-## PH x EL 0.23498170  0.023465990   0.6530237 5.139349e-01
-## PH x ED 0.46930127  0.163281409   4.6044220 4.833731e-06
-## PH x CL 0.24190786 -0.097830313  -2.7348417 6.383776e-03
-## EH x EP 0.77395760  0.980934660 140.4278355 0.000000e+00
-## EH x EL 0.20805515 -0.010739303  -0.2987938 7.651776e-01
-## EH x ED 0.45888935 -0.098629827  -2.7574108 5.963398e-03
-## EH x CL 0.29611536  0.077176773   2.1535470 3.158391e-02
-## EP x EL 0.09966413  0.003907009   0.1086972 9.134709e-01
-## EP x ED 0.27750523  0.108052540   3.0238180 2.578519e-03
-## EP x CL 0.24044063 -0.054643567  -1.5225055 1.282909e-01
-## EL x ED 0.39852625  0.227920650   6.5123545 1.330602e-10
-## EL x CL 0.30317197  0.072224486   2.0146083 4.429111e-02
-## ED x CL 0.65213809  0.587052003  20.1745471 0.000000e+00</code></pre>
+lpc1 =<span class="st"> </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(dataset[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>])</code></pre></div>
+<pre><code>##             linear     partial          t       prob
+## PH x EH 0.84076988  0.98580872 163.585198 0.00000000
+## PH x EP 0.32233748 -0.95748045 -92.452297 0.00000000
+## PH x EL 0.23498170  0.06477465   1.808210 0.07096078
+## EH x EP 0.77395760  0.98137454 142.307851 0.00000000
+## EH x EL 0.20805515 -0.02904803  -0.809526 0.41846079
+## EP x EL 0.09966413  0.03349910   0.933701 0.35074860</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute the correlations for each level of the factor ENV</span>
 lpc2 =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
 <span class="st">       </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span>
@@ -235,14 +224,14 @@ lpc2 =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
                <span class="dt">fill.point =</span> <span class="st">"red"</span>,
                <span class="dt">size.point =</span> <span class="fl">1.5</span>,
                <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,
-               <span class="dt">main =</span> <span class="st">"My own plots"</span>,
+               <span class="dt">main =</span> <span class="st">"My own plot"</span>,
                <span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
 <p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-5-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="collinearity-diagnostic" class="section level1">
 <h1 class="hasAnchor">
 <a href="#collinearity-diagnostic" class="anchor"></a>Collinearity diagnostic</h1>
-<p>The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor variables. Several indicators, such as Variance Inflaction Factor, Condition Number, and Matrix Determinant are considered <span class="citation">(T. Olivoto et al. <a href="#ref-Olivoto2017f">2017</a>; Tiago Olivoto et al. <a href="#ref-Olivoto2017c">2017</a>)</span> The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class <code>group_factor</code>, which split a dataframe into subsets based on one or more grouping factors.</p>
+<p>The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor variables. Several indicators, such as Variance Inflaction Factor, Condition Number, and Matrix Determinant are considered <span class="citation">(T. Olivoto et al. <a href="#ref-Olivoto2017f">2017</a>; Olivoto T. et al. <a href="#ref-Olivoto2017c">2017</a>)</span> The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class <code>group_factor</code>, which split a dataframe into subsets based on one or more grouping factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
 <span class="co"># getting the correlation matrix estimated in the previous example.</span>
 cor_data =<span class="st"> </span>lpc1<span class="op">$</span>linear.mat
@@ -251,14 +240,14 @@ n =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation
 <span class="co"># Using a correlation matrix</span>
 cold1 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(cor_data, <span class="dt">n =</span> n)</code></pre></div>
 <pre><code>## The multicollinearity in the matrix should be investigated.
-## NC = 497.723
-## Largest VIF = 93.4476625536273
-## Matrix determinant: 0.003428 
+## NC = 387.554
+## Largest VIF = 92.4856382722743
+## Matrix determinant: 0.0091479 
 ## Largest correlation: PH x EH = 0.841 
 ## Smallest correlation: EP x EL = 0.1 
 ## Number of correlations with r &gt;= |0.8|: 1 
 ## Variables with largest weight in the last eigenvalues: 
-## EH &gt; PH &gt; EP &gt; ED &gt; CL &gt; EL</code></pre>
+## EH &gt; PH &gt; EP &gt; EL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using a dataframe</span>
 cold2 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(dataset)</code></pre></div>
 <pre><code>## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
@@ -274,7 +263,7 @@ cold2 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag
 cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span>
 <span class="st">         </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span>
 <span class="st">         </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>()</code></pre></div>
-<pre><code>## The factors GEN REP PLA where ignored. Use 'keep_factors = FALSE' to keep this columns in the grouped data.</code></pre>
+<pre><code>## The factors GEN REP PLA where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
 <pre><code>## 
 ## ----------------------------------------------------------------------------
 ## Level: A1 
@@ -324,6 +313,113 @@ cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span>
 ## Variables with largest weight in the last eigenvalues: 
 ## CL &gt; ED &gt; CDED &gt; EH &gt; EP &gt; CW &gt; PH &gt; KW &gt; PERK &gt; TKW &gt; NR &gt; EL &gt; NKE &gt; NKR &gt; CD</code></pre>
 </div>
+<div id="path-analysis" class="section level1">
+<h1 class="hasAnchor">
+<a href="#path-analysis" class="anchor"></a>Path analysis</h1>
+<div id="using-kw-as-response-variable-and-all-other-ones-as-predictors-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-kw-as-response-variable-and-all-other-ones-as-predictors-" class="anchor"></a>Using KW as response variable and all other ones as predictors.</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcoeff =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
+<span class="st">         </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW)</code></pre></div>
+<pre><code>## The factors ENV GEN REP PLA where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.'</code></pre>
+<pre><code>## Severe multicollinearity. 
+## Condition Number = 2643.543
+## Please, consider using a correction factor, or use 'brutstep = TRUE'.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(pcoeff)</code></pre></div>
+<pre><code>##  [1] "Corr.x"       "Corr.y"       "Coefficients" "Eigen"       
+##  [5] "VIF"          "plot"         "Predictors"   "CN"          
+##  [9] "Det"          "R2"           "Residual"     "Response"    
+## [13] "weightvar"</code></pre>
+</div>
+<div id="selecting-variables-to-be-excluded-from-the-analysis-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#selecting-variables-to-be-excluded-from-the-analysis-" class="anchor"></a>Selecting variables to be excluded from the analysis.</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcoeff2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,
+             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, NKE, TKW),
+             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,
+             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
+</div>
+<div id="selecting-a-set-of-predictors-with-minimal-multicollinearity--" class="section level2">
+<h2 class="hasAnchor">
+<a href="#selecting-a-set-of-predictors-with-minimal-multicollinearity--" class="anchor"></a>Selecting a set of predictors with minimal multicollinearity .</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcoeff3 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,
+             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>,
+             <span class="dt">maxvif =</span> <span class="dv">5</span>)</code></pre></div>
+<pre><code>## The factors ENV GEN REP PLA where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.'</code></pre>
+<pre><code>## -------------------------------------------------------------------------- 
+## The algorithm has selected a set of 9predictors with largest VIF = 3.374. 
+## Selected predictors: EP PERK CDED PH NKR EL NR TKW ED 
+## A forward stepwise-based selection procedure will fit 7 models. 
+## -------------------------------------------------------------------------- 
+## Adjusting the model 1 with 8 predictors (14.29% concluded)
+## Adjusting the model 2 with 7 predictors (28.57% concluded)
+## Adjusting the model 3 with 6 predictors (42.86% concluded)
+## Adjusting the model 4 with 5 predictors (57.14% concluded)
+## Adjusting the model 5 with 4 predictors (71.43% concluded)
+## Adjusting the model 6 with 3 predictors (85.71% concluded)
+## Adjusting the model 7 with 2 predictors (100% concluded)
+## Done! 
+## -------------------------------------------------------------------------- 
+## Summary of the adjusted models 
+## -------------------------------------------------------------------------- 
+##     Model      AIC Numpred        CN Determinant        R2  Residual
+## 2 Model 7 7077.035       2  1.836837  0.91298120 0.7769493 0.2230507
+## 3 Model 6 6779.019       3  3.542543  0.68262402 0.8481697 0.1518303
+## 4 Model 5 6686.519       4 10.287630  0.31386137 0.8654939 0.1345061
+## 5 Model 4 6613.968       5 13.213486  0.15897502 0.8777545 0.1222455
+## 6 Model 3 6564.740       6 13.609328  0.14204137 0.8855252 0.1144748
+## 7 Model 2 6551.198       7 16.079825  0.09829292 0.8877836 0.1122164
+## 8 Model 1 6551.346       8 17.062130  0.08371867 0.8880497 0.1119503
+##     maxVIF
+## 2 1.095313
+## 3 1.449957
+## 4 2.994049
+## 5 3.016821
+## 6 3.081659
+## 7 3.101736
+## 8 3.157106
+## --------------------------------------------------------------------------</code></pre>
+</div>
+<div id="compute-the-analysis-for-each-level-of-environment" class="section level2">
+<h2 class="hasAnchor">
+<a href="#compute-the-analysis-for-each-level-of-environment" class="anchor"></a>Compute the analysis for each level of environment</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcoeff4 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,
+             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, NKE, TKW))</code></pre></div>
+<pre><code>## The factors GEN REP PLA where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
+<pre><code>## 
+## ----------------------------------------------------------------------------
+## Level A1 
+## ----------------------------------------------------------------------------
+## Weak multicollinearity. 
+## Condition Number = 2.327
+## You will probably have path coefficients close to being unbiased. 
+## 
+## ----------------------------------------------------------------------------
+## Level A2 
+## ----------------------------------------------------------------------------
+## Weak multicollinearity. 
+## Condition Number = 24.493
+## You will probably have path coefficients close to being unbiased. 
+## 
+## ----------------------------------------------------------------------------
+## Level A3 
+## ----------------------------------------------------------------------------
+## Weak multicollinearity. 
+## Condition Number = 8.357
+## You will probably have path coefficients close to being unbiased. 
+## 
+## ----------------------------------------------------------------------------
+## Level A4 
+## ----------------------------------------------------------------------------
+## Weak multicollinearity. 
+## Condition Number = 6.277
+## You will probably have path coefficients close to being unbiased.</code></pre>
+</div>
+</div>
 <div id="nonparametric-confidence-interval-for-pearsons-correlation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#nonparametric-confidence-interval-for-pearsons-correlation" class="anchor"></a>Nonparametric confidence interval for Pearson’s correlation</h1>
@@ -338,10 +434,10 @@ cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span>
 ## Confidence interval: 0.1422
 ## True parameter range from: 0.1978 to 0.4822 
 ## -------------------------------------------------</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ci1 =<span class="st"> </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(data_ge2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(data_ge2)</code></pre></div>
 <pre><code>## The factors ENV GEN REP PLA where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.'</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ci2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>()</code></pre></div>
-<pre><code>## The factors GEN REP PLA where ignored. Use 'keep_factors = FALSE' to keep this columns in the grouped data.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>()</code></pre></div>
+<pre><code>## The factors GEN REP PLA where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
 </div>
 <div id="sample-size-planning" class="section level1">
 <h1 class="hasAnchor">
@@ -355,6 +451,56 @@ cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span>
 ## 95% half-width CI: 0.1
 ## Required sample size: 194 
 ## -------------------------------------------------</code></pre>
+</div>
+<div id="mahalanobis-distance" class="section level1">
+<h1 class="hasAnchor">
+<a href="#mahalanobis-distance" class="anchor"></a>Mahalanobis distance</h1>
+<div id="based-on-designed-experiments" class="section level2">
+<h2 class="hasAnchor">
+<a href="#based-on-designed-experiments" class="anchor"></a>Based on designed experiments</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">2</span>)
+<span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(data_ge,
+              <span class="dt">gen =</span> GEN,
+              <span class="dt">rep =</span> REP,
+              <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM))</code></pre></div>
+<pre><code>##        1      2     3     4     5     6      7     8    9    10
+## 1  0.000 0.1537 0.040 0.149 0.048 0.292 0.1683 0.054 0.34 0.056
+## 2  0.154 0.0000 0.333 0.381 0.057 0.034 0.0062 0.122 0.34 0.024
+## 3  0.040 0.1460 0.000 0.083 0.131 0.494 0.3369 0.094 0.35 0.184
+## 4  0.333 0.2918 0.337 0.000 0.146 0.449 0.3400 0.072 0.12 0.265
+## 5  0.149 0.0344 0.340 0.072 0.000 0.116 0.0493 0.013 0.18 0.021
+## 6  0.381 0.4936 0.049 0.013 0.345 0.000 0.0175 0.178 0.28 0.104
+## 7  0.083 0.4491 0.017 0.178 0.119 0.125 0.0000 0.102 0.26 0.036
+## 8  0.048 0.1157 0.054 0.102 0.184 0.056 0.2645 0.000 0.13 0.065
+## 9  0.057 0.1683 0.122 0.338 0.281 0.024 0.0206 0.036 0.00 0.318
+## 10 0.131 0.0062 0.094 0.337 0.262 0.184 0.1039 0.065 0.32 0.000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute one distance for each environment</span>
+maha_group =<span class="st"> </span>data_ge <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM))</code></pre></div>
+<pre><code>## The factors GEN REP where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
+</div>
+<div id="if-i-have-the-matrices-of-means-and-covariances" class="section level2">
+<h2 class="hasAnchor">
+<a href="#if-i-have-the-matrices-of-means-and-covariances" class="anchor"></a>If I have the matrices of means and covariances</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute the mean for genotypes</span>
+means =<span class="st"> </span>data_ge <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">select</span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(ENV, REP)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">group_by</span>(GEN) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">select</span>(<span class="op">-</span>GEN)
+
+<span class="co"># Compute the covariance matrix</span>
+covmat =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cov</a></span>(means)
+
+<span class="co"># Compute the distance</span>
+dist =<span class="st"> </span><span class="kw"><a href="../reference/mahala.html">mahala</a></span>(means, covmat)
+
+<span class="co"># Dendrogram</span>
+dend =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dendrogram">as.dendrogram</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">as.dist</a></span>(dist)))
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(dend)</code></pre></div>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+</div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -370,7 +516,7 @@ cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span>
 <p>Olivoto, T., V. Q. Souza, M. Nardino, I. R. Carvalho, M. Ferrari, A. J. Pelegrin, V. J. Szareski, and D. Schmidt. 2017. “Multicollinearity in path analysis: a simple method to reduce its effects.” <em>Agronomy Journal</em> 109 (1): 131–42. doi:<a href="https://doi.org/10.2134/agronj2016.04.0196">10.2134/agronj2016.04.0196</a>.</p>
 </div>
 <div id="ref-Olivoto2017c">
-<p>Olivoto, Tiago, Maicon Nardino, Ivan Ivan Ricardo Carvalho, Diego Nicolau Follmann, Maurício Ferrari, Alan Júnior de Pelegrin, Vinícius Jardel Szareski, Antônio Costa de Oliveira, Braulio Otomar Caron, and Velcio Queiroz de Souza. 2017. “Optimal sample size and data arrangement method in estimating correlation matrices with lesser collinearity: A statistical focus in maize breeding.” <em>African Journal of Agricultural Research</em> 12 (2). Academic Journals: 93–103. doi:<a href="https://doi.org/10.5897/AJAR2016.11799">10.5897/AJAR2016.11799</a>.</p>
+<p>Olivoto, T., Nardino M., Carvalho I. R., Follmann D. N., Ferrari M., de Pelegrin A. J., V. J. Szareski, de Oliveira A. C., Caron B. O., and V. Q. Souza. 2017. “Optimal sample size and data arrangement method in estimating correlation matrices with lesser collinearity: A statistical focus in maize breeding.” <em>African Journal of Agricultural Research</em> 12 (2). Academic Journals: 93–103. doi:<a href="https://doi.org/10.5897/AJAR2016.11799">10.5897/AJAR2016.11799</a>.</p>
 </div>
 </div>
 </div>
@@ -384,8 +530,22 @@ cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span>
 <li><a href="#find-possible-outliers-in-a-data-frame">Find possible outliers in a data frame</a></li>
       <li><a href="#linear-and-partial-correlation-coefficients">Linear and partial correlation coefficients</a></li>
       <li><a href="#collinearity-diagnostic">Collinearity diagnostic</a></li>
+      <li>
+<a href="#path-analysis">Path analysis</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#using-kw-as-response-variable-and-all-other-ones-as-predictors-">Using KW as response variable and all other ones as predictors.</a></li>
+      <li><a href="#selecting-variables-to-be-excluded-from-the-analysis-">Selecting variables to be excluded from the analysis.</a></li>
+      <li><a href="#selecting-a-set-of-predictors-with-minimal-multicollinearity--">Selecting a set of predictors with minimal multicollinearity .</a></li>
+      <li><a href="#compute-the-analysis-for-each-level-of-environment">Compute the analysis for each level of environment</a></li>
+      </ul>
+</li>
       <li><a href="#nonparametric-confidence-interval-for-pearsons-correlation">Nonparametric confidence interval for Pearson’s correlation</a></li>
       <li><a href="#sample-size-planning">Sample size planning</a></li>
+      <li>
+<a href="#mahalanobis-distance">Mahalanobis distance</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#based-on-designed-experiments">Based on designed experiments</a></li>
+      <li><a href="#if-i-have-the-matrices-of-means-and-covariances">If I have the matrices of means and covariances</a></li>
+      </ul>
+</li>
       <li><a href="#references">References</a></li>
       </ul>
 </div>
