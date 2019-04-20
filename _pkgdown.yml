@@ -63,6 +63,7 @@ reference:
       - '`pairs_mantel`'
       - '`path_coeff`'
       - '`partial.corr`'
+      - '`summary.path_coeff`'
   - title: Helper
     desc: Helper functions for METAAB package
     contents:
