@@ -21,7 +21,7 @@ Estimates of direct and indirect effects. An algorithm to select a set of predic
 
   \item{exclude}{Logical argument, set to false. If \code{exclude = TRUE}, then the variables in \code{pred} are deleted from the data, and the analysis will use as predictor those that remained, except that in \code{resp}.}
 
-  \item{correction}{Set to \code{NULL}. A correction value (k) that will be added into the diagonal elements of the X'X matrix aiming at reducing the multicollinearity problems (Olivoto et al., 2017). Also as known as ridge regression.}
+  \item{correction}{Set to \code{NULL}. A correction value (k) that will be added into the diagonal elements of the \bold{X'X} matrix aiming at reducing the harmful problems of the multicollinearity in path analysis (Olivoto et al., 2017)}
 
   \item{knumber}{When \code{correction = NULL}, a plot showing the values of direct effects in a set of different k values (0-1) is produced. \code{knumber} is the number of k values used in the range of 0 to 1.}
 
@@ -81,27 +81,45 @@ Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J. Pelegrin, V
 library(METAAB)
 library(dplyr)
 
-# Using KW as response variable and all other ones as predictors
-pcoeff = data_ge2 \%>\% path_coeff(resp = KW)
+# Using KW as the response variable and all other ones as predictors
+pcoeff = path_coeff(data_ge2, resp = KW)
+
+
+# Declaring the predictors
+pcoeff2 = path_coeff(data_ge2,
+                     resp = KW,
+                     pred = c(PH, EH, NKE, TKW))
 
 
 # Selecting variables to be excluded from the analysis
-pcoeff2 = data_ge2 \%>\%
-          path_coeff(resp = KW,
+pcoeff3 = path_coeff(data_ge2,
+                     resp = KW,
                      pred = c(PH, EH, NKE, TKW),
                      exclude = TRUE)
 
+
 # Selecting a set of predictors with minimal multicollinearity
 # Maximum variance inflaction factor of 5
-pcoeff3 = data_ge2 \%>\%
-          path_coeff(resp = KW,
+pcoeff4 = path_coeff(data_ge2,
+                     resp = KW,
                      brutstep = TRUE,
                      maxvif = 5)
 
-# Compute the analysis for each level of environment
-pcoeff4 = data_ge2 \%>\%
+
+# When one analysis should be carried out for each environment
+# Using the forward-pipe operator \%>\%
+pcoeff5 = data_ge2 \%>\%
           group_factors(ENV) \%>\%
-          path_coeff(resp = KW)
+          path_coeff(resp = KW,
+                     pred = c(PH, EH, NKE, TKW))
+
+
+# One analysis for each environment with minimal multicollinearity
+pcoeff6 = data_ge2 \%>\%
+          group_factors(ENV) \%>\%
+          path_coeff(resp = KW,
+                     brutstep = TRUE,
+                     maxvif = 5)
 
 }
 }

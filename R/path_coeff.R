@@ -11,6 +11,9 @@ path_coeff = function(.data,
 if (missing(resp) == TRUE){
   stop("A response variable (dependent) must be declared.")
 }
+if (!missing(pred) && brutstep == TRUE){
+  stop("Multiple arguments to select the predictors. Set 'pred' to NULL or 'brutstep' to FALSE.")
+}
 kincrement = 1 / knumber
   if(any(class(.data) == "group_factors")){
     dfs = list()
@@ -43,8 +46,6 @@ kincrement = 1 / knumber
         } else {
           cor.x = cor(pr, use = missingval)
         }
-
-
         if (is.null(correction) == TRUE){
           betas = data.frame(matrix(nrow = knumber, ncol = length(pr)+1))
           cc = 0
@@ -161,8 +162,6 @@ kincrement = 1 / knumber
                          class = "path_coeff")
         dfs[[paste(nam)]] = temp
       }
-
-
       if (brutstep == TRUE){
         yyy = data %>% dplyr::select(!!resp)
         xxx = data %>% dplyr::select(-c(!!resp))
@@ -170,7 +169,6 @@ kincrement = 1 / knumber
         VIF = data.frame(diag(solve(cor.xx)))
         names(VIF) = "VIF"
         VIF =  VIF[order(VIF[,"VIF"], decreasing = F), , drop = FALSE]
-
         repeat{
           VIF2 = VIF[order(VIF[-1,], decreasing = F), , drop = FALSE]
           pred2 = rownames(VIF2)
@@ -181,7 +179,6 @@ kincrement = 1 / knumber
           VIF = VIF3
         }
         xxx = data[rownames(VIF3)]
-
         selectedpred = rownames(VIF3)
         npred = ncol(xxx)-1
         statistics = data.frame(matrix(nrow = npred-1, ncol = 8))
@@ -299,7 +296,7 @@ kincrement = 1 / knumber
                          Eigen = AvAvet,
                          VIF = VIF,
                          plot = p1,
-                         Predictors = pred,
+                         Predictors = names,
                          CN = NC,
                          Det = Det,
                          R2 = R2,
@@ -331,13 +328,14 @@ kincrement = 1 / knumber
         print(statistics)
         cat("--------------------------------------------------------------------------")
         }
-        temp = list(Models = ModelEstimates,
+        temp = structure(list(Models = ModelEstimates,
                     Summary = statistics,
-                    Selectedpred = selectedpred)
+                    Selectedpred = selectedpred),
+                    class = "brute_path")
         dfs[[paste(nam)]] = temp
       }
     }
-    return(dfs)
+    return(structure(dfs, class = "group_path"))
   } else{
 
     if(sum(lapply(.data, is.factor)==TRUE)>0){
@@ -352,11 +350,9 @@ kincrement = 1 / knumber
     if(!missing(pred)){
       prcod <- dplyr::quos(!!dplyr::enquo(pred))
     }
-
     if (brutstep == FALSE){
       if (missing(pred)){
         pr = data %>% dplyr::select(-!!resp)
-
       } else {
         if (exclude == TRUE){
           pr = data %>% dplyr::select(-c(!!!prcod), -!!resp)
@@ -364,7 +360,6 @@ kincrement = 1 / knumber
           pr = data %>% dplyr::select(!!!prcod)
         }
       }
-
       names = colnames(pr)
       y = data %>% select(!!resp)
       cor.y = cor(pr, y, use = missingval)
@@ -375,8 +370,6 @@ kincrement = 1 / knumber
       } else {
         cor.x = cor(pr, use = missingval)
       }
-
-
       if (is.null(correction) == TRUE){
         betas = data.frame(matrix(nrow = knumber, ncol = length(pr)+1))
         cc = 0
@@ -408,8 +401,6 @@ kincrement = 1 / knumber
         }
         x = as.numeric(x)
         betas = data.frame(K = x, VAR = y, direct = z)
-
-
         p1 = ggplot2::ggplot(betas, ggplot2::aes(K, direct, col = VAR)) +
           ggplot2::geom_line(size = 1)+
           ggplot2::theme_bw() +
@@ -468,13 +459,11 @@ kincrement = 1 / knumber
                      "Please, cautiosely evaluate the VIF and matrix determinant.", "\n"))
         }
       }
-
       last = data.frame(weight = t(AvAvet[c(nrow(AvAvet)),])[-c(1),])
       abs = data.frame(weight = abs(last[,"weight"]))
       rownames(abs) = rownames(last)
       last = abs[order(abs[,"weight"], decreasing = T), , drop = FALSE]
       weightvarname = paste(rownames(last), collapse = " > ")
-
       temp = structure(list(Corr.x = data.frame(cor.x),
                             Corr.y = data.frame(cor.y),
                             Coefficients = data.frame(t(Coeff)),
@@ -491,8 +480,6 @@ kincrement = 1 / knumber
                        class = "path_coeff")
       return(temp)
     }
-
-
     if (brutstep == TRUE){
       yyy = data %>% dplyr::select(!!resp) %>% as.data.frame()
       xxx = data %>% dplyr::select(-c(!!resp)) %>% as.data.frame()
@@ -500,7 +487,6 @@ kincrement = 1 / knumber
       VIF = data.frame(diag(solve(cor.xx)))
       names(VIF) = "VIF"
       VIF =  VIF[order(VIF[,"VIF"], decreasing = F), , drop = FALSE]
-
       repeat{
         VIF2 = VIF[order(VIF[-1,], decreasing = F), , drop = FALSE]
         pred2 = rownames(VIF2)
@@ -511,7 +497,6 @@ kincrement = 1 / knumber
         VIF = VIF3
       }
       xxx = data[rownames(VIF3)]
-
       selectedpred = rownames(VIF3)
       npred = ncol(xxx)-1
       statistics = data.frame(matrix(nrow = npred-1, ncol = 8))
@@ -537,7 +522,6 @@ kincrement = 1 / knumber
         x = data[,c(predstw)]
         names = colnames(x)
         y = data %>% dplyr::select(!!resp)
-
         cor.y = cor(x, y, use = missingval)
         cor.x = cor(x, use = missingval)
         if (is.null(correction) == F){
@@ -576,7 +560,6 @@ kincrement = 1 / knumber
           }
           x = as.numeric(x)
           betas = data.frame(K = x, VAR = y, direct = z)
-
           p1 = ggplot2::ggplot(betas, ggplot2::aes(K, direct, col = VAR)) +
             ggplot2::geom_line(size = 1)+
             ggplot2::theme_bw() +
@@ -665,7 +648,7 @@ kincrement = 1 / knumber
       temp = list(Models = ModelEstimates,
                   Summary = statistics,
                   Selectedpred = selectedpred)
-      return(temp)
+      return(structure(temp, class = "brute_path"))
     }
   }
 }
