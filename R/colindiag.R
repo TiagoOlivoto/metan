@@ -1,5 +1,5 @@
 colindiag = function(.data, n = NULL, verbose = TRUE){
-  if(!is.matrix(.data) && !is.data.frame(.data) && !is.group_factors(.data)){
+  if(!class(.data) %in% c("matrix", "data.frame", "group_factors", "covcor_design")){
     stop("The object 'x' must be a correlation matrix, a data.frame or an object of class group_factors")
   }
 
@@ -7,6 +7,9 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
     stop("You have a matrix but the sample size used to compute the correlations (n) was not declared.")
   }
 
+  if(class(.data) == "covcor_design" && is.null(n)){
+    stop("You have a list of matrices but the sample size used to compute the correlations (n) was not declared.")
+  }
 
   if(is.data.frame(.data) && !is.null(n)){
     stop("You cannot informe the sample size because a data frame was used as input.")
@@ -91,7 +94,7 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
     out = internal(.data)
   }
 
-  if (any(class(.data) == "group_factors")) {
+  if (any(class(.data) %in% c("group_factors", "covcor_design"))) {
     out = lapply(seq_along(.data), function(x){
       if(verbose == TRUE){
         cat("\n----------------------------------------------------------------------------\n")
