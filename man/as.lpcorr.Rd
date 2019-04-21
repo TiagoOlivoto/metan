@@ -3,7 +3,7 @@
 \alias{is.lpcor}
 \title{Coerce to an object of class lpcor}
 \usage{
-\method{as}{lpcor}(x, y, ...)
+\method{as}{lpcor}(...)
 
 \method{is}{lpcor}(x)
 
@@ -13,11 +13,8 @@ Functions to check if an object is of class \code{lpcor}, or coerce it if possib
 }
 
 \arguments{
- \item{x}{The first object.}
 
- \item{y}{The second object.}
-
-  \item{...}{Additional matrices to be coerced to a list.}
+  \item{...}{A comma-separated list of matrices to be coerced to a list.}
 
 }
 
