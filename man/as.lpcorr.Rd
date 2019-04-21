@@ -16,6 +16,8 @@ Functions to check if an object is of class \code{lpcor}, or coerce it if possib
 
   \item{...}{A comma-separated list of matrices to be coerced to a list.}
 
+  \item{x}{An object to check.}
+
 }
 
 
