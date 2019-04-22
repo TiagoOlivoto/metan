@@ -27,6 +27,27 @@ Compute variance-covariance and correlation matrices using data from a designed 
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
+\examples{
+\dontrun{
+library(METAAB)
+library(dplyr)
+# List of matrices
+data = subset(data_ge2, ENV == "A1")
+matrices = covcor_design(data, gen = GEN, rep = REP,
+                         resp = c(PH, EH, NKE, TKW))
 
+# Genetic correlations
+gcor = covcor_design(data, gen = GEN, rep = REP,
+                     resp = c(PH, EH, NKE, TKW),
+                     type = "gcor")
+
+# Residual (co)variance matrix for each environment
+rcov = datage2 \%>\%
+       group_factors(ENV, keep_factors = TRUE) \%>\%
+       covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
+                     type = "rcov")
+
+}
+}
 
 
