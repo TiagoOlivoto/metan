@@ -14,9 +14,7 @@ mahala = function(.means, covar, inverted = FALSE){
     invmat = solve(covar)
   }
   dists = diag(mmean %*% invmat %*% t(mmean))
-  maha[upper.tri(maha, diag = F)] = dists
-  maha[lower.tri(maha, diag = F)] = dists
-  rownames(maha) = rownames(.means)
-  colnames(maha) = rownames(.means)
+  maha[upper.tri(maha, diag = F)] <- maha[lower.tri(maha, diag = F)] <- dists
+  rownames(maha) <- colnames(maha) <- rownames(.means)
   return(maha)
 }
