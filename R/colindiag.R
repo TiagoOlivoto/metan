@@ -107,13 +107,13 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
   }
 
   if (is.data.frame(.data)) {
-    if (sum(lapply(.data, is.factor)==TRUE)>0){
-    }
     data = .data[ , unlist(lapply(.data, is.numeric))]
     out = internal(data)
     if (verbose == TRUE){
+      if (sum(lapply(.data, is.factor)==TRUE)>0){
       message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
               " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.' ")
+      }
     }
   }
 
