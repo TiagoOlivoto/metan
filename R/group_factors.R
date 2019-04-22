@@ -6,8 +6,10 @@ group_factors = function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
     rlang::set_names(names)
   if (keep_factors == FALSE){
     if (verbose == TRUE){
-      message("The factors ", paste0(collapse = " ", names(gd[[1]][ , unlist(lapply(gd[[1]], is.factor)) ])),
-            " where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data. ")
+      if (sum(lapply(gd[[1]], is.factor)==TRUE)>0){
+      message("The columns ", paste0(collapse = " ", names(gd[[1]][ , unlist(lapply(gd[[1]], is.factor)) ])),
+            " where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. ")
+      }
     }
     gd = lapply(gd, function(x){
       x[ , unlist(lapply(x, is.numeric))] %>% as.data.frame()
@@ -16,10 +18,11 @@ group_factors = function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
     gd = lapply(gd, function(x){
       x %>% as.data.frame()})
     if (verbose == TRUE){
-      message("The factors ", paste0(collapse = " ", names(gd[[1]][ , unlist(lapply(gd[[1]], is.factor)) ])),
+      if (sum(lapply(gd[[1]], is.factor)==TRUE)>0){
+      message("The columns ", paste0(collapse = " ", names(gd[[1]][ , unlist(lapply(gd[[1]], is.factor)) ])),
               " where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data. ")
+      }
     }
   }
   return(structure(gd, class = "group_factors"))
 }
-
