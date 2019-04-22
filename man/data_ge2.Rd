@@ -4,16 +4,15 @@
 
 \description{
 
- This dataset contain data on 15 traits assessed in 13 maize hybrids growing in 04 environments. The experimental design was a RCBD with 3 blocks and 5 replications per block. It may be used as example in several functions of \pkg{METAAB} package.
+ This dataset contain data on 15 traits assessed in 13 maize hybrids growing in 4 environments. The experimental design was a RCBD with 3 blocks and 1 replications per block. It may be used as example in several functions of \pkg{METAAB} package.
 }
 
 \arguments{
 The following collumns are in \code{data_ge}:
 
-  \item{ENV}{A factor with 04 levels; each level represents one cultivation environment.}
+  \item{ENV}{A factor with 4 levels; each level represents one cultivation environment.}
   \item{GEN}{A factor with 13 levels; each level represents one maize hybrid.}
   \item{REP}{A factor with 3 levels; each level represents one replication/block.}
-  \item{PLA}{A factor with 5 levels; each level represents one plant assessed within the block.}
   \item{PH}{Plant height, in cm.}
   \item{EH}{Ear height, in cm.}
   \item{EP}{Ear position, i.e., the ratio EH/PH.}
