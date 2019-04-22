@@ -20,7 +20,7 @@ Compute variance-covariance and correlation matrices using data from a designed 
 
   \item{design}{The experimental design. Must be RCBD or CRD.}
 
-  \item{type}{What the matrices should return? Set to \code{NULL}, i.e., a list of matrices is returned. The argument type allow the following values 'pcor', 'gcor', 'rcor', (which will return the phenotypic, genotypic and residual correlation matrices, respectively) or 'pcov', 'gcov', 'rcov' (which will return the phenotypic, genotypic and residual variance-covariance matrices, respectively).}
+  \item{type}{What the matrices should return? Set to \code{NULL}, i.e., a list of matrices is returned. The argument type allow the following values \code{"pcor", "gcor", "rcor"}, (which will return the phenotypic, genotypic and residual correlation matrices, respectively) or \code{"pcov", "gcov", "rcov"} (which will return the phenotypic, genotypic and residual variance-covariance matrices, respectively). Alternatively, it is possible to get a matrix with the means of each genotype in each trait, by using \code{type = "means"}.}
 
 }
 

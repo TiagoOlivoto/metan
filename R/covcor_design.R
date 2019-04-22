@@ -3,8 +3,8 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
     stop("The experimental design must be RCBD or CRD.")
   }
   if (!is.null(type)){
-    if (!type %in% c(c("pcor", "gcor", "rcor", "pcov", "gcov", "rcov"))){
-      stop("The type must be one of the 'pcor', 'gcor', 'rcor', 'pcov', 'gcov', 'rcov' ")
+    if (!type %in% c(c("pcor", "gcor", "rcor", "pcov", "gcov", "rcov", "means"))){
+      stop("The type must be one of the 'pcor', 'gcor', 'rcor', 'pcov', 'gcov', 'rcov', or 'means'. ")
     }
   }
   if(any(class(.data) == "group_factors")){
@@ -47,7 +47,9 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
       means = data.frame(cbind(GEN, covdata)) %>%
         dplyr::group_by(GEN) %>%
         dplyr::summarise_all(mean) %>%
-        dplyr::select(-GEN)
+        dplyr::ungroup() %>%
+        dplyr::select(-GEN) %>%
+        as.data.frame()
       covdata2 = comb_vars(data.frame(covdata), order = "second")
       index = data.frame(t(combn(5, 2)))
       index = index[with(index, order(X2)), ]
@@ -125,6 +127,9 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
         if(type == "rcov"){
           dfs[[paste(nam)]] = as.matrix(vres)
         }
+        if(type == "means"){
+          return(means)
+        }
       }
     }
     return(structure(dfs, class = "covcor_design"))
@@ -163,9 +168,11 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
     vfen = diag(ms[,1] / 3)
     vgen = (diag(ms[, 1]) - diag(ms[, 2])) / 3
     means = data.frame(cbind(GEN, covdata)) %>%
-    dplyr::group_by(GEN) %>%
-    dplyr::summarise_all(mean) %>%
-    dplyr::select(-GEN)
+      dplyr::group_by(GEN) %>%
+      dplyr::summarise_all(mean) %>%
+      dplyr::ungroup() %>%
+      dplyr::select(-GEN) %>%
+      as.data.frame()
   covdata2 = comb_vars(data.frame(covdata), order = "second")
   index = data.frame(t(combn(5, 2)))
   index = index[with(index, order(X2)), ]
@@ -222,7 +229,8 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
               resi_cov = as.matrix(vres),
               geno_cor = as.matrix(corrgen),
               phen_cor = as.matrix(corrfen),
-              resi_cor = as.matrix(corres)),
+              resi_cor = as.matrix(corres),
+              means = means),
               class = "covcor_design"))
   }
   if(type == "pcor"){
@@ -242,6 +250,9 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
   }
   if(type == "rcov"){
     return(as.matrix(vres))
+  }
+  if(type == "means"){
+    return(means)
   }
   }
 }
