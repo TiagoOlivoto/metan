@@ -187,7 +187,7 @@
     </tr>
     <tr>
       <th>correction</th>
-      <td><p>Set to <code>NULL</code>. A correction value (k) that will be added into the diagonal elements of the X'X matrix aiming at reducing the multicollinearity problems (Olivoto et al., 2017). Also as known as ridge regression.</p></td>
+      <td><p>Set to <code>NULL</code>. A correction value (k) that will be added into the diagonal elements of the <b>X'X</b> matrix aiming at reducing the harmful problems of the multicollinearity in path analysis (Olivoto et al., 2017)</p></td>
     </tr>
     <tr>
       <th>knumber</th>
@@ -257,27 +257,45 @@
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
-<span class='co'># Using KW as response variable and all other ones as predictors</span>
-<span class='no'>pcoeff</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span> <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)
+<span class='co'># Using KW as the response variable and all other ones as predictors</span>
+<span class='no'>pcoeff</span> <span class='kw'>=</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)
+
+
+<span class='co'># Declaring the predictors</span>
+<span class='no'>pcoeff2</span> <span class='kw'>=</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>,
+                     <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
+                     <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))
 
 
 <span class='co'># Selecting variables to be excluded from the analysis</span>
-<span class='no'>pcoeff2</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-          <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
+<span class='no'>pcoeff3</span> <span class='kw'>=</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>,
+                     <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
                      <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>),
                      <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
+
 <span class='co'># Selecting a set of predictors with minimal multicollinearity</span>
 <span class='co'># Maximum variance inflaction factor of 5</span>
-<span class='no'>pcoeff3</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-          <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
+<span class='no'>pcoeff4</span> <span class='kw'>=</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>,
+                     <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
                      <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                      <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
-<span class='co'># Compute the analysis for each level of environment</span>
-<span class='no'>pcoeff4</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
+
+<span class='co'># When one analysis should be carried out for each environment</span>
+<span class='co'># Using the forward-pipe operator %&gt;%</span>
+<span class='no'>pcoeff5</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
           <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-          <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)
+          <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
+                     <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))
+
+
+<span class='co'># One analysis for each environment with minimal multicollinearity</span>
+<span class='no'>pcoeff6</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
+          <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
+          <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
+                     <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+                     <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
 <span class='co'># }</span></pre>
   </div>

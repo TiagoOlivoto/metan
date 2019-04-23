@@ -3595,8 +3595,12 @@ E9
 <span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),
                <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),
                <span class="dt">SI =</span> <span class="dv">15</span>)</code></pre></div>
-<pre><code>## Evaluating variable KW 25 % 
-## Evaluating variable NKE 50 % 
+<pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
+## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
+## (tol = 0.002, component 1)</code></pre>
+<pre><code>## Evaluating variable KW 25 %</code></pre>
+<pre><code>## boundary (singular) fit: see ?isSingular</code></pre>
+<pre><code>## Evaluating variable NKE 50 % 
 ## Evaluating variable PH 75 % 
 ## Evaluating variable EH 100 % 
 ## Done!
@@ -3634,10 +3638,10 @@ E9
 ## Selection differential
 ## -----------------------------------------------------------------------------------
 ##     Factor Selection differential (%)
-## KW       1                  1.298e+00
-## NKE      1                  2.261e-07
-## PH       1                  8.941e-02
-## EH       1                  1.603e-08
+## KW       1                  1.297e+00
+## NKE      1                  5.511e-08
+## PH       1                  9.007e-02
+## EH       1                  2.408e-08
 ## 
 ## -----------------------------------------------------------------------------------
 ## Selected genotypes
