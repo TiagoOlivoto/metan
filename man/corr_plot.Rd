@@ -3,13 +3,13 @@
 \title{Visualization of a correlation matrix}
 \usage{
 corr_plot(.data, ... = NULL, upper = "corr", lower = "scatter",
-          diag = TRUE, diagcol = "gray", axis.labels = FALSE,
-          col.up.panel = "gray", col.lw.panel = "gray",
+          axis.labels = FALSE, diag = TRUE, col.diag = "gray",
+          alpha.diag = 1, col.up.panel = "gray", col.lw.panel = "gray",
           col.dia.panel = "gray", prob = 0.05, col.sign = "green",
-          alpha = 0.15, lab.position = "tr", progress = NULL,
+          alpha.sign = 0.15, lab.position = "tr", progress = NULL,
           smooth = FALSE, col.smooth = "red", size.smooth = 0.3,
-          confint = TRUE, size.point = 0.5, shape.point = 19,
-          alpha.point = 1, fill.point = NULL, col.point = "black",
+          confint = TRUE, size.point = 1, shape.point = 19,
+          alpha.point = 0.7, fill.point = NULL, col.point = "black",
           minsize = 2, maxsize = 3, pan.spacing = 0.15, digits = 2,
           export = FALSE, file.type = "pdf", file.name = NULL,
           width = 8, height = 7, resolution = 300)
@@ -28,11 +28,13 @@ Graphical and numerical visualization of a correlation matrix
 
   \item{lower}{The visualization method for the lower triangular correlation matrix. Must be one of \code{"corr"} (numeric values), \code{"scatter"} (the scatterplot for each pairwise combination), or \code{NULL} to set a blank diagonal.}
 
+  \item{axis.labels}{Should the axis labels be shown in the plot? Set to \code{FALSE}.}
+
   \item{diag}{Should the diagonal show the kernel distribution of the variable? Set to  \code{TRUE}.}
 
-  \item{diagcol}{If \code{diag = TRUE} then \code{diagcol} is the color for the distribution. Set to gray.}
+  \item{col.diag}{If \code{diag = TRUE} then \code{diagcol} is the color for the distribution. Set to gray.}
 
-  \item{axis.labels}{Should the axis labels be shown in the plot? Set to \code{FALSE}.}
+  \item{alpha.diag}{Alpha-transparency scale [0-1] to make the diagonal plot transparent. 0 = fully transparente; 1 = full colour. Set to 0.15}
 
   \item{col.up.panel, col.lw.panel, col.dia.panel}{The colour for the upper, lower, and diagonal pannels, respectively. Set to "gray".}
 
@@ -40,7 +42,7 @@ Graphical and numerical visualization of a correlation matrix
 
   \item{col.sign}{The colour that will highlight the significant correlations. Set to "green".}
 
-  \item{alpha}{Alpha-transparency scale [0-1] to make the plot area transparent. 0 = fully transparente; 1 = full colour. Set to 0.15}
+  \item{alpha.sign}{Alpha-transparency scale [0-1] to make the plot area transparent. 0 = fully transparente; 1 = full colour. Set to 0.15}
 
   \item{lab.position}{The position that the labeles will apper. Set to \code{"tr"}, i.e., the legends will apper in the top and right of the plot. Other allowed options are \code{"tl"} (top and left), \code{"br"} (bottom and rigth), \code{"bl"} (bottom and left).}
 
@@ -56,9 +58,9 @@ Graphical and numerical visualization of a correlation matrix
 
  \item{size.point}{The size of the points in the plot. Set to \code{0.5}.}
 
-  \item{shape.point}{The shape of the point, set to \code{ 19}.}
+  \item{shape.point}{The shape of the point, set to \code{1}.}
 
-  \item{alpha.point}{Alpha-transparency scale [0-1] to make the points transparent. 0 = fully transparente; 1 = full colour. Set to 1}
+  \item{alpha.point}{Alpha-transparency scale [0-1] to make the points transparent. 0 = fully transparente; 1 = full colour. Set to 0.7}
 
  \item{fill.point}{The color to fill the points. Valid argument if points are between 21 and 25.}
 
@@ -89,3 +91,51 @@ Graphical and numerical visualization of a correlation matrix
 
 \author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
 
+\examples{
+\dontrun{
+library(METAAB)
+dataset = data_ge2
+
+# Default plot setting
+corr_plot(dataset)
+
+# Chosing variables to be correlated
+corr_plot(dataset, CD, EL, PERK, NKR)
+
+# Changing the layout
+corr_plot(dataset, CD, EL, PERK, NKR,
+          lower = NULL,
+          upper = "corr")
+
+# Axis labels, similar to the function pairs()
+# Gray scale
+corr_plot(dataset, CD, EL, PERK, NKR,
+          shape.point = 19,
+          size.point = 2,
+          alpha.point = 0.5,
+          alpha.diag = 0,
+          pan.spacing = 0,
+          col.sign = "gray",
+          alpha.sign = 0.3,
+          axis.labels = TRUE)
+
+corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
+          prob = 0.01,
+          shape.point = 21,
+          col.point = "black",
+          fill.point = "orange",
+          size.point = 2,
+          alpha.point = 0.6,
+          maxsize = 4,
+          minsize = 2,
+          smooth = TRUE,
+          size.smooth = 1,
+          col.smooth = "black",
+          col.sign = "cyan",
+          col.up.panel = "black",
+          col.lw.panel = "black",
+          col.dia.panel = "black",
+          pan.spacing = 0,
+          lab.position = "tl")
+}
+}

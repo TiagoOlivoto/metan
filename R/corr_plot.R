@@ -2,24 +2,25 @@ corr_plot = function(.data,
                      ... = NULL,
                      upper = "corr",
                      lower = "scatter",
-                     diag = TRUE,
-                     diagcol = "gray",
                      axis.labels = FALSE,
+                     diag = TRUE,
+                     col.diag = "gray",
+                     alpha.diag = 1,
                      col.up.panel = "gray",
                      col.lw.panel = "gray",
                      col.dia.panel = "gray",
                      prob = 0.05,
                      col.sign = "green",
-                     alpha = 0.15,
+                     alpha.sign = 0.15,
                      lab.position = "tr",
                      progress = NULL,
                      smooth = FALSE,
                      col.smooth = "red",
                      size.smooth = 0.3,
                      confint = TRUE,
-                     size.point = 0.5,
+                     size.point = 1,
                      shape.point = 19,
-                     alpha.point = 1,
+                     alpha.point = 0.7,
                      fill.point = NULL,
                      col.point = "black",
                      minsize = 2,
@@ -115,13 +116,13 @@ corr_plot = function(.data,
     }
     if (r < prob) {
       p = p + theme(
-        panel.background = ggplot2::element_rect(fill=ggplot2::alpha(col.sign, alpha)))
+        panel.background = ggplot2::element_rect(fill=ggplot2::alpha(col.sign, alpha.sign)))
     }
     p
   }
   ggally_mysmooth = function(data, mapping, ...){
     ggplot2::ggplot(data = data, mapping=mapping) +
-      ggplot2::geom_density(fill = ggplot2::alpha(diagcol, 1))+
+      ggplot2::geom_density(fill = ggplot2::alpha(col.diag, alpha.diag))+
       ggplot2::theme_classic() +
       ggplot2::theme(panel.background = ggplot2::element_rect(fill=ggplot2::alpha('white', 1), color = col.dia.panel))
   }
