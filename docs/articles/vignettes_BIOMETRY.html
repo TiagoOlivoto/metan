@@ -131,6 +131,7 @@
 <p>The function <code>find_outlier()</code> may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)
 data_out =<span class="st"> </span>data_ge2
 data_out[<span class="dv">12</span>, <span class="dv">5</span>] =<span class="st"> </span><span class="dv">26</span>
 <span class="kw"><a href="../reference/find_outliers.html">find_outliers</a></span>(data_out, <span class="dt">var =</span> PH, <span class="dt">plots =</span> <span class="ot">TRUE</span>)</code></pre></div>
@@ -214,6 +215,48 @@ lpc2 =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
                <span class="dt">main =</span> <span class="st">"My own plot"</span>,
                <span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
 <p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-5-1.png" width="528" style="display: block; margin: auto;"></p>
+</div>
+<div id="graphical-and-numerical-visualization-of-a-correlation-matrix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#graphical-and-numerical-visualization-of-a-correlation-matrix" class="anchor"></a>Graphical and numerical visualization of a correlation matrix</h2>
+<p>The function <code><a href="../reference/corr_plot.html">corr_plot()</a></code> may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the <code><a href="https://www.rdocumentation.org/packages/graphics/topics/pairs">pairs()</a></code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataset =<span class="st"> </span>data_ge2
+
+<span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR)</code></pre></div>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-6-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR,
+          <span class="dt">lower =</span> <span class="ot">NULL</span>,
+          <span class="dt">upper =</span> <span class="st">"corr"</span>)</code></pre></div>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-6-2.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR,
+          <span class="dt">shape.point =</span> <span class="dv">19</span>,
+          <span class="dt">size.point =</span> <span class="dv">2</span>,
+          <span class="dt">alpha.point =</span> <span class="fl">0.5</span>,
+          <span class="dt">alpha.diag =</span> <span class="dv">0</span>,
+          <span class="dt">pan.spacing =</span> <span class="dv">0</span>,
+          <span class="dt">col.sign =</span> <span class="st">"gray"</span>,
+          <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,
+          <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-6-3.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR, CW, NKE,
+          <span class="dt">prob =</span> <span class="fl">0.01</span>,
+          <span class="dt">shape.point =</span> <span class="dv">21</span>,
+          <span class="dt">col.point =</span> <span class="st">"black"</span>,
+          <span class="dt">fill.point =</span> <span class="st">"orange"</span>,
+          <span class="dt">size.point =</span> <span class="dv">2</span>,
+          <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,
+          <span class="dt">maxsize =</span> <span class="dv">4</span>,
+          <span class="dt">minsize =</span> <span class="dv">2</span>,
+          <span class="dt">smooth =</span> <span class="ot">TRUE</span>,
+          <span class="dt">size.smooth =</span> <span class="dv">1</span>,
+          <span class="dt">col.smooth =</span> <span class="st">"black"</span>,
+          <span class="dt">col.sign =</span> <span class="st">"cyan"</span>,
+          <span class="dt">col.up.panel =</span> <span class="st">"black"</span>,
+          <span class="dt">col.lw.panel =</span> <span class="st">"black"</span>,
+          <span class="dt">col.dia.panel =</span> <span class="st">"black"</span>,
+          <span class="dt">pan.spacing =</span> <span class="dv">0</span>,
+          <span class="dt">lab.position =</span> <span class="st">"tl"</span>)</code></pre></div>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-6-4.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="covariance-and-correlations-for-designed-experiments" class="section level2">
 <h2 class="hasAnchor">
@@ -623,7 +666,7 @@ dist =<span class="st"> </span><span class="kw"><a href="../reference/mahala.htm
 <span class="co"># Dendrogram</span>
 dend =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dendrogram">as.dendrogram</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">as.dist</a></span>(dist)))
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(dend)</code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
+<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
@@ -655,6 +698,7 @@ dend =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentat
       <li>
 <a href="#correlations">Correlations</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#linear-and-partial-correlation-coefficients">Linear and partial correlation coefficients</a></li>
+      <li><a href="#graphical-and-numerical-visualization-of-a-correlation-matrix">Graphical and numerical visualization of a correlation matrix</a></li>
       <li><a href="#covariance-and-correlations-for-designed-experiments">(co)variance and correlations for designed experiments</a></li>
       <li><a href="#genetic-correlations">Genetic correlations</a></li>
       <li><a href="#phenotypic-correlations">Phenotypic correlations</a></li>

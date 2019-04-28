@@ -310,19 +310,19 @@ matrix</code></pre></div>
                   <span class="dt">D =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">1100</span>, <span class="dt">sd =</span> <span class="dv">200</span>),
                   <span class="dt">E =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>))
 <span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</code></pre></div>
-<pre><code>##     A.B  A.C B.C  A.D  B.D  C.D   A.E   B.E  C.E  D.E
-## 1 107.2 40.4 130 1246 1336 1269 11.02 100.7 34.0 1240
-## 2 114.4 55.4 149 1212 1305 1246 11.43 104.7 45.6 1202
-## 3 159.9 46.4 200 1181 1335 1222  5.05 159.0 45.6 1181
-## 4 124.8 36.3 135 1262 1361 1273 15.49 114.1 25.6 1252
-## 5  96.8 52.9 139 1013 1099 1055  7.44  93.3 49.4 1009</code></pre>
+<pre><code>##   A.B  A.C B.C  A.D  B.D  C.D  A.E   B.E  C.E  D.E
+## 1 173 48.4 191 1050 1192 1067 15.6 157.9 33.0 1035
+## 2 113 35.8 121 1327 1413 1336 16.3 102.0 24.9 1316
+## 3 152 51.7 180 1250 1378 1278 12.8 140.8 40.3 1239
+## 4 101 50.8 130 1181 1260 1209 15.5  94.3 43.6 1174
+## 5 125 44.9 147 1324 1427 1347 14.2 116.5 36.8 1316</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</code></pre></div>
-<pre><code>##    A.B A.C   A.D   A.E  B.C    B.D   B.E   C.D  C.E  D.E
-## 1  860 277 10805 20.00 3121 121845 225.5 39230 72.6 2835
-## 2 1100 475 12732  8.79 4653 124762  86.1 53851 37.2  996
-## 3  462 128  3473  6.21 6823 184940 330.6 51242 91.6 2483
-## 4 1461 303 16336 31.61 2591 139568 270.1 28980 56.1 3020
-## 5  498 259  5493 10.82 4330  92010 181.2 47743 94.0 1998</code></pre>
+<pre><code>##    A.B A.C   A.D   A.E  B.C    B.D   B.E   C.D    C.E    D.E
+## 1 2442 509 16006  1.47 5191 163280  15.0 34017   3.13   98.4
+## 2 1347 301 17824 37.01 2204 130424 270.8 29162  60.55 3582.7
+## 3 1698 480 15001  8.34 5553 173555  96.5 49061  27.28  852.7
+## 4 1023 448 13286 47.11 3552 105423 373.8 46121 163.55 4854.1
+## 5 1267 377 14661 34.30 3833 149010 348.6 44355 103.76 4034.0</code></pre>
 </div>
 <div id="combining-data-frames-by-row-filling-missing-values" class="section level1">
 <h1 class="hasAnchor">

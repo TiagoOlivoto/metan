@@ -16,6 +16,7 @@ The function `find_outlier()` may be used to identify possible outliers in a dat
 
 library(METAAB)
 library(dplyr)
+library(cowplot)
 data_out = data_ge2
 data_out[12, 5] = 26
 find_outliers(data_out, var = PH, plots = TRUE)
@@ -30,23 +31,23 @@ group_factors(ENV) %>%
 find_outliers(PH)
 ```
     
+# Correlations
+## Linear and partial correlation coefficients
 
-# Linear and partial correlation coefficients
-
-Pearson's linear correlation does not consider the influence a set of variables on the relationship between two variables. For example, the * r * = 0.9 observed between *x* and *y* may be due to the influence of a third variable or group of variables acting together. To identify this linear effect, the partial correlation is used. From Pearson's simple correlation matrix, the partial correlation is calculated by the following equation:
+Pearson's linear correlation does not consider the influence a set of traits on the relationship between two traits. For example, the hypothetical correlation of *r* = 0.9 between *x* and *y* may be due to the influence of a third trait or group of traits acting together. To identify this linear effect between *x* and *y* controlling statistically the effect of others traits, the partial correlation is used. From Pearson's simple correlation matrix, the partial correlation is calculated by the following equation:
 
 $$
 	{r_{xy.m}} = \frac{{ - {a_{xy}}}}{{\sqrt {{a_{xx}}{a_{yy}}} }}
 $$
 
-Where ${r_{xy.m}}$ is the partial correlation coefficient between the variables * x * and * y *, excluding the effects of the * m * remaining variables of the set; $- {a_{ij}}$ is the inverse element of the correlation matrix corresponding to xy, ${a_{ii}}{a_{jj}}$ are the diagonal elements of the inverse matrix of correlation associated with variable x and y , respectively. The significance of this correlation is also tested by the test * t * according to the following expression:
+Where ${r_{xy.m}}$ is the partial correlation coefficient between the traits * x * and * y *, excluding the effects of the * m * remaining traits of the set; $- {a_{ij}}$ is the inverse element of the correlation matrix corresponding to xy, ${a_{ii}}{a_{jj}}$ are the diagonal elements of the inverse matrix of correlation associated with trait x and y , respectively. The significance of this correlation is also tested by the test * t * according to the following expression:
 
 
 $$
 t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2} 
 $$
 
-Where $t_{calc}$ is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the variables x and y excluding the effect of the other * m * variables; * n * is the number of observations; and * v * is the number of variables. Both the linear and partial correlation coefficients may be obtained using the function `lpcor()`.
+Where $t_{calc}$ is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the traits x and y excluding the effect of the other * m * traits; * n * is the number of observations; and * v * is the number of traits. Both the linear and partial correlation coefficients may be obtained using the function `lpcor()`.
 
 
 ```{r, message=FALSE }
@@ -73,12 +74,11 @@ lpc2 %>% pairs_mantel(names = paste("H", 1:4, sep = ""))
 This same plot may be obtained by passing correlation matrices with the same dimension to an object of class `lpcor` and then applying the function `pairs_mantel()`.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-as.lpcor(cor(dataset[1:50, 5:ncol(dataset)]),
-         cor(dataset[51:100, 5:ncol(dataset)]),
-         cor(dataset[101:150, 5:ncol(dataset)]),
-         cor(dataset[151:200, 5:ncol(dataset)]),
-         cor(dataset[201:250, 5:ncol(dataset)]),
-         cor(dataset[251:300, 5:ncol(dataset)])) %>%
+as.lpcor(cor(dataset[1:30, 5:ncol(dataset)]),
+         cor(dataset[31:60, 5:ncol(dataset)]),
+         cor(dataset[61:90, 5:ncol(dataset)]),
+         cor(dataset[91:120, 5:ncol(dataset)]),
+         cor(dataset[121:150, 5:ncol(dataset)])) %>%
   pairs_mantel(diag = TRUE,
                pan.spacing = 0,
                shape.point = 21,
@@ -92,40 +92,187 @@ as.lpcor(cor(dataset[1:50, 5:ncol(dataset)]),
 
 
 
+
+## Graphical and numerical visualization of a correlation matrix
+
+The function `corr_plot()` may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the `pairs()` function.
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+dataset = data_ge2
+
+corr_plot(dataset, CD, EL, PERK, NKR)
+
+
+corr_plot(dataset, CD, EL, PERK, NKR,
+          lower = NULL,
+          upper = "corr")
+
+corr_plot(dataset, CD, EL, PERK, NKR,
+          shape.point = 19,
+          size.point = 2,
+          alpha.point = 0.5,
+          alpha.diag = 0,
+          pan.spacing = 0,
+          col.sign = "gray",
+          alpha.sign = 0.3,
+          axis.labels = TRUE)
+
+
+corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
+          prob = 0.01,
+          shape.point = 21,
+          col.point = "black",
+          fill.point = "orange",
+          size.point = 2,
+          alpha.point = 0.6,
+          maxsize = 4,
+          minsize = 2,
+          smooth = TRUE,
+          size.smooth = 1,
+          col.smooth = "black",
+          col.sign = "cyan",
+          col.up.panel = "black",
+          col.lw.panel = "black",
+          col.dia.panel = "black",
+          pan.spacing = 0,
+          lab.position = "tl")
+
+```
+
+
+## (co)variance and correlations for designed experiments
+
+The function `covcor_design()` may be used to compute genetic, phenotypic and residual correlation/(co)variance matrices through Analysis of Variance (ANOVA) method using randomized complete block design (RCBD) or completely randomized design (CRD).
+
+The phenotypic ($r_p$), genotypic ($r_g$) and residual ($r_r$) correlations are computed as follows:
+
+$$
+r^p_{xy} = \frac{cov^p_{xy}}{\sqrt{var^p_{x}var^p_{y}}} \
+r^g_{xy} = \frac{cov^g_{xy}}{\sqrt{var^g_{x}var^g_{y}}} \
+r^r_{xy} = \frac{cov^r_{xy}}{\sqrt{var^r_{x}var^r_{y}}}
+$$
+
+Using Mean Squares (*MS*) from the ANOVA method, the variances (*var*) and covariances (*cov*) are computed as follows:
+
+$$
+cov^p_{xy} = [(MST_{x+y} - MST_x - MST_y)/2]/r \\
+var^p_x = MST_x / r \\
+var^p_y = MST_y / r
+$$
+
+
+$$
+cov^r_{xy} = (MSR_{x+y} - MSR_x - MSR_y)/2 \\
+var^r_x = MSR_x \\
+var^r_y = MSR_y 
+$$
+
+$$
+cov^g_{xy} = [(cov^p_{xy} \times r) - cov^r_{xy}]/r \\
+var^g_x = (MST_x - MSE_x)/r \\
+var^g_y = (MST_x - MSE_y)/r 
+$$
+
+where *MST* is the mean square for treatment, *MSR* is the mean square for residuals, and *r* is the number of replications.
+
+The function `covcor_design()` returns a list with the matrices of (co)variances and correlations. Specific matrices may be returned using the argument `type`, as shown bellow.
+
+## Genetic correlations
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+data = subset(data_ge2, ENV == "A1")
+covcor_design(data, gen = GEN, rep = REP,
+              resp = c(PH, EH, NKE, TKW),
+              type = "gcor")
+    ```
+
+
+## Phenotypic correlations
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+covcor_design(data, gen = GEN, rep = REP,
+              resp = c(PH, EH, NKE, TKW),
+              type = "pcor")
+    ```
+
+## Residual correlations
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+covcor_design(data, gen = GEN, rep = REP,
+              resp = c(PH, EH, NKE, TKW),
+              type = "rcor")
+```
+
+## Residual (co)variance matrix
+Using the function `group_factors()` it is possible to pass the data grouped and compute the matrices for each level of the grouping factor. In this example we will obtain the residual (co)variance for each environment.
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
+cov = data_ge2 %>%
+      group_factors(ENV, keep_factors = TRUE) %>%
+      covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
+                    type = "rcov")
+    ```
+
+The residual (co)variance matrix and the means (obtained using `type = "means"`) may be used into the function `mahala()` to compute the Mahalanobis distance 
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
+res = data %>% # environment A1
+      covcor_design(GEN, REP, c(PH, EH, NKE, TKW), type = "rcov")
+means = data %>% # environment A1
+      covcor_design(GEN, REP, c(PH, EH, NKE, TKW), type = "means")
+
+D2 = mahala(.means = means, covar = res, inverted = FALSE)
+    ```
+
+
 # Collinearity diagnostic
 
-The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor variables. Several indicators, such as Variance Inflaction Factor, Condition Number, and Matrix Determinant are considered [@Olivoto2017f; @Olivoto2017c] The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class `group_factor`, which split a dataframe into subsets based on one or more grouping factors.
+The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor traits. Several indicators, such as Variance Inflaction Factor, Condition Number, and Matrix Determinant are considered [@Olivoto2017f; @Olivoto2017c] The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class `group_factor`, which split a dataframe into subsets based on one or more grouping factors.
+
+## Using a correlation matrix, which was estimated earlier
 
 ```{r }
-library(METAAB)
-# getting the correlation matrix estimated in the previous example.
 cor_data = lpc1$linear.mat
 n = nrow(dataset)
-
-# Using a correlation matrix
 cold1 = colindiag(cor_data, n = n)
-# Using a dataframe
+
+```
+
+## Using a dataframe
+
+```{r }
 cold2 = colindiag(dataset)
 
-# Perform the diagnostic for each level of the factor ENV
-cold3 =  dataset %>%
-         group_factors(ENV) %>%
+```
+
+
+## Perform the diagnostic for each level of the factor ENV
+
+```{r }
+cold3 =  dataset %>% 
+         group_factors(ENV, verbose = FALSE) %>% 
          colindiag()
-    ```
+```
 
 
 
 # Path analysis
-## Using KW as response variable and all other ones as predictors.
+## Using KW as response trait and all other ones as predictors.
 
 ```{r }
 pcoeff = data_ge2 %>%
          path_coeff(resp = KW)
-names(pcoeff)
 ```
 
 
-## Selecting variables to be excluded from the analysis.
+## Declaring the predictor traits
+
+```{r }
+pcoeff2 = data_ge2 %>%
+  path_coeff(resp = KW,
+             pred = c(PH, NKE, TKW),
+             verbose = FALSE)
+summary(pcoeff2)
+```
+
+
+## Selecting traits to be excluded from the analysis.
 
 ```{r }
 pcoeff2 = data_ge2 %>%
@@ -136,7 +283,7 @@ pcoeff2 = data_ge2 %>%
 ```
 
 
-## Selecting a set of predictors with minimal multicollinearity .
+## Selecting a set of predictors with minimal multicollinearity
 ```{r }
 pcoeff3 = data_ge2 %>%
   path_coeff(resp = KW,
@@ -194,11 +341,20 @@ maha_group = data_ge %>%
 
     ```
 
+## Compute one distance for each environment
 
-## If I have the matrices of means and covariances
+```{r }
+maha_group = data_ge %>%
+             group_factors(ENV, keep_factors = TRUE) %>%
+             mahala_design(GEN, REP, c(GY, HM))
+
+    ```
+
+## If you have the matrices of means and covariances
 
 ```{r }
 # Compute the mean for genotypes
+library(METAAB)
 means = data_ge %>%
         select(-c(ENV, REP)) %>%
         group_by(GEN) %>%
