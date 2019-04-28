@@ -17,18 +17,6 @@ The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B
 * Graphics tools for generating biplots.
 
 
-# Dependences
-
-METAAB depends on the following R packages.
-
-* [`grid`](https://www.rdocumentation.org/packages/grid/versions/3.5.2) for arranging plots;
-* [`ggplot2`](https://ggplot2.tidyverse.org/) for graphics;
-* [`ggrepel`](https://github.com/slowkow/ggrepel) for repel overlapping text labels in ggplot-based graphics;
-* [`magrittr`](https://www.rdocumentation.org/packages/magrittr/versions/1.5) for the Forward-Pipe Operator `%>%` opperator;
-* [`dendexted`](https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html) and [`gplots`](https://cran.r-project.org/web/packages/gplots/index.html) for dendrograms;
-* [`dplyr`](https://github.com/tidyverse/dplyr) for data manipulation;
-* [`lme4`](https://github.com/lme4/lme4) and [`lmerTest`](https://cran.r-project.org/web/packages/lmerTest/index.html) for mixed-effect models
-
 # Installing
 
 The latest development version can be download from GitHub by running
@@ -38,7 +26,7 @@ devtools::install_github("TiagoOlivoto/METAAB")
 ```
 
 # Brief examples
-The package `kableExtra` and `cowplot` were used to generate the tables and arranging the graphics of this material.
+The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) were used to generate the tables and arranging the graphics of this material.
 
 The `METAAB` contains some datasets for examples. We will use the example `data_ge` that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`
 
@@ -57,8 +45,22 @@ model <- WAAS.AMMI(data_ge,
                   resp = GY,
                   gen = GEN,
                   env = ENV,
-                  rep = REP)
+                  rep = REP,
+                  verbose = FALSE)
 ```
+
+
+### Predicting the response variable
+The S3 method `predict()` is implemented for objects of class `WAAS.AMMI` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object.
+
+```{r }
+library(kableExtra)
+predicted = predict(model, naxis = 4)
+predicted = predicted$GY[1:5,]
+kable(predicted, "html") %>%
+  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+```
+
 
 ### Biplots
 
@@ -77,17 +79,6 @@ p2 = plot.scores(model$GY,
 plot_grid(p1, p2, labels = c("p1","p2"))
 ```
 
-### S3 method `predict()`
-The S3 method `predict()` is implemented for objects of class `WAAS.AMMI` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object.
-
-```{r }
-library(kableExtra)
-predicted = predict(model, naxis = 4)
-predicted = predicted$GY[1:5,]
-kable(predicted, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
-```
-
 ## BLUP model
 The implementation of linear-mixed effect models to predict the response variable in MET is based on the `WAASB()` function. The "mixed-effect version" of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to be random effects is then obtained as follows
 
@@ -96,11 +87,12 @@ model2 <- WAASB(data_ge,
                 resp = GY,
                 gen = GEN,
                 env = ENV,
-                rep = REP)
+                rep = REP,
+                verbose = FALSE)
 ```
 
 
-## Plotting the BLUPs for genotypes
+### Plotting the BLUPs for genotypes
 
 
 ```{r, fig.width=8}
@@ -113,8 +105,7 @@ plot_grid(p1, p2,
 ```
 
 
-## BLUPS for genotype-vs-environment interaction
-
+### BLUPS for genotype-vs-environment interaction
 
 ```{r }
 data = model2$GY$BLUPgge[1:5,]
@@ -125,4 +116,4 @@ kable(data, "html") %>%
 
 # Extending the METAAB package
 
-The complete functionality of the METAAB package may be view at <https://tiagoolivoto.github.io/METAAB/index.html>. You are welcome to visit it.
+You are welcome to visit the site of METAAB at <https://tiagoolivoto.github.io/METAAB/index.html>.
