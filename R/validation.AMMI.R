@@ -1,5 +1,9 @@
 validation.AMMI <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
-    naxis, verbose = TRUE) {
+                            naxis, verbose = TRUE) {
+
+    if (!design %in% c("RCBD", "CRD")) {
+        stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
+    }
 
     RMSPDres <- data.frame(RMSPD = matrix(0, nboot, 1))
     Y <- eval(substitute(resp), eval(.data))
@@ -14,101 +18,81 @@ validation.AMMI <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, 
     Nbloc <- length(unique(REP))
     minimo <- min(Nenv, Ngen) - 1
 
-    if (design == "RCBD" | design == "CRD") {
-        if (nrepval > Nbloc - 1) {
-            stop("The number replications used for validation must be equal to total number of replications -1 (In this case ",
-                (Nbloc - 1), ").")
-        } else {
-
-            if (naxis > minimo) {
-                stop("The number of axis to be used must be lesser than or equal to ",
-                  minimo, " [min(GEN-1;ENV-1)]")
-            } else {
-
-                if (verbose == TRUE) {
-                  pb <- winProgressBar(title = "the model is being built, please, wait.",
-                    min = 1, max = nboot, width = 570)
-                }
-
-                for (b in 1:nboot) {
-
-                  if (design == "CRD") {
-                    X <- sample(1:10000, 1)
-                    set.seed(X)
-                    modeling <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::sample_n(nrepval,
-                      replace = F)
-                    modeling <- as.data.frame(modeling[order(modeling$ID), ])
-                    rownames(modeling) <- modeling$ID
-                  }
-
-                  if (design == "RCBD") {
-                    temp <- data.frame(matrix(".", 0, ncol(data)))
-                    for (n in c(4:5)) {
-                      temp[, n] <- as.numeric(temp[, n])
-                    }
-                    names(temp) <- names(data)
-                    actualenv <- 0
-
-                    for (K in 1:Nenv) {
-                      X <- sample(1:10000, 1)
-                      set.seed(X)
-                      X2 <- sample(unique(REPS), nrepval, replace = F)
-                      names <- factor(data$ENV)
-                      names <- levels(names)[actualenv + 1]
-                      actualenv <- actualenv + 1
-                      temp2 <- dplyr::filter(data, ENV == names)
-                      modeling <- temp2 %>% dplyr::group_by(GEN) %>% dplyr::filter(REP %in%
-                        c(X2))
-                      modeling <- as.data.frame(modeling)
-                      modeling <- rbind(temp, modeling)
-                      temp <- modeling
-                    }
-                    rownames(modeling) <- modeling$ID
-                  }
-                  testing <- dplyr::anti_join(data, modeling, by = c("ENV", "GEN",
-                    "REP", "Y", "ID"))
-                  testing <- testing[order(testing[, 1], testing[, 2], testing[, 3]),
-                    ]
-                  x1 <- factor(testing$ENV)
-                  z1 <- factor(testing$GEN)
-                  MEDIAS <- data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>%
-                    dplyr::summarise(Y = mean(Y)))
-                  residual <- residuals(lm(Y ~ ENV + GEN, data = MEDIAS))
-                  intmatrix <- t(matrix(residual, Nenv, byrow = T))
-                  s <- svd(intmatrix)
-                  U <- s$u[, 1:naxis]
-                  LL <- s$d[1:naxis]
-                  V <- s$v[, 1:naxis]
-                  x1 <- model.matrix(~x1 - 1)
-                  z1 <- model.matrix(~z1 - 1)
-                  AMMI <- ((z1 %*% U) * (x1 %*% V)) %*% LL
-                  MEDIAS <- mutate(MEDIAS, Ypred = Y - residual, ResAMMI = AMMI, YpredAMMI = Ypred +
-                    ResAMMI, testing = testing$Y, error = YpredAMMI - testing, errrorAMMI0 = Ypred -
-                    testing)
-                  if (naxis == 0) {
-                    RMSPD <- sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
-                  } else {
-                    RMSPD <- sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
-                  }
-                  RMSPDres[, 1][b] <- RMSPD
-                  if (verbose == TRUE) {
-                    ProcdAtua <- b
-                    setWinProgressBar(pb, b, title = paste("Validating ", ProcdAtua,
-                      " of ", nboot, "validation datasets, considering", naxis, "axes",
-                      "-", round(b/nboot * 100, 1), "% Concluded -"))
-                  }
-
-                }
-                if (verbose == TRUE) {
-                  close(pb)
-                }
-            }
-        }
-        RSMEmean <- mean(RMSPDres$RMSPD)
-        return(structure(list(RMSPD = RMSPDres, RSMEmean = RSMEmean, Estimated = MEDIAS,
-            Modeling = modeling, Testing = testing), class = "validation.AMMI"))
-    } else {
-        stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
+    if (naxis > minimo) {
+        stop("The number of axis to be used must be lesser than or equal to ",
+             minimo, " [min(GEN-1;ENV-1)]")
     }
-}
 
+    if (nrepval != Nbloc - 1) {
+        stop("The number replications used for validation must be equal to total number of replications -1 (In this case ",
+             (Nbloc - 1), ").")
+    }
+
+    if (verbose == TRUE) {
+        pb <- winProgressBar(title = "the model is being built, please, wait.",
+                             min = 1, max = nboot, width = 570)
+    }
+    condition = (design == "CRD")
+    condition2 = (design == "RCBD")
+
+    for (b in 1:nboot) {
+
+        if (condition) {
+            X <- sample(1:10000, 1)
+            set.seed(X)
+            modeling <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::sample_n(nrepval,
+                                                                               replace = F)
+            modeling <- as.data.frame(modeling[order(modeling$ID), ])
+            rownames(modeling) <- modeling$ID
+        }
+        if (condition2) {
+            tmp = group_factors(data, !!enquo(env), keep_factors = TRUE, verbose = FALSE)
+            modeling = do.call(rbind,
+                               lapply(tmp, function(x){
+                                   X2 <- sample(unique(REPS), nrepval, replace = F)
+                                   x %>%
+                                       dplyr::group_by(!!enquo(gen)) %>%
+                                       dplyr::filter(REP %in% c(X2))
+                               })
+            ) %>% as.data.frame()
+            rownames(modeling) <- modeling$ID
+        }
+        testing <- dplyr::anti_join(data, modeling, by = c("ENV", "GEN",
+                                                           "REP", "Y", "ID"))
+        testing <- testing[order(testing[, 1], testing[, 2], testing[, 3]),
+                           ]
+        MEDIAS <- data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>%
+                                 dplyr::summarise(Y = mean(Y)))
+        residual <- residuals(lm(Y ~ ENV + GEN, data = MEDIAS))
+        s <- svd(t(matrix(residual, Nenv, byrow = T)))
+        MEDIAS <- mutate(MEDIAS,
+                         Ypred = Y - residual,
+                         ResAMMI =  ((model.matrix(~factor(testing$GEN) - 1) %*% s$u[, 1:naxis]) *
+                                         (model.matrix(~factor(testing$ENV) - 1) %*% s$v[, 1:naxis])) %*%
+                             s$d[1:naxis],
+                         YpredAMMI = Ypred + ResAMMI,
+                         testing = testing$Y,
+                         error = YpredAMMI - testing,
+                         errrorAMMI0 = Ypred - testing)
+        if (naxis == 0) {
+            RMSPDres[, 1][b] <- sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
+        } else {
+            RMSPDres[, 1][b] <- sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
+        }
+
+        if (verbose == TRUE) {
+            ProcdAtua <- b
+            setWinProgressBar(pb, b, title = paste("Validating ", ProcdAtua,
+                                                   " of ", nboot, "validation datasets, considering", naxis, "axes",
+                                                   "-", round(b/nboot * 100, 1), "% Concluded -"))
+        }
+
+    }
+    if (verbose == TRUE) {
+        close(pb)
+    }
+
+    RSMEmean <- mean(RMSPDres$RMSPD)
+    return(structure(list(RMSPD = RMSPDres, RSMEmean = RSMEmean, Estimated = MEDIAS,
+                          Modeling = modeling, Testing = testing), class = "validation.AMMI"))
+}
