@@ -2,7 +2,7 @@ group_factors = function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
   grouped <- group_by(.data, ...)
   names <- rlang::eval_bare(rlang::expr(paste(!!!group_keys(grouped), sep = " / ")))
   gd =   grouped %>%
-    group_split(keep = FALSE) %>%
+    group_split(keep = TRUE) %>%
     rlang::set_names(names)
   if (keep_factors == FALSE){
     if (verbose == TRUE){
