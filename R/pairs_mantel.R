@@ -30,13 +30,19 @@ pairs_mantel = function(...,
   if (!type %in% c(1:2)){
     stop("The argument type must be 1 (linear correlation) or 2 (partial correlation).")
   }
-  if(sum(lapply(class, function(x) !class(x) %in% c("lpcor_group", "lpcor", "mahala_group", "covcor_design") == TRUE)>0)){
+  if(sum(lapply(class, function(x) !class(x) %in% c("lpcor_group", "lpcor", "mahala_group",
+                                                    "covcor_design", "group_clustering") == TRUE)>0)){
     stop("The object must be of the class lpcor. Please use 'as.lpcorr' to convert correlation matrices into the correct format.")
   }
   if(class(...) == "lpcor_group"){
     data = lapply(..., function(x){
     x[[type]]
   })
+  }
+  if(class(...) == "group_clustering"){
+    data = lapply(..., function(x){
+      x$distance
+    })
   } else {
     data = lapply(..., function(x){
       x
@@ -46,7 +52,6 @@ pairs_mantel = function(...,
   if(is.null(fill.point)==TRUE && any(w == shape.point)){
     stop(call. =  FALSE, "If 'shape.point' is a value between 21 and 25, you must provide a color for fill the shape using the argument 'fill.point.'")
   }
-
     for(i in 1:length(data)){
       if(i == 1){
         Dataset = data.frame(var = as.vector(t(data[[1]])[lower.tri(data[[1]],diag=F)]))
