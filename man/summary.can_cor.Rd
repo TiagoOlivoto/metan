@@ -1,0 +1,42 @@
+\name{summary.can_cor}
+\alias{summary.can_cor}
+\title{Summarise an object of class can_cor}
+\usage{
+\method{summary}{can_cor}(object, export = FALSE, file.name = NULL, digits = 4, ...)
+}
+
+\description{
+Summarise an object of class \code{can_cor} object in two ways. By default, the results are shown in the R console. The results can also be exported to the directory.
+
+}
+
+\arguments{
+
+  \item{object}{The \code{can_cor} object}
+
+  \item{export}{A logical argument. If \code{TRUE|T}, a *.txt file is exported to the working directory}
+
+  \item{file.name}{The name of the file if \code{export = TRUE} }
+
+  \item{digits}{The significant digits to be shown.}
+
+  \item{...}{Other arguments of the function}
+
+}
+
+\author{Tiago Olivoto \email{tiagoolivoto@gmail.com}}
+
+
+\examples{
+\dontrun{
+library(METAAB)
+cc = can_corr(data_ge2,
+              FG = c(PH, EH, EP),
+              SG = c(EL, CL, CD, CW, KW, NR, TKW),
+              verbose = FALSE)
+summary(cc)
+summary(cc,
+        export = TRUE,
+        file.name = "canonical results")
+}
+}
