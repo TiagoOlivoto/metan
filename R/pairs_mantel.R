@@ -43,7 +43,8 @@ pairs_mantel = function(...,
     data = lapply(..., function(x){
       x$distance
     })
-  } else {
+  }
+  if(!class(...) %in% c("lpcor_group", "group_clustering")){
     data = lapply(..., function(x){
       x
     })
