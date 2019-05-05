@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Indexes for simultaneous selection • METAAB</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Indexes for simultaneous selection">
@@ -134,14 +134,14 @@
 <h1 class="hasAnchor">
 <a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
 <p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/WAASB.html">WAASB()</a></code> and then the function <code><a href="../reference/FAI_BLUP.html">FAI_BLUP()</a></code> is used to compute the FAI-BLUP index.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
-
-FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),
-               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),
-               <span class="dt">SI =</span> <span class="dv">15</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="st">      </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
+<a class="sourceLine" id="cb1-7" title="7">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
 ## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
 ## (tol = 0.002, component 1)</code></pre>
@@ -193,7 +193,7 @@ FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
 ## Selected genotypes
 ## H13 H6
 ## -----------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
 <p><img src="vignettes_INDEXES_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="multi-trait-stability-index" class="section level1">
@@ -203,10 +203,10 @@ FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
 <h2 class="hasAnchor">
 <a href="#based-on-stability-only" class="anchor"></a>Based on stability only</h2>
 <p>In the following example, the selection of stable genotypes will consider the</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MTSI_index =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
-<span class="st">             </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP,
-                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span>
-<span class="st">             </span><span class="kw"><a href="../reference/MTSI.html">MTSI</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">MTSI_index =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb5-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">             </span><span class="kw"><a href="../reference/MTSI.html">MTSI</a></span>()</a></code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
 ## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
 ## (tol = 0.002, component 1)</code></pre>
@@ -269,19 +269,19 @@ FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
 ## Selected genotypes
 ## H11 H5
 ## -------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</a></code></pre></div>
 <p><img src="vignettes_INDEXES_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="based-on-mean-performance-and-stability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#based-on-mean-performance-and-stability" class="anchor"></a>Based on mean performance and stability</h2>
 <p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. The simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MTSI_index2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
-<span class="st">             </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP,
-                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),
-                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>), <span class="co">#Default</span>
-                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span>
-<span class="st">             </span><span class="kw"><a href="../reference/MTSI.html">MTSI</a></span>(<span class="dt">index =</span> <span class="st">"WAASBY"</span>)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">MTSI_index2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb11-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
+<a class="sourceLine" id="cb11-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>), <span class="co">#Default</span></a>
+<a class="sourceLine" id="cb11-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/MTSI.html">MTSI</a></span>(<span class="dt">index =</span> <span class="st">"WAASBY"</span>)</a></code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
 ## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
 ## (tol = 0.002, component 1)</code></pre>
@@ -344,7 +344,7 @@ FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
 ## Selected genotypes
 ## H5 H11
 ## -------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</a></code></pre></div>
 <p><img src="vignettes_INDEXES_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -353,7 +353,7 @@ FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span>
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
 <div id="ref-Rocha2018">
-<p>Rocha, João Romero do Amaral Santos de Car, Juarez Campolina Machado, and Pedro Crescêncio Souza Carneiro. 2018. “Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy.” <em>GCB Bioenergy</em> 10 (1). Wiley/Blackwell (10.1111): 52–60. doi:<a href="https://doi.org/10.1111/gcbb.12443">10.1111/gcbb.12443</a>.</p>
+<p>Rocha, João Romero do Amaral Santos de Car, Juarez Campolina Machado, and Pedro Crescêncio Souza Carneiro. 2018. “Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy.” <em>GCB Bioenergy</em> 10 (1): 52–60. <a href="https://doi.org/10.1111/gcbb.12443">https://doi.org/10.1111/gcbb.12443</a>.</p>
 </div>
 </div>
 </div>

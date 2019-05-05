@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Helper functions for METAAB • METAAB</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Helper functions for METAAB">
@@ -128,26 +128,26 @@
 <div id="bind-cross-validation-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bind-cross-validation-objects" class="anchor"></a>Bind cross-validation objects</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
-AMMI =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/validation.AMMIF.html">validation.AMMIF</a></span>(ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)
-BLUP =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/validation.blup.html">validation.blup</a></span>(ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)
-bind_data =<span class="st"> </span><span class="kw"><a href="../reference/bind_val.html">bind_val</a></span>(AMMI, BLUP)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind_data)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" title="3">AMMI =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/validation.AMMIF.html">validation.AMMIF</a></span>(ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-4" title="4">BLUP =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/validation.blup.html">validation.blup</a></span>(ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-5" title="5">bind_data =<span class="st"> </span><span class="kw"><a href="../reference/bind_val.html">bind_val</a></span>(AMMI, BLUP)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind_data)</a></code></pre></div>
 <p><img src="vignettes_HELPER_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="split-a-dataframe-into-subsets-grouped-by-one-or-more-factors" class="section level1">
 <h1 class="hasAnchor">
 <a href="#split-a-dataframe-into-subsets-grouped-by-one-or-more-factors" class="anchor"></a>Split a dataframe into subsets grouped by one or more factors</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g1 =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(g1)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">g1 =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(ENV)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(g1)</a></code></pre></div>
 <pre><code>##  [1] "E1"  "E10" "E11" "E12" "E13" "E14" "E2"  "E3"  "E4"  "E5"  "E6" 
 ## [12] "E7"  "E8"  "E9"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)
-<span class="kw"><a href="../reference/is.group_factors.html">is.group_factors</a></span>(g2)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">g2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/group_factors.html">group_factors</a></span>(GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="../reference/is.group_factors.html">is.group_factors</a></span>(g2)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g3 =<span class="st"> </span>CO2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/is.group_factors.html">as.group_factors</a></span>()
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(g3)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">g3 =<span class="st"> </span>CO2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/is.group_factors.html">as.group_factors</a></span>()</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(g3)</a></code></pre></div>
 <pre><code>##  [1] "Qn1 / Quebec / nonchilled"      "Qn2 / Quebec / nonchilled"     
 ##  [3] "Qn3 / Quebec / nonchilled"      "Qc1 / Quebec / chilled"        
 ##  [5] "Qc3 / Quebec / chilled"         "Qc2 / Quebec / chilled"        
@@ -158,9 +158,9 @@ bind_data =<span class="st"> </span><span class="kw"><a href="../reference/bind_
 <div id="parametric-statistics-for-genotype-vs-environment-interaction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#parametric-statistics-for-genotype-vs-environment-interaction" class="anchor"></a>Parametric statistics for genotype-vs-environment interaction</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">3</span>)
-model2 =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, GY)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(model2, <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2">model2 =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(model2, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Variable GY 
 ## ------------------------------ Individual analysis of variance--- ---------------------
 ## data frame with 0 columns and 0 rows
@@ -277,7 +277,7 @@ model2 =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span cla
 <div id="make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="anchor"></a>Make a two-way table based on categorical and numerical arguments</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data_ge)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data_ge)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   ENV   GEN   REP      GY    HM
 ##   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -287,8 +287,8 @@ model2 =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span cla
 ## 4 E1    G2    1      3.21  45.2
 ## 5 E1    G2    2      2.93  45.3
 ## 6 E1    G2    3      2.56  45.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/mmat.html">mmat</a></span>(<span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)
-matrix</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">matrix =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/mmat.html">mmat</a></span>(<span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
+<a class="sourceLine" id="cb12-2" title="2">matrix</a></code></pre></div>
 <pre><code>##       E1  E10   E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9
 ## G1  2.37 2.31 1.356 1.34 3.00 1.53 3.04 4.08 3.49 4.17 2.81 1.90 2.27 2.78
 ## G10 1.97 1.54 0.899 1.02 1.83 1.86 3.15 4.11 4.27 3.37 2.48 2.24 2.70 3.15
@@ -304,38 +304,38 @@ matrix</code></pre></div>
 <div id="generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="section level1">
 <h1 class="hasAnchor">
 <a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="anchor"></a>Generate pairwise combinations of variables by applying one function to each pair</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>),
-                  <span class="dt">B =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">120</span>, <span class="dt">sd =</span> <span class="dv">30</span>),
-                  <span class="dt">C =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">40</span>, <span class="dt">sd =</span> <span class="dv">10</span>),
-                  <span class="dt">D =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">1100</span>, <span class="dt">sd =</span> <span class="dv">200</span>),
-                  <span class="dt">E =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>))
-<span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</code></pre></div>
-<pre><code>##   A.B  A.C B.C  A.D  B.D  C.D  A.E   B.E  C.E  D.E
-## 1 173 48.4 191 1050 1192 1067 15.6 157.9 33.0 1035
-## 2 113 35.8 121 1327 1413 1336 16.3 102.0 24.9 1316
-## 3 152 51.7 180 1250 1378 1278 12.8 140.8 40.3 1239
-## 4 101 50.8 130 1181 1260 1209 15.5  94.3 43.6 1174
-## 5 125 44.9 147 1324 1427 1347 14.2 116.5 36.8 1316</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</code></pre></div>
-<pre><code>##    A.B A.C   A.D   A.E  B.C    B.D   B.E   C.D    C.E    D.E
-## 1 2442 509 16006  1.47 5191 163280  15.0 34017   3.13   98.4
-## 2 1347 301 17824 37.01 2204 130424 270.8 29162  60.55 3582.7
-## 3 1698 480 15001  8.34 5553 173555  96.5 49061  27.28  852.7
-## 4 1023 448 13286 47.11 3552 105423 373.8 46121 163.55 4854.1
-## 5 1267 377 14661 34.30 3833 149010 348.6 44355 103.76 4034.0</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb14-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">120</span>, <span class="dt">sd =</span> <span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb14-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">40</span>, <span class="dt">sd =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb14-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">1100</span>, <span class="dt">sd =</span> <span class="dv">200</span>),</a>
+<a class="sourceLine" id="cb14-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb14-6" title="6"><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a></code></pre></div>
+<pre><code>##     A.B  A.C   B.C  A.D  B.D  C.D   A.E   B.E  C.E  D.E
+## 1  77.9 42.0  98.9 1096 1153 1117 12.02  68.9 33.0 1087
+## 2 115.4 57.7 157.2 1213 1313 1255 10.09 109.6 51.8 1207
+## 3 150.1 54.1 184.5 1303 1434 1338 10.99 141.3 45.3 1295
+## 4 113.4 46.9 142.4  879  975  908  9.54 105.1 38.5  871
+## 5 137.1 54.1 166.8 1357 1470 1387 14.31 127.0 44.0 1347</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a></code></pre></div>
+<pre><code>##    A.B A.C   A.D   A.E  B.C    B.D   B.E   C.D   C.E  D.E
+## 1  708 331 11401 15.90 2123  73171 102.0 34198  47.7 1644
+## 2  856 396  9600 16.92 5343 129526 228.2 59918 105.6 2560
+## 3 1388 438 12799 10.87 6205 181425 154.0 57236  48.6 1421
+## 4  935 339  7784  5.34 3963  90965  62.4 33005  22.6  520
+## 5 1527 512 16445 25.49 5232 167924 260.3 56345  87.3 2803</code></pre>
 </div>
 <div id="combining-data-frames-by-row-filling-missing-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-data-frames-by-row-filling-missing-values" class="anchor"></a>Combining data.frames by row, filling missing values</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))
-df2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))
-<span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb18-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
 <pre><code>##   v1 v2 v3
 ## 1  1  2  -
 ## 2  2  3  -
 ## 3  -  -  4
 ## 4  -  -  5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
 <pre><code>##   v1 v2 v3
 ## 1  1  2 NA
 ## 2  2  3 NA
@@ -345,11 +345,11 @@ df2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentati
 <div id="rescale-a-continuous-vector-to-have-specified-minimum-and-maximum-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#rescale-a-continuous-vector-to-have-specified-minimum-and-maximum-values" class="anchor"></a>Rescale a continuous vector to have specified minimum and maximum values</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##  [1]   0.0  11.1  22.2  33.3  44.4  55.6  66.7  77.8  88.9 100.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="dt">new_min =</span> <span class="dv">5</span>, <span class="dt">new_max =</span> <span class="dv">10</span>)</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="dt">new_min =</span> <span class="dv">5</span>, <span class="dt">new_max =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1]  5.0  7.5 10.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">100</span>)</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">100</span>)</a></code></pre></div>
 <pre><code>## [1]   0  50 100</code></pre>
 </div>
   </div>

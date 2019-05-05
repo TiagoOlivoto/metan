@@ -18,7 +18,7 @@ library(METAAB)
 library(dplyr)
 library(cowplot)
 data_out = data_ge2
-data_out[12, 5] = 26
+data_out[12, 4] = 26
 find_outliers(data_out, var = PH, plots = TRUE)
     ```
 
@@ -221,6 +221,27 @@ D2 = mahala(.means = means, covar = res, inverted = FALSE)
     ```
 
 
+
+## Nonparametric confidence interval for Pearson's correlation
+
+Recently, a Gaussian-independent estimator for the confidence interval for Pearson's correlation coefficient was based proposed by @Olivoto2018. This estimator is based on sample size and strength of associations and may be estimated using the function `corr.ci()`. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (), or using a dataframe.
+
+```{r }
+corr_ci(n = 145, r = 0.34)
+
+corr_ci(data_ge2)
+
+data_ge2 %>% group_factors(ENV) %>% corr_ci()
+```
+
+
+## Sample size planning
+
+```{r }
+corr_ss(r = 0.6, CI = 0.1)
+    ```
+
+
 # Collinearity diagnostic
 
 The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor traits. Several indicators, such as Variance Inflaction Factor, Condition Number, and Matrix Determinant are considered [@Olivoto2017f; @Olivoto2017c] The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class `group_factor`, which split a dataframe into subsets based on one or more grouping factors.
@@ -301,31 +322,72 @@ pcoeff4 = data_ge2 %>%
 ```
 
 
-
-# Nonparametric confidence interval for Pearson's correlation
-
-Recently, a Gaussian-independent estimator for the confidence interval for Pearson's correlation coefficient was based proposed by @Olivoto2018. This estimator is based on sample size and strength of associations and may be estimated using the function `corr.ci()`. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (), or using a dataframe.
+# Canonical correlation analysis
 
 ```{r }
-corr_ci(n = 145, r = 0.34)
+cc1 = can_corr(data_ge2,
+               FG = c(PH, EH, EP),
+               SG = c(EL, ED, CL, CD, CW, KW, NR))
 
-corr_ci(data_ge2)
-
-data_ge2 %>% group_factors(ENV) %>% corr_ci()
+cc2 = can_corr(FG = data_ge2[, 4:6],
+               SG = data_ge2[, 7:13],
+               verbose = FALSE,
+               collinearity = FALSE)
 ```
 
 
 
 
-# Sample size planning
+
+
+
+
+# Clustering analysis
+## Using function `clustering()`
 
 ```{r }
-corr_ss(r = 0.6, CI = 0.1)
+# All rows and all numeric variables from data
+d1 = clustering(data_ge2)
+
+# Based on the mean for each genotype
+d2 = clustering(data_ge2, means_by = GEN)
+
+# Based on the mean of each genotype
+# Variables NKR, TKW, and NKE 
+d3 = clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)
+
+# Select variables for compute the distances
+d4 = clustering(data_ge2, means_by = GEN, selvar = TRUE)
+
+# Compute the distances with standardized data
+# Define 4 clusters
+d5 = clustering(data_ge2,
+                means_by = GEN,
+                scale = TRUE,
+                nclust = 4)
+
+# Compute the distances for each environment
+# All rows of each environment and all numeric variables used
+d6 = data_ge2 %>%
+     group_factors(ENV) %>%
+     clustering()
+
+# Compute the distances for each environment
+# Select the variables NKR, TKW, and NKE
+# Use the mean for each genotype
+d7 = data_ge2 %>%
+  group_factors(ENV, keep_factors = TRUE) %>%
+  clustering(NKR, TKW, NKE,
+             means_by = GEN)
+
+# Check the correlation between distance matrices
+pairs_mantel(d7)
+
     ```
 
 
-# Mahalanobis distance
-## Based on designed experiments
+## Mahalanobis distance
+### Based on designed experiments
 
 ```{r }
 options(digits = 2)
@@ -341,7 +403,7 @@ maha_group = data_ge %>%
 
     ```
 
-## Compute one distance for each environment
+### Compute one distance for each environment
 
 ```{r }
 maha_group = data_ge %>%
@@ -350,11 +412,9 @@ maha_group = data_ge %>%
 
     ```
 
-## If you have the matrices of means and covariances
+### If you have the matrices of means and covariances
 
 ```{r }
-# Compute the mean for genotypes
-library(METAAB)
 means = data_ge %>%
         select(-c(ENV, REP)) %>%
         group_by(GEN) %>%
@@ -372,6 +432,7 @@ dend = as.dendrogram(hclust(as.dist(dist)))
 plot(dend)
 
     ```
+
 
 
 #References
