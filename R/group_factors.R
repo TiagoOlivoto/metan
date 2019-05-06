@@ -16,13 +16,8 @@ group_factors = function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
     })
   } else{
     gd = lapply(gd, function(x){
-      x %>% as.data.frame()})
-    if (verbose == TRUE){
-      if (sum(lapply(gd[[1]], is.factor)==TRUE)>0){
-      message("The columns ", paste0(collapse = " ", names(gd[[1]][ , unlist(lapply(gd[[1]], is.factor)) ])),
-              " where ignored. Use 'keep_factors = TRUE' to keep this columns in the grouped data. ")
-      }
-    }
+         as.data.frame(x)
+         })
   }
   return(structure(gd, class = "group_factors"))
 }
