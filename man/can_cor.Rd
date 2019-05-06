@@ -12,7 +12,7 @@ Performs canonical correlation analysis with collinearity diagnostic, estimation
 }
 
 \arguments{
- \item{.data}{The data to be analyzed. Must be a dataframe containing the numeric variables that will be used in the estimation of the correlations. The data can also be passed directely by the arguments \code{FG} and \code{SG}.}
+ \item{.data}{The data to be analyzed. Must be a dataframe containing the numeric variables that will be used in the estimation of the correlations. The data can also be passed directly  by the arguments \code{FG} and \code{SG}. Alternatively, \code{.data} may be passed from the function \code{group_factors}. In such case, the canonical correlation will be estimated for each level of the grouping variable in that function.}
 
  \item{FG}{If a dataframe is informed in \code{.data}, then \code{FG} is a comma-separated list of unquoted variable names that will compose the first (smallest) group of the correlation analysis. FG can also be a cordinate for the variables; for example, \code{FG = data[,1:3]}.}
 
@@ -64,6 +64,8 @@ Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J. Pelegrin, V
 \examples{
 \dontrun{
 library(METAAB)
+library(dplyr)
+
 cc1 = can_corr(data_ge2,
                FG = c(PH, EH, EP),
                SG = c(EL, ED, CL, CD, CW, KW, NR))
@@ -72,6 +74,12 @@ cc2 = can_corr(FG = datage_2[, 4:6],
                SG = datage_2[, 7:13],
                verbose = FALSE,
                collinearity = FALSE)
+
+# Canonical correlations for each environment
+cc3 = data_ge2 \%>\%
+      group_factors(ENV, REP) \%>\%
+      can_corr(FG = c(PH, EH, EP),
+               SG = c(EL, ED, CL, CD, CW, KW, NR))
 
 }
 }
