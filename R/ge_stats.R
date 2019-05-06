@@ -30,9 +30,9 @@ data2 =  data  %>%
 data3 = mutate(data2,
                ge = residuals(lm(mean ~ ENV + GEN, data = data2)),
                gge = residuals(lm(mean ~ ENV, data = data2)))
-ge_mean = mmat(data3, GEN, ENV, mean)
-ge_effect = mmat(data3, GEN, ENV, ge)
-gge_effect = mmat(data3, GEN, ENV, gge)
+ge_mean = make_mat(data3, GEN, ENV, mean)
+ge_effect = make_mat(data3, GEN, ENV, ge)
+gge_effect = make_mat(data3, GEN, ENV, gge)
 Mean = apply(ge_mean, 1, mean)
 Ecoval = rowSums(ge_effect^2 * length(unique(data$REP)))
 Variance = rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
