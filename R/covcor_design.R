@@ -87,12 +87,12 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
       corres = matrix(1, nvar, nvar)
       corrgen = matrix(1, nvar, nvar)
       corrfen = matrix(1, nvar, nvar)
-      vres[upper.tri(vres, diag = F)] <- vres[lower.tri(vres, diag = F)] <- covres
-      vfen[upper.tri(vfen, diag = F)] <- vfen[lower.tri(vfen, diag = F)] <- covfen
-      vgen[upper.tri(vgen, diag = F)] <- vgen[lower.tri(vgen, diag = F)] <- covgen
-      corres[upper.tri(corres, diag = F)] <- corres[lower.tri(corres, diag = F)] <- cores
-      corrfen[upper.tri(corrfen, diag = F)] <- corrfen[lower.tri(corrfen, diag = F)] <- corfen
-      corrgen[upper.tri(corrgen, diag = F)] <- corrgen[lower.tri(corrgen, diag = F)] <- corgen
+      vres[lower.tri(vres, diag = F)] <- covres
+      vfen[lower.tri(vfen, diag = F)] <- covfen
+      vgen[lower.tri(vgen, diag = F)] <- covgen
+      corres[lower.tri(corres, diag = F)] <- cores
+      corrfen[lower.tri(corrfen, diag = F)] <- corfen
+      corrgen[lower.tri(corrgen, diag = F)] <- corgen
       colnames(vres) <- rownames(vres) <- names(means)
       colnames(vfen) <- rownames(vfen) <- names(means)
       colnames(vgen) <- rownames(vgen) <- names(means)
@@ -101,12 +101,12 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
       colnames(corrgen) <- rownames(corrgen) <- names(means)
 
       if (is.null(type)){
-        tmp = list(geno_cov = as.matrix(vgen),
-                   phen_cov = as.matrix(vfen),
-                   resi_cov = as.matrix(vres),
-                   geno_cor = as.matrix(corrgen),
-                   phen_cor = as.matrix(corrfen),
-                   resi_cor = as.matrix(corres))
+        tmp = list(geno_cov = as.matrix(make_sym(vgen)),
+                   phen_cov = as.matrix(make_sym(vfen)),
+                   resi_cov = as.matrix(make_sym(vres)),
+                   geno_cor = as.matrix(make_sym(corrgen)),
+                   phen_cor = as.matrix(make_sym(corrfen)),
+                   resi_cor = as.matrix(make_sym(corres)))
         dfs[[paste(nam)]] = tmp
       } else {
         if(type == "pcor"){
@@ -210,12 +210,12 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
   corres = matrix(1, nvar, nvar)
   corrgen = matrix(1, nvar, nvar)
   corrfen = matrix(1, nvar, nvar)
-  vres[upper.tri(vres, diag = F)] <- vres[lower.tri(vres, diag = F)] <- covres
-  vfen[upper.tri(vfen, diag = F)] <- vfen[lower.tri(vfen, diag = F)] <- covfen
-  vgen[upper.tri(vgen, diag = F)] <- vgen[lower.tri(vgen, diag = F)] <- covgen
-  corres[upper.tri(corres, diag = F)] <- corres[lower.tri(corres, diag = F)] <- cores
-  corrfen[upper.tri(corrfen, diag = F)] <- corrfen[lower.tri(corrfen, diag = F)] <- corfen
-  corrgen[upper.tri(corrgen, diag = F)] <- corrgen[lower.tri(corrgen, diag = F)] <- corgen
+  vres[lower.tri(vres, diag = F)] <- covres
+  vfen[lower.tri(vfen, diag = F)] <- covfen
+  vgen[lower.tri(vgen, diag = F)] <- covgen
+  corres[lower.tri(corres, diag = F)] <- cores
+  corrfen[lower.tri(corrfen, diag = F)] <- corfen
+  corrgen[lower.tri(corrgen, diag = F)] <- corgen
   colnames(vres) <- rownames(vres) <- names(means)
   colnames(vfen) <- rownames(vfen) <- names(means)
   colnames(vgen) <- rownames(vgen) <- names(means)
@@ -224,12 +224,12 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
   colnames(corrgen) <- rownames(corrgen) <- names(means)
 
   if (is.null(type)){
-  return(structure(list(geno_cov = as.matrix(vgen),
-              phen_cov = as.matrix(vfen),
-              resi_cov = as.matrix(vres),
-              geno_cor = as.matrix(corrgen),
-              phen_cor = as.matrix(corrfen),
-              resi_cor = as.matrix(corres),
+  return(structure(list(geno_cov = as.matrix(make_sym(vgen)),
+              phen_cov = as.matrix(make_sym(vfen)),
+              resi_cov = as.matrix(make_sym(vres)),
+              geno_cor = as.matrix(make_sym(corrgen)),
+              phen_cor = as.matrix(make_sym(corrfen)),
+              resi_cor = as.matrix(make_sym(corres)),
               means = means),
               class = "covcor_design"))
   }
@@ -256,4 +256,3 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
   }
   }
 }
-
