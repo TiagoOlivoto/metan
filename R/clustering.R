@@ -119,9 +119,8 @@ for (k in 1:length(.data)){
       modelcode = modelcode + 1
     }
     cat("Done!","\n")
-    cat("\n\n")
     cat("--------------------------------------------------------------------------","\n")
-    cat("Summary of the adjusted models","\n")
+    cat("\nSummary of the adjusted models","\n")
     cat("--------------------------------------------------------------------------","\n")
     print(statistics, row.names = F)
     cat("--------------------------------------------------------------------------")
@@ -305,9 +304,8 @@ return(structure(dfs, class = "group_clustering"))
       modelcode = modelcode + 1
     }
     cat("Done!","\n")
-    cat("\n\n")
     cat("--------------------------------------------------------------------------","\n")
-    cat("Summary of the adjusted models","\n")
+    cat("\nSummary of the adjusted models","\n")
     cat("--------------------------------------------------------------------------","\n")
     print(statistics, row.names = F)
     cat("--------------------------------------------------------------------------")
