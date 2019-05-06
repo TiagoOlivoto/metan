@@ -15,13 +15,13 @@ Resende_indexes <- function(.data) {
 
         gge <- .data[[var]][["BLUPgge"]]
         # Harmonic mean
-        GEPRED = mmat(gge, GEN, ENV, Predicted)
+        GEPRED = make_mat(gge, GEN, ENV, Predicted)
         HMGV <- data.frame(HMGV = apply(GEPRED, 1, FUN = hmean_fun), HMGV_order = rank(-apply(GEPRED,
             1, FUN = hmean_fun)))
         ## Relative performance
         y <- .data[[var]][["MeansGxE"]]
 
-        GEMEAN <- mmat(y, GEN, ENV, Y)
+        GEMEAN <- make_mat(y, GEN, ENV, Y)
         ovmean <- mean(y$Y)
         mean_env <- apply(GEMEAN, 2, FUN = mean)
         RPGV <- data.frame(RPGV = apply(t(t(GEPRED)/mean_env), 1, mean))
