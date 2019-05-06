@@ -10,7 +10,8 @@ importFrom(lme4, ranef, VarCorr, fortify.merMod)
 importFrom(lmerTest, ranova, lmer)
 importFrom(gtools, mixedorder)
 importFrom(dplyr, select, everything, mutate, group_by, group_by_if, group_keys,
-           group_split, left_join, sample_n, anti_join, enquo, pull)
+           group_split, left_join, sample_n, anti_join, enquo, pull, summarise_all,
+           select_if)
 importFrom(gplots, heatmap.2)
 importFrom(rlang, eval_bare, expr)
 importFrom(FWDselect, selection)
@@ -23,8 +24,9 @@ importFrom("stats", "aov", "filter", "as.dendrogram", "dist", "hclust", "lm",
            "pf", "predict", "dnorm", "fitted", "ppoints", "qnorm", "quantile",
            "resid", "sd", "residuals", "cor", "reorder", "varimax",
            "cov2cor", "pt", "anova", "as.formula", "as.dist", "symnum",
-           "shapiro.test", "aggregate", "cor.test")
-importFrom("utils", "head", "setWinProgressBar", "winProgressBar", "combn")
+           "shapiro.test", "aggregate", "cor.test", "cov", "pchisq", "cophenetic",
+           "cutree", "prcomp")
+importFrom("utils", "head", "setWinProgressBar", "winProgressBar", "combn", "stack")
 S3method(as, lpcor)
 S3method(is, lpcor)
 S3method(plot, WAASBY)
@@ -36,11 +38,13 @@ S3method(plot, scores)
 S3method(plot, MTSI)
 S3method(plot, FAI_BLUP)
 S3method(plot, validation.AMMIF)
+S3method(plot, clustering)
 S3method(predict, WAAS.AMMI)
 S3method(summary, WAASB)
 S3method(summary, WAAS.AMMI)
 S3method(summary, MTSI)
 S3method(summary, ge_stats)
 S3method(summary, path_coeff)
+S3method(summary, can_cor)
 S3method(autoplot, WAAS.AMMI)
 S3method(autoplot, WAASB)
