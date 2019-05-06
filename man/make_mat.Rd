@@ -1,8 +1,8 @@
-\name{mmat}
-\alias{mmat}
+\name{make_mat}
+\alias{make_mat}
 \title{Make a two-way table based on categorical and numerical arguments}
 \usage{
-mmat(.data, row, col, value)
+make_mat(.data, row, col, value)
 }
 \description{
 This function help users to easely make a two-way table from a "long format" data.
@@ -24,7 +24,7 @@ This function help users to easely make a two-way table from a "long format" dat
 \examples{
 library(METAAB)
 library(dplyr)
-matrix = data_ge \%>\% mmat(row = GEN, col = ENV, val = GY)
+matrix = data_ge \%>\% make_mat(row = GEN, col = ENV, val = GY)
 matrix
 }
 
