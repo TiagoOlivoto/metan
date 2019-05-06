@@ -45,7 +45,7 @@ summary(model2, digits = 3)
 
 ```{r, message=FALSE }
 head(data_ge)
-matrix = data_ge %>% mmat(row = GEN, col = ENV, val = GY)
+matrix = data_ge %>% make_mat(row = GEN, col = ENV, val = GY)
 matrix
     ```
 
