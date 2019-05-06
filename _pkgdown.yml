@@ -1,7 +1,7 @@
 title: METAAB
 template:
   params:
-    bootswatch: flatly
+    bootswatch: spacelab
 
 development:
   mode: auto
@@ -53,8 +53,10 @@ reference:
       - '`as.group_factors`'
       - '`as.lpcorr`'
       - '`colindiag`'
+      - '`corr_plot`'
       - '`corr_ci`'
       - '`corr_ss`'
+      - '`covcor_design`'
       - '`find_outliers`'
       - '`is.lpcorr`'
       - '`lpcorr`'
@@ -73,7 +75,8 @@ reference:
       - '`ge_stats`'
       - '`group_factors`'
       - '`is.group_factors`'
-      - '`mmat`'
+      - '`make_mat`'
+      - '`make_sym`'
       - '`performs_ammi`'
       - '`rbind_fill`'
       - '`resca`'
