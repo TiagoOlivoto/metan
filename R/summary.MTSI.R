@@ -1,10 +1,41 @@
+#' Summary a MTSI object
+#'
+#' Summary a \code{MTSI} object in two ways. By default, the results are shown
+#' in the R console. The results can also be exported to the directory.
+#'
+#'
+#' @param object The \code{MTSI} object
+#' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
+#' to the working directory
+#' @param file.name The name of the file if \code{export = TRUE}
+#' @param digits The significant digits to be shown.
+#' @param ... Other arguments of the function
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method summary MTSI
+#' @export
+#' @examples
+#' \dontrun{
+#' library(METAAB)
+#' # Based on stability only
+#' MTSI_MODEL = WAASB(data_ge,
+#'                    resp = c(GY, HM),
+#'                    gen = GEN,
+#'                    env = ENV,
+#'                    rep = REP)
+#'
+#' MTSI_index = MTSI(MTSI_MODEL)
+#' summary(MTSI_index)
+#' summary(MTSI_index,
+#'         export = TRUE,
+#'         file.name = "my results")
+#' }
+#'
 summary.MTSI <- function(object, export = FALSE, file.name = NULL, digits = 4, ...) {
-    
     class <- class(object)
     if (!class == "MTSI") {
         stop("The object must be of class 'MTSI'")
     }
-    
+
     if (export == TRUE) {
         if (is.null(file.name) == T) {
             file.name <- "MTSI summary"
@@ -13,7 +44,7 @@ summary.MTSI <- function(object, export = FALSE, file.name = NULL, digits = 4, .
         }
         sink(paste0(file.name, ".txt"))
         options(max.print = 99999999, width = 110)
-        
+
         cat("-------------------- Correlation matrix used used in factor analysis -----------------\n")
         print(object$cormat)
         cat("\n")
@@ -73,7 +104,7 @@ summary.MTSI <- function(object, export = FALSE, file.name = NULL, digits = 4, .
         cat(object$Selected)
         cat("\n")
         cat("------------------------------------ End of data -------------------------------------\n\n\n\n")
-        
+
     }
 }
 
