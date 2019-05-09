@@ -1,11 +1,37 @@
-summary.WAASB <- function(object, export = FALSE, blup = FALSE, file.name = NULL, 
+#' Summary a WAASB object
+#'
+#' Summary the \code{WAASB} object in two ways. By default, the results are
+#' shown in the R console. The results can also be exported to the directory.
+#'
+#'
+#' @param object The \code{WAASB} object
+#' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
+#' to the working directory
+#' @param blup A logical argument. If \code{TRUE|T}, the blups are shown.
+#' @param file.name The name of the file if \code{export = TRUE}
+#' @param digits The significant digits to be shown.
+#' @param ... Other arguments of the function
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method summary WAASB
+#' @export
+#' @examples
+#'
+#' library(METAAB)
+#' model = WAASB(data_ge,
+#'               resp = c(GY, HM),
+#'               gen = GEN,
+#'               env = ENV,
+#'               rep = REP)
+#' summary(model)
+#'
+summary.WAASB <- function(object, export = FALSE, blup = FALSE, file.name = NULL,
     digits = 4, ...) {
-    
+
     class <- class(object)
     if (!class == "WAASB") {
         stop("The object must be of class 'WAASB'")
     }
-    
+
     if (export == TRUE) {
         if (is.null(file.name) == T) {
             file.name <- "WAASB summary"
@@ -83,7 +109,7 @@ summary.WAASB <- function(object, export = FALSE, blup = FALSE, file.name = NULL
             cat("------------------------- Some information regarding the analysis ----------------------\n")
             print.data.frame(var$Details, row.names = FALSE)
             cat("-------------------------------------- End of data -------------------------------------\n")
-            
+
         }
     }
 }

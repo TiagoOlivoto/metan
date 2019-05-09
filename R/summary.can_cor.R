@@ -1,3 +1,33 @@
+#' Summarise an object of class can_cor
+#'
+#' Summarise an object of class \code{can_cor} object in two ways. By default,
+#' the results are shown in the R console. The results can also be exported to
+#' the directory.
+#'
+#'
+#' @param object The \code{can_cor} object
+#' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
+#' to the working directory
+#' @param file.name The name of the file if \code{export = TRUE}
+#' @param digits The significant digits to be shown.
+#' @param ... Other arguments of the function
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method summary can_cor
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' library(METAAB)
+#' cc = can_corr(data_ge2,
+#'               FG = c(PH, EH, EP),
+#'               SG = c(EL, CL, CD, CW, KW, NR, TKW),
+#'               verbose = FALSE)
+#' summary(cc)
+#' summary(cc,
+#'         export = TRUE,
+#'         file.name = "canonical results")
+#' }
+#'
 summary.can_cor <- function(object, export = FALSE, file.name = NULL, digits = 4, ...) {
   if (!class(object) == "can_cor") {
     stop("The object must be of class 'can_cor'")
