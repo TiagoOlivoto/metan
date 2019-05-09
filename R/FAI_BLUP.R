@@ -1,3 +1,51 @@
+#' Multi-trait index based on factor analysis and ideotype-design
+#'
+#' Multitrait index based on factor analysis and ideotype-design proposed by
+#' Rocha et al. (2018).
+#'
+#'
+#' @param .data An object of class \code{WAASB}
+#' @param DI,UI A vector of the same length of \code{.data} to construct the
+#' desirable (DI) and undesirable (UI) ideotypes. For each element of the
+#' vector, allowed values are \code{"max"}, \code{"min"}, \code{"mean"}, or a
+#' numeric value.
+#' @param SI An integer [0-100]. The selection intensity in percentage of the
+#' total number of genotypes.
+#' @param mineval The minimum value so that an eigenvector is retained in the
+#' factor analysis.
+#' @param verbose Logical value. If \code{TRUE} some results are shown in
+#' console.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
+#' Multitrait index based on factor analysis and ideotype-design: proposal and
+#' application on elephant grass breeding for bioenergy. GCB Bioenergy
+#' 10:52-60. doi:
+#' \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}
+#' @export
+#' @examples
+#'
+#' library(METAAB)
+#' library(dplyr)
+#'
+#' mod = WAASB(data_ge,
+#'             env = ENV,
+#'             gen = GEN,
+#'             rep = REP,
+#'             resp = c(GY, HM),)
+#'
+#' FAI = FAI_BLUP(mod,
+#'                SI = 15,
+#'                DI = c("max", "max"),
+#'                UI = c("min", "min"))
+#'
+#' # Or using the pipe operator %>%
+#'
+#' FAI = data_ge2 %>%
+#'       WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
+#'       FAI_BLUP(DI = c("max", "max", "max", "min"),
+#'                UI = c("min", "min", "min", "max"),
+#'                SI = 15)
+#'
 FAI_BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
 
     if (length(.data) == 1) {
