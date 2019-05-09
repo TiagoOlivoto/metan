@@ -1,3 +1,39 @@
+#' Linear and Partial Correlation Coefficients
+#'
+#' Estimates the linear and partial correlation coefficients using as input a
+#' data frame or a correlation matrix.
+#'
+#'
+#' @param .data The data to be analyzed. Must be a symmetric correlation matrix
+#' or, a dataframe containing the predictor variables, or an object of class
+#' \code{group_factors}.
+#' @param n If a correlation matrix is provided, then \code{n} is the number of
+#' objects used to compute the correlation coefficients.
+#' @param verbose If \code{verbose = TRUE} then some results are shown in the
+#' console.
+#' @return If a grouping factor is used then a list is returned with the
+#' following values. \item{linear.mat}{The matrix of linear correlation.}
+#' \item{partial.mat}{The matrix of partial correlations.}
+#' \item{results}{Hypotesis testing for each pairwise comparation.}
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' library(METAAB)
+#' library(dplyr)
+#' partial1 = lpcor(iris)
+#'
+#' # Alternatively using the pipe operator %>%
+#' partial2 = iris %>% lpcor()
+#'
+#' partial3 = cor(iris[1:4]) %>%
+#'            lpcor(n = nrow(iris),
+#'                  verbose = FALSE)
+#'
+#' partial4 = iris %>%
+#'            group_factors(Species) %>%
+#'            lpcor()
+#'
 lpcor <- function(.data, n = NULL, verbose = TRUE) {
 
   if(!is.matrix(.data) && !is.data.frame(.data) && !is.group_factors(.data)){
