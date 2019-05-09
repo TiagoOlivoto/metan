@@ -1,3 +1,30 @@
+#' Find possible outliers in a dataset
+#'
+#' Find possible outliers in the dataset.
+#'
+#'
+#' @param .data The data to be analyzed. Must be a dataframe or an object of
+#' class \code{group_factors}.
+#' @param var The variable to be analyzed..
+#' @param plots If \code{TRUE}, then histograms and boxplots are shown.
+#' @param coef The multiplication coefficient. For more details see
+#' \code{?boxplot.stat}.
+#' @param verbose If \code{verbose = TRUE} then some results are shown in the
+#' console.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' library(METAAB)
+#' library(dplyr)
+#'
+#' find_outliers(data_ge2, var = PH, plots = TRUE)
+#'
+#' data_ge2 %>%
+#' group_factors(ENV) %>%
+#' find_outliers(var = PH)
+#'
+#'
 find_outliers = function(.data,
                          var,
                          plots = FALSE,
