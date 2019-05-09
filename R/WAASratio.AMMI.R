@@ -1,3 +1,73 @@
+#' Weighting stability and mean performance in different scenarios
+#'
+#' This function computes the WAASBY index in AMMI analysis in
+#' different combinations of weights for stability and productivity.
+#'
+#' This function is very similar to the \code{WAASBYratio}. The main difference
+#' is that here, the WAASBY values are computed considering a traditional AMMI
+#' model.
+#'
+#' @param .data The dataset containing the columns related to Environments,
+#' Genotypes, replication/block and response variable(s).
+#' @param env The name of the column that contains the levels of the
+#' environments.
+#' @param gen The name of the column that contains the levels of the genotypes.
+#' @param rep The name of the column that contains the levels of the
+#' replications/blocks.
+#' @param resp The response variable.
+#' @param p.valuePC The p-value for considering the PC significant. Default is
+#' 0.05. The number of significant Principal Components to be used for
+#' calculating the WAASB will be chosen based on this probability.
+#' @param increment The range of the increment for WAAS/GY ratio. Default is 5.
+#' The function compute the WAASY values starting with a weight o 100 for
+#' stability and 0 for response variable. With the default, the first scenario
+#' will be a WAAS/GY ratio = 100/0. In the next scenario, the WAASY values are
+#' computed based on a WAAS/GY ratio = 95/5.
+#' @param saveWAASY Automatically save the WAASY values when the wheight for
+#' WAAS (stability) in the WAAS/GY ratio is "saveWAASY". Default is 100. The
+#' value of "saveWAASY" must be multiple of "Increment". If this assumption is
+#' not valid, an error will be occour.
+#' @param progbar A logical argument to define if a progress bar is shown.
+#' Default is \code{TRUE}.
+#' @return \item{anova}{Joint analysis of variance for the main effects and
+#' Principal Component analysis of the interaction effect.}
+#'
+#' \item{PC}{Principal Component Analysis.}
+#'
+#' \item{MeansGxE}{The means of genotypes in the environments, with observed,
+#' predicted and residual values.}
+#'
+#' \item{WAAS}{A data frame with the response variable, the scores of all
+#' Principal Components, the estimates of Weighted Average of Absolute Scores,
+#' and WAASY (the index that consider the weights for stability and
+#' productivity in the genotype ranking.}
+#'
+#' \item{WAASY}{The values of the WAASY estimated when the wheight for the
+#' stability in the loop match with argument "saveWAASY".}
+#'
+#' \item{WAASY.values}{All the values of WAASY estimated in the different
+#' scenarios of WAAS/GY weighting ratio.}
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' # Default, with increment of 5 and saving the WAASY values when weight is 50
+#' wratio = WAASratio.AMMI(data_ge,
+#'                         resp = GY,
+#'                         gen = GEN,
+#'                         env = ENV,
+#'                         rep = REP)
+#'
+#' # Incrementing 2-by-2
+#' wratio2 = WAASratio.AMMI(data_ge,
+#'                          resp = GY,
+#'                          gen = GEN,
+#'                          env = ENV,
+#'                          rep = REP,
+#'                          increment = 50)
+#' }
+#'
 WAASratio.AMMI <- function(.data, env, gen, rep, resp, p.valuePC = 0.05, increment = 5,
     saveWAASY = 50, progbar = TRUE) {
     data = .data

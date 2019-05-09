@@ -1,3 +1,82 @@
+#' Weighting stability and mean performance in different scenarios
+#'
+#' This function computes the WAASBY index in mixed-effec model analysis in
+#' different combinations of weights for stability and productivity.
+#'
+#' This function considers both stability (weighted average of absolute scores
+#' based on SVD of BLUP-interaction effects matrix) and productivitye for
+#' genotype ranking. This function provide the option of attributing weights
+#' for stability and productive in genotype ranking. This is important
+#' depending on the goal of a selection strategy. For example, if a a goal of a
+#' breeding program is to select a genotype whith high yielding (independeltly
+#' on the stability performance), that genotype with the first rank in an
+#' WAASB/GY = 0/100 ratio should be selected. The reciprocal is true. Aiming at
+#' selecting a high-stable genotype (independentely on the productivity), that
+#' genotype with the first rank in an WAASB/GY = 100/0 ratio should be
+#' selected. By defalut, the increment on the WAASB/GY ratio is equal to 5. In
+#' other words, twenty one different combinations are computed. Each
+#' combination, the genotypes are ranked regarding the WAASY value.
+#'
+#' @param .data The dataset containing the columns related to Environments,
+#' Genotypes, replication/block and response variable(s).
+#' @param env The name of the column that contains the levels of the
+#' environments.
+#' @param gen The name of the column that contains the levels of the genotypes.
+#' @param rep The name of the column that contains the levels of the
+#' replications/blocks.
+#' @param resp The response variable.
+#' @param increment The range of the increment for WAASB/GY ratio. Default is
+#' 5. The function compute the WAASBY values starting with a weight o 100 for
+#' stability and 0 for response variable. With the default, the first scenario
+#' will be a WAASB/GY ratio = 100/0. In the next scenario, the WAASBY values
+#' are computed based on a WAASB/GY ratio = 95/5.
+#' @param saveWAASY Automatically save the WAASY values when the wheight for
+#' WAAS (stability) in the WAAS/GY ratio is "saveWAASY". Default is 100. The
+#' value of "saveWAASY" must be multiple of "Increment". If this assumption is
+#' not valid, an error will be occour.
+#' @param progbar A logical argument to define if a progress bar is shown.
+#' Default is \code{TRUE}.
+#' @return \item{anova}{Joint analysis of variance for the main effects and
+#' Principal Component analysis of the interaction effect.}
+#'
+#' \item{PC}{Principal Component Analysis.}
+#'
+#' \item{MeansGxE}{The means of genotypes in the environments, with observed,
+#' predicted and residual values.}
+#'
+#' \item{WAAS}{A data frame with the response variable, the scores of all
+#' Principal Components, the estimates of Weighted Average of Absolute Scores,
+#' and WAASY (the index that consider the weights for stability and
+#' productivity in the genotype ranking.}
+#'
+#' \item{WAASY}{The values of the WAASY estimated when the wheight for the
+#' stability in the loop match with argument "saveWAASY".}
+#'
+#' \item{WAASY.values}{All the values of WAASY estimated in the different
+#' scenarios of WAAS/GY weighting ratio.}
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' library(METAAB)
+#'
+#' # Default, with increment of 5 and saving the WAASY values when weight is 50
+#' wratio = WAASBYratio(data_ge,
+#'                      resp = GY,
+#'                      gen = GEN,
+#'                      env = ENV,
+#'                      rep = REP)
+#'
+#' # Incrementing 2-by-2
+#' wratio2 = WAASBYratio(data_ge,
+#'                       resp = GY,
+#'                       gen = GEN,
+#'                       env = ENV,
+#'                       rep = REP,
+#'                       increment = 50)
+#' }
+#'
 WAASBYratio <- function(.data, env, gen, rep, resp, increment = 5, saveWAASY = 50,
     progbar = TRUE) {
   data = .data
