@@ -1,3 +1,44 @@
+#' Multitrait index based on factor analysis and ideotype-design
+#'
+#' Plot the multitrait index based on factor analysis and ideotype-design
+#' proposed by Rocha et al. (2018).
+#'
+#'
+#' @param x An object of class \code{WAASB}
+#' @param ideotype The ideotype to be plotted. Default is 1.
+#' @param SI An integer [0-100]. The selection intensity in percentage of the
+#' total number of genotypes.
+#' @param radar Logical argument. If true (default) a radar plot is generated
+#' after using \code{coord_polar()}.
+#' @param size.point The size of the point in graphic.
+#' @param col.sel The colour for selected genotypes.
+#' @param col.nonsel The colour for nonselected genotypes.
+#' @param ... Other arguments of the function.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
+#' Multitrait index based on factor analysis and ideotype-design: proposal and
+#' application on elephant grass breeding for bioenergy. GCB Bioenergy
+#' 10:52-60. doi:
+#' \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
+#' @method plot FAI_BLUP
+#' @export
+#' @examples
+#'
+#' library(METAAB)
+#' library(dplyr)
+#' multivariate = WAASB(data_ge,
+#'                      resp = c(GY, HM),
+#'                      gen = GEN,
+#'                      env = ENV,
+#'                      rep = REP)
+#'
+#' FAI = data_ge2 %>%
+#'       WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
+#'       FAI_BLUP(DI = c("max", "max", "max", "min"),
+#'                UI = c("min", "min", "min", "max"),
+#'                SI = 15)
+#'       plot(FAI)
+#'
 plot.FAI_BLUP <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2,
     col.sel = "red", col.nonsel = "black", ...) {
 
