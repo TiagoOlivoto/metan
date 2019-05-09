@@ -1,3 +1,34 @@
+#' Performs Additive Main effects and Multiplicative Interaction
+#'
+#' Compute the Additive Main effects and Multiplicative interaction. This is a
+#' helper function for other procedures performed in the WAASB package such as
+#' \code{\link{WAAS.AMMI}}, \code{\link{cv_ammi}}, and \code{\link{cv_ammif}}.
+#'
+#'
+#' @param ENV The name of the collum that contains the levels of the
+#' environments
+#' @param GEN The name of the collum that contains the levels of the genotypes
+#' @param REP The name of the collum that contains the levels of the
+#' replications/blocks
+#' @param Y The response variable
+#' @return
+#'
+#' \item{ANOVA}{The analysis of variance for the AMMI model.}
+#'
+#' \item{analysis}{The principal component analysis}
+#'
+#' \item{means}{means of genotype vs environment}
+#'
+#' \item{biplot}{escores for genotypes and environments in all the possible
+#' axes.}
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' library(METAAB)
+#' ammi_model = with(data_ge, performs_ammi(ENV, GEN, REP, GY))
+#'
+#'
 performs_ammi <- function(ENV, GEN, REP, Y) {
     resp <- paste(deparse(substitute(Y)))
     ENV <- as.factor(ENV)
@@ -50,7 +81,7 @@ performs_ammi <- function(ENV, GEN, REP, Y) {
     z <- MEANS[, 3]
     model2 <- lm(z ~ x + y)
     for (i in 1:length(z)) {
-        if (is.na(z[i])) 
+        if (is.na(z[i]))
             z[i] <- predict(model2, data.frame(x = MEANS[i, 1], y = MEANS[i, 2]))
     }
     MEANS <- data.frame(ENV = x, GEN = y, Y = z)
@@ -78,22 +109,22 @@ performs_ammi <- function(ENV, GEN, REP, Y) {
     acumula <- 0
     for (i in 1:(minimo - 1)) {
         DF <- (ngen - 1) + (nenv - 1) - (2 * i - 1)
-        if (DF <= 0) 
+        if (DF <= 0)
             break
         DFAMMI[i] <- DF
         acumula <- acumula + percent[i]
         acum[i] <- acum[i] + acumula
         MSAMMI[i] <- SS[i]/DFAMMI[i]
-        if (MSE > 0) 
+        if (MSE > 0)
             F.AMMI[i] <- round(MSAMMI[i]/MSE, 2) else F.AMMI[i] <- NA
-        if (DFE > 0) 
+        if (DFE > 0)
             PROBF[i] <- round(1 - pf(F.AMMI[i], DFAMMI[i], DFE), 4) else PROBF[i] <- NA
     }
     percent <- round(percent, 1)
     acum <- round(acum, 1)
     SS <- round(SS, 5)
     MSAMMI <- round(MSAMMI, 5)
-    SSAMMI <- data.frame(percent, acum, Df = DFAMMI, `Sum Sq` = SS, `Mean Sq` = MSAMMI, 
+    SSAMMI <- data.frame(percent, acum, Df = DFAMMI, `Sum Sq` = SS, `Mean Sq` = MSAMMI,
         `F value` = F.AMMI, Pr.F = PROBF)
     nssammi <- nrow(SSAMMI)
     SSAMMI <- SSAMMI[SSAMMI$Df > 0, ]
@@ -130,10 +161,10 @@ performs_ammi <- function(ENV, GEN, REP, Y) {
     ERRO <- anova[nrow(anova), ]
     ERRO <- rbind(ERRO, sum)
     anova <- anova[-nrow(anova), -c(6, 7)]
-    names(PC) <- paste(c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "Percent", 
+    names(PC) <- paste(c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "Percent",
         "Accumul"))
     anova <- rbind_fill(anova, PC, ERRO)
-    object <- list(ANOVA = anova, analysis = PC, means = MEANS, biplot = bplot, residuals = residuals, 
+    object <- list(ANOVA = anova, analysis = PC, means = MEANS, biplot = bplot, residuals = residuals,
         probint = probint)
     class(object) <- "WAASB"
     return(object)
