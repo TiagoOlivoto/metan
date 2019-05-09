@@ -1,3 +1,14 @@
+#' A personalized theme for the WAASB ggplot2-based graphics
+#'
+#' The function \code{theme_waasb()} is a personalized theme for the WAASB
+#' ggplot2-based graphics. An own theme can be applied in all graphics by using
+#' the following arguments in the \code{plot.} functions of the package:
+#' \code{theme = theme_waasb() + theme(some stuff here...)}. See
+#' \code{?ggplot2::theme} for more details.
+#'
+#' @export
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#'
 theme_waasb = function () {
   theme_bw() %+replace% # allows the entered values to be overwritten
     theme(axis.ticks.length = unit(.2, "cm"),
