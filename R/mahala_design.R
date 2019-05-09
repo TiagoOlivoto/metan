@@ -1,3 +1,46 @@
+#' Mahalanobis distance using data from a designed experiment
+#'
+#' Compute the Mahalanobis distance using data from an experiment conducted in
+#' a randomized complete block design or completely randomized design.
+#'
+#'
+#' @param .data The dataset containing the columns related to Genotypes,
+#' replication/block and response variables. Alternatively, it is possible to
+#' use an object of class 'group_factors' to compute the distance for each
+#' level of the grouping factor. See \code{?group_factors}.
+#' @param gen The name of the column that contains the levels of the genotypes.
+#' @param rep The name of the column that contains the levels of the
+#' replications/blocks.
+#' @param resp The response variables. For example \code{resp = c(var1, var2,
+#' var3)}.
+#' @param design The experimental design. Must be RCBD or CRD.
+#' @param return What the function return? Default is "distance", i.e., the
+#' Mahalanobis distance. Alternatively, it is possible to return the matrix of
+#' means \code{return = "means"}, or the variance-covariance matrix of
+#' residuals \code{return = "covmat"}.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' library(METAAB)
+#' library(dplyr)
+#' maha_group = mahala_design(data_ge,
+#'                            gen = GEN,
+#'                            rep = REP,
+#'                            resp = c(GY, HM))
+#'
+#' # Compute one distance for each environment
+#' maha_group = data_ge %>%
+#'              group_factors(ENV, keep_factors = TRUE) %>%
+#'              mahala_design(GEN, REP, c(GY, HM))
+#'
+#' # Return the variance-covariance matrix of residuals
+#' cov_mat = mahala_design(data_ge,
+#'                            gen = GEN,
+#'                            rep = REP,
+#'                            resp = c(GY, HM),
+#'                            return = "covmat")
+#'
 mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "distance"){
   if (!design %in% c("RCBD", "CRD")) {
     stop("The experimental design must be RCBD or CRD.")
