@@ -37,7 +37,7 @@ str(data_ge)
 ## Cross-validation procedures
 
 ```{r, fig.height=3.5, fig.width=5}
-CVAL = validation.AMMIF(data_ge,
+CVAL = cv_ammif(data_ge,
                         resp = GY,
                         gen = GEN,
                         env = ENV,
@@ -57,11 +57,11 @@ model <- data_ge %>% WAAS.AMMI(ENV, GEN, REP, GY)
 
 ### Biplots
 
-The well-known AMMI2 biplot may be obtained using the function `plot.scores()`. ggplot2-based graphics are obtained. Please, note that since `WAAS.AMMI()` and `WAAS.AMMI()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list that in this case has one element, GY.
+The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `WAAS.AMMI()` and `WAAS.AMMI()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list that in this case has one element, GY.
 
 ```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
-p1 <- plot.scores(model$GY)
-p2 <- plot.scores(model$GY,
+p1 <- plot_scores(model$GY)
+p2 <- plot_scores(model$GY,
                  type = 1,
                  polygon = TRUE,
                  col.gen = "black",
@@ -118,8 +118,8 @@ kable(BP, "html") %>%
 ## Plotting the BLUPs for genotypes
 
 ```{r, fig.height=8, fig.width=5}
-p1 <- plot.blup(model2$GY)
-p2 <- plot.blup(model2$GY,
+p1 <- plot_blup(model2$GY)
+p2 <- plot_blup(model2$GY,
                 prob = 0.1,
                 col.shape  =  c("gray20", "gray80")) + coord_flip()
 plot_grid(p1, p2,

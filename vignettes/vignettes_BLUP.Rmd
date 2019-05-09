@@ -193,8 +193,8 @@ kable(data, "html") %>%
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 # No file exported
-p1 = plot.blup(WAASB_model$GY)
-p2 = plot.blup(WAASB_model$GY, 
+p1 = plot_blup(WAASB_model$GY)
+p2 = plot_blup(WAASB_model$GY, 
                col.shape  =  c("gray20", "gray80")) + coord_flip()
 plot_grid(p1, p2,
           labels = c("p1", "p2"))
@@ -273,13 +273,13 @@ In this output, *Y* is the phenotypic mean for each genotype and environment com
 
 ## Biplots
 
-Provided that an object of class "WAAS" is available in the global environment, the graphics may be obtained using the function `plot.scores()`. To do that, we will revisit the previusly fitted model `WAASB` . Please, refer to `?plot.scores` for more details. Four types of graphics can be generated: 1 = $PC1 \times PC2$;  2 = $GY \times PC1$; 3 = $GY \times WAASB$; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.
+Provided that an object of class "WAAS" is available in the global environment, the graphics may be obtained using the function `plot_scores()`. To do that, we will revisit the previusly fitted model `WAASB` . Please, refer to `?plot_scores` for more details. Four types of graphics can be generated: 1 = $PC1 \times PC2$;  2 = $GY \times PC1$; 3 = $GY \times WAASB$; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.
 
 ### biplot type 1: PC1 x PC2
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
-p1 = plot.scores(WAASB_model$GY, type = 1)
-p2 = plot.scores(WAASB_model$GY,
+p1 = plot_scores(WAASB_model$GY, type = 1)
+p2 = plot_scores(WAASB_model$GY,
                  type = 1,
                  polygon = TRUE,
                  col.gen = "black",
@@ -294,8 +294,8 @@ plot_grid(p1, p2, labels = c("p1","p2"))
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 
-p3 = plot.scores(WAASB_model$GY, type = 2)
-p4 = plot.scores(WAASB_model$GY, type = 2,
+p3 = plot_scores(WAASB_model$GY, type = 2)
+p4 = plot_scores(WAASB_model$GY, type = 2,
                  col.segm.env = "transparent") +
                  theme_gray() +
                  theme(legend.position = c(0.1, 0.9),
@@ -310,8 +310,8 @@ The quadrants proposed in the following biplot represent the four classification
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message=F, warning=F}
 
-p5 = plot.scores(WAASB_model$GY, type = 3)
-p6 = plot.scores(WAASB_model$GY, type = 3,
+p5 = plot_scores(WAASB_model$GY, type = 3)
+p6 = plot_scores(WAASB_model$GY, type = 3,
                  x.lab = "My customized x label",
                  size.shape = 3,
                  size.tex.pa = 2,
@@ -327,7 +327,7 @@ plot_grid(p5, p6, labels = c("p5","p6"))
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F}
 
-plot.scores(WAASB_model$GY,
+plot_scores(WAASB_model$GY,
             type = 4, size.tex.pa = 1.5)
 
 
