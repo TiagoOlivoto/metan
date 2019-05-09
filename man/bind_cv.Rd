@@ -2,7 +2,7 @@
 % Please edit documentation in R/bind_cv.R
 \name{bind_cv}
 \alias{bind_cv}
-\title{Bind cross-validation objects.}
+\title{Bind cross-validation objects}
 \usage{
 bind_cv(...)
 }

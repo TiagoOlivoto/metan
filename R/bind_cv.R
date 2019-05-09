@@ -1,4 +1,4 @@
-#' Bind cross-validation objects.
+#' Bind cross-validation objects
 #'
 #' Helper function that combines objects of class \code{cv_ammi}, \code{cv_ammif}
 #'  or \code{cv_blup}. It is useful when looking for a boxplot containing
