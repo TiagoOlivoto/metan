@@ -1,4 +1,74 @@
-validation.AMMI <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
+#' Cross-validation for estimation of AMMI model
+#'
+#' Cross-validation for estimation of AMMI models
+#'
+#' For each iteration, the original dataset is split into two datasets:
+#' modeling and validating data. The dataset "modeling" has all combinations
+#' (genotype x environment) with the number of replications informed in
+#' \code{nrepval}. The dataset "validating" has one replication. The splitting
+#' of the dataset into modeling and validating data depends on the design
+#' informed. For Completely Randomized Block Design (default), compltely blocks
+#' are selected within environments. The remained block serves validation data.
+#' If \code{design = "RCD"} is informed, completely randomly samples are made
+#' for each genotype-by-environment combination. The estimated values
+#' (depending on NAXIS informed) are compared with the "validating" data. the
+#' Root Means Square error is computed. At the end of boots, a list is returned
+#' with the following values.
+#'
+#' @param .data The dataset containing the columns related to Environments,
+#' Genotypes, replication/block and response variable(s).
+#' @param env The name of the column that contains the levels of the
+#' environments.
+#' @param gen The name of the column that contains the levels of the genotypes.
+#' @param rep The name of the column that contains the levels of the
+#' replications/blocks.
+#' @param resp The response variable.
+#' @param design The experimental desig to be considered. Default is
+#' \code{RCBD} (Randomized complete Block Design). For Completely Randomized
+#' Designs inform \code{design = "CRD"}.
+#' @param nboot The number of resamples to be used in the cross-validation
+#' @param nrepval The number of replicates (r) from total number of replicates
+#' (R) to be used in the modeling dataset. Only one replicate is used as
+#' validating data each step, so, \code{Nrepval} must be equal \code{R-1}
+#' @param naxis The number of axis to be considered for estimation of GE
+#' effects.
+#' @param verbose A logical argument to define if a progress bar is shown.
+#' Default is \code{TRUE}.
+#' @return \item{RMSE}{A vector with Nboot-estimates of the root mean squared
+#' error estimated with the difference between predicted and validating data.}
+#'
+#' \item{RSMEmean}{The mean of RMSE estimates.}
+#'
+#' \item{Estimated}{A data frame that contain the values (predicted, observed,
+#' validation) of the last loop.}
+#'
+#' \item{Modeling}{The dataset used as modeling data in the last loop.}
+#'
+#' \item{Testing}{The dataset used as testing data in the last loop.}
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @seealso \code{\link{cv_ammif}, \link{cv_blup}}
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' library(METAAB)
+#' model = cv_ammi(data_ge,
+#'                         env = ENV,
+#'                         gen = GEN,
+#'                         rep = REP,
+#'                         resp = GY,
+#'                         nboot = 100,
+#'                         nrepval = 2,
+#'                         naxis = 2)
+#'
+#' # Alternatively using the pipe operator %>%
+#' library(dplyr)
+#' model = data_ge %>%
+#'         cv_ammiF(ENV, GEN, REP, GY, 100, 2, 2)
+#'
+#' }
+#'
+cv_ammi <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
                             naxis, verbose = TRUE) {
 
     if (!design %in% c("RCBD", "CRD")) {
@@ -93,6 +163,9 @@ validation.AMMI <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, 
     }
 
     RSMEmean <- mean(RMSPDres$RMSPD)
+    RMSPDres = RMSPDres %>% mutate(MODEL = paste("AMMI", naxis, sep = "")) %>%
+        dplyr::select(MODEL, everything())
+
     return(structure(list(RMSPD = RMSPDres, RSMEmean = RSMEmean, Estimated = MEDIAS,
-                          Modeling = modeling, Testing = testing), class = "validation.AMMI"))
+                          Modeling = modeling, Testing = testing), class = "cv_ammi"))
 }
