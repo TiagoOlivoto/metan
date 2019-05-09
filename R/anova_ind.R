@@ -1,3 +1,40 @@
+#' Within-environment analysis of variance
+#'
+#' This is a helper function that performs a within-environment analysis of
+#' variance and returns values such as Mean Squares, p-values, coefficient of
+#' variation, heritability, and accuracy of selection.
+#'
+#'
+#' @param .data The dataset containing the columns related to Environments,
+#' Genotypes, replication/block and response variable(s).
+#' @param env The name of the column that contains the levels of the
+#' environments. The analysis of variance is computed for each level of this
+#' factor.
+#' @param gen The name of the column that contains the levels of the genotypes.
+#' @param rep The name of the column that contains the levels of the
+#' replications/blocks.
+#' @param resp The response variable.
+#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#' silently.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' library(METAAB)
+#' # traditional usage approach
+#' data = data_ge
+#' anova1 = anova_ind(data_ge,
+#'                    env = ENV,
+#'                    gen = GEN,
+#'                    rep = REP,
+#'                    resp = GY)
+#'
+#' # Using the pipe operator %>%
+#' # Two variables, one run.
+#' library(dplyr)
+#' anova2 = data_ge %>% anova_ind(ENV, GEN, REP, c(GY, HM))
+#'
+#'
 anova_ind = function(.data,
                      env,
                      gen,
