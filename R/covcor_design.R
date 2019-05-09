@@ -1,3 +1,52 @@
+#' Variance-covariance and correlation matrices for designed experiments
+#'
+#' Compute variance-covariance and correlation matrices using data from a
+#' designed (RCBD or CRD).
+#'
+#'
+#' @param .data The dataset containing the columns related to Genotypes,
+#' replication/block and response variables. Alternatively, it is possible to
+#' use an object of class 'group_factors' to compute the results for each level
+#' of the grouping factor. See \code{?group_factors}.
+#' @param gen The name of the column that contains the levels of the genotypes.
+#' @param rep The name of the column that contains the levels of the
+#' replications/blocks.
+#' @param resp The response variables. For example \code{resp = c(var1, var2,
+#' var3)}.
+#' @param design The experimental design. Must be RCBD or CRD.
+#' @param type What the matrices should return? Set to \code{NULL}, i.e., a
+#' list of matrices is returned. The argument type allow the following values
+#' \code{"pcor", "gcor", "rcor"}, (which will return the phenotypic, genotypic
+#' and residual correlation matrices, respectively) or \code{"pcov", "gcov",
+#' "rcov"} (which will return the phenotypic, genotypic and residual
+#' variance-covariance matrices, respectively). Alternatively, it is possible
+#' to get a matrix with the means of each genotype in each trait, by using
+#' \code{type = "means"}.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' library(METAAB)
+#' library(dplyr)
+#' # List of matrices
+#' data = subset(data_ge2, ENV == "A1")
+#' matrices = covcor_design(data, gen = GEN, rep = REP,
+#'                          resp = c(PH, EH, NKE, TKW))
+#'
+#' # Genetic correlations
+#' gcor = covcor_design(data, gen = GEN, rep = REP,
+#'                      resp = c(PH, EH, NKE, TKW),
+#'                      type = "gcor")
+#'
+#' # Residual (co)variance matrix for each environment
+#' rcov = datage2 %>%
+#'        group_factors(ENV, keep_factors = TRUE) %>%
+#'        covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
+#'                      type = "rcov")
+#'
+#' }
+#'
 covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
   if (!design %in% c("RCBD", "CRD")) {
     stop("The experimental design must be RCBD or CRD.")
