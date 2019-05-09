@@ -1,3 +1,126 @@
+#' Visualization of a correlation matrix
+#'
+#' Graphical and numerical visualization of a correlation matrix
+#'
+#'
+#' @param .data The data. Should, preferentially, contain numeric variables
+#' only. If \code{.data} has factor-columns, these columns will be deleted with
+#' a warning message.
+#' @param ... Variables to use in the correlation. Set to \code{NULL}, i.e.,
+#' all the numeric variables from \code{.data} are used.
+#' @param upper The visualization method for the upper triangular correlation
+#' matrix. Must be one of \code{"corr"} (numeric values), \code{"scatter"} (the
+#' scatterplot for each pairwise combination), or \code{NULL} to set a blank
+#' diagonal.
+#' @param lower The visualization method for the lower triangular correlation
+#' matrix. Must be one of \code{"corr"} (numeric values), \code{"scatter"} (the
+#' scatterplot for each pairwise combination), or \code{NULL} to set a blank
+#' diagonal.
+#' @param axis.labels Should the axis labels be shown in the plot? Set to
+#' \code{FALSE}.
+#' @param diag Should the diagonal show the kernel distribution of the
+#' variable? Set to \code{TRUE}.
+#' @param col.diag If \code{diag = TRUE} then \code{diagcol} is the color for
+#' the distribution. Set to gray.
+#' @param alpha.diag Alpha-transparency scale [0-1] to make the diagonal plot
+#' transparent. 0 = fully transparente; 1 = full colour. Set to 0.15
+#' @param col.up.panel,col.lw.panel,col.dia.panel The colour for the upper,
+#' lower, and diagonal pannels, respectively. Set to "gray".
+#' @param prob The probability of error. Significant correlations will be
+#' highlated with "*", "**", and "***" (0.05, 0.01, and 0.001, respectively).
+#' Scatterplots with significant correlations may be colour-highlated.
+#' @param col.sign The colour that will highlight the significant correlations.
+#' Set to "green".
+#' @param alpha.sign Alpha-transparency scale [0-1] to make the plot area
+#' transparent. 0 = fully transparente; 1 = full colour. Set to 0.15
+#' @param lab.position The position that the labeles will apper. Set to
+#' \code{"tr"}, i.e., the legends will apper in the top and right of the plot.
+#' Other allowed options are \code{"tl"} (top and left), \code{"br"} (bottom
+#' and rigth), \code{"bl"} (bottom and left).
+#' @param progress \code{NULL} (default) for a progress bar in interactive
+#' sessions with more than 15 plots, \code{TRUE} for a progress bar,
+#' \code{FALSE} for no progress bar.
+#' @param smooth Should a linear smooth line be shown in the scatterplots? Set
+#' to \code{FALSE}.
+#' @param col.smooth The colour for the smooth line.
+#' @param size.smooth The size for the smooth line.
+#' @param confint Should a confidence band be shown with the smooth line? Set
+#' to \code{TRUE}.
+#' @param size.point The size of the points in the plot. Set to \code{0.5}.
+#' @param shape.point The shape of the point, set to \code{1}.
+#' @param alpha.point Alpha-transparency scale [0-1] to make the points
+#' transparent. 0 = fully transparente; 1 = full colour. Set to 0.7
+#' @param fill.point The color to fill the points. Valid argument if points are
+#' between 21 and 25.
+#' @param col.point The color for the edge of the point, set to \code{black}.
+#' @param minsize The size of the letter that will represent the smallest
+#' correlation coefficient.
+#' @param maxsize The size of the letter that will represent the largest
+#' correlation coefficient.
+#' @param pan.spacing The space between the pannels. Set to 0.15.
+#' @param digits The number of digits to show in the plot.
+#' @param export Logical argument. If \code{TRUE}, then the plot is exported to
+#' the current directory.
+#' @param file.type The format of the file if \code{export = TRUE}.  Set to
+#' \code{"pdf"}. Other possible values are \code{*.tiff} using \code{file.type
+#' = "tiff"}.
+#' @param file.name The name of the plot when exported. Set to \code{NULL},
+#' i.e., automatically.
+#' @param width The width of the plot, set to \code{8}.
+#' @param height The height of the plot, set to \code{7}.
+#' @param resolution The resolution of the plot if \code{file.type = "tiff"} is
+#' used. Set to \code{300} (300 dpi).
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' library(METAAB)
+#' dataset = data_ge2
+#'
+#' # Default plot setting
+#' corr_plot(dataset)
+#'
+#' # Chosing variables to be correlated
+#' corr_plot(dataset, CD, EL, PERK, NKR)
+#'
+#' # Changing the layout
+#' corr_plot(dataset, CD, EL, PERK, NKR,
+#'           lower = NULL,
+#'           upper = "corr")
+#'
+#' # Axis labels, similar to the function pairs()
+#' # Gray scale
+#' corr_plot(dataset, CD, EL, PERK, NKR,
+#'           shape.point = 19,
+#'           size.point = 2,
+#'           alpha.point = 0.5,
+#'           alpha.diag = 0,
+#'           pan.spacing = 0,
+#'           col.sign = "gray",
+#'           alpha.sign = 0.3,
+#'           axis.labels = TRUE)
+#'
+#' corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
+#'           prob = 0.01,
+#'           shape.point = 21,
+#'           col.point = "black",
+#'           fill.point = "orange",
+#'           size.point = 2,
+#'           alpha.point = 0.6,
+#'           maxsize = 4,
+#'           minsize = 2,
+#'           smooth = TRUE,
+#'           size.smooth = 1,
+#'           col.smooth = "black",
+#'           col.sign = "cyan",
+#'           col.up.panel = "black",
+#'           col.lw.panel = "black",
+#'           col.dia.panel = "black",
+#'           pan.spacing = 0,
+#'           lab.position = "tl")
+#' }
+#'
 corr_plot = function(.data,
                      ... = NULL,
                      upper = "corr",
