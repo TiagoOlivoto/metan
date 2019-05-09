@@ -1,3 +1,22 @@
+#' Response surface model
+#'
+#' Compute a surface model and find the best combination of factor1 and factor2
+#' to obtain the stacionary point.
+#'
+#'
+#' @param .data The dataset containing the columns related to Environments,
+#' factor1, factor2, replication/block and response variable(s).
+#' @param factor1 The first factor, for example, dose of Nitrogen.
+#' @param factor2 The second factor, for example, dose of potassium.
+#' @param rep The name of the column that contains the levels of the
+#' replications/blocks.
+#' @param resp The response variable(s).
+#' @param prob The probability error.
+#' @param verbose If \code{verbose = TRUE} then some results are shown in the
+#' console.
+#' @export
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#'
 resp_surf = function(.data,
                      factor1,
                      factor2,
