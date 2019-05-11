@@ -24,7 +24,7 @@
 #'                     resp = PH)
 #' summary(Ann)
 #'
-summary.Annicchiarico <- function(object, export = FALSE, file.name = NULL, digits = 4,
+summary.Annicchiarico <- function(object, export = FALSE, file.name = NULL, digits = 3,
                               ...) {
   if (!class(object) == "Annicchiarico") {
     stop("The object must be of class 'ge_stats'")
@@ -37,50 +37,48 @@ summary.Annicchiarico <- function(object, export = FALSE, file.name = NULL, digi
       file.name <- file.name
     }
     sink(paste0(file.name, ".txt"))
-    options(max.print = 99999999, width = 90, digits = digits)
     for (i in 1:length(object)) {
       var <- object[[i]]
       cat("Variable", names(object)[i], "\n")
       cat("---------------------------------------------------------------------------\n")
       cat("Environmental index\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$environments, row.names = FALSE)
+      print(var$environments, row.names = FALSE, digits = digits)
       cat("---------------------------------------------------------------------------\n")
       cat("Analysis for all environments\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$general, row.names = FALSE)
+      print(var$general, row.names = FALSE, digits = digits)
       cat("---------------------------------------------------------------------------\n")
       cat("Analysis for favorable environments\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$favorable, row.names = FALSE)
+      print(var$favorable, row.names = FALSE, digits = digits)
       cat("---------------------------------------------------------------------------\n")
       cat("Analysis for unfavorable environments\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$unfavorable, row.names = FALSE)
+      print(var$unfavorable, row.names = FALSE, digits = digits)
       cat("\n\n\n")
     }
     sink()
   } else {
-    options(max.print = 99999999, width = 90, digits = digits)
     for (i in 1:length(object)) {
       var <- object[[i]]
       cat("Variable", names(object)[i], "\n")
       cat("---------------------------------------------------------------------------\n")
       cat("Environmental index\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$environments, row.names = FALSE)
+      print(var$environments, row.names = FALSE, digits = digits)
       cat("---------------------------------------------------------------------------\n")
       cat("Analysis for all environments\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$general, row.names = FALSE)
+      print(var$general, row.names = FALSE, digits = digits)
       cat("---------------------------------------------------------------------------\n")
       cat("Analysis for favorable environments\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$favorable, row.names = FALSE)
+      print(var$favorable, row.names = FALSE, digits = digits)
       cat("---------------------------------------------------------------------------\n")
       cat("Analysis for unfavorable environments\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$unfavorable, row.names = FALSE)
+      print(var$unfavorable, row.names = FALSE, digits = digits)
       cat("\n\n\n")
     }
   }
