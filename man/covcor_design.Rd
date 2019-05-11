@@ -2,15 +2,15 @@
 % Please edit documentation in R/covcor_design.R
 \name{covcor_design}
 \alias{covcor_design}
-\title{Variance-covariance and correlation matrices for designed experiments}
+\title{Variance-covariance matrices for designed experiments}
 \usage{
 covcor_design(.data, gen, rep, resp, design = "RCBD", type = NULL)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Genotypes,
 replication/block and response variables. Alternatively, it is possible to
-use an object of class 'group_factors' to compute the results for each level
-of the grouping factor. See \code{?group_factors}.}
+use an object of class 'split_factors' to compute the results for each level
+of the grouping factor. See \code{?split_factors}.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
@@ -33,7 +33,7 @@ to get a matrix with the means of each genotype in each trait, by using
 }
 \description{
 Compute variance-covariance and correlation matrices using data from a
-designed (RCBD or CRD).
+designed (RCBD or CRD) experiment.
 }
 \examples{
 
@@ -52,7 +52,7 @@ gcor = covcor_design(data, gen = GEN, rep = REP,
 
 # Residual (co)variance matrix for each environment
 rcov = datage2 \%>\%
-       group_factors(ENV, keep_factors = TRUE) \%>\%
+       split_factors(ENV, keep_factors = TRUE) \%>\%
        covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
                      type = "rcov")
 
