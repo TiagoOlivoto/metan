@@ -159,22 +159,22 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
         dfs[[paste(nam)]] = tmp
       } else {
         if(type == "pcor"){
-          dfs[[paste(nam)]] =  as.matrix(corrfen)
+          dfs[[paste(nam)]] =  as.matrix(make_sym(corrfen))
         }
         if(type == "gcor"){
-          dfs[[paste(nam)]] = as.matrix(corrgen)
+          dfs[[paste(nam)]] = as.matrix(make_sym(corrgen))
         }
         if(type == "rcor"){
-          dfs[[paste(nam)]] = as.matrix(corres)
+          dfs[[paste(nam)]] = as.matrix(make_sym(corres))
         }
         if(type == "pcov"){
-          dfs[[paste(nam)]] = as.matrix(vfen)
+          dfs[[paste(nam)]] = as.matrix(make_sym(vfen))
         }
         if(type == "gcov"){
-          dfs[[paste(nam)]] = as.matrix(vgen)
+          dfs[[paste(nam)]] = as.matrix(make_sym(vgen))
         }
         if(type == "rcov"){
-          dfs[[paste(nam)]] = as.matrix(vres)
+          dfs[[paste(nam)]] = as.matrix(make_sym(vres))
         }
         if(type == "means"){
           return(means)
@@ -283,22 +283,22 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
               class = "covcor_design"))
   }
   if(type == "pcor"){
-    return(as.matrix(corrfen))
+    return(as.matrix(make_sym(corrfen)))
   }
   if(type == "gcor"){
-    return(as.matrix(corrgen))
+    return(as.matrix(make_sym(corrgen)))
   }
   if(type == "rcor"){
-    return(as.matrix(corres))
+    return(as.matrix(make_sym(corres)))
   }
   if(type == "pcov"){
-    return(as.matrix(vfen))
+    return(as.matrix(make_sym(vfen)))
   }
   if(type == "gcov"){
-    return(as.matrix(vgen))
+    return(as.matrix(make_sym(vgen)))
   }
   if(type == "rcov"){
-    return(as.matrix(vres))
+    return(as.matrix(make_sym(vres)))
   }
   if(type == "means"){
     return(means)
