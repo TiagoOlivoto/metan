@@ -9,7 +9,7 @@ colindiag(.data, n = NULL, verbose = TRUE)
 \arguments{
 \item{.data}{The data to be analyzed. Must be a symmetric correlation matrix
 or, a dataframe containing the predictor variables, or an object of class
-\code{group_factors}.}
+\code{split_factors}.}
 
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
@@ -64,7 +64,7 @@ cor_iris \%>\% colindiag(n = n, verbose = FALSE)
 
 # Diagnostic by species, storing into an object
 col_diag_spec = iris \%>\%
-                group_factors(Species) \%>\%
+                split_factors(Species) \%>\%
                 colindiag()
 
 
