@@ -4,7 +4,7 @@
 #'
 #'
 #' @param .data The data to be analyzed. Must be a dataframe or an object of
-#' class \code{group_factors}.
+#' class \code{split_factors}.
 #' @param var The variable to be analyzed..
 #' @param plots If \code{TRUE}, then histograms and boxplots are shown.
 #' @param coef The multiplication coefficient. For more details see
@@ -21,7 +21,7 @@
 #' find_outliers(data_ge2, var = PH, plots = TRUE)
 #'
 #' data_ge2 %>%
-#' group_factors(ENV) %>%
+#' split_factors(ENV) %>%
 #' find_outliers(var = PH)
 #'
 #'
@@ -30,15 +30,15 @@ find_outliers = function(.data,
                          plots = FALSE,
                          coef = 1.5,
                          verbose = TRUE){
-  if(!is.data.frame(.data) && !is.group_factors(.data)){
-    stop("The object 'x' must be a data.frame or an object of class group_factors")
+  if(!is.data.frame(.data) && !is.split_factors(.data)){
+    stop("The object 'x' must be a data.frame or an object of class split_factors")
   }
 
   if (missing(var) == TRUE){
     stop("A variable must be declared.")
   }
 
-  if(any(class(.data) == "group_factors")){
+  if(any(class(.data) == "split_factors")){
     for (k in 1:length(.data)){
       data = .data[[k]]
       var = dplyr::enquo(var)
@@ -97,7 +97,7 @@ find_outliers = function(.data,
     if(sum(lapply(.data, is.factor)==TRUE)>0){
     if(verbose == TRUE){
       message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-              " were ignored. Use 'group_factors()' if you want to perform an analysis for each level of a factor.' ")
+              " were ignored. Use 'split_factors()' if you want to perform an analysis for each level of a factor.' ")
     }
     }
     var = dplyr::enquo(var)

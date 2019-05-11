@@ -8,7 +8,7 @@ find_outliers(.data, var, plots = FALSE, coef = 1.5, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
-class \code{group_factors}.}
+class \code{split_factors}.}
 
 \item{var}{The variable to be analyzed..}
 
@@ -31,7 +31,7 @@ library(dplyr)
 find_outliers(data_ge2, var = PH, plots = TRUE)
 
 data_ge2 \%>\%
-group_factors(ENV) \%>\%
+split_factors(ENV) \%>\%
 find_outliers(var = PH)
 
 
