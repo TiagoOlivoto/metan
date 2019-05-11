@@ -6,7 +6,7 @@
 #'
 #' @param .data The data to be analyzed. Must be a symmetric correlation matrix
 #' or, a dataframe containing the predictor variables, or an object of class
-#' \code{group_factors}.
+#' \code{split_factors}.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
 #' objects used to compute the correlation coefficients.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
@@ -31,13 +31,13 @@
 #'                  verbose = FALSE)
 #'
 #' partial4 = iris %>%
-#'            group_factors(Species) %>%
+#'            split_factors(Species) %>%
 #'            lpcor()
 #'
 lpcor <- function(.data, n = NULL, verbose = TRUE) {
 
-  if(!is.matrix(.data) && !is.data.frame(.data) && !is.group_factors(.data)){
-    stop("The object 'x' must be a correlation matrix, a data.frame or an object of class group_factors")
+  if(!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)){
+    stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
   }
   if(is.matrix(.data) && is.null(n)){
     stop("You have a matrix but the sample size used to compute the correlations (n) was not declared.")
@@ -46,7 +46,7 @@ lpcor <- function(.data, n = NULL, verbose = TRUE) {
     stop("You cannot informe the sample size because a data frame was used as input.")
   }
 
-  if(is.group_factors(.data) && !is.null(n)){
+  if(is.split_factors(.data) && !is.null(n)){
     stop("You cannot informe the sample size because a data frame was used as input.")
   }
 
@@ -88,7 +88,7 @@ lpcor <- function(.data, n = NULL, verbose = TRUE) {
        out = internal(.data)
     }
 
-    if (any(class(.data) == "group_factors")) {
+    if (any(class(.data) == "split_factors")) {
       out = lapply(seq_along(.data), function(x){
         if(verbose == TRUE){
           cat("\n----------------------------------------------------------------------------\n")
@@ -107,11 +107,11 @@ lpcor <- function(.data, n = NULL, verbose = TRUE) {
         out = internal(data)
         if(verbose == TRUE){
           message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-                  " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.' ")
+                  " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
         }
     }
 
-    if (class(.data) == "group_factors") {
+    if (class(.data) == "split_factors") {
     invisible(structure(out, class = "lpcor_group"))
     } else {
     invisible(structure(out, class = "lpcor"))
