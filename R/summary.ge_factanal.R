@@ -38,8 +38,6 @@ summary.ge_factanal <- function(object, export = FALSE, file.name = NULL, digits
         sink(paste0(file.name, ".txt"))
         for (i in 1:length(object)) {
             var <- object[[i]]
-
-            cat("Variable", names(object)[i], "\n")
             cat("Variable", names(object)[i], "\n")
             cat("------------------------------------------------------------------------------------\n")
             cat("Correlation matrix among environments\n")
@@ -65,7 +63,6 @@ summary.ge_factanal <- function(object, export = FALSE, file.name = NULL, digits
             cat("Mean = mean; Min = minimum; Max = maximum; CV = coefficient of variation (%)\n")
             cat("The summary statistics are based on the men values of ", length(unique(var$data$REP)), "replicates\n")
             cat("------------------------------------------------------------------------------------\n")
-
         }
         sink()
     } else {
