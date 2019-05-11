@@ -13,7 +13,7 @@ clustering(.data, ... = NULL, means_by = NULL, scale = FALSE,
 means of each observation in each variable or, alternatively, replicates for
 each factor. In this case, a grouping variable is required in the argument
 \code{means_by} to compute the means. In addition, .data may be an object
-passed from the function \code{group_factors}. In this case, the distances
+passed from the function \code{split_factors}. In this case, the distances
 are computed for each level of the grouping variable.}
 
 \item{...}{The variables in \code{.data} to compute the distances. Set to
@@ -129,14 +129,14 @@ d5 = clustering(data_ge2,
 # Compute the distances for each environment
 # All rows of each environment and all numeric variables used
 d6 = data_ge2 \%>\%
-     group_factors(ENV) \%>\%
+     split_factors(ENV) \%>\%
      clustering()
 
 # Compute the distances for each environment
 # Select the variables NKR, TKW, and NKE
 # Use the mean for each genotype
 d7 = data_ge2 \%>\%
-     group_factors(ENV, keep_factors = TRUE) \%>\%
+     split_factors(ENV, keep_factors = TRUE) \%>\%
      clustering(NKR, TKW, NKE,
                 means_by = GEN)
 
