@@ -2,7 +2,7 @@
 % Please edit documentation in R/theme_waasb.R
 \name{theme_waasb}
 \alias{theme_waasb}
-\title{A personalized theme for the WAASB ggplot2-based graphics}
+\title{A personalized theme for ggplot2-based graphics}
 \usage{
 theme_waasb()
 }
