@@ -71,7 +71,7 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) 
 
     RMSPDres <- data.frame(RMSPD = matrix(NA, nboot, 1))
     for (b in 1:nboot) {
-        tmp = group_factors(data, !!enquo(env), keep_factors = TRUE, verbose = FALSE)
+        tmp = split_factors(data, !!enquo(env), keep_factors = TRUE, verbose = FALSE)
         modeling = do.call(rbind,
                            lapply(tmp, function(x){
                                X2 <- sample(unique(REPS), nrepval, replace = F)

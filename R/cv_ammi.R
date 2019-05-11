@@ -116,7 +116,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
             rownames(modeling) <- modeling$ID
         }
         if (condition2) {
-            tmp = group_factors(data, !!enquo(env), keep_factors = TRUE, verbose = FALSE)
+            tmp = split_factors(data, !!enquo(env), keep_factors = TRUE, verbose = FALSE)
             modeling = do.call(rbind,
                                lapply(tmp, function(x){
                                    X2 <- sample(unique(REPS), nrepval, replace = F)
