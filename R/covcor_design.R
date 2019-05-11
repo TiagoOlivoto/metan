@@ -1,13 +1,13 @@
-#' Variance-covariance and correlation matrices for designed experiments
+#' Variance-covariance matrices for designed experiments
 #'
 #' Compute variance-covariance and correlation matrices using data from a
-#' designed (RCBD or CRD).
+#' designed (RCBD or CRD) experiment.
 #'
 #'
 #' @param .data The dataset containing the columns related to Genotypes,
 #' replication/block and response variables. Alternatively, it is possible to
-#' use an object of class 'group_factors' to compute the results for each level
-#' of the grouping factor. See \code{?group_factors}.
+#' use an object of class 'split_factors' to compute the results for each level
+#' of the grouping factor. See \code{?split_factors}.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
 #' replications/blocks.
@@ -41,7 +41,7 @@
 #'
 #' # Residual (co)variance matrix for each environment
 #' rcov = datage2 %>%
-#'        group_factors(ENV, keep_factors = TRUE) %>%
+#'        split_factors(ENV, keep_factors = TRUE) %>%
 #'        covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
 #'                      type = "rcov")
 #'
@@ -56,7 +56,7 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
       stop("The type must be one of the 'pcor', 'gcor', 'rcor', 'pcov', 'gcov', 'rcov', or 'means'. ")
     }
   }
-  if(any(class(.data) == "group_factors")){
+  if(any(class(.data) == "split_factors")){
     dfs = list()
     for (k in 1:length(.data)){
       datain <- .data[[k]]
