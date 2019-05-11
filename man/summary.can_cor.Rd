@@ -5,7 +5,7 @@
 \title{Summarise an object of class can_cor}
 \usage{
 \method{summary}{can_cor}(object, export = FALSE, file.name = NULL,
-  digits = 4, ...)
+  digits = 3, ...)
 }
 \arguments{
 \item{object}{The \code{can_cor} object}

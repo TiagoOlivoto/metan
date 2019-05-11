@@ -5,7 +5,7 @@
 \title{Summary an Annicchiarico object}
 \usage{
 \method{summary}{Annicchiarico}(object, export = FALSE,
-  file.name = NULL, digits = 4, ...)
+  file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{object}{The \code{Annicchiarico} object}

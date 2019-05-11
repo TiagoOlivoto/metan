@@ -5,7 +5,7 @@
 \title{Summary a ge_stats object}
 \usage{
 \method{summary}{ge_stats}(object, export = FALSE, file.name = NULL,
-  digits = 4, ...)
+  digits = 3, ...)
 }
 \arguments{
 \item{object}{The \code{ge_stats} object}
