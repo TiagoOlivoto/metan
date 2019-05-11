@@ -6,8 +6,8 @@
 #'
 #' @param .data The dataset containing the columns related to Genotypes,
 #' replication/block and response variables. Alternatively, it is possible to
-#' use an object of class 'group_factors' to compute the distance for each
-#' level of the grouping factor. See \code{?group_factors}.
+#' use an object of class 'split_factors' to compute the distance for each
+#' level of the grouping factor. See \code{?split_factors}.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
 #' replications/blocks.
@@ -31,7 +31,7 @@
 #'
 #' # Compute one distance for each environment
 #' maha_group = data_ge %>%
-#'              group_factors(ENV, keep_factors = TRUE) %>%
+#'              split_factors(ENV, keep_factors = TRUE) %>%
 #'              mahala_design(GEN, REP, c(GY, HM))
 #'
 #' # Return the variance-covariance matrix of residuals
@@ -45,7 +45,7 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
   if (!design %in% c("RCBD", "CRD")) {
     stop("The experimental design must be RCBD or CRD.")
   }
-  if(any(class(.data) == "group_factors")){
+  if(any(class(.data) == "split_factors")){
     dfs = list()
     for (k in 1:length(.data)){
       datain <- .data[[k]]
