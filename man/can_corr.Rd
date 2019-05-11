@@ -13,7 +13,7 @@ can_corr(.data = NULL, FG = NULL, SG = NULL, use = "cor",
 numeric variables that will be used in the estimation of the correlations.
 The data can also be passed directly by the arguments \code{FG} and
 \code{SG}. Alternatively, \code{.data} may be passed from the function
-\code{group_factors}. In such case, the canonical correlation will be
+\code{split_factors}. In such case, the canonical correlation will be
 estimated for each level of the grouping variable in that function.}
 
 \item{FG}{If a dataframe is informed in \code{.data}, then \code{FG} is a
@@ -84,7 +84,7 @@ cc2 = can_corr(FG = datage_2[, 4:6],
 
 # Canonical correlations for each environment
 cc3 = data_ge2 \%>\%
-      group_factors(ENV, REP) \%>\%
+      split_factors(ENV, REP) \%>\%
       can_corr(FG = c(PH, EH, EP),
                SG = c(EL, ED, CL, CD, CW, KW, NR))
 
