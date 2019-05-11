@@ -24,7 +24,7 @@
 #'                  resp = PH)
 #' summary(model)
 #'
-summary.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 4,
+summary.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 3,
                               ...) {
   if (!class(object) == "ge_stats") {
     stop("The object must be of class 'ge_stats'")
@@ -37,60 +37,58 @@ summary.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 
       file.name <- file.name
     }
     sink(paste0(file.name, ".txt"))
-    options(max.print = 99999999, width = 90, digits = digits)
     for (i in 1:length(object)) {
       var <- object[[i]]
       cat("Variable", names(object)[i], "\n")
       cat("------------------------------ Individual analysis of variance--- ---------------------\n")
-      print.data.frame(var$individual$individual, row.names = FALSE)
+      print.data.frame(var$individual$individual, row.names = FALSE, digits = digits)
       cat("\n")
       cat("------------------------------- Genotype-vs-environment mean --------------------------\n")
-      print.data.frame(var$ge_mean)
+      print.data.frame(var$ge_mean, digits = digits)
       cat("\n")
       cat("------------------------------ Genotype-vs-environment effects -------------------------\n")
-      print.data.frame(var$ge_effect)
+      print.data.frame(var$ge_effect, digits = digits)
       cat("\n")
       cat("------------------------ Genotype + Genotype-vs-environment effects --------------------\n")
-      print.data.frame(var$gge_effect)
+      print.data.frame(var$gge_effect, digits = digits)
       cat("\n")
       cat("----------------------------- Genotype-vs-environment statistics -----------------------\n")
-      print.data.frame(var$ge_stats)
+      print.data.frame(var$ge_stats, digits = digits)
       cat("\n")
       cat("----------------------------- Regression-based stability (anova) -----------------------\n")
-      print.data.frame(var$ER$anova)
+      print.data.frame(var$ER$anova, digits = digits)
       cat("\n")
       cat("--------------------------- Regression-based stability (parameters) ---------------------\n")
-      print.data.frame(var$ER$regression)
+      print.data.frame(var$ER$regression, digits = digits)
       cat("\n")
       cat("-------------------------------------- End of data -------------------------------------\n\n\n\n")
 
     }
     sink()
   } else {
-    options(max.print = 99999999, width = 90, digits = digits)
     for (i in 1:length(object)) {
       var <- object[[i]]
       cat("Variable", names(object)[i], "\n")
       cat("------------------------------ Individual analysis of variance--- ---------------------\n")
-      print.data.frame(var$individual$individual, row.names = FALSE)
+      print.data.frame(var$individual$individual, row.names = FALSE, digits = digits)
       cat("\n")
       cat("------------------------------- Genotype-vs-environment mean --------------------------\n")
-      print.data.frame(var$ge_mean)
+      print.data.frame(var$ge_mean, digits = digits)
       cat("\n")
       cat("------------------------------ Genotype-vs-environment effects -------------------------\n")
-      print.data.frame(var$ge_effect)
+      print.data.frame(var$ge_effect, digits = digits)
       cat("\n")
       cat("------------------------ Genotype + Genotype-vs-environment effects --------------------\n")
-      print.data.frame(var$gge_effect)
+      print.data.frame(var$gge_effect, digits = digits)
       cat("\n")
       cat("----------------------------- Genotype-vs-environment statistics -----------------------\n")
-      print.data.frame(var$ge_stats)
+      print.data.frame(var$ge_stats, digits = digits)
       cat("\n")
       cat("----------------------------- Regression-based stability (anova) -----------------------\n")
-      print.data.frame(var$ER$anova)
+      print.data.frame(var$ER$anova, digits = digits)
       cat("\n")
       cat("--------------------------- Regression-based stability (parameters) ---------------------\n")
-      print.data.frame(var$ER$regression)
+      print.data.frame(var$ER$regression, digits = digits)
       cat("\n")
       cat("-------------------------------------- End of data -------------------------------------\n\n\n\n")
     }
