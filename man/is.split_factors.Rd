@@ -2,7 +2,7 @@
 % Please edit documentation in R/is.split_factors.R
 \name{is.split_factors}
 \alias{is.split_factors}
-\title{Coerce to an object of class split_factors}
+\title{Check if an object is of class split_factors}
 \usage{
 is.split_factors(x)
 }
