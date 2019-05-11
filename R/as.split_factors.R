@@ -1,7 +1,7 @@
 #' Coerce to an object of class split_factors
 #'
-#' Functions to check if an object is of class \code{split_factors}, or coerce
-#' it if possible.
+#' Functions to coerce an object to a list of class \code{split_factors},
+#' if possible.
 #'
 #' A dataframe may be easily coerced to be split into named subsets based on
 #' each combination of factors existing in the original dataframe. For example,
