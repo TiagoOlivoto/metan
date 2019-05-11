@@ -1,7 +1,7 @@
-#' Nonparametric confidence interval for Pearson's correlation coefficient
+#' Confidence interval for correlation coefficient
 #'
 #' Computes the half-width confidence interval for correlation coefficient
-#' based on the nonparametri method proposed by Olivoto et al. (2018).
+#' using the nonparametric method proposed by Olivoto et al. (2018).
 #'
 #' The half-width confidence interval is computed according to the following
 #' equation: \deqn{CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}}
@@ -34,14 +34,14 @@
 #'
 #' corr_ci(data_ge)
 #'
-#' ci = data_ge %>% group_factors(ENV) %>% corr_ci()
+#' ci = data_ge %>% split_factors(ENV) %>% corr_ci()
 #'
 #' }
 #'
 corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
   if (any(!is.na(.data))) {
-    if(!is.matrix(.data) && !is.data.frame(.data) && !is.group_factors(.data)){
-      stop("The object 'x' must be a correlation matrix, a data.frame or an object of class group_factors")
+    if(!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)){
+      stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
     }
 
     if(is.matrix(.data) && is.null(n)){
@@ -53,7 +53,7 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
       stop("You cannot informe the sample size because a data frame was used as input.")
     }
 
-    if(is.group_factors(.data) && !is.null(n)){
+    if(is.split_factors(.data) && !is.null(n)){
       stop("You cannot informe the sample size because a data frame was used as input.")
     }
 
@@ -81,7 +81,7 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
         out = internal(.data)
       }
 
-      if (any(class(.data) == "group_factors")) {
+      if (any(class(.data) == "split_factors")) {
         out = lapply(seq_along(.data), function(x){
           internal(.data[[x]])
         })
@@ -95,7 +95,7 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
         out = internal(data)
         if (verbose == TRUE){
           message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-                  " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.' ")
+                  " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
         }
       }
 
