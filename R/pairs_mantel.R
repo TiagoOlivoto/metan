@@ -56,7 +56,7 @@
 #'
 #' # iris dataset
 #' lpc = iris %>%
-#'       group_factors(Species) %>%
+#'       split_factors(Species) %>%
 #'       lpcor() %>%
 #'       pairs_mantel(names = c("setosa", "versicolor", "virginica"))
 #'
