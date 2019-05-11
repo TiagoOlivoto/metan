@@ -2,7 +2,7 @@
 % Please edit documentation in R/corr_ci.R
 \name{corr_ci}
 \alias{corr_ci}
-\title{Nonparametric confidence interval for Pearson's correlation coefficient}
+\title{Confidence interval for correlation coefficient}
 \usage{
 corr_ci(.data = NA, r = NULL, n = NULL, verbose = TRUE)
 }
@@ -21,7 +21,7 @@ console.}
 }
 \description{
 Computes the half-width confidence interval for correlation coefficient
-based on the nonparametri method proposed by Olivoto et al. (2018).
+using the nonparametric method proposed by Olivoto et al. (2018).
 }
 \details{
 The half-width confidence interval is computed according to the following
@@ -39,7 +39,7 @@ library(dplyr)
 
 corr_ci(data_ge)
 
-ci = data_ge \%>\% group_factors(ENV) \%>\% corr_ci()
+ci = data_ge \%>\% split_factors(ENV) \%>\% corr_ci()
 
 }
 
