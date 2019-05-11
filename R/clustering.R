@@ -26,7 +26,7 @@
 #' means of each observation in each variable or, alternatively, replicates for
 #' each factor. In this case, a grouping variable is required in the argument
 #' \code{means_by} to compute the means. In addition, .data may be an object
-#' passed from the function \code{group_factors}. In this case, the distances
+#' passed from the function \code{split_factors}. In this case, the distances
 #' are computed for each level of the grouping variable.
 #' @param ... The variables in \code{.data} to compute the distances. Set to
 #' \code{NULL}, i.e., all the numeric variables in \code{.data} are used.
@@ -112,14 +112,14 @@
 #' # Compute the distances for each environment
 #' # All rows of each environment and all numeric variables used
 #' d6 = data_ge2 %>%
-#'      group_factors(ENV) %>%
+#'      split_factors(ENV) %>%
 #'      clustering()
 #'
 #' # Compute the distances for each environment
 #' # Select the variables NKR, TKW, and NKE
 #' # Use the mean for each genotype
 #' d7 = data_ge2 %>%
-#'      group_factors(ENV, keep_factors = TRUE) %>%
+#'      split_factors(ENV, keep_factors = TRUE) %>%
 #'      clustering(NKR, TKW, NKE,
 #'                 means_by = GEN)
 #'
@@ -148,7 +148,7 @@ clustering = function(.data,
     stop("The argument 'distmethod' is incorrect. It should be one of the 'ward.D', 'ward.D2', 'single', 'average', 'mcquitty', 'median' or 'centroid'.")
   }
 
-if(any(class(.data) == "group_factors")){
+if(any(class(.data) == "split_factors")){
     dfs = list()
     datain = .data
 for (k in 1:length(.data)){
@@ -179,7 +179,7 @@ for (k in 1:length(.data)){
     if (verbose == TRUE){
       if (sum(lapply(.data, is.factor)==TRUE)>0){
         message("The columns ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-                " where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'group_factors() before.' ")
+                " where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.' ")
       }
     }
   }
@@ -370,7 +370,7 @@ return(structure(dfs, class = "group_clustering"))
     if (verbose == TRUE){
       if (sum(lapply(.data, is.factor)==TRUE)>0){
         message("The columns ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-                " where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'group_factors() before.' ")
+                " where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.' ")
       }
     }
   }
