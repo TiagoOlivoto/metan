@@ -10,7 +10,7 @@ path_coeff(.data, resp, pred = NULL, exclude = FALSE,
 }
 \arguments{
 \item{.data}{The data. Must be a dataframe or an object of class
-\code{group_factors}.}
+\code{split_factors}.}
 
 \item{resp}{The dependent variable.}
 
@@ -134,14 +134,14 @@ pcoeff4 = path_coeff(data_ge2,
 # When one analysis should be carried out for each environment
 # Using the forward-pipe operator \%>\%
 pcoeff5 = data_ge2 \%>\%
-          group_factors(ENV) \%>\%
+          split_factors(ENV) \%>\%
           path_coeff(resp = KW,
                      pred = c(PH, EH, NKE, TKW))
 
 
 # One analysis for each environment with minimal multicollinearity
 pcoeff6 = data_ge2 \%>\%
-          group_factors(ENV) \%>\%
+          split_factors(ENV) \%>\%
           path_coeff(resp = KW,
                      brutstep = TRUE,
                      maxvif = 5)

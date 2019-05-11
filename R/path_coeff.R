@@ -19,7 +19,7 @@
 #' variables in the iterative process.
 #'
 #' @param .data The data. Must be a dataframe or an object of class
-#' \code{group_factors}.
+#' \code{split_factors}.
 #' @param resp The dependent variable.
 #' @param pred The predictor variables, set to \code{NULL}, i.e., the predictor
 #' variables are all the numeric variables in the data except that in
@@ -118,14 +118,14 @@
 #' # When one analysis should be carried out for each environment
 #' # Using the forward-pipe operator %>%
 #' pcoeff5 = data_ge2 %>%
-#'           group_factors(ENV) %>%
+#'           split_factors(ENV) %>%
 #'           path_coeff(resp = KW,
 #'                      pred = c(PH, EH, NKE, TKW))
 #'
 #'
 #' # One analysis for each environment with minimal multicollinearity
 #' pcoeff6 = data_ge2 %>%
-#'           group_factors(ENV) %>%
+#'           split_factors(ENV) %>%
 #'           path_coeff(resp = KW,
 #'                      brutstep = TRUE,
 #'                      maxvif = 5)
@@ -149,7 +149,7 @@ if (!missing(pred) && brutstep == TRUE){
   stop("Multiple arguments to select the predictors. Set 'pred' to NULL or 'brutstep' to FALSE.")
 }
 kincrement = 1 / knumber
-  if(any(class(.data) == "group_factors")){
+  if(any(class(.data) == "split_factors")){
     dfs = list()
     for (k in 1:length(.data)){
       data = .data[[k]]
@@ -475,7 +475,7 @@ kincrement = 1 / knumber
     if(sum(lapply(.data, is.factor)==TRUE)>0){
       if (verbose == TRUE){
       message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-              " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.' ")
+              " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
       }
     }
     data = .data[ , unlist(lapply(.data, is.numeric))]
