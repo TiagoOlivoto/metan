@@ -7,7 +7,7 @@
 #'
 #' @param .data The data to be analyzed. Must be a symmetric correlation matrix
 #' or, a dataframe containing the predictor variables, or an object of class
-#' \code{group_factors}.
+#' \code{split_factors}.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
 #' objects used to compute the correlation coefficients.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
@@ -61,13 +61,13 @@
 #'
 #' # Diagnostic by species, storing into an object
 #' col_diag_spec = iris %>%
-#'                 group_factors(Species) %>%
+#'                 split_factors(Species) %>%
 #'                 colindiag()
 #'
 #'
 colindiag = function(.data, n = NULL, verbose = TRUE){
-  if(!class(.data) %in% c("matrix", "data.frame", "group_factors", "covcor_design")){
-    stop("The object 'x' must be a correlation matrix, a data.frame or an object of class group_factors")
+  if(!class(.data) %in% c("matrix", "data.frame", "split_factors", "covcor_design")){
+    stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
   }
 
   if(is.matrix(.data) && is.null(n)){
@@ -82,7 +82,7 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
     stop("You cannot informe the sample size because a data frame was used as input.")
   }
 
-  if(is.group_factors(.data) && !is.null(n)){
+  if(is.split_factors(.data) && !is.null(n)){
     stop("You cannot informe the sample size because a data frame was used as input.")
   }
 
@@ -161,7 +161,7 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
     out = internal(.data)
   }
 
-  if (any(class(.data) %in% c("group_factors", "covcor_design"))) {
+  if (any(class(.data) %in% c("split_factors", "covcor_design"))) {
     out = lapply(seq_along(.data), function(x){
       if(verbose == TRUE){
         cat("\n----------------------------------------------------------------------------\n")
@@ -179,7 +179,7 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
     if (verbose == TRUE){
       if (sum(lapply(.data, is.factor)==TRUE)>0){
       message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-              " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_factors() before.' ")
+              " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
       }
     }
   }
