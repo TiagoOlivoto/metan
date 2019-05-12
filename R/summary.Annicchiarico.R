@@ -27,7 +27,7 @@
 summary.Annicchiarico <- function(object, export = FALSE, file.name = NULL, digits = 3,
                               ...) {
   if (!class(object) == "Annicchiarico") {
-    stop("The object must be of class 'ge_stats'")
+    stop("The object must be of class 'Annicchiarico'")
   }
 
   if (export == TRUE) {
