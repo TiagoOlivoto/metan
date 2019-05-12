@@ -1,4 +1,4 @@
-#' AMMI-based indexes for stability and simultaneous selection
+#' AMMI-based stability indexes
 #'
 #' This function computes the following AMMI-based stability indexes: ASV, AMMI
 #' stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
