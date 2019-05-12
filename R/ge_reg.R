@@ -22,7 +22,6 @@
 #'             gen = GEN,
 #'             rep = REP,
 #'             resp = PH)
-#'plot(reg)
 #'
 #' @seealso \code{\link{superiority}, \link{ecovalence}, \link{ge_stats}}
 #'

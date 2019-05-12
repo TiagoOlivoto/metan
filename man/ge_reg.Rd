@@ -33,7 +33,6 @@ reg = ge_reg(data_ge2,
             gen = GEN,
             rep = REP,
             resp = PH)
-plot(reg)
 
 }
 \references{
