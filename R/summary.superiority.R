@@ -39,7 +39,7 @@ summary.superiority <- function(object, export = FALSE, file.name = NULL, digits
       cat("---------------------------------------------------------------------------\n")
       cat("Superiority index considering all, favorable and unfavorable environments\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$index, digits = digits)
+      print(var$index, row.names = FALSE, digits = digits)
       cat("---------------------------------------------------------------------------\n")
       cat("\n\n\n")
     }
@@ -51,7 +51,7 @@ summary.superiority <- function(object, export = FALSE, file.name = NULL, digits
       cat("---------------------------------------------------------------------------\n")
       cat("Superiority index considering all, favorable and unfavorable environments\n")
       cat("---------------------------------------------------------------------------\n")
-      print(var$index, digits = digits)
+      print(var$index, row.names = FALSE, digits = digits)
       cat("---------------------------------------------------------------------------\n")
       cat("\n\n\n")
     }

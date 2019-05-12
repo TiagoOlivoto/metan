@@ -82,12 +82,12 @@ superiority = function(.data,
     mat_u  = dplyr::select_if(make_mat(ge_mu, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
     temp = list(environments = environments,
                 index = data.frame(Genotypes = rownames(mat_g),
-                                   Pi_general = lin_fun(mat_g),
-                                   order_g = order(lin_fun(mat_g)),
+                                   Pi_all = lin_fun(mat_g),
+                                   Or_a = order(lin_fun(mat_g)),
                                    Pi_favorable = lin_fun(mat_f),
-                                   order_f = order(lin_fun(mat_f)),
+                                   Or_f = order(lin_fun(mat_f)),
                                    Pi_unfavorable = lin_fun(mat_u),
-                                   order_u = order(lin_fun(mat_u))))
+                                   Or_u = order(lin_fun(mat_u))))
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
