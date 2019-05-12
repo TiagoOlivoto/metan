@@ -66,18 +66,24 @@ ge_reg = function(.data,
     iamb2 = suppressMessages(dplyr::mutate(iamb2,
                                            IndAmb = dplyr::left_join(iamb2, iamb %>% select(ENV, IndAmb))$IndAmb))
     matx <- myAgg$mean
-    myAgg$GEN
     meandf = data.frame(GEN = myAgg$GEN, myAgg$mean)
     names(meandf) = c("GEN", levels(mydf$ENV))
-    gradyt = mean(matx)
-    iij = apply(matx, 2, mean) - gradyt
-    sqiij = sum((iij)^2)
+    iij = apply(matx, 2, mean) - mean(matx)
     YiIj = matx %*% iij
-    bij = YiIj/sqiij
+    bij = YiIj/sum((iij)^2)
     svar = (apply(matx^2, 1, sum)) - (((apply(matx, 1, sum))^2)/ncol(matx))
     bYijIj = bij * YiIj
     dij = svar - bYijIj
-    devtab <- data.frame(GEN = meandf$GEN, svar, bij, YiIj, bYijIj, dij)
+    pred = apply(matx, 1, mean) + bij %*% iij
+    gof = function(x, y){
+      R2 = NULL
+      RMSE = NULL
+      for (i in 1:nrow(x)){
+        R2[i] =  cor(x[i, ], y[i, ])^2
+        RMSE[i] = sqrt(sum((x[i, ] - y[i, ])^2)/ncol(x))
+      }
+      return(list(R2 = R2, RMSE = RMSE))
+    }
     S2e = modav$"Mean Sq"[5]
     rps = length(levels(data$REP))
     en = length(levels(data$ENV))
@@ -109,9 +115,12 @@ ge_reg = function(.data,
                            levels(data$GEN), "Pooled error")
     temp = structure(list(data = iamb2,
                 anova = anovadf,
-                regression = data.frame(GEN = devtab$GEN,
-                                        bij = devtab$bij,
-                                        sdij = S2di)),
+                regression = data.frame(GEN = levels(mydf$GEN),
+                                        Mean = apply(matx, 1, mean),
+                                        bij = bij,
+                                        sdij = S2di,
+                                        RMSE = gof(pred, matx)$RMSE,
+                                        R2 = gof(pred, matx)$R2)),
                 class = "ge_reg")
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
