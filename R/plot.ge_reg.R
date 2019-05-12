@@ -24,6 +24,8 @@
 #' @param y.lab The label of y-axis. Each plot has a default value. New
 #' arguments can be inserted as \code{y.lab = "my label"}.
 #' @param leg.position The position of the legend.
+#' @param size.tex.lab The size of the text in the axes text and labels.
+#' Default is \code{12}.
 #' @param ... Other arguments of the function.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{ge_factanal}}
@@ -32,7 +34,7 @@
 #'
 plot.ge_reg = function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = waiver(),
                        x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
-                       leg.position = "right", ...){
+                       leg.position = "right", size.tex.lab = 12, ...){
   if (!class(x) == "ge_reg") {
     stop("The object 'x' is not of class 'ge_reg'")
   }
