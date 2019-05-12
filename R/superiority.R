@@ -67,10 +67,8 @@ superiority = function(.data,
     data = suppressMessages(left_join(data, environments %>% select(ENV, class)))
 
     lin_fun = function(mat){
-      locmean <- apply(mat, 2, mean)
-      locmax <- apply(mat, 2, max)
     P <- apply(mat, 1, function(x) {
-      sum((x - locmax)^2) / (2 * length(x))
+      sum((x - apply(mat, 2, max))^2) / (2 * length(x))
     })
     return(P)
     }
