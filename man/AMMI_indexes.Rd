@@ -2,7 +2,7 @@
 % Please edit documentation in R/AMMI_indexes.R
 \name{AMMI_indexes}
 \alias{AMMI_indexes}
-\title{AMMI-based indexes for stability and simultaneous selection}
+\title{AMMI-based stability indexes}
 \usage{
 AMMI_indexes(.data, order.y = NULL)
 }
