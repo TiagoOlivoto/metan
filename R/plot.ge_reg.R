@@ -31,6 +31,10 @@
 #' @seealso \code{\link{ge_factanal}}
 #' @method plot ge_reg
 #' @export
+#' @examples
+#' library(METAAB)
+#' model = ge_reg(data_ge2, ENV, GEN, REP, PH)
+#' plot(model$PH)
 #'
 plot.ge_reg = function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = waiver(),
                        x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
