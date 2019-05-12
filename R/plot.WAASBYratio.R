@@ -14,8 +14,7 @@
 #' unstable genotypes; (3) stable, but unproductive genotypes; and (4),
 #' productive and stable genotypes.
 #'
-#' @aliases plot.WAASBYratio plot.WAASratio.AMMI
-#' @param x The \code{WAASYratio object}
+#' @param x The \code{WAASBYratio object}
 #' @param type \code{1 = Heat map Ranks}: this graphic shows the genotype
 #' ranking considering the WAAS estimated with different numbers of Principal
 #' Components; \code{2 = Heat map WAASY-GY ratio}: this graphic shows the
@@ -40,7 +39,6 @@
 #' @param ... Other arguments of the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot WAASBYratio
-#' @method plot WAASratio.AMMI
 #' @export
 #' @examples
 #'
@@ -54,13 +52,6 @@
 #'                      increment = 10)
 #' plot(wratio, type = 1)
 #'
-#' wratio2 = WAASratio.AMMI(data_ge,
-#'                          resp = GY,
-#'                          gen = GEN,
-#'                          env = ENV,
-#'                          rep = REP,
-#'                          increment = 5)
-#' plot(wratio2, type = 2)
 #' }
 #'
 plot.WAASBYratio <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name = NULL,
