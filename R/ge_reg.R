@@ -107,27 +107,12 @@ ge_reg = function(.data,
     rownames(anovadf) <- c("Total", "GEN", "ENV + (GEN x ENV)", "ENV (linear)",
                            " GEN x ENV (linear)", "Pooled deviation",
                            levels(data$GEN), "Pooled error")
-    p = ggplot2::ggplot(iamb2, aes(x = IndAmb, y = mean))+
-      ggplot2::geom_point(aes(colour = factor(GEN)), size = 1.5)+
-      geom_smooth(aes(colour = factor(GEN)), method = "lm", se = FALSE)+
-      ggplot2::theme_bw()+
-      ggplot2::labs(x = "Environmental index", y = varnam)+
-      ggplot2::theme(axis.ticks.length = unit(.2, "cm"),
-                     axis.text = element_text(size = 12, colour = "black"),
-                     axis.title = element_text(size = 12, colour = "black"),
-                     axis.ticks = element_line(colour = "black"),
-                     plot.margin = margin(0.5, 0.5, 0.2, 0.6, "cm"),
-                     axis.title.y = element_text(margin = margin(r=16)),
-                     legend.title = element_blank(),
-                     legend.text = element_text(size=12),
-                     panel.border = element_rect(colour = "black", fill=NA, size=1),
-                     panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
-                     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank())
-    temp = list(plot = p,
+    temp = structure(list(data = iamb2,
                 anova = anovadf,
                 regression = data.frame(GEN = devtab$GEN,
                                         bij = devtab$bij,
-                                        sdij = S2di))
+                                        sdij = S2di)),
+                class = "ge_reg")
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
