@@ -6,7 +6,8 @@
 \usage{
 \method{plot}{ge_reg}(x, theme = theme_waasb(), x.lim = NULL,
   x.breaks = waiver(), x.lab = NULL, y.lim = NULL,
-  y.breaks = waiver(), y.lab = NULL, leg.position = "right", ...)
+  y.breaks = waiver(), y.lab = NULL, leg.position = "right",
+  size.tex.lab = 12, ...)
 }
 \arguments{
 \item{x}{An object of class \code{ge_factanal}}
@@ -38,6 +39,9 @@ used.}
 arguments can be inserted as \code{y.lab = "my label"}.}
 
 \item{leg.position}{The position of the legend.}
+
+\item{size.tex.lab}{The size of the text in the axes text and labels.
+Default is \code{12}.}
 
 \item{...}{Other arguments of the function.}
 }
