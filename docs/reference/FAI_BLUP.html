@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="Multi-trait index based on factor analysis and ideotype-design — FAI_BLUP" />
 
-<meta property="og:description" content="Multitrait index based on factor analysis and ideotype-design proposed by Rocha et al. (2018)." />
+<meta property="og:description" content="Multitrait index based on factor analysis and ideotype-design proposed by
+Rocha et al. (2018)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +96,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,13 +155,14 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Multi-trait index based on factor analysis and ideotype-design</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/FAI_BLUP.R'><code>R/FAI_BLUP.R</code></a></small>
     <div class="hidden name"><code>FAI_BLUP.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Multitrait index based on factor analysis and ideotype-design proposed by Rocha et al. (2018).</p>
+    <p>Multitrait index based on factor analysis and ideotype-design proposed by
+Rocha et al. (2018).</p>
     
     </div>
 
@@ -172,29 +177,40 @@
     </tr>
     <tr>
       <th>DI, UI</th>
-      <td><p>A vector of the same length of <code>.data</code> to construct the desirable (DI) and undesirable (UI) ideotypes. For each element of the vector, allowed values are <code>"max"</code>, <code>"min"</code>, <code>"mean"</code>, or a numeric value.</p></td>
+      <td><p>A vector of the same length of <code>.data</code> to construct the
+desirable (DI) and undesirable (UI) ideotypes. For each element of the
+vector, allowed values are <code>"max"</code>, <code>"min"</code>, <code>"mean"</code>, or a
+numeric value.</p></td>
     </tr>
     <tr>
       <th>SI</th>
-      <td><p>An integer [0-100]. The selection intensity in percentage of the total number of genotypes.</p></td>
+      <td><p>An integer [0-100]. The selection intensity in percentage of the
+total number of genotypes.</p></td>
     </tr>
     <tr>
       <th>mineval</th>
-      <td><p>The minimum value so that an eigenvector is retained in the factor analysis.</p></td>
+      <td><p>The minimum value so that an eigenvector is retained in the
+factor analysis.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Logical value. If <code>TRUE</code> some results are shown in console.</p></td>
+      <td><p>Logical value. If <code>TRUE</code> some results are shown in
+console.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018. Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy. GCB Bioenergy 10:52-60. doi: <a href='https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443'>doi:10.1111/gcbb.12443</a>.</p>
+    <p>Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
+Multitrait index based on factor analysis and ideotype-design: proposal and
+application on elephant grass breeding for bioenergy. GCB Bioenergy
+10:52-60. doi:
+<a href='https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443'>doi:10.1111/gcbb.12443</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
 <span class='no'>mod</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
@@ -294,7 +310,8 @@
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; H13 H6
-#&gt; -----------------------------------------------------------------------------------</div></pre>
+#&gt; -----------------------------------------------------------------------------------</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio — WAASratio.AMMI • METAAB</title>
+<title>Weighting stability and mean performance in different scenarios — WAASratio.AMMI • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio — WAASratio.AMMI" />
+<meta property="og:title" content="Weighting stability and mean performance in different scenarios — WAASratio.AMMI" />
 
-<meta property="og:description" content="Compute the Weighted Average of Absolute Scores for AMMI analysis in different combinations of weights for stability and productivity." />
+<meta property="og:description" content="This function computes the WAASBY index in AMMI analysis in
+different combinations of weights for stability and productivity." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +96,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -150,30 +154,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Weighted Average of Absolute Scores for AMMI analysis in different scenarios of WAAS/GY ratio</h1>
-    
+    <h1>Weighting stability and mean performance in different scenarios</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/WAASratio.AMMI.R'><code>R/WAASratio.AMMI.R</code></a></small>
     <div class="hidden name"><code>WAASratio.AMMI.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute the Weighted Average of Absolute Scores for AMMI analysis in different combinations of weights for stability and productivity.</p>
+    <p>This function computes the WAASBY index in AMMI analysis in
+different combinations of weights for stability and productivity.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>WAASratio.AMMI</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>p.valuePC</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-               <span class='kw'>increment</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>saveWAASY</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>progbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>increment</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>saveWAASY</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>progbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The dataset containing the columns related to Environments, Genotypes, replication/block and response variable(s).</p></td>
+      <td><p>The dataset containing the columns related to Environments,
+Genotypes, replication/block and response variable(s).</p></td>
     </tr>
     <tr>
       <th>env</th>
-      <td><p>The name of the column that contains the levels of the environments.</p></td>
+      <td><p>The name of the column that contains the levels of the
+environments.</p></td>
     </tr>
     <tr>
       <th>gen</th>
@@ -181,7 +188,8 @@
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>The name of the column that contains the levels of the replications/blocks.</p></td>
+      <td><p>The name of the column that contains the levels of the
+replications/blocks.</p></td>
     </tr>
     <tr>
       <th>resp</th>
@@ -189,49 +197,66 @@
     </tr>
     <tr>
       <th>p.valuePC</th>
-      <td><p>The p-value for considering the PC significant. Default is 0.05. The number of significant Principal Components to be used for calculating the WAASB will be chosen based on this probability.</p></td>
+      <td><p>The p-value for considering the PC significant. Default is
+0.05. The number of significant Principal Components to be used for
+calculating the WAASB will be chosen based on this probability.</p></td>
     </tr>
     <tr>
       <th>increment</th>
-      <td><p>The range of the increment for WAAS/GY ratio. Default is 5. The function compute the WAASY  values starting with a weight o 100 for stability and 0 for response variable. With the default, the first scenario will be a WAAS/GY ratio = 100/0. In the next scenario, the WAASY values are computed based on a WAAS/GY ratio = 95/5.</p></td>
+      <td><p>The range of the increment for WAAS/GY ratio. Default is 5.
+The function compute the WAASY values starting with a weight o 100 for
+stability and 0 for response variable. With the default, the first scenario
+will be a WAAS/GY ratio = 100/0. In the next scenario, the WAASY values are
+computed based on a WAAS/GY ratio = 95/5.</p></td>
     </tr>
     <tr>
       <th>saveWAASY</th>
-      <td><p>Automatically save the WAASY values when the wheight for WAAS (stability) in the WAAS/GY ratio is "saveWAASY". Default is 100. The value of "saveWAASY" must be multiple of "Increment". If this assumption is not valid, an error will be occour.</p></td>
+      <td><p>Automatically save the WAASY values when the wheight for
+WAAS (stability) in the WAAS/GY ratio is "saveWAASY". Default is 100. The
+value of "saveWAASY" must be multiple of "Increment". If this assumption is
+not valid, an error will be occour.</p></td>
     </tr>
     <tr>
       <th>progbar</th>
-      <td><p>A logical argument to define if a progress bar is shown. Default is <code>TRUE</code>.</p></td>
+      <td><p>A logical argument to define if a progress bar is shown.
+Default is <code>TRUE</code>.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This function is very similar to the <code>WAASBYratio</code>. The main difference is that here, the WAASBY values are computed considering a traditional AMMI model.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     
 
-<dt>anova</dt><dd><p>Joint analysis of variance for the main effects and Principal Component analysis of the interaction effect.</p></dd>
+<dt>anova</dt><dd><p>Joint analysis of variance for the main effects and
+Principal Component analysis of the interaction effect.</p></dd>
 
 <dt>PC</dt><dd><p>Principal Component Analysis.</p></dd>
 
+<dt>MeansGxE</dt><dd><p>The means of genotypes in the environments, with observed,
+predicted and residual values.</p></dd>
 
-<dt>MeansGxE</dt><dd><p>The means of genotypes in the environments, with observed, predicted and residual values.</p></dd>
+<dt>WAAS</dt><dd><p>A data frame with the response variable, the scores of all
+Principal Components, the estimates of Weighted Average of Absolute Scores,
+and WAASY (the index that consider the weights for stability and
+productivity in the genotype ranking.</p></dd>
 
-<dt>WAAS</dt><dd><p>A data frame with the response variable, the scores of all Principal Components, the estimates of Weighted Average of Absolute Scores, and WAASY (the index that consider the weights for stability and productivity in the genotype ranking.</p></dd>
+<dt>WAASY</dt><dd><p>The values of the WAASY estimated when the wheight for the
+stability in the loop match with argument "saveWAASY".</p></dd>
 
-<dt>WAASY</dt><dd><p>The values of the WAASY estimated when the wheight for the stability in the loop match with argument "saveWAASY".</p></dd>
+<dt>WAASY.values</dt><dd><p>All the values of WAASY estimated in the different
+scenarios of WAAS/GY weighting ratio.</p></dd>
 
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-<dt>WAASY.values</dt><dd><p>All the values of WAASY estimated in the different scenarios of WAAS/GY weighting ratio.</p></dd>
-
-
+    <p>This function is very similar to the <code>WAASBYratio</code>. The main difference
+is that here, the WAASBY values are computed considering a traditional AMMI
+model.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='co'># Default, with increment of 5 and saving the WAASY values when weight is 50</span>
 <span class='no'>wratio</span> <span class='kw'>=</span> <span class='fu'>WAASratio.AMMI</span>(<span class='no'>data_ge</span>,
                         <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
@@ -246,16 +271,17 @@
                          <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                          <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                          <span class='kw'>increment</span> <span class='kw'>=</span> <span class='fl'>50</span>)
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -32,7 +32,9 @@
 
 <meta property="og:title" content="Rescale a continuous vector to have specified minimum and maximum values — resca" />
 
-<meta property="og:description" content="Helper function used in the WAASB package. It rescales a continuous vector to have specified minimum and maximum values. Missing values are not allowed." />
+<meta property="og:description" content="Helper function used in the WAASB package. It rescales a continuous vector
+to have specified minimum and maximum values. Missing values are not
+allowed." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +97,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,13 +156,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Rescale a continuous vector to have specified minimum and maximum values</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/resca.R'><code>R/resca.R</code></a></small>
     <div class="hidden name"><code>resca.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Helper function used in the WAASB package. It rescales a continuous vector to have specified minimum and maximum values. Missing values are not allowed.</p>
+    <p>Helper function used in the WAASB package. It rescales a continuous vector
+to have specified minimum and maximum values. Missing values are not
+allowed.</p>
     
     </div>
 
@@ -182,8 +189,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>resca</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)</div><div class='output co'>#&gt;  [1]   0.00000  11.11111  22.22222  33.33333  44.44444  55.55556  66.66667
-#&gt;  [8]  77.77778  88.88889 100.00000</div><div class='input'><span class='fu'>resca</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>), <span class='kw'>new_min</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>new_max</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; [1]  5.0  7.5 10.0</div></pre>
+    <pre class="examples"><div class='input'>
+<span class='fu'>resca</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)</div><div class='output co'>#&gt;  [1]   0.00000  11.11111  22.22222  33.33333  44.44444  55.55556  66.66667
+#&gt;  [8]  77.77778  88.88889 100.00000</div><div class='input'><span class='fu'>resca</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>), <span class='kw'>new_min</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>new_max</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; [1]  5.0  7.5 10.0</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -61,6 +61,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -131,37 +134,36 @@
 <p>A dataset called <code>data_ge</code> is provided to make reproducible examples. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Importing data</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used in this material to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-5" title="5">dataset =<span class="st"> </span>data_ge</a></code></pre></div>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used in this material to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-4" title="4">dataset =<span class="st"> </span>data_ge</a></code></pre></div>
 </div>
 <div id="predictive-accuracy" class="section level1">
 <h1 class="hasAnchor">
 <a href="#predictive-accuracy" class="anchor"></a>Predictive accuracy</h1>
-<p>The predictive accucary of both AMMI and BLUP models may be obtained using a cross-validation procedure implemented by the functions <code><a href="../reference/validation.AMMIF.html">validation.AMMIF()</a></code> and <code><a href="../reference/validation.blup.html">validation.blup()</a></code> The <code><a href="../reference/validation.AMMIF.html">validation.AMMIF()</a></code> function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below: <img src="validation.png" alt="Diagram for cross-validation of AMMI models."> Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set. The training set has all combinations (genotype x environment) with the number of replications informed in <code>nrepval</code> argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by <span class="citation">Piepho (<a href="#ref-Piepho:1994">1994</a>)</span>. The remaining block serves as validation data. If <code>design = "CRD"</code> is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by <span class="citation">Gauch and Zobel (<a href="#ref-Gauch:1988">1988</a>)</span>. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:</p>
+<p>The predictive accucary of both AMMI and BLUP models may be obtained using a cross-validation procedure implemented by the functions <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code> and <code><a href="../reference/cv_blup.html">cv_blup()</a></code> The <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code> function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below: <img src="validation.png" alt="Diagram for cross-validation of AMMI models."> Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set. The training set has all combinations (genotype x environment) with the number of replications informed in <code>nrepval</code> argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by <span class="citation">Piepho (<a href="#ref-Piepho:1994">1994</a>)</span>. The remaining block serves as validation data. If <code>design = "CRD"</code> is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by <span class="citation">Gauch and Zobel (<a href="#ref-Gauch:1988">1988</a>)</span>. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:</p>
 <p><span class="math display">\[
    RMSPD = 
    {\left[ {\left( {\sum\nolimits_{i = 1}^n {{{\left( {{{\hat y}_{ij}} - {y_{ij}}} \right)}^2}} } \right)/n} \right]^{0.5}}
 \]</span></p>
 <p>where <span class="math inline">\(\widehat{y}_{ij}\)</span> is the model predicted value; and <span class="math inline">\(y_{ij}\)</span> is the observed value in the validation set. The number of random selection of blocks/replicates (<em>n</em>) is defined in the argument <code>nboot</code>. At the end of the <em>n</em> cycles for all models, a list with all estimated RMSPD and the average of RMSPD is returned.</p>
-<p>The function <code>validation.blup</code> provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.</p>
+<p>The function <code>cv_blup</code> provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.</p>
 <p>The following code computes the cross-validation of the oat data set that, for simplicity, will use 200 re-sampling procedures. I suggest using a larger number, say, 1000.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"></a>
-<a class="sourceLine" id="cb2-2" title="2">AMMIweat =<span class="st"> </span><span class="kw"><a href="../reference/validation.AMMIF.html">validation.AMMIF</a></span>(dataset,</a>
+<a class="sourceLine" id="cb2-2" title="2">AMMIweat =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(dataset,</a>
 <a class="sourceLine" id="cb2-3" title="3">                            <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb2-4" title="4">                            <span class="dt">gen =</span> GEN,</a>
 <a class="sourceLine" id="cb2-5" title="5">                            <span class="dt">env =</span> ENV,</a>
 <a class="sourceLine" id="cb2-6" title="6">                            <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb2-7" title="7">                            <span class="dt">nboot =</span> <span class="dv">200</span>,</a>
+<a class="sourceLine" id="cb2-7" title="7">                            <span class="dt">nboot =</span> <span class="dv">5</span>,</a>
 <a class="sourceLine" id="cb2-8" title="8">                            <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb2-9" title="9"></a>
 <a class="sourceLine" id="cb2-10" title="10"><span class="co"># cross-validation for BLUP model</span></a>
-<a class="sourceLine" id="cb2-11" title="11">BLUPweat =<span class="st"> </span><span class="kw"><a href="../reference/validation.blup.html">validation.blup</a></span>(dataset,</a>
+<a class="sourceLine" id="cb2-11" title="11">BLUPweat =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(dataset,</a>
 <a class="sourceLine" id="cb2-12" title="12">                            <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb2-13" title="13">                            <span class="dt">gen =</span> GEN,</a>
 <a class="sourceLine" id="cb2-14" title="14">                            <span class="dt">env =</span> ENV,</a>
 <a class="sourceLine" id="cb2-15" title="15">                            <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb2-16" title="16">                            <span class="dt">nboot =</span> <span class="dv">200</span>,</a>
+<a class="sourceLine" id="cb2-16" title="16">                            <span class="dt">nboot =</span> <span class="dv">5</span>,</a>
 <a class="sourceLine" id="cb2-17" title="17">                            <span class="dt">nrepval =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p>A progress bar is shown by default (the examples are below). Thus, it is possible to verify the status of the cross-validation process. If necessary, the progress bar can be disabled by informing the argument <code>progbar = FALSE</code> in the function.</p>
 <div class="figure">
@@ -193,98 +195,10 @@ CROP
 <tbody>
 <tr>
 <td style="text-align:left;">
-BLUP
-</td>
-<td style="text-align:right;">
-0.4057
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 AMMI2
 </td>
 <td style="text-align:right;">
-0.4100
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI3
-</td>
-<td style="text-align:right;">
-0.4175
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI5
-</td>
-<td style="text-align:right;">
-0.4196
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI4
-</td>
-<td style="text-align:right;">
-0.4214
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI6
-</td>
-<td style="text-align:right;">
-0.4230
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI8
-</td>
-<td style="text-align:right;">
-0.4231
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI7
-</td>
-<td style="text-align:right;">
-0.4272
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMIF
-</td>
-<td style="text-align:right;">
-0.4286
+0.3826
 </td>
 <td style="text-align:left;">
 Wheat
@@ -295,7 +209,95 @@ Wheat
 AMMI1
 </td>
 <td style="text-align:right;">
-0.4304
+0.4110
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI8
+</td>
+<td style="text-align:right;">
+0.4172
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI6
+</td>
+<td style="text-align:right;">
+0.4218
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI4
+</td>
+<td style="text-align:right;">
+0.4236
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BLUP
+</td>
+<td style="text-align:right;">
+0.4237
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI3
+</td>
+<td style="text-align:right;">
+0.4258
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMIF
+</td>
+<td style="text-align:right;">
+0.4307
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI7
+</td>
+<td style="text-align:right;">
+0.4312
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI5
+</td>
+<td style="text-align:right;">
+0.4366
 </td>
 <td style="text-align:left;">
 Wheat
@@ -306,7 +308,7 @@ Wheat
 AMMI0
 </td>
 <td style="text-align:right;">
-0.4361
+0.4439
 </td>
 <td style="text-align:left;">
 Wheat
@@ -322,7 +324,7 @@ Wheat
 <a href="#plotting-the-rmspd-values" class="anchor"></a>Plotting the RMSPD values</h2>
 <p>The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function<code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> may be used.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># binding AMMI and BLUP RMSPDs</span></a>
-<a class="sourceLine" id="cb4-2" title="2">RMSPDweat =<span class="st"> </span><span class="kw"><a href="../reference/bind_val.html">bind_val</a></span>(AMMIweat, BLUPweat)</a>
+<a class="sourceLine" id="cb4-2" title="2">RMSPDweat =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIweat, BLUPweat)</a>
 <a class="sourceLine" id="cb4-3" title="3"></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="co"># Plotting the RMSPD values</span></a>
 <a class="sourceLine" id="cb4-5" title="5">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(RMSPDweat)</a>

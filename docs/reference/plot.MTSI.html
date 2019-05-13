@@ -95,6 +95,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,7 +154,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot the multi-trait stability index</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/plot.MTSI.R'><code>R/plot.MTSI.R</code></a></small>
     <div class="hidden name"><code>plot.MTSI.Rd</code></div>
     </div>
 
@@ -162,8 +165,8 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for MTSI</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>,  <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-     <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,11 +177,13 @@
     </tr>
     <tr>
       <th>SI</th>
-      <td><p>An integer [0-100]. The selection intensity in percentage of the total number of genotypes.</p></td>
+      <td><p>An integer [0-100]. The selection intensity in percentage of the
+total number of genotypes.</p></td>
     </tr>
     <tr>
       <th>radar</th>
-      <td><p>Logical argument. If true (default) a radar plot is generated after using <code>coord_polar()</code>.</p></td>
+      <td><p>Logical argument. If true (default) a radar plot is generated
+after using <code>coord_polar()</code>.</p></td>
     </tr>
     <tr>
       <th>size.point</th>
@@ -200,7 +205,8 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
@@ -297,6 +303,7 @@
 #&gt; Selected genotypes
 #&gt; G3 G1
 #&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>MTSI_index2</span>)</div><div class='img'><img src='plot.MTSI-2.png' alt='' width='700' height='433' /></div><div class='input'>
+
 
 </div></pre>
   </div>

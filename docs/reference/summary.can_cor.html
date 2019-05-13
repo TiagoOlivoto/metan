@@ -32,7 +32,9 @@
 
 <meta property="og:title" content="Summarise an object of class can_cor — summary.can_cor" />
 
-<meta property="og:description" content="Summarise an object of class can_cor object in two ways. By default, the results are shown in the R console. The results can also be exported to the directory." />
+<meta property="og:description" content="Summarise an object of class can_cor object in two ways. By default,
+the results are shown in the R console. The results can also be exported to
+the directory." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +97,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,18 +156,21 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summarise an object of class can_cor</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/summary.can_cor.R'><code>R/summary.can_cor.R</code></a></small>
     <div class="hidden name"><code>summary.can_cor.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Summarise an object of class <code>can_cor</code> object in two ways. By default, the results are shown in the R console. The results can also be exported to the directory.</p>
+    <p>Summarise an object of class <code>can_cor</code> object in two ways. By default,
+the results are shown in the R console. The results can also be exported to
+the directory.</p>
     
     </div>
 
     <pre class="usage"><span class='co'># S3 method for can_cor</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,7 +181,8 @@
     </tr>
     <tr>
       <th>export</th>
-      <td><p>A logical argument. If <code>TRUE|T</code>, a *.txt file is exported to the working directory</p></td>
+      <td><p>A logical argument. If <code>TRUE|T</code>, a *.txt file is exported
+to the working directory</p></td>
     </tr>
     <tr>
       <th>file.name</th>
@@ -191,9 +200,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
-<span class='no'>cc</span> <span class='kw'>=</span> <span class='fu'><a href='can_cor.html'>can_corr</a></span>(<span class='no'>data_ge2</span>,
+<span class='no'>cc</span> <span class='kw'>=</span> <span class='fu'><a href='can_corr.html'>can_corr</a></span>(<span class='no'>data_ge2</span>,
               <span class='kw'>FG</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>EP</span>),
               <span class='kw'>SG</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>EL</span>, <span class='no'>CL</span>, <span class='no'>CD</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>, <span class='no'>TKW</span>),
               <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
@@ -201,7 +211,8 @@
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>cc</span>,
         <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
         <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"canonical results"</span>)
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

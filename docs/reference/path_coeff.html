@@ -32,7 +32,9 @@
 
 <meta property="og:title" content="Path coefficients with minimal multicollinearity — path_coeff" />
 
-<meta property="og:description" content="Estimates of direct and indirect effects. An algorithm to select a set of predictors with minimal multicollinearity and high explanatory power is implemented." />
+<meta property="og:description" content="Estimates of direct and indirect effects. An algorithm to select a set of
+predictors with minimal multicollinearity and high explanatory power is
+implemented." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +97,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,27 +156,29 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Path coefficients with minimal multicollinearity</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/path_coeff.R'><code>R/path_coeff.R</code></a></small>
     <div class="hidden name"><code>path_coeff.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Estimates of direct and indirect effects. An algorithm to select a set of predictors with minimal multicollinearity and high explanatory power is implemented.</p>
+    <p>Estimates of direct and indirect effects. An algorithm to select a set of
+predictors with minimal multicollinearity and high explanatory power is
+implemented.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>path_coeff</span>(<span class='no'>.data</span>, <span class='no'>resp</span>, <span class='kw'>pred</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-           <span class='kw'>correction</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>knumber</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-           <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>missingval</span> <span class='kw'>=</span> <span class='st'>"pairwise.complete.obs"</span>,
-           <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>correction</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>knumber</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>missingval</span> <span class='kw'>=</span> <span class='st'>"pairwise.complete.obs"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data. Must be a dataframe or an object of class <code>group_factors</code>.</p></td>
+      <td><p>The data. Must be a dataframe or an object of class
+<code>split_factors</code>.</p></td>
     </tr>
     <tr>
       <th>resp</th>
@@ -179,35 +186,52 @@
     </tr>
     <tr>
       <th>pred</th>
-      <td><p>The predictor variables, set to <code>NULL</code>, i.e., the predictor variables are all the numeric variables in the data except that in <code>resp</code>.</p></td>
+      <td><p>The predictor variables, set to <code>NULL</code>, i.e., the predictor
+variables are all the numeric variables in the data except that in
+<code>resp</code>.</p></td>
     </tr>
     <tr>
       <th>exclude</th>
-      <td><p>Logical argument, set to false. If <code>exclude = TRUE</code>, then the variables in <code>pred</code> are deleted from the data, and the analysis will use as predictor those that remained, except that in <code>resp</code>.</p></td>
+      <td><p>Logical argument, set to false. If <code>exclude = TRUE</code>,
+then the variables in <code>pred</code> are deleted from the data, and the
+analysis will use as predictor those that remained, except that in
+<code>resp</code>.</p></td>
     </tr>
     <tr>
       <th>correction</th>
-      <td><p>Set to <code>NULL</code>. A correction value (k) that will be added into the diagonal elements of the <b>X'X</b> matrix aiming at reducing the harmful problems of the multicollinearity in path analysis (Olivoto et al., 2017)</p></td>
+      <td><p>Set to <code>NULL</code>. A correction value (k) that will be
+added into the diagonal elements of the <b>X'X</b> matrix aiming at reducing
+the harmful problems of the multicollinearity in path analysis (Olivoto et
+al., 2017)</p></td>
     </tr>
     <tr>
       <th>knumber</th>
-      <td><p>When <code>correction = NULL</code>, a plot showing the values of direct effects in a set of different k values (0-1) is produced. <code>knumber</code> is the number of k values used in the range of 0 to 1.</p></td>
+      <td><p>When <code>correction = NULL</code>, a plot showing the values of
+direct effects in a set of different k values (0-1) is produced.
+<code>knumber</code> is the number of k values used in the range of 0 to 1.</p></td>
     </tr>
     <tr>
       <th>brutstep</th>
-      <td><p>Logical argument, set to <code>FALSE</code>. If true, then an algorithm will select a subset of variables with minimal multicollinearity and fit a set of possible models. See the <b>Details</b> section for more information.</p></td>
+      <td><p>Logical argument, set to <code>FALSE</code>. If true, then an
+algorithm will select a subset of variables with minimal multicollinearity
+and fit a set of possible models. See the <b>Details</b> section for more
+information.</p></td>
     </tr>
     <tr>
       <th>maxvif</th>
-      <td><p>The maximum value for the Variance Inflaction Factor (cut point) that will be accepted. See the <b>Details</b> section for more information.</p></td>
+      <td><p>The maximum value for the Variance Inflaction Factor (cut
+point) that will be accepted. See the <b>Details</b> section for more
+information.</p></td>
     </tr>
     <tr>
       <th>missingval</th>
-      <td><p>How to deal with missing values. For more information, please see <code><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>?cor</a></code>.</p></td>
+      <td><p>How to deal with missing values. For more information,
+please see <code><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>?cor</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>verbose = TRUE</code> then some results are shown in the console.</p></td>
+      <td><p>If <code>verbose = TRUE</code> then some results are shown in the
+console.</p></td>
     </tr>
     </table>
     
@@ -217,19 +241,24 @@
 
 <dt>Corr.x</dt><dd><p>A correlation matrix between the predictor variables.</p></dd>
 
-<dt>Corr.y</dt><dd><p>A vector of correlations between each predictor variable with the dependent variable.</p></dd>
+<dt>Corr.y</dt><dd><p>A vector of correlations between each predictor variable with
+the dependent variable.</p></dd>
 
-<dt>Coefficients</dt><dd><p>The path coefficients. Direct effects are the diagonal elements, and the indirect effects those in the off-diagonal elements (column)</p></dd>
+<dt>Coefficients</dt><dd><p>The path coefficients. Direct effects are the diagonal
+elements, and the indirect effects those in the off-diagonal elements
+(column)</p></dd>
 
 <dt>Eigen</dt><dd><p>Eigenvectors and eigenvalues of the <code>Corr.x.</code></p></dd>
 
 <dt>VIF</dt><dd><p>The Variance Inflaction Factors.</p></dd>
 
-<dt>plot</dt><dd><p>A ggplot2-based graphic showing the direct effects in 21 different k values..</p></dd>
+<dt>plot</dt><dd><p>A ggplot2-based graphic showing the direct effects in 21
+different k values..</p></dd>
 
 <dt>Predictors</dt><dd><p>The predictor variables used in the model.</p></dd>
 
-<dt>CN</dt><dd><p>The Condition Number, i.e., the ratio between the highest and lowest eigenvalue.</p></dd>
+<dt>CN</dt><dd><p>The Condition Number, i.e., the ratio between the highest and
+lowest eigenvalue.</p></dd>
 
 <dt>Det</dt><dd><p>The matrix determinant of the <code>Corr.x.</code>.</p></dd>
 
@@ -239,21 +268,38 @@
 
 <dt>Response</dt><dd><p>The response variable.</p></dd>
 
-<dt>weightvar</dt><dd><p>The order of the predictor variables with the higest weigth (highest eigenvector) in the lowest eigenvalue.</p></dd>
-
+<dt>weightvar</dt><dd><p>The order of the predictor variables with the higest weigth
+(highest eigenvector) in the lowest eigenvalue.</p></dd>
 
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>When <code>brutstep = TRUE</code>, first, the algorithm will select a set of predictors with minimal multicollinearity. The selection is based on the variance inflation factor (VIF). An iterative process is performed until the maximum VIF observed is less than <code>maxvif</code>. The variables selected in this iterative process are then used in a series of stepwise-based regressions. The first model is fitted and p-1 predictor variables are retained (p is the number of variables selected in the iterative process. The second model adjusts a regression considering p-2 selected variables, and so on until the last model, which considers only two variables. Three objects are created. <code>Summary</code>, with the process summary, <code>Models</code>, containing the aforementioned values for all the adjusted models; and <code>Selectedpred</code>, a vector with the name of the selected variables in the iterative process.</p>
+    <p>When <code>brutstep = TRUE</code>, first, the algorithm will select a set of
+predictors with minimal multicollinearity. The selection is based on the
+variance inflation factor (VIF). An iterative process is performed until the
+maximum VIF observed is less than <code>maxvif</code>. The variables selected in
+this iterative process are then used in a series of stepwise-based
+regressions. The first model is fitted and p-1 predictor variables are
+retained (p is the number of variables selected in the iterative process.
+The second model adjusts a regression considering p-2 selected variables,
+and so on until the last model, which considers only two variables. Three
+objects are created. <code>Summary</code>, with the process summary,
+<code>Models</code>, containing the aforementioned values for all the adjusted
+models; and <code>Selectedpred</code>, a vector with the name of the selected
+variables in the iterative process.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in path analysis: a simple method to reduce its effects. Agron. J. 109:131-142. doi:10.2134/agronj2016.04.0196. <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131'>10.2134/agronj2016.04.0196</a>.</p>
+    <p>Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,
+A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in
+path analysis: a simple method to reduce its effects. Agron. J. 109:131-142.
+doi:10.2134/agronj2016.04.0196.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131'>10.2134/agronj2016.04.0196</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
@@ -285,19 +331,20 @@
 <span class='co'># When one analysis should be carried out for each environment</span>
 <span class='co'># Using the forward-pipe operator %&gt;%</span>
 <span class='no'>pcoeff5</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-          <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
+          <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
           <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
                      <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))
 
 
 <span class='co'># One analysis for each environment with minimal multicollinearity</span>
 <span class='no'>pcoeff6</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-          <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
+          <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
           <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
                      <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                      <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="Multi-trait stability index — MTSI" />
 
-<meta property="og:description" content="Multi-trait stability index in analysis of multi-environment trials using AMMI or BLUP methods." />
+<meta property="og:description" content="Multi-trait stability index in analysis of multi-environment trials using
+AMMI or BLUP methods." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +96,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,13 +155,14 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Multi-trait stability index</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/MTSI.R'><code>R/MTSI.R</code></a></small>
     <div class="hidden name"><code>MTSI.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Multi-trait stability index in analysis of multi-environment trials using AMMI or BLUP methods.</p>
+    <p>Multi-trait stability index in analysis of multi-environment trials using
+AMMI or BLUP methods.</p>
     
     </div>
 
@@ -172,25 +177,32 @@
     </tr>
     <tr>
       <th>index</th>
-      <td><p>If <code>index = "WAASB"</code> (Default) the multitrait index will be computed considering the stability of genotypes only. If <code>index = "WAASBY"</code> both stability and mean performance are considered. More details can be seen in <code><a href='WAASB.html'>WAASB</a></code> and <code><a href='WAAS.AMMI.html'>WAAS.AMMI</a></code> functions.</p></td>
+      <td><p>If <code>index = "WAASB"</code> (Default) the multitrait index will
+be computed considering the stability of genotypes only. If <code>index =
+"WAASBY"</code> both stability and mean performance are considered. More details
+can be seen in <code><a href='WAASB.html'>WAASB</a></code> and <code><a href='WAAS.AMMI.html'>WAAS.AMMI</a></code> functions.</p></td>
     </tr>
     <tr>
       <th>SI</th>
-      <td><p>An integer [0-100]. The selection intensity in percentage of the total number of genotypes.</p></td>
+      <td><p>An integer [0-100]. The selection intensity in percentage of the
+total number of genotypes.</p></td>
     </tr>
     <tr>
       <th>mineval</th>
-      <td><p>The minimum value so that an eigenvector is retained in the factor analysis.</p></td>
+      <td><p>The minimum value so that an eigenvector is retained in the
+factor analysis.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>verbose = TRUE</code> (Default) then some results are shown in the console.</p></td>
+      <td><p>If <code>verbose = TRUE</code> (Default) then some results are
+shown in the console.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
 <span class='co'># Based on stability only, for both GY and HM, higher is better</span>
@@ -290,7 +302,8 @@
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; G3 G1
-#&gt; -------------------------------------------------------------------------------</div></pre>
+#&gt; -------------------------------------------------------------------------------</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

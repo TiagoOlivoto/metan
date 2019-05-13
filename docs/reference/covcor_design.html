@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Variance-covariance and correlation matrices for designed experiments — covcor_design • METAAB</title>
+<title>Variance-covariance matrices for designed experiments — covcor_design • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Variance-covariance and correlation matrices for designed experiments — covcor_design" />
+<meta property="og:title" content="Variance-covariance matrices for designed experiments — covcor_design" />
 
-<meta property="og:description" content="Compute variance-covariance and correlation matrices using data from a designed (RCBD or CRD)." />
+<meta property="og:description" content="Compute variance-covariance and correlation matrices using data from a
+designed (RCBD or CRD) experiment." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +96,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -150,14 +154,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Variance-covariance and correlation matrices for designed experiments</h1>
-    
+    <h1>Variance-covariance matrices for designed experiments</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/covcor_design.R'><code>R/covcor_design.R</code></a></small>
     <div class="hidden name"><code>covcor_design.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute variance-covariance and correlation matrices using data from a designed (RCBD or CRD).</p>
+    <p>Compute variance-covariance and correlation matrices using data from a
+designed (RCBD or CRD) experiment.</p>
     
     </div>
 
@@ -168,7 +173,10 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The dataset containing the columns related to Genotypes, replication/block and response variables. Alternatively, it is possible to use an object of class 'group_factors' to compute the results for each level of the grouping factor. See <code><a href='group_factors.html'>?group_factors</a></code>.</p></td>
+      <td><p>The dataset containing the columns related to Genotypes,
+replication/block and response variables. Alternatively, it is possible to
+use an object of class 'split_factors' to compute the results for each level
+of the grouping factor. See <code><a href='split_factors.html'>?split_factors</a></code>.</p></td>
     </tr>
     <tr>
       <th>gen</th>
@@ -176,11 +184,13 @@
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>The name of the column that contains the levels of the replications/blocks.</p></td>
+      <td><p>The name of the column that contains the levels of the
+replications/blocks.</p></td>
     </tr>
     <tr>
       <th>resp</th>
-      <td><p>The response variables. For example <code>resp = c(var1, var2, var3)</code>.</p></td>
+      <td><p>The response variables. For example <code>resp = c(var1, var2,
+var3)</code>.</p></td>
     </tr>
     <tr>
       <th>design</th>
@@ -188,13 +198,21 @@
     </tr>
     <tr>
       <th>type</th>
-      <td><p>What the matrices should return? Set to <code>NULL</code>, i.e., a list of matrices is returned. The argument type allow the following values <code>"pcor", "gcor", "rcor"</code>, (which will return the phenotypic, genotypic and residual correlation matrices, respectively) or <code>"pcov", "gcov", "rcov"</code> (which will return the phenotypic, genotypic and residual variance-covariance matrices, respectively). Alternatively, it is possible to get a matrix with the means of each genotype in each trait, by using <code>type = "means"</code>.</p></td>
+      <td><p>What the matrices should return? Set to <code>NULL</code>, i.e., a
+list of matrices is returned. The argument type allow the following values
+<code>"pcor", "gcor", "rcor"</code>, (which will return the phenotypic, genotypic
+and residual correlation matrices, respectively) or <code>"pcov", "gcov",
+"rcov"</code> (which will return the phenotypic, genotypic and residual
+variance-covariance matrices, respectively). Alternatively, it is possible
+to get a matrix with the means of each genotype in each trait, by using
+<code>type = "means"</code>.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='co'># List of matrices</span>
@@ -209,11 +227,12 @@
 
 <span class='co'># Residual (co)variance matrix for each environment</span>
 <span class='no'>rcov</span> <span class='kw'>=</span> <span class='no'>datage2</span> <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'>covcor_design</span>(<span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>),
                      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"rcov"</span>)
 
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

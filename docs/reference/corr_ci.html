@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nonparametric confidence interval for Pearson's correlation coefficient — corr_ci • METAAB</title>
+<title>Confidence interval for correlation coefficient — corr_ci • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Nonparametric confidence interval for Pearson's correlation coefficient — corr_ci" />
+<meta property="og:title" content="Confidence interval for correlation coefficient — corr_ci" />
 
-<meta property="og:description" content="Computes the half-width confidence interval for correlation coefficient based on the nonparametri method proposed by Olivoto et al. (2018)." />
+<meta property="og:description" content="Computes the half-width confidence interval for correlation coefficient
+using the nonparametric method proposed by Olivoto et al. (2018)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +96,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -150,14 +154,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Nonparametric confidence interval for Pearson's correlation coefficient</h1>
-    
+    <h1>Confidence interval for correlation coefficient</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/corr_ci.R'><code>R/corr_ci.R</code></a></small>
     <div class="hidden name"><code>corr_ci.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Computes the half-width confidence interval for correlation coefficient based on the nonparametri method proposed by Olivoto et al. (2018).</p>
+    <p>Computes the half-width confidence interval for correlation coefficient
+using the nonparametric method proposed by Olivoto et al. (2018).</p>
     
     </div>
 
@@ -168,44 +173,56 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>A dataset containing variables only or a symetric correlation matrix.</p></td>
+      <td><p>A dataset containing variables only or a symetric correlation
+matrix.</p></td>
     </tr>
     <tr>
       <th>r</th>
-      <td><p>If <code>data</code> is not available, provide the value for correlation coefficient.</p></td>
+      <td><p>If <code>data</code> is not available, provide the value for correlation
+coefficient.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>The sample size if <code>data</code> is a correlation matrix or if r is informed.</p></td>
+      <td><p>The sample size if <code>data</code> is a correlation matrix or if r is
+informed.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>verbose = TRUE</code> then some results are shown in the console.</p></td>
+      <td><p>If <code>verbose = TRUE</code> then some results are shown in the
+console.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The half-width confidence interval is computed according to the following equation:
- $$CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}$$</p>
-<p>where \(n\) is the sample size and <code>r</code> is the correlation coefficient.</p>
+    <p>The half-width confidence interval is computed according to the following
+equation: $$CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}$$</p>
+<p>where \(n\) is the sample size and <code>r</code> is the correlation
+coefficient.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel, B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence interval width for Pearson's correlation coefficient: a Gaussian-independent estimator based on sample size and strength of association. Agron. J. 110:1-8. <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2017.09.0566'>doi:10.2134/agronj2017.09.0566</a>.</p>
+    <p>Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
+B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
+interval width for Pearson's correlation coefficient: a Gaussian-independent
+estimator based on sample size and strength of association. Agron. J.
+110:1-8.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131'>10.2134/agronj2016.04.0196</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
 
 <span class='fu'>corr_ci</span>(<span class='no'>data_ge</span>)
 
-<span class='no'>ci</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span> <span class='fu'>corr_ci</span>()
+<span class='no'>ci</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span> <span class='fu'>corr_ci</span>()
 
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -95,6 +95,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,7 +154,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Clustering analysis</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/clustering.R'><code>R/clustering.R</code></a></small>
     <div class="hidden name"><code>clustering.Rd</code></div>
     </div>
 
@@ -162,43 +165,64 @@
     </div>
 
     <pre class="usage"><span class='fu'>clustering</span>(<span class='no'>.data</span>, <span class='kw'>...</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-           <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>distmethod</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>,
-           <span class='kw'>clustmethod</span> <span class='kw'>=</span> <span class='st'>"average"</span>, <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>distmethod</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>,
+  <span class='kw'>clustmethod</span> <span class='kw'>=</span> <span class='st'>"average"</span>, <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data to be analyzed. It may be a data frame containing the means of each observation in each variable or, alternatively, replicates for each factor. In this case, a grouping variable is required in the argument <code>means_by</code> to compute the means. In addition, .data may be an object passed from the function <code>group_factors</code>. In this case, the distances are computed for each level of the grouping variable.</p></td>
+      <td><p>The data to be analyzed. It may be a data frame containing the
+means of each observation in each variable or, alternatively, replicates for
+each factor. In this case, a grouping variable is required in the argument
+<code>means_by</code> to compute the means. In addition, .data may be an object
+passed from the function <code>split_factors</code>. In this case, the distances
+are computed for each level of the grouping variable.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>The variables in <code>.data</code> to compute the distances. Set to <code>NULL</code>, i.e., all the numeric variables in <code>.data</code> are used.</p></td>
+      <td><p>The variables in <code>.data</code> to compute the distances. Set to
+<code>NULL</code>, i.e., all the numeric variables in <code>.data</code> are used.</p></td>
     </tr>
     <tr>
       <th>means_by</th>
-      <td><p>If <code>.data</code> doesn't contain the mean for each observation, then <code>means_by</code> is a grouping variable to compute the means. For example, if <code>means_by = GEN</code>, then the means of the numerical variables will be computed for each level of the grouping variable GEN.</p></td>
+      <td><p>If <code>.data</code> doesn't contain the mean for each
+observation, then <code>means_by</code> is a grouping variable to compute the
+means. For example, if <code>means_by = GEN</code>, then the means of the
+numerical variables will be computed for each level of the grouping variable
+GEN.</p></td>
     </tr>
     <tr>
       <th>scale</th>
-      <td><p>Should the data be scaled befor computing the distances? Set to FALSE. If TRUE, then, each observation will be divided by the standard deviation of the variable <code>Z_{ij} = X_{ij} / sd(j)</code></p></td>
+      <td><p>Should the data be scaled befor computing the distances? Set to
+FALSE. If TRUE, then, each observation will be divided by the standard
+deviation of the variable <code>Z_{ij} = X_{ij} / sd(j)</code></p></td>
     </tr>
     <tr>
       <th>selvar</th>
-      <td><p>Logical argument, set to <code>FALSE</code>. If <code>TRUE</code>, then an algorithm for selecting variables is implemente. See the section <b>Details</b> for additional information.</p></td>
+      <td><p>Logical argument, set to <code>FALSE</code>. If <code>TRUE</code>, then an
+algorithm for selecting variables is implemente. See the section
+<b>Details</b> for additional information.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Logical argument. If <code>TRUE</code> (default) then the results for variable selection are shown in the console.</p></td>
+      <td><p>Logical argument. If <code>TRUE</code> (default) then the results
+for variable selection are shown in the console.</p></td>
     </tr>
     <tr>
       <th>distmethod</th>
-      <td><p>The distance measure to be used. This must be one of <code>"euclidean"</code>, <code>"maximum"</code>, <code>"manhattan"</code>, <code>"canberra"</code>, <code>"binary"</code>, <code>"minkowski"</code>, <code>"pearson"</code>, <code>"spearman"</code>, or <code>"kendall"</code>. The last three are correlation-based distance.</p></td>
+      <td><p>The distance measure to be used. This must be one of
+<code>"euclidean"</code>, <code>"maximum"</code>, <code>"manhattan"</code>, <code>"canberra"</code>,
+<code>"binary"</code>, <code>"minkowski"</code>, <code>"pearson"</code>, <code>"spearman"</code>, or
+<code>"kendall"</code>. The last three are correlation-based distance.</p></td>
     </tr>
     <tr>
       <th>clustmethod</th>
-      <td><p>The agglomeration method to be used. This should be one of <code>"ward.D"</code>, <code>"ward.D2"</code>, <code>"single"</code>, <code>"complete"</code>, <code>"average"</code> (= UPGMA), <code>"mcquitty"</code> (= WPGMA), <code>"median"</code> (= WPGMC) or <code>"centroid"</code> (= UPGMC).</p></td>
+      <td><p>The agglomeration method to be used. This should be one
+of <code>"ward.D"</code>, <code>"ward.D2"</code>, <code>"single"</code>, <code>"complete"</code>,
+<code>"average"</code> (= UPGMA), <code>"mcquitty"</code> (= WPGMA), <code>"median"</code> (=
+WPGMC) or <code>"centroid"</code> (= UPGMC).</p></td>
     </tr>
     <tr>
       <th>nclust</th>
@@ -224,24 +248,52 @@
 
 <dt>tab</dt><dd><p>A table with the clusters and similarity.</p></dd>
 
-<dt>clusters</dt><dd><p>The sum of square and the mean of the clusters for each variable.</p></dd>
+<dt>clusters</dt><dd><p>The sum of square and the mean of the clusters for each
+variable.</p></dd>
 
-<dt>cofgrap</dt><dd><p>If <code>selectvar =  TRUE</code>, then, <code>cofpgrap</code> is a ggplot2-based graphic showing the cophenetic correlation for each model (with different number of variables). Else, will be a <code>NULL</code> object.</p></dd>
+<dt>cofgrap</dt><dd><p>If <code>selectvar = TRUE</code>, then, <code>cofpgrap</code> is a
+ggplot2-based graphic showing the cophenetic correlation for each model
+(with different number of variables). Else, will be a <code>NULL</code> object.</p></dd>
 
-<dt>statistics</dt><dd><p>If <code>selectvar =  TRUE</code>, then, <code>statistics</code> shows the summary of the models fitted with different number of variables, including cophenetic correlation, Mantel's correlation with the original distances (all variables) and the p-value associated with the Mantel's test. Else, will be a <code>NULL</code> object.</p></dd>
+<dt>statistics</dt><dd><p>If <code>selectvar = TRUE</code>, then, <code>statistics</code> shows
+the summary of the models fitted with different number of variables,
+including cophenetic correlation, Mantel's correlation with the original
+distances (all variables) and the p-value associated with the Mantel's test.
+Else, will be a <code>NULL</code> object.</p></dd>
 
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>When <code>selvar = TRUE</code> a variable selection algorithm is executed. The objective is to select a group of variables that most contribute to explain the variability of the original data. The selection of the variables is based on eigenvalue/eigenvectors solution based on the following steps. <b>1:</b> compute the distance matrix and the co-optic correlation with the original variables (all numeric variables in dataset); <b>2:</b> compute the eigenvalues and eigenvectors of the correlation matrix between the variables; <b>3:</b> delete the variable with the largest weight (highest eigenvector in the lowest eigenvalue); <b>4:</b> compute the distance matrix and co-phenetic correlation with the remaining variables; <b>5:</b> compute the Mantel's correlation between the obtained distances matrix and the original distance matrix; <b>6:</b> iterate steps 2 to 5 <em>p</em> - 2 times, where <em>p</em> is the number of original variables. At the end of the <em>p</em> - 2 iterations, a summary of the models is returned. The distance is calculated with the variables that generated the model with the largest cophenetic correlation. I suggest a careful evaluation aiming at choosing a parsimonious model, i.e., the one with the fewer number of variables, that presents acceptable cophenetic correlation and high similarity with the original distances.</p>
+    <p>When <code>selvar = TRUE</code> a variable selection algorithm is executed. The
+objective is to select a group of variables that most contribute to explain
+the variability of the original data. The selection of the variables is
+based on eigenvalue/eigenvectors solution based on the following steps.
+<b>1:</b> compute the distance matrix and the co-optic correlation with the
+original variables (all numeric variables in dataset); <b>2:</b> compute the
+eigenvalues and eigenvectors of the correlation matrix between the
+variables; <b>3:</b> delete the variable with the largest weight (highest
+eigenvector in the lowest eigenvalue); <b>4:</b> compute the distance matrix
+and co-phenetic correlation with the remaining variables; <b>5:</b> compute
+the Mantel's correlation between the obtained distances matrix and the
+original distance matrix; <b>6:</b> iterate steps 2 to 5 <em>p</em> - 2 times,
+where <em>p</em> is the number of original variables. At the end of the
+<em>p</em> - 2 iterations, a summary of the models is returned. The distance
+is calculated with the variables that generated the model with the largest
+cophenetic correlation. I suggest a careful evaluation aiming at choosing a
+parsimonious model, i.e., the one with the fewer number of variables, that
+presents acceptable cophenetic correlation and high similarity with the
+original distances.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Mojena, R. 2015. Hierarchical grouping methods and stopping rules: an evaluation. Comput. J. 20:359-363. <a href='https://academic.oup.com/comjnl/article/20/4/359/393930'>doi:10.1093/comjnl/20.4.359</a>..</p>
+    <p>Mojena, R. 2015. Hierarchical grouping methods and stopping
+rules: an evaluation. Comput. J. 20:359-363.
+<a href='https://academic.oup.com/comjnl/article/20/4/359/393930'>doi:10.1093/comjnl/20.4.359</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
@@ -268,20 +320,21 @@
 <span class='co'># Compute the distances for each environment</span>
 <span class='co'># All rows of each environment and all numeric variables used</span>
 <span class='no'>d6</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'>clustering</span>()
 
 <span class='co'># Compute the distances for each environment</span>
 <span class='co'># Select the variables NKR, TKW, and NKE</span>
 <span class='co'># Use the mean for each genotype</span>
 <span class='no'>d7</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'>clustering</span>(<span class='no'>NKR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>,
                 <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
 
 <span class='co'># Check the correlation between distance matrices</span>
 <span class='fu'><a href='pairs_mantel.html'>pairs_mantel</a></span>(<span class='no'>d7</span>)
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -32,7 +32,9 @@
 
 <meta property="og:title" content="Summary a ge_stats object — summary.ge_stats" />
 
-<meta property="og:description" content="Summary the  ge_stats object in two ways. By default, the results are shown in the R console. The results can also be exported to the directory into a *.txt file." />
+<meta property="og:description" content="Summary the ge_stats object in two ways. By default, the results are
+shown in the R console. The results can also be exported to the directory
+into a *.txt file." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +97,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,18 +156,21 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summary a ge_stats object</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/summary.ge_stats.R'><code>R/summary.ge_stats.R</code></a></small>
     <div class="hidden name"><code>summary.ge_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Summary the  <code>ge_stats</code> object in two ways. By default, the results are shown in the R console. The results can also be exported to the directory into a *.txt file.</p>
+    <p>Summary the <code>ge_stats</code> object in two ways. By default, the results are
+shown in the R console. The results can also be exported to the directory
+into a *.txt file.</p>
     
     </div>
 
     <pre class="usage"><span class='co'># S3 method for ge_stats</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,7 +181,8 @@
     </tr>
     <tr>
       <th>export</th>
-      <td><p>A logical argument. If <code>TRUE</code>, a *.txt file is exported to the working directory.</p></td>
+      <td><p>A logical argument. If <code>TRUE</code>, a *.txt file is exported
+to the working directory.</p></td>
     </tr>
     <tr>
       <th>file.name</th>
@@ -191,7 +200,8 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>,
                  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
@@ -202,112 +212,113 @@
 #&gt; data frame with 0 columns and 0 rows
 #&gt; 
 #&gt; ------------------------------- Genotype-vs-environment mean --------------------------
-#&gt;        A1    A2    A3    A4
-#&gt; H1  2.723 2.930 2.197 2.635
-#&gt; H10 2.783 2.049 2.038 2.389
-#&gt; H11 2.749 2.147 2.101 2.563
-#&gt; H12 2.693 2.093 2.430 2.534
-#&gt; H13 2.772 2.227 2.599 2.557
-#&gt; H2  2.792 2.947 2.154 2.524
-#&gt; H3  2.935 2.941 2.043 2.460
-#&gt; H4  2.869 2.846 2.049 2.556
-#&gt; H5  2.835 2.705 2.095 2.638
-#&gt; H6  2.769 2.825 2.153 2.485
-#&gt; H7  2.774 2.137 2.177 2.529
-#&gt; H8  2.692 1.959 2.100 2.555
-#&gt; H9  2.925 2.199 2.028 2.305
+#&gt;       A1   A2   A3   A4
+#&gt; H1  2.72 2.93 2.20 2.64
+#&gt; H10 2.78 2.05 2.04 2.39
+#&gt; H11 2.75 2.15 2.10 2.56
+#&gt; H12 2.69 2.09 2.43 2.53
+#&gt; H13 2.77 2.23 2.60 2.56
+#&gt; H2  2.79 2.95 2.15 2.52
+#&gt; H3  2.94 2.94 2.04 2.46
+#&gt; H4  2.87 2.85 2.05 2.56
+#&gt; H5  2.83 2.70 2.09 2.64
+#&gt; H6  2.77 2.82 2.15 2.49
+#&gt; H7  2.77 2.14 2.18 2.53
+#&gt; H8  2.69 1.96 2.10 2.55
+#&gt; H9  2.93 2.20 2.03 2.30
 #&gt; 
 #&gt; ------------------------------ Genotype-vs-environment effects -------------------------
-#&gt;           A1      A2       A3       A4
-#&gt; H1  -0.20692  0.3316 -0.10575 -0.01891
-#&gt; H10  0.16025 -0.2426  0.04142  0.04092
-#&gt; H11  0.05041 -0.2204  0.02958  0.14042
-#&gt; H12 -0.05309 -0.3213  0.31075  0.06359
-#&gt; H13 -0.07492 -0.2884  0.37825 -0.01491
-#&gt; H2  -0.12042  0.3654 -0.13192 -0.11308
-#&gt; H3   0.03221  0.3687 -0.23328 -0.16764
-#&gt; H4  -0.01959  0.2889 -0.21242 -0.05691
-#&gt; H5  -0.04159  0.1596 -0.15508  0.03709
-#&gt; H6  -0.09759  0.2896 -0.08642 -0.10558
-#&gt; H7   0.06131 -0.2447  0.09128  0.09212
-#&gt; H8   0.05718 -0.3443  0.09168  0.19546
-#&gt; H9   0.25275 -0.1421 -0.01808 -0.09258
+#&gt;          A1     A2      A3      A4
+#&gt; H1  -0.2069  0.332 -0.1058 -0.0189
+#&gt; H10  0.1602 -0.243  0.0414  0.0409
+#&gt; H11  0.0504 -0.220  0.0296  0.1404
+#&gt; H12 -0.0531 -0.321  0.3107  0.0636
+#&gt; H13 -0.0749 -0.288  0.3782 -0.0149
+#&gt; H2  -0.1204  0.365 -0.1319 -0.1131
+#&gt; H3   0.0322  0.369 -0.2333 -0.1676
+#&gt; H4  -0.0196  0.289 -0.2124 -0.0569
+#&gt; H5  -0.0416  0.160 -0.1551  0.0371
+#&gt; H6  -0.0976  0.290 -0.0864 -0.1056
+#&gt; H7   0.0613 -0.245  0.0913  0.0921
+#&gt; H8   0.0572 -0.344  0.0917  0.1955
+#&gt; H9   0.2527 -0.142 -0.0181 -0.0926
 #&gt; 
 #&gt; ------------------------ Genotype + Genotype-vs-environment effects --------------------
-#&gt;            A1      A2       A3        A4
-#&gt; H1  -0.070400  0.4681  0.03077  0.117610
-#&gt; H10 -0.009733 -0.4126 -0.12856 -0.129056
-#&gt; H11 -0.044400 -0.3152 -0.06523  0.045610
-#&gt; H12 -0.100400 -0.3686  0.26344  0.016277
-#&gt; H13 -0.021067 -0.2346  0.43210  0.038944
-#&gt; H2  -0.001067  0.4848 -0.01256  0.006277
-#&gt; H3   0.142267  0.4788 -0.12323 -0.057590
-#&gt; H4   0.075600  0.3841 -0.11723  0.038277
-#&gt; H5   0.041600  0.2428 -0.07190  0.120277
-#&gt; H6  -0.024400  0.3628 -0.01323 -0.032390
-#&gt; H7  -0.019200 -0.3252  0.01077  0.011610
-#&gt; H8  -0.101067 -0.5026 -0.06656  0.037210
-#&gt; H9   0.132267 -0.2626 -0.13856 -0.213056
+#&gt;           A1     A2      A3       A4
+#&gt; H1  -0.07040  0.468  0.0308  0.11761
+#&gt; H10 -0.00973 -0.413 -0.1286 -0.12906
+#&gt; H11 -0.04440 -0.315 -0.0652  0.04561
+#&gt; H12 -0.10040 -0.369  0.2634  0.01628
+#&gt; H13 -0.02107 -0.235  0.4321  0.03894
+#&gt; H2  -0.00107  0.485 -0.0126  0.00628
+#&gt; H3   0.14227  0.479 -0.1232 -0.05759
+#&gt; H4   0.07560  0.384 -0.1172  0.03828
+#&gt; H5   0.04160  0.243 -0.0719  0.12028
+#&gt; H6  -0.02440  0.363 -0.0132 -0.03239
+#&gt; H7  -0.01920 -0.325  0.0108  0.01161
+#&gt; H8  -0.10107 -0.503 -0.0666  0.03721
+#&gt; H9   0.13227 -0.263 -0.1386 -0.21306
 #&gt; 
 #&gt; ----------------------------- Genotype-vs-environment statistics -----------------------
-#&gt;      Mean Variance  GENSS Ecoval Ecov.perc
-#&gt; H1  2.621   0.2855 0.8565 0.4929     9.133
-#&gt; H10 2.315   0.3721 1.1162 0.2637     4.887
-#&gt; H11 2.390   0.3012 0.9037 0.2152     3.986
-#&gt; H12 2.438   0.1929 0.5788 0.6199    11.485
-#&gt; H13 2.539   0.1553 0.4659 0.6963    12.901
-#&gt; H2  2.604   0.3617 1.0850 0.5347     9.906
-#&gt; H3  2.595   0.5578 1.6735 0.6585    12.201
-#&gt; H4  2.580   0.4363 1.3088 0.3966     7.349
-#&gt; H5  2.568   0.3187 0.9562 0.1579     2.925
-#&gt; H6  2.558   0.2845 0.8536 0.3360     6.225
-#&gt; H7  2.404   0.2754 0.8261 0.2414     4.473
-#&gt; H8  2.327   0.3719 1.1157 0.5053     9.362
-#&gt; H9  2.364   0.4586 1.3759 0.2789     5.167
+#&gt;     Mean Variance SQE_Gi
+#&gt; H1  2.62    0.286  0.857
+#&gt; H10 2.31    0.372  1.116
+#&gt; H11 2.39    0.301  0.904
+#&gt; H12 2.44    0.193  0.579
+#&gt; H13 2.54    0.155  0.466
+#&gt; H2  2.60    0.362  1.085
+#&gt; H3  2.59    0.558  1.674
+#&gt; H4  2.58    0.436  1.309
+#&gt; H5  2.57    0.319  0.956
+#&gt; H6  2.56    0.285  0.854
+#&gt; H7  2.40    0.275  0.826
+#&gt; H8  2.33    0.372  1.116
+#&gt; H9  2.36    0.459  1.376
 #&gt; 
 #&gt; ----------------------------- Regression-based stability (anova) -----------------------
-#&gt;                      Df  Sum Sq Mean Sq F value    Pr(&gt;F)
-#&gt; Total                51 14.9805 0.29374      NA        NA
-#&gt; GEN                  12  1.8647 0.15539  0.8703 5.847e-01
-#&gt; ENV + (GEN x ENV)    39 13.1158 0.33630      NA        NA
-#&gt; ENV (linear)          1  7.7185 7.71852      NA        NA
-#&gt;  GEN x ENV (linear)  12  0.7550 0.06292  0.3524 9.691e-01
-#&gt; Pooled deviation     26  4.6423 0.17855      NA        NA
-#&gt; H1                    2  0.4706 0.23531 11.3674 3.429e-05
-#&gt; H10                   2  0.2356 0.11778  5.6898 4.519e-03
-#&gt; H11                   2  0.2114 0.10569  5.1056 7.672e-03
-#&gt; H12                   2  0.4502 0.22510 10.8741 5.148e-05
-#&gt; H13                   2  0.4103 0.20515  9.9105 1.149e-04
-#&gt; H2                    2  0.5339 0.26693 12.8950 9.935e-06
-#&gt; H3                    2  0.5838 0.29192 14.1020 3.811e-06
-#&gt; H4                    2  0.3540 0.17698  8.5495 3.651e-04
-#&gt; H5                    2  0.1402 0.07012  3.3875 3.756e-02
-#&gt; H6                    2  0.3335 0.16677  8.0566 5.585e-04
-#&gt; H7                    2  0.2414 0.12068  5.8299 3.983e-03
-#&gt; H8                    2  0.5052 0.25259 12.2023 1.736e-05
-#&gt; H9                    2  0.1723 0.08613  4.1608 1.827e-02
-#&gt; Pooled error        104  2.1528 0.02070      NA        NA
+#&gt;                      Df Sum Sq Mean Sq F value   Pr(&gt;F)
+#&gt; Total                51 14.981  0.2937      NA       NA
+#&gt; GEN                  12  1.865  0.1554   0.870 5.85e-01
+#&gt; ENV + (GEN x ENV)    39 13.116  0.3363      NA       NA
+#&gt; ENV (linear)          1  7.719  7.7185      NA       NA
+#&gt;  GEN x ENV (linear)  12  0.755  0.0629   0.352 9.69e-01
+#&gt; Pooled deviation     26  4.642  0.1785      NA       NA
+#&gt; H1                    2  0.471  0.2353  11.367 3.43e-05
+#&gt; H10                   2  0.236  0.1178   5.690 4.52e-03
+#&gt; H11                   2  0.211  0.1057   5.106 7.67e-03
+#&gt; H12                   2  0.450  0.2251  10.874 5.15e-05
+#&gt; H13                   2  0.410  0.2052   9.911 1.15e-04
+#&gt; H2                    2  0.534  0.2669  12.895 9.94e-06
+#&gt; H3                    2  0.584  0.2919  14.102 3.81e-06
+#&gt; H4                    2  0.354  0.1770   8.550 3.65e-04
+#&gt; H5                    2  0.140  0.0701   3.387 3.76e-02
+#&gt; H6                    2  0.334  0.1668   8.057 5.59e-04
+#&gt; H7                    2  0.241  0.1207   5.830 3.98e-03
+#&gt; H8                    2  0.505  0.2526  12.202 1.74e-05
+#&gt; H9                    2  0.172  0.0861   4.161 1.83e-02
+#&gt; Pooled error        104  2.153  0.0207      NA       NA
 #&gt; 
 #&gt; --------------------------- Regression-based stability (parameters) ---------------------
-#&gt;    GEN    bij    sdij
-#&gt; 1   H1 0.8062 0.07096
-#&gt; 2  H10 1.2179 0.03179
-#&gt; 3  H11 1.0798 0.02775
-#&gt; 4  H12 0.4654 0.06756
-#&gt; 5  H13 0.3060 0.06091
-#&gt; 6   H2 0.9635 0.08150
-#&gt; 7   H3 1.3547 0.08983
-#&gt; 8   H4 1.2682 0.05152
-#&gt; 9   H5 1.1723 0.01590
-#&gt; 10  H6 0.9359 0.04812
-#&gt; 11  H7 0.9924 0.03275
-#&gt; 12  H8 1.0140 0.07672
-#&gt; 13  H9 1.4238 0.02123
+#&gt;    GEN Mean   bij   sdij  RMSE    R2
+#&gt; 1   H1 2.62 0.806 0.0710 0.198 0.451
+#&gt; 2  H10 2.31 1.218 0.0318 0.140 0.789
+#&gt; 3  H11 2.39 1.080 0.0278 0.133 0.766
+#&gt; 4  H12 2.44 0.465 0.0676 0.194 0.222
+#&gt; 5  H13 2.54 0.306 0.0609 0.185 0.119
+#&gt; 6   H2 2.60 0.963 0.0815 0.211 0.508
+#&gt; 7   H3 2.59 1.355 0.0898 0.221 0.651
+#&gt; 8   H4 2.58 1.268 0.0515 0.172 0.730
+#&gt; 9   H5 2.57 1.172 0.0159 0.108 0.853
+#&gt; 10  H6 2.56 0.936 0.0481 0.167 0.609
+#&gt; 11  H7 2.40 0.992 0.0328 0.142 0.708
+#&gt; 12  H8 2.33 1.014 0.0767 0.205 0.547
+#&gt; 13  H9 2.36 1.424 0.0212 0.120 0.875
 #&gt; 
 #&gt; -------------------------------------- End of data -------------------------------------
 #&gt; 
 #&gt; 
-#&gt; </div></pre>
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

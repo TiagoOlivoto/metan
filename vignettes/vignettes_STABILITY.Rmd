@@ -1,0 +1,99 @@
+---
+title: "Parametric and non-parametric stability statistics"
+always_allow_html: yes
+output: rmarkdown::html_vignette
+fig_caption: yes
+link-citations: true
+bibliography: METAABref.bib    
+vignette: >
+  %\VignetteIndexEntry{Parametric and non-parametric stability statistics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Getting started
+
+In this section, we will use the data in `data_ge2`. For more information, please, see `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+
+```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
+library(METAAB)
+library(cowplot) # used to arrange the graphics
+library(kableExtra) # Used to make the tables
+dataset = data_ge2
+str(dataset)
+```
+
+# Graphic visualization of the interaction
+The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean of each environment.
+```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
+p1 = ge_plot(dataset, ENV, GEN, KW)
+p2 = ge_plot(dataset, ENV, GEN, KW) + theme_grey() + coord_flip()
+plot_grid(p1, p2)
+```
+
+
+# Joint regression analysis
+@Eberhart1966 popularized the regression-based stability analysis. In these procedures, the adaptability and stability analysis is performed by means of adjustments of regression equations where the dependent variable is predicted as a function of an environmental index, according to the following model:
+
+$$
+\mathop Y\nolimits_{ij}  = {\beta _{0i}} + {\beta _{1i}}{I_j} + {\delta _{ij}} + {\bar \varepsilon _{ij}}
+$$
+where ${\beta _{0i}}$ is the grand mean of the genotype *i* (*i* = 1, 2, ..., I); ${\beta _{1i}}$ is the linear response (slope) of the genotype *i* to the environmental index; *Ij* is the environmental index (*j* = 1, 2, ..., *e*), where ${I_j} = [(y_{.j}/g)- (y_{..}/ge)]$, ${\delta _{ij}}$ is the deviation from the regression, and ${\bar \varepsilon _{ij}}$ is the experimental error.
+The model is fitted with the function `ge_reg()`. The S3 methods `plot()` and `summary()` may be used to explore the fitted model.
+
+```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
+reg_model = ge_reg(dataset, ENV, GEN, REP, KW)
+plot(reg_model$KW)
+summary(reg_model)
+```
+
+
+# Genotypic confidence index
+@Annicchiarico1992 proposed that a stability method in which the stability parameter is measured by the superiority of the genotype in relation to the average of each environment, according to the following model:
+
+$$
+{Z_{ij}} = \frac{{{Y_{ij}}}}{{{{\bar Y}_{.j}}}} \times 100
+$$
+The genotypic confidence index of the genotype *i* ($W_i$) is then estimated as follows:
+
+$$
+W_i = Z_{i.}/e - \alpha \times sd(Z_{i.})
+$$
+Where $\alpha$ is the quantile of the standard normal distribution at a given probability error ($\alpha \approx 1.64$ at 0.05). The method is implemented using the function `Annicchiarico()`. The confidence index is estimated considering all environment, favorable environments (positive index) and unfavorable environments (negative index), as follows:
+
+```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
+ann5 = Annicchiarico(dataset, ENV, GEN, REP, KW)
+ann1 = Annicchiarico(dataset, ENV, GEN, REP, KW, prob = 0.01)
+summary(ann5)
+```
+
+
+# Superiority index
+The function `superiority()` implements the nonparametric method proposed by @Lin1988, which considers that a measure of cultivar general superiority for cultivar x location data is defined as the distance mean square between the cultivar's response and the maximum response averaged over all locations, according to the following model.
+
+$$
+P_i = \sum\limits_{j = 1}^n{(y_{ij} - y_{.j})^2/(2n)}
+$$
+where *n* is the number of environments
+
+Similar then the genotypic confidence index, the superiority index is calculated by all environments, favorable, and unfavorable environments.
+
+```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
+super = superiority(dataset, ENV, GEN, REP, KW)
+summary(super)
+```
+
+
+# Environmental stratification
+A method that combines stability analysis and environmental stratification using factor analysis was proposed by @murakami2004. This method is implemented with the function `ge_factanal()`, as follows:
+
+```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
+fact = ge_factanal(dataset, ENV, GEN, REP, KW, mineval = 0.9)
+plot(fact$KW)
+summary(fact)
+```
+
+
+# References
+

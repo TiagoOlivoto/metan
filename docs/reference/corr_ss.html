@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sample size planning for a desired Pearson's correlation cofidence interval. — corr_ss • METAAB</title>
+<title>Sample size planning for a desired Pearson's correlation confidence interval — corr_ss • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Sample size planning for a desired Pearson's correlation cofidence interval. — corr_ss" />
+<meta property="og:title" content="Sample size planning for a desired Pearson's correlation confidence interval — corr_ss" />
 
-<meta property="og:description" content="Find the required (sufficient) sample size for computing a Pearson correlation coefficient with a desired confidence interval (Olivoto et al., 2018)." />
+<meta property="og:description" content="Find the required (sufficient) sample size for computing a Pearson
+correlation coefficient with a desired confidence interval (Olivoto et al.,
+2018)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +97,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -150,14 +155,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sample size planning for a desired Pearson's correlation cofidence interval.</h1>
-    
+    <h1>Sample size planning for a desired Pearson's correlation confidence interval</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/corr_ss.R'><code>R/corr_ss.R</code></a></small>
     <div class="hidden name"><code>corr_ss.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Find the required (sufficient) sample size for computing a Pearson correlation coefficient with a desired confidence interval (Olivoto et al., 2018).</p>
+    <p>Find the required (sufficient) sample size for computing a Pearson
+correlation coefficient with a desired confidence interval (Olivoto et al.,
+2018).</p>
     
     </div>
 
@@ -178,17 +185,24 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The required (sufficient) sample size is computed as follows:
- $$n = [CI_w/ 0.45304^r \times 2.25152]^{-0.50089}$$</p>
-<p>where \(CI_w\) is desired confidence interval and <code>r</code> is the correlation coefficient.</p>
+    <p>The required (sufficient) sample size is computed as follows: $$n =
+[CI_w/ 0.45304^r \times 2.25152]^{-0.50089}$$</p>
+<p>where \(CI_w\) is desired confidence interval and <code>r</code> is the
+correlation coefficient.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel, B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence interval width for Pearson's correlation coefficient: a Gaussian-independent estimator based on sample size and strength of association. Agron. J. 110:1-8. <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2017.09.0566'>doi:10.2134/agronj2017.09.0566</a>.</p>
+    <p>Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
+B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
+interval width for Pearson's correlation coefficient: a Gaussian-independent
+estimator based on sample size and strength of association. Agron. J.
+110:1-8.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131'>10.2134/agronj2016.04.0196</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+
 <span class='fu'>corr_ss</span>(<span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>0.60</span>, <span class='kw'>CI</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)</div><div class='output co'>#&gt; ------------------------------------------------- 
 #&gt; Sample size planning for correlation coefficient 
 #&gt; ------------------------------------------------- 
@@ -197,6 +211,7 @@
 #&gt; 95% half-width CI: 0.1
 #&gt; Required sample size: 194 
 #&gt; ------------------------------------------------- </div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

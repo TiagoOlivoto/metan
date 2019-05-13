@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate pairwise combinations of variables by applying one function to each pair — comb_vars • METAAB</title>
+<title>Apply a function of each e pairwise combinations of variables — comb_vars • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Generate pairwise combinations of variables by applying one function to each pair — comb_vars" />
+<meta property="og:title" content="Apply a function of each e pairwise combinations of variables — comb_vars" />
 
-<meta property="og:description" content="Pairwise combinations of variables that will be the result of a function applied to each combination." />
+<meta property="og:description" content="Pairwise combinations of variables that will be the result of a function
+applied to each combination." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +96,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -150,14 +154,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate pairwise combinations of variables by applying one function to each pair</h1>
-    
+    <h1>Apply a function of each e pairwise combinations of variables</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/comb_vars.R'><code>R/comb_vars.R</code></a></small>
     <div class="hidden name"><code>comb_vars.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Pairwise combinations of variables that will be the result of a function applied to each combination.</p>
+    <p>Pairwise combinations of variables that will be the result of a function
+applied to each combination.</p>
     
     </div>
 
@@ -172,21 +177,29 @@
     </tr>
     <tr>
       <th>order</th>
-      <td><p>The order on how the results will appear in the output. Default is <code>order = "second"</code>. In this case, assuming that .data has four columns, namely, <code>V1, V2, V3, V4</code>, the order of columns in the output will be <code>V1.V2, V1.V3, V2.V3, V1.V4, V2.V4, V3.V4</code>. If 'order' is set to "first", the result will be then <code>V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4</code>.</p></td>
+      <td><p>The order on how the results will appear in the output. Default
+is <code>order = "second"</code>. In this case, assuming that .data has four
+columns, namely, <code>V1, V2, V3, V4</code>, the order of columns in the output
+will be <code>V1.V2, V1.V3, V2.V3, V1.V4, V2.V4, V3.V4</code>. If 'order' is set
+to "first", the result will be then <code>V1.V2, V1.V3, V1.V4, V2.V3, V2.V4,
+V3.V4</code>.</p></td>
     </tr>
     <tr>
       <th>FUN</th>
-      <td><p>The function that will be applied to each combination. The default is <code>+</code>, i.e., V1 + V2.</p></td>
+      <td><p>The function that will be applied to each combination. The
+default is <code>+</code>, i.e., V1 + V2.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run silently.</p></td>
+      <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run
+silently.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>A</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>3</span>),
                   <span class='kw'>B</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>30</span>),
@@ -195,7 +208,8 @@
                   <span class='kw'>E</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>))
 <span class='fu'>comb_vars</span>(<span class='no'>data</span>)
 <span class='fu'>comb_vars</span>(<span class='no'>data</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='st'>"*"</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>"first"</span>)
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

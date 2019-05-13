@@ -10,40 +10,45 @@ vignette: >
 
 The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B**LUP) package provides useful functions for analyzing multi-environment trial data using Additive Main Effects and Multiplicative Interaction (AMMI) and Best Linear Unbiased Prediction (BLUP) models. The main features include, but are not limited to:
 
+* Within environment analysis of variance
 * Cross-validation procedures for AMMI-family and BLUP models;
-* Estimation of AMMI models using different numbers of interation principal component axes; IPCAs;
+* Estimation using AMMI considering different numbers of interation principal component axes;
+* AMMI-based stability indexes;
 * Prediction in mixed-effect models;
+* BLUP-based stability indexes;
 * Variance components and genetic parameters in mixed-effect models;
 * Graphics tools for generating biplots.
+* Parametric and nonparametric stability statistics
 
 
 # Extending the METAAB package
 
-The complete functionality of the METAAB package, combining theory, programming, and outputs may be view at <https://tiagoolivoto.github.io/METAAB/index.html>. You are welcome to visit it.
+The complete functionality of the METAAB package, combining theory, programming, and examples with outputs is described at <https://tiagoolivoto.github.io/METAAB/index.html>. Suggestions and criticisms to improve the quality and usability of the package are welcome!
 
 # Brief examples
 The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://github.com/wilkelab/cowplot) were used to generate the tables and arranging the graphics of this vignette. The forward-pipe operators `%>%` and `%<>%` may be used in some functions, provided that the package [`magrittr`](https://magrittr.tidyverse.org/) is loaded. Brief examples will be run using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see `?data_ge`.
 
 ```{r, message=FALSE, warning=FALSE}
 library(METAAB)
-library(kableExtra)
-library(cowplot)
-library(magrittr)
+library(cowplot) # used to arrange the graphics
+library(kableExtra) # Used to make the tables
+library(magrittr) # used for the forward-pipe operator %>%
 str(data_ge)
 ```
 
 
-## AMMI model
+# AMMI model
 ## Cross-validation procedures
+The cross-validation procedures implemented in the \bold{METAAB} are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/METAAB/articles/vignettes_CROSS-VALIDATION.html)
 
 ```{r, fig.height=3.5, fig.width=5}
 CVAL = cv_ammif(data_ge,
-                        resp = GY,
-                        gen = GEN,
-                        env = ENV,
-                        rep = REP,
-                        nboot = 50,
-                        nrepval = 2)
+                resp = GY,
+                gen = GEN,
+                env = ENV,
+                rep = REP,
+                nboot = 50,
+                nrepval = 2)
 plot(CVAL)
 ```
 
@@ -62,12 +67,12 @@ The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. 
 ```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
 p1 <- plot_scores(model$GY)
 p2 <- plot_scores(model$GY,
-                 type = 1,
-                 polygon = TRUE,
-                 col.gen = "black",
-                 col.env = "gray70",
-                 col.segm.env = "gray70",
-                 axis.expand = 1.5)
+                  type = 1,
+                  polygon = TRUE,
+                  col.gen = "black",
+                  col.env = "gray70",
+                  col.segm.env = "gray70",
+                  axis.expand = 1.5)
 plot_grid(p1, p2,
           align = "v",
           labels = c("p1","p2"),
@@ -85,7 +90,7 @@ kable(predicted, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
 ```
 
-## BLUP model
+# BLUP model
 The implementation of linear-mixed effect models to predict the response variable in MET is made with `WAASB()` function. The *mixed-effect version* of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.
 
 ```{r }
@@ -113,6 +118,7 @@ kable(BP, "html") %>%
   kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
 ```
 
+An easy way to check the results in the R console is by using the function `summary()`
 
 
 ## Plotting the BLUPs for genotypes
@@ -138,4 +144,15 @@ kable(data, "html") %>%
                 position = "left", full_width = F, font_size = 12)
 ```
 
+# Parametric and non-parametric statistics
+The METAAB package provides an easy way to compute several world-known stability methods.
+Up to the version 1.0.3, the following stability methods are implemented:
 
+* Joint regression analysis, using the function ge_reg()
+* Genotypic confidence index, using the function Annicchiarico()
+* Nonparametric superiority index, using the function superiority()
+* Ecovalence, using the function ecovalence()
+* Stability analysis and environmental stratification using the function ge_factanal()
+
+
+These indexes may be computed isolatedly or using the function `ge_stats()`. This function basically returns a summary of the above-mentioned methods.

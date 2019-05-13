@@ -9,11 +9,16 @@ multi-environment trial data using Additive Main Effects and
 Multiplicative Interaction (AMMI) and Best Linear Unbiased Prediction
 (BLUP) models. The main features include, but are not limited to:
 
+  - Within environment analysis of variance
   - Cross-validation procedures for AMMI-family and BLUP models;
-  - Estimation AMMI models based on number of IPCAs;
+  - Estimation using AMMI considering different numbers of interation
+    principal component axes;
+  - AMMI-based stability indexes;
   - Prediction in mixed-effect models;
+  - BLUP-based stability indexes;
   - Variance components and genetic parameters in mixed-effect models;
   - Graphics tools for generating biplots.
+  - Parametric and nonparametric stability statistics
 
 # Installing
 
@@ -413,8 +418,8 @@ variables at the same time, e.g., resp = c(v1, v2, …), the output
 
 ``` r
 library(cowplot)
-p1 = plot.scores(model$GY)
-p2 = plot.scores(model$GY,
+p1 = plot_scores(model$GY)
+p2 = plot_scores(model$GY,
                  type = 1,
                  polygon = TRUE,
                  col.gen = "black",
@@ -446,8 +451,8 @@ model2 <- WAASB(data_ge,
 ### Plotting the BLUPs for genotypes
 
 ``` r
-p1 = plot.blup(model2$GY)
-p2 = plot.blup(model2$GY,
+p1 = plot_blup(model2$GY)
+p2 = plot_blup(model2$GY,
                prob = 0.1,
                col.shape  =  c("gray20", "gray80")) + coord_flip()
 plot_grid(p1, p2,
@@ -791,5 +796,8 @@ G4
 
 # Extending the METAAB package
 
-You are welcome to visit the site of METAAB at
-<https://tiagoolivoto.github.io/METAAB/index.html>.
+The complete functionality of the METAAB package, combining theory,
+programming, and examples with outputs is described at
+<https://tiagoolivoto.github.io/METAAB/index.html>. Suggestions and
+criticisms to improve the quality and usability of the package are
+welcome\!

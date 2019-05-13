@@ -32,7 +32,10 @@
 
 <meta property="og:title" content="Mantel test for a set of correlation matrices — pairs_mantel" />
 
-<meta property="og:description" content="This function generate a pairwise matrix of plots to compare the similarity of two or more correlation matrices. In the upper diagonal are presented the plots and in the lower diagonal the result of Mantel test based on permutations." />
+<meta property="og:description" content="This function generate a pairwise matrix of plots to compare the similarity
+of two or more correlation matrices. In the upper diagonal are presented the
+plots and in the lower diagonal the result of Mantel test based on
+permutations." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +98,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,36 +157,41 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Mantel test for a set of correlation matrices</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/pairs_mantel.R'><code>R/pairs_mantel.R</code></a></small>
     <div class="hidden name"><code>pairs_mantel.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function generate a pairwise matrix of plots to compare the similarity of two or more correlation matrices. In the upper diagonal are presented the plots and in the lower diagonal the result of Mantel test based on permutations.</p>
+    <p>This function generate a pairwise matrix of plots to compare the similarity
+of two or more correlation matrices. In the upper diagonal are presented the
+plots and in the lower diagonal the result of Mantel test based on
+permutations.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>pairs_mantel</span>(<span class='no'>...</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>nrepet</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-          <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-          <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-          <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-          <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-          <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-          <span class='kw'>signcol</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>diagcol</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-          <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-          <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
+  <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>signcol</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
+  <span class='kw'>diagcol</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>The input matrices. May be an output generated by the function <code>lpcor</code> or a coerced list generated by the function <code>as.lpcor</code></p></td>
+      <td><p>The input matrices. May be an output generated by the function
+<code>lpcor</code> or a coerced list generated by the function <code>as.lpcor</code></p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>The type of correlation if an obect generated by the function <code>lpcor</code> is used. 1 = Linear correlation matrices, or 2 = partial correlation matrices.</p></td>
+      <td><p>The type of correlation if an obect generated by the function
+<code>lpcor</code> is used. 1 = Linear correlation matrices, or 2 = partial
+correlation matrices.</p></td>
     </tr>
     <tr>
       <th>nrepet</th>
@@ -196,11 +207,13 @@
     </tr>
     <tr>
       <th>diag</th>
-      <td><p>Logical argument. If <code>TRUE</code>, the Kernel density is shown in the diagonal of plot.</p></td>
+      <td><p>Logical argument. If <code>TRUE</code>, the Kernel density is shown in
+the diagonal of plot.</p></td>
     </tr>
     <tr>
       <th>export</th>
-      <td><p>Logical argument. If <code>TRUE</code>, then the plot is exported to the current directory.</p></td>
+      <td><p>Logical argument. If <code>TRUE</code>, then the plot is exported to
+the current directory.</p></td>
     </tr>
     <tr>
       <th>main</th>
@@ -208,11 +221,14 @@
     </tr>
     <tr>
       <th>file.type</th>
-      <td><p>The format of the file if <code>export = TRUE</code>.  Set to <code>"pdf"</code>. Other possible values are <code>*.tiff</code> using <code>file.type = "tiff"</code>.</p></td>
+      <td><p>The format of the file if <code>export = TRUE</code>.  Set to
+<code>"pdf"</code>. Other possible values are <code>*.tiff</code> using <code>file.type
+= "tiff"</code>.</p></td>
     </tr>
     <tr>
       <th>file.name</th>
-      <td><p>The name of the plot when exported. Set to <code>NULL</code>, i.e., automatically.</p></td>
+      <td><p>The name of the plot when exported. Set to <code>NULL</code>,
+i.e., automatically.</p></td>
     </tr>
     <tr>
       <th>width</th>
@@ -224,7 +240,8 @@
     </tr>
     <tr>
       <th>resolution</th>
-      <td><p>The resolution of the plot if <code>file.type = "tiff"</code> is used. Set to <code>300</code> (300 dpi).</p></td>
+      <td><p>The resolution of the plot if <code>file.type = "tiff"</code> is
+used. Set to <code>300</code> (300 dpi).</p></td>
     </tr>
     <tr>
       <th>size.point</th>
@@ -240,7 +257,8 @@
     </tr>
     <tr>
       <th>fill.point</th>
-      <td><p>The color to fill the points. Valid argument if points are between 21 and 25.</p></td>
+      <td><p>The color to fill the points. Valid argument if points are
+between 21 and 25.</p></td>
     </tr>
     <tr>
       <th>col.point</th>
@@ -248,19 +266,23 @@
     </tr>
     <tr>
       <th>minsize</th>
-      <td><p>The size of the letter that will represent the smallest correlation coefficient.</p></td>
+      <td><p>The size of the letter that will represent the smallest
+correlation coefficient.</p></td>
     </tr>
     <tr>
       <th>maxsize</th>
-      <td><p>The size of the letter that will represent the largest correlation coefficient.</p></td>
+      <td><p>The size of the letter that will represent the largest
+correlation coefficient.</p></td>
     </tr>
     <tr>
       <th>signcol</th>
-      <td><p>The colour that indicate significant correlations (based on the <code>prob</code> value.), set to "green".</p></td>
+      <td><p>The colour that indicate significant correlations (based on
+the <code>prob</code> value.), set to "green".</p></td>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p>The value for transparency of the color informed in <code>signcol</code>, when 1 = full color. Set to 0.15.</p></td>
+      <td><p>The value for transparency of the color informed in
+<code>signcol</code>, when 1 = full color. Set to 0.15.</p></td>
     </tr>
     <tr>
       <th>diagcol</th>
@@ -268,7 +290,8 @@
     </tr>
     <tr>
       <th>col.up.panel, col.lw.panel, col.dia.panel</th>
-      <td><p>The color for the opper, lower and diagonal pannels. Set to "gray", "gray", and "gray", respectively.</p></td>
+      <td><p>The color for the opper,
+lower and diagonal pannels. Set to "gray", "gray", and "gray", respectively.</p></td>
     </tr>
     <tr>
       <th>pan.spacing</th>
@@ -282,12 +305,13 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
 <span class='co'># iris dataset</span>
 <span class='no'>lpc</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='group_factors.html'>group_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='kw'>%&gt;%</span>
       <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"setosa"</span>, <span class='st'>"versicolor"</span>, <span class='st'>"virginica"</span>))</div><div class='output co'>#&gt; <span class='message'>The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
@@ -325,11 +349,12 @@
 
 <span class='co'># mtcars dataset</span>
 <span class='no'>mt_num</span> <span class='kw'>=</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select_all.html'>select_if</a></span>(<span class='no'>.</span>, <span class='no'>is.numeric</span>)
-<span class='no'>lpdata</span> <span class='kw'>=</span> <span class='fu'><a href='as.lpcorr.html'>as.lpcor</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
+<span class='no'>lpdata</span> <span class='kw'>=</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
                   <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
                   <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>2</span>:<span class='fl'>6</span>]),
                   <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>4</span>:<span class='fl'>8</span>])) <span class='kw'>%&gt;%</span>
-         <span class='fu'>pairs_mantel</span>()</div><div class='img'><img src='pairs_mantel-2.png' alt='' width='700' height='433' /></div></pre>
+         <span class='fu'>pairs_mantel</span>()</div><div class='img'><img src='pairs_mantel-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

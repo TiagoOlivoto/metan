@@ -15,14 +15,13 @@ reference:
     desc: Functions for AMMI analysis
     contents:
       - '`AMMI_indexes`'
-      - '`anova_ind`'
       - '`autoplot.WAAS.AMMI`'
       - '`plot.validation.AMMIF`'
       - '`plot.WAASratio.AMMI`'
       - '`predict.WAAS.AMMI`'
       - '`summary.WAAS.AMMI`'
-      - '`validation.AMMI`'
-      - '`validation.AMMIF`'
+      - '`cv_ammi`'
+      - '`cv_ammif`'
       - '`WAAS.AMMI`'
       - '`WAASratio.AMMI`'
   - title: BLUP
@@ -36,7 +35,7 @@ reference:
       - '`plot.WAASBY`'
       - '`Resende_indexes`'
       - '`summary.WAASB`'
-      - '`validation.blup`'
+      - '`cv_blup`'
       - '`WAASB`'
       - '`WAASBYratio`'
   - title: MTSI
@@ -47,11 +46,23 @@ reference:
       - '`plot.FAI_BLUP`'
       - '`plot.MTSI`'
       - '`summary.MTSI`'
+  - title: Stability
+    desc: Useful functions for stability analysis
+    contents:
+      - '`Annicchiarico`'
+      - '`anova_ind`'
+      - '`ecovalence`'
+      - '`ge_factanal`'
+      - '`ge_plot`'
+      - '`ge_reg`'
+      - '`ge_stats`'
+      - '`superiority`'
   - title: Biometry
     desc: Useful functions for biometric models
     contents:
       - '`as.group_factors`'
       - '`as.lpcorr`'
+      - '`clustering`'
       - '`colindiag`'
       - '`corr_plot`'
       - '`corr_ci`'
@@ -70,9 +81,9 @@ reference:
     desc: Helper functions for METAAB package
     contents:
       - '`as.group_factors`'
-      - '`bind_val`'
+      - '`bind_cv`'
+      - '`can_cor`'
       - '`comb_vars`'
-      - '`ge_stats`'
       - '`group_factors`'
       - '`is.group_factors`'
       - '`make_mat`'
@@ -80,6 +91,7 @@ reference:
       - '`performs_ammi`'
       - '`rbind_fill`'
       - '`resca`'
+      - '`solve_sdv`'
       - '`theme_waasb`'
   - title: Datasets
     desc: Data for reproducible examples
@@ -104,6 +116,8 @@ navbar:
         href: articles/vignettes_AMMI.html
       - text: "BLUP"
         href: articles/vignettes_BLUP.html
+      - text: "Stability"
+        href: articles/vignettes_STABILITY.html
       - text: "Multivariate indexes"
         href: articles/vignettes_INDEXES.html
       - text: "Biometry"

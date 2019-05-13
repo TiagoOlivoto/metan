@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="Response surface model — resp_surf" />
 
-<meta property="og:description" content="Compute a surface model and find the best combination of factor1 and factor2 to obtain the stacionary point." />
+<meta property="og:description" content="Compute a surface model and find the best combination of factor1 and factor2
+to obtain the stacionary point." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +96,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,25 +155,27 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Response surface model</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/resp_surf.R'><code>R/resp_surf.R</code></a></small>
     <div class="hidden name"><code>resp_surf.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute a surface model and find the best combination of factor1 and factor2 to obtain the stacionary point.</p>
+    <p>Compute a surface model and find the best combination of factor1 and factor2
+to obtain the stacionary point.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>resp_surf</span>(<span class='no'>.data</span>, <span class='no'>factor1</span>, <span class='no'>factor2</span>, <span class='no'>rep</span>,
-          <span class='no'>resp</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>resp_surf</span>(<span class='no'>.data</span>, <span class='no'>factor1</span>, <span class='no'>factor2</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The dataset containing the columns related to Environments, factor1, factor2, replication/block and response variable(s).</p></td>
+      <td><p>The dataset containing the columns related to Environments,
+factor1, factor2, replication/block and response variable(s).</p></td>
     </tr>
     <tr>
       <th>factor1</th>
@@ -181,7 +187,8 @@
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>The name of the column that contains the levels of the replications/blocks.</p></td>
+      <td><p>The name of the column that contains the levels of the
+replications/blocks.</p></td>
     </tr>
     <tr>
       <th>resp</th>
@@ -193,7 +200,8 @@
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>verbose = TRUE</code> then some results are shown in the console.</p></td>
+      <td><p>If <code>verbose = TRUE</code> then some results are shown in the
+console.</p></td>
     </tr>
     </table>
     

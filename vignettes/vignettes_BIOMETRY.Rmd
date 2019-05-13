@@ -22,12 +22,12 @@ data_out[12, 4] = 26
 find_outliers(data_out, var = PH, plots = TRUE)
     ```
 
-To check the outliers in different levels of a factor, the function `group_factors()` is used. As an example, we will find possible outliers for each level of the factor `ENV`.
+To check the outliers in different levels of a factor, the function `split_factors()` is used. As an example, we will find possible outliers for each level of the factor `ENV`.
 
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 data_ge2 %>%
-group_factors(ENV) %>%
+split_factors(ENV) %>%
 find_outliers(PH)
 ```
     
@@ -57,7 +57,7 @@ lpc1 = lpcor(dataset[,5:8])
 
 # Compute the correlations for each level of the factor ENV
 lpc2 = dataset %>%
-       group_factors(ENV) %>%
+       split_factors(ENV) %>%
        lpcor(verbose = FALSE) # Don't show the result in the console
 
     ```
@@ -201,11 +201,11 @@ covcor_design(data, gen = GEN, rep = REP,
 ```
 
 ## Residual (co)variance matrix
-Using the function `group_factors()` it is possible to pass the data grouped and compute the matrices for each level of the grouping factor. In this example we will obtain the residual (co)variance for each environment.
+Using the function `split_factors()` it is possible to pass the data grouped and compute the matrices for each level of the grouping factor. In this example we will obtain the residual (co)variance for each environment.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
 cov = data_ge2 %>%
-      group_factors(ENV, keep_factors = TRUE) %>%
+      split_factors(ENV, keep_factors = TRUE) %>%
       covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
                     type = "rcov")
     ```
@@ -231,7 +231,7 @@ corr_ci(n = 145, r = 0.34)
 
 corr_ci(data_ge2)
 
-data_ge2 %>% group_factors(ENV) %>% corr_ci()
+data_ge2 %>% split_factors(ENV) %>% corr_ci()
 ```
 
 
@@ -267,7 +267,7 @@ cold2 = colindiag(dataset)
 
 ```{r }
 cold3 =  dataset %>% 
-         group_factors(ENV, verbose = FALSE) %>% 
+         split_factors(ENV, verbose = FALSE) %>% 
          colindiag()
 ```
 
@@ -316,7 +316,7 @@ pcoeff3 = data_ge2 %>%
 ## Compute the analysis for each level of environment
 ```{r }
 pcoeff4 = data_ge2 %>%
-  group_factors(ENV) %>%
+  split_factors(ENV) %>%
   path_coeff(resp = KW,
              pred = c(PH, EH, NKE, TKW))
 ```
@@ -369,14 +369,14 @@ d5 = clustering(data_ge2,
 # Compute the distances for each environment
 # All rows of each environment and all numeric variables used
 d6 = data_ge2 %>%
-     group_factors(ENV) %>%
+     split_factors(ENV) %>%
      clustering()
 
 # Compute the distances for each environment
 # Select the variables NKR, TKW, and NKE
 # Use the mean for each genotype
 d7 = data_ge2 %>%
-  group_factors(ENV, keep_factors = TRUE) %>%
+  split_factors(ENV, keep_factors = TRUE) %>%
   clustering(NKR, TKW, NKE,
              means_by = GEN)
 
@@ -398,7 +398,7 @@ mahala_design(data_ge,
 
 # Compute one distance for each environment
 maha_group = data_ge %>%
-             group_factors(ENV, keep_factors = TRUE) %>%
+             split_factors(ENV, keep_factors = TRUE) %>%
              mahala_design(GEN, REP, c(GY, HM))
 
     ```
@@ -407,7 +407,7 @@ maha_group = data_ge %>%
 
 ```{r }
 maha_group = data_ge %>%
-             group_factors(ENV, keep_factors = TRUE) %>%
+             split_factors(ENV, keep_factors = TRUE) %>%
              mahala_design(GEN, REP, c(GY, HM))
 
     ```

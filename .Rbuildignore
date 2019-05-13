@@ -11,6 +11,7 @@
 ^vignettes/vignettes_BIOMETRY\.Rmd$
 ^vignettes/vignettes_AMMI\.Rmd$
 ^vignettes/vignettes_HELPER\.Rmd$
+^vignettes/vignettes_STABILITY\.Rmd$
 ^README_file$
 ^Meta$
 ^README_files$

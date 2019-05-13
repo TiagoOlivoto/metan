@@ -32,7 +32,9 @@
 
 <meta property="og:title" content="Mahalanobis Distance — mahala" />
 
-<meta property="og:description" content="Compute the Mahalanobis distance of all pairwise rows in .means. The result is a symmetric matrix containing the distances that may be used for hierarchical clustering." />
+<meta property="og:description" content="Compute the Mahalanobis distance of all pairwise rows in .means. The
+result is a symmetric matrix containing the distances that may be used for
+hierarchical clustering." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +97,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,13 +156,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Mahalanobis Distance</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/mahala.R'><code>R/mahala.R</code></a></small>
     <div class="hidden name"><code>mahala.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute the Mahalanobis distance of all pairwise rows in <code>.means</code>. The result is a symmetric matrix containing the distances that may be used for hierarchical clustering.</p>
+    <p>Compute the Mahalanobis distance of all pairwise rows in <code>.means</code>. The
+result is a symmetric matrix containing the distances that may be used for
+hierarchical clustering.</p>
     
     </div>
 
@@ -176,13 +183,15 @@
     </tr>
     <tr>
       <th>inverted</th>
-      <td><p>Logical argument. If <code>TRUE</code>, <code>covar</code> is supposed to contain the inverse of the covariance matrix.</p></td>
+      <td><p>Logical argument. If <code>TRUE</code>, <code>covar</code> is supposed
+to contain the inverse of the covariance matrix.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
 <span class='co'># Compute the mean for genotypes</span>
@@ -200,7 +209,8 @@
 
 <span class='co'># Dendrogram</span>
 <span class='no'>dend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dendrogram'>as.dendrogram</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/hclust'>hclust</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>as.dist</a></span>(<span class='no'>dist</span>)))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>dend</span>)</div><div class='img'><img src='mahala-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>dend</span>)</div><div class='img'><img src='mahala-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -95,6 +95,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -151,7 +154,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Visualization of a correlation matrix</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/corr_plot.R'><code>R/corr_plot.R</code></a></small>
     <div class="hidden name"><code>corr_plot.Rd</code></div>
     </div>
 
@@ -162,79 +165,103 @@
     </div>
 
     <pre class="usage"><span class='fu'>corr_plot</span>(<span class='no'>.data</span>, <span class='kw'>...</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>upper</span> <span class='kw'>=</span> <span class='st'>"corr"</span>, <span class='kw'>lower</span> <span class='kw'>=</span> <span class='st'>"scatter"</span>,
-          <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col.diag</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-          <span class='kw'>alpha.diag</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-          <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
-          <span class='kw'>alpha.sign</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>"tr"</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-          <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.smooth</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>size.smooth</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-          <span class='kw'>confint</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
-          <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-          <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-          <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-          <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>)</pre>
+  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col.diag</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>alpha.diag</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
+  <span class='kw'>alpha.sign</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>"tr"</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.smooth</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>size.smooth</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
+  <span class='kw'>confint</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
+  <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data. Should, preferentially, contain numeric variables only. If <code>.data</code> has factor-columns, these columns will be deleted with a warning message.</p></td>
+      <td><p>The data. Should, preferentially, contain numeric variables
+only. If <code>.data</code> has factor-columns, these columns will be deleted with
+a warning message.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Variables to use in the correlation. Set to <code>NULL</code>, i.e., all the numeric variables from <code>.data</code> are used.</p></td>
+      <td><p>Variables to use in the correlation. Set to <code>NULL</code>, i.e.,
+all the numeric variables from <code>.data</code> are used.</p></td>
     </tr>
     <tr>
       <th>upper</th>
-      <td><p>The visualization method for the upper triangular correlation matrix. Must be one of <code>"corr"</code> (numeric values), <code>"scatter"</code> (the scatterplot for each pairwise combination), or <code>NULL</code> to set a blank diagonal.</p></td>
+      <td><p>The visualization method for the upper triangular correlation
+matrix. Must be one of <code>"corr"</code> (numeric values), <code>"scatter"</code> (the
+scatterplot for each pairwise combination), or <code>NULL</code> to set a blank
+diagonal.</p></td>
     </tr>
     <tr>
       <th>lower</th>
-      <td><p>The visualization method for the lower triangular correlation matrix. Must be one of <code>"corr"</code> (numeric values), <code>"scatter"</code> (the scatterplot for each pairwise combination), or <code>NULL</code> to set a blank diagonal.</p></td>
+      <td><p>The visualization method for the lower triangular correlation
+matrix. Must be one of <code>"corr"</code> (numeric values), <code>"scatter"</code> (the
+scatterplot for each pairwise combination), or <code>NULL</code> to set a blank
+diagonal.</p></td>
     </tr>
     <tr>
       <th>axis.labels</th>
-      <td><p>Should the axis labels be shown in the plot? Set to <code>FALSE</code>.</p></td>
+      <td><p>Should the axis labels be shown in the plot? Set to
+<code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>diag</th>
-      <td><p>Should the diagonal show the kernel distribution of the variable? Set to  <code>TRUE</code>.</p></td>
+      <td><p>Should the diagonal show the kernel distribution of the
+variable? Set to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>col.diag</th>
-      <td><p>If <code>diag = TRUE</code> then <code>diagcol</code> is the color for the distribution. Set to gray.</p></td>
+      <td><p>If <code>diag = TRUE</code> then <code>diagcol</code> is the color for
+the distribution. Set to gray.</p></td>
     </tr>
     <tr>
       <th>alpha.diag</th>
-      <td><p>Alpha-transparency scale [0-1] to make the diagonal plot transparent. 0 = fully transparente; 1 = full colour. Set to 0.15</p></td>
+      <td><p>Alpha-transparency scale [0-1] to make the diagonal plot
+transparent. 0 = fully transparente; 1 = full colour. Set to 0.15</p></td>
     </tr>
     <tr>
       <th>col.up.panel, col.lw.panel, col.dia.panel</th>
-      <td><p>The colour for the upper, lower, and diagonal pannels, respectively. Set to "gray".</p></td>
+      <td><p>The colour for the upper,
+lower, and diagonal pannels, respectively. Set to "gray".</p></td>
     </tr>
     <tr>
       <th>prob</th>
-      <td><p>The probability of error. Significant correlations will be highlated with "*", "**", and "***" (0.05, 0.01, and 0.001, respectively). Scatterplots with significant correlations may be colour-highlated.</p></td>
+      <td><p>The probability of error. Significant correlations will be
+highlated with "*", "**", and "***" (0.05, 0.01, and 0.001, respectively).
+Scatterplots with significant correlations may be colour-highlated.</p></td>
     </tr>
     <tr>
       <th>col.sign</th>
-      <td><p>The colour that will highlight the significant correlations. Set to "green".</p></td>
+      <td><p>The colour that will highlight the significant correlations.
+Set to "green".</p></td>
     </tr>
     <tr>
       <th>alpha.sign</th>
-      <td><p>Alpha-transparency scale [0-1] to make the plot area transparent. 0 = fully transparente; 1 = full colour. Set to 0.15</p></td>
+      <td><p>Alpha-transparency scale [0-1] to make the plot area
+transparent. 0 = fully transparente; 1 = full colour. Set to 0.15</p></td>
     </tr>
     <tr>
       <th>lab.position</th>
-      <td><p>The position that the labeles will apper. Set to <code>"tr"</code>, i.e., the legends will apper in the top and right of the plot. Other allowed options are <code>"tl"</code> (top and left), <code>"br"</code> (bottom and rigth), <code>"bl"</code> (bottom and left).</p></td>
+      <td><p>The position that the labeles will apper. Set to
+<code>"tr"</code>, i.e., the legends will apper in the top and right of the plot.
+Other allowed options are <code>"tl"</code> (top and left), <code>"br"</code> (bottom
+and rigth), <code>"bl"</code> (bottom and left).</p></td>
     </tr>
     <tr>
       <th>progress</th>
-      <td><p><code>NULL</code> (default) for a progress bar in interactive sessions with more than 15 plots, <code>TRUE</code> for a progress bar, <code>FALSE</code> for no progress bar.</p></td>
+      <td><p><code>NULL</code> (default) for a progress bar in interactive
+sessions with more than 15 plots, <code>TRUE</code> for a progress bar,
+<code>FALSE</code> for no progress bar.</p></td>
     </tr>
     <tr>
       <th>smooth</th>
-      <td><p>Should a linear smooth line be shown in the scatterplots? Set to <code>FALSE</code>.</p></td>
+      <td><p>Should a linear smooth line be shown in the scatterplots? Set
+to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>col.smooth</th>
@@ -246,7 +273,8 @@
     </tr>
     <tr>
       <th>confint</th>
-      <td><p>Should a confidence band be shown with the smooth line? Set to <code>TRUE</code>.</p></td>
+      <td><p>Should a confidence band be shown with the smooth line? Set
+to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>size.point</th>
@@ -258,11 +286,13 @@
     </tr>
     <tr>
       <th>alpha.point</th>
-      <td><p>Alpha-transparency scale [0-1] to make the points transparent. 0 = fully transparente; 1 = full colour. Set to 0.7</p></td>
+      <td><p>Alpha-transparency scale [0-1] to make the points
+transparent. 0 = fully transparente; 1 = full colour. Set to 0.7</p></td>
     </tr>
     <tr>
       <th>fill.point</th>
-      <td><p>The color to fill the points. Valid argument if points are between 21 and 25.</p></td>
+      <td><p>The color to fill the points. Valid argument if points are
+between 21 and 25.</p></td>
     </tr>
     <tr>
       <th>col.point</th>
@@ -270,11 +300,13 @@
     </tr>
     <tr>
       <th>minsize</th>
-      <td><p>The size of the letter that will represent the smallest correlation coefficient.</p></td>
+      <td><p>The size of the letter that will represent the smallest
+correlation coefficient.</p></td>
     </tr>
     <tr>
       <th>maxsize</th>
-      <td><p>The size of the letter that will represent the largest correlation coefficient.</p></td>
+      <td><p>The size of the letter that will represent the largest
+correlation coefficient.</p></td>
     </tr>
     <tr>
       <th>pan.spacing</th>
@@ -286,15 +318,19 @@
     </tr>
     <tr>
       <th>export</th>
-      <td><p>Logical argument. If <code>TRUE</code>, then the plot is exported to the current directory.</p></td>
+      <td><p>Logical argument. If <code>TRUE</code>, then the plot is exported to
+the current directory.</p></td>
     </tr>
     <tr>
       <th>file.type</th>
-      <td><p>The format of the file if <code>export = TRUE</code>.  Set to <code>"pdf"</code>. Other possible values are <code>*.tiff</code> using <code>file.type = "tiff"</code>.</p></td>
+      <td><p>The format of the file if <code>export = TRUE</code>.  Set to
+<code>"pdf"</code>. Other possible values are <code>*.tiff</code> using <code>file.type
+= "tiff"</code>.</p></td>
     </tr>
     <tr>
       <th>file.name</th>
-      <td><p>The name of the plot when exported. Set to <code>NULL</code>, i.e., automatically.</p></td>
+      <td><p>The name of the plot when exported. Set to <code>NULL</code>,
+i.e., automatically.</p></td>
     </tr>
     <tr>
       <th>width</th>
@@ -306,13 +342,15 @@
     </tr>
     <tr>
       <th>resolution</th>
-      <td><p>The resolution of the plot if <code>file.type = "tiff"</code> is used. Set to <code>300</code> (300 dpi).</p></td>
+      <td><p>The resolution of the plot if <code>file.type = "tiff"</code> is
+used. Set to <code>300</code> (300 dpi).</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>dataset</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>
 
@@ -357,7 +395,8 @@
           <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
           <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0</span>,
           <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>"tl"</span>)
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -17,10 +17,9 @@ In this section, we will use the data in `data_ge`. For more information, please
 
 ```{r warning = FALSE, message = FALSE}
 library(METAAB)
-library(ggplot2)
-library(cowplot)
-library(kableExtra)
-library(magrittr)
+library(cowplot) # used to arrange the graphics
+library(kableExtra) # Used to make the tables
+library(magrittr) # used for the forward-pipe operator %>%
 dataset = data_ge
 str(dataset)
 ```
@@ -63,7 +62,7 @@ WAASB_model = WAASB(.data = dataset,
 
 
 ## Diagnostic plot for residuals
-The function `autoplot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`. Please, see `?autoplot.WAASB` for more details.
+The function `autoplot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`. Please, see `?autoplot_WAASB` for more details.
 
 ```{r echo = TRUE, fig.width=7, fig.height=7, fig.align="center"}
 autoplot(WAASB_model$GY)
@@ -253,7 +252,7 @@ kable(data, "html") %>%
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot.eigen(WAASB_model$GY, size.lab = 14, size.tex.lab = 14)
+plot_eigen(WAASB_model$GY, size.lab = 14, size.tex.lab = 14)
 
 ```
 
@@ -347,8 +346,8 @@ where $WAASBY_i$ is the superiority index for the *i*-th genotype that weights b
 This index was also already computed and stored into AMMI_model>GY>model. An intuitively plot may be obtained by running
 
 ```{r echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
-p1 = plot.WAASBY(WAASB_model$GY)
-p2 = plot.WAASBY(WAASB_model$GY, col.shape = c("gray20", "gray80"))
+p1 = plot_waasby(WAASB_model$GY)
+p2 = plot_waasby(WAASB_model$GY, col.shape = c("gray20", "gray80"))
 plot_grid(p1, p2, labels = c("p1", "p2"))
     ```
 
@@ -394,8 +393,8 @@ kable(data, "html") %>%
 ## Plotting the WAASBY values
 
 ```{r echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
-p1 = plot.WAASBY(WAASBYratio)
-p2 = plot.WAASBY(WAASBYratio, col.shape = c("gray20", "gray80"))
+p1 = plot_waasby(WAASBYratio)
+p2 = plot_waasby(WAASBYratio, col.shape = c("gray20", "gray80"))
 plot_grid(p1, p2, labels = c("p1", "p2"))
     ```
 

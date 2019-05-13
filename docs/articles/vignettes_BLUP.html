@@ -61,6 +61,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -130,12 +133,11 @@
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)</a>
-<a class="sourceLine" id="cb1-6" title="6">dataset =<span class="st"> </span>data_ge</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
+<a class="sourceLine" id="cb1-5" title="5">dataset =<span class="st"> </span>data_ge</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
 ##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -169,7 +171,7 @@
 <div id="diagnostic-plot-for-residuals" class="section level2">
 <h2 class="hasAnchor">
 <a href="#diagnostic-plot-for-residuals" class="anchor"></a>Diagnostic plot for residuals</h2>
-<p>The function <code>autoplot()</code> is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using <code>type = "re"</code>. Please, see <code><a href="../reference/autoplot.html">?autoplot.WAASB</a></code> for more details.</p>
+<p>The function <code>autoplot()</code> is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using <code>type = "re"</code>. Please, see <code>?autoplot_WAASB</code> for more details.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">autoplot</span>(WAASB_model<span class="op">$</span>GY)</a></code></pre></div>
 <p><img src="vignettes_BLUP_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">autoplot</span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="st">"re"</span>)</a></code></pre></div>
@@ -1471,8 +1473,8 @@ G4
 <h3 class="hasAnchor">
 <a href="#plotting-the-blup-for-genotypes" class="anchor"></a>Plotting the BLUP for genotypes</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># No file exported</span></a>
-<a class="sourceLine" id="cb12-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.blup.html">plot.blup</a></span>(WAASB_model<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb12-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.blup.html">plot.blup</a></span>(WAASB_model<span class="op">$</span>GY, </a>
+<a class="sourceLine" id="cb12-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(WAASB_model<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb12-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(WAASB_model<span class="op">$</span>GY, </a>
 <a class="sourceLine" id="cb12-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
 <a class="sourceLine" id="cb12-5" title="5"><span class="kw">plot_grid</span>(p1, p2,</a>
 <a class="sourceLine" id="cb12-6" title="6">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
@@ -1814,7 +1816,7 @@ Accumulated
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="../reference/plot.eigen.html">plot.eigen</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">size.lab =</span> <span class="dv">14</span>, <span class="dt">size.tex.lab =</span> <span class="dv">14</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="../reference/plot_eigen.html">plot_eigen</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">size.lab =</span> <span class="dv">14</span>, <span class="dt">size.tex.lab =</span> <span class="dv">14</span>)</a></code></pre></div>
 <p><img src="vignettes_BLUP_files/figure-html/unnamed-chunk-12-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.</p>
 <div id="phenotypic-means" class="section level3">
@@ -2054,12 +2056,12 @@ G9
 <div id="biplots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h2>
-<p>Provided that an object of class “WAAS” is available in the global environment, the graphics may be obtained using the function <code><a href="../reference/plot.scores.html">plot.scores()</a></code>. To do that, we will revisit the previusly fitted model <code>WAASB</code> . Please, refer to <code><a href="../reference/plot.scores.html">?plot.scores</a></code> for more details. Four types of graphics can be generated: 1 = <span class="math inline">\(PC1 \times PC2\)</span>; 2 = <span class="math inline">\(GY \times PC1\)</span>; 3 = <span class="math inline">\(GY \times WAASB\)</span>; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.</p>
+<p>Provided that an object of class “WAAS” is available in the global environment, the graphics may be obtained using the function <code><a href="../reference/plot_scores.html">plot_scores()</a></code>. To do that, we will revisit the previusly fitted model <code>WAASB</code> . Please, refer to <code><a href="../reference/plot_scores.html">?plot_scores</a></code> for more details. Four types of graphics can be generated: 1 = <span class="math inline">\(PC1 \times PC2\)</span>; 2 = <span class="math inline">\(GY \times PC1\)</span>; 3 = <span class="math inline">\(GY \times WAASB\)</span>; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.</p>
 <div id="biplot-type-1-pc1-x-pc2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-1-pc1-x-pc2" class="anchor"></a>biplot type 1: PC1 x PC2</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb17-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(WAASB_model<span class="op">$</span>GY,</a>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb17-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(WAASB_model<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb17-3" title="3">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb17-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb17-5" title="5">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
@@ -2072,8 +2074,8 @@ G9
 <div id="biplot-type-2-gy-x-pc1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-2-gy-x-pc1" class="anchor"></a>biplot type 2: GY x PC1</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">p3 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb18-2" title="2">p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">p3 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb18-2" title="2">p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb18-3" title="3">                 <span class="dt">col.segm.env =</span> <span class="st">"transparent"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb18-4" title="4"><span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb18-5" title="5"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
@@ -2086,8 +2088,8 @@ G9
 <h3 class="hasAnchor">
 <a href="#biplot-type-3-gy-x-waasb" class="anchor"></a>biplot type 3: GY x WAASB</h3>
 <p>The quadrants proposed in the following biplot represent the four classifications proposed here regarding the joint interpretation of productivity and stability. The genotypes or environments included in quadrant I can be considered unstable genotypes or environments with high discrimination ability, and with productivity below the grand mean. In quadrant II are included unstable genotypes, although with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within quadrant III have low productivity, but can be considered stable due to the lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV are higly productive and broadly adapted due to the high magnitude of the response variable and high stability performance (lower values of WAASB).</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">p5 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb19-2" title="2">p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>,</a>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">p5 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb19-2" title="2">p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb19-3" title="3">                 <span class="dt">x.lab =</span> <span class="st">"My customized x label"</span>,</a>
 <a class="sourceLine" id="cb19-4" title="4">                 <span class="dt">size.shape =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb19-5" title="5">                 <span class="dt">size.tex.pa =</span> <span class="dv">2</span>,</a>
@@ -2100,7 +2102,7 @@ G9
 <div id="biplot-type-4-nominal-yield-and-environment-ipca1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-4-nominal-yield-and-environment-ipca1" class="anchor"></a>biplot type 4 : nominal yield and environment IPCA1</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/plot.scores.html">plot.scores</a></span>(WAASB_model<span class="op">$</span>GY,</a>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(WAASB_model<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb20-2" title="2">            <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">size.tex.pa =</span> <span class="fl">1.5</span>)</a></code></pre></div>
 <p><img src="vignettes_BLUP_files/figure-html/unnamed-chunk-17-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
@@ -2115,8 +2117,8 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 \]</span></p>
 <p>where <span class="math inline">\(WAASBY_i\)</span> is the superiority index for the <em>i</em>-th genotype that weights between performance and stability; <span class="math inline">\(rG_i\)</span> and <span class="math inline">\(rW_i\)</span> are the rescaled values (0-100) for GY and WAASB, respectively; <span class="math inline">\(\theta _Y\)</span> and <span class="math inline">\(\theta_S\)</span> are the weights for GY and WAASB, respectively.</p>
 <p>This index was also already computed and stored into AMMI_model&gt;GY&gt;model. An intuitively plot may be obtained by running</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(WAASB_model<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb21-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASB_model<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb21-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
 <a class="sourceLine" id="cb21-3" title="3"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="vignettes_BLUP_files/figure-html/unnamed-chunk-18-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>In the following example, we will assume that we want to obtain the ranks for WAASBY considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.</p>
@@ -2656,8 +2658,8 @@ G9
 <div id="plotting-the-waasby-values" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-the-waasby-values" class="anchor"></a>Plotting the WAASBY values</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(WAASBYratio)</a>
-<a class="sourceLine" id="cb25-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot.WAASBY.html">plot.WAASBY</a></span>(WAASBYratio, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASBYratio)</a>
+<a class="sourceLine" id="cb25-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASBYratio, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
 <a class="sourceLine" id="cb25-3" title="3"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="vignettes_BLUP_files/figure-html/unnamed-chunk-22-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>

@@ -16,7 +16,6 @@ A dataset called `data_ge` is provided to make reproducible examples. For more i
 ```{r warning = FALSE, message = FALSE}
 # Importing data
 library(METAAB)
-library(ggplot2)
 library(cowplot) # used in this material to arrange the graphics
 dataset = data_ge
 ```
@@ -48,7 +47,7 @@ AMMIweat = cv_ammif(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = REP,
-                            nboot = 200,
+                            nboot = 5,
                             nrepval = 2)
 
 # cross-validation for BLUP model
@@ -57,7 +56,7 @@ BLUPweat = cv_blup(dataset,
                             gen = GEN,
                             env = ENV,
                             rep = REP,
-                            nboot = 200,
+                            nboot = 5,
                             nrepval = 2)
 
     ```
@@ -97,7 +96,7 @@ We can print the result from `RMSPDweat` in basically two distinct ways. First, 
 The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function`plot()` may be used. 
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 # binding AMMI and BLUP RMSPDs
-RMSPDweat = bind_val(AMMIweat, BLUPweat)
+RMSPDweat = bind_cv(AMMIweat, BLUPweat)
 
 # Plotting the RMSPD values
 p1 = plot(RMSPDweat)

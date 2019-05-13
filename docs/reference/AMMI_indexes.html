@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AMMI-based indexes for stability and simultaneous selection — AMMI_indexes • METAAB</title>
+<title>AMMI-based stability indexes — AMMI_indexes • METAAB</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,13 @@
 
 
 
-<meta property="og:title" content="AMMI-based indexes for stability and simultaneous selection — AMMI_indexes" />
+<meta property="og:title" content="AMMI-based stability indexes — AMMI_indexes" />
 
-<meta property="og:description" content="This function computes the following AMMI-based stability indexes: ASV, AMMI stability value (Purchase et al., 2000);  SIPC, sums of the absolute value of the IPCA scores (Sneller et al. 1997); EV, averages of the squared eigenvector values (Sneller et al. 1997); and Za, absolute value of the relative contribution of IPCAs to the interaction (Zali et al. 2012)." />
+<meta property="og:description" content="This function computes the following AMMI-based stability indexes: ASV, AMMI
+stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
+the IPCA scores (Sneller et al. 1997); EV, averages of the squared
+eigenvector values (Sneller et al. 1997); and Za, absolute value of the
+relative contribution of IPCAs to the interaction (Zali et al. 2012)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +99,9 @@
       <a href="../articles/vignettes_BLUP.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
     </li>
     <li>
@@ -150,14 +157,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>AMMI-based indexes for stability and simultaneous selection</h1>
-    
+    <h1>AMMI-based stability indexes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/AMMI_indexes.R'><code>R/AMMI_indexes.R</code></a></small>
     <div class="hidden name"><code>AMMI_indexes.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function computes the following AMMI-based stability indexes: ASV, AMMI stability value (Purchase et al., 2000);  SIPC, sums of the absolute value of the IPCA scores (Sneller et al. 1997); EV, averages of the squared eigenvector values (Sneller et al. 1997); and Za, absolute value of the relative contribution of IPCAs to the interaction (Zali et al. 2012).</p>
+    <p>This function computes the following AMMI-based stability indexes: ASV, AMMI
+stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
+the IPCA scores (Sneller et al. 1997); EV, averages of the squared
+eigenvector values (Sneller et al. 1997); and Za, absolute value of the
+relative contribution of IPCAs to the interaction (Zali et al. 2012).</p>
     
     </div>
 
@@ -172,41 +183,58 @@
     </tr>
     <tr>
       <th>order.y</th>
-      <td><p>A vector of the same length of <code>x</code> used to order the response variable. Each element of the vector must be one of the <code>"h"</code> or <code>"l"</code>. If <code>"h"</code> is used, the response variable will be ordered from maximum to minimum. If <code>"l"</code> is used then the response variable will be ordered from minimum to maximum.</p></td>
+      <td><p>A vector of the same length of <code>x</code> used to order the
+response variable. Each element of the vector must be one of the <code>"h"</code>
+or <code>"l"</code>. If <code>"h"</code> is used, the response variable will be ordered
+from maximum to minimum. If <code>"l"</code> is used then the response variable
+will be ordered from minimum to maximum.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    
-    <p>The ASV index is computed as follows:
-$$AS{V_i} = {\left[ {{{\left[ {\frac{{r\mathop \lambda \nolimits_1^2 }}{{r\mathop \lambda \nolimits_2^2 }} \times (\mathop \lambda \nolimits_1^{0.5} {a_{i1}}{t_{j1}})} \right]}^2} + {{(\mathop \lambda \nolimits_2^{0.5} {a_{i2}}{t_{j2}})}^2}} \right]^{0.5}}$$</p>
-<p>where \(r\) is the number of replications included in the analysis,</p>
-<p>The SIPC index is computed as follows:
-$$SIP{C_i} = \sum\nolimits_{k = 1}^P {\left| {\mathop {|\lambda }\nolimits_k^{0.5} {a_{ik}}} \right|}$$</p>
-<p>where \(P\) is the number of IPCA retained via F-tests.</p>
-<p>The EV index is computed as follows:
-$$E{V_i} = \sum\nolimits_{k = 1}^P {\mathop a\nolimits_{ik}^2 } /P$$</p>
-    <p>The ZA index is computed as follows:
-$$Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}} $$</p>
-<p>where \(\theta _k\) is the percentage sum of squares explained by the kth IPCA.</p>
-<p>Four simultaneous selection indexes (ssi) are also computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A dataframe contaning the indexes</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-<p>A dataframe contaning the indexes</p>
+    <p>The ASV index is computed as follows: $$AS{V_i} = {\left[ {{{\left[
+{\frac{{r\mathop \lambda \nolimits_1^2 }}{{r\mathop \lambda \nolimits_2^2 }}
+\times (\mathop \lambda \nolimits_1^{0.5} {a_{i1}}{t_{j1}})} \right]}^2} +
+{{(\mathop \lambda \nolimits_2^{0.5} {a_{i2}}{t_{j2}})}^2}} \right]^{0.5}}$$</p>
+<p>where \(r\) is the number of replications included in the analysis,</p>
+<p>The SIPC index is computed as follows: $$SIP{C_i} = \sum\nolimits_{k =
+1}^P {\left| {\mathop {|\lambda }\nolimits_k^{0.5} {a_{ik}}} \right|}$$</p>
+<p>where \(P\) is the number of IPCA retained via F-tests.</p>
+<p>The EV index is computed as follows: $$E{V_i} = \sum\nolimits_{k = 1}^P
+{\mathop a\nolimits_{ik}^2 } /P$$</p>
+<p>The ZA index is computed as follows: $$Z{a_i} = \sum\nolimits_{k = 1}^P
+{{\theta _k}{a_{ik}}} $$</p>
+<p>where \(\theta _k\) is the percentage sum of squares explained by the kth
+IPCA.</p>
+<p>Four simultaneous selection indexes (ssi) are also computed by summation of
+the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean
+yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, and
+ssiZa, respectively.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000. Genotype vs environment interaction of winter wheat (Triticum aestivum L.) in South Africa: II. Stability analysis of yield performance. South African J. Plant Soil 17:101-107. <a href='http://doi.org/10.1080/02571862.2000.10634878'>doi:10.1080/02571862.2000.10634878</a></p>
-<p>Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of Yield Stability Statistics in Soybean. Crop Sci. 37:383-390. <a href='http://doi.org/10.2135/cropsci1997.0011183X003700020013x'>doi:10.2135/cropsci1997.0011183X003700020013x</a></p>
-<p>Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012. Evaluation of genotype vs environment interaction in chickpea using measures of stability from AMMI model. Ann. Biol. Res. 3:3126-3136. <a href='http://eprints.icrisat.ac.in/id/eprint/7173'>http://eprints.icrisat.ac.in/id/eprint/7173</a></p>
+    <p>Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
+Genotype vs environment interaction of winter wheat (Triticum aestivum L.)
+in South Africa: II. Stability analysis of yield performance. South African
+J. Plant Soil 17:101-107.
+<a href='http://doi.org/10.1080/02571862.2000.10634878'>doi:10.1080/02571862.2000.10634878</a></p>
+<p>Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of
+Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
+<a href='http://doi.org/10.2135/cropsci1997.0011183X003700020013x'>doi:10.2135/cropsci1997.0011183X003700020013x</a></p>
+<p>Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
+Evaluation of genotype vs environment interaction in chickpea using measures
+of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
+<a href='http://eprints.icrisat.ac.in/id/eprint/7173'>http://eprints.icrisat.ac.in/id/eprint/7173</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='WAAS.AMMI.html'>WAAS.AMMI</a></span>(<span class='no'>data_ge</span>,
                   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
@@ -227,6 +255,7 @@ $$Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}} $$</p>
           <span class='fu'>AMMI_indexes</span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; Done!</div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -234,9 +263,9 @@ $$Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}} $$</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
       

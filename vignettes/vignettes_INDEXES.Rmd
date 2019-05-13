@@ -19,7 +19,7 @@ The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F}
 library(METAAB)
-library(dplyr)
+library(magrittr) # used for the forward-pipe operator %>%
 
 FAI = data_ge2 %>%
       WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
