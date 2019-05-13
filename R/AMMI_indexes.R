@@ -60,7 +60,7 @@
 #' \href{http://eprints.icrisat.ac.in/id/eprint/7173}{http://eprints.icrisat.ac.in/id/eprint/7173}
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' model = WAAS.AMMI(data_ge,
 #'                   env = ENV,
 #'                   gen = GEN,
