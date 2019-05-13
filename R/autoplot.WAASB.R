@@ -43,7 +43,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(ggplot2)
 #' model2 = WAASB(data_ge,
 #'                resp = GY,

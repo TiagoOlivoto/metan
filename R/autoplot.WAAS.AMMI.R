@@ -39,7 +39,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(ggplot2)
 #' model = WAAS.AMMI(data_ge,
 #'                   resp = GY,

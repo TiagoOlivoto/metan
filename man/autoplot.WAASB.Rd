@@ -71,7 +71,7 @@ object, normal Q-Q plot for random effects may also be obtained declaring
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(ggplot2)
 model2 = WAASB(data_ge,
                resp = GY,
