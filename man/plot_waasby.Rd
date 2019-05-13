@@ -58,7 +58,7 @@ Plot heat maps with genotype ranking in two ways.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(ggplot2)
 waasby = WAASB(data_ge,
                resp = GY,
