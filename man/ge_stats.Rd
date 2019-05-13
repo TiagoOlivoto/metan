@@ -35,7 +35,7 @@ index (Lin and Binns, 1988)
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(dplyr)
 
 model = ge_stats(.data = data_ge2,

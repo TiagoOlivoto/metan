@@ -16,7 +16,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' model = ge_stats(.data = data_ge2,
 #'                  env = ENV,
 #'                  gen = GEN,

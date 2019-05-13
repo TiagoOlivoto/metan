@@ -32,7 +32,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #'
 #' model = ge_stats(.data = data_ge2,
