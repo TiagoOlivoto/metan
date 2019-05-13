@@ -25,7 +25,7 @@ in the R console. The results can also be exported to the directory.
 }
 \examples{
 \dontrun{
-library(METAAB)
+library(metan)
 # Based on stability only
 MTSI_MODEL = WAASB(data_ge,
                    resp = c(GY, HM),
