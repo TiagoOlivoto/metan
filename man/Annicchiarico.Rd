@@ -31,7 +31,7 @@ Stability analysis using the known genotypic confidence index
 }
 \examples{
 
-library(METAAB)
+library(metan)
 Ann = Annicchiarico(data_ge2,
                    env = ENV,
                    gen = GEN,

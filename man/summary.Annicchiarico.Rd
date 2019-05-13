@@ -26,7 +26,7 @@ directory into a *.txt file.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 Ann = Annicchiarico(data_ge2,
                     env = ENV,
                     gen = GEN,
