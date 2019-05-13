@@ -26,7 +26,7 @@ directory into a *.txt file.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 model = ge_reg(data_ge2, ENV, GEN, REP, PH)
 summary(model)
 

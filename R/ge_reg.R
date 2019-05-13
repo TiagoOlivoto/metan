@@ -16,7 +16,7 @@
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#' library(METAAB)
+#' library(metan)
 #'reg = ge_reg(data_ge2,
 #'             env = ENV,
 #'             gen = GEN,

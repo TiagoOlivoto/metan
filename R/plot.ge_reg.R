@@ -32,7 +32,7 @@
 #' @method plot ge_reg
 #' @export
 #' @examples
-#' library(METAAB)
+#' library(metan)
 #' model = ge_reg(data_ge2, ENV, GEN, REP, PH)
 #' plot(model$PH)
 #'

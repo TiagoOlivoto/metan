@@ -27,7 +27,7 @@ single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
 Regression-based stability analysis using the Eberhart and Russell (1966) model.
 }
 \examples{
-library(METAAB)
+library(metan)
 reg = ge_reg(data_ge2,
             env = ENV,
             gen = GEN,
