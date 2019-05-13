@@ -20,7 +20,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' data = data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
 #'                   B = rnorm(n = 5, mean = 120, sd = 30),
 #'                   C = rnorm(n = 5, mean = 40, sd = 10),
