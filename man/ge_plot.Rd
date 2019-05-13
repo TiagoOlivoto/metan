@@ -29,7 +29,7 @@ x axis whereas the genotypes are depicted by different lines. The y axis
 contains the value of the selected variable.
 }
 \examples{
-library(METAAB)
+library(metan)
 library(ggplot2)
 ge_plot(data_ge2, ENV, GEN, PH)
 ge_plot(data_ge2, ENV, GEN, PH)+

@@ -18,7 +18,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#' library(METAAB)
+#' library(metan)
 #' library(ggplot2)
 #' ge_plot(data_ge2, ENV, GEN, PH)
 #' ge_plot(data_ge2, ENV, GEN, PH)+
