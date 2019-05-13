@@ -1,4 +1,4 @@
-#' Make a two-way table based on categorical and numerical arguments
+#' Make a two-way table
 #'
 #' This function help users to easely make a two-way table from a "long format"
 #' data.
@@ -15,7 +15,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #' matrix = data_ge %>% make_mat(row = GEN, col = ENV, val = GY)
 #' matrix

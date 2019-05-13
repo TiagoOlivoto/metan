@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_mat.R
 \name{make_mat}
 \alias{make_mat}
-\title{Make a two-way table based on categorical and numerical arguments}
+\title{Make a two-way table}
 \usage{
 make_mat(.data, row, col, value)
 }
@@ -24,7 +24,7 @@ data.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(dplyr)
 matrix = data_ge \%>\% make_mat(row = GEN, col = ENV, val = GY)
 matrix
