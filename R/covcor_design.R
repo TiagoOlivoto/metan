@@ -27,7 +27,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #' # List of matrices
 #' data = subset(data_ge2, ENV == "A1")
