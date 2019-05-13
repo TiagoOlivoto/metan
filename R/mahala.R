@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #'
 #' # Compute the mean for genotypes

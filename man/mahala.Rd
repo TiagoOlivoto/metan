@@ -21,7 +21,7 @@ hierarchical clustering.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(dplyr)
 
 # Compute the mean for genotypes
