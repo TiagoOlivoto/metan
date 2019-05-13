@@ -33,12 +33,12 @@ replication/block.}
 This dataset contain data on two variables assessed in 10 genotypes growing
 in in 11 environments. The experimental design was a RCBD with 3
 replicates(blocks). This data provide examples for several functions of
-\pkg{METAAB} package.
+\pkg{metan} package.
 
 This dataset contain data on two variables assessed in 10 genotypes growing
 at 14 environments. The experimental design in each environment was a RCBD with 3
 replicates(blocks). This data provide examples for several functions of
-\pkg{METAAB} package.
+\pkg{metan} package.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -47,7 +47,7 @@ replication/block.}
 This dataset contain data on 15 traits assessed in 13 maize hybrids growing
 in 4 environments. The experimental design was a RCBD with 3 blocks and 1
 replications per block. It may be used as example in several functions of
-\pkg{METAAB} package.
+\pkg{metan} package.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
