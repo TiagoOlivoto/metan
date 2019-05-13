@@ -31,7 +31,7 @@ the directory.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 
 # KW as dependent trait and all others as predictors
 pcoeff = path_coeff(data_ge2, resp = KW)

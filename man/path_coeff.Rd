@@ -103,7 +103,7 @@ variables in the iterative process.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 library(dplyr)
 
 # Using KW as the response variable and all other ones as predictors
