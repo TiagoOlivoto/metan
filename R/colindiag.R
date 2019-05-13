@@ -50,7 +50,7 @@
 #' @examples
 #'
 #' # Using the correlation matrix
-#' library(METAAB)
+#' library(metan)
 #' cor_iris = cor(iris[,1:4])
 #' n = nrow(iris)
 #' colindiag(cor_iris, n = n, verbose = FALSE)
