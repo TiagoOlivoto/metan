@@ -27,7 +27,7 @@ shown in the R console. The results can also be exported to the directory.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 model = WAASB(data_ge,
               resp = c(GY, HM),
               gen = GEN,
