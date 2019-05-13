@@ -31,7 +31,7 @@ This function computes the stability analysis and environmental stratitication
 using factor analysis as proposed by Murakami and Cruz (2004).
 }
 \examples{
-library(METAAB)
+library(metan)
 model = ge_factanal(data_ge2,
                     env = ENV,
                     gen = GEN,

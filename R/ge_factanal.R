@@ -22,7 +22,7 @@
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#' library(METAAB)
+#' library(metan)
 #' model = ge_factanal(data_ge2,
 #'                     env = ENV,
 #'                     gen = GEN,
