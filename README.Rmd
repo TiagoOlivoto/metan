@@ -6,9 +6,9 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# METAAB <img src="man/figures/logo.png" align="right" height=140/>
+# metan <img src="man/figures/logo.png" align="right" height=140/>
 
-The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B**LUP) package provides useful functions for analyzing multi-environment trial data using Additive Main Effects and Multiplicative Interaction (AMMI) and Best Linear Unbiased Prediction (BLUP) models. The main features include, but are not limited to:
+The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to Additive Main Effects and Multiplicative Interaction (AMMI) and AMMI-based indexes, Best Linear Unbiased Prediction (BLUP), and BLUP-based indexes, Joint-regression analysis, Genotypic confidence index, Superiority index, The main features include, but are not limited to:
 
 * Within environment analysis of variance
 * Cross-validation procedures for AMMI-family and BLUP models;
@@ -26,16 +26,16 @@ The METAAB (**M**ulti-environment **T**rials **A**nalysis using **A**MMI and **B
 The latest development version can be download from GitHub by running
 ```{r, eval=FALSE}
 if (!require("devtools")) install.packages('devtools')
-devtools::install_github("TiagoOlivoto/METAAB")
+devtools::install_github("TiagoOlivoto/metan")
 ```
 
 # Brief examples
 The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) were used to generate the tables and arranging the graphics of this material.
 
-The `METAAB` contains some datasets for examples. We will use the example `data_ge` that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`
+The `metan` contains some datasets for examples. We will use the example `data_ge` that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`
 
 ```{r}
-library(METAAB)
+library(metan)
 str(data_ge)
 ```
 
@@ -68,7 +68,7 @@ kable(predicted, "html") %>%
 
 ### Biplots
 
-ggplot2-based graphics are easily obtained in METAAB package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `WAAS.AMMI()` function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, ...), the output `model` is a list, in this case with one element, GY.
+ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `WAAS.AMMI()` function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, ...), the output `model` is a list, in this case with one element, GY.
 
 ```{r, fig.width=8, message=FALSE, warning=FALSE}
 library(cowplot)
@@ -118,6 +118,6 @@ kable(data, "html") %>%
                 position = "left", full_width = F, font_size = 12)
 ```
 
-# Extending the METAAB package
+# Extending the metan package
 
-The complete functionality of the METAAB package, combining theory, programming, and examples with outputs is described at <https://tiagoolivoto.github.io/METAAB/index.html>. Suggestions and criticisms to improve the quality and usability of the package are welcome!
+The complete functionality of the metan package, combining theory, programming, and examples with outputs is described at <https://tiagoolivoto.github.io/metan/index.html>. Suggestions and criticisms to improve the quality and usability of the package are welcome!
