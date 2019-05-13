@@ -63,7 +63,7 @@
 #' @method plot ge_factanal
 #' @export
 #' @examples
-#' library(METAAB)
+#' library(metan)
 #' library(ggplot2)
 #' model = ge_factanal(data_ge2,
 #'                     env = ENV,

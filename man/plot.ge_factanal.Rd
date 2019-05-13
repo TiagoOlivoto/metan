@@ -94,7 +94,7 @@ This function plot the scores for genotypes obtained in the factor analysis
 to interpret the stability
 }
 \examples{
-library(METAAB)
+library(metan)
 library(ggplot2)
 model = ge_factanal(data_ge2,
                     env = ENV,
