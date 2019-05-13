@@ -2,7 +2,7 @@
 title: "Cross-validation procedures for AMMI and BLUP"
 output: rmarkdown::html_vignette
 link-citations: true
-bibliography: METAABref.bib 
+bibliography: metanref.bib 
 vignette: >
   %\VignetteIndexEntry{Cross-validation procedures for AMMI and BLUP}
   %\VignetteEngine{knitr::rmarkdown}
@@ -15,7 +15,7 @@ A dataset called `data_ge` is provided to make reproducible examples. For more i
 
 ```{r warning = FALSE, message = FALSE}
 # Importing data
-library(METAAB)
+library(metan)
 library(cowplot) # used in this material to arrange the graphics
 dataset = data_ge
 ```

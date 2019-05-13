@@ -4,7 +4,7 @@ always_allow_html: yes
 output: rmarkdown::html_vignette
 fig_caption: yes
 link-citations: true
-bibliography: METAABref.bib    
+bibliography: metanref.bib    
 vignette: >
   %\VignetteIndexEntry{Parametric and non-parametric stability statistics}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,7 +17,7 @@ vignette: >
 In this section, we will use the data in `data_ge2`. For more information, please, see `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-library(METAAB)
+library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
 dataset = data_ge2

@@ -5,7 +5,7 @@ output:
     rmarkdown::html_vignette
 fig_caption: yes
 link-citations: true
-bibliography: METAABref.bib  
+bibliography: metanref.bib  
 vignette: >
   %\VignetteIndexEntry{Analyzing multienvironment trials using BLUP}
   %\VignetteEngine{knitr::rmarkdown}
@@ -16,7 +16,7 @@ vignette: >
 In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
 ```{r warning = FALSE, message = FALSE}
-library(METAAB)
+library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
 library(magrittr) # used for the forward-pipe operator %>%

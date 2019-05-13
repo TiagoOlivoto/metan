@@ -4,7 +4,7 @@ always_allow_html: yes
 output: rmarkdown::html_vignette
 fig_caption: yes
 link-citations: true
-bibliography: METAABref.bib    
+bibliography: metanref.bib    
 vignette: >
   %\VignetteIndexEntry{Analyzing multienvironment trials using AMMI}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,7 +17,7 @@ vignette: >
 In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
 ```{r warning = FALSE, message = FALSE}
-library(METAAB)
+library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
 library(magrittr) # used for the forward-pipe operator %>%
@@ -84,7 +84,7 @@ Nine interaction principal component axis (IPCA) were fitted and four were signi
 
 # Estimating the response variable based on significant IPCA axes
 
-An interesting feature of `METAAB` is the implementation of the S3 method `predict()`. The response variable of a two-way table (for example, the yield of *m* genotypes in *n* environments) may be estimated using the function `predict(object)`, where `object` is an object of class `WAAS.AMMI`. This estimation is based on the number of multiplicative terms declared in the function. If `naxis = 0` is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If `naxis = 1`, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If `naxis = min(g-1; e-1)`, the AMMIF is fitted. A summary of all possible AMMI models is presented below.
+An interesting feature of `metan` is the implementation of the S3 method `predict()`. The response variable of a two-way table (for example, the yield of *m* genotypes in *n* environments) may be estimated using the function `predict(object)`, where `object` is an object of class `WAAS.AMMI`. This estimation is based on the number of multiplicative terms declared in the function. If `naxis = 0` is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If `naxis = 1`, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If `naxis = min(g-1; e-1)`, the AMMIF is fitted. A summary of all possible AMMI models is presented below.
 
 | Member of AMMI family  | Espected response of the *i*-th genotype in the *j*th environment|
 |:------------------------|:------------------------------------------------------------------------------|

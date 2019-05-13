@@ -2,7 +2,7 @@
 title: "Useful functions for biometrical models"
 output: rmarkdown::html_vignette
 link-citations: true
-bibliography: METAABref.bib 
+bibliography: metanref.bib 
 vignette: >
   %\VignetteIndexEntry{Indexes for simultaneous selection}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,7 +14,7 @@ The function `find_outlier()` may be used to identify possible outliers in a dat
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 
-library(METAAB)
+library(metan)
 library(dplyr)
 library(cowplot)
 data_out = data_ge2

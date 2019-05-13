@@ -1,10 +1,10 @@
 ---
-title: "Helper functions for METAAB"
+title: "Helper functions for metan"
 output: rmarkdown::html_vignette
 link-citations: true
-bibliography: METAABref.bib 
+bibliography: metanref.bib 
 vignette: >
-  %\VignetteIndexEntry{Helper functions for METAAB}
+  %\VignetteIndexEntry{Helper functions for metan}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,7 +12,7 @@ vignette: >
 # Bind cross-validation objects
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
-library(METAAB)
+library(metan)
 library(cowplot)
 AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 10, nrepval = 2)
 AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 10, nrepval = 2)
