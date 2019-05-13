@@ -75,7 +75,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' dataset = data_ge2
 #'
 #' # Default plot setting
