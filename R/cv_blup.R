@@ -32,7 +32,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' model = cv_blup(data_ge,
 #'                         env = ENV,
 #'                         gen = GEN,

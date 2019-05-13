@@ -57,7 +57,7 @@ a list is returned.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 model = cv_ammif(data_ge,
                          env = ENV,
                          gen = GEN,

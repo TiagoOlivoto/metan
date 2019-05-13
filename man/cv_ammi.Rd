@@ -70,7 +70,7 @@ with the following values.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 model = cv_ammi(data_ge,
                         env = ENV,
                         gen = GEN,
