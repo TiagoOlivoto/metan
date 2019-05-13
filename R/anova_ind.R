@@ -20,7 +20,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' # traditional usage approach
 #' data = data_ge
 #' anova1 = anova_ind(data_ge,
