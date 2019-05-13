@@ -66,7 +66,7 @@ productive and stable genotypes.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 
 wratio2 = WAASratio.AMMI(data_ge,
                          resp = GY,

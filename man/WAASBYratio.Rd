@@ -77,7 +77,7 @@ combination, the genotypes are ranked regarding the WAASY value.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 
 # Default, with increment of 5 and saving the WAASY values when weight is 50
 wratio = WAASBYratio(data_ge,

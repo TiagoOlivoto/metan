@@ -43,7 +43,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' wratio = WAASBYratio(data_ge,
 #'                      resp = GY,
 #'                      gen = GEN,
