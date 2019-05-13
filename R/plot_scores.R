@@ -105,7 +105,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(ggplot2)
 #' scores = WAASB(data_ge,
 #'                resp = GY,
