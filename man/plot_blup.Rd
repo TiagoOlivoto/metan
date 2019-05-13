@@ -72,7 +72,7 @@ Plot the predicted BLUP of the genotypes.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 BLUP = WAASB(data_ge,
              resp = c(GY, HM),
              gen = GEN,
