@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' spdata = as.split_factors(iris)
 #'
 #' spdata2 = as.split_factors(CO2)

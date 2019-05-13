@@ -31,11 +31,11 @@ Split a data frame into subsets grouping by one or more factors.
 This function is used to split a data frame into a list where each element
 is a level of the grouping variable (or combination of grouping variables).
 By combining the function \code{split_factors} with the forward-pipe operator
-%>%, it is possible to apply some functions of the METAAB package to each element
+%>%, it is possible to apply some functions of the metan package to each element
 of the list.
 }
 \examples{
-library(METAAB)
+library(metan)
 
 g1 = split_factors(iris, Species)
 g2 = split_factors(data_ge, ENV, keep_factors = TRUE)
