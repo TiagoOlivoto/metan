@@ -15,7 +15,7 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' # Based on stability only
 #' MTSI_MODEL = WAASB(data_ge,
 #'                    resp = c(GY, HM),
