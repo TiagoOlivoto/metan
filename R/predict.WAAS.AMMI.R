@@ -31,7 +31,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' model = WAAS.AMMI(data_ge,
 #'                   env = ENV,
 #'                   gen = GEN,
