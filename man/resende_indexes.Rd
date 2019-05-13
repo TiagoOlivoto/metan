@@ -37,7 +37,7 @@ The HMRPGV index is computed as \deqn{HMRPGV_i = \frac{1}{E}\sum\limits_{j =
 }
 \examples{
 
-library(METAAB)
+library(metan)
 res_ind = WAASB(data_ge,
                 env = ENV,
                 gen = GEN,

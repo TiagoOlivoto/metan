@@ -54,7 +54,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' res_ind = WAASB(data_ge,
 #'                 env = ENV,
 #'                 gen = GEN,
