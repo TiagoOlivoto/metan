@@ -2,7 +2,7 @@
 % Please edit documentation in R/FAI_BLUP.R
 \name{FAI_BLUP}
 \alias{FAI_BLUP}
-\title{Multi-trait index based on factor analysis and ideotype-design}
+\title{Multi-trait selection index}
 \usage{
 FAI_BLUP(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE)
 }
@@ -29,7 +29,7 @@ Rocha et al. (2018).
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(dplyr)
 
 mod = WAASB(data_ge,

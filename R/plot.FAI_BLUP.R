@@ -24,7 +24,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #' multivariate = WAASB(data_ge,
 #'                      resp = c(GY, HM),

@@ -1,4 +1,4 @@
-#' Multi-trait index based on factor analysis and ideotype-design
+#' Multi-trait selection index
 #'
 #' Multitrait index based on factor analysis and ideotype-design proposed by
 #' Rocha et al. (2018).
@@ -24,7 +24,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #'
 #' mod = WAASB(data_ge,
