@@ -29,7 +29,7 @@ Nonparametric stability analysis using the superiority index proposed by Lin
 }
 \examples{
 
-library(METAAB)
+library(metan)
 out = superiority(data_ge2,
                  env = ENV,
                  gen = GEN,
