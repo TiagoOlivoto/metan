@@ -28,7 +28,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #'
 #'
