@@ -19,7 +19,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #' partial1 = lpcor(iris)
 #'

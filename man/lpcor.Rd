@@ -29,7 +29,7 @@ data frame or a correlation matrix.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(dplyr)
 partial1 = lpcor(iris)
 

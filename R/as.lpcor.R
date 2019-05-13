@@ -9,7 +9,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #' mt_num = mtcars %>% select_if(., is.numeric)
 #' lpdata = as.lpcor(cor(mt_num[1:5]),
