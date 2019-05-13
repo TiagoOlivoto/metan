@@ -12,7 +12,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' AMMI = cv_ammif(data_ge,
 #'                         resp = GY,
 #'                         gen = GEN,

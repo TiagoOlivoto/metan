@@ -18,7 +18,7 @@ the RMSPD values of those cross-validation procedures.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 AMMI = cv_ammif(data_ge,
                         resp = GY,
                         gen = GEN,
