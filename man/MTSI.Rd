@@ -29,7 +29,7 @@ AMMI or BLUP methods.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(dplyr)
 
 # Based on stability only, for both GY and HM, higher is better

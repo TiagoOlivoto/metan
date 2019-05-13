@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' MTSI_MODEL = WAASB(data_ge,
 #'                    env = ENV,
 #'                    gen = GEN,
