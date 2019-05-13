@@ -91,7 +91,7 @@ This comand ignores the \code{p.valuePC} comand.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 
 # Considering p-value <= 0.05 to compute the WAAS
 
