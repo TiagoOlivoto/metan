@@ -25,8 +25,7 @@
 #' library(METAAB)
 #'
 #' g1 = split_factors(iris, Species)
-#'
-#' g2 = data_ge %>% split_factors(ENV, keep_factors = TRUE)
+#' g2 = split_factors(data_ge, ENV, keep_factors = TRUE)
 #'
 #'
 split_factors = function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
