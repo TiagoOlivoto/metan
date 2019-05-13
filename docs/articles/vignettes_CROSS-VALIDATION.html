@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cross-validation procedures for AMMI and BLUP • METAAB</title>
+<title>Cross-validation procedures for AMMI and BLUP • metan</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">METAAB</a>
+        <a class="navbar-link" href="../index.html">metan</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
@@ -52,25 +52,25 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/vignettes_CROSS-VALIDATION.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
     </li>
     <li>
-      <a href="../articles/vignettes_AMMI.html">AMMI</a>
+      <a href="../articles/vignettes_ammi.html">AMMI</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BLUP.html">BLUP</a>
+      <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
-      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+      <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
-      <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
+      <a href="../articles/vignettes_indexes.html">Multivariate indexes</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+      <a href="../articles/vignettes_biometry.html">Biometry</a>
     </li>
     <li>
-      <a href="../articles/vignettes_HELPER.html">Helper</a>
+      <a href="../articles/vignettes_helper.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -115,14 +115,14 @@
 <!--/.navbar -->
 
       
-      </header><script src="vignettes_CROSS-VALIDATION_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
+      </header><script src="vignettes_cross-validation_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Cross-validation procedures for AMMI and BLUP</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/METAAB/blob/master/vignettes/vignettes_CROSS-VALIDATION.Rmd"><code>vignettes/vignettes_CROSS-VALIDATION.Rmd</code></a></small>
-      <div class="hidden name"><code>vignettes_CROSS-VALIDATION.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_cross-validation.Rmd"><code>vignettes/vignettes_cross-validation.Rmd</code></a></small>
+      <div class="hidden name"><code>vignettes_cross-validation.Rmd</code></div>
 
     </div>
 
@@ -133,7 +133,7 @@
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p>A dataset called <code>data_ge</code> is provided to make reproducible examples. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Importing data</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used in this material to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-4" title="4">dataset =<span class="st"> </span>data_ge</a></code></pre></div>
 </div>
@@ -195,43 +195,10 @@ CROP
 <tbody>
 <tr>
 <td style="text-align:left;">
-AMMI2
+BLUP
 </td>
 <td style="text-align:right;">
-0.3826
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI1
-</td>
-<td style="text-align:right;">
-0.4110
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI8
-</td>
-<td style="text-align:right;">
-0.4172
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI6
-</td>
-<td style="text-align:right;">
-0.4218
+0.3880
 </td>
 <td style="text-align:left;">
 Wheat
@@ -242,51 +209,7 @@ Wheat
 AMMI4
 </td>
 <td style="text-align:right;">
-0.4236
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BLUP
-</td>
-<td style="text-align:right;">
-0.4237
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI3
-</td>
-<td style="text-align:right;">
-0.4258
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMIF
-</td>
-<td style="text-align:right;">
-0.4307
-</td>
-<td style="text-align:left;">
-Wheat
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI7
-</td>
-<td style="text-align:right;">
-0.4312
+0.4076
 </td>
 <td style="text-align:left;">
 Wheat
@@ -297,7 +220,29 @@ Wheat
 AMMI5
 </td>
 <td style="text-align:right;">
-0.4366
+0.4245
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI2
+</td>
+<td style="text-align:right;">
+0.4274
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI8
+</td>
+<td style="text-align:right;">
+0.4296
 </td>
 <td style="text-align:left;">
 Wheat
@@ -308,7 +253,62 @@ Wheat
 AMMI0
 </td>
 <td style="text-align:right;">
-0.4439
+0.4331
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI6
+</td>
+<td style="text-align:right;">
+0.4350
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI3
+</td>
+<td style="text-align:right;">
+0.4359
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMIF
+</td>
+<td style="text-align:right;">
+0.4411
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI1
+</td>
+<td style="text-align:right;">
+0.4435
+</td>
+<td style="text-align:left;">
+Wheat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI7
+</td>
+<td style="text-align:right;">
+0.4469
 </td>
 <td style="text-align:left;">
 Wheat
@@ -330,7 +330,7 @@ Wheat
 <a class="sourceLine" id="cb4-5" title="5">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(RMSPDweat)</a>
 <a class="sourceLine" id="cb4-6" title="6">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(RMSPDweat, <span class="dt">width.boxplot =</span> <span class="fl">0.5</span>, <span class="dt">col.boxplot =</span> <span class="st">"transparent"</span>)</a>
 <a class="sourceLine" id="cb4-7" title="7"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="vignettes_CROSS-VALIDATION_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_cross-validation_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>Six statistics are shown in this boxplot. The mean (black rhombus), the median (black line), the lower and upper hinges that correspond sto the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than <span class="math inline">\(1.5\times{IQR}\)</span> from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most <span class="math inline">\(1.5\times{IQR}\)</span> of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition <code>violin = TRUE</code>, a violin plot is added along with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.</p>
 </div>
 </div>

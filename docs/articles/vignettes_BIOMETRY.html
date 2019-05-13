@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Useful functions for biometrical models • METAAB</title>
+<title>Useful functions for biometrical models • metan</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">METAAB</a>
+        <a class="navbar-link" href="../index.html">metan</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
@@ -52,25 +52,25 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/vignettes_CROSS-VALIDATION.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
     </li>
     <li>
-      <a href="../articles/vignettes_AMMI.html">AMMI</a>
+      <a href="../articles/vignettes_ammi.html">AMMI</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BLUP.html">BLUP</a>
+      <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
-      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+      <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
-      <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
+      <a href="../articles/vignettes_indexes.html">Multivariate indexes</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+      <a href="../articles/vignettes_biometry.html">Biometry</a>
     </li>
     <li>
-      <a href="../articles/vignettes_HELPER.html">Helper</a>
+      <a href="../articles/vignettes_helper.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -121,8 +121,8 @@
       <h1>Useful functions for biometrical models</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/METAAB/blob/master/vignettes/vignettes_BIOMETRY.Rmd"><code>vignettes/vignettes_BIOMETRY.Rmd</code></a></small>
-      <div class="hidden name"><code>vignettes_BIOMETRY.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_biometry.Rmd"><code>vignettes/vignettes_biometry.Rmd</code></a></small>
+      <div class="hidden name"><code>vignettes_biometry.Rmd</code></div>
 
     </div>
 
@@ -132,13 +132,13 @@
 <h1 class="hasAnchor">
 <a href="#find-possible-outliers-in-a-data-frame" class="anchor"></a>Find possible outliers in a data frame</h1>
 <p>The function <code>find_outlier()</code> may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</a>
 <a class="sourceLine" id="cb1-4" title="4">data_out =<span class="st"> </span>data_ge2</a>
 <a class="sourceLine" id="cb1-5" title="5">data_out[<span class="dv">12</span>, <span class="dv">4</span>] =<span class="st"> </span><span class="dv">26</span></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="kw"><a href="../reference/find_outliers.html">find_outliers</a></span>(data_out, <span class="dt">var =</span> PH, <span class="dt">plots =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;"></p>
 <pre><code>## Number of possible outliers: 1 
 ## Lines: 12 
 ## Proportion: 0.6%
@@ -206,7 +206,7 @@ t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2}
 <a class="sourceLine" id="cb7-4" title="4"><span class="st">       </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="co"># Don't show the result in the console</span></a></code></pre></div>
 <p>Using the <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> function, it is possible to compute a Mantel’s test <span class="citation">(Mantel <a href="#ref-Mantel1967">1967</a>)</span> for all pairwise correlation matrices of the above example.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">lpc2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"H"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">""</span>))</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-4-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-4-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>This same plot may be obtained by passing correlation matrices with the same dimension to an object of class <code>lpcor</code> and then applying the function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="../reference/as.lpcor.html">as.lpcor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),</a>
 <a class="sourceLine" id="cb9-2" title="2">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),</a>
@@ -222,7 +222,7 @@ t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2}
 <a class="sourceLine" id="cb9-12" title="12">               <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</a>
 <a class="sourceLine" id="cb9-13" title="13">               <span class="dt">main =</span> <span class="st">"My own plot"</span>,</a>
 <a class="sourceLine" id="cb9-14" title="14">               <span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-5-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-5-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="graphical-and-numerical-visualization-of-a-correlation-matrix" class="section level2">
 <h2 class="hasAnchor">
@@ -231,11 +231,11 @@ t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2}
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">dataset =<span class="st"> </span>data_ge2</a>
 <a class="sourceLine" id="cb10-2" title="2"></a>
 <a class="sourceLine" id="cb10-3" title="3"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR)</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-6-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-6-1.png" width="528" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR,</a>
 <a class="sourceLine" id="cb11-2" title="2">          <span class="dt">lower =</span> <span class="ot">NULL</span>,</a>
 <a class="sourceLine" id="cb11-3" title="3">          <span class="dt">upper =</span> <span class="st">"corr"</span>)</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-6-2.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-6-2.png" width="528" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR,</a>
 <a class="sourceLine" id="cb12-2" title="2">          <span class="dt">shape.point =</span> <span class="dv">19</span>,</a>
 <a class="sourceLine" id="cb12-3" title="3">          <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
@@ -245,7 +245,7 @@ t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2}
 <a class="sourceLine" id="cb12-7" title="7">          <span class="dt">col.sign =</span> <span class="st">"gray"</span>,</a>
 <a class="sourceLine" id="cb12-8" title="8">          <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</a>
 <a class="sourceLine" id="cb12-9" title="9">          <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-6-3.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-6-3.png" width="528" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR, CW, NKE,</a>
 <a class="sourceLine" id="cb13-2" title="2">          <span class="dt">prob =</span> <span class="fl">0.01</span>,</a>
 <a class="sourceLine" id="cb13-3" title="3">          <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
@@ -264,7 +264,7 @@ t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2}
 <a class="sourceLine" id="cb13-16" title="16">          <span class="dt">col.dia.panel =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb13-17" title="17">          <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
 <a class="sourceLine" id="cb13-18" title="18">          <span class="dt">lab.position =</span> <span class="st">"tl"</span>)</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-6-4.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-6-4.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="covariance-and-correlations-for-designed-experiments" class="section level2">
 <h2 class="hasAnchor">
@@ -807,7 +807,7 @@ var^g_y = (MST_x - MSE_y)/r
 <a class="sourceLine" id="cb58-8" title="8"></a>
 <a class="sourceLine" id="cb58-9" title="9"><span class="co"># Check the correlation between distance matrices</span></a>
 <a class="sourceLine" id="cb58-10" title="10"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(d7)</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
 </div>
 <div id="mahalanobis-distance" class="section level2">
 <h2 class="hasAnchor">
@@ -861,7 +861,7 @@ var^g_y = (MST_x - MSE_y)/r
 <a class="sourceLine" id="cb63-13" title="13"><span class="co"># Dendrogram</span></a>
 <a class="sourceLine" id="cb63-14" title="14">dend =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dendrogram">as.dendrogram</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">as.dist</a></span>(dist)))</a>
 <a class="sourceLine" id="cb63-15" title="15"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(dend)</a></code></pre></div>
-<p><img src="vignettes_BIOMETRY_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
 <p>#References</p>
 <div id="refs" class="references">
 <div id="ref-Mantel1967">

@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Helper functions for METAAB • METAAB</title>
+<title>Helper functions for metan • metan</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Helper functions for METAAB">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Helper functions for metan">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">METAAB</a>
+        <a class="navbar-link" href="../index.html">metan</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
@@ -52,25 +52,25 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/vignettes_CROSS-VALIDATION.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
     </li>
     <li>
-      <a href="../articles/vignettes_AMMI.html">AMMI</a>
+      <a href="../articles/vignettes_ammi.html">AMMI</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BLUP.html">BLUP</a>
+      <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
-      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+      <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
-      <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
+      <a href="../articles/vignettes_indexes.html">Multivariate indexes</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+      <a href="../articles/vignettes_biometry.html">Biometry</a>
     </li>
     <li>
-      <a href="../articles/vignettes_HELPER.html">Helper</a>
+      <a href="../articles/vignettes_helper.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -118,11 +118,11 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Helper functions for METAAB</h1>
+      <h1>Helper functions for metan</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/METAAB/blob/master/vignettes/vignettes_HELPER.Rmd"><code>vignettes/vignettes_HELPER.Rmd</code></a></small>
-      <div class="hidden name"><code>vignettes_HELPER.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_helper.Rmd"><code>vignettes/vignettes_helper.Rmd</code></a></small>
+      <div class="hidden name"><code>vignettes_helper.Rmd</code></div>
 
     </div>
 
@@ -131,7 +131,7 @@
 <div id="bind-cross-validation-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bind-cross-validation-objects" class="anchor"></a>Bind cross-validation objects</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(METAAB)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</a>
 <a class="sourceLine" id="cb1-3" title="3">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb1-4" title="4">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
@@ -143,7 +143,7 @@
 <a class="sourceLine" id="cb1-10" title="10">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind1)</a>
 <a class="sourceLine" id="cb1-11" title="11">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind2)</a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="vignettes_HELPER_files/figure-html/unnamed-chunk-1-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_helper_files/figure-html/unnamed-chunk-1-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="split-a-dataframe-into-subsets-grouped-by-one-or-more-factors" class="section level1">
 <h1 class="hasAnchor">
@@ -339,31 +339,31 @@
 <a class="sourceLine" id="cb14-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">1100</span>, <span class="dt">sd =</span> <span class="dv">200</span>),</a>
 <a class="sourceLine" id="cb14-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb14-6" title="6"><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a></code></pre></div>
-<pre><code>##         A.B      A.C       B.C       A.D       B.D       C.D       A.E
-## 1 133.67367 54.33578 162.23801 1155.7990 1263.7012 1184.3633 16.345316
-## 2 145.69602 52.60744 175.13443  913.9731 1036.5001  943.4115 14.068134
-## 3  40.18791 45.26022  73.76068 1175.4637 1203.9642 1209.0365  7.947487
-## 4  94.24284 45.62479 127.67560 1448.4580 1530.5088 1481.8908  9.578266
-## 5 107.88337 52.48398 141.55133  901.6145  990.6818  935.2824 11.055556
-##         B.E      C.E       D.E
-## 1 124.24755 44.90966 1146.3729
-## 2 136.59513 43.50654  904.8722
-## 3  36.44795 41.52026 1171.7237
-## 4  91.62908 43.01103 1445.8442
-## 5 100.12290 44.72352  893.8540</code></pre>
+<pre><code>##         A.B      A.C      B.C      A.D      B.D      C.D      A.E
+## 1  91.82767 41.35339 109.4469 1223.821 1291.914 1241.440 14.64022
+## 2 139.01026 34.02530 151.2722 1168.906 1286.153 1181.168 14.19978
+## 3  95.88956 55.15211 127.1367 1064.372 1136.356 1095.619 13.76940
+## 4 129.46356 44.80587 154.9007 1338.039 1448.134 1363.477 11.35896
+## 5 210.64132 32.50733 219.6635 1237.643 1424.800 1246.666 12.18569
+##         B.E      C.E      D.E
+## 1  82.73372 32.25944 1214.727
+## 2 131.44668 26.46172 1161.343
+## 3  85.75399 45.01654 1054.236
+## 4 121.45377 36.79609 1330.030
+## 5 199.34183 21.20784 1226.344</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a></code></pre></div>
-<pre><code>##         A.B      A.C       A.D      A.E      B.C       B.D       B.E
-## 1 1556.4396 534.1138 14727.259 44.57939 5006.668 138050.15 417.87762
-## 2 1553.6166 475.2306 10453.732 28.77153 5501.646 121020.69 333.08208
-## 3  200.6980 230.3392  6834.938 12.29381 1353.727  40169.64  72.25198
-## 4  537.3442 240.9679  8792.658 21.22786 3484.336 127139.63 306.94953
-## 5  926.4572 405.2592  8393.888 15.50013 4241.922  87860.35 162.24263
-##        C.D       C.E      D.E
-## 1 47373.82 143.40050 3954.019
-## 2 37018.62 101.88537 2241.191
-## 3 46102.32  82.92291 2460.602
-## 4 57014.80 137.64919 5022.669
-## 5 38432.66  70.96962 1469.951</code></pre>
+<pre><code>##         A.B      A.C      A.D      A.E      B.C       B.D       B.E
+## 1  948.8989 349.9165 14382.35 32.90900 2357.743  96908.52 221.74132
+## 2 1394.2537 251.8414 12601.25 36.10649 2965.360 148376.03 425.14347
+## 3 1003.2566 516.3428 12579.02 21.71662 3626.051  88337.00 152.50638
+## 4 1159.9867 340.1298 12864.29 16.21735 4206.824 159109.28 200.58084
+## 5 2335.5857 243.8318 14395.25  5.20316 4130.081 243830.12  88.13236
+##        C.D       C.E       D.E
+## 1 35736.04 81.769456 3360.9082
+## 2 26800.88 76.792856 3842.4410
+## 3 45464.12 78.489970 1912.1542
+## 4 46653.82 58.814055 2224.4481
+## 5 25455.52  9.200892  543.1987</code></pre>
 </div>
 <div id="combining-data-frames-by-row-filling-missing-values" class="section level1">
 <h1 class="hasAnchor">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Split a data frame by factors — split_factors • METAAB</title>
+<title>Split a data frame by factors — split_factors • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -64,7 +64,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">METAAB</a>
+        <a class="navbar-link" href="../index.html">metan</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
@@ -86,25 +86,25 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes_CROSS-VALIDATION.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
     </li>
     <li>
-      <a href="../articles/vignettes_AMMI.html">AMMI</a>
+      <a href="../articles/vignettes_ammi.html">AMMI</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BLUP.html">BLUP</a>
+      <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
-      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+      <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
-      <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
+      <a href="../articles/vignettes_indexes.html">Multivariate indexes</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+      <a href="../articles/vignettes_biometry.html">Biometry</a>
     </li>
     <li>
-      <a href="../articles/vignettes_HELPER.html">Helper</a>
+      <a href="../articles/vignettes_helper.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -154,7 +154,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Split a data frame by factors</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/split_factors.R'><code>R/split_factors.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/split_factors.R'><code>R/split_factors.R</code></a></small>
     <div class="hidden name"><code>split_factors.Rd</code></div>
     </div>
 
@@ -202,12 +202,12 @@ of the grouping variables.</p>
     <p>This function is used to split a data frame into a list where each element
 is a level of the grouping variable (or combination of grouping variables).
 By combining the function <code>split_factors</code> with the forward-pipe operator
-<!-- %&gt;%, it is possible to apply some functions of the METAAB package to each element -->
+<!-- %&gt;%, it is possible to apply some functions of the metan package to each element -->
 of the list.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='no'>g1</span> <span class='kw'>=</span> <span class='fu'>split_factors</span>(<span class='no'>iris</span>, <span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='message'>The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='input'><span class='no'>g2</span> <span class='kw'>=</span> <span class='fu'>split_factors</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>

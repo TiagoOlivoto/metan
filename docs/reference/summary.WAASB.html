@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary a WAASB object — summary.WAASB • METAAB</title>
+<title>Summary a WAASB object — summary.WAASB • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -65,7 +65,7 @@ shown in the R console. The results can also be exported to the directory." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">METAAB</a>
+        <a class="navbar-link" href="../index.html">metan</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
@@ -87,25 +87,25 @@ shown in the R console. The results can also be exported to the directory." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes_CROSS-VALIDATION.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
     </li>
     <li>
-      <a href="../articles/vignettes_AMMI.html">AMMI</a>
+      <a href="../articles/vignettes_ammi.html">AMMI</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BLUP.html">BLUP</a>
+      <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
-      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+      <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
-      <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
+      <a href="../articles/vignettes_indexes.html">Multivariate indexes</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+      <a href="../articles/vignettes_biometry.html">Biometry</a>
     </li>
     <li>
-      <a href="../articles/vignettes_HELPER.html">Helper</a>
+      <a href="../articles/vignettes_helper.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -155,7 +155,7 @@ shown in the R console. The results can also be exported to the directory." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summary a WAASB object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/summary.WAASB.R'><code>R/summary.WAASB.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.WAASB.R'><code>R/summary.WAASB.R</code></a></small>
     <div class="hidden name"><code>summary.WAASB.Rd</code></div>
     </div>
 
@@ -203,7 +203,7 @@ to the working directory</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
@@ -211,8 +211,9 @@ to the working directory</p></td>
               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; Done!</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable GY 
-#&gt; -----------------------------------------------------------------------------------------
-#&gt; ----------------------- Individual fixed-model analysis of variance ---------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Individual fixed-model analysis of variance
+#&gt; ---------------------------------------------------------------------------
 #&gt;   MEAN     MSB    MSG     MSR     FCB      PRFB    FCG      PRFG     CV     h2
 #&gt;  2.521 0.06522 0.3374 0.14401  0.4529 6.428e-01  2.343 5.936e-02 15.055 0.5732
 #&gt;  2.175 0.65367 0.2958 0.02667 24.5080 7.275e-06 11.090 1.097e-05  7.508 0.9098
@@ -243,25 +244,29 @@ to the working directory</p></td>
 #&gt;  0.8543
 #&gt;  0.9330
 #&gt;  0.9147
-#&gt; 
-#&gt; ---------------------------------- Fixed effects --------------------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Fixed effects
+#&gt; ---------------------------------------------------------------------------
 #&gt;         Sum Sq Mean Sq NumDF DenDF F value    Pr(&gt;F)
 #&gt; ENV     66.089  5.0837    13 279.8  52.576 2.954e-67
 #&gt; REP:ENV  9.662  0.3451    28 252.0   3.569 3.593e-08
-#&gt; 
-#&gt; --------------------------------- Random effects --------------------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Random effects
+#&gt; ---------------------------------------------------------------------------
 #&gt;     Group Variance
 #&gt;       GEN  0.02803
 #&gt;   GEN:ENV  0.05671
 #&gt;  Residual  0.09669
-#&gt; 
-#&gt; ------------------------------ Likelihood ratio test ----------------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Likelihood ratio test
+#&gt; ---------------------------------------------------------------------------
 #&gt;            npar logLik   AIC   LRT Df Pr(&gt;Chisq)
 #&gt; Complete     45 -214.7 519.4    NA NA         NA
 #&gt; Genotype     44 -224.4 536.7 19.32  1  1.108e-05
 #&gt; Gen vs Env   44 -237.1 562.3 44.83  1  2.147e-11
-#&gt; 
-#&gt;  -----------------Variance components and genetic parameters --------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Variance components and genetic parameters
+#&gt; ---------------------------------------------------------------------------
 #&gt;             Parameters                                    Values
 #&gt;           GEI variance 0.056714 (31.26% of phenotypic variance.)
 #&gt;     Genotypic variance 0.028025 (15.45% of phenotypic variance.)
@@ -275,8 +280,9 @@ to the working directory</p></td>
 #&gt;                    CVg                          6.25999359149609
 #&gt;                    CVr                          11.6277882108427
 #&gt;               CV ratio                          0.53836494765692
-#&gt; 
-#&gt; ------------- Principal component analysis of the G x E interaction matrix -------------
+#&gt; ---------------------------------------------------------------------------
+#&gt;  Principal component analysis of the G x E interaction matrix
+#&gt; ---------------------------------------------------------------------------
 #&gt;  PC Eigenvalue Proportion Accumulated
 #&gt;   1    1.47222    34.3084       34.31
 #&gt;   2    1.34670    31.3835       65.69
@@ -287,8 +293,9 @@ to the working directory</p></td>
 #&gt;   7    0.07912     1.8437       98.22
 #&gt;   8    0.05673     1.3221       99.55
 #&gt;   9    0.01947     0.4537      100.00
-#&gt; 
-#&gt; ------------------------- Some information regarding the analysis ----------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Some information regarding the analysis
+#&gt; ---------------------------------------------------------------------------
 #&gt;  Parameters                        Values
 #&gt;        Ngen                            10
 #&gt;        Nenv                            14
@@ -299,10 +306,14 @@ to the working directory</p></td>
 #&gt;      MaxENV      Environment E3 (4.0643) 
 #&gt;      MinGEN        Genotype G10 (2.4712) 
 #&gt;      MaxGEN         Genotype G8 (3.0036) 
-#&gt; -------------------------------------- End of data -------------------------------------
+#&gt; ------------------------------ End of data -------------------------------
+#&gt; 
+#&gt; 
+#&gt; 
 #&gt; Variable HM 
-#&gt; -----------------------------------------------------------------------------------------
-#&gt; ----------------------- Individual fixed-model analysis of variance ---------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Individual fixed-model analysis of variance
+#&gt; ---------------------------------------------------------------------------
 #&gt;   MEAN     MSB    MSG   MSR     FCB      PRFB    FCG      PRFG    CV     h2
 #&gt;  47.42  3.1063  5.221 1.852  1.6773 2.148e-01  2.819 2.928e-02 2.870 0.6453
 #&gt;  44.30  9.1000 28.774 2.174  4.1857 3.216e-02 13.235 3.024e-06 3.328 0.9244
@@ -333,25 +344,29 @@ to the working directory</p></td>
 #&gt;  0.2276
 #&gt;  0.9014
 #&gt;  0.8688
-#&gt; 
-#&gt; ---------------------------------- Fixed effects --------------------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Fixed effects
+#&gt; ---------------------------------------------------------------------------
 #&gt;         Sum Sq Mean Sq NumDF DenDF F value    Pr(&gt;F)
 #&gt; ENV     1166.0  89.689    13 257.4  31.580 5.684e-46
 #&gt; REP:ENV  214.9   7.676    28 252.0   2.703 2.197e-05
-#&gt; 
-#&gt; --------------------------------- Random effects --------------------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Random effects
+#&gt; ---------------------------------------------------------------------------
 #&gt;     Group Variance
 #&gt;       GEN   0.4899
 #&gt;   GEN:ENV   2.1892
 #&gt;  Residual   2.8401
-#&gt; 
-#&gt; ------------------------------ Likelihood ratio test ----------------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Likelihood ratio test
+#&gt; ---------------------------------------------------------------------------
 #&gt;            npar logLik  AIC    LRT Df Pr(&gt;Chisq)
 #&gt; Complete     45 -862.7 1815     NA NA         NA
 #&gt; Genotype     44 -866.6 1821  7.855  1  5.068e-03
 #&gt; Gen vs Env   44 -894.1 1876 62.819  1  2.266e-15
-#&gt; 
-#&gt;  -----------------Variance components and genetic parameters --------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Variance components and genetic parameters
+#&gt; ---------------------------------------------------------------------------
 #&gt;             Parameters                                    Values
 #&gt;           GEI variance 2.189183 (39.67% of phenotypic variance.)
 #&gt;     Genotypic variance  0.489906 (8.88% of phenotypic variance.)
@@ -365,8 +380,9 @@ to the working directory</p></td>
 #&gt;                    CVg                          1.45551599851127
 #&gt;                    CVr                          3.50448584438064
 #&gt;               CV ratio                         0.415329398703424
-#&gt; 
-#&gt; ------------- Principal component analysis of the G x E interaction matrix -------------
+#&gt; ---------------------------------------------------------------------------
+#&gt;  Principal component analysis of the G x E interaction matrix
+#&gt; ---------------------------------------------------------------------------
 #&gt;  PC Eigenvalue Proportion Accumulated
 #&gt;   1    61.9620     33.835       33.83
 #&gt;   2    51.9046     28.343       62.18
@@ -377,8 +393,9 @@ to the working directory</p></td>
 #&gt;   7     8.3910      4.582       97.11
 #&gt;   8     4.5825      2.502       99.62
 #&gt;   9     0.7015      0.383      100.00
-#&gt; 
-#&gt; ------------------------- Some information regarding the analysis ----------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Some information regarding the analysis
+#&gt; ---------------------------------------------------------------------------
 #&gt;  Parameters                        Values
 #&gt;        Ngen                            10
 #&gt;        Nenv                            14
@@ -389,7 +406,10 @@ to the working directory</p></td>
 #&gt;      MaxENV    Environment E11 (54.1983) 
 #&gt;      MinGEN        Genotype G2 (46.6598) 
 #&gt;      MaxGEN        Genotype G5 (49.2976) 
-#&gt; -------------------------------------- End of data -------------------------------------</div><div class='input'>
+#&gt; ------------------------------ End of data -------------------------------
+#&gt; 
+#&gt; 
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

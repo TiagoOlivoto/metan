@@ -1,4 +1,4 @@
-title: METAAB
+title: metan
 template:
   params:
     bootswatch: spacelab
@@ -78,7 +78,7 @@ reference:
       - '`partial.corr`'
       - '`summary.path_coeff`'
   - title: Helper
-    desc: Helper functions for METAAB package
+    desc: Helper functions for metan package
     contents:
       - '`as.group_factors`'
       - '`bind_cv`'
@@ -111,19 +111,19 @@ navbar:
     - text: "Examples"
       menu:
       - text: "Cross-validation procedure"
-        href: articles/vignettes_CROSS-VALIDATION.html
+        href: articles/vignettes_cross-validation.html
       - text: "AMMI"
-        href: articles/vignettes_AMMI.html
+        href: articles/vignettes_ammi.html
       - text: "BLUP"
-        href: articles/vignettes_BLUP.html
+        href: articles/vignettes_blup.html
       - text: "Stability"
-        href: articles/vignettes_STABILITY.html
+        href: articles/vignettes_stability.html
       - text: "Multivariate indexes"
-        href: articles/vignettes_INDEXES.html
+        href: articles/vignettes_indexes.html
       - text: "Biometry"
-        href: articles/vignettes_BIOMETRY.html
+        href: articles/vignettes_biometry.html
       - text: "Helper"
-        href: articles/vignettes_HELPER.html
+        href: articles/vignettes_helper.html
     - text: "Functions"
       href: reference/index.html
     - text: More

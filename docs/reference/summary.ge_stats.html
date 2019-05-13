@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary a ge_stats object — summary.ge_stats • METAAB</title>
+<title>Summary a ge_stats object — summary.ge_stats • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -66,7 +66,7 @@ into a *.txt file." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">METAAB</a>
+        <a class="navbar-link" href="../index.html">metan</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
@@ -88,25 +88,25 @@ into a *.txt file." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes_CROSS-VALIDATION.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
     </li>
     <li>
-      <a href="../articles/vignettes_AMMI.html">AMMI</a>
+      <a href="../articles/vignettes_ammi.html">AMMI</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BLUP.html">BLUP</a>
+      <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
-      <a href="../articles/vignettes_STABILITY.html">Stability</a>
+      <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
-      <a href="../articles/vignettes_INDEXES.html">Multivariate indexes</a>
+      <a href="../articles/vignettes_indexes.html">Multivariate indexes</a>
     </li>
     <li>
-      <a href="../articles/vignettes_BIOMETRY.html">Biometry</a>
+      <a href="../articles/vignettes_biometry.html">Biometry</a>
     </li>
     <li>
-      <a href="../articles/vignettes_HELPER.html">Helper</a>
+      <a href="../articles/vignettes_helper.html">Helper</a>
     </li>
   </ul>
 </li>
@@ -156,7 +156,7 @@ into a *.txt file." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summary a ge_stats object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/METAAB/blob/master/R/summary.ge_stats.R'><code>R/summary.ge_stats.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.ge_stats.R'><code>R/summary.ge_stats.R</code></a></small>
     <div class="hidden name"><code>summary.ge_stats.Rd</code></div>
     </div>
 
@@ -201,17 +201,20 @@ to the working directory.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>METAAB</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>,
                  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
-#&gt; ------------------------------ Individual analysis of variance--- ---------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Individual analysis of variance
+#&gt; ---------------------------------------------------------------------------
 #&gt; data frame with 0 columns and 0 rows
-#&gt; 
-#&gt; ------------------------------- Genotype-vs-environment mean --------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Genotype-vs-environment mean
+#&gt; ---------------------------------------------------------------------------
 #&gt;       A1   A2   A3   A4
 #&gt; H1  2.72 2.93 2.20 2.64
 #&gt; H10 2.78 2.05 2.04 2.39
@@ -226,8 +229,9 @@ to the working directory.</p></td>
 #&gt; H7  2.77 2.14 2.18 2.53
 #&gt; H8  2.69 1.96 2.10 2.55
 #&gt; H9  2.93 2.20 2.03 2.30
-#&gt; 
-#&gt; ------------------------------ Genotype-vs-environment effects -------------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Genotype-vs-environment effects
+#&gt; ---------------------------------------------------------------------------
 #&gt;          A1     A2      A3      A4
 #&gt; H1  -0.2069  0.332 -0.1058 -0.0189
 #&gt; H10  0.1602 -0.243  0.0414  0.0409
@@ -242,8 +246,9 @@ to the working directory.</p></td>
 #&gt; H7   0.0613 -0.245  0.0913  0.0921
 #&gt; H8   0.0572 -0.344  0.0917  0.1955
 #&gt; H9   0.2527 -0.142 -0.0181 -0.0926
-#&gt; 
-#&gt; ------------------------ Genotype + Genotype-vs-environment effects --------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Genotype + Genotype-vs-environment effects
+#&gt; ---------------------------------------------------------------------------
 #&gt;           A1     A2      A3       A4
 #&gt; H1  -0.07040  0.468  0.0308  0.11761
 #&gt; H10 -0.00973 -0.413 -0.1286 -0.12906
@@ -258,8 +263,9 @@ to the working directory.</p></td>
 #&gt; H7  -0.01920 -0.325  0.0108  0.01161
 #&gt; H8  -0.10107 -0.503 -0.0666  0.03721
 #&gt; H9   0.13227 -0.263 -0.1386 -0.21306
-#&gt; 
-#&gt; ----------------------------- Genotype-vs-environment statistics -----------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Genotype-vs-environment statistics
+#&gt; ---------------------------------------------------------------------------
 #&gt;     Mean Variance SQE_Gi
 #&gt; H1  2.62    0.286  0.857
 #&gt; H10 2.31    0.372  1.116
@@ -274,8 +280,9 @@ to the working directory.</p></td>
 #&gt; H7  2.40    0.275  0.826
 #&gt; H8  2.33    0.372  1.116
 #&gt; H9  2.36    0.459  1.376
-#&gt; 
-#&gt; ----------------------------- Regression-based stability (anova) -----------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Regression-based stability (anova)
+#&gt; ---------------------------------------------------------------------------
 #&gt;                      Df Sum Sq Mean Sq F value   Pr(&gt;F)
 #&gt; Total                51 14.981  0.2937      NA       NA
 #&gt; GEN                  12  1.865  0.1554   0.870 5.85e-01
@@ -297,8 +304,9 @@ to the working directory.</p></td>
 #&gt; H8                    2  0.505  0.2526  12.202 1.74e-05
 #&gt; H9                    2  0.172  0.0861   4.161 1.83e-02
 #&gt; Pooled error        104  2.153  0.0207      NA       NA
-#&gt; 
-#&gt; --------------------------- Regression-based stability (parameters) ---------------------
+#&gt; ---------------------------------------------------------------------------
+#&gt; Regression-based stability (parameters)
+#&gt; ---------------------------------------------------------------------------
 #&gt;    GEN Mean   bij   sdij  RMSE    R2
 #&gt; 1   H1 2.62 0.806 0.0710 0.198 0.451
 #&gt; 2  H10 2.31 1.218 0.0318 0.140 0.789
@@ -313,8 +321,7 @@ to the working directory.</p></td>
 #&gt; 11  H7 2.40 0.992 0.0328 0.142 0.708
 #&gt; 12  H8 2.33 1.014 0.0767 0.205 0.547
 #&gt; 13  H9 2.36 1.424 0.0212 0.120 0.875
-#&gt; 
-#&gt; -------------------------------------- End of data -------------------------------------
+#&gt; ------------------------------- End of data -----------------------------
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'>
