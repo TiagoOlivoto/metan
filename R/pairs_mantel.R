@@ -51,7 +51,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #'
 #' # iris dataset
