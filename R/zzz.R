@@ -50,7 +50,7 @@ NULL
 #' This dataset contain data on two variables assessed in 10 genotypes growing
 #' in in 11 environments. The experimental design was a RCBD with 3
 #' replicates(blocks). This data provide examples for several functions of
-#' \pkg{METAAB} package.
+#' \pkg{metan} package.
 #'
 #' @param ENV A factor with 14 levels; each level represents one cultivation
 #' environment.
@@ -71,7 +71,7 @@ NULL
 #' This dataset contain data on two variables assessed in 10 genotypes growing
 #' at 14 environments. The experimental design in each environment was a RCBD with 3
 #' replicates(blocks). This data provide examples for several functions of
-#' \pkg{METAAB} package.
+#' \pkg{metan} package.
 #'
 #' @param ENV A factor with 14 levels; each level represents one cultivation
 #' environment.
@@ -93,7 +93,7 @@ NULL
 #' This dataset contain data on 15 traits assessed in 13 maize hybrids growing
 #' in 4 environments. The experimental design was a RCBD with 3 blocks and 1
 #' replications per block. It may be used as example in several functions of
-#' \pkg{METAAB} package.
+#' \pkg{metan} package.
 #'
 #' @param ENV A factor with 4 levels; each level represents one cultivation
 #' environment.
