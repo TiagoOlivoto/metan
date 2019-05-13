@@ -103,7 +103,7 @@ original distances.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 library(dplyr)
 
 # All rows and all numeric variables from data
