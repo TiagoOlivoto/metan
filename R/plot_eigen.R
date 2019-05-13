@@ -34,7 +34,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' BLUP = WAASB(data_ge,
 #'              resp = c(GY, HM),
 #'              gen = GEN,
