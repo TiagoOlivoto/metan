@@ -25,7 +25,7 @@ Find possible outliers in the dataset.
 }
 \examples{
 
-library(METAAB)
+library(metan)
 library(dplyr)
 
 find_outliers(data_ge2, var = PH, plots = TRUE)
