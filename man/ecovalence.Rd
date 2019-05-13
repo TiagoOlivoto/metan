@@ -30,7 +30,7 @@ The function computes the ecovalence (Wricke, 1965) for stability analysis.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 out = ecovalence(data_ge2,
                  env = ENV,
                  gen = GEN,

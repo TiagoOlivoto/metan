@@ -21,7 +21,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' out = ecovalence(data_ge2,
 #'                  env = ENV,
 #'                  gen = GEN,
