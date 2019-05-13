@@ -27,7 +27,7 @@ the directory.
 \examples{
 
 \dontrun{
-library(METAAB)
+library(metan)
 cc = can_corr(data_ge2,
               FG = c(PH, EH, EP),
               SG = c(EL, CL, CD, CW, KW, NR, TKW),

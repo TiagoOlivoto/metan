@@ -59,7 +59,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' library(METAAB)
+#' library(metan)
 #' library(dplyr)
 #'
 #' cc1 = can_corr(data_ge2,
