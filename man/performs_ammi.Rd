@@ -34,7 +34,7 @@ helper function for other procedures performed in the WAASB package such as
 }
 \examples{
 
-library(METAAB)
+library(metan)
 ammi_model = with(data_ge, performs_ammi(ENV, GEN, REP, GY))
 
 

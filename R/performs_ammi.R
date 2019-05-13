@@ -25,7 +25,7 @@
 #' @export
 #' @examples
 #'
-#' library(METAAB)
+#' library(metan)
 #' ammi_model = with(data_ge, performs_ammi(ENV, GEN, REP, GY))
 #'
 #'
