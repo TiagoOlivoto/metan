@@ -169,8 +169,8 @@ correlation pairs.</p>
     </div>
 
     <pre class="usage"><span class='fu'>can_corr</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>FG</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>SG</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use</span> <span class='kw'>=</span> <span class='st'>"cor"</span>,
-  <span class='kw'>test</span> <span class='kw'>=</span> <span class='st'>"Bartlett"</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>collinearity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>test</span> <span class='kw'>=</span> <span class='st'>"Bartlett"</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stdscores</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>collinearity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -212,7 +212,11 @@ SG. Must be one of the "Bartlett" (default) or "Rao".</p></td>
     </tr>
     <tr>
       <th>center</th>
-      <td><p>Should the data be centered to compute the scores?.</p></td>
+      <td><p>Should the data be centered to compute the scores?</p></td>
+    </tr>
+    <tr>
+      <th>stdscores</th>
+      <td><p>Rescale scores to produce scores of unit variance?</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -244,6 +248,9 @@ group or second group, respectively.</p></dd>
 
 <dt>Loads_FG, Loads_SG</dt><dd><p>Matrix of the canonical loadings of the first
 group or second group, respectively.</p></dd>
+
+<dt>Crossload_FG, Crossload_FG</dt><dd><p>Canonical cross-loadings for FG variables on
+the SG scores, and cross-loadings for SG variables on the FG scores, respectively.</p></dd>
 
 <dt>SigTest</dt><dd><p>A dataframe with the correlation of the canonical pairs and
 hypothesis testing results.</p></dd>
