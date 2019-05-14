@@ -4,11 +4,16 @@
 \alias{bind_cv}
 \title{Bind cross-validation objects}
 \usage{
-bind_cv(...)
+bind_cv(..., bind = "boot", sort = TRUE)
 }
 \arguments{
 \item{...}{Input objects of class \code{cv_ammi}, \code{cv_ammif} or
 \code{cv_blup}.}
+
+\item{bind}{What data should be used? To plot the RMSPD, use 'boot' (default).
+Use \code{bind = "means"} to return the RMSPD mean for each model.}
+
+\item{sort}{Used to sort the RMSPD mean in ascending order.}
 }
 \description{
 Helper function that combines objects of class \code{cv_ammi}, \code{cv_ammif}
@@ -20,21 +25,23 @@ the RMSPD values of those cross-validation procedures.
 \dontrun{
 library(metan)
 AMMI = cv_ammif(data_ge,
-                        resp = GY,
-                        gen = GEN,
-                        env = ENV,
-                        rep = REP,
-                        nboot = 100,
-                        nrepval = 2)
+                resp = GY,
+                gen = GEN,
+                env = ENV,
+                rep = REP,
+                nboot = 100,
+                nrepval = 2)
 BLUP = cv_blup(data_ge,
-                        resp = GY,
-                        gen = GEN,
-                        env = ENV,
-                        rep = REP,
-                        nboot = 100,
-                        nrepval = 2)
+               resp = GY,
+               gen = GEN,
+               env = ENV,
+               rep = REP,
+               nboot = 100,
+               nrepval = 2)
 bind_data = bind_cv(AMMI, BLUP)
 plot(bind_data)
+
+print(bind_cv(AMMI, BLUP, bind = "means"))
 }
 
 }
