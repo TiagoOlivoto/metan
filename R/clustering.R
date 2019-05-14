@@ -253,24 +253,6 @@ for (k in 1:length(.data)){
     cat("--------------------------------------------------------------------------","\n")
     print(statistics, row.names = F)
     cat("--------------------------------------------------------------------------")
-    cofgrap = ggplot2::ggplot(statistics, ggplot2::aes(x = remaining, y = cophenetic))+
-      ggplot2::geom_point(size = 3)+
-      ggplot2::theme_bw()+
-      ggplot2::geom_line(size = 1)+
-      ggplot2::theme(axis.ticks.length = unit(.2, "cm"),
-                     axis.text = ggplot2::element_text(size = 12, colour = "black"),
-                     axis.title = ggplot2::element_text(size = 12, colour = "black"),
-                     axis.ticks = ggplot2::element_line(colour = "black"),
-                     plot.margin = margin(0.5, 0.5, 0.2, 0.6, "cm"),
-                     axis.title.y = ggplot2::element_text(margin = margin(r=16)),
-                     legend.title = ggplot2::element_blank(),
-                     legend.text = ggplot2::element_text(size=12),
-                     panel.border = ggplot2::element_rect(colour = "black", fill=NA, size=1),
-                     panel.grid.major.x = ggplot2::element_blank(),
-                     panel.grid.major.y = ggplot2::element_blank(),
-                     panel.grid.minor.x = ggplot2::element_blank(),
-                     panel.grid.minor.y = ggplot2::element_blank())+
-      ggplot2::labs(x = "Number of variables", y = "Cophenetic correlation")
     model = statistics$Model[which.max(statistics$cophenetic)]
     predvar = ModelEstimates[[model]]$namevars
     data = data.frame(original[(match(c(predvar), names(original)))])
@@ -338,7 +320,6 @@ for (k in 1:length(.data)){
               Sqt = Sqt,
               tab = as.data.frame(Tab),
               clusters = as.data.frame(TabResgroups),
-              cofgrap = cofgrap,
               statistics = statistics),
               class = "clustering")
   dfs[[paste(nam)]] = temp
@@ -438,24 +419,6 @@ return(structure(dfs, class = "group_clustering"))
     cat("--------------------------------------------------------------------------","\n")
     print(statistics, row.names = F)
     cat("--------------------------------------------------------------------------")
-    cofgrap = ggplot2::ggplot(statistics, ggplot2::aes(x = remaining, y = cophenetic))+
-      ggplot2::geom_point(size = 3)+
-      ggplot2::theme_bw()+
-      ggplot2::geom_line(size = 1)+
-      ggplot2::theme(axis.ticks.length = unit(.2, "cm"),
-                     axis.text = ggplot2::element_text(size = 12, colour = "black"),
-                     axis.title = ggplot2::element_text(size = 12, colour = "black"),
-                     axis.ticks = ggplot2::element_line(colour = "black"),
-                     plot.margin = margin(0.5, 0.5, 0.2, 0.6, "cm"),
-                     axis.title.y = ggplot2::element_text(margin = margin(r=16)),
-                     legend.title = ggplot2::element_blank(),
-                     legend.text = ggplot2::element_text(size=12),
-                     panel.border = ggplot2::element_rect(colour = "black", fill=NA, size=1),
-                     panel.grid.major.x = ggplot2::element_blank(),
-                     panel.grid.major.y = ggplot2::element_blank(),
-                     panel.grid.minor.x = ggplot2::element_blank(),
-                     panel.grid.minor.y = ggplot2::element_blank())+
-      ggplot2::labs(x = "Number of variables", y = "Cophenetic correlation")
     model = statistics$Model[which.max(statistics$cophenetic)]
     predvar = ModelEstimates[[model]]$namevars
     data = data.frame(original[(match(c(predvar), names(original)))])
@@ -523,7 +486,6 @@ return(structure(dfs, class = "group_clustering"))
                         Sqt = Sqt,
                         tab = as.data.frame(Tab),
                         clusters = as.data.frame(TabResgroups),
-                        cofgrap = cofgrap,
                         statistics = statistics),
                    class = "clustering"))
 }
