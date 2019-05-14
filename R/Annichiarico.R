@@ -74,7 +74,7 @@ Annicchiarico = function(.data,
                          Mean_rp = rowMeans(rp_g),
                          Sd_rp = apply(rp_g, 1, sd),
                          Wi = Wi_g,
-                         order_Wi = order(-Wi_g))
+                         rank = rank(-Wi_g))
     ge_mf = subset(data, class == "favorable")
     mat_f  = dplyr::select_if(make_mat(ge_mf, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
     rp_f = sweep(mat_f, 2, colMeans(mat_f), "/")*100
@@ -84,7 +84,7 @@ Annicchiarico = function(.data,
                            Mean_rp = rowMeans(rp_f),
                            Sd_rp = apply(rp_f, 1, sd),
                            Wi = Wi_f,
-                           order_Wi = order(-Wi_f))
+                           rank = rank(-Wi_f))
     ge_mu = subset(data, class == "unfavorable")
     mat_u  = dplyr::select_if(make_mat(ge_mu, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
     rp_u = sweep(mat_u, 2, colMeans(mat_u), "/")*100
@@ -94,7 +94,7 @@ Annicchiarico = function(.data,
                              Mean_rp = rowMeans(rp_u),
                              Sd_rp = apply(rp_u, 1, sd),
                              Wi = Wi_u,
-                             order_Wi = order(-Wi_u))
+                             rank = rank(-Wi_u))
     temp = list(environments = environments,
                 general = general,
                 favorable = favorable,
