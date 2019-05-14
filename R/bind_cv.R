@@ -47,18 +47,15 @@ bind_cv = function(..., bind = "boot", sort = TRUE){
     x$RMSPD
     })
   )
-  if (sort == TRUE){
-    data = data %>% arrange(mean)
-  }
   }
   if (bind == "means"){
     data = do.call(rbind, lapply(dots, function(x){
       x$RMSPDmean
     })
     )
-  }
-  if (sort == TRUE){
-    data = data %>% arrange(mean)
+    if (sort == TRUE){
+      data = data %>% arrange(mean)
+    }
   }
   return(structure(list(RMSPD = data),
                    class = "cv_ammif"))
