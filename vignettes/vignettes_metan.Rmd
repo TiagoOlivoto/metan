@@ -67,7 +67,7 @@ model <- data_ge %>% WAAS.AMMI(ENV, GEN, REP, GY)
 
 ### Biplots
 
-The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `WAAS.AMMI()` and `WAAS.AMMI()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list that in this case has one element, GY.
+The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `WAAS.AMMI()` and `WAASB()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list that in this case has one element, GY.
 
 ```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
 p1 <- plot_scores(model$GY)
