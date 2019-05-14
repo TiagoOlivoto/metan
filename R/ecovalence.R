@@ -1,4 +1,4 @@
-#' Stability analysis based on Wricke (1965) model
+#' Stability analysis based on Wricke's model
 #'
 #' The function computes the ecovalence (Wricke, 1965) for stability analysis.
 #'
@@ -58,7 +58,8 @@ ecovalence = function(.data,
     ge_effect = make_mat(data3, GEN, ENV, ge)
     Ecoval = rowSums(ge_effect^2 * length(unique(REP)))
     Ecov_perc = (Ecoval / sum(Ecoval)) * 100
-    temp = data.frame(cbind(ge_effect, Ecoval, Ecov_perc))
+    rank = rank(Ecoval)
+    temp = data.frame(cbind(ge_effect, Ecoval, Ecov_perc, rank))
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ecovalence.R
 \name{ecovalence}
 \alias{ecovalence}
-\title{Stability analysis based on Wricke (1965) model}
+\title{Stability analysis based on Wricke's model}
 \usage{
 ecovalence(.data, env, gen, rep, resp, verbose = TRUE)
 }
