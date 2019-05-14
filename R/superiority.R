@@ -81,11 +81,11 @@ superiority = function(.data,
     temp = list(environments = environments,
                 index = data.frame(Genotypes = rownames(mat_g),
                                    Pi_all = lin_fun(mat_g),
-                                   Or_a = order(lin_fun(mat_g)),
+                                   Or_a = rank(lin_fun(mat_g)),
                                    Pi_favorable = lin_fun(mat_f),
-                                   Or_f = order(lin_fun(mat_f)),
+                                   Or_f = rank(lin_fun(mat_f)),
                                    Pi_unfavorable = lin_fun(mat_u),
-                                   Or_u = order(lin_fun(mat_u))))
+                                   Or_u = rank(lin_fun(mat_u))))
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
