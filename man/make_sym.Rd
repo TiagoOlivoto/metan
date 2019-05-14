@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_sym.R
 \name{make_sym}
 \alias{make_sym}
-\title{Make a symetric matrix based on an upper or lower triangular matrix}
+\title{Make a symmetric matrix on a triangular matrix}
 \usage{
 make_sym(.matrix, make = "upper")
 }

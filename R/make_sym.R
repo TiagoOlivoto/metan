@@ -1,4 +1,4 @@
-#' Make a symetric matrix based on an upper or lower triangular matrix
+#' Make a symmetric matrix on a triangular matrix
 #'
 #' This function help users to easily make a symmetric matrix using a lower or
 #' an upper triangular matrix.
