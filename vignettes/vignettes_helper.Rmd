@@ -9,11 +9,26 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+# Getting started
+
+```{r, message=FALSE, warning=FALSE}
+library(metan)
+library(cowplot) # used to arrange the graphics
+library(kableExtra) # Used to make the tables
+# Function to make HTML tables
+print_table = function(table){
+  kable(table, "html", digits = 3) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                  font_size = 12)
+}
+
+```
+
+
+
 # Bind cross-validation objects
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
-library(metan)
-library(cowplot)
 AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 10, nrepval = 2)
 AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 10, nrepval = 2)
 AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 10, nrepval = 2)
@@ -48,31 +63,40 @@ names(g3)
     ```
 
 
-
-# Parametric statistics for genotype-vs-environment interaction
-
-```{r, message=FALSE }
-  model2 = ge_stats(data_ge2, ENV, GEN, REP, PH)
-summary(model2, digits = 3)
-    ```
-
 # Make a two-way table based on categorical and numerical arguments
 
 ```{r, message=FALSE }
 head(data_ge)
 matrix = make_mat(data_ge, row = GEN, col = ENV, val = GY)
-matrix
-    ```
+print_table(matrix)
+
+```
+
+# Make a symmetric matrix
+
+```{r, message=FALSE }
+m <- matrix(NA, 10, 10)
+m[lower.tri(m)] <- 1:45
+print_table(m)
+sym = make_sym(m)
+print_table(sym)
+
+```
+
+
 
 # Generate pairwise combinations of variables by applying one function to each pair
-```{r, message=FALSE }
-data = data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
-                  B = rnorm(n = 5, mean = 120, sd = 30),
-                  C = rnorm(n = 5, mean = 40, sd = 10),
-                  D = rnorm(n = 5, mean = 1100, sd = 200),
-                  E = rnorm(n = 5, mean = 2, sd = 1))
-comb_vars(data)
-comb_vars(data, FUN = "*", order = "first")
+```{r, message=FALSE}
+data = data.frame(A = runif(n = 5, min = 3, max = 30),
+                  B = runif(n = 5, min = 1, max = 10),
+                  C = runif(n = 5, min = 9, max = 90),
+                  D = runif(n = 5, min = 1, max = 90),
+                  E = runif(n = 5, min = 5, max = 10))
+c1 = comb_vars(data)
+print_table(c1)
+
+c2 = comb_vars(data, FUN = "*", order = "first")
+print_table(c2)
     ```
 
 
@@ -88,7 +112,6 @@ rbind_fill(df1, df2, fill = "NA")
     ```
 
 # Rescale a continuous vector to have specified minimum and maximum values
-
 
 ```{r, message=FALSE }
 

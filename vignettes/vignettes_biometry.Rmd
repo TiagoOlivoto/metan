@@ -344,46 +344,66 @@ cc2 = can_corr(FG = data_ge2[, 4:6],
 
 # Clustering analysis
 ## Using function `clustering()`
+### All rows and all numeric variables from data 
 
-```{r }
-# All rows and all numeric variables from data
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 d1 = clustering(data_ge2)
+```
 
-# Based on the mean for each genotype
+### Based on the mean for each genotype
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 d2 = clustering(data_ge2, means_by = GEN)
+```
 
-# Based on the mean of each genotype
-# Variables NKR, TKW, and NKE 
+### Based on the mean of each genotype
+* Variables NKR, TKW, and NKE
+ 
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 d3 = clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)
+```
 
-# Select variables for compute the distances
+### Select variables for compute the distances
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 d4 = clustering(data_ge2, means_by = GEN, selvar = TRUE)
+```
 
-# Compute the distances with standardized data
-# Define 4 clusters
+### Compute the distances with standardized data
+* Define 4 clusters
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 d5 = clustering(data_ge2,
                 means_by = GEN,
                 scale = TRUE,
                 nclust = 4)
+```
 
-# Compute the distances for each environment
-# All rows of each environment and all numeric variables used
+### Compute the distances for each environment
+* All rows of each environment and all numeric variables used
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 d6 = data_ge2 %>%
      split_factors(ENV) %>%
      clustering()
+```
 
-# Compute the distances for each environment
-# Select the variables NKR, TKW, and NKE
-# Use the mean for each genotype
+* Select the variables NKR, TKW, and NKE
+* Use the mean for each genotype
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 d7 = data_ge2 %>%
   split_factors(ENV, keep_factors = TRUE) %>%
   clustering(NKR, TKW, NKE,
              means_by = GEN)
+```
 
-# Check the correlation between distance matrices
+### Check the correlation between distance matrices
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 pairs_mantel(d7)
 
-    ```
+```
 
 
 ## Mahalanobis distance

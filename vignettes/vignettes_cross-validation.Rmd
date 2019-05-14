@@ -16,7 +16,14 @@ A dataset called `data_ge` is provided to make reproducible examples. For more i
 ```{r warning = FALSE, message = FALSE}
 # Importing data
 library(metan)
-library(cowplot) # used in this material to arrange the graphics
+library(cowplot) # used to arrange the graphics
+library(kableExtra) # Used to make the tables
+# Function to make HTML tables
+print_table = function(table){
+  kable(table, "html", digits = 3) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                  font_size = 12)
+}
 dataset = data_ge
 ```
 
@@ -41,23 +48,23 @@ The function  `cv_blup` provides a cross-validation of replicate-based data usin
 The following code computes the cross-validation of the oat data set that, for simplicity, will use 200 re-sampling procedures. I suggest using a larger number, say, 1000.
 
 ```{r eval = TRUE, collapse=TRUE, comment = "#"}
-
+# cross-validation for AMMI model
 AMMIweat = cv_ammif(dataset,
-                            resp = GY,
-                            gen = GEN,
-                            env = ENV,
-                            rep = REP,
-                            nboot = 5,
-                            nrepval = 2)
+                    resp = GY,
+                    gen = GEN,
+                    env = ENV,
+                    rep = REP,
+                    nboot = 5,
+                    nrepval = 2)
 
 # cross-validation for BLUP model
 BLUPweat = cv_blup(dataset,
-                            resp = GY,
-                            gen = GEN,
-                            env = ENV,
-                            rep = REP,
-                            nboot = 5,
-                            nrepval = 2)
+                   resp = GY,
+                   gen = GEN,
+                   env = ENV,
+                   rep = REP,
+                   nboot = 5,
+                   nrepval = 2)
 
     ```
 
@@ -71,19 +78,9 @@ A progress bar is shown by default (the examples are below). Thus, it is possibl
 
 All outputs shown in tables were laid out using the R package kableExtra. The pdf file of this package can be found [here](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf).
 
-```{r echo = TRUE}
-options(digits = 4)
-RMSEweat = rbind(AMMIweat$RMSPDmean, BLUPweat$RMSPDmean)
-RMSEweat = dplyr::mutate(RMSEweat, CROP = "Wheat")
-RMSEweat = RMSEweat[order(RMSEweat$mean, decreasing = F),]
-    ```
-
-```{r echo = FALSE, warning = FALSE}
-library(kableExtra)
-options(digits = 4)
-kable(RMSEweat, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed",
-                full_width = F, position = "left", font_size = 12)
+```{r }
+bind_mod = bind_cv(AMMIweat, BLUPweat, bind = "means")
+print_table(bind_mod$RMSPD)
 
     ```
 

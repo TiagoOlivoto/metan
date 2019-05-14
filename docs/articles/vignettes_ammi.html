@@ -136,8 +136,14 @@
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
-<a class="sourceLine" id="cb1-5" title="5">dataset =<span class="st"> </span>data_ge</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</a></code></pre></div>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10">}</a>
+<a class="sourceLine" id="cb1-11" title="11">dataset =<span class="st"> </span>data_ge</a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
 ##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -166,12 +172,9 @@
 <a href="#within-environment-anova" class="anchor"></a>Within-environment ANOVA</h2>
 <p>A within-environment ANOVA considering a fixed-effect model is computed. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># printing the WAAS object</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class="op">$</span>individual<span class="op">$</span>individual</a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,</a>
-<a class="sourceLine" id="cb5-6" title="6">                <span class="dt">full_width =</span> F, <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
-<table class="table table table-striped">
+<a class="sourceLine" id="cb5-2" title="2">data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class="op">$</span>individual<span class="op">$</span>individual</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">print_table</span>(data)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 </th>
@@ -215,7 +218,7 @@ AS
 E1
 </td>
 <td style="text-align:right;">
-2.52
+2.521
 </td>
 <td style="text-align:right;">
 0.065
@@ -233,13 +236,13 @@ E1
 0.643
 </td>
 <td style="text-align:right;">
-2.34
+2.343
 </td>
 <td style="text-align:right;">
 0.059
 </td>
 <td style="text-align:right;">
-15.05
+15.055
 </td>
 <td style="text-align:right;">
 0.573
@@ -253,7 +256,7 @@ E1
 E10
 </td>
 <td style="text-align:right;">
-2.17
+2.175
 </td>
 <td style="text-align:right;">
 0.654
@@ -271,13 +274,13 @@ E10
 0.000
 </td>
 <td style="text-align:right;">
-11.09
+11.090
 </td>
 <td style="text-align:right;">
 0.000
 </td>
 <td style="text-align:right;">
-7.51
+7.508
 </td>
 <td style="text-align:right;">
 0.910
@@ -291,7 +294,7 @@ E10
 E11
 </td>
 <td style="text-align:right;">
-1.37
+1.368
 </td>
 <td style="text-align:right;">
 0.377
@@ -309,13 +312,13 @@ E11
 0.049
 </td>
 <td style="text-align:right;">
-1.44
+1.438
 </td>
 <td style="text-align:right;">
 0.244
 </td>
 <td style="text-align:right;">
-23.68
+23.680
 </td>
 <td style="text-align:right;">
 0.304
@@ -329,7 +332,7 @@ E11
 E12
 </td>
 <td style="text-align:right;">
-1.61
+1.609
 </td>
 <td style="text-align:right;">
 0.092
@@ -347,13 +350,13 @@ E12
 0.208
 </td>
 <td style="text-align:right;">
-5.98
+5.982
 </td>
 <td style="text-align:right;">
 0.001
 </td>
 <td style="text-align:right;">
-14.38
+14.382
 </td>
 <td style="text-align:right;">
 0.833
@@ -367,7 +370,7 @@ E12
 E13
 </td>
 <td style="text-align:right;">
-2.91
+2.910
 </td>
 <td style="text-align:right;">
 0.077
@@ -385,13 +388,13 @@ E13
 0.477
 </td>
 <td style="text-align:right;">
-7.18
+7.179
 </td>
 <td style="text-align:right;">
 0.000
 </td>
 <td style="text-align:right;">
-10.83
+10.834
 </td>
 <td style="text-align:right;">
 0.861
@@ -405,7 +408,7 @@ E13
 E14
 </td>
 <td style="text-align:right;">
-1.78
+1.782
 </td>
 <td style="text-align:right;">
 0.104
@@ -423,13 +426,13 @@ E14
 0.278
 </td>
 <td style="text-align:right;">
-1.73
+1.732
 </td>
 <td style="text-align:right;">
 0.153
 </td>
 <td style="text-align:right;">
-15.40
+15.403
 </td>
 <td style="text-align:right;">
 0.423
@@ -443,7 +446,7 @@ E14
 E2
 </td>
 <td style="text-align:right;">
-3.18
+3.180
 </td>
 <td style="text-align:right;">
 0.698
@@ -461,13 +464,13 @@ E2
 0.039
 </td>
 <td style="text-align:right;">
-1.16
+1.157
 </td>
 <td style="text-align:right;">
 0.376
 </td>
 <td style="text-align:right;">
-13.29
+13.287
 </td>
 <td style="text-align:right;">
 0.136
@@ -481,7 +484,7 @@ E2
 E3
 </td>
 <td style="text-align:right;">
-4.06
+4.064
 </td>
 <td style="text-align:right;">
 0.489
@@ -499,13 +502,13 @@ E3
 0.092
 </td>
 <td style="text-align:right;">
-1.87
+1.872
 </td>
 <td style="text-align:right;">
 0.123
 </td>
 <td style="text-align:right;">
-10.41
+10.408
 </td>
 <td style="text-align:right;">
 0.466
@@ -519,7 +522,7 @@ E3
 E4
 </td>
 <td style="text-align:right;">
-3.67
+3.675
 </td>
 <td style="text-align:right;">
 0.116
@@ -537,13 +540,13 @@ E4
 0.446
 </td>
 <td style="text-align:right;">
-3.86
+3.859
 </td>
 <td style="text-align:right;">
 0.007
 </td>
 <td style="text-align:right;">
-10.10
+10.096
 </td>
 <td style="text-align:right;">
 0.741
@@ -557,7 +560,7 @@ E4
 E5
 </td>
 <td style="text-align:right;">
-3.91
+3.910
 </td>
 <td style="text-align:right;">
 0.219
@@ -575,13 +578,13 @@ E5
 0.060
 </td>
 <td style="text-align:right;">
-7.93
+7.929
 </td>
 <td style="text-align:right;">
 0.000
 </td>
 <td style="text-align:right;">
-6.59
+6.587
 </td>
 <td style="text-align:right;">
 0.874
@@ -595,7 +598,7 @@ E5
 E6
 </td>
 <td style="text-align:right;">
-2.66
+2.663
 </td>
 <td style="text-align:right;">
 0.160
@@ -613,13 +616,13 @@ E6
 0.092
 </td>
 <td style="text-align:right;">
-2.30
+2.299
 </td>
 <td style="text-align:right;">
 0.063
 </td>
 <td style="text-align:right;">
-9.09
+9.087
 </td>
 <td style="text-align:right;">
 0.565
@@ -633,7 +636,7 @@ E6
 E7
 </td>
 <td style="text-align:right;">
-1.99
+1.989
 </td>
 <td style="text-align:right;">
 0.381
@@ -651,13 +654,13 @@ E7
 0.032
 </td>
 <td style="text-align:right;">
-3.70
+3.701
 </td>
 <td style="text-align:right;">
 0.009
 </td>
 <td style="text-align:right;">
-15.17
+15.170
 </td>
 <td style="text-align:right;">
 0.730
@@ -671,7 +674,7 @@ E7
 E8
 </td>
 <td style="text-align:right;">
-2.54
+2.536
 </td>
 <td style="text-align:right;">
 0.817
@@ -689,13 +692,13 @@ E8
 0.000
 </td>
 <td style="text-align:right;">
-7.72
+7.717
 </td>
 <td style="text-align:right;">
 0.000
 </td>
 <td style="text-align:right;">
-6.58
+6.575
 </td>
 <td style="text-align:right;">
 0.870
@@ -709,7 +712,7 @@ E8
 E9
 </td>
 <td style="text-align:right;">
-3.06
+3.057
 </td>
 <td style="text-align:right;">
 0.583
@@ -727,13 +730,13 @@ E9
 0.016
 </td>
 <td style="text-align:right;">
-6.12
+6.124
 </td>
 <td style="text-align:right;">
 0.001
 </td>
 <td style="text-align:right;">
-10.90
+10.896
 </td>
 <td style="text-align:right;">
 0.837
@@ -748,29 +751,26 @@ E9
 <div id="the-ammi-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-ammi-table" class="anchor"></a>The AMMI table</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class="op">$</span>anova</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">kable</span>(data,  <span class="dt">align  =</span> <span class="st">"l"</span>, <span class="dt">booktabs =</span> T, <span class="dt">format =</span> <span class="st">"html"</span>, <span class="dt">linesep =</span> <span class="st">""</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,</a>
-<a class="sourceLine" id="cb6-4" title="4">              <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="kw">row_spec</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">bold =</span> T) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="kw">add_indent</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">5</span><span class="op">:</span><span class="dv">13</span>))</a></code></pre></div>
-<table class="table table table-striped">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">print_table</span>(AMMI_model<span class="op">$</span>GY<span class="op">$</span>anova) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">row_spec</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">bold =</span> T) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw">add_indent</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">5</span><span class="op">:</span><span class="dv">13</span>))</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 Df
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 Sum Sq
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 Mean Sq
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 F value
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 Pr(&gt;F)
 </th>
 <th style="text-align:left;">
@@ -785,19 +785,19 @@ Accumul
 <td style="text-align:left;">
 ENV
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 13
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 279.574
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 21.506
 </td>
-<td style="text-align:left;">
-62.33
+<td style="text-align:right;">
+62.325
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.000
 </td>
 <td style="text-align:left;">
@@ -811,19 +811,19 @@ ENV
 <td style="text-align:left;">
 REP(ENV)
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 28
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 9.662
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.345
 </td>
-<td style="text-align:left;">
-3.57
+<td style="text-align:right;">
+3.569
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.000
 </td>
 <td style="text-align:left;">
@@ -837,19 +837,19 @@ REP(ENV)
 <td style="text-align:left;">
 GEN
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 9
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 12.995
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 1.444
 </td>
-<td style="text-align:left;">
-14.93
+<td style="text-align:right;">
+14.933
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.000
 </td>
 <td style="text-align:left;">
@@ -863,19 +863,19 @@ GEN
 <td style="text-align:left;">
 ENV:GEN
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 117
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 31.220
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.267
 </td>
-<td style="text-align:left;">
-2.76
+<td style="text-align:right;">
+2.760
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.000
 </td>
 <td style="text-align:left;">
@@ -889,19 +889,19 @@ ENV:GEN
 <td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
 PC1
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 21
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 10.749
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 0.512
 </td>
-<td style="text-align:left;font-weight: bold;">
-5.29
+<td style="text-align:right;font-weight: bold;">
+5.290
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 0.000
 </td>
 <td style="text-align:left;font-weight: bold;">
@@ -915,19 +915,19 @@ PC1
 <td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
 PC2
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 19
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 9.924
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 0.522
 </td>
-<td style="text-align:left;font-weight: bold;">
-5.40
+<td style="text-align:right;font-weight: bold;">
+5.400
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 0.000
 </td>
 <td style="text-align:left;font-weight: bold;">
@@ -941,19 +941,19 @@ PC2
 <td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
 PC3
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 17
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 4.039
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 0.238
 </td>
-<td style="text-align:left;font-weight: bold;">
-2.46
+<td style="text-align:right;font-weight: bold;">
+2.460
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 0.001
 </td>
 <td style="text-align:left;font-weight: bold;">
@@ -967,19 +967,19 @@ PC3
 <td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
 PC4
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 15
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 3.074
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 0.205
 </td>
-<td style="text-align:left;font-weight: bold;">
-2.12
+<td style="text-align:right;font-weight: bold;">
+2.120
 </td>
-<td style="text-align:left;font-weight: bold;">
+<td style="text-align:right;font-weight: bold;">
 0.010
 </td>
 <td style="text-align:left;font-weight: bold;">
@@ -993,19 +993,19 @@ PC4
 <td style="text-align:left; padding-left: 2em;" indentlevel="1">
 PC5
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 13
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 1.446
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.111
 </td>
-<td style="text-align:left;">
-1.15
+<td style="text-align:right;">
+1.150
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.318
 </td>
 <td style="text-align:left;">
@@ -1019,19 +1019,19 @@ PC5
 <td style="text-align:left; padding-left: 2em;" indentlevel="1">
 PC6
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 11
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.932
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.085
 </td>
-<td style="text-align:left;">
-0.88
+<td style="text-align:right;">
+0.880
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.561
 </td>
 <td style="text-align:left;">
@@ -1045,19 +1045,19 @@ PC6
 <td style="text-align:left; padding-left: 2em;" indentlevel="1">
 PC7
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 9
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.567
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.063
 </td>
-<td style="text-align:left;">
-0.65
+<td style="text-align:right;">
+0.650
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.754
 </td>
 <td style="text-align:left;">
@@ -1071,19 +1071,19 @@ PC7
 <td style="text-align:left; padding-left: 2em;" indentlevel="1">
 PC8
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 7
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.362
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.052
 </td>
-<td style="text-align:left;">
-0.54
+<td style="text-align:right;">
+0.540
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.804
 </td>
 <td style="text-align:left;">
@@ -1097,19 +1097,19 @@ PC8
 <td style="text-align:left; padding-left: 2em;" indentlevel="1">
 PC9
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 5
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.126
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.025
 </td>
-<td style="text-align:left;">
-0.26
+<td style="text-align:right;">
+0.260
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.934
 </td>
 <td style="text-align:left;">
@@ -1123,19 +1123,19 @@ PC9
 <td style="text-align:left;">
 Residuals
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 252
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 24.367
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.097
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 NA
 </td>
 <td style="text-align:left;">
@@ -1149,19 +1149,19 @@ NA
 <td style="text-align:left;">
 Total
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 419
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 357.816
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.854
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 NA
 </td>
 <td style="text-align:left;">
@@ -1215,9 +1215,8 @@ NA
 <p>Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968">1968</a>)</span> or predictive success, such as cross-validation <span class="citation">(Piepho <a href="#ref-Piepho:1994">1994</a>)</span> should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function compute traditional AMMI analysis showing the number of significant axes according to Gollobs’s test. On the other hand, <code>validation.AMMIF()</code> function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2">predicted =<span class="st"> </span>predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="kw">kable</span>(predicted, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="dt">full_width =</span> T)</a></code></pre></div>
-<table class="table table table-striped">
+<a class="sourceLine" id="cb7-3" title="3"><span class="kw">print_table</span>(predicted)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 ENV
@@ -1253,22 +1252,22 @@ E1
 G1
 </td>
 <td style="text-align:right;">
-2.37
+2.366
 </td>
 <td style="text-align:right;">
 -0.084
 </td>
 <td style="text-align:right;">
-2.45
+2.450
 </td>
 <td style="text-align:right;">
-0.0712
+0.07115484
 </td>
 <td style="text-align:right;">
-2.52
+2.521273
 </td>
 <td style="text-align:right;">
-2.45
+2.450
 </td>
 </tr>
 <tr>
@@ -1279,22 +1278,22 @@ E1
 G10
 </td>
 <td style="text-align:right;">
-1.97
+1.974
 </td>
 <td style="text-align:right;">
 -0.344
 </td>
 <td style="text-align:right;">
-2.32
+2.318
 </td>
 <td style="text-align:right;">
--0.3539
+-0.35391141
 </td>
 <td style="text-align:right;">
-1.96
+1.963751
 </td>
 <td style="text-align:right;">
-2.32
+2.318
 </td>
 </tr>
 <tr>
@@ -1305,22 +1304,22 @@ E1
 G2
 </td>
 <td style="text-align:right;">
-2.90
+2.902
 </td>
 <td style="text-align:right;">
 0.311
 </td>
 <td style="text-align:right;">
-2.59
+2.591
 </td>
 <td style="text-align:right;">
-0.2904
+0.29035016
 </td>
 <td style="text-align:right;">
-2.88
+2.880939
 </td>
 <td style="text-align:right;">
-2.59
+2.591
 </td>
 </tr>
 <tr>
@@ -1331,22 +1330,22 @@ E1
 G3
 </td>
 <td style="text-align:right;">
-2.89
+2.889
 </td>
 <td style="text-align:right;">
 0.087
 </td>
 <td style="text-align:right;">
-2.80
+2.802
 </td>
 <td style="text-align:right;">
--0.0452
+-0.04518795
 </td>
 <td style="text-align:right;">
-2.76
+2.756598
 </td>
 <td style="text-align:right;">
-2.80
+2.802
 </td>
 </tr>
 <tr>
@@ -1357,22 +1356,22 @@ E1
 G4
 </td>
 <td style="text-align:right;">
-2.59
+2.589
 </td>
 <td style="text-align:right;">
 0.100
 </td>
 <td style="text-align:right;">
-2.49
+2.488
 </td>
 <td style="text-align:right;">
-0.0494
+0.04942370
 </td>
 <td style="text-align:right;">
-2.54
+2.537781
 </td>
 <td style="text-align:right;">
-2.49
+2.488
 </td>
 </tr>
 </tbody>
@@ -1393,10 +1392,8 @@ G4
 <a href="#number-of-axes-based-on-f-test" class="anchor"></a>Number of axes based on F-test</h2>
 <p>In this example only IPCAs with <em>P</em>-value &lt; 0.05 will be considered in the WAAS estimation. This is the default setting and the model was already fitted and stored into AMMI_model&gt;GY&gt;model</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class="op">$</span>model[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">13</span><span class="op">:</span><span class="dv">17</span>, <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>)]</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,</a>
-<a class="sourceLine" id="cb8-4" title="4">                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
-<table class="table table table-striped">
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 type
@@ -1438,16 +1435,16 @@ GEN
 G1
 </td>
 <td style="text-align:right;">
-2.60
+2.604
 </td>
 <td style="text-align:right;">
 0.126
 </td>
 <td style="text-align:right;">
-24.88
+24.878
 </td>
 <td style="text-align:right;">
-100.0
+100.000
 </td>
 <td style="text-align:right;">
 6
@@ -1456,7 +1453,7 @@ G1
 1
 </td>
 <td style="text-align:right;">
-62.4
+62.439
 </td>
 <td style="text-align:right;">
 3
@@ -1470,25 +1467,25 @@ GEN
 G10
 </td>
 <td style="text-align:right;">
-2.47
+2.471
 </td>
 <td style="text-align:right;">
 0.551
 </td>
 <td style="text-align:right;">
-0.00
+0.000
 </td>
 <td style="text-align:right;">
-0.0
-</td>
-<td style="text-align:right;">
-10
+0.000
 </td>
 <td style="text-align:right;">
 10
 </td>
 <td style="text-align:right;">
-0.0
+10
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 <td style="text-align:right;">
 10
@@ -1502,16 +1499,16 @@ GEN
 G2
 </td>
 <td style="text-align:right;">
-2.74
+2.744
 </td>
 <td style="text-align:right;">
 0.365
 </td>
 <td style="text-align:right;">
-51.26
+51.262
 </td>
 <td style="text-align:right;">
-43.8
+43.817
 </td>
 <td style="text-align:right;">
 3
@@ -1520,7 +1517,7 @@ G2
 7
 </td>
 <td style="text-align:right;">
-47.5
+47.539
 </td>
 <td style="text-align:right;">
 5
@@ -1534,25 +1531,25 @@ GEN
 G3
 </td>
 <td style="text-align:right;">
-2.96
+2.955
 </td>
 <td style="text-align:right;">
 0.131
 </td>
 <td style="text-align:right;">
-90.93
+90.929
 </td>
 <td style="text-align:right;">
-99.0
-</td>
-<td style="text-align:right;">
-2
+98.979
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-95.0
+2
+</td>
+<td style="text-align:right;">
+94.954
 </td>
 <td style="text-align:right;">
 1
@@ -1566,16 +1563,16 @@ GEN
 G4
 </td>
 <td style="text-align:right;">
-2.64
+2.642
 </td>
 <td style="text-align:right;">
 0.272
 </td>
 <td style="text-align:right;">
-32.06
+32.060
 </td>
 <td style="text-align:right;">
-65.7
+65.669
 </td>
 <td style="text-align:right;">
 5
@@ -1584,7 +1581,7 @@ G4
 4
 </td>
 <td style="text-align:right;">
-48.9
+48.864
 </td>
 <td style="text-align:right;">
 4
@@ -1598,16 +1595,16 @@ GEN
 G5
 </td>
 <td style="text-align:right;">
-2.54
+2.537
 </td>
 <td style="text-align:right;">
 0.255
 </td>
 <td style="text-align:right;">
-12.42
+12.420
 </td>
 <td style="text-align:right;">
-69.6
+69.596
 </td>
 <td style="text-align:right;">
 7
@@ -1616,7 +1613,7 @@ G5
 3
 </td>
 <td style="text-align:right;">
-41.0
+41.008
 </td>
 <td style="text-align:right;">
 6
@@ -1630,16 +1627,16 @@ GEN
 G6
 </td>
 <td style="text-align:right;">
-2.53
+2.534
 </td>
 <td style="text-align:right;">
 0.275
 </td>
 <td style="text-align:right;">
-11.80
+11.797
 </td>
 <td style="text-align:right;">
-65.0
+65.025
 </td>
 <td style="text-align:right;">
 8
@@ -1648,7 +1645,7 @@ G6
 5
 </td>
 <td style="text-align:right;">
-38.4
+38.411
 </td>
 <td style="text-align:right;">
 8
@@ -1662,16 +1659,16 @@ GEN
 G7
 </td>
 <td style="text-align:right;">
-2.74
+2.741
 </td>
 <td style="text-align:right;">
 0.434
 </td>
 <td style="text-align:right;">
-50.65
+50.654
 </td>
 <td style="text-align:right;">
-27.4
+27.385
 </td>
 <td style="text-align:right;">
 4
@@ -1680,7 +1677,7 @@ G7
 9
 </td>
 <td style="text-align:right;">
-39.0
+39.019
 </td>
 <td style="text-align:right;">
 7
@@ -1694,16 +1691,16 @@ GEN
 G8
 </td>
 <td style="text-align:right;">
-3.00
+3.004
 </td>
 <td style="text-align:right;">
 0.307
 </td>
 <td style="text-align:right;">
-100.00
+100.000
 </td>
 <td style="text-align:right;">
-57.5
+57.529
 </td>
 <td style="text-align:right;">
 1
@@ -1712,7 +1709,7 @@ G8
 6
 </td>
 <td style="text-align:right;">
-78.8
+78.765
 </td>
 <td style="text-align:right;">
 2
@@ -1726,16 +1723,16 @@ GEN
 G9
 </td>
 <td style="text-align:right;">
-2.51
+2.510
 </td>
 <td style="text-align:right;">
 0.401
 </td>
 <td style="text-align:right;">
-7.32
+7.320
 </td>
 <td style="text-align:right;">
-35.4
+35.372
 </td>
 <td style="text-align:right;">
 9
@@ -1744,7 +1741,7 @@ G9
 8
 </td>
 <td style="text-align:right;">
-21.3
+21.346
 </td>
 <td style="text-align:right;">
 9
@@ -1758,16 +1755,16 @@ ENV
 E1
 </td>
 <td style="text-align:right;">
-2.52
+2.521
 </td>
 <td style="text-align:right;">
 0.199
 </td>
 <td style="text-align:right;">
-42.74
+42.744
 </td>
 <td style="text-align:right;">
-73.1
+73.114
 </td>
 <td style="text-align:right;">
 9
@@ -1776,7 +1773,7 @@ E1
 5
 </td>
 <td style="text-align:right;">
-57.9
+57.929
 </td>
 <td style="text-align:right;">
 6
@@ -1790,16 +1787,16 @@ ENV
 E10
 </td>
 <td style="text-align:right;">
-2.17
+2.175
 </td>
 <td style="text-align:right;">
 0.193
 </td>
 <td style="text-align:right;">
-29.93
+29.930
 </td>
 <td style="text-align:right;">
-74.6
+74.637
 </td>
 <td style="text-align:right;">
 10
@@ -1808,7 +1805,7 @@ E10
 4
 </td>
 <td style="text-align:right;">
-52.3
+52.284
 </td>
 <td style="text-align:right;">
 7
@@ -1822,16 +1819,16 @@ ENV
 E11
 </td>
 <td style="text-align:right;">
-1.37
+1.368
 </td>
 <td style="text-align:right;">
 0.151
 </td>
 <td style="text-align:right;">
-0.00
+0.000
 </td>
 <td style="text-align:right;">
-85.3
+85.342
 </td>
 <td style="text-align:right;">
 14
@@ -1840,7 +1837,7 @@ E11
 2
 </td>
 <td style="text-align:right;">
-42.7
+42.671
 </td>
 <td style="text-align:right;">
 11
@@ -1854,16 +1851,16 @@ ENV
 E12
 </td>
 <td style="text-align:right;">
-1.61
+1.609
 </td>
 <td style="text-align:right;">
 0.192
 </td>
 <td style="text-align:right;">
-8.91
+8.911
 </td>
 <td style="text-align:right;">
-75.1
+75.064
 </td>
 <td style="text-align:right;">
 13
@@ -1872,7 +1869,7 @@ E12
 3
 </td>
 <td style="text-align:right;">
-42.0
+41.988
 </td>
 <td style="text-align:right;">
 12
@@ -1886,16 +1883,16 @@ ENV
 E13
 </td>
 <td style="text-align:right;">
-2.91
+2.910
 </td>
 <td style="text-align:right;">
 0.322
 </td>
 <td style="text-align:right;">
-57.17
+57.171
 </td>
 <td style="text-align:right;">
-42.1
+42.063
 </td>
 <td style="text-align:right;">
 6
@@ -1904,7 +1901,7 @@ E13
 12
 </td>
 <td style="text-align:right;">
-49.6
+49.617
 </td>
 <td style="text-align:right;">
 8
@@ -1918,16 +1915,16 @@ ENV
 E14
 </td>
 <td style="text-align:right;">
-1.78
+1.782
 </td>
 <td style="text-align:right;">
 0.205
 </td>
 <td style="text-align:right;">
-15.34
+15.343
 </td>
 <td style="text-align:right;">
-71.7
+71.686
 </td>
 <td style="text-align:right;">
 12
@@ -1936,7 +1933,7 @@ E14
 6
 </td>
 <td style="text-align:right;">
-43.5
+43.515
 </td>
 <td style="text-align:right;">
 10
@@ -1950,16 +1947,16 @@ ENV
 E2
 </td>
 <td style="text-align:right;">
-3.18
+3.180
 </td>
 <td style="text-align:right;">
 0.293
 </td>
 <td style="text-align:right;">
-67.20
+67.198
 </td>
 <td style="text-align:right;">
-49.4
+49.437
 </td>
 <td style="text-align:right;">
 4
@@ -1968,7 +1965,7 @@ E2
 8
 </td>
 <td style="text-align:right;">
-58.3
+58.317
 </td>
 <td style="text-align:right;">
 5
@@ -1982,16 +1979,16 @@ ENV
 E3
 </td>
 <td style="text-align:right;">
-4.06
+4.064
 </td>
 <td style="text-align:right;">
 0.310
 </td>
 <td style="text-align:right;">
-100.00
+100.000
 </td>
 <td style="text-align:right;">
-45.2
+45.177
 </td>
 <td style="text-align:right;">
 1
@@ -2000,7 +1997,7 @@ E3
 11
 </td>
 <td style="text-align:right;">
-72.6
+72.589
 </td>
 <td style="text-align:right;">
 3
@@ -2014,16 +2011,16 @@ ENV
 E4
 </td>
 <td style="text-align:right;">
-3.67
+3.675
 </td>
 <td style="text-align:right;">
 0.345
 </td>
 <td style="text-align:right;">
-85.57
+85.569
 </td>
 <td style="text-align:right;">
-36.4
+36.371
 </td>
 <td style="text-align:right;">
 3
@@ -2032,7 +2029,7 @@ E4
 13
 </td>
 <td style="text-align:right;">
-61.0
+60.970
 </td>
 <td style="text-align:right;">
 4
@@ -2046,16 +2043,16 @@ ENV
 E5
 </td>
 <td style="text-align:right;">
-3.91
+3.910
 </td>
 <td style="text-align:right;">
 0.255
 </td>
 <td style="text-align:right;">
-94.29
+94.294
 </td>
 <td style="text-align:right;">
-59.0
+58.951
 </td>
 <td style="text-align:right;">
 2
@@ -2064,7 +2061,7 @@ E5
 7
 </td>
 <td style="text-align:right;">
-76.6
+76.623
 </td>
 <td style="text-align:right;">
 1
@@ -2078,16 +2075,16 @@ ENV
 E6
 </td>
 <td style="text-align:right;">
-2.66
+2.663
 </td>
 <td style="text-align:right;">
 0.093
 </td>
 <td style="text-align:right;">
-48.03
+48.031
 </td>
 <td style="text-align:right;">
-100.0
+100.000
 </td>
 <td style="text-align:right;">
 7
@@ -2096,7 +2093,7 @@ E6
 1
 </td>
 <td style="text-align:right;">
-74.0
+74.016
 </td>
 <td style="text-align:right;">
 2
@@ -2110,16 +2107,16 @@ ENV
 E7
 </td>
 <td style="text-align:right;">
-1.99
+1.989
 </td>
 <td style="text-align:right;">
 0.300
 </td>
 <td style="text-align:right;">
-23.02
+23.020
 </td>
 <td style="text-align:right;">
-47.6
+47.641
 </td>
 <td style="text-align:right;">
 11
@@ -2128,7 +2125,7 @@ E7
 9
 </td>
 <td style="text-align:right;">
-35.3
+35.331
 </td>
 <td style="text-align:right;">
 13
@@ -2142,16 +2139,16 @@ ENV
 E8
 </td>
 <td style="text-align:right;">
-2.54
+2.536
 </td>
 <td style="text-align:right;">
 0.305
 </td>
 <td style="text-align:right;">
-43.33
+43.326
 </td>
 <td style="text-align:right;">
-46.5
+46.466
 </td>
 <td style="text-align:right;">
 8
@@ -2160,7 +2157,7 @@ E8
 10
 </td>
 <td style="text-align:right;">
-44.9
+44.896
 </td>
 <td style="text-align:right;">
 9
@@ -2174,16 +2171,16 @@ ENV
 E9
 </td>
 <td style="text-align:right;">
-3.06
+3.057
 </td>
 <td style="text-align:right;">
 0.489
 </td>
 <td style="text-align:right;">
-62.62
+62.622
 </td>
 <td style="text-align:right;">
-0.0
+0.000
 </td>
 <td style="text-align:right;">
 5
@@ -2192,7 +2189,7 @@ E9
 14
 </td>
 <td style="text-align:right;">
-31.3
+31.311
 </td>
 <td style="text-align:right;">
 14
@@ -2218,16 +2215,15 @@ E9
 <div id="biplot-type-1-pc1-x-pc2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-1-pc1-x-pc2" class="anchor"></a>biplot type 1: PC1 x PC2</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</a>
-<a class="sourceLine" id="cb10-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb10-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb10-4" title="4">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb10-5" title="5">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb10-6" title="6">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb10-7" title="7">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb10-8" title="8">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb10-9" title="9">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb10-10" title="10"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb10-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb10-3" title="3">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb10-5" title="5">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb10-6" title="6">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb10-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb10-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-gy-x-pc1" class="section level3">
@@ -2297,12 +2293,8 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 <h2 class="hasAnchor">
 <a href="#printing-the-model-outputs" class="anchor"></a>Printing the model outputs</h2>
 <p>The genotype ranking for each scenario of WAASY/GY weight ratio is shown bellow</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb16-2" title="2">data =<span class="st"> </span>WAASratio<span class="op">$</span>hetcomb</a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,</a>
-<a class="sourceLine" id="cb16-5" title="5">                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
-<table class="table table table-striped">
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">print_table</span>(WAASratio<span class="op">$</span>hetcomb)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 </th>
@@ -2724,12 +2716,8 @@ G9
 </tbody>
 </table>
 <p>In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb17-2" title="2">data =<span class="st"> </span>WAASratio<span class="op">$</span>hetdata</a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,</a>
-<a class="sourceLine" id="cb17-5" title="5">                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
-<table class="table table table-striped">
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">print_table</span>(WAASratio<span class="op">$</span>hetdata)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 </th>
@@ -3169,11 +3157,8 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">stab_indexes =<span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb20-2" title="2"><span class="st">               </span><span class="kw"><a href="../reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st">               </span><span class="kw"><a href="../reference/AMMI_indexes.html">AMMI_indexes</a></span>()</a>
-<a class="sourceLine" id="cb20-4" title="4"></a>
-<a class="sourceLine" id="cb20-5" title="5"><span class="kw">kable</span>(stab_indexes, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-6" title="6"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,</a>
-<a class="sourceLine" id="cb20-7" title="7">              <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
-<table class="table kable_wrapper table table-striped"><tbody><tr>
+<a class="sourceLine" id="cb20-4" title="4"><span class="kw">print_table</span>(stab_indexes)</a></code></pre></div>
+<table class="table kable_wrapper table table-striped table-hover table-condensed table-responsive"><tbody><tr>
 <td>
 <table class="table">
 <thead><tr>
@@ -3226,7 +3211,7 @@ G1
 6
 </td>
 <td style="text-align:right;">
-0.3458
+0.346
 </td>
 <td style="text-align:right;">
 4
@@ -3235,7 +3220,7 @@ G1
 10
 </td>
 <td style="text-align:right;">
-0.4628
+0.463
 </td>
 <td style="text-align:right;">
 1
@@ -3244,7 +3229,7 @@ G1
 7
 </td>
 <td style="text-align:right;">
-0.0149
+0.015
 </td>
 <td style="text-align:right;">
 1
@@ -3264,7 +3249,7 @@ G10
 10
 </td>
 <td style="text-align:right;">
-1.2255
+1.225
 </td>
 <td style="text-align:right;">
 10
@@ -3273,7 +3258,7 @@ G10
 20
 </td>
 <td style="text-align:right;">
-2.0685
+2.069
 </td>
 <td style="text-align:right;">
 10
@@ -3282,7 +3267,7 @@ G10
 20
 </td>
 <td style="text-align:right;">
-0.2101
+0.210
 </td>
 <td style="text-align:right;">
 10
@@ -3302,7 +3287,7 @@ G2
 3
 </td>
 <td style="text-align:right;">
-0.2493
+0.249
 </td>
 <td style="text-align:right;">
 2
@@ -3311,7 +3296,7 @@ G2
 5
 </td>
 <td style="text-align:right;">
-1.5443
+1.544
 </td>
 <td style="text-align:right;">
 8
@@ -3320,7 +3305,7 @@ G2
 11
 </td>
 <td style="text-align:right;">
-0.1791
+0.179
 </td>
 <td style="text-align:right;">
 8
@@ -3340,7 +3325,7 @@ G3
 2
 </td>
 <td style="text-align:right;">
-0.1131
+0.113
 </td>
 <td style="text-align:right;">
 1
@@ -3349,7 +3334,7 @@ G3
 3
 </td>
 <td style="text-align:right;">
-0.5515
+0.552
 </td>
 <td style="text-align:right;">
 2
@@ -3358,7 +3343,7 @@ G3
 4
 </td>
 <td style="text-align:right;">
-0.0207
+0.021
 </td>
 <td style="text-align:right;">
 2
@@ -3378,7 +3363,7 @@ G4
 5
 </td>
 <td style="text-align:right;">
-0.5939
+0.594
 </td>
 <td style="text-align:right;">
 7
@@ -3387,7 +3372,7 @@ G4
 12
 </td>
 <td style="text-align:right;">
-1.0358
+1.036
 </td>
 <td style="text-align:right;">
 4
@@ -3396,7 +3381,7 @@ G4
 9
 </td>
 <td style="text-align:right;">
-0.0521
+0.052
 </td>
 <td style="text-align:right;">
 4
@@ -3416,7 +3401,7 @@ G5
 7
 </td>
 <td style="text-align:right;">
-0.4304
+0.430
 </td>
 <td style="text-align:right;">
 5
@@ -3425,7 +3410,7 @@ G5
 12
 </td>
 <td style="text-align:right;">
-0.9967
+0.997
 </td>
 <td style="text-align:right;">
 3
@@ -3434,7 +3419,7 @@ G5
 10
 </td>
 <td style="text-align:right;">
-0.0433
+0.043
 </td>
 <td style="text-align:right;">
 3
@@ -3454,7 +3439,7 @@ G6
 8
 </td>
 <td style="text-align:right;">
-0.2652
+0.265
 </td>
 <td style="text-align:right;">
 3
@@ -3463,7 +3448,7 @@ G6
 11
 </td>
 <td style="text-align:right;">
-1.1397
+1.140
 </td>
 <td style="text-align:right;">
 5
@@ -3472,7 +3457,7 @@ G6
 13
 </td>
 <td style="text-align:right;">
-0.0911
+0.091
 </td>
 <td style="text-align:right;">
 6
@@ -3492,7 +3477,7 @@ G7
 4
 </td>
 <td style="text-align:right;">
-0.6632
+0.663
 </td>
 <td style="text-align:right;">
 8
@@ -3501,7 +3486,7 @@ G7
 12
 </td>
 <td style="text-align:right;">
-1.7873
+1.787
 </td>
 <td style="text-align:right;">
 9
@@ -3510,7 +3495,7 @@ G7
 13
 </td>
 <td style="text-align:right;">
-0.1913
+0.191
 </td>
 <td style="text-align:right;">
 9
@@ -3530,7 +3515,7 @@ G8
 1
 </td>
 <td style="text-align:right;">
-0.5739
+0.574
 </td>
 <td style="text-align:right;">
 6
@@ -3539,7 +3524,7 @@ G8
 7
 </td>
 <td style="text-align:right;">
-1.1778
+1.178
 </td>
 <td style="text-align:right;">
 6
@@ -3548,7 +3533,7 @@ G8
 7
 </td>
 <td style="text-align:right;">
-0.0669
+0.067
 </td>
 <td style="text-align:right;">
 5
@@ -3568,7 +3553,7 @@ G9
 9
 </td>
 <td style="text-align:right;">
-0.9827
+0.983
 </td>
 <td style="text-align:right;">
 9
@@ -3577,7 +3562,7 @@ G9
 18
 </td>
 <td style="text-align:right;">
-1.4950
+1.495
 </td>
 <td style="text-align:right;">
 7
@@ -3586,7 +3571,7 @@ G9
 16
 </td>
 <td style="text-align:right;">
-0.1306
+0.131
 </td>
 <td style="text-align:right;">
 7

@@ -115,7 +115,7 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><script src="vignettes_helper_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Helper functions for metan</h1>
@@ -128,22 +128,33 @@
 
     
     
+<div id="getting-started" class="section level1">
+<h1 class="hasAnchor">
+<a href="#getting-started" class="anchor"></a>Getting started</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
+</div>
 <div id="bind-cross-validation-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bind-cross-validation-objects" class="anchor"></a>Bind cross-validation objects</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</a>
-<a class="sourceLine" id="cb1-3" title="3">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb1-4" title="4">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb1-5" title="5">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb1-6" title="6">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb1-7" title="7">BLUP =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb1-8" title="8">bind1 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
-<a class="sourceLine" id="cb1-9" title="9">bind2 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP)</a>
-<a class="sourceLine" id="cb1-10" title="10">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind1)</a>
-<a class="sourceLine" id="cb1-11" title="11">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind2)</a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="vignettes_helper_files/figure-html/unnamed-chunk-1-1.png" width="960" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-5" title="5">BLUP =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6">bind1 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
+<a class="sourceLine" id="cb2-7" title="7">bind2 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP)</a>
+<a class="sourceLine" id="cb2-8" title="8">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind1)</a>
+<a class="sourceLine" id="cb2-9" title="9">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind2)</a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="vignettes_helper_files/figure-html/unnamed-chunk-2-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="split-a-dataframe-into-subsets-grouped-by-one-or-more-factors" class="section level1">
 <h1 class="hasAnchor">
@@ -151,15 +162,15 @@
 <div id="group-data-and-exclude-all-non-numeric-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-data-and-exclude-all-non-numeric-variables" class="anchor"></a>Group data and exclude all non-numeric variables</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">g1 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="../reference/is.split_factors.html">is.split_factors</a></span>(g1)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">g1 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="../reference/is.split_factors.html">is.split_factors</a></span>(g1)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="group-data-and-keep-all-original-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-data-and-keep-all-original-variables" class="anchor"></a>Group data and keep all original variables</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">g2 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV, GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(g2[[<span class="dv">1</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">g2 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV, GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(g2[[<span class="dv">1</span>]])</a></code></pre></div>
 <pre><code>##   ENV GEN REP      GY    HM
 ## 1  E1  G1   1 2.16700 44.93
 ## 2  E1  G1   2 2.50304 46.90
@@ -168,8 +179,8 @@
 <div id="group-a-data-frame-using-all-factor-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-a-data-frame-using-all-factor-variables" class="anchor"></a>Group a data frame using all factor variables</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">g3 =<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(g3)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">g3 =<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(g3)</a></code></pre></div>
 <pre><code>##  [1] "Qn1 / Quebec / nonchilled"      "Qn2 / Quebec / nonchilled"     
 ##  [3] "Qn3 / Quebec / nonchilled"      "Qc1 / Quebec / chilled"        
 ##  [5] "Qc3 / Quebec / chilled"         "Qc2 / Quebec / chilled"        
@@ -178,124 +189,10 @@
 ## [11] "Mc3 / Mississippi / chilled"    "Mc1 / Mississippi / chilled"</code></pre>
 </div>
 </div>
-<div id="parametric-statistics-for-genotype-vs-environment-interaction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#parametric-statistics-for-genotype-vs-environment-interaction" class="anchor"></a>Parametric statistics for genotype-vs-environment interaction</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">  model2 =<span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(data_ge2, ENV, GEN, REP, PH)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(model2, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
-<pre><code>## Variable PH 
-## ------------------------------ Individual analysis of variance--- ---------------------
-## data frame with 0 columns and 0 rows
-## 
-## ------------------------------- Genotype-vs-environment mean --------------------------
-##       A1   A2   A3   A4
-## H1  2.72 2.93 2.20 2.64
-## H10 2.78 2.05 2.04 2.39
-## H11 2.75 2.15 2.10 2.56
-## H12 2.69 2.09 2.43 2.53
-## H13 2.77 2.23 2.60 2.56
-## H2  2.79 2.95 2.15 2.52
-## H3  2.94 2.94 2.04 2.46
-## H4  2.87 2.85 2.05 2.56
-## H5  2.83 2.70 2.09 2.64
-## H6  2.77 2.82 2.15 2.49
-## H7  2.77 2.14 2.18 2.53
-## H8  2.69 1.96 2.10 2.55
-## H9  2.93 2.20 2.03 2.30
-## 
-## ------------------------------ Genotype-vs-environment effects -------------------------
-##          A1     A2      A3      A4
-## H1  -0.2069  0.332 -0.1058 -0.0189
-## H10  0.1602 -0.243  0.0414  0.0409
-## H11  0.0504 -0.220  0.0296  0.1404
-## H12 -0.0531 -0.321  0.3107  0.0636
-## H13 -0.0749 -0.288  0.3782 -0.0149
-## H2  -0.1204  0.365 -0.1319 -0.1131
-## H3   0.0322  0.369 -0.2333 -0.1676
-## H4  -0.0196  0.289 -0.2124 -0.0569
-## H5  -0.0416  0.160 -0.1551  0.0371
-## H6  -0.0976  0.290 -0.0864 -0.1056
-## H7   0.0613 -0.245  0.0913  0.0921
-## H8   0.0572 -0.344  0.0917  0.1955
-## H9   0.2527 -0.142 -0.0181 -0.0926
-## 
-## ------------------------ Genotype + Genotype-vs-environment effects --------------------
-##           A1     A2      A3       A4
-## H1  -0.07040  0.468  0.0308  0.11761
-## H10 -0.00973 -0.413 -0.1286 -0.12906
-## H11 -0.04440 -0.315 -0.0652  0.04561
-## H12 -0.10040 -0.369  0.2634  0.01628
-## H13 -0.02107 -0.235  0.4321  0.03894
-## H2  -0.00107  0.485 -0.0126  0.00628
-## H3   0.14227  0.479 -0.1232 -0.05759
-## H4   0.07560  0.384 -0.1172  0.03828
-## H5   0.04160  0.243 -0.0719  0.12028
-## H6  -0.02440  0.363 -0.0132 -0.03239
-## H7  -0.01920 -0.325  0.0108  0.01161
-## H8  -0.10107 -0.503 -0.0666  0.03721
-## H9   0.13227 -0.263 -0.1386 -0.21306
-## 
-## ----------------------------- Genotype-vs-environment statistics -----------------------
-##     Mean Variance SQE_Gi
-## H1  2.62    0.286  0.857
-## H10 2.31    0.372  1.116
-## H11 2.39    0.301  0.904
-## H12 2.44    0.193  0.579
-## H13 2.54    0.155  0.466
-## H2  2.60    0.362  1.085
-## H3  2.59    0.558  1.674
-## H4  2.58    0.436  1.309
-## H5  2.57    0.319  0.956
-## H6  2.56    0.285  0.854
-## H7  2.40    0.275  0.826
-## H8  2.33    0.372  1.116
-## H9  2.36    0.459  1.376
-## 
-## ----------------------------- Regression-based stability (anova) -----------------------
-##                      Df Sum Sq Mean Sq F value   Pr(&gt;F)
-## Total                51 14.981  0.2937      NA       NA
-## GEN                  12  1.865  0.1554   0.870 5.85e-01
-## ENV + (GEN x ENV)    39 13.116  0.3363      NA       NA
-## ENV (linear)          1  7.719  7.7185      NA       NA
-##  GEN x ENV (linear)  12  0.755  0.0629   0.352 9.69e-01
-## Pooled deviation     26  4.642  0.1785      NA       NA
-## H1                    2  0.471  0.2353  11.367 3.43e-05
-## H10                   2  0.236  0.1178   5.690 4.52e-03
-## H11                   2  0.211  0.1057   5.106 7.67e-03
-## H12                   2  0.450  0.2251  10.874 5.15e-05
-## H13                   2  0.410  0.2052   9.911 1.15e-04
-## H2                    2  0.534  0.2669  12.895 9.94e-06
-## H3                    2  0.584  0.2919  14.102 3.81e-06
-## H4                    2  0.354  0.1770   8.550 3.65e-04
-## H5                    2  0.140  0.0701   3.387 3.76e-02
-## H6                    2  0.334  0.1668   8.057 5.59e-04
-## H7                    2  0.241  0.1207   5.830 3.98e-03
-## H8                    2  0.505  0.2526  12.202 1.74e-05
-## H9                    2  0.172  0.0861   4.161 1.83e-02
-## Pooled error        104  2.153  0.0207      NA       NA
-## 
-## --------------------------- Regression-based stability (parameters) ---------------------
-##    GEN Mean   bij   sdij  RMSE    R2
-## 1   H1 2.62 0.806 0.0710 0.198 0.451
-## 2  H10 2.31 1.218 0.0318 0.140 0.789
-## 3  H11 2.39 1.080 0.0278 0.133 0.766
-## 4  H12 2.44 0.465 0.0676 0.194 0.222
-## 5  H13 2.54 0.306 0.0609 0.185 0.119
-## 6   H2 2.60 0.963 0.0815 0.211 0.508
-## 7   H3 2.59 1.355 0.0898 0.221 0.651
-## 8   H4 2.58 1.268 0.0515 0.172 0.730
-## 9   H5 2.57 1.172 0.0159 0.108 0.853
-## 10  H6 2.56 0.936 0.0481 0.167 0.609
-## 11  H7 2.40 0.992 0.0328 0.142 0.708
-## 12  H8 2.33 1.014 0.0767 0.205 0.547
-## 13  H9 2.36 1.424 0.0212 0.120 0.875
-## 
-## -------------------------------------- End of data -------------------------------------</code></pre>
-</div>
 <div id="make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="anchor"></a>Make a two-way table based on categorical and numerical arguments</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data_ge)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data_ge)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   ENV   GEN   REP      GY    HM
 ##   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -305,78 +202,1599 @@
 ## 4 E1    G2    1      3.21  45.2
 ## 5 E1    G2    2      2.93  45.3
 ## 6 E1    G2    3      2.56  45.5</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">matrix =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
-<a class="sourceLine" id="cb12-2" title="2">matrix</a></code></pre></div>
-<pre><code>##           E1      E10      E11      E12      E13      E14       E2
-## G1  2.365787 2.307633 1.355667 1.342333 2.998259 1.533333 3.040690
-## G10 1.974073 1.536253 0.899100 1.022136 1.830667 1.859210 3.145840
-## G2  2.901747 2.297053 1.490720 1.993333 3.028309 1.426580 3.231053
-## G3  2.888587 2.336727 1.567727 1.764358 3.469148 2.059654 3.608280
-## G4  2.588567 2.167353 1.370000 1.527333 2.635716 1.861333 3.190080
-## G5  2.188260 2.139833 1.325667 1.689000 2.568099 1.784296 3.140137
-## G6  2.300800 2.208147 1.500667 1.385667 2.911667 1.798852 3.291173
-## G7  2.773727 2.441893 1.364333 1.951630 3.183840 1.936333 2.612677
-## G8  2.899360 2.574867 1.683433 2.000000 3.519975 1.991864 3.444797
-## G9  2.325927 1.742333 1.125333 1.409333 2.950630 1.567877 3.094863
-##           E3       E4       E5       E6       E7       E8       E9
-## G1  4.080333 3.494333 4.170531 2.809086 1.897880 2.271933 2.783667
-## G10 4.114333 4.271000 3.365667 2.484877 2.243627 2.700310 3.150000
-## G2  4.568667 3.715573 3.827432 2.541333 1.987627 2.045297 3.363333
-## G3  4.132333 4.134000 4.126654 2.984716 2.158547 2.850420 3.293667
-## G4  3.854333 3.302167 3.782605 2.701185 1.980887 2.300590 3.724667
-## G5  3.741333 3.379113 3.469000 2.433321 1.656767 2.708330 3.299667
-## G6  3.434667 3.403473 3.568926 2.335556 1.757787 2.539380 3.039667
-## G7  4.101333 3.018953 4.047914 2.665901 2.550813 2.583383 3.140000
-## G8  4.110000 4.137773 4.812099 2.908123 2.261780 2.878853 2.828000
-## G9  4.506000 3.896340 3.934173 2.768037 1.393247 2.485260 1.943333</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">matrix =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw">print_table</span>(matrix)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+E1
+</th>
+<th style="text-align:right;">
+E10
+</th>
+<th style="text-align:right;">
+E11
+</th>
+<th style="text-align:right;">
+E12
+</th>
+<th style="text-align:right;">
+E13
+</th>
+<th style="text-align:right;">
+E14
+</th>
+<th style="text-align:right;">
+E2
+</th>
+<th style="text-align:right;">
+E3
+</th>
+<th style="text-align:right;">
+E4
+</th>
+<th style="text-align:right;">
+E5
+</th>
+<th style="text-align:right;">
+E6
+</th>
+<th style="text-align:right;">
+E7
+</th>
+<th style="text-align:right;">
+E8
+</th>
+<th style="text-align:right;">
+E9
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:right;">
+2.366
+</td>
+<td style="text-align:right;">
+2.308
+</td>
+<td style="text-align:right;">
+1.356
+</td>
+<td style="text-align:right;">
+1.342
+</td>
+<td style="text-align:right;">
+2.998
+</td>
+<td style="text-align:right;">
+1.533
+</td>
+<td style="text-align:right;">
+3.041
+</td>
+<td style="text-align:right;">
+4.080
+</td>
+<td style="text-align:right;">
+3.494
+</td>
+<td style="text-align:right;">
+4.171
+</td>
+<td style="text-align:right;">
+2.809
+</td>
+<td style="text-align:right;">
+1.898
+</td>
+<td style="text-align:right;">
+2.272
+</td>
+<td style="text-align:right;">
+2.784
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:right;">
+1.974
+</td>
+<td style="text-align:right;">
+1.536
+</td>
+<td style="text-align:right;">
+0.899
+</td>
+<td style="text-align:right;">
+1.022
+</td>
+<td style="text-align:right;">
+1.831
+</td>
+<td style="text-align:right;">
+1.859
+</td>
+<td style="text-align:right;">
+3.146
+</td>
+<td style="text-align:right;">
+4.114
+</td>
+<td style="text-align:right;">
+4.271
+</td>
+<td style="text-align:right;">
+3.366
+</td>
+<td style="text-align:right;">
+2.485
+</td>
+<td style="text-align:right;">
+2.244
+</td>
+<td style="text-align:right;">
+2.700
+</td>
+<td style="text-align:right;">
+3.150
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:right;">
+2.902
+</td>
+<td style="text-align:right;">
+2.297
+</td>
+<td style="text-align:right;">
+1.491
+</td>
+<td style="text-align:right;">
+1.993
+</td>
+<td style="text-align:right;">
+3.028
+</td>
+<td style="text-align:right;">
+1.427
+</td>
+<td style="text-align:right;">
+3.231
+</td>
+<td style="text-align:right;">
+4.569
+</td>
+<td style="text-align:right;">
+3.716
+</td>
+<td style="text-align:right;">
+3.827
+</td>
+<td style="text-align:right;">
+2.541
+</td>
+<td style="text-align:right;">
+1.988
+</td>
+<td style="text-align:right;">
+2.045
+</td>
+<td style="text-align:right;">
+3.363
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:right;">
+2.889
+</td>
+<td style="text-align:right;">
+2.337
+</td>
+<td style="text-align:right;">
+1.568
+</td>
+<td style="text-align:right;">
+1.764
+</td>
+<td style="text-align:right;">
+3.469
+</td>
+<td style="text-align:right;">
+2.060
+</td>
+<td style="text-align:right;">
+3.608
+</td>
+<td style="text-align:right;">
+4.132
+</td>
+<td style="text-align:right;">
+4.134
+</td>
+<td style="text-align:right;">
+4.127
+</td>
+<td style="text-align:right;">
+2.985
+</td>
+<td style="text-align:right;">
+2.159
+</td>
+<td style="text-align:right;">
+2.850
+</td>
+<td style="text-align:right;">
+3.294
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:right;">
+2.589
+</td>
+<td style="text-align:right;">
+2.167
+</td>
+<td style="text-align:right;">
+1.370
+</td>
+<td style="text-align:right;">
+1.527
+</td>
+<td style="text-align:right;">
+2.636
+</td>
+<td style="text-align:right;">
+1.861
+</td>
+<td style="text-align:right;">
+3.190
+</td>
+<td style="text-align:right;">
+3.854
+</td>
+<td style="text-align:right;">
+3.302
+</td>
+<td style="text-align:right;">
+3.783
+</td>
+<td style="text-align:right;">
+2.701
+</td>
+<td style="text-align:right;">
+1.981
+</td>
+<td style="text-align:right;">
+2.301
+</td>
+<td style="text-align:right;">
+3.725
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+2.188
+</td>
+<td style="text-align:right;">
+2.140
+</td>
+<td style="text-align:right;">
+1.326
+</td>
+<td style="text-align:right;">
+1.689
+</td>
+<td style="text-align:right;">
+2.568
+</td>
+<td style="text-align:right;">
+1.784
+</td>
+<td style="text-align:right;">
+3.140
+</td>
+<td style="text-align:right;">
+3.741
+</td>
+<td style="text-align:right;">
+3.379
+</td>
+<td style="text-align:right;">
+3.469
+</td>
+<td style="text-align:right;">
+2.433
+</td>
+<td style="text-align:right;">
+1.657
+</td>
+<td style="text-align:right;">
+2.708
+</td>
+<td style="text-align:right;">
+3.300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:right;">
+2.301
+</td>
+<td style="text-align:right;">
+2.208
+</td>
+<td style="text-align:right;">
+1.501
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+2.912
+</td>
+<td style="text-align:right;">
+1.799
+</td>
+<td style="text-align:right;">
+3.291
+</td>
+<td style="text-align:right;">
+3.435
+</td>
+<td style="text-align:right;">
+3.403
+</td>
+<td style="text-align:right;">
+3.569
+</td>
+<td style="text-align:right;">
+2.336
+</td>
+<td style="text-align:right;">
+1.758
+</td>
+<td style="text-align:right;">
+2.539
+</td>
+<td style="text-align:right;">
+3.040
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:right;">
+2.774
+</td>
+<td style="text-align:right;">
+2.442
+</td>
+<td style="text-align:right;">
+1.364
+</td>
+<td style="text-align:right;">
+1.952
+</td>
+<td style="text-align:right;">
+3.184
+</td>
+<td style="text-align:right;">
+1.936
+</td>
+<td style="text-align:right;">
+2.613
+</td>
+<td style="text-align:right;">
+4.101
+</td>
+<td style="text-align:right;">
+3.019
+</td>
+<td style="text-align:right;">
+4.048
+</td>
+<td style="text-align:right;">
+2.666
+</td>
+<td style="text-align:right;">
+2.551
+</td>
+<td style="text-align:right;">
+2.583
+</td>
+<td style="text-align:right;">
+3.140
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:right;">
+2.899
+</td>
+<td style="text-align:right;">
+2.575
+</td>
+<td style="text-align:right;">
+1.683
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+3.520
+</td>
+<td style="text-align:right;">
+1.992
+</td>
+<td style="text-align:right;">
+3.445
+</td>
+<td style="text-align:right;">
+4.110
+</td>
+<td style="text-align:right;">
+4.138
+</td>
+<td style="text-align:right;">
+4.812
+</td>
+<td style="text-align:right;">
+2.908
+</td>
+<td style="text-align:right;">
+2.262
+</td>
+<td style="text-align:right;">
+2.879
+</td>
+<td style="text-align:right;">
+2.828
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:right;">
+2.326
+</td>
+<td style="text-align:right;">
+1.742
+</td>
+<td style="text-align:right;">
+1.125
+</td>
+<td style="text-align:right;">
+1.409
+</td>
+<td style="text-align:right;">
+2.951
+</td>
+<td style="text-align:right;">
+1.568
+</td>
+<td style="text-align:right;">
+3.095
+</td>
+<td style="text-align:right;">
+4.506
+</td>
+<td style="text-align:right;">
+3.896
+</td>
+<td style="text-align:right;">
+3.934
+</td>
+<td style="text-align:right;">
+2.768
+</td>
+<td style="text-align:right;">
+1.393
+</td>
+<td style="text-align:right;">
+2.485
+</td>
+<td style="text-align:right;">
+1.943
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="make-a-symmetric-matrix" class="section level1">
+<h1 class="hasAnchor">
+<a href="#make-a-symmetric-matrix" class="anchor"></a>Make a symmetric matrix</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">m &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="ot">NA</span>, <span class="dv">10</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2">m[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lower.tri">lower.tri</a></span>(m)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">45</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="kw">print_table</span>(m)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive"><tbody>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody></table>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">sym =<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(m)</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw">print_table</span>(sym)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive"><tbody>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+17
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+35
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+39
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+42
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody></table>
 </div>
 <div id="generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="section level1">
 <h1 class="hasAnchor">
 <a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="anchor"></a>Generate pairwise combinations of variables by applying one function to each pair</h1>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb14-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">120</span>, <span class="dt">sd =</span> <span class="dv">30</span>),</a>
-<a class="sourceLine" id="cb14-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">40</span>, <span class="dt">sd =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb14-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">1100</span>, <span class="dt">sd =</span> <span class="dv">200</span>),</a>
-<a class="sourceLine" id="cb14-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb14-6" title="6"><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a></code></pre></div>
-<pre><code>##        A.B      A.C      B.C       A.D      B.D      C.D       A.E
-## 1 101.1747 33.85743 122.0529 1205.5760 1293.771 1226.454  9.182127
-## 2 131.2512 54.67889 162.7780  968.7448 1076.844 1000.272 11.709685
-## 3 147.3025 50.26244 175.1294 1449.9112 1574.778 1477.738 13.066941
-## 4 147.2970 37.05015 166.8775  892.7655 1022.593  912.346 11.802258
-## 5 151.4176 44.72660 170.6744 1196.9403 1322.888 1216.197 14.670160
-##         B.E      C.E       D.E
-## 1  97.37756 30.06030 1201.7788
-## 2 119.80882 43.23651  957.3024
-## 3 137.93390 40.89384 1440.5426
-## 4 141.62962 31.38281  887.0981
-## 5 140.61797 33.92696 1186.1406</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a></code></pre></div>
-<pre><code>##         A.B      A.C       A.D      A.E      B.C      B.D       B.E
-## 1  614.4709 177.6069  7781.625 17.47332 2591.322 113535.6 254.93940
-## 2 1385.3636 498.9601 11080.216  1.54717 5158.342 114549.3  15.99493
-## 3 1526.5667 437.9940 16138.927 20.74360 5313.383 195784.2 251.64433
-## 4 1210.3122 247.3288  7721.828 26.79365 3923.436 122493.2 425.03406
-## 5 1766.1109 407.4112 15080.740 24.64531 4436.696 164228.8 268.38670
-##        C.D      C.E       D.E
-## 1 32816.36 73.68778 3228.5385
-## 2 41256.71  5.76082  127.9283
-## 3 56173.31 72.20039 2660.3943
-## 4 25031.64 86.85624 2711.7299
-## 5 37884.75 61.91216 2291.7417</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb14-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb14-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb14-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb14-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb14-6" title="6">c1 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a>
+<a class="sourceLine" id="cb14-7" title="7"><span class="kw">print_table</span>(c1)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:right;">
+A.B
+</th>
+<th style="text-align:right;">
+A.C
+</th>
+<th style="text-align:right;">
+B.C
+</th>
+<th style="text-align:right;">
+A.D
+</th>
+<th style="text-align:right;">
+B.D
+</th>
+<th style="text-align:right;">
+C.D
+</th>
+<th style="text-align:right;">
+A.E
+</th>
+<th style="text-align:right;">
+B.E
+</th>
+<th style="text-align:right;">
+C.E
+</th>
+<th style="text-align:right;">
+D.E
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+12.150
+</td>
+<td style="text-align:right;">
+49.046
+</td>
+<td style="text-align:right;">
+39.348
+</td>
+<td style="text-align:right;">
+76.756
+</td>
+<td style="text-align:right;">
+67.057
+</td>
+<td style="text-align:right;">
+103.953
+</td>
+<td style="text-align:right;">
+20.007
+</td>
+<td style="text-align:right;">
+10.309
+</td>
+<td style="text-align:right;">
+47.205
+</td>
+<td style="text-align:right;">
+74.914
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18.189
+</td>
+<td style="text-align:right;">
+98.609
+</td>
+<td style="text-align:right;">
+88.130
+</td>
+<td style="text-align:right;">
+32.487
+</td>
+<td style="text-align:right;">
+22.007
+</td>
+<td style="text-align:right;">
+102.427
+</td>
+<td style="text-align:right;">
+22.070
+</td>
+<td style="text-align:right;">
+11.591
+</td>
+<td style="text-align:right;">
+92.011
+</td>
+<td style="text-align:right;">
+25.889
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19.798
+</td>
+<td style="text-align:right;">
+37.372
+</td>
+<td style="text-align:right;">
+37.230
+</td>
+<td style="text-align:right;">
+59.546
+</td>
+<td style="text-align:right;">
+59.405
+</td>
+<td style="text-align:right;">
+76.979
+</td>
+<td style="text-align:right;">
+18.510
+</td>
+<td style="text-align:right;">
+18.369
+</td>
+<td style="text-align:right;">
+35.943
+</td>
+<td style="text-align:right;">
+58.117
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10.051
+</td>
+<td style="text-align:right;">
+38.397
+</td>
+<td style="text-align:right;">
+36.764
+</td>
+<td style="text-align:right;">
+74.042
+</td>
+<td style="text-align:right;">
+72.409
+</td>
+<td style="text-align:right;">
+100.755
+</td>
+<td style="text-align:right;">
+14.900
+</td>
+<td style="text-align:right;">
+13.267
+</td>
+<td style="text-align:right;">
+41.613
+</td>
+<td style="text-align:right;">
+77.258
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33.772
+</td>
+<td style="text-align:right;">
+116.809
+</td>
+<td style="text-align:right;">
+90.893
+</td>
+<td style="text-align:right;">
+38.665
+</td>
+<td style="text-align:right;">
+12.749
+</td>
+<td style="text-align:right;">
+95.785
+</td>
+<td style="text-align:right;">
+36.767
+</td>
+<td style="text-align:right;">
+10.851
+</td>
+<td style="text-align:right;">
+93.888
+</td>
+<td style="text-align:right;">
+15.744
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">c2 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="kw">print_table</span>(c2)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:right;">
+A.B
+</th>
+<th style="text-align:right;">
+A.C
+</th>
+<th style="text-align:right;">
+A.D
+</th>
+<th style="text-align:right;">
+A.E
+</th>
+<th style="text-align:right;">
+B.C
+</th>
+<th style="text-align:right;">
+B.D
+</th>
+<th style="text-align:right;">
+B.E
+</th>
+<th style="text-align:right;">
+C.D
+</th>
+<th style="text-align:right;">
+C.E
+</th>
+<th style="text-align:right;">
+D.E
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+13.390
+</td>
+<td style="text-align:right;">
+416.455
+</td>
+<td style="text-align:right;">
+719.159
+</td>
+<td style="text-align:right;">
+99.227
+</td>
+<td style="text-align:right;">
+46.728
+</td>
+<td style="text-align:right;">
+80.692
+</td>
+<td style="text-align:right;">
+11.134
+</td>
+<td style="text-align:right;">
+2509.621
+</td>
+<td style="text-align:right;">
+346.270
+</td>
+<td style="text-align:right;">
+597.959
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+55.253
+</td>
+<td style="text-align:right;">
+1208.025
+</td>
+<td style="text-align:right;">
+260.202
+</td>
+<td style="text-align:right;">
+110.892
+</td>
+<td style="text-align:right;">
+324.848
+</td>
+<td style="text-align:right;">
+69.970
+</td>
+<td style="text-align:right;">
+29.820
+</td>
+<td style="text-align:right;">
+1529.791
+</td>
+<td style="text-align:right;">
+651.963
+</td>
+<td style="text-align:right;">
+140.429
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+97.980
+</td>
+<td style="text-align:right;">
+273.185
+</td>
+<td style="text-align:right;">
+494.255
+</td>
+<td style="text-align:right;">
+85.146
+</td>
+<td style="text-align:right;">
+269.309
+</td>
+<td style="text-align:right;">
+487.243
+</td>
+<td style="text-align:right;">
+83.938
+</td>
+<td style="text-align:right;">
+1358.509
+</td>
+<td style="text-align:right;">
+234.032
+</td>
+<td style="text-align:right;">
+423.419
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24.590
+</td>
+<td style="text-align:right;">
+190.197
+</td>
+<td style="text-align:right;">
+398.450
+</td>
+<td style="text-align:right;">
+52.921
+</td>
+<td style="text-align:right;">
+137.020
+</td>
+<td style="text-align:right;">
+287.047
+</td>
+<td style="text-align:right;">
+38.125
+</td>
+<td style="text-align:right;">
+2220.238
+</td>
+<td style="text-align:right;">
+294.885
+</td>
+<td style="text-align:right;">
+617.764
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+117.231
+</td>
+<td style="text-align:right;">
+2595.386
+</td>
+<td style="text-align:right;">
+263.242
+</td>
+<td style="text-align:right;">
+206.619
+</td>
+<td style="text-align:right;">
+341.607
+</td>
+<td style="text-align:right;">
+34.648
+</td>
+<td style="text-align:right;">
+27.195
+</td>
+<td style="text-align:right;">
+767.077
+</td>
+<td style="text-align:right;">
+602.080
+</td>
+<td style="text-align:right;">
+61.067
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="combining-data-frames-by-row-filling-missing-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-data-frames-by-row-filling-missing-values" class="anchor"></a>Combining data.frames by row, filling missing values</h1>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb18-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb18-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb16-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
 <pre><code>##   v1 v2 v3
 ## 1  1  2  .
 ## 2  2  3  .
 ## 3  .  .  4
 ## 4  .  .  5</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
 <pre><code>##   v1 v2 v3
 ## 1  1  2 NA
 ## 2  2  3 NA
@@ -386,12 +1804,12 @@
 <div id="rescale-a-continuous-vector-to-have-specified-minimum-and-maximum-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#rescale-a-continuous-vector-to-have-specified-minimum-and-maximum-values" class="anchor"></a>Rescale a continuous vector to have specified minimum and maximum values</h1>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##  [1]   0.00000  11.11111  22.22222  33.33333  44.44444  55.55556  66.66667
 ##  [8]  77.77778  88.88889 100.00000</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="dt">new_min =</span> <span class="dv">5</span>, <span class="dt">new_max =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="dt">new_min =</span> <span class="dv">5</span>, <span class="dt">new_max =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1]  5.0  7.5 10.0</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">100</span>)</a></code></pre></div>
 <pre><code>## [1]   0  50 100</code></pre>
 </div>
   </div>
@@ -401,7 +1819,8 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#bind-cross-validation-objects">Bind cross-validation objects</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+      <li><a href="#bind-cross-validation-objects">Bind cross-validation objects</a></li>
       <li>
 <a href="#split-a-dataframe-into-subsets-grouped-by-one-or-more-factors">Split a dataframe into subsets grouped by one or more factors</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#group-data-and-exclude-all-non-numeric-variables">Group data and exclude all non-numeric variables</a></li>
@@ -409,8 +1828,8 @@
       <li><a href="#group-a-data-frame-using-all-factor-variables">Group a data frame using all factor variables</a></li>
       </ul>
 </li>
-      <li><a href="#parametric-statistics-for-genotype-vs-environment-interaction">Parametric statistics for genotype-vs-environment interaction</a></li>
       <li><a href="#make-a-two-way-table-based-on-categorical-and-numerical-arguments">Make a two-way table based on categorical and numerical arguments</a></li>
+      <li><a href="#make-a-symmetric-matrix">Make a symmetric matrix</a></li>
       <li><a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair">Generate pairwise combinations of variables by applying one function to each pair</a></li>
       <li><a href="#combining-data-frames-by-row-filling-missing-values">Combining data.frames by row, filling missing values</a></li>
       <li><a href="#rescale-a-continuous-vector-to-have-specified-minimum-and-maximum-values">Rescale a continuous vector to have specified minimum and maximum values</a></li>
