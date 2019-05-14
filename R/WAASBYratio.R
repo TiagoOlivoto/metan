@@ -120,7 +120,7 @@ WAASBYratio <- function(.data, env, gen, rep, resp, increment = 5, saveWAASY = 5
             blups <- blups %>% select(-X1, everything())
             blups <- cbind(blups, blupINT)
             names(blups) <- c("Code", "GEN", "BLUPge")
-            blups <- blups[gtools::mixedorder(blups[, 1]), ]
+            blups <- dplyr::arrange(blups, Code)
             intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
             s <- svd(intmatrix)
             U <- s$u[, 1:minimo]
