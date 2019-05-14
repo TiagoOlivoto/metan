@@ -5,8 +5,8 @@
 \title{Canonical correlation analysis}
 \usage{
 can_corr(.data = NULL, FG = NULL, SG = NULL, use = "cor",
-  test = "Bartlett", prob = 0.05, center = TRUE, verbose = TRUE,
-  collinearity = TRUE)
+  test = "Bartlett", prob = 0.05, center = TRUE, stdscores = FALSE,
+  verbose = TRUE, collinearity = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe containing the
@@ -32,7 +32,9 @@ SG. Must be one of the "Bartlett" (default) or "Rao".}
 
 \item{prob}{The probability of error assumed. Set to 0.05.}
 
-\item{center}{Should the data be centered to compute the scores?.}
+\item{center}{Should the data be centered to compute the scores?}
+
+\item{stdscores}{Rescale scores to produce scores of unit variance?}
 
 \item{verbose}{Logical argument. If \code{TRUE} (default) then the results
 are shown in the console.}
@@ -55,6 +57,9 @@ group or second group, respectively.}
 
 \item{Loads_FG, Loads_SG}{Matrix of the canonical loadings of the first
 group or second group, respectively.}
+
+\item{Crossload_FG, Crossload_FG}{Canonical cross-loadings for FG variables on
+the SG scores, and cross-loadings for SG variables on the FG scores, respectively.}
 
 \item{SigTest}{A dataframe with the correlation of the canonical pairs and
 hypothesis testing results.}

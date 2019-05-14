@@ -22,7 +22,8 @@
 #' @param test The test of significance of the relationship between the FG and
 #' SG. Must be one of the "Bartlett" (default) or "Rao".
 #' @param prob The probability of error assumed. Set to 0.05.
-#' @param center Should the data be centered to compute the scores?.
+#' @param center Should the data be centered to compute the scores?
+#' @param stdscores Rescale scores to produce scores of unit variance?
 #' @param verbose Logical argument. If \code{TRUE} (default) then the results
 #' are shown in the console.
 #' @param collinearity Logical argument. If \code{TRUE} (default) then a
@@ -43,6 +44,9 @@
 #'
 #' \item{Loads_FG, Loads_SG}{Matrix of the canonical loadings of the first
 #' group or second group, respectively.}
+#'
+#' \item{Crossload_FG, Crossload_FG}{Canonical cross-loadings for FG variables on
+#' the SG scores, and cross-loadings for SG variables on the FG scores, respectively.}
 #'
 #' \item{SigTest}{A dataframe with the correlation of the canonical pairs and
 #' hypothesis testing results.}
@@ -80,8 +84,8 @@
 #' }
 #'
 can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
-                    test = "Bartlett", prob = 0.05, center = TRUE, verbose = TRUE,
-                    collinearity = TRUE) {
+                    test = "Bartlett", prob = 0.05, center = TRUE,
+                    stdscores = FALSE, verbose = TRUE, collinearity = TRUE) {
   if (missing(.data) & missing(FG) || missing(SG)) {
     stop("No valid data imput for analysis.")
   }
@@ -187,6 +191,13 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
       SG_A[is.na(SG_A)] = 0
       FG_SC = FG_A %*% Coef_FG
       SG_SC = SG_A %*% Coef_SG
+      if (stdscores == TRUE){
+        FG_SC = sweep(FG_SC, 2, apply(FG_SC, 2, sd), "/")
+        SG_SC = sweep(SG_SC, 2, apply(SG_SC, 2, sd), "/")
+      }
+      FG_CL = cor(FG_A, SG_SC)
+      SG_CL = cor(SG_A, FG_SC)
+
       if (test == "Bartlett") {
         n <- nrow(FGV)
         p <- ncol(FGV)
@@ -294,9 +305,9 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
         print(Rvy)
       }
       tmp = structure(list(Matrix = MC, MFG = S11, MSG = S22,
-                           MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG,
-                           Loads_FG = Rux, Loads_SG = Rvy, Score_FG = FG_SC,
-                           Score_SG = SG_SC, Sigtest = results, collinearity = colin),
+                           MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
+                           Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Crossload_FG = FG_CL,
+                           Crossload_SG = SG_CL, Sigtest = results, collinearity = colin),
                       class = "can_cor")
       dfs[[paste(nam)]] = tmp
     }
@@ -384,6 +395,12 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   SG_A[is.na(SG_A)] = 0
   FG_SC = FG_A %*% Coef_FG
   SG_SC = SG_A %*% Coef_SG
+  if (stdscores == TRUE){
+    FG_SC = sweep(FG_SC, 2, apply(FG_SC, 2, sd), "/")
+    SG_SC = sweep(SG_SC, 2, apply(SG_SC, 2, sd), "/")
+  }
+  FG_CL = cor(FG_A, SG_SC)
+  SG_CL = cor(SG_A, FG_SC)
   if (test == "Bartlett") {
     n <- nrow(FG)
     p <- ncol(FG)
@@ -489,7 +506,7 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   }
   invisible(structure(list(Matrix = MC, MFG = S11, MSG = S22,
                            MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
-                           Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Sigtest = results,
-                           collinearity = colin), class = "can_cor"))
+                           Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Crossload_FG = FG_CL,
+                           Crossload_SG = SG_CL, Sigtest = results, collinearity = colin), class = "can_cor"))
 
 }
