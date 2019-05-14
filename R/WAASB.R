@@ -1,5 +1,4 @@
 #' Weighted Average of Absolute Scores for the BLUP'S GxE effects matrix
-#' for BLUP model
 #'
 #' Compute the Weighted Average of Absolute Scores for quantifying the
 #' stability in multienvironment trials using mixed-effect models.
@@ -239,7 +238,7 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             blups <- blups %>% dplyr::select(-X1, everything())
             blups <- cbind(blups, blupINT)
             names(blups) <- c("Code", "GEN", "BLUPge")
-            blups <- blups[gtools::mixedorder(blups[, 1]), ]
+            blups <- dplyr::arrange(blups, Code)
             intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
             s <- svd(intmatrix)
             U <- s$u[, 1:minimo]
@@ -442,7 +441,7 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             blups <- blups %>% dplyr::select(-X1, everything())
             blups <- cbind(blups, blupINT)
             names(blups) <- c("Code", "GEN", "BLUPge")
-            blups <- blups[gtools::mixedorder(blups[, 1]), ]
+            blups <- dplyr::arrange(blups, Code)
             intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
             s <- svd(intmatrix)
             U <- s$u[, 1:minimo]
@@ -671,7 +670,7 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             blups <- blups %>% select(-X1, everything())
             blups <- cbind(blups, blupINT)
             names(blups) <- c("Code", "GEN", "BLUPge")
-            blups <- blups[gtools::mixedorder(blups[, 1]), ]
+            blups <- dplyr::arrange(blups, Code)
             intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
             s <- svd(intmatrix)
             U <- s$u[, 1:minimo]
