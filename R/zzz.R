@@ -1,5 +1,6 @@
 #' @import ggplot2
 #' @import stats
+#' @import dplyr
 #' @importFrom grid grobTree textGrob grid.newpage pushViewport viewport grid.layout
 #' @importFrom ggrepel  geom_text_repel
 #' @importFrom magrittr  %>%
@@ -8,9 +9,6 @@
 #' @importFrom dendextend  set  rotate_DendSer
 #' @importFrom lme4  ranef  VarCorr  fortify.merMod
 #' @importFrom lmerTest  ranova  lmer
-#' @importFrom dplyr  select  everything  mutate  group_by  group_by_if  group_keys
-#'             group_split  left_join  sample_n  anti_join  enquo  pull  summarise_all
-#'             select_if arrange
 #' @importFrom gplots  heatmap.2
 #' @importFrom rlang  eval_bare  expr
 #' @importFrom FWDselect  selection
