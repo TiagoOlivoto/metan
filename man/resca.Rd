@@ -4,24 +4,45 @@
 \alias{resca}
 \title{Rescale a continuous vector to have specified minimum and maximum values}
 \usage{
-resca(values, new_min = 0, new_max = 100)
+resca(.data = NULL, var = NULL, values = NULL, new_min = 0,
+  new_max = 100)
 }
 \arguments{
-\item{values}{continuous vector of values to manipulate.}
+\item{.data}{The dataset}
+
+\item{var}{The continuous variable to manipulate}
+
+\item{values}{Optional vector of values to manipulate.}
 
 \item{new_min}{The minimum value of the new scale. Default is 0.}
 
 \item{new_max}{The maximum value of the new scale. Default is 100}
 }
 \description{
-Helper function used in the WAASB package. It rescales a continuous vector
-to have specified minimum and maximum values. Missing values are not
+Helper function used in the WAASB package. It rescales a continuous variable
+to have specified minimum and maximum var. Missing values are not
 allowed.
+}
+\details{
+The function rescale a continuous variable as follows:
+\deqn{Rv_i = (Nmax - Nmin)/(Omax - Omin) * (O_i - Omax) + Nmax}
+Where \eqn{Rv_i} is the rescaled value of the ith position of the variable/
+vector; \eqn{Nmax} and \eqn{Nmin} are the new maximum and minimum values;
+\eqn{Omax and Omin} are the maximum and minimum values of the original data,
+and \eqn{O_i} is the ith value of the original data.
+
+There are basically two options to use \code{resca} to reescale a variable.
+The first is passing a data frame to \code{.data} argument and selecting a
+continuous variable to be scaled using \code{var}. The function will return
+the original data frame with an additional variable (rescaled) which is the
+rescaled value for the variable input. The second option is pass a numeric
+vector in the argument \code{values}. The output, of course, will be a numeric
+vector of rescaled values.
 }
 \examples{
 
-resca(1:10)
-resca(c(20, 30, 40), new_min = 5, new_max = 10)
+resca(values = c(1:10))
+
 
 }
 \author{
