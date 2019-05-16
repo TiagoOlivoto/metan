@@ -82,12 +82,21 @@
 #'
 WAASBYratio <- function(.data, env, gen, rep, resp,  mresp = 100,
                          increment = 10, saveWAASY = 50, progbar = TRUE) {
-  if(!mresp %in% c(100, 0)){
-    stop("The value 'mresp' must be 0 or 100.")
-  }
   PesoWAAS <- 100
   PesoResp <- 0
   minresp <- 100 - mresp
+  test <- PesoWAAS%%increment == 0
+  test2 <- saveWAASY%%increment == 0
+  if(!mresp %in% c(100, 0)){
+    stop("The value 'mresp' must be 0 or 100.")
+  }
+  if (test == FALSE) {
+    stop("The argument 'increment = ", increment, "' is invalid. Please, note that this value must result in an integer in the expression '100 / increment'. Please, consider changing the values.")
+  }
+  if (test2 == FALSE) {
+    stop("The argument 'saveWAASY = ", saveWAASY, "' must be divisible by 'increment' (",
+         increment, "). Please, consider changing the values.")
+  }
   Y <- eval(substitute(resp), eval(.data))
   GEN <- factor(eval(substitute(gen), eval(.data)))
   ENV <- factor(eval(substitute(env), eval(.data)))
@@ -97,20 +106,9 @@ WAASBYratio <- function(.data, env, gen, rep, resp,  mresp = 100,
   Ngen <- length(unique(GEN))
   minimo <- min(Nenv, Ngen) - 1
   ncomb <- (100/increment) + 1
-  totalcomb <- ((100/increment) + 1) * minimo
+  totalcomb <- ncomb * minimo
   CombWAASY <- data.frame(type = matrix(".", (Ngen + Nenv), 1))
   ovmean <- mean(Y)
-
-  test <- PesoWAAS%%increment == 0
-  test2 <- saveWAASY%%increment == 0
-
-  if (test == FALSE) {
-    stop("The argument 'increment = ", increment, "' is invalid. Please, note that this value must result in an integer in the expression '100 / increment'. Please, consider changing the values.")
-  }
-  if (test2 == FALSE) {
-    stop("The argument 'saveWAASY = ", saveWAASY, "' must be divisible by 'increment' (",
-         increment, "). Please, consider changing the values.")
-  }
   WAASY.Values <- list()
   initial <- 0
   model <- suppressWarnings(suppressMessages(lme4::lmer(Y ~ REP %in% ENV +
@@ -186,8 +184,6 @@ WAASBYratio <- function(.data, env, gen, rep, resp,  mresp = 100,
         as.data.frame() %>%
         slice(1:SigPC2) %>%
         mutate(Percent = Pesos$Percent[1:SigPC2])
-
-
       WAASAbs = Escores %>% mutate(WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent)) %>%
         group_by(type) %>%
         mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,

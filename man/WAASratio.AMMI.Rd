@@ -2,10 +2,10 @@
 % Please edit documentation in R/WAASratio.AMMI.R
 \name{WAASratio.AMMI}
 \alias{WAASratio.AMMI}
-\title{Weighting stability and mean performance in different scenarios}
+\title{Different scenarios of stability and mean performance}
 \usage{
-WAASratio.AMMI(.data, env, gen, rep, resp, p.valuePC = 0.05,
-  increment = 5, saveWAASY = 50, progbar = TRUE)
+WAASratio.AMMI(.data, env, gen, rep, resp, mresp = 100,
+  p.valuePC = 0.05, increment = 5, saveWAASY = 50, progbar = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -20,6 +20,10 @@ environments.}
 replications/blocks.}
 
 \item{resp}{The response variable.}
+
+\item{mresp}{A numeric value that will be the new maximum value after reescaling.
+By default, the variable in \code{resp} is rescaled so that the original maximum
+ and minimum values are 100 and 0, respectively.}
 
 \item{p.valuePC}{The p-value for considering the PC significant. Default is
 0.05. The number of significant Principal Components to be used for
