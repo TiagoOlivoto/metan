@@ -2,7 +2,7 @@
 % Please edit documentation in R/WAAS.AMMI.R
 \name{WAAS.AMMI}
 \alias{WAAS.AMMI}
-\title{Weighted Average of Absolute Scores for AMMI analysis}
+\title{Weighted Average of Absolute Scores}
 \usage{
 WAAS.AMMI(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL,
   prob = 0.05, naxis = NULL, verbose = TRUE)

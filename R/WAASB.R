@@ -1,4 +1,4 @@
-#' Weighted Average of Absolute Scores for the BLUP'S GxE effects matrix
+#' Weighted Average of Absolute Scores
 #'
 #' Compute the Weighted Average of Absolute Scores for quantifying the
 #' stability in multienvironment trials using mixed-effect models.
@@ -134,22 +134,14 @@
 #'                 wresp = c(60, 40))
 #'
 #'
+
 WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random = "gen",
-    prob = 0.05, verbose = TRUE) {
-
-
+                  prob = 0.05, verbose = TRUE) {
     if (!random %in% c("env", "gen", "all")) {
         stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.")
     }
-
-    datain <- .data
-    GEN <- factor(eval(substitute(gen), eval(datain)))
-    ENV <- factor(eval(substitute(env), eval(datain)))
-    REP <- factor(eval(substitute(rep), eval(datain)))
-    listres <- list()
     d <- match.call()
     nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-
     if (is.null(mresp)) {
         mresp <- replicate(nvar, 100)
         minresp <- 100 - mresp
@@ -177,9 +169,12 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
         PesoResp <- wresp
         PesoWAASB <- 100 - PesoResp
     }
-
+    datain <- .data
+    GEN <- factor(eval(substitute(gen), eval(datain)))
+    ENV <- factor(eval(substitute(env), eval(datain)))
+    REP <- factor(eval(substitute(rep), eval(datain)))
+    listres <- list()
     vin <- 0
-
     if (random == "env") {
         for (var in 2:length(d$resp)) {
             if (length(d$resp) > 1) {
@@ -204,12 +199,14 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             individual <- data %>% anova_ind(ENV, GEN, REP, Y)
 
             Complete <- lmerTest::lmer(data = data, Y ~ GEN + (1 | ENV/REP) + (1 |
-                GEN:ENV))
+                                                                                   GEN:ENV))
             LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
             rownames(LRT) <- c("Complete", "Env/Rep", "Env", "Gen vs Env")
-            random <- as.data.frame(lme4::VarCorr(Complete))[, c(1, 4)]
-            random <- random[with(random, order(grp)), ]
-            names(random) <- c("Group", "Variance")
+            random = lme4::VarCorr(Complete) %>%
+                as.data.frame() %>%
+                select(1, 4) %>%
+                arrange(grp) %>%
+                rename(Group = grp, Variance = vcov)
             fixed <- anova(Complete)
             ENVIR <- as.numeric(random[1, 2])
             GEV <- as.numeric(random[2, 2])
@@ -228,144 +225,109 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             ESTIMATES <- do.call(rbind.data.frame, ESTIMATES)
             names(ESTIMATES) <- "Values"
             ESTIMATES <- dplyr::mutate(ESTIMATES, Parameters = c("GEI variance", "Environment variance",
-                "Residual variance", "Env/block variance", "Phenotypic variance"))
-            ESTIMATES <- ESTIMATES %>% dplyr::select(Parameters, everything())
+                                                                 "Residual variance", "Env/block variance",
+                                                                 "Phenotypic variance")) %>%
+                dplyr::select(Parameters, everything())
             bups <- lme4::ranef(Complete)
-            blupINT <- bups$`GEN:ENV`
-            blups <- data.frame(Names = rownames(blupINT))
-            blups <- data.frame(do.call("rbind", strsplit(as.character(blups$Names),
-                ":", fixed = TRUE)))
-            blups <- blups %>% dplyr::select(-X1, everything())
-            blups <- cbind(blups, blupINT)
-            names(blups) <- c("Code", "GEN", "BLUPge")
-            blups <- dplyr::arrange(blups, Code)
+            blups <- data.frame(Names = rownames(bups$`GEN:ENV`))
+            blups = blups %>%
+                data.frame(do.call("rbind",
+                                   strsplit(as.character(blups$Names),
+                                            ":", fixed = TRUE))) %>%
+                dplyr::select(-Names) %>%
+                dplyr::select(-X1, everything()) %>%
+                dplyr::mutate(BLUPge = bups[[1]]$`(Intercept)`) %>%
+                dplyr::rename(Code = X2, GEN = X1) %>%
+                dplyr::arrange(Code)
             intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
             s <- svd(intmatrix)
             U <- s$u[, 1:minimo]
             LL <- diag(s$d[1:minimo])
             V <- s$v[, 1:minimo]
-            Eigenvalue <- data.frame(Eigenvalue = s$d[1:minimo]^2)
-            Eigenvalue <- dplyr::mutate(Eigenvalue, Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) *
-                100)
-            Eigenvalue <- dplyr::mutate(group_by(Eigenvalue), Accumulated = cumsum(Proportion))
-            Eigenvalue$PC <- rownames(Eigenvalue)
-            Eigenvalue <- Eigenvalue %>% dplyr::select(PC, everything())
-            Eigenvalue <- as.data.frame(Eigenvalue)
+            Eigenvalue <- data.frame(Eigenvalue = s$d[1:minimo]^2) %>%
+                dplyr::mutate(Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100,
+                              Accumulated = cumsum(Proportion),
+                              PC = paste("PC", 1:minimo, sep = "")) %>%
+                dplyr::select(PC, everything())
             SCOREG <- U %*% LL^0.5
             SCOREE <- V %*% LL^0.5
-            Escores <- rbind(SCOREG, SCOREE)
-            colnames(Escores) <- paste("PC", 1:minimo, sep = "")
+            colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
             MEDIAS <- data.frame(data %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
-            OUTMED <- by(MEDIAS[, 3], MEDIAS[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
-            MEscores <- Escores[1:Ngen, ]
-            NEscores <- Escores[(Ngen + 1):(Ngen + Nenv), ]
-            MGEN <- data.frame(type = "GEN", Code = rownames(OUTMED), Y = apply(OUTMED,
-                1, mean), MEscores)
-            MENV <- data.frame(type = "ENV", Code = colnames(OUTMED), Y = apply(OUTMED,
-                2, mean), NEscores)
-            Escores <- rbind(MGEN, MENV)
-            names(MENV)[2] <- c("ENV")
-            names(MGEN)[2] <- c("GEN")
-            names(MGEN)[3] <- c("y")
-            MEDIAS <- suppressMessages(dplyr::mutate(MEDIAS, envPC1 = left_join(MEDIAS,
-                MENV %>% select(ENV, PC1))$PC1, genPC1 = left_join(MEDIAS, MGEN %>%
-                select(GEN, PC1))$PC1, nominal = left_join(MEDIAS, MGEN %>% select(GEN,
-                y))$y + genPC1 * envPC1))
-            names(MENV)[2] <- c("Code")
-            names(MGEN)[2] <- c("Code")
-            names(MGEN)[3] <- c("Y")
+            MGEN = MEDIAS %>% group_by(GEN) %>% summarise(Y = mean(Y)) %>% mutate(type = "GEN")
+            MGEN = cbind(MGEN, SCOREG)
+            MENV = MEDIAS %>% group_by(ENV) %>% summarise(Y = mean(Y)) %>% mutate(type = "ENV")
+            MENV = cbind(MENV, SCOREE)
+            MEDIAS <- suppressMessages(dplyr::mutate(MEDIAS,
+                                                     envPC1 = left_join(MEDIAS, MENV %>% select(ENV, PC1))$PC1,
+                                                     genPC1 = left_join(MEDIAS, MGEN %>% select(GEN, PC1))$PC1,
+                                                     nominal = left_join(MEDIAS, MGEN %>% select(GEN, Y))$Y + genPC1 * envPC1))
+            MGEN = MGEN %>% rename(Code = GEN)
+            MENV = MENV %>% rename(Code = ENV)
+            Escores <- rbind(MGEN, MENV) %>% select(type, everything())
             Pesos <- data.frame(Percent = Eigenvalue$Proportion)
-            WAAS <- Escores
-            WAASAbs <- Escores
-            WAAS[, 4:ncol(WAAS)] <- lapply(WAAS[, 4:ncol(WAAS)], abs)
-            t_WAAS <- data.frame(t(WAAS))
-            colnames(t_WAAS) <- rownames(WAAS)
-            rownames(t_WAAS) <- colnames(WAAS)
-            t_WAAS <- t_WAAS[-c(1, 2, 3), ]
-            t_WAAS <- t_WAAS[c(1:minimo), ]
-            t_WAAS <- cbind(t_WAAS, Pesos)
-            for (i in 1:ncol(t_WAAS)) {
-                t_WAAS[, i] <- as.numeric(as.character(t_WAAS[, i]))
-            }
-            Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean,
-                w = t_WAAS$Percent)))
-            rownames(Ponderado) <- c("WAASB")
-            t_WAAS <- subset(t_WAAS, select = -Percent)
-            colnames(Ponderado) <- colnames(t_WAAS)
-            t_WAAS <- rbind(t_WAAS, Ponderado)
-            t_WAAS2 <- data.frame(t(t_WAAS))
-            colnames(t_WAAS2) <- rownames(t_WAAS)
-            rownames(t_WAAS2) <- colnames(t_WAAS)
-            WAASAbs <- cbind(WAASAbs, subset(t_WAAS2, select = WAASB))
-            WAASAbs2 <- subset(WAASAbs, type == "ENV")
+            WAASB <- Escores %>%
+                select(contains("PC")) %>%
+                abs() %>%
+                t() %>%
+                as.data.frame() %>%
+                mutate(Percent = Pesos$Percent)
+            WAASAbs <- mutate(Escores, WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent))
             if (nvar > 1) {
-                WAASAbs2$PctResp <- resca(WAASAbs2$Y, new_min = minresp[vin], new_max = mresp[vin])
+                WAASAbs %<>%
+                    group_by(type) %>%
+                    mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
+                           PctWAASB = (minresp[vin] - mresp[vin])/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp[vin],
+                           wRes = PesoResp[vin],
+                           wWAASB = PesoWAASB[vin],
+                           OrResp = rank(-Y),
+                           OrWAASB = rank(WAASB),
+                           OrPC1 = rank(abs(PC1)),
+                           WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
+                           OrWAASBY = rank(-WAASBY))
             } else {
-                WAASAbs2$PctResp <- resca(WAASAbs2$Y, new_min = minresp, new_max = mresp)
-            }
-            WAASAbs2$PctWAASB <- resca(WAASAbs2$WAASB, new_min = 100, new_max = 0)
-            WAASAbs3 <- subset(WAASAbs, type == "GEN")
-            if (nvar > 1) {
-                WAASAbs3$PctResp <- resca(WAASAbs3$Y, new_min = minresp[vin], new_max = mresp[vin])
-            } else {
-                WAASAbs3$PctResp <- resca(WAASAbs3$Y, new_min = minresp, new_max = mresp)
-            }
-            WAASAbs3$PctWAASB <- resca(WAASAbs3$WAASB, new_min = 100, new_max = 0)
-
-            WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::group_by(type) %>% dplyr::mutate(OrResp = rank(-Y),
-                OrWAASB = rank(WAASB), OrPC1 = rank(abs(PC1)))
-
-            if (nvar > 1) {
-                WAASAbs$PesRes <- as.vector(PesoResp)[vin]
-                WAASAbs$PesWAASB <- as.vector(PesoWAASB)[vin]
-            } else {
-                WAASAbs$PesRes <- as.vector(PesoResp)
-                WAASAbs$PesWAASB <- as.vector(PesoWAASB)
+                WAASAbs %<>%
+                    group_by(type) %>%
+                    mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
+                           PctWAASB = (minresp - mresp)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp,
+                           wRes = PesoResp,
+                           wWAASB = PesoWAASB,
+                           OrResp = rank(-Y),
+                           OrWAASB = rank(WAASB),
+                           OrPC1 = rank(abs(PC1)),
+                           WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
+                           OrWAASBY = rank(-WAASBY))
             }
 
-            WAASAbs <- dplyr::mutate(WAASAbs, WAASBY = (PctResp * PesRes + PctWAASB *
-                PesWAASB)/(PesRes + PesWAASB))
-
-            WAASAbsInicial <- WAASAbs %>% dplyr::group_by(type) %>% dplyr::mutate(OrWAASBY = rank(-WAASBY))
-
-            MinENV <- WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)), n = 1),
-                ]
-            MinENV <- paste0("Environment ", MinENV$Code, " (", round(MinENV$Y, 4),
-                ") ")
-            MaxENV <- WAASAbs2[head(which(WAASAbs2[, 3] >= max(WAASAbs2$Y)), n = 1),
-                ]
-            MaxENV <- paste0("Environment ", MaxENV$Code, " (", round(MaxENV$Y, 4),
-                ") ")
-            MinGEN <- WAASAbs3[head(which(WAASAbs3[, 3] <= min(WAASAbs3$Y)), n = 1),
-                ]
-            MinGEN <- paste0("Genotype ", MinGEN$Code, " (", round(MinGEN$Y, 4), ") ")
-            MaxGEN <- WAASAbs3[head(which(WAASAbs3[, 3] >= max(WAASAbs3$Y)), n = 1),
-                ]
-            MaxGEN <- paste0("Genotype ", MaxGEN$Code, " (", round(MaxGEN$Y, 4), ") ")
-            mean <- round(mean(MEDIAS$Y), 4)
-            min <- MEDIAS[head(which(MEDIAS[, 3] <= min(MEDIAS$Y)), n = 1), ]
-            min <- paste0(round(min$Y, 4), " (Genotype ", min$GEN, " in ", min$ENV,
-                " )")
-            max <- MEDIAS[head(which(MEDIAS[, 3] >= max(MEDIAS$Y)), n = 1), ]
-            max <- paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,
-                " )")
-            Details <- list(Ngen = Ngen, Nenv = Nenv, OVmean = mean, Min = min, Max = max,
-                MinENV = MinENV, MaxENV = MaxENV, MinGEN = MinGEN, MaxGEN = MaxGEN)
+            min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
+            max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1)
+            min = MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            max = MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            Details <- list(Ngen = Ngen,
+                            Nenv = Nenv,
+                            OVmean = round(mean(MEDIAS$Y), 4),
+                            Min = paste0(round(min[3], 4), " (Genotype ", min$GEN, " in ", min$ENV,")"),
+                            Max = paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,")"),
+                            MinENV = paste0("Environment ", min_group[2,2], " (", round(min_group[2,3], 3),")"),
+                            MaxENV = paste0("Environment ", max_group[2,2], " (", round(max_group[2,3], 3),")"),
+                            MinGEN = paste0("Genotype ", min_group[1,2], " (", round(min_group[1,3], 3), ") "),
+                            MaxGEN =  paste0("Genotype ", max_group[1,2], " (", round(max_group[1,3], 3), ") "))
             Details <- do.call(rbind.data.frame, Details)
             names(Details) <- "Values"
             Details <- dplyr::mutate(Details, Parameters = c("Ngen", "Nenv", "OVmean",
-                "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
-            Details <- Details %>% dplyr::select(Parameters, everything())
+                                                             "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))%>%
+                dplyr::select(Parameters, everything())
+
+
             Predicted <- data %>% mutate(Predicted = predict(Complete))
             residuals <- data.frame(fortify.merMod(Complete))
             temp <- structure(list(individual = individual[[1]], fixed = fixed, random = random,
-                LRT = LRT, model = WAASAbsInicial, BLUPgen = NULL, BLUPgge = Predicted,
-                PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
-                residuals = residuals), class = "WAASB")
+                                   LRT = LRT, model = WAASAbs, BLUPgen = NULL, BLUPgge = Predicted,
+                                   PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
+                                   residuals = residuals), class = "WAASB")
             if (length(d$resp) > 1) {
                 if (verbose == T) {
-                  cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                    1) * 100, 1), "%", "\n")
+                    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
+                                                                                        1) * 100, 1), "%", "\n")
                 }
                 listres[[paste(d$resp[var])]] <- temp
             } else {
@@ -396,13 +358,15 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             individual <- data %>% anova_ind(ENV, GEN, REP, Y)
 
             Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
-                Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
+                                                                         Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
             LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
-            rownames(LRT) <- c("Complete", "Genotype", "Gen vs Env")
-            random <- as.data.frame(lme4::VarCorr(Complete))[, c(1, 4)]
-            random <- random[with(random, order(grp)), ]
-            names(random) <- c("Group", "Variance")
             fixed <- anova(Complete)
+            rownames(LRT) <- c("Complete", "Genotype", "Gen vs Env")
+            random = lme4::VarCorr(Complete) %>%
+                as.data.frame() %>%
+                select(1, 4) %>%
+                arrange(grp) %>%
+                rename(Group = grp, Variance = vcov)
             GV <- as.numeric(random[1, 2])
             GEV <- as.numeric(random[2, 2])
             RV <- as.numeric(random[3, 2])
@@ -425,172 +389,125 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             GV <- paste0(round(GV, 6), " (", round(GVper, 2), "% of phenotypic variance.)")
             RV <- paste0(round(RV, 6), " (", round(RVper, 2), "% of phenotypic variance.)")
             ESTIMATES <- list(GEV = GEV, GV = GV, RV = RV, FV = FV, h2g = h2g, GEr2 = GEr2,
-                h2mg = h2mg, AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
+                              h2mg = h2mg, AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
             ESTIMATES <- do.call(rbind.data.frame, ESTIMATES)
             names(ESTIMATES) <- "Values"
             ESTIMATES <- dplyr::mutate(ESTIMATES, Parameters = c("GEI variance", "Genotypic variance",
-                "Residual variance", "Phenotypic variance", "Heritability", "GEIr2",
-                "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio"))
+                                                                 "Residual variance", "Phenotypic variance", "Heritability", "GEIr2",
+                                                                 "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio"))
             ESTIMATES <- ESTIMATES %>% dplyr::select(Parameters, everything())
             bups <- lme4::ranef(Complete)
-            blupGEN <- bups$GEN
-            blupINT <- bups$`GEN:ENV`
-            blups <- data.frame(Names = rownames(blupINT))
-            blups <- data.frame(do.call("rbind", strsplit(as.character(blups$Names),
-                ":", fixed = TRUE)))
-            blups <- blups %>% dplyr::select(-X1, everything())
-            blups <- cbind(blups, blupINT)
-            names(blups) <- c("Code", "GEN", "BLUPge")
-            blups <- dplyr::arrange(blups, Code)
+            blups <- data.frame(Names = rownames(bups$`GEN:ENV`))
+            blups = blups %>%
+                data.frame(do.call("rbind",
+                                   strsplit(as.character(blups$Names),
+                                            ":", fixed = TRUE))) %>%
+                dplyr::select(-Names) %>%
+                dplyr::select(-X1, everything()) %>%
+                dplyr::mutate(BLUPge = bups[[1]]$`(Intercept)`) %>%
+                dplyr::rename(Code = X2, GEN = X1) %>%
+                dplyr::arrange(Code)
             intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
             s <- svd(intmatrix)
             U <- s$u[, 1:minimo]
             LL <- diag(s$d[1:minimo])
             V <- s$v[, 1:minimo]
-            Eigenvalue <- data.frame(Eigenvalue = s$d[1:minimo]^2)
-            Eigenvalue <- dplyr::mutate(Eigenvalue, Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) *
-                100)
-            Eigenvalue <- dplyr::mutate(group_by(Eigenvalue), Accumulated = cumsum(Proportion))
-            Eigenvalue$PC <- rownames(Eigenvalue)
-            Eigenvalue <- Eigenvalue %>% dplyr::select(PC, everything())
-            Eigenvalue <- as.data.frame(Eigenvalue)
+            Eigenvalue <- data.frame(Eigenvalue = s$d[1:minimo]^2) %>%
+                dplyr::mutate(Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100,
+                              Accumulated = cumsum(Proportion),
+                              PC = paste("PC", 1:minimo, sep = "")) %>%
+                dplyr::select(PC, everything())
             SCOREG <- U %*% LL^0.5
             SCOREE <- V %*% LL^0.5
-            Escores <- rbind(SCOREG, SCOREE)
-            colnames(Escores) <- paste("PC", 1:minimo, sep = "")
-            raw <- data.frame(ENV, GEN, Y)
+            colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
             MEDIAS <- data.frame(data %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
-            OUTMED <- by(MEDIAS[, 3], MEDIAS[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
-            MEscores <- Escores[1:Ngen, ]
-            NEscores <- Escores[(Ngen + 1):(Ngen + Nenv), ]
-            MGEN <- data.frame(type = "GEN", Code = rownames(OUTMED), Y = apply(OUTMED,
-                1, mean), MEscores)
-            MENV <- data.frame(type = "ENV", Code = colnames(OUTMED), Y = apply(OUTMED,
-                2, mean), NEscores)
-            Escores <- rbind(MGEN, MENV)
-
-            names(MENV)[2] <- c("ENV")
-            names(MGEN)[2] <- c("GEN")
-            names(MGEN)[3] <- c("y")
-            MEDIAS <- suppressMessages(dplyr::mutate(MEDIAS, envPC1 = left_join(MEDIAS,
-                MENV %>% select(ENV, PC1))$PC1, genPC1 = left_join(MEDIAS, MGEN %>%
-                select(GEN, PC1))$PC1, nominal = left_join(MEDIAS, MGEN %>% select(GEN,
-                y))$y + genPC1 * envPC1))
-            names(MENV)[2] <- c("Code")
-            names(MGEN)[2] <- c("Code")
-            names(MGEN)[3] <- c("Y")
-
+            MGEN = MEDIAS %>% group_by(GEN) %>% summarise(Y = mean(Y)) %>% mutate(type = "GEN")
+            MGEN = cbind(MGEN, SCOREG)
+            MENV = MEDIAS %>% group_by(ENV) %>% summarise(Y = mean(Y)) %>% mutate(type = "ENV")
+            MENV = cbind(MENV, SCOREE)
+            MEDIAS <- suppressMessages(dplyr::mutate(MEDIAS,
+                                                     envPC1 = left_join(MEDIAS, MENV %>% select(ENV, PC1))$PC1,
+                                                     genPC1 = left_join(MEDIAS, MGEN %>% select(GEN, PC1))$PC1,
+                                                     nominal = left_join(MEDIAS, MGEN %>% select(GEN, Y))$Y + genPC1 * envPC1))
+            MGEN = MGEN %>% rename(Code = GEN)
+            MENV = MENV %>% rename(Code = ENV)
+            Escores <- rbind(MGEN, MENV) %>% select(type, everything())
             Pesos <- data.frame(Percent = Eigenvalue$Proportion)
-            WAAS <- Escores
-            WAASAbs <- Escores
-            WAAS[, 4:ncol(WAAS)] <- lapply(WAAS[, 4:ncol(WAAS)], abs)
-            t_WAAS <- data.frame(t(WAAS))
-            colnames(t_WAAS) <- rownames(WAAS)
-            rownames(t_WAAS) <- colnames(WAAS)
-            t_WAAS <- t_WAAS[-c(1, 2, 3), ]
-            t_WAAS <- t_WAAS[c(1:minimo), ]
-            t_WAAS <- cbind(t_WAAS, Pesos)
-            for (i in 1:ncol(t_WAAS)) {
-                t_WAAS[, i] <- as.numeric(as.character(t_WAAS[, i]))
-            }
-            Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean,
-                w = t_WAAS$Percent)))
-            rownames(Ponderado) <- c("WAASB")
-            t_WAAS <- subset(t_WAAS, select = -Percent)
-            colnames(Ponderado) <- colnames(t_WAAS)
-            t_WAAS <- rbind(t_WAAS, Ponderado)
-            t_WAAS2 <- data.frame(t(t_WAAS))
-            colnames(t_WAAS2) <- rownames(t_WAAS)
-            rownames(t_WAAS2) <- colnames(t_WAAS)
-            WAASAbs <- cbind(WAASAbs, subset(t_WAAS2, select = WAASB))
-            WAASAbs2 <- subset(WAASAbs, type == "ENV")
+            WAASB <- Escores %>%
+                select(contains("PC")) %>%
+                abs() %>%
+                t() %>%
+                as.data.frame() %>%
+                mutate(Percent = Pesos$Percent)
+            WAASAbs <- mutate(Escores, WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent))
             if (nvar > 1) {
-                WAASAbs2$PctResp <- resca(WAASAbs2$Y, new_min = minresp[vin], new_max = mresp[vin])
+                WAASAbs %<>%
+                    group_by(type) %>%
+                    mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
+                           PctWAASB = (minresp[vin] - mresp[vin])/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp[vin],
+                           wRes = PesoResp[vin],
+                           wWAASB = PesoWAASB[vin],
+                           OrResp = rank(-Y),
+                           OrWAASB = rank(WAASB),
+                           OrPC1 = rank(abs(PC1)),
+                           WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
+                           OrWAASBY = rank(-WAASBY))
             } else {
-                WAASAbs2$PctResp <- resca(WAASAbs2$Y, new_min = minresp, new_max = mresp)
+                WAASAbs %<>%
+                    group_by(type) %>%
+                    mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
+                           PctWAASB = (minresp - mresp)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp,
+                           wRes = PesoResp,
+                           wWAASB = PesoWAASB,
+                           OrResp = rank(-Y),
+                           OrWAASB = rank(WAASB),
+                           OrPC1 = rank(abs(PC1)),
+                           WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
+                           OrWAASBY = rank(-WAASBY))
             }
-            WAASAbs2$PctWAASB <- resca(WAASAbs2$WAASB, new_min = 100, new_max = 0)
-            WAASAbs3 <- subset(WAASAbs, type == "GEN")
-            if (nvar > 1) {
-                WAASAbs3$PctResp <- resca(WAASAbs3$Y, new_min = minresp[vin], new_max = mresp[vin])
-            } else {
-                WAASAbs3$PctResp <- resca(WAASAbs3$Y, new_min = minresp, new_max = mresp)
-            }
-            WAASAbs3$PctWAASB <- resca(WAASAbs3$WAASB, new_min = 100, new_max = 0)
-
-            WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::group_by(type) %>% dplyr::mutate(OrResp = rank(-Y),
-                OrWAASB = rank(WAASB), OrPC1 = rank(abs(PC1)))
-
-            if (nvar > 1) {
-                WAASAbs$PesRes <- as.vector(PesoResp)[vin]
-                WAASAbs$PesWAASB <- as.vector(PesoWAASB)[vin]
-            } else {
-                WAASAbs$PesRes <- as.vector(PesoResp)
-                WAASAbs$PesWAASB <- as.vector(PesoWAASB)
-            }
-
-            WAASAbs <- dplyr::mutate(WAASAbs, WAASBY = (PctResp * PesRes + PctWAASB *
-                PesWAASB)/(PesRes + PesWAASB))
-
-            WAASAbsInicial <- WAASAbs %>% dplyr::group_by(type) %>% dplyr::mutate(OrWAASBY = rank(-WAASBY))
-
-            MinENV <- WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)), n = 1),
-                ]
-            MinENV <- paste0("Environment ", MinENV$Code, " (", round(MinENV$Y, 4),
-                ") ")
-            MaxENV <- WAASAbs2[head(which(WAASAbs2[, 3] >= max(WAASAbs2$Y)), n = 1),
-                ]
-            MaxENV <- paste0("Environment ", MaxENV$Code, " (", round(MaxENV$Y, 4),
-                ") ")
-            MinGEN <- WAASAbs3[head(which(WAASAbs3[, 3] <= min(WAASAbs3$Y)), n = 1),
-                ]
-            MinGEN <- paste0("Genotype ", MinGEN$Code, " (", round(MinGEN$Y, 4), ") ")
-            MaxGEN <- WAASAbs3[head(which(WAASAbs3[, 3] >= max(WAASAbs3$Y)), n = 1),
-                ]
-            MaxGEN <- paste0("Genotype ", MaxGEN$Code, " (", round(MaxGEN$Y, 4), ") ")
-            mean <- round(mean(MEDIAS$Y), 4)
-            min <- MEDIAS[head(which(MEDIAS[, 3] <= min(MEDIAS$Y)), n = 1), ]
-            min <- paste0(round(min$Y, 4), " (Genotype ", min$GEN, " in ", min$ENV,
-                " )")
-            max <- MEDIAS[head(which(MEDIAS[, 3] >= max(MEDIAS$Y)), n = 1), ]
-            max <- paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,
-                " )")
-            Details <- list(Ngen = Ngen, Nenv = Nenv, OVmean = mean, Min = min, Max = max,
-                MinENV = MinENV, MaxENV = MaxENV, MinGEN = MinGEN, MaxGEN = MaxGEN)
+            min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
+            max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1)
+            min = MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            max = MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            Details <- list(Ngen = Ngen,
+                            Nenv = Nenv,
+                            OVmean = round(mean(MEDIAS$Y), 4),
+                            Min = paste0(round(min[3], 4), " (Genotype ", min$GEN, " in ", min$ENV,")"),
+                            Max = paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,")"),
+                            MinENV = paste0("Environment ", min_group[2,2], " (", round(min_group[2,3], 3),")"),
+                            MaxENV = paste0("Environment ", max_group[2,2], " (", round(max_group[2,3], 3),")"),
+                            MinGEN = paste0("Genotype ", min_group[1,2], " (", round(min_group[1,3], 3), ") "),
+                            MaxGEN =  paste0("Genotype ", max_group[1,2], " (", round(max_group[1,3], 3), ") "))
             Details <- do.call(rbind.data.frame, Details)
             names(Details) <- "Values"
             Details <- dplyr::mutate(Details, Parameters = c("Ngen", "Nenv", "OVmean",
-                "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
-            Details <- Details %>% dplyr::select(Parameters, everything())
-            blupGEN <- cbind(GEN = MGEN$Code, BLUP = blupGEN)
-            colnames(blupGEN) <- c("GEN", "BLUPg")
-            blupGEN <- dplyr::mutate(blupGEN, Predicted = BLUPg + ovmean)
-            blupGEN <- blupGEN[order(-blupGEN[, 3]), ]
-
-
-            blupGEN <- dplyr::mutate(blupGEN, Rank = rank(-blupGEN[, 3]), LL = Predicted -
-                Limits, UL = Predicted + Limits)
-
-
-            blupGEN <- blupGEN %>% dplyr::select(Rank, everything())
-            selectioNenv <- suppressMessages(dplyr::left_join(blups, blupGEN %>% select(GEN,
-                BLUPg)))
-            selectioNenv <- suppressMessages(dplyr::mutate(selectioNenv, gge = BLUPge +
-                BLUPg, Predicted = BLUPge + BLUPg + left_join(blups, MENV %>% select(Code,
-                Y))$Y, LL = Predicted - Limits, UL = Predicted + Limits))
+                                                             "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))%>%
+                dplyr::select(Parameters, everything())
+            blupGEN <- data.frame(GEN = MGEN$Code, BLUPg = bups$GEN$`(Intercept)`) %>%
+                dplyr::mutate(Predicted = BLUPg + ovmean) %>%
+                dplyr::arrange(-Predicted) %>%
+                dplyr::mutate(Rank = rank(Predicted),
+                              LL = Predicted - Limits,
+                              UL = Predicted + Limits) %>%
+                dplyr::select(Rank, everything())
+            selectioNenv <- suppressMessages(dplyr::left_join(blups, blupGEN %>% select(GEN, BLUPg))) %>%
+                dplyr::mutate(gge = BLUPge + BLUPg,
+                              Predicted = BLUPge + BLUPg + suppressMessages(left_join(blups, MENV %>% select(Code, Y))$Y),
+                              LL = Predicted - Limits,
+                              UL = Predicted + Limits)
             names(selectioNenv) <- c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPg+ge",
-                "Predicted", "LL", "UL")
+                                     "Predicted", "LL", "UL")
             residuals <- data.frame(fortify.merMod(Complete))
             residuals$reff <- selectioNenv$BLUPge
             temp <- structure(list(individual = individual[[1]], fixed = fixed, random = random,
-                LRT = LRT, model = WAASAbsInicial, blupGEN = blupGEN, BLUPgge = selectioNenv,
-                PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
-                residuals = residuals), class = "WAASB")
+                                   LRT = LRT, model = WAASAbs, blupGEN = blupGEN, BLUPgge = selectioNenv,
+                                   PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
+                                   residuals = residuals), class = "WAASB")
 
             if (length(d$resp) > 1) {
                 if (verbose == T) {
-                  cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                    1) * 100, 1), "%", "\n")
+                    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
+                                                                                        1) * 100, 1), "%", "\n")
                 }
                 listres[[paste(d$resp[var])]] <- temp
             } else {
@@ -621,12 +538,14 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             individual <- data %>% anova_ind(ENV, GEN, REP, Y)
 
             Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
-                Y ~ (1 | GEN) + (1 | ENV/REP) + (1 | GEN:ENV))))
+                                                                         Y ~ (1 | GEN) + (1 | ENV/REP) + (1 | GEN:ENV))))
             LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
             rownames(LRT) <- c("Complete", "Genotype", "Env/Rep", "Environment", "Gen:Env")
-            random <- as.data.frame(lme4::VarCorr(Complete))[, c(1, 4)]
-            random <- random[with(random, order(grp)), ]
-            names(random) <- c("Group", "Variance")
+            random = lme4::VarCorr(Complete) %>%
+                as.data.frame() %>%
+                select(1, 4) %>%
+                arrange(grp) %>%
+                rename(Group = grp, Variance = vcov)
             EV <- as.numeric(random[1, 2])
             GV <- as.numeric(random[2, 2])
             GEV <- as.numeric(random[3, 2])
@@ -653,181 +572,137 @@ WAASB <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             RV <- paste0(round(RV, 6), " (", round(RVper, 2), "% of phenotypic variance.)")
             EV <- paste0(round(EV, 6), " (", round(EVper, 2), "% of phenotypic variance.)")
             ESTIMATES <- list(GEV = GEV, GV = GV, EV = EV, RV = RV, FV = FV, h2g = h2g,
-                GEr2 = GEr2, h2mg = h2mg, AccuGen = AccuGen, rge = rge, CVg = CVg,
-                CVr = CVr, CVratio = CVratio)
+                              GEr2 = GEr2, h2mg = h2mg, AccuGen = AccuGen, rge = rge, CVg = CVg,
+                              CVr = CVr, CVratio = CVratio)
             ESTIMATES <- do.call(rbind.data.frame, ESTIMATES)
             names(ESTIMATES) <- "Values"
             ESTIMATES <- dplyr::mutate(ESTIMATES, Parameters = c("GEI variance", "Genotypic variance",
-                "Environmental variance", "Residual variance", "Phenotypic variance",
-                "Heritability", "GEIr2", "Heribatility of means", "Accuracy", "rge",
-                "CVg", "CVr", "CV ratio"))
-            ESTIMATES <- ESTIMATES %>% dplyr::select(Parameters, everything())
+                                                                 "Environmental variance", "Residual variance", "Phenotypic variance",
+                                                                 "Heritability", "GEIr2", "Heribatility of means", "Accuracy", "rge",
+                                                                 "CVg", "CVr", "CV ratio")) %>%
+                dplyr::select(Parameters, everything())
             bups <- lme4::ranef(Complete)
-            blupINT <- bups$`GEN:ENV`
-            blups <- data.frame(Names = rownames(blupINT))
-            blups <- data.frame(do.call("rbind", strsplit(as.character(blups$Names),
-                ":", fixed = TRUE)))
-            blups <- blups %>% select(-X1, everything())
-            blups <- cbind(blups, blupINT)
-            names(blups) <- c("Code", "GEN", "BLUPge")
-            blups <- dplyr::arrange(blups, Code)
+            blups <- data.frame(Names = rownames(bups$`GEN:ENV`))
+            blups = blups %>%
+                data.frame(do.call("rbind",
+                                   strsplit(as.character(blups$Names),
+                                            ":", fixed = TRUE))) %>%
+                dplyr::select(-Names) %>%
+                dplyr::select(-X1, everything()) %>%
+                dplyr::mutate(BLUPge = bups[[1]]$`(Intercept)`) %>%
+                dplyr::rename(ENV = X2, GEN = X1) %>%
+                dplyr::arrange(ENV)
             intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
             s <- svd(intmatrix)
             U <- s$u[, 1:minimo]
             LL <- diag(s$d[1:minimo])
             V <- s$v[, 1:minimo]
-            Eigenvalue <- data.frame(Eigenvalue = s$d[1:minimo]^2)
-            Eigenvalue <- dplyr::mutate(Eigenvalue, Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) *
-                100)
-            Eigenvalue <- dplyr::mutate(group_by(Eigenvalue), Accumulated = cumsum(Proportion))
-            Eigenvalue$PC <- rownames(Eigenvalue)
-            Eigenvalue <- data.frame(Eigenvalue %>% dplyr::select(PC, everything()))
+            Eigenvalue <- data.frame(Eigenvalue = s$d[1:minimo]^2) %>%
+                dplyr::mutate(Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100,
+                              Accumulated = cumsum(Proportion),
+                              PC = paste("PC", 1:minimo, sep = "")) %>%
+                dplyr::select(PC, everything())
             SCOREG <- U %*% LL^0.5
             SCOREE <- V %*% LL^0.5
-            Escores <- rbind(SCOREG, SCOREE)
-            colnames(Escores) <- paste("PC", 1:minimo, sep = "")
-            raw <- data.frame(ENV, GEN, Y)
-            MEDIAS <- data.frame(raw %>% group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
-            OUTMED <- by(MEDIAS[, 3], MEDIAS[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
-            MEscores <- Escores[1:Ngen, ]
-            NEscores <- Escores[(Ngen + 1):(Ngen + Nenv), ]
-            MGEN <- data.frame(type = "GEN", Code = rownames(OUTMED), Y = apply(OUTMED,
-                1, mean), MEscores)
-            MENV <- data.frame(type = "ENV", Code = colnames(OUTMED), Y = apply(OUTMED,
-                2, mean), NEscores)
-            Escores <- rbind(MGEN, MENV)
-
-
-            names(MENV)[2] <- c("ENV")
-            names(MGEN)[2] <- c("GEN")
-            names(MGEN)[3] <- c("y")
-            MEDIAS <- suppressMessages(dplyr::mutate(MEDIAS, envPC1 = left_join(MEDIAS,
-                MENV %>% select(ENV, PC1))$PC1, genPC1 = left_join(MEDIAS, MGEN %>%
-                select(GEN, PC1))$PC1, nominal = left_join(MEDIAS, MGEN %>% select(GEN,
-                y))$y + genPC1 * envPC1))
-            names(MENV)[2] <- c("Code")
-            names(MGEN)[2] <- c("Code")
-            names(MGEN)[3] <- c("Y")
+            colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
+            MEDIAS <- data.frame(data %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
+            MGEN = MEDIAS %>% group_by(GEN) %>% summarise(Y = mean(Y)) %>% mutate(type = "GEN")
+            MGEN = cbind(MGEN, SCOREG)
+            MENV = MEDIAS %>% group_by(ENV) %>% summarise(Y = mean(Y)) %>% mutate(type = "ENV")
+            MENV = cbind(MENV, SCOREE)
+            MEDIAS <- suppressMessages(dplyr::mutate(MEDIAS,
+                                                     envPC1 = left_join(MEDIAS, MENV %>% select(ENV, PC1))$PC1,
+                                                     genPC1 = left_join(MEDIAS, MGEN %>% select(GEN, PC1))$PC1,
+                                                     nominal = left_join(MEDIAS, MGEN %>% select(GEN, Y))$Y + genPC1 * envPC1))
+            MGEN = MGEN %>% rename(Code = GEN)
+            MENV = MENV %>% rename(Code = ENV)
+            Escores <- rbind(MGEN, MENV) %>% select(type, everything())
 
             Pesos <- data.frame(Percent = Eigenvalue$Proportion)
-            WAAS <- Escores
-            WAASAbs <- Escores
-            WAAS[, 4:ncol(WAAS)] <- lapply(WAAS[, 4:ncol(WAAS)], abs)
-            t_WAAS <- data.frame(t(WAAS))
-            colnames(t_WAAS) <- rownames(WAAS)
-            rownames(t_WAAS) <- colnames(WAAS)
-            t_WAAS <- t_WAAS[-c(1, 2, 3), ]
-            t_WAAS <- t_WAAS[c(1:minimo), ]
-            t_WAAS <- cbind(t_WAAS, Pesos)
-            for (i in 1:ncol(t_WAAS)) {
-                t_WAAS[, i] <- as.numeric(as.character(t_WAAS[, i]))
-            }
-            Ponderado <- t(as.data.frame(sapply(t_WAAS[, -ncol(t_WAAS)], weighted.mean,
-                w = t_WAAS$Percent)))
-            rownames(Ponderado) <- c("WAASB")
-            t_WAAS <- subset(t_WAAS, select = -Percent)
-            colnames(Ponderado) <- colnames(t_WAAS)
-            t_WAAS <- rbind(t_WAAS, Ponderado)
-            t_WAAS2 <- data.frame(t(t_WAAS))
-            colnames(t_WAAS2) <- rownames(t_WAAS)
-            rownames(t_WAAS2) <- colnames(t_WAAS)
-            WAASAbs <- cbind(WAASAbs, subset(t_WAAS2, select = WAASB))
-            WAASAbs2 <- subset(WAASAbs, type == "ENV")
+            WAASB <- Escores %>%
+                select(contains("PC")) %>%
+                abs() %>%
+                t() %>%
+                as.data.frame() %>%
+                mutate(Percent = Pesos$Percent)
+            WAASAbs <- mutate(Escores, WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent))
             if (nvar > 1) {
-                WAASAbs2$PctResp <- resca(WAASAbs2$Y, new_min = minresp[vin], new_max = mresp[vin])
+                WAASAbs %<>%
+                    group_by(type) %>%
+                    mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
+                           PctWAASB = (minresp[vin] - mresp[vin])/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp[vin],
+                           wRes = PesoResp[vin],
+                           wWAASB = PesoWAASB[vin],
+                           OrResp = rank(-Y),
+                           OrWAASB = rank(WAASB),
+                           OrPC1 = rank(abs(PC1)),
+                           WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
+                           OrWAASBY = rank(-WAASBY))
             } else {
-                WAASAbs2$PctResp <- resca(WAASAbs2$Y, new_min = minresp, new_max = mresp)
-            }
-            WAASAbs2$PctWAASB <- resca(WAASAbs2$WAASB, new_min = 100, new_max = 0)
-            WAASAbs3 <- subset(WAASAbs, type == "GEN")
-            if (nvar > 1) {
-                WAASAbs3$PctResp <- resca(WAASAbs3$Y, new_min = minresp[vin], new_max = mresp[vin])
-            } else {
-                WAASAbs3$PctResp <- resca(WAASAbs3$Y, new_min = minresp, new_max = mresp)
-            }
-            WAASAbs3$PctWAASB <- resca(WAASAbs3$WAASB, new_min = 100, new_max = 0)
-
-            WAASAbs <- rbind(WAASAbs3, WAASAbs2) %>% dplyr::group_by(type) %>% dplyr::mutate(OrResp = rank(-Y),
-                OrWAASB = rank(WAASB), OrPC1 = rank(abs(PC1)))
-
-            if (nvar > 1) {
-                WAASAbs$PesRes <- as.vector(PesoResp)[vin]
-                WAASAbs$PesWAASB <- as.vector(PesoWAASB)[vin]
-            } else {
-                WAASAbs$PesRes <- as.vector(PesoResp)
-                WAASAbs$PesWAASB <- as.vector(PesoWAASB)
+                WAASAbs %<>%
+                    group_by(type) %>%
+                    mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
+                           PctWAASB = (minresp - mresp)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp,
+                           wRes = PesoResp,
+                           wWAASB = PesoWAASB,
+                           OrResp = rank(-Y),
+                           OrWAASB = rank(WAASB),
+                           OrPC1 = rank(abs(PC1)),
+                           WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
+                           OrWAASBY = rank(-WAASBY))
             }
 
-            WAASAbs <- dplyr::mutate(WAASAbs, WAASBY = (PctResp * PesRes + PctWAASB *
-                PesWAASB)/(PesRes + PesWAASB))
-
-            WAASAbsInicial <- WAASAbs %>% dplyr::group_by(type) %>% dplyr::mutate(OrWAASBY = rank(-WAASBY))
-
-            MinENV <- WAASAbs2[head(which(WAASAbs2[, 3] <= min(WAASAbs2$Y)), n = 1),
-                ]
-            MinENV <- paste0("Environment ", MinENV$Code, " (", round(MinENV$Y, 4),
-                ") ")
-            MaxENV <- WAASAbs2[head(which(WAASAbs2[, 3] >= max(WAASAbs2$Y)), n = 1),
-                ]
-            MaxENV <- paste0("Environment ", MaxENV$Code, " (", round(MaxENV$Y, 4),
-                ") ")
-            MinGEN <- WAASAbs3[head(which(WAASAbs3[, 3] <= min(WAASAbs3$Y)), n = 1),
-                ]
-            MinGEN <- paste0("Genotype ", MinGEN$Code, " (", round(MinGEN$Y, 4), ") ")
-            MaxGEN <- WAASAbs3[head(which(WAASAbs3[, 3] >= max(WAASAbs3$Y)), n = 1),
-                ]
-            MaxGEN <- paste0("Genotype ", MaxGEN$Code, " (", round(MaxGEN$Y, 4), ") ")
-            mean <- round(mean(MEDIAS$Y), 4)
-            min <- MEDIAS[head(which(MEDIAS[, 3] <= min(MEDIAS$Y)), n = 1), ]
-            min <- paste0(round(min$Y, 4), " (Genotype ", min$GEN, " in ", min$ENV,
-                ")")
-            max <- MEDIAS[head(which(MEDIAS[, 3] >= max(MEDIAS$Y)), n = 1), ]
-            max <- paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,
-                ")")
-            Details <- list(Ngen = Ngen, Nenv = Nenv, OVmean = mean, Min = min, Max = max,
-                MinENV = MinENV, MaxENV = MaxENV, MinGEN = MinGEN, MaxGEN = MaxGEN)
+            min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
+            max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1)
+            min = MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            max = MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            Details <- list(Ngen = Ngen,
+                            Nenv = Nenv,
+                            OVmean = round(mean(MEDIAS$Y), 4),
+                            Min = paste0(round(min[3], 4), " (Genotype ", min$GEN, " in ", min$ENV,")"),
+                            Max = paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,")"),
+                            MinENV = paste0("Environment ", min_group[2,2], " (", round(min_group[2,3], 3),")"),
+                            MaxENV = paste0("Environment ", max_group[2,2], " (", round(max_group[2,3], 3),")"),
+                            MinGEN = paste0("Genotype ", min_group[1,2], " (", round(min_group[1,3], 3), ") "),
+                            MaxGEN =  paste0("Genotype ", max_group[1,2], " (", round(max_group[1,3], 3), ") "))
             Details <- do.call(rbind.data.frame, Details)
             names(Details) <- "Values"
             Details <- dplyr::mutate(Details, Parameters = c("Ngen", "Nenv", "OVmean",
-                "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))
-            Details <- Details %>% dplyr::select(Parameters, everything())
+                                                             "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"))%>%
+                dplyr::select(Parameters, everything())
 
-            blupGEN <- bups$GEN
-            blupGEN <- cbind(GEN = MGEN$Code, BLUP = blupGEN)
-            colnames(blupGEN) <- c("GEN", "BLUPg")
-            blupGEN <- dplyr::mutate(blupGEN, Predicted = BLUPg + ovmean)
-            blupGEN <- blupGEN[order(-blupGEN[, 3]), ]
-            blupGEN <- dplyr::mutate(blupGEN, Rank = rank(-blupGEN[, 3]), LL = Predicted -
-                Limits, UL = Predicted + Limits)
-            blupGEN <- blupGEN %>% dplyr::select(Rank, everything())
+            blupGEN <- data.frame(GEN = MGEN$Code, BLUPg = bups$GEN$`(Intercept)`) %>%
+                dplyr::mutate(Predicted = BLUPg + ovmean) %>%
+                dplyr::arrange(-Predicted) %>%
+                dplyr::mutate(Rank = rank(-Predicted),
+                              LL = Predicted - Limits,
+                              UL = Predicted + Limits) %>%
+                dplyr::select(Rank, everything())
 
+            blupENV <- data.frame(ENV = MENV$Code, BLUPe = bups$ENV$`(Intercept)`) %>%
+                dplyr::mutate(Predicted = BLUPe + ovmean) %>%
+                dplyr::arrange(-Predicted) %>%
+                dplyr::mutate(Rank = rank(-Predicted),
+                              LL = Predicted - Limits,
+                              UL = Predicted + Limits) %>%
+                dplyr::select(Rank, everything())
 
-            blupENV <- bups$ENV
-            blupENV <- cbind(ENV = MENV$Code, BLUP = blupENV)
-            colnames(blupENV) <- c("Code", "BLUPe")
-            blupENV <- dplyr::mutate(blupENV, Predicted = BLUPe + ovmean)
-            blupENV <- blupENV[order(-blupENV[, 3]), ]
-            blupENV <- dplyr::mutate(blupENV, Rank = rank(-blupENV[, 3]))
-            blupENV <- blupENV %>% dplyr::select(Rank, everything())
-
-            selectioNenv <- suppressMessages(dplyr::left_join(blups, blupGEN %>% select(GEN,
-                BLUPg)))
-            selectioNenv <- suppressMessages(dplyr::mutate(selectioNenv, BLUPe = left_join(blups,
-                blupENV %>% select(Code, BLUPe))$BLUPe, ggee = BLUPge + BLUPg + BLUPe,
-                Predicted = ggee + ovmean))
-            names(selectioNenv) <- c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPe", "BLUPge+g+e",
-                "Predicted")
+            selectioNenv <- suppressMessages(dplyr::left_join(blups, blupGEN %>% select(GEN, BLUPg))) %>%
+                dplyr::mutate(BLUPe = suppressMessages(left_join(blups, blupENV %>% select(ENV, BLUPe))$BLUPe),
+                              ggee = BLUPge + BLUPg + BLUPe,
+                              Predicted = ggee + ovmean)
+            names(selectioNenv) <- c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPe", "BLUPge+g+e", "Predicted")
             residuals <- fortify.merMod(Complete)
             residuals$reff <- selectioNenv$BLUPge
             temp <- structure(list(individual = individual[[1]], fixed = NULL, random = random,
-                LRT = LRT, model = WAASAbsInicial, blupGEN = blupGEN, BLUPgge = selectioNenv,
-                PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
-                residuals = residuals), class = "WAASB")
+                                   LRT = LRT, model = WAASAbs, blupGEN = blupGEN, BLUPgge = selectioNenv,
+                                   PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
+                                   residuals = residuals), class = "WAASB")
 
             if (length(d$resp) > 1) {
                 if (verbose == T) {
-                  cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                    1) * 100, 1), "%", "\n")
+                    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
+                                                                                        1) * 100, 1), "%", "\n")
                 }
                 listres[[paste(d$resp[var])]] <- temp
             } else {

@@ -2,7 +2,7 @@
 % Please edit documentation in R/WAASB.R
 \name{WAASB}
 \alias{WAASB}
-\title{Weighted Average of Absolute Scores for the BLUP'S GxE effects matrix}
+\title{Weighted Average of Absolute Scores}
 \usage{
 WAASB(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL,
   random = "gen", prob = 0.05, verbose = TRUE)

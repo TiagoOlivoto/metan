@@ -1,4 +1,4 @@
-#' Weighted Average of Absolute Scores for AMMI analysis
+#' Weighted Average of Absolute Scores
 #'
 #' Compute the Weighted Average of Absolute Scores for AMMI analysis.
 #'
@@ -113,11 +113,6 @@
 #'
 WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
     naxis = NULL, verbose = TRUE) {
-    datain <- .data
-    GEN <- factor(eval(substitute(gen), eval(datain)))
-    ENV <- factor(eval(substitute(env), eval(datain)))
-    REP <- factor(eval(substitute(rep), eval(datain)))
-    listres <- list()
     d <- match.call()
     nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
     if (!is.null(naxis)) {
@@ -157,6 +152,11 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
         PesoResp <- wresp
         PesoWAASB <- 100 - PesoResp
     }
+    datain <- .data
+    GEN <- factor(eval(substitute(gen), eval(datain)))
+    ENV <- factor(eval(substitute(env), eval(datain)))
+    REP <- factor(eval(substitute(rep), eval(datain)))
+    listres <- list()
     vin <- 0
     for (var in 2:length(d$resp)) {
         if (length(d$resp) > 1) {
@@ -210,10 +210,9 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
                 as.data.frame() %>%
                 slice(1:SigPC1) %>%
                 mutate(Percent = Pesos$Percent)
-            Ponderado <- sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = WAAS$Percent)
-            WAASAbs <- mutate(Escores, WAAS = Ponderado)
+            WAASAbs <- mutate(Escores, WAAS = sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = WAAS$Percent))
             if (nvar > 1) {
-                WAASAbs = WAASAbs %>%
+                WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
                            PctWAAS = (minresp[vin] - mresp[vin])/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + minresp[vin],
@@ -225,7 +224,7 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
                            WAASY = ((PctResp * PesRes) + (PctWAAS * PesWAAS))/(PesRes + PesWAAS),
                            OrWAASY = rank(-WAASY))
             } else {
-                WAASAbs = WAASAbs %>%
+                WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
                            PctWAAS = (minresp - mresp)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + minresp,
@@ -238,18 +237,18 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
                            OrWAASY = rank(-WAASY))
             }
     min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
-    MinENV <- paste0("Environment ", min_group[2,2], " (", round(min_group[2,3], 3),")")
-    MinGEN <- paste0("Genotype ", min_group[1,2], " (", round(min_group[1,3], 3), ") ")
     max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1)
-    MaxENV <- paste0("Environment ", max_group[2,2], " (", round(max_group[2,3], 3),")")
-    MaxGEN <- paste0("Genotype ", max_group[1,2], " (", round(max_group[1,3], 3), ") ")
-    min = MeansGxE %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
-    max = MeansGxE %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
-    min <- paste0(round(min[3], 4), " (Genotype ", min$GEN, " in ", min$ENV,")")
-    max <- paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,")")
-    mean <- round(mean(MeansGxE$Y), 4)
-    Details <- list(Ngen = Ngen, Nenv = Nenv, OVmean = mean, Min = min, Max = max,
-                    MinENV = MinENV, MaxENV = MaxENV, MinGEN = MinGEN, MaxGEN = MaxGEN,
+    min = MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+    max = MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
+    Details <- list(Ngen = Ngen,
+                    Nenv = Nenv,
+                    OVmean = round(mean(MEDIAS$Y), 4),
+                    Min = paste0(round(min[3], 4), " (Genotype ", min$GEN, " in ", min$ENV,")"),
+                    Max = paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,")"),
+                    MinENV = paste0("Environment ", min_group[2,2], " (", round(min_group[2,3], 3),")"),
+                    MaxENV = paste0("Environment ", max_group[2,2], " (", round(max_group[2,3], 3),")"),
+                    MinGEN = paste0("Genotype ", min_group[1,2], " (", round(min_group[1,3], 3), ") "),
+                    MaxGEN =  paste0("Genotype ", max_group[1,2], " (", round(max_group[1,3], 3), ") "),
                     SigPC = SigPC1)
     Details <- do.call(rbind.data.frame, Details)
     names(Details) <- "Values"
