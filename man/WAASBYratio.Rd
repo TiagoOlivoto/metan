@@ -2,10 +2,10 @@
 % Please edit documentation in R/WAASBYratio.R
 \name{WAASBYratio}
 \alias{WAASBYratio}
-\title{Weighting stability and mean performance in different scenarios}
+\title{Different scenarios of stability and mean performance}
 \usage{
-WAASBYratio(.data, env, gen, rep, resp, increment = 5, saveWAASY = 50,
-  progbar = TRUE)
+WAASBYratio(.data, env, gen, rep, resp, mresp = 100, increment = 10,
+  saveWAASY = 50, progbar = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -20,6 +20,10 @@ environments.}
 replications/blocks.}
 
 \item{resp}{The response variable.}
+
+\item{mresp}{A numeric value that will be the new maximum value after reescaling.
+By default, the variable in \code{resp} is rescaled so that the original maximum
+ and minimum values are 100 and 0, respectively.}
 
 \item{increment}{The range of the increment for WAASB/GY ratio. Default is
 5. The function compute the WAASBY values starting with a weight o 100 for
