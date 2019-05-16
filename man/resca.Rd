@@ -2,17 +2,17 @@
 % Please edit documentation in R/resca.R
 \name{resca}
 \alias{resca}
-\title{Rescale a continuous vector to have specified minimum and maximum values}
+\title{Rescale a variable to have specified minimum and maximum values}
 \usage{
-resca(.data = NULL, var = NULL, values = NULL, new_min = 0,
-  new_max = 100)
+resca(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100,
+  keep = TRUE)
 }
 \arguments{
-\item{.data}{The dataset}
+\item{.data}{The dataset. Grouped data is allowed.}
 
-\item{var}{The continuous variable to manipulate}
+\item{...}{Comma-separated list of unquoted variable names that will be rescaled.}
 
-\item{values}{Optional vector of values to manipulate.}
+\item{values}{Optional vector of values to rescale}
 
 \item{new_min}{The minimum value of the new scale. Default is 0.}
 
@@ -20,8 +20,7 @@ resca(.data = NULL, var = NULL, values = NULL, new_min = 0,
 }
 \description{
 Helper function used in the WAASB package. It rescales a continuous variable
-to have specified minimum and maximum var. Missing values are not
-allowed.
+to have specified minimum and maximum values.
 }
 \details{
 The function rescale a continuous variable as follows:
@@ -32,16 +31,29 @@ vector; \eqn{Nmax} and \eqn{Nmin} are the new maximum and minimum values;
 and \eqn{O_i} is the ith value of the original data.
 
 There are basically two options to use \code{resca} to reescale a variable.
-The first is passing a data frame to \code{.data} argument and selecting a
-continuous variable to be scaled using \code{var}. The function will return
-the original data frame with an additional variable (rescaled) which is the
-rescaled value for the variable input. The second option is pass a numeric
-vector in the argument \code{values}. The output, of course, will be a numeric
-vector of rescaled values.
+The first is passing a data frame to \code{.data} argument and selecting one
+or more variables to be scaled using \code{...}. The function will return
+the original variables in \code{.data} plus the rescaled variable(s) with the
+prefix \code{_res}. By using the function \code{group_by} from \bold{dplyr}
+package it is possible to rescale the variable(s) within each level of the
+grouping factor. The second option is pass a numeric vector in the argument
+ \code{values}. The output, of course, will be a numeric vector of rescaled values.
 }
 \examples{
 
-resca(values = c(1:10))
+# Rescale a numeric vector
+resca(values = c(1:5))
+
+ # Using a data frame
+head(
+ resca(data_ge, GY, HM, new_min = 0, new_max = 1)
+)
+
+head(
+ data_ge2 \%>\%
+   group_by(ENV) \%>\%
+   resca(PH, EH, EP, EL, ED, keep = F)
+)
 
 
 }

@@ -1,8 +1,7 @@
-#' Rescale a continuous vector to have specified minimum and maximum values
+#' Rescale a variable to have specified minimum and maximum values
 #'
 #' Helper function used in the WAASB package. It rescales a continuous variable
-#' to have specified minimum and maximum var. Missing values are not
-#' allowed.
+#' to have specified minimum and maximum values.
 #'
 #' The function rescale a continuous variable as follows:
 #' \deqn{Rv_i = (Nmax - Nmin)/(Omax - Omin) * (O_i - Omax) + Nmax}
@@ -12,45 +11,61 @@
 #' and \eqn{O_i} is the ith value of the original data.
 #'
 #' There are basically two options to use \code{resca} to reescale a variable.
-#' The first is passing a data frame to \code{.data} argument and selecting a
-#' continuous variable to be scaled using \code{var}. The function will return
-#' the original data frame with an additional variable (rescaled) which is the
-#' rescaled value for the variable input. The second option is pass a numeric
-#' vector in the argument \code{values}. The output, of course, will be a numeric
-#' vector of rescaled values.
+#' The first is passing a data frame to \code{.data} argument and selecting one
+#' or more variables to be scaled using \code{...}. The function will return
+#' the original variables in \code{.data} plus the rescaled variable(s) with the
+#' prefix \code{_res}. By using the function \code{group_by} from \bold{dplyr}
+#' package it is possible to rescale the variable(s) within each level of the
+#' grouping factor. The second option is pass a numeric vector in the argument
+#'  \code{values}. The output, of course, will be a numeric vector of rescaled values.
 #'
-#' @param .data The dataset
-#' @param var The continuous variable to manipulate
-#' @param values Optional vector of values to manipulate.
+#' @param .data The dataset. Grouped data is allowed.
+#' @param ... Comma-separated list of unquoted variable names that will be rescaled.
+#' @param values Optional vector of values to rescale
 #' @param new_min The minimum value of the new scale. Default is 0.
 #' @param new_max The maximum value of the new scale. Default is 100
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
 #'
-#' resca(values = c(1:10))
+#' # Rescale a numeric vector
+#' resca(values = c(1:5))
+#'
+#'  # Using a data frame
+#' head(
+#'  resca(data_ge, GY, HM, new_min = 0, new_max = 1)
+#' )
+#'
+# # Reescale within factors
+# # Select only scaled variables
+#' head(
+#'  data_ge2 %>%
+#'    group_by(ENV) %>%
+#'    resca(PH, EH, EP, EL, ED, keep = F)
+#' )
 #'
 #'
-resca <- function(.data = NULL, var = NULL, values = NULL, new_min = 0, new_max = 100) {
-  if(!missing(.data) && missing(var)){
-    stop("You must inform a continous variable in '.data' to rescale.")
-  }
+resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, keep = TRUE) {
   if(!missing(.data) && !missing(values)){
     stop("You can not inform a vector of values if a data frame is used as imput.")
   }
-  new_v <- function(v) {
-    (new_max - new_min)/(max(values) - min(values)) * (v - max(values)) + new_max
-  }
   if(!missing(.data)){
-    values =  unlist(dplyr::select(.data, !!enquo(var))[,1])
+    rescc <- function(x){
+      (new_max - new_min)/(max(x) - min(x)) * (x - max(x)) + new_max
+    }
+    if(is_grouped_df(.data)){
+      dplyr::do(.data, resca(., ...))
+    }
+    if (keep == TRUE){
+    .data %>% mutate_at(.vars = vars(...), .funs = list(res = rescc)) %>% ungroup()
+    } else {
+      .data %<>% mutate_at(.vars = vars(...), .funs = list(res = rescc))  %>% ungroup()
+        return(suppressMessages(select(.data, contains("res"))))
+    }
   } else {
-    values = values
-  }
-  rescaled = sapply(values, new_v)
-  if(!missing(.data)){
-    out = .data %>% mutate(rescaled = rescaled)
-    return(out)
-  } else{
-    return(rescaled)
+    new_v <- function(v) {
+      (new_max - new_min)/(max(values) - min(values)) * (v - max(values)) + new_max
+    }
+    sapply(values, new_v)
   }
 }
