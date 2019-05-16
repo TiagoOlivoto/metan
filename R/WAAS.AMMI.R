@@ -238,11 +238,11 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
             }
     min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
     max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1)
-    min = MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
-    max = MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
+    min = MeansGxE %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+    max = MeansGxE %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
     Details <- list(Ngen = Ngen,
                     Nenv = Nenv,
-                    OVmean = round(mean(MEDIAS$Y), 4),
+                    OVmean = round(mean(MeansGxE$Y), 4),
                     Min = paste0(round(min[3], 4), " (Genotype ", min$GEN, " in ", min$ENV,")"),
                     Max = paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,")"),
                     MinENV = paste0("Environment ", min_group[2,2], " (", round(min_group[2,3], 3),")"),
@@ -287,3 +287,4 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
     invisible(structure(listres, class = "WAAS.AMMI"))
 
 }
+
