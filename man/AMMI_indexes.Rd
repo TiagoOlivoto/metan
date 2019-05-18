@@ -16,7 +16,8 @@ from maximum to minimum. If \code{"l"} is used then the response variable
 will be ordered from minimum to maximum.}
 }
 \value{
-A dataframe contaning the indexes
+A dataframe contaning the indexes estimated with all environments, favorable
+environments and unfavorable environments.
 }
 \description{
 This function computes the following AMMI-based stability indexes: ASV, AMMI

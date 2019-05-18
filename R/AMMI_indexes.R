@@ -41,7 +41,8 @@
 #' will be ordered from minimum to maximum.
 #' @return
 #'
-#' A dataframe contaning the indexes
+#' A dataframe contaning the indexes estimated with all environments, favorable
+#' environments and unfavorable environments.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
