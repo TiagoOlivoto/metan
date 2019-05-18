@@ -16,9 +16,9 @@
 #' @method plot MTSI
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #' library(metan)
-#' MTSI_MODEL = WAASB(data_ge,
+#' MTSI_MODEL = waasb(data_ge,
 #'                    env = ENV,
 #'                    gen = GEN,
 #'                    rep = REP,
@@ -30,10 +30,10 @@
 #' # Alternatively using the pipe operator %>%
 #' library(dplyr)
 #' MTSI_index2 = data_ge %>%
-#'               WAASB(ENV, GEN, REP, c(GY, HM)) %>%
+#'               waasb(ENV, GEN, REP, c(GY, HM)) %>%
 #'               MTSI()
 #' plot(MTSI_index2)
-#'
+#'}
 #'
 #'
 plot.MTSI <- function(x, SI = 15, radar = TRUE, size.point = 2, col.sel = "red", col.nonsel = "black",
