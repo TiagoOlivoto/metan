@@ -19,5 +19,9 @@
 #' is.split_factors(spdata)
 #'
 is.split_factors = function(x){
-  return((class(x) == "split_factors"))
+  if(any(class(x) == "split_factors")){
+    return(TRUE)
+  } else{
+    return(FALSE)
+  }
 }
