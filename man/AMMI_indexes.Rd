@@ -55,19 +55,19 @@ ssiZa, respectively.
 \examples{
 
 library(metan)
-model = WAAS.AMMI(data_ge,
-                  env = ENV,
-                  gen = GEN,
-                  rep = REP,
-                  resp = c(GY, HM),
-                  verbose = FALSE)
+model = waas(data_ge,
+             env = ENV,
+             gen = GEN,
+             rep = REP,
+             resp = c(GY, HM),
+             verbose = FALSE)
 model_indexes = AMMI_indexes(model)
 
 
 # Alternatively (and more intuitively) using \%>\%
 library(dplyr)
 res_ind = data_ge \%>\%
-          WAAS.AMMI(ENV, GEN, REP, c(GY, HM)) \%>\%
+          waas(ENV, GEN, REP, c(GY, HM)) \%>\%
           AMMI_indexes()
 
 
