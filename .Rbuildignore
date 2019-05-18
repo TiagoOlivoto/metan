@@ -1,4 +1,5 @@
 ^doc$
+^man-roxygen$
 ^README\.Rmd$
 ^\.github$
 ^docs$
