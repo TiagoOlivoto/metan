@@ -21,7 +21,7 @@
 #' The HMRPGV index is computed as \deqn{HMRPGV_i = \frac{1}{E}\sum\limits_{j =
 #' 1}^E {\frac{1}{{G{v_{ij}}/{\mu _j}}}}}
 #'
-#' @param .data An object of class \code{WAASB}
+#' @param .data An object of class \code{waasb}
 #' @return
 #'
 #' A dataframe contaning the indexes.
@@ -55,7 +55,7 @@
 #' @examples
 #'
 #' library(metan)
-#' res_ind = WAASB(data_ge,
+#' res_ind = waasb(data_ge,
 #'                 env = ENV,
 #'                 gen = GEN,
 #'                 rep = REP,
@@ -65,13 +65,13 @@
 #' # Alternatively using the pipe operator %>%
 #' library(dplyr)
 #' res_ind = data_ge %>%
-#'           WAASB(ENV, GEN, REP, c(GY, HM)) %>%
+#'           waasb(ENV, GEN, REP, c(GY, HM)) %>%
 #'           Resende_indexes()
 #'
 #'
 Resende_indexes <- function(.data) {
-    if (!is(.data, "WAASB")) {
-        stop("The object '.data' must be an object of class \"WAASB\"")
+    if (!is(.data, "waasb")) {
+        stop("The object '.data' must be an object of class \"waasb\"")
     }
 
     # Helper functions

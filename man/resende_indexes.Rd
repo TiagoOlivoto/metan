@@ -7,7 +7,7 @@
 Resende_indexes(.data)
 }
 \arguments{
-\item{.data}{An object of class \code{WAASB}}
+\item{.data}{An object of class \code{waasb}}
 }
 \value{
 A dataframe contaning the indexes.
@@ -38,7 +38,7 @@ The HMRPGV index is computed as \deqn{HMRPGV_i = \frac{1}{E}\sum\limits_{j =
 \examples{
 
 library(metan)
-res_ind = WAASB(data_ge,
+res_ind = waasb(data_ge,
                 env = ENV,
                 gen = GEN,
                 rep = REP,
@@ -48,7 +48,7 @@ model_indexes = Resende_indexes(res_ind)
 # Alternatively using the pipe operator \%>\%
 library(dplyr)
 res_ind = data_ge \%>\%
-          WAASB(ENV, GEN, REP, c(GY, HM)) \%>\%
+          waasb(ENV, GEN, REP, c(GY, HM)) \%>\%
           Resende_indexes()
 
 
