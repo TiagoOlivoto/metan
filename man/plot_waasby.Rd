@@ -60,16 +60,16 @@ Plot heat maps with genotype ranking in two ways.
 
 library(metan)
 library(ggplot2)
-waasby = WAASB(data_ge,
+waasby = waasb(data_ge,
                resp = GY,
                gen = GEN,
                env = ENV,
                rep = REP)
-waasby2 = WAAS.AMMI(data_ge,
-                    resp = GY,
-                    gen = GEN,
-                    env = ENV,
-                    rep = REP)
+waasby2 = waas(data_ge,
+               resp = GY,
+               gen = GEN,
+               env = ENV,
+               rep = REP)
 plot_waasby(waasby$GY)
 plot_waasby(waasby2$GY) +
             theme_gray() +

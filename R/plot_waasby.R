@@ -38,16 +38,16 @@
 #'
 #' library(metan)
 #' library(ggplot2)
-#' waasby = WAASB(data_ge,
+#' waasby = waasb(data_ge,
 #'                resp = GY,
 #'                gen = GEN,
 #'                env = ENV,
 #'                rep = REP)
-#' waasby2 = WAAS.AMMI(data_ge,
-#'                     resp = GY,
-#'                     gen = GEN,
-#'                     env = ENV,
-#'                     rep = REP)
+#' waasby2 = waas(data_ge,
+#'                resp = GY,
+#'                gen = GEN,
+#'                env = ENV,
+#'                rep = REP)
 #' plot_waasby(waasby$GY)
 #' plot_waasby(waasby2$GY) +
 #'             theme_gray() +
@@ -62,31 +62,28 @@ plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, them
         "red"), x.lab = "WAASBY", y.lab = "Genotypes", x.breaks = waiver(), resolution = 300,
     ...) {
     class <- class(x)
-    if (!class %in% c("WAASratio.AMMI", "WAASBYratio", "WAASB", "WAAS.AMMI")) {
-        stop("The object 'x' must be a 'WAASratio.AMMI' or a 'WAASBYratio' object.")
+    if (!class %in% c("waas", "waasb")) {
+        stop("The object 'x' must be of class 'waas' or 'waasb'.")
     }
-    if (class == "WAASB") {
-        data <- subset(x$model, type == "GEN", select = c(Code, PesRes, PesWAASB,
-            WAASBY))
-        data <- data[order(data$WAASBY), ]
-        data$Code <- factor(data$Code, levels = data$Code)
-        data$Mean <- ifelse(data$WAASBY < mean(data$WAASBY), "below", "above")
-        names(data) <- c("Code", "PesRes", "PesWAAS", "WAASY", "Mean")
-
-    } else if (class == "WAAS.AMMI") {
-        data <- subset(x$model, type == "GEN", select = c(Code, PesRes, PesWAAS, WAASY))
-        data <- data[order(data$WAASY), ]
-        data$Code <- factor(data$Code, levels = data$Code)
-        data$Mean <- ifelse(data$WAASY < mean(data$WAASY), "below", "above")
-    } else {
-        data <- x$WAASY
+    if (class == "waasb") {
+        data <- subset(x$model, type == "GEN", select = c(Code, WAASBY))
+         data %<>% mutate(Code = factor(data$Code, levels = data$Code)) %>%
+            arrange(desc(WAASBY)) %>%
+            mutate(Mean = ifelse(WAASBY < mean(WAASBY), "below", "above")) %>%
+            rename(WAASY = WAASBY)
     }
-
-
-    p1 <- ggplot2::ggplot(data, aes(x = Code, y = WAASY)) + geom_point(stat = "identity",
-        aes(col = Mean), size = size.shape) + geom_segment(aes(y = min(data$WAASY),
-        x = Code, yend = WAASY, xend = Code), color = "black") + coord_flip() + scale_color_manual(name = "Average",
-        values = col.shape, labels = c("Above", "Below")) + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+    if (class == "waas") {
+        data <- subset(x$model, type == "GEN", select = c(Code, WAASY))
+        data %<>% mutate(Code = factor(data$Code, levels = data$Code)) %>%
+            arrange(desc(WAASY)) %>%
+            mutate(Mean = ifelse(WAASY < mean(WAASY), "below", "above"))
+    }
+    p1 = ggplot2::ggplot(data, aes(x = reorder(Code, WAASY), y = WAASY, col = Mean)) +
+        geom_point(stat = "identity", size = size.shape) +
+        geom_segment(aes(y = min(data$WAASY), x = Code, yend = WAASY, xend = Code), color = "black") +
+        coord_flip() +
+        scale_color_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
+        theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
         colour = "black"), axis.title = element_text(size = size.tex.lab, colour = "black")) +
         scale_y_continuous(limits = c(min(data$WAASY), 100), breaks = x.breaks) +
         labs(x = y.lab, y = x.lab)
