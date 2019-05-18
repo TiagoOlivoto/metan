@@ -157,7 +157,7 @@ exploitation of narrow adaptations.
 
 library(metan)
 library(ggplot2)
-scores = WAASB(data_ge,
+scores = waasb(data_ge,
                resp = GY,
                gen = GEN,
                env = ENV,

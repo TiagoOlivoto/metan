@@ -107,7 +107,7 @@
 #'
 #' library(metan)
 #' library(ggplot2)
-#' scores = WAASB(data_ge,
+#' scores = waasb(data_ge,
 #'                resp = GY,
 #'                gen = GEN,
 #'                env = ENV,
@@ -338,7 +338,7 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
         } else x.lab <- paste0("Grain yield")
 
 
-        if (class == "WAASB") {
+        if (class == "waasb") {
 
             if (is.null(x.lim) == F) {
                 x.lim <- x.lim
@@ -379,7 +379,7 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
                 annotation_custom(IV)
         }
 
-        if (class == "WAAS.AMMI") {
+        if (class == "waas") {
             if (is.null(x.lim) == F) {
                 x.lim <- x.lim
             } else {
