@@ -1,4 +1,3 @@
-## plot WAASBYratio.R
 #' Plot heat maps with genotype ranking
 #'
 #' Plot heat maps with genotype ranking in two ways.
@@ -15,13 +14,15 @@
 #' unstable genotypes; (3) stable, but unproductive genotypes; and (4),
 #' productive and stable genotypes.
 #'
-#' @param x The \code{WAASBYratio object}
+#' @param x The object returned by the function \code{wsmp}. Note that this
+#' object is a list where each element is one variable. Thus, it is necessary
+#' to assess the desired variable using \code{$}; for example, \code{plot(model$GY)}
 #' @param type \code{1 = Heat map Ranks}: this graphic shows the genotype
 #' ranking considering the WAAS estimated with different numbers of Principal
 #' Components; \code{2 = Heat map WAASY-GY ratio}: this graphic shows the
 #' genotype ranking considering the different combinations in the WAAS/GY
 #' ratio.
-#' @param export Export (or not) the plot. Default is \code{TRUE}.
+#' @param export Export (or not) the plot. Default is \code{FALSE}.
 #' @param file.type If \code{export = TRUE} define the type of file to be
 #' exported. Default is \code{pdf}, Graphic can also be exported in
 #' \code{*.tiff} format by declaring \code{file.type = "tiff"}.
@@ -39,18 +40,23 @@
 #' resolution of the plot. Default is "300".
 #' @param ... Other arguments of the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method plot WAASBYratio
+#' @method plot wsmp
 #' @export
-#' @templateVar fun WAASBYratio
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old plot.WAASBYratio
-#' @templateVar new plot.wsmp
-#' @template template-depr_pkg
+#' @examples
 #'
-#' @export
-plot.WAASBYratio <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name = NULL,
+#' \dontrun{
+#' library(metan)
+#' library(dplyr)
+#' model = waas(data_ge2,
+#'              env = ENV,
+#'              gen = GEN,
+#'              rep = REP,
+#'              resp = PH) %>%
+#'          wsmp()
+#'          plot(model$PH)
+#' }
+#'
+plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name = NULL,
     width = 6, height = 5, size.lab = 1, margins = c(5, 4), y.lab = NULL, x.lab = NULL,
     key.lab = "Genotype ranking", resolution = 300, ...) {
     data <- x

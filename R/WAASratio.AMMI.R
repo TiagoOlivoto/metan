@@ -1,3 +1,4 @@
+## WAASratio.AMMI.R
 #' Different scenarios of stability and mean performance
 #'
 #' This function computes the WAASBY index in AMMI analysis in
@@ -51,25 +52,15 @@
 #' \item{WAASY.values}{All the values of WAASY estimated in the different
 #' scenarios of WAAS/GY weighting ratio.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @templateVar fun WAASBYratio
+#' @template template-depr_fun
+NULL
+
+#' @templateVar old WAASratio.AMMI
+#' @templateVar new wsmp
+#' @template template-depr_pkg
+#'
 #' @export
-#' @examples
-#'
-#' \dontrun{
-#' # Default, with increment of 5 and saving the WAASY values when weight is 50
-#' wratio = WAASratio.AMMI(data_ge,
-#'                         resp = GY,
-#'                         gen = GEN,
-#'                         env = ENV,
-#'                         rep = REP)
-#'
-#' # Incrementing 2-by-2
-#' wratio2 = WAASratio.AMMI(data_ge,
-#'                          resp = GY,
-#'                          gen = GEN,
-#'                          env = ENV,
-#'                          rep = REP,
-#'                          increment = 50)
-#' }
 #'
 WAASratio.AMMI <- function(.data, env, gen, rep, resp, mresp = 100, p.valuePC = 0.05, increment = 5,
     saveWAASY = 50, progbar = TRUE) {

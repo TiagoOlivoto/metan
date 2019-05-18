@@ -1,3 +1,4 @@
+## autoplot WAAS.AMMI.R
 #' Several types of residual plots
 #'
 #' Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets
@@ -37,17 +38,15 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method autoplot WAAS.AMMI
 #' @export
-#' @examples
+#' @templateVar fun autoplot.WAAS.AMMI
+#' @template template-depr_fun
+NULL
+
+#' @templateVar old autoplot.WAAS.AMMI
+#' @templateVar new autoplot.waas
+#' @template template-depr_pkg
 #'
-#' library(metan)
-#' library(ggplot2)
-#' model = WAAS.AMMI(data_ge,
-#'                   resp = GY,
-#'                   gen = GEN,
-#'                   env = ENV,
-#'                   rep = REP)
-#' autoplot(model$GY)
-#'
+#' @export
 autoplot.WAAS.AMMI <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
     alpha = 0.2, fill.hist = "gray", col.hist = "black", col.point = "black", col.line = "red",
     col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10, size.shape = 1.5,
