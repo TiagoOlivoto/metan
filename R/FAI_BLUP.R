@@ -27,7 +27,7 @@
 #' library(metan)
 #' library(dplyr)
 #'
-#' mod = WAASB(data_ge,
+#' mod = waasb(data_ge,
 #'             env = ENV,
 #'             gen = GEN,
 #'             rep = REP,
@@ -41,23 +41,21 @@
 #' # Or using the pipe operator %>%
 #'
 #' FAI = data_ge2 %>%
-#'       WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
+#'       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
 #'       FAI_BLUP(DI = c("max", "max", "max", "min"),
 #'                UI = c("min", "min", "min", "max"),
 #'                SI = 15)
 #'
 FAI_BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
-
+  if (!class(.data) == "waasb") {
+    stop("The .data must be an object of class 'waasb'.")
+  }
     if (length(.data) == 1) {
         stop("The multitrait stability index cannot be computed with one single variable.")
     }
     if (length(DI) != length(.data) || length(UI) != length(.data)) {
         stop("The length of DI and UI must be the same length of data.")
     }
-    if (!class(.data) == "WAASB") {
-        stop("The .data must be an object of class 'WAASB'.")
-    }
-
     ideotype.D <- DI
     ideotype.U <- UI
 
