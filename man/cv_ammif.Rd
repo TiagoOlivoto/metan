@@ -4,8 +4,8 @@
 \alias{cv_ammif}
 \title{Cross-validation for estimation of all AMMI-family models}
 \usage{
-cv_ammif(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
-  verbose = TRUE)
+cv_ammif(.data, env, gen, rep, resp, nboot = 50, design = "RCBD",
+  nrepval, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -21,11 +21,11 @@ replications/blocks.}
 
 \item{resp}{The response variable.}
 
+\item{nboot}{The number of resamples to be used in the cross-validation}
+
 \item{design}{The experimental desig to be considered. Default is
 \code{RCBD} (Randomized complete Block Design). For Completely Randomized
 Designs inform \code{design = "CRD"}.}
-
-\item{nboot}{The number of resamples to be used in the cross-validation}
 
 \item{nrepval}{The number of replicates (r) from total number of replicates
 (R) to be used in the modeling dataset. Only one replicate is used as
