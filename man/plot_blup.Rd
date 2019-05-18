@@ -12,7 +12,7 @@ plot_blup(x, prob = 0.05, export = FALSE, file.type = "pdf",
   x.lab = "Predicted Grain Yield", resolution = 300, ...)
 }
 \arguments{
-\item{x}{The \code{WAASB object}}
+\item{x}{The \code{waasb object}}
 
 \item{prob}{The probability error for constructing confidence interval.}
 
@@ -73,7 +73,7 @@ Plot the predicted BLUP of the genotypes.
 \examples{
 
 library(metan)
-BLUP = WAASB(data_ge,
+BLUP = waasb(data_ge,
              resp = c(GY, HM),
              gen = GEN,
              env = ENV,

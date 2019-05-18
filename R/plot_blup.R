@@ -3,7 +3,7 @@
 #' Plot the predicted BLUP of the genotypes.
 #'
 #'
-#' @param x The \code{WAASB object}
+#' @param x The \code{waasb object}
 #' @param prob The probability error for constructing confidence interval.
 #' @param export Export (or not) the plot. Default is \code{TRUE}.
 #' @param file.type If \code{export = TRUE}, define the type of file to be
@@ -45,7 +45,7 @@
 #' @examples
 #'
 #' library(metan)
-#' BLUP = WAASB(data_ge,
+#' BLUP = waasb(data_ge,
 #'              resp = c(GY, HM),
 #'              gen = GEN,
 #'              env = ENV,
@@ -59,7 +59,9 @@ plot_blup <- function(x, prob = 0.05, export = FALSE, file.type = "pdf", file.na
     size.tex.lab = 12, height.err.bar = 0.3, x.lim = NULL, x.breaks = waiver(), col.shape = c("blue",
         "red"), y.lab = "Genotypes", x.lab = "Predicted Grain Yield", resolution = 300,
     ...) {
-
+ if(!class(x) ==  "waasb"){
+     stop("The object 'x' must be of class 'waasb'.")
+ }
     PROB <- ((1 - (1 - prob))/2) + (1 - prob)
     t <- qt(PROB, 100)
     GV <- as.numeric(substr(x$ESTIMATES[2, 2], start = 1, stop = 5))
