@@ -2,10 +2,11 @@
 #' @import stats
 #' @importFrom dplyr  select  everything  mutate  group_by  group_by_if  group_keys
 #'             group_split  left_join  sample_n  anti_join  enquo  pull  summarise_all
-#'             select_if arrange slice contains top_n
+#'             select_if arrange slice contains top_n summarise ungroup rename
+#'             is_grouped_df mutate_at desc
 #' @importFrom grid grobTree textGrob grid.newpage pushViewport viewport grid.layout
 #' @importFrom ggrepel  geom_text_repel
-#' @importFrom magrittr  %>%
+#' @importFrom magrittr  %>% %<>%
 #' @importFrom GGally  ggally_text  eval_data_col  ggpairs
 #' @importFrom ade4  mantel.randtest
 #' @importFrom dendextend  set  rotate_DendSer
@@ -132,5 +133,6 @@ if (getRversion() >= "2.15.1") {
         "sel", "stdres", "type", "y", "z", "Corr", "combn", "cov2cor", "partial",
         "pt", ".", "linear", "my_custom_cor", "my_custom_smooth", "K", "direct", "VAR",
         "eq", "IndAmb", "REP", "gge", "ind", "cophenetic", "remaining", "index", "ge",
-        "FA1", "FA2", "Gen"))
+        "FA1", "FA2", "Gen", "wRes", "wWAASB", "OrResp", "OrPC1", "OrWAASB", "wWAAS",
+        "OrWAAS", ".stdresid", "WAASB", "grp", "Names"))
 }

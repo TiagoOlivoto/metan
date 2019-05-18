@@ -1,29 +1,26 @@
 Package: metan
 Type: Package
 Title: Multi Environment Trials Analysis
-Version: 1.0.3
+Version: 1.1.0
 Authors@R: c(person("Tiago", "Olivoto",
              email = "tiagoolivoto@gmail.com",
              role = c("aut", "cre", "cph"), 
              comment = c(ORCID = "0000-0002-0241-9636")))
-Date: 2019-02-16
+Date: 2019-05-16
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
 Description: This package has useful functions for computing stability analysis using the most widely-know parametric and nonparametric methods. Tools for personalized graphics used in stability analysis are also provided.
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr,
-         dendextend,
-         heatmaply,
+Imports: dendextend,
+         dplyr,
          gplots,
-         ggExtra,
          grid,
          ggplot2,
          ggrepel, 
          lme4,
          lmerTest,
-         gtools,
          magrittr,
          methods,
          GGally,
@@ -37,7 +34,6 @@ Suggests:
     testthat,
     xlsx,
     readxl,
-    rJava,
     ReporteRs,
     cowplot,
     prettydoc,
