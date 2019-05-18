@@ -17,6 +17,9 @@ resca(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100,
 \item{new_min}{The minimum value of the new scale. Default is 0.}
 
 \item{new_max}{The maximum value of the new scale. Default is 100}
+
+\item{keep}{Should all variables be kept after rescaling? If false, only rescaled
+variables will be kept.}
 }
 \description{
 Helper function used in the WAASB package. It rescales a continuous variable
@@ -40,6 +43,8 @@ grouping factor. The second option is pass a numeric vector in the argument
  \code{values}. The output, of course, will be a numeric vector of rescaled values.
 }
 \examples{
+library(metan)
+library(dplyr)
 
 # Rescale a numeric vector
 resca(values = c(1:5))
@@ -49,11 +54,17 @@ head(
  resca(data_ge, GY, HM, new_min = 0, new_max = 1)
 )
 
-head(
- data_ge2 \%>\%
-   group_by(ENV) \%>\%
-   resca(PH, EH, EP, EL, ED, keep = F)
-)
+# Reescale within factors;
+# Select variables that stats with 'N' and ends with 'L';
+# Compute the mean of these variables by ENV and GEN;
+# Rescale the variables that ends with 'L' whithin ENV;
+data_ge2 \%>\%
+  select(ENV, GEN, starts_with("N"), ends_with("L")) \%>\%
+  group_by(ENV, GEN) \%>\%
+  summarise_all(mean) \%>\%
+  group_by(ENV) \%>\%
+  resca(ends_with("L")) \%>\%
+  head(n = 13)
 
 
 }
