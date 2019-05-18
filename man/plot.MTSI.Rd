@@ -28,9 +28,9 @@ after using \code{coord_polar()}.}
 Plot the multitrait stability index using ggplot-generated graphics. .
 }
 \examples{
-
+\dontrun{
 library(metan)
-MTSI_MODEL = WAASB(data_ge,
+MTSI_MODEL = waasb(data_ge,
                    env = ENV,
                    gen = GEN,
                    rep = REP,
@@ -42,10 +42,10 @@ plot(MTSI_index)
 # Alternatively using the pipe operator \%>\%
 library(dplyr)
 MTSI_index2 = data_ge \%>\%
-              WAASB(ENV, GEN, REP, c(GY, HM)) \%>\%
+              waasb(ENV, GEN, REP, c(GY, HM)) \%>\%
               MTSI()
 plot(MTSI_index2)
-
+}
 
 
 }

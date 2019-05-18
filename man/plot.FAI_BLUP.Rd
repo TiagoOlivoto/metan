@@ -8,7 +8,7 @@
   size.point = 2, col.sel = "red", col.nonsel = "black", ...)
 }
 \arguments{
-\item{x}{An object of class \code{WAASB}}
+\item{x}{An object of class \code{waasb}}
 
 \item{ideotype}{The ideotype to be plotted. Default is 1.}
 
@@ -34,14 +34,14 @@ proposed by Rocha et al. (2018).
 
 library(metan)
 library(dplyr)
-multivariate = WAASB(data_ge,
+multivariate = waasb(data_ge,
                      resp = c(GY, HM),
                      gen = GEN,
                      env = ENV,
                      rep = REP)
 
 FAI = data_ge2 \%>\%
-      WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
+      waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
       FAI_BLUP(DI = c("max", "max", "max", "min"),
                UI = c("min", "min", "min", "max"),
                SI = 15)

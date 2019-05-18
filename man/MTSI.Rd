@@ -4,15 +4,15 @@
 \alias{MTSI}
 \title{Multi-trait stability index}
 \usage{
-MTSI(.data, index = "WAASB", SI = 15, mineval = 1, verbose = TRUE)
+MTSI(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE)
 }
 \arguments{
-\item{.data}{An object of class \code{WAASB} or \code{WAAS.AMMI}.}
+\item{.data}{An object of class \code{waasb} or \code{waas}.}
 
-\item{index}{If \code{index = "WAASB"} (Default) the multitrait index will
+\item{index}{If \code{index = "waasb"} (Default) the multitrait index will
 be computed considering the stability of genotypes only. If \code{index =
-"WAASBY"} both stability and mean performance are considered. More details
-can be seen in \code{\link{WAASB}} and \code{\link{WAAS.AMMI}} functions.}
+"waasby"} both stability and mean performance are considered. More details
+can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.}
 
 \item{SI}{An integer [0-100]. The selection intensity in percentage of the
 total number of genotypes.}
@@ -33,7 +33,7 @@ library(metan)
 library(dplyr)
 
 # Based on stability only, for both GY and HM, higher is better
-MTSI_MODEL = WAASB(data_ge,
+MTSI_MODEL = waasb(data_ge,
                    env = ENV,
                    gen = GEN,
                    rep = REP,
@@ -45,8 +45,8 @@ MTSI_index = MTSI(MTSI_MODEL)
 # GY: higher is better
 # HM: lower is better
 MTSI_index2 = data_ge \%>\%
-              WAASB(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) \%>\%
-              MTSI(index = "WAASBY")
+              waasb(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) \%>\%
+              MTSI(index = "waasby")
 
 }
 \author{

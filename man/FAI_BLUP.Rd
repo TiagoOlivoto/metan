@@ -32,7 +32,7 @@ Rocha et al. (2018).
 library(metan)
 library(dplyr)
 
-mod = WAASB(data_ge,
+mod = waasb(data_ge,
             env = ENV,
             gen = GEN,
             rep = REP,
@@ -46,7 +46,7 @@ FAI = FAI_BLUP(mod,
 # Or using the pipe operator \%>\%
 
 FAI = data_ge2 \%>\%
-      WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
+      waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
       FAI_BLUP(DI = c("max", "max", "max", "min"),
                UI = c("min", "min", "min", "max"),
                SI = 15)
