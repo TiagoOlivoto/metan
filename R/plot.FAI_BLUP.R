@@ -4,7 +4,7 @@
 #' proposed by Rocha et al. (2018).
 #'
 #'
-#' @param x An object of class \code{WAASB}
+#' @param x An object of class \code{waasb}
 #' @param ideotype The ideotype to be plotted. Default is 1.
 #' @param SI An integer [0-100]. The selection intensity in percentage of the
 #' total number of genotypes.
@@ -26,14 +26,14 @@
 #'
 #' library(metan)
 #' library(dplyr)
-#' multivariate = WAASB(data_ge,
+#' multivariate = waasb(data_ge,
 #'                      resp = c(GY, HM),
 #'                      gen = GEN,
 #'                      env = ENV,
 #'                      rep = REP)
 #'
 #' FAI = data_ge2 %>%
-#'       WAASB(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
+#'       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
 #'       FAI_BLUP(DI = c("max", "max", "max", "min"),
 #'                UI = c("min", "min", "min", "max"),
 #'                SI = 15)
