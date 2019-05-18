@@ -11,12 +11,12 @@ plot_eigen(x, export = FALSE, theme = theme_waasb(),
   x.lab = "Number of multiplicative terms", resolution = 300, ...)
 }
 \arguments{
-\item{x}{The \code{WAASB object}}
+\item{x}{The \code{waasb object}}
 
 \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
 
 \item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
 applied using the arguments: `theme = theme_waasb() + theme(some stuff
 here)`. For more details, please, see `?ggplot2::theme`}
 
@@ -58,7 +58,7 @@ interaction effects matrix.
 \examples{
 
 library(metan)
-BLUP = WAASB(data_ge,
+BLUP = waasb(data_ge,
              resp = c(GY, HM),
              gen = GEN,
              env = ENV,

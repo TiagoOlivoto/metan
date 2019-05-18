@@ -4,10 +4,10 @@
 #' interaction effects matrix.
 #'
 #'
-#' @param x The \code{WAASB object}
+#' @param x The \code{waasb object}
 #' @param export Export (or not) the plot. Default is \code{TRUE}.
 #' @param theme The graphical theme of the plot. Default is `theme =
-#' theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+#' theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
 #' applied using the arguments: `theme = theme_waasb() + theme(some stuff
 #' here)`. For more details, please, see `?ggplot2::theme`
 #' @param file.type If \code{export = TRUE}, define the type of file to be
@@ -35,7 +35,7 @@
 #' @examples
 #'
 #' library(metan)
-#' BLUP = WAASB(data_ge,
+#' BLUP = waasb(data_ge,
 #'              resp = c(GY, HM),
 #'              gen = GEN,
 #'              env = ENV,
@@ -49,8 +49,8 @@ plot_eigen <- function(x, export = FALSE, theme = theme_waasb(), file.type = "pd
     y.lab = "Eigenvalue", y2.lab = "Accumulated variance", x.lab = "Number of multiplicative terms",
     resolution = 300, ...) {
     class <- class(x)
-    if (class != "WAASB") {
-        stop("The object 'x' must be a 'WAASB' object.")
+    if(!class(x) ==  "waasb"){
+        stop("The object 'x' must be of class 'waasb'.")
     }
     eigen <- x$PCA
     eigen$PC <- factor(eigen$PC, levels = eigen$PC)
