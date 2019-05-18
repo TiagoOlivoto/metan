@@ -2,20 +2,23 @@
 % Please edit documentation in R/performs_ammi.R
 \name{performs_ammi}
 \alias{performs_ammi}
-\title{Performs Additive Main effects and Multiplicative Interaction}
+\title{Additive Main effects and Multiplicative Interaction}
 \usage{
-performs_ammi(ENV, GEN, REP, Y)
+performs_ammi(.data, env, gen, rep, resp)
 }
 \arguments{
-\item{ENV}{The name of the collum that contains the levels of the
+\item{.data}{The dataset containing the columns related to Environments,
+Genotypes, replication/block and response variable(s).}
+
+\item{env}{The name of the collum that contains the levels of the
 environments}
 
-\item{GEN}{The name of the collum that contains the levels of the genotypes}
+\item{gen}{The name of the collum that contains the levels of the genotypes}
 
-\item{REP}{The name of the collum that contains the levels of the
+\item{rep}{The name of the collum that contains the levels of the
 replications/blocks}
 
-\item{Y}{The response variable}
+\item{resp}{The response variable}
 }
 \value{
 \item{ANOVA}{The analysis of variance for the AMMI model.}
@@ -30,12 +33,12 @@ axes.}
 \description{
 Compute the Additive Main effects and Multiplicative interaction. This is a
 helper function for other procedures performed in the WAASB package such as
-\code{\link{WAAS.AMMI}}, \code{\link{cv_ammi}}, and \code{\link{cv_ammif}}.
+\code{\link{waas}}, \code{\link{cv_ammi}}, and \code{\link{cv_ammif}}.
 }
 \examples{
 
 library(metan)
-ammi_model = with(data_ge, performs_ammi(ENV, GEN, REP, GY))
+ammi_model = performs_ammi(data_ge, ENV, GEN, REP, GY)
 
 
 }
