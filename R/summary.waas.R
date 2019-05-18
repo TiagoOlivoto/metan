@@ -1,39 +1,39 @@
-## WAAS.AMMI.R
-#' Summary a WAAS.AMMI object
+#' Summarise a waas object
 #'
-#' Summary the \code{WAAS.AMMI} object in two ways. By default, the results are
+#' Summary the \code{waas} object in two ways. By default, the results are
 #' shown in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param object The \code{WAAS.AMMI} object
-#' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
+#' @param object The \code{waas} object
+#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
 #' to the working directory
 #' @param file.name The name of the file if \code{export = TRUE}
 #' @param digits The significant digits to be shown.
 #' @param ... Other arguments of the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method summary WAAS.AMMI
+#' @method summary waas
 #' @export
-#' @templateVar fun WAAS.AMMI
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old summary.WAAS.AMMI
-#' @templateVar new summary.waas
-#' @template template-depr_pkg
+#' @examples
 #'
-#' @export
-summary.WAAS.AMMI <- function(object, export = FALSE, file.name = NULL, digits = 4,
+#' library(metan)
+#' model = waas(data_ge,
+#'              resp = c(GY, HM),
+#'              gen = GEN,
+#'              env = ENV,
+#'              rep = REP)
+#' summary(model)
+#'
+summary.waas <- function(object, export = FALSE, file.name = NULL, digits = 4,
     ...) {
 
     class <- class(object)
-    if (!class == "WAAS.AMMI") {
-        stop("The object must be of class 'WAAS.AMMI'")
+    if (!class == "waas") {
+        stop("The object must be of class 'waas'")
     }
 
     if (export == TRUE) {
         if (is.null(file.name) == T) {
-            file.name <- "WAAS.AMMI Summary"
+            file.name <- "waas summary"
         } else {
             file.name <- file.name
         }

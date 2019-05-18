@@ -9,7 +9,7 @@
 #' \code{type = "re"}
 #'
 #'
-#' @param x An object of class \code{WAAS.AMMI} or \code{WAASB}.
+#' @param x An object of class \code{waasb}.
 #' @param type If \code{type = "re"}, normal Q-Q plots for the random effects
 #' are obtained.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
@@ -39,13 +39,13 @@
 #' of columns. Default is \code{mfrow = c(2, 2)}.
 #' @param ... Additional parameter for the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method autoplot WAASB
+#' @method autoplot waasb
 #' @export
 #' @examples
 #'
 #' library(metan)
 #' library(ggplot2)
-#' model2 = WAASB(data_ge,
+#' model2 = waasb(data_ge,
 #'                resp = GY,
 #'                gen = GEN,
 #'                env = ENV,
@@ -53,7 +53,7 @@
 #' autoplot(model2$GY)
 #'
 #'
-autoplot.WAASB <- function(x, type = "res", conf = 0.95, out = "print", labels = FALSE,
+autoplot.waasb <- function(x, type = "res", conf = 0.95, out = "print", labels = FALSE,
     theme = theme_waasb(), alpha = 0.2, fill.hist = "gray", col.hist = "black", col.point = "black",
     col.line = "red", col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
     size.shape = 1.5, bins = 30, which = c(1:4), mfrow = c(2, 2), ...) {

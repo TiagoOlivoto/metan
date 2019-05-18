@@ -1,3 +1,4 @@
+## WAASBYratio.R
 #' Different scenarios of stability and mean performance
 #'
 #' This function computes the WAASBY index in mixed-effec model analysis in
@@ -39,47 +40,15 @@
 #' not valid, an error will be occour.
 #' @param progbar A logical argument to define if a progress bar is shown.
 #' Default is \code{TRUE}.
-#' @return \item{anova}{Joint analysis of variance for the main effects and
-#' Principal Component analysis of the interaction effect.}
+#' @templateVar fun WAASBYratio
+#' @template template-depr_fun
+NULL
+
+#' @templateVar old WAASBYratio
+#' @templateVar new wsmp
+#' @template template-depr_pkg
 #'
-#' \item{PC}{Principal Component Analysis.}
-#'
-#' \item{MeansGxE}{The means of genotypes in the environments, with observed,
-#' predicted and residual values.}
-#'
-#' \item{WAAS}{A data frame with the response variable, the scores of all
-#' Principal Components, the estimates of Weighted Average of Absolute Scores,
-#' and WAASY (the index that consider the weights for stability and
-#' productivity in the genotype ranking.}
-#'
-#' \item{WAASY}{The values of the WAASY estimated when the wheight for the
-#' stability in the loop match with argument "saveWAASY".}
-#'
-#' \item{WAASY.values}{All the values of WAASY estimated in the different
-#' scenarios of WAAS/GY weighting ratio.}
-#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
-#' @examples
-#'
-#' \dontrun{
-#' library(metan)
-#'
-#' # Default, with increment of 5 and saving the WAASY values when weight is 50
-#' wratio = WAASBYratio(data_ge,
-#'                      resp = GY,
-#'                      gen = GEN,
-#'                      env = ENV,
-#'                      rep = REP)
-#'
-#' # Incrementing 2-by-2
-#' wratio2 = WAASBYratio(data_ge,
-#'                       resp = GY,
-#'                       gen = GEN,
-#'                       env = ENV,
-#'                       rep = REP,
-#'                       increment = 50)
-#' }
-#'
 WAASBYratio <- function(.data, env, gen, rep, resp,  mresp = 100,
                          increment = 10, saveWAASY = 50, progbar = TRUE) {
   PesoWAAS <- 100

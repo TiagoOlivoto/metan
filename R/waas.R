@@ -1,6 +1,22 @@
-## WAAS.AMMI.R
-#' @title Weighted Average of Absolute Scores
-#' @description Weighted Average of Absolute Scores
+#' Weighted Average of Absolute Scores
+#'
+#' Compute the Weighted Average of Absolute Scores for AMMI analysis.
+#'
+#' This function compute the weighted average of absolute scores, estimated as
+#' follows:
+#'
+#' \deqn{ WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
+#' 1}^{p}EP_k}
+#'
+#' where \eqn{WAAS_i} is the weighted average of absolute scores of the
+#' \emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype
+#' in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the
+#' *k*th IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of
+#' significant PCAs, or a declared number of PCAs. For example if \code{prob =
+#' 0.05}, all axis that are significant considering this probability level are
+#' used. The number of axis can be also informed by declaring \code{naxis = x}.
+#' This comand ignores the \code{prob} argument.
+#'
 #' @param .data The dataset containing the columns related to Environments,
 #' Genotypes, replication/block and response variable(s).
 #' @param env The name of the column that contains the levels of the
@@ -18,7 +34,7 @@
 #' @param wresp The weight for the response variable(s) for computing the
 #' WAASBY index. Must be a numeric vector of the same length of \code{resp}.
 #' Defatul is 50, i.e., equal weights for stability and mean performance.
-#' @param prob The p-value for considering a IPCA significant.
+#' @param prob The p-value for considering an interaction principal component axis significant.
 #' @param naxis The number of IPCAs to be used for computing the WAAS index.
 #' Default is \code{NULL} (Significant IPCAs are used). If values are informed,
 #' the number of IPCAS will be used independently on its significance. Note
@@ -26,19 +42,77 @@
 #' must be a vector.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
 #' silently.
-#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @templateVar fun WAAS.AMMI
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old WAAS.AMMI
-#' @templateVar new waas
-#' @template template-depr_pkg
+#' @return
 #'
+#' \item{individual}{A within-environments ANOVA considering a fixed-effect
+#' model.}
+#'
+#' \item{model}{A data frame with the response variable, the scores of all
+#' Principal Components, the estimates of Weighted Average of Absolute Scores,
+#' and WAASY (the index that consider the weights for stability and
+#' productivity in the genotype ranking.}
+#'
+#' \item{MeansGxE}{The means of genotypes in the environments, with observed,
+#' predicted and residual values.}
+#'
+#' \item{PCA}{Principal Component Analysis.}
+#'
+#' \item{anova}{Joint analysis of variance for the main effects and Principal
+#' Component analysis of the interaction effect.}
+#'
+#' \item{Details}{A list summarizing the results. The following information are
+#' showed. \code{WgtResponse}, the weight for the response variable in
+#' estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the
+#' number of genotypes, \code{Nenv} the number of environments, \code{OVmean}
+#' the overall mean, \code{Min} the minimum observed (returning the genotype
+#' and environment), \code{Max} the maximum observed, \code{Max} the maximum
+#' observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
+#' the environment with the larger mean observed, \code{MinGEN} the genotype
+#' with the lower mean, \code{MaxGEN} the genotype with the larger.}
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @seealso \code{\link{waas}}
 #' @export
-WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
+#' @examples
+#'
+#' library(metan)
+#'
+#' # Considering p-value <= 0.05 to compute the WAAS
+#'
+#' model <- waas(data_ge,
+#'                   env = ENV,
+#'                   gen = GEN,
+#'                   rep = REP,
+#'                   resp = GY)
+#'
+#'
+#' # Declaring the number of axis to be used for computing WAAS
+#' # and assigning a larger weight for the response variable when
+#' # computing the WAASBY index.
+#'
+#' model2 <- waas(data_ge,
+#'                     env = ENV,
+#'                     gen = GEN,
+#'                     rep = REP,
+#'                     resp = GY,
+#'                     naxis = 3,
+#'                     wresp = 60)
+#'
+#' # Analyzing multiple variables (GY and HM) at the same time
+#' # considering that smaller values of HM are better and higher
+#' # values of GY are better, assigning a larger weight for the GY
+#' # and a smaller weight for HM when computing WAASBY index.
+#'
+#' model3 <- waas(data_ge,
+#'                   env = ENV,
+#'                   gen = GEN,
+#'                   rep = REP,
+#'                   resp = c(GY, HM),
+#'                   mresp = c(100, 0),
+#'                   wresp = c(60, 40))
+#'
+#'
+waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
     naxis = NULL, verbose = TRUE) {
-    .Deprecated("waas")
     d <- match.call()
     nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
     if (!is.null(naxis)) {
@@ -100,12 +174,11 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
             cat("\nThe number of environments and number of genotypes must be greater than 2\n")
         }
         individual <- data %>% anova_ind(ENV, GEN, REP, Y)
-        model <- performs_ammi(ENV, GEN, REP, Y)
+        model <- performs_ammi(data, ENV, GEN, REP, Y)
         anova <- model$ANOVA
         PC <- model$analysis
         MeansGxE <- model$means[, 1:3]
-        Escores <-  suppressWarnings(dplyr::add_rownames(model$biplot, "Code")) %>%
-                    dplyr::select(type, everything())
+        Escores <- model$biplot
         EscGEN <- subset(Escores, type == "GEN")
         names(EscGEN)[2] <- "GEN"
         names(EscGEN)[3] <- "y"
@@ -184,7 +257,7 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
 
     temp <- structure(list(individual = individual[[1]], model = WAASAbs, MeansGxE = MeansGxE,
                            PCA = PC, anova = anova, Details = Details, residuals = model$residuals,
-                           probint = model$probint), class = "WAAS.AMMI")
+                           probint = model$probint), class = "waas")
 
             if (length(d$resp) > 1) {
                 listres[[paste(d$resp[var])]] <- temp
@@ -210,7 +283,7 @@ WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, pr
         }
         cat("Done!\n")
     }
-    invisible(structure(listres, class = "WAAS.AMMI"))
+    invisible(structure(listres, class = "waas"))
 
 }
 

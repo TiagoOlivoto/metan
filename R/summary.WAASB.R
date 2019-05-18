@@ -1,10 +1,10 @@
-#' Summary a WAASB object
+#' Summary a waasb object
 #'
-#' Summary the \code{WAASB} object in two ways. By default, the results are
+#' Summary the \code{waasb} object in two ways. By default, the results are
 #' shown in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param object The \code{WAASB} object
+#' @param object The \code{waasb} object
 #' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
 #' to the working directory
 #' @param blup A logical argument. If \code{TRUE|T}, the blups are shown.
@@ -12,29 +12,29 @@
 #' @param digits The significant digits to be shown.
 #' @param ... Other arguments of the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method summary WAASB
+#' @method summary waasb
 #' @export
 #' @examples
 #'
 #' library(metan)
-#' model = WAASB(data_ge,
+#' model = waasb(data_ge,
 #'               resp = c(GY, HM),
 #'               gen = GEN,
 #'               env = ENV,
 #'               rep = REP)
 #' summary(model)
 #'
-summary.WAASB <- function(object, export = FALSE, blup = FALSE, file.name = NULL,
+summary.waasb <- function(object, export = FALSE, blup = FALSE, file.name = NULL,
     digits = 4, ...) {
 
     class <- class(object)
-    if (!class == "WAASB") {
-        stop("The object must be of class 'WAASB'")
+    if (!class == "waasb") {
+        stop("The object must be of class 'waasb'")
     }
 
     if (export == TRUE) {
         if (is.null(file.name) == T) {
-            file.name <- "WAASB summary"
+            file.name <- "waasb summary"
         } else {
             file.name <- file.name
         }

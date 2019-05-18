@@ -1,3 +1,4 @@
+## WAAS.AMMI.R
 #' Predict the means of a WAAS.AMMI object
 #'
 #' Predict the means of a WAAS.AMMI object considering a specific number of
@@ -28,18 +29,15 @@
 #' @param ... Additional parameter for the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method predict WAAS.AMMI
+#' @templateVar fun WAAS.AMMI
+#' @template template-depr_fun
+NULL
+
+#' @templateVar old predict.WAAS.AMMI
+#' @templateVar new predict.waas
+#' @template template-depr_pkg
+#'
 #' @export
-#' @examples
-#'
-#' library(metan)
-#' model = WAAS.AMMI(data_ge,
-#'                   env = ENV,
-#'                   gen = GEN,
-#'                   rep = REP,
-#'                   resp = c(GY, HM))
-#' # Predict GY with 3 IPCA and HM with 1 IPCA
-#' predict = predict(model, naxis = c(3, 1))
-#'
 predict.WAAS.AMMI <- function(object, naxis, ...) {
     cal <- match.call()
     if (class(object) != "WAAS.AMMI") {
