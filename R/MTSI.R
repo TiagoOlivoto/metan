@@ -4,11 +4,11 @@
 #' AMMI or BLUP methods.
 #'
 #'
-#' @param .data An object of class \code{WAASB} or \code{WAAS.AMMI}.
-#' @param index If \code{index = "WAASB"} (Default) the multitrait index will
+#' @param .data An object of class \code{waasb} or \code{waas}.
+#' @param index If \code{index = "waasb"} (Default) the multitrait index will
 #' be computed considering the stability of genotypes only. If \code{index =
-#' "WAASBY"} both stability and mean performance are considered. More details
-#' can be seen in \code{\link{WAASB}} and \code{\link{WAAS.AMMI}} functions.
+#' "waasby"} both stability and mean performance are considered. More details
+#' can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.
 #' @param SI An integer [0-100]. The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
@@ -23,7 +23,7 @@
 #' library(dplyr)
 #'
 #' # Based on stability only, for both GY and HM, higher is better
-#' MTSI_MODEL = WAASB(data_ge,
+#' MTSI_MODEL = waasb(data_ge,
 #'                    env = ENV,
 #'                    gen = GEN,
 #'                    rep = REP,
@@ -35,24 +35,24 @@
 #' # GY: higher is better
 #' # HM: lower is better
 #' MTSI_index2 = data_ge %>%
-#'               WAASB(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) %>%
-#'               MTSI(index = "WAASBY")
+#'               waasb(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) %>%
+#'               MTSI(index = "waasby")
 #'
-MTSI <- function(.data, index = "WAASB", SI = 15, mineval = 1, verbose = TRUE) {
+MTSI <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
     if (length(.data) == 1) {
         stop("The multitrait stability index cannot be computed with one single variable.")
     }
-    if (index == "WAASBY") {
+    if (index == "waasby") {
         ideotype.D <- rep(100, length(.data))
     }
 
-    if (class(.data) == "WAAS.AMMI") {
-        if (index == "WAASB") {
+    if (class(.data) == "waas") {
+        if (index == "waasb") {
             bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
                 val <- x[["model"]][["WAAS"]]
             })))
         }
-        if (index == "WAASBY") {
+        if (index == "waasby") {
             bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
                 val <- x[["model"]][["WAASY"]]
             })))
@@ -64,13 +64,13 @@ MTSI <- function(.data, index = "WAASB", SI = 15, mineval = 1, verbose = TRUE) {
     }
 
 
-    if (class(.data) == "WAASB") {
-        if (index == "WAASB") {
+    if (class(.data) == "waasb") {
+        if (index == "waasb") {
             bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
                 val <- x[["model"]][["WAASB"]]
             })))
         }
-        if (index == "WAASBY") {
+        if (index == "waasby") {
             bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
                 val <- x[["model"]][["WAASBY"]]
             })))
@@ -147,7 +147,7 @@ MTSI <- function(.data, index = "WAASB", SI = 15, mineval = 1, verbose = TRUE) {
     })
     names(var.factor) <- paste("FA", 1:ncol(A), sep = "")
     names.pos.var.factor <- rownames(pos.var.factor)
-    if (index == "WAASB") {
+    if (index == "waasb") {
         ideotype.D <- apply(means, 2, min)
     } else {
         names(ideotype.D) <- colnames(means)
