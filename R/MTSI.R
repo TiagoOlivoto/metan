@@ -1,7 +1,6 @@
 #' Multi-trait stability index
 #'
-#' Multi-trait stability index in analysis of multi-environment trials using
-#' AMMI or BLUP methods.
+#' Multi-trait stability index in analysis of multi-environment trials
 #'
 #'
 #' @param .data An object of class \code{waasb} or \code{waas}.
@@ -23,22 +22,22 @@
 #' library(dplyr)
 #'
 #' # Based on stability only, for both GY and HM, higher is better
-#' MTSI_MODEL = waasb(data_ge,
+#' mtsi_model = waasb(data_ge,
 #'                    env = ENV,
 #'                    gen = GEN,
 #'                    rep = REP,
 #'                    resp = c(GY, HM))
-#' MTSI_index = MTSI(MTSI_MODEL)
+#' mtsi_index = mtsi(mtsi_model)
 #'
 #'
 #' # Based on mean performance and stability (using pipe operator %>%)
 #' # GY: higher is better
 #' # HM: lower is better
-#' MTSI_index2 = data_ge %>%
+#' mtsi_index2 = data_ge %>%
 #'               waasb(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) %>%
-#'               MTSI(index = "waasby")
+#'               mtsi(index = "waasby")
 #'
-MTSI <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
+mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
     if (length(.data) == 1) {
         stop("The multitrait stability index cannot be computed with one single variable.")
     }
@@ -206,5 +205,5 @@ MTSI <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
         initial.loadings = initial.loadings, finish.loadings = A, canonical.loadings = canonical.loadings,
         scores.gen = scores, scores.ide = ideotypes.scores, MTSI = MTSI, contri.fac = data.frame(contr.factor),
         selection.diferential = selection.diferential, selec.dif.mean = sd_mean, Selected = names(MTSI)[1:ngs]),
-        class = "MTSI"))
+        class = "mtsi"))
 }

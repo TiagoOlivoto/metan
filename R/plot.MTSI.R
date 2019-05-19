@@ -3,7 +3,7 @@
 #' Plot the multitrait stability index using ggplot-generated graphics. .
 #'
 #'
-#' @param x An object of class \code{MTSI}
+#' @param x An object of class \code{mtsi}
 #' @param SI An integer [0-100]. The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param radar Logical argument. If true (default) a radar plot is generated
@@ -13,34 +13,34 @@
 #' @param col.nonsel The colour for nonselected genotypes.
 #' @param ... Other arguments of the function.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method plot MTSI
+#' @method plot mtsi
 #' @export
 #' @examples
 #' \dontrun{
 #' library(metan)
-#' MTSI_MODEL = waasb(data_ge,
+#' mtsi_model = waasb(data_ge,
 #'                    env = ENV,
 #'                    gen = GEN,
 #'                    rep = REP,
 #'                    resp = c(GY, HM))
 #'
-#' MTSI_index = MTSI(MTSI_MODEL)
-#' plot(MTSI_index)
+#' mtsi_index = mtsi(mtsi_model)
+#' plot(mtsi_index)
 #'
 #' # Alternatively using the pipe operator %>%
 #' library(dplyr)
-#' MTSI_index2 = data_ge %>%
+#' mtsi_index2 = data_ge %>%
 #'               waasb(ENV, GEN, REP, c(GY, HM)) %>%
-#'               MTSI()
-#' plot(MTSI_index2)
+#'               mtsi()
+#' plot(mtsi_index2)
 #'}
 #'
 #'
-plot.MTSI <- function(x, SI = 15, radar = TRUE, size.point = 2, col.sel = "red", col.nonsel = "black",
+plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2, col.sel = "red", col.nonsel = "black",
     ...) {
 
-    if (!class(x) == "MTSI") {
-        stop("The object 'x' is not of class 'MTSI'")
+    if (!class(x) == "mtsi") {
+        stop("The object 'x' is not of class 'mtsi'")
     }
     data <- data.frame(MTSI = x$MTSI, Genotype = names(x$MTSI))
     ngsel <- round(nrow(data) * (SI/100), 0)
