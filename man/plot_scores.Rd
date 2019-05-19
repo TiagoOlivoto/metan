@@ -10,11 +10,12 @@ plot_scores(x, type = 1, polygon = FALSE, file.type = "pdf",
   x.breaks = waiver(), x.lab = NULL, y.lab = NULL, y.lim = NULL,
   y.breaks = waiver(), shape.gen = 21, shape.env = 23,
   size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
-  size.tex.pa = 3.5, size.line = 0.5, size.segm.line = 0.5,
-  leg.lab = c("Gen", "Env"), line.type = "solid", line.alpha = 0.9,
-  col.line = "gray", col.gen = "blue", col.env = "darkgreen",
-  col.alpha = 0.9, col.segm.gen = "transparent",
-  col.segm.env = "darkgreen", resolution = 300, ...)
+  size.tex.pa = 3.5, repulsion = 1, size.line = 0.5,
+  size.segm.line = 0.5, leg.lab = c("Gen", "Env"),
+  line.type = "solid", line.alpha = 0.9, col.line = "gray",
+  col.gen = "blue", col.env = "darkgreen", col.alpha = 0.9,
+  col.segm.gen = "transparent", col.segm.env = "darkgreen",
+  resolution = 300, ...)
 }
 \arguments{
 \item{x}{The object \code{WAASB} or \code{WAAS.AMMI}}
@@ -88,6 +89,8 @@ Default is \code{12}.}
 
 \item{size.tex.pa}{The size of the text of the plot area. Default is
 \code{3.5}.}
+
+\item{repulsion}{Force of repulsion between overlapping text labels. Defaults to 1.}
 
 \item{size.line}{The size of the line that indicate the means in the biplot.
 Default is \code{0.5}.}

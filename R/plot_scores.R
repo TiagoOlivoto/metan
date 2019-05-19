@@ -66,6 +66,7 @@
 #' Default is \code{12}.
 #' @param size.tex.pa The size of the text of the plot area. Default is
 #' \code{3.5}.
+#' @param repulsion Force of repulsion between overlapping text labels. Defaults to 1.
 #' @param size.line The size of the line that indicate the means in the biplot.
 #' Default is \code{0.5}.
 #' @param size.segm.line The size of the segment that start in the origin of
@@ -135,7 +136,7 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
     file.name = NULL, theme = theme_waasb(), axis.expand = 1.1, width = 8, height = 7,
     x.lim = NULL, x.breaks = waiver(), x.lab = NULL, y.lab = NULL, y.lim = NULL, y.breaks = waiver(),
     shape.gen = 21, shape.env = 23, size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
-    size.tex.pa = 3.5, size.line = 0.5, size.segm.line = 0.5, leg.lab = c("Gen", "Env"),
+    size.tex.pa = 3.5, repulsion = 1, size.line = 0.5, size.segm.line = 0.5, leg.lab = c("Gen", "Env"),
     line.type = "solid", line.alpha = 0.9, col.line = "gray", col.gen = "blue", col.env = "darkgreen",
     col.alpha = 0.9, col.segm.gen = "transparent", col.segm.env = "darkgreen", resolution = 300,
     ...) {
@@ -182,7 +183,7 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
             alpha = col.alpha) + scale_shape_manual(labels = leg.lab, values = c(shape.gen,
             shape.env)) + scale_fill_manual(labels = leg.lab, values = c(col.gen,
             col.env)) + ggrepel::geom_text_repel(aes(PC1, PC2, label = (Code)), size = size.tex.pa,
-            col = c(rep(col.gen, ngen), rep(col.env, nenv))) + theme %+replace% theme(aspect.ratio = 1,
+            col = c(rep(col.gen, ngen), rep(col.env, nenv)), force = repulsion) + theme %+replace% theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"), axis.title = element_text(size = size.tex.lab,
                 colour = "black"), legend.text = element_text(size = size.tex.leg),
             plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
@@ -295,7 +296,7 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
             alpha = col.alpha) + scale_shape_manual(labels = leg.lab, values = c(shape.gen,
             shape.env)) + scale_fill_manual(labels = leg.lab, values = c(col.gen,
             col.env)) + ggrepel::geom_text_repel(aes(Y, PC1, label = (Code)), size = size.tex.pa,
-            col = c(rep(col.gen, ngen), rep(col.env, nenv))) + theme %+replace% theme(aspect.ratio = 1,
+            col = c(rep(col.gen, ngen), rep(col.env, nenv)), force = repulsion) + theme %+replace% theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"), axis.title = element_text(size = size.tex.lab,
                 colour = "black"), legend.text = element_text(size = size.tex.leg),
             plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
@@ -368,7 +369,7 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
                   alpha = col.alpha) + scale_shape_manual(labels = leg.lab, values = c(shape.gen,
                 shape.env)) + scale_fill_manual(labels = leg.lab, values = c(col.gen,
                 col.env)) + ggrepel::geom_text_repel(aes(Y, WAASB, label = (Code)),
-                size = size.tex.pa, col = c(rep(col.gen, ngen), rep(col.env, nenv))) +
+                size = size.tex.pa, col = c(rep(col.gen, ngen), rep(col.env, nenv)), force = repulsion) +
                 theme %+replace% theme(aspect.ratio = 1, axis.text = element_text(size = size.tex.lab,
                   colour = "black"), axis.title = element_text(size = size.tex.lab,
                   colour = "black"), legend.text = element_text(size = size.tex.leg),
@@ -408,7 +409,7 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
                   alpha = col.alpha) + scale_shape_manual(labels = leg.lab, values = c(shape.gen,
                 shape.env)) + scale_fill_manual(labels = leg.lab, values = c(col.gen,
                 col.env)) + ggrepel::geom_text_repel(aes(Y, WAAS, label = (Code)),
-                size = size.tex.pa, col = c(rep(col.gen, ngen), rep(col.env, nenv))) +
+                size = size.tex.pa, col = c(rep(col.gen, ngen), rep(col.env, nenv)), force = repulsion) +
                 theme %+replace% theme(aspect.ratio = 1, axis.text = element_text(size = size.tex.lab,
                   colour = "black"), axis.title = element_text(size = size.tex.lab,
                   colour = "black"), legend.text = element_text(size = size.tex.leg),
@@ -453,26 +454,29 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
         if (is.null(x.lim) == F) {
             x.lim <- x.lim
         } else {
-            x.lim <- c(min(x$MeansGxE$envPC1), max(x$MeansGxE$envPC1))
+            x.lim <- c(min(data$envPC1), max(data$envPC1))
         }
 
         if (is.null(y.lim) == F) {
             y.lim <- y.lim
         } else {
-            y.lim <- c(min(x$MeansGxE$nominal), max(x$MeansGxE$nominal))
+            y.lim <- c(min(data$nominal), max(data$nominal))
 
         }
 
-        min <- min(x$MeansGxE$nominal)
 
-        p4 <- ggplot2::ggplot(x$MeansGxE, aes(x = envPC1, y = nominal, group = GEN)) +
-            geom_line(size = size.line, aes(colour = GEN), data = subset(x$MeansGxE,
-                envPC1 %in% c(max(envPC1), min(envPC1)))) + geom_point(aes(x = envPC1,
-            y = min), data = filter(x$MeansGxE, GEN == x$MeansGxE[1, 2])) + ggrepel::geom_label_repel(data = subset(x$MeansGxE,
+        data <- x$MeansGxE %>% as.data.frame()
+        min <- min(data$nominal)
+        p4 <- ggplot2::ggplot(data, aes(x = envPC1, y = nominal, group = GEN)) +
+            geom_line(size = size.line, aes(colour = GEN), data = subset(data,
+                envPC1 %in% c(max(envPC1), min(envPC1)))) +
+            geom_point(aes(x = envPC1,  y = min), data = subset(data, GEN == data[1, 2])) +
+            ggrepel::geom_label_repel(data = subset(data,
             envPC1 == min(envPC1)), aes(label = GEN, fill = GEN), size = size.tex.pa,
-            color = "white", force = 5, segment.color = "#bbbbbb") + ggrepel::geom_text_repel(aes(x = envPC1,
-            y = min, label = ENV), size = size.tex.pa, force = 5, data = subset(x$MeansGxE,
-            GEN == x$MeansGxE[1, 2])) + theme %+replace% theme(legend.position = "none",
+            color = "white", force = repulsion, segment.color = "#bbbbbb") +
+            ggrepel::geom_text_repel(aes(x = envPC1,
+            y = min, label = ENV), size = size.tex.pa, force = repulsion, data = subset(data,
+            GEN == data[1, 2])) + theme %+replace% theme(legend.position = "none",
             axis.text = element_text(size = size.tex.lab, colour = "black"), axis.title = element_text(size = size.tex.lab,
                 colour = "black"), plot.title = element_text(size = size.tex.lab,
                 hjust = 0, vjust = 1)) + scale_x_continuous(limits = x.lim, breaks = x.breaks) +
