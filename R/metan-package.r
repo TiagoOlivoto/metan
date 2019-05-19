@@ -14,6 +14,7 @@
 #' correctely the functions provide by \pkg{metan}. A complete guide may be
 #' found at \href{https://tiagoolivoto.github.io/metan/}
 #' }
+#' }
 #' @name metan-package
 #' @docType package
 NULL
