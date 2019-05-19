@@ -96,10 +96,10 @@ library(metan)
 # Considering p-value <= 0.05 to compute the WAAS
 
 model <- waas(data_ge,
-                  env = ENV,
-                  gen = GEN,
-                  rep = REP,
-                  resp = GY)
+              env = ENV,
+              gen = GEN,
+              rep = REP,
+              resp = GY)
 
 
 # Declaring the number of axis to be used for computing WAAS
@@ -107,12 +107,12 @@ model <- waas(data_ge,
 # computing the WAASBY index.
 
 model2 <- waas(data_ge,
-                    env = ENV,
-                    gen = GEN,
-                    rep = REP,
-                    resp = GY,
-                    naxis = 3,
-                    wresp = 60)
+               env = ENV,
+               gen = GEN,
+               rep = REP,
+               resp = GY,
+               naxis = 3,
+               wresp = 60)
 
 # Analyzing multiple variables (GY and HM) at the same time
 # considering that smaller values of HM are better and higher
@@ -120,12 +120,12 @@ model2 <- waas(data_ge,
 # and a smaller weight for HM when computing WAASBY index.
 
 model3 <- waas(data_ge,
-                  env = ENV,
-                  gen = GEN,
-                  rep = REP,
-                  resp = c(GY, HM),
-                  mresp = c(100, 0),
-                  wresp = c(60, 40))
+               env = ENV,
+               gen = GEN,
+               rep = REP,
+               resp = c(GY, HM),
+               mresp = c(100, 0),
+               wresp = c(60, 40))
 
 
 }
