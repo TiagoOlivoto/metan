@@ -221,7 +221,8 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                            OrWAAS = rank(WAAS),
                            OrPC1 = rank(abs(PC1)),
                            WAASY = ((PctResp * PesRes) + (PctWAAS * PesWAAS))/(PesRes + PesWAAS),
-                           OrWAASY = rank(-WAASY))
+                           OrWAASY = rank(-WAASY)) %>%
+                    ungroup()
             } else {
                 WAASAbs %<>%
                     group_by(type) %>%
@@ -233,7 +234,8 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                            OrWAAS = rank(WAAS),
                            OrPC1 = rank(abs(PC1)),
                            WAASY = ((PctResp * PesRes) + (PctWAAS * PesWAAS))/(PesRes + PesWAAS),
-                           OrWAASY = rank(-WAASY))
+                           OrWAASY = rank(-WAASY)) %>%
+                    ungroup()
             }
     min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
     max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1)

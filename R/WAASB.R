@@ -280,7 +280,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                            OrWAASB = rank(WAASB),
                            OrPC1 = rank(abs(PC1)),
                            WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
-                           OrWAASBY = rank(-WAASBY))
+                           OrWAASBY = rank(-WAASBY)) %>%
+                    ungroup()
             } else {
                 WAASAbs %<>%
                     group_by(type) %>%
@@ -292,7 +293,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                            OrWAASB = rank(WAASB),
                            OrPC1 = rank(abs(PC1)),
                            WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
-                           OrWAASBY = rank(-WAASBY))
+                           OrWAASBY = rank(-WAASBY)) %>%
+                    ungroup()
             }
 
             min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
