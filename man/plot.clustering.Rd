@@ -9,6 +9,8 @@
 \arguments{
 \item{x}{An object of class \code{clustering}}
 
+\item{horiz}{Logical indicating if the dendrogram should be drawn horizontally or not.}
+
 \item{type}{The type of plot. Must be one of the 'dendrogram' or
 'cophenetic'.}
 
@@ -16,7 +18,7 @@
 or \code{abline}.}
 }
 \description{
-Plot the multitrait stability index using ggplot-generated graphics. .
+Plot an object of class clustering
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -1,9 +1,10 @@
 #' Plot an object of class clustering
 #'
-#' Plot the multitrait stability index using ggplot-generated graphics. .
+#' Plot an object of class clustering
 #'
 #'
 #' @param x An object of class \code{clustering}
+#' @param horiz Logical indicating if the dendrogram should be drawn horizontally or not.
 #' @param type The type of plot. Must be one of the 'dendrogram' or
 #' 'cophenetic'.
 #' @param ... Other arguments passed from the function \code{plot.dendrogram}
