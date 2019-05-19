@@ -468,7 +468,7 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
         p4 <- ggplot2::ggplot(x$MeansGxE, aes(x = envPC1, y = nominal, group = GEN)) +
             geom_line(size = size.line, aes(colour = GEN), data = subset(x$MeansGxE,
                 envPC1 %in% c(max(envPC1), min(envPC1)))) + geom_point(aes(x = envPC1,
-            y = min), data = subset(x$MeansGxE, GEN == x$MeansGxE[1, 2])) + ggrepel::geom_label_repel(data = subset(x$MeansGxE,
+            y = min), data = filter(x$MeansGxE, GEN == x$MeansGxE[1, 2])) + ggrepel::geom_label_repel(data = subset(x$MeansGxE,
             envPC1 == min(envPC1)), aes(label = GEN, fill = GEN), size = size.tex.pa,
             color = "white", force = 5, segment.color = "#bbbbbb") + ggrepel::geom_text_repel(aes(x = envPC1,
             y = min, label = ENV), size = size.tex.pa, force = 5, data = subset(x$MeansGxE,
