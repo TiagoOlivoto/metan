@@ -1,7 +1,7 @@
 #' Weighted Average of Absolute Scores
 #'
 #' Compute the Weighted Average of Absolute Scores for quantifying the
-#' stability in multienvironment trials using mixed-effect models.
+#' stability in multienvironment trials using mixed-effect models
 #'
 #' This function compute the weighted average of absolute scores considering
 #' all principal component axis from the Singular Value Decomposition (SVD) of
@@ -450,7 +450,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                            OrWAASB = rank(WAASB),
                            OrPC1 = rank(abs(PC1)),
                            WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
-                           OrWAASBY = rank(-WAASBY))
+                           OrWAASBY = rank(-WAASBY)) %>%
+                    ungroup()
             } else {
                 WAASAbs %<>%
                     group_by(type) %>%
@@ -462,7 +463,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                            OrWAASB = rank(WAASB),
                            OrPC1 = rank(abs(PC1)),
                            WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
-                           OrWAASBY = rank(-WAASBY))
+                           OrWAASBY = rank(-WAASBY)) %>%
+                    ungroup()
             }
             min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
             max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1)
@@ -485,7 +487,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             blupGEN <- data.frame(GEN = MGEN$Code, BLUPg = bups$GEN$`(Intercept)`) %>%
                 dplyr::mutate(Predicted = BLUPg + ovmean) %>%
                 dplyr::arrange(-Predicted) %>%
-                dplyr::mutate(Rank = rank(Predicted),
+                dplyr::mutate(Rank = rank(-Predicted),
                               LL = Predicted - Limits,
                               UL = Predicted + Limits) %>%
                 dplyr::select(Rank, everything())
@@ -636,7 +638,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                            OrWAASB = rank(WAASB),
                            OrPC1 = rank(abs(PC1)),
                            WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
-                           OrWAASBY = rank(-WAASBY))
+                           OrWAASBY = rank(-WAASBY)) %>%
+                    ungroup()
             } else {
                 WAASAbs %<>%
                     group_by(type) %>%
@@ -648,7 +651,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                            OrWAASB = rank(WAASB),
                            OrPC1 = rank(abs(PC1)),
                            WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
-                           OrWAASBY = rank(-WAASBY))
+                           OrWAASBY = rank(-WAASBY)) %>%
+                    ungroup()
             }
 
             min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
