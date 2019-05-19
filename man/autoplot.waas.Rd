@@ -12,7 +12,7 @@
   ...)
 }
 \arguments{
-\item{x}{An object of class \code{WAAS.AMMI} or \code{WAASB}.}
+\item{x}{An object of class \code{waas}.}
 
 \item{conf}{Level of confidence interval to use in the Q-Q plot (0.95 by
 default).}
@@ -55,11 +55,11 @@ of columns. Default is \code{mfrow = c(2, 2)}.}
 \item{...}{Additional parameter for the function}
 }
 \description{
-Residual plots for a output model of class "WAAS.AMMI" and "WAASB". Six sets
+Residual plots for a output model of class \code{waas} and \code{waasb}. Six types
 of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
 residuals, (3) scale-location plot (standardized residuals vs Fitted
 Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
-residuals and (6) standardized residuals vs observation order. For a "WAASB"
+residuals and (6) standardized residuals vs observation order. For a \code{waasb}
 object, normal Q-Q plot for random effects may also be obtained declaring
 \code{type = "re"}
 }
