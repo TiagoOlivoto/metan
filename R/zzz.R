@@ -18,7 +18,7 @@
 #' @importFrom grDevices  colorRampPalette  dev.off  pdf
 #'             chull  tiff  boxplot.stats
 #' @importFrom methods  is  as
-#' @importFrom graphics  plot  boxplot  hist  par  mtext
+#' @importFrom graphics  plot  boxplot  hist  par  mtext abline
 #' @importFrom utils  head  setWinProgressBar  winProgressBar  combn  stack
 #' @importFrom methods setClass setGeneric setMethod setRefClass
 #'

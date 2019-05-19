@@ -285,34 +285,34 @@ This comand ignores the <code>prob</code> argument.</p>
 <span class='co'># Considering p-value &lt;= 0.05 to compute the WAAS</span>
 
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'>waas</span>(<span class='no'>data_ge</span>,
-                  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'>
+              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'>
 
 <span class='co'># Declaring the number of axis to be used for computing WAAS</span>
 <span class='co'># and assigning a larger weight for the response variable when</span>
 <span class='co'># computing the WAASBY index.</span>
 
 <span class='no'>model2</span> <span class='kw'>&lt;-</span> <span class='fu'>waas</span>(<span class='no'>data_ge</span>,
-                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                    <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                    <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>60</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'>
+               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
+               <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>60</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'>
 <span class='co'># Analyzing multiple variables (GY and HM) at the same time</span>
 <span class='co'># considering that smaller values of HM are better and higher</span>
 <span class='co'># values of GY are better, assigning a larger weight for the GY</span>
 <span class='co'># and a smaller weight for HM when computing WAASBY index.</span>
 
 <span class='no'>model3</span> <span class='kw'>&lt;-</span> <span class='fu'>waas</span>(<span class='no'>data_ge</span>,
-                  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-                  <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>),
-                  <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
+               <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>),
+               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; Done!</div><div class='input'>
 
