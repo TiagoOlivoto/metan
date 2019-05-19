@@ -14,7 +14,7 @@
 #'
 plot.clustering = function(x, horiz = TRUE, type = "dendrogram", ...){
   if (type == "dendrogram"){
-    plot(as.dendrogram(x$hc), horiz = horiz, ...)
+    plot(x$hc, horiz = horiz, ...)
     if(horiz == TRUE){
     abline(v = x$cutpoint, ...)
     }
