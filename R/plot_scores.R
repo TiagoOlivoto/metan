@@ -442,7 +442,8 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
     }
 
     if (type == 4) {
-
+        data = as.data.frame(x[["MeansGxE"]])
+        minim <- min(data$nominal)
         if (is.null(y.lab) == F) {
             y.lab <- y.lab
         } else y.lab <- paste0("Nominal Yield (Mg/ha)")
@@ -464,18 +465,15 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
 
         }
 
-
-        data <- x$MeansGxE %>% as.data.frame()
-        min <- min(data$nominal)
         p4 <- ggplot2::ggplot(data, aes(x = envPC1, y = nominal, group = GEN)) +
-            geom_line(size = size.line, aes(colour = GEN), data = subset(data,
+            geom_line(size = 1, aes(colour = GEN), data = subset(data,
                 envPC1 %in% c(max(envPC1), min(envPC1)))) +
             geom_point(aes(x = envPC1,  y = min), data = subset(data, GEN == data[1, 2])) +
             ggrepel::geom_label_repel(data = subset(data,
             envPC1 == min(envPC1)), aes(label = GEN, fill = GEN), size = size.tex.pa,
             color = "white", force = repulsion, segment.color = "#bbbbbb") +
             ggrepel::geom_text_repel(aes(x = envPC1,
-            y = min, label = ENV), size = size.tex.pa, force = repulsion, data = subset(data,
+            y = minim, label = ENV), size = size.tex.pa, force = repulsion, data = subset(data,
             GEN == data[1, 2])) + theme %+replace% theme(legend.position = "none",
             axis.text = element_text(size = size.tex.lab, colour = "black"), axis.title = element_text(size = size.tex.lab,
                 colour = "black"), plot.title = element_text(size = size.tex.lab,
