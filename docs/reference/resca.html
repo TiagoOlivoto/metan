@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rescale a continuous vector to have specified minimum and maximum values — resca • metan</title>
+<title>Rescale a variable to have specified minimum and maximum values — resca • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,11 +30,10 @@
 
 
 
-<meta property="og:title" content="Rescale a continuous vector to have specified minimum and maximum values — resca" />
+<meta property="og:title" content="Rescale a variable to have specified minimum and maximum values — resca" />
 
-<meta property="og:description" content="Helper function used in the WAASB package. It rescales a continuous vector
-to have specified minimum and maximum values. Missing values are not
-allowed." />
+<meta property="og:description" content="Helper function used in the WAASB package. It rescales a continuous variable
+to have specified minimum and maximum values." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -67,7 +66,7 @@ allowed." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -155,27 +154,35 @@ allowed." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rescale a continuous vector to have specified minimum and maximum values</h1>
+    <h1>Rescale a variable to have specified minimum and maximum values</h1>
     <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/resca.R'><code>R/resca.R</code></a></small>
     <div class="hidden name"><code>resca.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Helper function used in the WAASB package. It rescales a continuous vector
-to have specified minimum and maximum values. Missing values are not
-allowed.</p>
+    <p>Helper function used in the WAASB package. It rescales a continuous variable
+to have specified minimum and maximum values.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>resca</span>(<span class='no'>values</span>, <span class='kw'>new_min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>new_max</span> <span class='kw'>=</span> <span class='fl'>100</span>)</pre>
+    <pre class="usage"><span class='fu'>resca</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>new_min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>new_max</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>keep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>.data</th>
+      <td><p>The dataset. Grouped data is allowed.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Comma-separated list of unquoted variable names that will be rescaled.</p></td>
+    </tr>
+    <tr>
       <th>values</th>
-      <td><p>continuous vector of values to manipulate.</p></td>
+      <td><p>Optional vector of values to rescale</p></td>
     </tr>
     <tr>
       <th>new_min</th>
@@ -185,20 +192,85 @@ allowed.</p>
       <th>new_max</th>
       <td><p>The maximum value of the new scale. Default is 100</p></td>
     </tr>
+    <tr>
+      <th>keep</th>
+      <td><p>Should all variables be kept after rescaling? If false, only rescaled
+variables will be kept.</p></td>
+    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The function rescale a continuous variable as follows:
+$$Rv_i = (Nmax - Nmin)/(Omax - Omin) * (O_i - Omax) + Nmax$$
+Where \(Rv_i\) is the rescaled value of the ith position of the variable/
+vector; \(Nmax\) and \(Nmin\) are the new maximum and minimum values;
+\(Omax and Omin\) are the maximum and minimum values of the original data,
+and \(O_i\) is the ith value of the original data.</p>
+<p>There are basically two options to use <code>resca</code> to reescale a variable.
+The first is passing a data frame to <code>.data</code> argument and selecting one
+or more variables to be scaled using <code>...</code>. The function will return
+the original variables in <code>.data</code> plus the rescaled variable(s) with the
+prefix <code>_res</code>. By using the function <code>group_by</code> from <b>dplyr</b>
+package it is possible to rescale the variable(s) within each level of the
+grouping factor. The second option is pass a numeric vector in the argument
+ <code>values</code>. The output, of course, will be a numeric vector of rescaled values.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>resca</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)</div><div class='output co'>#&gt;  [1]   0.00000  11.11111  22.22222  33.33333  44.44444  55.55556  66.66667
-#&gt;  [8]  77.77778  88.88889 100.00000</div><div class='input'><span class='fu'>resca</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>), <span class='kw'>new_min</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>new_max</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; [1]  5.0  7.5 10.0</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+
+<span class='co'># Rescale a numeric vector</span>
+<span class='fu'>resca</span>(<span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>5</span>))</div><div class='output co'>#&gt; [1]   0  25  50  75 100</div><div class='input'>
+ <span class='co'># Using a data frame</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(
+ <span class='fu'>resca</span>(<span class='no'>data_ge</span>, <span class='no'>GY</span>, <span class='no'>HM</span>, <span class='kw'>new_min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>new_max</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 7</span><span>
+#&gt;   ENV   GEN   REP      GY    HM GY_res HM_res
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    1      2.17  44.9  0.338  0.346
+#&gt; </span><span style='color: #555555;'>2</span><span> E1    G1    2      2.50  46.9  0.414  0.445
+#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8  0.397  0.487
+#&gt; </span><span style='color: #555555;'>4</span><span> E1    G2    1      3.21  45.2  0.574  0.36 
+#&gt; </span><span style='color: #555555;'>5</span><span> E1    G2    2      2.93  45.3  0.512  0.365
+#&gt; </span><span style='color: #555555;'>6</span><span> E1    G2    3      2.56  45.5  0.428  0.375</div><div class='input'>
+<span class='co'># Reescale within factors;</span>
+<span class='co'># Select variables that stats with 'N' and ends with 'L';</span>
+<span class='co'># Compute the mean of these variables by ENV and GEN;</span>
+<span class='co'># Rescale the variables that ends with 'L' whithin ENV;</span>
+<span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>starts_with</a></span>(<span class='st'>"N"</span>), <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>ends_with</a></span>(<span class='st'>"L"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>summarise_all</a></span>(<span class='no'>mean</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>resca</span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>ends_with</a></span>(<span class='st'>"L"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>13</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 9</span><span>
+#&gt;    ENV   GEN      NR   NKR   NKE    EL    CL EL_res   CL_res
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1     16.3  33.3  527.  15.4  28.1   34.4 2.50</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H10    16.7  31.2  515.  16.1  31.4   69.9 8.17</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H11    15.2  34.6  530.  16.6  29.0   98.2 4.09</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H12    17.3  32.7  553.  15.2  29.8   20.9 5.52</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H13    18.7  32.9  611.  14.8  31.2    0   7.85</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H2     19.2  33.5  622.  15.0  26.6   11.0 1.42</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-14</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H3     18.5  34.1  610.  15.5  28.0   35.5 2.41</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H4     16.4  38.3  603.  16.0  27.4   63.1 1.42</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H5     14.5  37.4  539.  15.8  28.3   51.8 2.94</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'>10</span><span> A1    H6     16.8  35.5  569.  16.7  31.7  100   8.74</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'>11</span><span> A1    H7     17.9  31.5  544   15.4  30.6   34.8 6.94</span><span style='color: #555555;'>e</span><span>+ 1
+#&gt; </span><span style='color: #555555;'>12</span><span> A1    H8     17.2  32.8  542.  15.1  32.4   18.8 1.00</span><span style='color: #555555;'>e</span><span>+ 2
+#&gt; </span><span style='color: #555555;'>13</span><span> A1    H9     14.9  32.3  489.  15.5  32.0   38.7 9.17</span><span style='color: #555555;'>e</span><span>+ 1</div><div class='input'>
+
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

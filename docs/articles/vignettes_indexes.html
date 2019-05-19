@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -136,15 +136,23 @@
 <div id="fai-blup-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
-<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/WAASB.html">WAASB()</a></code> and then the function <code><a href="../reference/FAI_BLUP.html">FAI_BLUP()</a></code> is used to compute the FAI-BLUP index.</p>
+<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/waasb.html">waasb()</a></code> and then the function <code><a href="../reference/FAI_BLUP.html">FAI_BLUP()</a></code> is used to compute the FAI-BLUP index.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="st">      </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
-<a class="sourceLine" id="cb1-7" title="7">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
-<a class="sourceLine" id="cb1-8" title="8">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10">}</a>
+<a class="sourceLine" id="cb1-11" title="11"></a>
+<a class="sourceLine" id="cb1-12" title="12">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
+<a class="sourceLine" id="cb1-15" title="15">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
+<a class="sourceLine" id="cb1-16" title="16">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
 ## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
 ## (tol = 0.002, component 1)</code></pre>
@@ -207,7 +215,7 @@
 <a href="#based-on-stability-only" class="anchor"></a>Based on stability only</h2>
 <p>In the following example, the selection of stable genotypes will consider the</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">MTSI_index =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
 <a class="sourceLine" id="cb5-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="st">             </span><span class="kw"><a href="../reference/MTSI.html">MTSI</a></span>()</a></code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
@@ -225,21 +233,21 @@
 ## Principal Component Analysis
 ## -------------------------------------------------------------------------------
 ##     Eigenvalues Variance (%) Cum. variance (%)
-## PC1   2.2070167    44.140333          44.14033
-## PC2   1.6186853    32.373707          76.51404
-## PC3   0.8803207    17.606414          94.12045
-## PC4   0.2514611     5.029222          99.14968
-## PC5   0.0425162     0.850324         100.00000
+## PC1   2.2070167   44.1403332          44.14033
+## PC2   1.6186853   32.3737068          76.51404
+## PC3   0.8803207   17.6064140          94.12045
+## PC4   0.2514611    5.0292221          99.14968
+## PC5   0.0425162    0.8503239         100.00000
 ## 
 ## -------------------------------------------------------------------------------
 ## Factor Analysis - factorial loadings after rotation-
 ## -------------------------------------------------------------------------------
-##            FA1        FA2 Communality Uniquenesses
-## KW  -0.1468686  0.9185291   0.8652662   0.13473384
-## NKE  0.1741379  0.7365237   0.5727911   0.42720887
-## PH  -0.9602598  0.0205209   0.9225199   0.07748007
-## EH  -0.9174029 -0.2184732   0.8893586   0.11064136
-## TKW -0.6112322  0.4496236   0.5757661   0.42423385
+##            FA1         FA2 Communality Uniquenesses
+## KW  -0.1468686  0.91852913   0.8652662   0.13473384
+## NKE  0.1741379  0.73652366   0.5727911   0.42720888
+## PH  -0.9602598  0.02052089   0.9225199   0.07748007
+## EH  -0.9174029 -0.21847314   0.8893586   0.11064135
+## TKW -0.6112322  0.44962360   0.5757661   0.42423386
 ## 
 ## -------------------------------------------------------------------------------
 ## Comunalit Mean: 0.7651404 
@@ -253,20 +261,20 @@
 ## 3.6918 3.8566 4.0825 
 ## 
 ## -------------------------------------------------------------------------------
-## Selection differential for WAASB index
+## Selection differential for waasb index
 ## -------------------------------------------------------------------------------
 ##     Factor        Xo        Xs          SD    SDperc
 ## PH     FA1 0.2649383 0.1905618 -0.07437652 -28.07315
 ## EH     FA1 0.2356152 0.1553891 -0.08022607 -34.04962
-## TKW    FA1 2.4398931 0.6383057 -1.80158734 -73.83878
-## KW     FA2 1.9945663 0.8026270 -1.19193931 -59.75932
+## TKW    FA1 2.4398931 0.6383057 -1.80158735 -73.83878
+## KW     FA2 1.9945663 0.8026269 -1.19193933 -59.75932
 ## NKE    FA2 2.1329058 1.4627123 -0.67019348 -31.42162
 ## 
 ## ------------------------------------------------------------------------------
 ## Mean of selection differential
 ## -------------------------------------------------------------------------------
 ##          Xo          Xs          SD      SDperc 
-##   1.4135837   0.6499192  -0.7636645 -45.4284977 
+##   1.4135837   0.6499192  -0.7636645 -45.4284979 
 ## 
 ## ------------------------------------------------------------------------------
 ## Selected genotypes
@@ -280,11 +288,11 @@
 <a href="#based-on-mean-performance-and-stability" class="anchor"></a>Based on mean performance and stability</h2>
 <p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. The simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">MTSI_index2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
 <a class="sourceLine" id="cb11-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
 <a class="sourceLine" id="cb11-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>), <span class="co">#Default</span></a>
 <a class="sourceLine" id="cb11-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
-<a class="sourceLine" id="cb11-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/MTSI.html">MTSI</a></span>(<span class="dt">index =</span> <span class="st">"WAASBY"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb11-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/MTSI.html">MTSI</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
 ## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
 ## (tol = 0.002, component 1)</code></pre>
@@ -300,52 +308,52 @@
 ## Principal Component Analysis
 ## -------------------------------------------------------------------------------
 ##     Eigenvalues Variance (%) Cum. variance (%)
-## PC1  3.38225664   67.6451328          67.64513
-## PC2  1.07220072   21.4440144          89.08915
-## PC3  0.43819975    8.7639949          97.85314
-## PC4  0.07813818    1.5627635          99.41591
-## PC5  0.02920472    0.5840943         100.00000
+## PC1  3.71281234   74.2562467          74.25625
+## PC2  0.71178654   14.2357309          88.49198
+## PC3  0.42435670    8.4871341          96.97911
+## PC4  0.10433422    2.0866845          99.06580
+## PC5  0.04671019    0.9342038         100.00000
 ## 
 ## -------------------------------------------------------------------------------
 ## Factor Analysis - factorial loadings after rotation-
 ## -------------------------------------------------------------------------------
-##               FA1        FA2 Communality Uniquenesses
-## KW  -0.4997542620 -0.8377856   0.9516391   0.04836089
-## NKE -0.0006927272 -0.9242319   0.8542052   0.14579484
-## PH   0.9402464638  0.1938856   0.9216550   0.07834497
-## EH   0.9643408538  0.1629517   0.9565065   0.04349346
-## TKW -0.5834916482 -0.6557355   0.7704515   0.22954848
+##            FA1 Communality Uniquenesses
+## KW  -0.9299734   0.8648505    0.1351495
+## NKE -0.7015500   0.4921724    0.5078276
+## PH   0.9308802   0.8665380    0.1334620
+## EH   0.8369546   0.7004930    0.2995070
+## TKW -0.8881208   0.7887585    0.2112415
 ## 
 ## -------------------------------------------------------------------------------
-## Comunalit Mean: 0.8908915 
+## Comunalit Mean: 0.7425625 
 ## 
 ## -------------------------------------------------------------------------------
 ## Multitrait stability index
 ## -------------------------------------------------------------------------------
-##     H5    H11     H4    H10    H13     H7     H6     H2    H12     H8 
-## 2.4087 3.2668 3.2993 3.5526 3.5550 3.7337 4.2782 4.3503 4.8461 4.8971 
-##     H9     H1     H3 
-## 5.0170 5.6371 5.9593 
+##     H2    H13     H7     H3    H11     H1     H6     H4     H5    H10 
+## 0.2003 0.3335 0.3698 0.3929 0.4294 0.5365 0.6604 0.7528 1.0824 1.1505 
+##    H12     H9     H8 
+## 1.3104 1.6038 2.0982 
 ## 
 ## -------------------------------------------------------------------------------
-## Selection differential for WAASBY index
+## Selection differential for waasby index
 ## -------------------------------------------------------------------------------
-##     Factor       Xo       Xs       SD   SDperc
-## PH     FA1 44.43012 61.06400 16.63388 37.43829
-## EH     FA1 49.23772 64.67909 15.44137 31.36085
-## KW     FA2 53.25461 72.23216 18.97755 35.63551
-## NKE    FA2 44.97683 62.61826 17.64143 39.22337
-## TKW    FA2 53.77888 65.08010 11.30122 21.01424
+##     Factor       Xo       Xs         SD     SDperc
+## KW     FA1 53.25461 68.93609  15.681479  29.446240
+## NKE    FA1 44.97683 61.50375  16.526912  36.745389
+## PH     FA1 48.47418 34.28450 -14.189678 -29.272654
+## EH     FA1 55.75616 54.71430  -1.041859  -1.868599
+## TKW    FA1 53.77888 67.47862  13.699742  25.474207
 ## 
 ## ------------------------------------------------------------------------------
 ## Mean of selection differential
 ## -------------------------------------------------------------------------------
-##       Xo       Xs       SD   SDperc 
-## 49.13563 65.13472 15.99909 32.93445 
+##        Xo        Xs        SD    SDperc 
+## 51.248130 57.383450  6.135319 12.104917 
 ## 
 ## ------------------------------------------------------------------------------
 ## Selected genotypes
-## H5 H11
+## H2 H13
 ## -------------------------------------------------------------------------------</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>

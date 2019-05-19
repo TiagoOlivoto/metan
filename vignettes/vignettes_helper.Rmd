@@ -15,6 +15,7 @@ vignette: >
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
+library(dplyr)
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
@@ -29,11 +30,11 @@ print_table = function(table){
 # Bind cross-validation objects
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
-AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 10, nrepval = 2)
-AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 10, nrepval = 2)
-AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 10, nrepval = 2)
-AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 10, nrepval = 2)
-BLUP = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 10, nrepval = 2)
+AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 50, nrepval = 2)
+AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 50, nrepval = 2)
+AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 50, nrepval = 2)
+AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
+BLUP = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
 bind1 = bind_cv(AMMI0, AMMI2, AMMI9)
 bind2 = bind_cv(AMMIF, BLUP)
 p1 = plot(bind1)
@@ -53,7 +54,7 @@ is.split_factors(g1)
 ## Group data and keep all original variables
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 g2 = split_factors(data_ge, ENV, GEN, keep_factors = TRUE)
-head(g2[[1]])
+print_table(g2[[1]])
 ```
 
 ## Group a data frame using all factor variables
@@ -112,11 +113,31 @@ rbind_fill(df1, df2, fill = "NA")
     ```
 
 # Rescale a continuous vector to have specified minimum and maximum values
-
+## Rescale a numeric vector
 ```{r, message=FALSE }
+resca(values = c(1:5))
 
-resca(1:10)
-resca(c(20, 30, 40), new_min = 5, new_max = 10)
-resca(c(20, 30, 40), new_min = 0, new_max = 100)
+```
+
+## Rescale using a data frame and select rescaled variables only
+```{r, message=FALSE }
+data_ge %>%
+resca(GY, HM, new_min = 0, new_max = 1,  keep = FALSE) %>%
+  head()%>%
+  print_table()
+
+```
+
+## Reescale within factors
+```{r, message=FALSE }
+  data_ge2 %>% 
+    select(ENV, GEN, starts_with("N"), ends_with("L")) %>%
+    group_by(ENV, GEN) %>%
+    summarise_all(mean) %>%
+    group_by(ENV) %>%
+    resca(ends_with("L")) %>%
+    head(n = 13) %>%
+    print_table()
+
 ```
 

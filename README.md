@@ -59,23 +59,23 @@ str(data_ge)
 
 ### Fitting the model
 
-The AMMI model is fitted with the function `WAAS.AMMI()`. For more
-details, please see `?WAAS.AMMI`.
+The AMMI model is fitted with the function `waas()`. For more details,
+please see `?waas`.
 
 ``` r
-model <- WAAS.AMMI(data_ge,
-                  resp = GY,
-                  gen = GEN,
-                  env = ENV,
-                  rep = REP,
-                  verbose = FALSE)
+model <- waas(data_ge,
+              resp = GY,
+              gen = GEN,
+              env = ENV,
+              rep = REP,
+              verbose = FALSE)
 ```
 
 ### Predicting the response variable
 
-The S3 method `predict()` is implemented for objects of class
-`WAAS.AMMI` and may be used to estimate the response of each genotype in
-each environment considering different number of Interaction Principal
+The S3 method `predict()` is implemented for objects of class `waas` and
+may be used to estimate the response of each genotype in each
+environment considering different number of Interaction Principal
 Component Axis (IPCA). For example, we will use four IPCA (number of
 significant IPCAs) to estimate the variable GY using the `model` object.
 
@@ -415,9 +415,9 @@ G4
 
 ggplot2-based graphics are easily obtained in metan package. For
 example, the well-known AMMI2 biplot may be obtained as follows. Please,
-note that since `WAAS.AMMI()` function allows analyzing multiple
-variables at the same time, e.g., resp = c(v1, v2, …), the output
-`model` is a list, in this case with one element, GY.
+note that since `waas()` function allows analyzing multiple variables at
+the same time, e.g., resp = c(v1, v2, …), the output `model` is a list,
+in this case with one element, GY.
 
 ``` r
 library(cowplot)
@@ -437,13 +437,13 @@ plot_grid(p1, p2, labels = c("p1","p2"))
 ## BLUP model
 
 The implementation of linear-mixed effect models to predict the response
-variable in MET is based on the `WAASB()` function. The “mixed-effect
+variable in MET is based on the `waasb()` function. The “mixed-effect
 version” of the already fitted AMMI model, where genotype and
 genotype-vs-environment interaction are assumed to be random effects is
 then obtained as follows
 
 ``` r
-model2 <- WAASB(data_ge,
+model2 <- waasb(data_ge,
                 resp = GY,
                 gen = GEN,
                 env = ENV,

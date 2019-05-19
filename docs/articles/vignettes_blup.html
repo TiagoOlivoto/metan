@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -165,8 +165,8 @@
 <p>The vectors <span class="math inline">\({\boldsymbol{\beta }}\)</span> and <strong>u</strong> are estimated using the well-known mixed model equation <span class="citation">(Henderson <a href="#ref-Henderson1975">1975</a>)</span>. <span class="math display">\[
     \left[ {\begin{array}{*{20}{c}}{{\boldsymbol{\hat \beta }}}\\{{\bf{\hat u}}}\end{array}} \right]{\bf{ = }}{\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&amp;{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{X}}}&amp;{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{Z + }}{{\bf{G}}^{ - {\bf{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\\{{\bf{Z'}}{{\bf{R}}^{ - {\bf{1}}}}{\bf{y}}}\end{array}} \right]
     \]</span> where <strong>G</strong> and <strong>R</strong> are the variance-covariance matrices for random-effect vector <strong>u</strong> and residual vector <span class="math inline">\({\bf{\varepsilon }}\)</span>, respectively.</p>
-<p>The <code><a href="../reference/WAASB.html">WAASB()</a></code> is used to fit the linear mixed-effect model. The first argument is the data, in our example <code>dataset</code>. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the <code>random</code> argument. Please, see <code><a href="../reference/WAASB.html">?WAASB</a></code> for more details. The argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code is run silently or not.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">WAASB_model =<span class="st"> </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(<span class="dt">.data =</span> dataset,</a>
+<p>The <code><a href="../reference/waasb.html">waasb()</a></code> is used to fit the linear mixed-effect model. The first argument is the data, in our example <code>dataset</code>. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the <code>random</code> argument. Please, see <code>?WAASB</code> for more details. The argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code is run silently or not.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">WAASB_model =<span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(dataset,</a>
 <a class="sourceLine" id="cb3-2" title="2">                    <span class="dt">env =</span> ENV,</a>
 <a class="sourceLine" id="cb3-3" title="3">                    <span class="dt">gen =</span> GEN,</a>
 <a class="sourceLine" id="cb3-4" title="4">                    <span class="dt">rep =</span> REP,</a>
@@ -294,7 +294,8 @@ Gen vs Env
 <p>In the output <code>ESTIMATES</code>, beyond the variance components for the declared random effects, some important parameters are also shown. <strong>Heribatility</strong> is the broad-sense heritability, <span class="math inline">\(\mathop h\nolimits_g^2\)</span>, estimated by <span class="math display">\[
 \mathop h\nolimits_g^2  = \frac{\mathop {\hat\sigma} \nolimits_g^2} {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 }
 \]</span></p>
-<p>where <span class="math inline">\(\mathop {\hat\sigma} \nolimits_g^2\)</span> is the genotypic variance; <span class="math inline">\(\mathop {\hat\sigma} \nolimits_i^2\)</span> is the genotype-by-environment interaction variance; and <span class="math inline">\(\mathop {\hat\sigma} \nolimits_e^2\)</span> is the residual variance. <strong>GEIr2</strong> is the coefficient of determination of the interaction effects, <span class="math inline">\(\mathop r\nolimits_i^2\)</span>, estimated by</p>
+<p>where <span class="math inline">\(\mathop {\hat\sigma} \nolimits_g^2\)</span> is the genotypic variance; <span class="math inline">\(\mathop {\hat\sigma} \nolimits_i^2\)</span> is the genotype-by-environment interaction variance; and <span class="math inline">\(\mathop {\hat\sigma} \nolimits_e^2\)</span> is the residual variance.</p>
+<p><strong>GEIr2</strong> is the coefficient of determination of the interaction effects, <span class="math inline">\(\mathop r\nolimits_i^2\)</span>, estimated by</p>
 <p><span class="math display">\[
 \mathop r\nolimits_i^2  = \frac{\mathop {\hat\sigma} \nolimits_i^2}
 {\mathop {\hat\sigma} \nolimits_g^2  + \mathop {\hat\sigma} \nolimits_i^2  + \mathop {\hat\sigma} \nolimits_e^2 }
@@ -471,7 +472,7 @@ OVmean
 Min
 </td>
 <td style="text-align:left;">
-0.8991 (Genotype G10 in E11 )
+0.8991 (Genotype G10 in E11)
 </td>
 </tr>
 <tr>
@@ -479,7 +480,7 @@ Min
 Max
 </td>
 <td style="text-align:left;">
-4.8121 (Genotype G8 in E5 )
+4.8121 (Genotype G8 in E5)
 </td>
 </tr>
 <tr>
@@ -487,7 +488,7 @@ Max
 MinENV
 </td>
 <td style="text-align:left;">
-Environment E11 (1.3683)
+Environment 2 (2.471)
 </td>
 </tr>
 <tr>
@@ -495,7 +496,7 @@ Environment E11 (1.3683)
 MaxENV
 </td>
 <td style="text-align:left;">
-Environment E3 (4.0643)
+Environment 9 (3.004)
 </td>
 </tr>
 <tr>
@@ -503,7 +504,7 @@ Environment E3 (4.0643)
 MinGEN
 </td>
 <td style="text-align:left;">
-Genotype G10 (2.4712)
+Genotype 13 (1.368)
 </td>
 </tr>
 <tr>
@@ -511,7 +512,7 @@ Genotype G10 (2.4712)
 MaxGEN
 </td>
 <td style="text-align:left;">
-Genotype G8 (3.0036)
+Genotype 18 (4.064)
 </td>
 </tr>
 </tbody>
@@ -520,7 +521,7 @@ Genotype G8 (3.0036)
 <div id="the-waasb-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-waasb-object" class="anchor"></a>The WAASB object</h3>
-<p>The <code><a href="../reference/WAASB.html">WAASB()</a></code> function computes the Weighted Average of the Absolute Scores considering all possible IPCA from the Singular Value Decomposition of the BLUPs for genotype-vs-environment interaction effects obtained by an Linear Mixed-effect Model, as follows:</p>
+<p>The <code><a href="../reference/waasb.html">waasb()</a></code> function computes the Weighted Average of the Absolute Scores considering all possible IPCA from the Singular Value Decomposition of the BLUPs for genotype-vs-environment interaction effects obtained by an Linear Mixed-effect Model, as follows:</p>
 <p><span class="math display">\[
         WAASB_i  = 
         \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
@@ -549,10 +550,10 @@ PctResp
 PctWAASB
 </th>
 <th style="text-align:right;">
-OrResp
+wRes
 </th>
 <th style="text-align:right;">
-OrWAASB
+wWAASB
 </th>
 <th style="text-align:right;">
 WAASBY
@@ -582,10 +583,10 @@ G1
 90.370
 </td>
 <td style="text-align:right;">
-6
+50
 </td>
 <td style="text-align:right;">
-2
+50
 </td>
 <td style="text-align:right;">
 57.624
@@ -614,10 +615,10 @@ G10
 0.000
 </td>
 <td style="text-align:right;">
-10
+50
 </td>
 <td style="text-align:right;">
-10
+50
 </td>
 <td style="text-align:right;">
 0.000
@@ -646,10 +647,10 @@ G2
 68.573
 </td>
 <td style="text-align:right;">
-3
+50
 </td>
 <td style="text-align:right;">
-4
+50
 </td>
 <td style="text-align:right;">
 59.917
@@ -678,10 +679,10 @@ G3
 100.000
 </td>
 <td style="text-align:right;">
-2
+50
 </td>
 <td style="text-align:right;">
-1
+50
 </td>
 <td style="text-align:right;">
 95.465
@@ -710,10 +711,10 @@ G4
 59.361
 </td>
 <td style="text-align:right;">
-5
+50
 </td>
 <td style="text-align:right;">
-6
+50
 </td>
 <td style="text-align:right;">
 45.711
@@ -742,10 +743,10 @@ G5
 67.490
 </td>
 <td style="text-align:right;">
-7
+50
 </td>
 <td style="text-align:right;">
-5
+50
 </td>
 <td style="text-align:right;">
 39.955
@@ -774,10 +775,10 @@ G6
 79.978
 </td>
 <td style="text-align:right;">
-8
+50
 </td>
 <td style="text-align:right;">
-3
+50
 </td>
 <td style="text-align:right;">
 45.887
@@ -806,10 +807,10 @@ G7
 39.799
 </td>
 <td style="text-align:right;">
-4
+50
 </td>
 <td style="text-align:right;">
-8
+50
 </td>
 <td style="text-align:right;">
 45.227
@@ -838,10 +839,10 @@ G8
 54.606
 </td>
 <td style="text-align:right;">
-1
+50
 </td>
 <td style="text-align:right;">
-7
+50
 </td>
 <td style="text-align:right;">
 77.303
@@ -870,10 +871,10 @@ G9
 25.325
 </td>
 <td style="text-align:right;">
-9
+50
 </td>
 <td style="text-align:right;">
-9
+50
 </td>
 <td style="text-align:right;">
 16.322
@@ -902,10 +903,10 @@ E1
 73.771
 </td>
 <td style="text-align:right;">
-9
+50
 </td>
 <td style="text-align:right;">
-4
+50
 </td>
 <td style="text-align:right;">
 58.258
@@ -934,10 +935,10 @@ E10
 70.486
 </td>
 <td style="text-align:right;">
-10
+50
 </td>
 <td style="text-align:right;">
-7
+50
 </td>
 <td style="text-align:right;">
 50.208
@@ -966,10 +967,10 @@ E11
 93.472
 </td>
 <td style="text-align:right;">
-14
+50
 </td>
 <td style="text-align:right;">
-2
+50
 </td>
 <td style="text-align:right;">
 46.736
@@ -998,10 +999,10 @@ E12
 71.004
 </td>
 <td style="text-align:right;">
-13
+50
 </td>
 <td style="text-align:right;">
-6
+50
 </td>
 <td style="text-align:right;">
 39.958
@@ -1030,10 +1031,10 @@ E13
 41.553
 </td>
 <td style="text-align:right;">
-6
+50
 </td>
 <td style="text-align:right;">
-12
+50
 </td>
 <td style="text-align:right;">
 49.362
@@ -1062,10 +1063,10 @@ E14
 87.428
 </td>
 <td style="text-align:right;">
-12
+50
 </td>
 <td style="text-align:right;">
-3
+50
 </td>
 <td style="text-align:right;">
 51.386
@@ -1094,10 +1095,10 @@ E2
 73.548
 </td>
 <td style="text-align:right;">
-4
+50
 </td>
 <td style="text-align:right;">
-5
+50
 </td>
 <td style="text-align:right;">
 70.373
@@ -1126,10 +1127,10 @@ E3
 63.722
 </td>
 <td style="text-align:right;">
-1
+50
 </td>
 <td style="text-align:right;">
-10
+50
 </td>
 <td style="text-align:right;">
 81.861
@@ -1158,10 +1159,10 @@ E4
 29.970
 </td>
 <td style="text-align:right;">
-3
+50
 </td>
 <td style="text-align:right;">
-13
+50
 </td>
 <td style="text-align:right;">
 57.770
@@ -1190,10 +1191,10 @@ E5
 54.762
 </td>
 <td style="text-align:right;">
-2
+50
 </td>
 <td style="text-align:right;">
-11
+50
 </td>
 <td style="text-align:right;">
 74.528
@@ -1222,10 +1223,10 @@ E6
 100.000
 </td>
 <td style="text-align:right;">
-7
+50
 </td>
 <td style="text-align:right;">
-1
+50
 </td>
 <td style="text-align:right;">
 74.016
@@ -1254,10 +1255,10 @@ E7
 67.615
 </td>
 <td style="text-align:right;">
-11
+50
 </td>
 <td style="text-align:right;">
-8
+50
 </td>
 <td style="text-align:right;">
 45.317
@@ -1286,10 +1287,10 @@ E8
 66.466
 </td>
 <td style="text-align:right;">
-8
+50
 </td>
 <td style="text-align:right;">
-9
+50
 </td>
 <td style="text-align:right;">
 54.896
@@ -1318,10 +1319,10 @@ E9
 0.000
 </td>
 <td style="text-align:right;">
-5
+50
 </td>
 <td style="text-align:right;">
-14
+50
 </td>
 <td style="text-align:right;">
 31.311
@@ -1332,13 +1333,12 @@ E9
 </tr>
 </tbody>
 </table>
-<p>The output generated by the <code><a href="../reference/WAASB.html">WAASB()</a></code> function is very similar to those generated by the <code><a href="../reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function. The main difference here, is that the singular value decomposition is based on the BLUP for GEI effects matrix.</p>
+<p>The output generated by the <code><a href="../reference/waasb.html">waasb()</a></code> function is very similar to those generated by the <code><a href="../reference/metan-deprecated.html">WAAS.AMMI()</a></code> function. The main difference here, is that the singular value decomposition is based on the BLUP for GEI effects matrix.</p>
 </div>
 <div id="blup-for-genotypes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#blup-for-genotypes" class="anchor"></a>BLUP for genotypes</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">data =<span class="st"> </span>WAASB_model<span class="op">$</span>GY<span class="op">$</span>blupGEN[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">print_table</span>( WAASB_model<span class="op">$</span>GY<span class="op">$</span>blupGEN)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -1459,6 +1459,106 @@ G4
 </td>
 <td style="text-align:right;">
 2.751
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:right;">
+-0.058
+</td>
+<td style="text-align:right;">
+2.617
+</td>
+<td style="text-align:right;">
+2.513
+</td>
+<td style="text-align:right;">
+2.720
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+-0.112
+</td>
+<td style="text-align:right;">
+2.563
+</td>
+<td style="text-align:right;">
+2.459
+</td>
+<td style="text-align:right;">
+2.666
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:right;">
+-0.114
+</td>
+<td style="text-align:right;">
+2.560
+</td>
+<td style="text-align:right;">
+2.456
+</td>
+<td style="text-align:right;">
+2.663
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:right;">
+-0.134
+</td>
+<td style="text-align:right;">
+2.541
+</td>
+<td style="text-align:right;">
+2.437
+</td>
+<td style="text-align:right;">
+2.644
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:right;">
+-0.166
+</td>
+<td style="text-align:right;">
+2.509
+</td>
+<td style="text-align:right;">
+2.405
+</td>
+<td style="text-align:right;">
+2.612
 </td>
 </tr>
 </tbody>
@@ -1681,7 +1781,7 @@ Accumulated
 <tbody>
 <tr>
 <td style="text-align:left;">
-1
+PC1
 </td>
 <td style="text-align:right;">
 1.472
@@ -1695,7 +1795,7 @@ Accumulated
 </tr>
 <tr>
 <td style="text-align:left;">
-2
+PC2
 </td>
 <td style="text-align:right;">
 1.347
@@ -1709,7 +1809,7 @@ Accumulated
 </tr>
 <tr>
 <td style="text-align:left;">
-3
+PC3
 </td>
 <td style="text-align:right;">
 0.548
@@ -1723,7 +1823,7 @@ Accumulated
 </tr>
 <tr>
 <td style="text-align:left;">
-4
+PC4
 </td>
 <td style="text-align:right;">
 0.417
@@ -1737,7 +1837,7 @@ Accumulated
 </tr>
 <tr>
 <td style="text-align:left;">
-5
+PC5
 </td>
 <td style="text-align:right;">
 0.213
@@ -1751,7 +1851,7 @@ Accumulated
 </tr>
 <tr>
 <td style="text-align:left;">
-6
+PC6
 </td>
 <td style="text-align:right;">
 0.140
@@ -1765,7 +1865,7 @@ Accumulated
 </tr>
 <tr>
 <td style="text-align:left;">
-7
+PC7
 </td>
 <td style="text-align:right;">
 0.079
@@ -1779,7 +1879,7 @@ Accumulated
 </tr>
 <tr>
 <td style="text-align:left;">
-8
+PC8
 </td>
 <td style="text-align:right;">
 0.057
@@ -1793,7 +1893,7 @@ Accumulated
 </tr>
 <tr>
 <td style="text-align:left;">
-9
+PC9
 </td>
 <td style="text-align:right;">
 0.019
@@ -1854,7 +1954,7 @@ G1
 0.246
 </td>
 <td style="text-align:right;">
-2.662
+2.424
 </td>
 </tr>
 <tr>
@@ -1874,7 +1974,7 @@ G10
 -0.819
 </td>
 <td style="text-align:right;">
-2.279
+1.781
 </td>
 </tr>
 <tr>
@@ -1894,7 +1994,7 @@ G2
 0.119
 </td>
 <td style="text-align:right;">
-2.772
+2.930
 </td>
 </tr>
 <tr>
@@ -1914,7 +2014,7 @@ G3
 0.044
 </td>
 <td style="text-align:right;">
-2.966
+2.899
 </td>
 </tr>
 <tr>
@@ -1934,7 +2034,7 @@ G4
 -0.243
 </td>
 <td style="text-align:right;">
-2.585
+2.531
 </td>
 </tr>
 <tr>
@@ -1954,7 +2054,7 @@ G5
 -0.256
 </td>
 <td style="text-align:right;">
-2.477
+2.128
 </td>
 </tr>
 <tr>
@@ -1974,7 +2074,7 @@ G6
 -0.075
 </td>
 <td style="text-align:right;">
-2.516
+2.283
 </td>
 </tr>
 <tr>
@@ -1994,7 +2094,7 @@ G7
 0.247
 </td>
 <td style="text-align:right;">
-2.799
+2.832
 </td>
 </tr>
 <tr>
@@ -2014,7 +2114,7 @@ G8
 0.404
 </td>
 <td style="text-align:right;">
-3.099
+2.994
 </td>
 </tr>
 <tr>
@@ -2034,7 +2134,7 @@ G9
 0.334
 </td>
 <td style="text-align:right;">
-2.589
+2.404
 </td>
 </tr>
 </tbody>
@@ -2111,7 +2211,7 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 <a class="sourceLine" id="cb21-3" title="3"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="vignettes_blup_files/figure-html/unnamed-chunk-18-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>In the following example, we will assume that we want to obtain the ranks for WAASBY considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">WAASBYratio =<span class="st"> </span><span class="kw"><a href="../reference/WAASBYratio.html">WAASBYratio</a></span>(dataset,</a>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">WAASBYratio =<span class="st"> </span><span class="kw"><a href="../reference/metan-deprecated.html">WAASBYratio</a></span>(dataset,</a>
 <a class="sourceLine" id="cb22-2" title="2">                          <span class="dt">env =</span> ENV,</a>
 <a class="sourceLine" id="cb22-3" title="3">                          <span class="dt">gen =</span> GEN,</a>
 <a class="sourceLine" id="cb22-4" title="4">                          <span class="dt">rep =</span> REP,</a>
@@ -2638,14 +2738,6 @@ G9
 </tbody>
 </table>
 </div>
-<div id="plotting-the-waasby-values" class="section level2">
-<h2 class="hasAnchor">
-<a href="#plotting-the-waasby-values" class="anchor"></a>Plotting the WAASBY values</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASBYratio)</a>
-<a class="sourceLine" id="cb25-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASBYratio, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-22-1.png" width="960" style="display: block; margin: auto;"></p>
-</div>
 <div id="plotting-the-heat-map-graphics" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-the-heat-map-graphics" class="anchor"></a>Plotting the heat map graphics</h2>
@@ -2653,14 +2745,14 @@ G9
 <div id="ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waasb" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waasb" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAASB</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASBYratio, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-23-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASBYratio, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-22-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="ranks-of-genotypes-depending-on-the-waasbgy-ratio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-waasbgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAASB/GY ratio</h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASBYratio, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-24-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASBYratio, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-23-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -2679,13 +2771,13 @@ RPGV_i = \frac{1}{e}{\sum\limits_{j = 1}^e {BLUP_{ij}} /\mathop \mu \nolimits_j 
 <p><span class="math display">\[
 HMRPGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}/{\mu _j}}}}
 \]</span></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">Res_ind =<span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="st">          </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(GEN, ENV, REP, <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="st">          </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">Res_ind =<span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="st">          </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(GEN, ENV, REP, <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="st">          </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>()</a></code></pre></div>
 <pre><code>## Evaluating variable GY 50 % 
 ## Evaluating variable HM 100 % 
 ## Done!</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">print_table</span>(Res_ind)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">print_table</span>(Res_ind)</a></code></pre></div>
 <table class="table kable_wrapper table table-striped table-hover table-condensed table-responsive"><tbody><tr>
 <td>
 <table class="table">
@@ -3573,11 +3665,11 @@ E9
 <h1 class="hasAnchor">
 <a href="#fai-blup-selection-index" class="anchor"></a>FAI-BLUP selection index</h1>
 <p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-2" title="2"><span class="st">      </span><span class="kw"><a href="../reference/WAASB.html">WAASB</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-3" title="3"><span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
-<a class="sourceLine" id="cb31-4" title="4">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
-<a class="sourceLine" id="cb31-5" title="5">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
+<a class="sourceLine" id="cb30-4" title="4">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
+<a class="sourceLine" id="cb30-5" title="5">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
 ## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
 ## (tol = 0.002, component 1)</code></pre>
@@ -3630,8 +3722,8 @@ E9
 ## Selected genotypes
 ## H13 H6
 ## -----------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
-<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-26-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-25-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -3667,7 +3759,6 @@ E9
       <li>
 <a href="#simultaneous-selection-for-mean-performance-and-stability">Simultaneous selection for mean performance and stability</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#printing-the-model-outputs-1">Printing the model outputs</a></li>
-      <li><a href="#plotting-the-waasby-values">Plotting the WAASBY values</a></li>
       <li><a href="#plotting-the-heat-map-graphics">Plotting the heat map graphics</a></li>
       </ul>
 </li>

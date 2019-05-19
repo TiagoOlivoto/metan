@@ -104,7 +104,7 @@ the ratio between genotypic and residual coefficient of variation.}
 }
 \description{
 Compute the Weighted Average of Absolute Scores for quantifying the
-stability in multienvironment trials using mixed-effect models.
+stability in multienvironment trials using mixed-effect models
 }
 \details{
 This function compute the weighted average of absolute scores considering

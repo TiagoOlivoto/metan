@@ -67,7 +67,7 @@ Nominal yield x EPCA1." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -174,11 +174,12 @@ Nominal yield x EPCA1</code>.</p>
   <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>shape.gen</span> <span class='kw'>=</span> <span class='fl'>21</span>, <span class='kw'>shape.env</span> <span class='kw'>=</span> <span class='fl'>23</span>,
   <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>size.bor.tick</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>size.tex.pa</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>size.segm.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Gen"</span>, <span class='st'>"Env"</span>), <span class='kw'>line.type</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>line.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>,
-  <span class='kw'>col.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>col.segm.gen</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>,
-  <span class='kw'>col.segm.env</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>size.tex.pa</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>repulsion</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>size.segm.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Gen"</span>, <span class='st'>"Env"</span>),
+  <span class='kw'>line.type</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>line.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>, <span class='kw'>col.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>col.segm.gen</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>, <span class='kw'>col.segm.env</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -300,6 +301,10 @@ Default is <code>12</code>.</p></td>
 <code>3.5</code>.</p></td>
     </tr>
     <tr>
+      <th>repulsion</th>
+      <td><p>Force of repulsion between overlapping text labels. Defaults to 1.</p></td>
+    </tr>
+    <tr>
       <th>size.line</th>
       <td><p>The size of the line that indicate the means in the biplot.
 Default is <code>0.5</code>.</p></td>
@@ -396,7 +401,7 @@ exploitation of narrow adaptations.</p>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='no'>scores</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>scores</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,

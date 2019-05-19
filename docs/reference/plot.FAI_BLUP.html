@@ -66,7 +66,7 @@ proposed by Rocha et al. (2018)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -175,7 +175,7 @@ proposed by Rocha et al. (2018).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>WAASB</code></p></td>
+      <td><p>An object of class <code>waasb</code></p></td>
     </tr>
     <tr>
       <th>ideotype</th>
@@ -222,7 +222,7 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>multivariate</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>multivariate</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
                      <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                      <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
@@ -230,7 +230,7 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
 #&gt; Evaluating variable HM 100 % 
 #&gt; Done!</div><div class='input'>
 <span class='no'>FAI</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>KW</span>, <span class='no'>NKE</span>, <span class='no'>PH</span>, <span class='no'>EH</span>)) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>KW</span>, <span class='no'>NKE</span>, <span class='no'>PH</span>, <span class='no'>EH</span>)) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='FAI_BLUP.html'>FAI_BLUP</a></span>(<span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"max"</span>, <span class='st'>"max"</span>, <span class='st'>"max"</span>, <span class='st'>"min"</span>),
                <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"min"</span>, <span class='st'>"min"</span>, <span class='st'>"min"</span>, <span class='st'>"max"</span>),
                <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Model failed to converge with max|grad| = 0.00577455 (tol = 0.002, component 1)</span></div><div class='output co'>#&gt; Evaluating variable KW 25 % </div><div class='output co'>#&gt; <span class='message'>boundary (singular) fit: see ?isSingular</span></div><div class='output co'>#&gt; Evaluating variable NKE 50 % 

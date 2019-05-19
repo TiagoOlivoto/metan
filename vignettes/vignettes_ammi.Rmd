@@ -20,7 +20,7 @@ In this section, we will use the data in `data_ge`. For more information, please
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-library(magrittr) # used for the forward-pipe operator %>%
+library(dplyr) # used for the forward-pipe operator %>%
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
@@ -39,22 +39,22 @@ $$
 $$
 where ${\lambda_k}$ is the singular value for the *k*-th interaction principal component axis (IPCA); $a_{ik}$ is the *i*-th element of the *k*-th eigenvector; $t_{jk}$ is the *j*th element of the *k*th eigenvector. A residual $\rho _{ij}$ remains, if not all *p* IPCA are used, where $p \le min(g - 1; e - 1)$.
  
-The AMMI model is fitted with the `WAAS.AMMI()` function. The first argument is the data, in our example `dataset`. The second argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code will run silently. 
+The AMMI model is fitted with the `waas()` function. The first argument is the data, in our example `dataset`. The second argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code will run silently. 
 
 ```{r echo = TRUE}
-AMMI_model = WAAS.AMMI(.data = dataset,
-                       env = ENV,
-                       gen = GEN,
-                       rep = REP,
-                       resp = GY,
-                       verbose = FALSE)
+AMMI_model = waas(dataset,
+                  env = ENV,
+                  gen = GEN,
+                  rep = REP,
+                  resp = GY,
+                  verbose = FALSE)
 
     ```
 
-Note that using the arguments in the correct order, the model above may be fitted cleanly using the forward-pipe operator %>%.
+Note that using the arguments in the correct order, the model above may be fitted cleanly using the forward-pipe operator `%>%`.
 
 ```{r echo = TRUE}
-AMMI_model = dataset %>% WAAS.AMMI(ENV, GEN, REP, GY, verbose = FALSE)
+AMMI_model = dataset %>% waas(ENV, GEN, REP, GY, verbose = FALSE)
     ```
 
 ## Within-environment ANOVA
@@ -63,13 +63,12 @@ A within-environment ANOVA considering a fixed-effect model is computed. For eac
 
 
 ```{r }
-# printing the WAAS object
 data = AMMI_model$GY$individual$individual
 print_table(data)
     ```
 
 ## The AMMI table
-
+The following comand creates the well-known ANOVA table for the AMMI model. Note that since 
 ```{r echo = TRUE}
 print_table(AMMI_model$GY$anova) %>%
 row_spec(5:8, bold = T) %>%
@@ -82,7 +81,7 @@ Nine interaction principal component axis (IPCA) were fitted and four were signi
 
 # Estimating the response variable based on significant IPCA axes
 
-An interesting feature of `metan` is the implementation of the S3 method `predict()`. The response variable of a two-way table (for example, the yield of *m* genotypes in *n* environments) may be estimated using the function `predict(object)`, where `object` is an object of class `WAAS.AMMI`. This estimation is based on the number of multiplicative terms declared in the function. If `naxis = 0` is declared, only the main effects (AMMI0) are considered. In this case, the estimated mean will be the estimate from OLS estimation. If `naxis = 1`, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If `naxis = min(g-1; e-1)`, the AMMIF is fitted. A summary of all possible AMMI models is presented below.
+The response variable of a two-way table (for example, the yield of *m* genotypes in *n* environments) may be estimated using the S3 method `predict()` applyed to an object of class `waas`. This estimation is based on the number of multiplicative terms declared in the function. If `naxis = 1`, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If `naxis = min(g - 1; e - 1)`, the AMMIF is fitted. A summary of all possible AMMI models is presented below.
 
 | Member of AMMI family  | Espected response of the *i*-th genotype in the *j*th environment|
 |:------------------------|:------------------------------------------------------------------------------|
@@ -93,13 +92,12 @@ An interesting feature of `metan` is the implementation of the S3 method `predic
 | AMMIF            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}$ 
 
 
-Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] or predictive success, such as cross-validation [@Piepho:1994] should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The `WAAS.AMMI()` function compute traditional AMMI analysis showing the number of significant axes according to Gollobs's test. On the other hand, `validation.AMMIF()` function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).
+Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] or predictive success, such as cross-validation [@Piepho:1994] should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The `waas()` function compute traditional AMMI analysis showing the number of significant axes according to Gollobs's test. On the other hand, `cv_ammif()` function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).
 
 
 ```{r echo = TRUE}
 predicted = predict(AMMI_model, naxis = 4)
-predicted = predicted$GY[1:5,]
-print_table(predicted)
+print_table(head(predicted$GY, n = 10))
     ```
 
 
@@ -107,7 +105,7 @@ Only the first five values are shown. The following values are presented: **ENV*
 
 
 # Estimating the WAAS index
-The `WAAS.AMMI()` function computes the Weighted Average of Absolute Scores considering (i) all principal component axes that were significant ($p < 0.05$ by default); or (ii) declaring a specific number of axes to be used, according to the following equation:
+The `waas()` function computes the Weighted Average of Absolute Scores considering (i) all principal component axes that were significant ($p < 0.05$ by default); or (ii) declaring a specific number of axes to be used, according to the following equation:
 
 $$
         WAAS_i  = 
@@ -121,30 +119,32 @@ In this example only IPCAs with *P*-value < 0.05 will be considered in the WAAS 
 
 
 ```{r }
-data = AMMI_model$GY$model[, c(1:3,13:17, 21:22)]
-print_table(data)
+AMMI_model$GY$model %>% 
+select(type, Code, Y, contains("Pct"), contains("Pes"), contains("WAAS"),)%>%
+  print_table()
     ```
 
-In this example, the scores of the nine PCA were not shown. The output generated by the `WAAS.AMMI()` function shows the following results: **type**, genotype (GEN) or environment (ENV); **Code**, the code attributed to each level of the factors; **Y**, the response variable (in this case the grain yield); **WAAS** the weighted average of the absolute scores, estimated with all PCA axes with *P*-value $\le$ 0.05; **PctWAAS** and **PctResp** that are the percentage values for the WAAS and Y, respectively; **OrResp** and **OrWAAS** that are the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; **WAASY** is the weighted average of absolute scores and response variable. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 is estimated by: $WAAS_{G1} = [(86.32\times50)+(98.88\times50)]/50+50 = 92.60$. Then the **OrWAASY* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked.
+In this example, the scores of the nine PCA were not shown. The output generated by the `waas()` function shows the following results: **type**, genotype (GEN) or environment (ENV); **Code**, the code attributed to each level of the factors; **Y**, the response variable (in this case the grain yield); **WAAS** the weighted average of the absolute scores, estimated with all PCA axes with *P*-value $\le$ 0.05; **PctWAAS** and **PctResp** that are the percentage values for the WAAS and Y, respectively; **OrResp** and **OrWAAS** that are the ranks attributed to the genotype and environment regarding the Y or WAAS, respectively; **WAASY** is the weighted average of absolute scores and response variable. In this case, considering equal weights for PctResp and PctWAAS, the WAASY for G1 is estimated by: $WAAS_{G1} = [(86.32\times50)+(98.88\times50)]/50+50 = 92.60$. Then the **OrWAASY* is the rank for the WAASY value. The genotype (or environment) with the largest WAASY value has the first ranked.
 
 
 
 ## Number of axes declared manually
-The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument `naxis` in the function `WAAS.AMMI` is then used to overwrite the default chose of significant terms. 
+The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument `naxis` in the function `waas` is then used to overwrite the default chose of significant terms. 
 
 ```{r echo = TRUE}
-AMMI_model_2 = dataset %>% WAAS.AMMI(ENV, GEN, REP, GY,
-                                     naxis = 7, # Use 7 IPCA for computing WAAS
-                                     verbose = FALSE)
+AMMI_model_2 = dataset %>%
+  waas(ENV, GEN, REP, GY,
+       naxis = 7, # Use 7 IPCA for computing WAAS
+       verbose = FALSE)
 
-    ```
+```
 
 The only difference in this output is that here we declared that seven IPCA axes should be used for computing the WAAS value. Thus, only the values of WAAS, OrWAAS, WAASY and OrWAASY may have significant changes.
 
 
 ## Biplots
 
-Provided that an object of class "WAAS.AMMI" is available in the global environment, the graphics may be obtained using the function `plot_scores()`. To do that, we will revisit the previusly fitted model `AMMI_model` . Please, refer to `?plot_scores` for more details. Four types of graphics can be generated: 1 = $PC1 \times PC2$;  2 = $GY \times PC1$; 3 = $GY \times WAASB$; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.
+Provided that an object of class "waas" is available in the global environment, the graphics may be obtained using the function `plot_scores()`. To do that, we will revisit the previusly fitted model `AMMI_model` . Please, refer to `?plot_scores` for more details. Four types of graphics can be generated: 1 = $PC1 \times PC2$;  2 = $GY \times PC1$; 3 = $GY \times WAASB$; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.
 
 ### biplot type 1: PC1 x PC2
 
@@ -198,8 +198,7 @@ plot_grid(p5, p6, labels = c("p5","p6"))
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F}
 
-plot_scores(AMMI_model$GY,
-            type = 4, size.tex.pa = 1.5)
+plot_scores(AMMI_model$GY, 4)
 
 
 ```
@@ -224,19 +223,14 @@ p2 = plot_waasby(AMMI_model$GY, col.shape = c("gray20", "gray80"))
 plot_grid(p1, p2, labels = c("p1", "p2"))
     ```
 
-The values of WAASY in the plot above were computed considering equal weights for mean performance and stability. Different weights may be assigned using the `wresp` argument of the `WAAS.AMMI()` function.
+The values of WAASY in the plot above were computed considering equal weights for mean performance and stability. Different weights may be assigned using the `wresp` argument of the `waas()` function.
 
-# Estimating the WAASY in different scenarios
+# Weighting the stability and mean performance
 
-In the following example, we will assume that we want to obtain the ranks considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.
+After fitting a model with the functions `waas()` or `waasb()` it is possible to compute the superiority indexes WAASY or WAASBY in different scenarios of weights for stability and mean performance. The number of scenarios is defined by the arguments  `increment`. By default, twenty-one different scenarios are computed. In this case, the the superiority index is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
 
 ```{r echo = TRUE}
-WAASratio = WAASratio.AMMI(dataset,
-                           env = ENV,
-                           gen = GEN,
-                           rep = REP,
-                           resp = GY,
-                           increment = 10)
+WAASratio = wsmp(AMMI_model, increment = 5)
 
 ```
 
@@ -246,7 +240,7 @@ WAASratio = WAASratio.AMMI(dataset,
 The genotype ranking for each scenario of WAASY/GY weight ratio is shown bellow
 
 ```{r }
-print_table(WAASratio$hetcomb)
+print_table(WAASratio$GY$hetcomb)
 ```
 
 In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.
@@ -263,7 +257,7 @@ The first type of heatmap shows the genotype ranking depending on the number of 
 ### Ranks of genotypes depending on the number of PCA used to estimate the WAAS
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot(WAASratio, type = 1)
+plot(WAASratio$GY, type = 1)
 
 
     ```
@@ -271,7 +265,7 @@ plot(WAASratio, type = 1)
 ### Ranks of genotypes depending on the WAAS/GY ratio
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot(WAASratio, type = 2)
+plot(WAASratio$GY, type = 2)
 
 
 ```
@@ -309,14 +303,14 @@ $$
 
 where ${\theta _k}$ is the percentage sum of squares explained by the *k*-th IPCA. Simultaneous selection indexes (ssi), are computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields [@Farshadfar2008], which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.
 
-The `AMMI_index()` function has two arguments. The first (x) is the model, which must be an object of the class `WAAS.AMMI`. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If `x` is a list with more than one variable, `order.y` must be a vector of the same length of x. Each element of the vector must be one of the "h" or "l". If "h" is used, the response variable will be ordered from maximum to minimum. If "l" is used then the response variable will be ordered from minimum to maximum.
+The `AMMI_index()` function has two arguments. The first (x) is the model, which must be an object of the class `waas`. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If `x` is a list with more than one variable, `order.y` must be a vector of the same length of x. Each element of the vector must be one of the "h" or "l". If "h" is used, the response variable will be ordered from maximum to minimum. If "l" is used then the response variable will be ordered from minimum to maximum.
 Using the forward-pipe operator *%>%* it is possible to structure sequences of data operations left-to-right. The operators pipe their left-hand side values forward into expressions that appear on the right-hand side. When coupling several function calls with the pipe-operator, the benefit will become more apparent. Let's construct this model.
 
 ```{r }
 stab_indexes = dataset %>%
-               WAAS.AMMI(ENV, GEN, REP, GY, verbose = FALSE) %>%
+               waas(ENV, GEN, REP, GY, verbose = FALSE) %>%
                AMMI_indexes()
-print_table(stab_indexes)
+print_table(stab_indexes$GY)
     ```
 
 

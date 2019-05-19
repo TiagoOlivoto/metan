@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary a WAASB object — summary.WAASB • metan</title>
+<title>Summary a waasb object — summary.waasb • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Summary a WAASB object — summary.WAASB" />
+<meta property="og:title" content="Summary a waasb object — summary.waasb" />
 
-<meta property="og:description" content="Summary the WAASB object in two ways. By default, the results are
+<meta property="og:description" content="Summary the waasb object in two ways. By default, the results are
 shown in the R console. The results can also be exported to the directory." />
 
 <meta property="og:image" content="/logo.png" />
@@ -66,7 +66,7 @@ shown in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -154,19 +154,19 @@ shown in the R console. The results can also be exported to the directory." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary a WAASB object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.WAASB.R'><code>R/summary.WAASB.R</code></a></small>
-    <div class="hidden name"><code>summary.WAASB.Rd</code></div>
+    <h1>Summary a waasb object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.waasb.R'><code>R/summary.waasb.R</code></a></small>
+    <div class="hidden name"><code>summary.waasb.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Summary the <code>WAASB</code> object in two ways. By default, the results are
+    <p>Summary the <code>waasb</code> object in two ways. By default, the results are
 shown in the R console. The results can also be exported to the directory.</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for WAASB</span>
+    <pre class="usage"><span class='co'># S3 method for waasb</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>blup</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
     
@@ -175,7 +175,7 @@ shown in the R console. The results can also be exported to the directory.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>The <code>WAASB</code> object</p></td>
+      <td><p>The <code>waasb</code> object</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -204,7 +204,7 @@ to the working directory</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
@@ -283,29 +283,29 @@ to the working directory</p></td>
 #&gt; ---------------------------------------------------------------------------
 #&gt;  Principal component analysis of the G x E interaction matrix
 #&gt; ---------------------------------------------------------------------------
-#&gt;  PC Eigenvalue Proportion Accumulated
-#&gt;   1    1.47222    34.3084       34.31
-#&gt;   2    1.34670    31.3835       65.69
-#&gt;   3    0.54788    12.7677       78.46
-#&gt;   4    0.41666     9.7099       88.17
-#&gt;   5    0.21262     4.9548       93.12
-#&gt;   6    0.13973     3.2562       96.38
-#&gt;   7    0.07912     1.8437       98.22
-#&gt;   8    0.05673     1.3221       99.55
-#&gt;   9    0.01947     0.4537      100.00
+#&gt;   PC Eigenvalue Proportion Accumulated
+#&gt;  PC1    1.47222    34.3084       34.31
+#&gt;  PC2    1.34670    31.3835       65.69
+#&gt;  PC3    0.54788    12.7677       78.46
+#&gt;  PC4    0.41666     9.7099       88.17
+#&gt;  PC5    0.21262     4.9548       93.12
+#&gt;  PC6    0.13973     3.2562       96.38
+#&gt;  PC7    0.07912     1.8437       98.22
+#&gt;  PC8    0.05673     1.3221       99.55
+#&gt;  PC9    0.01947     0.4537      100.00
 #&gt; ---------------------------------------------------------------------------
 #&gt; Some information regarding the analysis
 #&gt; ---------------------------------------------------------------------------
-#&gt;  Parameters                        Values
-#&gt;        Ngen                            10
-#&gt;        Nenv                            14
-#&gt;      OVmean                        2.6742
-#&gt;         Min 0.8991 (Genotype G10 in E11 )
-#&gt;         Max   4.8121 (Genotype G8 in E5 )
-#&gt;      MinENV     Environment E11 (1.3683) 
-#&gt;      MaxENV      Environment E3 (4.0643) 
-#&gt;      MinGEN        Genotype G10 (2.4712) 
-#&gt;      MaxGEN         Genotype G8 (3.0036) 
+#&gt;  Parameters                       Values
+#&gt;        Ngen                           10
+#&gt;        Nenv                           14
+#&gt;      OVmean                       2.6742
+#&gt;         Min 0.8991 (Genotype G10 in E11)
+#&gt;         Max   4.8121 (Genotype G8 in E5)
+#&gt;      MinENV        Environment 2 (2.471)
+#&gt;      MaxENV        Environment 9 (3.004)
+#&gt;      MinGEN         Genotype 13 (1.368) 
+#&gt;      MaxGEN         Genotype 18 (4.064) 
 #&gt; ------------------------------ End of data -------------------------------
 #&gt; 
 #&gt; 
@@ -383,29 +383,29 @@ to the working directory</p></td>
 #&gt; ---------------------------------------------------------------------------
 #&gt;  Principal component analysis of the G x E interaction matrix
 #&gt; ---------------------------------------------------------------------------
-#&gt;  PC Eigenvalue Proportion Accumulated
-#&gt;   1    61.9620     33.835       33.83
-#&gt;   2    51.9046     28.343       62.18
-#&gt;   3    19.8166     10.821       73.00
-#&gt;   4    13.8954      7.588       80.59
-#&gt;   5    11.5038      6.282       86.87
-#&gt;   6    10.3748      5.665       92.53
-#&gt;   7     8.3910      4.582       97.11
-#&gt;   8     4.5825      2.502       99.62
-#&gt;   9     0.7015      0.383      100.00
+#&gt;   PC Eigenvalue Proportion Accumulated
+#&gt;  PC1    61.9620     33.835       33.83
+#&gt;  PC2    51.9046     28.343       62.18
+#&gt;  PC3    19.8166     10.821       73.00
+#&gt;  PC4    13.8954      7.588       80.59
+#&gt;  PC5    11.5038      6.282       86.87
+#&gt;  PC6    10.3748      5.665       92.53
+#&gt;  PC7     8.3910      4.582       97.11
+#&gt;  PC8     4.5825      2.502       99.62
+#&gt;  PC9     0.7015      0.383      100.00
 #&gt; ---------------------------------------------------------------------------
 #&gt; Some information regarding the analysis
 #&gt; ---------------------------------------------------------------------------
-#&gt;  Parameters                        Values
-#&gt;        Ngen                            10
-#&gt;        Nenv                            14
-#&gt;      OVmean                       48.0883
-#&gt;         Min   39.35 (Genotype G2 in E14 )
-#&gt;         Max 56.3333 (Genotype G6 in E11 )
-#&gt;      MinENV    Environment E14 (41.0317) 
-#&gt;      MaxENV    Environment E11 (54.1983) 
-#&gt;      MinGEN        Genotype G2 (46.6598) 
-#&gt;      MaxGEN        Genotype G5 (49.2976) 
+#&gt;  Parameters                       Values
+#&gt;        Ngen                           10
+#&gt;        Nenv                           14
+#&gt;      OVmean                      48.0883
+#&gt;         Min   39.35 (Genotype G2 in E14)
+#&gt;         Max 56.3333 (Genotype G6 in E11)
+#&gt;      MinENV        Environment 3 (46.66)
+#&gt;      MaxENV       Environment 6 (49.298)
+#&gt;      MinGEN        Genotype 16 (41.032) 
+#&gt;      MaxGEN        Genotype 13 (54.198) 
 #&gt; ------------------------------ End of data -------------------------------
 #&gt; 
 #&gt; 

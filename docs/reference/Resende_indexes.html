@@ -68,7 +68,7 @@ genotypic values (HMRPGV)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -177,7 +177,7 @@ genotypic values (HMRPGV).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>An object of class <code>WAASB</code></p></td>
+      <td><p>An object of class <code>waasb</code></p></td>
     </tr>
     </table>
     
@@ -228,7 +228,7 @@ melhoramento genetico. Embrapa Florestas, Colombo</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>res_ind</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>res_ind</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                 <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                 <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                 <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
@@ -239,7 +239,7 @@ melhoramento genetico. Embrapa Florestas, Colombo</p>
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='no'>res_ind</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-          <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
+          <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
           <span class='fu'>Resende_indexes</span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; Done!</div><div class='input'>

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -165,18 +165,18 @@
 <div id="fitting-the-model" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h3>
-<p>The AMMI model is fitted with the function <code><a href="reference/WAAS.AMMI.html">WAAS.AMMI()</a></code>. For more details, please see <code><a href="reference/WAAS.AMMI.html">?WAAS.AMMI</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/WAAS.AMMI.html">WAAS.AMMI</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb4-2" title="2">                  <span class="dt">resp =</span> GY,</a>
-<a class="sourceLine" id="cb4-3" title="3">                  <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb4-4" title="4">                  <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb4-5" title="5">                  <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb4-6" title="6">                  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>The AMMI model is fitted with the function <code><a href="reference/waas.html">waas()</a></code>. For more details, please see <code><a href="reference/waas.html">?waas</a></code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/waas.html">waas</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb4-2" title="2">              <span class="dt">resp =</span> GY,</a>
+<a class="sourceLine" id="cb4-3" title="3">              <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb4-4" title="4">              <span class="dt">env =</span> ENV,</a>
+<a class="sourceLine" id="cb4-5" title="5">              <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb4-6" title="6">              <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="predicting-the-response-variable" class="section level3">
 <h3 class="hasAnchor">
 <a href="#predicting-the-response-variable" class="anchor"></a>Predicting the response variable</h3>
-<p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>WAAS.AMMI</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
+<p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)</a>
 <a class="sourceLine" id="cb5-2" title="2">predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb5-3" title="3">predicted =<span class="st"> </span>predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
@@ -346,7 +346,7 @@ G4
 <div id="biplots" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h3>
-<p>ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/WAAS.AMMI.html">WAAS.AMMI()</a></code> function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, …), the output <code>model</code> is a list, in this case with one element, GY.</p>
+<p>ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/waas.html">waas()</a></code> function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, …), the output <code>model</code> is a list, in this case with one element, GY.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</a>
 <a class="sourceLine" id="cb6-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY)</a>
 <a class="sourceLine" id="cb6-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY,</a>
@@ -363,8 +363,8 @@ G4
 <div id="blup-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h2>
-<p>The implementation of linear-mixed effect models to predict the response variable in MET is based on the <code><a href="reference/WAASB.html">WAASB()</a></code> function. The “mixed-effect version” of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to be random effects is then obtained as follows</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/WAASB.html">WAASB</a></span>(data_ge,</a>
+<p>The implementation of linear-mixed effect models to predict the response variable in MET is based on the <code><a href="reference/waasb.html">waasb()</a></code> function. The “mixed-effect version” of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to be random effects is then obtained as follows</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/waasb.html">waasb</a></span>(data_ge,</a>
 <a class="sourceLine" id="cb7-2" title="2">                <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb7-3" title="3">                <span class="dt">gen =</span> GEN,</a>
 <a class="sourceLine" id="cb7-4" title="4">                <span class="dt">env =</span> ENV,</a>

@@ -52,7 +52,7 @@ CVAL = cv_ammif(data_ge,
                 gen = GEN,
                 env = ENV,
                 rep = REP,
-                nboot = 50,
+                nboot = 5,
                 nrepval = 2)
 plot(CVAL)
 ```
@@ -62,7 +62,7 @@ plot(CVAL)
 The AMMI model is fitted with the function `WAAS.AMMI()`. Note that a model may be fitted easier and faster using `%>%` and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). For more details, please see `?WAAS.AMMI`.
 
 ```{r}
-model <- data_ge %>% WAAS.AMMI(ENV, GEN, REP, GY)
+model <- data_ge %>% waas(ENV, GEN, REP, GY)
 ```
 
 ### Biplots
@@ -97,7 +97,7 @@ print_table(head(predicted$GY))
 The implementation of linear-mixed effect models to predict the response variable in MET is made with `WAASB()` function. The *mixed-effect version* of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.
 
 ```{r }
-model2 <- data_ge %>% WAASB(ENV, GEN, REP, GY)
+model2 <- data_ge %>% waasb(ENV, GEN, REP, GY)
 ```
 
 The mixed-effect model fitted in `model2` has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:

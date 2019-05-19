@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -205,105 +205,24 @@ after using <code>coord_polar()</code>.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; Done!</div><div class='input'>
-<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'><a href='MTSI.html'>MTSI</a></span>(<span class='no'>MTSI_MODEL</span>)</div><div class='output co'>#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Principal Component Analysis
-#&gt; -------------------------------------------------------------------------------
-#&gt;     Eigenvalues Variance (%) Cum. variance (%)
-#&gt; PC1   1.6566277     82.83139          82.83139
-#&gt; PC2   0.3433723     17.16861         100.00000
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Factor Analysis - factorial loadings after rotation-
-#&gt; -------------------------------------------------------------------------------
-#&gt;          FA1 Communality Uniquenesses
-#&gt; GY 0.9101175   0.8283139    0.1716861
-#&gt; HM 0.9101175   0.8283139    0.1716861
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.8283139 
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Multitrait stability index
-#&gt; -------------------------------------------------------------------------------
-#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
-#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for WAASB index
-#&gt; -------------------------------------------------------------------------------
-#&gt;    Factor        Xo        Xs         SD    SDperc
-#&gt; GY    FA1 0.2504736 0.1165028 -0.1339708 -53.48700
-#&gt; HM    FA1 0.6141648 0.3732404 -0.2409244 -39.22798
-#&gt; 
-#&gt; ------------------------------------------------------------------------------
-#&gt; Mean of selection differential
-#&gt; -------------------------------------------------------------------------------
-#&gt;          Xo          Xs          SD      SDperc 
-#&gt;   0.4323192   0.2448716  -0.1874476 -46.3574864 
-#&gt; 
-#&gt; ------------------------------------------------------------------------------
-#&gt; Selected genotypes
-#&gt; G3 G1
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>MTSI_index</span>)</div><div class='img'><img src='plot.MTSI-1.png' alt='' width='700' height='433' /></div><div class='input'>
+                   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))
+
+<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'><a href='MTSI.html'>MTSI</a></span>(<span class='no'>MTSI_MODEL</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>MTSI_index</span>)
+
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='no'>MTSI_index2</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-              <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
-              <span class='fu'><a href='MTSI.html'>MTSI</a></span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; Done!
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Principal Component Analysis
-#&gt; -------------------------------------------------------------------------------
-#&gt;     Eigenvalues Variance (%) Cum. variance (%)
-#&gt; PC1   1.6566277     82.83139          82.83139
-#&gt; PC2   0.3433723     17.16861         100.00000
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Factor Analysis - factorial loadings after rotation-
-#&gt; -------------------------------------------------------------------------------
-#&gt;          FA1 Communality Uniquenesses
-#&gt; GY 0.9101175   0.8283139    0.1716861
-#&gt; HM 0.9101175   0.8283139    0.1716861
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.8283139 
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Multitrait stability index
-#&gt; -------------------------------------------------------------------------------
-#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
-#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for WAASB index
-#&gt; -------------------------------------------------------------------------------
-#&gt;    Factor        Xo        Xs         SD    SDperc
-#&gt; GY    FA1 0.2504736 0.1165028 -0.1339708 -53.48700
-#&gt; HM    FA1 0.6141648 0.3732404 -0.2409244 -39.22798
-#&gt; 
-#&gt; ------------------------------------------------------------------------------
-#&gt; Mean of selection differential
-#&gt; -------------------------------------------------------------------------------
-#&gt;          Xo          Xs          SD      SDperc 
-#&gt;   0.4323192   0.2448716  -0.1874476 -46.3574864 
-#&gt; 
-#&gt; ------------------------------------------------------------------------------
-#&gt; Selected genotypes
-#&gt; G3 G1
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>MTSI_index2</span>)</div><div class='img'><img src='plot.MTSI-2.png' alt='' width='700' height='433' /></div><div class='input'>
-
+              <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
+              <span class='fu'><a href='MTSI.html'>MTSI</a></span>()
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>MTSI_index2</span>)
+<span class='co'># }</span><div class='input'>
 
 </div></pre>
   </div>

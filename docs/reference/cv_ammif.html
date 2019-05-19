@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -164,8 +164,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>cv_ammif</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>, <span class='no'>nboot</span>, <span class='no'>nrepval</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>cv_ammif</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>,
+  <span class='no'>nrepval</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,14 +194,14 @@ replications/blocks.</p></td>
       <td><p>The response variable.</p></td>
     </tr>
     <tr>
+      <th>nboot</th>
+      <td><p>The number of resamples to be used in the cross-validation</p></td>
+    </tr>
+    <tr>
       <th>design</th>
       <td><p>The experimental desig to be considered. Default is
 <code>RCBD</code> (Randomized complete Block Design). For Completely Randomized
 Designs inform <code>design = "CRD"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>The number of resamples to be used in the cross-validation</p></td>
     </tr>
     <tr>
       <th>nrepval</th>

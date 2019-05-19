@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -256,15 +256,15 @@ c(breaks)</code></p></td>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='no'>waasby</span> <span class='kw'>=</span> <span class='fu'><a href='WAASB.html'>WAASB</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>waasby</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'><span class='no'>waasby2</span> <span class='kw'>=</span> <span class='fu'><a href='WAAS.AMMI.html'>WAAS.AMMI</a></span>(<span class='no'>data_ge</span>,
-                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'><span class='fu'>plot_waasby</span>(<span class='no'>waasby</span>$<span class='no'>GY</span>)</div><div class='img'><img src='plot_waasby-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plot_waasby</span>(<span class='no'>waasby2</span>$<span class='no'>GY</span>) +
+               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'><span class='no'>waasby2</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge</span>,
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
+               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'><span class='fu'>plot_waasby</span>(<span class='no'>waasby</span>$<span class='no'>GY</span>)</div><div class='img'><img src='plot_waasby-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plot_waasby</span>(<span class='no'>waasby2</span>$<span class='no'>GY</span>) +
             <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a></span>() +
             <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/theme'>theme</a></span>(<span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
                   <span class='kw'>legend.background</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/element'>element_blank</a></span>(),

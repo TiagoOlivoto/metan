@@ -13,10 +13,16 @@ vignette: >
 The function `find_outlier()` may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked.
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-
 library(metan)
-library(dplyr)
 library(cowplot)
+library(kableExtra) # Used to make the tables
+library(dplyr) # used for the forward-pipe operator %>%
+# Function to make HTML tables
+print_table = function(table){
+  kable(table, "html", digits = 3) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                  font_size = 12)
+}
 data_out = data_ge2
 data_out[12, 4] = 26
 find_outliers(data_out, var = PH, plots = TRUE)
@@ -53,7 +59,8 @@ Where $t_{calc}$ is the calculated Student * t * statistic; $ r_{xy.m} $ is the 
 ```{r, message=FALSE }
 dataset = data_ge2
 
-lpc1 = lpcor(dataset[,5:8])
+lpc1 = dataset %>% select(starts_with("N")) %>% lpcor()
+print_table(lpc1$results)
 
 # Compute the correlations for each level of the factor ENV
 lpc2 = dataset %>%
@@ -95,7 +102,7 @@ as.lpcor(cor(dataset[1:30, 5:ncol(dataset)]),
 
 ## Graphical and numerical visualization of a correlation matrix
 
-The function `corr_plot()` may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the `pairs()` function.
+The function `corr_plot()` may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the `pairs()`base R function.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 dataset = data_ge2
@@ -180,24 +187,27 @@ The function `covcor_design()` returns a list with the matrices of (co)variances
 ## Genetic correlations
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 data = subset(data_ge2, ENV == "A1")
-covcor_design(data, gen = GEN, rep = REP,
-              resp = c(PH, EH, NKE, TKW),
-              type = "gcor")
-    ```
+gcor = covcor_design(data, gen = GEN, rep = REP,
+                     resp = c(PH, EH, NKE, TKW),
+                     type = "gcor")
+print_table(gcor)
+```
 
 
 ## Phenotypic correlations
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-covcor_design(data, gen = GEN, rep = REP,
-              resp = c(PH, EH, NKE, TKW),
-              type = "pcor")
+pcor = covcor_design(data, gen = GEN, rep = REP,
+                     resp = c(PH, EH, NKE, TKW),
+                     type = "pcor")
+print_table(pcor)
     ```
 
 ## Residual correlations
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-covcor_design(data, gen = GEN, rep = REP,
-              resp = c(PH, EH, NKE, TKW),
-              type = "rcor")
+rcor = covcor_design(data, gen = GEN, rep = REP,
+                     resp = c(PH, EH, NKE, TKW),
+                     type = "rcor")
+print_table(rcor)
 ```
 
 ## Residual (co)variance matrix
@@ -218,6 +228,7 @@ means = data %>% # environment A1
       covcor_design(GEN, REP, c(PH, EH, NKE, TKW), type = "means")
 
 D2 = mahala(.means = means, covar = res, inverted = FALSE)
+print_table(D2)
     ```
 
 
@@ -410,11 +421,11 @@ pairs_mantel(d7)
 ### Based on designed experiments
 
 ```{r }
-options(digits = 2)
-mahala_design(data_ge,
-              gen = GEN,
-              rep = REP,
-              resp = c(GY, HM))
+D2_des = mahala_design(data_ge,
+                       gen = GEN,
+                       rep = REP,
+                       resp = c(GY, HM))
+print_table(D2_des)
 
 # Compute one distance for each environment
 maha_group = data_ge %>%
