@@ -6,14 +6,21 @@
 #' @param x An object of class \code{clustering}
 #' @param type The type of plot. Must be one of the 'dendrogram' or
 #' 'cophenetic'.
-#' @param ... Other arguments passed from the function \code{plot.dendrogram}.
+#' @param ... Other arguments passed from the function \code{plot.dendrogram}
+#' or \code{abline}.
 #' @method plot clustering
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'
-plot.clustering = function(x, type = "dendrogram", ...){
+plot.clustering = function(x, horiz = TRUE, type = "dendrogram", ...){
   if (type == "dendrogram"){
-    plot(as.dendrogram(x$hc), ...)
+    plot(as.dendrogram(x$hc), horiz = horiz, ...)
+    if(horiz == TRUE){
+    abline(v = x$cutpoint, ...)
+    }
+    if(horiz == FALSE){
+      abline(h = x$cutpoint, ...)
+    }
   }
   if (type == "cophenetic"){
     ggplot2::ggplot(x$statistics, ggplot2::aes(x = remaining, y = cophenetic))+
