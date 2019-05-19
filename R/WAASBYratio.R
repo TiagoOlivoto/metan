@@ -51,6 +51,7 @@ NULL
 #' @export
 WAASBYratio <- function(.data, env, gen, rep, resp,  mresp = 100,
                          increment = 10, saveWAASY = 50, progbar = TRUE) {
+  stop("'WAASBYratio' is deprecated. Please, use 'wsmp' instead", call. = FALSE)
   PesoWAAS <- 100
   PesoResp <- 0
   minresp <- 100 - mresp

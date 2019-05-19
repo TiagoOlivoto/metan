@@ -64,6 +64,7 @@ NULL
 #'
 WAASratio.AMMI <- function(.data, env, gen, rep, resp, mresp = 100, p.valuePC = 0.05, increment = 5,
     saveWAASY = 50, progbar = TRUE) {
+    stop("'WAASratio.AMMI' is deprecated. Please, use 'wsmp' instead", call. = FALSE)
     PesoWAAS <- 100
     PesoResp <- 0
     minresp <- 100 - mresp

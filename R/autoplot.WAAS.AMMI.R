@@ -51,6 +51,7 @@ autoplot.WAAS.AMMI <- function(x, conf = 0.95, labels = FALSE, theme = theme_waa
     alpha = 0.2, fill.hist = "gray", col.hist = "black", col.point = "black", col.line = "red",
     col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10, size.shape = 1.5,
     bins = 30, which = c(1:4), mfrow = c(2, 2), ...) {
+    stop("'autoplot.WAAS.AMMI' is deprecated. Please, use 'autoplot.waas' instead")
 
     df <- x$residuals
     df$id <- rownames(df)

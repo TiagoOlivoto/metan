@@ -25,7 +25,7 @@ NULL
 #' @export
 summary.WAAS.AMMI <- function(object, export = FALSE, file.name = NULL, digits = 4,
     ...) {
-
+    stop("'summary.WAAS.AMMI' is deprecated. Please, use 'summary.waas' instead")
     class <- class(object)
     if (!class == "WAAS.AMMI") {
         stop("The object must be of class 'WAAS.AMMI'")

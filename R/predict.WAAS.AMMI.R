@@ -39,6 +39,7 @@ NULL
 #'
 #' @export
 predict.WAAS.AMMI <- function(object, naxis, ...) {
+    stop("'predict.WAAS.AMMI' is deprecated. Please, use 'predict.waas' instead")
     cal <- match.call()
     if (class(object) != "WAAS.AMMI") {
         stop("The objectin must be an objectin of the class 'WAAS.AMMI'")

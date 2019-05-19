@@ -38,7 +38,7 @@ NULL
 #' @export
 WAAS.AMMI <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
     naxis = NULL, verbose = TRUE) {
-    .Deprecated("waas")
+    stop("'WAAS.AMMI' is deprecated. Please, use 'waas' instead")
     d <- match.call()
     nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
     if (!is.null(naxis)) {

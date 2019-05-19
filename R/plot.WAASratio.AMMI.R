@@ -52,6 +52,7 @@ NULL
 plot.WAASratio.AMMI <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name = NULL,
     width = 6, height = 5, size.lab = 1, margins = c(5, 4), y.lab = NULL, x.lab = NULL,
     key.lab = "Genotype ranking", resolution = 300, ...) {
+    stop("'plot.WAASratio.AMMI' is deprecated. Please, use 'plot.wsmp' instead")
     data <- x
     if (type == 1) {
 
