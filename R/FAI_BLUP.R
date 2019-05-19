@@ -4,7 +4,7 @@
 #' Rocha et al. (2018).
 #'
 #'
-#' @param .data An object of class \code{WAASB}
+#' @param .data An object of class \code{waasb}
 #' @param DI,UI A vector of the same length of \code{.data} to construct the
 #' desirable (DI) and undesirable (UI) ideotypes. For each element of the
 #' vector, allowed values are \code{"max"}, \code{"min"}, \code{"mean"}, or a
@@ -33,7 +33,7 @@
 #'             rep = REP,
 #'             resp = c(GY, HM),)
 #'
-#' FAI = FAI_BLUP(mod,
+#' FAI = fai_blup(mod,
 #'                SI = 15,
 #'                DI = c("max", "max"),
 #'                UI = c("min", "min"))
@@ -42,11 +42,11 @@
 #'
 #' FAI = data_ge2 %>%
 #'       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-#'       FAI_BLUP(DI = c("max", "max", "max", "min"),
+#'       fai_blup(DI = c("max", "max", "max", "min"),
 #'                UI = c("min", "min", "min", "max"),
 #'                SI = 15)
 #'
-FAI_BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
+fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   if (!class(.data) == "waasb") {
     stop("The .data must be an object of class 'waasb'.")
   }
@@ -239,5 +239,5 @@ FAI_BLUP <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     }
 
     return(structure(list(data = data, FA = data.frame(fa), canonical.loadings = data.frame(canonical.loadings),
-        FAI = ideotype.rank, selection.diferential = selection.diferential), class = "FAI_BLUP"))
+        FAI = ideotype.rank, selection.diferential = selection.diferential), class = "fai_blup"))
 }

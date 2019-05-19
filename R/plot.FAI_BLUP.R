@@ -1,4 +1,4 @@
-#' Multitrait index based on factor analysis and ideotype-design
+#' Multi-trait selection index
 #'
 #' Plot the multitrait index based on factor analysis and ideotype-design
 #' proposed by Rocha et al. (2018).
@@ -20,7 +20,7 @@
 #' application on elephant grass breeding for bioenergy. GCB Bioenergy
 #' 10:52-60. doi:
 #' \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
-#' @method plot FAI_BLUP
+#' @method plot fai_blup
 #' @export
 #' @examples
 #'
@@ -34,16 +34,16 @@
 #'
 #' FAI = data_ge2 %>%
 #'       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-#'       FAI_BLUP(DI = c("max", "max", "max", "min"),
+#'       fai_blup(DI = c("max", "max", "max", "min"),
 #'                UI = c("min", "min", "min", "max"),
 #'                SI = 15)
 #'       plot(FAI)
 #'
-plot.FAI_BLUP <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2,
+plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2,
     col.sel = "red", col.nonsel = "black", ...) {
 
-    if (!class(x) == "FAI_BLUP") {
-        stop("The object 'x' is not of class 'FAI_BLUP'")
+    if (!class(x) == "fai_blup") {
+        stop("The object 'x' is not of class 'fai_blup'")
     }
     data <- data.frame(FAI = x$FAI[[ideotype]], Genotype = names(x$FAI[[ideotype]]))
     ngsel <- round(nrow(data) * (SI/100), 0)
