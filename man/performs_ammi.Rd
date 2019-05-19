@@ -32,7 +32,7 @@ axes.}
 }
 \description{
 Compute the Additive Main effects and Multiplicative interaction. This is a
-helper function for other procedures performed in the WAASB package such as
+helper function for other procedures performed in the \pkg{metan} package such as
 \code{\link{waas}}, \code{\link{cv_ammi}}, and \code{\link{cv_ammif}}.
 }
 \examples{
