@@ -1,44 +1,44 @@
-#' Summary a MTSI object
+#' Summarise a mtsi object
 #'
-#' Summary a \code{MTSI} object in two ways. By default, the results are shown
+#' Summary a \code{mtsi} object in two ways. By default, the results are shown
 #' in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param object The \code{MTSI} object
+#' @param object The \code{mtsi} object
 #' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
 #' to the working directory
 #' @param file.name The name of the file if \code{export = TRUE}
 #' @param digits The significant digits to be shown.
 #' @param ... Other arguments of the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method summary MTSI
+#' @method summary mtsi
 #' @export
 #' @examples
 #' \dontrun{
 #' library(metan)
 #' # Based on stability only
-#' MTSI_MODEL = WAASB(data_ge,
+#' MTSI_MODEL = waasb(data_ge,
 #'                    resp = c(GY, HM),
 #'                    gen = GEN,
 #'                    env = ENV,
 #'                    rep = REP)
 #'
-#' MTSI_index = MTSI(MTSI_MODEL)
+#' MTSI_index = mtsi(MTSI_MODEL)
 #' summary(MTSI_index)
 #' summary(MTSI_index,
 #'         export = TRUE,
 #'         file.name = "my results")
 #' }
 #'
-summary.MTSI <- function(object, export = FALSE, file.name = NULL, digits = 4, ...) {
+summary.mtsi <- function(object, export = FALSE, file.name = NULL, digits = 4, ...) {
     class <- class(object)
-    if (!class == "MTSI") {
-        stop("The object must be of class 'MTSI'")
+    if (!class == "mtsi") {
+        stop("The object must be of class 'mtsi'")
     }
 
     if (export == TRUE) {
         if (is.null(file.name) == T) {
-            file.name <- "MTSI summary"
+            file.name <- "mtsi summary"
         } else {
             file.name <- file.name
         }
