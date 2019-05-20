@@ -67,7 +67,19 @@ summary.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 
       cat("---------------------------------------------------------------------------\n")
       cat("Regression-based stability (parameters)\n")
       cat("---------------------------------------------------------------------------\n")
-      print.data.frame(var$ER$regression, digits = digits)
+      print.data.frame(var$ER$regression, digits = digits, row.names = FALSE)
+      cat("---------------------------------------------------------------------------\n")
+      cat("Genotypic confidence index (all environments)\n")
+      cat("---------------------------------------------------------------------------\n")
+      print.data.frame(var$ANN$general, digits = digits, row.names = FALSE)
+      cat("---------------------------------------------------------------------------\n")
+      cat("Wricke's Ecovalence\n")
+      cat("---------------------------------------------------------------------------\n")
+      print.data.frame(var$Ecoval, digits = digits)
+      cat("---------------------------------------------------------------------------\n")
+      cat("Nonparametric Superiority index\n")
+      cat("---------------------------------------------------------------------------\n")
+      print.data.frame(var$Superiority$index, digits = digits, row.names = FALSE)
       cat("------------------------------- End of data -----------------------------\n\n\n\n")
 
     }
@@ -103,12 +115,20 @@ summary.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 
       cat("---------------------------------------------------------------------------\n")
       cat("Regression-based stability (parameters)\n")
       cat("---------------------------------------------------------------------------\n")
-      print.data.frame(var$ER$regression, digits = digits)
+      print.data.frame(var$ER$regression, digits = digits, row.names = FALSE)
+      cat("---------------------------------------------------------------------------\n")
+      cat("Genotypic confidence index (all environments)\n")
+      cat("---------------------------------------------------------------------------\n")
+      print.data.frame(var$ANN$general, digits = digits, row.names = FALSE)
+      cat("---------------------------------------------------------------------------\n")
+      cat("Wricke's Ecovalence\n")
+      cat("---------------------------------------------------------------------------\n")
+      print.data.frame(var$Ecoval, digits = digits)
+      cat("---------------------------------------------------------------------------\n")
+      cat("Nonparametric Superiority index\n")
+      cat("---------------------------------------------------------------------------\n")
+      print.data.frame(var$Superiority$index, digits = digits, row.names = FALSE)
       cat("------------------------------- End of data -----------------------------\n\n\n\n")
     }
   }
 }
-
-
-
-

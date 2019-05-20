@@ -105,7 +105,7 @@ ge_stat = data.frame(Mean = Mean,
                      SQE_Gi = GENSS)
 
 
-temp = list(individual = individual,
+temp = list(individual = individual[[1]][[1]],
             ge_mean = ge_mean,
             ge_effect = ge_effect,
             gge_effect = gge_effect,
