@@ -86,6 +86,7 @@ superiority = function(.data,
                                    Or_f = rank(lin_fun(mat_f)),
                                    Pi_unfavorable = lin_fun(mat_u),
                                    Or_u = rank(lin_fun(mat_u))))
+    rownames(temp) = NULL
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
