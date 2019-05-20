@@ -79,7 +79,7 @@ superiority = function(.data,
     ge_mu = subset(data, class == "unfavorable")
     mat_u  = dplyr::select_if(make_mat(ge_mu, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
     temp = list(environments = environments,
-                index = data.frame(Genotypes = rownames(mat_g),
+                index = tibble(Genotypes = rownames(mat_g),
                                    Pi_all = lin_fun(mat_g),
                                    Or_a = rank(lin_fun(mat_g)),
                                    Pi_favorable = lin_fun(mat_f),
