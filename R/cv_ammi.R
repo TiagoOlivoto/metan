@@ -151,15 +151,15 @@ data = .data %>% select(ENV = !!enquo(env), GEN = !!enquo(gen), REP = !!enquo(re
         close(pb)
     }
 
-    RSMEmean <- summarise(RMSPDres, mean = mean(RMSPD),
+    RMSPDmean <- summarise(MODEL = paste("AMMI", naxis, sep = ""),
+                          RMSPDres, mean = mean(RMSPD),
                           sd = sd(RMSPD),
                           se = sd(RMSPD)/sqrt(n()),
                           Q2.5 = quantile(RMSPD, 0.025),
-                          Q97.5 = quantile(RMSPD, 0.975),
-                          Rank = rank(mean))
+                          Q97.5 = quantile(RMSPD, 0.975))
     RMSPDres = RMSPDres %>% mutate(MODEL = paste("AMMI", naxis, sep = "")) %>%
         dplyr::select(MODEL, everything())
 
-    return(structure(list(RMSPD = RMSPDres, RSMEmean = RSMEmean, Estimated = MEDIAS,
+    return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean, Estimated = MEDIAS,
                           Modeling = modeling, Testing = testing), class = "cv_ammi"))
 }
