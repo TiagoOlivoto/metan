@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multi-trait stability index — MTSI • metan</title>
+<title>Multi-trait stability index — mtsi • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Multi-trait stability index — MTSI" />
+<meta property="og:title" content="Multi-trait stability index — mtsi" />
 
-<meta property="og:description" content="Multi-trait stability index in analysis of multi-environment trials using
-AMMI or BLUP methods." />
+<meta property="og:description" content="Multi-trait stability index in analysis of multi-environment trials" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -155,18 +154,17 @@ AMMI or BLUP methods." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Multi-trait stability index</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/MTSI.R'><code>R/MTSI.R</code></a></small>
-    <div class="hidden name"><code>MTSI.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/mtsi.R'><code>R/mtsi.R</code></a></small>
+    <div class="hidden name"><code>mtsi.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Multi-trait stability index in analysis of multi-environment trials using
-AMMI or BLUP methods.</p>
+    <p>Multi-trait stability index in analysis of multi-environment trials</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>MTSI</span>(<span class='no'>.data</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"waasb"</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>mtsi</span>(<span class='no'>.data</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"waasb"</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,60 +204,55 @@ shown in the console.</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
 <span class='co'># Based on stability only, for both GY and HM, higher is better</span>
-<span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>mtsi_model</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
-#&gt; Done!</div><div class='input'><span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'>MTSI</span>(<span class='no'>MTSI_MODEL</span>)</div><div class='output co'>#&gt; 
+#&gt; Done!</div><div class='input'><span class='no'>mtsi_index</span> <span class='kw'>=</span> <span class='fu'>mtsi</span>(<span class='no'>mtsi_model</span>)</div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
 #&gt;     Eigenvalues Variance (%) Cum. variance (%)
 #&gt; PC1   1.6566277     82.83139          82.83139
 #&gt; PC2   0.3433723     17.16861         100.00000
-#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
 #&gt;          FA1 Communality Uniquenesses
 #&gt; GY 0.9101175   0.8283139    0.1716861
 #&gt; HM 0.9101175   0.8283139    0.1716861
-#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.8283139 
-#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Multitrait stability index
 #&gt; -------------------------------------------------------------------------------
 #&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
 #&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
-#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for waasb index
 #&gt; -------------------------------------------------------------------------------
 #&gt;    Factor        Xo        Xs         SD    SDperc
 #&gt; GY    FA1 0.2504736 0.1165028 -0.1339708 -53.48700
 #&gt; HM    FA1 0.6141648 0.3732404 -0.2409244 -39.22798
-#&gt; 
 #&gt; ------------------------------------------------------------------------------
 #&gt; Mean of selection differential
 #&gt; -------------------------------------------------------------------------------
 #&gt;          Xo          Xs          SD      SDperc 
 #&gt;   0.4323192   0.2448716  -0.1874476 -46.3574863 
-#&gt; 
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
+#&gt; -------------------------------------------------------------------------------
 #&gt; G3 G1
 #&gt; -------------------------------------------------------------------------------</div><div class='input'>
 
 <span class='co'># Based on mean performance and stability (using pipe operator %&gt;%)</span>
 <span class='co'># GY: higher is better</span>
 <span class='co'># HM: lower is better</span>
-<span class='no'>MTSI_index2</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+<span class='no'>mtsi_index2</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
               <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>), <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>)) <span class='kw'>%&gt;%</span>
-              <span class='fu'>MTSI</span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"waasby"</span>)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+              <span class='fu'>mtsi</span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"waasby"</span>)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; Done!
 #&gt; 
@@ -269,38 +262,33 @@ shown in the console.</p></td>
 #&gt;     Eigenvalues Variance (%) Cum. variance (%)
 #&gt; PC1   1.3693321     68.46661          68.46661
 #&gt; PC2   0.6306679     31.53339         100.00000
-#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
 #&gt;           FA1 Communality Uniquenesses
 #&gt; GY -0.8274455   0.6846661    0.3153339
 #&gt; HM  0.8274455   0.6846661    0.3153339
-#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.6846661 
-#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Multitrait stability index
 #&gt; -------------------------------------------------------------------------------
 #&gt;     G9     G7     G2     G5     G4     G1    G10     G6     G3     G8 
 #&gt; 0.1900 0.2395 0.3812 0.4013 0.4571 0.6531 1.2197 1.2206 1.8188 2.0585 
-#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for waasby index
 #&gt; -------------------------------------------------------------------------------
 #&gt;    Factor       Xo       Xs         SD     SDperc
 #&gt; GY    FA1 48.34113 30.77444 -17.566694 -36.339021
 #&gt; HM    FA1 41.73056 45.02218   3.291626   7.887807
-#&gt; 
 #&gt; ------------------------------------------------------------------------------
 #&gt; Mean of selection differential
 #&gt; -------------------------------------------------------------------------------
 #&gt;         Xo         Xs         SD     SDperc 
 #&gt;  45.035845  37.898311  -7.137534 -14.225607 
-#&gt; 
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
+#&gt; -------------------------------------------------------------------------------
 #&gt; G9 G7
 #&gt; -------------------------------------------------------------------------------</div><div class='input'>
 </div></pre>

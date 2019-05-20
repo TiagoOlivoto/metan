@@ -3,7 +3,8 @@
 #' @importFrom dplyr  select  everything  mutate  group_by  group_by_if  group_keys
 #'             group_split  left_join  sample_n  anti_join  enquo  pull  summarise_all
 #'             select_if arrange slice contains top_n summarise ungroup rename
-#'             is_grouped_df mutate_at desc
+#'             is_grouped_df mutate_at desc as_tibble
+#' @importFrom tibble rownames_to_column column_to_rownames
 #' @importFrom grid grobTree textGrob grid.newpage pushViewport viewport grid.layout
 #' @importFrom ggrepel  geom_text_repel
 #' @importFrom magrittr  %>% %<>%

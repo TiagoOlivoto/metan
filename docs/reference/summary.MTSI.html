@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary a MTSI object — summary.MTSI • metan</title>
+<title>Summarise a mtsi object — summary.mtsi • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Summary a MTSI object — summary.MTSI" />
+<meta property="og:title" content="Summarise a mtsi object — summary.mtsi" />
 
-<meta property="og:description" content="Summary a MTSI object in two ways. By default, the results are shown
+<meta property="og:description" content="Summary a mtsi object in two ways. By default, the results are shown
 in the R console. The results can also be exported to the directory." />
 
 <meta property="og:image" content="/logo.png" />
@@ -154,19 +154,19 @@ in the R console. The results can also be exported to the directory." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary a MTSI object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.MTSI.R'><code>R/summary.MTSI.R</code></a></small>
-    <div class="hidden name"><code>summary.MTSI.Rd</code></div>
+    <h1>Summarise a mtsi object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.mtsi.R'><code>R/summary.mtsi.R</code></a></small>
+    <div class="hidden name"><code>summary.mtsi.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Summary a <code>MTSI</code> object in two ways. By default, the results are shown
+    <p>Summary a <code>mtsi</code> object in two ways. By default, the results are shown
 in the R console. The results can also be exported to the directory.</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for MTSI</span>
+    <pre class="usage"><span class='co'># S3 method for mtsi</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
     
@@ -175,7 +175,7 @@ in the R console. The results can also be exported to the directory.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>The <code>MTSI</code> object</p></td>
+      <td><p>The <code>mtsi</code> object</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -201,13 +201,13 @@ to the working directory</p></td>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
 <span class='co'># Based on stability only</span>
-<span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'>WAASB</span>(<span class='no'>data_ge</span>,
+<span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)
 
-<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'><a href='MTSI.html'>MTSI</a></span>(<span class='no'>MTSI_MODEL</span>)
+<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>MTSI_MODEL</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>MTSI_index</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>MTSI_index</span>,
         <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,

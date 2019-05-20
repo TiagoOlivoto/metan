@@ -2200,28 +2200,22 @@ G9
 <div id="simultaneous-selection-for-mean-performance-and-stability" class="section level1">
 <h1 class="hasAnchor">
 <a href="#simultaneous-selection-for-mean-performance-and-stability" class="anchor"></a>Simultaneous selection for mean performance and stability</h1>
-<p>The WAASBY index (a “mixed-effect model version of the WAASY index”) is used for genotype ranking considering both the stability (WAASB) and mean performance based on the following model:</p>
+<p>The <strong>waasby</strong> index (a “mixed-effect model version of the <strong>waasy</strong> index”) is used for genotype ranking considering both the stability (<strong>waasb</strong>) and mean performance (<strong>y</strong>) based on the following model:</p>
 <p><span class="math display">\[
-WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _S}} \right)}}{{{\theta _Y} + {\theta _S}}}
+waasby_i = \frac{{\left( {r{Y_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _W}} \right)}}{{{\theta _Y} + {\theta _W}}}
 \]</span></p>
-<p>where <span class="math inline">\(WAASBY_i\)</span> is the superiority index for the <em>i</em>-th genotype that weights between performance and stability; <span class="math inline">\(rG_i\)</span> and <span class="math inline">\(rW_i\)</span> are the rescaled values (0-100) for GY and WAASB, respectively; <span class="math inline">\(\theta _Y\)</span> and <span class="math inline">\(\theta_S\)</span> are the weights for GY and WAASB, respectively.</p>
+<p>where <span class="math inline">\(waasby_i\)</span> is the superiority index for the <em>i</em>-th genotype; <span class="math inline">\(rY_i\)</span> and <span class="math inline">\(rW_i\)</span> are the rescaled values (0-100) for the response variable (y) and the stability (WAAS or WAASB), respectively; <span class="math inline">\(\theta _Y\)</span> and <span class="math inline">\(\theta_W\)</span> are the weights for mean performance and stability, respectively.</p>
 <p>This index was also already computed and stored into AMMI_model&gt;GY&gt;model. An intuitively plot may be obtained by running</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASB_model<span class="op">$</span>GY)</a>
 <a class="sourceLine" id="cb21-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
 <a class="sourceLine" id="cb21-3" title="3"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="vignettes_blup_files/figure-html/unnamed-chunk-18-1.png" width="960" style="display: block; margin: auto;"></p>
-<p>In the following example, we will assume that we want to obtain the ranks for WAASBY considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">WAASBYratio =<span class="st"> </span><span class="kw"><a href="../reference/metan-deprecated.html">WAASBYratio</a></span>(dataset,</a>
-<a class="sourceLine" id="cb22-2" title="2">                          <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb22-3" title="3">                          <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb22-4" title="4">                          <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb22-5" title="5">                          <span class="dt">resp =</span> GY,</a>
-<a class="sourceLine" id="cb22-6" title="6">                          <span class="dt">increment =</span> <span class="dv">50</span>)</a></code></pre></div>
+<p>In the following example, we will apply the function <code><a href="../reference/wsmp.html">wsmp()</a></code> to the previously fitted model <strong>WAASB_model</strong> aiming at planning different scenarios of <strong>waasby</strong> estimation by changing the weights assigned to the stability and the mean performance.vThe number of scenarios is defined by the arguments <code>increment</code>. By default, twenty-one different scenarios are computed. In this case, the the superiority index <strong>waasby</strong> is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">scenarios =<span class="st"> </span><span class="kw"><a href="../reference/wsmp.html">wsmp</a></span>(WAASB_model)</a></code></pre></div>
 <div id="printing-the-model-outputs-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#printing-the-model-outputs-1" class="anchor"></a>Printing the model outputs</h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">data =<span class="st"> </span>WAASBYratio<span class="op">$</span>hetcomb</a>
-<a class="sourceLine" id="cb23-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">print_table</span>(scenarios<span class="op">$</span>GY<span class="op">$</span>hetcomb)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2230,7 +2224,61 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 100/0
 </th>
 <th style="text-align:right;">
+95/5
+</th>
+<th style="text-align:right;">
+90/10
+</th>
+<th style="text-align:right;">
+85/15
+</th>
+<th style="text-align:right;">
+80/20
+</th>
+<th style="text-align:right;">
+75/25
+</th>
+<th style="text-align:right;">
+70/30
+</th>
+<th style="text-align:right;">
+65/35
+</th>
+<th style="text-align:right;">
+60/40
+</th>
+<th style="text-align:right;">
+55/45
+</th>
+<th style="text-align:right;">
 50/50
+</th>
+<th style="text-align:right;">
+45/55
+</th>
+<th style="text-align:right;">
+40/60
+</th>
+<th style="text-align:right;">
+35/65
+</th>
+<th style="text-align:right;">
+30/70
+</th>
+<th style="text-align:right;">
+25/75
+</th>
+<th style="text-align:right;">
+20/80
+</th>
+<th style="text-align:right;">
+15/85
+</th>
+<th style="text-align:right;">
+10/90
+</th>
+<th style="text-align:right;">
+5/95
 </th>
 <th style="text-align:right;">
 0/100
@@ -2245,7 +2293,61 @@ G1
 2
 </td>
 <td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
 4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
 </td>
 <td style="text-align:right;">
 6
@@ -2254,6 +2356,60 @@ G1
 <tr>
 <td style="text-align:left;">
 G10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
 </td>
 <td style="text-align:right;">
 10
@@ -2273,6 +2429,60 @@ G2
 4
 </td>
 <td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
 3
 </td>
 <td style="text-align:right;">
@@ -2290,6 +2500,60 @@ G3
 1
 </td>
 <td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
 2
 </td>
 </tr>
@@ -2304,6 +2568,60 @@ G4
 6
 </td>
 <td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
 5
 </td>
 </tr>
@@ -2313,6 +2631,60 @@ G5
 </td>
 <td style="text-align:right;">
 5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
 </td>
 <td style="text-align:right;">
 8
@@ -2329,7 +2701,61 @@ G6
 3
 </td>
 <td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
 5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
 </td>
 <td style="text-align:right;">
 8
@@ -2343,7 +2769,61 @@ G7
 8
 </td>
 <td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
 7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
 </td>
 <td style="text-align:right;">
 4
@@ -2357,7 +2837,61 @@ G8
 7
 </td>
 <td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
 2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
 </td>
 <td style="text-align:right;">
 1
@@ -2376,12 +2910,65 @@ G9
 <td style="text-align:right;">
 9
 </td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
 </tr>
 </tbody>
 </table>
 <p>In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">data =<span class="st"> </span>WAASBYratio<span class="op">$</span>hetdata</a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">print_table</span>(scenarios<span class="op">$</span>GY<span class="op">$</span>hetdata)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2745,13 +3332,13 @@ G9
 <div id="ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waasb" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waasb" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAASB</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASBYratio, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(scenarios<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="vignettes_blup_files/figure-html/unnamed-chunk-22-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="ranks-of-genotypes-depending-on-the-waasbgy-ratio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-waasbgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAASB/GY ratio</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASBYratio, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(scenarios<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="vignettes_blup_files/figure-html/unnamed-chunk-23-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -2771,13 +3358,10 @@ RPGV_i = \frac{1}{e}{\sum\limits_{j = 1}^e {BLUP_{ij}} /\mathop \mu \nolimits_j 
 <p><span class="math display">\[
 HMRPGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}/{\mu _j}}}}
 \]</span></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">Res_ind =<span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="st">          </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(GEN, ENV, REP, <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(GY, HM)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="st">          </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>()</a></code></pre></div>
-<pre><code>## Evaluating variable GY 50 % 
-## Evaluating variable HM 100 % 
-## Done!</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">print_table</span>(Res_ind)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">dataset <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(GEN, ENV, REP, <span class="dt">resp =</span> GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-4" title="4"><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table kable_wrapper table table-striped table-hover table-condensed table-responsive"><tbody><tr>
 <td>
 <table class="table">
@@ -3219,463 +3803,19 @@ E9
 </tbody>
 </table>
 </td>
-<td>
-<table class="table">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-HMGV
-</th>
-<th style="text-align:right;">
-HMGV_order
-</th>
-<th style="text-align:right;">
-RPGV
-</th>
-<th style="text-align:right;">
-GY_RPGV
-</th>
-<th style="text-align:right;">
-RPGV_order
-</th>
-<th style="text-align:right;">
-HMRPGV
-</th>
-<th style="text-align:right;">
-GY_HMRPGV
-</th>
-<th style="text-align:right;">
-HMRPGV_order
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-E1
-</td>
-<td style="text-align:right;">
-47.399
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.986
-</td>
-<td style="text-align:right;">
-47.420
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.986
-</td>
-<td style="text-align:right;">
-47.415
-</td>
-<td style="text-align:right;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E10
-</td>
-<td style="text-align:right;">
-44.241
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-0.922
-</td>
-<td style="text-align:right;">
-44.329
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-0.920
-</td>
-<td style="text-align:right;">
-44.250
-</td>
-<td style="text-align:right;">
-12
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E11
-</td>
-<td style="text-align:right;">
-54.135
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1.126
-</td>
-<td style="text-align:right;">
-54.160
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1.126
-</td>
-<td style="text-align:right;">
-54.144
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E12
-</td>
-<td style="text-align:right;">
-49.547
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-1.031
-</td>
-<td style="text-align:right;">
-49.584
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-1.031
-</td>
-<td style="text-align:right;">
-49.564
-</td>
-<td style="text-align:right;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E13
-</td>
-<td style="text-align:right;">
-46.518
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-0.968
-</td>
-<td style="text-align:right;">
-46.562
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-0.968
-</td>
-<td style="text-align:right;">
-46.540
-</td>
-<td style="text-align:right;">
-9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E14
-</td>
-<td style="text-align:right;">
-41.062
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-0.854
-</td>
-<td style="text-align:right;">
-41.087
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-0.854
-</td>
-<td style="text-align:right;">
-41.070
-</td>
-<td style="text-align:right;">
-14
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E2
-</td>
-<td style="text-align:right;">
-44.097
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:right;">
-0.918
-</td>
-<td style="text-align:right;">
-44.143
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:right;">
-0.917
-</td>
-<td style="text-align:right;">
-44.116
-</td>
-<td style="text-align:right;">
-13
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E3
-</td>
-<td style="text-align:right;">
-52.838
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1.099
-</td>
-<td style="text-align:right;">
-52.866
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1.099
-</td>
-<td style="text-align:right;">
-52.852
-</td>
-<td style="text-align:right;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E4
-</td>
-<td style="text-align:right;">
-49.953
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-1.039
-</td>
-<td style="text-align:right;">
-49.980
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-1.039
-</td>
-<td style="text-align:right;">
-49.973
-</td>
-<td style="text-align:right;">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E5
-</td>
-<td style="text-align:right;">
-52.168
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-1.086
-</td>
-<td style="text-align:right;">
-52.208
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-1.085
-</td>
-<td style="text-align:right;">
-52.175
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E6
-</td>
-<td style="text-align:right;">
-45.854
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-0.955
-</td>
-<td style="text-align:right;">
-45.908
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-0.954
-</td>
-<td style="text-align:right;">
-45.865
-</td>
-<td style="text-align:right;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E7
-</td>
-<td style="text-align:right;">
-48.472
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-1.008
-</td>
-<td style="text-align:right;">
-48.493
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-1.008
-</td>
-<td style="text-align:right;">
-48.484
-</td>
-<td style="text-align:right;">
-7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E8
-</td>
-<td style="text-align:right;">
-45.142
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-0.940
-</td>
-<td style="text-align:right;">
-45.183
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-0.939
-</td>
-<td style="text-align:right;">
-45.155
-</td>
-<td style="text-align:right;">
-11
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E9
-</td>
-<td style="text-align:right;">
-51.281
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-1.067
-</td>
-<td style="text-align:right;">
-51.314
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-1.067
-</td>
-<td style="text-align:right;">
-51.291
-</td>
-<td style="text-align:right;">
-4
-</td>
-</tr>
-</tbody>
-</table>
-</td>
 </tr></tbody></table>
 </div>
 <div id="fai-blup-selection-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#fai-blup-selection-index" class="anchor"></a>FAI-BLUP selection index</h1>
 <p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-3" title="3"><span class="st">      </span><span class="kw"><a href="../reference/FAI_BLUP.html">FAI_BLUP</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
-<a class="sourceLine" id="cb30-4" title="4">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
-<a class="sourceLine" id="cb30-5" title="5">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
-<pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
-## (tol = 0.002, component 1)</code></pre>
-<pre><code>## Evaluating variable KW 25 %</code></pre>
-<pre><code>## boundary (singular) fit: see ?isSingular</code></pre>
-<pre><code>## Evaluating variable NKE 50 % 
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
+<a class="sourceLine" id="cb28-4" title="4">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
+<a class="sourceLine" id="cb28-5" title="5">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
+<pre><code>## Evaluating variable KW 25 % 
+## Evaluating variable NKE 50 % 
 ## Evaluating variable PH 75 % 
 ## Evaluating variable EH 100 % 
 ## Done!
@@ -3722,7 +3862,7 @@ E9
 ## Selected genotypes
 ## H13 H6
 ## -----------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
 <p><img src="vignettes_blup_files/figure-html/unnamed-chunk-25-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="references" class="section level1 unnumbered">

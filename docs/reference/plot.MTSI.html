@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot the multi-trait stability index — plot.MTSI • metan</title>
+<title>Plot the multi-trait stability index — plot.mtsi • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Plot the multi-trait stability index — plot.MTSI" />
+<meta property="og:title" content="Plot the multi-trait stability index — plot.mtsi" />
 
 <meta property="og:description" content="Plot the multitrait stability index using ggplot-generated graphics. ." />
 
@@ -154,8 +154,8 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot the multi-trait stability index</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.MTSI.R'><code>R/plot.MTSI.R</code></a></small>
-    <div class="hidden name"><code>plot.MTSI.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.mtsi.R'><code>R/plot.mtsi.R</code></a></small>
+    <div class="hidden name"><code>plot.mtsi.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -164,7 +164,7 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for MTSI</span>
+    <pre class="usage"><span class='co'># S3 method for mtsi</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='no'>...</span>)</pre>
     
@@ -173,7 +173,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>MTSI</code></p></td>
+      <td><p>An object of class <code>mtsi</code></p></td>
     </tr>
     <tr>
       <th>SI</th>
@@ -207,21 +207,21 @@ after using <code>coord_polar()</code>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>mtsi_model</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))
 
-<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'><a href='MTSI.html'>MTSI</a></span>(<span class='no'>MTSI_MODEL</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>MTSI_index</span>)
+<span class='no'>mtsi_index</span> <span class='kw'>=</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>mtsi_model</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mtsi_index</span>)
 
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>MTSI_index2</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+<span class='no'>mtsi_index2</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
               <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
-              <span class='fu'><a href='MTSI.html'>MTSI</a></span>()
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>MTSI_index2</span>)
+              <span class='fu'><a href='mtsi.html'>mtsi</a></span>()
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mtsi_index2</span>)
 <span class='co'># }</span><div class='input'>
 
 </div></pre>

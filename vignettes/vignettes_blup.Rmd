@@ -317,13 +317,13 @@ plot_scores(WAASB_model$GY,
 
 # Simultaneous selection for mean performance and stability
 
-The WAASBY index (a "mixed-effect model version of the WAASY index") is used for genotype ranking considering both the stability (WAASB) and mean performance based on the following model:
+The **waasby** index (a "mixed-effect model version of the **waasy** index") is used for genotype ranking considering both the stability (**waasb**) and mean performance (**y**) based on the following model:
 
 $$
-WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _S}} \right)}}{{{\theta _Y} + {\theta _S}}}
+waasby_i = \frac{{\left( {r{Y_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _W}} \right)}}{{{\theta _Y} + {\theta _W}}}
 $$
 
-where $WAASBY_i$ is the superiority index for the *i*-th genotype that weights between performance and stability; $rG_i$ and $rW_i$ are the rescaled values (0-100) for GY and WAASB, respectively;  $\theta _Y$ and $\theta_S$ are the weights for GY and WAASB, respectively.
+where $waasby_i$ is the superiority index for the *i*-th genotype; $rY_i$ and $rW_i$ are the rescaled values (0-100) for the response variable (y) and the stability (WAAS or WAASB), respectively;  $\theta _Y$ and $\theta_W$ are the weights for mean performance and stability, respectively.
 
 This index was also already computed and stored into AMMI_model>GY>model. An intuitively plot may be obtained by running
 
@@ -333,15 +333,10 @@ p2 = plot_waasby(WAASB_model$GY, col.shape = c("gray20", "gray80"))
 plot_grid(p1, p2, labels = c("p1", "p2"))
     ```
 
-In the following example, we will assume that we want to obtain the ranks for WAASBY considering different scenarios (different weights). Supposing that the WAAS/GY weight ratio is changed by 10% each scenario the following function is used.
+In the following example, we will apply the function `wsmp()` to the previously fitted model **WAASB_model** aiming at planning different scenarios of **waasby** estimation by changing the weights assigned to the stability and the mean performance.vThe number of scenarios is defined by the arguments `increment`. By default, twenty-one different scenarios are computed. In this case, the the superiority index **waasby** is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
 
 ```{r echo = TRUE}
-WAASBYratio = WAASBYratio(dataset,
-                          env = ENV,
-                          gen = GEN,
-                          rep = REP,
-                          resp = GY,
-                          increment = 50)
+scenarios = wsmp(WAASB_model)
 
 ```
 
@@ -350,16 +345,14 @@ WAASBYratio = WAASBYratio(dataset,
 
 
 ```{r }
-data = WAASBYratio$hetcomb
-print_table(data)
+print_table(scenarios$GY$hetcomb)
 
 ```
 
 In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.
 
 ```{r }
-data = WAASBYratio$hetdata
-print_table(data)
+print_table(scenarios$GY$hetdata)
 
 ```
 
@@ -374,7 +367,7 @@ The first type of heatmap shows the genotype ranking depending on the number of 
 ### Ranks of genotypes depending on the number of PCA used to estimate the WAASB
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot(WAASBYratio, type = 1)
+plot(scenarios$GY, type = 1)
 
 
     ```
@@ -382,7 +375,7 @@ plot(WAASBYratio, type = 1)
 ### Ranks of genotypes depending on the WAASB/GY ratio
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot(WAASBYratio, type = 2)
+plot(scenarios$GY, type = 2)
 
 
 ```
@@ -410,11 +403,10 @@ $$
 
 
 ```{r }
-Res_ind = dataset %>%
-          waasb(GEN, ENV, REP, resp = c(GY, HM)) %>% 
-          Resende_indexes()
-
-print_table(Res_ind)
+dataset %>%
+waasb(GEN, ENV, REP, resp = GY, verbose = FALSE) %>% 
+Resende_indexes() %>%
+print_table()
 
     ```
 
@@ -424,10 +416,10 @@ print_table(Res_ind)
 
 The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018].
 
-```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", warning=FALSE, message=FALSE}
 FAI = data_ge2 %>%
       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-      FAI_BLUP(DI = c("max", "max", "max", "min"),
+      fai_blup(DI = c("max", "max", "max", "min"),
                UI = c("min", "min", "min", "max"),
                SI = 15)
 plot(FAI)

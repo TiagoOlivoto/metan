@@ -216,40 +216,48 @@ to the working directory</p></td>
 #&gt; ------------------------------------------------------------------------------------
 #&gt; Eigenvalues and explained variance
 #&gt; ------------------------------------------------------------------------------------
-#&gt;  PCA Eigenvalues Variance Cumul_var
-#&gt;  PC1      1.9262   48.154     48.15
-#&gt;  PC2      1.2633   31.582     79.74
-#&gt;  PC3      0.5928   14.820     94.56
-#&gt;  PC4      0.2178    5.444    100.00
+#&gt; <span style='color: #555555;'># A tibble: 4 x 4</span><span>
+#&gt;   PCA   Eigenvalues Variance Cumul_var
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.93     48.2       48.2
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2         1.26     31.6       79.7
+#&gt; </span><span style='color: #555555;'>3</span><span> PC3         0.593    14.8       94.6
+#&gt; </span><span style='color: #555555;'>4</span><span> PC4         0.218     5.44     100  
 #&gt; ------------------------------------------------------------------------------------
 #&gt; Initial loadings
 #&gt; ------------------------------------------------------------------------------------
-#&gt;  Env     PC1      PC2
-#&gt;   A1 -0.8912  0.08731
-#&gt;   A2 -0.3718  0.88158
-#&gt;   A3  0.7660 -0.04547
-#&gt;   A4  0.6380  0.69022
+#&gt; </span><span style='color: #555555;'># A tibble: 4 x 3</span><span>
+#&gt;   Env      PC1     PC2
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> A1    -</span><span style='color: #BB0000;'>0.891</span><span>  0.087</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> A2    -</span><span style='color: #BB0000;'>0.372</span><span>  0.882 
+#&gt; </span><span style='color: #555555;'>3</span><span> A3     0.766 -</span><span style='color: #BB0000;'>0.045</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> A4     0.638  0.690 
 #&gt; ------------------------------------------------------------------------------------
 #&gt; Loadings after varimax rotation and commonalities
 #&gt; ------------------------------------------------------------------------------------
-#&gt;  Env     FA1     FA2 Communality Uniquenesses
-#&gt;   A1 -0.8763  0.1839      0.8018      0.19821
-#&gt;   A2 -0.2735  0.9169      0.9154      0.08461
-#&gt;   A3  0.7564 -0.1287      0.5888      0.41123
-#&gt;   A4  0.7095  0.6166      0.8835      0.11651
+#&gt; </span><span style='color: #555555;'># A tibble: 4 x 5</span><span>
+#&gt;   Env      FA1    FA2 Communality Uniquenesses
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> A1    -</span><span style='color: #BB0000;'>0.876</span><span>  0.184       0.802       0.198 
+#&gt; </span><span style='color: #555555;'>2</span><span> A2    -</span><span style='color: #BB0000;'>0.273</span><span>  0.917       0.915       0.084</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> A3     0.756 -</span><span style='color: #BB0000;'>0.129</span><span>       0.589       0.411 
+#&gt; </span><span style='color: #555555;'>4</span><span> A4     0.709  0.617       0.883       0.117 
 #&gt; ------------------------------------------------------------------------------------
 #&gt; Environmental stratification based on factor analysis
 #&gt; ------------------------------------------------------------------------------------
-#&gt;  Env Factor  Mean   Min   Max     CV
-#&gt;   A1    FA1 2.793 2.692 2.935  2.810
-#&gt;   A3    FA1 2.167 2.028 2.599  7.724
-#&gt;   A4    FA1 2.518 2.305 2.638  3.655
-#&gt;   A2    FA2 2.462 1.959 2.947 16.202
+#&gt; </span><span style='color: #555555;'># A tibble: 4 x 6</span><span>
+#&gt;   Env   Factor  Mean   Min   Max    CV
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> A1    FA1     2.79  2.69  2.94  2.81
+#&gt; </span><span style='color: #555555;'>2</span><span> A3    FA1     2.17  2.03  2.60  7.72
+#&gt; </span><span style='color: #555555;'>3</span><span> A4    FA1     2.52  2.30  2.64  3.65
+#&gt; </span><span style='color: #555555;'>4</span><span> A2    FA2     2.46  1.96  2.95 16.2 
 #&gt; ------------------------------------------------------------------------------------
 #&gt; Mean = mean; Min = minimum; Max = maximum; CV = coefficient of variation (%)
 #&gt; The summary statistics are based on the men values of  3 replicates
 #&gt; ------------------------------------------------------------------------------------</div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

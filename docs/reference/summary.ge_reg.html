@@ -207,27 +207,29 @@ to the working directory.</p></td>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Joint-regression Analysis of variance
 #&gt; ---------------------------------------------------------------------------
-#&gt;                      Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt; Total                51 14.981  0.2937      NA       NA
-#&gt; GEN                  12  1.865  0.1554   0.870 5.85e-01
-#&gt; ENV + (GEN x ENV)    39 13.116  0.3363      NA       NA
-#&gt; ENV (linear)          1  7.719  7.7185      NA       NA
-#&gt;  GEN x ENV (linear)  12  0.755  0.0629   0.352 9.69e-01
-#&gt; Pooled deviation     26  4.642  0.1785      NA       NA
-#&gt; H1                    2  0.471  0.2353  11.367 3.43e-05
-#&gt; H10                   2  0.236  0.1178   5.690 4.52e-03
-#&gt; H11                   2  0.211  0.1057   5.106 7.67e-03
-#&gt; H12                   2  0.450  0.2251  10.874 5.15e-05
-#&gt; H13                   2  0.410  0.2052   9.911 1.15e-04
-#&gt; H2                    2  0.534  0.2669  12.895 9.94e-06
-#&gt; H3                    2  0.584  0.2919  14.102 3.81e-06
-#&gt; H4                    2  0.354  0.1770   8.550 3.65e-04
-#&gt; H5                    2  0.140  0.0701   3.387 3.76e-02
-#&gt; H6                    2  0.334  0.1668   8.057 5.59e-04
-#&gt; H7                    2  0.241  0.1207   5.830 3.98e-03
-#&gt; H8                    2  0.505  0.2526  12.202 1.74e-05
-#&gt; H9                    2  0.172  0.0861   4.161 1.83e-02
-#&gt; Pooled error        104  2.153  0.0207      NA       NA
+#&gt; <span style='color: #555555;'># A tibble: 20 x 6</span><span>
+#&gt;    SV                       Df `Sum Sq` `Mean Sq` `F value`    `Pr(&gt;F)`
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Total                    51   15.0      0.294     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 2</span><span> GEN                      12    1.86     0.155      0.870  0.585     
+#&gt; </span><span style='color: #555555;'> 3</span><span> ENV + (GEN x ENV)        39   13.1      0.336     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 4</span><span> ENV (linear)              1    7.72     7.72      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 5</span><span> </span><span style='color: #555555;'>"</span><span> GEN x ENV (linear)</span><span style='color: #555555;'>"</span><span>    12    0.755    0.062</span><span style='text-decoration: underline;'>9</span><span>     0.352  0.969     
+#&gt; </span><span style='color: #555555;'> 6</span><span> Pooled deviation         26    4.64     0.179     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 7</span><span> H1                        2    0.471    0.235     11.4    0.000</span><span style='text-decoration: underline;'>034</span><span>3 
+#&gt; </span><span style='color: #555555;'> 8</span><span> H10                       2    0.236    0.118      5.69   0.004</span><span style='text-decoration: underline;'>52</span><span>   
+#&gt; </span><span style='color: #555555;'> 9</span><span> H11                       2    0.211    0.106      5.11   0.007</span><span style='text-decoration: underline;'>67</span><span>   
+#&gt; </span><span style='color: #555555;'>10</span><span> H12                       2    0.450    0.225     10.9    0.000</span><span style='text-decoration: underline;'>051</span><span>5 
+#&gt; </span><span style='color: #555555;'>11</span><span> H13                       2    0.410    0.205      9.91   0.000</span><span style='text-decoration: underline;'>115</span><span>  
+#&gt; </span><span style='color: #555555;'>12</span><span> H2                        2    0.534    0.267     12.9    0.000</span><span style='text-decoration: underline;'>009</span><span>94
+#&gt; </span><span style='color: #555555;'>13</span><span> H3                        2    0.584    0.292     14.1    0.000</span><span style='text-decoration: underline;'>003</span><span>81
+#&gt; </span><span style='color: #555555;'>14</span><span> H4                        2    0.354    0.177      8.55   0.000</span><span style='text-decoration: underline;'>365</span><span>  
+#&gt; </span><span style='color: #555555;'>15</span><span> H5                        2    0.140    0.070</span><span style='text-decoration: underline;'>1</span><span>     3.39   0.037</span><span style='text-decoration: underline;'>6</span><span>    
+#&gt; </span><span style='color: #555555;'>16</span><span> H6                        2    0.334    0.167      8.06   0.000</span><span style='text-decoration: underline;'>559</span><span>  
+#&gt; </span><span style='color: #555555;'>17</span><span> H7                        2    0.241    0.121      5.83   0.003</span><span style='text-decoration: underline;'>98</span><span>   
+#&gt; </span><span style='color: #555555;'>18</span><span> H8                        2    0.505    0.253     12.2    0.000</span><span style='text-decoration: underline;'>017</span><span>4 
+#&gt; </span><span style='color: #555555;'>19</span><span> H9                        2    0.172    0.086</span><span style='text-decoration: underline;'>1</span><span>     4.16   0.018</span><span style='text-decoration: underline;'>3</span><span>    
+#&gt; </span><span style='color: #555555;'>20</span><span> Pooled error            104    2.15     0.020</span><span style='text-decoration: underline;'>7</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
 #&gt; ---------------------------------------------------------------------------
 #&gt; Regression parameters
 #&gt; ---------------------------------------------------------------------------
@@ -249,7 +251,7 @@ to the working directory.</p></td>
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

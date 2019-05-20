@@ -152,13 +152,14 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
-<a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr) <span class="co"># for data manipulation and pipe %&gt;%</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble) <span class="co"># for manipulating rownmanes</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-7" title="7">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-8" title="8">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10">}</a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
 ##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -1088,13 +1089,27 @@ G5
 <a href="#parametric-and-non-parametric-statistics" class="anchor"></a>Parametric and non-parametric statistics</h1>
 <p>The metan package provides an easy way to compute several world-known stability methods. Up to the version 1.0.3, the following stability methods are implemented:</p>
 <ul>
-<li>Joint regression analysis, using the function ge_reg()</li>
-<li>Genotypic confidence index, using the function Annicchiarico()</li>
-<li>Nonparametric superiority index, using the function superiority()</li>
-<li>Ecovalence, using the function ecovalence()</li>
-<li>Stability analysis and environmental stratification using the function ge_factanal()</li>
+<li>Joint regression analysis, using the function <code><a href="../reference/ge_reg.html">ge_reg()</a></code>
+</li>
+<li>Genotypic confidence index, using the function <code><a href="../reference/Annicchiarico.html">Annicchiarico()</a></code>
+</li>
+<li>Nonparametric superiority index, using the function <code><a href="../reference/superiority.html">superiority()</a></code>
+</li>
+<li>Ecovalence, using the function <code><a href="../reference/ecovalence.html">ecovalence()</a></code>
+</li>
+<li>Stability analysis and environmental stratification using the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>
+</li>
 </ul>
-<p>These indexes may be computed isolatedly or using the function <code><a href="../reference/ge_stats.html">ge_stats()</a></code>. This function basically returns a summary of the above-mentioned methods.</p>
+<p>The easiest way to compute the above-mentioned stability indexes is by using the function <code><a href="../reference/ge_stats.html">ge_stats()</a></code>. This function basically returns a summary of each method. If you are looking for more details from each method, like plot() and summary(), I suggest computing that methods using their own function.</p>
+</div>
+<div id="computing-the-indexes" class="section level1">
+<h1 class="hasAnchor">
+<a href="#computing-the-indexes" class="anchor"></a>Computing the indexes</h1>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">stat_ge &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb16-2" title="2">dat =<span class="st"> </span>stat_ge<span class="op">$</span>GY</a></code></pre></div>
+<p>If you whant to export a summary of results, the simplest way is by using the function summary, as follows:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>This comand will create a text file called <em>ge_stats summary.txt</em> in the current working directory.</p>
 </div>
   </div>
 
@@ -1117,6 +1132,7 @@ G5
       </ul>
 </li>
       <li><a href="#parametric-and-non-parametric-statistics">Parametric and non-parametric statistics</a></li>
+      <li><a href="#computing-the-indexes">Computing the indexes</a></li>
       </ul>
 </div>
       </div>

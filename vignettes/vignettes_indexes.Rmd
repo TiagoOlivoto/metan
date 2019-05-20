@@ -12,10 +12,10 @@ vignette: >
 
 
 # Getting started
-In this section we will use the data examples `data_ge` and `data_ge2`  provided in the metan package. For more information, please, see `?data_ge` and `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+In this section we will use the data examples `data_ge` and `data_ge2`  provided in the **metan** package. For more information, please, see `?data_ge` and `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
 # FAI-BLUP index
-The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018]. The BLUPs from genotypes are obtained with the function `waasb()` and then the function `FAI_BLUP()` is used to compute the FAI-BLUP index.
+The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018]. The BLUPs from genotypes are obtained with the function `waasb()` and then the function `fai_blup()` is used to compute the FAI-BLUP index.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F}
 library(metan)
@@ -31,7 +31,7 @@ print_table = function(table){
 
 FAI = data_ge2 %>%
       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-      FAI_BLUP(DI = c("max", "max", "max", "min"),
+      fai_blup(DI = c("max", "max", "max", "min"),
                UI = c("min", "min", "min", "max"),
                SI = 15)
 plot(FAI)
@@ -48,7 +48,7 @@ In the following example, the selection of stable genotypes will consider the
 MTSI_index = data_ge2 %>%
              waasb(ENV, GEN, REP,
                    resp = c(KW, NKE, PH, EH, TKW)) %>%
-             MTSI()
+             mtsi()
 plot(MTSI_index)
     ```
 
@@ -61,9 +61,9 @@ The following code considers that higher values for KW, NKE, TKW are better, and
 MTSI_index2 = data_ge2 %>%
              waasb(ENV, GEN, REP,
                    resp = c(KW, NKE, PH, EH, TKW),
-                   mresp = c(100, 100, 0, 0, 100), #Default
+                   mresp = c(100, 100, 0, 0, 100),
                    wresp = rep(65, 5)) %>% # Default is 50
-             MTSI(index = "waasby")
+             mtsi(index = "waasby")
 plot(MTSI_index2)
     ```
 

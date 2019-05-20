@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multitrait index based on factor analysis and ideotype-design — plot.FAI_BLUP • metan</title>
+<title>Multi-trait selection index — plot.fai_blup • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Multitrait index based on factor analysis and ideotype-design — plot.FAI_BLUP" />
+<meta property="og:title" content="Multi-trait selection index — plot.fai_blup" />
 
 <meta property="og:description" content="Plot the multitrait index based on factor analysis and ideotype-design
 proposed by Rocha et al. (2018)." />
@@ -154,9 +154,9 @@ proposed by Rocha et al. (2018)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Multitrait index based on factor analysis and ideotype-design</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.FAI_BLUP.R'><code>R/plot.FAI_BLUP.R</code></a></small>
-    <div class="hidden name"><code>plot.FAI_BLUP.Rd</code></div>
+    <h1>Multi-trait selection index</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.fai_blup.R'><code>R/plot.fai_blup.R</code></a></small>
+    <div class="hidden name"><code>plot.fai_blup.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -166,7 +166,7 @@ proposed by Rocha et al. (2018).</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for FAI_BLUP</span>
+    <pre class="usage"><span class='co'># S3 method for fai_blup</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>ideotype</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='no'>...</span>)</pre>
     
@@ -231,7 +231,7 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
 #&gt; Done!</div><div class='input'>
 <span class='no'>FAI</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>KW</span>, <span class='no'>NKE</span>, <span class='no'>PH</span>, <span class='no'>EH</span>)) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='FAI_BLUP.html'>FAI_BLUP</a></span>(<span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"max"</span>, <span class='st'>"max"</span>, <span class='st'>"max"</span>, <span class='st'>"min"</span>),
+      <span class='fu'><a href='fai_blup.html'>fai_blup</a></span>(<span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"max"</span>, <span class='st'>"max"</span>, <span class='st'>"max"</span>, <span class='st'>"min"</span>),
                <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"min"</span>, <span class='st'>"min"</span>, <span class='st'>"min"</span>, <span class='st'>"max"</span>),
                <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Model failed to converge with max|grad| = 0.00577455 (tol = 0.002, component 1)</span></div><div class='output co'>#&gt; Evaluating variable KW 25 % </div><div class='output co'>#&gt; <span class='message'>boundary (singular) fit: see ?isSingular</span></div><div class='output co'>#&gt; Evaluating variable NKE 50 % 
 #&gt; Evaluating variable PH 75 % 
@@ -279,7 +279,7 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; H13 H6
-#&gt; -----------------------------------------------------------------------------------</div><div class='input'>      <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>FAI</span>)</div><div class='img'><img src='plot.FAI_BLUP-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; -----------------------------------------------------------------------------------</div><div class='input'>      <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>FAI</span>)</div><div class='img'><img src='plot.fai_blup-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -20,15 +20,22 @@ In this section, we will use the data in `data_ge2`. For more information, pleas
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-dataset = data_ge2
+library(dplyr) # for data manipulation and pipe %>%
+library(tibble) # for manipulating rownmanes
+# Function to make HTML tables
+print_table = function(table){
+  kable(table, "html", digits = 3) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+}
+dataset = data_ge
 str(dataset)
 ```
 
 # Graphic visualization of the interaction
 The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean of each environment.
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
-p1 = ge_plot(dataset, ENV, GEN, KW)
-p2 = ge_plot(dataset, ENV, GEN, KW) + theme_grey() + coord_flip()
+p1 = ge_plot(dataset, ENV, GEN, GY)
+p2 = ge_plot(dataset, ENV, GEN, GY) + theme_grey() + coord_flip()
 plot_grid(p1, p2)
 ```
 
@@ -43,9 +50,10 @@ where ${\beta _{0i}}$ is the grand mean of the genotype *i* (*i* = 1, 2, ..., I)
 The model is fitted with the function `ge_reg()`. The S3 methods `plot()` and `summary()` may be used to explore the fitted model.
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-reg_model = ge_reg(dataset, ENV, GEN, REP, KW)
-plot(reg_model$KW)
-summary(reg_model)
+reg_model = ge_reg(dataset, ENV, GEN, REP, GY)
+print_table(reg_model$GY$anova)
+print_table(reg_model$GY$regression)
+
 ```
 
 
@@ -62,10 +70,34 @@ W_i = Z_{i.}/e - \alpha \times sd(Z_{i.})
 $$
 Where $\alpha$ is the quantile of the standard normal distribution at a given probability error ($\alpha \approx 1.64$ at 0.05). The method is implemented using the function `Annicchiarico()`. The confidence index is estimated considering all environment, favorable environments (positive index) and unfavorable environments (negative index), as follows:
 
+## Computing the index
+
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-ann5 = Annicchiarico(dataset, ENV, GEN, REP, KW)
-ann1 = Annicchiarico(dataset, ENV, GEN, REP, KW, prob = 0.01)
-summary(ann5)
+ann5 = Annicchiarico(dataset, ENV, GEN, REP, GY)
+ann1 = Annicchiarico(dataset, ENV, GEN, REP, GY, prob = 0.01)
+
+
+```
+
+## Environment classification
+
+```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
+df = ann5$GY
+kable(df$environments, "html", digits = 3) %>% 
+row_spec(which(df$environments$index <0), bold = T, color = "white", background = "red") %>%
+row_spec(which(df$environments$index >0), bold = T, color = "white", background = "green") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+
+```
+
+## Index computed with all environments
+
+```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
+kable(df$general, "html", digits = 3) %>% 
+row_spec(2, bold = T, color = "white", background = "red") %>%
+row_spec(4, bold = T, color = "white", background = "green") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+
 ```
 
 
@@ -80,8 +112,12 @@ where *n* is the number of environments
 Similar then the genotypic confidence index, the superiority index is calculated by all environments, favorable, and unfavorable environments.
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-super = superiority(dataset, ENV, GEN, REP, KW)
-summary(super)
+super = superiority(dataset, ENV, GEN, REP, GY)
+
+kable(super$GY$index, "html", digits = 3) %>% 
+  row_spec(2, bold = T, color = "white", background = "red") %>%
+  row_spec(4, bold = T, color = "white", background = "green") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
 ```
 
 
@@ -89,9 +125,87 @@ summary(super)
 A method that combines stability analysis and environmental stratification using factor analysis was proposed by @murakami2004. This method is implemented with the function `ge_factanal()`, as follows:
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-fact = ge_factanal(dataset, ENV, GEN, REP, KW, mineval = 0.9)
-plot(fact$KW)
-summary(fact)
+fact = ge_factanal(dataset, ENV, GEN, REP, GY)
+plot(fact$GY)
+print_table(fact$GY$PCA)
+print_table(fact$GY$FA)
+print_table(fact$GY$env_strat)
+
+
+
+```
+
+
+The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This function basically returns a summary of each method. If you are looking for more details from each method, like plot() and summary(), I suggest computing that methods using their own function.
+
+# Computing the indexes
+
+```{r }
+stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)
+dat = stat_ge$GY
+```
+If you whant to export a summary of results, the simplest way is by using the function summary, as follows:
+
+
+```{r, eval=FALSE }
+summary(stat_ge, export = TRUE)
+```
+This comand will create a text file called *ge_stats summary.txt* in the current working directory.
+
+
+# Within-environment analysis of variance
+The following table shows the results for the analysis of variance in each environment. Environment with a gray background had a significant genotype effect, considering 5% probability error.
+```{r }
+kable(dat$individual, "html", digits = 3) %>% 
+  row_spec(which(dat$individual$PRFG < 0.05), bold = T, color = "white", background = "gray") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+
+```
+
+# Genotype-by-environment means
+The two-way table with the means for each genotype in each environment is stored into `ge_mean`. The following code creates a custom table highlighting with a red background the genotype with the lowest mean in each environment, and in with a green background the genotype with the highest mean.
+```{r }
+round(dat$ge_mean, 2) %>%
+rownames_to_column('gen') %>% # used to store row names (mutate deletes them)
+mutate_if(is.numeric, function(x){
+cell_spec(x, "html",
+          color = ifelse(x == max(x), "white", ifelse(x == min(x), "white", "black")),
+          background  = ifelse(x == max(x), "green", ifelse(x == min(x), "red", "transparent")))
+}) %>%
+column_to_rownames('gen') %>% # used to put row names back in place
+kable("html", digits = 3, escape = F) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+```
+
+
+# Genotype-by-environment interaction effects
+Highlighting with a red background the genotypes with negative interaction effects within each environment
+```{r }
+round(dat$ge_effect, 2) %>%
+  rownames_to_column('gen') %>% # used to store row names (mutate deletes them)
+  mutate_if(is.numeric, function(x){
+    cell_spec(x, "html",
+              color = ifelse(x < 0, "white", "black"),
+              background  = ifelse(x < 0, "red", "transparent"))
+  }) %>%
+  column_to_rownames('gen') %>% # used to put row names back in place
+  kable("html", digits = 3, escape = F) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+
+```
+
+# Genotype plus Genotype-by-environment effects
+```{r }
+round(dat$gge_effect, 2) %>%
+  rownames_to_column('gen') %>% # used to store row names (mutate deletes them)
+  mutate_if(is.numeric, function(x){
+    cell_spec(x, "html",
+              color = ifelse(x < 0, "white", "black"),
+              background  = ifelse(x < 0, "red", "transparent"))
+  }) %>%
+  column_to_rownames('gen') %>% # used to put row names back in place
+  kable("html", digits = 3, escape = F) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
 ```
 
 
