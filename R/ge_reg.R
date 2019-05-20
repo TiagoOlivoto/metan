@@ -113,7 +113,7 @@ ge_reg = function(.data,
                            " GEN x ENV (linear)", "Pooled deviation",
                            levels(data$GEN), "Pooled error")
     temp = structure(list(data = iamb2,
-                anova = as_tibble(rownames_to_column(anovadf, "SV"))
+                anova = as_tibble(rownames_to_column(anovadf, "SV")),
                 regression = as_tibble(GEN = levels(mydf$GEN),
                                         Mean = apply(matx, 1, mean),
                                         bij = bij,
