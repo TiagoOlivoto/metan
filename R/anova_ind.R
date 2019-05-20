@@ -81,7 +81,7 @@ anova_ind = function(.data,
                                                   AS = AS))
 
                        }))
-  temp = list(individual = individual,
+  temp = list(individual = as_tibble(rownames_to_column(individual, "ENV")),
               MSRratio = max(individual$MSR)/min(individual$MSR))
   if (length(d$resp) > 1) {
     listres[[paste(d$resp[var])]] <- temp
