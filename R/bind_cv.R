@@ -41,6 +41,9 @@ bind_cv = function(..., bind = "boot", sort = TRUE){
   if(sum(lapply(class, function(x) !class(x) %in% c("cv_ammi", "cv_ammif", "cv_blup") == TRUE)>0)){
     stop("The object must be of the class 'cv_ammi', 'cv_ammif', or 'cv_blup'.")
   }
+  if(!bind %in% c("boot", "mean")){
+    stop(paste("Invalid argument bind = '", bind, "'. It must be one of the 'mean' or 'boot'", sep = ""))
+  }
   dots = list(...)
   if (bind == "boot"){
   data = do.call(rbind, lapply(dots, function(x){
