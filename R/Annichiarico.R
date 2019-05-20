@@ -64,12 +64,12 @@ Annicchiarico = function(.data,
     environments = mutate(environments,
                           index = Mean - mean(environments$Mean),
                           class = ifelse(index < 0, "unfavorable", "favorable")) %>%
-      as.data.frame()
+      as_tibble()
     data = suppressMessages(left_join(data, environments %>% select(ENV, class)))
     mat_g  = make_mat(data, row = GEN, col = ENV, value = mean)
     rp_g = sweep(mat_g, 2, colMeans(mat_g), "/")*100
     Wi_g = rowMeans(rp_g)  - qnorm(1- prob) * apply(rp_g, 1, sd)
-    general = data.frame(Genotype = rownames(mat_g),
+    general = tibble(Genotype = rownames(mat_g),
                          Mean = rowMeans(mat_g),
                          Mean_rp = rowMeans(rp_g),
                          Sd_rp = apply(rp_g, 1, sd),
@@ -79,7 +79,7 @@ Annicchiarico = function(.data,
     mat_f  = dplyr::select_if(make_mat(ge_mf, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
     rp_f = sweep(mat_f, 2, colMeans(mat_f), "/")*100
     Wi_f = rowMeans(rp_f)  - qnorm(1- prob) * apply(rp_f, 1, sd)
-    favorable = data.frame(Genotype = rownames(mat_f),
+    favorable = tibble(Genotype = rownames(mat_f),
                            Mean = rowMeans(mat_f),
                            Mean_rp = rowMeans(rp_f),
                            Sd_rp = apply(rp_f, 1, sd),
@@ -89,7 +89,7 @@ Annicchiarico = function(.data,
     mat_u  = dplyr::select_if(make_mat(ge_mu, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
     rp_u = sweep(mat_u, 2, colMeans(mat_u), "/")*100
     Wi_u = rowMeans(rp_u)  - qnorm(1- prob) * apply(rp_u, 1, sd)
-    unfavorable = data.frame(Genotype = rownames(mat_u),
+    unfavorable = tibble(Genotype = rownames(mat_u),
                              Mean = rowMeans(mat_u),
                              Mean_rp = rowMeans(rp_u),
                              Sd_rp = apply(rp_u, 1, sd),
