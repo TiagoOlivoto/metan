@@ -26,7 +26,6 @@
 
 ge_plot = function(.data, env, gen, resp, theme = theme_waasb()){
 ggplot(.data, aes(x = !!enquo(env), y = !!enquo(resp))) +
-      geom_point(aes(colour = !!enquo(gen), group = !!enquo(gen)), stat='summary', fun.y=mean) +
       stat_summary(aes(colour = !!enquo(gen), group = !!enquo(gen)), fun.y=mean, geom="line")+
       geom_point(stat = "summary", fun.y = mean, size = 3, shape = 18) +
       theme %+replace%
