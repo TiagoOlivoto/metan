@@ -49,15 +49,13 @@
 #' }
 #'
 cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) {
-    Y <- eval(substitute(resp), eval(.data))
-    GEN <- factor(eval(substitute(gen), eval(.data)))
-    ENV <- factor(eval(substitute(env), eval(.data)))
-    REP <- factor(eval(substitute(rep), eval(.data)))
-    REPS <- eval(substitute(rep), eval(.data))
-    data <- data.frame(ENV, GEN, REP, Y)
-    data <- mutate(data, ID = rownames(data))
-    Nbloc <- length(unique(REP))
-    Nenv <- length(unique(ENV))
+    data  = .data %>% select(ENV = !!enquo(env),
+                             GEN = !!enquo(gen),
+                             REP = !!enquo(rep),
+                             Y = !!enquo(resp))
+    data = mutate(data, ID = rownames(data))
+    Nbloc <- length(unique(data$REP))
+    Nenv <- length(unique(data$ENV))
 
     if (nrepval != Nbloc - 1) {
         stop("The number replications used for validation must be equal to total number of replications -1 (In this case ",
@@ -71,19 +69,19 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) 
 
     RMSPDres <- data.frame(RMSPD = matrix(NA, nboot, 1))
     for (b in 1:nboot) {
-        tmp = split_factors(data, !!enquo(env), keep_factors = TRUE, verbose = FALSE)
+        tmp = split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
         modeling = do.call(rbind,
                            lapply(tmp, function(x){
-                               X2 <- sample(unique(REPS), nrepval, replace = F)
+                               X2 <- sample(unique(data$REP), nrepval, replace = F)
                                x %>%
                                    dplyr::group_by(!!enquo(gen)) %>%
-                                   dplyr::filter(REP %in% c(X2))
+                                   dplyr::filter(unique(data$REP) %in% c(X2))
                            })
         ) %>% as.data.frame()
         rownames(modeling) <- modeling$ID
         testing <- suppressWarnings(dplyr::anti_join(data, modeling, by = c("ENV",
-                                                                            "GEN", "REP", "Y", "ID")))
-        testing <- testing[order(testing[, 1], testing[, 2], testing[, 3]), ]
+                                                                            "GEN", "REP", "Y", "ID")))%>%
+        arrange(ENV, GEN, REP) %>% as.data.frame()
         MEDIAS <- data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
 
         model <- suppressWarnings(suppressMessages(lme4::lmer(Y ~ REP %in% ENV +
@@ -101,9 +99,15 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) 
                                                                                                                100, 1), "% Concluded -"))
         }
     }
-    RMSPDres <- dplyr::mutate(RMSPDres, MODEL = "BLUP") %>% dplyr::select(MODEL,
-                                                                          everything())
-    RMSPDmean <- RMSPDres %>% dplyr::group_by(MODEL) %>% dplyr::summarise(mean = mean(RMSPD))
+    RMSPDres <- dplyr::mutate(RMSPDres, MODEL = "BLUP") %>%
+        dplyr::select(MODEL, everything())
+    RMSPDmean <- RMSPDres %>%
+        dplyr::group_by(MODEL) %>%
+        dplyr::summarise(mean = mean(RMSPD),
+                         sd = sd(RMSPD),
+                         se = sd(RMSPD)/sqrt(n()),
+                         Q2.5 = quantile(RMSPD, 0.025),
+                         Q97.5 = quantile(RMSPD, 0.975))
     if (verbose == TRUE) {
         close(pb)
     }

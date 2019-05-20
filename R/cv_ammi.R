@@ -74,18 +74,12 @@ cv_ammi <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
     if (!design %in% c("RCBD", "CRD")) {
         stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
     }
-
+data = .data %>% select(ENV = !!enquo(env), GEN = !!enquo(gen), REP = !!enquo(rep), Y = !!enquo(resp))
     RMSPDres <- data.frame(RMSPD = matrix(0, nboot, 1))
-    Y <- eval(substitute(resp), eval(.data))
-    GEN <- factor(eval(substitute(gen), eval(.data)))
-    ENV <- factor(eval(substitute(env), eval(.data)))
-    REP <- factor(eval(substitute(rep), eval(.data)))
-    REPS <- eval(substitute(rep), eval(.data))
-    data <- data.frame(ENV, GEN, REP, Y)
     data <- mutate(data, ID = rownames(data))
-    Nenv <- length(unique(ENV))
-    Ngen <- length(unique(GEN))
-    Nbloc <- length(unique(REP))
+    Nenv <- length(unique(data$ENV))
+    Ngen <- length(unique(data$GEN))
+    Nbloc <- length(unique(data$REP))
     minimo <- min(Nenv, Ngen) - 1
 
     if (naxis > minimo) {
@@ -111,32 +105,29 @@ cv_ammi <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
             X <- sample(1:10000, 1)
             set.seed(X)
             modeling <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::sample_n(nrepval,
-                                                                               replace = F)
-            modeling <- as.data.frame(modeling[order(modeling$ID), ])
+                                                                               replace = F) %>%
+                arrange(ID) %>% as.data.frame()
             rownames(modeling) <- modeling$ID
         }
         if (condition2) {
-            tmp = split_factors(data, !!enquo(env), keep_factors = TRUE, verbose = FALSE)
+            tmp = split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
             modeling = do.call(rbind,
                                lapply(tmp, function(x){
-                                   X2 <- sample(unique(REPS), nrepval, replace = F)
+                                   X2 <- sample(unique(data$REP), nrepval, replace = F)
                                    x %>%
-                                       dplyr::group_by(!!enquo(gen)) %>%
-                                       dplyr::filter(REP %in% c(X2))
+                                       dplyr::group_by(GEN) %>%
+                                       dplyr::filter(unique(data$REP) %in% c(X2))
                                })
             ) %>% as.data.frame()
             rownames(modeling) <- modeling$ID
         }
-        testing <- dplyr::anti_join(data, modeling, by = c("ENV", "GEN",
-                                                           "REP", "Y", "ID"))
-        testing <- testing[order(testing[, 1], testing[, 2], testing[, 3]),
-                           ]
+        testing <- dplyr::anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "ID")) %>%
+            arrange(ENV, GEN, REP) %>% as.data.frame()
         MEDIAS <- data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>%
                                  dplyr::summarise(Y = mean(Y)))
         residual <- residuals(lm(Y ~ ENV + GEN, data = MEDIAS))
         s <- svd(t(matrix(residual, Nenv, byrow = T)))
-        MEDIAS <- mutate(MEDIAS,
-                         Ypred = Y - residual,
+        MEDIAS %<>% mutate(Ypred = Y - residual,
                          ResAMMI =  ((model.matrix(~factor(testing$GEN) - 1) %*% s$u[, 1:naxis]) *
                                          (model.matrix(~factor(testing$ENV) - 1) %*% s$v[, 1:naxis])) %*%
                              s$d[1:naxis],
@@ -144,12 +135,10 @@ cv_ammi <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
                          testing = testing$Y,
                          error = YpredAMMI - testing,
                          errrorAMMI0 = Ypred - testing)
-        if (naxis == 0) {
-            RMSPDres[, 1][b] <- sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
-        } else {
-            RMSPDres[, 1][b] <- sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
-        }
 
+        RMSPDres[, 1][b] <- ifelse(naxis == 0,
+                                   sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0)),
+                                   sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error)))
         if (verbose == TRUE) {
             ProcdAtua <- b
             setWinProgressBar(pb, b, title = paste("Validating ", ProcdAtua,
@@ -162,7 +151,12 @@ cv_ammi <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
         close(pb)
     }
 
-    RSMEmean <- mean(RMSPDres$RMSPD)
+    RSMEmean <- summarise(RMSPDres, mean = mean(RMSPD),
+                          sd = sd(RMSPD),
+                          se = sd(RMSPD)/sqrt(n()),
+                          Q2.5 = quantile(RMSPD, 0.025),
+                          Q97.5 = quantile(RMSPD, 0.975),
+                          Rank = rank(mean))
     RMSPDres = RMSPDres %>% mutate(MODEL = paste("AMMI", naxis, sep = "")) %>%
         dplyr::select(MODEL, everything())
 

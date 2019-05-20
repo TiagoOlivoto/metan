@@ -96,17 +96,17 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 50,
                 X <- sample(1:10000, 1)
                 set.seed(X)
                 modeling <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::sample_n(nrepval,
-                                                                                   replace = F)
-                modeling <- as.data.frame(modeling[order(modeling$ID), ])
+                                                                                   replace = F)%>%
+                    arrange(ID) %>% as.data.frame()
                 rownames(modeling) <- modeling$ID
             }
             if (condition2) {
-                tmp = split_factors(data, !!enquo(env), keep_factors = TRUE, verbose = FALSE)
+                tmp = split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
                 modeling = do.call(rbind,
                                    lapply(tmp, function(x){
                                        X2 <- sample(unique(data$REP), nrepval, replace = F)
                                        x %>%
-                                           dplyr::group_by(!!enquo(gen)) %>%
+                                           dplyr::group_by(GEN) %>%
                                            dplyr::filter(unique(data$REP) %in% c(X2))
                                    })
                 ) %>% as.data.frame()
@@ -130,11 +130,9 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 50,
                              error = YpredAMMI - testing,
                              errrorAMMI0 = Ypred - testing)
 
-            if (NAXIS == 0) {
-                RMSPDres[, 1][b] <- sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0))
-            } else {
-                RMSPDres[, 1][b] <- sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error))
-            }
+            RMSPDres[, 1][b] <- ifelse(NAXIS == 0,
+                                       sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0)),
+                                       sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error)))
 
             if (NAXIS == minimo) {
                 ACTUAL <- "AMMIF"
@@ -160,8 +158,14 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 50,
 
     RMSPD <- stack(AMMIval[, -c(1)]) %>% dplyr::select(ind, everything())
     names(RMSPD) = c("MODEL", "RMSPD")
-    RMSPDmean <- RMSPD %>% dplyr::group_by(MODEL) %>% dplyr::summarise(mean = mean(RMSPD))
-    RMSPDmean <- RMSPDmean[order(RMSPDmean$mean), ]
+    RMSPDmean <- RMSPD %>%
+        dplyr::group_by(MODEL) %>%
+        dplyr::summarise(mean = mean(RMSPD),
+                         sd = sd(RMSPD),
+                         se = sd(RMSPD)/sqrt(n()),
+                         Q2.5 = quantile(RMSPD, 0.025),
+                         Q97.5 = quantile(RMSPD, 0.975)) %>%
+        arrange(mean)
     return(structure(list(RMSPD = RMSPD, RMSPDmean = RMSPDmean, Estimated = MEDIAS,
                           Modeling = modeling, Testing = testing), class = "cv_ammif"))
 }
