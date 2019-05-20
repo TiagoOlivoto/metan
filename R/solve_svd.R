@@ -6,7 +6,7 @@
 #' @param x A square matrix
 #' @param tolerance The tolerance to consider an eigenvalue equals to zero.
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
-#'
+#' @export
 
 solve_svd = function(x, tolerance = 2.220446e-16){
   if (dim(x)[1] - dim(x)[2] !=0){
