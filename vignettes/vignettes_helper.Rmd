@@ -36,10 +36,7 @@ AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 50, nrepval = 2)
 AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
 BLUP = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
 bind1 = bind_cv(AMMI0, AMMI2, AMMI9)
-bind2 = bind_cv(AMMIF, BLUP)
-p1 = plot(bind1)
-p2 = plot(bind2)
-plot_grid(p1, p2)
+bind2 = bind_cv(AMMI0, AMMI2, AMMI9, bind = "means")
     ```
 
 # Split a dataframe into subsets grouped by one or more factors

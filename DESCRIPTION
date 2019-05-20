@@ -26,7 +26,8 @@ Imports: dendextend,
          GGally,
          ade4,
          FWDselect,
-         rlang
+         rlang,
+         tibble
 RoxygenNote: 6.1.1
 Suggests:
     knitr,

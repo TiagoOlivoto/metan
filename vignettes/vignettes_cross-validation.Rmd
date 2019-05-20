@@ -13,6 +13,19 @@ vignette: >
 # Getting started
 A dataset called `data_ge` is provided to make reproducible examples. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+  .col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+</style>
+
 ```{r warning = FALSE, message = FALSE}
 # Importing data
 library(metan)
@@ -24,16 +37,17 @@ print_table = function(table){
     kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
                   font_size = 12)
 }
-dataset = data_ge
 ```
 
 
 # Predictive accuracy 
 
+<div class="col2">
+The predictive accucary of both AMMI and BLUP models may be obtained using a cross-validation procedure implemented by the functions `cv_ammif()` and `cv_blup()` The `cv_ammif()` function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below. Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set.
 
-The predictive accucary of both AMMI and BLUP models may be obtained using a cross-validation procedure implemented by the functions `cv_ammif()` and `cv_blup()` The `cv_ammif()` function provides a complete cross-validation procedure for all member of AMMI model family (AMMI0-AMMIF) using replicate-based data, according to the diagram below:
 ![Diagram for cross-validation of AMMI models.](validation.png)
-Automatically the first validation is carried out considering the AMMIF (all possible axis used). Considering this model, the original data set is split up into two sets: training set and validation set. The training set has all combinations (genotype x environment) with the number of replications informed in `nrepval` argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by @Piepho:1994. The remaining block serves as validation data. If `design = "CRD"` is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by @Gauch:1988. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:
+
+The training set has all combinations (genotype x environment) with the number of replications informed in `nrepval` argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by @Piepho:1994. The remaining block serves as validation data. If `design = "CRD"` is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by @Gauch:1988. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:
 
 $$
    RMSPD = 
@@ -42,29 +56,20 @@ $$
 
 where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the observed value in the validation set. The number of random selection of blocks/replicates (*n*) is defined in the argument `nboot`. At the end of the *n* cycles for all models, a list with all estimated RMSPD and the average of RMSPD is returned.
 
+</div>
 
-The function  `cv_blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The procedure for computing the RSME is identical to the above function.
+The function  `cv_blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The following code computes the cross-validation of the oat data using both AMMI and BLUP models. To avoid extensive processing time,  I will use 50 re-sampling procedures only. I suggest using a larger number, say, 1000.
 
-The following code computes the cross-validation of the oat data set that, for simplicity, will use 200 re-sampling procedures. I suggest using a larger number, say, 1000.
+```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+# cross-validation for AMMI model (declaring the number of axes)
+AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 50, nrepval = 2)
+AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 50, nrepval = 2)
+AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 50, nrepval = 2)
+# cross-validation for AMMI model (AMMI0-AMMIF)
+AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
+# cross-validation for BLUP prediction
+BLUP = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
 
-```{r eval = TRUE, collapse=TRUE, comment = "#"}
-# cross-validation for AMMI model
-AMMIweat = cv_ammif(dataset,
-                    resp = GY,
-                    gen = GEN,
-                    env = ENV,
-                    rep = REP,
-                    nboot = 5,
-                    nrepval = 2)
-
-# cross-validation for BLUP model
-BLUPweat = cv_blup(dataset,
-                   resp = GY,
-                   gen = GEN,
-                   env = ENV,
-                   rep = REP,
-                   nboot = 5,
-                   nrepval = 2)
 
     ```
 
@@ -79,26 +84,22 @@ A progress bar is shown by default (the examples are below). Thus, it is possibl
 All outputs shown in tables were laid out using the R package kableExtra. The pdf file of this package can be found [here](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf).
 
 ```{r }
-bind_mod = bind_cv(AMMIweat, BLUPweat, bind = "means")
+bind_mod = bind_cv(AMMIF, BLUP, bind = "means")
 print_table(bind_mod$RMSPD)
 
     ```
 
-The results shown above are the means of the 1000 RMSPD estimates for each tested model and are presented from the most accurate model (smallest RMSPD value) to the least accurate model (highest RMSPD value). 
-
-We can print the result from `RMSPDweat` in basically two distinct ways. First, printing the results in the R environment using `print(RMSPDweat)` (this is not a good idea since we probably will need work with these results). The second option is to export the results to an editable file, such as a .csv, or .xlsx file. We have R packages that facilitate this procedure. Let's do it. For example, to export the results to a .csv file, the command to be run is: `utils::write.csv(RMSPDweat, file = "myfile.csv")`. This command will create a .csv file called "myfile" in the R directory. To export the results to a .xlsx file, the package `xlsx` is needed. After properly installed, the command will be then `xlsx::write.xls(RMSPDweat, file = "myfile2.xlsx")`.
+The table above showns the descriptive statistics (mean, standard deviation, standar error of the mean, and quantiles 2.5% and 97.5%) of the 50 RMSPD estimates for each model, and are presented from the most accurate model (smallest RMSPD mean) to the least accurate model (highest RMSPD mean). 
 
 ## Plotting the RMSPD values
 
-The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function`plot()` may be used. 
+The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function`plot()`. 
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
-# binding AMMI and BLUP RMSPDs
-RMSPDweat = bind_cv(AMMIweat, BLUPweat)
-
-# Plotting the RMSPD values
-p1 = plot(RMSPDweat)
-p2 = plot(RMSPDweat, width.boxplot = 0.5, col.boxplot = "transparent")
-plot_grid(p1, p2, labels = c("p1", "p2"))
+bind1 = bind_cv(AMMI0, AMMI2, AMMI9)
+bind2 = bind_cv(AMMIF, BLUP)
+p1 = plot(bind1, violin = TRUE)
+p2 = plot(bind2, width.boxplot = 0.6, col.boxplot = "transparent")
+plot_grid(p1, p2)
     ```
 
 Six statistics are shown in this boxplot. The mean (black rhombus), the median (black line), the lower and upper hinges that correspond sto the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than $1.5\times{IQR}$ from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most $1.5\times{IQR}$ of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added along with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
