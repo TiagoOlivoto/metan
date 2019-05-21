@@ -72,13 +72,13 @@ plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name 
 
 
         if (export == F | FALSE) {
-
-            Rowv <- data$hetdata %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+            mat = as.matrix(data$hetdata)
+            Rowv <- mat %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
                 k = 4) %>% dendextend::set("branches_lwd", 2) %>% sort(type = "nodes")
-            Colv <- data$hetdata %>% t %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+            Colv <- mat %>% t %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
                 k = 3) %>% dendextend::set("branches_lwd", 2) %>% sort(type = "nodes")
             colfunc <- grDevices::colorRampPalette(c("green", "yellow", "red"))
-            gplots::heatmap.2(data$hetdata, dendrogram = "both", col = colfunc(nrow(subset(data$WAASY,
+            gplots::heatmap.2(mat, dendrogram = "both", col = colfunc(nrow(subset(data$WAASY,
                 Code = "GEN"))), Rowv = Rowv, Colv = Colv, density.info = ("none"),
                 offsetRow = -0.4, offsetCol = -0.4, adjCol = c(1, 0.5), cexCol = size.lab,
                 cexRow = size.lab, trace = "none", key.title = "", key.xlab = key.lab,
@@ -90,12 +90,12 @@ plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name 
                 pdf("Heat Ranks PCA.pdf", width = width, height = height)
             } else pdf(paste0(file.name, ".pdf"), width = width, height = height)
 
-            Rowv <- data$hetdata %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+            Rowv <- mat %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
                 k = 4) %>% dendextend::set("branches_lwd", 2) %>% sort(type = "nodes")
-            Colv <- data$hetdata %>% t %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+            Colv <- mat %>% t %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
                 k = 3) %>% dendextend::set("branches_lwd", 2) %>% sort(type = "nodes")
             colfunc <- grDevices::colorRampPalette(c("green", "yellow", "red"))
-            gplots::heatmap.2(data$hetdata, dendrogram = "both", col = colfunc(nrow(subset(data$WAASY,
+            gplots::heatmap.2(mat, dendrogram = "both", col = colfunc(nrow(subset(data$WAASY,
                 Code = "GEN"))), Rowv = Rowv, Colv = Colv, density.info = ("none"),
                 offsetRow = -0.4, offsetCol = -0.4, adjCol = c(1, 0.5), cexCol = size.lab,
                 cexRow = size.lab, trace = "none", key.title = "", key.xlab = key.lab,
@@ -110,12 +110,12 @@ plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name 
                   units = "in", compression = "lzw", res = resolution)
             } else tiff(filename = paste0(file.name, ".tiff"), width = width, height = height,
                 units = "in", compression = "lzw", res = resolution)
-            Rowv <- data$hetdata %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+            Rowv <- mat %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
                 k = 4) %>% dendextend::set("branches_lwd", 2) %>% sort(type = "nodes")
-            Colv <- data$hetdata %>% t %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+            Colv <- mat %>% t %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
                 k = 3) %>% dendextend::set("branches_lwd", 2) %>% sort(type = "nodes")
             colfunc <- grDevices::colorRampPalette(c("green", "yellow", "red"))
-            gplots::heatmap.2(data$hetdata, dendrogram = "both", col = colfunc(nrow(subset(data$WAASY,
+            gplots::heatmap.2(mat, dendrogram = "both", col = colfunc(nrow(subset(data$WAASY,
                 Code = "GEN"))), Rowv = Rowv, Colv = Colv, density.info = ("none"),
                 offsetRow = -0.4, offsetCol = -0.4, adjCol = c(1, 0.5), cexCol = size.lab,
                 cexRow = size.lab, trace = "none", key.title = "", key.xlab = key.lab,
@@ -135,13 +135,13 @@ plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name 
         if (is.null(y.lab)) {
             y.lab <- "Genotypes"
         } else y.lab <- y.lab
-
+        mat2 = as.matrix(data$hetcomb)
         if (export == F | FALSE) {
-            Rowv <- data$hetcomb %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
-                k = 4) %>% dendextend::set("branches_lwd", 2) %>% dendextend::rotate_DendSer(ser_weight = dist(data$hetcomb)) %>%
+            Rowv <- mat2 %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+                k = 4) %>% dendextend::set("branches_lwd", 2) %>% dendextend::rotate_DendSer(ser_weight = dist(mat2)) %>%
                 sort(type = "nodes")
             colfunc <- grDevices::colorRampPalette(c("green", "yellow", "red"))
-            gplots::heatmap.2(data$hetcomb, dendrogram = "row", col = colfunc(nrow(subset(data$WAASY,
+            gplots::heatmap.2(mat2, dendrogram = "row", col = colfunc(nrow(subset(data$WAASY,
                 Code = "GEN"))), Rowv = Rowv, Colv = F, density.info = ("none"), offsetRow = -0.4,
                 offsetCol = -0.4, adjCol = c(1, 0.5), trace = "none", key.title = "",
                 key.xlab = key.lab, key.ylab = "", key.par = list(mgp = c(1.5, 0.5,
@@ -154,11 +154,11 @@ plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name 
                 pdf("Heat map Ranks WAAS-GY.pdf", width = width, height = height)
             } else pdf(paste0(file.name, ".pdf"), width = width, height = height)
 
-            Rowv <- data$hetcomb %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
-                k = 4) %>% dendextend::set("branches_lwd", 2) %>% dendextend::rotate_DendSer(ser_weight = dist(data$hetcomb)) %>%
+            Rowv <- mat2 %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+                k = 4) %>% dendextend::set("branches_lwd", 2) %>% dendextend::rotate_DendSer(ser_weight = dist(mat2)) %>%
                 sort(type = "nodes")
             colfunc <- grDevices::colorRampPalette(c("green", "yellow", "red"))
-            gplots::heatmap.2(data$hetcomb, dendrogram = "row", col = colfunc(nrow(subset(data$WAASY,
+            gplots::heatmap.2(mat2, dendrogram = "row", col = colfunc(nrow(subset(data$WAASY,
                 Code = "GEN"))), Rowv = Rowv, Colv = F, density.info = ("none"), offsetRow = -0.4,
                 offsetCol = -0.4, adjCol = c(1, 0.5), trace = "none", key.title = "",
                 key.xlab = key.lab, key.ylab = "", key.par = list(mgp = c(1.5, 0.5,
@@ -174,11 +174,11 @@ plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf", file.name 
             } else tiff(filename = paste0(file.name, ".tiff"), width = width, height = height,
                 units = "in", compression = "lzw", res = resolution)
 
-            Rowv <- data$hetcomb %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
-                k = 4) %>% dendextend::set("branches_lwd", 2) %>% dendextend::rotate_DendSer(ser_weight = dist(data$hetcomb)) %>%
+            Rowv <- mat2 %>% dist %>% hclust %>% as.dendrogram %>% dendextend::set("branches_k_color",
+                k = 4) %>% dendextend::set("branches_lwd", 2) %>% dendextend::rotate_DendSer(ser_weight = dist(mat2)) %>%
                 sort(type = "nodes")
             colfunc <- grDevices::colorRampPalette(c("green", "yellow", "red"))
-            gplots::heatmap.2(data$hetcomb, dendrogram = "row", col = colfunc(nrow(subset(data$WAASY,
+            gplots::heatmap.2(mat2, dendrogram = "row", col = colfunc(nrow(subset(data$WAASY,
                 Code = "GEN"))), Rowv = Rowv, Colv = F, density.info = ("none"), offsetRow = -0.4,
                 offsetCol = -0.4, adjCol = c(1, 0.5), trace = "none", key.title = "",
                 key.xlab = key.lab, key.ylab = "", key.par = list(mgp = c(1.5, 0.5,

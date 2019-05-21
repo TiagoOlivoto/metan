@@ -210,29 +210,27 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50, prob = 0.05,
     close(pb)
   }
   Rank <- final[, -(SigPC2)]
-  Names <- WAASAbsInicial %>% select(type, Code, OrResp, OrPC1, OrWAASB)
-  Rank <- cbind(Names, Rank)
-  hetdata <- Rank %>% dplyr::filter(type == "GEN")
-  rownames(hetdata) <- hetdata$Code
-  hetdata %<>% select(contains("PCA")) %>% as.matrix()
+  Names <- WAASAbsInicial %>%
+    select(type, Code, OrResp, OrPC1, OrWAASB)
+  Rank <- cbind(Names, Rank) %>%
+    as_tibble(rownames = NA)
+  hetdata <- Rank %>%
+    dplyr::filter(type == "GEN") %>%
+    column_to_rownames("Code") %>%
+    select(contains("PCA")) %>%
+    as_tibble(rownames = NA)
   CombWAASY %<>% select(-type) %>%
     mutate(type = Names$type, Code = Names$Code) %>%
     select(type, Code, everything()) %>%
-    dplyr::filter(type == "GEN")
-  hetcomb <- CombWAASY
-  rownames(hetcomb) <- CombWAASY$Code
-  hetcomb %<>% select(contains("/")) %>% as.matrix()
-  CorrRank <- Rank %>% select(type, Code, OrResp, OrPC1, OrWAASB) %>% dplyr::filter(type == "GEN")
-  CorcombWAASY <- as.data.frame(cbind(CorrRank, hetcomb))
-  rownames(CorcombWAASY) <- CorcombWAASY$Code
-  CorcombWAASY %<>% select(-type, -Code) %>%
-    rename(Y = OrResp, PCA1 = OrPC1, WAASB = OrWAASB)%>%
-    as.matrix()
+    dplyr::filter(type == "GEN") %>%
+    column_to_rownames("Code") %>%
+    select(contains("/")) %>%
+    as_tibble(rownames = NA)
   PC1 <- Pesos[1, 1]
   PC2 <- Pesos[2, 1]
   mean <- mean(WAAS$Y)
   dfs[[paste(nam)]] = structure(list(scenarios = WAASY.Values,
-                                     WAASY = genotypes, hetcomb = hetcomb, hetdata = hetdata,
+                                     WAASY = genotypes, hetcomb = CombWAASY, hetdata = hetdata,
                                      Ranks = Rank), class = "wsmp")
   }
   }
@@ -262,8 +260,6 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50, prob = 0.05,
       }
       for (k in 1:ncomb) {
         Escores <- model$biplot
-        Escores <- Escores %>% mutate(Code = row.names(Escores)) %>%
-          dplyr::select(type, Code, everything())
         SigPC1 <- nrow(PC[which(PC[, 5] <prob), ])
         Pesos <- as.data.frame( model$analysis[6][c(1:SigPC1), ])
         colnames(Pesos) <- "Percent"
@@ -329,7 +325,7 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50, prob = 0.05,
           WAAS <- WAASAbsInicial
           WAAS$type <- ifelse(WAAS$type == "GEN", "Genotype", "Environment")
           CombWAASY[[sprintf("%.0f/%.0f", PesoWAAS, PesoResp)]] <- WAASAbsInicial$OrWAASY
-          WAASY.Values[[paste("WAAS/GY", PesoWAAS, "/", PesoResp)]] <- data.frame(WAAS)
+          WAASY.Values[[paste("WAAS/GY", PesoWAAS, "/", PesoResp)]] <- as_tibble(WAAS)
           PesoResp <- PesoResp + increment
           PesoWAAS <- PesoWAAS - increment
 
@@ -344,24 +340,28 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50, prob = 0.05,
         if (progbar == TRUE) {
           close(pb)
         }
-        Rank <- final[, -(SigPC2)]
-        Names <- WAASAbsInicial %>% select(type, Code, OrResp, OrPC1, OrWAAS)
-        Rank <- cbind(Names, Rank)
-        hetdata <- Rank %>% dplyr::filter(type == "GEN")
-        rownames(hetdata) <- hetdata$Code
-        hetdata %<>% select(contains("PCA")) %>% as.matrix()
-        CombWAASY %<>% select(-type) %>%
-          mutate(type = Names$type, Code = Names$Code) %>%
-          select(type, Code, everything()) %>%
-          dplyr::filter(type == "GEN")
-        hetcomb <- CombWAASY
-        rownames(hetcomb) <- CombWAASY$Code
-        hetcomb %<>% select(contains("/")) %>% as.matrix()
+      Rank <- final[, -(SigPC2)]
+      Names <- WAASAbsInicial %>%
+        select(type, Code, OrResp, OrPC1, OrWAAS)
+      Rank <- cbind(Names, Rank) %>%
+        as_tibble(rownames = NA)
+      hetdata <- Rank %>%
+        dplyr::filter(type == "GEN") %>%
+        column_to_rownames("Code") %>%
+        select(contains("PCA")) %>%
+        as_tibble(rownames = NA)
+      CombWAASY %<>% select(-type) %>%
+        mutate(type = Names$type, Code = Names$Code) %>%
+        select(type, Code, everything()) %>%
+        dplyr::filter(type == "GEN") %>%
+        column_to_rownames("Code") %>%
+        select(contains("/")) %>%
+        as_tibble(rownames = NA)
         PC1 <- Pesos[1, 1]
         PC2 <- Pesos[2, 1]
         mean <- mean(WAAS$Y)
       dfs[[paste(nam)]] = structure(list(scenarios = WAASY.Values,
-                                         WAASY = genotypes, hetcomb = hetcomb, hetdata = hetdata,
+                                         WAASY = genotypes, hetcomb = CombWAASY, hetdata = hetdata,
                                          Ranks = Rank), class = "wsmp")
       }
     }
