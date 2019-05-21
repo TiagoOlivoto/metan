@@ -25,9 +25,9 @@
 #'
 NULL
 
-#' A dataset with means of 10 genotypes cultivated in 5 environments
+#' @title A dataset with means of 10 genotypes cultivated in 5 environments
 #'
-#' This dataset contains the means for grain yield of 10 genotypes cultivated
+#' @description This dataset contains the means for grain yield of 10 genotypes cultivated
 #' in 5 environments. The interaction effects for this data is found in
 #' \link{int.effects}
 #'
@@ -46,13 +46,11 @@ NULL
 NULL
 
 
-#' A replicate-based data of 10 genotypes cultivated in 14 environments
-#'
-#' This dataset contain data on two variables assessed in 10 genotypes growing
+#' @title A replicate-based data of 10 genotypes cultivated in 14 environments
+#' @description This dataset contain data on two variables assessed in 10 genotypes growing
 #' in in 11 environments. The experimental design was a RCBD with 3
 #' replicates(blocks). This data provide examples for several functions of
 #' \pkg{metan} package.
-#'
 #' @param ENV A factor with 14 levels; each level represents one cultivation
 #' environment.
 #' @param GEN A factor with 10 levels; each level represents one genotype.
@@ -60,42 +58,17 @@ NULL
 #' replication/block.
 #' @param GY A continuous variable (grain yield) observed in each plot.
 #' @param HM A continuous variable (hectoliter mass) observed in each plot.
-#'
 #' @name data_ge
 #' @docType data
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @keywords data
 NULL
 
-#' A replicate-based data of 10 genotypes cultivated in 14 environments
-#'
-#' This dataset contain data on two variables assessed in 10 genotypes growing
-#' at 14 environments. The experimental design in each environment was a RCBD with 3
-#' replicates(blocks). This data provide examples for several functions of
-#' \pkg{metan} package.
-#'
-#' @param ENV A factor with 14 levels; each level represents one cultivation
-#' environment.
-#' @param GEN A factor with 10 levels; each level represents one genotype.
-#' @param REP A factor with 3 levels; each level represents one
-#' replication/block.
-#' @param GY A continuous variable (grain yield) observed in each plot.
-#' @param HM A continuous variable (hectoliter mass) observed in each plot.
-#'
-#' @name data_ge
-#' @docType data
-#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @keywords data
-NULL
-
-
-#' A replicate-based data of 13 maize hybrids cultivated in 4 environments
-#'
-#' This dataset contain data on 15 traits assessed in 13 maize hybrids growing
+#' @title A replicate-based data of 13 maize hybrids cultivated in 4 environments
+#' @description This dataset contain data on 15 traits assessed in 13 maize hybrids growing
 #' in 4 environments. The experimental design was a RCBD with 3 blocks and 1
 #' replications per block. It may be used as example in several functions of
 #' \pkg{metan} package.
-#'
 #' @param ENV A factor with 4 levels; each level represents one cultivation
 #' environment.
 #' @param GEN A factor with 13 levels; each level represents one maize hybrid.
@@ -116,7 +89,6 @@ NULL
 #' @param PERK Percentage of kernels.
 #' @param TKW Thousand-kernel weight
 #' @param NKE Number of kernels per row.
-#'
 #' @name data_ge2
 #' @docType data
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

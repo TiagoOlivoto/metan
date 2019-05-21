@@ -16,33 +16,14 @@ replication/block.}
 \item{GY}{A continuous variable (grain yield) observed in each plot.}
 
 \item{HM}{A continuous variable (hectoliter mass) observed in each plot.}
-
-\item{ENV}{A factor with 14 levels; each level represents one cultivation
-environment.}
-
-\item{GEN}{A factor with 10 levels; each level represents one genotype.}
-
-\item{REP}{A factor with 3 levels; each level represents one
-replication/block.}
-
-\item{GY}{A continuous variable (grain yield) observed in each plot.}
-
-\item{HM}{A continuous variable (hectoliter mass) observed in each plot.}
 }
 \description{
 This dataset contain data on two variables assessed in 10 genotypes growing
 in in 11 environments. The experimental design was a RCBD with 3
 replicates(blocks). This data provide examples for several functions of
 \pkg{metan} package.
-
-This dataset contain data on two variables assessed in 10 genotypes growing
-at 14 environments. The experimental design in each environment was a RCBD with 3
-replicates(blocks). This data provide examples for several functions of
-\pkg{metan} package.
 }
 \author{
-Tiago Olivoto \email{tiagoolivoto@gmail.com}
-
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
 }
 \keyword{data}

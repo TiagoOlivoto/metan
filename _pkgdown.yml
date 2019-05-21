@@ -2,6 +2,7 @@ title: metan
 template:
   params:
     bootswatch: spacelab
+    ganalytics: UA-140429633-1
 
 development:
   mode: auto
@@ -14,92 +15,90 @@ reference:
   - title: AMMI
     desc: Functions for AMMI analysis
     contents:
-      - '`AMMI_indexes`'
-      - '`autoplot.WAAS.AMMI`'
-      - '`plot.validation.AMMIF`'
-      - '`plot.WAASratio.AMMI`'
-      - '`predict.WAAS.AMMI`'
-      - '`summary.WAAS.AMMI`'
-      - '`cv_ammi`'
-      - '`cv_ammif`'
-      - '`WAAS.AMMI`'
-      - '`WAASratio.AMMI`'
+      - AMMI_indexes
+      - autoplot.waas
+      - plot.cv_ammi
+      - plot.cv_ammif
+      - predict.waas
+      - summary.waas
+      - cv_ammi
+      - cv_ammif
+      - waas
   - title: BLUP
     desc: Functions for BLUP analysis
     contents:
-      - '`autoplot.WAASB`'
-      - '`plot.blup`'
-      - '`plot.eigen`'
-      - '`plot.scores`'
-      - '`plot.WAASBYratio`'
-      - '`plot.WAASBY`'
-      - '`Resende_indexes`'
-      - '`summary.WAASB`'
-      - '`cv_blup`'
-      - '`WAASB`'
-      - '`WAASBYratio`'
+      - autoplot.waasb
+      - plot_blup
+      - plot_eigen
+      - plot_scores
+      - plot_waasby
+      - Resende_indexes
+      - summary_waasb
+      - cv_blup
+      - waasb
+      - wsmp
   - title: MTSI
     desc: Multi-trait indexes
     contents:
-      - '`FAI_BLUP`'
-      - '`MTSI`'
-      - '`plot.FAI_BLUP`'
-      - '`plot.MTSI`'
-      - '`summary.MTSI`'
+      - fai_blup
+      - mtsi
+      - plot.fai_blup
+      - plot.mtsi
+      - summary.mtsi
   - title: Stability
     desc: Useful functions for stability analysis
     contents:
-      - '`Annicchiarico`'
-      - '`anova_ind`'
-      - '`ecovalence`'
-      - '`ge_factanal`'
-      - '`ge_plot`'
-      - '`ge_reg`'
-      - '`ge_stats`'
-      - '`superiority`'
+      - Annicchiarico
+      - anova_ind
+      - ecovalence
+      - ge_factanal
+      - ge_plot
+      - ge_reg
+      - ge_stats
+      - superiority
   - title: Biometry
     desc: Useful functions for biometric models
     contents:
-      - '`as.group_factors`'
-      - '`as.lpcorr`'
-      - '`clustering`'
-      - '`colindiag`'
-      - '`corr_plot`'
-      - '`corr_ci`'
-      - '`corr_ss`'
-      - '`covcor_design`'
-      - '`find_outliers`'
-      - '`is.lpcorr`'
-      - '`lpcorr`'
-      - '`mahala`'
-      - '`mahala_design`'
-      - '`pairs_mantel`'
-      - '`path_coeff`'
-      - '`partial.corr`'
-      - '`summary.path_coeff`'
+      - as.group_factors
+      - as.lpcorr
+      - clustering
+      - colindiag
+      - corr_plot
+      - corr_ci
+      - corr_ss
+      - covcor_design
+      - find_outliers
+      - is.lpcorr
+      - lpcorr
+      - mahala
+      - mahala_design
+      - pairs_mantel
+      - path_coeff
+      - partial.corr
+      - summary.path_coeff
   - title: Helper
     desc: Helper functions for metan package
     contents:
-      - '`as.group_factors`'
-      - '`bind_cv`'
-      - '`can_cor`'
-      - '`comb_vars`'
-      - '`group_factors`'
-      - '`is.group_factors`'
-      - '`make_mat`'
-      - '`make_sym`'
-      - '`performs_ammi`'
-      - '`rbind_fill`'
-      - '`resca`'
-      - '`solve_sdv`'
-      - '`theme_waasb`'
+      - as.group_factors
+      - bind_cv
+      - can_cor
+      - comb_vars
+      - group_factors
+      - is.group_factors
+      - make_mat
+      - make_sym
+      - performs_ammi
+      - rbind_fill
+      - resca
+      - solve_sdv
+      - theme_waasb
   - title: Datasets
     desc: Data for reproducible examples
     contents:
-      - '`data_ge`'
-      - '`data_ge2`'
-      - '`int.effects`'
-      - '`meansGxE`'
+      - data_ge
+      - data_ge2
+      - int.effects
+      - meansGxE
 
 navbar:
   title: "sparklyr"
@@ -135,9 +134,9 @@ navbar:
       - text: Licence
         href: LICENSE.html
   right:
+    - text: "Github"
+      href: https://github.com/TiagoOlivoto
     - text: "ResearchGate"
       href: https://www.researchgate.net/profile/Tiago_Olivoto2
     - text: "Mendeley"
       href: https://www.mendeley.com/profiles/tiago-olivoto/
-    - text: "Github"
-      href: https://github.com/TiagoOlivoto
