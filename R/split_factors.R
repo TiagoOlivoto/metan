@@ -42,11 +42,11 @@ split_factors = function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
       }
     }
     gd = lapply(gd, function(x){
-      x[ , unlist(lapply(x, is.numeric))] %>% as.data.frame()
+      x[ , unlist(lapply(x, is.numeric))] %>% as_tibble()
     })
   } else{
     gd = lapply(gd, function(x){
-         as.data.frame(x)
+          as_tibble(x)
          })
   }
   return(structure(gd, class = "split_factors"))
