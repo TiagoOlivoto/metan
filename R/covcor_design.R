@@ -99,9 +99,8 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
         dplyr::ungroup() %>%
         dplyr::select(-GEN) %>%
         as.data.frame()
-      covdata2 = comb_vars(data.frame(covdata), order = "second")
-      index = data.frame(t(combn(5, 2)))
-      index = index[with(index, order(X2)), ]
+      covdata2 = comb_vars(data.frame(covdata), order = "first")
+      index = data.frame(t(combn(nvar, 2)))
       covres = NULL
       covfen = NULL
       covgen = NULL
@@ -222,9 +221,8 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
       dplyr::ungroup() %>%
       dplyr::select(-GEN) %>%
       as.data.frame()
-  covdata2 = comb_vars(data.frame(covdata), order = "second")
-  index = data.frame(t(combn(5, 2)))
-  index = index[with(index, order(X2)), ]
+  covdata2 = comb_vars(data.frame(covdata), order = "first")
+  index = data.frame(t(combn(nvar, 2)))
   covres = NULL
   covfen = NULL
   covgen = NULL

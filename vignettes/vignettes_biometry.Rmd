@@ -59,7 +59,9 @@ Where $t_{calc}$ is the calculated Student * t * statistic; $ r_{xy.m} $ is the 
 ```{r, message=FALSE }
 dataset = data_ge2
 
-lpc1 = dataset %>% select(starts_with("N")) %>% lpcor()
+lpc1 = dataset %>% 
+  select(starts_with("N")) %>% 
+  lpcor(verbose = FALSE)
 print_table(lpc1$results)
 
 # Compute the correlations for each level of the factor ENV
@@ -105,8 +107,6 @@ as.lpcor(cor(dataset[1:30, 5:ncol(dataset)]),
 The function `corr_plot()` may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the `pairs()`base R function.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-dataset = data_ge2
-
 corr_plot(dataset, CD, EL, PERK, NKR)
 
 

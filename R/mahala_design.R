@@ -78,9 +78,8 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
         dplyr::group_by(GEN) %>%
         dplyr::summarise_all(mean) %>%
         dplyr::select(-GEN)
-      covdata2 = comb_vars(data.frame(covdata), order = "second")
+      covdata2 = comb_vars(data.frame(covdata), order = "first")
       index = data.frame(t(combn(ncol(mat), 2)))
-      index = index[with(index, order(X2)), ]
       temp = NULL
       for (i in 1:ncol(covdata2)){
         if (design == "RCBD"){
@@ -91,11 +90,9 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
           temp[i] = (model[2, 3] - diag(mat)[[index[i, 1]]] - diag(mat)[[index[i, 2]]])/2
         }
       }
-      mat[upper.tri(mat, diag = F)] = temp
-      mat[lower.tri(mat, diag = F)] = temp
-      rownames(mat) = colnames(means)
-      colnames(mat) = colnames(means)
-      dist = mahala(.means = means, covar = mat, inverted = FALSE)
+      mat[lower.tri(mat, diag = F)] <- temp
+      rownames(mat) <- colnames(mat) <- colnames(means)
+      dist = mahala(.means = means, covar = make_sym(mat), inverted = FALSE)
       if (return == "distance"){
         dfs[[paste(nam)]] = dist
       }
@@ -137,9 +134,8 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
             dplyr::group_by(GEN) %>%
             dplyr::summarise_all(mean) %>%
             dplyr::select(-GEN)
-    covdata2 = comb_vars(data.frame(covdata), order = "second")
+    covdata2 = comb_vars(data.frame(covdata), order = "first")
     index = data.frame(t(combn(ncol(mat), 2)))
-    index = index[with(index, order(X2)), ]
     temp = NULL
     for (i in 1:ncol(covdata2)){
       if (design == "RCBD"){
@@ -150,11 +146,9 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
         temp[i] = (model[2, 3] - diag(mat)[[index[i, 1]]] - diag(mat)[[index[i, 2]]])/2
       }
     }
-    mat[upper.tri(mat, diag = F)] = temp
-    mat[lower.tri(mat, diag = F)] = temp
-    rownames(mat) = colnames(means)
-    colnames(mat) = colnames(means)
-    dist = mahala(.means = means, covar = mat, inverted = FALSE)
+    mat[lower.tri(mat, diag = F)] <- temp
+    rownames(mat) <- colnames(mat) <- colnames(means)
+    dist = mahala(.means = means, covar = make_sym(mat), inverted = FALSE)
     if (return == "distance"){
       return(dist)
     }
