@@ -107,7 +107,7 @@ model2 <- data_ge %>% waasb(ENV, GEN, REP, GY)
 The mixed-effect model fitted in `model2` has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
 
 ## Residual plots
-Several residual plots may be obtained apllying the function `autoplot()` to an object of class `waasb`. 
+Several residual plots may be obtained applying the function `autoplot()` to an object of class `waasb` (or `waas`). 
 
 ```{r,fig.height=15, fig.width=5}
 autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
