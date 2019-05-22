@@ -152,16 +152,14 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
     ngen <- nrow(subset(x$model, type == "GEN"))
 
     if (type == 1) {
-
-        if (is.null(y.lab) == F) {
-            y.lab <- y.lab
-        } else y.lab <- paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")
-
-        if (is.null(x.lab) == F) {
-            x.lab <- x.lab
-        } else x.lab <- paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
-
-
+        y.lab = ifelse((is.null(y.lab) == F), y.lab,
+                       ifelse(class(x) == "waas",
+                              paste0("PC2 (", round(x$PCA[2, 6], 2), "%)"),
+                              paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")))
+        x.lab = ifelse((is.null(x.lab) == F), x.lab,
+                      ifelse(class(x) == "waas",
+                             paste0("PC1 (", round(x$PCA[1, 6], 2), "%)"),
+                             paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")))
         if (is.null(x.lim) == F) {
             x.lim <- x.lim
         } else {
@@ -241,7 +239,6 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
 
         }
 
-
         if (export == F | FALSE) {
             return(p1)
         } else if (file.type == "pdf") {
@@ -265,15 +262,11 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
     }
 
     if (type == 2) {
-
-        if (is.null(y.lab) == F) {
-            y.lab <- y.lab
-        } else y.lab <- paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
-
-        if (is.null(x.lab) == F) {
-            x.lab <- x.lab
-        } else x.lab <- paste0("Grain yield")
-
+        y.lab = ifelse(is.null(y.lab) == F, y.lab,
+                       ifelse(class(x) == "waas",
+                              paste0("PC1 (", round(x$PCA[1, 6], 2), "%)"),
+                              paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")))
+        x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
         if (is.null(x.lim) == F) {
             x.lim <- x.lim
         } else {
@@ -329,16 +322,8 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
     }
 
     if (type == 3) {
-
-        if (is.null(y.lab) == F) {
-            y.lab <- y.lab
-        } else y.lab <- paste0("Weighted average of the absolute scores")
-
-        if (is.null(x.lab) == F) {
-            x.lab <- x.lab
-        } else x.lab <- paste0("Grain yield")
-
-
+        y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Weighted average of the absolute scores"))
+        x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
         if (class == "waasb") {
 
             if (is.null(x.lim) == F) {
@@ -347,7 +332,6 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
                 x.lim <- c(min(x$model$Y) - (min(x$model$Y) * axis.expand - min(x$model$Y)),
                            max(x$model$Y) + (max(x$model$Y) * axis.expand - max(x$model$Y)))
             }
-
             if (is.null(y.lim) == F) {
                 y.lim <- y.lim
             } else {
@@ -391,9 +375,8 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
             if (is.null(y.lim) == F) {
                 y.lim <- y.lim
             } else {
-                y.lim <- c(min(x$model$WAAS) - (min(x$model$WAAS) * axis.expand -
-                                                    min(x$model$WAAS)), max(x$model$WAAS) + (max(x$model$WAAS) * axis.expand -
-                                                                                                 max(x$model$WAAS)))
+                y.lim <- c(min(x$model$WAAS) - (min(x$model$WAAS) * axis.expand - min(x$model$WAAS)),
+                           max(x$model$WAAS) + (max(x$model$WAAS) * axis.expand - max(x$model$WAAS)))
             }
             m1 <- mean(x$model$Y)
             m2 <- mean(x$model$WAAS)
@@ -444,14 +427,8 @@ plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf", export 
     if (type == 4) {
         data = as.data.frame(x[["MeansGxE"]])
         minim <- min(data$nominal)
-
-        if (is.null(y.lab) == F) {
-            y.lab <- y.lab
-        } else y.lab <- paste0("Nominal Yield (Mg/ha)")
-
-        if (is.null(x.lab) == F) {
-            x.lab <- x.lab
-        } else x.lab <- paste0("Environment PC1 [square root of  (Mg/ha)]")
+        y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Nominal Yield (Mg/ha)"))
+        x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Environment PC1 [square root of  (Mg/ha)]"))
 
         if (is.null(x.lim) == F) {
             x.lim <- x.lim
