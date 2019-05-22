@@ -25,7 +25,7 @@
 #'
 NULL
 
-#' @title A dataset with means of 10 genotypes cultivated in 5 environments
+#' @title Data for examples
 #'
 #' @description This dataset contains the means for grain yield of 10 genotypes cultivated
 #' in 5 environments. The interaction effects for this data is found in
@@ -37,7 +37,7 @@ NULL
 #' @keywords data
 NULL
 
-#' Dataset with genotype-by-environment interaction effects
+#' Data for examples
 #'
 #' @name int.effects
 #' @docType data
@@ -46,7 +46,7 @@ NULL
 NULL
 
 
-#' @title A replicate-based data of 10 genotypes cultivated in 14 environments
+#' @title Data for examples
 #' @description This dataset contain data on two variables assessed in 10 genotypes growing
 #' in in 11 environments. The experimental design was a RCBD with 3
 #' replicates(blocks). This data provide examples for several functions of
@@ -64,7 +64,7 @@ NULL
 #' @keywords data
 NULL
 
-#' @title A replicate-based data of 13 maize hybrids cultivated in 4 environments
+#' @title Data for examples
 #' @description This dataset contain data on 15 traits assessed in 13 maize hybrids growing
 #' in 4 environments. The experimental design was a RCBD with 3 blocks and 1
 #' replications per block. It may be used as example in several functions of

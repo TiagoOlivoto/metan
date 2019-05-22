@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_ge2}
 \alias{data_ge2}
-\title{A replicate-based data of 13 maize hybrids cultivated in 4 environments}
+\title{Data for examples}
 \arguments{
 \item{ENV}{A factor with 4 levels; each level represents one cultivation
 environment.}

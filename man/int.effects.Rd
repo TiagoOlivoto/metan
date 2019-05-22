@@ -3,9 +3,9 @@
 \docType{data}
 \name{int.effects}
 \alias{int.effects}
-\title{Dataset with genotype-by-environment interaction effects}
+\title{Data for examples}
 \description{
-Dataset with genotype-by-environment interaction effects
+Data for examples
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

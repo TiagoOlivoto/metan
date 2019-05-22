@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_ge}
 \alias{data_ge}
-\title{A replicate-based data of 10 genotypes cultivated in 14 environments}
+\title{Data for examples}
 \arguments{
 \item{ENV}{A factor with 14 levels; each level represents one cultivation
 environment.}

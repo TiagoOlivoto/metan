@@ -3,7 +3,7 @@
 \docType{data}
 \name{meansGxE}
 \alias{meansGxE}
-\title{A dataset with means of 10 genotypes cultivated in 5 environments}
+\title{Data for examples}
 \description{
 This dataset contains the means for grain yield of 10 genotypes cultivated
 in 5 environments. The interaction effects for this data is found in
