@@ -23,7 +23,8 @@ The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides u
 
 # Extending the metan package
 
-The complete functionality of the metan package, combining theory, programming, and examples with outputs is described at <https://tiagoolivoto.github.io/metan/index.html>. Suggestions and criticisms to improve the quality and usability of the package are welcome!
+The complete functionality of the metan package, combining theory, programming, and examples with outputs is described [here](https://tiagoolivoto.github.io/metan/index.html). Suggestions and criticisms to improve the quality and usability of the package are welcome!
+
 
 # Brief examples
 The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://github.com/wilkelab/cowplot) were used to generate the tables and arranging the graphics of this vignette. The forward-pipe operators `%>%` and `%<>%` may be used in some functions, provided that the package [`magrittr`](https://magrittr.tidyverse.org/) is loaded. Brief examples will be run using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see `?data_ge`.
@@ -53,7 +54,7 @@ CVAL = cv_ammif(data_ge,
                 gen = GEN,
                 env = ENV,
                 rep = REP,
-                nboot = 5,
+                nboot = 50,
                 nrepval = 2)
 plot(CVAL)
 ```
