@@ -1,0 +1,165 @@
+---
+title: "Multi-environment Trial Analysis"
+output: rmarkdown::html_vignette
+link-citations: true
+vignette: >
+  %\VignetteIndexEntry{Multi-environment Trial Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to Additive Main Effects and Multiplicative Interaction (AMMI) and AMMI-based indexes, Best Linear Unbiased Prediction (BLUP), and BLUP-based indexes, Joint-regression analysis, Genotypic confidence index, Superiority index, The main features include, but are not limited to:
+
+* Within environment analysis of variance
+* Cross-validation procedures for AMMI-family and BLUP models;
+* Estimation using AMMI considering different numbers of interation principal component axes;
+* AMMI-based stability indexes;
+* Prediction in mixed-effect models;
+* BLUP-based stability indexes;
+* Variance components and genetic parameters in mixed-effect models;
+* Graphics tools for generating biplots.
+* Parametric and nonparametric stability statistics
+
+
+# Extending the metan package
+
+The complete functionality of the metan package, combining theory, programming, and examples with outputs is described at <https://tiagoolivoto.github.io/metan/index.html>. Suggestions and criticisms to improve the quality and usability of the package are welcome!
+
+# Brief examples
+The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://github.com/wilkelab/cowplot) were used to generate the tables and arranging the graphics of this vignette. The forward-pipe operators `%>%` and `%<>%` may be used in some functions, provided that the package [`magrittr`](https://magrittr.tidyverse.org/) is loaded. Brief examples will be run using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see `?data_ge`.
+
+```{r, message=FALSE, warning=FALSE}
+library(metan)
+library(cowplot) # used to arrange the graphics
+library(kableExtra) # Used to make the tables
+library(dplyr) # for data manipulation and pipe %>%
+library(tibble) # for manipulating rownmanes
+# Function to make HTML tables
+print_table = function(table){
+  kable(table, "html", digits = 3) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+}
+str(data_ge)
+```
+
+
+# AMMI model
+## Cross-validation procedures
+The cross-validation procedures implemented in the \bold{metan} are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/metan/articles/vignettes_CROSS-VALIDATION.html)
+
+```{r, fig.height=3.5, fig.width=5}
+CVAL = cv_ammif(data_ge,
+                resp = GY,
+                gen = GEN,
+                env = ENV,
+                rep = REP,
+                nboot = 5,
+                nrepval = 2)
+plot(CVAL)
+```
+
+
+### Fitting the model
+The AMMI model is fitted with the function `WAAS.AMMI()`. Note that a model may be fitted easier and faster using `%>%` and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). For more details, please see `?WAAS.AMMI`.
+
+```{r}
+model <- data_ge %>% waas(ENV, GEN, REP, GY)
+```
+
+### Biplots
+
+The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `WAAS.AMMI()` and `WAASB()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list that in this case has one element, GY.
+
+```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
+p1 <- plot_scores(model$GY, axis.expand = 1.2)
+p2 <- plot_scores(model$GY,
+                  type = 1,
+                  polygon = TRUE,
+                  col.gen = "black",
+                  col.env = "gray70",
+                  col.segm.env = "gray70",
+                  axis.expand = 1.5)
+plot_grid(p1, p2,
+          align = "v",
+          labels = c("p1","p2"),
+          ncol = 1)
+```
+
+
+### S3 method `predict()`
+The S3 method `predict()` is implemented for objects of class `WAAS.AMMI` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted `model` object.
+
+```{r }
+predicted <- predict(model, naxis = 4)
+print_table(head(predicted$GY))
+```
+
+# BLUP model
+The implementation of linear-mixed effect models to predict the response variable in MET is made with `WAASB()` function. The *mixed-effect version* of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.
+
+```{r }
+model2 <- data_ge %>% waasb(ENV, GEN, REP, GY)
+```
+
+The mixed-effect model fitted in `model2` has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
+
+
+```{r }
+print_table(model2$GY$LRT)
+
+print_table(model2$GY$random)
+
+print_table(model2$GY$ESTIMATES)
+
+print_table(model2$GY$blupGEN)
+```
+
+An easy way to check the results in the R console is by using the function `summary()`
+
+
+## Plotting the BLUPs for genotypes
+
+```{r, fig.height=8, fig.width=5}
+p1 <- plot_blup(model2$GY)
+p2 <- plot_blup(model2$GY,
+                prob = 0.1,
+                col.shape  =  c("gray20", "gray80")) + coord_flip()
+plot_grid(p1, p2,
+          align = "v",
+          labels = c("p1", "p2"),
+          ncol = 1)
+```
+
+
+## BLUPS for genotype-vs-environment interaction
+
+```{r }
+print_table(head(model2$GY$BLUPgge))
+```
+
+# Parametric and non-parametric statistics
+The metan package provides an easy way to compute several world-known stability methods.
+Up to the version 1.0.3, the following stability methods are implemented:
+
+* Joint regression analysis, using the function `ge_reg()`
+* Genotypic confidence index, using the function `Annicchiarico()`
+* Nonparametric superiority index, using the function `superiority()`
+* Ecovalence, using the function `ecovalence()`
+* Stability analysis and environmental stratification using the function `ge_factanal()`
+
+The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This function basically returns a summary of each method. If you are looking for more details from each method, like plot() and summary(), I suggest computing that methods using their own function.
+
+# Computing the indexes
+
+```{r }
+stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)
+dat = stat_ge$GY
+```
+If you whant to export a summary of results, the simplest way is by using the function summary, as follows:
+
+
+```{r, eval=FALSE }
+summary(stat_ge, export = TRUE)
+```
+This comand will create a text file called *ge_stats summary.txt* in the current working directory.
+
