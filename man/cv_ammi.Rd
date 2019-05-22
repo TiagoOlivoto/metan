@@ -2,7 +2,7 @@
 % Please edit documentation in R/cv_ammi.R
 \name{cv_ammi}
 \alias{cv_ammi}
-\title{Cross-validation for estimation of AMMI model}
+\title{Cross-validation procedure}
 \usage{
 cv_ammi(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
   naxis, verbose = TRUE)

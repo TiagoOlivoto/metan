@@ -1,4 +1,4 @@
-#' Cross-validation for estimation of AMMI model
+#' Cross-validation procedure
 #'
 #' Cross-validation for estimation of AMMI models
 #'

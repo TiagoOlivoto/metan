@@ -1,4 +1,4 @@
-#' Cross-validation for blup prediction
+#' Cross-validation procedure
 #'
 #' Cross-validation for blup prediction.
 #'

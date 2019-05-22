@@ -2,7 +2,7 @@
 % Please edit documentation in R/cv_blup.R
 \name{cv_blup}
 \alias{cv_blup}
-\title{Cross-validation for blup prediction}
+\title{Cross-validation procedure}
 \usage{
 cv_blup(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE)
 }

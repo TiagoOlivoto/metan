@@ -2,7 +2,7 @@
 % Please edit documentation in R/cv_ammif.R
 \name{cv_ammif}
 \alias{cv_ammif}
-\title{Cross-validation for estimation of all AMMI-family models}
+\title{Cross-validation procedure}
 \usage{
 cv_ammif(.data, env, gen, rep, resp, nboot = 50, design = "RCBD",
   nrepval, verbose = TRUE)
