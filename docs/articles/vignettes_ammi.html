@@ -144,10 +144,10 @@
 <a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
-<a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-10" title="10">}</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a>
+<a class="sourceLine" id="cb1-10" title="10"></a>
 <a class="sourceLine" id="cb1-11" title="11">dataset =<span class="st"> </span>data_ge</a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
@@ -1528,8 +1528,8 @@ G9
 <a href="#number-of-axes-based-on-f-test" class="anchor"></a>Number of axes based on F-test</h2>
 <p>In this example only IPCAs with <em>P</em>-value &lt; 0.05 will be considered in the WAAS estimation. This is the default setting and the model was already fitted and stored into AMMI_model&gt;GY&gt;model</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">AMMI_model<span class="op">$</span>GY<span class="op">$</span>model <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">select</span>(type, Code, Y, <span class="kw">contains</span>(<span class="st">"Pct"</span>), <span class="kw">contains</span>(<span class="st">"Pes"</span>), <span class="kw">contains</span>(<span class="st">"WAAS"</span>),)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">select</span>(type, Code, Y, <span class="kw">contains</span>(<span class="st">"Pct"</span>), <span class="kw">contains</span>(<span class="st">"Pes"</span>), <span class="kw">contains</span>(<span class="st">"WAAS"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2428,15 +2428,14 @@ E9
 <div id="biplot-type-1-pc1-x-pc2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-1-pc1-x-pc2" class="anchor"></a>biplot type 1: PC1 x PC2</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.2</span>)</a>
 <a class="sourceLine" id="cb10-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb10-3" title="3">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb10-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb10-5" title="5">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb10-6" title="6">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb10-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb10-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb10-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb10-3" title="3">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb10-4" title="4">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb10-5" title="5">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb10-6" title="6">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb10-7" title="7">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-gy-x-pc1" class="section level3">
@@ -2503,6 +2502,8 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">print_table</span>(WAASratio<span class="op">$</span>GY<span class="op">$</span>hetcomb)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
+<th style="text-align:left;">
+</th>
 <th style="text-align:right;">
 100/0
 </th>
@@ -2569,6 +2570,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </tr></thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+G1
+</td>
 <td style="text-align:right;">
 2
 </td>
@@ -2634,6 +2638,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G10
+</td>
 <td style="text-align:right;">
 10
 </td>
@@ -2699,6 +2706,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G2
+</td>
 <td style="text-align:right;">
 5
 </td>
@@ -2764,6 +2774,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G3
+</td>
 <td style="text-align:right;">
 1
 </td>
@@ -2829,6 +2842,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G4
+</td>
 <td style="text-align:right;">
 6
 </td>
@@ -2894,6 +2910,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G5
+</td>
 <td style="text-align:right;">
 4
 </td>
@@ -2959,6 +2978,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G6
+</td>
 <td style="text-align:right;">
 3
 </td>
@@ -3024,6 +3046,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G7
+</td>
 <td style="text-align:right;">
 8
 </td>
@@ -3089,6 +3114,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G8
+</td>
 <td style="text-align:right;">
 7
 </td>
@@ -3154,6 +3182,9 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+G9
+</td>
 <td style="text-align:right;">
 9
 </td>

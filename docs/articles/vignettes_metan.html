@@ -200,7 +200,7 @@
 <h3 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h3>
 <p>The well-known AMMI2 biplot may be obtained using the function <code><a href="../reference/plot_scores.html">plot_scores()</a></code>. ggplot2-based graphics are obtained. Please, note that since <code><a href="../reference/metan-deprecated.html">WAAS.AMMI()</a></code> and <code>WAASB()</code> functions allow analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>model</code> is a list that in this case has one element, GY.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.2</span>)</a>
 <a class="sourceLine" id="cb6-2" title="2">p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb6-3" title="3">                  <span class="dt">type =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb6-4" title="4">                  <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>

@@ -421,7 +421,7 @@ in this case with one element, GY.
 
 ``` r
 library(cowplot)
-p1 = plot_scores(model$GY)
+p1 = plot_scores(model$GY, axis.expand = 1.5)
 p2 = plot_scores(model$GY,
                  type = 1,
                  polygon = TRUE,

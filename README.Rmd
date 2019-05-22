@@ -72,7 +72,7 @@ ggplot2-based graphics are easily obtained in metan package. For example, the we
 
 ```{r, fig.width=8, message=FALSE, warning=FALSE}
 library(cowplot)
-p1 = plot_scores(model$GY)
+p1 = plot_scores(model$GY, axis.expand = 1.5)
 p2 = plot_scores(model$GY,
                  type = 1,
                  polygon = TRUE,

@@ -220,172 +220,190 @@ to the working directory.</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Individual analysis of variance
-#&gt; ---------------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown or uninitialised column: 'individual'.</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows
+#&gt; ---------------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown or uninitialised column: 'individual'.</span></div><div class='output co'>#&gt; NULL
 #&gt; ---------------------------------------------------------------------------
 #&gt; Genotype-vs-environment mean
 #&gt; ---------------------------------------------------------------------------
-#&gt;       A1   A2   A3   A4
-#&gt; H1  2.72 2.93 2.20 2.64
-#&gt; H10 2.78 2.05 2.04 2.39
-#&gt; H11 2.75 2.15 2.10 2.56
-#&gt; H12 2.69 2.09 2.43 2.53
-#&gt; H13 2.77 2.23 2.60 2.56
-#&gt; H2  2.79 2.95 2.15 2.52
-#&gt; H3  2.94 2.94 2.04 2.46
-#&gt; H4  2.87 2.85 2.05 2.56
-#&gt; H5  2.83 2.70 2.09 2.64
-#&gt; H6  2.77 2.82 2.15 2.49
-#&gt; H7  2.77 2.14 2.18 2.53
-#&gt; H8  2.69 1.96 2.10 2.55
-#&gt; H9  2.93 2.20 2.03 2.30
+#&gt; <span style='color: #555555;'># A tibble: 13 x 4</span><span>
+#&gt;       A1    A2    A3    A4
+#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>  2.72  2.93  2.20  2.64
+#&gt; </span><span style='color: #555555;'> 2</span><span>  2.78  2.05  2.04  2.39
+#&gt; </span><span style='color: #555555;'> 3</span><span>  2.75  2.15  2.10  2.56
+#&gt; </span><span style='color: #555555;'> 4</span><span>  2.69  2.09  2.43  2.53
+#&gt; </span><span style='color: #555555;'> 5</span><span>  2.77  2.23  2.60  2.56
+#&gt; </span><span style='color: #555555;'> 6</span><span>  2.79  2.95  2.15  2.52
+#&gt; </span><span style='color: #555555;'> 7</span><span>  2.94  2.94  2.04  2.46
+#&gt; </span><span style='color: #555555;'> 8</span><span>  2.87  2.85  2.05  2.56
+#&gt; </span><span style='color: #555555;'> 9</span><span>  2.83  2.70  2.09  2.64
+#&gt; </span><span style='color: #555555;'>10</span><span>  2.77  2.82  2.15  2.49
+#&gt; </span><span style='color: #555555;'>11</span><span>  2.77  2.14  2.18  2.53
+#&gt; </span><span style='color: #555555;'>12</span><span>  2.69  1.96  2.1   2.55
+#&gt; </span><span style='color: #555555;'>13</span><span>  2.93  2.20  2.03  2.30
 #&gt; ---------------------------------------------------------------------------
 #&gt; Genotype-vs-environment effects
 #&gt; ---------------------------------------------------------------------------
-#&gt;          A1     A2      A3      A4
-#&gt; H1  -0.2069  0.332 -0.1058 -0.0189
-#&gt; H10  0.1602 -0.243  0.0414  0.0409
-#&gt; H11  0.0504 -0.220  0.0296  0.1404
-#&gt; H12 -0.0531 -0.321  0.3107  0.0636
-#&gt; H13 -0.0749 -0.288  0.3782 -0.0149
-#&gt; H2  -0.1204  0.365 -0.1319 -0.1131
-#&gt; H3   0.0322  0.369 -0.2333 -0.1676
-#&gt; H4  -0.0196  0.289 -0.2124 -0.0569
-#&gt; H5  -0.0416  0.160 -0.1551  0.0371
-#&gt; H6  -0.0976  0.290 -0.0864 -0.1056
-#&gt; H7   0.0613 -0.245  0.0913  0.0921
-#&gt; H8   0.0572 -0.344  0.0917  0.1955
-#&gt; H9   0.2527 -0.142 -0.0181 -0.0926
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 4</span><span>
+#&gt;         A1     A2      A3      A4
+#&gt;  </span><span style='color: #555555;'>*</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> -</span><span style='color: #BB0000;'>0.207</span><span>   0.332 -</span><span style='color: #BB0000;'>0.106</span><span>  -</span><span style='color: #BB0000;'>0.018</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span>  0.160  -</span><span style='color: #BB0000;'>0.243</span><span>  0.041</span><span style='text-decoration: underline;'>4</span><span>  0.040</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span>  0.050</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.220</span><span>  0.029</span><span style='text-decoration: underline;'>6</span><span>  0.140 
+#&gt; </span><span style='color: #555555;'> 4</span><span> -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> -</span><span style='color: #BB0000;'>0.321</span><span>  0.311   0.063</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> -</span><span style='color: #BB0000;'>0.074</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.288</span><span>  0.378  -</span><span style='color: #BB0000;'>0.014</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> -</span><span style='color: #BB0000;'>0.120</span><span>   0.365 -</span><span style='color: #BB0000;'>0.132</span><span>  -</span><span style='color: #BB0000;'>0.113</span><span> 
+#&gt; </span><span style='color: #555555;'> 7</span><span>  0.032</span><span style='text-decoration: underline;'>2</span><span>  0.369 -</span><span style='color: #BB0000;'>0.233</span><span>  -</span><span style='color: #BB0000;'>0.168</span><span> 
+#&gt; </span><span style='color: #555555;'> 8</span><span> -</span><span style='color: #BB0000;'>0.019</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.289 -</span><span style='color: #BB0000;'>0.212</span><span>  -</span><span style='color: #BB0000;'>0.056</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> -</span><span style='color: #BB0000;'>0.041</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.160 -</span><span style='color: #BB0000;'>0.155</span><span>   0.037</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> -</span><span style='color: #BB0000;'>0.097</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.290 -</span><span style='color: #BB0000;'>0.086</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.106</span><span> 
+#&gt; </span><span style='color: #555555;'>11</span><span>  0.061</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.245</span><span>  0.091</span><span style='text-decoration: underline;'>3</span><span>  0.092</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'>12</span><span>  0.057</span><span style='text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>0.344</span><span>  0.091</span><span style='text-decoration: underline;'>7</span><span>  0.195 
+#&gt; </span><span style='color: #555555;'>13</span><span>  0.253  -</span><span style='color: #BB0000;'>0.142</span><span> -</span><span style='color: #BB0000;'>0.018</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> -</span><span style='color: #BB0000;'>0.092</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Genotype + Genotype-vs-environment effects
 #&gt; ---------------------------------------------------------------------------
-#&gt;           A1     A2      A3       A4
-#&gt; H1  -0.07040  0.468  0.0308  0.11761
-#&gt; H10 -0.00973 -0.413 -0.1286 -0.12906
-#&gt; H11 -0.04440 -0.315 -0.0652  0.04561
-#&gt; H12 -0.10040 -0.369  0.2634  0.01628
-#&gt; H13 -0.02107 -0.235  0.4321  0.03894
-#&gt; H2  -0.00107  0.485 -0.0126  0.00628
-#&gt; H3   0.14227  0.479 -0.1232 -0.05759
-#&gt; H4   0.07560  0.384 -0.1172  0.03828
-#&gt; H5   0.04160  0.243 -0.0719  0.12028
-#&gt; H6  -0.02440  0.363 -0.0132 -0.03239
-#&gt; H7  -0.01920 -0.325  0.0108  0.01161
-#&gt; H8  -0.10107 -0.503 -0.0666  0.03721
-#&gt; H9   0.13227 -0.263 -0.1386 -0.21306
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 4</span><span>
+#&gt;          A1     A2      A3       A4
+#&gt;  </span><span style='color: #555555;'>*</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> -</span><span style='color: #BB0000;'>0.070</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>   0.468  0.030</span><span style='text-decoration: underline;'>8</span><span>  0.118  
+#&gt; </span><span style='color: #555555;'> 2</span><span> -</span><span style='color: #BB0000;'>0.009</span><span style='color: #BB0000;text-decoration: underline;'>73</span><span> -</span><span style='color: #BB0000;'>0.413</span><span> -</span><span style='color: #BB0000;'>0.129</span><span>  -</span><span style='color: #BB0000;'>0.129</span><span>  
+#&gt; </span><span style='color: #555555;'> 3</span><span> -</span><span style='color: #BB0000;'>0.044</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>  -</span><span style='color: #BB0000;'>0.315</span><span> -</span><span style='color: #BB0000;'>0.065</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span>  0.045</span><span style='text-decoration: underline;'>6</span><span> 
+#&gt; </span><span style='color: #555555;'> 4</span><span> -</span><span style='color: #BB0000;'>0.100</span><span>   -</span><span style='color: #BB0000;'>0.369</span><span>  0.263   0.016</span><span style='text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #555555;'> 5</span><span> -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>  -</span><span style='color: #BB0000;'>0.235</span><span>  0.432   0.038</span><span style='text-decoration: underline;'>9</span><span> 
+#&gt; </span><span style='color: #555555;'> 6</span><span> -</span><span style='color: #BB0000;'>0.001</span><span style='color: #BB0000;text-decoration: underline;'>07</span><span>  0.485 -</span><span style='color: #BB0000;'>0.012</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.006</span><span style='text-decoration: underline;'>28</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span>  0.142    0.479 -</span><span style='color: #BB0000;'>0.123</span><span>  -</span><span style='color: #BB0000;'>0.057</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span> 
+#&gt; </span><span style='color: #555555;'> 8</span><span>  0.075</span><span style='text-decoration: underline;'>6</span><span>   0.384 -</span><span style='color: #BB0000;'>0.117</span><span>   0.038</span><span style='text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #555555;'> 9</span><span>  0.041</span><span style='text-decoration: underline;'>6</span><span>   0.243 -</span><span style='color: #BB0000;'>0.071</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>  0.120  
+#&gt; </span><span style='color: #555555;'>10</span><span> -</span><span style='color: #BB0000;'>0.024</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>   0.363 -</span><span style='color: #BB0000;'>0.013</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>0.032</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> 
+#&gt; </span><span style='color: #555555;'>11</span><span> -</span><span style='color: #BB0000;'>0.019</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span>  -</span><span style='color: #BB0000;'>0.325</span><span>  0.010</span><span style='text-decoration: underline;'>8</span><span>  0.011</span><span style='text-decoration: underline;'>6</span><span> 
+#&gt; </span><span style='color: #555555;'>12</span><span> -</span><span style='color: #BB0000;'>0.101</span><span>   -</span><span style='color: #BB0000;'>0.503</span><span> -</span><span style='color: #BB0000;'>0.066</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.037</span><span style='text-decoration: underline;'>2</span><span> 
+#&gt; </span><span style='color: #555555;'>13</span><span>  0.132   -</span><span style='color: #BB0000;'>0.263</span><span> -</span><span style='color: #BB0000;'>0.139</span><span>  -</span><span style='color: #BB0000;'>0.213</span><span>  
 #&gt; ---------------------------------------------------------------------------
 #&gt; Genotype-vs-environment statistics
 #&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 3</span><span>
 #&gt;     Mean Variance SQE_Gi
-#&gt; H1  2.62    0.286  0.857
-#&gt; H10 2.31    0.372  1.116
-#&gt; H11 2.39    0.301  0.904
-#&gt; H12 2.44    0.193  0.579
-#&gt; H13 2.54    0.155  0.466
-#&gt; H2  2.60    0.362  1.085
-#&gt; H3  2.59    0.558  1.674
-#&gt; H4  2.58    0.436  1.309
-#&gt; H5  2.57    0.319  0.956
-#&gt; H6  2.56    0.285  0.854
-#&gt; H7  2.40    0.275  0.826
-#&gt; H8  2.33    0.372  1.116
-#&gt; H9  2.36    0.459  1.376
+#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>  2.62    0.286  0.857
+#&gt; </span><span style='color: #555555;'> 2</span><span>  2.31    0.372  1.12 
+#&gt; </span><span style='color: #555555;'> 3</span><span>  2.39    0.301  0.904
+#&gt; </span><span style='color: #555555;'> 4</span><span>  2.44    0.193  0.579
+#&gt; </span><span style='color: #555555;'> 5</span><span>  2.54    0.155  0.466
+#&gt; </span><span style='color: #555555;'> 6</span><span>  2.60    0.362  1.08 
+#&gt; </span><span style='color: #555555;'> 7</span><span>  2.59    0.558  1.67 
+#&gt; </span><span style='color: #555555;'> 8</span><span>  2.58    0.436  1.31 
+#&gt; </span><span style='color: #555555;'> 9</span><span>  2.57    0.319  0.956
+#&gt; </span><span style='color: #555555;'>10</span><span>  2.56    0.285  0.854
+#&gt; </span><span style='color: #555555;'>11</span><span>  2.40    0.275  0.826
+#&gt; </span><span style='color: #555555;'>12</span><span>  2.33    0.372  1.12 
+#&gt; </span><span style='color: #555555;'>13</span><span>  2.36    0.459  1.38 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Regression-based stability (anova)
 #&gt; ---------------------------------------------------------------------------
-#&gt;                     SV  Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt; 1                Total  51 14.981  0.2937      NA       NA
-#&gt; 2                  GEN  12  1.865  0.1554   0.870 5.85e-01
-#&gt; 3    ENV + (GEN x ENV)  39 13.116  0.3363      NA       NA
-#&gt; 4         ENV (linear)   1  7.719  7.7185      NA       NA
-#&gt; 5   GEN x ENV (linear)  12  0.755  0.0629   0.352 9.69e-01
-#&gt; 6     Pooled deviation  26  4.642  0.1785      NA       NA
-#&gt; 7                   H1   2  0.471  0.2353  11.367 3.43e-05
-#&gt; 8                  H10   2  0.236  0.1178   5.690 4.52e-03
-#&gt; 9                  H11   2  0.211  0.1057   5.106 7.67e-03
-#&gt; 10                 H12   2  0.450  0.2251  10.874 5.15e-05
-#&gt; 11                 H13   2  0.410  0.2052   9.911 1.15e-04
-#&gt; 12                  H2   2  0.534  0.2669  12.895 9.94e-06
-#&gt; 13                  H3   2  0.584  0.2919  14.102 3.81e-06
-#&gt; 14                  H4   2  0.354  0.1770   8.550 3.65e-04
-#&gt; 15                  H5   2  0.140  0.0701   3.387 3.76e-02
-#&gt; 16                  H6   2  0.334  0.1668   8.057 5.59e-04
-#&gt; 17                  H7   2  0.241  0.1207   5.830 3.98e-03
-#&gt; 18                  H8   2  0.505  0.2526  12.202 1.74e-05
-#&gt; 19                  H9   2  0.172  0.0861   4.161 1.83e-02
-#&gt; 20        Pooled error 104  2.153  0.0207      NA       NA
+#&gt; </span><span style='color: #555555;'># A tibble: 20 x 6</span><span>
+#&gt;    SV                       Df `Sum Sq` `Mean Sq` `F value`    `Pr(&gt;F)`
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Total                    51   15.0      0.294     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 2</span><span> GEN                      12    1.86     0.155      0.870  0.585     
+#&gt; </span><span style='color: #555555;'> 3</span><span> ENV + (GEN x ENV)        39   13.1      0.336     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 4</span><span> ENV (linear)              1    7.72     7.72      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 5</span><span> </span><span style='color: #555555;'>"</span><span> GEN x ENV (linear)</span><span style='color: #555555;'>"</span><span>    12    0.755    0.062</span><span style='text-decoration: underline;'>9</span><span>     0.352  0.969     
+#&gt; </span><span style='color: #555555;'> 6</span><span> Pooled deviation         26    4.64     0.179     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 7</span><span> H1                        2    0.471    0.235     11.4    0.000</span><span style='text-decoration: underline;'>034</span><span>3 
+#&gt; </span><span style='color: #555555;'> 8</span><span> H10                       2    0.236    0.118      5.69   0.004</span><span style='text-decoration: underline;'>52</span><span>   
+#&gt; </span><span style='color: #555555;'> 9</span><span> H11                       2    0.211    0.106      5.11   0.007</span><span style='text-decoration: underline;'>67</span><span>   
+#&gt; </span><span style='color: #555555;'>10</span><span> H12                       2    0.450    0.225     10.9    0.000</span><span style='text-decoration: underline;'>051</span><span>5 
+#&gt; </span><span style='color: #555555;'>11</span><span> H13                       2    0.410    0.205      9.91   0.000</span><span style='text-decoration: underline;'>115</span><span>  
+#&gt; </span><span style='color: #555555;'>12</span><span> H2                        2    0.534    0.267     12.9    0.000</span><span style='text-decoration: underline;'>009</span><span>94
+#&gt; </span><span style='color: #555555;'>13</span><span> H3                        2    0.584    0.292     14.1    0.000</span><span style='text-decoration: underline;'>003</span><span>81
+#&gt; </span><span style='color: #555555;'>14</span><span> H4                        2    0.354    0.177      8.55   0.000</span><span style='text-decoration: underline;'>365</span><span>  
+#&gt; </span><span style='color: #555555;'>15</span><span> H5                        2    0.140    0.070</span><span style='text-decoration: underline;'>1</span><span>     3.39   0.037</span><span style='text-decoration: underline;'>6</span><span>    
+#&gt; </span><span style='color: #555555;'>16</span><span> H6                        2    0.334    0.167      8.06   0.000</span><span style='text-decoration: underline;'>559</span><span>  
+#&gt; </span><span style='color: #555555;'>17</span><span> H7                        2    0.241    0.121      5.83   0.003</span><span style='text-decoration: underline;'>98</span><span>   
+#&gt; </span><span style='color: #555555;'>18</span><span> H8                        2    0.505    0.253     12.2    0.000</span><span style='text-decoration: underline;'>017</span><span>4 
+#&gt; </span><span style='color: #555555;'>19</span><span> H9                        2    0.172    0.086</span><span style='text-decoration: underline;'>1</span><span>     4.16   0.018</span><span style='text-decoration: underline;'>3</span><span>    
+#&gt; </span><span style='color: #555555;'>20</span><span> Pooled error            104    2.15     0.020</span><span style='text-decoration: underline;'>7</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
 #&gt; ---------------------------------------------------------------------------
 #&gt; Regression-based stability (parameters)
 #&gt; ---------------------------------------------------------------------------
-#&gt;  GEN Mean   bij   sdij  RMSE    R2
-#&gt;   H1 2.62 0.806 0.0710 0.198 0.451
-#&gt;  H10 2.31 1.218 0.0318 0.140 0.789
-#&gt;  H11 2.39 1.080 0.0278 0.133 0.766
-#&gt;  H12 2.44 0.465 0.0676 0.194 0.222
-#&gt;  H13 2.54 0.306 0.0609 0.185 0.119
-#&gt;   H2 2.60 0.963 0.0815 0.211 0.508
-#&gt;   H3 2.59 1.355 0.0898 0.221 0.651
-#&gt;   H4 2.58 1.268 0.0515 0.172 0.730
-#&gt;   H5 2.57 1.172 0.0159 0.108 0.853
-#&gt;   H6 2.56 0.936 0.0481 0.167 0.609
-#&gt;   H7 2.40 0.992 0.0328 0.142 0.708
-#&gt;   H8 2.33 1.014 0.0767 0.205 0.547
-#&gt;   H9 2.36 1.424 0.0212 0.120 0.875
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
+#&gt;    GEN    Mean bij[,1] sdij[,1]  RMSE    R2
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1     2.62   0.806   0.071</span><span style='text-decoration: underline;'>0</span><span> 0.198 0.451
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10    2.31   1.22    0.031</span><span style='text-decoration: underline;'>8</span><span> 0.140 0.789
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11    2.39   1.08    0.027</span><span style='text-decoration: underline;'>8</span><span> 0.133 0.766
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12    2.44   0.465   0.067</span><span style='text-decoration: underline;'>6</span><span> 0.194 0.222
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13    2.54   0.306   0.060</span><span style='text-decoration: underline;'>9</span><span> 0.185 0.119
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2     2.60   0.963   0.081</span><span style='text-decoration: underline;'>5</span><span> 0.211 0.508
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3     2.59   1.35    0.089</span><span style='text-decoration: underline;'>8</span><span> 0.221 0.651
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4     2.58   1.27    0.051</span><span style='text-decoration: underline;'>5</span><span> 0.172 0.730
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5     2.57   1.17    0.015</span><span style='text-decoration: underline;'>9</span><span> 0.108 0.853
+#&gt; </span><span style='color: #555555;'>10</span><span> H6     2.56   0.936   0.048</span><span style='text-decoration: underline;'>1</span><span> 0.167 0.609
+#&gt; </span><span style='color: #555555;'>11</span><span> H7     2.40   0.992   0.032</span><span style='text-decoration: underline;'>8</span><span> 0.142 0.708
+#&gt; </span><span style='color: #555555;'>12</span><span> H8     2.33   1.01    0.076</span><span style='text-decoration: underline;'>7</span><span> 0.205 0.547
+#&gt; </span><span style='color: #555555;'>13</span><span> H9     2.36   1.42    0.021</span><span style='text-decoration: underline;'>2</span><span> 0.120 0.875
 #&gt; ---------------------------------------------------------------------------
 #&gt; Genotypic confidence index (all environments)
 #&gt; ---------------------------------------------------------------------------
-#&gt;  Genotype Mean Mean_rp Sd_rp   Wi rank
-#&gt;        H1 2.62   105.6  9.38 90.2    2
-#&gt;       H10 2.31    93.0  6.93 81.6   11
-#&gt;       H11 2.39    96.1  6.27 85.8    8
-#&gt;       H12 2.44    98.6 11.21 80.1   12
-#&gt;       H13 2.54   102.8 12.38 82.4   10
-#&gt;        H2 2.60   104.8  9.91 88.5    5
-#&gt;        H3 2.59   104.1 11.15 85.8    6
-#&gt;        H4 2.58   103.6  8.76 89.2    4
-#&gt;        H5 2.57   103.2  5.55 94.1    1
-#&gt;        H6 2.56   103.0  7.83 90.1    3
-#&gt;        H7 2.40    96.8  6.67 85.8    7
-#&gt;        H8 2.33    93.6  9.61 77.8   13
-#&gt;        H9 2.36    94.8  6.85 83.5    9
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1        2.62   106.   9.38  90.2     2
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10       2.31    93.0  6.93  81.6    11
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11       2.39    96.1  6.27  85.8     8
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12       2.44    98.6 11.2   80.1    12
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13       2.54   103.  12.4   82.4    10
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2        2.60   105.   9.91  88.5     5
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3        2.59   104.  11.2   85.8     6
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4        2.58   104.   8.76  89.2     4
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5        2.57   103.   5.55  94.1     1
+#&gt; </span><span style='color: #555555;'>10</span><span> H6        2.56   103.   7.83  90.1     3
+#&gt; </span><span style='color: #555555;'>11</span><span> H7        2.40    96.8  6.67  85.8     7
+#&gt; </span><span style='color: #555555;'>12</span><span> H8        2.33    93.6  9.61  77.8    13
+#&gt; </span><span style='color: #555555;'>13</span><span> H9        2.36    94.8  6.85  83.5     9
 #&gt; ---------------------------------------------------------------------------
 #&gt; Wricke's Ecovalence
 #&gt; ---------------------------------------------------------------------------
-#&gt;          A1     A2      A3      A4 Ecoval Ecov_perc rank
-#&gt; H1  -0.2069  0.332 -0.1058 -0.0189  0.493      9.13    8
-#&gt; H10  0.1602 -0.243  0.0414  0.0409  0.264      4.89    4
-#&gt; H11  0.0504 -0.220  0.0296  0.1404  0.215      3.99    2
-#&gt; H12 -0.0531 -0.321  0.3107  0.0636  0.620     11.49   11
-#&gt; H13 -0.0749 -0.288  0.3782 -0.0149  0.696     12.90   13
-#&gt; H2  -0.1204  0.365 -0.1319 -0.1131  0.535      9.91   10
-#&gt; H3   0.0322  0.369 -0.2333 -0.1676  0.659     12.20   12
-#&gt; H4  -0.0196  0.289 -0.2124 -0.0569  0.397      7.35    7
-#&gt; H5  -0.0416  0.160 -0.1551  0.0371  0.158      2.92    1
-#&gt; H6  -0.0976  0.290 -0.0864 -0.1056  0.336      6.23    6
-#&gt; H7   0.0613 -0.245  0.0913  0.0921  0.241      4.47    3
-#&gt; H8   0.0572 -0.344  0.0917  0.1955  0.505      9.36    9
-#&gt; H9   0.2527 -0.142 -0.0181 -0.0926  0.279      5.17    5
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 7</span><span>
+#&gt;         A1     A2      A3      A4 Ecoval Ecov_perc  rank
+#&gt;  </span><span style='color: #555555;'>*</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> -</span><span style='color: #BB0000;'>0.207</span><span>   0.332 -</span><span style='color: #BB0000;'>0.106</span><span>  -</span><span style='color: #BB0000;'>0.018</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>  0.493      9.13     8
+#&gt; </span><span style='color: #555555;'> 2</span><span>  0.160  -</span><span style='color: #BB0000;'>0.243</span><span>  0.041</span><span style='text-decoration: underline;'>4</span><span>  0.040</span><span style='text-decoration: underline;'>9</span><span>  0.264      4.89     4
+#&gt; </span><span style='color: #555555;'> 3</span><span>  0.050</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.220</span><span>  0.029</span><span style='text-decoration: underline;'>6</span><span>  0.140   0.215      3.99     2
+#&gt; </span><span style='color: #555555;'> 4</span><span> -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> -</span><span style='color: #BB0000;'>0.321</span><span>  0.311   0.063</span><span style='text-decoration: underline;'>6</span><span>  0.620     11.5     11
+#&gt; </span><span style='color: #555555;'> 5</span><span> -</span><span style='color: #BB0000;'>0.074</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.288</span><span>  0.378  -</span><span style='color: #BB0000;'>0.014</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>  0.696     12.9     13
+#&gt; </span><span style='color: #555555;'> 6</span><span> -</span><span style='color: #BB0000;'>0.120</span><span>   0.365 -</span><span style='color: #BB0000;'>0.132</span><span>  -</span><span style='color: #BB0000;'>0.113</span><span>   0.535      9.91    10
+#&gt; </span><span style='color: #555555;'> 7</span><span>  0.032</span><span style='text-decoration: underline;'>2</span><span>  0.369 -</span><span style='color: #BB0000;'>0.233</span><span>  -</span><span style='color: #BB0000;'>0.168</span><span>   0.659     12.2     12
+#&gt; </span><span style='color: #555555;'> 8</span><span> -</span><span style='color: #BB0000;'>0.019</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.289 -</span><span style='color: #BB0000;'>0.212</span><span>  -</span><span style='color: #BB0000;'>0.056</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>  0.397      7.35     7
+#&gt; </span><span style='color: #555555;'> 9</span><span> -</span><span style='color: #BB0000;'>0.041</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.160 -</span><span style='color: #BB0000;'>0.155</span><span>   0.037</span><span style='text-decoration: underline;'>1</span><span>  0.158      2.92     1
+#&gt; </span><span style='color: #555555;'>10</span><span> -</span><span style='color: #BB0000;'>0.097</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.290 -</span><span style='color: #BB0000;'>0.086</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.106</span><span>   0.336      6.23     6
+#&gt; </span><span style='color: #555555;'>11</span><span>  0.061</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.245</span><span>  0.091</span><span style='text-decoration: underline;'>3</span><span>  0.092</span><span style='text-decoration: underline;'>1</span><span>  0.241      4.47     3
+#&gt; </span><span style='color: #555555;'>12</span><span>  0.057</span><span style='text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>0.344</span><span>  0.091</span><span style='text-decoration: underline;'>7</span><span>  0.195   0.505      9.36     9
+#&gt; </span><span style='color: #555555;'>13</span><span>  0.253  -</span><span style='color: #BB0000;'>0.142</span><span> -</span><span style='color: #BB0000;'>0.018</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> -</span><span style='color: #BB0000;'>0.092</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.279      5.17     5
 #&gt; ---------------------------------------------------------------------------
 #&gt; Nonparametric Superiority index
 #&gt; ---------------------------------------------------------------------------
-#&gt;  Genotypes Pi_all Or_a Pi_favorable Or_f Pi_unfavorable Or_u
-#&gt;         H1 0.0258    1      0.01131    8         0.0403    1
-#&gt;        H10 0.1506   12      0.02132   12         0.2799   12
-#&gt;        H11 0.1160   10      0.01010    7         0.2218   11
-#&gt;        H12 0.1033    8      0.01743   11         0.1892    8
-#&gt;        H13 0.0688    7      0.00832    4         0.1294    7
-#&gt;         H2 0.0289    2      0.00839    5         0.0494    2
-#&gt;         H3 0.0425    6      0.00791    3         0.0771    4
-#&gt;         H4 0.0404    5      0.00279    2         0.0780    5
-#&gt;         H5 0.0403    4      0.00253    1         0.0781    6
-#&gt;         H6 0.0330    3      0.01277    9         0.0533    3
-#&gt;         H7 0.1089    9      0.00947    6         0.2084    9
-#&gt;         H8 0.1612   13      0.01653   10         0.3059   13
-#&gt;         H9 0.1244   11      0.02780   13         0.2210   10
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 7</span><span>
+#&gt;    Genotypes Pi_all  Or_a Pi_favorable  Or_f Pi_unfavorable  Or_u
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1        0.025</span><span style='text-decoration: underline;'>8</span><span>     1      0.011</span><span style='text-decoration: underline;'>3</span><span>      8         0.040</span><span style='text-decoration: underline;'>3</span><span>     1
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10       0.151     12      0.021</span><span style='text-decoration: underline;'>3</span><span>     12         0.280     12
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11       0.116     10      0.010</span><span style='text-decoration: underline;'>1</span><span>      7         0.222     11
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12       0.103      8      0.017</span><span style='text-decoration: underline;'>4</span><span>     11         0.189      8
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13       0.068</span><span style='text-decoration: underline;'>8</span><span>     7      0.008</span><span style='text-decoration: underline;'>32</span><span>     4         0.129      7
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2        0.028</span><span style='text-decoration: underline;'>9</span><span>     2      0.008</span><span style='text-decoration: underline;'>39</span><span>     5         0.049</span><span style='text-decoration: underline;'>4</span><span>     2
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3        0.042</span><span style='text-decoration: underline;'>5</span><span>     6      0.007</span><span style='text-decoration: underline;'>91</span><span>     3         0.077</span><span style='text-decoration: underline;'>1</span><span>     4
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4        0.040</span><span style='text-decoration: underline;'>4</span><span>     5      0.002</span><span style='text-decoration: underline;'>79</span><span>     2         0.078</span><span style='text-decoration: underline;'>0</span><span>     5
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5        0.040</span><span style='text-decoration: underline;'>3</span><span>     4      0.002</span><span style='text-decoration: underline;'>53</span><span>     1         0.078</span><span style='text-decoration: underline;'>1</span><span>     6
+#&gt; </span><span style='color: #555555;'>10</span><span> H6        0.033</span><span style='text-decoration: underline;'>0</span><span>     3      0.012</span><span style='text-decoration: underline;'>8</span><span>      9         0.053</span><span style='text-decoration: underline;'>3</span><span>     3
+#&gt; </span><span style='color: #555555;'>11</span><span> H7        0.109      9      0.009</span><span style='text-decoration: underline;'>47</span><span>     6         0.208      9
+#&gt; </span><span style='color: #555555;'>12</span><span> H8        0.161     13      0.016</span><span style='text-decoration: underline;'>5</span><span>     10         0.306     13
+#&gt; </span><span style='color: #555555;'>13</span><span> H9        0.124     11      0.027</span><span style='text-decoration: underline;'>8</span><span>     13         0.221     10
 #&gt; ------------------------------- End of data -----------------------------
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
