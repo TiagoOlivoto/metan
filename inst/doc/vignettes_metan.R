@@ -2,8 +2,8 @@
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-library(dplyr) # for data manipulation and pipe %>%
-library(tibble) # for manipulating rownmanes
+library(magrittr) # for the forward-pipe operator %>%
+
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
@@ -45,6 +45,12 @@ print_table(head(predicted$GY))
 ## ------------------------------------------------------------------------
 model2 <- data_ge %>% waasb(ENV, GEN, REP, GY)
 
+## ----fig.height=8, fig.width=8-------------------------------------------
+autoplot(model2$GY, which = c(1, 2, 3, 7))
+
+## ----fig.height=8, fig.width=8-------------------------------------------
+autoplot(model2$GY, type = "re")
+
 ## ------------------------------------------------------------------------
 print_table(model2$GY$LRT)
 
@@ -68,8 +74,12 @@ plot_grid(p1, p2,
 print_table(head(model2$GY$BLUPgge))
 
 ## ------------------------------------------------------------------------
+index = model2 %>%
+  Resende_indexes()
+  print_table(index$GY)
+
+## ------------------------------------------------------------------------
 stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)
-dat = stat_ge$GY
 
 ## ---- eval=FALSE---------------------------------------------------------
 #  summary(stat_ge, export = TRUE)

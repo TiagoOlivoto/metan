@@ -1,7 +1,9 @@
 ---
 title: "Multi-environment Trial Analysis"
 output: rmarkdown::html_vignette
+fig_caption: yes
 link-citations: true
+bibliography: metanref.bib    
 vignette: >
   %\VignetteIndexEntry{Multi-environment Trial Analysis}
   %\VignetteEngine{knitr::rmarkdown}
@@ -33,8 +35,8 @@ The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplo
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-library(dplyr) # for data manipulation and pipe %>%
-library(tibble) # for manipulating rownmanes
+library(magrittr) # for the forward-pipe operator %>%
+
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
@@ -61,7 +63,7 @@ plot(CVAL)
 
 
 ### Fitting the model
-The AMMI model is fitted with the function `WAAS.AMMI()`. Note that a model may be fitted easier and faster using `%>%` and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). For more details, please see `?WAAS.AMMI`.
+The AMMI model is fitted with the function `waas()`. Note that a model may be fitted easier and faster using `%>%` and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). The use of `%>%` make it the coding logical and clean especially when the output of a function is used as input in a second function. For more details, please see `?waas`.
 
 ```{r}
 model <- data_ge %>% waas(ENV, GEN, REP, GY)
@@ -69,7 +71,7 @@ model <- data_ge %>% waas(ENV, GEN, REP, GY)
 
 ### Biplots
 
-The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `WAAS.AMMI()` and `WAASB()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list that in this case has one element, GY.
+The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `waas()` and `waasb()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list that in this case has one element, GY.
 
 ```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
 p1 <- plot_scores(model$GY, axis.expand = 1.2)
@@ -88,7 +90,7 @@ plot_grid(p1, p2,
 
 
 ### S3 method `predict()`
-The S3 method `predict()` is implemented for objects of class `WAAS.AMMI` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted `model` object.
+The S3 method `predict()` is implemented for objects of class `waas` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted `model` object.
 
 ```{r }
 predicted <- predict(model, naxis = 4)
@@ -96,13 +98,29 @@ print_table(head(predicted$GY))
 ```
 
 # BLUP model
-The implementation of linear-mixed effect models to predict the response variable in MET is made with `WAASB()` function. The *mixed-effect version* of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.
+The implementation of linear-mixed effect models to predict the response variable in MET is made with `waasb()` function. The *mixed-effect version* of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.
 
 ```{r }
 model2 <- data_ge %>% waasb(ENV, GEN, REP, GY)
 ```
 
 The mixed-effect model fitted in `model2` has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
+
+## Residual plots
+Several residual plots may be obtained apllying the function `autoplot()` to an object of class `waasb`. 
+
+```{r,fig.height=8, fig.width=8}
+autoplot(model2$GY, which = c(1, 2, 3, 7))
+```
+
+## Distributin of random effects
+The distribution of the random effects may be obtained using the argument
+`type = "re"`.
+
+```{r,fig.height=8, fig.width=8}
+autoplot(model2$GY, type = "re")
+```
+
 
 
 ```{r }
@@ -138,15 +156,25 @@ plot_grid(p1, p2,
 print_table(head(model2$GY$BLUPgge))
 ```
 
+## BLUP-based stability index
+The function `Resende_indexes()` may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See @Alves2018 for more details.
+
+```{r }
+index = model2 %>%
+  Resende_indexes()
+  print_table(index$GY)
+```
+
+
 # Parametric and non-parametric statistics
 The metan package provides an easy way to compute several world-known stability methods.
 Up to the version 1.0.3, the following stability methods are implemented:
 
-* Joint regression analysis, using the function `ge_reg()`
-* Genotypic confidence index, using the function `Annicchiarico()`
-* Nonparametric superiority index, using the function `superiority()`
-* Ecovalence, using the function `ecovalence()`
-* Stability analysis and environmental stratification using the function `ge_factanal()`
+* Joint regression analysis [@Eberhart1966], using the function `ge_reg()`
+* Genotypic confidence index [@Annicchiarico1992], using the function `Annicchiarico()`
+* Nonparametric superiority index [@Lin1988], using the function `superiority()`
+* Ecovalence [@Wricke1965], using the function `ecovalence()`
+* Stability analysis and environmental stratification [@murakami2004], using the function `ge_factanal()`
 
 The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This function basically returns a summary of each method. If you are looking for more details from each method, like plot() and summary(), I suggest computing that methods using their own function.
 
@@ -154,7 +182,6 @@ The easiest way to compute the above-mentioned stability indexes is by using the
 
 ```{r }
 stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)
-dat = stat_ge$GY
 ```
 If you whant to export a summary of results, the simplest way is by using the function summary, as follows:
 
