@@ -239,22 +239,12 @@ print_table(D2)
 Recently, a Gaussian-independent estimator for the confidence interval of Pearson's correlation coefficient was proposed by @Olivoto2018. This estimator is based on the sample size and strength of associations and may be estimated using the function `corr_ci()`. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (r), or using a dataframe.
 
 ```{r }
-corr_ci(n = 145, r = 0.34)
-
-CI = corr_ci(data_ge2)
-
-CI2 = data_ge2 %>% split_factors(ENV) %>% corr_ci()
-```
-
-The following code creates a ggplot-based graphic showing the confidence interval estimated in the object **CI**
-
-```{r}
 # Inform n and r
 corr_ci(n = 145, r = 0.34)
 
 # Use a data frame
 CI =  data_ge2 %>% 
-  select(contains("E")) %>% 
+  select(contains("E")) %>%
   corr_ci()
 
 # Compute the confidence for each level of ENV
@@ -264,11 +254,10 @@ CI2 = data_ge2 %>%
   corr_ci()
 ```
 
+The following code creates a ggplot-based graphic showing the confidence interval estimated in the object **CI**
 
-## Sample size planning
-
-```{r, fig.width=8, fig.height = 4, fig.align="center"}
-ggplot(CI, aes(x = Pair, y = Corr))+
+```{r, fig.width=6, fig.height = 4, fig.align="center"}
+ggplot(CI, aes(x = reorder(Pair, Corr), y = Corr))+
   geom_errorbar(aes(ymax = UL, ymin = LL, width = 0.5))+
   geom_point(col = "black", fill = "red", size = 3, shape = 21)+
   coord_flip()+
@@ -278,7 +267,16 @@ ggplot(CI, aes(x = Pair, y = Corr))+
         axis.text = element_text(colour = "black"),
         axis.ticks.length = unit(.2, "cm"),
         text = element_text(size = 12, colour = "black"))+
+  ggtitle("95% CI for Pearson's correlation coefficient",
+          subtitle = "n = 156")
   labs(x = "Pairwise combinations", y = "Pearson's correlation coefficient")
+```
+
+
+## Sample size planning
+
+```{r}
+corr_ss(r = 0.6, CI = 0.1)
 
 ```
 

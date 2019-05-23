@@ -60,6 +60,8 @@ where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the obser
 
 The function  `cv_blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The following code computes the cross-validation of the oat data using both AMMI and BLUP models. To avoid extensive processing time,  I will use 50 re-sampling procedures only. I suggest using a larger number, say, 1000.
 
+
+
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
 # cross-validation for AMMI model (declaring the number of axes)
 AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 50, nrepval = 2)
