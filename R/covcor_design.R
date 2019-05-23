@@ -97,8 +97,7 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
         dplyr::group_by(GEN) %>%
         dplyr::summarise_all(mean) %>%
         dplyr::ungroup() %>%
-        dplyr::select(-GEN) %>%
-        as.data.frame()
+        column_to_rownames("GEN")
       covdata2 = comb_vars(data.frame(covdata), order = "first")
       index = data.frame(t(combn(nvar, 2)))
       covres = NULL
@@ -176,7 +175,7 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
           dfs[[paste(nam)]] = as.matrix(make_sym(vres))
         }
         if(type == "means"){
-          return(means)
+          return(as_tibble(means, rownames = NA))
         }
       }
     }
@@ -219,8 +218,7 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
       dplyr::group_by(GEN) %>%
       dplyr::summarise_all(mean) %>%
       dplyr::ungroup() %>%
-      dplyr::select(-GEN) %>%
-      as.data.frame()
+      column_to_rownames("GEN")
   covdata2 = comb_vars(data.frame(covdata), order = "first")
   index = data.frame(t(combn(nvar, 2)))
   covres = NULL
@@ -299,7 +297,7 @@ covcor_design = function(.data, gen, rep, resp, design = "RCBD", type = NULL){
     return(as.matrix(make_sym(vres)))
   }
   if(type == "means"){
-    return(means)
+    return(as_tibble(means, rownames = NA))
   }
   }
 }

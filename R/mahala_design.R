@@ -77,7 +77,7 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
       means = data.frame(cbind(GEN, covdata)) %>%
         dplyr::group_by(GEN) %>%
         dplyr::summarise_all(mean) %>%
-        dplyr::select(-GEN)
+        column_to_rownames("GEN")
       covdata2 = comb_vars(data.frame(covdata), order = "first")
       index = data.frame(t(combn(ncol(mat), 2)))
       temp = NULL
@@ -133,7 +133,7 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
     means = data.frame(cbind(GEN, covdata)) %>%
             dplyr::group_by(GEN) %>%
             dplyr::summarise_all(mean) %>%
-            dplyr::select(-GEN)
+      column_to_rownames("GEN")
     covdata2 = comb_vars(data.frame(covdata), order = "first")
     index = data.frame(t(combn(ncol(mat), 2)))
     temp = NULL
