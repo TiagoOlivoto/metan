@@ -1,4 +1,4 @@
-#' Apply a function of each e pairwise combinations of variables
+#' Pairwise combinations of variables
 #'
 #' Pairwise combinations of variables that will be the result of a function
 #' applied to each combination.
@@ -6,11 +6,10 @@
 #'
 #' @param .data A matrix of data with, say, p columns.
 #' @param order The order on how the results will appear in the output. Default
-#' is \code{order = "second"}. In this case, assuming that .data has four
+#' is \code{order = "first"}. In this case, assuming that .data has four
 #' columns, namely, \code{V1, V2, V3, V4}, the order of columns in the output
-#' will be \code{V1.V2, V1.V3, V2.V3, V1.V4, V2.V4, V3.V4}. If 'order' is set
-#' to "first", the result will be then \code{V1.V2, V1.V3, V1.V4, V2.V3, V2.V4,
-#' V3.V4}.
+#' will be \code{V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4}. If \code{order = "second"},
+#' the result will be then \code{V1.V2, V1.V3, V2.V3, V1.V4, V2.V4, V3.V4}.
 #' @param FUN The function that will be applied to each combination. The
 #' default is \code{+}, i.e., V1 + V2.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
@@ -27,10 +26,10 @@
 #'                   D = rnorm(n = 5, mean = 1100, sd = 200),
 #'                   E = rnorm(n = 5, mean = 2, sd = 1))
 #' comb_vars(data)
-#' comb_vars(data, FUN = "*", order = "first")
+#' comb_vars(data, FUN = "*", order = "second")
 #' }
 #'
-comb_vars = function(.data, order = "second", FUN = "+", verbose = TRUE){
+comb_vars = function(.data, order = "first", FUN = "+", verbose = TRUE){
   FUN = match.fun(FUN)
   if (!order %in% c("first", "second")) {
     stop("The orde must be one of 'first' or 'second'.")
@@ -44,12 +43,12 @@ comb_vars = function(.data, order = "second", FUN = "+", verbose = TRUE){
   x = .data[ , unlist(lapply(.data, is.numeric))] %>% as.data.frame()
   cb = data.frame(t(combn(ncol(x), 2)))
   if (order == "second"){
-  cb = cb[with(cb, order(X2)), ]
+  cb %<>% arrange(X2)
   }
   nvars = data.frame(matrix(nrow = nrow(x), ncol = nrow(cb)))
   for (i in 1:nrow(cb)){
     nvars[, i] = FUN(x[[cb[i, 1]]], x[[cb[i, 2]]])
-    colnames(nvars)[[i]] =  paste(colnames(x[cb[i, 1]]), colnames(x[cb[i, 2]]))
+    colnames(nvars)[[i]] =  paste(colnames(x[cb[i, 1]]), colnames(x[cb[i, 2]]), sep = "x")
   }
-  return(data.frame(nvars))
+  return(as_tibble(nvars, rownames = NA))
 }
