@@ -107,5 +107,5 @@ if (getRversion() >= "2.15.1") {
         "pt", ".", "linear", "my_custom_cor", "my_custom_smooth", "K", "direct", "VAR",
         "eq", "IndAmb", "REP", "gge", "ind", "cophenetic", "remaining", "index", "ge",
         "FA1", "FA2", "Gen", "wRes", "wWAASB", "OrResp", "OrPC1", "OrWAASB", "wWAAS",
-        "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI"))
+        "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI", "Pair", "LL", "UL"))
 }
