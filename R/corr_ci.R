@@ -98,7 +98,7 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
         }
       }
 
-invisible(out)
+invisible(as_tibble(out))
 
     } else {
         CI <- (0.45304^r) * 2.25152 * (n^-0.50089)
