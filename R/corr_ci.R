@@ -68,13 +68,13 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
         }
         m <- as.matrix(cor.x)
 
-        results <- data.frame(Corr = as.vector(t(m)[lower.tri(m, diag = F)]))
-        CI <- dplyr::mutate(results, CI = (0.45304^abs(Corr)) * 2.25152 * (n^-0.50089),
-            LL = Corr - CI, UL = Corr + CI)
-        combnam <- combn(colnames(x), 2, paste, collapse = " x ")
-        rownames(CI) <- names(sapply(combnam, names))
+        results <- tibble(Pair = names(sapply(combn(colnames(x), 2, paste, collapse = " x "), names)),
+                          Corr = as.vector(t(m)[lower.tri(m, diag = F)]),
+                          CI = (0.45304^abs(Corr)) * 2.25152 * (n^-0.50089),
+                          LL = Corr - CI,
+                          UL = Corr + CI)
 
-        return(CI)
+        return(results)
     }
 
       if (is.matrix(.data)){
