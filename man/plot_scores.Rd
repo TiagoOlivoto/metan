@@ -38,7 +38,7 @@ exported in \code{*.tiff} format by declaring \code{file.type = "tiff"}.}
 \code{NULL}, i.e. the files are automatically named.}
 
 \item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
 applied using the arguments: `theme = theme_waasb() + theme(some stuff
 here)`. For more details, please, see `?ggplot2::theme`}
 
@@ -63,7 +63,7 @@ arguments can be inserted as \code{x.lab = "my label"}.}
 \item{y.lab}{The label of y-axis. Each plot has a default value. New
 arguments can be inserted as \code{y.lab = "my label"}.}
 
-\item{y.lim}{The range of x-axis. Default is \code{NULL}. The same arguments
+\item{y.lim}{The range of y-axis. Default is \code{NULL}. The same arguments
 than \code{x.lim} can be used.}
 
 \item{y.breaks}{The breaks to be plotted in the x-axis. Default is

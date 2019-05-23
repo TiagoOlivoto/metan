@@ -30,7 +30,7 @@
 #' @param file.name The name of the file for exportation, default is
 #' \code{NULL}, i.e. the files are automatically named.
 #' @param theme The graphical theme of the plot. Default is `theme =
-#' theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+#' theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
 #' applied using the arguments: `theme = theme_waasb() + theme(some stuff
 #' here)`. For more details, please, see `?ggplot2::theme`
 #' @param axis.expand Multiplication factor to expand the axis limits by to
@@ -47,7 +47,7 @@
 #' arguments can be inserted as \code{x.lab = "my label"}.
 #' @param y.lab The label of y-axis. Each plot has a default value. New
 #' arguments can be inserted as \code{y.lab = "my label"}.
-#' @param y.lim The range of x-axis. Default is \code{NULL}. The same arguments
+#' @param y.lim The range of y-axis. Default is \code{NULL}. The same arguments
 #' than \code{x.lim} can be used.
 #' @param y.breaks The breaks to be plotted in the x-axis. Default is
 #' \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
