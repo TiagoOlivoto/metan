@@ -73,7 +73,6 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
                           CI = (0.45304^abs(Corr)) * 2.25152 * (n^-0.50089),
                           LL = Corr - CI,
                           UL = Corr + CI)
-
         return(results)
     }
 
