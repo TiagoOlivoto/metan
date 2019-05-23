@@ -1302,9 +1302,16 @@ H9
 <div id="nonparametric-confidence-interval-for-pearsons-correlation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nonparametric-confidence-interval-for-pearsons-correlation" class="anchor"></a>Nonparametric confidence interval for Pearson’s correlation</h2>
-<p>Recently, a Gaussian-independent estimator for the confidence interval of Pearson’s correlation coefficient was proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018">2018</a>)</span>. This estimator is based on the sample size and strength of associations and may be estimated using the function <code><a href="../reference/corr_ci.html">corr_ci()</a></code>. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (r), or using a dataframe.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># Inform n and r</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">n =</span> <span class="dv">145</span>, <span class="dt">r =</span> <span class="fl">0.34</span>)</a></code></pre></div>
+<p>Recently, a Gaussian-independent estimator for the confidence interval of Pearson’s correlation coefficient was proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018">2018</a>)</span>. This estimator is based on the sample size and strength of associations and may be estimated using the function <code><a href="../reference/corr_ci.html">corr_ci()</a></code>. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (r), or using a dataframe. The following code computes the confidence interval and make a plot to show the results.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># Use a data frame</span></a>
+<a class="sourceLine" id="cb18-2" title="2">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-4" title="4"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-5" title="5"><span class="kw"><a href="../reference/plot_ci.html">plot_ci</a></span>()</a></code></pre></div>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;"></p>
+<p>In the following examples, the confidence interval is calculated by declaring the sample size (n) and the correlation coefficient (r). If the function <code><a href="../reference/split_factors.html">split_factors()</a></code> is used before <code><a href="../reference/corr_ci.html">corr_ci()</a></code> then the confidence interval will be calculated within each level of the splitting factor.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Inform n and r</span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">n =</span> <span class="dv">145</span>, <span class="dt">r =</span> <span class="fl">0.34</span>)</a></code></pre></div>
 <pre><code>## ------------------------------------------------- 
 ## Nonparametric 95% half-width confidence interval 
 ## ------------------------------------------------- 
@@ -1314,45 +1321,16 @@ H9
 ## Confidence interval: 0.1422
 ## True parameter range from: 0.1978 to 0.4822 
 ## -------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Use a data frame</span></a>
-<a class="sourceLine" id="cb20-2" title="2">CI =<span class="st">  </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>()</a></code></pre></div>
-<pre><code>## The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.'</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Compute the confidence for each level of ENV</span></a>
-<a class="sourceLine" id="cb22-2" title="2">CI2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>()</a></code></pre></div>
-<pre><code>## The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
-<p>The following code creates a ggplot-based graphic showing the confidence interval estimated in the object <strong>CI</strong></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">ggplot</span>(CI, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reorder.factor">reorder</a></span>(Pair, Corr), <span class="dt">y =</span> Corr))<span class="op">+</span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymax =</span> UL, <span class="dt">ymin =</span> LL, <span class="dt">width =</span> <span class="fl">0.5</span>))<span class="op">+</span></a>
-<a class="sourceLine" id="cb24-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">col =</span> <span class="st">"black"</span>, <span class="dt">fill =</span> <span class="st">"red"</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">shape =</span> <span class="dv">21</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb24-4" title="4"><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb24-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">"black"</span>, <span class="dt">fill =</span> <span class="ot">NA</span>),</a>
-<a class="sourceLine" id="cb24-6" title="6">        <span class="dt">panel.grid.minor.x  =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb24-7" title="7">        <span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb24-8" title="8">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">"black"</span>),</a>
-<a class="sourceLine" id="cb24-9" title="9">        <span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">"cm"</span>),</a>
-<a class="sourceLine" id="cb24-10" title="10">        <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">"black"</span>))<span class="op">+</span></a>
-<a class="sourceLine" id="cb24-11" title="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"95% CI for Pearson's correlation coefficient"</span>,</a>
-<a class="sourceLine" id="cb24-12" title="12">          <span class="dt">subtitle =</span> <span class="st">"n = 156"</span>)</a></code></pre></div>
-<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">  <span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Pairwise combinations"</span>, <span class="dt">y =</span> <span class="st">"Pearson's correlation coefficient"</span>)</a></code></pre></div>
-<pre><code>## $x
-## [1] "Pairwise combinations"
-## 
-## $y
-## [1] "Pearson's correlation coefficient"
-## 
-## attr(,"class")
-## [1] "labels"</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Compute the confidence for each level of ENV</span></a>
+<a class="sourceLine" id="cb21-2" title="2">CI2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>()</a></code></pre></div>
 </div>
 <div id="sample-size-planning" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sample-size-planning" class="anchor"></a>Sample size planning</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="../reference/corr_ss.html">corr_ss</a></span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/corr_ss.html">corr_ss</a></span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</a></code></pre></div>
 <pre><code>## ------------------------------------------------- 
 ## Sample size planning for correlation coefficient 
 ## ------------------------------------------------- 
@@ -1370,9 +1348,9 @@ H9
 <div id="using-a-correlation-matrix-which-was-estimated-earlier" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-a-correlation-matrix-which-was-estimated-earlier" class="anchor"></a>Using a correlation matrix, which was estimated earlier</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">cor_data =<span class="st"> </span>lpc1<span class="op">$</span>linear.mat</a>
-<a class="sourceLine" id="cb29-2" title="2">n =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(dataset)</a>
-<a class="sourceLine" id="cb29-3" title="3">cold1 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(cor_data, <span class="dt">n =</span> n)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">cor_data =<span class="st"> </span>lpc1<span class="op">$</span>linear.mat</a>
+<a class="sourceLine" id="cb24-2" title="2">n =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(dataset)</a>
+<a class="sourceLine" id="cb24-3" title="3">cold1 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(cor_data, <span class="dt">n =</span> n)</a></code></pre></div>
 <pre><code>## Weak multicollinearity in the matrix
 ## NC = 30.013
 ## Matrix determinant: 0.1247818 
@@ -1385,7 +1363,7 @@ H9
 <div id="using-a-dataframe" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-a-dataframe" class="anchor"></a>Using a dataframe</h2>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">cold2 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(dataset)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">cold2 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(dataset)</a></code></pre></div>
 <pre><code>## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
 ## CN = 10106.712
 ## Matrix determinant: 0 
@@ -1399,9 +1377,9 @@ H9
 <div id="perform-the-diagnostic-for-each-level-of-the-factor-env" class="section level2">
 <h2 class="hasAnchor">
 <a href="#perform-the-diagnostic-for-each-level-of-the-factor-env" class="anchor"></a>Perform the diagnostic for each level of the factor ENV</h2>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb34-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb34-3" title="3"><span class="st">         </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="st">         </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>()</a></code></pre></div>
 <pre><code>## 
 ## ----------------------------------------------------------------------------
 ## Level: A1 
@@ -1458,8 +1436,8 @@ H9
 <div id="using-kw-as-response-trait-and-all-other-ones-as-predictors-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-kw-as-response-trait-and-all-other-ones-as-predictors-" class="anchor"></a>Using KW as response trait and all other ones as predictors.</h2>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">pcoeff =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb36-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">pcoeff =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW)</a></code></pre></div>
 <pre><code>## The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.'</code></pre>
 <pre><code>## Severe multicollinearity. 
 ## Condition Number = 7865.84
@@ -1468,11 +1446,11 @@ H9
 <div id="declaring-the-predictor-traits" class="section level2">
 <h2 class="hasAnchor">
 <a href="#declaring-the-predictor-traits" class="anchor"></a>Declaring the predictor traits</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">pcoeff2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb39-3" title="3">             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, NKE, TKW),</a>
-<a class="sourceLine" id="cb39-4" title="4">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb39-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(pcoeff2)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">pcoeff2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb34-3" title="3">             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, NKE, TKW),</a>
+<a class="sourceLine" id="cb34-4" title="4">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb34-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(pcoeff2)</a></code></pre></div>
 <pre><code>## ----------------------------------------------------------------------------------------------
 ## Correlation matrix between the predictor traits
 ## ----------------------------------------------------------------------------------------------
@@ -1524,19 +1502,19 @@ H9
 <div id="selecting-traits-to-be-excluded-from-the-analysis-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#selecting-traits-to-be-excluded-from-the-analysis-" class="anchor"></a>Selecting traits to be excluded from the analysis.</h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">pcoeff2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb41-3" title="3">             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, NKE, TKW),</a>
-<a class="sourceLine" id="cb41-4" title="4">             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb41-5" title="5">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">pcoeff2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb36-3" title="3">             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb36-4" title="4">             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb36-5" title="5">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="selecting-a-set-of-predictors-with-minimal-multicollinearity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#selecting-a-set-of-predictors-with-minimal-multicollinearity" class="anchor"></a>Selecting a set of predictors with minimal multicollinearity</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">pcoeff3 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb42-3" title="3">             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb42-4" title="4">             <span class="dt">maxvif =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">pcoeff3 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb37-3" title="3">             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb37-4" title="4">             <span class="dt">maxvif =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.'</code></pre>
 <pre><code>## -------------------------------------------------------------------------- 
 ## The algorithm has selected a set of 8predictors with largest VIF = 3.346. 
@@ -1565,10 +1543,10 @@ H9
 <div id="compute-the-analysis-for-each-level-of-environment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#compute-the-analysis-for-each-level-of-environment" class="anchor"></a>Compute the analysis for each level of environment</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">pcoeff4 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb45-4" title="4">             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, NKE, TKW))</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">pcoeff4 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb40-4" title="4">             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, NKE, TKW))</a></code></pre></div>
 <pre><code>## The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
 <pre><code>## 
 ## ----------------------------------------------------------------------------
@@ -1603,9 +1581,9 @@ H9
 <div id="canonical-correlation-analysis" class="section level1">
 <h1 class="hasAnchor">
 <a href="#canonical-correlation-analysis" class="anchor"></a>Canonical correlation analysis</h1>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">cc1 =<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(data_ge2,</a>
-<a class="sourceLine" id="cb48-2" title="2">               <span class="dt">FG =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, EP),</a>
-<a class="sourceLine" id="cb48-3" title="3">               <span class="dt">SG =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(EL, ED, CL, CD, CW, KW, NR))</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">cc1 =<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(data_ge2,</a>
+<a class="sourceLine" id="cb43-2" title="2">               <span class="dt">FG =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, EP),</a>
+<a class="sourceLine" id="cb43-3" title="3">               <span class="dt">SG =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(EL, ED, CL, CD, CW, KW, NR))</a></code></pre></div>
 <pre><code>## ---------------------------------------------------------------------------
 ## Matrix (correlation/covariance) between variables of first group (FG)
 ## ---------------------------------------------------------------------------
@@ -1701,10 +1679,10 @@ H9
 ## CW 0.6244 -0.37712 -0.14762
 ## KW 0.9566 -0.05042 -0.09911
 ## NR 0.4351  0.29047  0.18639</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">cc2 =<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(<span class="dt">FG =</span> data_ge2[, <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],</a>
-<a class="sourceLine" id="cb50-2" title="2">               <span class="dt">SG =</span> data_ge2[, <span class="dv">7</span><span class="op">:</span><span class="dv">13</span>],</a>
-<a class="sourceLine" id="cb50-3" title="3">               <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb50-4" title="4">               <span class="dt">collinearity =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">cc2 =<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(<span class="dt">FG =</span> data_ge2[, <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],</a>
+<a class="sourceLine" id="cb45-2" title="2">               <span class="dt">SG =</span> data_ge2[, <span class="dv">7</span><span class="op">:</span><span class="dv">13</span>],</a>
+<a class="sourceLine" id="cb45-3" title="3">               <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb45-4" title="4">               <span class="dt">collinearity =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="clustering-analysis" class="section level1">
 <h1 class="hasAnchor">
@@ -1715,18 +1693,18 @@ H9
 <div id="all-rows-and-all-numeric-variables-from-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#all-rows-and-all-numeric-variables-from-data" class="anchor"></a>All rows and all numeric variables from data</h3>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">d1 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">d1 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2)</a></code></pre></div>
 <pre><code>## The columns ENV GEN REP where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.'</code></pre>
 </div>
 <div id="based-on-the-mean-for-each-genotype" class="section level3">
 <h3 class="hasAnchor">
 <a href="#based-on-the-mean-for-each-genotype" class="anchor"></a>Based on the mean for each genotype</h3>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">d2 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">nclust =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">d2 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">nclust =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p>The S3 generic function plot() may be used to plot the dendrogram generated by the function <code><a href="../reference/clustering.html">clustering()</a></code>. A dashed line is draw at the cutpoint suggested according to <span class="citation">Mojena (<a href="#ref-Mojena1977">1977</a>)</span>.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(d2, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(d2, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-26-1.png" width="528" style="display: block; margin: auto;"> According to the suggested cutpoint, two clusters are formed. The number of clusters may also be found using intensive computation. I suggest the package <a href="http://stat.sys.i.kyoto-u.ac.jp/prog/pvclust/">pcvlust</a>, an R package for assessing the uncertainty in hierarchical cluster analysis. The implementation may be see below.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pvclust)</a>
-<a class="sourceLine" id="cb55-2" title="2">pv_clust &lt;-<span class="st"> </span><span class="kw">pvclust</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(d2<span class="op">$</span>data), <span class="dt">nboot =</span> <span class="dv">100</span>, <span class="dt">method.dist =</span> <span class="st">"euclidean"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pvclust)</a>
+<a class="sourceLine" id="cb50-2" title="2">pv_clust &lt;-<span class="st"> </span><span class="kw">pvclust</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(d2<span class="op">$</span>data), <span class="dt">nboot =</span> <span class="dv">100</span>, <span class="dt">method.dist =</span> <span class="st">"euclidean"</span>)</a></code></pre></div>
 <pre><code>## Bootstrap (r = 0.47)... Done.
 ## Bootstrap (r = 0.6)... Done.
 ## Bootstrap (r = 0.67)... Done.
@@ -1737,21 +1715,21 @@ H9
 ## Bootstrap (r = 1.2)... Done.
 ## Bootstrap (r = 1.27)... Done.
 ## Bootstrap (r = 1.4)... Done.</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(pv_clust, <span class="dt">hang =</span> <span class="dv">-1</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb57-2" title="2"><span class="kw">pvrect</span>(pv_clust, <span class="dt">alpha =</span> <span class="fl">0.95</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(pv_clust, <span class="dt">hang =</span> <span class="dv">-1</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb52-2" title="2"><span class="kw">pvrect</span>(pv_clust, <span class="dt">alpha =</span> <span class="fl">0.95</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-27-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="indicating-the-variables-to-compute-the-distances" class="section level3">
 <h3 class="hasAnchor">
 <a href="#indicating-the-variables-to-compute-the-distances" class="anchor"></a>Indicating the variables to compute the distances</h3>
 <p>It is possible to indicate the variables from the dataset to compute the distances. To do that is easy. You should only provide a comma-separated list of unquoted variable names after the .data argument. For example, to compute the distances between the genotypes based on the variables NKR, TKW, and NKE, the following arguments should be used.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">d3 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, NKR, TKW, NKE, <span class="dt">means_by =</span> GEN)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">d3 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, NKR, TKW, NKE, <span class="dt">means_by =</span> GEN)</a></code></pre></div>
 </div>
 <div id="select-variables-for-compute-the-distances" class="section level3">
 <h3 class="hasAnchor">
 <a href="#select-variables-for-compute-the-distances" class="anchor"></a>Select variables for compute the distances</h3>
 <p>When <code>selvar = TRUE</code> is used, an algorithm for variable selction is implemented. See <code><a href="../reference/clustering.html">?clustering</a></code> for more details.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">d4 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">selvar =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">d4 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">selvar =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
 ## Calculating model 2 with 14 variables. EP excluded in this step (14.3%).
 ## Calculating model 3 with 13 variables. CDED excluded in this step (21.4%).
@@ -1799,20 +1777,20 @@ H9
 <h3 class="hasAnchor">
 <a href="#extending-the-dendrogram-functionality" class="anchor"></a>Extending the dendrogram Functionality</h3>
 <p>The package <a href="https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html">dendextend</a> offers a set of functions for extending ‘dendrogram’ objects in R. A simple example is given bellow.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dendextend)</a>
-<a class="sourceLine" id="cb61-2" title="2">d4<span class="op">$</span>hc <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-3" title="3"><span class="st">  </span><span class="kw">color_labels</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-4" title="4"><span class="st">  </span><span class="kw">branches_color</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-5" title="5"><span class="st">  </span><span class="kw">highlight_branches_lwd</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">"Euclidean distance"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dendextend)</a>
+<a class="sourceLine" id="cb56-2" title="2">d4<span class="op">$</span>hc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-3" title="3"><span class="st">  </span><span class="kw">color_labels</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-4" title="4"><span class="st">  </span><span class="kw">branches_color</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-5" title="5"><span class="st">  </span><span class="kw">highlight_branches_lwd</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">"Euclidean distance"</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-30-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="compute-the-distances-with-standardized-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#compute-the-distances-with-standardized-data" class="anchor"></a>Compute the distances with standardized data</h3>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">d5 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2,</a>
-<a class="sourceLine" id="cb62-2" title="2">                <span class="dt">means_by =</span> GEN,</a>
-<a class="sourceLine" id="cb62-3" title="3">                <span class="dt">scale =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">d5 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2,</a>
+<a class="sourceLine" id="cb57-2" title="2">                <span class="dt">means_by =</span> GEN,</a>
+<a class="sourceLine" id="cb57-3" title="3">                <span class="dt">scale =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="compute-the-distances-for-each-environment" class="section level3">
 <h3 class="hasAnchor">
@@ -1820,24 +1798,24 @@ H9
 <ul>
 <li>All rows of each environment and all numeric variables used</li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">d6 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-2" title="2"><span class="st">     </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-3" title="3"><span class="st">     </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">d6 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="st">     </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="st">     </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>()</a></code></pre></div>
 <pre><code>## The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
 <ul>
 <li>Select the variables NKR, TKW, and NKE</li>
 <li>Use the mean for each genotype</li>
 </ul>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">d7 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(NKR, TKW, NKE,</a>
-<a class="sourceLine" id="cb65-4" title="4">             <span class="dt">means_by =</span> GEN)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">d7 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(NKR, TKW, NKE,</a>
+<a class="sourceLine" id="cb60-4" title="4">             <span class="dt">means_by =</span> GEN)</a></code></pre></div>
 </div>
 <div id="check-the-correlation-between-distance-matrices" class="section level3">
 <h3 class="hasAnchor">
 <a href="#check-the-correlation-between-distance-matrices" class="anchor"></a>Check the correlation between distance matrices</h3>
 <p>The function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> may be used to check the relationships between the distance matrices when the clustering is performed for each level of a grouping factor. In this example, we have four distance matrices correponding to four environments.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(d7, <span class="dt">names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"A3"</span>, <span class="st">"A4"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(d7, <span class="dt">names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"A3"</span>, <span class="st">"A4"</span>))</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-34-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>The highest degree of association (0.36) was observed between <strong>A1</strong> and <strong>A4</strong>. The low values of correlation between the distance matrices suggest that the genotype clustering should vary significantly among environments.</p>
 </div>
@@ -1848,13 +1826,13 @@ H9
 <div id="based-on-designed-experiments" class="section level3">
 <h3 class="hasAnchor">
 <a href="#based-on-designed-experiments" class="anchor"></a>Based on designed experiments</h3>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Environment E1</span></a>
-<a class="sourceLine" id="cb67-2" title="2">data_E1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(data_ge2, ENV <span class="op">==</span><span class="st"> "A1"</span>)</a>
-<a class="sourceLine" id="cb67-3" title="3">D2_des =<span class="st"> </span><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(data_E1,</a>
-<a class="sourceLine" id="cb67-4" title="4">                       <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb67-5" title="5">                       <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb67-6" title="6">                       <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(ED, CW, KW, NKR, TKW, NKE))</a>
-<a class="sourceLine" id="cb67-7" title="7"><span class="kw">print_table</span>(D2_des)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># Environment E1</span></a>
+<a class="sourceLine" id="cb62-2" title="2">data_E1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(data_ge2, ENV <span class="op">==</span><span class="st"> "A1"</span>)</a>
+<a class="sourceLine" id="cb62-3" title="3">D2_des =<span class="st"> </span><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(data_E1,</a>
+<a class="sourceLine" id="cb62-4" title="4">                       <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb62-5" title="5">                       <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb62-6" title="6">                       <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(ED, CW, KW, NKR, TKW, NKE))</a>
+<a class="sourceLine" id="cb62-7" title="7"><span class="kw">print_table</span>(D2_des)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2479,41 +2457,41 @@ H9
 <h3 class="hasAnchor">
 <a href="#compute-one-distance-for-each-environment" class="anchor"></a>Compute one distance for each environment</h3>
 <p>Using the function <code><a href="../reference/split_factors.html">split_factors()</a></code> it is possible to compute the Mahalanobis distance for each environment (or any grouping variable) and compare the distance matrices using the function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code>. Let’s do it.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-2" title="2"><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-3" title="3"><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(<span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb68-4" title="4">              <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb68-5" title="5">              <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(ED, CW, KW, NKR, TKW, NKE)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-6" title="6"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(<span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb63-4" title="4">              <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb63-5" title="5">              <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(ED, CW, KW, NKR, TKW, NKE)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-6" title="6"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>()</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-36-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="if-i-have-the-matrices-of-means-and-covariances" class="section level3">
 <h3 class="hasAnchor">
 <a href="#if-i-have-the-matrices-of-means-and-covariances" class="anchor"></a>If I have the matrices of means and covariances</h3>
 <p>Lets suppose we want compute the Mahalanobis’ distance for each pairwise genotype comparision based on cob-related traits. Note that the function <code>select(contains("C"))</code> is used to select the cob-relate traits, after computing the mean for each genotype.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">means =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(ENV, REP)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(GEN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-4" title="4"><span class="st">  </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-5" title="5"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">"GEN"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-6" title="6"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"C"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">means =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(ENV, REP)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(GEN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-4" title="4"><span class="st">  </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-5" title="5"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">"GEN"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-6" title="6"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"C"</span>))</a></code></pre></div>
 <p>The next step is to compute the variance-covariance matrix for the means. The first approach combines R base functions with some functions from <strong>metan</strong> package to compute the covariance matrix. Of course, the simplest way is by using <code><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cov()</a></code>.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># Compute the covariance matrix (by hand)</span></a>
-<a class="sourceLine" id="cb70-2" title="2">cov_mat =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb70-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diag">diag</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diag">diag</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">var</a></span>(means))</a>
-<a class="sourceLine" id="cb70-4" title="4">dev_scores &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sweep">sweep</a></span>(means, <span class="dv">2</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">colMeans</a></span>(means), <span class="dt">FUN =</span> <span class="st">"-"</span>)</a>
-<a class="sourceLine" id="cb70-5" title="5">comb_v &lt;-<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(dev_scores, <span class="dt">FUN =</span> <span class="st">"*"</span>)</a>
-<a class="sourceLine" id="cb70-6" title="6">cov_mat[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lower.tri">lower.tri</a></span>(cov_mat, <span class="dt">diag =</span> F)] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">colSums</a></span>(comb_v<span class="op">/</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(means)<span class="op">-</span><span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb70-7" title="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(means)</a>
-<a class="sourceLine" id="cb70-8" title="8">cov_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(cov_mat)</a>
-<a class="sourceLine" id="cb70-9" title="9"></a>
-<a class="sourceLine" id="cb70-10" title="10"><span class="co"># Compute the covariance using cov()</span></a>
-<a class="sourceLine" id="cb70-11" title="11">covmat2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cov</a></span>(means)</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># Compute the covariance matrix (by hand)</span></a>
+<a class="sourceLine" id="cb65-2" title="2">cov_mat =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb65-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diag">diag</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diag">diag</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">var</a></span>(means))</a>
+<a class="sourceLine" id="cb65-4" title="4">dev_scores &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sweep">sweep</a></span>(means, <span class="dv">2</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">colMeans</a></span>(means), <span class="dt">FUN =</span> <span class="st">"-"</span>)</a>
+<a class="sourceLine" id="cb65-5" title="5">comb_v &lt;-<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(dev_scores, <span class="dt">FUN =</span> <span class="st">"*"</span>)</a>
+<a class="sourceLine" id="cb65-6" title="6">cov_mat[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lower.tri">lower.tri</a></span>(cov_mat, <span class="dt">diag =</span> F)] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">colSums</a></span>(comb_v<span class="op">/</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(means)<span class="op">-</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb65-7" title="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(means)</a>
+<a class="sourceLine" id="cb65-8" title="8">cov_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(cov_mat)</a>
+<a class="sourceLine" id="cb65-9" title="9"></a>
+<a class="sourceLine" id="cb65-10" title="10"><span class="co"># Compute the covariance using cov()</span></a>
+<a class="sourceLine" id="cb65-11" title="11">covmat2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cov</a></span>(means)</a></code></pre></div>
 <p>After computing the means and covariance matrices we are able to compute the Mahalanobis distance using the function <code><a href="../reference/mahala.html">mahala()</a></code>.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">D2 =<span class="st"> </span><span class="kw"><a href="../reference/mahala.html">mahala</a></span>(means, <span class="dt">covar =</span> cov_mat)</a>
-<a class="sourceLine" id="cb71-2" title="2"></a>
-<a class="sourceLine" id="cb71-3" title="3"><span class="co"># Dendrogram</span></a>
-<a class="sourceLine" id="cb71-4" title="4">D2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">as.dist</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dendrogram">as.dendrogram</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">D2 =<span class="st"> </span><span class="kw"><a href="../reference/mahala.html">mahala</a></span>(means, <span class="dt">covar =</span> cov_mat)</a>
+<a class="sourceLine" id="cb66-2" title="2"></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="co"># Dendrogram</span></a>
+<a class="sourceLine" id="cb66-4" title="4">D2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">as.dist</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dendrogram">as.dendrogram</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>()</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-39-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>#References</p>
 <div id="refs" class="references">

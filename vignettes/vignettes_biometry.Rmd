@@ -236,41 +236,32 @@ print_table(D2)
 
 ## Nonparametric confidence interval for Pearson's correlation
 
-Recently, a Gaussian-independent estimator for the confidence interval of Pearson's correlation coefficient was proposed by @Olivoto2018. This estimator is based on the sample size and strength of associations and may be estimated using the function `corr_ci()`. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (r), or using a dataframe.
+Recently, a Gaussian-independent estimator for the confidence interval of Pearson's correlation coefficient was proposed by @Olivoto2018. This estimator is based on the sample size and strength of associations and may be estimated using the function `corr_ci()`. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (r), or using a dataframe. The following code computes the confidence interval and make a plot to show the results.
 
-```{r }
-# Inform n and r
-corr_ci(n = 145, r = 0.34)
+```{r fig.width=7, fig.height = 5, fig.align="center"}
 
 # Use a data frame
-CI =  data_ge2 %>% 
-  select(contains("E")) %>%
-  corr_ci()
+data_ge2 %>% 
+select(contains("E")) %>%
+corr_ci(verbose = FALSE) %>%
+plot_ci()
+
+
+```
+
+In the following examples, the confidence interval is calculated by declaring the sample size (n) and the correlation coefficient (r). If the function `split_factors()` is used before `corr_ci()` then the confidence interval will be calculated within each level of the splitting factor.
+
+```{r, fig.width=6, fig.height = 4, fig.align="center"}
+# Inform n and r
+corr_ci(n = 145, r = 0.34)
 
 # Compute the confidence for each level of ENV
 CI2 = data_ge2 %>% 
   select(contains("E")) %>%
-  split_factors(ENV) %>% 
+  split_factors(ENV, verbose = FALSE) %>% 
   corr_ci()
 ```
 
-The following code creates a ggplot-based graphic showing the confidence interval estimated in the object **CI**
-
-```{r, fig.width=6, fig.height = 4, fig.align="center"}
-ggplot(CI, aes(x = reorder(Pair, Corr), y = Corr))+
-  geom_errorbar(aes(ymax = UL, ymin = LL, width = 0.5))+
-  geom_point(col = "black", fill = "red", size = 3, shape = 21)+
-  coord_flip()+
-  theme(panel.border = element_rect(colour = "black", fill = NA),
-        panel.grid.minor.x  = element_blank(),
-        panel.grid.major.x = element_blank(),
-        axis.text = element_text(colour = "black"),
-        axis.ticks.length = unit(.2, "cm"),
-        text = element_text(size = 12, colour = "black"))+
-  ggtitle("95% CI for Pearson's correlation coefficient",
-          subtitle = "n = 156")
-  labs(x = "Pairwise combinations", y = "Pearson's correlation coefficient")
-```
 
 
 ## Sample size planning
