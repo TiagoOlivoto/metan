@@ -13,7 +13,7 @@ vignette: >
 ---
 
 # Getting started
-In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).
 
 ```{r  warning = FALSE, message = FALSE}
 library(metan)
@@ -26,8 +26,8 @@ print_table = function(table){
     kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
                   font_size = 12)
 }
-dataset = data_ge
-str(dataset)
+
+str(data_ge)
 ```
 
 
@@ -53,10 +53,10 @@ The vectors ${\boldsymbol{\beta }}$ and **u** are estimated using the well-known
 where **G** and **R** are the variance-covariance matrices for random-effect vector **u** and residual vector ${\bf{\varepsilon }}$, respectively.
 
 
-The `waasb()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `dataset`. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.  The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
+The `waasb()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `data_ge`. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.  The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
 
 ```{r  echo = TRUE}
-WAASB_model = waasb(dataset,
+WAASB_model = waasb(data_ge,
                     env = ENV,
                     gen = GEN,
                     rep = REP,
@@ -403,7 +403,7 @@ $$
 
 
 ```{r  }
-dataset %>%
+data_ge %>%
 waasb(GEN, ENV, REP, resp = GY, verbose = FALSE) %>% 
 Resende_indexes() %>%
 print_table()

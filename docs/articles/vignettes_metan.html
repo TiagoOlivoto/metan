@@ -134,18 +134,6 @@
 
     
     
-<p>The metan (<strong>m</strong>ulti-<strong>e</strong>nvironment <strong>t</strong>rials <strong>an</strong>alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to Additive Main Effects and Multiplicative Interaction (AMMI) and AMMI-based indexes, Best Linear Unbiased Prediction (BLUP), and BLUP-based indexes, Joint-regression analysis, Genotypic confidence index, Superiority index, The main features include, but are not limited to:</p>
-<ul>
-<li>Within environment analysis of variance</li>
-<li>Cross-validation procedures for AMMI-family and BLUP models;</li>
-<li>Estimation using AMMI considering different numbers of interation principal component axes;</li>
-<li>AMMI-based stability indexes;</li>
-<li>Prediction in mixed-effect models;</li>
-<li>BLUP-based stability indexes;</li>
-<li>Variance components and genetic parameters in mixed-effect models;</li>
-<li>Graphics tools for generating biplots.</li>
-<li>Parametric and nonparametric stability statistics</li>
-</ul>
 <div id="extending-the-metan-package" class="section level1">
 <h1 class="hasAnchor">
 <a href="#extending-the-metan-package" class="anchor"></a>Extending the metan package</h1>
@@ -216,8 +204,7 @@
 </div>
 <div id="s3-method-predict" class="section level3">
 <h3 class="hasAnchor">
-<a href="#s3-method-predict" class="anchor"></a>S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code>
-</h3>
+<a href="#s3-method-predict" class="anchor"></a>S3 method predict()</h3>
 <p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted <code>model</code> object.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(predicted<span class="op">$</span>GY))</a></code></pre></div>

@@ -58,15 +58,14 @@ Where $t_{calc}$ is the calculated Student * t * statistic; $ r_{xy.m} $ is the 
 
 
 ```{r, message=FALSE }
-dataset = data_ge2
 
-lpc1 = dataset %>% 
+lpc1 = data_ge2 %>% 
   select(starts_with("N")) %>% 
   lpcor(verbose = FALSE)
 print_table(lpc1$results)
 
 # Compute the correlations for each level of the factor ENV
-lpc2 = dataset %>%
+lpc2 = data_ge2 %>%
        split_factors(ENV) %>%
        lpcor(verbose = FALSE) # Don't show the result in the console
 
@@ -84,11 +83,11 @@ lpc2 %>% pairs_mantel(names = paste("H", 1:4, sep = ""))
 This same plot may be obtained by passing correlation matrices with the same dimension to an object of class `lpcor` and then applying the function `pairs_mantel()`.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-as.lpcor(cor(dataset[1:30, 5:ncol(dataset)]),
-         cor(dataset[31:60, 5:ncol(dataset)]),
-         cor(dataset[61:90, 5:ncol(dataset)]),
-         cor(dataset[91:120, 5:ncol(dataset)]),
-         cor(dataset[121:150, 5:ncol(dataset)])) %>%
+as.lpcor(cor(data_ge2[1:30, 5:ncol(data_ge2)]),
+         cor(data_ge2[31:60, 5:ncol(data_ge2)]),
+         cor(data_ge2[61:90, 5:ncol(data_ge2)]),
+         cor(data_ge2[91:120, 5:ncol(data_ge2)]),
+         cor(data_ge2[121:150, 5:ncol(data_ge2)])) %>%
   pairs_mantel(diag = TRUE,
                pan.spacing = 0,
                shape.point = 21,
@@ -108,14 +107,14 @@ as.lpcor(cor(dataset[1:30, 5:ncol(dataset)]),
 The function `corr_plot()` may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the `pairs()`base R function.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-corr_plot(dataset, CD, EL, PERK, NKR)
+corr_plot(data_ge2, CD, EL, PERK, NKR)
 
 
-corr_plot(dataset, CD, EL, PERK, NKR,
+corr_plot(data_ge2, CD, EL, PERK, NKR,
           lower = NULL,
           upper = "corr")
 
-corr_plot(dataset, CD, EL, PERK, NKR,
+corr_plot(data_ge2, CD, EL, PERK, NKR,
           shape.point = 19,
           size.point = 2,
           alpha.point = 0.5,
@@ -126,7 +125,7 @@ corr_plot(dataset, CD, EL, PERK, NKR,
           axis.labels = TRUE)
 
 
-corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
+corr_plot(data_ge2, CD, EL, PERK, NKR, CW, NKE,
           prob = 0.01,
           shape.point = 21,
           col.point = "black",
@@ -280,7 +279,7 @@ The following codes compute a complete collinearity diagnostic of a correlation 
 
 ```{r }
 cor_data = lpc1$linear.mat
-n = nrow(dataset)
+n = nrow(data_ge2)
 cold1 = colindiag(cor_data, n = n)
 
 ```
@@ -288,7 +287,7 @@ cold1 = colindiag(cor_data, n = n)
 ## Using a dataframe
 
 ```{r }
-cold2 = colindiag(dataset)
+cold2 = colindiag(data_ge2)
 
 ```
 
@@ -296,7 +295,7 @@ cold2 = colindiag(dataset)
 ## Perform the diagnostic for each level of the factor ENV
 
 ```{r }
-cold3 =  dataset %>% 
+cold3 =  data_ge2 %>% 
          split_factors(ENV, verbose = FALSE) %>% 
          colindiag()
 ```
@@ -396,7 +395,7 @@ pvrect(pv_clust, alpha = 0.95)
 
 
 ### Indicating the variables to compute the distances
-It is possible to indicate the variables from the dataset to compute the distances. To do that is easy. You should only provide a comma-separated list of unquoted variable names after the .data argument. For example, to compute the distances between the genotypes based on the variables NKR, TKW, and NKE, the following arguments should be used.
+It is possible to indicate the variables from the data_ge2 to compute the distances. To do that is easy. You should only provide a comma-separated list of unquoted variable names after the .data argument. For example, to compute the distances between the genotypes based on the variables NKR, TKW, and NKE, the following arguments should be used.
  
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 d3 = clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)

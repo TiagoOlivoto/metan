@@ -14,7 +14,7 @@ vignette: >
 
 # Getting started
 
-In this section, we will use the data in `data_ge2`. For more information, please, see `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+In this section, we will use the data in `data_ge2`. For more information, please, see `?data_ge2`. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
 library(metan)
@@ -27,15 +27,14 @@ print_table = function(table){
   kable(table, "html", digits = 3) %>%
     kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
 }
-dataset = data_ge
-str(dataset)
+str(data_ge)
 ```
 
 # Graphic visualization of the interaction
 The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean of each environment.
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
-p1 = ge_plot(dataset, ENV, GEN, GY)
-p2 = ge_plot(dataset, ENV, GEN, GY) + theme_grey() + coord_flip()
+p1 = ge_plot(data_ge, ENV, GEN, GY)
+p2 = ge_plot(data_ge, ENV, GEN, GY) + theme_grey() + coord_flip()
 plot_grid(p1, p2)
 ```
 
@@ -50,7 +49,7 @@ where ${\beta _{0i}}$ is the grand mean of the genotype *i* (*i* = 1, 2, ..., I)
 The model is fitted with the function `ge_reg()`. The S3 methods `plot()` and `summary()` may be used to explore the fitted model.
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-reg_model = ge_reg(dataset, ENV, GEN, REP, GY)
+reg_model = ge_reg(data_ge, ENV, GEN, REP, GY)
 print_table(reg_model$GY$anova)
 print_table(reg_model$GY$regression)
 
@@ -73,8 +72,8 @@ Where $\alpha$ is the quantile of the standard normal distribution at a given pr
 ## Computing the index
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-ann5 = Annicchiarico(dataset, ENV, GEN, REP, GY)
-ann1 = Annicchiarico(dataset, ENV, GEN, REP, GY, prob = 0.01)
+ann5 = Annicchiarico(data_ge, ENV, GEN, REP, GY)
+ann1 = Annicchiarico(data_ge, ENV, GEN, REP, GY, prob = 0.01)
 
 
 ```
@@ -112,7 +111,7 @@ where *n* is the number of environments
 Similar then the genotypic confidence index, the superiority index is calculated by all environments, favorable, and unfavorable environments.
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-super = superiority(dataset, ENV, GEN, REP, GY)
+super = superiority(data_ge, ENV, GEN, REP, GY)
 
 kable(super$GY$index, "html", digits = 3) %>% 
   row_spec(2, bold = T, color = "white", background = "red") %>%
@@ -125,7 +124,7 @@ kable(super$GY$index, "html", digits = 3) %>%
 A method that combines stability analysis and environmental stratification using factor analysis was proposed by @murakami2004. This method is implemented with the function `ge_factanal()`, as follows:
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-fact = ge_factanal(dataset, ENV, GEN, REP, GY)
+fact = ge_factanal(data_ge, ENV, GEN, REP, GY)
 plot(fact$GY)
 print_table(fact$GY$PCA)
 print_table(fact$GY$FA)

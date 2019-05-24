@@ -137,7 +137,7 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<p>In this section, we will use the data in <code>data_ge2</code>. For more information, please, see <code><a href="../reference/data_ge2.html">?data_ge2</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
+<p>In this section, we will use the data in <code>data_ge2</code>. For more information, please, see <code><a href="../reference/data_ge2.html">?data_ge2</a></code>. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
@@ -148,8 +148,7 @@
 <a class="sourceLine" id="cb1-8" title="8">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
 <a class="sourceLine" id="cb1-10" title="10">}</a>
-<a class="sourceLine" id="cb1-11" title="11">dataset =<span class="st"> </span>data_ge</a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</a></code></pre></div>
+<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
 ##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -161,8 +160,8 @@
 <h1 class="hasAnchor">
 <a href="#graphic-visualization-of-the-interaction" class="anchor"></a>Graphic visualization of the interaction</h1>
 <p>The function <code><a href="../reference/ge_plot.html">ge_plot()</a></code> may be used to visualize the genotype’s performance across the environments. The black diamond shows the mean of each environment.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(dataset, ENV, GEN, GY)</a>
-<a class="sourceLine" id="cb3-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(dataset, ENV, GEN, GY) <span class="op">+</span><span class="st"> </span><span class="kw">theme_grey</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, ENV, GEN, GY)</a>
+<a class="sourceLine" id="cb3-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, ENV, GEN, GY) <span class="op">+</span><span class="st"> </span><span class="kw">theme_grey</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_stability_files/figure-html/unnamed-chunk-2-1.png" width="960"></p>
 </div>
@@ -173,7 +172,7 @@
 <p><span class="math display">\[
 \mathop Y\nolimits_{ij}  = {\beta _{0i}} + {\beta _{1i}}{I_j} + {\delta _{ij}} + {\bar \varepsilon _{ij}}
 \]</span> where <span class="math inline">\({\beta _{0i}}\)</span> is the grand mean of the genotype <em>i</em> (<em>i</em> = 1, 2, …, I); <span class="math inline">\({\beta _{1i}}\)</span> is the linear response (slope) of the genotype <em>i</em> to the environmental index; <em>Ij</em> is the environmental index (<em>j</em> = 1, 2, …, <em>e</em>), where <span class="math inline">\({I_j} = [(y_{.j}/g)- (y_{..}/ge)]\)</span>, <span class="math inline">\({\delta _{ij}}\)</span> is the deviation from the regression, and <span class="math inline">\({\bar \varepsilon _{ij}}\)</span> is the experimental error. The model is fitted with the function <code><a href="../reference/ge_reg.html">ge_reg()</a></code>. The S3 methods <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code> may be used to explore the fitted model.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">reg_model =<span class="st"> </span><span class="kw"><a href="../reference/ge_reg.html">ge_reg</a></span>(dataset, ENV, GEN, REP, GY)</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">reg_model =<span class="st"> </span><span class="kw"><a href="../reference/ge_reg.html">ge_reg</a></span>(data_ge, ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw">print_table</span>(reg_model<span class="op">$</span>GY<span class="op">$</span>anova)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
@@ -778,8 +777,8 @@ W_i = Z_{i.}/e - \alpha \times sd(Z_{i.})
 <div id="computing-the-index" class="section level2">
 <h2 class="hasAnchor">
 <a href="#computing-the-index" class="anchor"></a>Computing the index</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">ann5 =<span class="st"> </span><span class="kw"><a href="../reference/Annicchiarico.html">Annicchiarico</a></span>(dataset, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb6-2" title="2">ann1 =<span class="st"> </span><span class="kw"><a href="../reference/Annicchiarico.html">Annicchiarico</a></span>(dataset, ENV, GEN, REP, GY, <span class="dt">prob =</span> <span class="fl">0.01</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">ann5 =<span class="st"> </span><span class="kw"><a href="../reference/Annicchiarico.html">Annicchiarico</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb6-2" title="2">ann1 =<span class="st"> </span><span class="kw"><a href="../reference/Annicchiarico.html">Annicchiarico</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">prob =</span> <span class="fl">0.01</span>)</a></code></pre></div>
 </div>
 <div id="environment-classification" class="section level2">
 <h2 class="hasAnchor">
@@ -1245,7 +1244,7 @@ G9
 P_i = \sum\limits_{j = 1}^n{(y_{ij} - y_{.j})^2/(2n)}
 \]</span> where <em>n</em> is the number of environments</p>
 <p>Similar then the genotypic confidence index, the superiority index is calculated by all environments, favorable, and unfavorable environments.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">super =<span class="st"> </span><span class="kw"><a href="../reference/superiority.html">superiority</a></span>(dataset, ENV, GEN, REP, GY)</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">super =<span class="st"> </span><span class="kw"><a href="../reference/superiority.html">superiority</a></span>(data_ge, ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb9-2" title="2"></a>
 <a class="sourceLine" id="cb9-3" title="3"><span class="kw">kable</span>(super<span class="op">$</span>GY<span class="op">$</span>index, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb9-4" title="4"><span class="st">  </span><span class="kw">row_spec</span>(<span class="dv">2</span>, <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"red"</span>) <span class="op">%&gt;%</span></a>
@@ -1513,7 +1512,7 @@ G9
 <h1 class="hasAnchor">
 <a href="#environmental-stratification" class="anchor"></a>Environmental stratification</h1>
 <p>A method that combines stability analysis and environmental stratification using factor analysis was proposed by <span class="citation">Murakami and Cruz (<a href="#ref-murakami2004">2004</a>)</span>. This method is implemented with the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>, as follows:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">fact =<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(dataset, ENV, GEN, REP, GY)</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">fact =<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(data_ge, ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(fact<span class="op">$</span>GY)</a></code></pre></div>
 <p><img src="vignettes_stability_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>PCA)</a></code></pre></div>

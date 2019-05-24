@@ -137,7 +137,7 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
+<p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
@@ -148,8 +148,8 @@
 <a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
 <a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
 <a class="sourceLine" id="cb1-10" title="10">}</a>
-<a class="sourceLine" id="cb1-11" title="11">dataset =<span class="st"> </span>data_ge</a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(dataset)</a></code></pre></div>
+<a class="sourceLine" id="cb1-11" title="11"></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
 ##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -171,8 +171,8 @@
 <p>The vectors <span class="math inline">\({\boldsymbol{\beta }}\)</span> and <strong>u</strong> are estimated using the well-known mixed model equation <span class="citation">(Henderson <a href="#ref-Henderson1975">1975</a>)</span>. <span class="math display">\[
     \left[ {\begin{array}{*{20}{c}}{{\boldsymbol{\hat \beta }}}\\{{\bf{\hat u}}}\end{array}} \right]{\bf{ = }}{\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{r }}^{ - {\bf{1}}}}{\bf{X}}}&amp;{{\bf{X'}}{{\bf{r }}^{ - {\bf{1}}}}{\bf{Z}}}\\{{\bf{Z'}}{{\bf{r }}^{ - {\bf{1}}}}{\bf{X}}}&amp;{{\bf{Z'}}{{\bf{r }}^{ - {\bf{1}}}}{\bf{Z + }}{{\bf{G}}^{ - {\bf{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\bf{X'}}{{\bf{r }}^{ - {\bf{1}}}}{\bf{y}}}\\{{\bf{Z'}}{{\bf{r }}^{ - {\bf{1}}}}{\bf{y}}}\end{array}} \right]
     \]</span> where <strong>G</strong> and <strong>R</strong> are the variance-covariance matrices for random-effect vector <strong>u</strong> and residual vector <span class="math inline">\({\bf{\varepsilon }}\)</span>, respectively.</p>
-<p>The <code><a href="../reference/waasb.html">waasb()</a></code> is used to fit the linear mixed-effect model. The first argument is the data, in our example <code>dataset</code>. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the <code>random</code> argument. Please, see <code>?WAASB</code> for more details. The argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code is run silently or not.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">WAASB_model =<span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(dataset,</a>
+<p>The <code><a href="../reference/waasb.html">waasb()</a></code> is used to fit the linear mixed-effect model. The first argument is the data, in our example <code>data_ge</code>. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the <code>random</code> argument. Please, see <code>?WAASB</code> for more details. The argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code is run silently or not.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">WAASB_model =<span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(data_ge,</a>
 <a class="sourceLine" id="cb3-2" title="2">                    <span class="dt">env =</span> ENV,</a>
 <a class="sourceLine" id="cb3-3" title="3">                    <span class="dt">gen =</span> GEN,</a>
 <a class="sourceLine" id="cb3-4" title="4">                    <span class="dt">rep =</span> REP,</a>
@@ -3364,7 +3364,7 @@ RPGV_i = \frac{1}{e}{\sum\limits_{j = 1}^e {BLUP_{ij}} /\mathop \mu \nolimits_j 
 <p><span class="math display">\[
 HMRPGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}/{\mu _j}}}}
 \]</span></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">dataset <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">data_ge <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb27-2" title="2"><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(GEN, ENV, REP, <span class="dt">resp =</span> GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb27-3" title="3"><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb27-4" title="4"><span class="kw">print_table</span>()</a></code></pre></div>

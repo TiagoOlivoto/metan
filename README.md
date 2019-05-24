@@ -6,10 +6,6 @@
 The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package
 provides useful functions for analyzing multi-environment trial data
 using parametric and nonparametric methods, including, but not limited
-to Additive Main Effects and Multiplicative Interaction (AMMI) and
-AMMI-based indexes, Best Linear Unbiased Prediction (BLUP), and
-BLUP-based indexes, Joint-regression analysis, Genotypic confidence
-index, Superiority index, The main features include, but are not limited
 to:
 
   - Within environment analysis of variance

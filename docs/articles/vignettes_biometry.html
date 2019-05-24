@@ -204,12 +204,10 @@
 t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2} 
 \]</span></p>
 <p>Where <span class="math inline">\(t_{calc}\)</span> is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the traits x and y excluding the effect of the other * m * traits; * n * is the number of observations; and * v * is the number of traits. Both the linear and partial correlation coefficients may be obtained using the function <code><a href="../reference/lpcor.html">lpcor()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">dataset =<span class="st"> </span>data_ge2</a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3">lpc1 =<span class="st"> </span>dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">"N"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="kw">print_table</span>(lpc1<span class="op">$</span>results)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">lpc1 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">"N"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw">print_table</span>(lpc1<span class="op">$</span>results)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -282,18 +280,18 @@ NKR x NKE
 </tbody>
 </table>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Compute the correlations for each level of the factor ENV</span></a>
-<a class="sourceLine" id="cb6-2" title="2">lpc2 =<span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" title="2">lpc2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-3" title="3"><span class="st">       </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-4" title="4"><span class="st">       </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="co"># Don't show the result in the console</span></a></code></pre></div>
 <p>Using the <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> function, it is possible to compute a Mantel’s test <span class="citation">(Mantel <a href="#ref-Mantel1967">1967</a>)</span> for all pairwise correlation matrices of the above example.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">lpc2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"H"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">""</span>))</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-4-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>This same plot may be obtained by passing correlation matrices with the same dimension to an object of class <code>lpcor</code> and then applying the function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="../reference/as.lpcor.html">as.lpcor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),</a>
-<a class="sourceLine" id="cb8-2" title="2">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),</a>
-<a class="sourceLine" id="cb8-3" title="3">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">61</span><span class="op">:</span><span class="dv">90</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),</a>
-<a class="sourceLine" id="cb8-4" title="4">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">91</span><span class="op">:</span><span class="dv">120</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)]),</a>
-<a class="sourceLine" id="cb8-5" title="5">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(dataset[<span class="dv">121</span><span class="op">:</span><span class="dv">150</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(dataset)])) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="../reference/as.lpcor.html">as.lpcor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(data_ge2[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(data_ge2)]),</a>
+<a class="sourceLine" id="cb8-2" title="2">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(data_ge2[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(data_ge2)]),</a>
+<a class="sourceLine" id="cb8-3" title="3">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(data_ge2[<span class="dv">61</span><span class="op">:</span><span class="dv">90</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(data_ge2)]),</a>
+<a class="sourceLine" id="cb8-4" title="4">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(data_ge2[<span class="dv">91</span><span class="op">:</span><span class="dv">120</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(data_ge2)]),</a>
+<a class="sourceLine" id="cb8-5" title="5">         <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(data_ge2[<span class="dv">121</span><span class="op">:</span><span class="dv">150</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(data_ge2)])) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-6" title="6"><span class="st">  </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">diag =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb8-7" title="7">               <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
 <a class="sourceLine" id="cb8-8" title="8">               <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
@@ -309,13 +307,13 @@ NKR x NKE
 <h2 class="hasAnchor">
 <a href="#graphical-and-numerical-visualization-of-a-correlation-matrix" class="anchor"></a>Graphical and numerical visualization of a correlation matrix</h2>
 <p>The function <code><a href="../reference/corr_plot.html">corr_plot()</a></code> may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the <code><a href="https://www.rdocumentation.org/packages/graphics/topics/pairs">pairs()</a></code>base R function.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-6-1.png" width="528" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR,</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR,</a>
 <a class="sourceLine" id="cb10-2" title="2">          <span class="dt">lower =</span> <span class="ot">NULL</span>,</a>
 <a class="sourceLine" id="cb10-3" title="3">          <span class="dt">upper =</span> <span class="st">"corr"</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-6-2.png" width="528" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR,</a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR,</a>
 <a class="sourceLine" id="cb11-2" title="2">          <span class="dt">shape.point =</span> <span class="dv">19</span>,</a>
 <a class="sourceLine" id="cb11-3" title="3">          <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb11-4" title="4">          <span class="dt">alpha.point =</span> <span class="fl">0.5</span>,</a>
@@ -325,7 +323,7 @@ NKR x NKE
 <a class="sourceLine" id="cb11-8" title="8">          <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</a>
 <a class="sourceLine" id="cb11-9" title="9">          <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-6-3.png" width="528" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(dataset, CD, EL, PERK, NKR, CW, NKE,</a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR, CW, NKE,</a>
 <a class="sourceLine" id="cb12-2" title="2">          <span class="dt">prob =</span> <span class="fl">0.01</span>,</a>
 <a class="sourceLine" id="cb12-3" title="3">          <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
 <a class="sourceLine" id="cb12-4" title="4">          <span class="dt">col.point =</span> <span class="st">"black"</span>,</a>
@@ -1349,7 +1347,7 @@ H9
 <h2 class="hasAnchor">
 <a href="#using-a-correlation-matrix-which-was-estimated-earlier" class="anchor"></a>Using a correlation matrix, which was estimated earlier</h2>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">cor_data =<span class="st"> </span>lpc1<span class="op">$</span>linear.mat</a>
-<a class="sourceLine" id="cb24-2" title="2">n =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(dataset)</a>
+<a class="sourceLine" id="cb24-2" title="2">n =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(data_ge2)</a>
 <a class="sourceLine" id="cb24-3" title="3">cold1 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(cor_data, <span class="dt">n =</span> n)</a></code></pre></div>
 <pre><code>## Weak multicollinearity in the matrix
 ## NC = 30.013
@@ -1363,7 +1361,7 @@ H9
 <div id="using-a-dataframe" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-a-dataframe" class="anchor"></a>Using a dataframe</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">cold2 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(dataset)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">cold2 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(data_ge2)</a></code></pre></div>
 <pre><code>## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
 ## CN = 10106.712
 ## Matrix determinant: 0 
@@ -1377,7 +1375,7 @@ H9
 <div id="perform-the-diagnostic-for-each-level-of-the-factor-env" class="section level2">
 <h2 class="hasAnchor">
 <a href="#perform-the-diagnostic-for-each-level-of-the-factor-env" class="anchor"></a>Perform the diagnostic for each level of the factor ENV</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">cold3 =<span class="st">  </span>dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">cold3 =<span class="st">  </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb29-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb29-3" title="3"><span class="st">         </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>()</a></code></pre></div>
 <pre><code>## 
@@ -1722,7 +1720,7 @@ H9
 <div id="indicating-the-variables-to-compute-the-distances" class="section level3">
 <h3 class="hasAnchor">
 <a href="#indicating-the-variables-to-compute-the-distances" class="anchor"></a>Indicating the variables to compute the distances</h3>
-<p>It is possible to indicate the variables from the dataset to compute the distances. To do that is easy. You should only provide a comma-separated list of unquoted variable names after the .data argument. For example, to compute the distances between the genotypes based on the variables NKR, TKW, and NKE, the following arguments should be used.</p>
+<p>It is possible to indicate the variables from the data_ge2 to compute the distances. To do that is easy. You should only provide a comma-separated list of unquoted variable names after the .data argument. For example, to compute the distances between the genotypes based on the variables NKR, TKW, and NKE, the following arguments should be used.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">d3 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, NKR, TKW, NKE, <span class="dt">means_by =</span> GEN)</a></code></pre></div>
 </div>
 <div id="select-variables-for-compute-the-distances" class="section level3">

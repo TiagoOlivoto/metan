@@ -10,19 +10,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to Additive Main Effects and Multiplicative Interaction (AMMI) and AMMI-based indexes, Best Linear Unbiased Prediction (BLUP), and BLUP-based indexes, Joint-regression analysis, Genotypic confidence index, Superiority index, The main features include, but are not limited to:
-
-* Within environment analysis of variance
-* Cross-validation procedures for AMMI-family and BLUP models;
-* Estimation using AMMI considering different numbers of interation principal component axes;
-* AMMI-based stability indexes;
-* Prediction in mixed-effect models;
-* BLUP-based stability indexes;
-* Variance components and genetic parameters in mixed-effect models;
-* Graphics tools for generating biplots.
-* Parametric and nonparametric stability statistics
-
-
 # Extending the metan package
 
 The complete functionality of the metan package, combining theory, programming, and examples with outputs is described [here](https://tiagoolivoto.github.io/metan/index.html). Suggestions and criticisms to improve the quality and usability of the package are welcome!
@@ -89,7 +76,7 @@ plot_grid(p1, p2,
 ```
 
 
-### S3 method `predict()`
+### S3 method predict()
 The S3 method `predict()` is implemented for objects of class `waas` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted `model` object.
 
 ```{r }
@@ -190,4 +177,5 @@ If you whant to export a summary of results, the simplest way is by using the fu
 summary(stat_ge, export = TRUE)
 ```
 This comand will create a text file called *ge_stats summary.txt* in the current working directory.
+
 

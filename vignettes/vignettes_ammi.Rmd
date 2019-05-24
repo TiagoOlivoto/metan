@@ -27,8 +27,7 @@ kable(table, "html", digits = 3) %>%
 kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
 }
 
-dataset = data_ge
-str(dataset)
+str(data_ge)
 ```
 
 ## The AMMI model
@@ -39,10 +38,10 @@ $$
 $$
 where ${\lambda_k}$ is the singular value for the *k*-th interaction principal component axis (IPCA); $a_{ik}$ is the *i*-th element of the *k*-th eigenvector; $t_{jk}$ is the *j*th element of the *k*th eigenvector. A residual $\rho _{ij}$ remains, if not all *p* IPCA are used, where $p \le min(g - 1; e - 1)$.
  
-The AMMI model is fitted with the `waas()` function. The first argument is the data, in our example `dataset`. The second argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code will run silently. 
+The AMMI model is fitted with the `waas()` function. The first argument is the data, in our example `data_ge`. The second argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contais the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code will run silently. 
 
 ```{r echo = TRUE}
-AMMI_model = waas(dataset,
+AMMI_model = waas(data_ge,
                   env = ENV,
                   gen = GEN,
                   rep = REP,
@@ -54,7 +53,7 @@ AMMI_model = waas(dataset,
 Note that using the arguments in the correct order, the model above may be fitted cleanly using the forward-pipe operator `%>%`.
 
 ```{r echo = TRUE}
-AMMI_model = dataset %>% waas(ENV, GEN, REP, GY, verbose = FALSE)
+AMMI_model = data_ge %>% waas(ENV, GEN, REP, GY, verbose = FALSE)
     ```
 
 ## Within-environment ANOVA
@@ -132,7 +131,7 @@ In this example, the scores of the nine PCA were not shown. The output generated
 The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument `naxis` in the function `waas` is then used to overwrite the default chose of significant terms. 
 
 ```{r echo = TRUE}
-AMMI_model_2 = dataset %>%
+AMMI_model_2 = data_ge %>%
   waas(ENV, GEN, REP, GY,
        naxis = 7, # Use 7 IPCA for computing WAAS
        verbose = FALSE)
@@ -306,7 +305,7 @@ The `AMMI_index()` function has two arguments. The first (x) is the model, which
 Using the forward-pipe operator *%>%* it is possible to structure sequences of data operations left-to-right. The operators pipe their left-hand side values forward into expressions that appear on the right-hand side. When coupling several function calls with the pipe-operator, the benefit will become more apparent. Let's construct this model.
 
 ```{r }
-stab_indexes = dataset %>%
+stab_indexes = data_ge %>%
                waas(ENV, GEN, REP, GY, verbose = FALSE) %>%
                AMMI_indexes()
 print_table(stab_indexes$GY)
