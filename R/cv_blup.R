@@ -95,7 +95,7 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) 
         if (verbose == TRUE) {
             ProcdAtua <- b
             setWinProgressBar(pb, b, title = paste("Estimating BLUPs for ", ProcdAtua,
-                                                   " of ", nboot, " total validation datasets", "-", round(b/nboot *
+                                                   " of ", nboot, " validation datasets", "-", round(b/nboot *
                                                                                                                100, 1), "% Concluded -"))
         }
     }
