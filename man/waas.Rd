@@ -130,7 +130,7 @@ model3 <- waas(data_ge,
 
 }
 \seealso{
-\code{\link{waas}}
+\code{\link{waasb}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

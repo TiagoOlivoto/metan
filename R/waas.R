@@ -70,7 +70,7 @@
 #' the environment with the larger mean observed, \code{MinGEN} the genotype
 #' with the lower mean, \code{MaxGEN} the genotype with the larger.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{waas}}
+#' @seealso \code{\link{waasb}}
 #' @export
 #' @examples
 #'
