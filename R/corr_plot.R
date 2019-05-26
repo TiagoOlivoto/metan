@@ -18,8 +18,11 @@
 #' diagonal.
 #' @param axis.labels Should the axis labels be shown in the plot? Set to
 #' \code{FALSE}.
-#' @param diag Should the diagonal show the kernel distribution of the
-#' variable? Set to \code{TRUE}.
+#' @param diag Should the diagonal be shown?
+#' @param diag.type THe type of plot to show in the diagonal if \code{diag  TRUE}.
+#' It must be one of the "istogram" (to show an histogram) or "density" to show
+#' the Kernel density.
+#' @param  bins The number of bins, Defauls to 20.
 #' @param col.diag If \code{diag = TRUE} then \code{diagcol} is the color for
 #' the distribution. Set to gray.
 #' @param alpha.diag Alpha-transparency scale [0-1] to make the diagonal plot
@@ -127,6 +130,8 @@ corr_plot = function(.data,
                      lower = "scatter",
                      axis.labels = FALSE,
                      diag = TRUE,
+                     diag.type = "histogram",
+                     bins = 20,
                      col.diag = "gray",
                      alpha.diag = 1,
                      col.up.panel = "gray",
@@ -158,6 +163,9 @@ corr_plot = function(.data,
                      resolution = 300){
   if (!lab.position %in% c("tr", "tl", "br", "bl")){
     stop("The argument 'lab.position' must be one of the 'tr', 'tl', 'br', or 'bl'.")
+  }
+  if (!diag.type %in% c("histogram", "density")){
+    stop("The argument 'diag.type' must be one of the 'histogram' or 'density'.")
   }
 
   if(!is.null(upper)){
@@ -244,8 +252,17 @@ corr_plot = function(.data,
     p
   }
   ggally_mysmooth = function(data, mapping, ...){
-    ggplot2::ggplot(data = data, mapping=mapping) +
-      ggplot2::geom_density(fill = ggplot2::alpha(col.diag, alpha.diag))+
+    dia = ggplot2::ggplot(data = data, mapping=mapping)
+    if(diag.type == "density" ){
+    dia = dia + ggplot2::geom_density(fill = ggplot2::alpha(col.diag, alpha.diag),
+                                      col = "black")
+    }
+    if(diag.type == "histogram" ){
+      dia = dia + ggplot2::geom_histogram(fill = ggplot2::alpha(col.diag, alpha.diag),
+                                          col = "black",
+                                          bins = bins)
+    }
+      dia = dia +
       ggplot2::theme_classic() +
       ggplot2::theme(panel.background = ggplot2::element_rect(fill=ggplot2::alpha('white', 1), color = col.dia.panel))
   }

@@ -5,8 +5,9 @@
 \title{Visualization of a correlation matrix}
 \usage{
 corr_plot(.data, ... = NULL, upper = "corr", lower = "scatter",
-  axis.labels = FALSE, diag = TRUE, col.diag = "gray",
-  alpha.diag = 1, col.up.panel = "gray", col.lw.panel = "gray",
+  axis.labels = FALSE, diag = TRUE, diag.type = "histogram",
+  bins = 20, col.diag = "gray", alpha.diag = 1,
+  col.up.panel = "gray", col.lw.panel = "gray",
   col.dia.panel = "gray", prob = 0.05, col.sign = "green",
   alpha.sign = 0.15, lab.position = "tr", progress = NULL,
   smooth = FALSE, col.smooth = "red", size.smooth = 0.3,
@@ -37,8 +38,13 @@ diagonal.}
 \item{axis.labels}{Should the axis labels be shown in the plot? Set to
 \code{FALSE}.}
 
-\item{diag}{Should the diagonal show the kernel distribution of the
-variable? Set to \code{TRUE}.}
+\item{diag}{Should the diagonal be shown?}
+
+\item{diag.type}{THe type of plot to show in the diagonal if \code{diag  TRUE}.
+It must be one of the "istogram" (to show an histogram) or "density" to show
+the Kernel density.}
+
+\item{bins}{The number of bins, Defauls to 20.}
 
 \item{col.diag}{If \code{diag = TRUE} then \code{diagcol} is the color for
 the distribution. Set to gray.}
