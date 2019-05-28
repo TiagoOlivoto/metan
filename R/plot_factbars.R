@@ -10,12 +10,12 @@
 #' (standard error, default), 'sd' (standard deviation), or 'ci' confidence interval, based
 #' on the confidence level
 #' @param level The fonfidence level
-#' @param invert Logical argument. If \code{TRUE}, the order of the factors entered 
+#' @param invert Logical argument. If \code{TRUE}, the order of the factors entered
 #' in changes in the graph
 #' @param xlab The x lab
 #' @param ylab The y lab
 #' @param col Logical argument. If \code {FALSE}, a gray scale is used.
-#' @param palette The color palette to be used. For more details, see 
+#' @param palette The color palette to be used. For more details, see
 #' \code{?Scale_colour_brewer}
 #' @param width.bar The width of the bars in the graph. Defaults to 0.9
 #' possible values [0-1].
@@ -28,13 +28,13 @@
 #' @param size.line The size for the line in the plot
 #' @param cex The size of the text
 #' @param fontfam The family of the font text
-#' @param na.rm Should 'NA' values be removed to compute the statistics? 
+#' @param na.rm Should 'NA' values be removed to compute the statistics?
 #' Defaults to true
 #' @param verbose Logical argument. If FALSE the code will run silently
 #' @export
-#' @seealso \code{\link{plot_line}, \code{\link{plot_factbars}}
-#' 
-#' 
+#' @seealso \code{\link{plot_lines}, \code{\link{plot_factlines}}
+#'
+#'
 plot_factbars = function(.data,
                          ...,
                          resp,
@@ -68,12 +68,12 @@ plot_factbars = function(.data,
   if(length(nam)>1){
     names(datac) = c("x", "y", "N", "mean_var", "sd", "se", "ci")
   } else {
-    names(datac) = c("x", "N", "mean_var", "sd", "se", "ci")  
+    names(datac) = c("x", "N", "mean_var", "sd", "se", "ci")
   }
   if (is.null(ylab) == T){
     ylab = cl$resp
   }else {ylab = ylab}
-  
+
   if(invert == FALSE){
   if (is.null(xlab) == T){
     xlab = nam[1]
@@ -81,10 +81,10 @@ plot_factbars = function(.data,
   } else{
     if (is.null(xlab) == T){
       xlab = nam[2]
-    }else {xlab = xlab}  
-    
+    }else {xlab = xlab}
+
   }
-  
+
   pd = ggplot2::position_dodge(width.bar)
   if(length(nam)>1){
   if(invert == FALSE){
@@ -100,14 +100,14 @@ p = ggplot2::ggplot(data=datac, aes(x=y, y=mean_var, fill=x))+
         p = ggplot2::ggplot(data=datac, aes(x=x, y=mean_var))+
         geom_bar(stat="identity", position=position_dodge(), width = width.bar)
   }
-  
-  
+
+
  p = p + ggplot2::theme_bw()
- 
+
  if(col == FALSE){
 p = p + scale_fill_grey(start = 0, end = .9)
 } else{p = p}
-   
+
  if (errorbar == TRUE){
  if(stat.erbar == "ci"){
  p = p + geom_errorbar(aes(ymin=mean_var-ci, ymax=mean_var+ci), width= width.erbar, position=pd)
@@ -116,7 +116,7 @@ p = p + scale_fill_grey(start = 0, end = .9)
  if(stat.erbar == "sd"){
    p = p + geom_errorbar(aes(ymin=mean_var-sd, ymax=mean_var+sd), width =  width.erbar, position=pd)
  }
- 
+
  if(stat.erbar == "se"){
    p = p + geom_errorbar(aes(ymin=mean_var-se, ymax=mean_var+se), width =  width.erbar, position=pd)
  }
@@ -139,5 +139,5 @@ p = p + scale_fill_grey(start = 0, end = .9)
   print(datac)
   }
  return(p)
-  
+
 }

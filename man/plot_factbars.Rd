@@ -24,7 +24,7 @@ on the confidence level}
 
 \item{level}{The fonfidence level}
 
-\item{invert}{Logical argument. If \code{TRUE}, the order of the factors entered 
+\item{invert}{Logical argument. If \code{TRUE}, the order of the factors entered
 in changes in the graph}
 
 \item{xlab}{The x lab}
@@ -33,7 +33,7 @@ in changes in the graph}
 
 \item{col}{Logical argument. If \code {FALSE}, a gray scale is used.}
 
-\item{palette}{The color palette to be used. For more details, see 
+\item{palette}{The color palette to be used. For more details, see
 \code{?Scale_colour_brewer}}
 
 \item{width.bar}{The width of the bars in the graph. Defaults to 0.9
@@ -47,7 +47,7 @@ possible values [0-1].}
 
 \item{fontfam}{The family of the font text}
 
-\item{na.rm}{Should 'NA' values be removed to compute the statistics? 
+\item{na.rm}{Should 'NA' values be removed to compute the statistics?
 Defaults to true}
 
 \item{verbose}{Logical argument. If FALSE the code will run silently}
