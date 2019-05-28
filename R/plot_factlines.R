@@ -1,5 +1,5 @@
 #' @title Fast way to create a line plot
-#' @description Create a graphic to show a fitted line based on numerical 
+#' @description Create a graphic to show a fitted line based on numerical
 #' variables and one grouping variable.
 #' @param data The data set
 #' @param x The variable in data to be shown in the x axis
@@ -18,7 +18,7 @@
 #' @param cex The size of the text
 #' @param fontfam The family of the font text
 #' @export
-#' @seealso \code{\link{plot_line}, \code{\link{plot_factbars}}
+#' @seealso \code{\link{plot_lines}, \code{\link{plot_factbars}}
 
 plot_factlines = function(.data,
                           x,
@@ -41,7 +41,7 @@ plot_factlines = function(.data,
   if(length(fit)==1 & grid == TRUE){
     stop("When grid is TRUE the argument fit must have the same length of the grouping variable.")
   }
-  
+
   if(max(fit)>=5){
     stop("The maximum polynomial degree is 4.")
   }
@@ -58,7 +58,7 @@ if (length(fit)>1){
 for (i in 1:length(levels)){
 
   levelname = levels[i]
-  mycond <- quote(group == levelname) 
+  mycond <- quote(group == levelname)
 
   if(fit[i] == 1){
     formula = as.formula("y ~ x")
@@ -107,7 +107,7 @@ p_smooth[[paste(levels[i])]] = ggplot2::stat_smooth(method = "lm",
   if(fit == 4){
     formula = as.formula("y ~ poly(x, 4)")
   }
-  
+
   if (col == TRUE){
     p_smooth = ggplot2::stat_smooth(method = "lm",
                                     formula = formula,
@@ -116,14 +116,14 @@ p_smooth[[paste(levels[i])]] = ggplot2::stat_smooth(method = "lm",
                                     linetype = 1,
                                     size = size.line)
   } else{
-    
+
     p_smooth = ggplot2::stat_smooth(method = "lm",
                                     formula = formula,
                                     data = data2,
                                     level = level,
                                     linetype = 1,
                                     col = "black",
-                                    size = size.line)    
+                                    size = size.line)
   }
 }
 if(grid == TRUE){
@@ -143,10 +143,10 @@ p = ggplot2::ggplot(data2, aes(x = x, y = y)) +
     ggplot2::geom_point(aes(shape = factors), size = size.shape)
 } else{
   if (length(fit)>1){
-p = ggplot2::ggplot(data2, aes(x = x, y = y, colour = factors)) + 
+p = ggplot2::ggplot(data2, aes(x = x, y = y, colour = factors)) +
     ggplot2::geom_point(aes(colour = factors), size = size.shape)
   } else{
-    p = ggplot2::ggplot(data2, aes(x = x, y = y)) + 
+    p = ggplot2::ggplot(data2, aes(x = x, y = y)) +
       ggplot2::geom_point(aes(colour = factors), size = size.shape)
   }
 }

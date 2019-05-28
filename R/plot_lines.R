@@ -1,5 +1,5 @@
 #' @title Fast way to create a line plot
-#' @description Create a graphic with fitted line based on numerical 
+#' @description Create a graphic with fitted line based on numerical
 #' variables.
 #' @param data The data set
 #' @param x The variable in data to be shown in the x axis
@@ -16,8 +16,8 @@
 #' @param cex The size of the text
 #' @param fontfam The family of the font text
 #' @export
-#' @seealso \code{\link{plot_fatcurves}}
-plot_line = function(.data,
+#' @seealso \code{\link{plot_factbars} \code{\link{plot_factlines}}
+plot_lines = function(.data,
                     x,
                     y,
                     fit,
@@ -30,11 +30,11 @@ plot_line = function(.data,
                     size.line = 1,
                     cex = 12,
                     fontfam = "sans"){
-  
+
   cl = match.call()
 if(col == TRUE){
   stop(paste0("The argument col = ", cl$col, " is invalid. Please, informe one valid color or FALSE to a black and white plot"))
-}  
+}
   data2 = .data %>% select(x = !!enquo(x), y = !!enquo(y))
   if(fit == 1){
     formula = as.formula("y ~ x")
@@ -84,7 +84,7 @@ if (is.null(xlab) == T){
     p = ggplot2::ggplot(data2, aes(x = x, y = y)) +
       ggplot2::geom_point(size = size.shape)
   } else{
-    p = ggplot2::ggplot(data2, aes(x = x, y = y)) + 
+    p = ggplot2::ggplot(data2, aes(x = x, y = y)) +
       ggplot2::geom_point(size = size.shape, col = col)
   }
 

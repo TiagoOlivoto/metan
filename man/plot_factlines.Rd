@@ -41,6 +41,6 @@ or a numeric vector with the same length of the variable in \code{group}}
 \item{data}{The data set}
 }
 \description{
-Create a graphic to show a fitted line based on numerical 
+Create a graphic to show a fitted line based on numerical
 variables and one grouping variable.
 }
