@@ -7,9 +7,11 @@
 plot_factlines(.data, x, y, group, fit, level = 0.95, xlab = NULL,
   ylab = NULL, legend.position = "bottom", grid = FALSE,
   col = TRUE, alpha = 0.2, size.shape = 1.5, size.line = 1,
-  cex = 12, fontfam = "sans", theme = theme_waasb())
+  size.text = 12, fontfam = "sans", theme = theme_waasb())
 }
 \arguments{
+\item{.data}{The data set}
+
 \item{x}{The variable in data to be shown in the x axis}
 
 \item{y}{The variable in data to be shown in the y axis}
@@ -22,9 +24,9 @@ or a numeric vector with the same length of the variable in \code{group}}
 
 \item{level}{The fonfidence level}
 
-\item{xlab}{The x lab}
+\item{xlab}{The x label}
 
-\item{ylab}{The y lab}
+\item{ylab}{The y label}
 
 \item{col}{The colour to be used in the line plot and points}
 
@@ -34,13 +36,14 @@ or a numeric vector with the same length of the variable in \code{group}}
 
 \item{size.line}{The size for the line in the plot}
 
-\item{cex}{The size of the text}
+\item{size.text}{The size of the text}
 
 \item{fontfam}{The family of the font text}
-
-\item{data}{The data set}
 }
 \description{
 Create a graphic to show a fitted line based on numerical
 variables and one grouping variable.
+}
+\seealso{
+\code{\link{plot_lines}}, \code{\link{plot_factbars}}
 }

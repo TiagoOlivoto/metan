@@ -5,6 +5,14 @@
 #' @param ... A comma-separated list of unquoted variable names. Must be up to two
 #' variables.
 #' @param resp The response variable
+#' @param y.expand A multiplication factor to expand the y axis.. Defaults to 1.
+#' @param y.breaks The breaks to be plotted in the y-axis. Defaults to waiver().
+#' \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+#' used.
+#' @param xlab The x label
+#' @param ylab The y label
+#' @param lab.bar A vector of characters to show in each bar. Defaults to NULL.
+#' @param lab.bar.vjust The vertical adjust for the labels in the bar. Defaults to -0.2
 #' @param errorbar Logical argument, set to TRUE. In this case, an error bar is shown.
 #' @param stat.erbar The statistic to be shown in the errorbar. Must be one of the 'se'
 #' (standard error, default), 'sd' (standard deviation), or 'ci' confidence interval, based
@@ -12,46 +20,50 @@
 #' @param level The fonfidence level
 #' @param invert Logical argument. If \code{TRUE}, the order of the factors entered
 #' in changes in the graph
-#' @param xlab The x lab
-#' @param ylab The y lab
 #' @param col Logical argument. If \code {FALSE}, a gray scale is used.
 #' @param palette The color palette to be used. For more details, see
 #' \code{?Scale_colour_brewer}
 #' @param width.bar The width of the bars in the graph. Defaults to 0.9
 #' possible values [0-1].
-#' @param cex.angle The angle of the caption text. Default is 0.
-#' @param cex.hjust The horizontal adjustment of the caption text. Defaults to 0.5.
-#' Use this argument to adjust the text when the angle of the text is different from 0.}
+#' @param lab.x.angle The angle of the caption text. Default is 0.
+#' @param lab.x.hjust The horizontal adjustment of the caption text. Defaults to 0.5.
+#' Use this argument to adjust the text when the angle of the text is different from 0.
 #' @param legend.position The legend position.
 #' @param alpha The alpha for the color in confidence band
 #' @param size.shape The size for the shape in plot
 #' @param size.line The size for the line in the plot
-#' @param cex The size of the text
+#' @param size.text The size of the text
 #' @param fontfam The family of the font text
 #' @param na.rm Should 'NA' values be removed to compute the statistics?
 #' Defaults to true
 #' @param verbose Logical argument. If FALSE the code will run silently
 #' @export
-#' @seealso \code{\link{plot_lines}, \code{\link{plot_factlines}}
+#' @seealso \code{\link{plot_lines}}, \code{\link{plot_factlines}}
 #'
 #'
 plot_factbars = function(.data,
                          ...,
                          resp,
+                         y.expand = 1,
+                         y.breaks = waiver(),
+                         xlab = NULL,
+                         ylab = NULL,
+                         lab.bar = NULL,
+                         lab.bar.vjust = -0.2,
+                         size.text.bar = 5,
                          errorbar = TRUE,
                          stat.erbar = "se",
                          width.erbar = 0.3,
                          level= .95,
                          invert = FALSE,
-                         xlab = NULL,
-                         ylab = NULL,
                          col = TRUE,
                          palette = "Spectral",
                          width.bar = 0.9,
-                         cex.angle = 0,
-                         cex.hjust = 0.5,
+                         lab.x.angle = 0,
+                         lab.x.hjust = 0.5,
+                         lab.x.vjust = 1,
                          legend.position = "bottom",
-                         cex = 12,
+                         size.text = 12,
                          fontfam = "sans",
                          na.rm = TRUE,
                          verbose = TRUE){
@@ -86,6 +98,8 @@ plot_factbars = function(.data,
     }else {xlab = xlab}
 
   }
+
+  y.lim = c(0, max(datac$mean_var) * y.expand)
 
   pd = ggplot2::position_dodge(width.bar)
   if(length(nam)>1){
@@ -123,23 +137,32 @@ p = p + scale_fill_grey(start = 0, end = .9)
    p = p + geom_errorbar(aes(ymin=mean_var-se, ymax=mean_var+se), width =  width.erbar, position=pd)
  }
  }
+ if(!missing(lab.bar)){
+   if(length(lab.bar) > 1 & length(lab.bar) != nrow(datac)){
+     stop("The labels must be either length 1 or the same as the levels of ",
+          paste(quos(...)), " (", nrow(datac), ")")
+   }
+   p = p + geom_text(aes(label=lab.bar), vjust = lab.bar.vjust, size = size.text.bar)
+ }
 
   p = p + ggplot2::theme(axis.ticks.length = unit(.2, "cm"),
-                   axis.text = element_text(size = cex, family = fontfam, colour = "black"),
-                   axis.title = element_text(size = cex,  family = fontfam, colour = "black"),
-                   axis.text.x = element_text(angle = cex.angle, hjust = cex.hjust, size = cex, colour = "black"),
+                   axis.text = element_text(size = size.text, family = fontfam, colour = "black"),
+                   axis.title = element_text(size = size.text,  family = fontfam, colour = "black"),
+                   axis.text.x = element_text(angle = lab.x.angle, hjust = lab.x.hjust, vjust = lab.x.vjust, size = size.text, colour = "black"),
                    axis.ticks = element_line(colour = "black"),
                    plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"),
                    legend.title = element_blank(),
                    legend.position = legend.position,
-                   legend.text = element_text(size = cex, family = fontfam),
+                   legend.text = element_text(size = size.text, family = fontfam),
                    panel.border = element_rect(colour = "black", fill=NA, size=1),
                    panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
                    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank())+
-    ggplot2::labs(y = ylab, x = xlab)
+    ggplot2::labs(y = ylab, x = xlab) +
+    scale_y_continuous(limits = y.lim, breaks = y.breaks)
   if(verbose == TRUE){
   print(datac)
   }
  return(p)
 
 }
+

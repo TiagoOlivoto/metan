@@ -67,7 +67,7 @@ model = waas(data_ge2,
              env = ENV,
              gen = GEN,
              rep = REP,
-             resp = PH) \%>\%
+             resp = PH)
 scenarios = wsmp(model)
 }
 

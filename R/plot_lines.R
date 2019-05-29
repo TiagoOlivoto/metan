@@ -13,10 +13,10 @@
 #' @param alpha The alpha for the color in confidence band
 #' @param size.shape The size for the shape in plot
 #' @param size.line The size for the line in the plot
-#' @param cex The size of the text
+#' @param size.text The size of the text
 #' @param fontfam The family of the font text
 #' @export
-#' @seealso \code{\link{plot_factbars} \code{\link{plot_factlines}}
+#' @seealso \code{\link{plot_factbars}} \code{\link{plot_factlines}}
 plot_lines = function(.data,
                     x,
                     y,
@@ -28,7 +28,7 @@ plot_lines = function(.data,
                     alpha = 0.2,
                     size.shape = 1.5,
                     size.line = 1,
-                    cex = 12,
+                    size.text = 12,
                     fontfam = "sans"){
 
   cl = match.call()
@@ -91,12 +91,12 @@ if (is.null(xlab) == T){
 p = p + p_smooth +
   ggplot2::theme_bw()+
   ggplot2::theme(axis.ticks.length = unit(.2, "cm"),
-        axis.text = element_text(size = cex, family = fontfam, colour = "black"),
-        axis.title = element_text(size = cex,  family = fontfam, colour = "black"),
+        axis.text = element_text(size = size.text, family = fontfam, colour = "black"),
+        axis.title = element_text(size = size.text,  family = fontfam, colour = "black"),
         axis.ticks = element_line(colour = "black"),
         plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"),
         legend.title = element_blank(),
-        legend.text = element_text(size = cex, family = fontfam),
+        legend.text = element_text(size = size.text, family = fontfam),
         panel.border = element_rect(colour = "black", fill=NA, size=1),
         panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
         panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank())+

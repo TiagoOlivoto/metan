@@ -9,16 +9,16 @@
 #' between 1 (linear fit) to 4 (fourth-order polynomial regression.),
 #' or a numeric vector with the same length of the variable in \code{group}
 #' @param level The fonfidence level
-#' @param xlab The x lab
-#' @param ylab The y lab
+#' @param xlab The x label
+#' @param ylab The y label
 #' @param col The colour to be used in the line plot and points
 #' @param alpha The alpha for the color in confidence band
 #' @param size.shape The size for the shape in plot
 #' @param size.line The size for the line in the plot
-#' @param cex The size of the text
+#' @param size.text The size of the text
 #' @param fontfam The family of the font text
 #' @export
-#' @seealso \code{\link{plot_lines}, \code{\link{plot_factbars}}
+#' @seealso \code{\link{plot_lines}}, \code{\link{plot_factbars}}
 
 plot_factlines = function(.data,
                           x,
@@ -34,7 +34,7 @@ plot_factlines = function(.data,
                           alpha = 0.2,
                           size.shape = 1.5,
                           size.line = 1,
-                          cex = 12,
+                          size.text = 12,
                           fontfam = "sans",
                           theme = theme_waasb()){
 
@@ -153,13 +153,13 @@ p = ggplot2::ggplot(data2, aes(x = x, y = y, colour = factors)) +
 p = p + p_smooth +
   theme %+replace%
   theme(axis.ticks.length = unit(.2, "cm"),
-        axis.text = element_text(size = cex, family = fontfam, colour = "black"),
-        axis.title = element_text(size = cex,  family = fontfam, colour = "black"),
+        axis.text = element_text(size = size.text, family = fontfam, colour = "black"),
+        axis.title = element_text(size = size.text,  family = fontfam, colour = "black"),
         axis.ticks = element_line(colour = "black"),
         plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"),
         legend.title = element_blank(),
         legend.position = legend.position,
-        legend.text = element_text(size = cex, family = fontfam))+
+        legend.text = element_text(size = size.text, family = fontfam))+
 ggplot2::labs(y = ylab, x = xlab)
 
 if (grid == TRUE){

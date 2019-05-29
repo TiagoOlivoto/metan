@@ -4,17 +4,33 @@
 \alias{plot_factbars}
 \title{Fast way to create a bar plot}
 \usage{
-plot_factbars(.data, ..., resp, errorbar = TRUE, stat.erbar = "se",
-  width.erbar = 0.3, level = 0.95, invert = FALSE, xlab = NULL,
-  ylab = NULL, col = TRUE, palette = "Spectral", width.bar = 0.9,
-  cex.angle = 0, cex.hjust = 0.5, legend.position = "bottom",
-  cex = 12, fontfam = "sans", na.rm = TRUE, verbose = TRUE)
+plot_factbars(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
+  xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.vjust = -0.2,
+  size.text.bar = 5, errorbar = TRUE, stat.erbar = "se",
+  width.erbar = 0.3, level = 0.95, invert = FALSE, col = TRUE,
+  palette = "Spectral", width.bar = 0.9, lab.x.angle = 0,
+  lab.x.hjust = 0.5, lab.x.vjust = 1, legend.position = "bottom",
+  size.text = 12, fontfam = "sans", na.rm = TRUE, verbose = TRUE)
 }
 \arguments{
 \item{...}{A comma-separated list of unquoted variable names. Must be up to two
 variables.}
 
 \item{resp}{The response variable}
+
+\item{y.expand}{A multiplication factor to expand the y axis.. Defaults to 1.}
+
+\item{y.breaks}{The breaks to be plotted in the y-axis. Defaults to waiver().
+\code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+used.}
+
+\item{xlab}{The x label}
+
+\item{ylab}{The y label}
+
+\item{lab.bar}{A vector of characters to show in each bar. Defaults to NULL.}
+
+\item{lab.bar.vjust}{The vertical adjust for the labels in the bar. Defaults to -0.2}
 
 \item{errorbar}{Logical argument, set to TRUE. In this case, an error bar is shown.}
 
@@ -27,10 +43,6 @@ on the confidence level}
 \item{invert}{Logical argument. If \code{TRUE}, the order of the factors entered
 in changes in the graph}
 
-\item{xlab}{The x lab}
-
-\item{ylab}{The y lab}
-
 \item{col}{Logical argument. If \code {FALSE}, a gray scale is used.}
 
 \item{palette}{The color palette to be used. For more details, see
@@ -39,11 +51,14 @@ in changes in the graph}
 \item{width.bar}{The width of the bars in the graph. Defaults to 0.9
 possible values [0-1].}
 
-\item{cex.angle}{The angle of the caption text. Default is 0.}
+\item{lab.x.angle}{The angle of the caption text. Default is 0.}
+
+\item{lab.x.hjust}{The horizontal adjustment of the caption text. Defaults to 0.5.
+Use this argument to adjust the text when the angle of the text is different from 0.}
 
 \item{legend.position}{The legend position.}
 
-\item{cex}{The size of the text}
+\item{size.text}{The size of the text}
 
 \item{fontfam}{The family of the font text}
 
@@ -63,4 +78,7 @@ Defaults to true}
 \description{
 Create a bar plot based on categorical (one or two) variables
 and one numeric variable.
+}
+\seealso{
+\code{\link{plot_lines}}, \code{\link{plot_factlines}}
 }

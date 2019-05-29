@@ -6,7 +6,7 @@
 \usage{
 plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
   col = "red", alpha = 0.2, size.shape = 1.5, size.line = 1,
-  cex = 12, fontfam = "sans")
+  size.text = 12, fontfam = "sans")
 }
 \arguments{
 \item{x}{The variable in data to be shown in the x axis}
@@ -30,7 +30,7 @@ plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
 
 \item{size.line}{The size for the line in the plot}
 
-\item{cex}{The size of the text}
+\item{size.text}{The size of the text}
 
 \item{fontfam}{The family of the font text}
 
@@ -39,4 +39,7 @@ plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
 \description{
 Create a graphic with fitted line based on numerical
 variables.
+}
+\seealso{
+\code{\link{plot_factbars}} \code{\link{plot_factlines}}
 }
