@@ -1,7 +1,7 @@
 #' @title Fast way to create a line plot
 #' @description Create a graphic to show a fitted line based on numerical
 #' variables and one grouping variable.
-#' @param data The data set
+#' @param .data The data set
 #' @param x The variable in data to be shown in the x axis
 #' @param y The variable in data to be shown in the y axis
 #' @param group The grouping variable
@@ -46,7 +46,7 @@ plot_factlines = function(.data,
     stop("The maximum polynomial degree is 4.")
   }
   cl = match.call()
-  data2 = data %>% select(factors = !!enquo(group),
+  data2 = .data %>% select(factors = !!enquo(group),
                           x = !!enquo(x),
                           y = !!enquo(y))
 
