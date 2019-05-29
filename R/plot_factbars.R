@@ -99,7 +99,7 @@ plot_factbars = function(.data,
 
   }
 
-  y.lim = c(0, max(datac$mean_var) * y.expand)
+  y.lim = c(0, (max(datac$mean_var) + max(datac$ci))  * y.expand)
 
   pd = ggplot2::position_dodge(width.bar)
   if(length(nam)>1){
