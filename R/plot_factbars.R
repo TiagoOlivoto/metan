@@ -57,7 +57,9 @@ plot_factbars = function(.data,
                          verbose = TRUE){
 
   cl = match.call()
-  datac = select(.data, ..., Y = !!enquo(resp)) %>%
+  datac = .data %>%
+          mutate_at(quos(...), as.factor) %>%
+    select(..., Y = !!enquo(resp)) %>%
      group_by(...) %>%
     summarise(N = n(),
               mean_var = mean(Y, na.rm = na.rm),
