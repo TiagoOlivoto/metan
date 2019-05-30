@@ -12,6 +12,7 @@
 #'  higher values produce high-resolution plots but may increase the computation time.
 #' @param ... Other arguments passed from \code{contourplot} function.
 #' See \code{?lattice::contourplot} for more details.
+#' @importFrom lattice contourplot
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot resp_surf
 #' @export

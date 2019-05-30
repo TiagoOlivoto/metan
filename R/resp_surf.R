@@ -145,5 +145,5 @@ if (verbose == TRUE) {
     cat("------------------------------------------------------------------\n")
   }
 }
-  invisible(structure(list(results = results, model = SurfMod),  class = "resp_sup"))
+  invisible(structure(list(results = results, model = SurfMod),  class = "resp_surf"))
 }
