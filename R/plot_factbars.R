@@ -1,7 +1,7 @@
 #' @title Fast way to create a bar plot
 #' @description Create a bar plot based on categorical (one or two) variables
 #' and one numeric variable.
-#' @param data The data set
+#' @param .data The data set
 #' @param ... A comma-separated list of unquoted variable names. Must be up to two
 #' variables.
 #' @param resp The response variable
@@ -13,34 +13,42 @@
 #' @param ylab The y label
 #' @param lab.bar A vector of characters to show in each bar. Defaults to NULL.
 #' @param lab.bar.vjust The vertical adjust for the labels in the bar. Defaults to -0.2
+#' @param size.text.bar The size of the text in the bar labels.
 #' @param errorbar Logical argument, set to TRUE. In this case, an error bar is shown.
 #' @param stat.erbar The statistic to be shown in the errorbar. Must be one of the 'se'
 #' (standard error, default), 'sd' (standard deviation), or 'ci' confidence interval, based
 #' on the confidence level
+#' @param width.erbar The width of the error bar.
 #' @param level The fonfidence level
 #' @param invert Logical argument. If \code{TRUE}, the order of the factors entered
 #' in changes in the graph
-#' @param col Logical argument. If \code {FALSE}, a gray scale is used.
+#' @param col Logical argument. If \code{FALSE}, a gray scale is used.
 #' @param palette The color palette to be used. For more details, see
 #' \code{?Scale_colour_brewer}
 #' @param width.bar The width of the bars in the graph. Defaults to 0.9
 #' possible values [0-1].
 #' @param lab.x.angle The angle of the caption text. Default is 0.
 #' @param lab.x.hjust The horizontal adjustment of the caption text. Defaults to 0.5.
+#' @param lab.x.vjust The vertical adjustment of the caption text. Defaults to 1.
 #' Use this argument to adjust the text when the angle of the text is different from 0.
 #' @param legend.position The legend position.
-#' @param alpha The alpha for the color in confidence band
-#' @param size.shape The size for the shape in plot
-#' @param size.line The size for the line in the plot
 #' @param size.text The size of the text
 #' @param fontfam The family of the font text
 #' @param na.rm Should 'NA' values be removed to compute the statistics?
 #' Defaults to true
-#' @param verbose Logical argument. If FALSE the code will run silently
+#' @param verbose Logical argument. If TRUE a tibble containing the mean, N,
+#' standarad deviation, standard error of mean and confidence interval is returned.
 #' @export
 #' @seealso \code{\link{plot_lines}}, \code{\link{plot_factlines}}
 #'
-#'
+#' @examples
+#' library(metan)
+#' plot_factbars(data_ge2,
+#'               GEN,
+#'               ENV,
+#'               resp = PH,
+#'               palette = "Greys")
+
 plot_factbars = function(.data,
                          ...,
                          resp,
@@ -66,7 +74,7 @@ plot_factbars = function(.data,
                          size.text = 12,
                          fontfam = "sans",
                          na.rm = TRUE,
-                         verbose = TRUE){
+                         verbose = FALSE){
 
   cl = match.call()
   datac = .data %>%

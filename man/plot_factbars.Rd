@@ -10,9 +10,11 @@ plot_factbars(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
   width.erbar = 0.3, level = 0.95, invert = FALSE, col = TRUE,
   palette = "Spectral", width.bar = 0.9, lab.x.angle = 0,
   lab.x.hjust = 0.5, lab.x.vjust = 1, legend.position = "bottom",
-  size.text = 12, fontfam = "sans", na.rm = TRUE, verbose = TRUE)
+  size.text = 12, fontfam = "sans", na.rm = TRUE, verbose = FALSE)
 }
 \arguments{
+\item{.data}{The data set}
+
 \item{...}{A comma-separated list of unquoted variable names. Must be up to two
 variables.}
 
@@ -32,18 +34,22 @@ used.}
 
 \item{lab.bar.vjust}{The vertical adjust for the labels in the bar. Defaults to -0.2}
 
+\item{size.text.bar}{The size of the text in the bar labels.}
+
 \item{errorbar}{Logical argument, set to TRUE. In this case, an error bar is shown.}
 
 \item{stat.erbar}{The statistic to be shown in the errorbar. Must be one of the 'se'
 (standard error, default), 'sd' (standard deviation), or 'ci' confidence interval, based
 on the confidence level}
 
+\item{width.erbar}{The width of the error bar.}
+
 \item{level}{The fonfidence level}
 
 \item{invert}{Logical argument. If \code{TRUE}, the order of the factors entered
 in changes in the graph}
 
-\item{col}{Logical argument. If \code {FALSE}, a gray scale is used.}
+\item{col}{Logical argument. If \code{FALSE}, a gray scale is used.}
 
 \item{palette}{The color palette to be used. For more details, see
 \code{?Scale_colour_brewer}}
@@ -53,7 +59,9 @@ possible values [0-1].}
 
 \item{lab.x.angle}{The angle of the caption text. Default is 0.}
 
-\item{lab.x.hjust}{The horizontal adjustment of the caption text. Defaults to 0.5.
+\item{lab.x.hjust}{The horizontal adjustment of the caption text. Defaults to 0.5.}
+
+\item{lab.x.vjust}{The vertical adjustment of the caption text. Defaults to 1.
 Use this argument to adjust the text when the angle of the text is different from 0.}
 
 \item{legend.position}{The legend position.}
@@ -65,19 +73,20 @@ Use this argument to adjust the text when the angle of the text is different fro
 \item{na.rm}{Should 'NA' values be removed to compute the statistics?
 Defaults to true}
 
-\item{verbose}{Logical argument. If FALSE the code will run silently}
-
-\item{data}{The data set}
-
-\item{alpha}{The alpha for the color in confidence band}
-
-\item{size.shape}{The size for the shape in plot}
-
-\item{size.line}{The size for the line in the plot}
+\item{verbose}{Logical argument. If TRUE a tibble containing the mean, N,
+standarad deviation, standard error of mean and confidence interval is returned.}
 }
 \description{
 Create a bar plot based on categorical (one or two) variables
 and one numeric variable.
+}
+\examples{
+library(metan)
+plot_factbars(data_ge2,
+              GEN,
+              ENV,
+              resp = PH,
+              palette = "Greys")
 }
 \seealso{
 \code{\link{plot_lines}}, \code{\link{plot_factlines}}

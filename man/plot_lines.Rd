@@ -9,6 +9,8 @@ plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
   size.text = 12, fontfam = "sans")
 }
 \arguments{
+\item{.data}{The data set}
+
 \item{x}{The variable in data to be shown in the x axis}
 
 \item{y}{The variable in data to be shown in the y axis}
@@ -33,8 +35,6 @@ plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
 \item{size.text}{The size of the text}
 
 \item{fontfam}{The family of the font text}
-
-\item{data}{The data set}
 }
 \description{
 Create a graphic with fitted line based on numerical

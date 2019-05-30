@@ -4,8 +4,9 @@
 \alias{plot_factlines}
 \title{Fast way to create a line plot}
 \usage{
-plot_factlines(.data, x, y, group, fit, level = 0.95, xlab = NULL,
-  ylab = NULL, legend.position = "bottom", grid = FALSE,
+plot_factlines(.data, x, y, group, fit, level = 0.95,
+  confidence = TRUE, xlab = NULL, ylab = NULL,
+  legend.position = "bottom", grid = FALSE, scales = "free",
   col = TRUE, alpha = 0.2, size.shape = 1.5, size.line = 1,
   size.text = 12, fontfam = "sans", theme = theme_waasb())
 }
@@ -24,9 +25,18 @@ or a numeric vector with the same length of the variable in \code{group}}
 
 \item{level}{The fonfidence level}
 
+\item{confidence}{Display confidence interval around smooth? (TRUE by default)}
+
 \item{xlab}{The x label}
 
 \item{ylab}{The y label}
+
+\item{legend.position}{The position of the legend. Defaults to 'bottom'.}
+
+\item{grid}{Logical argument. If \code{TRUE} then a grid will be created.}
+
+\item{scales}{If \code{grid = TRUE} scales controls how the scales are in the
+plot. Possible values are "free" (default), "fixed", "free_x" or "free_y".}
 
 \item{col}{The colour to be used in the line plot and points}
 
@@ -39,6 +49,8 @@ or a numeric vector with the same length of the variable in \code{group}}
 \item{size.text}{The size of the text}
 
 \item{fontfam}{The family of the font text}
+
+\item{theme}{The default theme for the plot.}
 }
 \description{
 Create a graphic to show a fitted line based on numerical

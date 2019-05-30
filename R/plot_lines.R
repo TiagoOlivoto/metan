@@ -1,7 +1,7 @@
 #' @title Fast way to create a line plot
 #' @description Create a graphic with fitted line based on numerical
 #' variables.
-#' @param data The data set
+#' @param .data The data set
 #' @param x The variable in data to be shown in the x axis
 #' @param y The variable in data to be shown in the y axis
 #' @param fit The polinomial degree to use. It must be between

@@ -9,14 +9,20 @@
 #' between 1 (linear fit) to 4 (fourth-order polynomial regression.),
 #' or a numeric vector with the same length of the variable in \code{group}
 #' @param level The fonfidence level
+#' @param confidence Display confidence interval around smooth? (TRUE by default)
 #' @param xlab The x label
 #' @param ylab The y label
+#' @param legend.position The position of the legend. Defaults to 'bottom'.
+#' @param grid Logical argument. If \code{TRUE} then a grid will be created.
+#' @param scales If \code{grid = TRUE} scales controls how the scales are in the
+#' plot. Possible values are "free" (default), "fixed", "free_x" or "free_y".
 #' @param col The colour to be used in the line plot and points
 #' @param alpha The alpha for the color in confidence band
 #' @param size.shape The size for the shape in plot
 #' @param size.line The size for the line in the plot
 #' @param size.text The size of the text
 #' @param fontfam The family of the font text
+#' @param theme The default theme for the plot.
 #' @export
 #' @seealso \code{\link{plot_lines}}, \code{\link{plot_factbars}}
 
@@ -26,10 +32,12 @@ plot_factlines = function(.data,
                           group,
                           fit,
                           level = 0.95,
+                          confidence = TRUE,
                           xlab = NULL,
                           ylab = NULL,
                           legend.position = "bottom",
                           grid = FALSE,
+                          scales = "free",
                           col = TRUE,
                           alpha = 0.2,
                           size.shape = 1.5,
@@ -82,7 +90,8 @@ if (col == FALSE){
                                              linetype = linetype,
                                              alpha = alpha,
                                              col = "black",
-                                             size = size.line)
+                                             size = size.line,
+                                             se = confidence)
 } else{
 linetype = 1
 p_smooth[[paste(levels[i])]] = ggplot2::stat_smooth(method = "lm",
@@ -91,7 +100,8 @@ p_smooth[[paste(levels[i])]] = ggplot2::stat_smooth(method = "lm",
                                             level = level,
                                             linetype = linetype,
                                             alpha = alpha,
-                                            size = size.line)
+                                            size = size.line,
+                                            se = confidence)
 }
 }
 } else{
@@ -114,7 +124,8 @@ p_smooth[[paste(levels[i])]] = ggplot2::stat_smooth(method = "lm",
                                     data = data2,
                                     level = level,
                                     linetype = 1,
-                                    size = size.line)
+                                    size = size.line,
+                                    se = confidence)
   } else{
 
     p_smooth = ggplot2::stat_smooth(method = "lm",
@@ -123,9 +134,11 @@ p_smooth[[paste(levels[i])]] = ggplot2::stat_smooth(method = "lm",
                                     level = level,
                                     linetype = 1,
                                     col = "black",
-                                    size = size.line)
+                                    size = size.line,
+                                    se = confidence)
   }
 }
+
 if(grid == TRUE){
   legend.position = "none"
 } else{legend.position = legend.position}
@@ -163,7 +176,7 @@ p = p + p_smooth +
 ggplot2::labs(y = ylab, x = xlab)
 
 if (grid == TRUE){
-    p = p + ggplot2::facet_wrap(~factors, scales = "free")
+    p = p + ggplot2::facet_wrap(~factors, scales = scales)
 } else{p = p}
 
 return(p)
