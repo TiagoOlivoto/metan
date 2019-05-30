@@ -23,7 +23,7 @@ plot.resp_surf <- function(x, xlab = NULL, ylab = NULL, region = TRUE, resolutio
                     seq(min(unique(data[3])), max(unique(data[3])),length.out = resolution))
   names(seq) = names(data[2:3])
   seq = mutate(seq, PRED = predict(x$model, newdata = seq))
-  mod = predict(a$model, newdata = seq)
+  mod = predict(x$model, newdata = seq)
   xlab = ifelse(missing(xlab), names(seq[1]), xlab)
   ylab = ifelse(missing(ylab), names(seq[2]), ylab)
   contourplot(seq[,3] ~ seq[,1] * seq[,2], region = region,
