@@ -160,7 +160,6 @@ if (verbose == TRUE) {
 }
 
   return(structure(list(results = results,
-                        model = SurfMod,
-                        equation = eq),
+                        model = SurfMod),
                    class = "resp_sup"))
 }
