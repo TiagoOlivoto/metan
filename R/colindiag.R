@@ -149,6 +149,7 @@ colindiag = function(.data, n = NULL, verbose = TRUE){
     cat(paste0("Matrix determinant: ", round(Det,7)),  "\n")
     cat(paste0("Largest correlation: ", largest_corr),  "\n")
     cat(paste0("Smallest correlation: ", smallest_corr),  "\n")
+    cat(paste0("Number of VIFs > 10: ", length(VIF > 10)),  "\n")
     cat(paste0("Number of correlations with r >= |0.8|: ", ncorhigh),  "\n")
     cat(paste0("Variables with largest weight in the last eigenvalues: ","\n",
                pesovarname),  "\n")
