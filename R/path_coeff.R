@@ -459,7 +459,7 @@ kincrement = 1 / knumber
         cat("--------------------------------------------------------------------------","\n")
         cat("Summary of the adjusted models","\n")
         cat("--------------------------------------------------------------------------","\n")
-        print(statistics)
+        print(statistics, digits = 3)
         cat("--------------------------------------------------------------------------")
         }
         temp = structure(list(Models = ModelEstimates,
