@@ -459,7 +459,7 @@ kincrement = 1 / knumber
         cat("--------------------------------------------------------------------------","\n")
         cat("Summary of the adjusted models","\n")
         cat("--------------------------------------------------------------------------","\n")
-        print(statistics, digits = 3)
+        print(statistics, digits = 3, row.names = FALSE)
         cat("--------------------------------------------------------------------------")
         }
         temp = structure(list(Models = ModelEstimates,
@@ -640,7 +640,7 @@ kincrement = 1 / knumber
       if (verbose == TRUE){
       cat("--------------------------------------------------------------------------","\n")
       cat(paste("The algorithm has selected a set of ",nrow(VIF3),
-                "predictors with largest VIF = ", round(max(VIF3$VIF),3),".", sep = ""), "\n")
+                " predictors with largest VIF = ", round(max(VIF3$VIF),3),".", sep = ""), "\n")
       cat("Selected predictors:",paste0(selectedpred), "\n")
       cat(paste("A forward stepwise-based selection procedure will fit",nproced, "models.", "\n"))
       cat("--------------------------------------------------------------------------","\n")
@@ -776,7 +776,7 @@ kincrement = 1 / knumber
       cat("--------------------------------------------------------------------------","\n")
       cat("Summary of the adjusted models","\n")
       cat("--------------------------------------------------------------------------","\n")
-      print(statistics)
+      print(statistics, digits = 3, row.names = FALSE)
       cat("--------------------------------------------------------------------------")
       }
       temp = list(Models = ModelEstimates,
