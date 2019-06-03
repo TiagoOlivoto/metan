@@ -10,23 +10,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to Additive Main Effects and Multiplicative Interaction (AMMI) and AMMI-based indexes, Best Linear Unbiased Prediction (BLUP), and BLUP-based indexes, Joint-regression analysis, Genotypic confidence index, Superiority index, The main features include, but are not limited to:
-
-* Within environment analysis of variance
-* Cross-validation procedures for AMMI-family and BLUP models;
-* Estimation using AMMI considering different numbers of interation principal component axes;
-* AMMI-based stability indexes;
-* Prediction in mixed-effect models;
-* BLUP-based stability indexes;
-* Variance components and genetic parameters in mixed-effect models;
-* Graphics tools for generating biplots.
-* Parametric and nonparametric stability statistics
-
-
-# Extending the metan package
-
-The complete functionality of the metan package, combining theory, programming, and examples with outputs is described [here](https://tiagoolivoto.github.io/metan/index.html). Suggestions and criticisms to improve the quality and usability of the package are welcome!
-
 
 # Brief examples
 The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://github.com/wilkelab/cowplot) were used to generate the tables and arranging the graphics of this vignette. The forward-pipe operators `%>%` and `%<>%` may be used in some functions, provided that the package [`magrittr`](https://magrittr.tidyverse.org/) is loaded. Brief examples will be run using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see `?data_ge`.
@@ -89,7 +72,7 @@ plot_grid(p1, p2,
 ```
 
 
-### S3 method `predict()`
+### S3 method predict()
 The S3 method `predict()` is implemented for objects of class `waas` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted `model` object.
 
 ```{r }
@@ -109,7 +92,7 @@ The mixed-effect model fitted in `model2` has many outputs. For example, we can 
 ## Residual plots
 Several residual plots may be obtained applying the function `autoplot()` to an object of class `waasb` (or `waas`). 
 
-```{r,fig.height=15, fig.width=5}
+```{r,fig.height=12, fig.width=4}
 autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
 ```
 
@@ -117,7 +100,7 @@ autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
 The distribution of the random effects may be obtained using the argument
 `type = "re"`.
 
-```{r,fig.height=10, fig.width=5}
+```{r,fig.height=8, fig.width=4}
 autoplot(model2$GY, type = "re", which = c(1, 2), mfrow = c(2,1))
 ```
 
@@ -138,7 +121,7 @@ An easy way to check the results in the R console is by using the function `summ
 
 ## Plotting the BLUPs for genotypes
 
-```{r, fig.height=8, fig.width=5}
+```{r, fig.height=8, fig.width=4}
 p1 <- plot_blup(model2$GY)
 p2 <- plot_blup(model2$GY,
                 prob = 0.1,
@@ -190,4 +173,11 @@ If you whant to export a summary of results, the simplest way is by using the fu
 summary(stat_ge, export = TRUE)
 ```
 This comand will create a text file called *ge_stats summary.txt* in the current working directory.
+
+
+# Extending the metan package
+
+* The complete functionality of the metan package, combining theory, programming, and examples with outputs is described [here](https://tiagoolivoto.github.io/metan/index.html). Suggestions and criticisms to improve the quality and usability of the package are welcome!
+
+* Feel free to report a bug at https://github.com/TiagoOlivoto/metan/issues
 

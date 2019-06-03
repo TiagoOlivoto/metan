@@ -159,57 +159,57 @@
 <a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
 <a class="sourceLine" id="cb1-15" title="15">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
 <a class="sourceLine" id="cb1-16" title="16">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
-<pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
-## (tol = 0.002, component 1)</code></pre>
-<pre><code>## Evaluating variable KW 25 % 
-## Evaluating variable NKE 50 % 
-## Evaluating variable PH 75 % 
-## Evaluating variable EH 100 % 
-## Done!
-## 
-## -----------------------------------------------------------------------------------
-## Principal Component Analysis
-## -----------------------------------------------------------------------------------
-##     eigen.values cumulative.var
-## PC1   3.14414174       78.60354
-## PC2   0.66041176       95.11384
-## PC3   0.13857767       98.57828
-## PC4   0.05686883      100.00000
-## 
-## -----------------------------------------------------------------------------------
-## Factor Analysis
-## -----------------------------------------------------------------------------------
-##            FA1 comunalits
-## KW  -0.9474560  0.8976729
-## NKE -0.7429934  0.5520392
-## PH  -0.9429971  0.8892436
-## EH  -0.8973216  0.8051861
-## 
-## -----------------------------------------------------------------------------------
-## Comunalit Mean: 0.7860354 
-## 
-## -----------------------------------------------------------------------------------
-## Multitrait stability index
-## -----------------------------------------------------------------------------------
-##    H13     H6     H2     H5     H1     H4     H3     H8     H9    H10 
-## 0.9807 0.8843 0.8413 0.8409 0.8023 0.7972 0.6222 0.2623 0.2354 0.1810 
-##     H7    H12    H11 
-## 0.1163 0.1014 0.0780 
-## 
-## -----------------------------------------------------------------------------------
-## Selection differential
-## -----------------------------------------------------------------------------------
-##     Factor Selection differential (%)
-## KW       1               1.297090e+00
-## NKE      1               5.510697e-08
-## PH       1               9.006835e-02
-## EH       1               2.407567e-08
-## 
-## -----------------------------------------------------------------------------------
-## Selected genotypes
-## H13 H6
-## -----------------------------------------------------------------------------------</code></pre>
+<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
+control$checkConv, : Model failed to converge with max|grad| = 0.00577455
+(tol = 0.002, component 1)</code></pre>
+<pre><code>Evaluating variable KW 25 % 
+Evaluating variable NKE 50 % 
+Evaluating variable PH 75 % 
+Evaluating variable EH 100 % 
+Done!
+
+-----------------------------------------------------------------------------------
+Principal Component Analysis
+-----------------------------------------------------------------------------------
+    eigen.values cumulative.var
+PC1   3.14414174       78.60354
+PC2   0.66041176       95.11384
+PC3   0.13857767       98.57828
+PC4   0.05686883      100.00000
+
+-----------------------------------------------------------------------------------
+Factor Analysis
+-----------------------------------------------------------------------------------
+           FA1 comunalits
+KW  -0.9474560  0.8976729
+NKE -0.7429934  0.5520392
+PH  -0.9429971  0.8892436
+EH  -0.8973216  0.8051861
+
+-----------------------------------------------------------------------------------
+Comunalit Mean: 0.7860354 
+
+-----------------------------------------------------------------------------------
+Multitrait stability index
+-----------------------------------------------------------------------------------
+   H13     H6     H2     H5     H1     H4     H3     H8     H9    H10 
+0.9807 0.8843 0.8413 0.8409 0.8023 0.7972 0.6222 0.2623 0.2354 0.1810 
+    H7    H12    H11 
+0.1163 0.1014 0.0780 
+
+-----------------------------------------------------------------------------------
+Selection differential
+-----------------------------------------------------------------------------------
+    Factor Selection differential (%)
+KW       1               1.297090e+00
+NKE      1               5.510697e-08
+PH       1               9.006835e-02
+EH       1               2.407567e-08
+
+-----------------------------------------------------------------------------------
+Selected genotypes
+H13 H6
+-----------------------------------------------------------------------------------</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
@@ -224,63 +224,63 @@
 <a class="sourceLine" id="cb5-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
 <a class="sourceLine" id="cb5-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>()</a></code></pre></div>
-<pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
-## (tol = 0.002, component 1)</code></pre>
-<pre><code>## Evaluating variable KW 20 %</code></pre>
-<pre><code>## boundary (singular) fit: see ?isSingular</code></pre>
-<pre><code>## Evaluating variable NKE 40 % 
-## Evaluating variable PH 60 % 
-## Evaluating variable EH 80 % 
-## Evaluating variable TKW 100 % 
-## Done!
-## 
-## -------------------------------------------------------------------------------
-## Principal Component Analysis
-## -------------------------------------------------------------------------------
-##     Eigenvalues Variance (%) Cum. variance (%)
-## PC1   2.2070167   44.1403332          44.14033
-## PC2   1.6186853   32.3737068          76.51404
-## PC3   0.8803207   17.6064140          94.12045
-## PC4   0.2514611    5.0292221          99.14968
-## PC5   0.0425162    0.8503239         100.00000
-## -------------------------------------------------------------------------------
-## Factor Analysis - factorial loadings after rotation-
-## -------------------------------------------------------------------------------
-##            FA1         FA2 Communality Uniquenesses
-## KW  -0.1468686  0.91852913   0.8652662   0.13473384
-## NKE  0.1741379  0.73652366   0.5727911   0.42720888
-## PH  -0.9602598  0.02052089   0.9225199   0.07748007
-## EH  -0.9174029 -0.21847314   0.8893586   0.11064135
-## TKW -0.6112322  0.44962360   0.5757661   0.42423386
-## -------------------------------------------------------------------------------
-## Comunalit Mean: 0.7651404 
-## -------------------------------------------------------------------------------
-## Multitrait stability index
-## -------------------------------------------------------------------------------
-##    H11     H5     H7    H10     H4    H13    H12     H6     H1     H3 
-## 0.9548 1.1634 2.0294 2.1097 2.1989 2.3558 2.7298 2.9740 3.0933 3.2558 
-##     H2     H9     H8 
-## 3.6918 3.8566 4.0825 
-## -------------------------------------------------------------------------------
-## Selection differential for waasb index
-## -------------------------------------------------------------------------------
-##     Factor        Xo        Xs          SD    SDperc
-## PH     FA1 0.2649383 0.1905618 -0.07437652 -28.07315
-## EH     FA1 0.2356152 0.1553891 -0.08022607 -34.04962
-## TKW    FA1 2.4398931 0.6383057 -1.80158735 -73.83878
-## KW     FA2 1.9945663 0.8026269 -1.19193933 -59.75932
-## NKE    FA2 2.1329058 1.4627123 -0.67019348 -31.42162
-## ------------------------------------------------------------------------------
-## Mean of selection differential
-## -------------------------------------------------------------------------------
-##          Xo          Xs          SD      SDperc 
-##   1.4135837   0.6499192  -0.7636645 -45.4284979 
-## ------------------------------------------------------------------------------
-## Selected genotypes
-## -------------------------------------------------------------------------------
-## H11 H5
-## -------------------------------------------------------------------------------</code></pre>
+<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
+control$checkConv, : Model failed to converge with max|grad| = 0.00577455
+(tol = 0.002, component 1)</code></pre>
+<pre><code>Evaluating variable KW 20 % </code></pre>
+<pre><code>boundary (singular) fit: see ?isSingular</code></pre>
+<pre><code>Evaluating variable NKE 40 % 
+Evaluating variable PH 60 % 
+Evaluating variable EH 80 % 
+Evaluating variable TKW 100 % 
+Done!
+
+-------------------------------------------------------------------------------
+Principal Component Analysis
+-------------------------------------------------------------------------------
+    Eigenvalues Variance (%) Cum. variance (%)
+PC1   2.2070167   44.1403332          44.14033
+PC2   1.6186853   32.3737068          76.51404
+PC3   0.8803207   17.6064140          94.12045
+PC4   0.2514611    5.0292221          99.14968
+PC5   0.0425162    0.8503239         100.00000
+-------------------------------------------------------------------------------
+Factor Analysis - factorial loadings after rotation-
+-------------------------------------------------------------------------------
+           FA1         FA2 Communality Uniquenesses
+KW  -0.1468686  0.91852913   0.8652662   0.13473384
+NKE  0.1741379  0.73652366   0.5727911   0.42720888
+PH  -0.9602598  0.02052089   0.9225199   0.07748007
+EH  -0.9174029 -0.21847314   0.8893586   0.11064135
+TKW -0.6112322  0.44962360   0.5757661   0.42423386
+-------------------------------------------------------------------------------
+Comunalit Mean: 0.7651404 
+-------------------------------------------------------------------------------
+Multitrait stability index
+-------------------------------------------------------------------------------
+   H11     H5     H7    H10     H4    H13    H12     H6     H1     H3 
+0.9548 1.1634 2.0294 2.1097 2.1989 2.3558 2.7298 2.9740 3.0933 3.2558 
+    H2     H9     H8 
+3.6918 3.8566 4.0825 
+-------------------------------------------------------------------------------
+Selection differential for waasb index
+-------------------------------------------------------------------------------
+    Factor        Xo        Xs          SD    SDperc
+PH     FA1 0.2649383 0.1905618 -0.07437652 -28.07315
+EH     FA1 0.2356152 0.1553891 -0.08022607 -34.04962
+TKW    FA1 2.4398931 0.6383057 -1.80158735 -73.83878
+KW     FA2 1.9945663 0.8026269 -1.19193933 -59.75932
+NKE    FA2 2.1329058 1.4627123 -0.67019348 -31.42162
+------------------------------------------------------------------------------
+Mean of selection differential
+-------------------------------------------------------------------------------
+         Xo          Xs          SD      SDperc 
+  1.4135837   0.6499192  -0.7636645 -45.4284979 
+------------------------------------------------------------------------------
+Selected genotypes
+-------------------------------------------------------------------------------
+H11 H5
+-------------------------------------------------------------------------------</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
@@ -294,63 +294,63 @@
 <a class="sourceLine" id="cb11-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
 <a class="sourceLine" id="cb11-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
 <a class="sourceLine" id="cb11-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
-<pre><code>## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-## control$checkConv, : Model failed to converge with max|grad| = 0.00577455
-## (tol = 0.002, component 1)</code></pre>
-<pre><code>## Evaluating variable KW 20 %</code></pre>
-<pre><code>## boundary (singular) fit: see ?isSingular</code></pre>
-<pre><code>## Evaluating variable NKE 40 % 
-## Evaluating variable PH 60 % 
-## Evaluating variable EH 80 % 
-## Evaluating variable TKW 100 % 
-## Done!
-## 
-## -------------------------------------------------------------------------------
-## Principal Component Analysis
-## -------------------------------------------------------------------------------
-##     Eigenvalues Variance (%) Cum. variance (%)
-## PC1  3.71281234   74.2562467          74.25625
-## PC2  0.71178654   14.2357309          88.49198
-## PC3  0.42435670    8.4871341          96.97911
-## PC4  0.10433422    2.0866845          99.06580
-## PC5  0.04671019    0.9342038         100.00000
-## -------------------------------------------------------------------------------
-## Factor Analysis - factorial loadings after rotation-
-## -------------------------------------------------------------------------------
-##            FA1 Communality Uniquenesses
-## KW  -0.9299734   0.8648505    0.1351495
-## NKE -0.7015500   0.4921724    0.5078276
-## PH   0.9308802   0.8665380    0.1334620
-## EH   0.8369546   0.7004930    0.2995070
-## TKW -0.8881208   0.7887585    0.2112415
-## -------------------------------------------------------------------------------
-## Comunalit Mean: 0.7425625 
-## -------------------------------------------------------------------------------
-## Multitrait stability index
-## -------------------------------------------------------------------------------
-##     H2    H13     H7     H3    H11     H1     H6     H4     H5    H10 
-## 0.2003 0.3335 0.3698 0.3929 0.4294 0.5365 0.6604 0.7528 1.0824 1.1505 
-##    H12     H9     H8 
-## 1.3104 1.6038 2.0982 
-## -------------------------------------------------------------------------------
-## Selection differential for waasby index
-## -------------------------------------------------------------------------------
-##     Factor       Xo       Xs         SD     SDperc
-## KW     FA1 53.25461 68.93609  15.681479  29.446240
-## NKE    FA1 44.97683 61.50375  16.526912  36.745389
-## PH     FA1 48.47418 34.28450 -14.189678 -29.272654
-## EH     FA1 55.75616 54.71430  -1.041859  -1.868599
-## TKW    FA1 53.77888 67.47862  13.699742  25.474207
-## ------------------------------------------------------------------------------
-## Mean of selection differential
-## -------------------------------------------------------------------------------
-##        Xo        Xs        SD    SDperc 
-## 51.248130 57.383450  6.135319 12.104917 
-## ------------------------------------------------------------------------------
-## Selected genotypes
-## -------------------------------------------------------------------------------
-## H2 H13
-## -------------------------------------------------------------------------------</code></pre>
+<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
+control$checkConv, : Model failed to converge with max|grad| = 0.00577455
+(tol = 0.002, component 1)</code></pre>
+<pre><code>Evaluating variable KW 20 % </code></pre>
+<pre><code>boundary (singular) fit: see ?isSingular</code></pre>
+<pre><code>Evaluating variable NKE 40 % 
+Evaluating variable PH 60 % 
+Evaluating variable EH 80 % 
+Evaluating variable TKW 100 % 
+Done!
+
+-------------------------------------------------------------------------------
+Principal Component Analysis
+-------------------------------------------------------------------------------
+    Eigenvalues Variance (%) Cum. variance (%)
+PC1  3.71281234   74.2562467          74.25625
+PC2  0.71178654   14.2357309          88.49198
+PC3  0.42435670    8.4871341          96.97911
+PC4  0.10433422    2.0866845          99.06580
+PC5  0.04671019    0.9342038         100.00000
+-------------------------------------------------------------------------------
+Factor Analysis - factorial loadings after rotation-
+-------------------------------------------------------------------------------
+           FA1 Communality Uniquenesses
+KW  -0.9299734   0.8648505    0.1351495
+NKE -0.7015500   0.4921724    0.5078276
+PH   0.9308802   0.8665380    0.1334620
+EH   0.8369546   0.7004930    0.2995070
+TKW -0.8881208   0.7887585    0.2112415
+-------------------------------------------------------------------------------
+Comunalit Mean: 0.7425625 
+-------------------------------------------------------------------------------
+Multitrait stability index
+-------------------------------------------------------------------------------
+    H2    H13     H7     H3    H11     H1     H6     H4     H5    H10 
+0.2003 0.3335 0.3698 0.3929 0.4294 0.5365 0.6604 0.7528 1.0824 1.1505 
+   H12     H9     H8 
+1.3104 1.6038 2.0982 
+-------------------------------------------------------------------------------
+Selection differential for waasby index
+-------------------------------------------------------------------------------
+    Factor       Xo       Xs         SD     SDperc
+KW     FA1 53.25461 68.93609  15.681479  29.446240
+NKE    FA1 44.97683 61.50375  16.526912  36.745389
+PH     FA1 48.47418 34.28450 -14.189678 -29.272654
+EH     FA1 55.75616 54.71430  -1.041859  -1.868599
+TKW    FA1 53.77888 67.47862  13.699742  25.474207
+------------------------------------------------------------------------------
+Mean of selection differential
+-------------------------------------------------------------------------------
+       Xo        Xs        SD    SDperc 
+51.248130 57.383450  6.135319 12.104917 
+------------------------------------------------------------------------------
+Selected genotypes
+-------------------------------------------------------------------------------
+H2 H13
+-------------------------------------------------------------------------------</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-4-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>

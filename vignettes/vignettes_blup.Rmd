@@ -12,6 +12,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(comment = "")
+
+```
+
+
 # Getting started
 In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).
 

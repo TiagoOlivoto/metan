@@ -153,41 +153,41 @@
 <a class="sourceLine" id="cb1-13" title="13">data_out[<span class="dv">12</span>, <span class="dv">4</span>] =<span class="st"> </span><span class="dv">26</span></a>
 <a class="sourceLine" id="cb1-14" title="14"><span class="kw"><a href="../reference/find_outliers.html">find_outliers</a></span>(data_out, <span class="dt">var =</span> PH, <span class="dt">plots =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;"></p>
-<pre><code>## Number of possible outliers: 1 
-## Lines: 12 
-## Proportion: 0.6%
-## Mean of the outliers: 26 
-## With outliers:    mean = 2.634 | CV = 72.605%
-## Without outliers: mean = 2.483 | CV = 13.46%</code></pre>
+<pre><code>Number of possible outliers: 1 
+Lines: 12 
+Proportion: 0.6%
+Mean of the outliers: 26 
+With outliers:    mean = 2.634 | CV = 72.605%
+Without outliers: mean = 2.483 | CV = 13.46%</code></pre>
 <p>To check the outliers in different levels of a factor, the function <code><a href="../reference/split_factors.html">split_factors()</a></code> is used. As an example, we will find possible outliers for each level of the factor <code>ENV</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="../reference/find_outliers.html">find_outliers</a></span>(PH)</a></code></pre></div>
-<pre><code>## 
-## ----------------------------------------------------------------------------
-## Level: A1 
-## ----------------------------------------------------------------------------
-## No outlier identified. 
-## 
-## ----------------------------------------------------------------------------
-## Level: A2 
-## ----------------------------------------------------------------------------
-## No outlier identified. 
-## 
-## ----------------------------------------------------------------------------
-## Level: A3 
-## ----------------------------------------------------------------------------
-## Number of possible outliers: 4 
-## Lines:  
-## Proportion: 11.4%
-## Mean of the outliers: 2.438 
-## With outliers:    mean = 2.167 | CV = 10.309%
-## Without outliers: mean = 2.136 | CV = 7.377%
-## 
-## ----------------------------------------------------------------------------
-## Level: A4 
-## ----------------------------------------------------------------------------
-## No outlier identified.</code></pre>
+<pre><code>
+----------------------------------------------------------------------------
+Level: A1 
+----------------------------------------------------------------------------
+No outlier identified. 
+
+----------------------------------------------------------------------------
+Level: A2 
+----------------------------------------------------------------------------
+No outlier identified. 
+
+----------------------------------------------------------------------------
+Level: A3 
+----------------------------------------------------------------------------
+Number of possible outliers: 4 
+Lines:  
+Proportion: 11.4%
+Mean of the outliers: 2.438 
+With outliers:    mean = 2.167 | CV = 10.309%
+Without outliers: mean = 2.136 | CV = 7.377%
+
+----------------------------------------------------------------------------
+Level: A4 
+----------------------------------------------------------------------------
+No outlier identified. </code></pre>
 </div>
 <div id="correlations" class="section level1">
 <h1 class="hasAnchor">
@@ -1310,15 +1310,15 @@ H9
 <p>In the following examples, the confidence interval is calculated by declaring the sample size (n) and the correlation coefficient (r). If the function <code><a href="../reference/split_factors.html">split_factors()</a></code> is used before <code><a href="../reference/corr_ci.html">corr_ci()</a></code> then the confidence interval will be calculated within each level of the splitting factor.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Inform n and r</span></a>
 <a class="sourceLine" id="cb19-2" title="2"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">n =</span> <span class="dv">145</span>, <span class="dt">r =</span> <span class="fl">0.34</span>)</a></code></pre></div>
-<pre><code>## ------------------------------------------------- 
-## Nonparametric 95% half-width confidence interval 
-## ------------------------------------------------- 
-## Level of significance: 5%
-## Correlation coefficient: 0.34
-## Sample size: 145
-## Confidence interval: 0.1422
-## True parameter range from: 0.1978 to 0.4822 
-## -------------------------------------------------</code></pre>
+<pre><code>------------------------------------------------- 
+Nonparametric 95% half-width confidence interval 
+------------------------------------------------- 
+Level of significance: 5%
+Correlation coefficient: 0.34
+Sample size: 145
+Confidence interval: 0.1422
+True parameter range from: 0.1978 to 0.4822 
+------------------------------------------------- </code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Compute the confidence for each level of ENV</span></a>
 <a class="sourceLine" id="cb21-2" title="2">CI2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
@@ -1329,14 +1329,14 @@ H9
 <h2 class="hasAnchor">
 <a href="#sample-size-planning" class="anchor"></a>Sample size planning</h2>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/corr_ss.html">corr_ss</a></span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</a></code></pre></div>
-<pre><code>## ------------------------------------------------- 
-## Sample size planning for correlation coefficient 
-## ------------------------------------------------- 
-## Level of significance: 5%
-## Correlation coefficient: 0.6
-## 95% half-width CI: 0.1
-## Required sample size: 194 
-## -------------------------------------------------</code></pre>
+<pre><code>------------------------------------------------- 
+Sample size planning for correlation coefficient 
+------------------------------------------------- 
+Level of significance: 5%
+Correlation coefficient: 0.6
+95% half-width CI: 0.1
+Required sample size: 194 
+------------------------------------------------- </code></pre>
 </div>
 </div>
 <div id="collinearity-diagnostic" class="section level1">
@@ -1349,28 +1349,30 @@ H9
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">cor_data =<span class="st"> </span>lpc1<span class="op">$</span>linear.mat</a>
 <a class="sourceLine" id="cb24-2" title="2">n =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(data_ge2)</a>
 <a class="sourceLine" id="cb24-3" title="3">cold1 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(cor_data, <span class="dt">n =</span> n)</a></code></pre></div>
-<pre><code>## Weak multicollinearity in the matrix
-## NC = 30.013
-## Matrix determinant: 0.1247818 
-## Largest correlation: NKR x NKE = 0.708 
-## Smallest correlation: NR x NKR = 0.021 
-## Number of correlations with r &gt;= |0.8|: 0 
-## Variables with largest weight in the last eigenvalues: 
-## NKE &gt; NKR &gt; NR</code></pre>
+<pre><code>Weak multicollinearity in the matrix
+NC = 30.013
+Matrix determinant: 0.1247818 
+Largest correlation: NKR x NKE = 0.708 
+Smallest correlation: NR x NKR = 0.021 
+Number of VIFs &gt; 10: 3 
+Number of correlations with r &gt;= |0.8|: 0 
+Variables with largest weight in the last eigenvalues: 
+NKE &gt; NKR &gt; NR </code></pre>
 </div>
 <div id="using-a-dataframe" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-a-dataframe" class="anchor"></a>Using a dataframe</h2>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">cold2 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(data_ge2)</a></code></pre></div>
-<pre><code>## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
-## CN = 10106.712
-## Matrix determinant: 0 
-## Largest correlation: PH x EH = 0.932 
-## Smallest correlation: ED x CDED = -0.01 
-## Number of correlations with r &gt;= |0.8|: 4 
-## Variables with largest weight in the last eigenvalues: 
-## CL &gt; ED &gt; CDED &gt; CW &gt; EH &gt; KW &gt; PERK &gt; PH &gt; EP &gt; NKE &gt; TKW &gt; NR &gt; CD &gt; NKR &gt; EL</code></pre>
-<pre><code>## The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.'</code></pre>
+<pre><code>Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+CN = 10106.712
+Matrix determinant: 0 
+Largest correlation: PH x EH = 0.932 
+Smallest correlation: ED x CDED = -0.01 
+Number of VIFs &gt; 10: 15 
+Number of correlations with r &gt;= |0.8|: 4 
+Variables with largest weight in the last eigenvalues: 
+CL &gt; ED &gt; CDED &gt; CW &gt; EH &gt; KW &gt; PERK &gt; PH &gt; EP &gt; NKE &gt; TKW &gt; NR &gt; CD &gt; NKR &gt; EL </code></pre>
+<pre><code>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </code></pre>
 </div>
 <div id="perform-the-diagnostic-for-each-level-of-the-factor-env" class="section level2">
 <h2 class="hasAnchor">
@@ -1378,54 +1380,58 @@ H9
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">cold3 =<span class="st">  </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb29-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb29-3" title="3"><span class="st">         </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>()</a></code></pre></div>
-<pre><code>## 
-## ----------------------------------------------------------------------------
-## Level: A1 
-## ----------------------------------------------------------------------------
-## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
-## CN = 14149.129
-## Matrix determinant: 0 
-## Largest correlation: EL x CD = 0.912 
-## Smallest correlation: PH x EL = -0.003 
-## Number of correlations with r &gt;= |0.8|: 3 
-## Variables with largest weight in the last eigenvalues: 
-## CL &gt; CDED &gt; ED &gt; EH &gt; EP &gt; CW &gt; PERK &gt; PH &gt; NKE &gt; TKW &gt; KW &gt; EL &gt; CD &gt; NKR &gt; NR 
-## 
-## ----------------------------------------------------------------------------
-## Level: A2 
-## ----------------------------------------------------------------------------
-## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
-## CN = 11310.482
-## Matrix determinant: 0 
-## Largest correlation: EL x CD = 0.973 
-## Smallest correlation: CD x CDED = -0.004 
-## Number of correlations with r &gt;= |0.8|: 8 
-## Variables with largest weight in the last eigenvalues: 
-## CL &gt; ED &gt; CDED &gt; KW &gt; EH &gt; CW &gt; PH &gt; PERK &gt; TKW &gt; EP &gt; NKE &gt; CD &gt; EL &gt; NR &gt; NKR 
-## 
-## ----------------------------------------------------------------------------
-## Level: A3 
-## ----------------------------------------------------------------------------
-## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
-## CN = 13735.423
-## Matrix determinant: 0 
-## Largest correlation: PH x EH = 0.89 
-## Smallest correlation: ED x CDED = -0.004 
-## Number of correlations with r &gt;= |0.8|: 2 
-## Variables with largest weight in the last eigenvalues: 
-## CL &gt; CDED &gt; ED &gt; CW &gt; PERK &gt; KW &gt; EH &gt; PH &gt; CD &gt; EP &gt; EL &gt; NR &gt; TKW &gt; NKE &gt; NKR 
-## 
-## ----------------------------------------------------------------------------
-## Level: A4 
-## ----------------------------------------------------------------------------
-## Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
-## CN = 16332.033
-## Matrix determinant: 0 
-## Largest correlation: EL x CD = 0.942 
-## Smallest correlation: NR x PERK = 0.007 
-## Number of correlations with r &gt;= |0.8|: 2 
-## Variables with largest weight in the last eigenvalues: 
-## CL &gt; ED &gt; CDED &gt; CW &gt; KW &gt; EH &gt; PH &gt; EP &gt; PERK &gt; EL &gt; NKE &gt; NR &gt; TKW &gt; CD &gt; NKR</code></pre>
+<pre><code>
+----------------------------------------------------------------------------
+Level: A1 
+----------------------------------------------------------------------------
+Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+CN = 14149.129
+Matrix determinant: 0 
+Largest correlation: EL x CD = 0.912 
+Smallest correlation: PH x EL = -0.003 
+Number of VIFs &gt; 10: 15 
+Number of correlations with r &gt;= |0.8|: 3 
+Variables with largest weight in the last eigenvalues: 
+CL &gt; CDED &gt; ED &gt; EH &gt; EP &gt; CW &gt; PERK &gt; PH &gt; NKE &gt; TKW &gt; KW &gt; EL &gt; CD &gt; NKR &gt; NR 
+
+----------------------------------------------------------------------------
+Level: A2 
+----------------------------------------------------------------------------
+Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+CN = 11310.482
+Matrix determinant: 0 
+Largest correlation: EL x CD = 0.973 
+Smallest correlation: CD x CDED = -0.004 
+Number of VIFs &gt; 10: 15 
+Number of correlations with r &gt;= |0.8|: 8 
+Variables with largest weight in the last eigenvalues: 
+CL &gt; ED &gt; CDED &gt; KW &gt; EH &gt; CW &gt; PH &gt; PERK &gt; TKW &gt; EP &gt; NKE &gt; CD &gt; EL &gt; NR &gt; NKR 
+
+----------------------------------------------------------------------------
+Level: A3 
+----------------------------------------------------------------------------
+Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+CN = 13735.423
+Matrix determinant: 0 
+Largest correlation: PH x EH = 0.89 
+Smallest correlation: ED x CDED = -0.004 
+Number of VIFs &gt; 10: 15 
+Number of correlations with r &gt;= |0.8|: 2 
+Variables with largest weight in the last eigenvalues: 
+CL &gt; CDED &gt; ED &gt; CW &gt; PERK &gt; KW &gt; EH &gt; PH &gt; CD &gt; EP &gt; EL &gt; NR &gt; TKW &gt; NKE &gt; NKR 
+
+----------------------------------------------------------------------------
+Level: A4 
+----------------------------------------------------------------------------
+Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+CN = 16332.033
+Matrix determinant: 0 
+Largest correlation: EL x CD = 0.942 
+Smallest correlation: NR x PERK = 0.007 
+Number of VIFs &gt; 10: 15 
+Number of correlations with r &gt;= |0.8|: 2 
+Variables with largest weight in the last eigenvalues: 
+CL &gt; ED &gt; CDED &gt; CW &gt; KW &gt; EH &gt; PH &gt; EP &gt; PERK &gt; EL &gt; NKE &gt; NR &gt; TKW &gt; CD &gt; NKR </code></pre>
 </div>
 </div>
 <div id="path-analysis" class="section level1">
@@ -1436,10 +1442,10 @@ H9
 <a href="#using-kw-as-response-trait-and-all-other-ones-as-predictors-" class="anchor"></a>Using KW as response trait and all other ones as predictors.</h2>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">pcoeff =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb31-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW)</a></code></pre></div>
-<pre><code>## The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.'</code></pre>
-<pre><code>## Severe multicollinearity. 
-## Condition Number = 7865.84
-## Please, consider using a correction factor, or use 'brutstep = TRUE'.</code></pre>
+<pre><code>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </code></pre>
+<pre><code>Severe multicollinearity. 
+Condition Number = 7865.84
+Please, consider using a correction factor, or use 'brutstep = TRUE'. </code></pre>
 </div>
 <div id="declaring-the-predictor-traits" class="section level2">
 <h2 class="hasAnchor">
@@ -1449,53 +1455,53 @@ H9
 <a class="sourceLine" id="cb34-3" title="3">             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, NKE, TKW),</a>
 <a class="sourceLine" id="cb34-4" title="4">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb34-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(pcoeff2)</a></code></pre></div>
-<pre><code>## ----------------------------------------------------------------------------------------------
-## Correlation matrix between the predictor traits
-## ----------------------------------------------------------------------------------------------
-##         PH      NKE      TKW
-## PH  1.0000  0.45838  0.56854
-## NKE 0.4584  1.00000 -0.06516
-## TKW 0.5685 -0.06516  1.00000
-## ----------------------------------------------------------------------------------------------
-## Vector of correlations between dependent and each predictor
-## ----------------------------------------------------------------------------------------------
-##        PH    NKE   TKW
-## KW 0.7534 0.6811 0.673
-## ----------------------------------------------------------------------------------------------
-## Multicollinearity diagnosis and goodness-of-fit
-## ----------------------------------------------------------------------------------------------
-## Condition number:  7.169 
-## Determinant:       0.4284 
-## R-square:          0.981 
-## Residual:          0.019 
-## Response:          KW 
-## Predictors:        PH NKE TKW 
-## ----------------------------------------------------------------------------------------------
-## Variance inflation factors
-## ----------------------------------------------------------------------------------------------
-##       VIF
-## PH  2.324
-## NKE 1.580
-## TKW 1.844
-## ----------------------------------------------------------------------------------------------
-## Eigenvalues and eigenvectors
-## ----------------------------------------------------------------------------------------------
-##   Eigenvalues       PH     NKE     TKW
-## 1       1.699  0.72219  0.4223  0.5478
-## 2       1.064 -0.01921 -0.7794  0.6262
-## 3       0.237  0.69143 -0.4628 -0.5548
-## ----------------------------------------------------------------------------------------------
-## Variables with the largest weight in the eigenvalue of smallest magnitude
-## ----------------------------------------------------------------------------------------------
-## PH &gt; TKW &gt; NKE 
-## ----------------------------------------------------------------------------------------------
-## Direct (diagonal) and indirect (off-diagonal) effects
-## ----------------------------------------------------------------------------------------------
-##          PH      NKE      TKW
-## PH  0.02351  0.01078  0.01337
-## NKE 0.32835  0.71632 -0.04668
-## TKW 0.40159 -0.04603  0.70635
-## ----------------------------------------------------------------------------------------------</code></pre>
+<pre><code>----------------------------------------------------------------------------------------------
+Correlation matrix between the predictor traits
+----------------------------------------------------------------------------------------------
+        PH      NKE      TKW
+PH  1.0000  0.45838  0.56854
+NKE 0.4584  1.00000 -0.06516
+TKW 0.5685 -0.06516  1.00000
+----------------------------------------------------------------------------------------------
+Vector of correlations between dependent and each predictor
+----------------------------------------------------------------------------------------------
+       PH    NKE   TKW
+KW 0.7534 0.6811 0.673
+----------------------------------------------------------------------------------------------
+Multicollinearity diagnosis and goodness-of-fit
+----------------------------------------------------------------------------------------------
+Condition number:  7.169 
+Determinant:       0.4284 
+R-square:          0.981 
+Residual:          0.019 
+Response:          KW 
+Predictors:        PH NKE TKW 
+----------------------------------------------------------------------------------------------
+Variance inflation factors
+----------------------------------------------------------------------------------------------
+      VIF
+PH  2.324
+NKE 1.580
+TKW 1.844
+----------------------------------------------------------------------------------------------
+Eigenvalues and eigenvectors
+----------------------------------------------------------------------------------------------
+  Eigenvalues       PH     NKE     TKW
+1       1.699  0.72219  0.4223  0.5478
+2       1.064 -0.01921 -0.7794  0.6262
+3       0.237  0.69143 -0.4628 -0.5548
+----------------------------------------------------------------------------------------------
+Variables with the largest weight in the eigenvalue of smallest magnitude
+----------------------------------------------------------------------------------------------
+PH &gt; TKW &gt; NKE 
+----------------------------------------------------------------------------------------------
+Direct (diagonal) and indirect (off-diagonal) effects
+----------------------------------------------------------------------------------------------
+         PH      NKE      TKW
+PH  0.02351  0.01078  0.01337
+NKE 0.32835  0.71632 -0.04668
+TKW 0.40159 -0.04603  0.70635
+----------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="selecting-traits-to-be-excluded-from-the-analysis-" class="section level2">
 <h2 class="hasAnchor">
@@ -1513,30 +1519,30 @@ H9
 <a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
 <a class="sourceLine" id="cb37-3" title="3">             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb37-4" title="4">             <span class="dt">maxvif =</span> <span class="dv">5</span>)</a></code></pre></div>
-<pre><code>## The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.'</code></pre>
-<pre><code>## -------------------------------------------------------------------------- 
-## The algorithm has selected a set of 8predictors with largest VIF = 3.346. 
-## Selected predictors: NR PERK EP CDED EL NKR TKW PH 
-## A forward stepwise-based selection procedure will fit 6 models. 
-## -------------------------------------------------------------------------- 
-## Adjusting the model 1 with 7 predictors (16.67% concluded)
-## Adjusting the model 2 with 6 predictors (33.33% concluded)
-## Adjusting the model 3 with 5 predictors (50% concluded)
-## Adjusting the model 4 with 4 predictors (66.67% concluded)
-## Adjusting the model 5 with 3 predictors (83.33% concluded)
-## Adjusting the model 6 with 2 predictors (100% concluded)
-## Done! 
-## -------------------------------------------------------------------------- 
-## Summary of the adjusted models 
-## -------------------------------------------------------------------------- 
-##     Model  AIC Numpred     CN Determinant     R2 Residual maxVIF
-## 2 Model 6 1329       2  2.227     0.85545 0.7384  0.26165  1.169
-## 3 Model 5 1148       3  1.339     0.97871 0.9192  0.08077  1.021
-## 4 Model 4 1138       4  6.402     0.45950 0.9253  0.07474  2.130
-## 5 Model 3 1126       5 12.054     0.19892 0.9317  0.06825  2.310
-## 6 Model 2 1125       6 12.259     0.13830 0.9330  0.06695  2.461
-## 7 Model 1 1127       7 13.674     0.08406 0.9331  0.06694  2.592
-## --------------------------------------------------------------------------</code></pre>
+<pre><code>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </code></pre>
+<pre><code>-------------------------------------------------------------------------- 
+The algorithm has selected a set of 8 predictors with largest VIF = 3.346. 
+Selected predictors: NR PERK EP CDED EL NKR TKW PH 
+A forward stepwise-based selection procedure will fit 6 models. 
+-------------------------------------------------------------------------- 
+Adjusting the model 1 with 7 predictors (16.67% concluded)
+Adjusting the model 2 with 6 predictors (33.33% concluded)
+Adjusting the model 3 with 5 predictors (50% concluded)
+Adjusting the model 4 with 4 predictors (66.67% concluded)
+Adjusting the model 5 with 3 predictors (83.33% concluded)
+Adjusting the model 6 with 2 predictors (100% concluded)
+Done! 
+-------------------------------------------------------------------------- 
+Summary of the adjusted models 
+-------------------------------------------------------------------------- 
+   Model  AIC Numpred    CN Determinant    R2 Residual maxVIF
+ Model 6 1329       2  2.23      0.8555 0.738   0.2616   1.17
+ Model 5 1148       3  1.34      0.9787 0.919   0.0808   1.02
+ Model 4 1138       4  6.40      0.4595 0.925   0.0747   2.13
+ Model 3 1126       5 12.05      0.1989 0.932   0.0683   2.31
+ Model 2 1125       6 12.26      0.1383 0.933   0.0670   2.46
+ Model 1 1127       7 13.67      0.0841 0.933   0.0669   2.59
+--------------------------------------------------------------------------</code></pre>
 </div>
 <div id="compute-the-analysis-for-each-level-of-environment" class="section level2">
 <h2 class="hasAnchor">
@@ -1545,35 +1551,35 @@ H9
 <a class="sourceLine" id="cb40-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb40-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
 <a class="sourceLine" id="cb40-4" title="4">             <span class="dt">pred =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, NKE, TKW))</a></code></pre></div>
-<pre><code>## The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
-<pre><code>## 
-## ----------------------------------------------------------------------------
-## Level A1 
-## ----------------------------------------------------------------------------
-## Weak multicollinearity. 
-## Condition Number = 5.183
-## You will probably have path coefficients close to being unbiased. 
-## 
-## ----------------------------------------------------------------------------
-## Level A2 
-## ----------------------------------------------------------------------------
-## Weak multicollinearity. 
-## Condition Number = 81.987
-## You will probably have path coefficients close to being unbiased. 
-## 
-## ----------------------------------------------------------------------------
-## Level A3 
-## ----------------------------------------------------------------------------
-## Weak multicollinearity. 
-## Condition Number = 24.788
-## You will probably have path coefficients close to being unbiased. 
-## 
-## ----------------------------------------------------------------------------
-## Level A4 
-## ----------------------------------------------------------------------------
-## Weak multicollinearity. 
-## Condition Number = 10.276
-## You will probably have path coefficients close to being unbiased.</code></pre>
+<pre><code>The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </code></pre>
+<pre><code>
+----------------------------------------------------------------------------
+Level A1 
+----------------------------------------------------------------------------
+Weak multicollinearity. 
+Condition Number = 5.183
+You will probably have path coefficients close to being unbiased. 
+
+----------------------------------------------------------------------------
+Level A2 
+----------------------------------------------------------------------------
+Weak multicollinearity. 
+Condition Number = 81.987
+You will probably have path coefficients close to being unbiased. 
+
+----------------------------------------------------------------------------
+Level A3 
+----------------------------------------------------------------------------
+Weak multicollinearity. 
+Condition Number = 24.788
+You will probably have path coefficients close to being unbiased. 
+
+----------------------------------------------------------------------------
+Level A4 
+----------------------------------------------------------------------------
+Weak multicollinearity. 
+Condition Number = 10.276
+You will probably have path coefficients close to being unbiased. </code></pre>
 </div>
 </div>
 <div id="canonical-correlation-analysis" class="section level1">
@@ -1582,101 +1588,103 @@ H9
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">cc1 =<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(data_ge2,</a>
 <a class="sourceLine" id="cb43-2" title="2">               <span class="dt">FG =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, EH, EP),</a>
 <a class="sourceLine" id="cb43-3" title="3">               <span class="dt">SG =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(EL, ED, CL, CD, CW, KW, NR))</a></code></pre></div>
-<pre><code>## ---------------------------------------------------------------------------
-## Matrix (correlation/covariance) between variables of first group (FG)
-## ---------------------------------------------------------------------------
-##        PH     EH     EP
-## PH 1.0000 0.9318 0.6384
-## EH 0.9318 1.0000 0.8695
-## EP 0.6384 0.8695 1.0000
-## ---------------------------------------------------------------------------
-## Collinearity within first group 
-## ---------------------------------------------------------------------------
-## The multicollinearity in the matrix should be investigated.
-## NC = 977.586
-## Largest VIF = 229.164618380204
-## Matrix determinant: 0.0025852 
-## Largest correlation: PH x EH = 0.932 
-## Smallest correlation: PH x EP = 0.638 
-## Number of correlations with r &gt;= |0.8|: 2 
-## Variables with largest weight in the last eigenvalues: 
-## EH &gt; PH &gt; EP 
-## ---------------------------------------------------------------------------
-## Matrix (correlation/covariance) between variables of second group (SG)
-## ---------------------------------------------------------------------------
-##          EL     ED     CL       CD     CW     KW       NR
-## EL  1.00000 0.3851 0.2554  0.91187 0.4582 0.6686 -0.01387
-## ED  0.38515 1.0000 0.6975  0.38971 0.7371 0.8241  0.55253
-## CL  0.25541 0.6975 1.0000  0.30036 0.7383 0.4709  0.26194
-## CD  0.91187 0.3897 0.3004  1.00000 0.4840 0.6260 -0.03585
-## CW  0.45817 0.7371 0.7383  0.48403 1.0000 0.7349  0.16566
-## KW  0.66856 0.8241 0.4709  0.62598 0.7349 1.0000  0.36214
-## NR -0.01387 0.5525 0.2619 -0.03585 0.1657 0.3621  1.00000
-## ---------------------------------------------------------------------------
-## Collinearity within second group 
-## ---------------------------------------------------------------------------
-## Weak multicollinearity in the matrix
-## NC = 68.376
-## Matrix determinant: 0.0015322 
-## Largest correlation: EL x CD = 0.912 
-## Smallest correlation: EL x NR = -0.014 
-## Number of correlations with r &gt;= |0.8|: 2 
-## Variables with largest weight in the last eigenvalues: 
-## KW &gt; ED &gt; EL &gt; CD &gt; CL &gt; CW &gt; NR 
-## ---------------------------------------------------------------------------
-## Matrix (correlation/covariance) between FG and SG
-## ---------------------------------------------------------------------------
-##        EL     ED     CL     CD     CW     KW     NR
-## PH 0.3802 0.6613 0.3252 0.3154 0.5047 0.7534 0.3286
-## EH 0.3627 0.6303 0.3972 0.2805 0.5193 0.7029 0.2648
-## EP 0.2634 0.4580 0.3908 0.1750 0.4248 0.4974 0.1404
-## ---------------------------------------------------------------------------
-## Correlation of the canonical pairs and hipotesis testing 
-## ---------------------------------------------------------------------------
-##      Variance Proportion Cum_proportion Correlation Lambda_Wilks
-## U1V1  0.63154     76.190          76.19      0.7947       0.2965
-## U2V2  0.18673     22.527          98.72      0.4321       0.8046
-## U3V3  0.01063      1.283         100.00      0.1031       0.9894
-##      Chi_square DF p_value
-## U1V1    181.762 21 0.00000
-## U2V2     32.499 12 0.00116
-## U3V3      1.598  5 0.90148
-## ---------------------------------------------------------------------------
-## Canonical coefficients of the first group 
-## ---------------------------------------------------------------------------
-##        U1     U2      U3
-## PH  2.526  5.867   7.317
-## EH -2.436 -8.263 -12.448
-## EP  1.145  2.747   6.487
-## ---------------------------------------------------------------------------
-## Canonical coefficients of the second group 
-## ---------------------------------------------------------------------------
-##           V1      V2      V3
-## EL -0.008925 -0.9361  0.7671
-## ED  0.193719  0.2970 -1.8241
-## CL -0.083854 -1.2151  0.1720
-## CD -0.306620  1.1370 -1.4230
-## CW -0.152258  0.1914  0.4777
-## KW  1.167522 -0.1256  1.1247
-## NR -0.058659  0.4862  0.6224
-## ---------------------------------------------------------------------------
-## Canonical loads of the first group 
-## ---------------------------------------------------------------------------
-##        U1       U2       U3
-## PH 0.9869 -0.07925 -0.14055
-## EH 0.9131 -0.40755  0.01148
-## EP 0.6389 -0.69262  0.33471
-## ---------------------------------------------------------------------------
-## Canonical loads of the second group 
-## ---------------------------------------------------------------------------
-##        V1       V2       V3
-## EL 0.4763 -0.09829 -0.22698
-## ED 0.8299 -0.16169 -0.34032
-## CL 0.3789 -0.69598 -0.28636
-## CD 0.3948  0.03076 -0.46982
-## CW 0.6244 -0.37712 -0.14762
-## KW 0.9566 -0.05042 -0.09911
-## NR 0.4351  0.29047  0.18639</code></pre>
+<pre><code>---------------------------------------------------------------------------
+Matrix (correlation/covariance) between variables of first group (FG)
+---------------------------------------------------------------------------
+       PH     EH     EP
+PH 1.0000 0.9318 0.6384
+EH 0.9318 1.0000 0.8695
+EP 0.6384 0.8695 1.0000
+---------------------------------------------------------------------------
+Collinearity within first group 
+---------------------------------------------------------------------------
+The multicollinearity in the matrix should be investigated.
+NC = 977.586
+Largest VIF = 229.164618380204
+Matrix determinant: 0.0025852 
+Largest correlation: PH x EH = 0.932 
+Smallest correlation: PH x EP = 0.638 
+Number of VIFs &gt; 10: 3 
+Number of correlations with r &gt;= |0.8|: 2 
+Variables with largest weight in the last eigenvalues: 
+EH &gt; PH &gt; EP 
+---------------------------------------------------------------------------
+Matrix (correlation/covariance) between variables of second group (SG)
+---------------------------------------------------------------------------
+         EL     ED     CL       CD     CW     KW       NR
+EL  1.00000 0.3851 0.2554  0.91187 0.4582 0.6686 -0.01387
+ED  0.38515 1.0000 0.6975  0.38971 0.7371 0.8241  0.55253
+CL  0.25541 0.6975 1.0000  0.30036 0.7383 0.4709  0.26194
+CD  0.91187 0.3897 0.3004  1.00000 0.4840 0.6260 -0.03585
+CW  0.45817 0.7371 0.7383  0.48403 1.0000 0.7349  0.16566
+KW  0.66856 0.8241 0.4709  0.62598 0.7349 1.0000  0.36214
+NR -0.01387 0.5525 0.2619 -0.03585 0.1657 0.3621  1.00000
+---------------------------------------------------------------------------
+Collinearity within second group 
+---------------------------------------------------------------------------
+Weak multicollinearity in the matrix
+NC = 68.376
+Matrix determinant: 0.0015322 
+Largest correlation: EL x CD = 0.912 
+Smallest correlation: EL x NR = -0.014 
+Number of VIFs &gt; 10: 7 
+Number of correlations with r &gt;= |0.8|: 2 
+Variables with largest weight in the last eigenvalues: 
+KW &gt; ED &gt; EL &gt; CD &gt; CL &gt; CW &gt; NR 
+---------------------------------------------------------------------------
+Matrix (correlation/covariance) between FG and SG
+---------------------------------------------------------------------------
+       EL     ED     CL     CD     CW     KW     NR
+PH 0.3802 0.6613 0.3252 0.3154 0.5047 0.7534 0.3286
+EH 0.3627 0.6303 0.3972 0.2805 0.5193 0.7029 0.2648
+EP 0.2634 0.4580 0.3908 0.1750 0.4248 0.4974 0.1404
+---------------------------------------------------------------------------
+Correlation of the canonical pairs and hipotesis testing 
+---------------------------------------------------------------------------
+     Variance Proportion Cum_proportion Correlation Lambda_Wilks
+U1V1  0.63154     76.190          76.19      0.7947       0.2965
+U2V2  0.18673     22.527          98.72      0.4321       0.8046
+U3V3  0.01063      1.283         100.00      0.1031       0.9894
+     Chi_square DF p_value
+U1V1    181.762 21 0.00000
+U2V2     32.499 12 0.00116
+U3V3      1.598  5 0.90148
+---------------------------------------------------------------------------
+Canonical coefficients of the first group 
+---------------------------------------------------------------------------
+       U1     U2      U3
+PH  2.526  5.867   7.317
+EH -2.436 -8.263 -12.448
+EP  1.145  2.747   6.487
+---------------------------------------------------------------------------
+Canonical coefficients of the second group 
+---------------------------------------------------------------------------
+          V1      V2      V3
+EL -0.008925 -0.9361  0.7671
+ED  0.193719  0.2970 -1.8241
+CL -0.083854 -1.2151  0.1720
+CD -0.306620  1.1370 -1.4230
+CW -0.152258  0.1914  0.4777
+KW  1.167522 -0.1256  1.1247
+NR -0.058659  0.4862  0.6224
+---------------------------------------------------------------------------
+Canonical loads of the first group 
+---------------------------------------------------------------------------
+       U1       U2       U3
+PH 0.9869 -0.07925 -0.14055
+EH 0.9131 -0.40755  0.01148
+EP 0.6389 -0.69262  0.33471
+---------------------------------------------------------------------------
+Canonical loads of the second group 
+---------------------------------------------------------------------------
+       V1       V2       V3
+EL 0.4763 -0.09829 -0.22698
+ED 0.8299 -0.16169 -0.34032
+CL 0.3789 -0.69598 -0.28636
+CD 0.3948  0.03076 -0.46982
+CW 0.6244 -0.37712 -0.14762
+KW 0.9566 -0.05042 -0.09911
+NR 0.4351  0.29047  0.18639</code></pre>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">cc2 =<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(<span class="dt">FG =</span> data_ge2[, <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],</a>
 <a class="sourceLine" id="cb45-2" title="2">               <span class="dt">SG =</span> data_ge2[, <span class="dv">7</span><span class="op">:</span><span class="dv">13</span>],</a>
 <a class="sourceLine" id="cb45-3" title="3">               <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
@@ -1692,7 +1700,7 @@ H9
 <h3 class="hasAnchor">
 <a href="#all-rows-and-all-numeric-variables-from-data" class="anchor"></a>All rows and all numeric variables from data</h3>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">d1 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2)</a></code></pre></div>
-<pre><code>## The columns ENV GEN REP where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.'</code></pre>
+<pre><code>The columns ENV GEN REP where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.' </code></pre>
 </div>
 <div id="based-on-the-mean-for-each-genotype" class="section level3">
 <h3 class="hasAnchor">
@@ -1703,16 +1711,16 @@ H9
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-26-1.png" width="528" style="display: block; margin: auto;"> According to the suggested cutpoint, two clusters are formed. The number of clusters may also be found using intensive computation. I suggest the package <a href="http://stat.sys.i.kyoto-u.ac.jp/prog/pvclust/">pcvlust</a>, an R package for assessing the uncertainty in hierarchical cluster analysis. The implementation may be see below.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pvclust)</a>
 <a class="sourceLine" id="cb50-2" title="2">pv_clust &lt;-<span class="st"> </span><span class="kw">pvclust</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(d2<span class="op">$</span>data), <span class="dt">nboot =</span> <span class="dv">100</span>, <span class="dt">method.dist =</span> <span class="st">"euclidean"</span>)</a></code></pre></div>
-<pre><code>## Bootstrap (r = 0.47)... Done.
-## Bootstrap (r = 0.6)... Done.
-## Bootstrap (r = 0.67)... Done.
-## Bootstrap (r = 0.8)... Done.
-## Bootstrap (r = 0.87)... Done.
-## Bootstrap (r = 1.0)... Done.
-## Bootstrap (r = 1.07)... Done.
-## Bootstrap (r = 1.2)... Done.
-## Bootstrap (r = 1.27)... Done.
-## Bootstrap (r = 1.4)... Done.</code></pre>
+<pre><code>Bootstrap (r = 0.47)... Done.
+Bootstrap (r = 0.6)... Done.
+Bootstrap (r = 0.67)... Done.
+Bootstrap (r = 0.8)... Done.
+Bootstrap (r = 0.87)... Done.
+Bootstrap (r = 1.0)... Done.
+Bootstrap (r = 1.07)... Done.
+Bootstrap (r = 1.2)... Done.
+Bootstrap (r = 1.27)... Done.
+Bootstrap (r = 1.4)... Done.</code></pre>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(pv_clust, <span class="dt">hang =</span> <span class="dv">-1</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb52-2" title="2"><span class="kw">pvrect</span>(pv_clust, <span class="dt">alpha =</span> <span class="fl">0.95</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-27-1.png" width="528" style="display: block; margin: auto;"></p>
@@ -1728,47 +1736,47 @@ H9
 <a href="#select-variables-for-compute-the-distances" class="anchor"></a>Select variables for compute the distances</h3>
 <p>When <code>selvar = TRUE</code> is used, an algorithm for variable selction is implemented. See <code><a href="../reference/clustering.html">?clustering</a></code> for more details.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">d4 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">selvar =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
-## Calculating model 2 with 14 variables. EP excluded in this step (14.3%).
-## Calculating model 3 with 13 variables. CDED excluded in this step (21.4%).
-## Calculating model 4 with 12 variables. PH excluded in this step (28.6%).
-## Calculating model 5 with 11 variables. CL excluded in this step (35.7%).
-## Calculating model 6 with 10 variables. NR excluded in this step (42.9%).
-## Calculating model 7 with 9 variables. PERK excluded in this step (50%).
-## Calculating model 8 with 8 variables. EL excluded in this step (57.1%).
-## Calculating model 9 with 7 variables. CD excluded in this step (64.3%).
-## Calculating model 10 with 6 variables. ED excluded in this step (71.4%).
-## Calculating model 11 with 5 variables. KW excluded in this step (78.6%).
-## Calculating model 12 with 4 variables. CW excluded in this step (85.7%).
-## Calculating model 13 with 3 variables. NKR excluded in this step (92.9%).
-## Calculating model 14 with 2 variables. TKW excluded in this step (100%).
-## Done! 
-## -------------------------------------------------------------------------- 
-## 
-## Summary of the adjusted models 
-## -------------------------------------------------------------------------- 
-##     Model excluded cophenetic remaining cormantel pvmantel
-##   Model 1        -     0.8656        15    1.0000 0.000999
-##   Model 2       EH     0.8656        14    1.0000 0.000999
-##   Model 3       EP     0.8656        13    1.0000 0.000999
-##   Model 4     CDED     0.8656        12    1.0000 0.000999
-##   Model 5       PH     0.8656        11    1.0000 0.000999
-##   Model 6       CL     0.8656        10    1.0000 0.000999
-##   Model 7       NR     0.8657         9    1.0000 0.000999
-##   Model 8     PERK     0.8657         8    1.0000 0.000999
-##   Model 9       EL     0.8658         7    1.0000 0.000999
-##  Model 10       CD     0.8659         6    1.0000 0.000999
-##  Model 11       ED     0.8658         5    1.0000 0.000999
-##  Model 12       KW     0.8644         4    0.9929 0.000999
-##  Model 13       CW     0.8640         3    0.9928 0.000999
-##  Model 14      NKR     0.8648         2    0.9925 0.000999
-## --------------------------------------------------------------------------
-## Suggested variables to be used in the analysis 
-## -------------------------------------------------------------------------- 
-## The clustering was calculated with the  Model 10 
-## The variables included in this model were...
-##  ED CW KW NKR TKW NKE 
-## --------------------------------------------------------------------------</code></pre>
+<pre><code>Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
+Calculating model 2 with 14 variables. EP excluded in this step (14.3%).
+Calculating model 3 with 13 variables. CDED excluded in this step (21.4%).
+Calculating model 4 with 12 variables. PH excluded in this step (28.6%).
+Calculating model 5 with 11 variables. CL excluded in this step (35.7%).
+Calculating model 6 with 10 variables. NR excluded in this step (42.9%).
+Calculating model 7 with 9 variables. PERK excluded in this step (50%).
+Calculating model 8 with 8 variables. EL excluded in this step (57.1%).
+Calculating model 9 with 7 variables. CD excluded in this step (64.3%).
+Calculating model 10 with 6 variables. ED excluded in this step (71.4%).
+Calculating model 11 with 5 variables. KW excluded in this step (78.6%).
+Calculating model 12 with 4 variables. CW excluded in this step (85.7%).
+Calculating model 13 with 3 variables. NKR excluded in this step (92.9%).
+Calculating model 14 with 2 variables. TKW excluded in this step (100%).
+Done! 
+-------------------------------------------------------------------------- 
+
+Summary of the adjusted models 
+-------------------------------------------------------------------------- 
+    Model excluded cophenetic remaining cormantel pvmantel
+  Model 1        -     0.8656        15    1.0000 0.000999
+  Model 2       EH     0.8656        14    1.0000 0.000999
+  Model 3       EP     0.8656        13    1.0000 0.000999
+  Model 4     CDED     0.8656        12    1.0000 0.000999
+  Model 5       PH     0.8656        11    1.0000 0.000999
+  Model 6       CL     0.8656        10    1.0000 0.000999
+  Model 7       NR     0.8657         9    1.0000 0.000999
+  Model 8     PERK     0.8657         8    1.0000 0.000999
+  Model 9       EL     0.8658         7    1.0000 0.000999
+ Model 10       CD     0.8659         6    1.0000 0.000999
+ Model 11       ED     0.8658         5    1.0000 0.000999
+ Model 12       KW     0.8644         4    0.9929 0.000999
+ Model 13       CW     0.8640         3    0.9928 0.000999
+ Model 14      NKR     0.8648         2    0.9925 0.000999
+--------------------------------------------------------------------------
+Suggested variables to be used in the analysis 
+-------------------------------------------------------------------------- 
+The clustering was calculated with the  Model 10 
+The variables included in this model were...
+ ED CW KW NKR TKW NKE 
+--------------------------------------------------------------------------</code></pre>
 <p>The distances were computed using the variables ED, CW, KW, NKR, TKW, and NKE. By using these variables the highest cophenetic correlation coefficient (0.8658) was observed. The Mantel’s correlation estimated with the distance matrix of Model 10 (selected variables) with the original distance matrix (estimated with all variables) was near to 1, suggesting that the deletion of the variables to compute the distance don’t affect significantly the computation of the distances.</p>
 </div>
 <div id="extending-the-dendrogram-functionality" class="section level3">
@@ -1799,7 +1807,7 @@ H9
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">d6 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb58-2" title="2"><span class="st">     </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb58-3" title="3"><span class="st">     </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>()</a></code></pre></div>
-<pre><code>## The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data.</code></pre>
+<pre><code>The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </code></pre>
 <ul>
 <li>Select the variables NKR, TKW, and NKE</li>
 <li>Use the mean for each genotype</li>

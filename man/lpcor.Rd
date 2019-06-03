@@ -4,7 +4,7 @@
 \alias{lpcor}
 \title{Linear and Partial Correlation Coefficients}
 \usage{
-lpcor(.data, n = NULL, verbose = TRUE)
+lpcor(.data, n = NULL, method = "pearson", verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a symmetric correlation matrix
@@ -13,6 +13,9 @@ or, a dataframe containing the predictor variables, or an object of class
 
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
+
+\item{method}{a character string indicating which correlation coefficient is to be computed.
+One of "pearson" (default), "kendall", or "spearman".}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}

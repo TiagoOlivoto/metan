@@ -134,11 +134,6 @@
 
     
     
-<div id="extending-the-metan-package" class="section level1">
-<h1 class="hasAnchor">
-<a href="#extending-the-metan-package" class="anchor"></a>Extending the metan package</h1>
-<p>The complete functionality of the metan package, combining theory, programming, and examples with outputs is described <a href="https://tiagoolivoto.github.io/metan/index.html">here</a>. Suggestions and criticisms to improve the quality and usability of the package are welcome!</p>
-</div>
 <div id="brief-examples" class="section level1">
 <h1 class="hasAnchor">
 <a href="#brief-examples" class="anchor"></a>Brief examples</h1>
@@ -409,14 +404,14 @@ G5
 <a href="#residual-plots" class="anchor"></a>Residual plots</h2>
 <p>Several residual plots may be obtained applying the function <code>autoplot()</code> to an object of class <code>waasb</code> (or <code>waas</code>).</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a></code></pre></div>
-<p><img src="vignettes_metan_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
+<p><img src="vignettes_metan_files/figure-html/unnamed-chunk-7-1.png" width="384"></p>
 </div>
 <div id="distributin-of-random-effects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#distributin-of-random-effects" class="anchor"></a>Distributin of random effects</h2>
 <p>The distribution of the random effects may be obtained using the argument <code>type = "re"</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">type =</span> <span class="st">"re"</span>, <span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>,<span class="dv">1</span>))</a></code></pre></div>
-<p><img src="vignettes_metan_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
+<p><img src="vignettes_metan_files/figure-html/unnamed-chunk-8-1.png" width="384"></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">print_table</span>(model2<span class="op">$</span>GY<span class="op">$</span>LRT)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
@@ -897,7 +892,7 @@ G10
 <a class="sourceLine" id="cb16-6" title="6">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
 <a class="sourceLine" id="cb16-7" title="7">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
 <a class="sourceLine" id="cb16-8" title="8">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="vignettes_metan_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
+<p><img src="vignettes_metan_files/figure-html/unnamed-chunk-10-1.png" width="384"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level2">
 <h2 class="hasAnchor">
@@ -1446,6 +1441,14 @@ G9
 <p>If you whant to export a summary of results, the simplest way is by using the function summary, as follows:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>This comand will create a text file called <em>ge_stats summary.txt</em> in the current working directory.</p>
+</div>
+<div id="extending-the-metan-package" class="section level1">
+<h1 class="hasAnchor">
+<a href="#extending-the-metan-package" class="anchor"></a>Extending the metan package</h1>
+<ul>
+<li><p>The complete functionality of the metan package, combining theory, programming, and examples with outputs is described <a href="https://tiagoolivoto.github.io/metan/index.html">here</a>. Suggestions and criticisms to improve the quality and usability of the package are welcome!</p></li>
+<li><p>Feel free to report a bug at <a href="https://github.com/TiagoOlivoto/metan/issues" class="uri">https://github.com/TiagoOlivoto/metan/issues</a></p></li>
+</ul>
 <div id="refs" class="references">
 <div id="ref-Alves2018">
 <p>Alves, Rodrigo Silva, Leonardo de Azevedo Peixoto, Paulo Eduardo Teodoro, Lidiane Aparecida Silva, Erina Vitório Rodrigues, Marcos Deon Vilela de Resende, Bruno Galveas Laviola, and Leonardo Lopes Bhering. 2018. “Selection of Jatropha curcas families based on temporal stability and adaptability of genetic values.” <em>Industrial Crops and Products</em> 119 (September): 290–93. <a href="https://doi.org/10.1016/J.INDCROP.2018.04.029">https://doi.org/10.1016/J.INDCROP.2018.04.029</a>.</p>
@@ -1474,8 +1477,7 @@ G9
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#extending-the-metan-package">Extending the metan package</a></li>
-      <li><a href="#brief-examples">Brief examples</a></li>
+<li><a href="#brief-examples">Brief examples</a></li>
       <li>
 <a href="#ammi-model">AMMI model</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#cross-validation-procedures">Cross-validation procedures</a></li>
@@ -1492,6 +1494,7 @@ G9
 </li>
       <li><a href="#parametric-and-non-parametric-statistics">Parametric and non-parametric statistics</a></li>
       <li><a href="#computing-the-indexes">Computing the indexes</a></li>
+      <li><a href="#extending-the-metan-package">Extending the metan package</a></li>
       </ul>
 </div>
       </div>

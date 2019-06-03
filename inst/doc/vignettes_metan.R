@@ -45,10 +45,10 @@ print_table(head(predicted$GY))
 ## ------------------------------------------------------------------------
 model2 <- data_ge %>% waasb(ENV, GEN, REP, GY)
 
-## ----fig.height=15, fig.width=5------------------------------------------
+## ----fig.height=12, fig.width=4------------------------------------------
 autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
 
-## ----fig.height=10, fig.width=5------------------------------------------
+## ----fig.height=8, fig.width=4-------------------------------------------
 autoplot(model2$GY, type = "re", which = c(1, 2), mfrow = c(2,1))
 
 ## ------------------------------------------------------------------------
@@ -60,7 +60,7 @@ print_table(model2$GY$ESTIMATES)
 
 print_table(model2$GY$blupGEN)
 
-## ---- fig.height=8, fig.width=5------------------------------------------
+## ---- fig.height=8, fig.width=4------------------------------------------
 p1 <- plot_blup(model2$GY)
 p2 <- plot_blup(model2$GY,
                 prob = 0.1,

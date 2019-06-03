@@ -175,8 +175,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>corr_plot</span>(<span class='no'>.data</span>, <span class='kw'>...</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>upper</span> <span class='kw'>=</span> <span class='st'>"corr"</span>, <span class='kw'>lower</span> <span class='kw'>=</span> <span class='st'>"scatter"</span>,
-  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col.diag</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>alpha.diag</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>diag.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
+  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>col.diag</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>alpha.diag</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
   <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
   <span class='kw'>alpha.sign</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>"tr"</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.smooth</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>size.smooth</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
@@ -221,8 +222,17 @@ diagonal.</p></td>
     </tr>
     <tr>
       <th>diag</th>
-      <td><p>Should the diagonal show the kernel distribution of the
-variable? Set to <code>TRUE</code>.</p></td>
+      <td><p>Should the diagonal be shown?</p></td>
+    </tr>
+    <tr>
+      <th>diag.type</th>
+      <td><p>THe type of plot to show in the diagonal if <code>diag  TRUE</code>.
+It must be one of the "istogram" (to show an histogram) or "density" to show
+the Kernel density.</p></td>
+    </tr>
+    <tr>
+      <th>bins</th>
+      <td><p>The number of bins, Defauls to 20.</p></td>
     </tr>
     <tr>
       <th>col.diag</th>

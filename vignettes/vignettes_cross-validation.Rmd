@@ -10,6 +10,12 @@ vignette: >
 ---
 
 
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(comment = "")
+
+```
+
+
 # Getting started
 A dataset called `data_ge` is provided to make reproducible examples. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 

@@ -167,7 +167,7 @@
 <a href="#group-data-and-exclude-all-non-numeric-variables" class="anchor"></a>Group data and exclude all non-numeric variables</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">g1 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="../reference/is.split_factors.html">is.split_factors</a></span>(g1)</a></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
 <div id="group-data-and-keep-all-original-variables" class="section level2">
 <h2 class="hasAnchor">
@@ -252,27 +252,27 @@ G1
 <a href="#group-a-data-frame-using-all-factor-variables" class="anchor"></a>Group a data frame using all factor variables</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">g3 =<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(g3)</a></code></pre></div>
-<pre><code>##  [1] "Qn1 / Quebec / nonchilled"      "Qn2 / Quebec / nonchilled"     
-##  [3] "Qn3 / Quebec / nonchilled"      "Qc1 / Quebec / chilled"        
-##  [5] "Qc3 / Quebec / chilled"         "Qc2 / Quebec / chilled"        
-##  [7] "Mn3 / Mississippi / nonchilled" "Mn2 / Mississippi / nonchilled"
-##  [9] "Mn1 / Mississippi / nonchilled" "Mc2 / Mississippi / chilled"   
-## [11] "Mc3 / Mississippi / chilled"    "Mc1 / Mississippi / chilled"</code></pre>
+<pre><code> [1] "Qn1 / Quebec / nonchilled"      "Qn2 / Quebec / nonchilled"     
+ [3] "Qn3 / Quebec / nonchilled"      "Qc1 / Quebec / chilled"        
+ [5] "Qc3 / Quebec / chilled"         "Qc2 / Quebec / chilled"        
+ [7] "Mn3 / Mississippi / nonchilled" "Mn2 / Mississippi / nonchilled"
+ [9] "Mn1 / Mississippi / nonchilled" "Mc2 / Mississippi / chilled"   
+[11] "Mc3 / Mississippi / chilled"    "Mc1 / Mississippi / chilled"   </code></pre>
 </div>
 </div>
 <div id="make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="anchor"></a>Make a two-way table based on categorical and numerical arguments</h1>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data_ge)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 5
-##   ENV   GEN   REP      GY    HM
-##   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 E1    G1    1      2.17  44.9
-## 2 E1    G1    2      2.50  46.9
-## 3 E1    G1    3      2.43  47.8
-## 4 E1    G2    1      3.21  45.2
-## 5 E1    G2    2      2.93  45.3
-## 6 E1    G2    3      2.56  45.5</code></pre>
+<pre><code># A tibble: 6 x 5
+  ENV   GEN   REP      GY    HM
+  &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 E1    G1    1      2.17  44.9
+2 E1    G1    2      2.50  46.9
+3 E1    G1    3      2.43  47.8
+4 E1    G2    1      3.21  45.2
+5 E1    G2    2      2.93  45.3
+6 E1    G2    3      2.56  45.5</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">matrix =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw">print_table</span>(matrix)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -1495,162 +1495,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-16.923
+31.234
 </td>
 <td style="text-align:right;">
-100.187
+76.850
 </td>
 <td style="text-align:right;">
-37.965
+91.530
 </td>
 <td style="text-align:right;">
-24.797
+36.231
 </td>
 <td style="text-align:right;">
-86.537
+49.295
 </td>
 <td style="text-align:right;">
-24.315
+63.975
 </td>
 <td style="text-align:right;">
-11.147
+8.675
 </td>
 <td style="text-align:right;">
-107.579
+109.591
 </td>
 <td style="text-align:right;">
-94.411
+54.291
 </td>
 <td style="text-align:right;">
-32.188
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-8.237
-</td>
-<td style="text-align:right;">
-20.316
-</td>
-<td style="text-align:right;">
-96.701
-</td>
-<td style="text-align:right;">
-12.784
-</td>
-<td style="text-align:right;">
-14.218
-</td>
-<td style="text-align:right;">
-90.603
-</td>
-<td style="text-align:right;">
-6.686
-</td>
-<td style="text-align:right;">
-102.682
-</td>
-<td style="text-align:right;">
-18.766
-</td>
-<td style="text-align:right;">
-95.151
+68.972
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-19.367
+16.029
 </td>
 <td style="text-align:right;">
-95.530
+36.186
 </td>
 <td style="text-align:right;">
-33.156
+12.341
 </td>
 <td style="text-align:right;">
-23.098
+17.394
 </td>
 <td style="text-align:right;">
-87.674
+32.737
 </td>
 <td style="text-align:right;">
-25.300
+8.892
 </td>
 <td style="text-align:right;">
-15.242
+13.944
 </td>
 <td style="text-align:right;">
-101.463
+29.048
 </td>
 <td style="text-align:right;">
-91.406
+34.101
 </td>
 <td style="text-align:right;">
-29.031
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-16.010
-</td>
-<td style="text-align:right;">
-56.525
-</td>
-<td style="text-align:right;">
-25.784
-</td>
-<td style="text-align:right;">
-11.626
-</td>
-<td style="text-align:right;">
-60.002
-</td>
-<td style="text-align:right;">
-29.261
-</td>
-<td style="text-align:right;">
-15.104
-</td>
-<td style="text-align:right;">
-69.776
-</td>
-<td style="text-align:right;">
-55.618
-</td>
-<td style="text-align:right;">
-24.877
+10.256
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-13.398
+12.604
 </td>
 <td style="text-align:right;">
-32.185
+56.498
 </td>
 <td style="text-align:right;">
-87.104
+70.341
 </td>
 <td style="text-align:right;">
-16.440
+17.118
 </td>
 <td style="text-align:right;">
-30.185
+47.909
 </td>
 <td style="text-align:right;">
-85.105
+61.752
 </td>
 <td style="text-align:right;">
-14.441
+8.529
 </td>
 <td style="text-align:right;">
-103.891
+105.646
 </td>
 <td style="text-align:right;">
-33.227
+52.422
 </td>
 <td style="text-align:right;">
-88.147
+66.266
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26.639
+</td>
+<td style="text-align:right;">
+42.238
+</td>
+<td style="text-align:right;">
+102.192
+</td>
+<td style="text-align:right;">
+25.188
+</td>
+<td style="text-align:right;">
+31.735
+</td>
+<td style="text-align:right;">
+91.689
+</td>
+<td style="text-align:right;">
+14.685
+</td>
+<td style="text-align:right;">
+107.288
+</td>
+<td style="text-align:right;">
+30.284
+</td>
+<td style="text-align:right;">
+90.237
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17.909
+</td>
+<td style="text-align:right;">
+54.319
+</td>
+<td style="text-align:right;">
+87.351
+</td>
+<td style="text-align:right;">
+19.378
+</td>
+<td style="text-align:right;">
+48.576
+</td>
+<td style="text-align:right;">
+81.608
+</td>
+<td style="text-align:right;">
+13.636
+</td>
+<td style="text-align:right;">
+118.018
+</td>
+<td style="text-align:right;">
+50.045
+</td>
+<td style="text-align:right;">
+83.077
 </td>
 </tr>
 </tbody>
@@ -1693,162 +1693,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-25.016
+54.059
 </td>
 <td style="text-align:right;">
-1297.844
+1394.944
 </td>
 <td style="text-align:right;">
-346.671
+1826.465
 </td>
 <td style="text-align:right;">
-145.378
+200.942
 </td>
 <td style="text-align:right;">
-138.936
+87.274
 </td>
 <td style="text-align:right;">
-37.112
+114.272
 </td>
 <td style="text-align:right;">
-15.563
+12.572
 </td>
 <td style="text-align:right;">
-1925.384
+2948.679
 </td>
 <td style="text-align:right;">
-807.420
+324.405
 </td>
 <td style="text-align:right;">
-215.672
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-7.663
-</td>
-<td style="text-align:right;">
-94.243
-</td>
-<td style="text-align:right;">
-641.729
-</td>
-<td style="text-align:right;">
-40.260
-</td>
-<td style="text-align:right;">
-14.059
-</td>
-<td style="text-align:right;">
-95.729
-</td>
-<td style="text-align:right;">
-6.006
-</td>
-<td style="text-align:right;">
-1177.255
-</td>
-<td style="text-align:right;">
-73.857
-</td>
-<td style="text-align:right;">
-502.913
+424.759
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-78.337
+61.260
 </td>
 <td style="text-align:right;">
-1115.024
+257.570
 </td>
 <td style="text-align:right;">
-266.022
+25.337
 </td>
 <td style="text-align:right;">
-129.131
+74.548
 </td>
 <td style="text-align:right;">
-471.468
+166.349
 </td>
 <td style="text-align:right;">
-112.483
+16.364
 </td>
 <td style="text-align:right;">
-54.601
+48.146
 </td>
 <td style="text-align:right;">
-1601.046
+68.802
 </td>
 <td style="text-align:right;">
-777.172
+202.433
 </td>
 <td style="text-align:right;">
-185.418
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-61.057
-</td>
-<td style="text-align:right;">
-314.935
-</td>
-<td style="text-align:right;">
-122.302
-</td>
-<td style="text-align:right;">
-33.587
-</td>
-<td style="text-align:right;">
-489.694
-</td>
-<td style="text-align:right;">
-190.168
-</td>
-<td style="text-align:right;">
-52.225
-</td>
-<td style="text-align:right;">
-980.904
-</td>
-<td style="text-align:right;">
-269.383
-</td>
-<td style="text-align:right;">
-104.612
+19.913
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-43.877
+21.276
 </td>
 <td style="text-align:right;">
-188.511
+486.393
 </td>
 <td style="text-align:right;">
-611.317
+633.088
 </td>
 <td style="text-align:right;">
-67.297
+69.101
 </td>
 <td style="text-align:right;">
-139.555
+92.162
 </td>
 <td style="text-align:right;">
-452.557
+119.957
 </td>
 <td style="text-align:right;">
-49.820
+13.093
 </td>
 <td style="text-align:right;">
-1944.329
+2742.341
 </td>
 <td style="text-align:right;">
-214.041
+299.323
 </td>
 <td style="text-align:right;">
-694.108
+389.598
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+149.833
+</td>
+<td style="text-align:right;">
+439.518
+</td>
+<td style="text-align:right;">
+1552.916
+</td>
+<td style="text-align:right;">
+122.876
+</td>
+<td style="text-align:right;">
+190.948
+</td>
+<td style="text-align:right;">
+674.662
+</td>
+<td style="text-align:right;">
+53.383
+</td>
+<td style="text-align:right;">
+1979.049
+</td>
+<td style="text-align:right;">
+156.594
+</td>
+<td style="text-align:right;">
+553.280
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71.942
+</td>
+<td style="text-align:right;">
+502.525
+</td>
+<td style="text-align:right;">
+893.173
+</td>
+<td style="text-align:right;">
+89.314
+</td>
+<td style="text-align:right;">
+258.496
+</td>
+<td style="text-align:right;">
+459.442
+</td>
+<td style="text-align:right;">
+45.943
+</td>
+<td style="text-align:right;">
+3209.264
+</td>
+<td style="text-align:right;">
+320.916
+</td>
+<td style="text-align:right;">
+570.386
 </td>
 </tr>
 </tbody>
@@ -1860,17 +1860,17 @@ DxE
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb15-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
 <a class="sourceLine" id="cb15-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
-<pre><code>##   v1 v2 v3
-## 1  1  2  .
-## 2  2  3  .
-## 3  .  .  4
-## 4  .  .  5</code></pre>
+<pre><code>  v1 v2 v3
+1  1  2  .
+2  2  3  .
+3  .  .  4
+4  .  .  5</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
-<pre><code>##   v1 v2 v3
-## 1  1  2 NA
-## 2  2  3 NA
-## 3 NA NA  4
-## 4 NA NA  5</code></pre>
+<pre><code>  v1 v2 v3
+1  1  2 NA
+2  2  3 NA
+3 NA NA  4
+4 NA NA  5</code></pre>
 </div>
 <div id="rescale-a-continuous-vector-to-have-specified-minimum-and-maximum-values" class="section level1">
 <h1 class="hasAnchor">
@@ -1879,7 +1879,7 @@ DxE
 <h2 class="hasAnchor">
 <a href="#rescale-a-numeric-vector" class="anchor"></a>Rescale a numeric vector</h2>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
-<pre><code>## [1]   0  25  50  75 100</code></pre>
+<pre><code>[1]   0  25  50  75 100</code></pre>
 </div>
 <div id="rescale-using-a-data-frame-and-select-rescaled-variables-only" class="section level2">
 <h2 class="hasAnchor">

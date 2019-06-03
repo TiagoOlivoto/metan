@@ -10,10 +10,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Extending the metan package
-
-The complete functionality of the metan package, combining theory, programming, and examples with outputs is described [here](https://tiagoolivoto.github.io/metan/index.html). Suggestions and criticisms to improve the quality and usability of the package are welcome!
-
 
 # Brief examples
 The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://github.com/wilkelab/cowplot) were used to generate the tables and arranging the graphics of this vignette. The forward-pipe operators `%>%` and `%<>%` may be used in some functions, provided that the package [`magrittr`](https://magrittr.tidyverse.org/) is loaded. Brief examples will be run using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see `?data_ge`.
@@ -96,7 +92,7 @@ The mixed-effect model fitted in `model2` has many outputs. For example, we can 
 ## Residual plots
 Several residual plots may be obtained applying the function `autoplot()` to an object of class `waasb` (or `waas`). 
 
-```{r,fig.height=15, fig.width=5}
+```{r,fig.height=12, fig.width=4}
 autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
 ```
 
@@ -104,7 +100,7 @@ autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
 The distribution of the random effects may be obtained using the argument
 `type = "re"`.
 
-```{r,fig.height=10, fig.width=5}
+```{r,fig.height=8, fig.width=4}
 autoplot(model2$GY, type = "re", which = c(1, 2), mfrow = c(2,1))
 ```
 
@@ -125,7 +121,7 @@ An easy way to check the results in the R console is by using the function `summ
 
 ## Plotting the BLUPs for genotypes
 
-```{r, fig.height=8, fig.width=5}
+```{r, fig.height=8, fig.width=4}
 p1 <- plot_blup(model2$GY)
 p2 <- plot_blup(model2$GY,
                 prob = 0.1,
@@ -178,4 +174,10 @@ summary(stat_ge, export = TRUE)
 ```
 This comand will create a text file called *ge_stats summary.txt* in the current working directory.
 
+
+# Extending the metan package
+
+* The complete functionality of the metan package, combining theory, programming, and examples with outputs is described [here](https://tiagoolivoto.github.io/metan/index.html). Suggestions and criticisms to improve the quality and usability of the package are welcome!
+
+* Feel free to report a bug at https://github.com/TiagoOlivoto/metan/issues
 

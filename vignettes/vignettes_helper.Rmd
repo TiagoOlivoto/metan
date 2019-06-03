@@ -9,6 +9,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(comment = "")
+
+```
+
+
 # Getting started
 
 ```{r, message=FALSE, warning=FALSE}

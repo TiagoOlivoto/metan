@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Weighting between stability and mean performance — wsmp • metan</title>
+<title>Fast way to create a line plot — plot_lines • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@
 
 
 
-<meta property="og:title" content="Weighting between stability and mean performance — wsmp" />
+<meta property="og:title" content="Fast way to create a line plot — plot_lines" />
 
-<meta property="og:description" content="This function computes the WAASY or WAASBY indexes considering different
-scenarios of weights for stability and mean performance." />
+<meta property="og:description" content="Create a graphic with fitted line based on numerical
+variables." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -164,124 +164,94 @@ scenarios of weights for stability and mean performance." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Weighting between stability and mean performance</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/wsmp.R'><code>R/wsmp.R</code></a></small>
-    <div class="hidden name"><code>wsmp.Rd</code></div>
+    <h1>Fast way to create a line plot</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot_lines.R'><code>R/plot_lines.R</code></a></small>
+    <div class="hidden name"><code>plot_lines.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function computes the WAASY or WAASBY indexes considering different
-scenarios of weights for stability and mean performance.</p>
+    <p>Create a graphic with fitted line based on numerical
+variables.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>wsmp</span>(<span class='no'>model</span>, <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>increment</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>saveWAASY</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>progbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_lines</span>(<span class='no'>.data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>fit</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>fontfam</span> <span class='kw'>=</span> <span class='st'>"sans"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>model</th>
-      <td><p>Should be an object of class <code>waas</code> or <code>waasb</code>.</p></td>
+      <th>.data</th>
+      <td><p>The data set</p></td>
     </tr>
     <tr>
-      <th>mresp</th>
-      <td><p>A numeric value that will be the new maximum value after rescaling.
-By default, the variable in <code>resp</code> is rescaled so that the original maximum
-and minimum values are 100 and 0, respectively. Let us consider that for a specific
-trait, say, lodging incidence, lower values are better. In this case, you should use
-<code>mresp = 0</code> to rescale the response variable so that the lowest values will become 100
-and the highest values 0.</p></td>
+      <th>x</th>
+      <td><p>The variable in data to be shown in the x axis</p></td>
     </tr>
     <tr>
-      <th>increment</th>
-      <td><p>The increment in the weight ratio for stability and mean performance.
-Se the <b>Details</b> section for more information.</p></td>
+      <th>y</th>
+      <td><p>The variable in data to be shown in the y axis</p></td>
     </tr>
     <tr>
-      <th>saveWAASY</th>
-      <td><p>Automatically save the WAASY values when the wheight for
-stability is <code>saveWAASY</code>. Default is 50. Please, note that <code>saveWAASY</code></p></td>
+      <th>fit</th>
+      <td><p>The polinomial degree to use. It must be between
+1 (linear fit) to 4 (fourth-order polynomial regression.)</p></td>
     </tr>
     <tr>
-      <th>prob</th>
-      <td><p>The p-value for considering an interaction principal component axis significant.
-must be multiple of <code>increment</code>. If this assumption is not valid, an error will be occour.</p></td>
+      <th>level</th>
+      <td><p>The fonfidence level</p></td>
     </tr>
     <tr>
-      <th>progbar</th>
-      <td><p>A logical argument to define if a progress bar is shown.
-Default is <code>TRUE</code>.</p></td>
+      <th>xlab</th>
+      <td><p>The x lab</p></td>
+    </tr>
+    <tr>
+      <th>ylab</th>
+      <td><p>The y lab</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>The colour to be used in the line plot and points</p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>The alpha for the color in confidence band</p></td>
+    </tr>
+    <tr>
+      <th>size.shape</th>
+      <td><p>The size for the shape in plot</p></td>
+    </tr>
+    <tr>
+      <th>size.line</th>
+      <td><p>The size for the line in the plot</p></td>
+    </tr>
+    <tr>
+      <th>size.text</th>
+      <td><p>The size of the text</p></td>
+    </tr>
+    <tr>
+      <th>fontfam</th>
+      <td><p>The family of the font text</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    
-
-<dt>MeansGxE</dt><dd><p>The means of genotypes in the environments, with observed,
-predicted and residual values.</p></dd>
-
-<dt>WAASxGY</dt><dd><p>A list with the estimates for each secenario.</p></dd>
-
-
-<dt>WAASY</dt><dd><p>The values of the WAASY estimated when the wheight for the
-stability in the loop match with argument <code>saveWAASY</code>.</p></dd>
-
-<dt>hetdata, hetcomb, CorcombWAASY</dt><dd><p>The data used to produce the heatmaps.</p></dd>
-
-<dt>WAASY.values</dt><dd><p>All the values of WAASY estimated in the different
-scenarios of WAAS/GY weighting ratio.</p></dd>
-
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>After fitting a model with the functions <code><a href='waas.html'>waas</a></code> or <code><a href='waasb.html'>waasb</a></code>
-it is possible to compute the superiority indexes WAASY or WAASBY in different scenarios of
-weights for stability and mean performance. The number of scenarios is defined by the arguments
-<code>increment</code>. By default, twenty-one different scenarios are computed. In this case, the
-the superiority index is computed considering the following weights: stability (waasb or waas) = 100;
-mean performance = 0. In other words, only stability is considered for genotype ranking. In the
-next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become
-90/10, and so on up to these weights become 0/100. In the last iteration, the genotype
-ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='resca.html'>resca</a></code></p></div>
+    <div class='dont-index'><p><code><a href='plot_factbars.html'>plot_factbars</a></code> <code><a href='plot_factlines.html'>plot_factlines</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>,
-             <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-             <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-             <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
-<span class='no'>scenarios</span> <span class='kw'>=</span> <span class='fu'>wsmp</span>(<span class='no'>model</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
-    <h2>Author</h2>
-    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
   </div>
 </div>
 

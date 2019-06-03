@@ -150,12 +150,12 @@
 <a class="sourceLine" id="cb1-10" title="10">}</a>
 <a class="sourceLine" id="cb1-11" title="11"></a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
-<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
-##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
-##  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
-##  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...
-##  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</code></pre>
+<pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
+ $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
+ $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
+ $ GY : num  2.17 2.5 2.43 3.21 2.93 ...
+ $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</code></pre>
 </div>
 <div id="the-blup-model" class="section level1">
 <h1 class="hasAnchor">
@@ -179,7 +179,7 @@
 <a class="sourceLine" id="cb3-5" title="5">                    <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb3-6" title="6">                    <span class="dt">random =</span> <span class="st">"gen"</span>, <span class="co">#Default</span></a>
 <a class="sourceLine" id="cb3-7" title="7">                    <span class="dt">verbose =</span> <span class="ot">TRUE</span>) <span class="co">#Default</span></a></code></pre></div>
-<pre><code>## Done!</code></pre>
+<pre><code>Done!</code></pre>
 <div id="diagnostic-plot-for-residuals" class="section level2">
 <h2 class="hasAnchor">
 <a href="#diagnostic-plot-for-residuals" class="anchor"></a>Diagnostic plot for residuals</h2>
@@ -3820,54 +3820,54 @@ E9
 <a class="sourceLine" id="cb28-3" title="3"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
 <a class="sourceLine" id="cb28-4" title="4">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
 <a class="sourceLine" id="cb28-5" title="5">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
-<pre><code>## Evaluating variable KW 25 % 
-## Evaluating variable NKE 50 % 
-## Evaluating variable PH 75 % 
-## Evaluating variable EH 100 % 
-## Done!
-## 
-## -----------------------------------------------------------------------------------
-## Principal Component Analysis
-## -----------------------------------------------------------------------------------
-##     eigen.values cumulative.var
-## PC1   3.14414174       78.60354
-## PC2   0.66041176       95.11384
-## PC3   0.13857767       98.57828
-## PC4   0.05686883      100.00000
-## 
-## -----------------------------------------------------------------------------------
-## Factor Analysis
-## -----------------------------------------------------------------------------------
-##            FA1 comunalits
-## KW  -0.9474560  0.8976729
-## NKE -0.7429934  0.5520392
-## PH  -0.9429971  0.8892436
-## EH  -0.8973216  0.8051861
-## 
-## -----------------------------------------------------------------------------------
-## Comunalit Mean: 0.7860354 
-## 
-## -----------------------------------------------------------------------------------
-## Multitrait stability index
-## -----------------------------------------------------------------------------------
-##    H13     H6     H2     H5     H1     H4     H3     H8     H9    H10 
-## 0.9807 0.8843 0.8413 0.8409 0.8023 0.7972 0.6222 0.2623 0.2354 0.1810 
-##     H7    H12    H11 
-## 0.1163 0.1014 0.0780 
-## 
-## -----------------------------------------------------------------------------------
-## Selection differential
-## -----------------------------------------------------------------------------------
-##     Factor Selection differential (%)
-## KW       1               1.297090e+00
-## NKE      1               5.510697e-08
-## PH       1               9.006835e-02
-## EH       1               2.407567e-08
-## 
-## -----------------------------------------------------------------------------------
-## Selected genotypes
-## H13 H6
-## -----------------------------------------------------------------------------------</code></pre>
+<pre><code>Evaluating variable KW 25 % 
+Evaluating variable NKE 50 % 
+Evaluating variable PH 75 % 
+Evaluating variable EH 100 % 
+Done!
+
+-----------------------------------------------------------------------------------
+Principal Component Analysis
+-----------------------------------------------------------------------------------
+    eigen.values cumulative.var
+PC1   3.14414174       78.60354
+PC2   0.66041176       95.11384
+PC3   0.13857767       98.57828
+PC4   0.05686883      100.00000
+
+-----------------------------------------------------------------------------------
+Factor Analysis
+-----------------------------------------------------------------------------------
+           FA1 comunalits
+KW  -0.9474560  0.8976729
+NKE -0.7429934  0.5520392
+PH  -0.9429971  0.8892436
+EH  -0.8973216  0.8051861
+
+-----------------------------------------------------------------------------------
+Comunalit Mean: 0.7860354 
+
+-----------------------------------------------------------------------------------
+Multitrait stability index
+-----------------------------------------------------------------------------------
+   H13     H6     H2     H5     H1     H4     H3     H8     H9    H10 
+0.9807 0.8843 0.8413 0.8409 0.8023 0.7972 0.6222 0.2623 0.2354 0.1810 
+    H7    H12    H11 
+0.1163 0.1014 0.0780 
+
+-----------------------------------------------------------------------------------
+Selection differential
+-----------------------------------------------------------------------------------
+    Factor Selection differential (%)
+KW       1               1.297090e+00
+NKE      1               5.510697e-08
+PH       1               9.006835e-02
+EH       1               2.407567e-08
+
+-----------------------------------------------------------------------------------
+Selected genotypes
+H13 H6
+-----------------------------------------------------------------------------------</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
 <p><img src="vignettes_blup_files/figure-html/unnamed-chunk-25-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
