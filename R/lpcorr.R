@@ -9,6 +9,8 @@
 #' \code{split_factors}.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
 #' objects used to compute the correlation coefficients.
+#' @param method a character string indicating which correlation coefficient is to be computed.
+#' One of "pearson" (default), "kendall", or "spearman".
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #' console.
 #' @return If a grouping factor is used then a list is returned with the
@@ -34,7 +36,7 @@
 #'            split_factors(Species) %>%
 #'            lpcor()
 #'
-lpcor <- function(.data, n = NULL, verbose = TRUE) {
+lpcor <- function(.data, n = NULL, method = "pearson", verbose = TRUE) {
 
   if(!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)){
     stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
@@ -55,7 +57,7 @@ lpcor <- function(.data, n = NULL, verbose = TRUE) {
         cor.x = x
       }
       if(is.data.frame(x)){
-        cor.x = cor(x)
+        cor.x = cor(x, method = method)
         n = nrow(x)
       }
       nvar <- ncol(cor.x)
@@ -110,7 +112,6 @@ lpcor <- function(.data, n = NULL, verbose = TRUE) {
                   " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
         }
     }
-
     if (class(.data) == "split_factors") {
     invisible(structure(out, class = "lpcor_group"))
     } else {
