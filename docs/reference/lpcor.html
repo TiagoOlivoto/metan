@@ -176,7 +176,7 @@ data frame or a correlation matrix.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>lpcor</span>(<span class='no'>.data</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>lpcor</span>(<span class='no'>.data</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,6 +191,11 @@ or, a dataframe containing the predictor variables, or an object of class
       <th>n</th>
       <td><p>If a correlation matrix is provided, then <code>n</code> is the number of
 objects used to compute the correlation coefficients.</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>a character string indicating which correlation coefficient is to be computed.
+One of "pearson" (default), "kendall", or "spearman".</p></td>
     </tr>
     <tr>
       <th>verbose</th>

@@ -63,7 +63,7 @@ print_table(reg_model$GY$regression)
 
 
 # Genotypic confidence index
-@Annicchiarico1992 proposed that a stability method in which the stability parameter is measured by the superiority of the genotype in relation to the average of each environment, according to the following model:
+@Annicchiarico1992 proposed a stability method in which the stability parameter is measured by the superiority of the genotype in relation to the average of each environment, according to the following model:
 
 $$
 {Z_{ij}} = \frac{{{Y_{ij}}}}{{{{\bar Y}_{.j}}}} \times 100
