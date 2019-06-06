@@ -75,9 +75,9 @@ plot_blup <- function(x, prob = 0.05, export = FALSE, file.type = "pdf", file.na
     blup$CI <- blup$Predicted - blup$LL
     mean <- mean(blup$Predicted)
     p1 <- ggplot2::ggplot(blup, aes(x = Predicted, y = GEN)) +
-        geom_point(stat = "identity", aes(col = Mean), size = size.shape) +
         geom_errorbarh(aes(xmin = Predicted -CI, xmax = Predicted + CI), size = size.err.bar, height = height.err.bar) +
-        scale_color_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
+        geom_point(stat = "identity", aes(fill = Mean), shape = 21, size = size.shape) +
+        scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
         labs(x = x.lab, y = y.lab) +
         geom_vline(xintercept = mean(blup$Predicted)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
