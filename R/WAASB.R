@@ -319,10 +319,21 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
 
             Predicted <- data %>% mutate(Predicted = predict(Complete))
             residuals <- data.frame(fortify.merMod(Complete))
-            temp <- structure(list(individual = individual[[1]], fixed = fixed, random = random,
-                                   LRT = LRT, model = WAASAbs, BLUPgen = NULL, BLUPgge = Predicted,
-                                   PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
-                                   residuals = residuals), class = "waasb")
+            temp <- structure(list(individual = individual[[1]],
+                                   fixed = as_tibble(fixed),
+                                   random = as_tibble(random),
+                                   LRT = as_tibble(LRT),
+                                   model = as_tibble(WAASAbs),
+                                   blupGEN = NULL,
+                                   BLUPgge = as_tibble(Predicted),
+                                   PCA = as_tibble(Eigenvalue),
+                                   MeansGxE = as_tibble(MEDIAS),
+                                   Details = as_tibble(Details),
+                                   ESTIMATES = as_tibble(ESTIMATES),
+                                   residuals = as_tibble(residuals)), class = "waasb")
+
+
+
             if (length(d$resp) > 1) {
                 if (verbose == T) {
                     cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
@@ -500,10 +511,18 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                                      "Predicted", "LL", "UL")
             residuals <- data.frame(fortify.merMod(Complete))
             residuals$reff <- selectioNenv$BLUPge
-            temp <- structure(list(individual = individual[[1]], fixed = fixed, random = random,
-                                   LRT = LRT, model = WAASAbs, blupGEN = blupGEN, BLUPgge = selectioNenv,
-                                   PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
-                                   residuals = residuals), class = "waasb")
+            temp <- structure(list(individual = individual[[1]],
+                                   fixed = as_tibble(fixed),
+                                   random = as_tibble(random),
+                                   LRT = as_tibble(LRT),
+                                   model = as_tibble(WAASAbs),
+                                   blupGEN = as_tibble(blupGEN),
+                                   BLUPgge = as_tibble(selectioNenv),
+                                   PCA = as_tibble(Eigenvalue),
+                                   MeansGxE = as_tibble(MEDIAS),
+                                   Details = as_tibble(Details),
+                                   ESTIMATES = as_tibble(ESTIMATES),
+                                   residuals = as_tibble(residuals)), class = "waasb")
 
             if (length(d$resp) > 1) {
                 if (verbose == T) {
@@ -681,7 +700,6 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                               LL = Predicted - Limits,
                               UL = Predicted + Limits) %>%
                 dplyr::select(Rank, everything())
-
             blupENV <- data.frame(ENV = MENV$Code, BLUPe = bups$ENV$`(Intercept)`) %>%
                 dplyr::mutate(Predicted = BLUPe + ovmean) %>%
                 dplyr::arrange(-Predicted) %>%
@@ -697,10 +715,19 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             names(selectioNenv) <- c("ENV", "GEN", "BLUPge", "BLUPg", "BLUPe", "BLUPge+g+e", "Predicted")
             residuals <- fortify.merMod(Complete)
             residuals$reff <- selectioNenv$BLUPge
-            temp <- structure(list(individual = individual[[1]], fixed = NULL, random = random,
-                                   LRT = LRT, model = WAASAbs, blupGEN = blupGEN, BLUPgge = selectioNenv,
-                                   PCA = Eigenvalue, MeansGxE = MEDIAS, Details = Details, ESTIMATES = ESTIMATES,
-                                   residuals = residuals), class = "waasb")
+            temp <- structure(list(individual = individual[[1]],
+                                   fixed = NULL,
+                                   random = as_tibble(random),
+                                   LRT = as_tibble(LRT),
+                                   model = as_tibble(WAASAbs),
+                                   blupGEN = as_tibble(blupGEN),
+                                   BLUPgge = as_tibble(selectioNenv),
+                                   PCA = as_tibble(Eigenvalue),
+                                   MeansGxE = as_tibble(MEDIAS),
+                                   Details = as_tibble(Details),
+                                   ESTIMATES = as_tibble(ESTIMATES),
+                                   residuals = as_tibble(residuals)), class = "waasb")
+
 
             if (length(d$resp) > 1) {
                 if (verbose == T) {
