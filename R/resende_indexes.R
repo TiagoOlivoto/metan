@@ -103,7 +103,7 @@ Resende_indexes <- function(.data) {
 
         temp <- data.frame(cbind(HMGV, RPGV_data, HMRPGV_data))
         rownames(temp) <- rownames(RPGV)
-        listres[[paste(names(.data[var]))]] <- temp
+        listres[[paste(names(.data[var]))]] <- as_tibble(temp)
     }
     invisible(listres)
 }
