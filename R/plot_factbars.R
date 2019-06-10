@@ -24,7 +24,7 @@
 #' in changes in the graph
 #' @param col Logical argument. If \code{FALSE}, a gray scale is used.
 #' @param palette The color palette to be used. For more details, see
-#' \code{?Scale_colour_brewer}
+#' \code{?scale_colour_brewer}
 #' @param width.bar The width of the bars in the graph. Defaults to 0.9
 #' possible values [0-1].
 #' @param lab.x.angle The angle of the caption text. Default is 0.
@@ -114,11 +114,11 @@ plot_factbars = function(.data,
   if(invert == FALSE){
 p = ggplot2::ggplot(data=datac, aes(x=x, y=mean_var, fill=y))+
     geom_bar(aes(fill = y), colour = "black", stat="identity", position=position_dodge(), width = width.bar)+
-    scale_fill_brewer(type = "qualitative", palette = palette)
+    scale_fill_brewer(palette = palette)
   } else{
 p = ggplot2::ggplot(data=datac, aes(x=y, y=mean_var, fill=x))+
-    geom_bar(aes(fill = x), colour = "black", stat="identity", position=position_dodge(),width = width.bar)
-    scale_fill_brewer(type = "qualitative", palette = palette)
+    geom_bar(aes(fill = x), colour = "black", stat="identity", position=position_dodge(),width = width.bar)+
+    scale_fill_brewer(palette = palette)
   }
   } else{
         p = ggplot2::ggplot(data=datac, aes(x=x, y=mean_var))+
