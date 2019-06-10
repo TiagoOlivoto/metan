@@ -166,7 +166,7 @@ p = p + scale_fill_grey(start = 0, end = .9)
                    panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
                    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank())+
     ggplot2::labs(y = ylab, x = xlab) +
-    scale_y_continuous(limits = y.lim, breaks = y.breaks)
+    scale_y_continuous(limits = y.lim, breaks = y.breaks, expand = expand_scale(mult = c(0, .1)))
   if(verbose == TRUE){
   print(datac)
   }
