@@ -150,7 +150,7 @@ p = p + scale_fill_grey(start = 0, end = .9)
      stop("The labels must be either length 1 or the same as the levels of ",
           paste(quos(...)), " (", nrow(datac), ")")
    }
-   p = p + geom_text(aes(label=lab.bar), vjust = lab.bar.vjust, size = size.text.bar)
+   p = p + geom_text(aes(label=lab.bar), position = pd, vjust = lab.bar.vjust, size = size.text.bar)
  }
 
   p = p + ggplot2::theme(axis.ticks.length = unit(.2, "cm"),
