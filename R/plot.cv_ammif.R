@@ -36,6 +36,7 @@
 #' @param col.violin Parameter valid if \code{violin = T}. Define the color of
 #' the violin plot. Default is "gray90.
 #' @param col.boxplot Define the color for boxplot. Default is "gray70".
+#' @param col.boxplot.win Define the color for boxplot of the best model. Default is "cyan".
 #' @param width.boxplot The width of boxplots. Default is \code{0.2}.
 #' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and
 #' minimum values of the data set). New arguments can be inserted as
@@ -62,36 +63,44 @@
 #'
 #'
 plot.cv_ammif <- function(x, violin = FALSE, export = FALSE, x.lab = NULL,
-    y.lab = NULL, size.tex.lab = 12, file.type = "pdf", file.name = NULL, theme = theme_waasb(),
-    width = 6, height = 6, resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
-    width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), ...) {
+                          y.lab = NULL, size.tex.lab = 12, file.type = "pdf", file.name = NULL, theme = theme_waasb(),
+                          width = 6, height = 6, resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
+                          col.boxplot.win = "cyan", width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), ...) {
     if (!class(x) == "cv_ammif"){
         stop("The object 'x' must be of class 'cv_ammif'.")
     }
     if (is.null(y.lab) == F) {
         y.lab <- y.lab
     } else y.lab <- expression(paste("Root mean square prediction difference (Mg ha"^-1,
-        ")"))
+                                     ")"))
 
     if (is.null(x.lab) == F) {
         x.lab <- x.lab
     } else x.lab <- "AMMI family models"
 
+    a = suppressMessages(x$RMSPD %>% group_by(MODEL) %>% summarise(RMSPD = mean(RMSPD)) %>% top_n(-1))
+    mod = paste(a$MODEL[1])
     if (violin == TRUE) {
         dodge <- position_dodge(width = 1)
-        p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) + geom_violin(position = dodge,
-            fill = col.violin) + geom_boxplot(width = width.boxplot, position = dodge,
-            fill = col.boxplot) + stat_summary(fun.y = mean, geom = "point", shape = 23,
-            fill = "black") + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
-            colour = "black"), axis.title = element_text(size = size.tex.lab, colour = "black")) +
+        p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
+            geom_violin(position = dodge, fill = col.violin)+
+            geom_boxplot(width = width.boxplot, position = dodge, fill = col.boxplot) +
+            geom_boxplot(data=x$RMSPD[x$RMSPD$MODEL==mod,], aes(x = MODEL, y = RMSPD),
+                         width = width.boxplot, position = dodge, fill = col.boxplot.win)+
+            stat_summary(fun.y = mean, geom = "point", shape = 23, fill = "black") +
+            theme %+replace% theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+                                   axis.title = element_text(size = size.tex.lab, colour = "black")) +
             coord_flip() + scale_y_continuous(limits = x.lim, breaks = x.breaks) +
             labs(x = x.lab, y = y.lab)
     } else {
         dodge <- position_dodge(width = 1)
-        p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) + geom_boxplot(width = width.boxplot,
-            position = dodge, fill = col.boxplot) + stat_summary(fun.y = mean, geom = "point",
-            shape = 23, fill = "black") + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
-            colour = "black"), axis.title = element_text(size = size.tex.lab, colour = "black")) +
+        p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
+            geom_boxplot(width = width.boxplot, position = dodge, fill = col.boxplot) +
+            geom_boxplot(data=x$RMSPD[x$RMSPD$MODEL==mod,], aes(x = MODEL, y = RMSPD),
+                         width = width.boxplot, position = dodge, fill = col.boxplot.win)+
+            stat_summary(fun.y = mean, geom = "point", shape = 23, fill = "black") +
+            theme %+replace% theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+                                   axis.title = element_text(size = size.tex.lab, colour = "black")) +
             coord_flip() + scale_y_continuous(limits = x.lim, breaks = x.breaks) +
             labs(x = x.lab, y = y.lab)
     }
@@ -109,9 +118,9 @@ plot.cv_ammif <- function(x, violin = FALSE, export = FALSE, x.lab = NULL,
     if (file.type == "tiff") {
         if (is.null(file.name)) {
             tiff(filename = "RMSPD validation.tiff", width = width, height = height,
-                units = "in", compression = "lzw", res = resolution)
+                 units = "in", compression = "lzw", res = resolution)
         } else tiff(filename = paste0(file.name, ".tiff"), width = width, height = height,
-            units = "in", compression = "lzw", res = resolution)
+                    units = "in", compression = "lzw", res = resolution)
         plot(p1)
         dev.off()
     }
