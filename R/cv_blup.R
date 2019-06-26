@@ -24,6 +24,12 @@
 #' @param nrepval The number of replicates (r) from total number of replicates
 #' (R) to be used in the modeling dataset. Only one replicate is used as
 #' validating data each step, so, \code{Nrepval} must be equal \code{R-1}
+#' @param random The effects of the model assumed to be random. Default is
+#' \code{random = "gen"} (genotype and genotype-vs-environment as random
+#' effects. Other values allowed are \code{random = "env"} (environment,
+#' genotype-vs-environment and block-within-environment random effects) or
+#' \code{random = "all"} all effects except the intercept are assumed to be
+#' random effects.
 #' @param verbose A logical argument to define if a progress bar is shown.
 #' Default is \code{TRUE}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -48,7 +54,7 @@
 #'
 #' }
 #'
-cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) {
+cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, random = "gen", verbose = TRUE) {
     data  = .data %>% select(ENV = !!enquo(env),
                              GEN = !!enquo(gen),
                              REP = !!enquo(rep),
@@ -81,11 +87,28 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) 
         rownames(modeling) <- modeling$ID
         testing <- suppressWarnings(dplyr::anti_join(data, modeling, by = c("ENV",
                                                                             "GEN", "REP", "Y", "ID")))%>%
-        arrange(ENV, GEN, REP) %>% as.data.frame()
+            arrange(ENV, GEN, REP) %>% as.data.frame()
         MEDIAS <- data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(Y = mean(Y)))
 
-        model <- suppressWarnings(suppressMessages(lme4::lmer(Y ~ REP %in% ENV +
-                                                                  (1 | GEN) + ENV + (1 | GEN:ENV), data = modeling)))
+
+        if(random == "gen"){
+            model <- suppressWarnings(suppressMessages(lme4::lmer(Y ~ REP %in% ENV +
+                                                                      ENV +
+                                                                      (1 | GEN) +
+                                                                      (1 | GEN:ENV), data = modeling)))
+        }
+        if(random == "env"){
+            model <- suppressWarnings(suppressMessages(lme4::lmer(Y ~ GEN +
+                                                                      (1 | ENV/REP) +
+                                                                      (1 | GEN:ENV), data = modeling)))
+        }
+        if(random == "all"){
+            model <- suppressWarnings(suppressMessages(lme4::lmer(Y ~ 1 +
+                                                                      (1 | GEN) +
+                                                                      (1 | ENV/REP) +
+                                                                      (1 | GEN:ENV), data = modeling)))
+        }
+
         validation <- data.frame(mutate(modeling, pred = predict(model)) %>% dplyr::group_by(ENV,
                                                                                              GEN) %>% dplyr::summarise(pred = mean(pred)))
         validation <- mutate(validation, error = pred - testing$Y)
@@ -96,10 +119,19 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) 
             ProcdAtua <- b
             setWinProgressBar(pb, b, title = paste("Estimating BLUPs for ", ProcdAtua,
                                                    " of ", nboot, " validation datasets", "-", round(b/nboot *
-                                                                                                               100, 1), "% Concluded -"))
+                                                                                                         100, 1), "% Concluded -"))
         }
     }
-    RMSPDres <- dplyr::mutate(RMSPDres, MODEL = "BLUP") %>%
+    if(random == "gen"){
+        MOD = "BLUP_g"
+    }
+    if(random == "env"){
+        MOD = "BLUP_e"
+    }
+    if(random == "all"){
+        MOD = "BLUP_ge"
+    }
+    RMSPDres <- dplyr::mutate(RMSPDres, MODEL = MOD) %>%
         dplyr::select(MODEL, everything())
     RMSPDmean <- RMSPDres %>%
         dplyr::group_by(MODEL) %>%
@@ -113,4 +145,3 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE) 
     }
     return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean), class = "cv_blup"))
 }
-
