@@ -131,7 +131,6 @@
 #'                 wresp = c(60, 40))
 #'}
 #'
-
 waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random = "gen",
                   prob = 0.05, verbose = TRUE) {
     if (!random %in% c("env", "gen", "all")) {
@@ -192,9 +191,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 cat("\nWarning. The analysis is not possible.")
                 cat("\nThe number of environments and number of genotypes must be greater than 2\n")
             }
-
             individual <- data %>% anova_ind(ENV, GEN, REP, Y)
-
             Complete <- lmerTest::lmer(data = data, Y ~ GEN + (1 | ENV/REP) + (1 |
                                                                                    GEN:ENV))
             LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
@@ -557,8 +554,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
 
             individual <- data %>% anova_ind(ENV, GEN, REP, Y)
 
-            Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
-                                                                         Y ~ (1 | GEN) + (1 | ENV/REP) + (1 | GEN:ENV))))
+            Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ 1 + (1 | GEN) + (1 | ENV/REP) + (1 | GEN:ENV), data = data)))
             LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
             rownames(LRT) <- c("Complete", "Genotype", "Env/Rep", "Environment", "Gen:Env")
             random = lme4::VarCorr(Complete) %>%
