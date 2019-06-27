@@ -52,7 +52,7 @@ in changes in the graph}
 \item{col}{Logical argument. If \code{FALSE}, a gray scale is used.}
 
 \item{palette}{The color palette to be used. For more details, see
-\code{?Scale_colour_brewer}}
+\code{?scale_colour_brewer}}
 
 \item{width.bar}{The width of the bars in the graph. Defaults to 0.9
 possible values [0-1].}
