@@ -8,7 +8,8 @@
   x.lab = NULL, y.lab = NULL, size.tex.lab = 12, file.type = "pdf",
   file.name = NULL, theme = theme_waasb(), width = 6, height = 6,
   resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
-  width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), ...)
+  col.boxplot.win = "cyan", width.boxplot = 0.2, x.lim = NULL,
+  x.breaks = waiver(), ...)
 }
 \arguments{
 \item{x}{An object of class \code{cv_ammif}.}
@@ -49,6 +50,8 @@ here)`. For more details, please, see `?ggplot2::theme`}
 the violin plot. Default is "gray90.}
 
 \item{col.boxplot}{Define the color for boxplot. Default is "gray70".}
+
+\item{col.boxplot.win}{Define the color for boxplot of the best model. Default is "cyan".}
 
 \item{width.boxplot}{The width of boxplots. Default is \code{0.2}.}
 

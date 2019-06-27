@@ -4,7 +4,8 @@
 \alias{cv_blup}
 \title{Cross-validation procedure}
 \usage{
-cv_blup(.data, env, gen, rep, resp, nboot, nrepval, verbose = TRUE)
+cv_blup(.data, env, gen, rep, resp, nboot, nrepval, random = "gen",
+  verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -25,6 +26,13 @@ replications/blocks.}
 \item{nrepval}{The number of replicates (r) from total number of replicates
 (R) to be used in the modeling dataset. Only one replicate is used as
 validating data each step, so, \code{Nrepval} must be equal \code{R-1}}
+
+\item{random}{The effects of the model assumed to be random. Default is
+\code{random = "gen"} (genotype and genotype-vs-environment as random
+effects. Other values allowed are \code{random = "env"} (environment,
+genotype-vs-environment and block-within-environment random effects) or
+\code{random = "all"} all effects except the intercept are assumed to be
+random effects.}
 
 \item{verbose}{A logical argument to define if a progress bar is shown.
 Default is \code{TRUE}.}
