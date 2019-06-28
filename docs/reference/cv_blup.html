@@ -174,7 +174,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>cv_blup</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='no'>nboot</span>, <span class='no'>nrepval</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>cv_blup</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='no'>nboot</span>, <span class='no'>nrepval</span>, <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"gen"</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -211,6 +212,15 @@ replications/blocks.</p></td>
       <td><p>The number of replicates (r) from total number of replicates
 (R) to be used in the modeling dataset. Only one replicate is used as
 validating data each step, so, <code>Nrepval</code> must be equal <code>R-1</code></p></td>
+    </tr>
+    <tr>
+      <th>random</th>
+      <td><p>The effects of the model assumed to be random. Default is
+<code>random = "gen"</code> (genotype and genotype-vs-environment as random
+effects. Other values allowed are <code>random = "env"</code> (environment,
+genotype-vs-environment and block-within-environment random effects) or
+<code>random = "all"</code> all effects except the intercept are assumed to be
+random effects.</p></td>
     </tr>
     <tr>
       <th>verbose</th>

@@ -78,11 +78,11 @@ plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, them
             arrange(desc(WAASY)) %>%
             mutate(Mean = ifelse(WAASY < mean(WAASY), "below", "above"))
     }
-    p1 = ggplot2::ggplot(data, aes(x = reorder(Code, WAASY), y = WAASY, col = Mean)) +
-        geom_point(stat = "identity", size = size.shape) +
-        geom_segment(aes(y = min(data$WAASY), x = Code, yend = WAASY, xend = Code), color = "black") +
+    p1 = ggplot2::ggplot(data, aes(x = reorder(Code, WAASY), y = WAASY, fill = Mean)) +
+        geom_point(stat = "identity", size = size.shape, col = "black", shape = 21) +
+        geom_segment(aes(y = 0, x = Code, yend = WAASY, xend = Code), color = "black") +
         coord_flip() +
-        scale_color_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
+        scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
         theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
         colour = "black"), axis.title = element_text(size = size.tex.lab, colour = "black")) +
         scale_y_continuous(limits = c(min(data$WAASY), 100), breaks = x.breaks) +

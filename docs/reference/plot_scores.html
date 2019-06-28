@@ -185,10 +185,10 @@ Nominal yield x EPCA1</code>.</p>
   <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>shape.gen</span> <span class='kw'>=</span> <span class='fl'>21</span>, <span class='kw'>shape.env</span> <span class='kw'>=</span> <span class='fl'>23</span>,
   <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>size.bor.tick</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
   <span class='kw'>size.tex.pa</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>repulsion</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>size.segm.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Gen"</span>, <span class='st'>"Env"</span>),
+  <span class='kw'>size.segm.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Env"</span>, <span class='st'>"Gen"</span>),
   <span class='kw'>line.type</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>line.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>, <span class='kw'>col.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>col.segm.gen</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>, <span class='kw'>col.segm.env</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>,
+  <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>col.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>col.segm.gen</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>, <span class='kw'>col.segm.env</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
   <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -213,8 +213,8 @@ GY x WAASB</code>, and <code>4 = Nominal yield x Environment PC1</code>.</p></td
     <tr>
       <th>file.type</th>
       <td><p>The type of file to be exported. Valid parameter if
-<code>export = T|TRUE</code>.  Default is <code>"pdf"</code>. The graphic can also be
-exported in <code>*.tiff</code> format by declaring <code>file.type = "tiff"</code>.</p></td>
+<code>export = T|TRUE</code>.  Default is <code>'pdf'</code>. The graphic can also be
+exported in <code>*.tiff</code> format by declaring <code>file.type = 'tiff'</code>.</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -239,11 +239,11 @@ enable fitting of labels. Default is <code>1.1</code>.</p></td>
     </tr>
     <tr>
       <th>width</th>
-      <td><p>The width "inch" of the plot. Default is <code>8</code>.</p></td>
+      <td><p>The width 'inch' of the plot. Default is <code>8</code>.</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p>The height "inch" of the plot. Default is <code>7</code>.</p></td>
+      <td><p>The height 'inch' of the plot. Default is <code>7</code>.</p></td>
     </tr>
     <tr>
       <th>x.lim</th>
@@ -260,12 +260,12 @@ c(breaks)</code></p></td>
     <tr>
       <th>x.lab</th>
       <td><p>The label of x-axis. Each plot has a default value. New
-arguments can be inserted as <code>x.lab = "my label"</code>.</p></td>
+arguments can be inserted as <code>x.lab = 'my label'</code>.</p></td>
     </tr>
     <tr>
       <th>y.lab</th>
       <td><p>The label of y-axis. Each plot has a default value. New
-arguments can be inserted as <code>y.lab = "my label"</code>.</p></td>
+arguments can be inserted as <code>y.lab = 'my label'</code>.</p></td>
     </tr>
     <tr>
       <th>y.lim</th>
@@ -288,7 +288,7 @@ used.</p></td>
     <tr>
       <th>shape.env</th>
       <td><p>The shape for environment indication in the biplot. Default
-is <code>23</code> (diamond). The same arguments than <code>"shape.gen"</code>.</p></td>
+is <code>23</code> (diamond). The same arguments than <code>'shape.gen'</code>.</p></td>
     </tr>
     <tr>
       <th>size.shape</th>
@@ -331,34 +331,34 @@ the biplot and end in the scores values. Default is <code>0.5</code>.</p></td>
     <tr>
       <th>line.type</th>
       <td><p>The type of the line that indicate the means in the biplot.
-Default is <code>"solid"</code>. Other values that can be attributed are:
-<code>"blank"</code>, no lines in the biplot, <code>"dashed", "dotted", "dotdash",
-"longdash", and "twodash"</code>.</p></td>
+Default is <code>'solid'</code>. Other values that can be attributed are:
+<code>'blank'</code>, no lines in the biplot, <code>'dashed', 'dotted', 'dotdash',
+'longdash', and 'twodash'</code>.</p></td>
     </tr>
     <tr>
       <th>line.alpha</th>
       <td><p>The alpha value that combine the line with the background
 to create the appearance of partial or full transparency. Default is
-<code>0.4</code>. Values must be between "0" (full transparency) to "1" (full
+<code>0.4</code>. Values must be between '0' (full transparency) to '1' (full
 color).</p></td>
     </tr>
     <tr>
       <th>col.line</th>
       <td><p>The color of the line that indicate the means in the biplot.
-Default is <code>"gray"</code></p></td>
+Default is <code>'gray'</code></p></td>
     </tr>
     <tr>
       <th>col.gen</th>
       <td><p>The shape color for genotypes. Must be one value or a vector
 of colours with the same length of the number of genotypes. Default is
-<code>"blue"</code>. Other values can be attributed. For example,
-<code>"transparent"</code>, will make a plot with only an outline around the shape
+<code>'orange'</code>. Other values can be attributed. For example,
+<code>'transparent'</code>, will make a plot with only an outline around the shape
 area.</p></td>
     </tr>
     <tr>
       <th>col.env</th>
-      <td><p>The shape color for environments. Default is <code>"red"</code>.
-The same usability than <code>"col.gen"</code>.</p></td>
+      <td><p>The shape color for environments. Default is <code>'green'</code>.
+The same usability than <code>'col.gen'</code>.</p></td>
     </tr>
     <tr>
       <th>col.alpha</th>
@@ -369,19 +369,19 @@ color).</p></td>
     <tr>
       <th>col.segm.gen</th>
       <td><p>The color of segment for genotypes.Default is
-<code>"transparent"</code>. Parameter valid for <code>type = 1</code> and <code>type =
+<code>'transparent'</code>. Parameter valid for <code>type = 1</code> and <code>type =
 2</code> graphics. This segment start in the origin of the biplot and end in the
 scores values.</p></td>
     </tr>
     <tr>
       <th>col.segm.env</th>
       <td><p>The color of segment for environments. Default is
-<code>"gray50"</code>. The same usability than <code>"col.segm.gen"</code></p></td>
+<code>'green'</code>. The same usability than <code>'col.segm.gen'</code></p></td>
     </tr>
     <tr>
       <th>resolution</th>
       <td><p>The resolution of the plot. Parameter valid if
-<code>file.type = "tiff"</code> is used. Default is <code>300</code> (300 dpi)</p></td>
+<code>file.type = 'tiff'</code> is used. Default is <code>300</code> (300 dpi)</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -398,7 +398,7 @@ environments are plotted considering the response variable and the WAASB
 (stability index that considers all significant principal component axis of
 traditional AMMI models or all principal component axis estimated with
 BLUP-interaction effects. Plot type 4 may be used to better understand the
-well known "which-won-where" pattern, facilitating the recommendation of
+well known 'which-won-where' pattern, facilitating the recommendation of
 appropriate genotypes targeted for specific environments, thus allowing the
 exploitation of narrow adaptations.</p>
     
@@ -422,9 +422,9 @@ exploitation of narrow adaptations.</p>
 <span class='co'># GY x PC1</span>
 <span class='fu'>plot_scores</span>(<span class='no'>scores</span>$<span class='no'>GY</span>,
             <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-            <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"olivedrab"</span>,
-            <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"orange2"</span>,
-            <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>"My own x label"</span>)</div><div class='img'><img src='plot_scores-2.png' alt='' width='700' height='433' /></div><div class='input'>
+            <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>'olivedrab'</span>,
+            <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>'orange2'</span>,
+            <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>'My own x label'</span>)</div><div class='img'><img src='plot_scores-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># GY x WAASB</span>
 <span class='fu'>plot_scores</span>(<span class='no'>scores</span>$<span class='no'>GY</span>,
             <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>3</span>,
