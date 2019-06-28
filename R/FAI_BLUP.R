@@ -31,7 +31,7 @@
 #'             env = ENV,
 #'             gen = GEN,
 #'             rep = REP,
-#'             resp = c(GY, HM),)
+#'             resp = c(GY, HM))
 #'
 #' FAI = fai_blup(mod,
 #'                SI = 15,
@@ -58,12 +58,12 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     }
     ideotype.D <- DI
     ideotype.U <- UI
-
-    bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
-        val <- x[["blupGEN"]][order(x[["blupGEN"]][, 2]), ]$Predicted
-    })))
-    bind$gen <- .data[[1]][["blupGEN"]][order(.data[[1]][["blupGEN"]][, 2]), ]$GEN
-    data <- data.frame(bind %>% select(gen, everything()))
+    datt = .data[[1]][["blupGEN"]]
+    data <- data.frame(do.call(cbind, lapply(.data, function(x) {
+      val <- arrange(x[["blupGEN"]], GEN)$Predicted
+    }))) %>%
+      mutate(gen = datt %>% arrange(GEN) %>% pull(GEN)) %>%
+      select(gen, everything())
 
     if (is.null(SI)) {
         ngs <- NULL
