@@ -36,7 +36,7 @@ mod = waasb(data_ge,
             env = ENV,
             gen = GEN,
             rep = REP,
-            resp = c(GY, HM),)
+            resp = c(GY, HM))
 
 FAI = fai_blup(mod,
                SI = 15,
