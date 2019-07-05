@@ -139,10 +139,17 @@ x.lab = NULL, y.lab = NULL, y.lim = NULL, y.breaks = waiver(),
 shape.gen = 21, shape.env = 23, size.shape = 2.2, size.bor.tick = 0.3,
 size.tex.lab = 12, size.tex.pa = 3.5, repulsion = 1, size.line = 0.5,
 size.segm.line = 0.5, leg.lab = c("Env", "Gen"), line.type = "solid",
-line.alpha = 0.9, col.line = "gray", col.gen = "orange",
-col.env = "green", col.alpha = 0.9, col.segm.gen = "transparent",
-col.segm.env = "green", resolution = 300, ...) {
+line.alpha = 0.9, col.line = "black", col.gen = "orange",
+col.env = "gray", col.alpha = 0.9, col.segm.gen = "transparent",
+col.segm.env = "gray", resolution = 300, ...) {
 
+  if(length(x) == 1){
+    x = x[[1]]
+    message("Plotting the first variable of the list, use $ to select other variable.")
+  }
+  if(length(x) > 1){
+    x = x
+  }
 
 if (polygon == TRUE & type != 1) {
 stop("The polygon can be drawn with type 1 graphic only.")
