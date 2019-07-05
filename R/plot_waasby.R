@@ -61,6 +61,13 @@ plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, them
     width = 6, height = 6, size.shape = 3.5, size.tex.lab = 12, col.shape = c("blue",
         "red"), x.lab = "WAASBY", y.lab = "Genotypes", x.breaks = waiver(), resolution = 300,
     ...) {
+    if(length(x) == 1){
+        x = x[[1]]
+        message("Plotting the first variable of the list, use $ to select other variable.")
+    }
+    if(length(x) > 1){
+        x = x
+    }
     class <- class(x)
     if (!class %in% c("waas", "waasb")) {
         stop("The object 'x' must be of class 'waas' or 'waasb'.")
