@@ -52,6 +52,13 @@ plot_eigen <- function(x, export = FALSE, theme = theme_waasb(), file.type = "pd
     if(!class(x) ==  "waasb"){
         stop("The object 'x' must be of class 'waasb'.")
     }
+    if(length(x) == 1){
+        x = x[[1]]
+        message("Plotting the eigenvalues the first variable of the list, use $ to select other variable.")
+    }
+    if(length(x) > 1){
+        x = x
+    }
     eigen <- x$PCA
     eigen$PC <- factor(eigen$PC, levels = eigen$PC)
     scaleFactor <- 100/max(eigen$Eigenvalue)
