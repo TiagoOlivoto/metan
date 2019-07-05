@@ -62,6 +62,13 @@ plot_blup <- function(x, prob = 0.05, export = FALSE, file.type = "pdf", file.na
     if(!class(x) ==  "waasb"){
         stop("The object 'x' must be of class 'waasb'.")
     }
+  if(length(x) == 1){
+    x = x[[1]]
+    message("Plotting the blups for the first variable of the list, use $ to select other variable.")
+  }
+  if(length(x) > 1){
+    x = x
+  }
     PROB <- ((1 - (1 - prob))/2) + (1 - prob)
     t <- qt(PROB, 100)
     GV <- as.numeric(substr(data.frame(x$ESTIMATES)[2, 2], start = 1, stop = 6))
