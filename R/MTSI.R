@@ -39,7 +39,7 @@
 #'
 mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
   if(!index %in% c("waasb", "waasby")){
-    stop("The argument 'index' must be of of the 'waasb' or 'waasby'.)
+    stop("The argument 'index' must be of of the 'waasb' or 'waasby'.")
   }
     if (length(.data) == 1) {
         stop("The multitrait stability index cannot be computed with one single variable.")
