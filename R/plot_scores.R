@@ -143,14 +143,6 @@ line.alpha = 0.9, col.line = "black", col.gen = "orange",
 col.env = "green", col.alpha = 0.9, col.segm.gen = "transparent",
 col.segm.env = "green", resolution = 300, ...) {
 
-  if(length(x) == 1){
-    x = x[[1]]
-    message("Plotting the first variable of the list, use $ to select other variable.")
-  }
-  if(length(x) > 1){
-    x = x
-  }
-
 if (polygon == TRUE & type != 1) {
 stop("The polygon can be drawn with type 1 graphic only.")
 }
