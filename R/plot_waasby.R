@@ -61,13 +61,6 @@ plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, them
     width = 6, height = 6, size.shape = 3.5, size.tex.lab = 12, col.shape = c("blue",
         "red"), x.lab = "WAASBY", y.lab = "Genotypes", x.breaks = waiver(), resolution = 300,
     ...) {
-    if(length(x) == 1){
-        x = x[[1]]
-        message("Plotting the first variable of the list, use $ to select other variable.")
-    }
-    if(length(x) > 1){
-        x = x
-    }
     class <- class(x)
     if (!class %in% c("waas", "waasb")) {
         stop("The object 'x' must be of class 'waas' or 'waasb'.")
@@ -86,13 +79,12 @@ plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, them
             mutate(Mean = ifelse(WAASY < mean(WAASY), "below", "above"))
     }
     p1 = ggplot2::ggplot(data, aes(x = reorder(Code, WAASY), y = WAASY, fill = Mean)) +
-        geom_point(stat = "identity", size = size.shape, col = "black", shape = 21) +
-        geom_segment(aes(y = 0, x = Code, yend = WAASY, xend = Code), color = "black") +
+      geom_segment(aes(x = reorder(Code, WAASY), yend = WAASY, xend = Code), y = 0 )+
+      geom_point(stat = "identity", size = size.shape, col = "black", shape = 21) +
         coord_flip() +
         scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
         theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
         colour = "black"), axis.title = element_text(size = size.tex.lab, colour = "black")) +
-        scale_y_continuous(limits = c(min(data$WAASY), 100), breaks = x.breaks) +
         labs(x = y.lab, y = x.lab)
 
     if (export == F | FALSE) {
