@@ -151,7 +151,6 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
         mresp <- mresp
         minresp <- 100 - mresp
     }
-
     if (is.null(wresp)) {
         PesoResp <- replicate(nvar, 50)
         PesoWAASB <- 100 - PesoResp
@@ -270,7 +269,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
-                           PctWAASB = (minresp[vin] - mresp[vin])/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp[vin],
+                           PctWAASB = (0 - 100)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + 0,
                            wRes = PesoResp[vin],
                            wWAASB = PesoWAASB[vin],
                            OrResp = rank(-Y),
@@ -283,7 +282,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
-                           PctWAASB = (minresp - mresp)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp,
+                           PctWAASB = (0 - 100)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + 0,
                            wRes = PesoResp,
                            wWAASB = PesoWAASB,
                            OrResp = rank(-Y),
@@ -451,7 +450,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
-                           PctWAASB = (minresp[vin] - mresp[vin])/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp[vin],
+                           PctWAASB = (0 - 100)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + 0,
                            wRes = PesoResp[vin],
                            wWAASB = PesoWAASB[vin],
                            OrResp = rank(-Y),
@@ -464,7 +463,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
-                           PctWAASB = (minresp - mresp)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp,
+                           PctWAASB = (0 - 100)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + 0,
                            wRes = PesoResp,
                            wWAASB = PesoWAASB,
                            OrResp = rank(-Y),
@@ -646,7 +645,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
-                           PctWAASB = (minresp[vin] - mresp[vin])/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp[vin],
+                           PctWAASB = (0 - 100)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + 0,
                            wRes = PesoResp[vin],
                            wWAASB = PesoWAASB[vin],
                            OrResp = rank(-Y),
@@ -659,7 +658,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
-                           PctWAASB = (minresp - mresp)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp,
+                           PctWAASB = (0 - 100)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + 0,
                            wRes = PesoResp,
                            wWAASB = PesoWAASB,
                            OrResp = rank(-Y),

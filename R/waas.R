@@ -214,7 +214,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                 WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
-                           PctWAAS = (minresp[vin] - mresp[vin])/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + minresp[vin],
+                           PctWAAS = (0 - 100)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + 0,
                            PesRes = PesoResp[vin],
                            PesWAAS = PesoWAASB[vin],
                            OrResp = rank(-Y),
@@ -227,7 +227,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                 WAASAbs %<>%
                     group_by(type) %>%
                     mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
-                           PctWAAS = (minresp - mresp)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + minresp,
+                           PctWAAS = (0 - 100)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + 0,
                            PesRes = PesoResp,
                            PesWAAS = PesoWAASB,
                            OrResp = rank(-Y),
