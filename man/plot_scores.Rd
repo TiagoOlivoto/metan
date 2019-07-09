@@ -12,7 +12,7 @@ plot_scores(x, type = 1, polygon = FALSE, file.type = "pdf",
   size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
   size.tex.pa = 3.5, repulsion = 1, size.line = 0.5,
   size.segm.line = 0.5, leg.lab = c("Env", "Gen"),
-  line.type = "solid", line.alpha = 0.9, col.line = "gray",
+  line.type = "solid", line.alpha = 0.9, col.line = "black",
   col.gen = "orange", col.env = "green", col.alpha = 0.9,
   col.segm.gen = "transparent", col.segm.env = "green",
   resolution = 300, ...)

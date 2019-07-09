@@ -101,7 +101,7 @@ A progress bar is shown by default (the examples are below). Thus, it is possibl
 All outputs shown in tables were laid out using the R package kableExtra. The pdf file of this package can be found [here](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf).
 
 ```{r }
-bind_mod = bind_cv(AMMIF, BLUP, bind = "means")
+bind_mod = bind_cv(AMMIF, BLUP_g, bind = "means")
 print_table(bind_mod$RMSPD)
 
     ```

@@ -224,12 +224,8 @@ H13 H6
 <a class="sourceLine" id="cb5-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
 <a class="sourceLine" id="cb5-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>()</a></code></pre></div>
-<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-control$checkConv, : Model failed to converge with max|grad| = 0.00577455
-(tol = 0.002, component 1)</code></pre>
-<pre><code>Evaluating variable KW 20 % </code></pre>
-<pre><code>boundary (singular) fit: see ?isSingular</code></pre>
-<pre><code>Evaluating variable NKE 40 % 
+<pre><code>Evaluating variable KW 20 % 
+Evaluating variable NKE 40 % 
 Evaluating variable PH 60 % 
 Evaluating variable EH 80 % 
 Evaluating variable TKW 100 % 
@@ -281,25 +277,21 @@ Selected genotypes
 -------------------------------------------------------------------------------
 H11 H5
 -------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="based-on-mean-performance-and-stability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#based-on-mean-performance-and-stability" class="anchor"></a>Based on mean performance and stability</h2>
 <p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. The simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">MTSI_index2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb11-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
-<a class="sourceLine" id="cb11-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb11-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
-<a class="sourceLine" id="cb11-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
-<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-control$checkConv, : Model failed to converge with max|grad| = 0.00577455
-(tol = 0.002, component 1)</code></pre>
-<pre><code>Evaluating variable KW 20 % </code></pre>
-<pre><code>boundary (singular) fit: see ?isSingular</code></pre>
-<pre><code>Evaluating variable NKE 40 % 
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">MTSI_index2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb8-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
+<a class="sourceLine" id="cb8-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb8-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
+<pre><code>Evaluating variable KW 20 % 
+Evaluating variable NKE 40 % 
 Evaluating variable PH 60 % 
 Evaluating variable EH 80 % 
 Evaluating variable TKW 100 % 
@@ -309,49 +301,49 @@ Done!
 Principal Component Analysis
 -------------------------------------------------------------------------------
     Eigenvalues Variance (%) Cum. variance (%)
-PC1  3.71281234   74.2562467          74.25625
-PC2  0.71178654   14.2357309          88.49198
-PC3  0.42435670    8.4871341          96.97911
-PC4  0.10433422    2.0866845          99.06580
-PC5  0.04671019    0.9342038         100.00000
+PC1  3.38225664   67.6451328          67.64513
+PC2  1.07220072   21.4440144          89.08915
+PC3  0.43819975    8.7639949          97.85314
+PC4  0.07813818    1.5627635          99.41591
+PC5  0.02920472    0.5840943         100.00000
 -------------------------------------------------------------------------------
 Factor Analysis - factorial loadings after rotation-
 -------------------------------------------------------------------------------
-           FA1 Communality Uniquenesses
-KW  -0.9299734   0.8648505    0.1351495
-NKE -0.7015500   0.4921724    0.5078276
-PH   0.9308802   0.8665380    0.1334620
-EH   0.8369546   0.7004930    0.2995070
-TKW -0.8881208   0.7887585    0.2112415
+              FA1        FA2 Communality Uniquenesses
+KW  -0.4997542579 -0.8377856   0.9516391   0.04836089
+NKE -0.0006927283 -0.9242319   0.8542052   0.14579484
+PH   0.9402464640  0.1938856   0.9216550   0.07834497
+EH   0.9643408549  0.1629517   0.9565065   0.04349346
+TKW -0.5834916478 -0.6557355   0.7704515   0.22954848
 -------------------------------------------------------------------------------
-Comunalit Mean: 0.7425625 
+Comunalit Mean: 0.8908915 
 -------------------------------------------------------------------------------
 Multitrait stability index
 -------------------------------------------------------------------------------
-    H2    H13     H7     H3    H11     H1     H6     H4     H5    H10 
-0.2003 0.3335 0.3698 0.3929 0.4294 0.5365 0.6604 0.7528 1.0824 1.1505 
-   H12     H9     H8 
-1.3104 1.6038 2.0982 
+    H5    H11     H4    H10    H13     H7     H6     H2    H12     H8 
+2.4087 3.2668 3.2993 3.5526 3.5550 3.7337 4.2782 4.3503 4.8461 4.8971 
+    H9     H1     H3 
+5.0170 5.6371 5.9593 
 -------------------------------------------------------------------------------
 Selection differential for waasby index
 -------------------------------------------------------------------------------
-    Factor       Xo       Xs         SD     SDperc
-KW     FA1 53.25461 68.93609  15.681479  29.446240
-NKE    FA1 44.97683 61.50375  16.526912  36.745389
-PH     FA1 48.47418 34.28450 -14.189678 -29.272654
-EH     FA1 55.75616 54.71430  -1.041859  -1.868599
-TKW    FA1 53.77888 67.47862  13.699742  25.474207
+    Factor       Xo       Xs       SD   SDperc
+PH     FA1 44.43012 61.06400 16.63388 37.43829
+EH     FA1 49.23772 64.67909 15.44137 31.36085
+KW     FA2 53.25461 72.23216 18.97755 35.63551
+NKE    FA2 44.97683 62.61826 17.64143 39.22337
+TKW    FA2 53.77888 65.08010 11.30122 21.01424
 ------------------------------------------------------------------------------
 Mean of selection differential
 -------------------------------------------------------------------------------
-       Xo        Xs        SD    SDperc 
-51.248130 57.383450  6.135319 12.104917 
+      Xo       Xs       SD   SDperc 
+49.13563 65.13472 15.99909 32.93445 
 ------------------------------------------------------------------------------
 Selected genotypes
 -------------------------------------------------------------------------------
-H2 H13
+H5 H11
 -------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-4-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
