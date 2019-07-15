@@ -10,7 +10,7 @@ to:
 
   - Within environment analysis of variance
   - Cross-validation procedures for AMMI-family and BLUP models;
-  - Estimation using AMMI considering different numbers of interation
+  - Estimation using AMMI considering different numbers of interaction
     principal component axes;
   - AMMI-based stability indexes;
   - Prediction in mixed-effect models;

@@ -12,7 +12,7 @@ The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides u
 
 * Within environment analysis of variance
 * Cross-validation procedures for AMMI-family and BLUP models;
-* Estimation using AMMI considering different numbers of interation principal component axes;
+* Estimation using AMMI considering different numbers of interaction principal component axes;
 * AMMI-based stability indexes;
 * Prediction in mixed-effect models;
 * BLUP-based stability indexes;
