@@ -87,7 +87,7 @@
 #' \code{'orange'}. Other values can be attributed. For example,
 #' \code{'transparent'}, will make a plot with only an outline around the shape
 #' area.
-#' @param col.env The shape color for environments. Default is \code{'green'}.
+#' @param col.env The shape color for environments. Default is \code{'forestgreen'}.
 #' The same usability than \code{'col.gen'}.
 #' @param col.alpha The alpha value for the color. Default is \code{0.9}.
 #' Values must be between \code{0} (full transparency) to \code{1} (full
@@ -97,7 +97,7 @@
 #' 2} graphics. This segment start in the origin of the biplot and end in the
 #' scores values.
 #' @param col.segm.env The color of segment for environments. Default is
-#' \code{'green'}. The same usability than \code{'col.segm.gen'}
+#' \code{'forestgreen'}. The same usability than \code{'col.segm.gen'}
 #' @param resolution The resolution of the plot. Parameter valid if
 #' \code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)
 #' @param ... Other arguments of the function
@@ -140,8 +140,8 @@ shape.gen = 21, shape.env = 23, size.shape = 2.2, size.bor.tick = 0.3,
 size.tex.lab = 12, size.tex.pa = 3.5, repulsion = 1, size.line = 0.5,
 size.segm.line = 0.5, leg.lab = c("Env", "Gen"), line.type = "solid",
 line.alpha = 0.9, col.line = "black", col.gen = "orange",
-col.env = "green", col.alpha = 0.9, col.segm.gen = "transparent",
-col.segm.env = "green", resolution = 300, ...) {
+col.env = "forestgreen", col.alpha = 0.9, col.segm.gen = "transparent",
+col.segm.env = "forestgreen", resolution = 300, ...) {
 
 if (polygon == TRUE & type != 1) {
 stop("The polygon can be drawn with type 1 graphic only.")
