@@ -13,8 +13,8 @@ plot_scores(x, type = 1, polygon = FALSE, file.type = "pdf",
   size.tex.pa = 3.5, repulsion = 1, size.line = 0.5,
   size.segm.line = 0.5, leg.lab = c("Env", "Gen"),
   line.type = "solid", line.alpha = 0.9, col.line = "black",
-  col.gen = "orange", col.env = "green", col.alpha = 0.9,
-  col.segm.gen = "transparent", col.segm.env = "green",
+  col.gen = "orange", col.env = "forestgreen", col.alpha = 0.9,
+  col.segm.gen = "transparent", col.segm.env = "forestgreen",
   resolution = 300, ...)
 }
 \arguments{
@@ -119,7 +119,7 @@ of colours with the same length of the number of genotypes. Default is
 \code{'transparent'}, will make a plot with only an outline around the shape
 area.}
 
-\item{col.env}{The shape color for environments. Default is \code{'green'}.
+\item{col.env}{The shape color for environments. Default is \code{'forestgreen'}.
 The same usability than \code{'col.gen'}.}
 
 \item{col.alpha}{The alpha value for the color. Default is \code{0.9}.
@@ -132,7 +132,7 @@ color).}
 scores values.}
 
 \item{col.segm.env}{The color of segment for environments. Default is
-\code{'green'}. The same usability than \code{'col.segm.gen'}}
+\code{'forestgreen'}. The same usability than \code{'col.segm.gen'}}
 
 \item{resolution}{The resolution of the plot. Parameter valid if
 \code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)}
