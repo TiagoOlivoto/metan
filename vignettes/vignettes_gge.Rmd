@@ -87,7 +87,7 @@ The model above was fitted considering (i) column metric preserving (where the s
 
 
 ## Visualizing the Biplot
-The generic function `plot()` is used to generate a biplot using as input a fitted model of class `gge`. The biplot type is contrled by the argument `type` in the function.  Ten biplots type are available according to {@Yan2003}.
+The generic function `plot()` is used to generate a biplot using as input a fitted model of class `gge`. The type of biplot is chosen by the argument `type` in the function.  Ten biplots type are available according to {@Yan2003}.
 
 *`type = 1` A basic biplot.
 *`type =  2` Mean performance vs. stability.
@@ -100,7 +100,7 @@ The generic function `plot()` is used to generate a biplot using as input a fitt
 *`type =  9` Compare two genotypes.
 *`type =  10` Relationship among environments.
 
-In this material, for each biplot type, two graphics are produced. One with the default settings and the other to show some graphical options of the function. Please, keep in mind that each biplot interpretation require different scaling and centering methods. In this material we will used the default setting in the model stored in `gge_model`. It is suggested to see 
+In this material, for each biplot type, two graphics are produced. One with the default settings and the other to show some graphical options of the function.
 
 ## Biplot type 1: A basic biplot.
 This is the default setting in the function plot, thus, this biplot is produced by just calling `plot(model)`, as shown below.
