@@ -22,7 +22,7 @@ knitr::opts_chunk$set(comment = "")
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-library(dplyr)
+library(tidyverse)
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%

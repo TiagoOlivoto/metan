@@ -26,8 +26,7 @@ In this section, we will use the data in `data_ge2`. For more information, pleas
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-library(dplyr) # for data manipulation and pipe %>%
-library(tibble) # for manipulating rownmanes
+library(tidyverse) # for data manipulation and pipe %>%
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%

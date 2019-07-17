@@ -26,7 +26,7 @@ In this section, we will use the data in `data_ge`. For more information, please
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-library(magrittr) # used for the forward-pipe operator %>%
+library(tidyverse) # used for the forward-pipe operator %>%
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%

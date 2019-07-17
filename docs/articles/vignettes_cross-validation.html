@@ -67,6 +67,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_gge.html">GGE</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
@@ -234,19 +237,19 @@ Q97.5
 BLUP_g
 </td>
 <td style="text-align:right;">
-0.398
+0.400
 </td>
 <td style="text-align:right;">
-0.027
+0.025
 </td>
 <td style="text-align:right;">
 0.004
 </td>
 <td style="text-align:right;">
-0.358
+0.363
 </td>
 <td style="text-align:right;">
-0.459
+0.444
 </td>
 </tr>
 <tr>
@@ -254,7 +257,7 @@ BLUP_g
 AMMI2
 </td>
 <td style="text-align:right;">
-0.412
+0.406
 </td>
 <td style="text-align:right;">
 0.027
@@ -263,15 +266,35 @@ AMMI2
 0.004
 </td>
 <td style="text-align:right;">
-0.364
+0.354
 </td>
 <td style="text-align:right;">
-0.461
+0.457
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 AMMI3
+</td>
+<td style="text-align:right;">
+0.416
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.384
+</td>
+<td style="text-align:right;">
+0.446
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI4
 </td>
 <td style="text-align:right;">
 0.417
@@ -283,67 +306,7 @@ AMMI3
 0.003
 </td>
 <td style="text-align:right;">
-0.374
-</td>
-<td style="text-align:right;">
-0.452
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI5
-</td>
-<td style="text-align:right;">
-0.419
-</td>
-<td style="text-align:right;">
-0.027
-</td>
-<td style="text-align:right;">
-0.004
-</td>
-<td style="text-align:right;">
-0.370
-</td>
-<td style="text-align:right;">
-0.466
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI4
-</td>
-<td style="text-align:right;">
-0.420
-</td>
-<td style="text-align:right;">
-0.024
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
-0.374
-</td>
-<td style="text-align:right;">
-0.457
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI7
-</td>
-<td style="text-align:right;">
-0.422
-</td>
-<td style="text-align:right;">
-0.024
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
-0.380
+0.376
 </td>
 <td style="text-align:right;">
 0.457
@@ -354,19 +317,19 @@ AMMI7
 AMMI6
 </td>
 <td style="text-align:right;">
-0.425
+0.424
 </td>
 <td style="text-align:right;">
-0.024
+0.020
 </td>
 <td style="text-align:right;">
 0.003
 </td>
 <td style="text-align:right;">
-0.380
+0.386
 </td>
 <td style="text-align:right;">
-0.468
+0.461
 </td>
 </tr>
 <tr>
@@ -374,47 +337,7 @@ AMMI6
 AMMIF
 </td>
 <td style="text-align:right;">
-0.426
-</td>
-<td style="text-align:right;">
-0.018
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
-0.393
-</td>
-<td style="text-align:right;">
-0.456
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI0
-</td>
-<td style="text-align:right;">
-0.427
-</td>
-<td style="text-align:right;">
-0.028
-</td>
-<td style="text-align:right;">
-0.004
-</td>
-<td style="text-align:right;">
-0.377
-</td>
-<td style="text-align:right;">
-0.478
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI8
-</td>
-<td style="text-align:right;">
-0.430
+0.424
 </td>
 <td style="text-align:right;">
 0.021
@@ -423,7 +346,87 @@ AMMI8
 0.003
 </td>
 <td style="text-align:right;">
-0.382
+0.395
+</td>
+<td style="text-align:right;">
+0.457
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI5
+</td>
+<td style="text-align:right;">
+0.425
+</td>
+<td style="text-align:right;">
+0.021
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.394
+</td>
+<td style="text-align:right;">
+0.461
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI8
+</td>
+<td style="text-align:right;">
+0.426
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.385
+</td>
+<td style="text-align:right;">
+0.472
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI7
+</td>
+<td style="text-align:right;">
+0.427
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.390
+</td>
+<td style="text-align:right;">
+0.458
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI0
+</td>
+<td style="text-align:right;">
+0.431
+</td>
+<td style="text-align:right;">
+0.024
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.379
 </td>
 <td style="text-align:right;">
 0.465
@@ -437,16 +440,16 @@ AMMI1
 0.435
 </td>
 <td style="text-align:right;">
-0.023
+0.025
 </td>
 <td style="text-align:right;">
 0.003
 </td>
 <td style="text-align:right;">
-0.390
+0.391
 </td>
 <td style="text-align:right;">
-0.473
+0.479
 </td>
 </tr>
 </tbody>

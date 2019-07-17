@@ -67,6 +67,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_gge.html">GGE</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
@@ -140,7 +143,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse)</a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
@@ -1495,162 +1498,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-28.689
+14.017
 </td>
 <td style="text-align:right;">
-66.904
+69.333
 </td>
 <td style="text-align:right;">
-93.381
+18.913
 </td>
 <td style="text-align:right;">
-27.723
+18.211
 </td>
 <td style="text-align:right;">
-56.967
+66.897
 </td>
 <td style="text-align:right;">
-83.444
+16.477
 </td>
 <td style="text-align:right;">
-17.786
+15.775
 </td>
 <td style="text-align:right;">
-121.659
+71.793
 </td>
 <td style="text-align:right;">
-56.001
+71.091
 </td>
 <td style="text-align:right;">
-82.478
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-34.725
-</td>
-<td style="text-align:right;">
-82.765
-</td>
-<td style="text-align:right;">
-82.169
-</td>
-<td style="text-align:right;">
-33.019
-</td>
-<td style="text-align:right;">
-66.461
-</td>
-<td style="text-align:right;">
-65.865
-</td>
-<td style="text-align:right;">
-16.715
-</td>
-<td style="text-align:right;">
-113.905
-</td>
-<td style="text-align:right;">
-64.755
-</td>
-<td style="text-align:right;">
-64.159
+20.671
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-15.979
+8.443
 </td>
 <td style="text-align:right;">
-61.433
+58.911
 </td>
 <td style="text-align:right;">
-81.866
+31.488
 </td>
 <td style="text-align:right;">
-18.600
+13.216
 </td>
 <td style="text-align:right;">
-53.078
+53.306
 </td>
 <td style="text-align:right;">
-73.510
+25.883
 </td>
 <td style="text-align:right;">
-10.244
+7.611
 </td>
 <td style="text-align:right;">
-118.965
+76.352
 </td>
 <td style="text-align:right;">
-55.699
+58.079
 </td>
 <td style="text-align:right;">
-76.132
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-20.696
-</td>
-<td style="text-align:right;">
-73.122
-</td>
-<td style="text-align:right;">
-81.111
-</td>
-<td style="text-align:right;">
-23.692
-</td>
-<td style="text-align:right;">
-60.619
-</td>
-<td style="text-align:right;">
-68.608
-</td>
-<td style="text-align:right;">
-11.189
-</td>
-<td style="text-align:right;">
-121.034
-</td>
-<td style="text-align:right;">
-63.615
-</td>
-<td style="text-align:right;">
-71.604
+30.656
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-26.652
+26.315
 </td>
 <td style="text-align:right;">
-48.632
+83.259
 </td>
 <td style="text-align:right;">
-37.815
+35.822
 </td>
 <td style="text-align:right;">
-31.593
+29.215
 </td>
 <td style="text-align:right;">
-26.764
+64.432
 </td>
 <td style="text-align:right;">
-15.948
+16.995
 </td>
 <td style="text-align:right;">
-9.726
+10.388
 </td>
 <td style="text-align:right;">
-37.927
+73.939
 </td>
 <td style="text-align:right;">
-31.705
+67.333
 </td>
 <td style="text-align:right;">
-20.889
+19.895
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31.229
+</td>
+<td style="text-align:right;">
+104.007
+</td>
+<td style="text-align:right;">
+30.376
+</td>
+<td style="text-align:right;">
+32.247
+</td>
+<td style="text-align:right;">
+84.289
+</td>
+<td style="text-align:right;">
+10.658
+</td>
+<td style="text-align:right;">
+12.529
+</td>
+<td style="text-align:right;">
+83.436
+</td>
+<td style="text-align:right;">
+85.307
+</td>
+<td style="text-align:right;">
+11.676
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17.363
+</td>
+<td style="text-align:right;">
+93.451
+</td>
+<td style="text-align:right;">
+12.271
+</td>
+<td style="text-align:right;">
+21.102
+</td>
+<td style="text-align:right;">
+88.281
+</td>
+<td style="text-align:right;">
+7.100
+</td>
+<td style="text-align:right;">
+15.931
+</td>
+<td style="text-align:right;">
+83.189
+</td>
+<td style="text-align:right;">
+92.020
+</td>
+<td style="text-align:right;">
+10.839
 </td>
 </tr>
 </tbody>
@@ -1693,162 +1696,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-181.081
+47.635
 </td>
 <td style="text-align:right;">
-919.126
+502.688
 </td>
 <td style="text-align:right;">
-1430.489
+87.910
 </td>
 <td style="text-align:right;">
-162.428
+82.141
 </td>
 <td style="text-align:right;">
-446.214
+353.834
 </td>
 <td style="text-align:right;">
-694.468
+61.878
 </td>
 <td style="text-align:right;">
-78.855
+57.818
 </td>
 <td style="text-align:right;">
-3524.957
+652.999
 </td>
 <td style="text-align:right;">
-400.249
+610.149
 </td>
 <td style="text-align:right;">
-622.931
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-234.998
-</td>
-<td style="text-align:right;">
-1460.738
-</td>
-<td style="text-align:right;">
-1445.528
-</td>
-<td style="text-align:right;">
-191.469
-</td>
-<td style="text-align:right;">
-527.295
-</td>
-<td style="text-align:right;">
-521.805
-</td>
-<td style="text-align:right;">
-69.116
-</td>
-<td style="text-align:right;">
-3243.518
-</td>
-<td style="text-align:right;">
-429.623
-</td>
-<td style="text-align:right;">
-425.150
+106.702
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-46.373
+9.965
 </td>
 <td style="text-align:right;">
-599.431
+364.453
 </td>
 <td style="text-align:right;">
-848.041
+171.836
 </td>
 <td style="text-align:right;">
-78.272
+43.491
 </td>
 <td style="text-align:right;">
-187.771
+73.611
 </td>
 <td style="text-align:right;">
-265.647
+34.707
 </td>
 <td style="text-align:right;">
-24.519
+8.784
 </td>
 <td style="text-align:right;">
-3433.814
+1269.393
 </td>
 <td style="text-align:right;">
-316.933
+321.280
 </td>
 <td style="text-align:right;">
-448.379
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-68.001
-</td>
-<td style="text-align:right;">
-938.254
-</td>
-<td style="text-align:right;">
-1070.869
-</td>
-<td style="text-align:right;">
-117.729
-</td>
-<td style="text-align:right;">
-231.546
-</td>
-<td style="text-align:right;">
-264.273
-</td>
-<td style="text-align:right;">
-29.054
-</td>
-<td style="text-align:right;">
-3646.325
-</td>
-<td style="text-align:right;">
-400.870
-</td>
-<td style="text-align:right;">
-457.529
+151.480
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-58.042
+84.504
 </td>
 <td style="text-align:right;">
-591.258
+1369.781
 </td>
 <td style="text-align:right;">
-328.854
+299.083
 </td>
 <td style="text-align:right;">
-177.902
+149.966
 </td>
 <td style="text-align:right;">
-58.309
+227.216
 </td>
 <td style="text-align:right;">
-32.431
+49.611
 </td>
 <td style="text-align:right;">
-17.545
+24.876
 </td>
 <td style="text-align:right;">
-330.369
+804.181
 </td>
 <td style="text-align:right;">
-178.721
+403.231
 </td>
 <td style="text-align:right;">
-99.404
+88.043
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+146.611
+</td>
+<td style="text-align:right;">
+2000.532
+</td>
+<td style="text-align:right;">
+124.884
+</td>
+<td style="text-align:right;">
+172.539
+</td>
+<td style="text-align:right;">
+451.994
+</td>
+<td style="text-align:right;">
+28.216
+</td>
+<td style="text-align:right;">
+38.983
+</td>
+<td style="text-align:right;">
+385.010
+</td>
+<td style="text-align:right;">
+531.929
+</td>
+<td style="text-align:right;">
+33.206
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68.680
+</td>
+<td style="text-align:right;">
+925.951
+</td>
+<td style="text-align:right;">
+11.312
+</td>
+<td style="text-align:right;">
+110.807
+</td>
+<td style="text-align:right;">
+500.986
+</td>
+<td style="text-align:right;">
+6.120
+</td>
+<td style="text-align:right;">
+59.952
+</td>
+<td style="text-align:right;">
+82.516
+</td>
+<td style="text-align:right;">
+808.281
+</td>
+<td style="text-align:right;">
+9.875
 </td>
 </tr>
 </tbody>

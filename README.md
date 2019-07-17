@@ -13,6 +13,7 @@ to:
   - Estimation using AMMI considering different numbers of interaction
     principal component axes;
   - AMMI-based stability indexes;
+  - GGE biplot analysis;
   - Prediction in mixed-effect models;
   - BLUP-based stability indexes;
   - Variance components and genetic parameters in mixed-effect models;
@@ -417,6 +418,7 @@ in this case with one element, GY.
 
 ``` r
 library(cowplot)
+library(ggplot2)
 p1 = plot_scores(model$GY, axis.expand = 1.5)
 p2 = plot_scores(model$GY,
                  type = 1,

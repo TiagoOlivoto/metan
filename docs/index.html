@@ -67,6 +67,9 @@
       <a href="articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="articles/vignettes_gge.html">GGE</a>
+    </li>
+    <li>
       <a href="articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
@@ -136,8 +139,9 @@
 <ul>
 <li>Within environment analysis of variance</li>
 <li>Cross-validation procedures for AMMI-family and BLUP models;</li>
-<li>Estimation using AMMI considering different numbers of interation principal component axes;</li>
+<li>Estimation using AMMI considering different numbers of interaction principal component axes;</li>
 <li>AMMI-based stability indexes;</li>
+<li>GGE biplot analysis;</li>
 <li>Prediction in mixed-effect models;</li>
 <li>BLUP-based stability indexes;</li>
 <li>Variance components and genetic parameters in mixed-effect models;</li>
@@ -354,15 +358,16 @@ G4
 <a href="#biplots" class="anchor"></a>Biplots</h3>
 <p>ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/waas.html">waas()</a></code> function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, …), the output <code>model</code> is a list, in this case with one element, GY.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</a>
-<a class="sourceLine" id="cb6-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb6-4" title="4">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-5" title="5">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb6-6" title="6">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb6-7" title="7">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb6-8" title="8">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb6-9" title="9">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb6-3" title="3">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb6-4" title="4">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb6-5" title="5">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-6" title="6">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-7" title="7">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb6-8" title="8">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb6-9" title="9">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb6-10" title="10">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="768"></p>
 </div>
 </div>

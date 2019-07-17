@@ -37,6 +37,12 @@ reference:
       - cv_blup
       - waasb
       - wsmp
+  - title: GGE
+    desc: Functions for GGE analysis
+    contents:
+      - gge
+      - plot.gge
+      - predict.gge
   - title: MTSI
     desc: Multi-trait indexes
     contents:
@@ -115,6 +121,8 @@ navbar:
         href: articles/vignettes_ammi.html
       - text: "BLUP"
         href: articles/vignettes_blup.html
+      - text: "GGE"
+        href: articles/vignettes_gge.html
       - text: "Stability"
         href: articles/vignettes_stability.html
       - text: "Multivariate indexes"

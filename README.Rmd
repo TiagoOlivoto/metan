@@ -14,6 +14,7 @@ The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides u
 * Cross-validation procedures for AMMI-family and BLUP models;
 * Estimation using AMMI considering different numbers of interaction principal component axes;
 * AMMI-based stability indexes;
+* GGE biplot analysis;
 * Prediction in mixed-effect models;
 * BLUP-based stability indexes;
 * Variance components and genetic parameters in mixed-effect models;
@@ -72,6 +73,7 @@ ggplot2-based graphics are easily obtained in metan package. For example, the we
 
 ```{r, fig.width=8, message=FALSE, warning=FALSE}
 library(cowplot)
+library(ggplot2)
 p1 = plot_scores(model$GY, axis.expand = 1.5)
 p2 = plot_scores(model$GY,
                  type = 1,

@@ -23,8 +23,7 @@ The function `find_outlier()` may be used to identify possible outliers in a dat
 library(metan)
 library(cowplot)
 library(kableExtra) # Used to make the tables
-library(dplyr) # used for the forward-pipe operator %>%
-library(tibble) # Used for manipulating rownames
+library(tidyverse) # used for the forward-pipe operator %>%
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%

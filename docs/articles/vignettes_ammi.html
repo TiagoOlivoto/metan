@@ -67,6 +67,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_gge.html">GGE</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
@@ -141,7 +144,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>

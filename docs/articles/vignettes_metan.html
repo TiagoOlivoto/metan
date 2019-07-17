@@ -67,6 +67,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_gge.html">GGE</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
     <li>
@@ -403,7 +406,8 @@ G5
 <h2 class="hasAnchor">
 <a href="#residual-plots" class="anchor"></a>Residual plots</h2>
 <p>Several residual plots may be obtained applying the function <code>autoplot()</code> to an object of class <code>waasb</code> (or <code>waas</code>).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-7-1.png" width="384"></p>
 </div>
 <div id="distributin-of-random-effects" class="section level2">
