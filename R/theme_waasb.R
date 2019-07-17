@@ -13,6 +13,8 @@ theme_waasb = function () {
     theme(axis.ticks.length = unit(.2, "cm"),
           axis.ticks = element_line(colour = "black"),
           legend.position = c(0.85, 0.1), # bottom right
+          legend.key = element_rect(fill = NA, colour = "transparent"),
+          legend.background = element_rect(fill = NA, colour = "transparent"),
           plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
           legend.title = element_blank(),
           axis.text = element_text(colour = "black"),
