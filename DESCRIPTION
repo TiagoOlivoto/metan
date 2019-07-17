@@ -28,7 +28,9 @@ Imports: dendextend,
          FWDselect,
          rlang,
          tibble,
-         lattice
+         lattice,
+         ggforce,
+         tidyr
 RoxygenNote: 6.1.1
 Suggests:
     knitr,

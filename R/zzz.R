@@ -108,5 +108,5 @@ if (getRversion() >= "2.15.1") {
         "eq", "IndAmb", "REP", "gge", "ind", "cophenetic", "remaining", "index", "ge",
         "FA1", "FA2", "Gen", "wRes", "wWAASB", "OrResp", "OrPC1", "OrWAASB", "wWAAS",
         "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI", "Pair", "LL", "UL",
-        "ci", "mean_var", "se", "x"))
+        "ci", "mean_var", "se", "x", "d1", "d2", "radio", "x0", "x1_x", "x1_y", "y0"))
 }

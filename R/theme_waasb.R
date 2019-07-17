@@ -15,6 +15,7 @@ theme_waasb = function () {
           legend.position = c(0.85, 0.1), # bottom right
           plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
           legend.title = element_blank(),
+          axis.text = element_text(colour = "black"),
           panel.border = element_rect(colour = "black", fill = NA, size = 1),
           panel.grid.major.x = element_blank(), panel.grid.major.y = element_blank(),
           panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank())

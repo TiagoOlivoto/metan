@@ -93,6 +93,7 @@ The mixed-effect model fitted in `model2` has many outputs. For example, we can 
 Several residual plots may be obtained applying the function `autoplot()` to an object of class `waasb` (or `waas`). 
 
 ```{r,fig.height=12, fig.width=4}
+library(ggplot2)
 autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
 ```
 
