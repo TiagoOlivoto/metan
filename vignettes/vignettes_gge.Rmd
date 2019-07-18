@@ -30,12 +30,18 @@ library(tidyverse) # used for the forward-pipe operator %>%
 ```
 
 # The GGE model
-In AMMI analysis, the GEI effect is submitted to an SVP to construct biplots. In Genotype plus Genotype-vs-Environment interaction (GGE) model, instead of trying to separate G and GEI, a GGE biplot model keeps G and GEI together and partitions this mixture GGE into two multiplicative terms, according to the following model [@Yan2007; @Yan2003]
+The mean yield of genotype *i* in environment *j* is commonly described by a general linear model
 
 $$
-{\bar y_{ij}} - \mu_j  = \sum\limits_{k = 1}^p {{\lambda _k}{\alpha_{ik}}} {\tau_{jk}}+ {\varepsilon _{ij}}
+\hat y_{ij} + \mu + \alpha_i + \beta_j + \phi_{ij}
 $$
-where $\bar y_{ij}$ is the cell mean of genotype *i* in environment *j*; $\mu_j$ is the mean value in environment *j*; $i = 1, ... g$; $j = 1, ...e$ , *g* and *e* being the numbers of genotypes and environments, respectively; and *p* is the number of principal components (PC) used or retained in the model, with $t \le min(e,g ??? 1)$. The, model above may be described as modeling the deviations of the cell means from the environment means as a sum of PCs, each of which is the product of a genotype score ($\alpha_{ik}$), an environment score ($\tau_{jk}$), and a scale factor (the singular value, $\lambda_k$)
+where $\hat y_{ij}$ is the mean yield of genotype *i* in environment *j*, $i = 1, ... g; j = 1, ...e$ being *g* and *e*  the numbers of genotypes and environments, respectively; $\mu_j$ is the grand mean; $\alpha_i$ is the main effect of the genotype *i*; $\beta_j$ is the main effect of the environment *j*, and $\phi_{ij}$ is the interaction effect between genotype *i* and environment *j*. Subjecting the $\phi_{ij}$ to Singular Value Decomposition (SVD) results in the AMMI model. The deletion of $\alpha_i$ allows the variation explained by this term to be absorved into the $\phi_{ij}$ term. In the Genotype plus Genotype-vs-Environment interaction (GGE) model the $\alpha_i$ term is is deteled from the above model and then the environment-centered data matrix, $\phi_{ij}$, is subjected to SVD [@Yan2007; @Yan2003]. Explicitly, we have
+
+$$
+{\phi_{ij} =  \hat y_{ij}} - \mu - \beta_j  = \sum\limits_{k = 1}^p \xi_{ik}^*\eta_{jk}^*
+$$
+
+where $\xi_{ik}^* = \lambda_k^\alpha\xi_{ik}$; $\eta_{jk}^* = \lambda_k^{1-\alpha}\eta_{jk}$ being $\lambda_k$ the *k*th eigenvalue from the SVD ($k = 1, ...p$), with $p \le min(e, g)$; $\alpha$ is the the singular value partition factor for the Principal Component (PC) *k*; $\xi_{ik}^*$ and $\eta_{jk}^*$ are the PC scores for genotype *i* and environment *j*, respectively. 
 
 The function `gge()` is used to produce a GGE model. According to @Yan2003, the function supports four methods of data centering, two methods of data scaling and three options for singular value partitioning:
 
@@ -67,7 +73,7 @@ str(data_ge)
 ge_table = make_mat(data_ge, GEN, ENV, GY)
 print.data.frame(ge_table, digits = 3)
 
-    ```
+```
 
 The GGE model is fitted with the function `gge()`. This function produces a GGE model based on both a two-way table (in our case the object `table`) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).
 
@@ -87,7 +93,7 @@ The model above was fitted considering (i) column metric preserving (where the s
 
 
 ## Visualizing the Biplot
-The generic function `plot()` is used to generate a biplot using as input a fitted model of class `gge`. The type of biplot is chosen by the argument `type` in the function.  Ten biplots type are available according to {@Yan2003}.
+The generic function `plot()` is used to generate a biplot using as input a fitted model of class `gge`. The type of biplot is chosen by the argument `type` in the function.  Ten biplots type are available according to @Yan2003.
 
 *`type = 1` A basic biplot.
 *`type =  2` Mean performance vs. stability.
@@ -174,7 +180,7 @@ plot_grid(p1, p2)
 
 ## Biplot type 5: Examine an environment.
 
-Identifying genotypes most adapted to an environment can be easily achieved via a GGE biplot. For example, to visualize the performance of different genotypes in a given environment, i.e., E10, simply draw a line that passes through the biplot origin and the marker of E10. The genotypes can be ranked according to their projections onto the E10 axis based on their performance in E10, in the direction pointed by the arrow. In our example, at E10, the highest-yielding
+Identifying genotypes most adapted to an environment can be easily achieved via a GGE biplot. For example, to visualize the performance of different genotypes in a given environment, e.g., E10, simply draw a line that passes through the biplot origin and the marker of E10. The genotypes can be ranked according to their projections onto the E10 axis based on their performance in E10, in the direction pointed by the arrow. In our example, at E10, the highest-yielding
 genotype G8, and the lowest-yielding genotype was G10, and the order of the genotypes were G8 > G7 > G3 > G2 > G4 > G1 > G6 > G5 > G9 > G10.
 
 
