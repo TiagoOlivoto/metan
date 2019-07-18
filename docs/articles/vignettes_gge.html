@@ -149,10 +149,14 @@
 <div id="the-gge-model" class="section level1">
 <h1 class="hasAnchor">
 <a href="#the-gge-model" class="anchor"></a>The GGE model</h1>
-<p>In AMMI analysis, the GEI effect is submitted to an SVP to construct biplots. In Genotype plus Genotype-vs-Environment interaction (GGE) model, instead of trying to separate G and GEI, a GGE biplot model keeps G and GEI together and partitions this mixture GGE into two multiplicative terms, according to the following model <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>; Yan and Kang <a href="#ref-Yan2003">2003</a>)</span></p>
+<p>The mean yield of genotype <em>i</em> in environment <em>j</em> is commonly described by a general linear model</p>
 <p><span class="math display">\[
-{\bar y_{ij}} - \mu_j  = \sum\limits_{k = 1}^p {{\lambda _k}{\alpha_{ik}}} {\tau_{jk}}+ {\varepsilon _{ij}}
-\]</span> where <span class="math inline">\(\bar y_{ij}\)</span> is the cell mean of genotype <em>i</em> in environment <em>j</em>; <span class="math inline">\(\mu_j\)</span> is the mean value in environment <em>j</em>; <span class="math inline">\(i = 1, ... g\)</span>; <span class="math inline">\(j = 1, ...e\)</span> , <em>g</em> and <em>e</em> being the numbers of genotypes and environments, respectively; and <em>p</em> is the number of principal components (PC) used or retained in the model, with <span class="math inline">\(t \le min(e,g ??? 1)\)</span>. The, model above may be described as modeling the deviations of the cell means from the environment means as a sum of PCs, each of which is the product of a genotype score (<span class="math inline">\(\alpha_{ik}\)</span>), an environment score (<span class="math inline">\(\tau_{jk}\)</span>), and a scale factor (the singular value, <span class="math inline">\(\lambda_k\)</span>)</p>
+\hat y_{ij} + \mu + \alpha_i + \beta_j + \phi_{ij}
+\]</span> where <span class="math inline">\(\hat y_{ij}\)</span> is the mean yield of genotype <em>i</em> in environment <em>j</em>, <span class="math inline">\(i = 1, ... g; j = 1, ...e\)</span> being <em>g</em> and <em>e</em> the numbers of genotypes and environments, respectively; <span class="math inline">\(\mu_j\)</span> is the grand mean; <span class="math inline">\(\alpha_i\)</span> is the main effect of the genotype <em>i</em>; <span class="math inline">\(\beta_j\)</span> is the main effect of the environment <em>j</em>, and <span class="math inline">\(\phi_{ij}\)</span> is the interaction effect between genotype <em>i</em> and environment <em>j</em>. Subjecting the <span class="math inline">\(\phi_{ij}\)</span> to Singular Value Decomposition (SVD) results in the AMMI model. The deletion of <span class="math inline">\(\alpha_i\)</span> allows the variation explained by this term to be absorved into the <span class="math inline">\(\phi_{ij}\)</span> term. In the Genotype plus Genotype-vs-Environment interaction (GGE) model the <span class="math inline">\(\alpha_i\)</span> term is is deteled from the above model and then the environment-centered data matrix, <span class="math inline">\(\phi_{ij}\)</span>, is subjected to SVD <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>; Yan and Kang <a href="#ref-Yan2003">2003</a>)</span>. Explicitly, we have</p>
+<p><span class="math display">\[
+{\phi_{ij} =  \hat y_{ij}} - \mu - \beta_j  = \sum\limits_{k = 1}^p \xi_{ik}^*\eta_{jk}^*
+\]</span></p>
+<p>where <span class="math inline">\(\xi_{ik}^* = \lambda_k^\alpha\xi_{ik}\)</span>; <span class="math inline">\(\eta_{jk}^* = \lambda_k^{1-\alpha}\eta_{jk}\)</span> being <span class="math inline">\(\lambda_k\)</span> the <em>k</em>th eigenvalue from the SVD (<span class="math inline">\(k = 1, ...p\)</span>), with <span class="math inline">\(p \le min(e, g)\)</span>; <span class="math inline">\(\alpha\)</span> is the the singular value partition factor for the Principal Component (PC) <em>k</em>; <span class="math inline">\(\xi_{ik}^*\)</span> and <span class="math inline">\(\eta_{jk}^*\)</span> are the PC scores for genotype <em>i</em> and environment <em>j</em>, respectively.</p>
 <p>The function <code><a href="../reference/gge.html">gge()</a></code> is used to produce a GGE model. According to <span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>, the function supports four methods of data centering, two methods of data scaling and three options for singular value partitioning:</p>
 </div>
 <div id="centering-methods-available" class="section level1">
@@ -223,8 +227,29 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualizing-the-biplot" class="anchor"></a>Visualizing the Biplot</h2>
-<p>The generic function <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>}.</p>
-<p><em><code>type = 1</code> A basic biplot. </em><code>type =  2</code> Mean performance vs. stability. <em><code>type =  3</code> Which-won-where. </em><code>type =  4</code> Discriminativeness vs. representativeness. <em><code>type =  5</code> Examine an environment. </em><code>type =  6</code> Ranking environments. <em><code>type =  7</code> Examine a genotype. </em><code>type =  8</code> Ranking gentoypes. <em><code>type =  9</code> Compare two genotypes. </em><code>type =  10</code> Relationship among environments.</p>
+<p>The generic function <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to <span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>.</p>
+<ul>
+<li>
+<code>type = 1</code> A basic biplot.</li>
+<li>
+<code>type =  2</code> Mean performance vs. stability.</li>
+<li>
+<code>type =  3</code> Which-won-where.</li>
+<li>
+<code>type =  4</code> Discriminativeness vs. representativeness.</li>
+<li>
+<code>type =  5</code> Examine an environment.</li>
+<li>
+<code>type =  6</code> Ranking environments.</li>
+<li>
+<code>type =  7</code> Examine a genotype.</li>
+<li>
+<code>type =  8</code> Ranking gentoypes.</li>
+<li>
+<code>type =  9</code> Compare two genotypes.</li>
+<li>
+<code>type =  10</code> Relationship among environments.</li>
+</ul>
 <p>In this material, for each biplot type, two graphics are produced. One with the default settings and the other to show some graphical options of the function.</p>
 </div>
 <div id="biplot-type-1-a-basic-biplot-" class="section level2">
@@ -285,7 +310,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <div id="biplot-type-5-examine-an-environment-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-5-examine-an-environment-" class="anchor"></a>Biplot type 5: Examine an environment.</h2>
-<p>Identifying genotypes most adapted to an environment can be easily achieved via a GGE biplot. For example, to visualize the performance of different genotypes in a given environment, i.e., E10, simply draw a line that passes through the biplot origin and the marker of E10. The genotypes can be ranked according to their projections onto the E10 axis based on their performance in E10, in the direction pointed by the arrow. In our example, at E10, the highest-yielding genotype G8, and the lowest-yielding genotype was G10, and the order of the genotypes were G8 &gt; G7 &gt; G3 &gt; G2 &gt; G4 &gt; G1 &gt; G6 &gt; G5 &gt; G9 &gt; G10.</p>
+<p>Identifying genotypes most adapted to an environment can be easily achieved via a GGE biplot. For example, to visualize the performance of different genotypes in a given environment, e.g., E10, simply draw a line that passes through the biplot origin and the marker of E10. The genotypes can be ranked according to their projections onto the E10 axis based on their performance in E10, in the direction pointed by the arrow. In our example, at E10, the highest-yielding genotype G8, and the lowest-yielding genotype was G10, and the order of the genotypes were G8 &gt; G7 &gt; G3 &gt; G2 &gt; G4 &gt; G1 &gt; G6 &gt; G5 &gt; G9 &gt; G10.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
 <a class="sourceLine" id="cb11-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">5</span>, <span class="dt">sel_env =</span> <span class="st">"E10"</span>)</a>
 <a class="sourceLine" id="cb11-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>

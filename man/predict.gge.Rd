@@ -34,7 +34,7 @@ principal components used. For more detais see Yan and Kang (2007).
 
 library(metan)
 mod = gge(data_ge, GEN, ENV, GY)
-plot(mod)
+predict(mod)
 
 }
 \references{
