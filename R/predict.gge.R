@@ -26,7 +26,7 @@
 #'
 #' library(metan)
 #' mod = gge(data_ge, GEN, ENV, GY)
-#' plot(mod)
+#' predict(mod)
 #'
 predict.gge = function(object, naxis = 2, output = "wide", ...){
   if(naxis > min(dim(object$coordenv))){
