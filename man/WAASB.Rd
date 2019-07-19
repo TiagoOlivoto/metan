@@ -5,7 +5,7 @@
 \title{Weighted Average of Absolute Scores}
 \usage{
 waasb(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL,
-  random = "gen", prob = 0.05, verbose = TRUE)
+  random = "gen", prob = 0.05, ind_anova = TRUE, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -41,6 +41,9 @@ random effects.}
 
 \item{prob}{The probability for estimating confidence interval for BLUP's
 prediction.}
+
+\item{ind_anova}{Logical argument set to \code{TRUE}. If \code{FALSE} the
+within-environment ANOVA is not performed.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code are run
 silently.}

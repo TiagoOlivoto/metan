@@ -5,7 +5,7 @@
 \title{Weighted Average of Absolute Scores}
 \usage{
 waas(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL,
-  prob = 0.05, naxis = NULL, verbose = TRUE)
+  prob = 0.05, naxis = NULL, ind_anova = TRUE, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -39,6 +39,9 @@ Default is \code{NULL} (Significant IPCAs are used). If values are informed,
 the number of IPCAS will be used independently on its significance. Note
 that if two or more variables are included in \code{resp}, then \code{naxis}
 must be a vector.}
+
+\item{ind_anova}{Logical argument set to \code{TRUE}. If \code{FALSE} the
+within-environment ANOVA is not performed.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
 silently.}

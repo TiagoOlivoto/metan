@@ -32,6 +32,8 @@
 #' random effects.
 #' @param prob The probability for estimating confidence interval for BLUP's
 #' prediction.
+#' @param ind_anova Logical argument set to \code{TRUE}. If \code{FALSE} the
+#' within-environment ANOVA is not performed.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code are run
 #' silently.
 #' @return The function returns the results in a list for each analyzed
@@ -132,7 +134,7 @@
 #'}
 #'
 waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random = "gen",
-                  prob = 0.05, verbose = TRUE) {
+                  prob = 0.05, ind_anova = TRUE, verbose = TRUE) {
     if (!random %in% c("env", "gen", "all")) {
         stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.")
     }
@@ -185,12 +187,14 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             vin <- vin + 1
             Nbloc <- length(unique(REP))
             ovmean <- mean(Y)
-
             if (minimo < 2) {
-                cat("\nWarning. The analysis is not possible.")
-                cat("\nThe number of environments and number of genotypes must be greater than 2\n")
+                stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
             }
+            if(ind_anova == TRUE){
             individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+            } else{
+                individual = NULL
+            }
             Complete <- lmerTest::lmer(data = data, Y ~ GEN + (1 | ENV/REP) + (1 |
                                                                                    GEN:ENV))
             LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
@@ -360,9 +364,11 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 cat("\nWarning. The analysis is not possible.")
                 cat("\nThe number of environments and number of genotypes must be greater than 2\n")
             }
-
-            individual <- data %>% anova_ind(ENV, GEN, REP, Y)
-
+            if(ind_anova == TRUE){
+                individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+            } else{
+                individual = NULL
+            }
             Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
                                                                          Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
             LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
@@ -550,9 +556,11 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 cat("\nWarning. The analysis is not possible.")
                 cat("\nThe number of environments and number of genotypes must be greater than 2\n")
             }
-
-            individual <- data %>% anova_ind(ENV, GEN, REP, Y)
-
+            if(ind_anova == TRUE){
+                individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+            } else{
+                individual = NULL
+            }
             Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ 1 + (1 | GEN) + (1 | ENV/REP) + (1 | GEN:ENV), data = data)))
             LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
             rownames(LRT) <- c("Complete", "Genotype", "Env/Rep", "Environment", "Gen:Env")
@@ -742,7 +750,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             cat("------------------------------------------------------------\n")
             cat("Variables with nonsignificant GxE interaction\n")
             cat(names(which(unlist(lapply(listres, function(x) {
-                x[["LRT"]][3, 6]
+                pull(x[["LRT"]][3, 6])
             })) > prob)), "\n")
             cat("------------------------------------------------------------\n")
         }

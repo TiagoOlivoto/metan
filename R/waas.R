@@ -40,6 +40,8 @@
 #' the number of IPCAS will be used independently on its significance. Note
 #' that if two or more variables are included in \code{resp}, then \code{naxis}
 #' must be a vector.
+#' @param ind_anova Logical argument set to \code{TRUE}. If \code{FALSE} the
+#' within-environment ANOVA is not performed.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
 #' silently.
 #' @return
