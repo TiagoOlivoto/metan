@@ -54,7 +54,7 @@ anova_ind = function(.data, env, gen, rep, resp, verbose = TRUE) {
     grouped = data %>% split(dplyr::pull(., ENV))
     formula = as.formula(paste0("mean ~ GEN + REP"))
     individual = do.call(rbind, lapply(grouped, function(x) {
-      anova = anova(aov(formula, data = x))
+      anova = suppressMessages(suppressWarnings(anova(aov(formula, data = x))))
       MSB = anova[2, 3]
       MSG = anova[1, 3]
       MSE = anova[3, 3]
