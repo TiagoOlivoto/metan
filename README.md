@@ -8,8 +8,7 @@ provides useful functions for analyzing multi-environment trial data
 using parametric and nonparametric methods, including, but not limited
 to:
 
-  - Within environment analysis of variance
-  - Cross-validation procedures for AMMI-family and BLUP models;
+  - Within-environment analysis of variance;
   - Estimation using AMMI considering different numbers of interaction
     principal component axes;
   - AMMI-based stability indexes;
@@ -17,8 +16,9 @@ to:
   - Prediction in mixed-effect models;
   - BLUP-based stability indexes;
   - Variance components and genetic parameters in mixed-effect models;
-  - Graphics tools for generating biplots.
-  - Parametric and nonparametric stability statistics
+  - Cross-validation procedures for AMMI-family and BLUP models;
+  - Graphics tools for generating biplots;
+  - Parametric and nonparametric stability statistics.
 
 # Installing
 
@@ -29,6 +29,9 @@ if (!require("devtools")) install.packages('devtools')
 devtools::install_github("TiagoOlivoto/metan")
 ```
 
+Suggestions and criticisms to improve the quality and usability of the
+package are welcome\!
+
 # Brief examples
 
 The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and
@@ -38,7 +41,7 @@ material.
 
 The `metan` contains some datasets for examples. We will use the example
 `data_ge` that contains data from two variables assessed in 10 genotypes
-growing in in 11 environments. For more details see `?data_ge`
+growing in 14 environments. For more details see `?data_ge`
 
 ``` r
 library(metan)
@@ -57,7 +60,8 @@ str(data_ge)
 ### Fitting the model
 
 The AMMI model is fitted with the function `waas()`. For more details,
-please see `?waas`.
+see the [complete
+vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html).
 
 ``` r
 model <- waas(data_ge,
@@ -79,12 +83,11 @@ significant IPCAs) to estimate the variable GY using the `model` object.
 ``` r
 library(kableExtra)
 predicted = predict(model, naxis = 4)
-predicted = predicted$GY[1:5,]
-kable(predicted, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+kable(predicted$GY[1:5,], "html") %>%
+  kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
 
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 
 <thead>
 
@@ -432,13 +435,32 @@ plot_grid(p1, p2, labels = c("p1","p2"))
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
+## GGE model
+
+The GGE model is fitted with the function `gge()`. For more details, see
+the [complete
+vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html).
+
+``` r
+model <- gge(data_ge, GEN, ENV, GY)
+model2 <- gge(data_ge, GEN, ENV, GY, svp = "symmetrical")
+p1 <- plot(model)
+p2 <- plot(model2,
+           type = 2,
+           col.gen = "black",
+           col.env = "gray70",
+           axis.expand = 1.5)
+plot_grid(p1, p2, labels = c("p1","p2"))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
 ## BLUP model
 
 The implementation of linear-mixed effect models to predict the response
-variable in MET is based on the `waasb()` function. The “mixed-effect
-version” of the already fitted AMMI model, where genotype and
-genotype-vs-environment interaction are assumed to be random effects is
-then obtained as follows
+variable in MET is based on the `waasb()` function. For more details,
+see the [complete
+vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
 
 ``` r
 model2 <- waasb(data_ge,
@@ -460,18 +482,17 @@ plot_grid(p1, p2,
           labels = c("p1", "p2"))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ### BLUPS for genotype-vs-environment interaction
 
 ``` r
 data = model2$GY$BLUPgge[1:5,]
 kable(data, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed",
-                position = "left", full_width = F, font_size = 12)
+  kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
 
-<table class="table table-striped" style="font-size: 12px; width: auto !important; ">
+<table class="table table-striped table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 
 <thead>
 
@@ -794,11 +815,3 @@ G4
 </tbody>
 
 </table>
-
-# Extending the metan package
-
-The complete functionality of the metan package, combining theory,
-programming, and examples with outputs is described at
-<https://tiagoolivoto.github.io/metan/index.html>. Suggestions and
-criticisms to improve the quality and usability of the package are
-welcome\!

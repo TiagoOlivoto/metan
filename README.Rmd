@@ -10,16 +10,16 @@ output: github_document
 
 The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to:
 
-* Within environment analysis of variance
-* Cross-validation procedures for AMMI-family and BLUP models;
+* Within-environment analysis of variance;
 * Estimation using AMMI considering different numbers of interaction principal component axes;
 * AMMI-based stability indexes;
 * GGE biplot analysis;
 * Prediction in mixed-effect models;
 * BLUP-based stability indexes;
 * Variance components and genetic parameters in mixed-effect models;
-* Graphics tools for generating biplots.
-* Parametric and nonparametric stability statistics
+* Cross-validation procedures for AMMI-family and BLUP models;
+* Graphics tools for generating biplots;
+* Parametric and nonparametric stability statistics.
 
 
 # Installing
@@ -30,10 +30,13 @@ if (!require("devtools")) install.packages('devtools')
 devtools::install_github("TiagoOlivoto/metan")
 ```
 
+Suggestions and criticisms to improve the quality and usability of the package are welcome!
+
+
 # Brief examples
 The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) were used to generate the tables and arranging the graphics of this material.
 
-The `metan` contains some datasets for examples. We will use the example `data_ge` that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see `?data_ge`
+The `metan` contains some datasets for examples. We will use the example `data_ge` that contains data from two variables assessed in 10 genotypes growing in 14 environments. For more details see `?data_ge`
 
 ```{r}
 library(metan)
@@ -43,7 +46,7 @@ str(data_ge)
 
 ## AMMI model
 ### Fitting the model
-The AMMI model is fitted with the function `waas()`. For more details, please see `?waas`.
+The AMMI model is fitted with the function `waas()`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html).
 
 ```{r}
 model <- waas(data_ge,
@@ -58,12 +61,11 @@ model <- waas(data_ge,
 ### Predicting the response variable
 The S3 method `predict()` is implemented for objects of class `waas` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object.
 
-```{r }
+```{r message=FALSE,warning=FALSE }
 library(kableExtra)
 predicted = predict(model, naxis = 4)
-predicted = predicted$GY[1:5,]
-kable(predicted, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed", full_width = F)
+kable(predicted$GY[1:5,], "html") %>%
+  kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
 
 
@@ -85,8 +87,25 @@ p2 = plot_scores(model$GY,
 plot_grid(p1, p2, labels = c("p1","p2"))
 ```
 
+## GGE model
+The GGE model is fitted with the function `gge()`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html).
+
+
+```{r}
+model <- gge(data_ge, GEN, ENV, GY)
+model2 <- gge(data_ge, GEN, ENV, GY, svp = "symmetrical")
+p1 <- plot(model)
+p2 <- plot(model2,
+           type = 2,
+           col.gen = "black",
+           col.env = "gray70",
+           axis.expand = 1.5)
+plot_grid(p1, p2, labels = c("p1","p2"))
+```
+
+
 ## BLUP model
-The implementation of linear-mixed effect models to predict the response variable in MET is based on the `waasb()` function. The "mixed-effect version" of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to be random effects is then obtained as follows
+The implementation of linear-mixed effect models to predict the response variable in MET is based on the `waasb()` function. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
 
 ```{r }
 model2 <- waasb(data_ge,
@@ -116,10 +135,6 @@ plot_grid(p1, p2,
 ```{r }
 data = model2$GY$BLUPgge[1:5,]
 kable(data, "html") %>%
-  kable_styling(bootstrap_options = "striped", "condensed",
-                position = "left", full_width = F, font_size = 12)
+  kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
 
-# Extending the metan package
-
-The complete functionality of the metan package, combining theory, programming, and examples with outputs is described at <https://tiagoolivoto.github.io/metan/index.html>. Suggestions and criticisms to improve the quality and usability of the package are welcome!

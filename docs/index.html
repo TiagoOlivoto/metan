@@ -137,16 +137,16 @@
 </h1></div>
 <p>The metan (<strong>m</strong>ulti-<strong>e</strong>nvironment <strong>t</strong>rials <strong>an</strong>alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to:</p>
 <ul>
-<li>Within environment analysis of variance</li>
-<li>Cross-validation procedures for AMMI-family and BLUP models;</li>
+<li>Within-environment analysis of variance;</li>
 <li>Estimation using AMMI considering different numbers of interaction principal component axes;</li>
 <li>AMMI-based stability indexes;</li>
 <li>GGE biplot analysis;</li>
 <li>Prediction in mixed-effect models;</li>
 <li>BLUP-based stability indexes;</li>
 <li>Variance components and genetic parameters in mixed-effect models;</li>
-<li>Graphics tools for generating biplots.</li>
-<li>Parametric and nonparametric stability statistics</li>
+<li>Cross-validation procedures for AMMI-family and BLUP models;</li>
+<li>Graphics tools for generating biplots;</li>
+<li>Parametric and nonparametric stability statistics.</li>
 </ul>
 </div>
 <div id="installing" class="section level1">
@@ -155,12 +155,13 @@
 <p>The latest development version can be download from GitHub by running</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"devtools"</span>)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">'devtools'</span>)</a>
 <a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"TiagoOlivoto/metan"</span>)</a></code></pre></div>
+<p>Suggestions and criticisms to improve the quality and usability of the package are welcome!</p>
 </div>
 <div id="brief-examples" class="section level1">
 <h1 class="hasAnchor">
 <a href="#brief-examples" class="anchor"></a>Brief examples</h1>
 <p>The package <a href="https://haozhu233.github.io/kableExtra/"><code>kableExtra</code></a> and <a href="https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html"><code>cowplot</code></a> were used to generate the tables and arranging the graphics of this material.</p>
-<p>The <code>metan</code> contains some datasets for examples. We will use the example <code>data_ge</code> that contains data from two variables assessed in 10 genotypes growing in in 11 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code></p>
+<p>The <code>metan</code> contains some datasets for examples. We will use the example <code>data_ge</code> that contains data from two variables assessed in 10 genotypes growing in 14 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
@@ -175,7 +176,7 @@
 <div id="fitting-the-model" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h3>
-<p>The AMMI model is fitted with the function <code><a href="reference/waas.html">waas()</a></code>. For more details, please see <code><a href="reference/waas.html">?waas</a></code>.</p>
+<p>The AMMI model is fitted with the function <code><a href="reference/waas.html">waas()</a></code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html">complete vignette</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/waas.html">waas</a></span>(data_ge,</a>
 <a class="sourceLine" id="cb4-2" title="2">              <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb4-3" title="3">              <span class="dt">gen =</span> GEN,</a>
@@ -189,10 +190,9 @@
 <p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)</a>
 <a class="sourceLine" id="cb5-2" title="2">predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">predicted =<span class="st"> </span>predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="kw">kable</span>(predicted, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="dt">full_width =</span> F)</a></code></pre></div>
-<table class="table table table table-striped">
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">kable</span>(predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,], <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
+<table class="table table table table-striped table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 ENV
@@ -371,35 +371,49 @@ G4
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="768"></p>
 </div>
 </div>
+<div id="gge-model" class="section level2">
+<h2 class="hasAnchor">
+<a href="#gge-model" class="anchor"></a>GGE model</h2>
+<p>The GGE model is fitted with the function <code><a href="reference/gge.html">gge()</a></code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html">complete vignette</a>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, GEN, ENV, GY)</a>
+<a class="sourceLine" id="cb7-2" title="2">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, GEN, ENV, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
+<a class="sourceLine" id="cb7-3" title="3">p1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(model)</a>
+<a class="sourceLine" id="cb7-4" title="4">p2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(model2,</a>
+<a class="sourceLine" id="cb7-5" title="5">           <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb7-6" title="6">           <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb7-7" title="7">           <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb7-8" title="8">           <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+</div>
 <div id="blup-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h2>
-<p>The implementation of linear-mixed effect models to predict the response variable in MET is based on the <code><a href="reference/waasb.html">waasb()</a></code> function. The “mixed-effect version” of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to be random effects is then obtained as follows</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/waasb.html">waasb</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb7-2" title="2">                <span class="dt">resp =</span> GY,</a>
-<a class="sourceLine" id="cb7-3" title="3">                <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb7-4" title="4">                <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb7-5" title="5">                <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb7-6" title="6">                <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>The implementation of linear-mixed effect models to predict the response variable in MET is based on the <code><a href="reference/waasb.html">waasb()</a></code> function. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html">complete vignette</a>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/waasb.html">waasb</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb8-2" title="2">                <span class="dt">resp =</span> GY,</a>
+<a class="sourceLine" id="cb8-3" title="3">                <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb8-4" title="4">                <span class="dt">env =</span> ENV,</a>
+<a class="sourceLine" id="cb8-5" title="5">                <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb8-6" title="6">                <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <div id="plotting-the-blups-for-genotypes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plotting-the-blups-for-genotypes" class="anchor"></a>Plotting the BLUPs for genotypes</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb8-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb8-3" title="3">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb8-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="kw">plot_grid</span>(p1, p2,</a>
-<a class="sourceLine" id="cb8-6" title="6">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="768"></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb9-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb9-3" title="3">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
+<a class="sourceLine" id="cb9-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw">plot_grid</span>(p1, p2,</a>
+<a class="sourceLine" id="cb9-6" title="6">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="768"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level3">
 <h3 class="hasAnchor">
 <a href="#blups-for-genotype-vs-environment-interaction" class="anchor"></a>BLUPS for genotype-vs-environment interaction</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">data =<span class="st"> </span>model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"condensed"</span>,</a>
-<a class="sourceLine" id="cb9-4" title="4">                <span class="dt">position =</span> <span class="st">"left"</span>, <span class="dt">full_width =</span> F, <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
-<table class="table table table table-striped">
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">data =<span class="st"> </span>model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
+<table class="table table table table-striped table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 ENV
@@ -561,11 +575,6 @@ G4
 </table>
 </div>
 </div>
-</div>
-<div id="extending-the-metan-package" class="section level1">
-<h1 class="hasAnchor">
-<a href="#extending-the-metan-package" class="anchor"></a>Extending the metan package</h1>
-<p>The complete functionality of the metan package, combining theory, programming, and examples with outputs is described at <a href="https://tiagoolivoto.github.io/metan/index.html" class="uri">https://tiagoolivoto.github.io/metan/index.html</a>. Suggestions and criticisms to improve the quality and usability of the package are welcome!</p>
 </div>
   </div>
 
