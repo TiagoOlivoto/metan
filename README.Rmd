@@ -64,7 +64,7 @@ The S3 method `predict()` is implemented for objects of class `waas` and may be 
 ```{r message=FALSE,warning=FALSE }
 library(kableExtra)
 predicted = predict(model, naxis = 4)
-kable(predicted$GY[1:5,], "html") %>%
+kable(predicted$GY[1:5,], "html", digits = 3) %>%
   kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
 
@@ -134,7 +134,7 @@ plot_grid(p1, p2,
 
 ```{r }
 data = model2$GY$BLUPgge[1:5,]
-kable(data, "html") %>%
+kable(data, "html", digits = 3) %>%
   kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
 

@@ -190,7 +190,7 @@
 <p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)</a>
 <a class="sourceLine" id="cb5-2" title="2">predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw">kable</span>(predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,], <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">kable</span>(predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,], <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
 <table class="table table table table-striped table-condensed table-responsive">
 <thead><tr>
@@ -228,13 +228,13 @@ E1
 G1
 </td>
 <td style="text-align:right;">
-2.365787
+2.366
 </td>
 <td style="text-align:right;">
--0.0843311
+-0.084
 </td>
 <td style="text-align:right;">
-2.450118
+2.450
 </td>
 <td style="text-align:right;">
 0.07115484
@@ -243,7 +243,7 @@ G1
 2.521273
 </td>
 <td style="text-align:right;">
-2.450118
+2.450
 </td>
 </tr>
 <tr>
@@ -254,13 +254,13 @@ E1
 G10
 </td>
 <td style="text-align:right;">
-1.974073
+1.974
 </td>
 <td style="text-align:right;">
--0.3435891
+-0.344
 </td>
 <td style="text-align:right;">
-2.317662
+2.318
 </td>
 <td style="text-align:right;">
 -0.35391141
@@ -269,7 +269,7 @@ G10
 1.963751
 </td>
 <td style="text-align:right;">
-2.317662
+2.318
 </td>
 </tr>
 <tr>
@@ -280,13 +280,13 @@ E1
 G2
 </td>
 <td style="text-align:right;">
-2.901747
+2.902
 </td>
 <td style="text-align:right;">
-0.3111581
+0.311
 </td>
 <td style="text-align:right;">
-2.590589
+2.591
 </td>
 <td style="text-align:right;">
 0.29035016
@@ -295,7 +295,7 @@ G2
 2.880939
 </td>
 <td style="text-align:right;">
-2.590589
+2.591
 </td>
 </tr>
 <tr>
@@ -306,13 +306,13 @@ E1
 G3
 </td>
 <td style="text-align:right;">
-2.888587
+2.889
 </td>
 <td style="text-align:right;">
-0.0868009
+0.087
 </td>
 <td style="text-align:right;">
-2.801786
+2.802
 </td>
 <td style="text-align:right;">
 -0.04518795
@@ -321,7 +321,7 @@ G3
 2.756598
 </td>
 <td style="text-align:right;">
-2.801786
+2.802
 </td>
 </tr>
 <tr>
@@ -332,13 +332,13 @@ E1
 G4
 </td>
 <td style="text-align:right;">
-2.588567
+2.589
 </td>
 <td style="text-align:right;">
-0.1002096
+0.100
 </td>
 <td style="text-align:right;">
-2.488357
+2.488
 </td>
 <td style="text-align:right;">
 0.04942370
@@ -347,7 +347,7 @@ G4
 2.537781
 </td>
 <td style="text-align:right;">
-2.488357
+2.488
 </td>
 </tr>
 </tbody>
@@ -411,7 +411,7 @@ G4
 <h3 class="hasAnchor">
 <a href="#blups-for-genotype-vs-environment-interaction" class="anchor"></a>BLUPS for genotype-vs-environment interaction</h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">data =<span class="st"> </span>model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">kable</span>(data, <span class="st">"html"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">kable</span>(data, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
 <table class="table table table table-striped table-condensed table-responsive">
 <thead><tr>
@@ -449,22 +449,22 @@ E1
 G1
 </td>
 <td style="text-align:right;">
--0.0620870
+-0.062
 </td>
 <td style="text-align:right;">
--0.0575249
+-0.058
 </td>
 <td style="text-align:right;">
--0.1196119
+-0.120
 </td>
 <td style="text-align:right;">
-2.401071
+2.401
 </td>
 <td style="text-align:right;">
-2.297567
+2.298
 </td>
 <td style="text-align:right;">
-2.504575
+2.505
 </td>
 </tr>
 <tr>
@@ -475,22 +475,22 @@ E1
 G10
 </td>
 <td style="text-align:right;">
--0.2430051
+-0.243
 </td>
 <td style="text-align:right;">
--0.1655022
+-0.166
 </td>
 <td style="text-align:right;">
--0.4085073
+-0.409
 </td>
 <td style="text-align:right;">
-2.112176
+2.112
 </td>
 <td style="text-align:right;">
-2.008672
+2.009
 </td>
 <td style="text-align:right;">
-2.215680
+2.216
 </td>
 </tr>
 <tr>
@@ -501,22 +501,22 @@ E1
 G2
 </td>
 <td style="text-align:right;">
-0.2066405
+0.207
 </td>
 <td style="text-align:right;">
-0.0569866
+0.057
 </td>
 <td style="text-align:right;">
-0.2636271
+0.264
 </td>
 <td style="text-align:right;">
-2.784311
+2.784
 </td>
 <td style="text-align:right;">
-2.680807
+2.681
 </td>
 <td style="text-align:right;">
-2.887814
+2.888
 </td>
 </tr>
 <tr>
@@ -527,22 +527,22 @@ E1
 G3
 </td>
 <td style="text-align:right;">
-0.0884704
+0.088
 </td>
 <td style="text-align:right;">
-0.2291542
+0.229
 </td>
 <td style="text-align:right;">
-0.3176246
+0.318
 </td>
 <td style="text-align:right;">
-2.838308
+2.838
 </td>
 <td style="text-align:right;">
-2.734804
+2.735
 </td>
 <td style="text-align:right;">
-2.941812
+2.942
 </td>
 </tr>
 <tr>
@@ -553,22 +553,22 @@ E1
 G4
 </td>
 <td style="text-align:right;">
-0.0600873
+0.060
 </td>
 <td style="text-align:right;">
--0.0263523
+-0.026
 </td>
 <td style="text-align:right;">
-0.0337350
+0.034
 </td>
 <td style="text-align:right;">
-2.554418
+2.554
 </td>
 <td style="text-align:right;">
-2.450914
+2.451
 </td>
 <td style="text-align:right;">
-2.657922
+2.658
 </td>
 </tr>
 </tbody>

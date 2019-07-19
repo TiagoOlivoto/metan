@@ -83,7 +83,7 @@ significant IPCAs) to estimate the variable GY using the `model` object.
 ``` r
 library(kableExtra)
 predicted = predict(model, naxis = 4)
-kable(predicted$GY[1:5,], "html") %>%
+kable(predicted$GY[1:5,], "html", digits = 3) %>%
   kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
 
@@ -163,19 +163,19 @@ G1
 
 <td style="text-align:right;">
 
-2.365787
+2.366
 
 </td>
 
 <td style="text-align:right;">
 
-\-0.0843311
+\-0.084
 
 </td>
 
 <td style="text-align:right;">
 
-2.450118
+2.450
 
 </td>
 
@@ -193,7 +193,7 @@ G1
 
 <td style="text-align:right;">
 
-2.450118
+2.450
 
 </td>
 
@@ -215,19 +215,19 @@ G10
 
 <td style="text-align:right;">
 
-1.974073
+1.974
 
 </td>
 
 <td style="text-align:right;">
 
-\-0.3435891
+\-0.344
 
 </td>
 
 <td style="text-align:right;">
 
-2.317662
+2.318
 
 </td>
 
@@ -245,7 +245,7 @@ G10
 
 <td style="text-align:right;">
 
-2.317662
+2.318
 
 </td>
 
@@ -267,19 +267,19 @@ G2
 
 <td style="text-align:right;">
 
-2.901747
+2.902
 
 </td>
 
 <td style="text-align:right;">
 
-0.3111581
+0.311
 
 </td>
 
 <td style="text-align:right;">
 
-2.590589
+2.591
 
 </td>
 
@@ -297,7 +297,7 @@ G2
 
 <td style="text-align:right;">
 
-2.590589
+2.591
 
 </td>
 
@@ -319,19 +319,19 @@ G3
 
 <td style="text-align:right;">
 
-2.888587
+2.889
 
 </td>
 
 <td style="text-align:right;">
 
-0.0868009
+0.087
 
 </td>
 
 <td style="text-align:right;">
 
-2.801786
+2.802
 
 </td>
 
@@ -349,7 +349,7 @@ G3
 
 <td style="text-align:right;">
 
-2.801786
+2.802
 
 </td>
 
@@ -371,19 +371,19 @@ G4
 
 <td style="text-align:right;">
 
-2.588567
+2.589
 
 </td>
 
 <td style="text-align:right;">
 
-0.1002096
+0.100
 
 </td>
 
 <td style="text-align:right;">
 
-2.488357
+2.488
 
 </td>
 
@@ -401,7 +401,7 @@ G4
 
 <td style="text-align:right;">
 
-2.488357
+2.488
 
 </td>
 
@@ -488,7 +488,7 @@ plot_grid(p1, p2,
 
 ``` r
 data = model2$GY$BLUPgge[1:5,]
-kable(data, "html") %>%
+kable(data, "html", digits = 3) %>%
   kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
 
@@ -568,37 +568,37 @@ G1
 
 <td style="text-align:right;">
 
-\-0.0620870
+\-0.062
 
 </td>
 
 <td style="text-align:right;">
 
-\-0.0575249
+\-0.058
 
 </td>
 
 <td style="text-align:right;">
 
-\-0.1196119
+\-0.120
 
 </td>
 
 <td style="text-align:right;">
 
-2.401071
+2.401
 
 </td>
 
 <td style="text-align:right;">
 
-2.297567
+2.298
 
 </td>
 
 <td style="text-align:right;">
 
-2.504575
+2.505
 
 </td>
 
@@ -620,37 +620,37 @@ G10
 
 <td style="text-align:right;">
 
-\-0.2430051
+\-0.243
 
 </td>
 
 <td style="text-align:right;">
 
-\-0.1655022
+\-0.166
 
 </td>
 
 <td style="text-align:right;">
 
-\-0.4085073
+\-0.409
 
 </td>
 
 <td style="text-align:right;">
 
-2.112176
+2.112
 
 </td>
 
 <td style="text-align:right;">
 
-2.008672
+2.009
 
 </td>
 
 <td style="text-align:right;">
 
-2.215680
+2.216
 
 </td>
 
@@ -672,37 +672,37 @@ G2
 
 <td style="text-align:right;">
 
-0.2066405
+0.207
 
 </td>
 
 <td style="text-align:right;">
 
-0.0569866
+0.057
 
 </td>
 
 <td style="text-align:right;">
 
-0.2636271
+0.264
 
 </td>
 
 <td style="text-align:right;">
 
-2.784311
+2.784
 
 </td>
 
 <td style="text-align:right;">
 
-2.680807
+2.681
 
 </td>
 
 <td style="text-align:right;">
 
-2.887814
+2.888
 
 </td>
 
@@ -724,37 +724,37 @@ G3
 
 <td style="text-align:right;">
 
-0.0884704
+0.088
 
 </td>
 
 <td style="text-align:right;">
 
-0.2291542
+0.229
 
 </td>
 
 <td style="text-align:right;">
 
-0.3176246
+0.318
 
 </td>
 
 <td style="text-align:right;">
 
-2.838308
+2.838
 
 </td>
 
 <td style="text-align:right;">
 
-2.734804
+2.735
 
 </td>
 
 <td style="text-align:right;">
 
-2.941812
+2.942
 
 </td>
 
@@ -776,37 +776,37 @@ G4
 
 <td style="text-align:right;">
 
-0.0600873
+0.060
 
 </td>
 
 <td style="text-align:right;">
 
-\-0.0263523
+\-0.026
 
 </td>
 
 <td style="text-align:right;">
 
-0.0337350
+0.034
 
 </td>
 
 <td style="text-align:right;">
 
-2.554418
+2.554
 
 </td>
 
 <td style="text-align:right;">
 
-2.450914
+2.451
 
 </td>
 
 <td style="text-align:right;">
 
-2.657922
+2.658
 
 </td>
 
