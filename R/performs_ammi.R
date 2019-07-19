@@ -47,9 +47,8 @@ performs_ammi <- function(.data, env, gen, rep, resp) {
     datares <- model$model
     datares$factors <- paste(datares$ENV, datares$GEN)
     residuals = cbind(datares, df %>% select(fitted = .fitted, resid = .resid, stdres = .stdresid))
-    if (minimo <= 2) {
-        cat("\nWarning. The analysis AMMI is not possible.")
-        cat("\nThe number of environments and number of genotypes must be greater than 2\n")
+    if (minimo < 2) {
+        stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
     }
     mm <- anova(model)
     nn <- mm[2, ]
