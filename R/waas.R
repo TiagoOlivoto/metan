@@ -112,7 +112,7 @@
 #'
 #'
 waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
-    naxis = NULL, verbose = TRUE) {
+    naxis = NULL, ind_anova = TRUE, verbose = TRUE) {
     d <- match.call()
     nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
     if (!is.null(naxis)) {
@@ -169,11 +169,11 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
         Ngen <- length(unique(GEN))
         minimo <- min(Nenv, Ngen) - 1
         vin <- vin + 1
-        if (minimo < 2) {
-            cat("\nWarning. The analysis is not possible.")
-            cat("\nThe number of environments and number of genotypes must be greater than 2\n")
-        }
+        if(ind_anova == TRUE){
         individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+        } else{
+            individual = NULL
+        }
         model <- performs_ammi(data, ENV, GEN, REP, Y)
         anova <- model$ANOVA
         PC <- model$analysis
