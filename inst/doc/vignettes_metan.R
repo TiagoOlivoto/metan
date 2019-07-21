@@ -91,7 +91,7 @@ ge_table = make_mat(data_ge, GEN, ENV, GY)
 gge_model = gge(ge_table, table = TRUE)
 
 
-## ----echo = TRUE, fig.height=3.5, fig.width=5, fig.align = "center", message=F, warning=F----
+## ----echo = TRUE,fig.width=4, fig.align = "center", message=F, warning=F----
 plot(gge_model)
 
 ## ------------------------------------------------------------------------

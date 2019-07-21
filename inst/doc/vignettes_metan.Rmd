@@ -182,7 +182,7 @@ The generic function `plot()` is used to generate a biplot using as input a fitt
 *`type =  9` Compare two genotypes.
 *`type =  10` Relationship among environments.
 
-```{r echo = TRUE, fig.height=3.5, fig.width=5, fig.align = "center", message=F, warning=F}
+```{r echo = TRUE,fig.width=4, fig.align = "center", message=F, warning=F}
 plot(gge_model)
 ```
 
