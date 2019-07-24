@@ -7,7 +7,7 @@
 #' class \code{split_factors}.
 #' @param var The variable to be analyzed..
 #' @param plots If \code{TRUE}, then histograms and boxplots are shown.
-#' @param coef The multiplication coefficient. For more details see
+#' @param coef The multiplication coefficient, defaults to 1.5. For more details see
 #' \code{?boxplot.stat}.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #' console.
@@ -63,6 +63,8 @@ find_outliers = function(.data,
     mo <- mean(outlier)
     maxo <- max(outlier)
     mino <- min(outlier)
+    names_out_max = paste(which(dd[,1] == maxo))
+    names_out_min = paste(which(dd[,1] == mino))
     }
     var_name <- ifelse(var_name %in% outlier, NA, var_name)
     names = rownames(var_name)
@@ -82,8 +84,8 @@ find_outliers = function(.data,
       cat("Lines:", names_out, "\n")
       cat("Proportion: ", round((na2 - na1) / sum(!is.na(var_name))*100, 1), "%\n", sep = "")
       cat("Mean of the outliers:", round(mo, 3), "\n")
-      cat("Maximum of the outliers:", round(maxo, 3), "\n")
-      cat("Minimum of the outliers:", round(mino, 3), "\n")
+      cat("Maximum of the outliers:", round(maxo, 3), " | Line", names_out_max, "\n")
+      cat("Minimum of the outliers:", round(mino, 3), " | Line", names_out_min, "\n")
       m2 <- mean(var_name, na.rm = T)
       m22 <- (sd(var_name, na.rm = T)/m2)*100
       cat("With outliers:    mean = ", round(m1, 3), " | CV = ",round(m11, 3),"%", sep = "","\n")
@@ -120,12 +122,15 @@ find_outliers = function(.data,
       hist(var_name, main = "With outliers", xlab=NA, ylab=NA)
     }
     outlier <- boxplot.stats(var_name, coef =  coef)$out
+
     dd = data.frame(.data %>% select(!!var))
     names_out = paste(which(dd[,1] %in% outlier), sep = " ")
     if(length(outlier) >= 1){
       mo <- mean(outlier)
       maxo <- max(outlier)
       mino <- min(outlier)
+      names_out_max = paste(which(dd[,1] == maxo))
+      names_out_min = paste(which(dd[,1] == mino))
     }
     var_name <- ifelse(var_name %in% outlier, NA, var_name)
     names = rownames(var_name)
@@ -140,8 +145,8 @@ find_outliers = function(.data,
       cat("Lines:", names_out, "\n")
       cat("Proportion: ", round((na2 - na1) / sum(!is.na(var_name))*100, 1), "%\n", sep = "")
       cat("Mean of the outliers:", round(mo, 3), "\n")
-      cat("Maximum of the outliers:", round(maxo, 3), "\n")
-      cat("Minimum of the outliers:", round(mino, 3), "\n")
+      cat("Maximum of the outliers:", round(maxo, 3), " | Line", names_out_max, "\n")
+      cat("Minimum of the outliers:", round(mino, 3), " | Line", names_out_min, "\n")
       m2 <- mean(var_name, na.rm = T)
       m22 <- (sd(var_name, na.rm = T)/m2)*100
       cat("With outliers:    mean = ", round(m1, 3), " | CV = ",round(m11, 3),"%", sep = "","\n")
