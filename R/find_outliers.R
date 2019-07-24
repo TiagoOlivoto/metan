@@ -60,6 +60,8 @@ find_outliers = function(.data,
     dd = data.frame(data %>% select(!!var))
     names_out = paste(which(dd[,1] %in% outlier), sep = " ")
     mo <- mean(outlier)
+    maxo <- max(outlier)
+    mino <- min(outlier)
     var_name <- ifelse(var_name %in% outlier, NA, var_name)
     names = rownames(var_name)
     if(any(plots == TRUE)){
@@ -78,6 +80,8 @@ find_outliers = function(.data,
       cat("Lines:", names_out, "\n")
       cat("Proportion: ", round((na2 - na1) / sum(!is.na(var_name))*100, 1), "%\n", sep = "")
       cat("Mean of the outliers:", round(mo, 3), "\n")
+      cat("Maximum of the outliers:", round(maxo, 3), "\n")
+      cat("Minimum of the outliers:", round(mino, 3), "\n")
       m2 <- mean(var_name, na.rm = T)
       m22 <- (sd(var_name, na.rm = T)/m2)*100
       cat("With outliers:    mean = ", round(m1, 3), " | CV = ",round(m11, 3),"%", sep = "","\n")
@@ -114,9 +118,11 @@ find_outliers = function(.data,
       hist(var_name, main = "With outliers", xlab=NA, ylab=NA)
     }
     outlier <- boxplot.stats(var_name, coef =  coef)$out
-    dd = .data %>% select(!!var)
+    dd = data.frame(.data %>% select(!!var))
     names_out = paste(which(dd[,1] %in% outlier), sep = " ")
     mo <- mean(outlier)
+    maxo <- max(outlier)
+    mino <- min(outlier)
     var_name <- ifelse(var_name %in% outlier, NA, var_name)
     names = rownames(var_name)
     if(any(plots == TRUE)){
@@ -130,6 +136,8 @@ find_outliers = function(.data,
       cat("Lines:", names_out, "\n")
       cat("Proportion: ", round((na2 - na1) / sum(!is.na(var_name))*100, 1), "%\n", sep = "")
       cat("Mean of the outliers:", round(mo, 3), "\n")
+      cat("Maximum of the outliers:", round(maxo, 3), "\n")
+      cat("Minimum of the outliers:", round(mino, 3), "\n")
       m2 <- mean(var_name, na.rm = T)
       m22 <- (sd(var_name, na.rm = T)/m2)*100
       cat("With outliers:    mean = ", round(m1, 3), " | CV = ",round(m11, 3),"%", sep = "","\n")
