@@ -14,7 +14,7 @@ class \code{split_factors}.}
 
 \item{plots}{If \code{TRUE}, then histograms and boxplots are shown.}
 
-\item{coef}{The multiplication coefficient. For more details see
+\item{coef}{The multiplication coefficient, defaults to 1.5. For more details see
 \code{?boxplot.stat}.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
