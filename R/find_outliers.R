@@ -59,9 +59,11 @@ find_outliers = function(.data,
     outlier <- boxplot.stats(var_name, coef =  coef)$out
     dd = data.frame(data %>% select(!!var))
     names_out = paste(which(dd[,1] %in% outlier), sep = " ")
+    if(length(outlier) >= 1){
     mo <- mean(outlier)
     maxo <- max(outlier)
     mino <- min(outlier)
+    }
     var_name <- ifelse(var_name %in% outlier, NA, var_name)
     names = rownames(var_name)
     if(any(plots == TRUE)){
@@ -101,7 +103,7 @@ find_outliers = function(.data,
     if(sum(lapply(.data, is.factor)==TRUE)>0){
     if(verbose == TRUE){
       message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-              " were ignored. Use 'split_factors()' if you want to perform an analysis for each level of a factor.' ")
+              " were ignored. Use 'split_factors()' before if you want to perform an analysis for each level of a factor.' ")
     }
     }
     var = dplyr::enquo(var)
@@ -120,9 +122,11 @@ find_outliers = function(.data,
     outlier <- boxplot.stats(var_name, coef =  coef)$out
     dd = data.frame(.data %>% select(!!var))
     names_out = paste(which(dd[,1] %in% outlier), sep = " ")
-    mo <- mean(outlier)
-    maxo <- max(outlier)
-    mino <- min(outlier)
+    if(length(outlier) >= 1){
+      mo <- mean(outlier)
+      maxo <- max(outlier)
+      mino <- min(outlier)
+    }
     var_name <- ifelse(var_name %in% outlier, NA, var_name)
     names = rownames(var_name)
     if(any(plots == TRUE)){
@@ -144,7 +148,7 @@ find_outliers = function(.data,
       cat("Without outliers: mean = ", round(m2, 3), " | CV = ",round(m22, 3),"%", sep = "","\n")
     }
     if((na2 - na1)==0){
-      cat("No outlier identified. \n")
+      cat("No possible outlier identified. \n")
     }
   }
 }
