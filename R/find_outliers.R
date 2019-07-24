@@ -57,7 +57,7 @@ find_outliers = function(.data,
     hist(var_name, main = "Without outliers", xlab=NA, ylab=NA)
     }
     outlier <- boxplot.stats(var_name, coef =  coef)$out
-    dd = data %>% select(!!var)
+    dd = data.frame(data %>% select(!!var))
     names_out = paste(which(dd[,1] %in% outlier), sep = " ")
     mo <- mean(outlier)
     var_name <- ifelse(var_name %in% outlier, NA, var_name)
