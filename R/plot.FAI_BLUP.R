@@ -57,7 +57,14 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2
         axis.text = element_text(colour = "black")) + labs(x = "", y = "FAI-BLUP") +
         scale_color_manual(values = c(col.nonsel, col.sel))
     if (radar == TRUE) {
-        p <- p + coord_polar()
+        sequence_length = length(unique(data$Genotype))
+        first_sequence = c(1:(sequence_length%/%2))
+        second_sequence = c((sequence_length%/%2+1):sequence_length)
+        first_angles = c(90 - 180/length(first_sequence) * first_sequence)
+        second_angles = c(-90 - 180/length(second_sequence) * second_sequence)
+        p <- p + coord_polar() +
+            theme(axis.text.x = element_text(angle= c(first_angles,second_angles)),
+                  legend.margin = margin(0,0,-20,-20))
     }
     return(p)
 }
