@@ -12,6 +12,7 @@
 #' @param digits The number of significant figures.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
+#' @importFrom tidyr spread gather separate
 #' @examples
 #' \dontrun{
 #'
