@@ -11,6 +11,10 @@
 #' correspond to \strong{one column} in the output.
 #' @param value The column of data that contains the values to fill the two-way
 #' table.
+#' @param fun The function to apply. Defaults to \code{mean}, i.e., the two-way table
+#' will show the mean values for each genotype-environment combination. Other R base functions
+#' such as \code{max}, \code{min}, \code{sd}, \code{var}, or an own function that return
+#'  a single numeric value can be used.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
@@ -20,9 +24,27 @@
 #' matrix = data_ge %>% make_mat(row = GEN, col = ENV, val = GY)
 #' matrix
 #'
-make_mat <- function(.data, row, col, value) {
+#' # An own function (sem, standart error of mean)
+#'
+#' sem = function(data){
+#'return(sd(data) / sqrt(length(data)))
+#'}
+#'
+#' data_ge %>% make_mat(GEN, ENV, GY, sem)
+#'
+
+make_mat <- function(.data, row, col, value, fun = mean) {
   data = data.frame(.data %>% dplyr::select(!!dplyr::enquo(row),
                                             !!dplyr::enquo(col),
-                                            !!dplyr::enquo(value)))
-  return(data.frame(tapply(data[, 3], data[, c(1, 2)], mean)))
+                                            !!dplyr::enquo(value))) %>%
+
+    group_by(!!dplyr::enquo(row),
+             !!dplyr::enquo(col)) %>%
+    summarise_if(is.numeric, fun) %>%
+    spread(!!dplyr::enquo(col), !!dplyr::enquo(value))
+
+  data %<>%
+    column_to_rownames(var = names(data[1]))
+    return(data)
+
 }
