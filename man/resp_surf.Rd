@@ -4,7 +4,7 @@
 \alias{resp_surf}
 \title{Response surface model}
 \usage{
-resp_surf(.data, factor1, factor2, rep, resp, prob = 0.05,
+resp_surf(.data, factor1, factor2, rep = NULL, resp, prob = 0.05,
   verbose = TRUE)
 }
 \arguments{
@@ -16,7 +16,7 @@ factor1, factor2, replication/block and response variable(s).}
 \item{factor2}{The second factor, for example, dose of potassium.}
 
 \item{rep}{The name of the column that contains the levels of the
-replications/blocks.}
+replications/blocks, if a designed experiment was conducted. Defaults to \code{NULL}.}
 
 \item{resp}{The response variable(s).}
 

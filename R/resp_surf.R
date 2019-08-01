@@ -9,7 +9,7 @@
 #' @param factor1 The first factor, for example, dose of Nitrogen.
 #' @param factor2 The second factor, for example, dose of potassium.
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks.
+#' replications/blocks, if a designed experiment was conducted. Defaults to \code{NULL}.
 #' @param resp The response variable(s).
 #' @param prob The probability error.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
@@ -20,23 +20,35 @@
 resp_surf = function(.data,
                      factor1,
                      factor2,
-                     rep,
+                     rep = NULL,
                      resp,
                      prob = 0.05,
                      verbose = TRUE) {
-
+if(!missing(rep)){
 data = .data  %>%
         dplyr::select(!!dplyr::enquo(factor1),
                       !!dplyr::enquo(factor2),
                       !!dplyr::enquo(rep),
                       !!dplyr::enquo(resp)) %>%
   mutate_at(c(1:3), as.factor)
+names = colnames(data)
+A = names[1]
+D = names[2]
+Bloco = names[3]
+Resp = names[4]
+F1 = as.formula(paste0(Resp, "~", paste(Bloco),"+", paste(A), "+", paste(D), "+", paste(A), "*", paste(D)))
+} else{
+  data = .data  %>%
+    dplyr::select(!!dplyr::enquo(factor1),
+                  !!dplyr::enquo(factor2),
+                  !!dplyr::enquo(resp)) %>%
+    mutate_at(c(1:2), as.factor)
   names = colnames(data)
   A = names[1]
   D = names[2]
-  Bloco = names[3]
-  Resp = names[4]
-  F1 = as.formula(paste0(Resp, "~", paste(Bloco),"+", paste(A), "+", paste(D), "+", paste(A), "*", paste(D)))
+  Resp = names[3]
+  F1 = as.formula(paste0(Resp, "~", paste(A), "+", paste(D), "+", paste(A), "*", paste(D)))
+}
   ANOVA = aov(F1, data = data)
   sum_test = unlist(summary(ANOVA))
   pValue_Bloco = sum_test["Pr(>F)1"]
@@ -68,7 +80,11 @@ data = .data  %>%
 if (verbose == TRUE) {
   cat("-----------------------------------------------------------------\n")
   cat("Result for the analysis of variance", "\n")
+  if(!missing(rep)){
   cat("Model: Y = m + bk + Ai + Dj + (AD)ij + eijk", "\n")
+  } else{
+  cat("Model: Y = m + Ai + Dj + (AD)ij + eij", "\n")
+  }
   cat("-----------------------------------------------------------------\n")
   print(summary(ANOVA))
   Norm = shapiro.test(ANOVA$residuals)
@@ -147,3 +163,10 @@ if (verbose == TRUE) {
 }
   invisible(structure(list(results = results, model = SurfMod),  class = "resp_surf"))
 }
+
+
+srmod = resp_surf(data_R,
+                  factor1 = DOSEN,
+                  factor2 = DOSEK,
+rep = BLOCO,
+                  resp = RG)
