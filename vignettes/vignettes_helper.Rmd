@@ -61,6 +61,7 @@ g2 = split_factors(data_ge, ENV, GEN, keep_factors = TRUE)
 print_table(g2[[1]])
 ```
 
+
 ## Group a data frame using all factor variables
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 g3 = as.split_factors(CO2)

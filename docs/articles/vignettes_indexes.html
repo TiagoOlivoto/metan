@@ -162,9 +162,6 @@
 <a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
 <a class="sourceLine" id="cb1-15" title="15">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
 <a class="sourceLine" id="cb1-16" title="16">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
-<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-control$checkConv, : Model failed to converge with max|grad| = 0.00577455
-(tol = 0.002, component 1)</code></pre>
 <pre><code>Evaluating variable KW 25 % 
 Evaluating variable NKE 50 % 
 Evaluating variable PH 75 % 
@@ -213,20 +210,21 @@ EH       1               2.407567e-08
 Selected genotypes
 H13 H6
 -----------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_indexes_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
+<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="multi-trait-stability-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#multi-trait-stability-index" class="anchor"></a>Multi-trait stability index</h1>
+<p>The function <code><a href="../reference/mtsi.html">mtsi()</a></code> is used to compute the multi-trait stability index (<em>MTSI</em>) proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2019a">2019</a>)</span>. The first argument is a model of the class <code>waasb</code> or <code>waas</code>. It is possible to compute the <em>MTSI</em> for both <em>WAASB</em> -stability only- and <em>WAASBY</em> -simultaneous selection for mean performance and stability.</p>
 <div id="based-on-stability-only" class="section level2">
 <h2 class="hasAnchor">
 <a href="#based-on-stability-only" class="anchor"></a>Based on stability only</h2>
-<p>In the following example, the selection of stable genotypes will consider the</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">MTSI_index =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb5-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>()</a></code></pre></div>
+<p>In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function <code><a href="../reference/waasb.html">waasb()</a></code> is passed to the function <code><a href="../reference/mtsi.html">mtsi()</a></code> by the forward-pipe operator <code>%&gt;%</code>. Finally, the MTSI index is plotted using the function <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">MTSI_index =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb4-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>()</a></code></pre></div>
 <pre><code>Evaluating variable KW 20 % 
 Evaluating variable NKE 40 % 
 Evaluating variable PH 60 % 
@@ -280,19 +278,19 @@ Selected genotypes
 -------------------------------------------------------------------------------
 H11 H5
 -------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_indexes_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</a></code></pre></div>
+<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="based-on-mean-performance-and-stability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#based-on-mean-performance-and-stability" class="anchor"></a>Based on mean performance and stability</h2>
-<p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. The simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">MTSI_index2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb8-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
-<a class="sourceLine" id="cb8-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb8-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
+<p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. By using <code>wresp = 65</code>, the simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">MTSI_index2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb7-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
+<a class="sourceLine" id="cb7-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb7-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
 <pre><code>Evaluating variable KW 20 % 
 Evaluating variable NKE 40 % 
 Evaluating variable PH 60 % 
@@ -346,14 +344,17 @@ Selected genotypes
 -------------------------------------------------------------------------------
 H5 H11
 -------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_indexes_files/figure-html/unnamed-chunk-4-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</a></code></pre></div>
+<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-4-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
+<div id="ref-Olivoto2019a">
+<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, B. G. Sari, and M. I. Diel. 2019. “Mean performance and stability in multi-environment trials II: Selection based on multiple traits.” <em>Agronomy Journal</em>. <a href="https://doi.org/10.2134/agronj2019.03.0221">https://doi.org/10.2134/agronj2019.03.0221</a>.</p>
+</div>
 <div id="ref-Rocha2018">
 <p>Rocha, João Romero do Amaral Santos de Car, Juarez Campolina Machado, and Pedro Crescêncio Souza Carneiro. 2018. “Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy.” <em>GCB Bioenergy</em> 10 (1): 52–60. <a href="https://doi.org/10.1111/gcbb.12443">https://doi.org/10.1111/gcbb.12443</a>.</p>
 </div>

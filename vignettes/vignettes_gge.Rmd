@@ -45,19 +45,19 @@ where $\xi_{ik}^* = \lambda_k^\alpha\xi_{ik}$; $\eta_{jk}^* = \lambda_k^{1-\alph
 
 The function `gge()` is used to produce a GGE model. According to @Yan2003, the function supports four methods of data centering, two methods of data scaling and three options for singular value partitioning:
 
-# Centering methods
+# Centering methods available
 
 * 0 or `none` for no centering;
 * 1 or `global` for global centered (E+G+GE);
 * 2 or `environment` (default), for environment-centered (G+GE);
 * 3 o  `double` for double centred (GE). A biplot cannot be produced with models produced without centering.
 
-# Scaling methods
+# Scaling methods available
 
 * 0 or `none` (default) for no scaling;
 * 1 or `sd` where each value is divided by the standard deviation of its corresponding environment (column). This will put all testers roughly the same range of values.
 
-# Singular Value Partitioning methods
+# Singular Value Partitioning methods available
 
 * 1 or `genotype` The singular value is entirely partitioned into the genotype eigenvectors, also called row metric preserving;
 * 2 or `environment` (default) the singular value is entirely partitioned into the environment eigenvectors, also called column metric preserving;
@@ -95,16 +95,16 @@ The model above was fitted considering (i) column metric preserving (where the s
 ## Visualizing the Biplot
 The generic function `plot()` is used to generate a biplot using as input a fitted model of class `gge`. The type of biplot is chosen by the argument `type` in the function.  Ten biplots type are available according to @Yan2003.
 
-* `type = 1` A basic biplot.
-* `type =  2` Mean performance vs. stability.
-* `type =  3` Which-won-where.
-* `type =  4` Discriminativeness vs. representativeness.
-* `type =  5` Examine an environment.
-* `type =  6` Ranking environments.
-* `type =  7` Examine a genotype.
-* `type =  8` Ranking gentoypes.
-* `type =  9` Compare two genotypes.
-* `type =  10` Relationship among environments.
+*`type = 1` A basic biplot.
+*`type =  2` Mean performance vs. stability.
+*`type =  3` Which-won-where.
+*`type =  4` Discriminativeness vs. representativeness.
+*`type =  5` Examine an environment.
+*`type =  6` Ranking environments.
+*`type =  7` Examine a genotype.
+*`type =  8` Ranking gentoypes.
+*`type =  9` Compare two genotypes.
+*`type =  10` Relationship among environments.
 
 In this material, for each biplot type, two graphics are produced. One with the default settings and the other to show some graphical options of the function.
 

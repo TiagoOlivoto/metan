@@ -16,8 +16,7 @@ knitr::opts_chunk$set(comment = "")
 ```
 
 
-# Find possible outliers in a data frame
-The function `find_outlier()` may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked.
+
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 library(metan)
@@ -30,20 +29,45 @@ print_table = function(table){
     kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
                   font_size = 12)
 }
+
+```
+
+# Find possible outliers in a data frame
+The function `find_outlier()` may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked out.
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 data_out = data_ge2
 data_out[12, 4] = 26
 find_outliers(data_out, var = PH, plots = TRUE)
-    ```
+```
+
 
 To check the outliers in different levels of a factor, the function `split_factors()` is used. As an example, we will find possible outliers for each level of the factor `ENV`.
 
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+data_ge2 %>%
+  split_factors(ENV) %>%
+  find_outliers(PH)
+```
+
+
+# Descriptive statistics
+The function `desc_stat()` may be used to compute measures of central tendency, position, and dispersion.
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 data_ge2 %>%
-split_factors(ENV) %>%
-find_outliers(PH)
+  desc_stat(EP, EL, CL, CD, CW, NR, NKR)
 ```
-    
+
+To compute the statistics for each level of a factor, use the function `split_factor()` befor calling `desc_stat()`, like
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+data_ge2 %>%
+  split_factors(REP) %>%
+  desc_stat(EP, EL, CL, CD, CW, NR, NKR)
+```
+
+
 # Correlations
 ## Linear and partial correlation coefficients
 

@@ -26,7 +26,7 @@ The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design
 knitr::opts_chunk$set(cache = TRUE, autodep = TRUE)
 ```
 
-```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F}
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=FALSE}
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
@@ -49,10 +49,12 @@ plot(FAI)
 
 
 # Multi-trait stability index
+The function `mtsi()` is used to compute the multi-trait stability index (*MTSI*) proposed by @Olivoto2019a. The first argument is a model of the class `waasb` or `waas`. It is possible to compute the *MTSI* for both *WAASB* -stability only- and *WAASBY* -simultaneous selection for mean performance and stability.
 
 ## Based on stability only
 
-In the following example, the selection of stable genotypes will consider the 
+In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function `waasb()` is passed to the function `mtsi()` by the forward-pipe operator `%>%`. Finally, the MTSI index is plotted using the function `plot()`.
+
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" , message=FALSE, warning=FALSE}
 MTSI_index = data_ge2 %>%
              waasb(ENV, GEN, REP,
@@ -64,7 +66,7 @@ plot(MTSI_index)
 
 ## Based on mean performance and stability
 
-The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. The simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments. 
+The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. By using `wresp = 65`, the simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
 MTSI_index2 = data_ge2 %>%

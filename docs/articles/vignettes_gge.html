@@ -159,9 +159,9 @@
 <p>where <span class="math inline">\(\xi_{ik}^* = \lambda_k^\alpha\xi_{ik}\)</span>; <span class="math inline">\(\eta_{jk}^* = \lambda_k^{1-\alpha}\eta_{jk}\)</span> being <span class="math inline">\(\lambda_k\)</span> the <em>k</em>th eigenvalue from the SVD (<span class="math inline">\(k = 1, ...p\)</span>), with <span class="math inline">\(p \le min(e, g)\)</span>; <span class="math inline">\(\alpha\)</span> is the the singular value partition factor for the Principal Component (PC) <em>k</em>; <span class="math inline">\(\xi_{ik}^*\)</span> and <span class="math inline">\(\eta_{jk}^*\)</span> are the PC scores for genotype <em>i</em> and environment <em>j</em>, respectively.</p>
 <p>The function <code><a href="../reference/gge.html">gge()</a></code> is used to produce a GGE model. According to <span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>, the function supports four methods of data centering, two methods of data scaling and three options for singular value partitioning:</p>
 </div>
-<div id="centering-methods" class="section level1">
+<div id="centering-methods-available" class="section level1">
 <h1 class="hasAnchor">
-<a href="#centering-methods" class="anchor"></a>Centering methods</h1>
+<a href="#centering-methods-available" class="anchor"></a>Centering methods available</h1>
 <ul>
 <li>0 or <code>none</code> for no centering;</li>
 <li>1 or <code>global</code> for global centered (E+G+GE);</li>
@@ -169,17 +169,17 @@
 <li>3 o <code>double</code> for double centred (GE). A biplot cannot be produced with models produced without centering.</li>
 </ul>
 </div>
-<div id="scaling-methods" class="section level1">
+<div id="scaling-methods-available" class="section level1">
 <h1 class="hasAnchor">
-<a href="#scaling-methods" class="anchor"></a>Scaling methods</h1>
+<a href="#scaling-methods-available" class="anchor"></a>Scaling methods available</h1>
 <ul>
 <li>0 or <code>none</code> (default) for no scaling;</li>
 <li>1 or <code>sd</code> where each value is divided by the standard deviation of its corresponding environment (column). This will put all testers roughly the same range of values.</li>
 </ul>
 </div>
-<div id="singular-value-partitioning-methods" class="section level1">
+<div id="singular-value-partitioning-methods-available" class="section level1">
 <h1 class="hasAnchor">
-<a href="#singular-value-partitioning-methods" class="anchor"></a>Singular Value Partitioning methods</h1>
+<a href="#singular-value-partitioning-methods-available" class="anchor"></a>Singular Value Partitioning methods available</h1>
 <ul>
 <li>1 or <code>genotype</code> The singular value is entirely partitioned into the genotype eigenvectors, also called row metric preserving;</li>
 <li>2 or <code>environment</code> (default) the singular value is entirely partitioned into the environment eigenvectors, also called column metric preserving;</li>
@@ -228,28 +228,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <h2 class="hasAnchor">
 <a href="#visualizing-the-biplot" class="anchor"></a>Visualizing the Biplot</h2>
 <p>The generic function <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to <span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>.</p>
-<ul>
-<li>
-<code>type = 1</code> A basic biplot.</li>
-<li>
-<code>type =  2</code> Mean performance vs. stability.</li>
-<li>
-<code>type =  3</code> Which-won-where.</li>
-<li>
-<code>type =  4</code> Discriminativeness vs. representativeness.</li>
-<li>
-<code>type =  5</code> Examine an environment.</li>
-<li>
-<code>type =  6</code> Ranking environments.</li>
-<li>
-<code>type =  7</code> Examine a genotype.</li>
-<li>
-<code>type =  8</code> Ranking gentoypes.</li>
-<li>
-<code>type =  9</code> Compare two genotypes.</li>
-<li>
-<code>type =  10</code> Relationship among environments.</li>
-</ul>
+<p><em><code>type = 1</code> A basic biplot. </em><code>type =  2</code> Mean performance vs. stability. <em><code>type =  3</code> Which-won-where. </em><code>type =  4</code> Discriminativeness vs. representativeness. <em><code>type =  5</code> Examine an environment. </em><code>type =  6</code> Ranking environments. <em><code>type =  7</code> Examine a genotype. </em><code>type =  8</code> Ranking gentoypes. <em><code>type =  9</code> Compare two genotypes. </em><code>type =  10</code> Relationship among environments.</p>
 <p>In this material, for each biplot type, two graphics are produced. One with the default settings and the other to show some graphical options of the function.</p>
 </div>
 <div id="biplot-type-1-a-basic-biplot-" class="section level2">
@@ -419,9 +398,9 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#getting-started">Getting started</a></li>
       <li><a href="#the-gge-model">The GGE model</a></li>
-      <li><a href="#centering-methods">Centering methods</a></li>
-      <li><a href="#scaling-methods">Scaling methods</a></li>
-      <li><a href="#singular-value-partitioning-methods">Singular Value Partitioning methods</a></li>
+      <li><a href="#centering-methods-available">Centering methods available</a></li>
+      <li><a href="#scaling-methods-available">Scaling methods available</a></li>
+      <li><a href="#singular-value-partitioning-methods-available">Singular Value Partitioning methods available</a></li>
       <li>
 <a href="#a-numerical-example">A numerical example</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#fitting-the-gge-model">Fitting the GGE model</a></li>
