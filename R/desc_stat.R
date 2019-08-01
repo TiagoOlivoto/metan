@@ -4,8 +4,8 @@
 #'
 #'
 #' @param .data The data to be analyzed. Must be a dataframe or an object of
-#' class \code{split_factors}. If
-#' @param var The variable to be analyzed.
+#' class \code{split_factors}.
+#' @param ... A single variable name or a comma-separated list of unquoted variables names.
 #' @param values An alternative way to pass the data to the function. It must be a numeric
 #' vector.
 #' @param level The confidence level to compute the confidence interval of mean. Defaults to 0.95.
@@ -20,7 +20,7 @@
 #' library(dplyr)
 #'
 #' data_ge2 %>%
-#'   desc_stat(var = TKW)
+#'   desc_stat(TKW)
 #'
 #' vect = data_ge2 %>%
 #'   select(TKW) %>%
@@ -30,21 +30,22 @@
 #'
 #' data_ge2 %>%
 #'   split_factors(ENV) %>%
-#'   desc_stat(var = c(EP, EL, PH, CL, CW, NR, NKR))
+#'   desc_stat(EP, EL, PH, CL, CW, NR, NKR)
 #'}
 #'
 
-desc_stat = function(.data = NULL, var = NULL, values = NULL, level = 0.95, digits = 4){
+desc_stat = function(.data = NULL, ..., values = NULL, level = 0.95, digits = 4){
+
   if(!missing(.data) & !missing(values)){
     stop("You can not inform a vector of values if a data frame is used as imput.")
   }
-  if(!missing(.data) & missing(var)){
+  if(!missing(.data) & missing(...)){
     stop("At least one variable must be informed when using a data frame as input.")
   }
   if(missing(.data) & missing(values)){
     stop("Invalid input. Please, use argument 'values' to inform a numeric vector, or the argument '.data' to inform a dataset.")
   }
-  # Functions
+  # Helper functions
   var_p = function(x){
     sum((x - mean(x))^2) / length(x)
   }
@@ -84,7 +85,7 @@ desc_stat = function(.data = NULL, var = NULL, values = NULL, level = 0.95, digi
     for (k in 1:length(.data)) {
       .data = datain[[k]]
       nam = names(datain[k])
-      data <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(var))))
+      data <- dplyr::select(.data, ...)
       cat("---------------------------------------------------------------------------\n")
       cat("Level", nam, "\n")
       cat("---------------------------------------------------------------------------\n")
@@ -92,10 +93,13 @@ desc_stat = function(.data = NULL, var = NULL, values = NULL, level = 0.95, digi
         summarise_all(funs(n = n(),
                            mean = mean,
                            min = min,
-                           q25 = quantile(., 0.25),
+                           Q2.5 = quantile(., 0.025),
+                           Q25 = quantile(., 0.25),
                            median = median,
-                           q75 = quantile(., 0.75),
+                           Q75 = quantile(., 0.75),
+                           Q97.5 = quantile(., 0.975),
                            max = max,
+                           IQR = IQR,
                            AV.dev = AV_dev,
                            var.pop = var_p,
                            var.amo = var_a,
@@ -108,8 +112,7 @@ desc_stat = function(.data = NULL, var = NULL, values = NULL, level = 0.95, digi
                            norm.stat = norm_st,
                            norm.pval = norm_pv,
                            CV = CV))
-
-      if(ncol(data) > 15){
+      if(ncol(data) > 22){
         print(
           suppressWarnings(data %>% gather(stat, val) %>%
                              separate(stat, into = c("var", "stat"), sep = "_") %>%
@@ -117,7 +120,7 @@ desc_stat = function(.data = NULL, var = NULL, values = NULL, level = 0.95, digi
           digits = digits
         )
       }
-      if(ncol(data) == 15){
+      if(ncol(data) == 22){
         print(t(data), digits = digits)
       }
 
@@ -126,7 +129,7 @@ desc_stat = function(.data = NULL, var = NULL, values = NULL, level = 0.95, digi
     if(is.null(values) ==  FALSE){
       data = data.frame(values)
     } else {
-      data <- dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(var)))
+      data <- dplyr::select(.data, ...)
     }
     data %<>%
       summarise_all(funs(n = n(),

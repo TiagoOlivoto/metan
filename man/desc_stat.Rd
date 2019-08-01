@@ -4,14 +4,14 @@
 \alias{desc_stat}
 \title{Descriptive statistics}
 \usage{
-desc_stat(.data = NULL, var = NULL, values = NULL, level = 0.95,
+desc_stat(.data = NULL, ..., values = NULL, level = 0.95,
   digits = 4)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
-class \code{split_factors}. If}
+class \code{split_factors}.}
 
-\item{var}{The variable to be analyzed.}
+\item{...}{A single variable name or a comma-separated list of unquoted variables names.}
 
 \item{values}{An alternative way to pass the data to the function. It must be a numeric
 vector.}
@@ -30,7 +30,7 @@ library(metan)
 library(dplyr)
 
 data_ge2 \%>\%
-  desc_stat(var = TKW)
+  desc_stat(TKW)
 
 vect = data_ge2 \%>\%
   select(TKW) \%>\%
@@ -40,7 +40,7 @@ desc_stat(values = vect)
 
 data_ge2 \%>\%
   split_factors(ENV) \%>\%
-  desc_stat(var = c(EP, EL, PH, CL, CW, NR, NKR))
+  desc_stat(EP, EL, PH, CL, CW, NR, NKR)
 }
 
 }
