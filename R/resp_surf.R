@@ -37,6 +37,7 @@ D = names[2]
 Bloco = names[3]
 Resp = names[4]
 F1 = as.formula(paste0(Resp, "~", paste(Bloco),"+", paste(A), "+", paste(D), "+", paste(A), "*", paste(D)))
+ANOVA = aov(F1, data = data)
 } else{
   data = .data  %>%
     dplyr::select(!!dplyr::enquo(factor1),
@@ -47,14 +48,8 @@ F1 = as.formula(paste0(Resp, "~", paste(Bloco),"+", paste(A), "+", paste(D), "+"
   A = names[1]
   D = names[2]
   Resp = names[3]
-  F1 = as.formula(paste0(Resp, "~", paste(A), "+", paste(D), "+", paste(A), "*", paste(D)))
+
 }
-  ANOVA = aov(F1, data = data)
-  sum_test = unlist(summary(ANOVA))
-  pValue_Bloco = sum_test["Pr(>F)1"]
-  pValue_A = sum_test["Pr(>F)2"]
-  pValue_D = sum_test["Pr(>F)3"]
-  pValue_AD = sum_test["Pr(>F)4"]
   F2 = as.formula(paste0(Resp, " ~",  paste(A),"*", paste(D), "+", "I(",paste(A),"^2)", "+","I(",paste(D), "^2)"))
   SurfMod = lm(F2, data=.data)
   B0 = SurfMod$coef[1]
@@ -78,15 +73,21 @@ F1 = as.formula(paste0(Resp, "~", paste(Bloco),"+", paste(A), "+", paste(D), "+"
                           residuals = SurfMod$residuals)
 
 if (verbose == TRUE) {
+  if(!missing(rep)){
   cat("-----------------------------------------------------------------\n")
   cat("Result for the analysis of variance", "\n")
-  if(!missing(rep)){
   cat("Model: Y = m + bk + Ai + Dj + (AD)ij + eijk", "\n")
-  } else{
-  cat("Model: Y = m + Ai + Dj + (AD)ij + eij", "\n")
-  }
   cat("-----------------------------------------------------------------\n")
   print(summary(ANOVA))
+  Norm = shapiro.test(ANOVA$residuals)
+  cat("-----------------------------------------------------------------\n")
+  cat("Shapiro-Wilk's test for normality of residuals:", "\n")
+  cat("-----------------------------------------------------------------\n")
+  cat("W = ",Norm$statistic, "p-valor = ", Norm$p.value, "\n")
+  if (Norm$p.value>0.05){
+    cat("According to S-W test, residuals may be considered normal.","\n")
+  }
+  }
   cat("-----------------------------------------------------------------\n")
   cat("Anova table for the response surface model", "\n")
   cat("-----------------------------------------------------------------\n")
