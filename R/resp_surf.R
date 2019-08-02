@@ -87,14 +87,6 @@ if (verbose == TRUE) {
   }
   cat("-----------------------------------------------------------------\n")
   print(summary(ANOVA))
-  Norm = shapiro.test(ANOVA$residuals)
-  cat("-----------------------------------------------------------------\n")
-  cat("Shapiro-Wilk's test for normality of residuals:", "\n")
-  cat("-----------------------------------------------------------------\n")
-  cat("W = ",Norm$statistic, "p-valor = ", Norm$p.value, "\n")
-  if (Norm$p.value>0.05){
-    cat("According to S-W test, residuals may be considered normal.","\n")
-  }
   cat("-----------------------------------------------------------------\n")
   cat("Anova table for the response surface model", "\n")
   cat("-----------------------------------------------------------------\n")
