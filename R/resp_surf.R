@@ -163,10 +163,3 @@ if (verbose == TRUE) {
 }
   invisible(structure(list(results = results, model = SurfMod),  class = "resp_surf"))
 }
-
-
-srmod = resp_surf(data_R,
-                  factor1 = DOSEN,
-                  factor2 = DOSEK,
-rep = BLOCO,
-                  resp = RG)
