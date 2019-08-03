@@ -251,6 +251,7 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
         teste <- Rao
       }
       results = data.frame(cbind(cbind(varuv, coruv), teste[-1]))
+      names(results) = c("Var", "Percent", "Sum", "Corr", "Lambda", "Chisq", "DF", "p_val")
       if (collinearity == TRUE) {
         colin = list(FGc = colindiag(FGV, verbose = FALSE),
                      SGc = colindiag(SGV, verbose = FALSE))
@@ -452,6 +453,7 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
     teste <- Rao
   }
   results = data.frame(cbind(cbind(varuv, coruv), teste[-1]))
+  names(results) = c("Var", "Percent", "Sum", "Corr", "Lambda", "Chisq", "DF", "p_val")
   if (collinearity == TRUE) {
     colin = list(FG = colindiag(FG, verbose = FALSE), SG = colindiag(SG,
                                                                      verbose = FALSE))
