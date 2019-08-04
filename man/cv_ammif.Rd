@@ -4,7 +4,7 @@
 \alias{cv_ammif}
 \title{Cross-validation procedure}
 \usage{
-cv_ammif(.data, env, gen, rep, resp, nboot = 50, design = "RCBD",
+cv_ammif(.data, env, gen, rep, resp, nboot = 100, design = "RCBD",
   nrepval, verbose = TRUE)
 }
 \arguments{
@@ -21,7 +21,7 @@ replications/blocks.}
 
 \item{resp}{The response variable.}
 
-\item{nboot}{The number of resamples to be used in the cross-validation}
+\item{nboot}{The number of resamples to be used in the cross-validation. Defaults to 100.}
 
 \item{design}{The experimental desig to be considered. Default is
 \code{RCBD} (Randomized complete Block Design). For Completely Randomized

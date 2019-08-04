@@ -23,10 +23,10 @@
 #' @param rep The name of the column that contains the levels of the
 #' replications/blocks.
 #' @param resp The response variable.
+#' @param nboot The number of resamples to be used in the cross-validation. Defaults to 100.
 #' @param design The experimental desig to be considered. Default is
 #' \code{RCBD} (Randomized complete Block Design). For Completely Randomized
 #' Designs inform \code{design = "CRD"}.
-#' @param nboot The number of resamples to be used in the cross-validation
 #' @param nrepval The number of replicates (r) from total number of replicates
 #' (R) to be used in the modeling dataset. Only one replicate is used as
 #' validating data each step, so, \code{Nrepval} must be equal \code{R-1}
@@ -68,7 +68,7 @@
 #'
 #' }
 #'
-cv_ammi <- function(.data, env, gen, rep, resp, design = "RCBD", nboot, nrepval,
+cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100, design = "RCBD",  nrepval,
                             naxis, verbose = TRUE) {
 
     if (!design %in% c("RCBD", "CRD")) {

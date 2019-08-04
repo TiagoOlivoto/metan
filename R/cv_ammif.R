@@ -26,7 +26,7 @@
 #' @param rep The name of the column that contains the levels of the
 #' replications/blocks.
 #' @param resp The response variable.
-#' @param nboot The number of resamples to be used in the cross-validation
+#' @param nboot The number of resamples to be used in the cross-validation. Defaults to 100.
 #' @param design The experimental desig to be considered. Default is
 #' \code{RCBD} (Randomized complete Block Design). For Completely Randomized
 #' Designs inform \code{design = "CRD"}.
@@ -56,7 +56,7 @@
 #'         cv_ammif(ENV, GEN, REP, GY, 100, 2)
 #' }
 #'
-cv_ammif <- function(.data, env, gen, rep, resp, nboot = 50,
+cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100,
                      design = "RCBD", nrepval, verbose = TRUE) {
     if (!design %in% c("RCBD", "CRD")) {
         stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
