@@ -416,8 +416,8 @@ G4
 ggplot2-based graphics are easily obtained in metan package. For
 example, the well-known AMMI2 biplot may be obtained as follows. Please,
 note that since `waas()` function allows analyzing multiple variables at
-the same time, e.g., resp = c(v1, v2, …), the output `model` is a list,
-in this case with one element, GY.
+the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a
+list, in this case with one element, GY.
 
 ``` r
 library(cowplot)
