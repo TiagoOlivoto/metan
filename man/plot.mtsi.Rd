@@ -4,7 +4,7 @@
 \alias{plot.mtsi}
 \title{Plot the multi-trait stability index}
 \usage{
-\method{plot}{mtsi}(x, SI = 15, radar = TRUE, size.point = 2,
+\method{plot}{mtsi}(x, SI = 15, radar = TRUE, size.point = 2.5,
   col.sel = "red", col.nonsel = "black", ...)
 }
 \arguments{
@@ -16,7 +16,7 @@ total number of genotypes.}
 \item{radar}{Logical argument. If true (default) a radar plot is generated
 after using \code{coord_polar()}.}
 
-\item{size.point}{The size of the point in graphic.}
+\item{size.point}{The size of the point in graphic. Defaults to 2.5.}
 
 \item{col.sel}{The colour for selected genotypes.}
 
