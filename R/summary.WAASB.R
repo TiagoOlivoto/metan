@@ -1,4 +1,4 @@
-#' Summary a waasb object
+#' Summarise a waasb object
 #'
 #' Summary the \code{waasb} object in two ways. By default, the results are
 #' shown in the R console. The results can also be exported to the directory.
@@ -31,7 +31,6 @@ summary.waasb <- function(object, export = FALSE, blup = FALSE, file.name = NULL
     if (!class == "waasb") {
         stop("The object must be of class 'waasb'")
     }
-
     if (export == TRUE) {
         if (is.null(file.name) == T) {
             file.name <- "waasb summary"
@@ -39,7 +38,6 @@ summary.waasb <- function(object, export = FALSE, blup = FALSE, file.name = NULL
             file.name <- file.name
         }
         sink(paste0(file.name, ".txt"))
-        options(max.print = 99999999, width = 110)
         for (i in 1:length(object)) {
             var <- object[[i]]
             cat("Variable", names(object)[i], "\n")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.waasb.R
 \name{summary.waasb}
 \alias{summary.waasb}
-\title{Summary a waasb object}
+\title{Summarise a waasb object}
 \usage{
 \method{summary}{waasb}(object, export = FALSE, blup = FALSE,
   file.name = NULL, digits = 4, ...)
