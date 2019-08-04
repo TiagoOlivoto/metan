@@ -1,6 +1,6 @@
 #' Multi-trait stability index
 #'
-#' Multi-trait stability index in analysis of multi-environment trials
+#' Computes the multitrait stability index proposed by Olivoto et al. (2019)
 #'
 #'
 #' @param .data An object of class \code{waasb} or \code{waas}.
@@ -16,6 +16,7 @@
 #' shown in the console.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
+#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J.doi:10.2134/agronj2019.03.0221.
 #' @examples
 #'
 #' library(metan)
@@ -198,7 +199,6 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
             cat("\n-------------------------------------------------------------------------------\n")
         }
     }
-
     return(structure(list(data = data, cormat = as.matrix(cor.means), PCA = data.frame(pca),
         FA = data.frame(fa), KMO = KMO, MSA = MSA, comunalits = Communality, comunalits.mean = mean(Communality),
         initial.loadings = initial.loadings, finish.loadings = A, canonical.loadings = canonical.loadings,

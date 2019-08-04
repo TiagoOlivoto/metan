@@ -24,7 +24,7 @@ factor analysis.}
 shown in the console.}
 }
 \description{
-Multi-trait stability index in analysis of multi-environment trials
+Computes the multitrait stability index proposed by Olivoto et al. (2019)
 }
 \examples{
 
@@ -47,6 +47,9 @@ mtsi_index2 = data_ge \%>\%
               waasb(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) \%>\%
               mtsi(index = "waasby")
 
+}
+\references{
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J.doi:10.2134/agronj2019.03.0221.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

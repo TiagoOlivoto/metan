@@ -1,6 +1,6 @@
 #' Plot the multi-trait stability index
 #'
-#' Plot the multitrait stability index using ggplot-generated graphics. .
+#' Makes a radar plot showing the multitrait stability index proposed by Olivoto et al. (2019)
 #'
 #'
 #' @param x An object of class \code{mtsi}
@@ -15,6 +15,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot mtsi
 #' @export
+#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J.doi:10.2134/agronj2019.03.0221.
 #' @examples
 #' \dontrun{
 #' library(metan)
@@ -63,15 +64,13 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5, col.sel = "red
         scale_fill_manual(values = c(col.nonsel, col.sel))
 
     if (radar == TRUE) {
-
-        sequence_length = length(unique(data$Genotype))
-        first_sequence = c(1:(sequence_length%/%2))
-        second_sequence = c((sequence_length%/%2+1):sequence_length)
-        first_angles = c(90 - 180/length(first_sequence) * first_sequence)
-        second_angles = c(-90 - 180/length(second_sequence) * second_sequence)
+        tot_gen = length(unique(data$Genotype))
+        fseq = c(1:(tot_gen/2))
+        sseq = c((tot_gen/2+1):tot_gen)
+        fang = c(90 - 180/length(fseq) * fseq)
+        sang = c(-90 - 180/length(sseq) * sseq)
         p <- p + coord_polar() +
-            theme(axis.text.x = element_text(angle= c(first_angles, second_angles),
-                                             vjust = 1),
+            theme(axis.text.x = element_text(angle= c(fang,sang)),
                   legend.margin = margin(-120,0,0,0))
     }
     return(p)
