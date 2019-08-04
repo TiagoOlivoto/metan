@@ -70,7 +70,7 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5, col.sel = "red
         fang = c(90 - 180/length(fseq) * fseq)
         sang = c(-90 - 180/length(sseq) * sseq)
         p <- p + coord_polar() +
-            theme(axis.text.x = element_text(angle= c(fang,sang)),
+             theme(axis.text.x = element_text(angle= c(fang, sang)),
                   legend.margin = margin(-120,0,0,0))
     }
     return(p)

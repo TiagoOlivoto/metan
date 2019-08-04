@@ -45,9 +45,9 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2
     if (!class(x) == "fai_blup") {
         stop("The object 'x' is not of class 'fai_blup'")
     }
-    data <- data.frame(FAI = x$FAI[[ideotype]],
-                       Genotype = names(x$FAI[[ideotype]]),
-                       sel = "Selected")
+    data <- tibble(FAI = x$FAI[[ideotype]],
+                   Genotype = names(x$FAI[[ideotype]]),
+                   sel = "Selected")
     data$sel[(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
     cutpoint <- min(subset(data, sel == "Selected")$FAI)
     p <- ggplot(data = data, aes(x = reorder(Genotype, FAI), y = FAI)) +
