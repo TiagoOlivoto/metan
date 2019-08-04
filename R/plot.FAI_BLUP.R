@@ -45,26 +45,33 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2
     if (!class(x) == "fai_blup") {
         stop("The object 'x' is not of class 'fai_blup'")
     }
-    data <- data.frame(FAI = x$FAI[[ideotype]], Genotype = names(x$FAI[[ideotype]]))
-    ngsel <- round(nrow(data) * (SI/100), 0)
-    data$sel <- "Selected"
-    data$sel[(ngsel + 1):nrow(data)] <- "Nonselected"
+    data <- data.frame(FAI = x$FAI[[ideotype]],
+                       Genotype = names(x$FAI[[ideotype]]),
+                       sel = "Selected")
+    data$sel[(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
     cutpoint <- min(subset(data, sel == "Selected")$FAI)
-    p <- ggplot(data = data, aes(x = reorder(Genotype, FAI), y = FAI)) + geom_hline(yintercept = cutpoint,
-        col = "red") + geom_path(colour = "black", group = 1) + geom_point(size = 2,
-        aes(colour = sel)) + scale_x_discrete() + theme_minimal() + theme(legend.position = "bottom",
-        legend.title = element_blank(), axis.title.x = element_blank(), panel.border = element_blank(),
-        axis.text = element_text(colour = "black")) + labs(x = "", y = "FAI-BLUP") +
-        scale_color_manual(values = c(col.nonsel, col.sel))
+    p <- ggplot(data = data, aes(x = reorder(Genotype, FAI), y = FAI)) +
+        geom_hline(yintercept = cutpoint, col = "red") +
+        geom_path(colour = "black", group = 1) +
+        geom_point(size = size.point, aes(fill = sel), shape = 21,  colour = "black") +
+        scale_x_discrete() +
+        theme_minimal() +
+        theme(legend.position = "bottom",
+              legend.title = element_blank(),
+              axis.title.x = element_blank(),
+              panel.border = element_blank(),
+              axis.text = element_text(colour = "black")) +
+        labs(x = "", y = "FAI-BLUP") +
+        scale_fill_manual(values = c(col.nonsel, col.sel))
     if (radar == TRUE) {
-        sequence_length = length(unique(data$Genotype))
-        first_sequence = c(1:(sequence_length%/%2))
-        second_sequence = c((sequence_length%/%2+1):sequence_length)
-        first_angles = c(90 - 180/length(first_sequence) * first_sequence)
-        second_angles = c(-90 - 180/length(second_sequence) * second_sequence)
+        tot_gen = length(unique(data$Genotype))
+        fseq = c(1:(tot_gen/2))
+        sseq = c((tot_gen/2+1):tot_gen)
+        fang = c(90 - 180/length(fseq) * fseq)
+        sang = c(-90 - 180/length(sseq) * sseq)
         p <- p + coord_polar() +
-            theme(axis.text.x = element_text(angle= c(first_angles,second_angles)),
-                  legend.margin = margin(0,0,-20,-20))
+            theme(axis.text.x = element_text(angle= c(fang,sang)),
+                  legend.margin = margin(-120,0,0,0))
     }
     return(p)
 }
