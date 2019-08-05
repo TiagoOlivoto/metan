@@ -24,10 +24,15 @@
 #' ge_plot(data_ge2, ENV, GEN, PH)+
 #' theme_gray()
 
-ge_plot = function(.data, env, gen, resp, theme = theme_waasb()){
-ggplot(.data, aes(x = !!enquo(env), y = !!enquo(resp))) +
-      stat_summary(aes(colour = !!enquo(gen), group = !!enquo(gen)), fun.y=mean, geom="line")+
-      geom_point(stat = "summary", fun.y = mean, size = 3, shape = 18) +
-      theme %+replace%
-      theme(legend.positio = "right")
+ge_plot = function(.data, env, gen, resp, theme = theme_waasb(), colour = TRUE){
+  p = ggplot(.data, aes(x = !!enquo(env), y = !!enquo(resp)))
+  if(colour == TRUE){
+    p = p + stat_summary(aes(colour = !!enquo(gen), group = !!enquo(gen)), fun.y=mean, geom="line")
+  } else {
+    p = p + stat_summary(aes(group = !!enquo(gen)),fun.y=mean, geom="line", colour = "black")
+  }
+p = p + geom_point(stat = "summary", fun.y = mean, size = 3, shape = 18) +
+    theme %+replace%
+    theme(legend.position = "right")
+return(p)
 }
