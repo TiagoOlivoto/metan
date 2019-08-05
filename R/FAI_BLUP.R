@@ -199,14 +199,14 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     names(ideotype.rank) <- paste("ID", 1:IN, sep = "")
     means.factor <- means[, names.pos.var.factor]
     if (!is.null(ngs)) {
-        selection.diferential <- lapply(1:IN, function(i) {
-            cbind(pos.var.factor[, 2], ((colMeans(means.factor[names(ideotype.rank[[i]])[1:ngs],
-                ]) - colMeans(means.factor))/colMeans(means.factor)) * 100)
-        })
-        for (i in 1:IN) {
-            colnames(selection.diferential[[i]]) <- c("Factor", "Selection differential (%)")
-        }
-        names(selection.diferential) <- paste("ID", 1:IN, sep = "")
+      selection.diferential <- lapply(1:IN, function(i) {
+        data.frame(cbind(Factor = pos.var.factor[, 2],
+                         Xo = colMeans(means.factor),
+                         Xs = colMeans(means.factor[names(ideotype.rank[[i]])[1:ngs], ]),
+                         SD = colMeans(means.factor[names(ideotype.rank[[i]])[1:ngs], ]) - colMeans(means.factor),
+                         SDperc = (colMeans(means.factor[names(ideotype.rank[[i]])[1:ngs], ]) - colMeans(means.factor))/colMeans(means.factor) * 100))
+      })
+    names(selection.diferential) <- paste("ID", 1:IN, sep = "")
     }
     if (is.null(ngs)) {
         selection.diferential <- NULL
