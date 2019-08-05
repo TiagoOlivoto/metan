@@ -91,7 +91,7 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
   })))
   observed$gen <- .data[[1]][["model"]][["Code"]]
   observed$type <- .data[[1]][["model"]][["type"]]
-  observed %<>% filter(type == "GEN") %>%
+  observed %<>% dplyr::filter(type == "GEN") %>%
     select(-type) %>%
     column_to_rownames("gen")
 
