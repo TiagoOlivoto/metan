@@ -65,8 +65,6 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
         data <- data.frame(subset(bind, type == "GEN") %>% select(-type) %>% select(gen,
             everything()))
     }
-
-
     if (class(.data) == "waasb") {
         if (index == "waasb") {
             bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
@@ -88,6 +86,15 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
     } else {
         ngs <- round(nrow(data) * (SI/100), 0)
     }
+  observed <- data.frame(do.call(cbind, lapply(.data, function(x) {
+    val <- x[["model"]][["Y"]]
+  })))
+  observed$gen <- .data[[1]][["model"]][["Code"]]
+  observed$type <- .data[[1]][["model"]][["type"]]
+  observed %<>% filter(type == "GEN") %>%
+    select(-type) %>%
+    column_to_rownames("gen")
+
     means <- data[, 2:ncol(data)]
     rownames(means) <- data[, 1]
     cor.means <- cor(means)
@@ -157,13 +164,23 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
     MTSI <- sort(apply(gen_ide, 1, function(x) sqrt(sum(x^2))), decreasing = F)
     contr.factor <- (gen_ide^2/apply(gen_ide, 1, function(x) sum(x^2))) * 100
     means.factor <- means[, names.pos.var.factor]
+    observed <- observed[, names.pos.var.factor]
+
     if (!is.null(ngs)) {
-        selection.diferential <- data.frame(cbind(Factor = pos.var.factor[, 2], Xo = colMeans(means.factor),
-            Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]), SD = colMeans(means.factor[names(MTSI)[1:ngs],
-                ]) - colMeans(means.factor), SDperc = (colMeans(means.factor[names(MTSI)[1:ngs],
-                ]) - colMeans(means.factor))/colMeans(means.factor) * 100))
+        selection.diferential <- data.frame(cbind(Factor = pos.var.factor[, 2],
+                                                  Xo = colMeans(means.factor),
+                                                  Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]),
+                                                  SD = colMeans(means.factor[names(MTSI)[1:ngs], ]) - colMeans(means.factor),
+                                                  SDperc = (colMeans(means.factor[names(MTSI)[1:ngs], ]) - colMeans(means.factor))/colMeans(means.factor) * 100))
         selection.diferential[, 1] <- paste("FA", selection.diferential[, 1], sep = "")
-        sd_mean <- apply(selection.diferential[, 2:5], 2, mean)
+        mean_sd_ind <- apply(selection.diferential[, 2:5], 2, mean)
+        sel.dif.mean <- data.frame(cbind(Factor = pos.var.factor[, 2],
+                                         Xo = colMeans(observed),
+                                         Xs = colMeans(observed[names(MTSI)[1:ngs], ]),
+                                         SD = colMeans(observed[names(MTSI)[1:ngs], ]) - colMeans(observed),
+                                         SDperc = (colMeans(observed[names(MTSI)[1:ngs], ]) - colMeans(observed))/colMeans(observed) * 100))
+        sel.dif.mean[, 1] <- paste("FA", sel.dif.mean[, 1], sep = "")
+
     }
     if (is.null(ngs)) {
         selection.diferential <- NULL
@@ -185,13 +202,17 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
         print(round(MTSI, 4))
         cat("-------------------------------------------------------------------------------\n")
         if (!is.null(ngs)) {
-            cat("Selection differential for", index, "index\n")
+            cat("Selection differential for the ", index, "index\n")
             cat("-------------------------------------------------------------------------------\n")
             print(selection.diferential)
             cat("------------------------------------------------------------------------------\n")
             cat("Mean of selection differential\n")
             cat("-------------------------------------------------------------------------------\n")
-            print(sd_mean)
+            print(mean_sd_ind)
+            cat("-------------------------------------------------------------------------------\n")
+            cat("Selection differential for the mean of the variables\n")
+            cat("-------------------------------------------------------------------------------\n")
+            print(sel.dif.mean)
             cat("------------------------------------------------------------------------------\n")
             cat("Selected genotypes\n")
             cat("-------------------------------------------------------------------------------\n")
@@ -199,10 +220,26 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE) {
             cat("\n-------------------------------------------------------------------------------\n")
         }
     }
-    return(structure(list(data = data, cormat = as.matrix(cor.means), PCA = data.frame(pca),
-        FA = data.frame(fa), KMO = KMO, MSA = MSA, comunalits = Communality, comunalits.mean = mean(Communality),
-        initial.loadings = initial.loadings, finish.loadings = A, canonical.loadings = canonical.loadings,
-        scores.gen = scores, scores.ide = ideotypes.scores, MTSI = MTSI, contri.fac = data.frame(contr.factor),
-        selection.diferential = selection.diferential, selec.dif.mean = sd_mean, Selected = names(MTSI)[1:ngs]),
+    return(
+      structure(
+        list(data = data,
+             cormat = as.matrix(cor.means),
+             PCA = data.frame(pca),
+             FA = data.frame(fa),
+             KMO = KMO,
+             MSA = MSA,
+             comunalits = Communality,
+             comunalits.mean = mean(Communality),
+             initial.loadings = initial.loadings,
+             finish.loadings = A,
+             canonical.loadings = canonical.loadings,
+             scores.gen = scores,
+             scores.ide = ideotypes.scores,
+             MTSI = MTSI,
+             contri.fac = data.frame(contr.factor),
+             selection.diferential = selection.diferential,
+             mean.sd = mean_sd_ind,
+             sel.dif.obs = sel.dif.mean,
+             Selected = names(MTSI)[1:ngs]),
         class = "mtsi"))
 }
