@@ -4,7 +4,7 @@
 \alias{ge_plot}
 \title{Graphical analysis of genotype-vs-environment interaction}
 \usage{
-ge_plot(.data, env, gen, resp, theme = theme_waasb())
+ge_plot(.data, env, gen, resp, theme = theme_waasb(), colour = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
