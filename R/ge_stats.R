@@ -86,7 +86,10 @@ gge_effect = make_mat(data3, GEN, ENV, gge)
 Mean = apply(ge_mean, 1, mean)
 Variance = rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
 GENSS = (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/length(unique(ENV)))*length(unique(REP))
-
+mod = anova(lm(mean ~ REP/ENV + ENV * GEN, data = data))
+GENMS = GENSS / mod[2, 1]
+Fcal =  GENMS / mod[6, 3]
+pval = pf(Fcal, mod[2, 1], mod[6, 1], lower.tail = FALSE)
 ec_mod = ecovalence(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 lb_mod = superiority(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 an_mod = Annicchiarico(data, ENV, GEN, REP, mean, verbose = FALSE, prob = prob)
@@ -102,7 +105,11 @@ ER = list(anova = er_mod[[1]]$anova,
 
 ge_stat = data.frame(Mean = Mean,
                      Variance = Variance,
-                     SQE_Gi = GENSS)
+                     SQE_Gi = GENSS,
+                     MSE_Gi = GENMS,
+                     Fcal = Fcal,
+                     P_val = pval) %>%
+  rownames_to_column("GEN")
 
 
 temp = list(individual = individual[[1]][[1]],
