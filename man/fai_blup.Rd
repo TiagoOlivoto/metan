@@ -7,7 +7,8 @@
 fai_blup(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE)
 }
 \arguments{
-\item{.data}{An object of class \code{waasb}}
+\item{.data}{An object of class \code{waasb} or a two-way table with genotypes in the rows
+and traits in columns. In the last case the row names must contain the genotypes names.}
 
 \item{DI, UI}{A vector of the same length of \code{.data} to construct the
 desirable (DI) and undesirable (UI) ideotypes. For each element of the

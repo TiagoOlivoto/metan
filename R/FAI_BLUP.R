@@ -4,7 +4,8 @@
 #' Rocha et al. (2018).
 #'
 #'
-#' @param .data An object of class \code{waasb}
+#' @param .data An object of class \code{waasb} or a two-way table with genotypes in the rows
+#' and traits in columns. In the last case the row names must contain the genotypes names.
 #' @param DI,UI A vector of the same length of \code{.data} to construct the
 #' desirable (DI) and undesirable (UI) ideotypes. For each element of the
 #' vector, allowed values are \code{"max"}, \code{"min"}, \code{"mean"}, or a
@@ -47,39 +48,42 @@
 #'                SI = 15)
 #'
 fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
-  if (!class(.data) == "waasb") {
-    stop("The .data must be an object of class 'waasb'.")
+  if (!class(.data) %in% c("waasb", "data.frame", "tbl_df")) {
+    stop("The .data must be an object of class 'waasb' or a data.frame/tbl_df.")
   }
-    if (length(.data) == 1) {
+  nvar = ifelse(class(.data) == "waasb", length(.data), ncol(.data))
+    if (nvar == 1) {
         stop("The multitrait stability index cannot be computed with one single variable.")
     }
-    if (length(DI) != length(.data) || length(UI) != length(.data)) {
+    if (length(DI) != nvar || length(UI) != nvar) {
         stop("The length of DI and UI must be the same length of data.")
     }
     ideotype.D <- DI
     ideotype.U <- UI
+    if(class(.data) == "waasb"){
     datt = .data[[1]][["blupGEN"]]
     data <- data.frame(do.call(cbind, lapply(.data, function(x) {
       val <- arrange(x[["blupGEN"]], GEN)$Predicted
     }))) %>%
       mutate(gen = datt %>% arrange(GEN) %>% pull(GEN)) %>%
       select(gen, everything())
-
+    means <- data[, 2:ncol(data)]
+    rownames(means) <- data[, 1]
+    } else{
+  data = .data
+  means = .data
+}
     if (is.null(SI)) {
         ngs <- NULL
     } else {
         ngs <- round(nrow(data) * (SI/100), 0)
     }
-    means <- data[, 2:ncol(data)]
     if (any(apply(means, 2, function(x) sd(x) == 0) == TRUE)){
       nam = paste(names(means[, apply(means, 2, function(x) sd(x) == 0)]), collapse  = " ")
       stop("The genotype effect was not significant for the variables ", nam, ". Please, remove them and try again.")
     }
-    rownames(means) <- data[, 1]
     normalize.means <- scale(means, center = FALSE, scale = apply(means, 2, sd))
     cor.means <- cor(normalize.means)
-
-
     eigen.decomposition <- eigen(cor.means)
     eigen.values <- eigen.decomposition$values
     eigen.vectors <- eigen.decomposition$vectors
@@ -107,7 +111,9 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     rownames(canonical.loadings) <- colnames(means)
     scores <- t(t(canonical.loadings) %*% t(normalize.means))
     colnames(scores) <- paste("SC", 1:ncol(scores), sep = "")
-    rownames(scores) <- data[, 1]
+
+    rownames(scores) <- rownames(means)
+
     IN <- 2^ncol(finish.loadings)
     pos.var.factor <- which(abs(finish.loadings) == apply(abs(finish.loadings), 1,
         max), arr.ind = T)
