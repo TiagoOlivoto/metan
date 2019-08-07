@@ -95,10 +95,9 @@ AMMI_indexes <- function(.data, order.y = NULL) {
     listres <- list()
     varin <- 1
     for (var in 1:length(.data)) {
-
         model <- .data[[var]]
-
         n <- sum(model$PCA$`Pr(>F)` <= 0.05, na.rm = TRUE)
+        n <- ifelse(n == 0, 1, n)
         meange <- model$MeansGxE
         effects <- residuals(lm(Y ~ ENV + GEN, data = meange))
         meange$residual <- effects
