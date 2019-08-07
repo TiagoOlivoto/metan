@@ -4,7 +4,7 @@
 \alias{AMMI_indexes}
 \title{AMMI-based stability indexes}
 \usage{
-AMMI_indexes(.data, order.y = NULL)
+AMMI_indexes(.data, order.y = NULL, level = 0.95)
 }
 \arguments{
 \item{.data}{An object of class \code{WAAS.AMMI}}
@@ -14,6 +14,8 @@ response variable. Each element of the vector must be one of the \code{"h"}
 or \code{"l"}. If \code{"h"} is used, the response variable will be ordered
 from maximum to minimum. If \code{"l"} is used then the response variable
 will be ordered from minimum to maximum.}
+
+\item{level}{The confidence level. Defaults to 0.95.}
 }
 \value{
 A dataframe contaning the indexes estimated with all environments, favorable

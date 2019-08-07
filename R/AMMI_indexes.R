@@ -39,6 +39,7 @@
 #' or \code{"l"}. If \code{"h"} is used, the response variable will be ordered
 #' from maximum to minimum. If \code{"l"} is used then the response variable
 #' will be ordered from minimum to maximum.
+#' @param level The confidence level. Defaults to 0.95.
 #' @return
 #'
 #' A dataframe contaning the indexes estimated with all environments, favorable
@@ -78,7 +79,7 @@
 #'           AMMI_indexes()
 #'
 #'
-AMMI_indexes <- function(.data, order.y = NULL) {
+AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
 
     if (is.null(order.y)) {
         order.y <- rep("h", length(.data))
@@ -96,7 +97,7 @@ AMMI_indexes <- function(.data, order.y = NULL) {
     varin <- 1
     for (var in 1:length(.data)) {
         model <- .data[[var]]
-        n <- sum(model$PCA$`Pr(>F)` <= 0.05, na.rm = TRUE)
+        n <- sum(model$PCA$`Pr(>F)` <= (1 - level), na.rm = TRUE)
         n <- ifelse(n == 0, 1, n)
         meange <- model$MeansGxE
         effects <- residuals(lm(Y ~ ENV + GEN, data = meange))
