@@ -15,6 +15,7 @@
 #' theme_waasb()}. Please, see \code{?WAASB::theme_waasb}. An own theme can be
 #' applied using the arguments: \code{theme = theme(some stuff
 #' here)}. For more details, please, see \code{?ggplot2::theme}.
+#' @param colour Logical argument. If \code{FALSE} then the plot will not be colored.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

@@ -21,6 +21,8 @@ environments}
 theme_waasb()}. Please, see \code{?WAASB::theme_waasb}. An own theme can be
 applied using the arguments: \code{theme = theme(some stuff
 here)}. For more details, please, see \code{?ggplot2::theme}.}
+
+\item{colour}{Logical argument. If \code{FALSE} then the plot will not be colored.}
 }
 \description{
 This function produces a line plot for a graphical interpretation of the
