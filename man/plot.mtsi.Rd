@@ -5,7 +5,7 @@
 \title{Plot the multi-trait stability index}
 \usage{
 \method{plot}{mtsi}(x, SI = 15, radar = TRUE, size.point = 2.5,
-  col.sel = "red", col.nonsel = "black", ...)
+  col.sel = "red", col.nonsel = "black", size.text = 10, ...)
 }
 \arguments{
 \item{x}{An object of class \code{mtsi}}
@@ -22,7 +22,9 @@ after using \code{coord_polar()}.}
 
 \item{col.nonsel}{The colour for nonselected genotypes.}
 
-\item{...}{Other arguments of the function.}
+\item{size.text}{The size for the text in the plot. Defaults to 10.}
+
+\item{...}{Other arguments to be passed from ggplot2::theme().}
 }
 \description{
 Makes a radar plot showing the multitrait stability index proposed by Olivoto et al. (2019)

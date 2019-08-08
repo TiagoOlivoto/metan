@@ -11,7 +11,8 @@
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
 #' @param col.sel The colour for selected genotypes.
 #' @param col.nonsel The colour for nonselected genotypes.
-#' @param ... Other arguments of the function.
+#' @param size.text The size for the text in the plot. Defaults to 10.
+#' @param ... Other arguments to be passed from ggplot2::theme().
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot mtsi
 #' @export
@@ -37,7 +38,12 @@
 #'}
 #'
 #'
-plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5, col.sel = "red", col.nonsel = "black",
+plot.mtsi <- function(x, SI = 15,
+                      radar = TRUE,
+                      size.point = 2.5,
+                      col.sel = "red",
+                      col.nonsel = "black",
+                      size.text = 10,
     ...) {
 
     if (!class(x) == "mtsi") {
@@ -46,7 +52,7 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5, col.sel = "red
     data <- tibble(MTSI = x$MTSI,
                    Genotype = names(x$MTSI),
                    sel = "Selected")
-    data$sel[(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
+    data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
     cutpoint <- max(subset(data, sel == "Selected")$MTSI)
     p <- ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
         geom_hline(yintercept = cutpoint, col = col.sel) +
@@ -59,7 +65,8 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5, col.sel = "red
               legend.title = element_blank(),
               axis.title.x = element_blank(),
               panel.border = element_blank(),
-              axis.text = element_text(colour = "black")) +
+              axis.text = element_text(colour = "black"),
+              text = element_text(size = size.text)) +
         labs(y = "Multitrait stability index") +
         scale_fill_manual(values = c(col.nonsel, col.sel))
 
@@ -71,7 +78,8 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5, col.sel = "red
         sang = c(-90 - 180/length(sseq) * sseq)
         p <- p + coord_polar() +
              theme(axis.text.x = element_text(angle= c(fang, sang)),
-                  legend.margin = margin(-120,0,0,0))
+                  legend.margin = margin(-120,0,0,0),
+                  ...)
     }
     return(p)
 }
