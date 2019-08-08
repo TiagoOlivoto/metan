@@ -24,7 +24,6 @@
 #' @export
 #' @importFrom tidyr spread gather separate
 #' @examples
-#' \dontrun{
 #'
 #' library(metan)
 #' library(dplyr)
@@ -42,7 +41,6 @@
 #'   split_factors(ENV) %>%
 #'   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
 #'   stats = c("mean", "SE.mean", "CV"))
-#'}
 #'
 
 desc_stat = function(.data = NULL,
@@ -54,6 +52,7 @@ desc_stat = function(.data = NULL,
                                "skew", "var.amo", "var.pop"),
                      level = 0.95,
                      digits = 4){
+
 if(any(!stats %in% c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean",
                      "median", "min", "n", "norm.pval", "norm.stat", "Q2.5",
                      "Q25", "Q75", "Q97.5", "SD.amo", "SD.pop", "SE.mean",
@@ -140,15 +139,17 @@ if(any(!stats %in% c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean",
         statistics = suppressWarnings(data %>% gather(stat, val) %>%
                                         separate(stat, into = c("var", "stat"), sep = "_") %>%
                                         make_mat(stat, var, val) %>%
+                                        as.data.frame() %>%
                                         rownames_to_column("stat") %>%
-                                        filter(stat %in% stats))
+                                        dplyr::filter(stat %in% stats))
         invisible(statistics)
         print(statistics, digits = digits, row.names = FALSE)
       }
       if(ncol(data) == 22){
         statistics = t(data) %>%
-          rownames_to_column("stat")%>%
-          filter(stat %in% stats)
+          as.data.frame() %>%
+          rownames_to_column("stat") %>%
+          dplyr::filter(stat %in% stats)
         invisible(statistics)
         print(statistics, digits = digits, row.names = FALSE)
       }
@@ -188,15 +189,17 @@ if(any(!stats %in% c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean",
       statistics = suppressWarnings(data %>% gather(stat, val) %>%
                                       separate(stat, into = c("var", "stat"), sep = "_") %>%
                                       make_mat(stat, var, val) %>%
+                                      as.data.frame() %>%
                                       rownames_to_column("stat") %>%
-                                      filter(stat %in% stats))
+                                      dplyr::filter(stat %in% stats))
       invisible(statistics)
       print(statistics, digits = digits, row.names = FALSE)
     }
     if(ncol(data) == 22){
       statistics = t(data) %>%
-        rownames_to_column("stat")%>%
-        filter(stat %in% stats)
+        as.data.frame() %>%
+        rownames_to_column("stat") %>%
+      dplyr::filter(stat %in% stats)
       invisible(statistics)
       print(statistics, digits = digits, row.names = FALSE)
     }

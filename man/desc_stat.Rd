@@ -38,7 +38,6 @@ vector.}
 Compute the most used measures of central tendency, position, and dispersion.
 }
 \examples{
-\dontrun{
 
 library(metan)
 library(dplyr)
@@ -56,7 +55,6 @@ data_ge2 \%>\%
   split_factors(ENV) \%>\%
   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
   stats = c("mean", "SE.mean", "CV"))
-}
 
 }
 \author{
