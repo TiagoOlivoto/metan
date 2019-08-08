@@ -8,6 +8,16 @@
 #' @param ... A single variable name or a comma-separated list of unquoted variables names.
 #' @param values An alternative way to pass the data to the function. It must be a numeric
 #' vector.
+#' @param stats The descriptive statistics to show. It must be one of the \code{"AV.dev"} (average deviation),
+#' \code{"CI.mean"} (confidence interval for the mean), \code{"CV"} (coefficient of variation),
+#' \code{"IQR"} (interquartile range), \code{"Kurt"} (kurtosis), \code{"max"} (maximum value),
+#' \code{"mean"} (arithmetic mean), \code{"median"} (median), \code{"min"} (minimum value),
+#' \code{"n"} (the length of the data), \code{"norm.pval"} (the p-value for the Shapiro-Wilk test),
+#'  \code{"norm.stat"} (the statistic for the Shapiro-Wilk test), \code{"Q2.5"} (the percentile 2.5%),
+#'  \code{"Q25"} (the first quartile, Q1), \code{"Q75"} (the third quartile, Q3), \code{"Q97.5"} (the percentile 97.5%),
+#'  \code{"SD.amo"} (the sample standard deviation), \code{"SD.pop"} (the population standard deviation),
+#'  \code{"SE.mean"} (the standard error of the mean), \code{"skew"} (the skewness), \code{"var.amo"} (the sample variance),
+#'  \code{"var.pop"} (the population variance).
 #' @param level The confidence level to compute the confidence interval of mean. Defaults to 0.95.
 #' @param digits The number of significant figures.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -30,12 +40,26 @@
 #'
 #' data_ge2 %>%
 #'   split_factors(ENV) %>%
-#'   desc_stat(EP, EL, PH, CL, CW, NR, NKR)
+#'   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
+#'   stats = c("mean", "SE.mean", "CV"))
 #'}
 #'
 
-desc_stat = function(.data = NULL, ..., values = NULL, level = 0.95, digits = 4){
-
+desc_stat = function(.data = NULL,
+                     ...,
+                     values = NULL,
+                     stats = c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean",
+                               "median", "min", "n", "norm.pval", "norm.stat", "Q2.5",
+                               "Q25", "Q75", "Q97.5", "SD.amo", "SD.pop", "SE.mean",
+                               "skew", "var.amo", "var.pop"),
+                     level = 0.95,
+                     digits = 4){
+if(any(!stats %in% c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean",
+                     "median", "min", "n", "norm.pval", "norm.stat", "Q2.5",
+                     "Q25", "Q75", "Q97.5", "SD.amo", "SD.pop", "SE.mean",
+                     "skew", "var.amo", "var.pop")) == TRUE){
+  stop("Invalid value for the argument 'stat'. Allowed values are one of the AV.dev, CI.mean, CV, IQR, Kurt, max, mean, median, min, n, norm.pval, norm.stat, Q2.5, Q25, Q75, Q97.5, SD.amo, SD.pop, SE.mean, skew, var.amo, and var.pop.")
+}
   if(!missing(.data) & !missing(values)){
     stop("You can not inform a vector of values if a data frame is used as imput.")
   }
@@ -113,15 +137,20 @@ desc_stat = function(.data = NULL, ..., values = NULL, level = 0.95, digits = 4)
                            norm.pval = norm_pv,
                            CV = CV))
       if(ncol(data) > 22){
-        print(
-          suppressWarnings(data %>% gather(stat, val) %>%
-                             separate(stat, into = c("var", "stat"), sep = "_") %>%
-                             make_mat(stat, var, val)),
-          digits = digits
-        )
+        statistics = suppressWarnings(data %>% gather(stat, val) %>%
+                                        separate(stat, into = c("var", "stat"), sep = "_") %>%
+                                        make_mat(stat, var, val) %>%
+                                        rownames_to_column("stat") %>%
+                                        filter(stat %in% stats))
+        invisible(statistics)
+        print(statistics, digits = digits, row.names = FALSE)
       }
       if(ncol(data) == 22){
-        print(t(data), digits = digits)
+        statistics = t(data) %>%
+          rownames_to_column("stat")%>%
+          filter(stat %in% stats)
+        invisible(statistics)
+        print(statistics, digits = digits, row.names = FALSE)
       }
 
     }
@@ -156,15 +185,20 @@ desc_stat = function(.data = NULL, ..., values = NULL, level = 0.95, digits = 4)
                          CV = CV))
 
     if(ncol(data) > 22){
-      print(
-        suppressWarnings(data %>% gather(stat, val) %>%
-                           separate(stat, into = c("var", "stat"), sep = "_") %>%
-                           make_mat(stat, var, val)),
-        digits = digits
-      )
+      statistics = suppressWarnings(data %>% gather(stat, val) %>%
+                                      separate(stat, into = c("var", "stat"), sep = "_") %>%
+                                      make_mat(stat, var, val) %>%
+                                      rownames_to_column("stat") %>%
+                                      filter(stat %in% stats))
+      invisible(statistics)
+      print(statistics, digits = digits, row.names = FALSE)
     }
     if(ncol(data) == 22){
-      print(t(data), digits = digits)
+      statistics = t(data) %>%
+        rownames_to_column("stat")%>%
+        filter(stat %in% stats)
+      invisible(statistics)
+      print(statistics, digits = digits, row.names = FALSE)
     }
   }
 }
