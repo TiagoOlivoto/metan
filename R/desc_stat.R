@@ -24,7 +24,7 @@
 #' @export
 #' @importFrom tidyr spread gather separate
 #' @examples
-#'
+#' \dontrun{
 #' library(metan)
 #' library(dplyr)
 #'
@@ -41,6 +41,7 @@
 #'   split_factors(ENV) %>%
 #'   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
 #'   stats = c("mean", "SE.mean", "CV"))
+#'   }
 #'
 
 desc_stat = function(.data = NULL,
