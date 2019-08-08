@@ -5,7 +5,8 @@
 \title{Multi-trait selection index}
 \usage{
 \method{plot}{fai_blup}(x, ideotype = 1, SI = 15, radar = TRUE,
-  size.point = 2, col.sel = "red", col.nonsel = "black", ...)
+  size.point = 2, col.sel = "red", col.nonsel = "black",
+  size.text = 10, ...)
 }
 \arguments{
 \item{x}{An object of class \code{waasb}}
@@ -24,7 +25,9 @@ after using \code{coord_polar()}.}
 
 \item{col.nonsel}{The colour for nonselected genotypes.}
 
-\item{...}{Other arguments of the function.}
+\item{size.text}{The size for the text in the plot. Defaults to 10.}
+
+\item{...}{Other arguments to be passed from ggplot2::theme().}
 }
 \description{
 Plot the multitrait index based on factor analysis and ideotype-design

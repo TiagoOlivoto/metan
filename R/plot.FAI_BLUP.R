@@ -13,7 +13,8 @@
 #' @param size.point The size of the point in graphic.
 #' @param col.sel The colour for selected genotypes.
 #' @param col.nonsel The colour for nonselected genotypes.
-#' @param ... Other arguments of the function.
+#' @param size.text The size for the text in the plot. Defaults to 10.
+#' @param ... Other arguments to be passed from ggplot2::theme().
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
 #' Multitrait index based on factor analysis and ideotype-design: proposal and
@@ -39,8 +40,14 @@
 #'                SI = 15)
 #'       plot(FAI)
 #'
-plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2,
-    col.sel = "red", col.nonsel = "black", ...) {
+plot.fai_blup <- function(x, ideotype = 1,
+                          SI = 15,
+                          radar = TRUE,
+                          size.point = 2,
+                          col.sel = "red",
+                          col.nonsel = "black",
+                          size.text = 10,
+                          ...) {
 
     if (!class(x) == "fai_blup") {
         stop("The object 'x' is not of class 'fai_blup'")
@@ -48,7 +55,7 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2
     data <- tibble(FAI = x$FAI[[ideotype]],
                    Genotype = names(x$FAI[[ideotype]]),
                    sel = "Selected")
-    data$sel[(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
+    data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
     cutpoint <- min(subset(data, sel == "Selected")$FAI)
     p <- ggplot(data = data, aes(x = reorder(Genotype, FAI), y = FAI)) +
         geom_hline(yintercept = cutpoint, col = "red") +
@@ -60,7 +67,8 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2
               legend.title = element_blank(),
               axis.title.x = element_blank(),
               panel.border = element_blank(),
-              axis.text = element_text(colour = "black")) +
+              axis.text = element_text(colour = "black"),
+              text = element_text(size = size.text)) +
         labs(x = "", y = "FAI-BLUP") +
         scale_fill_manual(values = c(col.nonsel, col.sel))
     if (radar == TRUE) {
@@ -70,8 +78,9 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, size.point = 2
         fang = c(90 - 180/length(fseq) * fseq)
         sang = c(-90 - 180/length(sseq) * sseq)
         p <- p + coord_polar() +
-            theme(axis.text.x = element_text(angle= c(fang,sang)),
-                  legend.margin = margin(-120,0,0,0))
+            theme(axis.text.x = element_text(angle= c(fang, sang)),
+                  legend.margin = margin(-120,0,0,0),
+                  ...)
     }
     return(p)
 }
