@@ -141,16 +141,16 @@ if(any(!stats %in% c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean",
                                         separate(stat, into = c("var", "stat"), sep = "_") %>%
                                         make_mat(stat, var, val) %>%
                                         as.data.frame() %>%
-                                        rownames_to_column("stat") %>%
-                                        dplyr::filter(stat %in% stats))
+                                        rownames_to_column("Statistic") %>%
+                                        dplyr::filter(Statistic %in% stats))
         invisible(statistics)
         print(statistics, digits = digits, row.names = FALSE)
       }
       if(ncol(data) == 22){
         statistics = t(data) %>%
           as.data.frame() %>%
-          rownames_to_column("stat") %>%
-          dplyr::filter(stat %in% stats)
+          rownames_to_column("Statistic") %>%
+          dplyr::filter(Statistic %in% stats)
         invisible(statistics)
         print(statistics, digits = digits, row.names = FALSE)
       }
@@ -191,16 +191,16 @@ if(any(!stats %in% c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean",
                                       separate(stat, into = c("var", "stat"), sep = "_") %>%
                                       make_mat(stat, var, val) %>%
                                       as.data.frame() %>%
-                                      rownames_to_column("stat") %>%
-                                      dplyr::filter(stat %in% stats))
+                                      rownames_to_column("Statistic") %>%
+                                      dplyr::filter(Statistic %in% stats))
       invisible(statistics)
       print(statistics, digits = digits, row.names = FALSE)
     }
     if(ncol(data) == 22){
       statistics = t(data) %>%
         as.data.frame() %>%
-        rownames_to_column("stat") %>%
-      dplyr::filter(stat %in% stats)
+        rownames_to_column("Statistic") %>%
+      dplyr::filter(Statistic %in% stats)
       invisible(statistics)
       print(statistics, digits = digits, row.names = FALSE)
     }
