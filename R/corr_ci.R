@@ -40,77 +40,69 @@
 #'
 corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
   if (any(!is.na(.data))) {
-    if(!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)){
+    if (!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)) {
       stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
     }
-
-    if(is.matrix(.data) && is.null(n)){
+    if (is.matrix(.data) && is.null(n)) {
       stop("You have a matrix but the sample size used to compute the correlations (n) was not declared.")
     }
-
-
-    if(is.data.frame(.data) && !is.null(n)){
+    if (is.data.frame(.data) && !is.null(n)) {
       stop("You cannot informe the sample size because a data frame was used as input.")
     }
-
-    if(is.split_factors(.data) && !is.null(n)){
+    if (is.split_factors(.data) && !is.null(n)) {
       stop("You cannot informe the sample size because a data frame was used as input.")
     }
-
-
-      internal = function(x){
-        if(is.matrix(x)){
-          cor.x = x
-        }
-        if(is.data.frame(x)){
-          cor.x = cor(x)
-          n = nrow(x)
-        }
-        m <- as.matrix(cor.x)
-
-        results <- tibble(Pair = names(sapply(combn(colnames(x), 2, paste, collapse = " x "), names)),
-                          Corr = as.vector(t(m)[lower.tri(m, diag = F)]),
-                          CI = (0.45304^abs(Corr)) * 2.25152 * (n^-0.50089),
-                          LL = Corr - CI,
-                          UL = Corr + CI)
-        return(results)
+    internal <- function(x) {
+      if (is.matrix(x)) {
+        cor.x <- x
+      }
+      if (is.data.frame(x)) {
+        cor.x <- cor(x)
+        n <- nrow(x)
+      }
+      m <- as.matrix(cor.x)
+      results <- tibble(Pair = names(sapply(combn(colnames(x),
+                                                  2, paste, collapse = " x "), names)), Corr = as.vector(t(m)[lower.tri(m,
+                                                                                                                        diag = F)]), CI = (0.45304^abs(Corr)) * 2.25152 *
+                          (n^-0.50089), LL = Corr - CI, UL = Corr + CI)
+      return(results)
     }
-
-      if (is.matrix(.data)){
-        out = internal(.data)
-      }
-
-      if (any(class(.data) == "split_factors")) {
-        out = lapply(seq_along(.data), function(x){
-          internal(.data[[x]])
-        })
-        names(out) = names(.data)
-      }
-
-      if (is.data.frame(.data)) {
-        if (sum(lapply(.data, is.factor)==TRUE)>0){
-        }
-        data = data.frame(.data[ , unlist(lapply(.data, is.numeric))])
-        out = internal(data)
-        if (verbose == TRUE){
-          message("The factors ", paste0(collapse = " ", names(.data[ , unlist(lapply(.data, is.factor)) ])),
-                  " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
-        }
-      }
-
-invisible(as_tibble(out))
-
-    } else {
-        CI <- (0.45304^r) * 2.25152 * (n^-0.50089)
-        UP <- r + CI
-        LP <- r - CI
-        cat("-------------------------------------------------", "\n")
-        cat("Nonparametric 95% half-width confidence interval", "\n")
-        cat("-------------------------------------------------", "\n")
-        cat(paste0("Level of significance: 5%", "\n", "Correlation coefficient: ",
-            r, "\nSample size: ", n, "\nConfidence interval: ", round(CI, 4), "\nTrue parameter range from: ",
-            round(LP, 4), " to ", round(UP, 4)), "\n")
-        cat("-------------------------------------------------", "\n")
+    if (is.matrix(.data)) {
+      out <- internal(.data)
     }
+    if (any(class(.data) == "split_factors")) {
+      out <- lapply(seq_along(.data), function(x) {
+        internal(.data[[x]])
+      })
+      names(out) <- names(.data)
+    }
+    if (is.data.frame(.data)) {
+      if (sum(lapply(.data, is.factor) == TRUE) > 0) {
+      }
+      data <- data.frame(.data[, unlist(lapply(.data, is.numeric))])
+      out <- internal(data)
+      if (verbose == TRUE) {
+        message("The factors ", paste0(collapse = " ",
+                                       names(.data[, unlist(lapply(.data, is.factor))])),
+                " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
+      }
+    }
+    invisible(as_tibble(out))
+  } else {
+    CI <- (0.45304^r) * 2.25152 * (n^-0.50089)
+    UP <- r + CI
+    LP <- r - CI
+    cat("-------------------------------------------------",
+        "\n")
+    cat("Nonparametric 95% half-width confidence interval",
+        "\n")
+    cat("-------------------------------------------------",
+        "\n")
+    cat(paste0("Level of significance: 5%", "\n", "Correlation coefficient: ",
+               r, "\nSample size: ", n, "\nConfidence interval: ",
+               round(CI, 4), "\nTrue parameter range from: ", round(LP,
+                                                                    4), " to ", round(UP, 4)), "\n")
+    cat("-------------------------------------------------",
+        "\n")
+  }
 }
-
