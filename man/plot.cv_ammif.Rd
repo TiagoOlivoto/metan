@@ -15,21 +15,21 @@
 \item{x}{An object of class \code{cv_ammif}.}
 
 \item{violin}{Define if a violine plot is used with boxplot. Default is
-"TRUE"}
+'TRUE'}
 
 \item{export}{Export (or not) the plot. Default is \code{T}.}
 
 \item{x.lab}{The label of x-axis. New arguments can be inserted as
-\code{x.lab = "my x label"}.}
+\code{x.lab = 'my x label'}.}
 
 \item{y.lab}{The label of y-axis. New arguments can be inserted as
-\code{y.lab = "my y label"}.}
+\code{y.lab = 'my y label'}.}
 
 \item{size.tex.lab}{The size of the text in axis text and labels.}
 
 \item{file.type}{The type of file to be exported. Default is \code{pdf},
 Graphic can also be exported in \code{*.tiff} format by declaring
-\code{file.type = "tiff"}.}
+\code{file.type = 'tiff'}.}
 
 \item{file.name}{The name of the file for exportation, default is
 \code{NULL}, i.e. the files are automatically named.}
@@ -39,19 +39,19 @@ theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
 applied using the arguments: `theme = theme_waasb() + theme(some stuff
 here)`. For more details, please, see `?ggplot2::theme`}
 
-\item{width}{The width "inch" of the plot. Default is \code{6}.}
+\item{width}{The width 'inch' of the plot. Default is \code{6}.}
 
-\item{height}{The height "inch" of the plot. Default is \code{6}.}
+\item{height}{The height 'inch' of the plot. Default is \code{6}.}
 
 \item{resolution}{The resolution of the plot. Parameter valid if
-\code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
+\code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)}
 
 \item{col.violin}{Parameter valid if \code{violin = T}. Define the color of
-the violin plot. Default is "gray90.}
+the violin plot. Default is 'gray90.}
 
-\item{col.boxplot}{Define the color for boxplot. Default is "gray70".}
+\item{col.boxplot}{Define the color for boxplot. Default is 'gray70'.}
 
-\item{col.boxplot.win}{Define the color for boxplot of the best model. Default is "cyan".}
+\item{col.boxplot.win}{Define the color for boxplot of the best model. Default is 'cyan'.}
 
 \item{width.boxplot}{The width of boxplots. Default is \code{0.2}.}
 

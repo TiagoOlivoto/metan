@@ -28,10 +28,10 @@ replications/blocks.}
 validating data each step, so, \code{Nrepval} must be equal \code{R-1}}
 
 \item{random}{The effects of the model assumed to be random. Default is
-\code{random = "gen"} (genotype and genotype-vs-environment as random
-effects. Other values allowed are \code{random = "env"} (environment,
+\code{random = 'gen'} (genotype and genotype-vs-environment as random
+effects. Other values allowed are \code{random = 'env'} (environment,
 genotype-vs-environment and block-within-environment random effects) or
-\code{random = "all"} all effects except the intercept are assumed to be
+\code{random = 'all'} all effects except the intercept are assumed to be
 random effects.}
 
 \item{verbose}{A logical argument to define if a progress bar is shown.
@@ -44,10 +44,10 @@ Cross-validation for blup prediction.
 This function provides a cross-validation procedure for mixed models using
 replicate-based data. By default, complete blocks are randomly selected
 within each evironment. In each iteraction, the original dataset is split up
-into two datasets: training and validation data. The "training" set has all
+into two datasets: training and validation data. The 'training' set has all
 combinations (genotype x environment) with the number of replications
-informed in \code{nrepval}. The "validation" set has the remaining
-replication. The estimated values are compared with the "validation" data
+informed in \code{nrepval}. The 'validation' set has the remaining
+replication. The estimated values are compared with the 'validation' data
 and the Root Means Square Prediction Difference is computed. At the end of
 boots, a list is returned.
 }

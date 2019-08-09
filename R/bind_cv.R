@@ -8,7 +8,7 @@
 #' @param ... Input objects of class \code{cv_ammi}, \code{cv_ammif} or
 #' \code{cv_blup}.
 #' @param bind What data should be used? To plot the RMSPD, use 'boot' (default).
-#' Use \code{bind = "means"} to return the RMSPD mean for each model.
+#' Use \code{bind = 'means'} to return the RMSPD mean for each model.
 #' @param sort Used to sort the RMSPD mean in ascending order.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -33,33 +33,32 @@
 #' bind_data = bind_cv(AMMI, BLUP)
 #' plot(bind_data)
 #'
-#' print(bind_cv(AMMI, BLUP, bind = "means"))
+#' print(bind_cv(AMMI, BLUP, bind = 'means'))
 #' }
 #'
-bind_cv = function(..., bind = "boot", sort = TRUE){
-  class = list(...)
-  if(sum(lapply(class, function(x) !class(x) %in% c("cv_ammi", "cv_ammif", "cv_blup") == TRUE)>0)){
+bind_cv <- function(..., bind = "boot", sort = TRUE) {
+  class <- list(...)
+  if (sum(lapply(class, function(x) !class(x) %in% c("cv_ammi",
+                                                     "cv_ammif", "cv_blup") == TRUE) > 0)) {
     stop("The object must be of the class 'cv_ammi', 'cv_ammif', or 'cv_blup'.")
   }
-  if(!bind %in% c("boot", "means")){
-    stop(paste("Invalid argument bind = '", bind, "'. It must be one of the 'means' or 'boot'", sep = ""))
+  if (!bind %in% c("boot", "means")) {
+    stop(paste("Invalid argument bind = '", bind, "'. It must be one of the 'means' or 'boot'",
+               sep = ""))
   }
-  dots = list(...)
-  if (bind == "boot"){
-  data = do.call(rbind, lapply(dots, function(x){
-    x$RMSPD
-    })
-  )
+  dots <- list(...)
+  if (bind == "boot") {
+    data <- do.call(rbind, lapply(dots, function(x) {
+      x$RMSPD
+    }))
   }
-  if (bind == "means"){
-    data = do.call(rbind, lapply(dots, function(x){
+  if (bind == "means") {
+    data <- do.call(rbind, lapply(dots, function(x) {
       x$RMSPDmean
-    })
-    )
-    if (sort == TRUE){
-      data = data %>% arrange(mean)
+    }))
+    if (sort == TRUE) {
+      data <- data %>% arrange(mean)
     }
   }
-  return(structure(list(RMSPD = data),
-                   class = "cv_ammif"))
+  return(structure(list(RMSPD = data), class = "cv_ammif"))
 }

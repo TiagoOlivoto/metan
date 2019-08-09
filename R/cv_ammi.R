@@ -3,15 +3,15 @@
 #' Cross-validation for estimation of AMMI models
 #'
 #' For each iteration, the original dataset is split into two datasets:
-#' modeling and validating data. The dataset "modeling" has all combinations
+#' modeling and validating data. The dataset 'modeling' has all combinations
 #' (genotype x environment) with the number of replications informed in
-#' \code{nrepval}. The dataset "validating" has one replication. The splitting
+#' \code{nrepval}. The dataset 'validating' has one replication. The splitting
 #' of the dataset into modeling and validating data depends on the design
 #' informed. For Completely Randomized Block Design (default), compltely blocks
 #' are selected within environments. The remained block serves validation data.
-#' If \code{design = "RCD"} is informed, completely randomly samples are made
+#' If \code{design = 'RCD'} is informed, completely randomly samples are made
 #' for each genotype-by-environment combination. The estimated values
-#' (depending on NAXIS informed) are compared with the "validating" data. the
+#' (depending on NAXIS informed) are compared with the 'validating' data. the
 #' Root Means Square error is computed. At the end of boots, a list is returned
 #' with the following values.
 #'
@@ -26,7 +26,7 @@
 #' @param nboot The number of resamples to be used in the cross-validation. Defaults to 100.
 #' @param design The experimental desig to be considered. Default is
 #' \code{RCBD} (Randomized complete Block Design). For Completely Randomized
-#' Designs inform \code{design = "CRD"}.
+#' Designs inform \code{design = 'CRD'}.
 #' @param nrepval The number of replicates (r) from total number of replicates
 #' (R) to be used in the modeling dataset. Only one replicate is used as
 #' validating data each step, so, \code{Nrepval} must be equal \code{R-1}
@@ -68,98 +68,84 @@
 #'
 #' }
 #'
-cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100, design = "RCBD",  nrepval,
-                            naxis, verbose = TRUE) {
-
+cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100,
+                    design = "RCBD", nrepval, naxis, verbose = TRUE) {
     if (!design %in% c("RCBD", "CRD")) {
         stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
     }
-data = .data %>% select(ENV = !!enquo(env), GEN = !!enquo(gen), REP = !!enquo(rep), Y = !!enquo(resp))
+    data <- .data %>% select(ENV = !!enquo(env), GEN = !!enquo(gen),
+                             REP = !!enquo(rep), Y = !!enquo(resp))
     RMSPDres <- data.frame(RMSPD = matrix(0, nboot, 1))
     data <- mutate(data, ID = rownames(data))
     Nenv <- length(unique(data$ENV))
     Ngen <- length(unique(data$GEN))
     Nbloc <- length(unique(data$REP))
     minimo <- min(Nenv, Ngen) - 1
-
     if (naxis > minimo) {
         stop("The number of axis to be used must be lesser than or equal to ",
              minimo, " [min(GEN-1;ENV-1)]")
     }
-
     if (nrepval != Nbloc - 1) {
         stop("The number replications used for validation must be equal to total number of replications -1 (In this case ",
              (Nbloc - 1), ").")
     }
-
     if (verbose == TRUE) {
         pb <- winProgressBar(title = "the model is being built, please, wait.",
                              min = 1, max = nboot, width = 570)
     }
-    condition = (design == "CRD")
-    condition2 = (design == "RCBD")
-
+    condition <- (design == "CRD")
+    condition2 <- (design == "RCBD")
     for (b in 1:nboot) {
-
         if (condition) {
             X <- sample(1:10000, 1)
             set.seed(X)
-            modeling <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::sample_n(nrepval,
-                                                                               replace = F) %>%
-                arrange(ID) %>% as.data.frame()
+            modeling <- data %>% dplyr::group_by(ENV, GEN) %>%
+                dplyr::sample_n(nrepval, replace = F) %>% arrange(ID) %>%
+                as.data.frame()
             rownames(modeling) <- modeling$ID
         }
         if (condition2) {
-            tmp = split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
-            modeling = do.call(rbind,
-                               lapply(tmp, function(x){
-                                   X2 <- sample(unique(data$REP), nrepval, replace = F)
-                                   x %>%
-                                       dplyr::group_by(GEN) %>%
-                                       dplyr::filter(unique(data$REP) %in% c(X2))
-                               })
-            ) %>% as.data.frame()
+            tmp <- split_factors(data, ENV, keep_factors = TRUE,
+                                 verbose = FALSE)
+            modeling <- do.call(rbind, lapply(tmp, function(x) {
+                X2 <- sample(unique(data$REP), nrepval, replace = F)
+                x %>% dplyr::group_by(GEN) %>% dplyr::filter(unique(data$REP) %in%
+                                                                 c(X2))
+            })) %>% as.data.frame()
             rownames(modeling) <- modeling$ID
         }
-        testing <- dplyr::anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "ID")) %>%
-            arrange(ENV, GEN, REP) %>% as.data.frame()
-        MEDIAS <- data.frame(modeling %>% dplyr::group_by(ENV, GEN) %>%
-                                 dplyr::summarise(Y = mean(Y)))
+        testing <- dplyr::anti_join(data, modeling, by = c("ENV",
+                                                           "GEN", "REP", "Y", "ID")) %>% arrange(ENV, GEN, REP) %>%
+            as.data.frame()
+        MEDIAS <- data.frame(modeling %>% dplyr::group_by(ENV,
+                                                          GEN) %>% dplyr::summarise(Y = mean(Y)))
         residual <- residuals(lm(Y ~ ENV + GEN, data = MEDIAS))
         s <- svd(t(matrix(residual, Nenv, byrow = T)))
-        MEDIAS %<>% mutate(Ypred = Y - residual,
-                         ResAMMI =  ((model.matrix(~factor(testing$GEN) - 1) %*% s$u[, 1:naxis]) *
-                                         (model.matrix(~factor(testing$ENV) - 1) %*% s$v[, 1:naxis])) %*%
-                             s$d[1:naxis],
-                         YpredAMMI = Ypred + ResAMMI,
-                         testing = testing$Y,
-                         error = YpredAMMI - testing,
-                         errrorAMMI0 = Ypred - testing)
-
-        RMSPDres[, 1][b] <- ifelse(naxis == 0,
-                                   sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0)),
+        MEDIAS %<>% mutate(Ypred = Y - residual, ResAMMI = ((model.matrix(~factor(testing$GEN) -
+                                                                              1) %*% s$u[, 1:naxis]) * (model.matrix(~factor(testing$ENV) -
+                                                                                                                         1) %*% s$v[, 1:naxis])) %*% s$d[1:naxis], YpredAMMI = Ypred +
+                               ResAMMI, testing = testing$Y, error = YpredAMMI -
+                               testing, errrorAMMI0 = Ypred - testing)
+        RMSPDres[, 1][b] <- ifelse(naxis == 0, sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0)),
                                    sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error)))
         if (verbose == TRUE) {
             ProcdAtua <- b
-            setWinProgressBar(pb, b, title = paste("Validating ", ProcdAtua,
-                                                   " of ", nboot, "validation datasets, considering", naxis, "axes",
-                                                   "-", round(b/nboot * 100, 1), "% Concluded -"))
+            setWinProgressBar(pb, b, title = paste("Validating ",
+                                                   ProcdAtua, " of ", nboot, "validation datasets, considering",
+                                                   naxis, "axes", "-", round(b/nboot * 100, 1),
+                                                   "% Concluded -"))
         }
-
     }
     if (verbose == TRUE) {
         close(pb)
     }
-
     RMSPDmean <- summarise(MODEL = paste("AMMI", naxis, sep = ""),
-                          RMSPDres, mean = mean(RMSPD),
-                          sd = sd(RMSPD),
-                          se = sd(RMSPD)/sqrt(n()),
-                          Q2.5 = quantile(RMSPD, 0.025),
-                          Q97.5 = quantile(RMSPD, 0.975))
-    RMSPDres = RMSPDres %>% mutate(MODEL = paste("AMMI", naxis, sep = "")) %>%
-        dplyr::select(MODEL, everything())
-
-    return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean, Estimated = MEDIAS,
-                          Modeling = modeling, Testing = testing), class = "cv_ammi"))
+                           RMSPDres, mean = mean(RMSPD), sd = sd(RMSPD), se = sd(RMSPD)/sqrt(n()),
+                           Q2.5 = quantile(RMSPD, 0.025), Q97.5 = quantile(RMSPD,
+                                                                           0.975))
+    RMSPDres <- RMSPDres %>% mutate(MODEL = paste("AMMI", naxis,
+                                                  sep = "")) %>% dplyr::select(MODEL, everything())
+    return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean,
+                          Estimated = MEDIAS, Modeling = modeling, Testing = testing),
+                     class = "cv_ammi"))
 }

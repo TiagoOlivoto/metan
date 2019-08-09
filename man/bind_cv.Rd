@@ -11,7 +11,7 @@ bind_cv(..., bind = "boot", sort = TRUE)
 \code{cv_blup}.}
 
 \item{bind}{What data should be used? To plot the RMSPD, use 'boot' (default).
-Use \code{bind = "means"} to return the RMSPD mean for each model.}
+Use \code{bind = 'means'} to return the RMSPD mean for each model.}
 
 \item{sort}{Used to sort the RMSPD mean in ascending order.}
 }
@@ -41,7 +41,7 @@ BLUP = cv_blup(data_ge,
 bind_data = bind_cv(AMMI, BLUP)
 plot(bind_data)
 
-print(bind_cv(AMMI, BLUP, bind = "means"))
+print(bind_cv(AMMI, BLUP, bind = 'means'))
 }
 
 }

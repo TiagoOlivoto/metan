@@ -25,7 +25,7 @@ replications/blocks.}
 
 \item{design}{The experimental desig to be considered. Default is
 \code{RCBD} (Randomized complete Block Design). For Completely Randomized
-Designs inform \code{design = "CRD"}.}
+Designs inform \code{design = 'CRD'}.}
 
 \item{nrepval}{The number of replicates (r) from total number of replicates
 (R) to be used in the modeling dataset. Only one replicate is used as
@@ -55,15 +55,15 @@ Cross-validation for estimation of AMMI models
 }
 \details{
 For each iteration, the original dataset is split into two datasets:
-modeling and validating data. The dataset "modeling" has all combinations
+modeling and validating data. The dataset 'modeling' has all combinations
 (genotype x environment) with the number of replications informed in
-\code{nrepval}. The dataset "validating" has one replication. The splitting
+\code{nrepval}. The dataset 'validating' has one replication. The splitting
 of the dataset into modeling and validating data depends on the design
 informed. For Completely Randomized Block Design (default), compltely blocks
 are selected within environments. The remained block serves validation data.
-If \code{design = "RCD"} is informed, completely randomly samples are made
+If \code{design = 'RCD'} is informed, completely randomly samples are made
 for each genotype-by-environment combination. The estimated values
-(depending on NAXIS informed) are compared with the "validating" data. the
+(depending on NAXIS informed) are compared with the 'validating' data. the
 Root Means Square error is computed. At the end of boots, a list is returned
 with the following values.
 }
