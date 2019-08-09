@@ -19,16 +19,16 @@ class \code{split_factors}.}
 \item{values}{An alternative way to pass the data to the function. It must be a numeric
 vector.}
 
-\item{stats}{The descriptive statistics to show. It must be one of the \code{"AV.dev"} (average deviation),
-\code{"CI.mean"} (confidence interval for the mean), \code{"CV"} (coefficient of variation),
-\code{"IQR"} (interquartile range), \code{"Kurt"} (kurtosis), \code{"max"} (maximum value),
-\code{"mean"} (arithmetic mean), \code{"median"} (median), \code{"min"} (minimum value),
-\code{"n"} (the length of the data), \code{"norm.pval"} (the p-value for the Shapiro-Wilk test),
- \code{"norm.stat"} (the statistic for the Shapiro-Wilk test), \code{"Q2.5"} (the percentile 2.5%),
- \code{"Q25"} (the first quartile, Q1), \code{"Q75"} (the third quartile, Q3), \code{"Q97.5"} (the percentile 97.5%),
- \code{"SD.amo"} (the sample standard deviation), \code{"SD.pop"} (the population standard deviation),
- \code{"SE.mean"} (the standard error of the mean), \code{"skew"} (the skewness), \code{"var.amo"} (the sample variance),
- \code{"var.pop"} (the population variance).}
+\item{stats}{The descriptive statistics to show. It must be one of the \code{'AV.dev'} (average deviation),
+\code{'CI.mean'} (confidence interval for the mean), \code{'CV'} (coefficient of variation),
+\code{'IQR'} (interquartile range), \code{'Kurt'} (kurtosis), \code{'max'} (maximum value),
+\code{'mean'} (arithmetic mean), \code{'median'} (median), \code{'min'} (minimum value),
+\code{'n'} (the length of the data), \code{'norm.pval'} (the p-value for the Shapiro-Wilk test),
+ \code{'norm.stat'} (the statistic for the Shapiro-Wilk test), \code{'Q2.5'} (the percentile 2.5%),
+ \code{'Q25'} (the first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the percentile 97.5%),
+ \code{'SD.amo'} (the sample standard deviation), \code{'SD.pop'} (the population standard deviation),
+ \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the skewness), \code{'var.amo'} (the sample variance),
+ \code{'var.pop'} (the population variance).}
 
 \item{level}{The confidence level to compute the confidence interval of mean. Defaults to 0.95.}
 
@@ -54,7 +54,7 @@ desc_stat(values = vect)
 data_ge2 \%>\%
   split_factors(ENV) \%>\%
   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
-  stats = c("mean", "SE.mean", "CV"))
+  stats = c('mean', 'SE.mean', 'CV'))
   }
 
 }
