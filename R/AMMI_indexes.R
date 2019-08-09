@@ -35,9 +35,9 @@
 #'
 #' @param .data An object of class \code{WAAS.AMMI}
 #' @param order.y A vector of the same length of \code{x} used to order the
-#' response variable. Each element of the vector must be one of the \code{"h"}
-#' or \code{"l"}. If \code{"h"} is used, the response variable will be ordered
-#' from maximum to minimum. If \code{"l"} is used then the response variable
+#' response variable. Each element of the vector must be one of the \code{'h'}
+#' or \code{'l'}. If \code{'h'} is used, the response variable will be ordered
+#' from maximum to minimum. If \code{'l'} is used then the response variable
 #' will be ordered from minimum to maximum.
 #' @param level The confidence level. Defaults to 0.95.
 #' @return
@@ -63,24 +63,23 @@
 #' @examples
 #'
 #' library(metan)
-#' model = waas(data_ge,
-#'              env = ENV,
-#'              gen = GEN,
-#'              rep = REP,
-#'              resp = c(GY, HM),
-#'              verbose = FALSE)
-#' model_indexes = AMMI_indexes(model)
+#' model <- waas(data_ge,
+#'               env = ENV,
+#'               gen = GEN,
+#'               rep = REP,
+#'               resp = c(GY, HM),
+#'               verbose = FALSE)
+#' model_indexes <- AMMI_indexes(model)
 #'
 #'
 #' # Alternatively (and more intuitively) using %>%
 #' library(dplyr)
-#' res_ind = data_ge %>%
-#'           waas(ENV, GEN, REP, c(GY, HM)) %>%
-#'           AMMI_indexes()
+#' res_ind <- data_ge %>%
+#'            waas(ENV, GEN, REP, c(GY, HM)) %>%
+#'            AMMI_indexes()
 #'
 #'
 AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
-
     if (is.null(order.y)) {
         order.y <- rep("h", length(.data))
     }
@@ -107,7 +106,6 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         svdge <- svd(ge)
         gamma.n <- svdge$u[, 1:n]
         theta.n <- model$PCA$Percent[1:n]/100
-
         # sum of absolute scores
         PCA <- data.frame(model$model)
         SCOR <- PCA[PCA[, 1] == "GEN", c(seq(4, n + 3))]
@@ -118,7 +116,6 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         }
         mean <- PCA[PCA[, 1] == "GEN", c(2:3)]
         rS <- rank(SIPC)
-
         if (length(order.y) == 1) {
             if (order.y == "h") {
                 rY <- rank(-mean[2])
@@ -136,8 +133,6 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         }
         varin <- varin + 1
         ssiSIPC <- rS + rY
-
-
         # Za
         if (n == 1) {
             Za <- abs(gamma.n * theta.n)
@@ -146,8 +141,6 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         }
         rZA <- rank(Za)
         ssiZA <- rZA + rY
-
-
         # averages of the squared eigenvector
         if (n == 1) {
             EV <- gamma.n^2/n
@@ -156,22 +149,16 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         }
         rEV <- rank(EV)
         ssiEV <- rEV + rY
-
         # AMMI stability values
         pc <- model$anova$`Sum Sq`[5]/model$anova$`Sum Sq`[6]
         SCOR2 <- PCA[PCA[, 1] == "GEN", c(seq(4, 2 + 3))]
         ASV <- sqrt((pc * SCOR2[, 1])^2 + SCOR2[, 2]^2)
         rASV <- rank(ASV)
         ssiASV <- rASV + rY
-
-        temp <- data.frame(GEN = mean[1], Y = mean[2], rY = rY, ASV = ASV, rASV = rASV,
-            ssiASV = ssiASV, SIPC = SIPC, rSIPC = rS, ssiSIPC = ssiSIPC, EV = EV,
-            rEV = rEV, ssiEV = ssiEV)
-
+        temp <- data.frame(GEN = mean[1], Y = mean[2], rY = rY, ASV = ASV,
+                           rASV = rASV, ssiASV = ssiASV, SIPC = SIPC, rSIPC = rS, ssiSIPC = ssiSIPC,
+                           EV = EV, rEV = rEV, ssiEV = ssiEV)
         listres[[paste(names(.data[var]))]] <- temp
-
     }
-
     invisible(listres)
 }
-

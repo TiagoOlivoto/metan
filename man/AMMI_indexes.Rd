@@ -10,9 +10,9 @@ AMMI_indexes(.data, order.y = NULL, level = 0.95)
 \item{.data}{An object of class \code{WAAS.AMMI}}
 
 \item{order.y}{A vector of the same length of \code{x} used to order the
-response variable. Each element of the vector must be one of the \code{"h"}
-or \code{"l"}. If \code{"h"} is used, the response variable will be ordered
-from maximum to minimum. If \code{"l"} is used then the response variable
+response variable. Each element of the vector must be one of the \code{'h'}
+or \code{'l'}. If \code{'h'} is used, the response variable will be ordered
+from maximum to minimum. If \code{'l'} is used then the response variable
 will be ordered from minimum to maximum.}
 
 \item{level}{The confidence level. Defaults to 0.95.}
@@ -58,20 +58,20 @@ ssiZa, respectively.
 \examples{
 
 library(metan)
-model = waas(data_ge,
-             env = ENV,
-             gen = GEN,
-             rep = REP,
-             resp = c(GY, HM),
-             verbose = FALSE)
-model_indexes = AMMI_indexes(model)
+model <- waas(data_ge,
+              env = ENV,
+              gen = GEN,
+              rep = REP,
+              resp = c(GY, HM),
+              verbose = FALSE)
+model_indexes <- AMMI_indexes(model)
 
 
 # Alternatively (and more intuitively) using \%>\%
 library(dplyr)
-res_ind = data_ge \%>\%
-          waas(ENV, GEN, REP, c(GY, HM)) \%>\%
-          AMMI_indexes()
+res_ind <- data_ge \%>\%
+           waas(ENV, GEN, REP, c(GY, HM)) \%>\%
+           AMMI_indexes()
 
 
 }
