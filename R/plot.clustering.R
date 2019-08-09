@@ -13,7 +13,7 @@
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'
-plot.clustering = function(x, horiz = TRUE, type = "dendrogram", ...){
+plot.clustering <- function(x, horiz = TRUE, type = "dendrogram", ...){
   if (type == "dendrogram"){
     plot(x$hc, horiz = horiz, ...)
     if(horiz == TRUE){
