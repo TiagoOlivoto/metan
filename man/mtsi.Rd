@@ -9,9 +9,9 @@ mtsi(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE)
 \arguments{
 \item{.data}{An object of class \code{waasb} or \code{waas}.}
 
-\item{index}{If \code{index = "waasb"} (Default) the multitrait index will
+\item{index}{If \code{index = 'waasb'} (Default) the multitrait index will
 be computed considering the stability of genotypes only. If \code{index =
-"waasby"} both stability and mean performance are considered. More details
+'waasby'} both stability and mean performance are considered. More details
 can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.}
 
 \item{SI}{An integer [0-100]. The selection intensity in percentage of the
@@ -45,7 +45,7 @@ mtsi_index = mtsi(mtsi_model)
 # HM: lower is better
 mtsi_index2 = data_ge \%>\%
               waasb(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) \%>\%
-              mtsi(index = "waasby")
+              mtsi(index = 'waasby')
 
 }
 \references{
