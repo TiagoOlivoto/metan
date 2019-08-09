@@ -38,48 +38,31 @@
 #'}
 #'
 #'
-plot.mtsi <- function(x, SI = 15,
-                      radar = TRUE,
-                      size.point = 2.5,
-                      col.sel = "red",
-                      col.nonsel = "black",
-                      size.text = 10,
-    ...) {
-
+plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5,
+                      col.sel = "red", col.nonsel = "black", size.text = 10, ...) {
     if (!class(x) == "mtsi") {
         stop("The object 'x' is not of class 'mtsi'")
     }
-    data <- tibble(MTSI = x$MTSI,
-                   Genotype = names(x$MTSI),
-                   sel = "Selected")
+    data <- tibble(MTSI = x$MTSI, Genotype = names(x$MTSI), sel = "Selected")
     data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
     cutpoint <- max(subset(data, sel == "Selected")$MTSI)
-    p <- ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
-        geom_hline(yintercept = cutpoint, col = col.sel) +
-        geom_path(colour = "black", group = 1) +
-        geom_point(size = size.point, aes(fill = sel), shape = 21,  colour = "black") +
-        scale_x_discrete() +
-        scale_y_reverse() +
-        theme_minimal()+
-        theme(legend.position = "bottom",
-              legend.title = element_blank(),
-              axis.title.x = element_blank(),
-              panel.border = element_blank(),
-              axis.text = element_text(colour = "black"),
-              text = element_text(size = size.text)) +
-        labs(y = "Multitrait stability index") +
+    p <- ggplot(data = data, aes(x = reorder(Genotype, -MTSI),
+                                 y = MTSI)) + geom_hline(yintercept = cutpoint, col = col.sel) +
+        geom_path(colour = "black", group = 1) + geom_point(size = size.point,
+                                                            aes(fill = sel), shape = 21, colour = "black") + scale_x_discrete() +
+        scale_y_reverse() + theme_minimal() + theme(legend.position = "bottom",
+                                                    legend.title = element_blank(), axis.title.x = element_blank(),
+                                                    panel.border = element_blank(), axis.text = element_text(colour = "black"),
+                                                    text = element_text(size = size.text)) + labs(y = "Multitrait stability index") +
         scale_fill_manual(values = c(col.nonsel, col.sel))
-
     if (radar == TRUE) {
-        tot_gen = length(unique(data$Genotype))
-        fseq = c(1:(tot_gen/2))
-        sseq = c((tot_gen/2+1):tot_gen)
-        fang = c(90 - 180/length(fseq) * fseq)
-        sang = c(-90 - 180/length(sseq) * sseq)
-        p <- p + coord_polar() +
-             theme(axis.text.x = element_text(angle= c(fang, sang)),
-                  legend.margin = margin(-120,0,0,0),
-                  ...)
+        tot_gen <- length(unique(data$Genotype))
+        fseq <- c(1:(tot_gen/2))
+        sseq <- c((tot_gen/2 + 1):tot_gen)
+        fang <- c(90 - 180/length(fseq) * fseq)
+        sang <- c(-90 - 180/length(sseq) * sseq)
+        p <- p + coord_polar() + theme(axis.text.x = element_text(angle = c(fang,
+                                                                            sang)), legend.margin = margin(-120, 0, 0, 0), ...)
     }
     return(p)
 }
