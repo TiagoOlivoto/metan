@@ -23,10 +23,10 @@ var3)}.}
 
 \item{design}{The experimental design. Must be RCBD or CRD.}
 
-\item{return}{What the function return? Default is "distance", i.e., the
+\item{return}{What the function return? Default is 'distance', i.e., the
 Mahalanobis distance. Alternatively, it is possible to return the matrix of
-means \code{return = "means"}, or the variance-covariance matrix of
-residuals \code{return = "covmat"}.}
+means \code{return = 'means'}, or the variance-covariance matrix of
+residuals \code{return = 'covmat'}.}
 }
 \description{
 Compute the Mahalanobis distance using data from an experiment conducted in
@@ -51,7 +51,7 @@ cov_mat = mahala_design(data_ge,
                            gen = GEN,
                            rep = REP,
                            resp = c(GY, HM),
-                           return = "covmat")
+                           return = 'covmat')
 
 }
 \author{

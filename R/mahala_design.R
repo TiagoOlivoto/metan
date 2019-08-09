@@ -1,4 +1,4 @@
-#' Mahalanobis distance using data from a designed experiment
+#' Mahalanobis distance from designed experiments
 #'
 #' Compute the Mahalanobis distance using data from an experiment conducted in
 #' a randomized complete block design or completely randomized design.
@@ -14,10 +14,10 @@
 #' @param resp The response variables. For example \code{resp = c(var1, var2,
 #' var3)}.
 #' @param design The experimental design. Must be RCBD or CRD.
-#' @param return What the function return? Default is "distance", i.e., the
+#' @param return What the function return? Default is 'distance', i.e., the
 #' Mahalanobis distance. Alternatively, it is possible to return the matrix of
-#' means \code{return = "means"}, or the variance-covariance matrix of
-#' residuals \code{return = "covmat"}.
+#' means \code{return = 'means'}, or the variance-covariance matrix of
+#' residuals \code{return = 'covmat'}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
@@ -39,23 +39,26 @@
 #'                            gen = GEN,
 #'                            rep = REP,
 #'                            resp = c(GY, HM),
-#'                            return = "covmat")
+#'                            return = 'covmat')
 #'
-mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "distance"){
+mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
+                          return = "distance") {
   if (!design %in% c("RCBD", "CRD")) {
     stop("The experimental design must be RCBD or CRD.")
   }
-  if(any(class(.data) == "split_factors")){
-    dfs = list()
-    for (k in 1:length(.data)){
+  if (any(class(.data) == "split_factors")) {
+    dfs <- list()
+    for (k in 1:length(.data)) {
       datain <- .data[[k]]
-      nam  = names(.data[k])
+      nam <- names(.data[k])
       GEN <- factor(eval(substitute(gen), eval(datain)))
       REP <- factor(eval(substitute(rep), eval(datain)))
       d <- match.call()
-      nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-      mat = matrix(nrow = nvar, ncol = nvar)
-      covdata = data.frame(matrix(nrow = nrow(datain), ncol = nvar))
+      nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
+                                  1, length(d$resp)))
+      mat <- matrix(nrow = nvar, ncol = nvar)
+      covdata <- data.frame(matrix(nrow = nrow(datain),
+                                   ncol = nvar))
       vin <- 0
       for (var in 2:length(d$resp)) {
         vin <- vin + 1
@@ -64,43 +67,44 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
         } else {
           Y <- eval(substitute(resp), eval(datain))
         }
-        covdata[, vin] = Y
-        if (design == "RCBD"){
-          model = anova(aov(Y ~ GEN + REP))
-          diag(mat)[vin] = model[3, 3]
+        covdata[, vin] <- Y
+        if (design == "RCBD") {
+          model <- anova(aov(Y ~ GEN + REP))
+          diag(mat)[vin] <- model[3, 3]
         } else {
-          model = anova(aov(Y ~ GEN))
-          diag(mat)[vin] = model[2, 3]
+          model <- anova(aov(Y ~ GEN))
+          diag(mat)[vin] <- model[2, 3]
         }
-        colnames(covdata)[[vin]] = paste(d$resp[var])
+        colnames(covdata)[[vin]] <- paste(d$resp[var])
       }
-      means = data.frame(cbind(GEN, covdata)) %>%
-        dplyr::group_by(GEN) %>%
-        dplyr::summarise_all(mean) %>%
-        column_to_rownames("GEN")
-      covdata2 = comb_vars(data.frame(covdata), order = "first")
-      index = data.frame(t(combn(ncol(mat), 2)))
-      temp = NULL
-      for (i in 1:ncol(covdata2)){
-        if (design == "RCBD"){
-          model = anova(aov(covdata2[[i]] ~ GEN + REP))
-          temp[i] = (model[3, 3] - diag(mat)[[index[i, 1]]] - diag(mat)[[index[i, 2]]])/2
+      means <- data.frame(cbind(GEN, covdata)) %>% dplyr::group_by(GEN) %>%
+        dplyr::summarise_all(mean) %>% column_to_rownames("GEN")
+      covdata2 <- comb_vars(data.frame(covdata), order = "first")
+      index <- data.frame(t(combn(ncol(mat), 2)))
+      temp <- NULL
+      for (i in 1:ncol(covdata2)) {
+        if (design == "RCBD") {
+          model <- anova(aov(covdata2[[i]] ~ GEN + REP))
+          temp[i] <- (model[3, 3] - diag(mat)[[index[i,
+                                                     1]]] - diag(mat)[[index[i, 2]]])/2
         } else {
-          model = anova(aov(covdata2[[i]] ~ GEN))
-          temp[i] = (model[2, 3] - diag(mat)[[index[i, 1]]] - diag(mat)[[index[i, 2]]])/2
+          model <- anova(aov(covdata2[[i]] ~ GEN))
+          temp[i] <- (model[2, 3] - diag(mat)[[index[i,
+                                                     1]]] - diag(mat)[[index[i, 2]]])/2
         }
       }
       mat[lower.tri(mat, diag = F)] <- temp
       rownames(mat) <- colnames(mat) <- colnames(means)
-      dist = mahala(.means = means, covar = make_sym(mat), inverted = FALSE)
-      if (return == "distance"){
-        dfs[[paste(nam)]] = dist
+      dist <- mahala(.means = means, covar = make_sym(mat),
+                     inverted = FALSE)
+      if (return == "distance") {
+        dfs[[paste(nam)]] <- dist
       }
-      if (return == "covmat"){
-        dfs[[paste(nam)]] = mat
+      if (return == "covmat") {
+        dfs[[paste(nam)]] <- mat
       }
-      if (return == "means"){
-        dfs[[paste(nam)]] = means
+      if (return == "means") {
+        dfs[[paste(nam)]] <- means
       }
     }
     return(structure(dfs, class = "mahala_group"))
@@ -109,9 +113,10 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
     GEN <- factor(eval(substitute(gen), eval(datain)))
     REP <- factor(eval(substitute(rep), eval(datain)))
     d <- match.call()
-    nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-    mat = matrix(nrow = nvar, ncol = nvar)
-    covdata = data.frame(matrix(nrow = nrow(.data), ncol = nvar))
+    nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
+                                1, length(d$resp)))
+    mat <- matrix(nrow = nvar, ncol = nvar)
+    covdata <- data.frame(matrix(nrow = nrow(.data), ncol = nvar))
     vin <- 0
     for (var in 2:length(d$resp)) {
       vin <- vin + 1
@@ -120,42 +125,43 @@ mahala_design = function(.data, gen, rep, resp, design = "RCBD", return = "dista
       } else {
         Y <- eval(substitute(resp), eval(datain))
       }
-      covdata[, vin] = Y
-      if (design == "RCBD"){
-        model = anova(aov(Y ~ GEN + REP))
-        diag(mat)[vin] = model[3, 3]
+      covdata[, vin] <- Y
+      if (design == "RCBD") {
+        model <- anova(aov(Y ~ GEN + REP))
+        diag(mat)[vin] <- model[3, 3]
       } else {
-        model = anova(aov(Y ~ GEN))
-        diag(mat)[vin] = model[2, 3]
+        model <- anova(aov(Y ~ GEN))
+        diag(mat)[vin] <- model[2, 3]
       }
-      colnames(covdata)[[vin]] = paste(d$resp[var])
+      colnames(covdata)[[vin]] <- paste(d$resp[var])
     }
-    means = data.frame(cbind(GEN, covdata)) %>%
-            dplyr::group_by(GEN) %>%
-            dplyr::summarise_all(mean) %>%
-      column_to_rownames("GEN")
-    covdata2 = comb_vars(data.frame(covdata), order = "first")
-    index = data.frame(t(combn(ncol(mat), 2)))
-    temp = NULL
-    for (i in 1:ncol(covdata2)){
-      if (design == "RCBD"){
-        model = anova(aov(covdata2[[i]] ~ GEN + REP))
-        temp[i] = (model[3, 3] - diag(mat)[[index[i, 1]]] - diag(mat)[[index[i, 2]]])/2
+    means <- data.frame(cbind(GEN, covdata)) %>% dplyr::group_by(GEN) %>%
+      dplyr::summarise_all(mean) %>% column_to_rownames("GEN")
+    covdata2 <- comb_vars(data.frame(covdata), order = "first")
+    index <- data.frame(t(combn(ncol(mat), 2)))
+    temp <- NULL
+    for (i in 1:ncol(covdata2)) {
+      if (design == "RCBD") {
+        model <- anova(aov(covdata2[[i]] ~ GEN + REP))
+        temp[i] <- (model[3, 3] - diag(mat)[[index[i,
+                                                   1]]] - diag(mat)[[index[i, 2]]])/2
       } else {
-        model = anova(aov(covdata2[[i]] ~ GEN))
-        temp[i] = (model[2, 3] - diag(mat)[[index[i, 1]]] - diag(mat)[[index[i, 2]]])/2
+        model <- anova(aov(covdata2[[i]] ~ GEN))
+        temp[i] <- (model[2, 3] - diag(mat)[[index[i,
+                                                   1]]] - diag(mat)[[index[i, 2]]])/2
       }
     }
     mat[lower.tri(mat, diag = F)] <- temp
     rownames(mat) <- colnames(mat) <- colnames(means)
-    dist = mahala(.means = means, covar = make_sym(mat), inverted = FALSE)
-    if (return == "distance"){
+    dist <- mahala(.means = means, covar = make_sym(mat),
+                   inverted = FALSE)
+    if (return == "distance") {
       return(dist)
     }
-    if (return == "covmat"){
+    if (return == "covmat") {
       return(mat)
     }
-    if (return == "means"){
+    if (return == "means") {
       return(means)
     }
   }
