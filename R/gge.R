@@ -10,18 +10,18 @@
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param env The name of the column that contains the levels of the environments.
 #' @param resp The response variable(s).
-#' @param centering The centering method. Must be one of the \code{"none | 0"}, for no
-#'  centering; \code{"global | 1"}, for global centered (E+G+GE); \code{"environment | 2"} (default),
-#'  for environment-centered (G+GE); or \code{"double | 3"}, for double centred (GE).
+#' @param centering The centering method. Must be one of the \code{'none | 0'}, for no
+#'  centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),
+#'  for environment-centered (G+GE); or \code{'double | 3'}, for double centred (GE).
 #'   A biplot cannot be produced with models produced without centering.
-#' @param scaling The scaling method. Must be one of the \code{"none | 0"} (default), for no scaling;
-#'  or \code{"sd | 1"}, where each value is divided by the standard deviation of its corresponding
+#' @param scaling The scaling method. Must be one of the \code{'none | 0'} (default), for no scaling;
+#'  or \code{'sd | 1'}, where each value is divided by the standard deviation of its corresponding
 #'   environment (column). This will put all environments roughly he same rang of values.
 #'
-#' @param svp The method for singular value partitioning. Must be one of the \code{"genotype | 1"},
+#' @param svp The method for singular value partitioning. Must be one of the \code{'genotype | 1'},
 #'  (The singular value is entirely partitioned into the genotype eigenvectors, also called row
-#'  metric preserving); \code{"environment | 2"}, default, (The singular value is entirely partitioned into the
-#'  environment eigenvectors, also called column metric preserving); or \code{"symmetrical | 3"}
+#'  metric preserving); \code{'environment | 2'}, default, (The singular value is entirely partitioned into the
+#'  environment eigenvectors, also called column metric preserving); or \code{'symmetrical | 3'}
 #'  (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 #'  This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 #'  visualizing either the relationship among genotypes or that among the environments).
@@ -54,11 +54,11 @@
 #' \item{svp}{The singular value partitioning method.}
 #'
 #' \item{d}{The factor used to generate in which the ranges of genotypes and environments
-#'  are comparable when singular value partitioning is set to "genotype" or "environment".}
+#'  are comparable when singular value partitioning is set to 'genotype' or 'environment'.}
 #'  \item{grand_mean}{The grand mean of the trial.}
 #'  \item{mean_gen}{A vector with the means of the genotypes.}
 #'  \item{mean_env}{A vector with the means of the environments.}
-#'  \item{scale_var}{The scaling vector when the scaling method is \code{"sd"}.}
+#'  \item{scale_var}{The scaling vector when the scaling method is \code{'sd'}.}
 #'
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
@@ -78,14 +78,14 @@
 #'   gge(table = TRUE) %>%
 #'   plot()
 #'
-gge = function(.data, gen, env, resp, centering = "environment", scaling = "none",
-  svp = "environment", table = FALSE) {
-  if(table == FALSE){
-    ge_mat = as.matrix(make_mat(.data, !!enquo(gen), !!enquo(env),
-                                !!enquo(resp)))
+gge <- function(.data, gen, env, resp, centering = "environment",
+                scaling = "none", svp = "environment", table = FALSE) {
+  if (table == FALSE) {
+    ge_mat <- as.matrix(make_mat(.data, !!enquo(gen), !!enquo(env),
+                                 !!enquo(resp)))
   }
-  if(table == TRUE){
-    ge_mat = as.matrix(.data)
+  if (table == TRUE) {
+    ge_mat <- as.matrix(.data)
   }
   grand_mean <- mean(ge_mat)
   mean_env <- colMeans(ge_mat)
@@ -100,17 +100,18 @@ gge = function(.data, gen, env, resp, centering = "environment", scaling = "none
     stop("not all columns are of class 'numeric'")
   }
   if (!(centering %in% c("none", "environment", "global", "double") |
-    centering %in% 0:3)) {
+        centering %in% 0:3)) {
     warning(paste("Centering method", centering, "not found; defaulting to environment centered"))
-    centering = "environment"
+    centering <- "environment"
   }
-  if (!(svp %in% c("genotype", "environment", "symmetrical") | svp %in% 1:3)) {
+  if (!(svp %in% c("genotype", "environment", "symmetrical") |
+        svp %in% 1:3)) {
     warning(paste("svp method", svp, "not found; defaulting to column metric preserving"))
-    svp = "environment"
+    svp <- "environment"
   }
   if (!(scaling %in% c("none", "sd") | scaling %in% 0:1)) {
     warning(paste("scaling method", scaling, "not found; defaulting to no scaling"))
-    sd = "none"
+    sd <- "none"
   }
   labelaxes <- paste("PC", 1:ncol(diag(svd(ge_mat)$d)), sep = "")
   # Centering
@@ -133,48 +134,46 @@ gge = function(.data, gen, env, resp, centering = "environment", scaling = "none
   }
   # Scaling
   if (scaling == 1 | scaling == "sd") {
-    ge_mat = sweep(ge_mat, 2, apply(ge_mat, 2, sd), FUN = "/")
+    ge_mat <- sweep(ge_mat, 2, apply(ge_mat, 2, sd), FUN = "/")
   }
   # Singular value partitioning
   if (svp == 1 | svp == "genotype") {
     coordgen <- svd(ge_mat)$u %*% diag(svd(ge_mat)$d)
     coordenv <- svd(ge_mat)$v
-    d1 = (max(coordenv[, 1]) - min(coordenv[, 1]))/(max(coordgen[,
-      1]) - min(coordgen[, 1]))
-
-    d2 = (max(coordenv[, 2]) - min(coordenv[, 2]))/(max(coordgen[,
-      2]) - min(coordgen[, 2]))
+    d1 <- (max(coordenv[, 1]) - min(coordenv[, 1]))/(max(coordgen[,
+                                                                  1]) - min(coordgen[, 1]))
+    d2 <- (max(coordenv[, 2]) - min(coordenv[, 2]))/(max(coordgen[,
+                                                                  2]) - min(coordgen[, 2]))
     coordenv <- coordenv/max(d1, d2)
   }
   if (svp == 2 | svp == "environment") {
     coordgen <- svd(ge_mat)$u
     coordenv <- svd(ge_mat)$v %*% diag(svd(ge_mat)$d)
-    d1 = (max(coordgen[, 1]) - min(coordgen[, 1]))/(max(coordenv[,
-      1]) - min(coordenv[, 1]))
-    d2 = (max(coordgen[, 2]) - min(coordgen[, 2]))/(max(coordenv[,
-      2]) - min(coordenv[, 2]))
+    d1 <- (max(coordgen[, 1]) - min(coordgen[, 1]))/(max(coordenv[,
+                                                                  1]) - min(coordenv[, 1]))
+    d2 <- (max(coordgen[, 2]) - min(coordgen[, 2]))/(max(coordenv[,
+                                                                  2]) - min(coordenv[, 2]))
     coordgen <- coordgen/max(d1, d2)
   }
   if (svp == 3 | svp == "symmetrical") {
     coordgen <- svd(ge_mat)$u %*% diag(sqrt(svd(ge_mat)$d))
     coordenv <- svd(ge_mat)$v %*% diag(sqrt(svd(ge_mat)$d))
   }
-  eigenvalues = svd(ge_mat)$d
-  totalvar = round(as.numeric(sum(eigenvalues^2)), 2)
-  varexpl = round(as.numeric((eigenvalues^2/totalvar) * 100),
-    2)
-  if(svp == "genotype" | svp == "environment"){
-    d = max(d1, d2)
+  eigenvalues <- svd(ge_mat)$d
+  totalvar <- round(as.numeric(sum(eigenvalues^2)), 2)
+  varexpl <- round(as.numeric((eigenvalues^2/totalvar) * 100),
+                   2)
+  if (svp == "genotype" | svp == "environment") {
+    d <- max(d1, d2)
+  } else {
+    d <- NULL
   }
-  else {
-    d = NULL
-  }
-  model = list(coordgen = coordgen, coordenv = coordenv, eigenvalues = eigenvalues,
-    totalvar = totalvar, varexpl = varexpl, labelgen = labelgen,
-    labelenv = labelenv, labelaxes = labelaxes, ge_mat = ge_mat,
-    centering = centering, scaling = scaling, svp = svp, d = d ,
-    grand_mean = grand_mean, mean_gen = mean_gen, mean_env = mean_env,
-    scale_val = scale_val)
+  model <- list(coordgen = coordgen, coordenv = coordenv, eigenvalues = eigenvalues,
+                totalvar = totalvar, varexpl = varexpl, labelgen = labelgen,
+                labelenv = labelenv, labelaxes = labelaxes, ge_mat = ge_mat,
+                centering = centering, scaling = scaling, svp = svp,
+                d = d, grand_mean = grand_mean, mean_gen = mean_gen,
+                mean_env = mean_env, scale_val = scale_val)
   class(model) <- "gge"
   return(model)
 }

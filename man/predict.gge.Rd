@@ -13,9 +13,9 @@
 Generaly, two axis may be used. In this case, the estimated values will be those shown
 in the biplot.}
 
-\item{output}{The type of output. It must be one of the \code{"long"} (default) returning
+\item{output}{The type of output. It must be one of the \code{'long'} (default) returning
 a long-format table with the columns for environment (ENV), genotypes (GEN) and response
-variable (Y); or \code{"wide"} to return a two-way table with genotypes in the row, environments
+variable (Y); or \code{'wide'} to return a two-way table with genotypes in the row, environments
 in the columns, filled by the estimated values.}
 
 \item{...}{Additional parameter for the function}
