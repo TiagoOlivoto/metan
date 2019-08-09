@@ -10,9 +10,9 @@ comb_vars(.data, order = "first", FUN = "+", verbose = TRUE)
 \item{.data}{A matrix of data with, say, p columns.}
 
 \item{order}{The order on how the results will appear in the output. Default
-is \code{order = "first"}. In this case, assuming that .data has four
+is \code{order = 'first'}. In this case, assuming that .data has four
 columns, namely, \code{V1, V2, V3, V4}, the order of columns in the output
-will be \code{V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4}. If \code{order = "second"},
+will be \code{V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4}. If \code{order = 'second'},
 the result will be then \code{V1.V2, V1.V3, V2.V3, V1.V4, V2.V4, V3.V4}.}
 
 \item{FUN}{The function that will be applied to each combination. The
@@ -35,7 +35,7 @@ data = data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
                   D = rnorm(n = 5, mean = 1100, sd = 200),
                   E = rnorm(n = 5, mean = 2, sd = 1))
 comb_vars(data)
-comb_vars(data, FUN = "*", order = "second")
+comb_vars(data, FUN = '*', order = 'second')
 }
 
 }
