@@ -14,7 +14,6 @@
 #' @importFrom lme4  ranef  VarCorr  fortify.merMod
 #' @importFrom lmerTest  ranova  lmer
 #' @importFrom gplots  heatmap.2
-#' @importFrom rlang  eval_bare  expr
 #' @importFrom FWDselect  selection
 #' @importFrom grDevices  colorRampPalette  dev.off  pdf
 #'             chull  tiff  boxplot.stats
@@ -109,5 +108,5 @@ if (getRversion() >= "2.15.1") {
         "FA1", "FA2", "Gen", "wRes", "wWAASB", "OrResp", "OrPC1", "OrWAASB", "wWAAS",
         "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI", "Pair", "LL", "UL",
         "ci", "mean_var", "se", "x", "d1", "d2", "radio", "x0", "x1_x", "x1_y", "y0",
-        "val"))
+        "val", " Statistic"))
 }
