@@ -18,7 +18,7 @@
 #' spdata = as.split_factors(iris)
 #' is.split_factors(spdata)
 #'
-is.split_factors = function(x){
+is.split_factors <- function(x){
   if(any(class(x) == "split_factors")){
     return(TRUE)
   } else{
