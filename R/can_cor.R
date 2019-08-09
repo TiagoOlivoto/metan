@@ -20,7 +20,7 @@
 #' the correlation matrix (default) or 'cov' for analysis using the covariance
 #' matrix.
 #' @param test The test of significance of the relationship between the FG and
-#' SG. Must be one of the "Bartlett" (default) or "Rao".
+#' SG. Must be one of the 'Bartlett' (default) or 'Rao'.
 #' @param prob The probability of error assumed. Set to 0.05.
 #' @param center Should the data be centered to compute the scores?
 #' @param stdscores Rescale scores to produce scores of unit variance?
@@ -83,9 +83,9 @@
 #'
 #' }
 #'
-can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
-                    test = "Bartlett", prob = 0.05, center = TRUE,
-                    stdscores = FALSE, verbose = TRUE, collinearity = TRUE) {
+can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
+                     test = "Bartlett", prob = 0.05, center = TRUE, stdscores = FALSE,
+                     verbose = TRUE, collinearity = TRUE) {
   if (missing(.data) & missing(FG) || missing(SG)) {
     stop("No valid data imput for analysis.")
   }
@@ -104,13 +104,13 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
     }
   }
   if (any(class(.data) == "split_factors")) {
-    dfs = list()
-    datain = .data
+    dfs <- list()
+    datain <- .data
     for (k in 1:length(.data)) {
-      .data = datain[[k]]
-      nam = names(datain[k])
-      FGV = as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(FG))))
-      SGV = as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(SG))))
+      .data <- datain[[k]]
+      nam <- names(datain[k])
+      FGV <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(FG))))
+      SGV <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(SG))))
       if (nrow(FGV) != nrow(SGV)) {
         stop("The number of observations of 'FG', should be equal to 'SG'.")
       }
@@ -123,31 +123,30 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
       if (!is.numeric(prob) | prob <= 0 || prob > 1) {
         stop("The argument 'prob' is incorrect. It should be numeric with values between 0 and 1.")
       }
-
       if (use == "cov") {
-        MC = cov(cbind(FGV, SGV))
-        S11 = cov(FGV)
-        S22 = cov(SGV)
-        S12 = cov(FGV, SGV)
-        S21 = cov(SGV, FGV)
+        MC <- cov(cbind(FGV, SGV))
+        S11 <- cov(FGV)
+        S22 <- cov(SGV)
+        S12 <- cov(FGV, SGV)
+        S21 <- cov(SGV, FGV)
       }
       if (use == "cor") {
-        MC = cor(cbind(FGV, SGV))
-        S11 = cor(FGV)
-        S22 = cor(SGV)
-        S12 = cor(FGV, SGV)
-        S21 = cor(SGV, FGV)
+        MC <- cor(cbind(FGV, SGV))
+        S11 <- cor(FGV)
+        S22 <- cor(SGV)
+        S12 <- cor(FGV, SGV)
+        S21 <- cor(SGV, FGV)
       }
       M1 <- eigen(S11)
       megval1 <- M1$values
       megvec1 <- M1$vectors
-      S11_12 = megvec1 %*% diag(1/sqrt(megval1)) %*% t(megvec1)
-      S22_Inv = solve(S22)
+      S11_12 <- megvec1 %*% diag(1/sqrt(megval1)) %*% t(megvec1)
+      S22_Inv <- solve(S22)
       M2 <- eigen(S11_12 %*% S12 %*% S22_Inv %*% S21 %*%
                     S11_12)
       megval2 <- M2$values
       megvec2 <- M2$vectors
-      mtr = megval2
+      mtr <- megval2
       varuv <- as.data.frame(matrix(NA, length(mtr), 3))
       rownames(varuv) <- paste("U", 1:length(mtr), "V",
                                1:length(mtr), sep = "")
@@ -160,44 +159,44 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
       rownames(coruv) <- paste("U", 1:length(coruv), "V",
                                1:length(coruv), sep = "")
       colnames(coruv) <- c("Correlation")
-      Coef_FG = S11_12 %*% megvec2
+      Coef_FG <- S11_12 %*% megvec2
       rownames(Coef_FG) <- colnames(FGV)
       colnames(Coef_FG) <- paste("U", 1:ncol(Coef_FG),
                                  sep = "")
-      Coef_SG = S22_Inv %*% S21 %*% Coef_FG %*% solve(diag(sqrt(megval2)))
+      Coef_SG <- S22_Inv %*% S21 %*% Coef_FG %*% solve(diag(sqrt(megval2)))
       colnames(Coef_SG) <- paste("V", 1:ncol(Coef_SG),
                                  sep = "")
       M3 <- eigen(diag(diag(S11)))
       megval3 <- M3$values
       megvec3 <- M3$vectors
-      D11_12 = megvec3 %*% diag(1/sqrt(megval3)) %*% t(megvec3)
+      D11_12 <- megvec3 %*% diag(1/sqrt(megval3)) %*% t(megvec3)
       M4 <- eigen(diag(diag(S22)))
       megval4 <- M4$values
       megvec4 <- M4$vectors
-      D22_12 = megvec4 %*% diag(1/sqrt(megval4)) %*% t(megvec4)
+      D22_12 <- megvec4 %*% diag(1/sqrt(megval4)) %*% t(megvec4)
       Rux <- t(t(Coef_FG) %*% S11 %*% D11_12)
       rownames(Rux) <- colnames(FGV)
       Rvy <- t(t(Coef_SG) %*% S22 %*% D22_12)
       rownames(Rvy) <- colnames(SGV)
-
       if (center == TRUE) {
-        FG_A = scale(FGV, center = TRUE, scale = FALSE)
-        SG_A = scale(SGV, center = TRUE, scale = FALSE)
+        FG_A <- scale(FGV, center = TRUE, scale = FALSE)
+        SG_A <- scale(SGV, center = TRUE, scale = FALSE)
       } else {
-        FG_A = FGV
-        SG_A = SGV
+        FG_A <- FGV
+        SG_A <- SGV
       }
-      FG_A[is.na(FG_A)] = 0
-      SG_A[is.na(SG_A)] = 0
-      FG_SC = FG_A %*% Coef_FG
-      SG_SC = SG_A %*% Coef_SG
-      if (stdscores == TRUE){
-        FG_SC = sweep(FG_SC, 2, apply(FG_SC, 2, sd), "/")
-        SG_SC = sweep(SG_SC, 2, apply(SG_SC, 2, sd), "/")
+      FG_A[is.na(FG_A)] <- 0
+      SG_A[is.na(SG_A)] <- 0
+      FG_SC <- FG_A %*% Coef_FG
+      SG_SC <- SG_A %*% Coef_SG
+      if (stdscores == TRUE) {
+        FG_SC <- sweep(FG_SC, 2, apply(FG_SC, 2, sd),
+                       "/")
+        SG_SC <- sweep(SG_SC, 2, apply(SG_SC, 2, sd),
+                       "/")
       }
-      FG_CL = cor(FG_A, SG_SC)
-      SG_CL = cor(SG_A, FG_SC)
-
+      FG_CL <- cor(FG_A, SG_SC)
+      SG_CL <- cor(SG_A, FG_SC)
       if (test == "Bartlett") {
         n <- nrow(FGV)
         p <- ncol(FGV)
@@ -208,7 +207,7 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
                                 "Chi_square", "DF", "p_value")
         Bartlett[, 1] <- paste("U", 1:QtdF, "V", 1:QtdF,
                                sep = "")
-        i = 1
+        i <- 1
         for (i in 1:QtdF) {
           Lambda <- prod(1 - coruv[i:QtdF]^2)
           chisq <- -((n - 1) - (p + q + 1)/2) * log(Lambda)
@@ -250,13 +249,15 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
         }
         teste <- Rao
       }
-      results = data.frame(cbind(cbind(varuv, coruv), teste[-1]))
-      names(results) = c("Var", "Percent", "Sum", "Corr", "Lambda", "Chisq", "DF", "p_val")
+      results <- data.frame(cbind(cbind(varuv, coruv),
+                                  teste[-1]))
+      names(results) <- c("Var", "Percent", "Sum", "Corr",
+                          "Lambda", "Chisq", "DF", "p_val")
       if (collinearity == TRUE) {
-        colin = list(FGc = colindiag(FGV, verbose = FALSE),
-                     SGc = colindiag(SGV, verbose = FALSE))
+        colin <- list(FGc = colindiag(FGV, verbose = FALSE),
+                      SGc = colindiag(SGV, verbose = FALSE))
       } else {
-        colin = NULL
+        colin <- NULL
       }
       if (verbose == TRUE) {
         cat("\n\n\nLevel", nam, "\n")
@@ -305,21 +306,19 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
         cat("---------------------------------------------------------------------------\n")
         print(Rvy)
       }
-      tmp = structure(list(Matrix = MC, MFG = S11, MSG = S22,
-                           MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
-                           Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Crossload_FG = FG_CL,
-                           Crossload_SG = SG_CL, Sigtest = results, collinearity = colin),
-                      class = "can_cor")
-      dfs[[paste(nam)]] = tmp
+      tmp <- structure(list(Matrix = MC, MFG = S11, MSG = S22,
+                            MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG,
+                            Loads_FG = Rux, Loads_SG = Rvy, Score_FG = FG_SC,
+                            Score_SG = SG_SC, Crossload_FG = FG_CL, Crossload_SG = SG_CL,
+                            Sigtest = results, collinearity = colin), class = "can_cor")
+      dfs[[paste(nam)]] <- tmp
     }
     return(structure(dfs, class = "group_can_cor"))
   }
-
   if (!missing(.data)) {
-    FG = as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(FG))))
-    SG = as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(SG))))
+    FG <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(FG))))
+    SG <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(SG))))
   }
-
   if (nrow(FG) != nrow(SG)) {
     stop("The number of observations of 'FG', should be equal to 'SG'.")
   }
@@ -332,30 +331,29 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   if (!is.numeric(prob) | prob <= 0 || prob > 1) {
     stop("The argument 'prob' is incorrect. It should be numeric with values between 0 and 1.")
   }
-
   if (use == "cov") {
-    MC = cov(cbind(FG, SG))
-    S11 = cov(FG)
-    S22 = cov(SG)
-    S12 = cov(FG, SG)
-    S21 = cov(SG, FG)
+    MC <- cov(cbind(FG, SG))
+    S11 <- cov(FG)
+    S22 <- cov(SG)
+    S12 <- cov(FG, SG)
+    S21 <- cov(SG, FG)
   }
   if (use == "cor") {
-    MC = cor(cbind(FG, SG))
-    S11 = cor(FG)
-    S22 = cor(SG)
-    S12 = cor(FG, SG)
-    S21 = cor(SG, FG)
+    MC <- cor(cbind(FG, SG))
+    S11 <- cor(FG)
+    S22 <- cor(SG)
+    S12 <- cor(FG, SG)
+    S21 <- cor(SG, FG)
   }
   M1 <- eigen(S11)
   megval1 <- M1$values
   megvec1 <- M1$vectors
-  S11_12 = megvec1 %*% diag(1/sqrt(megval1)) %*% t(megvec1)
-  S22_Inv = solve(S22)
+  S11_12 <- megvec1 %*% diag(1/sqrt(megval1)) %*% t(megvec1)
+  S22_Inv <- solve(S22)
   M2 <- eigen(S11_12 %*% S12 %*% S22_Inv %*% S21 %*% S11_12)
   megval2 <- M2$values
   megvec2 <- M2$vectors
-  mtr = megval2
+  mtr <- megval2
   varuv <- as.data.frame(matrix(NA, length(mtr), 3))
   rownames(varuv) <- paste("U", 1:length(mtr), "V", 1:length(mtr),
                            sep = "")
@@ -367,41 +365,40 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   rownames(coruv) <- paste("U", 1:length(coruv), "V", 1:length(coruv),
                            sep = "")
   colnames(coruv) <- c("Correlation")
-  Coef_FG = S11_12 %*% megvec2
+  Coef_FG <- S11_12 %*% megvec2
   rownames(Coef_FG) <- colnames(FG)
   colnames(Coef_FG) <- paste("U", 1:ncol(Coef_FG), sep = "")
-  Coef_SG = S22_Inv %*% S21 %*% Coef_FG %*% solve(diag(sqrt(megval2)))
+  Coef_SG <- S22_Inv %*% S21 %*% Coef_FG %*% solve(diag(sqrt(megval2)))
   colnames(Coef_SG) <- paste("V", 1:ncol(Coef_SG), sep = "")
   M3 <- eigen(diag(diag(S11)))
   megval3 <- M3$values
   megvec3 <- M3$vectors
-  D11_12 = megvec3 %*% diag(1/sqrt(megval3)) %*% t(megvec3)
+  D11_12 <- megvec3 %*% diag(1/sqrt(megval3)) %*% t(megvec3)
   M4 <- eigen(diag(diag(S22)))
   megval4 <- M4$values
   megvec4 <- M4$vectors
-  D22_12 = megvec4 %*% diag(1/sqrt(megval4)) %*% t(megvec4)
+  D22_12 <- megvec4 %*% diag(1/sqrt(megval4)) %*% t(megvec4)
   Rux <- t(t(Coef_FG) %*% S11 %*% D11_12)
   rownames(Rux) <- colnames(FG)
   Rvy <- t(t(Coef_SG) %*% S22 %*% D22_12)
   rownames(Rvy) <- colnames(SG)
-
   if (center == TRUE) {
-    FG_A = scale(FG, center = TRUE, scale = FALSE)
-    SG_A = scale(SG, center = TRUE, scale = FALSE)
+    FG_A <- scale(FG, center = TRUE, scale = FALSE)
+    SG_A <- scale(SG, center = TRUE, scale = FALSE)
   } else {
-    FG_A = FG
-    SG_A = SG
+    FG_A <- FG
+    SG_A <- SG
   }
-  FG_A[is.na(FG_A)] = 0
-  SG_A[is.na(SG_A)] = 0
-  FG_SC = FG_A %*% Coef_FG
-  SG_SC = SG_A %*% Coef_SG
-  if (stdscores == TRUE){
-    FG_SC = sweep(FG_SC, 2, apply(FG_SC, 2, sd), "/")
-    SG_SC = sweep(SG_SC, 2, apply(SG_SC, 2, sd), "/")
+  FG_A[is.na(FG_A)] <- 0
+  SG_A[is.na(SG_A)] <- 0
+  FG_SC <- FG_A %*% Coef_FG
+  SG_SC <- SG_A %*% Coef_SG
+  if (stdscores == TRUE) {
+    FG_SC <- sweep(FG_SC, 2, apply(FG_SC, 2, sd), "/")
+    SG_SC <- sweep(SG_SC, 2, apply(SG_SC, 2, sd), "/")
   }
-  FG_CL = cor(FG_A, SG_SC)
-  SG_CL = cor(SG_A, FG_SC)
+  FG_CL <- cor(FG_A, SG_SC)
+  SG_CL <- cor(SG_A, FG_SC)
   if (test == "Bartlett") {
     n <- nrow(FG)
     p <- ncol(FG)
@@ -411,7 +408,7 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
     colnames(Bartlett) <- c("Canonical_pairs", "Lambda_Wilks",
                             "Chi_square", "DF", "p_value")
     Bartlett[, 1] <- paste("U", 1:QtdF, "V", 1:QtdF, sep = "")
-    i = 1
+    i <- 1
     for (i in 1:QtdF) {
       Lambda <- prod(1 - coruv[i:QtdF]^2)
       chisq <- -((n - 1) - (p + q + 1)/2) * log(Lambda)
@@ -452,13 +449,14 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
     }
     teste <- Rao
   }
-  results = data.frame(cbind(cbind(varuv, coruv), teste[-1]))
-  names(results) = c("Var", "Percent", "Sum", "Corr", "Lambda", "Chisq", "DF", "p_val")
+  results <- data.frame(cbind(cbind(varuv, coruv), teste[-1]))
+  names(results) <- c("Var", "Percent", "Sum", "Corr", "Lambda",
+                      "Chisq", "DF", "p_val")
   if (collinearity == TRUE) {
-    colin = list(FG = colindiag(FG, verbose = FALSE), SG = colindiag(SG,
-                                                                     verbose = FALSE))
+    colin <- list(FG = colindiag(FG, verbose = FALSE), SG = colindiag(SG,
+                                                                      verbose = FALSE))
   } else {
-    colin = NULL
+    colin <- NULL
   }
   if (verbose == TRUE) {
     cat("---------------------------------------------------------------------------\n")
@@ -509,6 +507,6 @@ can_corr = function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   invisible(structure(list(Matrix = MC, MFG = S11, MSG = S22,
                            MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
                            Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Crossload_FG = FG_CL,
-                           Crossload_SG = SG_CL, Sigtest = results, collinearity = colin), class = "can_cor"))
-
+                           Crossload_SG = SG_CL, Sigtest = results, collinearity = colin),
+                      class = "can_cor"))
 }

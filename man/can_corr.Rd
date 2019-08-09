@@ -28,7 +28,7 @@ the correlation matrix (default) or 'cov' for analysis using the covariance
 matrix.}
 
 \item{test}{The test of significance of the relationship between the FG and
-SG. Must be one of the "Bartlett" (default) or "Rao".}
+SG. Must be one of the 'Bartlett' (default) or 'Rao'.}
 
 \item{prob}{The probability of error assumed. Set to 0.05.}
 
