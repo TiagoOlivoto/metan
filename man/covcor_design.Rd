@@ -24,12 +24,12 @@ var3)}.}
 
 \item{type}{What the matrices should return? Set to \code{NULL}, i.e., a
 list of matrices is returned. The argument type allow the following values
-\code{"pcor", "gcor", "rcor"}, (which will return the phenotypic, genotypic
-and residual correlation matrices, respectively) or \code{"pcov", "gcov",
-"rcov"} (which will return the phenotypic, genotypic and residual
+\code{'pcor', 'gcor', 'rcor'}, (which will return the phenotypic, genotypic
+and residual correlation matrices, respectively) or \code{'pcov', 'gcov',
+'rcov'} (which will return the phenotypic, genotypic and residual
 variance-covariance matrices, respectively). Alternatively, it is possible
 to get a matrix with the means of each genotype in each trait, by using
-\code{type = "means"}.}
+\code{type = 'means'}.}
 }
 \description{
 Compute variance-covariance and correlation matrices using data from a
@@ -41,20 +41,20 @@ designed (RCBD or CRD) experiment.
 library(metan)
 library(dplyr)
 # List of matrices
-data = subset(data_ge2, ENV == "A1")
+data = subset(data_ge2, ENV == 'A1')
 matrices = covcor_design(data, gen = GEN, rep = REP,
                          resp = c(PH, EH, NKE, TKW))
 
 # Genetic correlations
 gcor = covcor_design(data, gen = GEN, rep = REP,
                      resp = c(PH, EH, NKE, TKW),
-                     type = "gcor")
+                     type = 'gcor')
 
 # Residual (co)variance matrix for each environment
 rcov = datage2 \%>\%
        split_factors(ENV, keep_factors = TRUE) \%>\%
        covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
-                     type = "rcov")
+                     type = 'rcov')
 
 }
 
