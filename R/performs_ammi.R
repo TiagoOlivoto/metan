@@ -31,13 +31,13 @@
 #'
 #'
 performs_ammi <- function(.data, env, gen, rep, resp) {
-    data = .data %>% select(!!enquo(env), !!enquo(gen), !!enquo(rep), !!enquo(resp)) %>%
-        as.data.frame()
-    names(data) = c("ENV", "GEN", "REP", "Y")
-    GEN <- factor(data[,2])
-    ENV <- factor(data[,1])
-    REP <- factor(data[,3])
-    Y <- eval(data[,4])
+    data <- .data %>% select(!!enquo(env), !!enquo(gen), !!enquo(rep),
+                             !!enquo(resp)) %>% as.data.frame()
+    names(data) <- c("ENV", "GEN", "REP", "Y")
+    GEN <- factor(data[, 2])
+    ENV <- factor(data[, 1])
+    REP <- factor(data[, 3])
+    Y <- eval(data[, 4])
     nenv <- length(unique(ENV))
     ngen <- length(unique(GEN))
     minimo <- min(ngen, nenv) - 1
@@ -46,7 +46,8 @@ performs_ammi <- function(.data, env, gen, rep, resp) {
     df <- fortify(model)
     datares <- model$model
     datares$factors <- paste(datares$ENV, datares$GEN)
-    residuals = cbind(datares, df %>% select(fitted = .fitted, resid = .resid, stdres = .stdresid))
+    residuals <- cbind(datares, df %>% select(fitted = .fitted,
+                                              resid = .resid, stdres = .stdresid))
     if (minimo < 2) {
         stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
     }
@@ -62,7 +63,8 @@ performs_ammi <- function(.data, env, gen, rep, resp) {
     probint <- anova[4, 5]
     DFE <- df.residual(model)
     MSE <- deviance(model)/DFE
-    MEANS <- data %>% group_by(ENV, GEN) %>% summarise(Y = mean(Y)) %>% ungroup()
+    MEANS <- data %>% group_by(ENV, GEN) %>% summarise(Y = mean(Y)) %>%
+        ungroup()
     residual <- residuals(lm(Y ~ ENV + GEN, data = MEANS))
     MEANS %<>% mutate(RESIDUAL = residual)
     s <- svd(t(matrix(residual, nenv, byrow = T)))
@@ -89,48 +91,41 @@ performs_ammi <- function(.data, env, gen, rep, resp) {
         if (MSE > 0)
             F.AMMI[i] <- round(MSAMMI[i]/MSE, 2) else F.AMMI[i] <- NA
         if (DFE > 0)
-            PROBF[i] <- round(1 - pf(F.AMMI[i], DFAMMI[i], DFE), 4) else PROBF[i] <- NA
+            PROBF[i] <- round(1 - pf(F.AMMI[i], DFAMMI[i], DFE),
+                              4) else PROBF[i] <- NA
     }
     percent <- round(percent, 1)
     acum <- round(acum, 1)
     SS <- round(SS, 5)
     MSAMMI <- round(MSAMMI, 5)
-    SSAMMI <- data.frame(percent, acum, Df = DFAMMI, `Sum Sq` = SS, `Mean Sq` = MSAMMI,
-        `F value` = F.AMMI, Pr.F = PROBF)
+    SSAMMI <- data.frame(percent, acum, Df = DFAMMI, `Sum Sq` = SS,
+                         `Mean Sq` = MSAMMI, `F value` = F.AMMI, Pr.F = PROBF)
     nssammi <- nrow(SSAMMI)
     SSAMMI <- SSAMMI[SSAMMI$Df > 0, ]
     nss <- nrow(SSAMMI)
     row.names(SSAMMI) <- paste("PC", 1:nss, sep = "")
     SCOREG <- U %*% LL^0.5
     SCOREE <- V %*% LL^0.5
-    colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
-    bplot = MEANS %>%
-        group_by(GEN) %>%
-        summarise(Y = mean(Y)) %>%
-        mutate(type = "GEN") %>%
-        rename(Code = GEN) %>%
-        cbind(., SCOREG) %>%
-        rbind(.,
-              MEANS %>%
-        group_by(ENV) %>%
-        summarise(Y = mean(Y)) %>%
-        mutate(type = "ENV") %>%
-        rename(Code = ENV) %>%
-        cbind(., SCOREE)) %>%
-        select(type, Code, everything())
+    colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo,
+                                                  sep = "")
+    bplot <- MEANS %>% group_by(GEN) %>% summarise(Y = mean(Y)) %>%
+        mutate(type = "GEN") %>% rename(Code = GEN) %>% cbind(.,
+                                                              SCOREG) %>% rbind(., MEANS %>% group_by(ENV) %>% summarise(Y = mean(Y)) %>%
+                                                                                    mutate(type = "ENV") %>% rename(Code = ENV) %>% cbind(.,
+                                                                                                                                          SCOREE)) %>% select(type, Code, everything())
     PC <- SSAMMI %>% dplyr::select(-percent, -acum, everything())
     resid <- as.data.frame(anova[nrow(anova), ])
-    rownames(resid) = "Residuals"
+    rownames(resid) <- "Residuals"
     sum <- as.data.frame(anova[nrow(anova), ])
     sum$Df <- sum(anova$Df)
     sum$`Sum Sq` <- sum(anova$`Sum Sq`)
     sum$`Mean Sq` <- sum$`Sum Sq`/sum$Df
     rownames(sum) <- "Total"
     ERRO <- rbind(resid, sum)
-    names(PC) <- paste(c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "Percent",
-        "Accumul"))
-    anova <- rbind_fill(mm[-nrow(mm),], PC, ERRO)
-    invisible(structure(list(ANOVA = anova, analysis = PC, means = MEANS, biplot = bplot, residuals = residuals,
-        probint = probint),
-        class = "WAASB"))
+    names(PC) <- paste(c("Df", "Sum Sq", "Mean Sq", "F value",
+                         "Pr(>F)", "Percent", "Accumul"))
+    anova <- rbind_fill(mm[-nrow(mm), ], PC, ERRO)
+    invisible(structure(list(ANOVA = anova, analysis = PC, means = MEANS,
+                             biplot = bplot, residuals = residuals, probint = probint),
+                        class = "WAASB"))
 }
