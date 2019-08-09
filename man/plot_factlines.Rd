@@ -36,7 +36,7 @@ or a numeric vector with the same length of the variable in \code{group}}
 \item{grid}{Logical argument. If \code{TRUE} then a grid will be created.}
 
 \item{scales}{If \code{grid = TRUE} scales controls how the scales are in the
-plot. Possible values are "free" (default), "fixed", "free_x" or "free_y".}
+plot. Possible values are 'free' (default), 'fixed', 'free_x' or 'free_y'.}
 
 \item{col}{The colour to be used in the line plot and points}
 

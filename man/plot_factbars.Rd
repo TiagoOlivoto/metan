@@ -86,7 +86,7 @@ plot_factbars(data_ge2,
               GEN,
               ENV,
               resp = PH,
-              palette = "Greys")
+              palette = 'Greys')
 }
 \seealso{
 \code{\link{plot_lines}}, \code{\link{plot_factlines}}
