@@ -45,36 +45,31 @@ predict.waas <- function(object, naxis, ...) {
     if (class(object) != "waas") {
         stop("The objectin must be an objectin of the class 'waas'")
     }
-
     if (length(object) != length(naxis)) {
-        stop("The argument 'naxix = ", cal[3], "' must length of ", length(object),
-             ", the same number of variables in object '", cal[2], "'.")
+        stop("The argument 'naxix = ", cal[3], "' must length of ",
+             length(object), ", the same number of variables in object '",
+             cal[2], "'.")
     }
-
     listres <- list()
     varin <- 1
     for (var in 1:length(object)) {
         objectin <- object[[var]]
-        MEDIAS = objectin$MeansGxE %>% select(ENV, GEN, Y)
+        MEDIAS <- objectin$MeansGxE %>% select(ENV, GEN, Y)
         Nenv <- length(unique(MEDIAS$ENV))
         Ngen <- length(unique(MEDIAS$GEN))
         minimo <- min(Nenv, Ngen) - 1
-
         if (naxis[var] > minimo) {
             stop("The number of axis to be used must be lesser than or equal to min(GEN-1;ENV-1), in this case, ",
                  minimo, ".")
         } else {
-
             if (naxis[var] == 0) {
                 stop("Invalid argument. The AMMI0 model is calculated automatically. Please, inform naxis > 0")
             } else {
-
                 ovmean <- mean(MEDIAS$Y)
                 x1 <- model.matrix(~factor(MEDIAS$ENV) - 1)
                 z1 <- model.matrix(~factor(MEDIAS$GEN) - 1)
                 modelo1 <- lm(Y ~ ENV + GEN, data = MEDIAS)
-                MEDIAS = mutate(MEDIAS,
-                                resOLS = residuals(modelo1))
+                MEDIAS <- mutate(MEDIAS, resOLS = residuals(modelo1))
                 intmatrix <- t(matrix(MEDIAS$resOLS, Nenv, byrow = T))
                 s <- svd(intmatrix)
                 if (length(object) > 1) {
@@ -86,12 +81,9 @@ predict.waas <- function(object, naxis, ...) {
                     LL <- s$d[1:naxis]
                     V <- s$v[, 1:naxis]
                 }
-                temp <- mutate(MEDIAS,
-                               Ypred = Y - resOLS,
-                               ResAMMI = ((z1 %*% U) * (x1 %*% V)) %*% LL,
-                               YpredAMMI = Ypred + ResAMMI,
-                               AMMI0 = Ypred) %>%
-                    as_tibble()
+                temp <- mutate(MEDIAS, Ypred = Y - resOLS, ResAMMI = ((z1 %*%
+                                                                           U) * (x1 %*% V)) %*% LL, YpredAMMI = Ypred +
+                                   ResAMMI, AMMI0 = Ypred) %>% as_tibble()
                 listres[[paste(names(object[var]))]] <- temp
             }
         }
