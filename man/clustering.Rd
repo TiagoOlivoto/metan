@@ -37,14 +37,14 @@ algorithm for selecting variables is implemente. See the section
 for variable selection are shown in the console.}
 
 \item{distmethod}{The distance measure to be used. This must be one of
-\code{"euclidean"}, \code{"maximum"}, \code{"manhattan"}, \code{"canberra"},
-\code{"binary"}, \code{"minkowski"}, \code{"pearson"}, \code{"spearman"}, or
-\code{"kendall"}. The last three are correlation-based distance.}
+\code{'euclidean'}, \code{'maximum'}, \code{'manhattan'}, \code{'canberra'},
+\code{'binary'}, \code{'minkowski'}, \code{'pearson'}, \code{'spearman'}, or
+\code{'kendall'}. The last three are correlation-based distance.}
 
 \item{clustmethod}{The agglomeration method to be used. This should be one
-of \code{"ward.D"}, \code{"ward.D2"}, \code{"single"}, \code{"complete"},
-\code{"average"} (= UPGMA), \code{"mcquitty"} (= WPGMA), \code{"median"} (=
-WPGMC) or \code{"centroid"} (= UPGMC).}
+of \code{'ward.D'}, \code{'ward.D2'}, \code{'single'}, \code{'complete'},
+\code{'average'} (= UPGMA), \code{'mcquitty'} (= WPGMA), \code{'median'} (=
+WPGMC) or \code{'centroid'} (= UPGMC).}
 
 \item{nclust}{The number of clust to be formed. Set to \code{NULL}}
 }
