@@ -2,7 +2,7 @@
 % Please edit documentation in R/mahala_design.R
 \name{mahala_design}
 \alias{mahala_design}
-\title{Mahalanobis distance using data from a designed experiment}
+\title{Mahalanobis distance from designed experiments}
 \usage{
 mahala_design(.data, gen, rep, resp, design = "RCBD",
   return = "distance")
