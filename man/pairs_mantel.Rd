@@ -36,8 +36,8 @@ the current directory.}
 \item{main}{The title of the plot, set to 'auto'.}
 
 \item{file.type}{The format of the file if \code{export = TRUE}.  Set to
-\code{"pdf"}. Other possible values are \code{*.tiff} using \code{file.type
-= "tiff"}.}
+\code{'pdf'}. Other possible values are \code{*.tiff} using \code{file.type
+= 'tiff'}.}
 
 \item{file.name}{The name of the plot when exported. Set to \code{NULL},
 i.e., automatically.}
@@ -46,7 +46,7 @@ i.e., automatically.}
 
 \item{height}{The height of the plot, set to \code{7}.}
 
-\item{resolution}{The resolution of the plot if \code{file.type = "tiff"} is
+\item{resolution}{The resolution of the plot if \code{file.type = 'tiff'} is
 used. Set to \code{300} (300 dpi).}
 
 \item{size.point}{The size of the points in the plot. Set to \code{0.5}.}
@@ -67,15 +67,15 @@ correlation coefficient.}
 correlation coefficient.}
 
 \item{signcol}{The colour that indicate significant correlations (based on
-the \code{prob} value.), set to "green".}
+the \code{prob} value.), set to 'green'.}
 
 \item{alpha}{The value for transparency of the color informed in
 \code{signcol}, when 1 = full color. Set to 0.15.}
 
-\item{diagcol}{The color in the kernel distribution. Set to "gray".}
+\item{diagcol}{The color in the kernel distribution. Set to 'gray'.}
 
 \item{col.up.panel, col.lw.panel, col.dia.panel}{The color for the opper,
-lower and diagonal pannels. Set to "gray", "gray", and "gray", respectively.}
+lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.}
 
 \item{pan.spacing}{The space between the pannels. Set to 0.15.}
 
@@ -96,7 +96,7 @@ library(dplyr)
 lpc = iris \%>\%
       split_factors(Species) \%>\%
       lpcor() \%>\%
-      pairs_mantel(names = c("setosa", "versicolor", "virginica"))
+      pairs_mantel(names = c('setosa', 'versicolor', 'virginica'))
 
 
 # mtcars dataset
