@@ -5,9 +5,9 @@
 #'
 #' @param object An object generate by the function \code{corr_ci()}
 #' @param x.lab The label of x-axis, set to 'Pairwise combinations'. New
-#' arguments can be inserted as \code{x.lab = "my label"}.
+#' arguments can be inserted as \code{x.lab = 'my label'}.
 #' @param y.lab The label of y-axis, set to 'Pearson's correlation coefficient'
-#' New arguments can be inserted as \code{y.lab = "my label"}.
+#' New arguments can be inserted as \code{y.lab = 'my label'}.
 #' @param y.lim The range of x-axis. Default is \code{NULL}. The same arguments
 #' than \code{x.lim} can be used.
 #' @param y.breaks The breaks to be plotted in the x-axis. Default is
@@ -34,50 +34,39 @@
 #' library(metan)
 #' library(dplyr)
 #' data_ge2 %>%
-#' select(contains("E")) %>%
+#' select(contains('E')) %>%
 #' corr_ci() %>%
 #' plot_ci()
 #' }
 #'
-
-plot_ci = function(object,
-                   x.lab = NULL,
-                   y.lab = NULL,
-                   y.lim = NULL,
-                   y.breaks = waiver(),
-                   shape = 21,
-                   col.shape = "black",
-                   fill.shape = "orange",
-                   size.shape = 2.5,
-                   width.errbar = 0.5,
-                   main = TRUE,
-                   invert.axis = TRUE,
-                   theme = theme_waasb()){
-  if(!any(class(object) == "tbl_df")){
+plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
+                    y.breaks = waiver(), shape = 21, col.shape = "black", fill.shape = "orange",
+                    size.shape = 2.5, width.errbar = 0.5, main = TRUE, invert.axis = TRUE,
+                    theme = theme_waasb()) {
+  if (!any(class(object) == "tbl_df")) {
     stop("The object must be a 'data.frame' or a 'tbl_df'.")
   }
-  if(!any(colnames(object) %in% c("Pair", "Corr"))){
+  if (!any(colnames(object) %in% c("Pair", "Corr"))) {
     stop("It appers that the object was not generate by the function 'coor_ci()'.")
   }
-  n <- round((object[1,3]/(0.45304^object[1,2] * 2.25152))^(1/-0.50089),0)
-  x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Pairwise combinations"))
-  y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Pearson's correlation coefficient"))
-
-  p = ggplot(object, aes(x = reorder(Pair, Corr), y = Corr)) +
-  geom_hline(yintercept = 0, linetype = "dashed")+
-  geom_errorbar(aes(ymax = UL, ymin = LL, width = width.errbar))+
-  geom_point(col = col.shape, fill = fill.shape, size = size.shape, shape = shape)
-  if(invert.axis == TRUE){
-    p = p + coord_flip()
-  } else{
-    p = p
+  n <- round((object[1, 3]/(0.45304^object[1, 2] * 2.25152))^(1/-0.50089),
+             0)
+  x.lab <- ifelse(is.null(x.lab) == F, x.lab, paste0("Pairwise combinations"))
+  y.lab <- ifelse(is.null(y.lab) == F, y.lab, paste0("Pearson's correlation coefficient"))
+  p <- ggplot(object, aes(x = reorder(Pair, Corr), y = Corr)) +
+    geom_hline(yintercept = 0, linetype = "dashed") + geom_errorbar(aes(ymax = UL,
+                                                                        ymin = LL, width = width.errbar)) + geom_point(col = col.shape,
+                                                                                                                       fill = fill.shape, size = size.shape, shape = shape)
+  if (invert.axis == TRUE) {
+    p <- p + coord_flip()
+  } else {
+    p <- p
   }
-  p <- p + theme %+replace%
-  theme(axis.text = element_text(colour = "black"))+
-  labs(x = x.lab, y = y.lab)
-  if(main == TRUE){
-    p = p + ggtitle("95% CI for Pearson's correlation coefficient",
+  p <- p + theme %+replace% theme(axis.text = element_text(colour = "black")) +
+    labs(x = x.lab, y = y.lab)
+  if (main == TRUE) {
+    p <- p + ggtitle("95% CI for Pearson's correlation coefficient",
                      subtitle = paste("n = ", n))
-}
+  }
   return(p)
 }
