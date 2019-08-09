@@ -12,7 +12,7 @@ and traits in columns. In the last case the row names must contain the genotypes
 
 \item{DI, UI}{A vector of the same length of \code{.data} to construct the
 desirable (DI) and undesirable (UI) ideotypes. For each element of the
-vector, allowed values are \code{"max"}, \code{"min"}, \code{"mean"}, or a
+vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
 numeric value.}
 
 \item{SI}{An integer [0-100]. The selection intensity in percentage of the
@@ -41,15 +41,15 @@ mod = waasb(data_ge,
 
 FAI = fai_blup(mod,
                SI = 15,
-               DI = c("max", "max"),
-               UI = c("min", "min"))
+               DI = c('max', 'max'),
+               UI = c('min', 'min'))
 
 # Or using the pipe operator \%>\%
 
 FAI = data_ge2 \%>\%
       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
-      fai_blup(DI = c("max", "max", "max", "min"),
-               UI = c("min", "min", "min", "max"),
+      fai_blup(DI = c('max', 'max', 'max', 'min'),
+               UI = c('min', 'min', 'min', 'max'),
                SI = 15)
 
 }
