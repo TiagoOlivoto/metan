@@ -34,7 +34,7 @@
 #'
 
 make_mat <- function(.data, row, col, value, fun = mean) {
-  data = data.frame(.data %>% dplyr::select(!!dplyr::enquo(row),
+  data <- data.frame(.data %>% dplyr::select(!!dplyr::enquo(row),
                                             !!dplyr::enquo(col),
                                             !!dplyr::enquo(value))) %>%
 
