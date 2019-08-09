@@ -26,12 +26,12 @@ a warning message.}
 all the numeric variables from \code{.data} are used.}
 
 \item{upper}{The visualization method for the upper triangular correlation
-matrix. Must be one of \code{"corr"} (numeric values), \code{"scatter"} (the
+matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'} (the
 scatterplot for each pairwise combination), or \code{NULL} to set a blank
 diagonal.}
 
 \item{lower}{The visualization method for the lower triangular correlation
-matrix. Must be one of \code{"corr"} (numeric values), \code{"scatter"} (the
+matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'} (the
 scatterplot for each pairwise combination), or \code{NULL} to set a blank
 diagonal.}
 
@@ -41,7 +41,7 @@ diagonal.}
 \item{diag}{Should the diagonal be shown?}
 
 \item{diag.type}{THe type of plot to show in the diagonal if \code{diag  TRUE}.
-It must be one of the "istogram" (to show an histogram) or "density" to show
+It must be one of the 'istogram' (to show an histogram) or 'density' to show
 the Kernel density.}
 
 \item{bins}{The number of bins, Defauls to 20.}
@@ -53,22 +53,22 @@ the distribution. Set to gray.}
 transparent. 0 = fully transparente; 1 = full colour. Set to 0.15}
 
 \item{col.up.panel, col.lw.panel, col.dia.panel}{The colour for the upper,
-lower, and diagonal pannels, respectively. Set to "gray".}
+lower, and diagonal pannels, respectively. Set to 'gray'.}
 
 \item{prob}{The probability of error. Significant correlations will be
-highlated with "*", "**", and "***" (0.05, 0.01, and 0.001, respectively).
+highlated with '*', '**', and '***' (0.05, 0.01, and 0.001, respectively).
 Scatterplots with significant correlations may be colour-highlated.}
 
 \item{col.sign}{The colour that will highlight the significant correlations.
-Set to "green".}
+Set to 'green'.}
 
 \item{alpha.sign}{Alpha-transparency scale [0-1] to make the plot area
 transparent. 0 = fully transparente; 1 = full colour. Set to 0.15}
 
 \item{lab.position}{The position that the labeles will apper. Set to
-\code{"tr"}, i.e., the legends will apper in the top and right of the plot.
-Other allowed options are \code{"tl"} (top and left), \code{"br"} (bottom
-and rigth), \code{"bl"} (bottom and left).}
+\code{'tr'}, i.e., the legends will apper in the top and right of the plot.
+Other allowed options are \code{'tl'} (top and left), \code{'br'} (bottom
+and rigth), \code{'bl'} (bottom and left).}
 
 \item{progress}{\code{NULL} (default) for a progress bar in interactive
 sessions with more than 15 plots, \code{TRUE} for a progress bar,
@@ -110,8 +110,8 @@ correlation coefficient.}
 the current directory.}
 
 \item{file.type}{The format of the file if \code{export = TRUE}.  Set to
-\code{"pdf"}. Other possible values are \code{*.tiff} using \code{file.type
-= "tiff"}.}
+\code{'pdf'}. Other possible values are \code{*.tiff} using \code{file.type
+= 'tiff'}.}
 
 \item{file.name}{The name of the plot when exported. Set to \code{NULL},
 i.e., automatically.}
@@ -120,7 +120,7 @@ i.e., automatically.}
 
 \item{height}{The height of the plot, set to \code{7}.}
 
-\item{resolution}{The resolution of the plot if \code{file.type = "tiff"} is
+\item{resolution}{The resolution of the plot if \code{file.type = 'tiff'} is
 used. Set to \code{300} (300 dpi).}
 }
 \description{
@@ -141,7 +141,7 @@ corr_plot(dataset, CD, EL, PERK, NKR)
 # Changing the layout
 corr_plot(dataset, CD, EL, PERK, NKR,
           lower = NULL,
-          upper = "corr")
+          upper = 'corr')
 
 # Axis labels, similar to the function pairs()
 # Gray scale
@@ -151,28 +151,28 @@ corr_plot(dataset, CD, EL, PERK, NKR,
           alpha.point = 0.5,
           alpha.diag = 0,
           pan.spacing = 0,
-          col.sign = "gray",
+          col.sign = 'gray',
           alpha.sign = 0.3,
           axis.labels = TRUE)
 
 corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
           prob = 0.01,
           shape.point = 21,
-          col.point = "black",
-          fill.point = "orange",
+          col.point = 'black',
+          fill.point = 'orange',
           size.point = 2,
           alpha.point = 0.6,
           maxsize = 4,
           minsize = 2,
           smooth = TRUE,
           size.smooth = 1,
-          col.smooth = "black",
-          col.sign = "cyan",
-          col.up.panel = "black",
-          col.lw.panel = "black",
-          col.dia.panel = "black",
+          col.smooth = 'black',
+          col.sign = 'cyan',
+          col.up.panel = 'black',
+          col.lw.panel = 'black',
+          col.dia.panel = 'black',
           pan.spacing = 0,
-          lab.position = "tl")
+          lab.position = 'tl')
 }
 
 }
