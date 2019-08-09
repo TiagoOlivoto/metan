@@ -14,14 +14,14 @@
 \arguments{
 \item{x}{An object of class \code{waasb}.}
 
-\item{type}{If \code{type = "re"}, normal Q-Q plots for the random effects
+\item{type}{If \code{type = 're'}, normal Q-Q plots for the random effects
 are obtained.}
 
 \item{conf}{Level of confidence interval to use in the Q-Q plot (0.95 by
 default).}
 
-\item{out}{How the output is returned. Must be one of the "print" (default)
-or "return".}
+\item{out}{How the output is returned. Must be one of the 'print' (default)
+or 'return'.}
 
 \item{labels}{Logical argument. If \code{TRUE} labels the points outside
 confidence interval limits.}
@@ -32,18 +32,18 @@ theme_waasb()}.}
 \item{alpha}{The transparency of confidence band in the Q-Q plot. Must be a
 number between 0 (opaque) and 1 (full transparency).}
 
-\item{fill.hist}{The color to fill the histogram. Default is "gray".}
+\item{fill.hist}{The color to fill the histogram. Default is 'gray'.}
 
 \item{col.hist}{The color of the border of the the histogram. Default is
-"black".}
+'black'.}
 
-\item{col.point}{The color of the points in the graphic. Default is "black".}
+\item{col.point}{The color of the points in the graphic. Default is 'black'.}
 
-\item{col.line}{The color of the lines in the graphic. Default is "red".}
+\item{col.line}{The color of the lines in the graphic. Default is 'red'.}
 
-\item{col.lab.out}{The color of the labels for the "outlying" points.}
+\item{col.lab.out}{The color of the labels for the 'outlying' points.}
 
-\item{size.lab.out}{The size of the labels for the "outlying" points.}
+\item{size.lab.out}{The size of the labels for the 'outlying' points.}
 
 \item{size.tex.lab}{The size of the text in axis text and labels.}
 
@@ -67,7 +67,7 @@ residuals, (3) scale-location plot (standardized residuals vs Fitted
 Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
 residuals and (6) standardized residuals vs observation order. For a \code{waasb}
 object, normal Q-Q plot for random effects may also be obtained declaring
-\code{type = "re"}
+\code{type = 're'}
 }
 \examples{
 
