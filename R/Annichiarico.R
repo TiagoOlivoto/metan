@@ -31,79 +31,66 @@
 #' summary(Ann)
 #'
 #'
-Annicchiarico = function(.data,
-                         env,
-                         gen,
-                         rep,
-                         resp,
-                         prob = 0.05,
-                         verbose = TRUE){
+Annicchiarico <- function(.data, env, gen, rep, resp, prob = 0.05,
+                          verbose = TRUE) {
   datain <- .data
   GEN <- factor(eval(substitute(gen), eval(datain)))
   ENV <- factor(eval(substitute(env), eval(datain)))
   REP <- factor(eval(substitute(rep), eval(datain)))
   listres <- list()
   d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
+  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
+                              1, length(d$resp)))
   for (var in 2:length(d$resp)) {
     if (length(d$resp) > 1) {
       Y <- eval(substitute(resp)[[var]], eval(datain))
-      varnam = paste(d$resp[var])
+      varnam <- paste(d$resp[var])
     } else {
       Y <- eval(substitute(resp), eval(datain))
-      varnam = paste(d$resp)
+      varnam <- paste(d$resp)
     }
     data <- data.frame(ENV, GEN, REP, Y)
-    names(data) = c("ENV", "GEN", "REP", "mean")
-    ge_mean =  data  %>%
-      dplyr::group_by(ENV, GEN) %>%
-      dplyr::summarise(mean = mean(mean))
-    environments = data  %>%
-      dplyr::group_by(ENV) %>%
-      dplyr::summarise(Mean = mean(mean))
-    environments = mutate(environments,
-                          index = Mean - mean(environments$Mean),
-                          class = ifelse(index < 0, "unfavorable", "favorable")) %>%
+    names(data) <- c("ENV", "GEN", "REP", "mean")
+    ge_mean <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(mean = mean(mean))
+    environments <- data %>% dplyr::group_by(ENV) %>% dplyr::summarise(Mean = mean(mean))
+    environments <- mutate(environments, index = Mean - mean(environments$Mean),
+                           class = ifelse(index < 0, "unfavorable", "favorable")) %>%
       as_tibble()
-    data = suppressMessages(left_join(data, environments %>% select(ENV, class)))
-    mat_g  = make_mat(data, row = GEN, col = ENV, value = mean)
-    rp_g = sweep(mat_g, 2, colMeans(mat_g), "/")*100
-    Wi_g = rowMeans(rp_g)  - qnorm(1- prob) * apply(rp_g, 1, sd)
-    general = tibble(Genotype = rownames(mat_g),
-                         Mean = rowMeans(mat_g),
-                         Mean_rp = rowMeans(rp_g),
-                         Sd_rp = apply(rp_g, 1, sd),
-                         Wi = Wi_g,
-                         rank = rank(-Wi_g))
-    ge_mf = subset(data, class == "favorable")
-    mat_f  = dplyr::select_if(make_mat(ge_mf, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
-    rp_f = sweep(mat_f, 2, colMeans(mat_f), "/")*100
-    Wi_f = rowMeans(rp_f)  - qnorm(1- prob) * apply(rp_f, 1, sd)
-    favorable = tibble(Genotype = rownames(mat_f),
-                           Mean = rowMeans(mat_f),
-                           Mean_rp = rowMeans(rp_f),
-                           Sd_rp = apply(rp_f, 1, sd),
-                           Wi = Wi_f,
-                           rank = rank(-Wi_f))
-    ge_mu = subset(data, class == "unfavorable")
-    mat_u  = dplyr::select_if(make_mat(ge_mu, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
-    rp_u = sweep(mat_u, 2, colMeans(mat_u), "/")*100
-    Wi_u = rowMeans(rp_u)  - qnorm(1- prob) * apply(rp_u, 1, sd)
-    unfavorable = tibble(Genotype = rownames(mat_u),
-                             Mean = rowMeans(mat_u),
-                             Mean_rp = rowMeans(rp_u),
-                             Sd_rp = apply(rp_u, 1, sd),
-                             Wi = Wi_u,
-                             rank = rank(-Wi_u))
-    temp = list(environments = environments,
-                general = general,
-                favorable = favorable,
-                unfavorable = unfavorable)
+    data <- suppressMessages(left_join(data, environments %>%
+                                         select(ENV, class)))
+    mat_g <- make_mat(data, row = GEN, col = ENV, value = mean)
+    rp_g <- sweep(mat_g, 2, colMeans(mat_g), "/") * 100
+    Wi_g <- rowMeans(rp_g) - qnorm(1 - prob) * apply(rp_g,
+                                                     1, sd)
+    general <- tibble(Genotype = rownames(mat_g), Mean = rowMeans(mat_g),
+                      Mean_rp = rowMeans(rp_g), Sd_rp = apply(rp_g, 1,
+                                                              sd), Wi = Wi_g, rank = rank(-Wi_g))
+    ge_mf <- subset(data, class == "favorable")
+    mat_f <- dplyr::select_if(make_mat(ge_mf, row = GEN,
+                                       col = ENV, value = mean), function(x) !any(is.na(x)))
+    rp_f <- sweep(mat_f, 2, colMeans(mat_f), "/") * 100
+    Wi_f <- rowMeans(rp_f) - qnorm(1 - prob) * apply(rp_f,
+                                                     1, sd)
+    favorable <- tibble(Genotype = rownames(mat_f), Mean = rowMeans(mat_f),
+                        Mean_rp = rowMeans(rp_f), Sd_rp = apply(rp_f, 1,
+                                                                sd), Wi = Wi_f, rank = rank(-Wi_f))
+    ge_mu <- subset(data, class == "unfavorable")
+    mat_u <- dplyr::select_if(make_mat(ge_mu, row = GEN,
+                                       col = ENV, value = mean), function(x) !any(is.na(x)))
+    rp_u <- sweep(mat_u, 2, colMeans(mat_u), "/") * 100
+    Wi_u <- rowMeans(rp_u) - qnorm(1 - prob) * apply(rp_u,
+                                                     1, sd)
+    unfavorable <- tibble(Genotype = rownames(mat_u), Mean = rowMeans(mat_u),
+                          Mean_rp = rowMeans(rp_u), Sd_rp = apply(rp_u, 1,
+                                                                  sd), Wi = Wi_u, rank = rank(-Wi_u))
+    temp <- list(environments = environments, general = general,
+                 favorable = favorable, unfavorable = unfavorable)
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
-        cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                                                                          1) * 100, 1), "%", "\n")
+        cat("Evaluating variable", paste(d$resp[var]),
+            round((var - 1)/(length(d$resp) - 1) * 100,
+                  1), "%", "\n")
       }
     } else {
       listres[[paste(d$resp)]] <- temp
