@@ -34,7 +34,7 @@ Plot the multitrait index based on factor analysis and ideotype-design
 proposed by Rocha et al. (2018).
 }
 \examples{
-
+\dontrun{
 library(metan)
 library(dplyr)
 multivariate = waasb(data_ge,
@@ -45,10 +45,11 @@ multivariate = waasb(data_ge,
 
 FAI = data_ge2 \%>\%
       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
-      fai_blup(DI = c("max", "max", "max", "min"),
-               UI = c("min", "min", "min", "max"),
+      fai_blup(DI = c('max', 'max', 'max', 'min'),
+               UI = c('min', 'min', 'min', 'max'),
                SI = 15)
       plot(FAI)
+      }
 
 }
 \references{
