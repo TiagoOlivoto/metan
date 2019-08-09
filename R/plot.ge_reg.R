@@ -36,7 +36,7 @@
 #' model = ge_reg(data_ge2, ENV, GEN, REP, PH)
 #' plot(model$PH)
 #'
-plot.ge_reg = function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = waiver(),
+plot.ge_reg <- function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = waiver(),
                        x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
                        leg.position = "right", size.tex.lab = 12, ...){
   if (!class(x) == "ge_reg") {
