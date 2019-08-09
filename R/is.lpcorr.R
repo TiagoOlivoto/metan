@@ -18,7 +18,7 @@
 #' is.lpcor(lpdata)
 #'
 #'
-is.lpcor = function(x){
+is.lpcor <- function(x){
   return((class(x) %in% c("lpcor", "lpcor_group")))
 }
 
