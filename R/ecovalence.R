@@ -29,19 +29,15 @@
 #'                  resp = PH)
 #' }
 #'
-ecovalence = function(.data,
-                      env,
-                      gen,
-                      rep,
-                      resp,
-                      verbose = TRUE){
+ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   datain <- .data
   GEN <- factor(eval(substitute(gen), eval(datain)))
   ENV <- factor(eval(substitute(env), eval(datain)))
   REP <- factor(eval(substitute(rep), eval(datain)))
   listres <- list()
   d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
+  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
+                              1, length(d$resp)))
   for (var in 2:length(d$resp)) {
     if (length(d$resp) > 1) {
       Y <- eval(substitute(resp)[[var]], eval(datain))
@@ -49,23 +45,23 @@ ecovalence = function(.data,
       Y <- eval(substitute(resp), eval(datain))
     }
     data <- data.frame(ENV, GEN, REP, Y)
-    names(data) = c("ENV", "GEN", "REP", "mean")
-    data2 =  data  %>%
-      dplyr::group_by(ENV, GEN) %>%
-      dplyr::summarise(mean = mean(mean)) %>%
+    names(data) <- c("ENV", "GEN", "REP", "mean")
+    data2 <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(mean = mean(mean)) %>%
       as.data.frame()
-    data3 = mutate(data2, ge = residuals(lm(mean ~ ENV + GEN, data = data2)))
-    ge_effect = make_mat(data3, GEN, ENV, ge)
-    Ecoval = rowSums(ge_effect^2 * length(unique(REP)))
-    Ecov_perc = (Ecoval / sum(Ecoval)) * 100
-    rank = rank(Ecoval)
-    temp = as_tibble(cbind(ge_effect, Ecoval, Ecov_perc, rank), rownames = NA)
+    data3 <- mutate(data2, ge = residuals(lm(mean ~ ENV +
+                                               GEN, data = data2)))
+    ge_effect <- make_mat(data3, GEN, ENV, ge)
+    Ecoval <- rowSums(ge_effect^2 * length(unique(REP)))
+    Ecov_perc <- (Ecoval/sum(Ecoval)) * 100
+    rank <- rank(Ecoval)
+    temp <- as_tibble(cbind(ge_effect, Ecoval, Ecov_perc,
+                            rank), rownames = NA)
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
-        cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                                                                          1) * 100, 1), "%", "\n")
-
+        cat("Evaluating variable", paste(d$resp[var]),
+            round((var - 1)/(length(d$resp) - 1) * 100,
+                  1), "%", "\n")
       }
     } else {
       listres[[paste(d$resp)]] <- temp
