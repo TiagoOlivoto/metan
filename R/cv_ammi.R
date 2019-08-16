@@ -68,6 +68,7 @@
 #'
 #' }
 #'
+#'
 cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100,
                     design = "RCBD", nrepval, naxis, verbose = TRUE) {
     if (!design %in% c("RCBD", "CRD")) {
