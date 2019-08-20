@@ -101,8 +101,10 @@ lpcor <- function(.data, n = NULL, method = "pearson", verbose = TRUE) {
     data <- .data[, unlist(lapply(.data, is.numeric))]
     out <- internal(data)
     if (verbose == TRUE) {
+      if(length(data) != length(.data)){
       message("The factors ", paste0(collapse = " ", names(.data[,
                                                                  unlist(lapply(.data, is.factor))])), " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
+      }
     }
   }
   if (class(.data) == "split_factors") {
