@@ -99,9 +99,10 @@ Resende_indexes <- function(.data) {
                                             1, hmean_fun))
         HMRPGV_data <- dplyr::mutate(HMRPGV, GY_HMRPGV = HMRPGV *
                                          ovmean, HMRPGV_order = rank(-GY_HMRPGV))
-        temp <- data.frame(cbind(HMGV, RPGV_data, HMRPGV_data))
-        rownames(temp) <- rownames(RPGV)
-        listres[[paste(names(.data[var]))]] <- as_tibble(temp)
+
+        listres[[paste(names(.data[var]))]] <- cbind(HMGV, RPGV_data, HMRPGV_data) %>%
+            rownames_to_column("GEN") %>%
+            as_tibble()
     }
     invisible(listres)
 }
