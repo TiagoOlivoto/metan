@@ -19,9 +19,9 @@
 #' @param axis.labels Should the axis labels be shown in the plot? Set to
 #' \code{FALSE}.
 #' @param diag Should the diagonal be shown?
-#' @param diag.type THe type of plot to show in the diagonal if \code{diag  TRUE}.
-#' It must be one of the 'istogram' (to show an histogram) or 'density' to show
-#' the Kernel density.
+#' @param diag.type The type of plot to show in the diagonal if \code{diag  TRUE}.
+#' It must be one of the 'histogram' (to show an histogram), 'density' to show
+#' the Kernel density, or 'boxplot' (to show a boxplot).
 #' @param  bins The number of bins, Defauls to 20.
 #' @param col.diag If \code{diag = TRUE} then \code{diagcol} is the color for
 #' the distribution. Set to gray.
@@ -137,7 +137,7 @@ corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
   if (!lab.position %in% c("tr", "tl", "br", "bl")) {
     stop("The argument 'lab.position' must be one of the 'tr', 'tl', 'br', or 'bl'.")
   }
-  if (!diag.type %in% c("histogram", "density")) {
+  if (!diag.type %in% c("histogram", "density", "boxplot")) {
     stop("The argument 'diag.type' must be one of the 'histogram' or 'density'.")
   }
   if (!is.null(upper)) {
@@ -214,10 +214,18 @@ corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
     p
   }
   ggally_mysmooth <- function(data, mapping, ...) {
+
     dia <- ggplot2::ggplot(data = data, mapping = mapping)
     if (diag.type == "density") {
       dia <- dia + ggplot2::geom_density(fill = ggplot2::alpha(col.diag,
                                                                alpha.diag), col = "black")
+    }
+    if (diag.type == "boxplot") {
+      x <- GGally::eval_data_col(data, mapping$x)
+      dia <- dia + ggplot2::geom_boxplot(aes(y = x, group = 1),
+                                         fill = ggplot2::alpha(col.diag,
+                                                               alpha.diag),
+                                         col = "black")
     }
     if (diag.type == "histogram") {
       dia <- dia + ggplot2::geom_histogram(fill = ggplot2::alpha(col.diag,

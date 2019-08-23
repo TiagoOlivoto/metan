@@ -40,9 +40,9 @@ diagonal.}
 
 \item{diag}{Should the diagonal be shown?}
 
-\item{diag.type}{THe type of plot to show in the diagonal if \code{diag  TRUE}.
-It must be one of the 'istogram' (to show an histogram) or 'density' to show
-the Kernel density.}
+\item{diag.type}{The type of plot to show in the diagonal if \code{diag  TRUE}.
+It must be one of the 'histogram' (to show an histogram), 'density' to show
+the Kernel density, or 'boxplot' (to show a boxplot).}
 
 \item{bins}{The number of bins, Defauls to 20.}
 
