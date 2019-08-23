@@ -221,11 +221,21 @@ corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
                                                                alpha.diag), col = "black")
     }
     if (diag.type == "boxplot") {
-      x <- GGally::eval_data_col(data, mapping$x)
-      dia <- dia + ggplot2::geom_boxplot(aes(y = x, group = 1),
-                                         fill = ggplot2::alpha(col.diag,
-                                                               alpha.diag),
-                                         col = "black")
+      y <- GGally::eval_data_col(data, mapping$x)
+      x = mean(y)
+      dia <- dia + stat_boxplot(aes(y = y, x = x, group = 1),
+                                geom ='errorbar',
+                                color = "transparent",
+                                width = 0.9) +
+        stat_boxplot(aes(y = y, x = x, group = 1),
+                     geom ='errorbar',
+                     width = 0.2) +
+        ggplot2::geom_boxplot(aes(y = y, x = x, group = 1),
+                              fill = ggplot2::alpha(col.diag,
+                                                    alpha.diag),
+                              width = 0.4,
+                              col = "black")
+
     }
     if (diag.type == "histogram") {
       dia <- dia + ggplot2::geom_histogram(fill = ggplot2::alpha(col.diag,
