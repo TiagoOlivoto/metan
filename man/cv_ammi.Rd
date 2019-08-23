@@ -87,6 +87,7 @@ model = data_ge \%>\%
 
 }
 
+
 }
 \seealso{
 \code{\link{cv_ammif}, \link{cv_blup}}
