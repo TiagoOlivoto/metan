@@ -38,12 +38,12 @@
 #' response variable. Each element of the vector must be one of the \code{'h'}
 #' or \code{'l'}. If \code{'h'} is used, the response variable will be ordered
 #' from maximum to minimum. If \code{'l'} is used then the response variable
-#' will be ordered from minimum to maximum.
+#' will be ordered from minimum to maximum. Use a comma-separated vector of
+#' names. For example, \code{order.y = c("h, h, l, h, l")}.
 #' @param level The confidence level. Defaults to 0.95.
 #' @return
 #'
-#' A dataframe contaning the indexes estimated with all environments, favorable
-#' environments and unfavorable environments.
+#' A list where each element is the result for one variable.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
@@ -80,17 +80,19 @@
 #'
 #'
 AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
-    if (is.null(order.y)) {
+    if(!missing(order.y)){
+        order.y = unlist(strsplit(order.y, split = ", "))
+    } else {
         order.y <- rep("h", length(.data))
     }
     if (!is(.data, "waas")) {
         stop("The object 'x' must be an object of class \"waas\"")
     }
     if (any(!order.y %in% c("h", "l")) == TRUE) {
-        stop("The arguments in 'order.y' must be one of the 'h' or 'l'")
+        stop("The argument 'order.y' must be a comma-separated vector with 'h' or 'l'. Did you accidentally omit the space between the comma and the following word?")
     }
     if (length(order.y) != length(.data)) {
-        stop("The lenght of argument 'order.y' must be equal the length of 'x'")
+        stop("The lenght of argument 'order.y' must be ", length(.data), ", the length of '.data'")
     }
     listres <- list()
     varin <- 1

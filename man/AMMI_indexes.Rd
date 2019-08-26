@@ -13,13 +13,13 @@ AMMI_indexes(.data, order.y = NULL, level = 0.95)
 response variable. Each element of the vector must be one of the \code{'h'}
 or \code{'l'}. If \code{'h'} is used, the response variable will be ordered
 from maximum to minimum. If \code{'l'} is used then the response variable
-will be ordered from minimum to maximum.}
+will be ordered from minimum to maximum. Use a comma-separated vector of
+names. For example, \code{order.y = c("h, h, l, h, l")}.}
 
 \item{level}{The confidence level. Defaults to 0.95.}
 }
 \value{
-A dataframe contaning the indexes estimated with all environments, favorable
-environments and unfavorable environments.
+A list where each element is the result for one variable.
 }
 \description{
 This function computes the following AMMI-based stability indexes: ASV, AMMI
