@@ -25,6 +25,9 @@ after using \code{coord_polar()}.}
 \item{size.text}{The size for the text in the plot. Defaults to 10.}
 
 \item{...}{Other arguments to be passed from ggplot2::theme().}
+
+\item{arrange.label}{Logical argument. If \code{TRUE}, the labels are arranged to avoid text overlapping.
+This becomes useful when the number of genotypes is large, say, more than 30.}
 }
 \description{
 Makes a radar plot showing the multitrait stability index proposed by Olivoto et al. (2019)

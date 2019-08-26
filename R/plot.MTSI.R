@@ -8,6 +8,8 @@
 #' total number of genotypes.
 #' @param radar Logical argument. If true (default) a radar plot is generated
 #' after using \code{coord_polar()}.
+#' @param arrange.label Logical argument. If \code{TRUE}, the labels are arranged to avoid text overlapping.
+#' This becomes useful when the number of genotypes is large, say, more than 30.
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
 #' @param col.sel The colour for selected genotypes.
 #' @param col.nonsel The colour for nonselected genotypes.
@@ -56,13 +58,17 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5,
                                                     text = element_text(size = size.text)) + labs(y = "Multitrait stability index") +
         scale_fill_manual(values = c(col.nonsel, col.sel))
     if (radar == TRUE) {
-        tot_gen <- length(unique(data$Genotype))
-        fseq <- c(1:(tot_gen/2))
-        sseq <- c((tot_gen/2 + 1):tot_gen)
-        fang <- c(90 - 180/length(fseq) * fseq)
-        sang <- c(-90 - 180/length(sseq) * sseq)
-        p <- p + coord_polar() + theme(axis.text.x = element_text(angle = c(fang,
-                                                                            sang)), legend.margin = margin(-120, 0, 0, 0), ...)
+        if(arrange.label == TRUE){
+            tot_gen <- length(unique(data$Genotype))
+            fseq <- c(1:(tot_gen/2))
+            sseq <- c((tot_gen/2 + 1):tot_gen)
+            fang <- c(90 - 180/length(fseq) * fseq)
+            sang <- c(-90 - 180/length(sseq) * sseq)
+            p <- p + coord_polar() + theme(axis.text.x = element_text(angle = c(fang,
+                                                                                sang)), legend.margin = margin(-120, 0, 0, 0), ...)
+        } else{
+            p <- p + coord_polar()
+        }
     }
     return(p)
 }
