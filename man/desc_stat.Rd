@@ -53,7 +53,7 @@ desc_stat(values = vect)
 data_ge2 \%>\%
   split_factors(ENV) \%>\%
   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
-  stats = c('mean', 'SE.mean', 'CV'))
+  stats = c('mean, SE.mean, CV'))
   }
 
 }
