@@ -4,11 +4,8 @@
 \alias{desc_stat}
 \title{Descriptive statistics}
 \usage{
-desc_stat(.data = NULL, ..., values = NULL, stats = c("AV.dev",
-  "CI.mean", "CV", "IQR", "Kurt", "max", "mean", "median", "min", "n",
-  "norm.pval", "norm.stat", "Q2.5", "Q25", "Q75", "Q97.5", "SD.amo",
-  "SD.pop", "SE.mean", "skew", "var.amo", "var.pop"), level = 0.95,
-  digits = 4)
+desc_stat(.data = NULL, ..., values = NULL, stats = NULL,
+  level = 0.95, digits = 4)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
@@ -19,7 +16,8 @@ class \code{split_factors}.}
 \item{values}{An alternative way to pass the data to the function. It must be a numeric
 vector.}
 
-\item{stats}{The descriptive statistics to show. It must be one of the \code{'AV.dev'} (average deviation),
+\item{stats}{The descriptive statistics to show. Defaults to \code{NULL} (all statistics shown).
+ It must be one of the \code{'AV.dev'} (average deviation),
 \code{'CI.mean'} (confidence interval for the mean), \code{'CV'} (coefficient of variation),
 \code{'IQR'} (interquartile range), \code{'Kurt'} (kurtosis), \code{'max'} (maximum value),
 \code{'mean'} (arithmetic mean), \code{'median'} (median), \code{'min'} (minimum value),
@@ -28,7 +26,8 @@ vector.}
  \code{'Q25'} (the first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the percentile 97.5%),
  \code{'SD.amo'} (the sample standard deviation), \code{'SD.pop'} (the population standard deviation),
  \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the skewness), \code{'var.amo'} (the sample variance),
- \code{'var.pop'} (the population variance).}
+ \code{'var.pop'} (the population variance). Use a comma-separated vector of names to select the statistics.
+ For example, \code{stats = c("media, mean, CV, n")}.}
 
 \item{level}{The confidence level to compute the confidence interval of mean. Defaults to 0.95.}
 
