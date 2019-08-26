@@ -4,8 +4,9 @@
 \alias{plot.mtsi}
 \title{Plot the multi-trait stability index}
 \usage{
-\method{plot}{mtsi}(x, SI = 15, radar = TRUE, size.point = 2.5,
-  col.sel = "red", col.nonsel = "black", size.text = 10, ...)
+\method{plot}{mtsi}(x, SI = 15, radar = TRUE, arrange.label = FALSE,
+  size.point = 2.5, col.sel = "red", col.nonsel = "black",
+  size.text = 10, ...)
 }
 \arguments{
 \item{x}{An object of class \code{mtsi}}
@@ -16,6 +17,9 @@ total number of genotypes.}
 \item{radar}{Logical argument. If true (default) a radar plot is generated
 after using \code{coord_polar()}.}
 
+\item{arrange.label}{Logical argument. If \code{TRUE}, the labels are arranged to avoid text overlapping.
+This becomes useful when the number of genotypes is large, say, more than 30.}
+
 \item{size.point}{The size of the point in graphic. Defaults to 2.5.}
 
 \item{col.sel}{The colour for selected genotypes.}
@@ -25,9 +29,6 @@ after using \code{coord_polar()}.}
 \item{size.text}{The size for the text in the plot. Defaults to 10.}
 
 \item{...}{Other arguments to be passed from ggplot2::theme().}
-
-\item{arrange.label}{Logical argument. If \code{TRUE}, the labels are arranged to avoid text overlapping.
-This becomes useful when the number of genotypes is large, say, more than 30.}
 }
 \description{
 Makes a radar plot showing the multitrait stability index proposed by Olivoto et al. (2019)

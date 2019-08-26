@@ -40,7 +40,7 @@
 #'}
 #'
 #'
-plot.mtsi <- function(x, SI = 15, radar = TRUE, size.point = 2.5,
+plot.mtsi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.point = 2.5,
                       col.sel = "red", col.nonsel = "black", size.text = 10, ...) {
     if (!class(x) == "mtsi") {
         stop("The object 'x' is not of class 'mtsi'")
