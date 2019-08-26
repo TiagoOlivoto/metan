@@ -5,8 +5,8 @@
 \title{Multi-trait selection index}
 \usage{
 \method{plot}{fai_blup}(x, ideotype = 1, SI = 15, radar = TRUE,
-  size.point = 2, col.sel = "red", col.nonsel = "black",
-  size.text = 10, ...)
+  arrange.label = FALSE, size.point = 2, col.sel = "red",
+  col.nonsel = "black", size.text = 10, ...)
 }
 \arguments{
 \item{x}{An object of class \code{waasb}}
@@ -18,6 +18,9 @@ total number of genotypes.}
 
 \item{radar}{Logical argument. If true (default) a radar plot is generated
 after using \code{coord_polar()}.}
+
+\item{arrange.label}{Logical argument. If \code{TRUE}, the labels are arranged to avoid text overlapping.
+This becomes useful when the number of genotypes is large, say, more than 30.}
 
 \item{size.point}{The size of the point in graphic.}
 

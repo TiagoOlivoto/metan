@@ -9,7 +9,8 @@
 #' @param DI,UI A vector of the same length of \code{.data} to construct the
 #' desirable (DI) and undesirable (UI) ideotypes. For each element of the
 #' vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
-#' numeric value.
+#' numeric value. Use a comma-separated vector of text. For example,
+#'  \code{DI = c("max, max, min, min")}.
 #' @param SI An integer [0-100]. The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
@@ -36,18 +37,20 @@
 #'
 #' FAI = fai_blup(mod,
 #'                SI = 15,
-#'                DI = c('max', 'max'),
-#'                UI = c('min', 'min'))
+#'                DI = c('max, max'),
+#'                UI = c('min, min'))
 #'
 #' # Or using the pipe operator %>%
 #'
 #' FAI = data_ge2 %>%
 #'       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-#'       fai_blup(DI = c('max', 'max', 'max', 'min'),
-#'                UI = c('min', 'min', 'min', 'max'),
+#'       fai_blup(DI = c('max, max, max, min'),
+#'                UI = c('min, min, min, max'),
 #'                SI = 15)
 #'
 fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
+  ideotype.D <- unlist(strsplit(DI, split=", "))
+  ideotype.U <- unlist(strsplit(UI, split=", "))
   if (!class(.data) %in% c("waasb", "data.frame", "tbl_df")) {
     stop("The .data must be an object of class 'waasb' or a data.frame/tbl_df.")
   }
@@ -55,11 +58,10 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   if (nvar == 1) {
     stop("The multitrait stability index cannot be computed with one single variable.")
   }
-  if (length(DI) != nvar || length(UI) != nvar) {
+  if (length(ideotype.D) != nvar || length(ideotype.U) != nvar) {
     stop("The length of DI and UI must be the same length of data.")
   }
-  ideotype.D <- DI
-  ideotype.U <- UI
+
   if (class(.data) == "waasb") {
     datt <- .data[[1]][["blupGEN"]]
     data <- data.frame(do.call(cbind, lapply(.data, function(x) {
