@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -1418,14 +1418,11 @@ G9
 <a href="#fitting-the-model-1" class="anchor"></a>Fitting the model</h2>
 <p>The GGE model is fitted with the function <code><a href="../reference/gge.html">gge()</a></code>. This function produces a GGE model based on both a two-way table (in our case the object <code>table</code>) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Using a data.frame</span></a>
-<a class="sourceLine" id="cb19-2" title="2">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb19-3" title="3">                <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb19-4" title="4">                <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb19-5" title="5">                <span class="dt">resp =</span> GY)</a>
-<a class="sourceLine" id="cb19-6" title="6"></a>
-<a class="sourceLine" id="cb19-7" title="7"><span class="co"># Using a two-way table</span></a>
-<a class="sourceLine" id="cb19-8" title="8">ge_table =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, GEN, ENV, GY)</a>
-<a class="sourceLine" id="cb19-9" title="9">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb19-2" title="2">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
+<a class="sourceLine" id="cb19-3" title="3"></a>
+<a class="sourceLine" id="cb19-4" title="4"><span class="co"># Using a two-way table</span></a>
+<a class="sourceLine" id="cb19-5" title="5">ge_table =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, GEN, ENV, GY)</a>
+<a class="sourceLine" id="cb19-6" title="6">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">

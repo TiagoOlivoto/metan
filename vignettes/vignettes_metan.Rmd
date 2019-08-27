@@ -157,10 +157,7 @@ The GGE model is fitted with the function `gge()`. This function produces a GGE 
 
 ```{r echo = TRUE}
 # Using a data.frame
-gge_model = gge(data_ge,
-                gen = GEN,
-                env = ENV,
-                resp = GY)
+gge_model = gge(data_ge, ENV, GEN, GY)
 
 # Using a two-way table
 ge_table = make_mat(data_ge, GEN, ENV, GY)

@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -168,19 +168,52 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="metan-110" class="section level1">
+    <div id="metan-020" class="section level1">
 <h1 class="page-header">
-<a href="#metan-110" class="anchor"></a>metan 1.1.0</h1>
+<a href="#metan-020" class="anchor"></a>metan 0.2.0</h1>
+<p>This is the first version that will be submitted to CRAN. In this version, deprecated functions in the last versions were defunct. Some new features were implemented.</p>
+<ul>
+<li>New functions
+<ul>
+<li>
+<code><a href="../reference/fai_blup.html">fai_blup()</a></code> computes the FAI-BLUP index (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443" class="uri">https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443</a>)</li>
+<li>
+<code><a href="../reference/gge.html">gge()</a></code> computes the genotype plus genotype-vs-environment model.</li>
+<li>
+<code><a href="../reference/plot_factbars.html">plot_factbars()</a></code> and <code><a href="../reference/plot_factlines.html">plot_factlines()</a></code> are used to create bar and line plots, respectively, considering an one- or two-way experimental design.</li>
+<li>
+<code><a href="../reference/desc_stat.html">desc_stat()</a></code> computes several descriptive statistics.</li>
+<li>
+<code><a href="../reference/can_corr.html">can_corr()</a></code>computes canonical correlation coefficients.</li>
+<li>
+<code><a href="../reference/resp_surf.html">resp_surf()</a></code> computes response surface model using two quantitative factors.</li>
+<li>
+<code><a href="../reference/make_mat.html">make_mat()</a></code> is used to create a two-way table using two columns (factors) and one response variable.</li>
+<li>
+<code><a href="../reference/make_sym.html">make_sym()</a></code> is used to create a symetric matrix using a upper- or lower-diagonal matrix.</li>
+</ul>
+</li>
+<li>Minor improvements
+<ul>
+<li>New evaluation for text vectors are now used in the functions <code><a href="../reference/AMMI_indexes.html">AMMI_indexes()</a></code> and <code><a href="../reference/fai_blup.html">fai_blup()</a></code> and <code><a href="../reference/desc_stat.html">desc_stat()</a></code>. For example, to indicate the statistics to be computed in <code><a href="../reference/desc_stat.html">desc_stat()</a></code> you must use now <code>stats = c("mean, SE.mean, CV, max, min"))</code> instead <code>stats = c("mean", "SE.mean", "CV", "max", "min"))</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="metan-015" class="section level1">
+<h1 class="page-header">
+<a href="#metan-015" class="anchor"></a>metan 0.1.5</h1>
 <p>In the latest development version, the package <strong>METAAB</strong> was renammed to <strong>metan</strong> (<strong>m</strong>ulti-<strong>e</strong>nvironment <strong>t</strong>rials <strong>an</strong>alysis). Aiming at a cleaner coding, in this version, some functions were deprecated and will be defunct in the near future. Alternative functions were implemented.</p>
 <ul>
-<li>For <code><a href="../reference/metan-deprecated.html">WAAS.AMMI()</a></code>, use <code><a href="../reference/waas.html">waas()</a></code>.</li>
-<li>For <code><a href="../reference/metan-deprecated.html">WAASBYratio()</a></code>, use <code><a href="../reference/wsmp.html">wsmp()</a></code>.</li>
-<li>For <code><a href="../reference/metan-deprecated.html">WAASratio.AMMI()</a></code>, use <code><a href="../reference/wsmp.html">wsmp()</a></code>.</li>
-<li>For <code><a href="../reference/metan-deprecated.html">autoplot.WAAS.AMMI()</a></code>, use <code><a href="../reference/autoplot.waas.html">autoplot.waas()</a></code>.</li>
-<li>For <code><a href="../reference/metan-deprecated.html">plot.WAASBYratio()</a></code>, use <code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code>.</li>
-<li>For <code><a href="../reference/metan-deprecated.html">plot.WAASratio.AMMI()</a></code>, use <code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code>.</li>
-<li>For <code><a href="../reference/metan-deprecated.html">predict.WAAS.AMMI()</a></code>, use <code><a href="../reference/predict.waas.html">predict.waas()</a></code>.</li>
-<li>For <code><a href="../reference/metan-deprecated.html">summary.WAAS.AMMI()</a></code>, use <code><a href="../reference/summary.waas.html">summary.waas()</a></code>
+<li>For <code>WAAS.AMMI()</code>, use <code><a href="../reference/waas.html">waas()</a></code>.</li>
+<li>For <code>WAASBYratio()</code>, use <code><a href="../reference/wsmp.html">wsmp()</a></code>.</li>
+<li>For <code>WAASratio.AMMI()</code>, use <code><a href="../reference/wsmp.html">wsmp()</a></code>.</li>
+<li>For <code>autoplot.WAAS.AMMI()</code>, use <code><a href="../reference/autoplot.waas.html">autoplot.waas()</a></code>.</li>
+<li>For <code>plot.WAASBYratio()</code>, use <code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code>.</li>
+<li>For <code>plot.WAASratio.AMMI()</code>, use <code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code>.</li>
+<li>For <code>predict.WAAS.AMMI()</code>, use <code><a href="../reference/predict.waas.html">predict.waas()</a></code>.</li>
+<li>For <code>summary.WAAS.AMMI()</code>, use <code><a href="../reference/summary.waas.html">summary.waas()</a></code>
 </li>
 </ul>
 <p>Widely-known parametric and nonparametric methods were implemented, using the following functions.</p>
@@ -197,21 +230,21 @@
 <code><a href="../reference/superiority.html">superiority()</a></code> to compute the nonparametric superiority index.</li>
 </ul>
 </div>
-    <div id="metaab-103" class="section level1">
+    <div id="metaab-014" class="section level1">
 <h1 class="page-header">
-<a href="#metaab-103" class="anchor"></a>METAAB 1.0.3</h1>
+<a href="#metaab-014" class="anchor"></a>METAAB 0.1.4</h1>
 <p>In the latest development version, some useful functions were included. One of the most interesting features included in this version was allowing the functions to receive data from the forward-pipe operator %&gt;%. Bellow are the functions included in this version.</p>
 <ul>
 <li>
 <code><a href="../reference/anova_ind.html">anova_ind()</a></code> to perform a within-environment analysis of variance easely;</li>
 <li>
-<code><a href="../reference/colindiag.html">colindiag()</a></code> to perform a collinearity diagnostic of a set of predictors;</li>
+<code><a href="../reference/colindiag.html">colindiag()</a></code> to perform a collinearity diagnostic of a set of predictors;a</li>
 <li>
 <code><a href="../reference/find_outliers.html">find_outliers()</a></code> to easily find possible outliers in the dataset;</li>
 <li>
 <code>group_factors()</code> to split a dataset into a list of subsets using one or more grouping factors. This function may be used befor some functions, e.g., <code><a href="../reference/find_outliers.html">find_outliers()</a></code>, <code><a href="../reference/colindiag.html">colindiag()</a></code>, <code><a href="../reference/path_coeff.html">path_coeff()</a></code> to compute the statistics for each level of the factor (or combination of levels of factors).</li>
 <li>
-<code>plcor()</code> to compute linear and partial correlation coefficients.</li>
+<code><a href="../reference/lpcor.html">lpcor()</a></code> to compute linear and partial correlation coefficients.</li>
 <li>
 <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> to compute a graphic pairwise Mantel’s test using a set of correlation matrices;</li>
 <li>
@@ -225,26 +258,26 @@
 <code>is.lpcorr()</code> and <code>as.lpcorr()</code> to check or easily coerce a list of correlation matrice to an object of <code>lpcorr</code>;</li>
 </ul>
 </div>
-    <div id="metaab-102" class="section level1">
+    <div id="metaab-013" class="section level1">
 <h1 class="page-header">
-<a href="#metaab-102" class="anchor"></a>METAAB 1.0.2</h1>
+<a href="#metaab-013" class="anchor"></a>METAAB 0.1.3</h1>
 <ul>
 <li>AMMI-based stability indexes;</li>
 <li>Allow analizing multiple variables at the same time;</li>
 <li>S3 methods such as <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code>, <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code>, <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code> implemented.</li>
 </ul>
 </div>
-    <div id="metaab-101" class="section level1">
+    <div id="metaab-012" class="section level1">
 <h1 class="page-header">
-<a href="#metaab-101" class="anchor"></a>METAAB 1.0.1</h1>
+<a href="#metaab-012" class="anchor"></a>METAAB 0.1.2</h1>
 <ul>
 <li>Mixed-effect model with environment random effect;</li>
 <li>Random-effect model.</li>
 </ul>
 </div>
-    <div id="metaab-100" class="section level1">
+    <div id="metaab-011" class="section level1">
 <h1 class="page-header">
-<a href="#metaab-100" class="anchor"></a>METAAB 1.0.0</h1>
+<a href="#metaab-011" class="anchor"></a>METAAB 0.1.1</h1>
 <ul>
 <li>The first version of the package</li>
 </ul>
@@ -255,11 +288,12 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#metan-110">1.1.0</a></li>
-        <li><a href="#metaab-103">1.0.3</a></li>
-        <li><a href="#metaab-102">1.0.2</a></li>
-        <li><a href="#metaab-101">1.0.1</a></li>
-        <li><a href="#metaab-100">1.0.0</a></li>
+        <li><a href="#metan-020">0.2.0</a></li>
+        <li><a href="#metan-015">0.1.5</a></li>
+        <li><a href="#metaab-014">0.1.4</a></li>
+        <li><a href="#metaab-013">0.1.3</a></li>
+        <li><a href="#metaab-012">0.1.2</a></li>
+        <li><a href="#metaab-011">0.1.1</a></li>
       </ul>
     </div>
   </div>

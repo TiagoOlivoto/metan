@@ -1,3 +1,19 @@
+# metan 0.2.0
+This is the first version that will be submitted to CRAN. In this version, deprecated functions in the last versions were defunct. Some new features were implemented.
+
+* New functions
+   * `fai_blup()` computes the FAI-BLUP index (https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443)
+   * `gge()` computes the genotype plus genotype-vs-environment model.
+   * `plot_factbars()` and `plot_factlines()` are used to create bar and line plots, respectively, considering an one- or two-way experimental design.
+   * `desc_stat()` computes several descriptive statistics.
+   * `can_corr()`computes canonical correlation coefficients.
+   * `resp_surf()` computes response surface model using two quantitative factors.
+   * `make_mat()` is used to create a two-way table using two columns (factors) and one response variable. 
+   * `make_sym()` is used to create a symetric matrix using a upper- or lower-diagonal matrix. 
+   
+* Minor improvements
+   * New evaluation for text vectors are now used in the functions `AMMI_indexes()` and `fai_blup()` and `desc_stat()`. For example, to indicate the statistics to be computed in `desc_stat()` you must use now ` stats = c("mean, SE.mean, CV, max, min"))` instead  `stats = c("mean", "SE.mean", "CV", "max", "min"))`
+
 # metan 0.1.5
 In the latest development version, the package **METAAB** was renammed to **metan** (**m**ulti-**e**nvironment **t**rials **an**alysis). Aiming at a cleaner coding, in this version, some functions were deprecated and will be defunct in the near future. Alternative functions were implemented.
 
@@ -24,10 +40,10 @@ stratification using factor analysis.
 In the latest development version, some useful functions were included. One of the most interesting features included in this version was allowing the functions to receive data from the forward-pipe operator %>%. Bellow are the functions included in this version.
 
 * `anova_ind()` to perform a within-environment analysis of variance easely;
-* `colindiag()` to perform a collinearity diagnostic of a set of predictors;
+* `colindiag()` to perform a collinearity diagnostic of a set of predictors;a
 * `find_outliers()` to easily find possible outliers in the dataset;
 * `group_factors()` to split a dataset into a list of subsets using one or more grouping factors. This function may be used befor some functions, e.g., `find_outliers()`, `colindiag()`, `path_coeff()` to compute the statistics for each level of the factor (or combination of levels of factors).
-* `plcor()` to compute linear and partial correlation coefficients.
+* `lpcor()` to compute linear and partial correlation coefficients.
 * `pairs_mantel()` to compute a graphic pairwise Mantel's test using a set of correlation matrices;
 * `path_coeff()` to compute path coefficients with minimal multicollinearity;
 

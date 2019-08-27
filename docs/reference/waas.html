@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Weighted Average of Absolute Scores — waas" />
 
-<meta property="og:description" content="Compute the Weighted Average of Absolute Scores for AMMI analysis." />
+<meta property="og:description" content="Compute the Weighted Average of Absolute Scores for AMMI analysis (Olivoto et al., 2019)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -173,7 +173,7 @@
 
     <div class="ref-description">
     
-    <p>Compute the Weighted Average of Absolute Scores for AMMI analysis.</p>
+    <p>Compute the Weighted Average of Absolute Scores for AMMI analysis (Olivoto et al., 2019).</p>
     
     </div>
 
@@ -251,7 +251,6 @@ silently.</p></td>
 
 <dt>individual</dt><dd><p>A within-environments ANOVA considering a fixed-effect
 model.</p></dd>
-
 <dt>model</dt><dd><p>A data frame with the response variable, the scores of all
 Principal Components, the estimates of Weighted Average of Absolute Scores,
 and WAASY (the index that consider the weights for stability and
@@ -290,6 +289,12 @@ significant PCAs, or a declared number of PCAs. For example if <code>prob =
 0.05</code>, all axis that are significant considering this probability level are
 used. The number of axis can be also informed by declaring <code>naxis = x</code>.
 This comand ignores the <code>prob</code> argument.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
+ V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+  trials I: Combining features of AMMI and BLUP techniques. Agron. J. doi:10.2134/agronj2019.03.0220.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -344,6 +349,8 @@ This comand ignores the <code>prob</code> argument.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Produces genotype plus genotype-by-environment model — gge • metan</title>
+<title>Genotype plus genotype-by-environment model — gge • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Produces genotype plus genotype-by-environment model — gge" />
+<meta property="og:title" content="Genotype plus genotype-by-environment model — gge" />
 
 <meta property="og:description" content="Produces genotype plus genotype-by-environment model based on a multi-environment
 trial dataset containing at least the columns for genotypes, environments and one
@@ -77,7 +77,7 @@ response variable or a two-way table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -168,7 +168,7 @@ response variable or a two-way table." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Produces genotype plus genotype-by-environment model</h1>
+    <h1>Genotype plus genotype-by-environment model</h1>
     <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/gge.R'><code>R/gge.R</code></a></small>
     <div class="hidden name"><code>gge.Rd</code></div>
     </div>
@@ -181,8 +181,9 @@ response variable or a two-way table.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>gge</span>(<span class='no'>.data</span>, <span class='no'>gen</span>, <span class='no'>env</span>, <span class='no'>resp</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"environment"</span>, <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>svp</span> <span class='kw'>=</span> <span class='st'>"environment"</span>, <span class='kw'>table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>gge</span>(<span class='no'>.data</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gen</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"environment"</span>, <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>svp</span> <span class='kw'>=</span> <span class='st'>"environment"</span>,
+  <span class='kw'>table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,19 +191,22 @@ response variable or a two-way table.</p>
     <tr>
       <th>.data</th>
       <td><p>The dataset containing the columns related to Environments, Genotypes
-and the response variable(s).</p></td>
-    </tr>
-    <tr>
-      <th>gen</th>
-      <td><p>The name of the column that contains the levels of the genotypes.</p></td>
+and the response variable(s). It is also possible to use a two-way table with genotypes
+in lines and environments in columns as input. In this case you must use <code>table = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>env</th>
-      <td><p>The name of the column that contains the levels of the environments.</p></td>
+      <td><p>The name of the column that contains the levels of the environments. Defaults to <code>NULL</code>,
+in case of the input data is a two-way table.</p></td>
+    </tr>
+    <tr>
+      <th>gen</th>
+      <td><p>The name of the column that contains the levels of the genotypes. Defaults to <code>NULL</code>,
+in case of the input data is a two-way table.</p></td>
     </tr>
     <tr>
       <th>resp</th>
-      <td><p>The response variable(s).</p></td>
+      <td><p>The response variable(s). Defaults to <code>NULL</code>, in case of the input data is a two-way table.</p></td>
     </tr>
     <tr>
       <th>centering</th>
