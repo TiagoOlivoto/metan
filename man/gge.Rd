@@ -2,20 +2,24 @@
 % Please edit documentation in R/gge.R
 \name{gge}
 \alias{gge}
-\title{Produces genotype plus genotype-by-environment model}
+\title{Genotype plus genotype-by-environment model}
 \usage{
-gge(.data, gen, env, resp, centering = "environment", scaling = "none",
-  svp = "environment", table = FALSE)
+gge(.data, env = NULL, gen = NULL, resp = NULL,
+  centering = "environment", scaling = "none", svp = "environment",
+  table = FALSE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments, Genotypes
-and the response variable(s).}
+and the response variable(s). It is also possible to use a two-way table with genotypes
+in lines and environments in columns as input. In this case you must use \code{table = TRUE}.}
 
-\item{gen}{The name of the column that contains the levels of the genotypes.}
+\item{env}{The name of the column that contains the levels of the environments. Defaults to \code{NULL},
+in case of the input data is a two-way table.}
 
-\item{env}{The name of the column that contains the levels of the environments.}
+\item{gen}{The name of the column that contains the levels of the genotypes. Defaults to \code{NULL},
+in case of the input data is a two-way table.}
 
-\item{resp}{The response variable(s).}
+\item{resp}{The response variable(s). Defaults to \code{NULL}, in case of the input data is a two-way table.}
 
 \item{centering}{The centering method. Must be one of the \code{'none | 0'}, for no
 centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),

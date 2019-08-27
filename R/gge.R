@@ -1,4 +1,4 @@
-#' Produces genotype plus genotype-by-environment model
+#' Genotype plus genotype-by-environment model
 #'
 #' Produces genotype plus genotype-by-environment model based on a multi-environment
 #' trial dataset containing at least the columns for genotypes, environments and one
@@ -6,10 +6,13 @@
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments, Genotypes
-#' and the response variable(s).
-#' @param gen The name of the column that contains the levels of the genotypes.
-#' @param env The name of the column that contains the levels of the environments.
-#' @param resp The response variable(s).
+#' and the response variable(s). It is also possible to use a two-way table with genotypes
+#' in lines and environments in columns as input. In this case you must use \code{table = TRUE}.
+#' @param env The name of the column that contains the levels of the environments. Defaults to \code{NULL},
+#' in case of the input data is a two-way table.
+#' @param gen The name of the column that contains the levels of the genotypes. Defaults to \code{NULL},
+#' in case of the input data is a two-way table.
+#' @param resp The response variable(s). Defaults to \code{NULL}, in case of the input data is a two-way table.
 #' @param centering The centering method. Must be one of the \code{'none | 0'}, for no
 #'  centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),
 #'  for environment-centered (G+GE); or \code{'double | 3'}, for double centred (GE).
@@ -78,8 +81,11 @@
 #'   gge(table = TRUE) %>%
 #'   plot()
 #'
-gge <- function(.data, gen, env, resp, centering = "environment",
+gge <- function(.data, env = NULL, gen = NULL, resp = NULL, centering = "environment",
                 scaling = "none", svp = "environment", table = FALSE) {
+  if(table == FALSE & is.null(gen) & is.null(env) & is.null(resp)){
+    stop("Invalid input. If the input data is a two-way table then you must set the argument 'table' to TRUE.")
+  }
   if (table == FALSE) {
     ge_mat <- as.matrix(make_mat(.data, !!enquo(gen), !!enquo(env),
                                  !!enquo(resp)))
