@@ -70,6 +70,7 @@
 #'  geneticists, and agronomists. CRC Press.
 #' @method plot gge
 #' @importFrom tidyr gather
+#' @importFrom ggforce geom_arc
 #' @export
 #' @examples
 #' library(metan)

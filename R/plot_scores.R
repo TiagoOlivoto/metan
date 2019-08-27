@@ -103,7 +103,6 @@
 #' @param ... Other arguments of the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{plot_eigen}}
-#' @importFrom ggforce geom_arc
 #' @export
 #' @examples
 #'

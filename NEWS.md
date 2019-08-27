@@ -1,4 +1,4 @@
-# metan 1.1.0
+# metan 0.1.5
 In the latest development version, the package **METAAB** was renammed to **metan** (**m**ulti-**e**nvironment **t**rials **an**alysis). Aiming at a cleaner coding, in this version, some functions were deprecated and will be defunct in the near future. Alternative functions were implemented.
 
 * For `WAAS.AMMI()`, use `waas()`.
@@ -20,7 +20,7 @@ stratification using factor analysis.
 * `superiority()` to compute the nonparametric superiority index.
 
 
-# METAAB 1.0.3
+# METAAB 0.1.4
 In the latest development version, some useful functions were included. One of the most interesting features included in this version was allowing the functions to receive data from the forward-pipe operator %>%. Bellow are the functions included in this version.
 
 * `anova_ind()` to perform a within-environment analysis of variance easely;
@@ -37,16 +37,16 @@ The following S3 Methods were also implemented:
 * `is.lpcorr()` and `as.lpcorr()`  to check or easily coerce a list of correlation matrice to an object of `lpcorr`;
 
 
-# METAAB 1.0.2
+# METAAB 0.1.3
 * AMMI-based stability indexes;
 * Allow analizing multiple variables at the same time;
 * S3 methods such as `plot()`, `predict()`, `summary()` implemented.
 
-# METAAB 1.0.1
+# METAAB 0.1.2
 
 * Mixed-effect model with environment random effect;
 * Random-effect model.
 
-# METAAB 1.0.0
+# METAAB 0.1.1
 
 * The first version of the package
