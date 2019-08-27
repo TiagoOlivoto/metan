@@ -83,7 +83,8 @@
 #'
 gge <- function(.data, env = NULL, gen = NULL, resp = NULL, centering = "environment",
                 scaling = "none", svp = "environment", table = FALSE) {
-  if(table == FALSE & is.null(gen) & is.null(env) & is.null(resp)){
+
+  if(table == FALSE & missing(gen) & missing(env) & missing(resp)){
     stop("Invalid input. If the input data is a two-way table then you must set the argument 'table' to TRUE.")
   }
   if (table == FALSE) {
@@ -91,6 +92,9 @@ gge <- function(.data, env = NULL, gen = NULL, resp = NULL, centering = "environ
                                  !!enquo(resp)))
   }
   if (table == TRUE) {
+    if(any(sapply(.data, is.numeric) == FALSE)){
+      stop("All columns must be numeric. Please check and fix.")
+    }
     ge_mat <- as.matrix(.data)
   }
   grand_mean <- mean(ge_mat)
