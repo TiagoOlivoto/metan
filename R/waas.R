@@ -1,6 +1,6 @@
 #' Weighted Average of Absolute Scores
 #'
-#' Compute the Weighted Average of Absolute Scores for AMMI analysis.
+#' Compute the Weighted Average of Absolute Scores for AMMI analysis (Olivoto et al., 2019).
 #'
 #' This function compute the weighted average of absolute scores, estimated as
 #' follows:
@@ -44,11 +44,13 @@
 #' within-environment ANOVA is not performed.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
 #' silently.
+#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+#'  V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+#'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. doi:10.2134/agronj2019.03.0220.
 #' @return
 #'
 #' \item{individual}{A within-environments ANOVA considering a fixed-effect
 #' model.}
-#'
 #' \item{model}{A data frame with the response variable, the scores of all
 #' Principal Components, the estimates of Weighted Average of Absolute Scores,
 #' and WAASY (the index that consider the weights for stability and

@@ -1,7 +1,7 @@
 #' Weighted Average of Absolute Scores
 #'
 #' Compute the Weighted Average of Absolute Scores for quantifying the
-#' stability in multienvironment trials using mixed-effect models
+#' stability in multienvironment trials using mixed-effect models (Olivoto et al., 2019).
 #'
 #' This function compute the weighted average of absolute scores considering
 #' all principal component axis from the Singular Value Decomposition (SVD) of
@@ -36,6 +36,9 @@
 #' within-environment ANOVA is not performed.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code are run
 #' silently.
+#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+#'  V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+#'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. doi:10.2134/agronj2019.03.0220.
 #' @return The function returns the results in a list for each analyzed
 #' variable. For each variable, the following objects are returned.
 #'

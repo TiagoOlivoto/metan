@@ -1,6 +1,6 @@
 #' Weighting between stability and mean performance
 #'
-#' This function computes the WAASY or WAASBY indexes considering different
+#' This function computes the WAASY or WAASBY indexes (Olivoto et al., 2019) considering different
 #' scenarios of weights for stability and mean performance.
 #'
 #' After fitting a model with the functions \code{\link{waas}} or \code{\link{waasb}}
@@ -28,7 +28,9 @@
 #' must be multiple of \code{increment}. If this assumption is not valid, an error will be occour.
 #' @param progbar A logical argument to define if a progress bar is shown.
 #' Default is \code{TRUE}.
-#'
+#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+#'  V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+#'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. doi:10.2134/agronj2019.03.0220.
 #' @return
 #' \item{MeansGxE}{The means of genotypes in the environments, with observed,
 #' predicted and residual values.}

@@ -45,7 +45,7 @@ stability in the loop match with argument \code{saveWAASY}.}
 scenarios of WAAS/GY weighting ratio.}
 }
 \description{
-This function computes the WAASY or WAASBY indexes considering different
+This function computes the WAASY or WAASBY indexes (Olivoto et al., 2019) considering different
 scenarios of weights for stability and mean performance.
 }
 \details{
@@ -71,6 +71,11 @@ model = waas(data_ge2,
 scenarios = wsmp(model)
 }
 
+}
+\references{
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+ V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+  trials I: Combining features of AMMI and BLUP techniques. Agron. J. doi:10.2134/agronj2019.03.0220.
 }
 \seealso{
 \code{\link{resca}}

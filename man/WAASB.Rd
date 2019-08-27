@@ -107,7 +107,7 @@ the ratio between genotypic and residual coefficient of variation.}
 }
 \description{
 Compute the Weighted Average of Absolute Scores for quantifying the
-stability in multienvironment trials using mixed-effect models
+stability in multienvironment trials using mixed-effect models (Olivoto et al., 2019).
 }
 \details{
 This function compute the weighted average of absolute scores considering
@@ -153,6 +153,11 @@ model3 <- waasb(data_ge,
                 wresp = c(60, 40))
 }
 
+}
+\references{
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+ V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+  trials I: Combining features of AMMI and BLUP techniques. Agron. J. doi:10.2134/agronj2019.03.0220.
 }
 \seealso{
 \code{\link{waas}}
