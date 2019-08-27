@@ -206,23 +206,23 @@ and the response variable(s).</p></td>
     </tr>
     <tr>
       <th>centering</th>
-      <td><p>The centering method. Must be one of the <code>"none | 0"</code>, for no
-centering; <code>"global | 1"</code>, for global centered (E+G+GE); <code>"environment | 2"</code> (default),
-for environment-centered (G+GE); or <code>"double | 3"</code>, for double centred (GE).
+      <td><p>The centering method. Must be one of the <code>'none | 0'</code>, for no
+centering; <code>'global | 1'</code>, for global centered (E+G+GE); <code>'environment | 2'</code> (default),
+for environment-centered (G+GE); or <code>'double | 3'</code>, for double centred (GE).
  A biplot cannot be produced with models produced without centering.</p></td>
     </tr>
     <tr>
       <th>scaling</th>
-      <td><p>The scaling method. Must be one of the <code>"none | 0"</code> (default), for no scaling;
-or <code>"sd | 1"</code>, where each value is divided by the standard deviation of its corresponding
+      <td><p>The scaling method. Must be one of the <code>'none | 0'</code> (default), for no scaling;
+or <code>'sd | 1'</code>, where each value is divided by the standard deviation of its corresponding
  environment (column). This will put all environments roughly he same rang of values.</p></td>
     </tr>
     <tr>
       <th>svp</th>
-      <td><p>The method for singular value partitioning. Must be one of the <code>"genotype | 1"</code>,
+      <td><p>The method for singular value partitioning. Must be one of the <code>'genotype | 1'</code>,
 (The singular value is entirely partitioned into the genotype eigenvectors, also called row
-metric preserving); <code>"environment | 2"</code>, default, (The singular value is entirely partitioned into the
-environment eigenvectors, also called column metric preserving); or <code>"symmetrical | 3"</code>
+metric preserving); <code>'environment | 2'</code>, default, (The singular value is entirely partitioned into the
+environment eigenvectors, also called column metric preserving); or <code>'symmetrical | 3'</code>
 (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 visualizing either the relationship among genotypes or that among the environments).</p></td>
@@ -260,11 +260,11 @@ in the rows and environments in the columns. Defaults to <code>FALSE</code>.</p>
 <dt>svp</dt><dd><p>The singular value partitioning method.</p></dd>
 
 <dt>d</dt><dd><p>The factor used to generate in which the ranges of genotypes and environments
- are comparable when singular value partitioning is set to "genotype" or "environment".</p></dd>
+ are comparable when singular value partitioning is set to 'genotype' or 'environment'.</p></dd>
  <dt>grand_mean</dt><dd><p>The grand mean of the trial.</p></dd>
  <dt>mean_gen</dt><dd><p>A vector with the means of the genotypes.</p></dd>
  <dt>mean_env</dt><dd><p>A vector with the means of the environments.</p></dd>
- <dt>scale_var</dt><dd><p>The scaling vector when the scaling method is <code>"sd"</code>.</p></dd>
+ <dt>scale_var</dt><dd><p>The scaling vector when the scaling method is <code>'sd'</code>.</p></dd>
 
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>

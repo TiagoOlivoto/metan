@@ -235,8 +235,8 @@ the current directory.</p></td>
     <tr>
       <th>file.type</th>
       <td><p>The format of the file if <code>export = TRUE</code>.  Set to
-<code>"pdf"</code>. Other possible values are <code>*.tiff</code> using <code>file.type
-= "tiff"</code>.</p></td>
+<code>'pdf'</code>. Other possible values are <code>*.tiff</code> using <code>file.type
+= 'tiff'</code>.</p></td>
     </tr>
     <tr>
       <th>file.name</th>
@@ -253,7 +253,7 @@ i.e., automatically.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
-      <td><p>The resolution of the plot if <code>file.type = "tiff"</code> is
+      <td><p>The resolution of the plot if <code>file.type = 'tiff'</code> is
 used. Set to <code>300</code> (300 dpi).</p></td>
     </tr>
     <tr>
@@ -290,7 +290,7 @@ correlation coefficient.</p></td>
     <tr>
       <th>signcol</th>
       <td><p>The colour that indicate significant correlations (based on
-the <code>prob</code> value.), set to "green".</p></td>
+the <code>prob</code> value.), set to 'green'.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
@@ -299,12 +299,12 @@ the <code>prob</code> value.), set to "green".</p></td>
     </tr>
     <tr>
       <th>diagcol</th>
-      <td><p>The color in the kernel distribution. Set to "gray".</p></td>
+      <td><p>The color in the kernel distribution. Set to 'gray'.</p></td>
     </tr>
     <tr>
       <th>col.up.panel, col.lw.panel, col.dia.panel</th>
       <td><p>The color for the opper,
-lower and diagonal pannels. Set to "gray", "gray", and "gray", respectively.</p></td>
+lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></td>
     </tr>
     <tr>
       <th>pan.spacing</th>
@@ -326,7 +326,7 @@ lower and diagonal pannels. Set to "gray", "gray", and "gray", respectively.</p>
 <span class='no'>lpc</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='kw'>%&gt;%</span>
-      <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"setosa"</span>, <span class='st'>"versicolor"</span>, <span class='st'>"virginica"</span>))</div><div class='output co'>#&gt; <span class='message'>The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
+      <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))</div><div class='output co'>#&gt; <span class='message'>The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Level: setosa 
 #&gt; ----------------------------------------------------------------------------

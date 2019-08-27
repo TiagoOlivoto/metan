@@ -159,8 +159,8 @@
 <a class="sourceLine" id="cb1-11" title="11"></a>
 <a class="sourceLine" id="cb1-12" title="12">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-13" title="13"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"max"</span>, <span class="st">"min"</span>),</a>
-<a class="sourceLine" id="cb1-15" title="15">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max, max, max, min"</span>),</a>
+<a class="sourceLine" id="cb1-15" title="15">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min, min, min, max"</span>),</a>
 <a class="sourceLine" id="cb1-16" title="16">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>Evaluating variable KW 25 % 
 Evaluating variable NKE 50 % 
@@ -190,7 +190,7 @@ EH  -0.8973216  0.8051861
 Comunalit Mean: 0.7860354 
 
 -----------------------------------------------------------------------------------
-Multitrait stability index
+FAI-BLUP index
 -----------------------------------------------------------------------------------
    H13     H6     H2     H5     H1     H4     H3     H8     H9    H10 
 0.9807 0.8843 0.8413 0.8409 0.8023 0.7972 0.6222 0.2623 0.2354 0.1810 
@@ -200,11 +200,11 @@ Multitrait stability index
 -----------------------------------------------------------------------------------
 Selection differential
 -----------------------------------------------------------------------------------
-    Factor Selection differential (%)
-KW       1               1.297090e+00
-NKE      1               5.510697e-08
-PH       1               9.006835e-02
-EH       1               2.407567e-08
+    Factor         Xo         Xs           SD       SDperc
+KW       1 172.938867 175.182040 2.243173e+00 1.297090e+00
+NKE      1 511.643590 511.643590 2.819513e-07 5.510697e-08
+PH       1   2.484813   2.487051 2.238030e-03 9.006835e-02
+EH       1   1.343326   1.343326 3.234146e-10 2.407567e-08
 
 -----------------------------------------------------------------------------------
 Selected genotypes

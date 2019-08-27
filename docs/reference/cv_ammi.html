@@ -177,8 +177,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>cv_ammi</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>, <span class='no'>nboot</span>, <span class='no'>nrepval</span>,
-  <span class='no'>naxis</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>cv_ammi</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>,
+  <span class='no'>nrepval</span>, <span class='no'>naxis</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,14 +207,14 @@ replications/blocks.</p></td>
       <td><p>The response variable.</p></td>
     </tr>
     <tr>
+      <th>nboot</th>
+      <td><p>The number of resamples to be used in the cross-validation. Defaults to 100.</p></td>
+    </tr>
+    <tr>
       <th>design</th>
       <td><p>The experimental desig to be considered. Default is
 <code>RCBD</code> (Randomized complete Block Design). For Completely Randomized
-Designs inform <code>design = "CRD"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>The number of resamples to be used in the cross-validation</p></td>
+Designs inform <code>design = 'CRD'</code>.</p></td>
     </tr>
     <tr>
       <th>nrepval</th>
@@ -254,15 +254,15 @@ validation) of the last loop.</p></dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>For each iteration, the original dataset is split into two datasets:
-modeling and validating data. The dataset "modeling" has all combinations
+modeling and validating data. The dataset 'modeling' has all combinations
 (genotype x environment) with the number of replications informed in
-<code>nrepval</code>. The dataset "validating" has one replication. The splitting
+<code>nrepval</code>. The dataset 'validating' has one replication. The splitting
 of the dataset into modeling and validating data depends on the design
 informed. For Completely Randomized Block Design (default), compltely blocks
 are selected within environments. The remained block serves validation data.
-If <code>design = "RCD"</code> is informed, completely randomly samples are made
+If <code>design = 'RCD'</code> is informed, completely randomly samples are made
 for each genotype-by-environment combination. The estimated values
-(depending on NAXIS informed) are compared with the "validating" data. the
+(depending on NAXIS informed) are compared with the 'validating' data. the
 Root Means Square error is computed. At the end of boots, a list is returned
 with the following values.</p>
     
@@ -290,6 +290,7 @@ with the following values.</p>
         <span class='fu'>cv_ammiF</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='fl'>100</span>, <span class='fl'>2</span>, <span class='fl'>2</span>)
 
 <span class='co'># }</span><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

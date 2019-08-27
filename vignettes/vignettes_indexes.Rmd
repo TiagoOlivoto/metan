@@ -40,8 +40,8 @@ print_table = function(table){
 
 FAI = data_ge2 %>%
       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-      fai_blup(DI = c("max", "max", "max", "min"),
-               UI = c("min", "min", "min", "max"),
+      fai_blup(DI = c("max, max, max, min"),
+               UI = c("min, min, min, max"),
                SI = 15)
 plot(FAI)
     ```

@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Plot the multi-trait stability index — plot.mtsi" />
 
-<meta property="og:description" content="Plot the multitrait stability index using ggplot-generated graphics. ." />
+<meta property="og:description" content="Makes a radar plot showing the multitrait stability index proposed by Olivoto et al. (2019)" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -173,13 +173,14 @@
 
     <div class="ref-description">
     
-    <p>Plot the multitrait stability index using ggplot-generated graphics. .</p>
+    <p>Makes a radar plot showing the multitrait stability index proposed by Olivoto et al. (2019)</p>
     
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mtsi</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -199,8 +200,13 @@ total number of genotypes.</p></td>
 after using <code>coord_polar()</code>.</p></td>
     </tr>
     <tr>
+      <th>arrange.label</th>
+      <td><p>Logical argument. If <code>TRUE</code>, the labels are arranged to avoid text overlapping.
+This becomes useful when the number of genotypes is large, say, more than 30.</p></td>
+    </tr>
+    <tr>
       <th>size.point</th>
-      <td><p>The size of the point in graphic.</p></td>
+      <td><p>The size of the point in graphic. Defaults to 2.5.</p></td>
     </tr>
     <tr>
       <th>col.sel</th>
@@ -211,10 +217,18 @@ after using <code>coord_polar()</code>.</p></td>
       <td><p>The colour for nonselected genotypes.</p></td>
     </tr>
     <tr>
+      <th>size.text</th>
+      <td><p>The size for the text in the plot. Defaults to 10.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>Other arguments of the function.</p></td>
+      <td><p>Other arguments to be passed from ggplot2::theme().</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J.doi:10.2134/agronj2019.03.0221.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -243,7 +257,9 @@ after using <code>coord_polar()</code>.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#references">References</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -56,15 +56,25 @@ The function `desc_stat()` may be used to compute measures of central tendency, 
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 data_ge2 %>%
-  desc_stat(EP, EL, CL, CD, CW, NR, NKR)
+  desc_stat(EP, EL, CL, CD, CW, NR)
 ```
 
-To compute the statistics for each level of a factor, use the function `split_factor()` befor calling `desc_stat()`, like
+To compute the statistics for each level of a factor, use the function `split_factor()` before calling `desc_stat()`. In addition, it is possible to select the statistics to compute using the argument `stats`, that is a comma-separated vector of names with `"` at the beginning and end of vector only.
+
+* This will work: 
+   * `stats = c("mean, SE.mean, CV, max, min")`
+   * `stats = "mean"`
+   
+* This will NOT work: 
+   * `stats = c("mean, "SE.mean", "CV", "max", "min")`
+   * `stats = c("mean,SE.mean, CV, max,min")`
+   
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 data_ge2 %>%
-  split_factors(REP) %>%
-  desc_stat(EP, EL, CL, CD, CW, NR, NKR)
+  split_factors(ENV) %>%
+  desc_stat(EP, EL, CL, CD, CW, NR,
+            stats = c("mean, SE.mean, CV, max, min"))
 ```
 
 
@@ -150,6 +160,7 @@ corr_plot(data_ge2, CD, EL, PERK, NKR,
           alpha.point = 0.5,
           alpha.diag = 0,
           pan.spacing = 0,
+          diag.type = "boxplot",
           col.sign = "gray",
           alpha.sign = 0.3,
           axis.labels = TRUE)

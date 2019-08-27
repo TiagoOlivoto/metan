@@ -356,7 +356,7 @@ G4
 <div id="biplots" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h3>
-<p>ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/waas.html">waas()</a></code> function allows analyzing multiple variables at the same time, e.g., resp = c(v1, v2, …), the output <code>model</code> is a list, in this case with one element, GY.</p>
+<p>ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/waas.html">waas()</a></code> function allows analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>model</code> is a list, in this case with one element, GY.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot)</a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb6-3" title="3">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>

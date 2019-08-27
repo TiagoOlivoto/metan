@@ -177,8 +177,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>cv_blup</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='no'>nboot</span>, <span class='no'>nrepval</span>, <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"gen"</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>cv_blup</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>nrepval</span>,
+  <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"gen"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -208,7 +208,7 @@ replications/blocks.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
-      <td><p>The number of resamples to be used in the cross-validation</p></td>
+      <td><p>The number of resamples to be used in the cross-validation. Defaults to 100.</p></td>
     </tr>
     <tr>
       <th>nrepval</th>
@@ -219,10 +219,10 @@ validating data each step, so, <code>Nrepval</code> must be equal <code>R-1</cod
     <tr>
       <th>random</th>
       <td><p>The effects of the model assumed to be random. Default is
-<code>random = "gen"</code> (genotype and genotype-vs-environment as random
-effects. Other values allowed are <code>random = "env"</code> (environment,
+<code>random = 'gen'</code> (genotype and genotype-vs-environment as random
+effects. Other values allowed are <code>random = 'env'</code> (environment,
 genotype-vs-environment and block-within-environment random effects) or
-<code>random = "all"</code> all effects except the intercept are assumed to be
+<code>random = 'all'</code> all effects except the intercept are assumed to be
 random effects.</p></td>
     </tr>
     <tr>
@@ -237,10 +237,10 @@ Default is <code>TRUE</code>.</p></td>
     <p>This function provides a cross-validation procedure for mixed models using
 replicate-based data. By default, complete blocks are randomly selected
 within each evironment. In each iteraction, the original dataset is split up
-into two datasets: training and validation data. The "training" set has all
+into two datasets: training and validation data. The 'training' set has all
 combinations (genotype x environment) with the number of replications
-informed in <code>nrepval</code>. The "validation" set has the remaining
-replication. The estimated values are compared with the "validation" data
+informed in <code>nrepval</code>. The 'validation' set has the remaining
+replication. The estimated values are compared with the 'validation' data
 and the Root Means Square Prediction Difference is computed. At the end of
 boots, a list is returned.</p>
     

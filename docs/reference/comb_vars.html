@@ -191,9 +191,9 @@ applied to each combination.</p>
     <tr>
       <th>order</th>
       <td><p>The order on how the results will appear in the output. Default
-is <code>order = "first"</code>. In this case, assuming that .data has four
+is <code>order = 'first'</code>. In this case, assuming that .data has four
 columns, namely, <code>V1, V2, V3, V4</code>, the order of columns in the output
-will be <code>V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4</code>. If <code>order = "second"</code>,
+will be <code>V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4</code>. If <code>order = 'second'</code>,
 the result will be then <code>V1.V2, V1.V3, V2.V3, V1.V4, V2.V4, V3.V4</code>.</p></td>
     </tr>
     <tr>
@@ -219,7 +219,7 @@ silently.</p></td>
                   <span class='kw'>D</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>1100</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>200</span>),
                   <span class='kw'>E</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>))
 <span class='fu'>comb_vars</span>(<span class='no'>data</span>)
-<span class='fu'>comb_vars</span>(<span class='no'>data</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='st'>"*"</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>"second"</span>)
+<span class='fu'>comb_vars</span>(<span class='no'>data</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='st'>'*'</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>'second'</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

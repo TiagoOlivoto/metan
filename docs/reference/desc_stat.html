@@ -177,8 +177,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>desc_stat</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
+    <pre class="usage"><span class='fu'>desc_stat</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,6 +196,21 @@ class <code>split_factors</code>.</p></td>
       <th>values</th>
       <td><p>An alternative way to pass the data to the function. It must be a numeric
 vector.</p></td>
+    </tr>
+    <tr>
+      <th>stats</th>
+      <td><p>The descriptive statistics to show. Defaults to <code>NULL</code> (all statistics shown).
+ It must be one of the <code>'AV.dev'</code> (average deviation),
+<code>'CI.mean'</code> (confidence interval for the mean), <code>'CV'</code> (coefficient of variation),
+<code>'IQR'</code> (interquartile range), <code>'Kurt'</code> (kurtosis), <code>'max'</code> (maximum value),
+<code>'mean'</code> (arithmetic mean), <code>'median'</code> (median), <code>'min'</code> (minimum value),
+<code>'n'</code> (the length of the data), <code>'norm.pval'</code> (the p-value for the Shapiro-Wilk test),
+ <code>'norm.stat'</code> (the statistic for the Shapiro-Wilk test), <code>'Q2.5'</code> (the percentile 2.5<!-- %), -->
+ <code>'Q25'</code> (the first quartile, Q1), <code>'Q75'</code> (the third quartile, Q3), <code>'Q97.5'</code> (the percentile 97.5<!-- %), -->
+ <code>'SD.amo'</code> (the sample standard deviation), <code>'SD.pop'</code> (the population standard deviation),
+ <code>'SE.mean'</code> (the standard error of the mean), <code>'skew'</code> (the skewness), <code>'var.amo'</code> (the sample variance),
+ <code>'var.pop'</code> (the population variance). Use a comma-separated vector of names to select the statistics.
+ For example, <code>stats = c("media, mean, CV, n")</code>.</p></td>
     </tr>
     <tr>
       <th>level</th>
@@ -224,7 +239,9 @@ vector.</p></td>
 
 <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>desc_stat</span>(<span class='no'>EP</span>, <span class='no'>EL</span>, <span class='no'>PH</span>, <span class='no'>CL</span>, <span class='no'>CW</span>, <span class='no'>NR</span>, <span class='no'>NKR</span>)
+  <span class='fu'>desc_stat</span>(<span class='no'>EP</span>, <span class='no'>EL</span>, <span class='no'>PH</span>, <span class='no'>CL</span>, <span class='no'>CW</span>, <span class='no'>NR</span>, <span class='no'>NKR</span>,
+  <span class='kw'>stats</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'mean, SE.mean, CV'</span>))
+
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
