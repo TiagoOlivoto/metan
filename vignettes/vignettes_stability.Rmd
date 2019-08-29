@@ -36,7 +36,7 @@ str(data_ge)
 ```
 
 # Graphic visualization of the interaction
-The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean of each environment.
+The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean for each environment.
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
 p1 = ge_plot(data_ge, ENV, GEN, GY)
 p2 = ge_plot(data_ge, ENV, GEN, GY) + theme_grey() + coord_flip()

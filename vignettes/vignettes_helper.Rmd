@@ -37,11 +37,11 @@ print_table = function(table){
 # Bind cross-validation objects
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
-AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 50, nrepval = 2)
-AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 50, nrepval = 2)
-AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 50, nrepval = 2)
-AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
-BLUP = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
+AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 500, nrepval = 2)
+AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 500, nrepval = 2)
+AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 500, nrepval = 2)
+AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2)
+BLUP = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2)
 bind1 = bind_cv(AMMI0, AMMI2, AMMI9)
 bind2 = bind_cv(AMMI0, AMMI2, AMMI9, bind = "means")
     ```

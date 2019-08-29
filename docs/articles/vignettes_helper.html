@@ -154,11 +154,11 @@
 <div id="bind-cross-validation-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bind-cross-validation-objects" class="anchor"></a>Bind cross-validation objects</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-5" title="5">BLUP =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-5" title="5">BLUP =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb2-6" title="6">bind1 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
 <a class="sourceLine" id="cb2-7" title="7">bind2 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9, <span class="dt">bind =</span> <span class="st">"means"</span>)</a></code></pre></div>
 </div>
@@ -1498,162 +1498,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-13.972
+26.019
 </td>
 <td style="text-align:right;">
-64.108
+103.287
 </td>
 <td style="text-align:right;">
-54.775
+78.816
 </td>
 <td style="text-align:right;">
-10.945
+26.587
 </td>
 <td style="text-align:right;">
-67.436
+87.214
 </td>
 <td style="text-align:right;">
-58.103
+62.743
 </td>
 <td style="text-align:right;">
-14.273
+10.513
 </td>
 <td style="text-align:right;">
-108.239
+140.011
 </td>
 <td style="text-align:right;">
-64.409
+87.782
 </td>
 <td style="text-align:right;">
-55.075
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-16.170
-</td>
-<td style="text-align:right;">
-34.720
-</td>
-<td style="text-align:right;">
-57.874
-</td>
-<td style="text-align:right;">
-21.258
-</td>
-<td style="text-align:right;">
-21.982
-</td>
-<td style="text-align:right;">
-45.136
-</td>
-<td style="text-align:right;">
-8.520
-</td>
-<td style="text-align:right;">
-63.686
-</td>
-<td style="text-align:right;">
-27.070
-</td>
-<td style="text-align:right;">
-50.224
+63.311
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-34.589
+32.431
 </td>
 <td style="text-align:right;">
-101.708
+43.825
 </td>
 <td style="text-align:right;">
-81.677
+38.350
 </td>
 <td style="text-align:right;">
-35.263
+31.688
 </td>
 <td style="text-align:right;">
-77.199
+24.837
 </td>
 <td style="text-align:right;">
-57.168
+19.362
 </td>
 <td style="text-align:right;">
-10.754
+12.700
 </td>
 <td style="text-align:right;">
-124.287
+30.756
 </td>
 <td style="text-align:right;">
-77.874
+24.094
 </td>
 <td style="text-align:right;">
-57.843
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-15.686
-</td>
-<td style="text-align:right;">
-61.172
-</td>
-<td style="text-align:right;">
-21.282
-</td>
-<td style="text-align:right;">
-12.293
-</td>
-<td style="text-align:right;">
-64.241
-</td>
-<td style="text-align:right;">
-24.351
-</td>
-<td style="text-align:right;">
-15.363
-</td>
-<td style="text-align:right;">
-69.837
-</td>
-<td style="text-align:right;">
-60.849
-</td>
-<td style="text-align:right;">
-20.959
+18.619
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-13.691
+22.453
 </td>
 <td style="text-align:right;">
-54.118
+102.000
 </td>
 <td style="text-align:right;">
-85.595
+21.475
 </td>
 <td style="text-align:right;">
-13.696
+25.757
 </td>
 <td style="text-align:right;">
-59.178
+86.013
 </td>
 <td style="text-align:right;">
-90.656
+5.488
 </td>
 <td style="text-align:right;">
-18.757
+9.770
 </td>
 <td style="text-align:right;">
-131.083
+85.035
 </td>
 <td style="text-align:right;">
-59.184
+89.317
 </td>
 <td style="text-align:right;">
-90.662
+8.791
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11.540
+</td>
+<td style="text-align:right;">
+87.512
+</td>
+<td style="text-align:right;">
+89.621
+</td>
+<td style="text-align:right;">
+18.016
+</td>
+<td style="text-align:right;">
+80.638
+</td>
+<td style="text-align:right;">
+82.747
+</td>
+<td style="text-align:right;">
+11.143
+</td>
+<td style="text-align:right;">
+158.719
+</td>
+<td style="text-align:right;">
+87.114
+</td>
+<td style="text-align:right;">
+89.224
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33.453
+</td>
+<td style="text-align:right;">
+40.814
+</td>
+<td style="text-align:right;">
+32.359
+</td>
+<td style="text-align:right;">
+34.919
+</td>
+<td style="text-align:right;">
+20.609
+</td>
+<td style="text-align:right;">
+12.153
+</td>
+<td style="text-align:right;">
+14.714
+</td>
+<td style="text-align:right;">
+19.514
+</td>
+<td style="text-align:right;">
+22.075
+</td>
+<td style="text-align:right;">
+13.619
 </td>
 </tr>
 </tbody>
@@ -1696,162 +1696,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-46.039
+104.653
 </td>
 <td style="text-align:right;">
-312.879
+1730.867
 </td>
 <td style="text-align:right;">
-263.203
+1215.846
 </td>
 <td style="text-align:right;">
-29.926
+116.616
 </td>
 <td style="text-align:right;">
-508.507
+408.947
 </td>
 <td style="text-align:right;">
-427.771
+287.265
 </td>
 <td style="text-align:right;">
-48.637
+27.553
 </td>
 <td style="text-align:right;">
-2907.133
+4751.082
 </td>
 <td style="text-align:right;">
-330.537
+455.692
 </td>
 <td style="text-align:right;">
-278.058
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-24.806
-</td>
-<td style="text-align:right;">
-292.927
-</td>
-<td style="text-align:right;">
-627.593
-</td>
-<td style="text-align:right;">
-98.341
-</td>
-<td style="text-align:right;">
-34.780
-</td>
-<td style="text-align:right;">
-74.516
-</td>
-<td style="text-align:right;">
-11.676
-</td>
-<td style="text-align:right;">
-879.955
-</td>
-<td style="text-align:right;">
-137.885
-</td>
-<td style="text-align:right;">
-295.417
+320.100
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-148.925
+172.812
 </td>
 <td style="text-align:right;">
-2132.246
+465.739
 </td>
 <td style="text-align:right;">
-1540.344
+324.979
 </td>
 <td style="text-align:right;">
-168.854
+153.708
 </td>
 <td style="text-align:right;">
-363.676
+121.769
 </td>
 <td style="text-align:right;">
-262.721
+84.967
 </td>
 <td style="text-align:right;">
-28.800
+40.188
 </td>
 <td style="text-align:right;">
-3761.533
+228.991
 </td>
 <td style="text-align:right;">
-412.342
+108.308
 </td>
 <td style="text-align:right;">
-297.878
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-59.156
-</td>
-<td style="text-align:right;">
-346.092
-</td>
-<td style="text-align:right;">
-94.458
-</td>
-<td style="text-align:right;">
-37.756
-</td>
-<td style="text-align:right;">
-514.486
-</td>
-<td style="text-align:right;">
-140.417
-</td>
-<td style="text-align:right;">
-56.126
-</td>
-<td style="text-align:right;">
-821.508
-</td>
-<td style="text-align:right;">
-328.366
-</td>
-<td style="text-align:right;">
-89.620
+75.574
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-40.457
+62.144
 </td>
 <td style="text-align:right;">
-214.905
+1591.047
 </td>
 <td style="text-align:right;">
-350.735
+43.334
 </td>
 <td style="text-align:right;">
-40.482
+125.635
 </td>
 <td style="text-align:right;">
-466.929
+267.650
 </td>
 <td style="text-align:right;">
-762.051
+7.290
 </td>
 <td style="text-align:right;">
-87.956
+21.135
 </td>
 <td style="text-align:right;">
-4047.961
+186.635
 </td>
 <td style="text-align:right;">
-467.216
+541.100
 </td>
 <td style="text-align:right;">
-762.518
+14.737
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21.480
+</td>
+<td style="text-align:right;">
+720.950
+</td>
+<td style="text-align:right;">
+740.376
+</td>
+<td style="text-align:right;">
+81.109
+</td>
+<td style="text-align:right;">
+182.685
+</td>
+<td style="text-align:right;">
+187.607
+</td>
+<td style="text-align:right;">
+20.553
+</td>
+<td style="text-align:right;">
+6296.819
+</td>
+<td style="text-align:right;">
+689.824
+</td>
+<td style="text-align:right;">
+708.411
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+177.719
+</td>
+<td style="text-align:right;">
+375.211
+</td>
+<td style="text-align:right;">
+148.343
+</td>
+<td style="text-align:right;">
+217.045
+</td>
+<td style="text-align:right;">
+92.638
+</td>
+<td style="text-align:right;">
+36.625
+</td>
+<td style="text-align:right;">
+53.587
+</td>
+<td style="text-align:right;">
+77.325
+</td>
+<td style="text-align:right;">
+113.137
+</td>
+<td style="text-align:right;">
+44.729
 </td>
 </tr>
 </tbody>

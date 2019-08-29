@@ -64,31 +64,39 @@ where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the obser
 
 </div>
 
-The function  `cv_blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The following code computes the cross-validation of the oat data using both AMMI and BLUP models. To avoid extensive processing time,  I will use 50 re-sampling procedures only. I suggest using a larger number, say, 1000.
+The function  `cv_blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The following code computes the cross-validation of the oat data using both AMMI and BLUP models. In this example, I will use 500 re-sampling procedures.
 
 
+# Cross-validation for AMMI model
+## Declaring the number of axes
 
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-# cross-validation for AMMI model (declaring the number of axes)
-AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 50, nrepval = 2)
-AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 50, nrepval = 2)
-AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 50, nrepval = 2)
+AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 500, nrepval = 2)
+AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 500, nrepval = 2)
+AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 500, nrepval = 2)
+```
 
-# cross-validation for AMMI model (AMMI0-AMMIF)
-AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2)
+## AMMI0 to AMMIF
+```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2)
+```
 
-# cross-validation for BLUP prediction
-# Genotype and genotype-vs-environment as random effects
-BLUP_g = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2, random = "gen")
+# Cross-validation for BLUP prediction
+## Genotype and genotype-vs-environment as random effects
+```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+BLUP_g = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2, random = "gen")
+```
 
-# Environment, replication-whitin-environment and interaction as random effects
-BLUP_e = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2, random = "env")
+## Environment, replication-whitin-environment and interaction as random effects
+```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+BLUP_e = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2, random = "env")
+```
 
-# A random model (all terms as random effects)
-BLUP_ge = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 50, nrepval = 2, random = "all")
+## A random model (all terms as random effects)
+```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+BLUP_ge = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2, random = "all")
+```
 
-
-    ```
 
 A progress bar is shown by default (the examples are below). Thus, it is possible to verify the status of the cross-validation process. If necessary, the progress bar can be disabled by informing the argument `progbar = FALSE` in the function.
 

@@ -179,24 +179,41 @@
 \]</span></p>
 <p>where <span class="math inline">\(\widehat{y}_{ij}\)</span> is the model predicted value; and <span class="math inline">\(y_{ij}\)</span> is the observed value in the validation set. The number of random selection of blocks/replicates (<em>n</em>) is defined in the argument <code>nboot</code>. At the end of the <em>n</em> cycles for all models, a list with all estimated RMSPD and the average of RMSPD is returned.</p>
 </div>
-<p>The function <code>cv_blup</code> provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The following code computes the cross-validation of the oat data using both AMMI and BLUP models. To avoid extensive processing time, I will use 50 re-sampling procedures only. I suggest using a larger number, say, 1000.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># cross-validation for AMMI model (declaring the number of axes)</span></a>
-<a class="sourceLine" id="cb2-2" title="2">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-5" title="5"></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co"># cross-validation for AMMI model (AMMI0-AMMIF)</span></a>
-<a class="sourceLine" id="cb2-7" title="7">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-8" title="8"></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co"># cross-validation for BLUP prediction</span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co"># Genotype and genotype-vs-environment as random effects</span></a>
-<a class="sourceLine" id="cb2-11" title="11">BLUP_g =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"gen"</span>)</a>
-<a class="sourceLine" id="cb2-12" title="12"></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co"># Environment, replication-whitin-environment and interaction as random effects</span></a>
-<a class="sourceLine" id="cb2-14" title="14">BLUP_e =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"env"</span>)</a>
-<a class="sourceLine" id="cb2-15" title="15"></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co"># A random model (all terms as random effects)</span></a>
-<a class="sourceLine" id="cb2-17" title="17">BLUP_ge =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">50</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"all"</span>)</a></code></pre></div>
+<p>The function <code>cv_blup</code> provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The following code computes the cross-validation of the oat data using both AMMI and BLUP models. In this example, I will use 500 re-sampling procedures.</p>
+</div>
+<div id="cross-validation-for-ammi-model" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cross-validation-for-ammi-model" class="anchor"></a>Cross-validation for AMMI model</h1>
+<div id="declaring-the-number-of-axes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#declaring-the-number-of-axes" class="anchor"></a>Declaring the number of axes</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a></code></pre></div>
+</div>
+<div id="ammi0-to-ammif" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ammi0-to-ammif" class="anchor"></a>AMMI0 to AMMIF</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="cross-validation-for-blup-prediction" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cross-validation-for-blup-prediction" class="anchor"></a>Cross-validation for BLUP prediction</h1>
+<div id="genotype-and-genotype-vs-environment-as-random-effects" class="section level2">
+<h2 class="hasAnchor">
+<a href="#genotype-and-genotype-vs-environment-as-random-effects" class="anchor"></a>Genotype and genotype-vs-environment as random effects</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">BLUP_g =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"gen"</span>)</a></code></pre></div>
+</div>
+<div id="environment-replication-whitin-environment-and-interaction-as-random-effects" class="section level2">
+<h2 class="hasAnchor">
+<a href="#environment-replication-whitin-environment-and-interaction-as-random-effects" class="anchor"></a>Environment, replication-whitin-environment and interaction as random effects</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">BLUP_e =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"env"</span>)</a></code></pre></div>
+</div>
+<div id="a-random-model-all-terms-as-random-effects" class="section level2">
+<h2 class="hasAnchor">
+<a href="#a-random-model-all-terms-as-random-effects" class="anchor"></a>A random model (all terms as random effects)</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">BLUP_ge =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">500</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"all"</span>)</a></code></pre></div>
 <p>A progress bar is shown by default (the examples are below). Thus, it is possible to verify the status of the cross-validation process. If necessary, the progress bar can be disabled by informing the argument <code>progbar = FALSE</code> in the function.</p>
 <div class="figure">
 <img src="printAMMI.png" alt="Progress bar for AMMI model family cross-validation process."><p class="caption">Progress bar for AMMI model family cross-validation process.</p>
@@ -204,12 +221,13 @@
 <div class="figure">
 <img src="printBLUP.png" alt="Progress bar for BLUP cross-validation process."><p class="caption">Progress bar for BLUP cross-validation process.</p>
 </div>
+</div>
 <div id="printing-the-means-of-rmspd-estimates" class="section level2">
 <h2 class="hasAnchor">
 <a href="#printing-the-means-of-rmspd-estimates" class="anchor"></a>Printing the means of RMSPD estimates</h2>
 <p>All outputs shown in tables were laid out using the R package kableExtra. The pdf file of this package can be found <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">here</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">bind_mod =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP_g, <span class="dt">bind =</span> <span class="st">"means"</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">print_table</span>(bind_mod<span class="op">$</span>RMSPD)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">bind_mod =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP_g, <span class="dt">bind =</span> <span class="st">"means"</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(bind_mod<span class="op">$</span>RMSPD)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -240,36 +258,16 @@ BLUP_g
 0.405
 </td>
 <td style="text-align:right;">
-0.024
+0.027
 </td>
 <td style="text-align:right;">
-0.003
+0.001
 </td>
 <td style="text-align:right;">
-0.365
+0.355
 </td>
 <td style="text-align:right;">
-0.449
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI3
-</td>
-<td style="text-align:right;">
-0.415
-</td>
-<td style="text-align:right;">
-0.021
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
-0.378
-</td>
-<td style="text-align:right;">
-0.453
+0.457
 </td>
 </tr>
 <tr>
@@ -277,39 +275,39 @@ AMMI3
 AMMI2
 </td>
 <td style="text-align:right;">
-0.415
+0.412
 </td>
 <td style="text-align:right;">
-0.030
+0.026
 </td>
 <td style="text-align:right;">
-0.004
+0.001
 </td>
 <td style="text-align:right;">
-0.357
+0.360
 </td>
 <td style="text-align:right;">
-0.453
+0.457
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-AMMI5
+AMMI3
 </td>
 <td style="text-align:right;">
-0.420
+0.417
 </td>
 <td style="text-align:right;">
-0.025
+0.023
 </td>
 <td style="text-align:right;">
-0.003
+0.001
 </td>
 <td style="text-align:right;">
-0.386
+0.373
 </td>
 <td style="text-align:right;">
-0.470
+0.461
 </td>
 </tr>
 <tr>
@@ -317,79 +315,39 @@ AMMI5
 AMMI4
 </td>
 <td style="text-align:right;">
-0.422
+0.418
 </td>
 <td style="text-align:right;">
-0.020
+0.023
 </td>
 <td style="text-align:right;">
-0.003
+0.001
 </td>
 <td style="text-align:right;">
-0.381
+0.369
 </td>
 <td style="text-align:right;">
-0.462
+0.460
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-AMMIF
+AMMI5
 </td>
 <td style="text-align:right;">
-0.423
+0.419
 </td>
 <td style="text-align:right;">
-0.022
+0.021
 </td>
 <td style="text-align:right;">
-0.003
+0.001
 </td>
 <td style="text-align:right;">
-0.386
+0.375
 </td>
 <td style="text-align:right;">
-0.456
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI8
-</td>
-<td style="text-align:right;">
-0.423
-</td>
-<td style="text-align:right;">
-0.022
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
-0.392
-</td>
-<td style="text-align:right;">
-0.464
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI7
-</td>
-<td style="text-align:right;">
-0.424
-</td>
-<td style="text-align:right;">
-0.020
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
-0.397
-</td>
-<td style="text-align:right;">
-0.465
+0.458
 </td>
 </tr>
 <tr>
@@ -397,39 +355,79 @@ AMMI7
 AMMI6
 </td>
 <td style="text-align:right;">
-0.427
+0.424
+</td>
+<td style="text-align:right;">
+0.021
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+<td style="text-align:right;">
+0.384
+</td>
+<td style="text-align:right;">
+0.465
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI7
+</td>
+<td style="text-align:right;">
+0.425
 </td>
 <td style="text-align:right;">
 0.022
 </td>
 <td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
-0.383
-</td>
-<td style="text-align:right;">
-0.468
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI0
-</td>
-<td style="text-align:right;">
-0.435
-</td>
-<td style="text-align:right;">
-0.029
-</td>
-<td style="text-align:right;">
-0.004
+0.001
 </td>
 <td style="text-align:right;">
 0.377
 </td>
 <td style="text-align:right;">
-0.476
+0.465
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMIF
+</td>
+<td style="text-align:right;">
+0.426
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+<td style="text-align:right;">
+0.380
+</td>
+<td style="text-align:right;">
+0.465
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI8
+</td>
+<td style="text-align:right;">
+0.426
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+<td style="text-align:right;">
+0.379
+</td>
+<td style="text-align:right;">
+0.467
 </td>
 </tr>
 <tr>
@@ -437,19 +435,39 @@ AMMI0
 AMMI1
 </td>
 <td style="text-align:right;">
-0.435
+0.433
 </td>
 <td style="text-align:right;">
-0.028
+0.026
 </td>
 <td style="text-align:right;">
-0.004
+0.001
 </td>
 <td style="text-align:right;">
-0.384
+0.383
 </td>
 <td style="text-align:right;">
-0.478
+0.479
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI0
+</td>
+<td style="text-align:right;">
+0.436
+</td>
+<td style="text-align:right;">
+0.029
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+<td style="text-align:right;">
+0.379
+</td>
+<td style="text-align:right;">
+0.490
 </td>
 </tr>
 </tbody>
@@ -460,12 +478,12 @@ AMMI1
 <h2 class="hasAnchor">
 <a href="#plotting-the-rmspd-values" class="anchor"></a>Plotting the RMSPD values</h2>
 <p>The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function<code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">bind1 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
-<a class="sourceLine" id="cb4-2" title="2">bind2 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP_g, BLUP_e, BLUP_ge)</a>
-<a class="sourceLine" id="cb4-3" title="3">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind1, <span class="dt">violin =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb4-4" title="4">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind2, <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>, <span class="dt">col.boxplot =</span> <span class="st">"transparent"</span>)</a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="vignettes_cross-validation_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">bind1 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
+<a class="sourceLine" id="cb8-2" title="2">bind2 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP_g, BLUP_e, BLUP_ge)</a>
+<a class="sourceLine" id="cb8-3" title="3">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind1, <span class="dt">violin =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-4" title="4">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind2, <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>, <span class="dt">col.boxplot =</span> <span class="st">"transparent"</span>)</a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="vignettes_cross-validation_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>Six statistics are shown in this boxplot. The mean (black rhombus), the median (black line), the lower and upper hinges that correspond sto the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than <span class="math inline">\(1.5\times{IQR}\)</span> from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most <span class="math inline">\(1.5\times{IQR}\)</span> of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition <code>violin = TRUE</code>, a violin plot is added along with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.</p>
 </div>
 </div>
@@ -489,9 +507,19 @@ AMMI1
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#getting-started">Getting started</a></li>
+      <li><a href="#predictive-accuracy">Predictive accuracy</a></li>
       <li>
-<a href="#predictive-accuracy">Predictive accuracy</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#printing-the-means-of-rmspd-estimates">Printing the means of RMSPD estimates</a></li>
+<a href="#cross-validation-for-ammi-model">Cross-validation for AMMI model</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#declaring-the-number-of-axes">Declaring the number of axes</a></li>
+      <li><a href="#ammi0-to-ammif">AMMI0 to AMMIF</a></li>
+      </ul>
+</li>
+      <li>
+<a href="#cross-validation-for-blup-prediction">Cross-validation for BLUP prediction</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#genotype-and-genotype-vs-environment-as-random-effects">Genotype and genotype-vs-environment as random effects</a></li>
+      <li><a href="#environment-replication-whitin-environment-and-interaction-as-random-effects">Environment, replication-whitin-environment and interaction as random effects</a></li>
+      <li><a href="#a-random-model-all-terms-as-random-effects">A random model (all terms as random effects)</a></li>
+      <li><a href="#printing-the-means-of-rmspd-estimates">Printing the means of RMSPD estimates</a></li>
       <li><a href="#plotting-the-rmspd-values">Plotting the RMSPD values</a></li>
       </ul>
 </li>
