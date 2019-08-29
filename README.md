@@ -20,6 +20,9 @@ to:
   - Graphics tools for generating biplots;
   - Parametric and nonparametric stability statistics.
 
+For more details see the [complete
+vignette](https://tiagoolivoto.github.io/metan/).
+
 # Installation
 
 The latest development version can be download from GitHub by running
@@ -470,8 +473,7 @@ p1 = plot_blup(model2$GY)
 p2 = plot_blup(model2$GY,
                prob = 0.1,
                col.shape  =  c("gray20", "gray80")) + coord_flip()
-plot_grid(p1, p2,
-          labels = c("p1", "p2"))
+plot_grid(p1, p2, labels = c("p1", "p2"))
 ```
 
 <img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />

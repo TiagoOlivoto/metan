@@ -21,6 +21,7 @@ The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides u
 * Graphics tools for generating biplots;
 * Parametric and nonparametric stability statistics.
 
+For more details see the [complete vignette](https://tiagoolivoto.github.io/metan/).
 
 # Installation
 
@@ -124,8 +125,7 @@ p1 = plot_blup(model2$GY)
 p2 = plot_blup(model2$GY,
                prob = 0.1,
                col.shape  =  c("gray20", "gray80")) + coord_flip()
-plot_grid(p1, p2,
-          labels = c("p1", "p2"))
+plot_grid(p1, p2, labels = c("p1", "p2"))
 ```
 
 
