@@ -7,6 +7,13 @@
 #' @param tolerance The tolerance to consider an eigenvalue equals to zero.
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @export
+#' @examples
+#' library(metan)
+#' mat = matrix(c(1, 4, 2, 8), ncol = 2)
+#' det(mat)
+#' solve(mat)
+#' solve_svd(mat)
+
 solve_svd <- function(x, tolerance = 2.220446e-16) {
   if (dim(x)[1] - dim(x)[2] != 0) {
     stop("The object 'x' must be a square matrix")
@@ -18,7 +25,6 @@ solve_svd <- function(x, tolerance = 2.220446e-16) {
   } else if (!any(posi)) {
     array(0, dim(x)[2L:1L])
   } else {
-    s$v[, posi, drop = FALSE] %*% ((1/s$d[posi]) * t(s$u[,
-                                                         posi, drop = FALSE]))
+    s$v[, posi, drop = FALSE] %*% ((1/s$d[posi]) * t(s$u[, posi, drop = FALSE]))
   }
 }

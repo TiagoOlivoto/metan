@@ -15,6 +15,13 @@ solve_svd(x, tolerance = 2.220446e-16)
 This function computes the Moore-Penrose pseudoinverse of a square matrix
 using singular value decomposition.
 }
+\examples{
+library(metan)
+mat = matrix(c(1, 4, 2, 8), ncol = 2)
+det(mat)
+solve(mat)
+solve_svd(mat)
+}
 \author{
 Tiago Olivoto, \email{tiagoolivoto@gmail.com}
 }
