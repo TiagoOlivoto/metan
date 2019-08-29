@@ -5,11 +5,11 @@
 \title{Plot the RMSPD of a cross-validation procedure}
 \usage{
 \method{plot}{cv_ammif}(x, violin = FALSE, export = FALSE,
-  x.lab = NULL, y.lab = NULL, size.tex.lab = 12, file.type = "pdf",
-  file.name = NULL, theme = theme_waasb(), width = 6, height = 6,
-  resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
-  col.boxplot.win = "cyan", width.boxplot = 0.2, x.lim = NULL,
-  x.breaks = waiver(), ...)
+  order_box = FALSE, x.lab = NULL, y.lab = NULL, size.tex.lab = 12,
+  file.type = "pdf", file.name = NULL, theme = theme_waasb(),
+  width = 6, height = 6, resolution = 300, col.violin = "gray90",
+  col.boxplot = "gray70", col.boxplot.win = "cyan",
+  width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), ...)
 }
 \arguments{
 \item{x}{An object of class \code{cv_ammif}.}
@@ -18,6 +18,9 @@
 'TRUE'}
 
 \item{export}{Export (or not) the plot. Default is \code{T}.}
+
+\item{order_box}{Logical argument. If \code{TRUE} then the boxplots will be ordered
+according to the values of the RMSPD.}
 
 \item{x.lab}{The label of x-axis. New arguments can be inserted as
 \code{x.lab = 'my x label'}.}
