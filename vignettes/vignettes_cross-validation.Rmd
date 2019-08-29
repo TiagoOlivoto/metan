@@ -17,7 +17,7 @@ knitr::opts_chunk$set(comment = "", cache = TRUE)
 
 
 # Getting started
-A dataset called `data_ge` is provided to make reproducible examples. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+The dataset `data_ge` is used to reproduce the examples of this vignette. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
 <style>
   .col2 {
@@ -64,37 +64,41 @@ where $\widehat{y}_{ij}$ is the model predicted value; and $y_{ij}$ is the obser
 
 </div>
 
-The function  `cv_blup` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. The following code computes the cross-validation of the oat data using both AMMI and BLUP models. In this example, I will use 500 re-sampling procedures.
-
-
 # Cross-validation for AMMI model
+The following code computes the cross-validation of the oat data using the AMMI model. There are two options for doing that. The first is to perform the cross-validation for a specific member of the AMMI-family model. The second (and more realistic) is to perform the cross-validation for all AMMI-family models in the same procedure.
+
 ## Declaring the number of axes
+The function `cv_ammi()` is used to compute a cross-validation procedure for the AMMI0, AMMI2 and AMMIF (9 axes) models.
 
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 500, nrepval = 2)
-AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 500, nrepval = 2)
-AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 500, nrepval = 2)
+AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 100, nrepval = 2) # AMMI0
+AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 100, nrepval = 2) # AMMI2
+AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 100, nrepval = 2) # AMMIF
 ```
 
 ## AMMI0 to AMMIF
+The function `cv_ammif()` is used to compute a cross-validation procedure for all members of the AMMI-family model. In this case, AMMI0-AMMI9.
+
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2)
+AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 100, nrepval = 2)
 ```
 
 # Cross-validation for BLUP prediction
+The function  `cv_blup()` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. Using the argument `random` it is possible to chose the random effects of the model, as shown bellow.
+
 ## Genotype and genotype-vs-environment as random effects
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-BLUP_g = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2, random = "gen")
+BLUP_g = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 100, nrepval = 2, random = "gen")
 ```
 
 ## Environment, replication-whitin-environment and interaction as random effects
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-BLUP_e = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2, random = "env")
+BLUP_e = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 100, nrepval = 2, random = "env")
 ```
 
 ## A random model (all terms as random effects)
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-BLUP_ge = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 500, nrepval = 2, random = "all")
+BLUP_ge = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 100, nrepval = 2, random = "all")
 ```
 
 
@@ -114,7 +118,7 @@ print_table(bind_mod$RMSPD)
 
     ```
 
-The table above showns the descriptive statistics (mean, standard deviation, standar error of the mean, and quantiles 2.5% and 97.5%) of the 50 RMSPD estimates for each model, and are presented from the most accurate model (smallest RMSPD mean) to the least accurate model (highest RMSPD mean). 
+The table above showns the descriptive statistics (mean, standard deviation, standar error of the mean, and quantiles 2.5% and 97.5%) of the 100 RMSPD estimates for each model, and are presented from the most accurate model (smallest RMSPD mean) to the least accurate model (highest RMSPD mean). 
 
 ## Plotting the RMSPD values
 

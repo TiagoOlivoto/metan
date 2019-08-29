@@ -15,6 +15,8 @@
 #' @param violin Define if a violine plot is used with boxplot. Default is
 #' 'TRUE'
 #' @param export Export (or not) the plot. Default is \code{T}.
+#' @param order_box Logical argument. If \code{TRUE} then the boxplots will be ordered
+#' according to the values of the RMSPD.
 #' @param x.lab The label of x-axis. New arguments can be inserted as
 #' \code{x.lab = 'my x label'}.
 #' @param y.lab The label of y-axis. New arguments can be inserted as
@@ -62,7 +64,7 @@
 #' }
 #'
 #'
-plot.cv_ammif <- function(x, violin = FALSE, export = FALSE,
+plot.cv_ammif <- function(x, violin = FALSE, export = FALSE, order_box =  FALSE,
                           x.lab = NULL, y.lab = NULL, size.tex.lab = 12, file.type = "pdf",
                           file.name = NULL, theme = theme_waasb(), width = 6, height = 6,
                           resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
@@ -83,8 +85,12 @@ plot.cv_ammif <- function(x, violin = FALSE, export = FALSE,
     mod <- paste(a$MODEL[1])
     if (violin == TRUE) {
         dodge <- position_dodge(width = 1)
-        p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
-            geom_violin(position = dodge, fill = col.violin) +
+        if(order_box == TRUE){
+            p1 <- ggplot2::ggplot(x$RMSPD, aes(x = reorder(MODEL, RMSPD), y = RMSPD))
+        } else {
+            p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD))
+        }
+          p1 = p1 + geom_violin(position = dodge, fill = col.violin) +
             geom_boxplot(width = width.boxplot, position = dodge,
                          fill = col.boxplot) + geom_boxplot(data = x$RMSPD[x$RMSPD$MODEL ==
                                                                                mod, ], aes(x = MODEL, y = RMSPD), width = width.boxplot,
@@ -96,8 +102,12 @@ plot.cv_ammif <- function(x, violin = FALSE, export = FALSE,
                                                                                                                                                breaks = x.breaks) + labs(x = x.lab, y = y.lab)
     } else {
         dodge <- position_dodge(width = 1)
-        p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD)) +
-            geom_boxplot(width = width.boxplot, position = dodge,
+        if(order_box == TRUE){
+            p1 <- ggplot2::ggplot(x$RMSPD, aes(x = reorder(MODEL, RMSPD), y = RMSPD))
+        } else {
+            p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD))
+        }
+         p1 = p1 + geom_boxplot(width = width.boxplot, position = dodge,
                          fill = col.boxplot) + geom_boxplot(data = x$RMSPD[x$RMSPD$MODEL ==
                                                                                mod, ], aes(x = MODEL, y = RMSPD), width = width.boxplot,
                                                             position = dodge, fill = col.boxplot.win) + stat_summary(fun.y = mean,
