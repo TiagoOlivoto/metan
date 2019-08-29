@@ -20,17 +20,14 @@ to:
   - Graphics tools for generating biplots;
   - Parametric and nonparametric stability statistics.
 
-# Installing
+# Installation
 
 The latest development version can be download from GitHub by running
 
 ``` r
-if (!require("devtools")) install.packages('devtools')
+# install.packages("devtools")
 devtools::install_github("TiagoOlivoto/metan")
 ```
-
-Suggestions and criticisms to improve the quality and usability of the
-package are welcome\!
 
 # Brief examples
 
@@ -433,7 +430,7 @@ p2 = plot_scores(model$GY,
 plot_grid(p1, p2, labels = c("p1","p2"))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 ## GGE model
 
@@ -453,7 +450,7 @@ p2 <- plot(model2,
 plot_grid(p1, p2, labels = c("p1","p2"))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+<img src="README_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
 ## BLUP model
 
@@ -482,7 +479,7 @@ plot_grid(p1, p2,
           labels = c("p1", "p2"))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+<img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
 ### BLUPS for genotype-vs-environment interaction
 
@@ -815,3 +812,11 @@ G4
 </tbody>
 
 </table>
+
+# Getting help
+
+  - Suggestions and criticisms to improve the quality and usability of
+    the package are welcome\!
+
+  - If you encounter a clear bug, please file a minimal reproducible
+    example on [github](https://github.com/TiagoOlivoto/metan/issues)

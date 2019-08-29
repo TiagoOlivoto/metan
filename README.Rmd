@@ -22,15 +22,14 @@ The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides u
 * Parametric and nonparametric stability statistics.
 
 
-# Installing
+# Installation
 
 The latest development version can be download from GitHub by running
 ```{r, eval=FALSE}
-if (!require("devtools")) install.packages('devtools')
+# install.packages("devtools")
 devtools::install_github("TiagoOlivoto/metan")
 ```
 
-Suggestions and criticisms to improve the quality and usability of the package are welcome!
 
 
 # Brief examples
@@ -73,7 +72,7 @@ kable(predicted$GY[1:5,], "html", digits = 3) %>%
 
 ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `waas()` function allows analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list, in this case with one element, GY.
 
-```{r, fig.width=8, message=FALSE, warning=FALSE}
+```{r, fig.width = 10, fig.align = "center", message=FALSE, warning=FALSE}
 library(cowplot)
 library(ggplot2)
 p1 = plot_scores(model$GY, axis.expand = 1.5)
@@ -91,7 +90,7 @@ plot_grid(p1, p2, labels = c("p1","p2"))
 The GGE model is fitted with the function `gge()`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html).
 
 
-```{r}
+```{r, fig.width = 10, fig.align = "center", message=FALSE, warning=FALSE}
 model <- gge(data_ge, GEN, ENV, GY)
 model2 <- gge(data_ge, GEN, ENV, GY, svp = "symmetrical")
 p1 <- plot(model)
@@ -120,7 +119,7 @@ model2 <- waasb(data_ge,
 ### Plotting the BLUPs for genotypes
 
 
-```{r, fig.width=8}
+```{r, fig.width = 10, fig.align = "center"}
 p1 = plot_blup(model2$GY)
 p2 = plot_blup(model2$GY,
                prob = 0.1,
@@ -137,4 +136,10 @@ data = model2$GY$BLUPgge[1:5,]
 kable(data, "html", digits = 3) %>%
   kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
 ```
+
+# Getting help
+
+* Suggestions and criticisms to improve the quality and usability of the package are welcome!
+
+* If you encounter a clear bug, please file a minimal reproducible example on [github](https://github.com/TiagoOlivoto/metan/issues)
 

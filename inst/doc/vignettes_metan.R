@@ -88,8 +88,13 @@ ge_table = make_mat(data_ge, GEN, ENV, GY)
 gge_model = gge(ge_table, table = TRUE)
 
 
-## ----echo = TRUE,fig.width=4, fig.align = "center", message=F, warning=F----
-plot(gge_model)
+## ----echo = TRUE, fig.width = 4, fig.height=8, message=F, warning=F------
+p1 = plot(gge_model)
+p2 = plot(gge_model, type = 2)
+plot_grid(p1, p2,
+          align = "v",
+          labels = c("p1", "p2"),
+          ncol = 1)
 
 ## ------------------------------------------------------------------------
 stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)

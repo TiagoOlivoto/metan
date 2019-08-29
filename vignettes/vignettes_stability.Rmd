@@ -20,7 +20,7 @@ knitr::opts_chunk$set(comment = "")
 
 # Getting started
 
-In this section, we will use the data in `data_ge2`. For more information, please, see `?data_ge2`. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).
+In this section, we will use the data in `data_ge` and `data_ge2`. For more information see `?data_ge` and `?data_ge2`, respectively. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
 library(metan)
@@ -41,6 +41,16 @@ The function `ge_plot()` may be used to visualize the genotype's performance acr
 p1 = ge_plot(data_ge, ENV, GEN, GY)
 p2 = ge_plot(data_ge, ENV, GEN, GY) + theme_grey() + coord_flip()
 plot_grid(p1, p2)
+```
+
+# Clustering tester locations
+
+The function `ge_cluster()` computes a cluter analysis for grouping environments based on its similarities using an Euclidean distance based on standardized data. Line means are divided by the phenotypic standard error of the relevant environment after its mean has been subtracted. By standardizing the data each environment will have a mean of zero and unit variance, and the effect of variability in phenotypic variance (as well as the mean) should be reduced [@Fox1982].
+
+```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE, fig.align="center"}
+d1 = ge_cluster(data_ge, ENV, GEN, GY, nclust = 4)
+plot(d1, nclust = 4)
+
 ```
 
 
@@ -161,20 +171,25 @@ This comand will create a text file called *ge_stats summary.txt* in the current
 The following table shows the results for the analysis of variance in each environment. Environment with a gray background had a significant genotype effect, considering 5% probability error.
 ```{r }
 kable(dat$individual, "html", digits = 3) %>% 
-  row_spec(which(dat$individual$PRFG < 0.05), bold = T, color = "white", background = "gray") %>%
+  row_spec(which(dat$individual$PRFG < 0.05), bold = T, color = "white", background = "gray80") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
 
 ```
 
 # Genotype-by-environment means
-The two-way table with the means for each genotype in each environment is stored into `ge_mean`. The following code creates a custom table highlighting with a red background the genotype with the lowest mean in each environment, and in with a green background the genotype with the highest mean.
+The two-way table with the means for each genotype in each environment is stored into `ge_mean`. The following code creates a custom table highlighting with a red background the genotype with the lowest mean in each environment, and with a green background the genotype with the highest mean.
+
 ```{r }
 round(dat$ge_mean, 2) %>%
 rownames_to_column('gen') %>% # used to store row names (mutate deletes them)
 mutate_if(is.numeric, function(x){
-cell_spec(x, "html",
-          color = ifelse(x == max(x), "white", ifelse(x == min(x), "white", "black")),
-          background  = ifelse(x == max(x), "green", ifelse(x == min(x), "red", "transparent")))
+  cell_spec(x, "html",
+            color = case_when(x == max(x) ~ "white",
+                              x == min(x) ~ "white",
+                              TRUE ~ "black"),
+            background  = case_when(x == max(x) ~ "green",
+                                    x == min(x) ~ "red",
+                                    TRUE ~ "transparent"))
 }) %>%
 column_to_rownames('gen') %>% # used to put row names back in place
 kable("html", digits = 3, escape = F) %>%
