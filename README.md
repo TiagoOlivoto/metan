@@ -31,17 +31,14 @@ devtools::install_github("TiagoOlivoto/metan")
 
 # Brief examples
 
-The package [`kableExtra`](https://haozhu233.github.io/kableExtra/) and
-[`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html)
-were used to generate the tables and arranging the graphics of this
-material.
-
 The `metan` contains some datasets for examples. We will use the example
 `data_ge` that contains data from two variables assessed in 10 genotypes
 growing in 14 environments. For more details see `?data_ge`
 
 ``` r
 library(metan)
+library(ggplot2) # used to create the plots
+library(cowplot) # used to arrange the plots
 str(data_ge)
 ```
 
@@ -417,8 +414,6 @@ the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a
 list, in this case with one element, GY.
 
 ``` r
-library(cowplot)
-library(ggplot2)
 p1 = plot_scores(model$GY, axis.expand = 1.5)
 p2 = plot_scores(model$GY,
                  type = 1,
@@ -439,8 +434,8 @@ the [complete
 vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html).
 
 ``` r
-model <- gge(data_ge, GEN, ENV, GY)
-model2 <- gge(data_ge, GEN, ENV, GY, svp = "symmetrical")
+model <- gge(data_ge, ENV, GEN, GY)
+model2 <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
 p1 <- plot(model)
 p2 <- plot(model2,
            type = 2,
