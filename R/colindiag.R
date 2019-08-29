@@ -98,7 +98,7 @@ colindiag <- function(.data, n = NULL, verbose = TRUE) {
     Avet <- data.frame(t(eigen$vectors))
     names(Avet) <- colnames(x)
     AvAvet <- cbind(Aval, Avet)
-    VIF <- data.frame(diag(solve(cor.x)))
+    VIF <- data.frame(diag(solve_svd(cor.x)))
     names(VIF) <- "VIF"
     results <- data.frame(linear = as.vector(t(cor.x)[lower.tri(cor.x,
                                                                 diag = F)]))

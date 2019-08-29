@@ -180,7 +180,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
             cor.x2 <- cor.x
             diag(cor.x2) <- diag(cor.x2) + cc
             betas[i, 1] <- cc
-            betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
+            betas[i, 2:nvar] <- t(solve_svd(cor.x2, cor.y))
             cc <- cc + kincrement
           }
           names(betas) <- paste0(c("K", names(pr)))
@@ -229,7 +229,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         Avet <- data.frame(t(eigen$vectors))
         names(Avet) <- names
         AvAvet <- cbind(Aval, Avet)
-        Direct <- solve(cor.x, cor.y)
+        Direct <- solve_svd(cor.x, cor.y)
         n <- ncol(cor.x)
         Coeff <- data.frame(cor.x)
         for (i in 1:n) {
@@ -239,7 +239,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         }
         Residual <- 1 - t(Direct) %*% cor.y
         R2 <- t(Direct) %*% cor.y
-        VIF <- data.frame(diag(solve(cor.x)))
+        VIF <- data.frame(diag(solve_svd(cor.x)))
         if (verbose == TRUE) {
           names(VIF) <- "VIF"
           cat("\n----------------------------------------------------------------------------\n")
@@ -281,7 +281,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         yyy <- data %>% dplyr::select(!!resp)
         xxx <- data %>% dplyr::select(-c(!!resp))
         cor.xx <- cor(xxx, use = missingval)
-        VIF <- data.frame(diag(solve(cor.xx)))
+        VIF <- data.frame(diag(solve_svd(cor.xx)))
         names(VIF) <- "VIF"
         VIF <- VIF[order(VIF[, "VIF"], decreasing = F),
                    , drop = FALSE]
@@ -290,7 +290,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                       , drop = FALSE]
           pred2 <- rownames(VIF2)
           xxx2 <- data[rownames(VIF2)]
-          VIF3 <- data.frame(VIF = diag(solve(cor(xxx2,
+          VIF3 <- data.frame(VIF = diag(solve_svd(cor(xxx2,
                                                   use = missingval))))
           VIF3 <- VIF3[order(VIF3[, "VIF"], decreasing = F),
                        , drop = FALSE]
@@ -345,7 +345,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
               cor.x2 <- cor.x
               diag(cor.x2) <- diag(cor.x2) + cc
               betas[i, 1] <- cc
-              betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
+              betas[i, 2:nvar] <- t(solve_svd(cor.x2, cor.y))
               cc <- cc + kincrement
             }
             names(betas) <- paste0(c("K", predstw))
@@ -395,7 +395,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           Avet <- as.data.frame(eigen$vectors)
           names(Avet) <- names
           AvAvet <- cbind(Aval, Avet)
-          Direct <- solve(cor.x, cor.y)
+          Direct <- solve_svd(cor.x, cor.y)
           n <- ncol(cor.x)
           Coeff <- data.frame(cor.x)
           for (i in 1:n) {
@@ -405,7 +405,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           }
           Residual <- 1 - t(Direct) %*% cor.y
           R2 <- t(Direct) %*% cor.y
-          VIF <- data.frame(diag(solve(cor.x)))
+          VIF <- data.frame(diag(solve_svd(cor.x)))
           names(VIF) <- "VIF"
           last <- data.frame(weight = t(AvAvet[c(nrow(AvAvet)),
                                                ])[-c(1), ])
@@ -500,7 +500,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           cor.x2 <- cor.x
           diag(cor.x2) <- diag(cor.x2) + cc
           betas[i, 1] <- cc
-          betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
+          betas[i, 2:nvar] <- t(solve_svd(cor.x2, cor.y))
           cc <- cc + kincrement
         }
         names(betas) <- paste0(c("K", names(pr)))
@@ -549,7 +549,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       Avet <- data.frame(t(eigen$vectors))
       names(Avet) <- names
       AvAvet <- cbind(Aval, Avet)
-      Direct <- solve(cor.x, cor.y)
+      Direct <- solve_svd(cor.x, cor.y)
       n <- ncol(cor.x)
       Coeff <- data.frame(cor.x)
       for (i in 1:n) {
@@ -559,7 +559,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       }
       Residual <- 1 - t(Direct) %*% cor.y
       R2 <- t(Direct) %*% cor.y
-      VIF <- data.frame(diag(solve(cor.x)))
+      VIF <- data.frame(diag(solve_svd(cor.x)))
       names(VIF) <- "VIF"
       if (verbose == TRUE) {
         if (NC > 1000) {
@@ -597,7 +597,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       yyy <- data %>% dplyr::select(!!resp) %>% as.data.frame()
       xxx <- data %>% dplyr::select(-c(!!resp)) %>% as.data.frame()
       cor.xx <- cor(xxx, use = missingval)
-      VIF <- data.frame(diag(solve(cor.xx)))
+      VIF <- data.frame(diag(solve_svd(cor.xx)))
       names(VIF) <- "VIF"
       VIF <- VIF[order(VIF[, "VIF"], decreasing = F), ,
                  drop = FALSE]
@@ -606,7 +606,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                     , drop = FALSE]
         pred2 <- rownames(VIF2)
         xxx2 <- data[rownames(VIF2)]
-        VIF3 <- data.frame(VIF = diag(solve(cor(xxx2,
+        VIF3 <- data.frame(VIF = diag(solve_svd(cor(xxx2,
                                                 use = missingval))))
         VIF3 <- VIF3[order(VIF3[, "VIF"], decreasing = F),
                      , drop = FALSE]
@@ -659,7 +659,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
             cor.x2 <- cor.x
             diag(cor.x2) <- diag(cor.x2) + cc
             betas[i, 1] <- cc
-            betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
+            betas[i, 2:nvar] <- t(solve_svd(cor.x2, cor.y))
             cc <- cc + kincrement
           }
           names(betas) <- paste0(c("K", predstw))
@@ -709,7 +709,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         Avet <- as.data.frame(eigen$vectors)
         names(Avet) <- names
         AvAvet <- cbind(Aval, Avet)
-        Direct <- solve(cor.x, cor.y)
+        Direct <- solve_svd(cor.x, cor.y)
         n <- ncol(cor.x)
         Coeff <- data.frame(cor.x)
         for (i in 1:n) {
@@ -719,7 +719,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         }
         Residual <- 1 - t(Direct) %*% cor.y
         R2 <- t(Direct) %*% cor.y
-        VIF <- data.frame(diag(solve(cor.x)))
+        VIF <- data.frame(diag(solve_svd(cor.x)))
         names(VIF) <- "VIF"
         last <- data.frame(weight = t(AvAvet[c(nrow(AvAvet)),
                                              ])[-c(1), ])

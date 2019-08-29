@@ -141,7 +141,7 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
       megval1 <- M1$values
       megvec1 <- M1$vectors
       S11_12 <- megvec1 %*% diag(1/sqrt(megval1)) %*% t(megvec1)
-      S22_Inv <- solve(S22)
+      S22_Inv <- solve_svd(S22)
       M2 <- eigen(S11_12 %*% S12 %*% S22_Inv %*% S21 %*%
                     S11_12)
       megval2 <- M2$values
@@ -163,7 +163,7 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
       rownames(Coef_FG) <- colnames(FGV)
       colnames(Coef_FG) <- paste("U", 1:ncol(Coef_FG),
                                  sep = "")
-      Coef_SG <- S22_Inv %*% S21 %*% Coef_FG %*% solve(diag(sqrt(megval2)))
+      Coef_SG <- S22_Inv %*% S21 %*% Coef_FG %*% solve_svd(diag(sqrt(megval2)))
       colnames(Coef_SG) <- paste("V", 1:ncol(Coef_SG),
                                  sep = "")
       M3 <- eigen(diag(diag(S11)))
@@ -349,7 +349,7 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   megval1 <- M1$values
   megvec1 <- M1$vectors
   S11_12 <- megvec1 %*% diag(1/sqrt(megval1)) %*% t(megvec1)
-  S22_Inv <- solve(S22)
+  S22_Inv <- solve_svd(S22)
   M2 <- eigen(S11_12 %*% S12 %*% S22_Inv %*% S21 %*% S11_12)
   megval2 <- M2$values
   megvec2 <- M2$vectors
@@ -368,7 +368,7 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   Coef_FG <- S11_12 %*% megvec2
   rownames(Coef_FG) <- colnames(FG)
   colnames(Coef_FG) <- paste("U", 1:ncol(Coef_FG), sep = "")
-  Coef_SG <- S22_Inv %*% S21 %*% Coef_FG %*% solve(diag(sqrt(megval2)))
+  Coef_SG <- S22_Inv %*% S21 %*% Coef_FG %*% solve_svd(diag(sqrt(megval2)))
   colnames(Coef_SG) <- paste("V", 1:ncol(Coef_SG), sep = "")
   M3 <- eigen(diag(diag(S11)))
   megval3 <- M3$values

@@ -64,8 +64,8 @@ lpcor <- function(.data, n = NULL, method = "pearson", verbose = TRUE) {
               call. = FALSE)
     }
     m <- as.matrix(cor.x)
-    X.resid <- -(solve(m))
-    diag(X.resid) <- 1/(1 - (1 - 1/diag(solve(m))))
+    X.resid <- -(solve_svd(m))
+    diag(X.resid) <- 1/(1 - (1 - 1/diag(solve_svd(m))))
     X.resid <- cov2cor(X.resid)
     results <- data.frame(linear = as.vector(t(m)[lower.tri(m,
                                                             diag = F)]))
