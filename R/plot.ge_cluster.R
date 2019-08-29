@@ -5,6 +5,7 @@
 #'
 #' @param x An object of class \code{ge_cluster}
 #' @param nclust The number of clusters to show.
+#' @param xlab The label of the x axis.
 #' @param ... Other arguments passed from the function \code{plot.hclust}.
 #' @method plot ge_cluster
 #' @export

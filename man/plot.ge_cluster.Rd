@@ -11,6 +11,8 @@
 
 \item{nclust}{The number of clusters to show.}
 
+\item{xlab}{The label of the x axis.}
+
 \item{...}{Other arguments passed from the function \code{plot.hclust}.}
 }
 \description{
