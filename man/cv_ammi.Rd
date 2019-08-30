@@ -72,13 +72,13 @@ with the following values.
 \dontrun{
 library(metan)
 model = cv_ammi(data_ge,
-                        env = ENV,
-                        gen = GEN,
-                        rep = REP,
-                        resp = GY,
-                        nboot = 100,
-                        nrepval = 2,
-                        naxis = 2)
+                env = ENV,
+                gen = GEN,
+                rep = REP,
+                resp = GY,
+                nboot = 100,
+                nrepval = 2,
+                naxis = 2)
 
 # Alternatively using the pipe operator \%>\%
 library(dplyr)

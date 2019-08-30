@@ -11,7 +11,6 @@
 #' library(metan)
 #' mat = matrix(c(1, 4, 2, 8), ncol = 2)
 #' det(mat)
-#' solve(mat)
 #' solve_svd(mat)
 
 solve_svd <- function(x, tolerance = 2.220446e-16) {
