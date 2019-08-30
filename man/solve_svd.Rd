@@ -19,7 +19,6 @@ using singular value decomposition.
 library(metan)
 mat = matrix(c(1, 4, 2, 8), ncol = 2)
 det(mat)
-solve(mat)
 solve_svd(mat)
 }
 \author{
