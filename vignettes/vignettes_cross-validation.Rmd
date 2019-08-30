@@ -127,7 +127,10 @@ The values of the RMSPD estimates obtained in the cross-validation process may b
 bind1 = bind_cv(AMMI0, AMMI2, AMMI9)
 bind2 = bind_cv(AMMIF, BLUP_g, BLUP_e, BLUP_ge)
 p1 = plot(bind1, violin = TRUE)
-p2 = plot(bind2, width.boxplot = 0.6, col.boxplot = "transparent")
+p2 = plot(bind2,
+          width.boxplot = 0.6,
+          col.boxplot = "transparent",
+          order_box = TRUE)
 plot_grid(p1, p2)
     ```
 

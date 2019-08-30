@@ -181,11 +181,11 @@ validation procedure.</p>
 
     <pre class="usage"><span class='co'># S3 method for cv_ammif</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>violin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
-  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>col.violin</span> <span class='kw'>=</span> <span class='st'>"gray90"</span>, <span class='kw'>col.boxplot</span> <span class='kw'>=</span> <span class='st'>"gray70"</span>,
-  <span class='kw'>col.boxplot.win</span> <span class='kw'>=</span> <span class='st'>"cyan"</span>, <span class='kw'>width.boxplot</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='no'>...</span>)</pre>
+  <span class='kw'>order_box</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(),
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>col.violin</span> <span class='kw'>=</span> <span class='st'>"gray90"</span>,
+  <span class='kw'>col.boxplot</span> <span class='kw'>=</span> <span class='st'>"gray70"</span>, <span class='kw'>col.boxplot.win</span> <span class='kw'>=</span> <span class='st'>"cyan"</span>,
+  <span class='kw'>width.boxplot</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,6 +202,11 @@ validation procedure.</p>
     <tr>
       <th>export</th>
       <td><p>Export (or not) the plot. Default is <code>T</code>.</p></td>
+    </tr>
+    <tr>
+      <th>order_box</th>
+      <td><p>Logical argument. If <code>TRUE</code> then the boxplots will be ordered
+according to the values of the RMSPD.</p></td>
     </tr>
     <tr>
       <th>x.lab</th>
