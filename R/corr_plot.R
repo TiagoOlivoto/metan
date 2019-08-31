@@ -138,7 +138,7 @@ corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
     stop("The argument 'lab.position' must be one of the 'tr', 'tl', 'br', or 'bl'.")
   }
   if (!diag.type %in% c("histogram", "density", "boxplot")) {
-    stop("The argument 'diag.type' must be one of the 'histogram' or 'density'.")
+    stop("The argument 'diag.type' must be one of the 'boxplot', 'histogram' or 'density'.")
   }
   if (!is.null(upper)) {
     if (!upper %in% c("corr", "scatter", NULL)) {
