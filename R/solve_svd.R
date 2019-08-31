@@ -20,10 +20,13 @@ solve_svd <- function(x, tolerance = 2.220446e-16) {
   s <- svd(as.matrix(x))
   posi <- s$d > max(tolerance * s$d[1], 0)
   if (all(posi)) {
-    s$v %*% (1/s$d * t(s$u))
+    xsol <- s$v %*% (1/s$d * t(s$u))
+    rownames(xsol) <- colnames(xsol) <- colnames(x)
   } else if (!any(posi)) {
     array(0, dim(x)[2L:1L])
   } else {
-    s$v[, posi, drop = FALSE] %*% ((1/s$d[posi]) * t(s$u[, posi, drop = FALSE]))
+    xsol <- s$v[, posi, drop = FALSE] %*% ((1/s$d[posi]) * t(s$u[, posi, drop = FALSE]))
+    rownames(xsol) <- colnames(xsol) <- colnames(x)
   }
+  return(xsol)
 }
