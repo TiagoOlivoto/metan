@@ -144,8 +144,8 @@ cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100,
                            RMSPDres, mean = mean(RMSPD), sd = sd(RMSPD), se = sd(RMSPD)/sqrt(n()),
                            Q2.5 = quantile(RMSPD, 0.025), Q97.5 = quantile(RMSPD,
                                                                            0.975))
-    RMSPDres <- RMSPDres %>% mutate(MODEL = paste("AMMI", naxis,
-                                                  sep = "")) %>% dplyr::select(MODEL, everything())
+    RMSPDres <- RMSPDres %>% mutate(MODEL = paste("AMMI", naxis, sep = "")) %>%
+      dplyr::select(MODEL, everything())
     return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean,
                           Estimated = MEDIAS, Modeling = modeling, Testing = testing),
                      class = "cv_ammi"))
