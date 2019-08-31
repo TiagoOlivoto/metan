@@ -81,9 +81,9 @@ lowest eigenvalue.}
 (highest eigenvector) in the lowest eigenvalue.}
 }
 \description{
-Estimates of direct and indirect effects. An algorithm to select a set of
-predictors with minimal multicollinearity and high explanatory power is
-implemented.
+Computes direct and indirect effects in path analysis. An algorithm to select
+a set of predictors with minimal multicollinearity and high explanatory power
+is implemented.
 }
 \details{
 When \code{brutstep = TRUE}, first, the algorithm will select a set of
