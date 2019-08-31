@@ -1,8 +1,8 @@
 #' Path coefficients with minimal multicollinearity
 #'
-#' Estimates of direct and indirect effects. An algorithm to select a set of
-#' predictors with minimal multicollinearity and high explanatory power is
-#' implemented.
+#' Computes direct and indirect effects in path analysis. An algorithm to select
+#' a set of predictors with minimal multicollinearity and high explanatory power
+#' is implemented.
 #'
 #' When \code{brutstep = TRUE}, first, the algorithm will select a set of
 #' predictors with minimal multicollinearity. The selection is based on the
