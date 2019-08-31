@@ -308,10 +308,8 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           cat("----------------------------------------------------------------------------\n")
           cat(paste("The algorithm has selected a set of ",
                     nrow(VIF3), " predictors with largest VIF = ",
-                    round(max(VIF3$VIF), 3), ".", sep = ""),
-              "\n")
-          cat("Selected predictors:", paste0(selectedpred),
-              "\n")
+                    round(max(VIF3$VIF), 3), ".", sep = ""), "\n")
+          cat("Selected predictors:", paste0(selectedpred),"\n")
           cat(paste("A forward stepwise-based selection procedure will fit",
                     nproced, "models.", "\n"))
           cat("--------------------------------------------------------------------------",
@@ -417,7 +415,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                           CN = NC, Det = Det, R2 = R2, Residual = Residual,
                           Response = resp, weightvar = weightvarname)
           ModelEstimates[[paste("Model", modelcode)]] <- Results
-          statistics[i, 1] <- paste("Model", modelcode)
+          statistics[i, 1] <- paste("Model", modelcode, sep = "")
           statistics[i, 2] <- FDSel$Information_Criterion
           statistics[i, 3] <- npred
           statistics[i, 4] <- NC
@@ -436,13 +434,11 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         names(statistics) <- c("Model", "AIC", "Numpred",
                                "CN", "Determinant", "R2", "Residual", "maxVIF")
         if (verbose == TRUE) {
-          cat("Done!", "\n")
+          cat("Done!\n")
           cat("\n\n")
-          cat("--------------------------------------------------------------------------",
-              "\n")
+          cat("--------------------------------------------------------------------------\n")
           cat("Summary of the adjusted models", "\n")
-          cat("--------------------------------------------------------------------------",
-              "\n")
+          cat("--------------------------------------------------------------------------\n")
           print(statistics, digits = 3, row.names = FALSE)
           cat("--------------------------------------------------------------------------")
         }
@@ -620,12 +616,9 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         cat(paste("The algorithm has selected a set of ",
                   nrow(VIF3), " predictors with largest VIF = ",
                   round(max(VIF3$VIF), 3), ".", sep = ""), "\n")
-        cat("Selected predictors:", paste0(selectedpred),
-            "\n")
-        cat(paste("A forward stepwise-based selection procedure will fit",
-                  nproced, "models.", "\n"))
-        cat("--------------------------------------------------------------------------",
-            "\n")
+        cat("Selected predictors:", paste0(selectedpred),"\n")
+        cat(paste("A forward stepwise-based selection procedure will fit", nproced, "models.", "\n"))
+        cat("--------------------------------------------------------------------------\n")
       }
       for (i in 1:nproced) {
         FDSel <- FWDselect::selection(x = xxx, y = unlist(yyy),
@@ -727,7 +720,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                         CN = NC, Det = Det, R2 = R2, Residual = Residual,
                         Response = resp, weightvar = weightvarname)
         ModelEstimates[[paste("Model", modelcode)]] <- Results
-        statistics[i, 1] <- paste("Model", modelcode)
+        statistics[i, 1] <- paste("Model", modelcode, sep = "")
         statistics[i, 2] <- FDSel$Information_Criterion
         statistics[i, 3] <- npred
         statistics[i, 4] <- NC
@@ -747,12 +740,10 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       names(statistics) <- c("Model", "AIC", "Numpred",
                              "CN", "Determinant", "R2", "Residual", "maxVIF")
       if (verbose == TRUE) {
-        cat("Done!", "\n")
-        cat("--------------------------------------------------------------------------",
-            "\n")
+        cat("Done!\n")
+        cat("--------------------------------------------------------------------------\n")
         cat("Summary of the adjusted models", "\n")
-        cat("--------------------------------------------------------------------------",
-            "\n")
+        cat("--------------------------------------------------------------------------\n")
         print(statistics, digits = 3, row.names = FALSE)
         cat("--------------------------------------------------------------------------")
       }
