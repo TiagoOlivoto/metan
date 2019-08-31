@@ -229,7 +229,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         Avet <- data.frame(t(eigen$vectors))
         names(Avet) <- names
         AvAvet <- cbind(Aval, Avet)
-        Direct <- solve_svd(cor.x, cor.y)
+        Direct <- solve(cor.x, cor.y)
         n <- ncol(cor.x)
         Coeff <- data.frame(cor.x)
         for (i in 1:n) {
@@ -281,25 +281,21 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         yyy <- data %>% dplyr::select(!!resp)
         xxx <- data %>% dplyr::select(-c(!!resp))
         cor.xx <- cor(xxx, use = missingval)
-        VIF <- data.frame(diag(solve_svd(cor.xx)))
-        names(VIF) <- "VIF"
-        VIF <- VIF[order(VIF[, "VIF"], decreasing = F),
-                   , drop = FALSE]
+        VIF <- data.frame(VIF = diag(solve_svd(cor.xx))) %>%
+          rownames_to_column("VAR") %>%
+          arrange(VIF)
         repeat {
-          VIF2 <- VIF[order(VIF[-1, ], decreasing = F),
-                      , drop = FALSE]
-          pred2 <- rownames(VIF2)
-          xxx2 <- data[rownames(VIF2)]
-          VIF3 <- data.frame(VIF = diag(solve_svd(cor(xxx2,
-                                                  use = missingval))))
-          VIF3 <- VIF3[order(VIF3[, "VIF"], decreasing = F),
-                       , drop = FALSE]
+          VIF2 <- slice(VIF, -n())
+          xxx2 <- data[VIF2$VAR]
+          VIF3 <- data.frame(VIF = diag(solve_svd(cor(xxx2, use = missingval))))%>%
+            rownames_to_column("VAR") %>%
+            arrange(VIF)
           if (max(VIF3$VIF) <= maxvif)
             break
           VIF <- VIF3
         }
-        xxx <- data[rownames(VIF3)]
-        selectedpred <- rownames(VIF3)
+        xxx <- data[VIF3$VAR]
+        selectedpred <- VIF3$VAR
         npred <- ncol(xxx) - 1
         statistics <- data.frame(matrix(nrow = npred -
                                           1, ncol = 8))
@@ -395,7 +391,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           Avet <- as.data.frame(eigen$vectors)
           names(Avet) <- names
           AvAvet <- cbind(Aval, Avet)
-          Direct <- solve_svd(cor.x, cor.y)
+          Direct <- solve(cor.x, cor.y)
           n <- ncol(cor.x)
           Coeff <- data.frame(cor.x)
           for (i in 1:n) {
@@ -549,7 +545,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       Avet <- data.frame(t(eigen$vectors))
       names(Avet) <- names
       AvAvet <- cbind(Aval, Avet)
-      Direct <- solve_svd(cor.x, cor.y)
+      Direct <- solve(cor.x, cor.y)
       n <- ncol(cor.x)
       Coeff <- data.frame(cor.x)
       for (i in 1:n) {
@@ -597,25 +593,21 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       yyy <- data %>% dplyr::select(!!resp) %>% as.data.frame()
       xxx <- data %>% dplyr::select(-c(!!resp)) %>% as.data.frame()
       cor.xx <- cor(xxx, use = missingval)
-      VIF <- data.frame(diag(solve_svd(cor.xx)))
-      names(VIF) <- "VIF"
-      VIF <- VIF[order(VIF[, "VIF"], decreasing = F), ,
-                 drop = FALSE]
+      VIF <- data.frame(VIF = diag(solve_svd(cor.xx))) %>%
+        rownames_to_column("VAR") %>%
+        arrange(VIF)
       repeat {
-        VIF2 <- VIF[order(VIF[-1, ], decreasing = F),
-                    , drop = FALSE]
-        pred2 <- rownames(VIF2)
-        xxx2 <- data[rownames(VIF2)]
-        VIF3 <- data.frame(VIF = diag(solve_svd(cor(xxx2,
-                                                use = missingval))))
-        VIF3 <- VIF3[order(VIF3[, "VIF"], decreasing = F),
-                     , drop = FALSE]
+        VIF2 <- slice(VIF, -n())
+        xxx2 <- data[VIF2$VAR]
+        VIF3 <- data.frame(VIF = diag(solve_svd(cor(xxx2, use = missingval))))%>%
+          rownames_to_column("VAR") %>%
+          arrange(VIF)
         if (max(VIF3$VIF) <= maxvif)
           break
         VIF <- VIF3
       }
-      xxx <- data[rownames(VIF3)]
-      selectedpred <- rownames(VIF3)
+      xxx <- data[VIF3$VAR]
+      selectedpred <- VIF3$VAR
       npred <- ncol(xxx) - 1
       statistics <- data.frame(matrix(nrow = npred - 1,
                                       ncol = 8))
@@ -709,7 +701,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         Avet <- as.data.frame(eigen$vectors)
         names(Avet) <- names
         AvAvet <- cbind(Aval, Avet)
-        Direct <- solve_svd(cor.x, cor.y)
+        Direct <- solve(cor.x, cor.y)
         n <- ncol(cor.x)
         Coeff <- data.frame(cor.x)
         for (i in 1:n) {
