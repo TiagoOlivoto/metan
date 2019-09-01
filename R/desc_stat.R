@@ -123,16 +123,17 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.
                                          separate(stat, into = c("var", "stat"), sep = "_") %>%
                                          make_mat(stat, var, val) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
                                          dplyr::filter(Statistic %in% stats))
-        invisible(statistics)
+        dfs[[paste(nam)]] <- statistics
         print(statistics, digits = digits, row.names = FALSE)
       }
       if (ncol(data) == 22) {
         statistics <- t(data) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
           dplyr::filter(Statistic %in% stats)
-        invisible(statistics)
+        dfs[[paste(nam)]] <- statistics
         print(statistics, digits = digits, row.names = FALSE)
       }
     }
+    return(dfs)
   } else {
     if (is.null(values) == FALSE) {
       data <- data.frame(values)
@@ -150,13 +151,13 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.
                                        separate(stat, into = c("var", "stat"), sep = "_") %>%
                                        make_mat(stat, var, val) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
                                        dplyr::filter(Statistic %in% stats))
-      invisible(statistics)
+      return(statistics)
       print(statistics, digits = digits, row.names = FALSE)
     }
     if (ncol(data) == 22) {
       statistics <- t(data) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
         dplyr::filter(Statistic %in% stats)
-      invisible(statistics)
+      return(statistics)
       print(statistics, digits = digits, row.names = FALSE)
     }
   }
