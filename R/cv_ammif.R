@@ -37,6 +37,7 @@
 #' Default is \code{TRUE}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{cv_ammi}, \link{cv_blup}}
+#' @importFrom progress progress_bar
 #' @export
 #' @examples
 #'
@@ -78,8 +79,9 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100,
              (Nbloc - 1), ").")
     }
     if (verbose == TRUE) {
-        pb <- winProgressBar(title = "the model is being built, please, wait.",
-                             min = 1, max = totalboot, width = 570)
+        pb <- progress_bar$new(
+            format = "Validating :what [:bar]:percent (:elapsedfull -:eta left -)",
+            clear = F, total = totalboot, width = 90)
     }
     condition <- (design == "CRD")
     condition2 <- (design == "RCBD")
@@ -126,11 +128,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100,
             initial <- initial + 1
             if (verbose == TRUE) {
                 ProcdAtua <- b
-                setWinProgressBar(pb, initial, title = paste("|Family = ",
-                                                             ACTUAL, "| Validating ", ProcdAtua, " of ",
-                                                             nboot, "validation datasets, considering",
-                                                             NAXIS, "axes", "-", round(initial/totalboot *
-                                                                                           100, 1), "% Concluded -"))
+                pb$tick(tokens = list(what = paste(ProcdAtua, "of", nboot, "sets", "using", ACTUAL)))
             }
         }
         if (NAXIS == minimo) {
@@ -139,9 +137,6 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100,
                                                                  1]
         NAXIS <- NAXIS - 1
         initial <- initial
-    }
-    if (verbose == TRUE) {
-        close(pb)
     }
     RMSPD <- stack(AMMIval[, -c(1)]) %>% dplyr::select(ind, everything())
     names(RMSPD) <- c("MODEL", "RMSPD")

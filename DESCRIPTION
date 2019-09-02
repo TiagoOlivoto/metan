@@ -30,7 +30,8 @@ Imports: dendextend,
          tibble,
          lattice,
          ggforce,
-         tidyr
+         tidyr,
+         progress
 RoxygenNote: 6.1.1
 Suggests:
     knitr,

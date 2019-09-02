@@ -66,8 +66,9 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot = 100,
              (Nbloc - 1), ").")
     }
     if (verbose == TRUE) {
-        pb <- winProgressBar(title = "the model is being built, please, wait.",
-                             min = 1, max = nboot, width = 570)
+        pb <- progress_bar$new(
+            format = "Validating :current of :total sets [:bar]:percent (:elapsedfull -:eta left -)",
+            clear = F, total = nboot, width = 90)
     }
     RMSPDres <- data.frame(RMSPD = matrix(NA, nboot, 1))
     for (b in 1:nboot) {
@@ -104,10 +105,7 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot = 100,
         RMSPD <- sqrt(sum(validation$error^2)/length(validation$error))
         RMSPDres[, 1][b] <- RMSPD
         if (verbose == TRUE) {
-            ProcdAtua <- b
-            setWinProgressBar(pb, b, title = paste("Estimating BLUPs for ",
-                                                   ProcdAtua, " of ", nboot, " validation datasets",
-                                                   "-", round(b/nboot * 100, 1), "% Concluded -"))
+            pb$tick()
         }
     }
     if (random == "gen") {
@@ -124,9 +122,6 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot = 100,
     RMSPDmean <- RMSPDres %>% dplyr::group_by(MODEL) %>% dplyr::summarise(mean = mean(RMSPD),
                                                                           sd = sd(RMSPD), se = sd(RMSPD)/sqrt(n()), Q2.5 = quantile(RMSPD,
                                                                                                                                     0.025), Q97.5 = quantile(RMSPD, 0.975))
-    if (verbose == TRUE) {
-        close(pb)
-    }
     return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean),
                      class = "cv_blup"))
 }

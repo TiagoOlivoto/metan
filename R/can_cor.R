@@ -16,6 +16,10 @@
 #' (smallest) group of the correlation analysis. FG can also be a cordinate for
 #' the variables; for example, \code{FG = data[,1:3]}.
 #' @param SG Similar than \code{FG} but for the second group of variables.
+#' @param means_by The argument \code{means_by} is a grouping variable to compute the
+#' means by. For example, if \code{means_by = GEN}, then the means of the
+#' numerical variables will be computed for each level of the grouping variable
+#' GEN, and the canonical correlation analysis will be computed using these means.
 #' @param use The matrix to be used. Must be one of 'cor' for analysis using
 #' the correlation matrix (default) or 'cov' for analysis using the covariance
 #' matrix.
@@ -83,7 +87,7 @@
 #'
 #' }
 #'
-can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
+can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = "cor",
                      test = "Bartlett", prob = 0.05, center = TRUE, stdscores = FALSE,
                      verbose = TRUE, collinearity = TRUE) {
   if (missing(.data) & missing(FG) || missing(SG)) {
@@ -106,8 +110,17 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
     datain <- .data
+
     for (k in 1:length(.data)) {
-      .data <- datain[[k]]
+      if(!missing(means_by)){
+        .data <- suppressWarnings(group_by(datain[[k]], {{means_by}}) %>%
+          summarise_all(mean) %>%
+          ungroup() %>%
+          as.data.frame())
+        nam_fact = .data %>% select({{means_by}}) %>% pull()
+      } else{
+        .data <- datain[[k]]
+      }
       nam <- names(datain[k])
       FGV <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(FG))))
       SGV <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(SG))))
@@ -197,6 +210,8 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
       }
       FG_CL <- cor(FG_A, SG_SC)
       SG_CL <- cor(SG_A, FG_SC)
+      FG_SC = as.data.frame(FG_SC)
+      SG_SC = as.data.frame(SG_SC)
       if (test == "Bartlett") {
         n <- nrow(FGV)
         p <- ncol(FGV)
@@ -306,6 +321,10 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
         cat("---------------------------------------------------------------------------\n")
         print(Rvy)
       }
+      if(!missing(means_by)){
+        FG_SC = FG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
+        SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
+      }
       tmp <- structure(list(Matrix = MC, MFG = S11, MSG = S22,
                             MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG,
                             Loads_FG = Rux, Loads_SG = Rvy, Score_FG = FG_SC,
@@ -316,6 +335,13 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
     return(structure(dfs, class = "group_can_cor"))
   }
   if (!missing(.data)) {
+    if(!missing(means_by)){
+      .data <- suppressWarnings(group_by(.data, {{means_by}}) %>%
+        summarise_all(mean) %>%
+        ungroup() %>%
+        as.data.frame())
+      nam_fact = .data %>% select({{means_by}}) %>% pull()
+    }
     FG <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(FG))))
     SG <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(SG))))
   }
@@ -399,6 +425,8 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
   }
   FG_CL <- cor(FG_A, SG_SC)
   SG_CL <- cor(SG_A, FG_SC)
+  FG_SC = as.data.frame(FG_SC)
+  SG_SC = as.data.frame(SG_SC)
   if (test == "Bartlett") {
     n <- nrow(FG)
     p <- ncol(FG)
@@ -504,6 +532,11 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, use = "cor",
     cat("---------------------------------------------------------------------------\n")
     print(Rvy)
   }
+if(!missing(means_by)){
+FG_SC = FG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
+SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
+}
+
   invisible(structure(list(Matrix = MC, MFG = S11, MSG = S22,
                            MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
                            Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Crossload_FG = FG_CL,

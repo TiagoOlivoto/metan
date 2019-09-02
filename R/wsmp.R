@@ -47,6 +47,7 @@
 #' scenarios of WAAS/GY weighting ratio.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{resca}}
+#' @importFrom progress progress_bar
 #' @export
 #' @examples
 #'
@@ -130,8 +131,9 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
       Escores <- rbind(MGEN, MENV) %>% select(type, everything())
       Pesos <- data.frame(Percent = Eigenvalue$Proportion)
       if (progbar == TRUE) {
-        pb <- winProgressBar(title = "the model is being built, please, wait.",
-                             min = 1, max = totalcomb, width = 570)
+        pb <- progress_bar$new(
+          format = ":what [:bar]:percent (:eta left)",
+          clear = F, total = totalcomb, width = 90)
       }
       for (k in 1:ncomb) {
         WAASB <- Escores %>% select(contains("PC")) %>%
@@ -172,11 +174,7 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
           ProcdAtua <- j
           initial <- initial + 1
           if (progbar == TRUE) {
-            setWinProgressBar(pb, initial, title = paste("Obtaining the Ranks considering",
-                                                         ProcdAtua, " of ", minimo, "Principal components:",
-                                                         "|WAAS:", PesoWAAS, "% ", "GY:", PesoResp,
-                                                         "%|", round(initial/totalcomb * 100, 2),
-                                                         "% Concluded -"))
+            pb$tick(tokens = list(what = paste("Ranks considering ", PesoResp, "% for GY and ", PesoWAAS, "% for WAASB", sep = "")))
           }
         }
         initial <- initial
@@ -195,9 +193,6 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
             mutate(Mean = ifelse(WAASBY < mean(WAASBY),
                                  "below", "above"))
         }
-      }
-      if (progbar == TRUE) {
-        close(pb)
       }
       Rank <- final[, -(SigPC2)]
       Names <- WAASAbsInicial %>% select(type, Code, OrResp,
@@ -241,8 +236,9 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
       totalcomb <- ncomb * nrow(PC)
       initial <- 0
       if (progbar == TRUE) {
-        pb <- winProgressBar(title = "the model is being built, please, wait.",
-                             min = 1, max = totalcomb, width = 570)
+        pb <- progress_bar$new(
+          format = ":what [:bar]:percent (:eta left)",
+          clear = F, total = totalcomb, width = 90)
       }
       for (k in 1:ncomb) {
         Escores <- model$biplot
@@ -288,11 +284,7 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
           ProcdAtua <- j
           initial <- initial + 1
           if (progbar == TRUE) {
-            setWinProgressBar(pb, initial, title = paste("Obtaining the Ranks considering",
-                                                         ProcdAtua, " of ", nrow(PC), "Principal components:",
-                                                         "|WAAS:", PesoWAAS, "% ", "GY:", PesoResp,
-                                                         "%|", round(initial/totalcomb * 100, 2),
-                                                         "% Concluded -"))
+            pb$tick(tokens = list(what = paste("Ranks considering ", PesoResp, "% for GY and ", PesoWAAS, "% for WAAS", sep = "")))
           }
         }
         initial <- initial
@@ -311,9 +303,6 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
             mutate(Mean = ifelse(WAASY < mean(WAASY),
                                  "below", "above"))
         }
-      }
-      if (progbar == TRUE) {
-        close(pb)
       }
       Rank <- final[, -(SigPC2)]
       Names <- WAASAbsInicial %>% select(type, Code, OrResp,
