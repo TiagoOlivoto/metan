@@ -4,9 +4,9 @@
 \alias{can_corr}
 \title{Canonical correlation analysis}
 \usage{
-can_corr(.data = NULL, FG = NULL, SG = NULL, use = "cor",
-  test = "Bartlett", prob = 0.05, center = TRUE, stdscores = FALSE,
-  verbose = TRUE, collinearity = TRUE)
+can_corr(.data = NULL, FG = NULL, SG = NULL, means_by = NULL,
+  use = "cor", test = "Bartlett", prob = 0.05, center = TRUE,
+  stdscores = FALSE, verbose = TRUE, collinearity = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe containing the
@@ -22,6 +22,11 @@ comma-separated list of unquoted variable names that will compose the first
 the variables; for example, \code{FG = data[,1:3]}.}
 
 \item{SG}{Similar than \code{FG} but for the second group of variables.}
+
+\item{means_by}{The argument \code{means_by} is a grouping variable to compute the
+means by. For example, if \code{means_by = GEN}, then the means of the
+numerical variables will be computed for each level of the grouping variable
+GEN, and the canonical correlation analysis will be computed using these means.}
 
 \item{use}{The matrix to be used. Must be one of 'cor' for analysis using
 the correlation matrix (default) or 'cov' for analysis using the covariance
