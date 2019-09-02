@@ -80,7 +80,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100,
     }
     if (verbose == TRUE) {
         pb <- progress_bar$new(
-            format = "Validating :what [:bar]:percent (:elapsedfull -:eta left -)",
+            format = "Validating :what [:bar]:percent (:elapsedfull -:eta)",
             clear = F, total = totalboot, width = 90)
     }
     condition <- (design == "CRD")

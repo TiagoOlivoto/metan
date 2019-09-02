@@ -67,7 +67,7 @@ cv_blup <- function(.data, env, gen, rep, resp, nboot = 100,
     }
     if (verbose == TRUE) {
         pb <- progress_bar$new(
-            format = "Validating :current of :total sets [:bar]:percent (:elapsedfull -:eta left -)",
+            format = "Validating :current of :total sets [:bar]:percent (:elapsedfull -:eta left)",
             clear = F, total = nboot, width = 90)
     }
     RMSPDres <- data.frame(RMSPD = matrix(NA, nboot, 1))
