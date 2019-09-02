@@ -2,7 +2,7 @@
 title: "Cross-validation procedures for AMMI and BLUP"
 output: rmarkdown::html_vignette
 link-citations: true
-bibliography: metanref.bib 
+bibliography: metanref.bib
 vignette: >
   %\VignetteIndexEntry{Cross-validation procedures for AMMI and BLUP}
   %\VignetteEngine{knitr::rmarkdown}
@@ -71,16 +71,16 @@ The following code computes the cross-validation of the oat data using the AMMI 
 The function `cv_ammi()` is used to compute a cross-validation procedure for the AMMI0, AMMI2 and AMMIF (9 axes) models.
 
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 100, nrepval = 2) # AMMI0
-AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 100, nrepval = 2) # AMMI2
-AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 100, nrepval = 2) # AMMIF
+AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0, nboot = 5, nrepval = 2) # AMMI0
+AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2, nboot = 5, nrepval = 2) # AMMI2
+AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9, nboot = 5, nrepval = 2) # AMMIF
 ```
 
 ## AMMI0 to AMMIF
 The function `cv_ammif()` is used to compute a cross-validation procedure for all members of the AMMI-family model. In this case, AMMI0-AMMI9.
 
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 100, nrepval = 2)
+AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 5, nrepval = 2)
 ```
 
 # Cross-validation for BLUP prediction
@@ -88,25 +88,19 @@ The function  `cv_blup()` provides a cross-validation of replicate-based data us
 
 ## Genotype and genotype-vs-environment as random effects
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-BLUP_g = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 100, nrepval = 2, random = "gen")
+BLUP_g = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 5, nrepval = 2, random = "gen")
 ```
 
 ## Environment, replication-whitin-environment and interaction as random effects
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-BLUP_e = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 100, nrepval = 2, random = "env")
+BLUP_e = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 5, nrepval = 2, random = "env")
 ```
 
 ## A random model (all terms as random effects)
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
-BLUP_ge = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 100, nrepval = 2, random = "all")
+BLUP_ge = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 5, nrepval = 2, random = "all")
 ```
 
-
-A progress bar is shown by default (the examples are below). Thus, it is possible to verify the status of the cross-validation process. If necessary, the progress bar can be disabled by informing the argument `progbar = FALSE` in the function.
-
-![Progress bar for AMMI model family cross-validation process.](printAMMI.png)
-
-![Progress bar for BLUP cross-validation process.](printBLUP.png)
 
 ## Printing the means of RMSPD estimates
 

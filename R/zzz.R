@@ -19,7 +19,7 @@
 #'             chull  tiff  boxplot.stats
 #' @importFrom methods  is  as
 #' @importFrom graphics  plot  boxplot  hist  par  mtext abline
-#' @importFrom utils  head  setWinProgressBar  winProgressBar  combn  stack
+#' @importFrom utils  head combn  stack
 #' @importFrom methods setClass setGeneric setMethod setRefClass
 #'
 NULL
@@ -95,18 +95,19 @@ NULL
 NULL
 
 if (getRversion() >= "2.15.1") {
-    utils::globalVariables(c("..density..", ".fitted", ".resid", ".scresid", "Accumul",
-        "Accumulated", "BLUPe", "BLUPg", "BLUPge", "CI", "Code", "ENV", "Eigenvalue",
-        "FAI", "GEN", "GY_HMRPGV", "GY_RPGV", "Genotype", "MODEL", "Mean", "PC", "PC1",
-        "PC2", "Parameters", "PctResp", "PctWAAS", "PctWAASB", "Percent", "PesRes",
-        "PesWAAS", "PesWAASB", "Predicted", "Proportion", "RMSPD", "Rank", "ResAMMI",
-        "WAAS", "WAASBY", "WAASY", "X1", "X2", "Y", "Ypred", "YpredAMMI", "envPC1",
-        "factors", "gen", "genPC1", "ggee", "id", "label", "nominal", "pred", "resOLS",
-        "sel", "stdres", "type", "y", "z", "Corr", "combn", "cov2cor", "partial",
-        "pt", ".", "linear", "my_custom_cor", "my_custom_smooth", "K", "direct", "VAR",
-        "eq", "IndAmb", "REP", "gge", "ind", "cophenetic", "remaining", "index", "ge",
-        "FA1", "FA2", "Gen", "wRes", "wWAASB", "OrResp", "OrPC1", "OrWAASB", "wWAAS",
-        "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI", "Pair", "LL", "UL",
-        "ci", "mean_var", "se", "x", "d1", "d2", "radio", "x0", "x1_x", "x1_y", "y0",
-        "val", "Statistic", "Cluster"))
+  utils::globalVariables(
+    c("..density..", ".fitted", ".resid", ".scresid", "Accumul",
+      "Accumulated", "BLUPe", "BLUPg", "BLUPge", "CI", "Code", "ENV", "Eigenvalue",
+      "FAI", "GEN", "GY_HMRPGV", "GY_RPGV", "Genotype", "MODEL", "Mean", "PC", "PC1",
+      "PC2", "Parameters", "PctResp", "PctWAAS", "PctWAASB", "Percent", "PesRes",
+      "PesWAAS", "PesWAASB", "Predicted", "Proportion", "RMSPD", "Rank", "ResAMMI",
+      "WAAS", "WAASBY", "WAASY", "X1", "X2", "Y", "Ypred", "YpredAMMI", "envPC1",
+      "factors", "gen", "genPC1", "ggee", "id", "label", "nominal", "pred", "resOLS",
+      "sel", "stdres", "type", "y", "z", "Corr", "combn", "cov2cor", "partial",
+      "pt", ".", "linear", "my_custom_cor", "my_custom_smooth", "K", "direct", "VAR",
+      "eq", "IndAmb", "REP", "gge", "ind", "cophenetic", "remaining", "index", "ge",
+      "FA1", "FA2", "Gen", "wRes", "wWAASB", "OrResp", "OrPC1", "OrWAASB", "wWAAS",
+      "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI", "Pair", "LL", "UL",
+      "ci", "mean_var", "se", "x", "d1", "d2", "radio", "x0", "x1_x", "x1_y", "y0",
+      "val", "Statistic", "Cluster", "CCP", "U1", "U2", "V1", "V2", "Var"))
 }
