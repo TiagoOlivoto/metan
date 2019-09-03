@@ -219,12 +219,12 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                     group_by(type) %>%
                     mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
                            PctWAAS = (0 - 100)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + 0,
-                           PesRes = PesoResp[vin],
-                           PesWAAS = PesoWAASB[vin],
+                           wRes = PesoResp[vin],
+                           wWAAS = PesoWAASB[vin],
                            OrResp = rank(-Y),
                            OrWAAS = rank(WAAS),
                            OrPC1 = rank(abs(PC1)),
-                           WAASY = ((PctResp * PesRes) + (PctWAAS * PesWAAS))/(PesRes + PesWAAS),
+                           WAASY = ((PctResp * wRes) + (PctWAAS * wWAAS))/(wRes + wWAAS),
                            OrWAASY = rank(-WAASY)) %>%
                     ungroup()
             } else {
@@ -232,12 +232,12 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                     group_by(type) %>%
                     mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
                            PctWAAS = (0 - 100)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + 0,
-                           PesRes = PesoResp,
-                           PesWAAS = PesoWAASB,
+                           wRes = PesoResp,
+                           wWAAS = PesoWAASB,
                            OrResp = rank(-Y),
                            OrWAAS = rank(WAAS),
                            OrPC1 = rank(abs(PC1)),
-                           WAASY = ((PctResp * PesRes) + (PctWAAS * PesWAAS))/(PesRes + PesWAAS),
+                           WAASY = ((PctResp * wRes) + (PctWAAS * wWAAS))/(wRes + wWAAS),
                            OrWAASY = rank(-WAASY)) %>%
                     ungroup()
             }
