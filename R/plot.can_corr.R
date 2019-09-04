@@ -5,7 +5,8 @@
 #' @param x The \code{waasb object}
 #' @param type The type of the plot. Defaults to \code{type = 1} (Scree-plot of the correlations of the
 #'  canonical loadings). Use \code{type = 2}, to produce a plot with the scores of the variables in the
-#'  first group or \code{type = 3} to produce a plot with the scores of the variables in the second group.
+#'  first group, \code{type = 3} to produce a plot with the scores of the variables in the second group,
+#'  or \code{type = 4} to produce a circle of correlation.
 #' @param theme The graphical theme of the plot. Default is \code{theme =
 #' theme_waasb()}. Please, see `?WAASB::theme_waasb`. An own theme can be
 #' applied using the arguments: `theme = theme_waasb() + theme(some stuff
@@ -170,6 +171,44 @@ plot.can_cor <- function(x, type = 1, theme = theme_waasb(), size.tex.lab = 12, 
             p = p + geom_text_repel(size = size.tex.pa)
         }
     }
+    if(type == 4){
+        y.lab = ifelse(!missing(y.lab), y.lab, paste0("Second canonical pair"))
+        x.lab = ifelse(!missing(x.lab), x.lab, paste0("First canonical pair"))
+        main = ifelse(!missing(main), main, paste0("Circle of correlations"))
+        if(!missing(main)){
+            if(main == FALSE){
+                main = ""
+            }
+        }
+        FGV = x$Loads_FG %>% as.data.frame() %>% select(1:2) %>%
+            setNames(c("x", "y")) %>%
+            rownames_to_column("VAR") %>%
+            mutate(GROUP = "First Group")
+        SGV = x$Loads_SG %>% as.data.frame() %>% select(1:2) %>%
+            setNames(c("x", "y")) %>%
+            rownames_to_column("VAR") %>%
+            mutate(GROUP = "Second Group")
+        datplot = rbind(FGV, SGV)
+    p =   ggplot(datplot, aes(x, y, label = VAR))+
+            geom_point(aes(color = GROUP), show.legend = FALSE)+
+            geom_hline(yintercept = 0, linetype = "dashed")+
+            geom_vline(xintercept = 0, linetype = "dashed")+
+            scale_x_continuous(limits = c(-1, 1))+
+            scale_y_continuous(limits = c(-1, 1))+
+            geom_text_repel(aes(color = GROUP), show.legend = FALSE)+
+            theme(aspect.ratio = 1,
+                  legend.position = "bottom", legend.title = element_blank())+
+            geom_circle(aes(x0 = 0, y0 = 0, r = 1), inherit.aes = FALSE)+
+            geom_segment(aes(x = 0, y = 0, xend = x, yend = y, color = GROUP),
+                         arrow = arrow(length = unit(0.3, "cm")))+
+            ggtitle(main)+
+            labs(x = x.lab, y = y.lab)+
+            theme %+replace% theme(aspect.ratio = 1,
+                                   legend.position = c(0.85, 0.06),
+                                   legend.key.size = unit(1, "lines"),
+                                   legend.title = element_blank(),
+                                   axis.text = element_text(size = size.tex.lab, colour = "black"),
+                                   axis.title = element_text(size = size.tex.lab, colour = "black"))
+    }
     return(p)
 }
-
