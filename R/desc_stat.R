@@ -25,6 +25,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @importFrom tidyr spread gather separate
+#' @importFrom rlang quo quo_text
 #' @examples
 #' \dontrun{
 #' library(metan)
@@ -109,7 +110,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.
       nam <- names(datain[k])
       data <- dplyr::select(.data, ...)
       cat("---------------------------------------------------------------------------\n")
-      cat(!!quos(), nam, "\n")
+      cat(nam, "\n")
       cat("---------------------------------------------------------------------------\n")
       data %<>% summarise_all(funs(n = n(), mean = mean, min = min,
                                    Q2.5 = quantile(., 0.025), Q25 = quantile(., 0.25), median = median,
@@ -133,7 +134,14 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.
         print(statistics, digits = digits, row.names = FALSE)
       }
     }
-    return(dfs)
+    df = do.call(rbind, lapply(dfs, function(x){
+      x
+    })) %>%
+      rownames_to_column("LEVEL") %>%
+      arrange(Statistic) %>%
+      mutate(LEVEL = paste(rep(names(dfs), nrow(dfs[[1]])))) %>%
+      arrange(LEVEL)
+    return(df)
   } else {
     if (is.null(values) == FALSE) {
       data <- data.frame(values)
@@ -151,14 +159,15 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.
                                        separate(stat, into = c("var", "stat"), sep = "_") %>%
                                        make_mat(stat, var, val) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
                                        dplyr::filter(Statistic %in% stats))
-      return(statistics)
       print(statistics, digits = digits, row.names = FALSE)
+      return(statistics)
     }
     if (ncol(data) == 22) {
       statistics <- t(data) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
         dplyr::filter(Statistic %in% stats)
-      return(statistics)
+      names(statistics)[2] <- quo_text(quo(...))
       print(statistics, digits = digits, row.names = FALSE)
+
     }
   }
 }
