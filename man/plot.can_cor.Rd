@@ -17,7 +17,7 @@
 \item{type}{The type of the plot. Defaults to \code{type = 1} (Scree-plot of the correlations of the
 canonical loadings). Use \code{type = 2}, to produce a plot with the scores of the variables in the
 first group, \code{type = 3} to produce a plot with the scores of the variables in the second group,
-or \code{type = 4} to produce a circle of correlation.}
+or \code{type = 4} to produce a circle of correlations.}
 
 \item{theme}{The graphical theme of the plot. Default is \code{theme =
 theme_waasb()}. Please, see `?WAASB::theme_waasb`. An own theme can be

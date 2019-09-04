@@ -50,6 +50,7 @@
 #' @param ... Other arguments of the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot can_cor
+#' @importFrom ggforce geom_circle
 #' @export
 #' @examples
 #'
