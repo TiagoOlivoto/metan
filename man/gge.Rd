@@ -84,7 +84,6 @@ mod = gge(data_ge, GEN, ENV, GY)
 plot(mod)
 
 # Using the \%>\% operator and a two-way table as input
-library(dplyr)
 
 data_ge2 \%>\%
   make_mat(GEN, ENV, NKE) \%>\%

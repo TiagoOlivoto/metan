@@ -22,7 +22,6 @@ hierarchical clustering.
 \examples{
 
 library(metan)
-library(dplyr)
 
 # Compute the mean for genotypes
 means = data_ge \%>\%

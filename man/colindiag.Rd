@@ -59,7 +59,6 @@ n = nrow(iris)
 colindiag(cor_iris, n = n, verbose = FALSE)
 
 # Using the pipe operator \%>\%
-library(dplyr)
 cor_iris \%>\% colindiag(n = n, verbose = FALSE)
 
 # Diagnostic by species, storing into an object

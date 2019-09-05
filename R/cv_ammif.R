@@ -52,7 +52,6 @@
 #'                          nrepval = 2)
 #'
 #' # Alternatively (and more intuitively) using the pipe operator %>%
-#' library(dplyr)
 #' model = data_ge %>%
 #'         cv_ammif(ENV, GEN, REP, GY, 100, 2)
 #' }

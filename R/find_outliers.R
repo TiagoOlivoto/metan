@@ -16,7 +16,6 @@
 #' @examples
 #'
 #' library(metan)
-#' library(dplyr)
 #'
 #' find_outliers(data_ge2, var = PH, plots = TRUE)
 #'

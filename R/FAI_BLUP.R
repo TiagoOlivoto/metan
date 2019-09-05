@@ -27,7 +27,6 @@
 #' @examples
 #'
 #' library(metan)
-#' library(dplyr)
 #'
 #' mod = waasb(data_ge,
 #'             env = ENV,

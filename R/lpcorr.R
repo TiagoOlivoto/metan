@@ -22,7 +22,6 @@
 #' @examples
 #'
 #' library(metan)
-#' library(dplyr)
 #' partial1 = lpcor(iris)
 #'
 #' # Alternatively using the pipe operator %>%

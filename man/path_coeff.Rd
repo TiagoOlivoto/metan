@@ -104,7 +104,6 @@ variables in the iterative process.
 
 \dontrun{
 library(metan)
-library(dplyr)
 
 # Using KW as the response variable and all other ones as predictors
 pcoeff = path_coeff(data_ge2, resp = KW)

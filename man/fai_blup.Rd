@@ -32,7 +32,6 @@ Rocha et al. (2018).
 \examples{
 
 library(metan)
-library(dplyr)
 
 mod = waasb(data_ge,
             env = ENV,

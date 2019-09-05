@@ -83,7 +83,6 @@
 #'      size.text.gen = 2)
 #'
 #' # Using the %>% operator
-#' library(dplyr)
 #'
 #' data_ge2 %>%
 #' gge(ENV, GEN, NKE) %>%

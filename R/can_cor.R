@@ -68,7 +68,6 @@
 #'
 #' \dontrun{
 #' library(metan)
-#' library(dplyr)
 #'
 #' cc1 = can_corr(data_ge2,
 #'                FG = c(PH, EH, EP),

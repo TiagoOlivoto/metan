@@ -64,7 +64,6 @@ model = cv_blup(data_ge,
                         nrepval = 2)
 
 # Alternatively using the pipe operator \%>\%
-library(dplyr)
 model = data_ge \%>\%
         cv_blup(ENV, GEN, REP, GY, 100, 2)
 

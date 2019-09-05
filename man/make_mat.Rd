@@ -30,7 +30,6 @@ data.
 \examples{
 
 library(metan)
-library(dplyr)
 matrix = data_ge \%>\% make_mat(row = GEN, col = ENV, val = GY)
 matrix
 

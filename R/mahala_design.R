@@ -23,7 +23,6 @@
 #' @examples
 #'
 #' library(metan)
-#' library(dplyr)
 #' maha_group = mahala_design(data_ge,
 #'                            gen = GEN,
 #'                            rep = REP,

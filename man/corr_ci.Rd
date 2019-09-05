@@ -34,8 +34,6 @@ coefficient.
 
 \dontrun{
 library(metan)
-library(dplyr)
-
 
 corr_ci(data_ge)
 

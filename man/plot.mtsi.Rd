@@ -46,7 +46,6 @@ mtsi_index = mtsi(mtsi_model)
 plot(mtsi_index)
 
 # Alternatively using the pipe operator \%>\%
-library(dplyr)
 mtsi_index2 = data_ge \%>\%
               waasb(ENV, GEN, REP, c(GY, HM)) \%>\%
               mtsi()

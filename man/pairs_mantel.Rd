@@ -90,7 +90,6 @@ permutations.
 \examples{
 
 library(metan)
-library(dplyr)
 
 # iris dataset
 lpc = iris \%>\%

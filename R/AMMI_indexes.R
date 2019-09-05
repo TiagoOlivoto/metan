@@ -73,7 +73,6 @@
 #'
 #'
 #' # Alternatively (and more intuitively) using %>%
-#' library(dplyr)
 #' res_ind <- data_ge %>%
 #'            waas(ENV, GEN, REP, c(GY, HM)) %>%
 #'            AMMI_indexes()

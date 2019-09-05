@@ -29,7 +29,6 @@ Computes the multitrait stability index proposed by Olivoto et al. (2019)
 \examples{
 
 library(metan)
-library(dplyr)
 
 # Based on stability only, for both GY and HM, higher is better
 mtsi_model = waasb(data_ge,

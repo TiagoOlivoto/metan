@@ -29,7 +29,6 @@
 #' @examples
 #' \dontrun{
 #' library(metan)
-#' library(dplyr)
 #'
 #' data_ge2 %>%
 #'   desc_stat(TKW)

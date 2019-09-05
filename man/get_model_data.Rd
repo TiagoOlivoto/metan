@@ -31,7 +31,6 @@ Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et al
 \examples{
 
 library(metan)
-library(dplyr)
 
 model = waas(data_ge2,
              env = ENV,

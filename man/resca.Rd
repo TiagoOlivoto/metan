@@ -44,7 +44,6 @@ grouping factor. The second option is pass a numeric vector in the argument
 }
 \examples{
 library(metan)
-library(dplyr)
 
 # Rescale a numeric vector
 resca(values = c(1:5))

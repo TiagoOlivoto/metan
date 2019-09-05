@@ -69,7 +69,6 @@ productive and stable genotypes.
 
 \dontrun{
 library(metan)
-library(dplyr)
 model = waas(data_ge2,
              env = ENV,
              gen = GEN,

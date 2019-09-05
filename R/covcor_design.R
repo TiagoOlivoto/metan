@@ -28,7 +28,6 @@
 #'
 #' \dontrun{
 #' library(metan)
-#' library(dplyr)
 #' # List of matrices
 #' data = subset(data_ge2, ENV == 'A1')
 #' matrices = covcor_design(data, gen = GEN, rep = REP,

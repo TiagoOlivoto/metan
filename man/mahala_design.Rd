@@ -35,7 +35,6 @@ a randomized complete block design or completely randomized design.
 \examples{
 
 library(metan)
-library(dplyr)
 maha_group = mahala_design(data_ge,
                            gen = GEN,
                            rep = REP,

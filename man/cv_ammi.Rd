@@ -81,7 +81,6 @@ model = cv_ammi(data_ge,
                 naxis = 2)
 
 # Alternatively using the pipe operator \%>\%
-library(dplyr)
 model = data_ge \%>\%
         cv_ammiF(ENV, GEN, REP, GY, 100, 2, 2)
 

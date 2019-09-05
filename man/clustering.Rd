@@ -104,7 +104,6 @@ original distances.
 
 \dontrun{
 library(metan)
-library(dplyr)
 
 # All rows and all numeric variables from data
 d1 = clustering(data_ge2)

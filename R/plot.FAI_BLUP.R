@@ -28,7 +28,6 @@
 #' @examples
 #' \dontrun{
 #' library(metan)
-#' library(dplyr)
 #' multivariate = waasb(data_ge,
 #'                      resp = c(GY, HM),
 #'                      gen = GEN,

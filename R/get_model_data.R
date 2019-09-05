@@ -30,7 +30,6 @@
 #' @examples
 #'
 #' library(metan)
-#' library(dplyr)
 #'
 #' model = waas(data_ge2,
 #'              env = ENV,

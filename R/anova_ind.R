@@ -31,7 +31,6 @@
 #'
 #' # Using the pipe operator %>%
 #' # Two variables, one run.
-#' library(dplyr)
 #' anova2 = data_ge %>% anova_ind(ENV, GEN, REP, c(GY, HM))
 #'
 #'
