@@ -22,6 +22,7 @@
 #'  For example, \code{stats = c("media, mean, CV, n")}.
 #' @param level The confidence level to compute the confidence interval of mean. Defaults to 0.95.
 #' @param digits The number of significant figures.
+#' @param verbose Logical argument. If \code{verbose = FALSE} the code is run silently.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @importFrom tidyr spread gather separate
@@ -45,7 +46,8 @@
 #'   stats = c('mean, SE.mean, CV'))
 #'   }
 #'
-desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.95, digits = 4) {
+desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
+                      level = 0.95, digits = 4, verbose = TRUE) {
   test = c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean", "median", "min", "n", "norm.pval", "norm.stat", "Q2.5", "Q25", "Q75", "Q97.5", "SD.amo", "SD.pop", "SE.mean", "skew", "var.amo", "var.pop")
   if(!missing(stats)){
     stats = unlist(strsplit(stats, split=", "))
@@ -108,9 +110,11 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.
       .data <- datain[[k]]
       nam <- names(datain[k])
       data <- dplyr::select(.data, ...)
-      cat("---------------------------------------------------------------------------\n")
-      cat(nam, "\n")
-      cat("---------------------------------------------------------------------------\n")
+      if(verbose == TRUE){
+        cat("---------------------------------------------------------------------------\n")
+        cat(nam, "\n")
+        cat("---------------------------------------------------------------------------\n")
+      }
       data %<>% summarise_all(funs(n = n(), mean = mean, min = min,
                                    Q2.5 = quantile(., 0.025), Q25 = quantile(., 0.25), median = median,
                                    Q75 = quantile(., 0.75), Q97.5 = quantile(., 0.975), max = max,
@@ -121,16 +125,24 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.
       if (ncol(data) > 22) {
         statistics <- suppressWarnings(data %>% gather(stat, val) %>%
                                          separate(stat, into = c("var", "stat"), sep = "_") %>%
-                                         make_mat(stat, var, val) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
+                                         make_mat(stat, var, val) %>%
+                                         as_tibble(rownames = NA) %>%
+                                         rownames_to_column("Statistic") %>%
                                          dplyr::filter(Statistic %in% stats))
         dfs[[paste(nam)]] <- statistics
-        print(statistics, digits = digits, row.names = FALSE)
+        if(verbose == TRUE){
+          print(statistics, digits = digits, row.names = FALSE)
+        }
       }
       if (ncol(data) == 22) {
-        statistics <- t(data) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
+        statistics <- t(data) %>%
+          as_tibble(rownames = NA) %>%
+          rownames_to_column("Statistic") %>%
           dplyr::filter(Statistic %in% stats)
         dfs[[paste(nam)]] <- statistics
-        print(statistics, digits = digits, row.names = FALSE)
+        if(verbose == TRUE){
+          print(statistics, digits = digits, row.names = FALSE)
+        }
       }
     }
     df = do.call(rbind, lapply(dfs, function(x){
@@ -156,17 +168,22 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, level = 0.
     if (ncol(data) > 22) {
       statistics <- suppressWarnings(data %>% gather(stat, val) %>%
                                        separate(stat, into = c("var", "stat"), sep = "_") %>%
-                                       make_mat(stat, var, val) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
+                                       make_mat(stat, var, val) %>%
+                                       as_tibble(rownames = NA) %>%
+                                       rownames_to_column("Statistic") %>%
                                        dplyr::filter(Statistic %in% stats))
-      print(statistics, digits = digits, row.names = FALSE)
-      return(statistics)
     }
     if (ncol(data) == 22) {
-      statistics <- t(data) %>% as.data.frame() %>% rownames_to_column("Statistic") %>%
+      statistics <- t(data) %>%
+        as_tibble(rownames = NA) %>%
+        rownames_to_column("Statistic") %>%
         dplyr::filter(Statistic %in% stats)
       names(statistics)[2] <- quo_text(quo(...))
-      print(statistics, digits = digits, row.names = FALSE)
 
     }
+    if(verbose == TRUE){
+    print(statistics, digits = digits, row.names = FALSE)
+    }
+    return(statistics)
   }
 }

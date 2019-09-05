@@ -5,7 +5,7 @@
 \title{Descriptive statistics}
 \usage{
 desc_stat(.data = NULL, ..., values = NULL, stats = NULL,
-  level = 0.95, digits = 4)
+  level = 0.95, digits = 4, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
@@ -32,6 +32,8 @@ vector.}
 \item{level}{The confidence level to compute the confidence interval of mean. Defaults to 0.95.}
 
 \item{digits}{The number of significant figures.}
+
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run silently.}
 }
 \description{
 Compute the most used measures of central tendency, position, and dispersion.
