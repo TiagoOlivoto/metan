@@ -152,7 +152,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
       arrange(Statistic) %>%
       mutate(LEVEL = paste(rep(names(dfs), nrow(dfs[[1]])))) %>%
       arrange(LEVEL)
-    return(df)
+    invisible(df)
   } else {
     if (is.null(values) == FALSE) {
       data <- data.frame(values)
@@ -184,6 +184,6 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
     if(verbose == TRUE){
     print(statistics, digits = digits, row.names = FALSE)
     }
-    return(statistics)
+    invisible(statistics)
   }
 }
