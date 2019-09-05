@@ -94,6 +94,13 @@ NULL
 #' @keywords data
 NULL
 
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage("\n********************************************************")
+  packageStartupMessage("Package metan has been successfully loaded in R ", paste0(R.Version()[c("major","minor")], collapse = "."))
+  packageStartupMessage("Please, see the complete vignette at:\nhttps://tiagoolivoto.github.io/metan/")
+  packageStartupMessage("********************************************************\n")
+}
+
 if (getRversion() >= "2.15.1") {
   utils::globalVariables(
     c("..density..", ".fitted", ".resid", ".scresid", "Accumul",
