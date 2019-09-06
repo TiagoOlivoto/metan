@@ -30,7 +30,7 @@
 #' @export
 #' @examples
 #' library(metan)
-#'
+#' library(dplyr)
 #' # Rescale a numeric vector
 #' resca(values = c(1:5))
 #'
