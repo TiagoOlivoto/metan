@@ -98,7 +98,7 @@ hierarchical clustering." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation</a>
     </li>
     <li>
       <a href="../articles/vignettes_ammi.html">AMMI</a>
@@ -206,7 +206,6 @@ to contain the inverse of the covariance matrix.</p></td>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-
 <span class='co'># Compute the mean for genotypes</span>
 <span class='no'>means</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>ENV</span>, <span class='no'>REP</span>)) <span class='kw'>%&gt;%</span>

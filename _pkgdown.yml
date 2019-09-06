@@ -115,7 +115,7 @@ navbar:
       href: index.html
     - text: "Examples"
       menu:
-      - text: "Cross-validation procedure"
+      - text: "Cross-validation"
         href: articles/vignettes_cross-validation.html
       - text: "AMMI"
         href: articles/vignettes_ammi.html

@@ -58,7 +58,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation</a>
     </li>
     <li>
       <a href="../articles/vignettes_ammi.html">AMMI</a>
@@ -3274,6 +3274,262 @@ G9
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-18-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
+<div id="getting-model-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-model-data" class="anchor"></a>Getting model data</h2>
+<p>The function <code><a href="../reference/get_model_data.html">get_model_data()</a></code> may be used to easily get the data from a model fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, especially when more than one variables are used. See the example below.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge2, ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb20-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, ED, TKW, NKR)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-3" title="3"><span class="st"> </span><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-4" title="4"><span class="st"> </span><span class="kw">print_table</span>()</a></code></pre></div>
+<pre><code>Evaluating variable PH 25 % 
+Evaluating variable ED 50 % 
+Evaluating variable TKW 75 % 
+Evaluating variable NKR 100 % 
+Done!</code></pre>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:left;">
+gen
+</th>
+<th style="text-align:right;">
+PH
+</th>
+<th style="text-align:right;">
+ED
+</th>
+<th style="text-align:right;">
+TKW
+</th>
+<th style="text-align:right;">
+NKR
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+H1
+</td>
+<td style="text-align:right;">
+0.318
+</td>
+<td style="text-align:right;">
+0.667
+</td>
+<td style="text-align:right;">
+2.723
+</td>
+<td style="text-align:right;">
+0.929
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H10
+</td>
+<td style="text-align:right;">
+0.230
+</td>
+<td style="text-align:right;">
+0.973
+</td>
+<td style="text-align:right;">
+2.154
+</td>
+<td style="text-align:right;">
+0.506
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H11
+</td>
+<td style="text-align:right;">
+0.201
+</td>
+<td style="text-align:right;">
+0.649
+</td>
+<td style="text-align:right;">
+1.260
+</td>
+<td style="text-align:right;">
+0.836
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H12
+</td>
+<td style="text-align:right;">
+0.364
+</td>
+<td style="text-align:right;">
+0.315
+</td>
+<td style="text-align:right;">
+0.558
+</td>
+<td style="text-align:right;">
+0.228
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H13
+</td>
+<td style="text-align:right;">
+0.363
+</td>
+<td style="text-align:right;">
+0.838
+</td>
+<td style="text-align:right;">
+0.514
+</td>
+<td style="text-align:right;">
+0.946
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H2
+</td>
+<td style="text-align:right;">
+0.342
+</td>
+<td style="text-align:right;">
+1.080
+</td>
+<td style="text-align:right;">
+4.407
+</td>
+<td style="text-align:right;">
+0.404
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H3
+</td>
+<td style="text-align:right;">
+0.374
+</td>
+<td style="text-align:right;">
+0.486
+</td>
+<td style="text-align:right;">
+4.097
+</td>
+<td style="text-align:right;">
+0.252
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H4
+</td>
+<td style="text-align:right;">
+0.294
+</td>
+<td style="text-align:right;">
+0.378
+</td>
+<td style="text-align:right;">
+3.070
+</td>
+<td style="text-align:right;">
+0.281
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H5
+</td>
+<td style="text-align:right;">
+0.168
+</td>
+<td style="text-align:right;">
+0.567
+</td>
+<td style="text-align:right;">
+0.738
+</td>
+<td style="text-align:right;">
+0.611
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H6
+</td>
+<td style="text-align:right;">
+0.270
+</td>
+<td style="text-align:right;">
+0.409
+</td>
+<td style="text-align:right;">
+1.636
+</td>
+<td style="text-align:right;">
+1.598
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H7
+</td>
+<td style="text-align:right;">
+0.228
+</td>
+<td style="text-align:right;">
+0.384
+</td>
+<td style="text-align:right;">
+3.442
+</td>
+<td style="text-align:right;">
+0.518
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H8
+</td>
+<td style="text-align:right;">
+0.315
+</td>
+<td style="text-align:right;">
+0.653
+</td>
+<td style="text-align:right;">
+4.909
+</td>
+<td style="text-align:right;">
+0.941
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H9
+</td>
+<td style="text-align:right;">
+0.146
+</td>
+<td style="text-align:right;">
+0.907
+</td>
+<td style="text-align:right;">
+5.499
+</td>
+<td style="text-align:right;">
+0.888
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="other-ammi-based-stability-indexes" class="section level1">
 <h1 class="hasAnchor">
@@ -3305,10 +3561,10 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 \]</span></p>
 <p>where <span class="math inline">\({\theta _k}\)</span> is the percentage sum of squares explained by the <em>k</em>-th IPCA. Simultaneous selection indexes (ssi), are computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields <span class="citation">(Farshadfar <a href="#ref-Farshadfar2008">2008</a>)</span>, which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.</p>
 <p>The <code>AMMI_index()</code> function has two arguments. The first (x) is the model, which must be an object of the class <code>waas</code>. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If <code>x</code> is a list with more than one variable, <code>order.y</code> must be a vector of the same length of x. Each element of the vector must be one of the “h” or “l”. If “h” is used, the response variable will be ordered from maximum to minimum. If “l” is used then the response variable will be ordered from minimum to maximum. Using the forward-pipe operator <em>%&gt;%</em> it is possible to structure sequences of data operations left-to-right. The operators pipe their left-hand side values forward into expressions that appear on the right-hand side. When coupling several function calls with the pipe-operator, the benefit will become more apparent. Let’s construct this model.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">stab_indexes =<span class="st"> </span>data_ge <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-2" title="2"><span class="st">               </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="st">               </span><span class="kw"><a href="../reference/AMMI_indexes.html">AMMI_indexes</a></span>()</a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="kw">print_table</span>(stab_indexes<span class="op">$</span>GY)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">stab_indexes =<span class="st"> </span>data_ge <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="st">               </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="st">               </span><span class="kw"><a href="../reference/AMMI_indexes.html">AMMI_indexes</a></span>()</a>
+<a class="sourceLine" id="cb22-4" title="4"><span class="kw">print_table</span>(stab_indexes<span class="op">$</span>GY)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -3783,6 +4039,7 @@ G9
 <a href="#weighting-the-stability-and-mean-performance">Weighting the stability and mean performance</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#printing-the-model-outputs">Printing the model outputs</a></li>
       <li><a href="#plotting-the-heat-map-graphics">Plotting the heat map graphics</a></li>
+      <li><a href="#getting-model-data">Getting model data</a></li>
       </ul>
 </li>
       <li><a href="#other-ammi-based-stability-indexes">Other AMMI-based stability indexes</a></li>

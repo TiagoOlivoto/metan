@@ -96,7 +96,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation</a>
     </li>
     <li>
       <a href="../articles/vignettes_ammi.html">AMMI</a>
@@ -178,7 +178,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>desc_stat</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
+  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -220,20 +220,23 @@ vector.</p></td>
       <th>digits</th>
       <td><p>The number of significant figures.</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical argument. If <code>verbose = FALSE</code> the code is run silently.</p></td>
+    </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
 <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>desc_stat</span>(<span class='no'>TKW</span>)
 
 <span class='no'>vect</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>TKW</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span>()
+  <span class='fu'>select</span>(<span class='no'>TKW</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>pull</span>()
 
 <span class='fu'>desc_stat</span>(<span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>vect</span>)
 

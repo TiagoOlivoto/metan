@@ -100,7 +100,7 @@ relative contribution of IPCAs to the interaction (Zali et al. 2012)." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation</a>
     </li>
     <li>
       <a href="../articles/vignettes_ammi.html">AMMI</a>
@@ -263,12 +263,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 
 
 <span class='co'># Alternatively (and more intuitively) using %&gt;%</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'dplyr'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>res_ind</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+<span class='no'>res_ind</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
            <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
            <span class='fu'>AMMI_indexes</span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot the response surface model — plot.resp_surf • metan</title>
+<title>Pipe operator — %&gt;% • metan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Plot the response surface model — plot.resp_surf" />
+<meta property="og:title" content="Pipe operator — %&gt;%" />
 
-<meta property="og:description" content="Plot the response surface model using a contour plot" />
+<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -166,63 +166,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot the response surface model</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.resp_surf.R'><code>R/plot.resp_surf.R</code></a></small>
-    <div class="hidden name"><code>plot.resp_surf.Rd</code></div>
+    <h1>Pipe operator</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/utils-pipe.R'><code>R/utils-pipe.R</code></a></small>
+    <div class="hidden name"><code>pipe.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot the response surface model using a contour plot</p>
+    <p>See <code>magrittr::%&gt;%</code> for details.</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for resp_surf</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>An object of class <code>resp_surf</code></p></td>
-    </tr>
-    <tr>
-      <th>xlab</th>
-      <td><p>The label for the x axis</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>The label for the y axis</p></td>
-    </tr>
-    <tr>
-      <th>region</th>
-      <td><p>Logical argument indicating whether regions between contour lines
-should be colored.</p></td>
-    </tr>
-    <tr>
-      <th>resolution</th>
-      <td><p>The resolution of the contour plot. Defaults to 100.
-higher values produce high-resolution plots but may increase the computation time.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other arguments passed from <code>contourplot</code> function.
-See <code><a href='https://www.rdocumentation.org/packages/lattice/topics/levelplot'>?lattice::contourplot</a></code> for more details.</p></td>
-    </tr>
-    </table>
-    
+    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+        
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
                 </ul>
 
-    <h2>Author</h2>
-    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
   </div>
 </div>
 

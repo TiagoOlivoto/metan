@@ -97,7 +97,7 @@ designed (RCBD or CRD) experiment." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation</a>
     </li>
     <li>
       <a href="../articles/vignettes_ammi.html">AMMI</a>
@@ -227,7 +227,6 @@ to get a matrix with the means of each genotype in each trait, by using
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='co'># List of matrices</span>
 <span class='no'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/subset'>subset</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span> <span class='kw'>==</span> <span class='st'>'A1'</span>)
 <span class='no'>matrices</span> <span class='kw'>=</span> <span class='fu'>covcor_design</span>(<span class='no'>data</span>, <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,

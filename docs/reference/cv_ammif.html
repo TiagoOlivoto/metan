@@ -96,7 +96,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignettes_cross-validation.html">Cross-validation procedure</a>
+      <a href="../articles/vignettes_cross-validation.html">Cross-validation</a>
     </li>
     <li>
       <a href="../articles/vignettes_ammi.html">AMMI</a>
@@ -265,7 +265,6 @@ a list is returned.</p>
                          <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Alternatively (and more intuitively) using the pipe operator %&gt;%</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
         <span class='fu'>cv_ammif</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='fl'>100</span>, <span class='fl'>2</span>)
 <span class='co'># }</span><div class='input'>
