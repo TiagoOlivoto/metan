@@ -144,14 +144,13 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr) <span class="co"># for the forward-pipe operator %&gt;%</span></a>
-<a class="sourceLine" id="cb1-5" title="5"></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Function to make HTML tables</span></a>
-<a class="sourceLine" id="cb1-7" title="7">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-8" title="8">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-10" title="10">}</a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>,        <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -167,10 +166,10 @@
 <a href="#cross-validation-procedures" class="anchor"></a>Cross-validation procedures</h2>
 <p>The cross-validation procedures implemented in the  are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_CROSS-VALIDATION.html">here.</a></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">CVAL =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb3-2" title="2">                <span class="dt">resp =</span> GY,</a>
+<a class="sourceLine" id="cb3-2" title="2">                <span class="dt">env =</span> ENV,                </a>
 <a class="sourceLine" id="cb3-3" title="3">                <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb3-4" title="4">                <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb3-5" title="5">                <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb3-4" title="4">                <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb3-5" title="5">                <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb3-6" title="6">                <span class="dt">nboot =</span> <span class="dv">500</span>,</a>
 <a class="sourceLine" id="cb3-7" title="7">                <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(CVAL)</a></code></pre></div>
@@ -178,8 +177,8 @@
 <div id="fitting-the-model" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h3>
-<p>The AMMI model is fitted with the function <code><a href="../reference/waas.html">waas()</a></code>. Note that a model may be fitted easier and faster using <code>%&gt;%</code> and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). The use of <code>%&gt;%</code> make it the coding logical and clean especially when the output of a function is used as input in a second function. For more details, please see <code><a href="../reference/waas.html">?waas</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">model &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY)</a></code></pre></div>
+<p>The AMMI model is fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, which is the acronym for the weighted average of absolute scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019">2019</a>)</span>. For more details, please see <code><a href="../reference/waas.html">?waas</a></code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge, ENV, GEN, REP, GY)</a></code></pre></div>
 <pre><code>Done!</code></pre>
 </div>
 <div id="biplots" class="section level3">
@@ -399,7 +398,7 @@ G5
 <h1 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h1>
 <p>The implementation of linear-mixed effect models to predict the response variable in MET is made with <code><a href="../reference/waasb.html">waasb()</a></code> function. The <em>mixed-effect version</em> of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">model2 &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, GY)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(data_ge, ENV, GEN, REP, GY)</a></code></pre></div>
 <pre><code>Done!</code></pre>
 <p>The mixed-effect model fitted in <code>model2</code> has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:</p>
 <div id="residual-plots" class="section level2">
@@ -880,11 +879,12 @@ G10
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
 <a class="sourceLine" id="cb16-2" title="2">p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb16-3" title="3">                <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb16-4" title="4">                <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="kw">plot_grid</span>(p1, p2,</a>
-<a class="sourceLine" id="cb16-6" title="6">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
-<a class="sourceLine" id="cb16-7" title="7">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
-<a class="sourceLine" id="cb16-8" title="8">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb16-4" title="4">                <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="st">      </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb16-6" title="6"><span class="kw">plot_grid</span>(p1, p2,</a>
+<a class="sourceLine" id="cb16-7" title="7">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
+<a class="sourceLine" id="cb16-8" title="8">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
+<a class="sourceLine" id="cb16-9" title="9">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-10-1.png" width="384"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level2">
@@ -1081,10 +1081,105 @@ G5
 <div id="blup-based-stability-index" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blup-based-stability-index" class="anchor"></a>BLUP-based stability index</h2>
+<p>The WAASB index <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019">2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects and was already computed when we fitted the model with <code><a href="../reference/waas.html">waas()</a></code>. This statistic may be shown with <code><a href="../reference/get_model_data.html">get_model_data()</a></code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(model2, <span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:left;">
+gen
+</th>
+<th style="text-align:right;">
+GY
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:right;">
+0.465
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:right;">
+0.214
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:right;">
+0.099
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:right;">
+0.248
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+0.218
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:right;">
+0.172
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:right;">
+0.319
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:right;">
+0.265
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:right;">
+0.372
+</td>
+</tr>
+</tbody>
+</table>
 <p>The function <code><a href="../reference/Resende_indexes.html">Resende_indexes()</a></code> may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See <span class="citation">Alves et al. (<a href="#ref-Alves2018">2018</a>)</span> for more details.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">index =<span class="st"> </span>model2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>()</a>
-<a class="sourceLine" id="cb18-3" title="3">  <span class="kw">print_table</span>(index<span class="op">$</span>GY)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">index =<span class="st"> </span>model2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>()</a>
+<a class="sourceLine" id="cb19-3" title="3">  <span class="kw">print_table</span>(index<span class="op">$</span>GY)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1417,12 +1512,12 @@ G9
 <h2 class="hasAnchor">
 <a href="#fitting-the-model-1" class="anchor"></a>Fitting the model</h2>
 <p>The GGE model is fitted with the function <code><a href="../reference/gge.html">gge()</a></code>. This function produces a GGE model based on both a two-way table (in our case the object <code>table</code>) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Using a data.frame</span></a>
-<a class="sourceLine" id="cb19-2" title="2">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
-<a class="sourceLine" id="cb19-3" title="3"></a>
-<a class="sourceLine" id="cb19-4" title="4"><span class="co"># Using a two-way table</span></a>
-<a class="sourceLine" id="cb19-5" title="5">ge_table =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, GEN, ENV, GY)</a>
-<a class="sourceLine" id="cb19-6" title="6">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Using a data.frame</span></a>
+<a class="sourceLine" id="cb20-2" title="2">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
+<a class="sourceLine" id="cb20-3" title="3"></a>
+<a class="sourceLine" id="cb20-4" title="4"><span class="co"># Using a two-way table</span></a>
+<a class="sourceLine" id="cb20-5" title="5">ge_table =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, GEN, ENV, GY)</a>
+<a class="sourceLine" id="cb20-6" title="6">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">
@@ -1450,13 +1545,13 @@ G9
 <li>
 <code>type =  10</code> Relationship among environments.</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model)</a>
-<a class="sourceLine" id="cb20-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="kw">plot_grid</span>(p1, p2,</a>
-<a class="sourceLine" id="cb20-4" title="4">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
-<a class="sourceLine" id="cb20-5" title="5">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
-<a class="sourceLine" id="cb20-6" title="6">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="vignettes_metan_files/figure-html/unnamed-chunk-14-1.png" width="384"></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model)</a>
+<a class="sourceLine" id="cb21-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="kw">plot_grid</span>(p1, p2,</a>
+<a class="sourceLine" id="cb21-4" title="4">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
+<a class="sourceLine" id="cb21-5" title="5">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
+<a class="sourceLine" id="cb21-6" title="6">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="vignettes_metan_files/figure-html/unnamed-chunk-15-1.png" width="384"></p>
 </div>
 </div>
 <div id="parametric-and-non-parametric-statistics" class="section level1">
@@ -1480,10 +1575,21 @@ G9
 <div id="computing-the-indexes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#computing-the-indexes" class="anchor"></a>Computing the indexes</h1>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">stat_ge &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, GY)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">stat_ge &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, GY)</a></code></pre></div>
 <p>If you whant to export a summary of results, the simplest way is by using the function summary, as follows:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>This comand will create a text file called <em>ge_stats summary.txt</em> in the current working directory.</p>
+</div>
+<div id="selection-based-on-multiple-traits" class="section level1">
+<h1 class="hasAnchor">
+<a href="#selection-based-on-multiple-traits" class="anchor"></a>Selection based on multiple traits</h1>
+<p>The multi-trait stability index (MTSI) was proposed by <span class="citation">Olivoto, Lúcio, Da silva, Sari, et al. (<a href="#ref-Olivoto2019a">2019</a>)</span> and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. Note that a model may be fitted easier and faster using the forward-pipe <code>%&gt;%</code> and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). Using <code>%&gt;%</code> make it the coding logical and clean especially when the output of a function is used as input in a second function.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb24-3" title="3">        <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
+<a class="sourceLine" id="cb24-4" title="4">        <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>()</a></code></pre></div>
 </div>
 <div id="getting-help" class="section level1">
 <h1 class="hasAnchor">
@@ -1511,6 +1617,12 @@ G9
 </div>
 <div id="ref-murakami2004">
 <p>Murakami, D.M., and C.D. Cruz. 2004. “Proposal of methodologies for environment stratification and analysis of genotype adaptability.” <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11. <a href="http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf">http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf</a>.</p>
+</div>
+<div id="ref-Olivoto2019">
+<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, V.S. Marchioro, V.Q. de Souza, and E. Jost. 2019. “Mean performance and stability in multi-environment trials I: Combining features of AMMI and BLUP techniques.” <em>Agronomy Journal</em>. <a href="https://doi.org/10.2134/agronj2019.03.0220">https://doi.org/10.2134/agronj2019.03.0220</a>.</p>
+</div>
+<div id="ref-Olivoto2019a">
+<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, B. G. Sari, and M. I. Diel. 2019. “Mean performance and stability in multi-environment trials II: Selection based on multiple traits.” <em>Agronomy Journal</em>. <a href="https://doi.org/10.2134/agronj2019.03.0221">https://doi.org/10.2134/agronj2019.03.0221</a>.</p>
 </div>
 <div id="ref-Wricke1965">
 <p>Wricke, G. 1965. “Zur berechnung der okovalenz bei sommerweizen und hafer.” <em>Z. Pflanzenzuchtg</em> 52: 127–38.</p>
@@ -1550,6 +1662,7 @@ G9
 </li>
       <li><a href="#parametric-and-non-parametric-statistics">Parametric and non-parametric statistics</a></li>
       <li><a href="#computing-the-indexes">Computing the indexes</a></li>
+      <li><a href="#selection-based-on-multiple-traits">Selection based on multiple traits</a></li>
       <li><a href="#getting-help">Getting help</a></li>
       <li><a href="#references">References</a></li>
       </ul>
