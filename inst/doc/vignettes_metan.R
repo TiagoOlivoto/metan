@@ -1,28 +1,31 @@
+## ----global_options, include = FALSE-------------------------------------
+knitr::opts_chunk$set(comment = "", cache = TRUE)
+
+
 ## ---- message=FALSE, warning=FALSE---------------------------------------
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-library(magrittr) # for the forward-pipe operator %>%
 
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed",        "responsive"), font_size = 12)
 }
 str(data_ge)
 
 ## ---- fig.height=3.5, fig.width=5----------------------------------------
 CVAL = cv_ammif(data_ge,
-                resp = GY,
+                env = ENV,                
                 gen = GEN,
-                env = ENV,
                 rep = REP,
-                nboot = 50,
+                resp = GY,
+                nboot = 500,
                 nrepval = 2)
 plot(CVAL)
 
 ## ------------------------------------------------------------------------
-model <- data_ge %>% waas(ENV, GEN, REP, GY)
+model <- waas(data_ge, ENV, GEN, REP, GY)
 
 ## ---- fig.height=8, fig.width=5,  message=FALSE, warning=FALSE-----------
 p1 <- plot_scores(model$GY, axis.expand = 1.2)
@@ -43,7 +46,7 @@ predicted <- predict(model, naxis = 4)
 print_table(head(predicted$GY))
 
 ## ------------------------------------------------------------------------
-model2 <- data_ge %>% waasb(ENV, GEN, REP, GY)
+model2 <- waasb(data_ge, ENV, GEN, REP, GY)
 
 ## ----fig.height=12, fig.width=4------------------------------------------
 library(ggplot2)
@@ -65,7 +68,8 @@ print_table(model2$GY$blupGEN)
 p1 <- plot_blup(model2$GY)
 p2 <- plot_blup(model2$GY,
                 prob = 0.1,
-                col.shape  =  c("gray20", "gray80")) + coord_flip()
+                col.shape  =  c("gray20", "gray80")) +
+      coord_flip()
 plot_grid(p1, p2,
           align = "v",
           labels = c("p1", "p2"),
@@ -73,6 +77,10 @@ plot_grid(p1, p2,
 
 ## ------------------------------------------------------------------------
 print_table(head(model2$GY$BLUPgge))
+
+## ------------------------------------------------------------------------
+get_model_data(model2, what = "WAASB") %>% 
+  print_table()
 
 ## ------------------------------------------------------------------------
 index = model2 %>%
@@ -101,4 +109,14 @@ stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)
 
 ## ---- eval=FALSE---------------------------------------------------------
 #  summary(stat_ge, export = TRUE)
+#  
+
+## ---- eval=FALSE, warning=FALSE------------------------------------------
+#  data_ge2 %>%
+#    waasb(ENV, GEN, REP,
+#          resp = c(KW, NKE, PH, EH, TKW),
+#          verbose = FALSE) %>%
+#    mtsi(verbose = FALSE) %>%
+#    plot()
+#  
 

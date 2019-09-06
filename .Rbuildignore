@@ -28,3 +28,4 @@
 ^LICENCE$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^doc$

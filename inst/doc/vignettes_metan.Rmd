@@ -10,6 +10,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(comment = "", cache = TRUE)
+
+```
+
 
 # Brief examples
 
@@ -19,12 +24,11 @@ Brief examples will be shown using the dataset `data_ge` that contains data on t
 library(metan)
 library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
-library(magrittr) # for the forward-pipe operator %>%
 
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed",        "responsive"), font_size = 12)
 }
 str(data_ge)
 ```
@@ -36,21 +40,21 @@ The cross-validation procedures implemented in the \bold{metan} are based on the
 
 ```{r, fig.height=3.5, fig.width=5}
 CVAL = cv_ammif(data_ge,
-                resp = GY,
+                env = ENV,                
                 gen = GEN,
-                env = ENV,
                 rep = REP,
-                nboot = 50,
+                resp = GY,
+                nboot = 500,
                 nrepval = 2)
 plot(CVAL)
 ```
 
 
 ### Fitting the model
-The AMMI model is fitted with the function `waas()`. Note that a model may be fitted easier and faster using `%>%` and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). The use of `%>%` make it the coding logical and clean especially when the output of a function is used as input in a second function. For more details, please see `?waas`.
+The AMMI model is fitted with the function `waas()`, which is the acronym for the weighted average of absolute scores [@Olivoto2019]. For more details, please see `?waas`.
 
 ```{r}
-model <- data_ge %>% waas(ENV, GEN, REP, GY)
+model <- waas(data_ge, ENV, GEN, REP, GY)
 ```
 
 ### Biplots
@@ -85,7 +89,7 @@ print_table(head(predicted$GY))
 The implementation of linear-mixed effect models to predict the response variable in MET is made with `waasb()` function. The *mixed-effect version* of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.
 
 ```{r }
-model2 <- data_ge %>% waasb(ENV, GEN, REP, GY)
+model2 <- waasb(data_ge, ENV, GEN, REP, GY)
 ```
 
 The mixed-effect model fitted in `model2` has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
@@ -127,7 +131,8 @@ An easy way to check the results in the R console is by using the function `summ
 p1 <- plot_blup(model2$GY)
 p2 <- plot_blup(model2$GY,
                 prob = 0.1,
-                col.shape  =  c("gray20", "gray80")) + coord_flip()
+                col.shape  =  c("gray20", "gray80")) +
+      coord_flip()
 plot_grid(p1, p2,
           align = "v",
           labels = c("p1", "p2"),
@@ -142,6 +147,14 @@ print_table(head(model2$GY$BLUPgge))
 ```
 
 ## BLUP-based stability index
+The WAASB index [@Olivoto2019] is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects and was already computed when we fitted the model with `waas()`. This statistic may be shown with `get_model_data()`.
+
+```{r }
+get_model_data(model2, what = "WAASB") %>% 
+  print_table()
+```
+
+
 The function `Resende_indexes()` may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See @Alves2018 for more details.
 
 ```{r }
@@ -212,8 +225,25 @@ If you whant to export a summary of results, the simplest way is by using the fu
 
 ```{r, eval=FALSE }
 summary(stat_ge, export = TRUE)
+
 ```
+
 This comand will create a text file called *ge_stats summary.txt* in the current working directory.
+
+# Selection based on multiple traits
+
+The multi-trait stability index (MTSI) was proposed by @Olivoto2019a and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. Note that a model may be fitted easier and faster using the forward-pipe `%>%` and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). Using `%>%` make it the coding logical and clean especially when the output of a function is used as input in a second function.
+
+```{r, eval=FALSE, warning=FALSE}
+data_ge2 %>%
+  waasb(ENV, GEN, REP,
+        resp = c(KW, NKE, PH, EH, TKW),
+        verbose = FALSE) %>%
+  mtsi(verbose = FALSE) %>%
+  plot()
+
+```
+
 
 
 # Getting help
