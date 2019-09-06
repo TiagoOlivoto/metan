@@ -90,7 +90,7 @@ permutations.
 \examples{
 
 library(metan)
-
+library(dplyr)
 # iris dataset
 lpc = iris \%>\%
       split_factors(Species) \%>\%
