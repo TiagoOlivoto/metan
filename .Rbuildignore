@@ -31,3 +31,4 @@
 ^doc$
 ^pkgdown$
 ^cran-comments\.md$
+^package_release\.R$
