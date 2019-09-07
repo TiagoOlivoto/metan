@@ -19,7 +19,7 @@
 #' (standard error, default), 'sd' (standard deviation), or 'ci' confidence interval, based
 #' on the confidence level
 #' @param width.erbar The width of the error bar.
-#' @param level The fonfidence level
+#' @param level The confidence level
 #' @param invert Logical argument. If \code{TRUE}, the order of the factors entered
 #' in changes in the graph
 #' @param col Logical argument. If \code{FALSE}, a gray scale is used.
@@ -37,7 +37,7 @@
 #' @param na.rm Should 'NA' values be removed to compute the statistics?
 #' Defaults to true
 #' @param verbose Logical argument. If TRUE a tibble containing the mean, N,
-#' standarad deviation, standard error of mean and confidence interval is returned.
+#' standard deviation, standard error of mean and confidence interval is returned.
 #' @export
 #' @seealso \code{\link{plot_lines}}, \code{\link{plot_factlines}}
 #'

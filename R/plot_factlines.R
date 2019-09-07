@@ -5,7 +5,7 @@
 #' @param x The variable in data to be shown in the x axis
 #' @param y The variable in data to be shown in the y axis
 #' @param group The grouping variable
-#' @param fit The polinomial degree to use. It must be an integer
+#' @param fit The polynomial degree to use. It must be an integer
 #' between 1 (linear fit) to 4 (fourth-order polynomial regression.),
 #' or a numeric vector with the same length of the variable in \code{group}
 #' @param level The fonfidence level

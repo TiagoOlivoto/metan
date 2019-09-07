@@ -44,10 +44,10 @@ arguments can be inserted as \code{y.lab = "my label"}.}
 \item{shape}{The shape for genotype indication in the plot. Default is
 \code{1} (circle). Values between  \code{21-25}: \code{21} (circle),
 \code{22} (square), \code{23} (diamond), \code{24} (up triangle), and
-\code{25} (low triangle) allows a colour for fill the shape.}
+\code{25} (low triangle) allows a color for fill the shape.}
 
 \item{col.shape}{The shape color for genotypes. Must be one value or a vector
-of colours with the same length of the number of genotypes. Default is
+of colors with the same length of the number of genotypes. Default is
 \code{"gray30"}. Other values can be attributed. For example,
 \code{"transparent"}, will make a plot with only an outline around the shape
 area.}

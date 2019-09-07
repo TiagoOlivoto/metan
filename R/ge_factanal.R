@@ -1,6 +1,6 @@
-#' Stability analysis and environment estratification
+#' Stability analysis and environment stratification
 #'
-#' This function computes the stability analysis and environmental stratitication
+#' This function computes the stability analysis and environmental stratification
 #' using factor analysis as proposed by Murakami and Cruz (2004).
 #'
 #' @param .data The dataset containing the columns related to Environments, Genotypes,

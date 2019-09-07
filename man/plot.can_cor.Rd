@@ -70,7 +70,7 @@ color).}
 \item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
 size of the shape will be \code{size.shape + size.bor.tick}}
 
-\item{labels}{Logical arguments. If \code{TRUE} then the poins in the plot will have labels.}
+\item{labels}{Logical arguments. If \code{TRUE} then the points in the plot will have labels.}
 
 \item{main}{The title of the plot. Defaults to \code{NULL}, in which each plot will have a default
 title. Use a string text to create an own title or set to \code{main = FALSE} to omit the

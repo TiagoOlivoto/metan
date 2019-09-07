@@ -12,7 +12,7 @@
 #' points.
 #'
 #' @param x An object of class \code{cv_ammif}.
-#' @param violin Define if a violine plot is used with boxplot. Default is
+#' @param violin Define if a violin plot is used with boxplot. Default is
 #' 'TRUE'
 #' @param export Export (or not) the plot. Default is \code{T}.
 #' @param order_box Logical argument. If \code{TRUE} then the boxplots will be ordered

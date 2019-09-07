@@ -16,7 +16,7 @@
 #' @return If a grouping factor is used then a list is returned with the
 #' following values. \item{linear.mat}{The matrix of linear correlation.}
 #' \item{partial.mat}{The matrix of partial correlations.}
-#' \item{results}{Hypotesis testing for each pairwise comparation.}
+#' \item{results}{Hypothesis testing for each pairwise comparison.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

@@ -1,6 +1,6 @@
-#' Summarise an object of class can_cor
+#' Summarize an object of class can_cor
 #'
-#' Summarise an object of class \code{can_cor} object in two ways. By default,
+#' Summarize an object of class \code{can_cor} object in two ways. By default,
 #' the results are shown in the R console. The results can also be exported to
 #' the directory.
 #'

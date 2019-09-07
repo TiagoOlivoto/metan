@@ -133,7 +133,7 @@ resca(GY, HM, new_min = 0, new_max = 1,  keep = FALSE) %>%
 
 ```
 
-## Reescale within factors
+## Rescale within factors
 ```{r, message=FALSE }
   data_ge2 %>% 
     select(ENV, GEN, starts_with("N"), ends_with("L")) %>%

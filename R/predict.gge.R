@@ -1,16 +1,16 @@
 #' Predict a two-way table based on GGE model
 #'
 #' Predict the means for a genotype-vs-environment trial based on a Genotype plus
-#' Genotype-vs-Environment interction (GGE) model.
+#' Genotype-vs-Environment interaction (GGE) model.
 #'
 #' This function is used to predict the response variable of a two-way table
 #' (for examples the yielding of g genotypes in e environments)
 #' based on GGE model. This prediction is based on the number of
-#' principal components used. For more detais see Yan and Kang (2007).
+#' principal components used. For more details see Yan and Kang (2007).
 #'
 #' @param object An object of class \code{gge}.
 #' @param naxis The the number of principal components to be used in the prediction.
-#' Generaly, two axis may be used. In this case, the estimated values will be those shown
+#' Generally, two axis may be used. In this case, the estimated values will be those shown
 #' in the biplot.
 #' @param output The type of output. It must be one of the \code{'long'} (default) returning
 #' a long-format table with the columns for environment (ENV), genotypes (GEN) and response

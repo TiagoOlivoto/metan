@@ -21,7 +21,7 @@ pairs_mantel(..., type = 1, nrepet = 1000, names = NULL,
 \code{lpcor} is used. 1 = Linear correlation matrices, or 2 = partial
 correlation matrices.}
 
-\item{nrepet}{The number of permutateions. Default is 1000}
+\item{nrepet}{The number of permutations. Default is 1000}
 
 \item{names}{An optional vector of names of the same length of \code{...} .}
 

@@ -20,11 +20,11 @@ and the highest values 0.}
 \item{increment}{The increment in the weight ratio for stability and mean performance.
 Se the \bold{Details} section for more information.}
 
-\item{saveWAASY}{Automatically save the WAASY values when the wheight for
+\item{saveWAASY}{Automatically save the WAASY values when the weight for
 stability is \code{saveWAASY}. Default is 50. Please, note that \code{saveWAASY}}
 
 \item{prob}{The p-value for considering an interaction principal component axis significant.
-must be multiple of \code{increment}. If this assumption is not valid, an error will be occour.}
+must be multiple of \code{increment}. If this assumption is not valid, an error will be occur.}
 
 \item{progbar}{A logical argument to define if a progress bar is shown.
 Default is \code{TRUE}.}
@@ -33,10 +33,10 @@ Default is \code{TRUE}.}
 \item{MeansGxE}{The means of genotypes in the environments, with observed,
 predicted and residual values.}
 
-\item{WAASxGY}{A list with the estimates for each secenario.}
+\item{WAASxGY}{A list with the estimates for each scenario.}
 
 
-\item{WAASY}{The values of the WAASY estimated when the wheight for the
+\item{WAASY}{The values of the WAASY estimated when the weight for the
 stability in the loop match with argument \code{saveWAASY}.}
 
 \item{hetdata, hetcomb, CorcombWAASY}{The data used to produce the heatmaps.}

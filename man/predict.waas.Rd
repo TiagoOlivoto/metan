@@ -29,8 +29,8 @@ value from OLS estimation. If \code{naxis = 1} the AMMI1 (with one
 multiplicative term) is used for predicting the response variable. If
 \code{naxis = min(gen-1;env-1)}, the AMMIF is fitted and the predicted value
 will be the cell mean, i.e. the mean of R-replicates of the i-th genotype in
-the j-th environment. The number of axis to be used must be carrefully
-chosen. Precures based on Postdictive sucess (such as Gollobs's d.f.) or
+the j-th environment. The number of axis to be used must be carefully
+chosen. Procedures based on Postdictive success (such as Gollobs's d.f.) or
 Predictive sucess (such as cross-validation) should be used to do this. This
 package provide both. \code{\link{waas}} function compute traditional
 AMMI analysis showing the number of significant axis. On the other hand,

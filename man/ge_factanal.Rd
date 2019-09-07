@@ -2,7 +2,7 @@
 % Please edit documentation in R/ge_factanal.R
 \name{ge_factanal}
 \alias{ge_factanal}
-\title{Stability analysis and environment estratification}
+\title{Stability analysis and environment stratification}
 \usage{
 ge_factanal(.data, env, gen, rep, resp, mineval = 1, verbose = TRUE)
 }
@@ -27,7 +27,7 @@ factor analysis.}
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
 }
 \description{
-This function computes the stability analysis and environmental stratitication
+This function computes the stability analysis and environmental stratification
 using factor analysis as proposed by Murakami and Cruz (2004).
 }
 \examples{

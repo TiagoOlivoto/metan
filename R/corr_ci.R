@@ -9,7 +9,7 @@
 #' where \eqn{n} is the sample size and \code{r} is the correlation
 #' coefficient.
 #'
-#' @param .data A dataset containing variables only or a symetric correlation
+#' @param .data A dataset containing variables only or a symmetric correlation
 #' matrix.
 #' @param r If \code{data} is not available, provide the value for correlation
 #' coefficient.

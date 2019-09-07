@@ -14,12 +14,12 @@ get_model_data(x, what = "Y", type = "GEN")
 predicted mean (if the object is of class \code{waasb} only); \code{"Y"} for raw means (Default);
 \code{"PCn"} for the scores of the nth Interaction Principal Component Axis (IPCA),
  where \code{n} is the desired IPCA (e.g. \code{"PC3"}); \code{"WAASB"} for the weighted
- average of the absolute scores; \code{"PctResp"} and \code{"PctWAASB"} for the reescaled
+ average of the absolute scores; \code{"PctResp"} and \code{"PctWAASB"} for the rescaled
  values of the response variable and WAASB, respectively; \code{"wResp"} and \code{"wWAASB"}
  for weight of the response variable and stability, respectively; \code{"OrResp"} and
  \code{"OrWAASB"} for the ranking regarding the response variable and WAASB, respectively;
  \code{"OrPC1"} for the ranking regarding the first principal component axix; \code{"WAASBY"}
- for the superiority index, \code{"OrWAASBY"} for the ranking regarding the superiorirty
+ for the superiority index, \code{"OrWAASBY"} for the ranking regarding the superiority
  index.}
 
 \item{type}{Chose if the statistics must be show by genotype (\code{type = "GEN"}, default)

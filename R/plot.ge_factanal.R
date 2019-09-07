@@ -26,9 +26,9 @@
 #' @param shape The shape for genotype indication in the plot. Default is
 #' \code{1} (circle). Values between  \code{21-25}: \code{21} (circle),
 #' \code{22} (square), \code{23} (diamond), \code{24} (up triangle), and
-#' \code{25} (low triangle) allows a colour for fill the shape.
+#' \code{25} (low triangle) allows a color for fill the shape.
 #' @param col.shape The shape color for genotypes. Must be one value or a vector
-#' of colours with the same length of the number of genotypes. Default is
+#' of colors with the same length of the number of genotypes. Default is
 #' \code{"gray30"}. Other values can be attributed. For example,
 #' \code{"transparent"}, will make a plot with only an outline around the shape
 #' area.
@@ -113,8 +113,8 @@ plot.ge_factanal <- function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = 
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
         theme %+replace% theme(aspect.ratio = 1,
-                               axis.text = element_text(size = size.tex.lab, colour = "black"),
-                               axis.title = element_text(size = size.tex.lab, colour = "black"),
+                               axis.text = element_text(size = size.tex.lab, color = "black"),
+                               axis.title = element_text(size = size.tex.lab, color = "black"),
                                axis.ticks = element_line(color = "black"))
     return(p)
 }

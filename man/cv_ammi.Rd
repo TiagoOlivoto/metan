@@ -59,7 +59,7 @@ modeling and validating data. The dataset 'modeling' has all combinations
 (genotype x environment) with the number of replications informed in
 \code{nrepval}. The dataset 'validating' has one replication. The splitting
 of the dataset into modeling and validating data depends on the design
-informed. For Completely Randomized Block Design (default), compltely blocks
+informed. For Completely Randomized Block Design (default), completely blocks
 are selected within environments. The remained block serves validation data.
 If \code{design = 'RCD'} is informed, completely randomly samples are made
 for each genotype-by-environment combination. The estimated values

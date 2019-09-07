@@ -18,7 +18,7 @@ estimated for each level of the grouping variable in that function.}
 
 \item{FG}{If a dataframe is informed in \code{.data}, then \code{FG} is a
 comma-separated list of unquoted variable names that will compose the first
-(smallest) group of the correlation analysis. FG can also be a cordinate for
+(smallest) group of the correlation analysis. FG can also be a coordinate for
 the variables; for example, \code{FG = data[,1:3]}.}
 
 \item{SG}{Similar than \code{FG} but for the second group of variables.}
@@ -74,7 +74,7 @@ of variables.}
 }
 \description{
 Performs canonical correlation analysis with collinearity diagnostic,
-estimation of canonical loads, canonical scores, and hipotesis testing for
+estimation of canonical loads, canonical scores, and hypothesis testing for
 correlation pairs.
 }
 \examples{

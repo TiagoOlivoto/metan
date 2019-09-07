@@ -19,7 +19,7 @@ plot_factlines(.data, x, y, group, fit, level = 0.95,
 
 \item{group}{The grouping variable}
 
-\item{fit}{The polinomial degree to use. It must be an integer
+\item{fit}{The polynomial degree to use. It must be an integer
 between 1 (linear fit) to 4 (fourth-order polynomial regression.),
 or a numeric vector with the same length of the variable in \code{group}}
 

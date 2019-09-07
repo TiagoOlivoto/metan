@@ -7,7 +7,7 @@
 corr_ci(.data = NA, r = NULL, n = NULL, verbose = TRUE)
 }
 \arguments{
-\item{.data}{A dataset containing variables only or a symetric correlation
+\item{.data}{A dataset containing variables only or a symmetric correlation
 matrix.}
 
 \item{r}{If \code{data} is not available, provide the value for correlation

@@ -24,7 +24,7 @@ such as \code{max}, \code{min}, \code{sd}, \code{var}, or an own function that r
  a single numeric value can be used.}
 }
 \description{
-This function help users to easely make a two-way table from a "long format"
+This function help users to easily make a two-way table from a "long format"
 data.
 }
 \examples{

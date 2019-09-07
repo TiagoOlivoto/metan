@@ -39,7 +39,7 @@
 #' algorithm will select a subset of variables with minimal multicollinearity
 #' and fit a set of possible models. See the \bold{Details} section for more
 #' information.
-#' @param maxvif The maximum value for the Variance Inflaction Factor (cut
+#' @param maxvif The maximum value for the Variance Inflation Factor (cut
 #' point) that will be accepted. See the \bold{Details} section for more
 #' information.
 #' @param missingval How to deal with missing values. For more information,
@@ -57,7 +57,7 @@
 #'
 #' \item{Eigen}{Eigenvectors and eigenvalues of the \code{Corr.x.}}
 #'
-#' \item{VIF}{The Variance Inflaction Factors.}
+#' \item{VIF}{The Variance Inflation Factors.}
 #'
 #' \item{plot}{A ggplot2-based graphic showing the direct effects in 21
 #' different k values..}
@@ -75,7 +75,7 @@
 #'
 #' \item{Response}{The response variable.}
 #'
-#' \item{weightvar}{The order of the predictor variables with the higest weigth
+#' \item{weightvar}{The order of the predictor variables with the highest weight
 #' (highest eigenvector) in the lowest eigenvalue.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,
@@ -107,7 +107,7 @@
 #'
 #'
 #' # Selecting a set of predictors with minimal multicollinearity
-#' # Maximum variance inflaction factor of 5
+#' # Maximum variance Inflation factor of 5
 #' pcoeff4 = path_coeff(data_ge2,
 #'                      resp = KW,
 #'                      brutstep = TRUE,

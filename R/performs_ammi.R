@@ -6,10 +6,10 @@
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #' Genotypes, replication/block and response variable(s).
-#' @param env The name of the collum that contains the levels of the
+#' @param env The name of the column that contains the levels of the
 #' environments
-#' @param gen The name of the collum that contains the levels of the genotypes
-#' @param rep The name of the collum that contains the levels of the
+#' @param gen The name of the column that contains the levels of the genotypes
+#' @param rep The name of the column that contains the levels of the
 #' replications/blocks
 #' @param resp The response variable
 #' @return
@@ -20,7 +20,7 @@
 #'
 #' \item{means}{means of genotype vs environment}
 #'
-#' \item{biplot}{escores for genotypes and environments in all the possible
+#' \item{biplot}{scores for genotypes and environments in all the possible
 #' axes.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export

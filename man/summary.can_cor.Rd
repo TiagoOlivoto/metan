@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.can_cor.R
 \name{summary.can_cor}
 \alias{summary.can_cor}
-\title{Summarise an object of class can_cor}
+\title{Summarize an object of class can_cor}
 \usage{
 \method{summary}{can_cor}(object, export = FALSE, file.name = NULL,
   digits = 3, ...)
@@ -20,7 +20,7 @@ to the working directory}
 \item{...}{Other arguments of the function}
 }
 \description{
-Summarise an object of class \code{can_cor} object in two ways. By default,
+Summarize an object of class \code{can_cor} object in two ways. By default,
 the results are shown in the R console. The results can also be exported to
 the directory.
 }

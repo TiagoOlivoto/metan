@@ -44,7 +44,7 @@ on the confidence level}
 
 \item{width.erbar}{The width of the error bar.}
 
-\item{level}{The fonfidence level}
+\item{level}{The confidence level}
 
 \item{invert}{Logical argument. If \code{TRUE}, the order of the factors entered
 in changes in the graph}
@@ -74,7 +74,7 @@ Use this argument to adjust the text when the angle of the text is different fro
 Defaults to true}
 
 \item{verbose}{Logical argument. If TRUE a tibble containing the mean, N,
-standarad deviation, standard error of mean and confidence interval is returned.}
+standard deviation, standard error of mean and confidence interval is returned.}
 }
 \description{
 Create a bar plot based on categorical (one or two) variables

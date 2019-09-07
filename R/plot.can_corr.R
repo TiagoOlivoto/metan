@@ -43,7 +43,7 @@
 #' @param size.shape The size of the shape in the plot. Default is \code{3.5}.
 #' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
 #' size of the shape will be \code{size.shape + size.bor.tick}
-#' @param labels Logical arguments. If \code{TRUE} then the poins in the plot will have labels.
+#' @param labels Logical arguments. If \code{TRUE} then the points in the plot will have labels.
 #' @param main The title of the plot. Defaults to \code{NULL}, in which each plot will have a default
 #' title. Use a string text to create an own title or set to \code{main = FALSE} to omit the
 #' plot title.

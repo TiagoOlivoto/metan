@@ -14,7 +14,7 @@
 \arguments{
 \item{x}{An object of class \code{cv_ammif}.}
 
-\item{violin}{Define if a violine plot is used with boxplot. Default is
+\item{violin}{Define if a violin plot is used with boxplot. Default is
 'TRUE'}
 
 \item{export}{Export (or not) the plot. Default is \code{T}.}

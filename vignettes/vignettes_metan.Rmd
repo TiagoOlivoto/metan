@@ -102,7 +102,7 @@ library(ggplot2)
 autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
 ```
 
-## Distributin of random effects
+## Distribution of random effects
 The distribution of the random effects may be obtained using the argument
 `type = "re"`.
 
@@ -220,7 +220,7 @@ The easiest way to compute the above-mentioned stability indexes is by using the
 ```{r }
 stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)
 ```
-If you whant to export a summary of results, the simplest way is by using the function summary, as follows:
+If you want to export a summary of results, the simplest way is by using the function summary, as follows:
 
 
 ```{r, eval=FALSE }

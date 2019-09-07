@@ -1,10 +1,12 @@
 #' Multi-Environment Trial Analysis
 #'
-#' This package provides useful functions for computing stability
-#' analysis in multi-environment trials (MET) using the most widely-know
-#' parametric and nonparametric methods. A number of vignettes are provided to help the user apply
-#' correctely the functions provide by \pkg{metan}. A complete guide may be
-#' found at https://tiagoolivoto.github.io/metan/
+#' The \pkg{metan} package provides functions for performing the most
+#' used analyses in the evaluation of multi-environment trials.
+#' This includes stability analysis using widely-known parametric
+#' and nonparametric methods, functions for biometrical analysis such
+#' as path analysis, canonical correlation, partial correlation,
+#' clustering analysis, as well as tools for summarizing and plotting data.
+#' A complete guide may be found at https://tiagoolivoto.github.io/metan/
 #'
 #' @name metan-package
 #' @docType package

@@ -15,7 +15,7 @@ This is the first version that will be submitted to CRAN. In this version, depre
    * New evaluation for text vectors are now used in the functions `AMMI_indexes()` and `fai_blup()` and `desc_stat()`. For example, to indicate the statistics to be computed in `desc_stat()` you must use now ` stats = c("mean, SE.mean, CV, max, min"))` instead  `stats = c("mean", "SE.mean", "CV", "max", "min"))`
 
 # metan 0.1.5
-In the latest development version, the package **METAAB** was renammed to **metan** (**m**ulti-**e**nvironment **t**rials **an**alysis). Aiming at a cleaner coding, in this version, some functions were deprecated and will be defunct in the near future. Alternative functions were implemented.
+In the latest development version, the package **METAAB** was renamed to **metan** (**m**ulti-**e**nvironment **t**rials **an**alysis). Aiming at a cleaner coding, in this version, some functions were deprecated and will be defunct in the near future. Alternative functions were implemented.
 
 * For `WAAS.AMMI()`, use `waas()`.
 * For `WAASBYratio()`, use `wsmp()`.
@@ -50,7 +50,7 @@ In the latest development version, some useful functions were included. One of t
 The following S3 Methods were also implemented:
 
 * `is.group_factors()` and `as.group_factors()` to check or easily coerce a dataframe that has one or more factor columns to an object of `group_factors`;
-* `is.lpcorr()` and `as.lpcorr()`  to check or easily coerce a list of correlation matrice to an object of `lpcorr`;
+* `is.lpcorr()` and `as.lpcorr()`  to check or easily coerce a list of correlation matrices to an object of `lpcorr`;
 
 
 # METAAB 0.1.3

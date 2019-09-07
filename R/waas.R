@@ -28,12 +28,12 @@
 #' single procedure a vector of variables may be used. For example \code{resp =
 #' c(var1, var2, var3)}.
 #' @param mresp A numeric vector of the same length of \code{resp}. The
-#' \code{mresp} will be the new maximum value after reescaling. By default, all
+#' \code{mresp} will be the new maximum value after rescaling. By default, all
 #' variables in \code{resp} are rescaled so that de maximum value is 100 and
 #' the minimum value is 0.
 #' @param wresp The weight for the response variable(s) for computing the
 #' WAASBY index. Must be a numeric vector of the same length of \code{resp}.
-#' Defatul is 50, i.e., equal weights for stability and mean performance.
+#' Defatults is 50, i.e., equal weights for stability and mean performance.
 #' @param prob The p-value for considering an interaction principal component axis significant.
 #' @param naxis The number of IPCAs to be used for computing the WAAS index.
 #' Default is \code{NULL} (Significant IPCAs are used). If values are informed,

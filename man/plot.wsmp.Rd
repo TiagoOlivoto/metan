@@ -55,7 +55,7 @@ Plot heat maps with genotype ranking in two ways.
 \details{
 The first type of heatmap shows the genotype ranking depending on the number
 of principal component axis used for estimating the WAASB index. An
-euclidian distance-based dendrogram is used for grouping the genotype
+euclidean distance-based dendrogram is used for grouping the genotype
 ranking for both genotypes and principal component axis. The second type of
 heatmap shows the genotype ranking depending on the WAASB/GY ratio. The
 ranks obtained with a ratio of 100/0 considers exclusively the stability for

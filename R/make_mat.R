@@ -1,6 +1,6 @@
 #' Make a two-way table
 #'
-#' This function help users to easely make a two-way table from a "long format"
+#' This function help users to easily make a two-way table from a "long format"
 #' data.
 #'
 #'

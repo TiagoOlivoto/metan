@@ -43,7 +43,7 @@ Cross-validation for blup prediction.
 \details{
 This function provides a cross-validation procedure for mixed models using
 replicate-based data. By default, complete blocks are randomly selected
-within each evironment. In each iteraction, the original dataset is split up
+within each environment. In each iteration, the original dataset is split up
 into two datasets: training and validation data. The 'training' set has all
 combinations (genotype x environment) with the number of replications
 informed in \code{nrepval}. The 'validation' set has the remaining

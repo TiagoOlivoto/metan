@@ -33,7 +33,7 @@ vector; \eqn{Nmax} and \eqn{Nmin} are the new maximum and minimum values;
 \eqn{Omax and Omin} are the maximum and minimum values of the original data,
 and \eqn{O_i} is the ith value of the original data.
 
-There are basically two options to use \code{resca} to reescale a variable.
+There are basically two options to use \code{resca} to Rescale a variable.
 The first is passing a data frame to \code{.data} argument and selecting one
 or more variables to be scaled using \code{...}. The function will return
 the original variables in \code{.data} plus the rescaled variable(s) with the
@@ -53,7 +53,7 @@ head(
  resca(data_ge, GY, HM, new_min = 0, new_max = 1)
 )
 
-# Reescale within factors;
+# Rescale within factors;
 # Select variables that stats with 'N' and ends with 'L';
 # Compute the mean of these variables by ENV and GEN;
 # Rescale the variables that ends with 'L' whithin ENV;

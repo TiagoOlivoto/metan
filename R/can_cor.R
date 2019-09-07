@@ -1,7 +1,7 @@
 #' Canonical correlation analysis
 #'
 #' Performs canonical correlation analysis with collinearity diagnostic,
-#' estimation of canonical loads, canonical scores, and hipotesis testing for
+#' estimation of canonical loads, canonical scores, and hypothesis testing for
 #' correlation pairs.
 #'
 #'
@@ -13,7 +13,7 @@
 #' estimated for each level of the grouping variable in that function.
 #' @param FG If a dataframe is informed in \code{.data}, then \code{FG} is a
 #' comma-separated list of unquoted variable names that will compose the first
-#' (smallest) group of the correlation analysis. FG can also be a cordinate for
+#' (smallest) group of the correlation analysis. FG can also be a coordinate for
 #' the variables; for example, \code{FG = data[,1:3]}.
 #' @param SG Similar than \code{FG} but for the second group of variables.
 #' @param means_by The argument \code{means_by} is a grouping variable to compute the
@@ -300,7 +300,7 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
         cat("---------------------------------------------------------------------------\n")
         print(S12)
         cat("---------------------------------------------------------------------------\n")
-        cat("Correlation of the canonical pairs and hipotesis testing \n")
+        cat("Correlation of the canonical pairs and hypothesis testing \n")
         cat("---------------------------------------------------------------------------\n")
         print(results)
         cat("---------------------------------------------------------------------------\n")
@@ -511,7 +511,7 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
     cat("---------------------------------------------------------------------------\n")
     print(S12)
     cat("---------------------------------------------------------------------------\n")
-    cat("Correlation of the canonical pairs and hipotesis testing \n")
+    cat("Correlation of the canonical pairs and hypothesis testing \n")
     cat("---------------------------------------------------------------------------\n")
     print(results)
     cat("---------------------------------------------------------------------------\n")

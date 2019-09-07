@@ -44,31 +44,31 @@ diagonal.}
 It must be one of the 'histogram' (to show an histogram), 'density' to show
 the Kernel density, or 'boxplot' (to show a boxplot).}
 
-\item{bins}{The number of bins, Defauls to 20.}
+\item{bins}{The number of bins, Defaults to 20.}
 
 \item{col.diag}{If \code{diag = TRUE} then \code{diagcol} is the color for
 the distribution. Set to gray.}
 
 \item{alpha.diag}{Alpha-transparency scale [0-1] to make the diagonal plot
-transparent. 0 = fully transparente; 1 = full colour. Set to 0.15}
+transparent. 0 = fully transparent; 1 = full color. Set to 0.15}
 
-\item{col.up.panel, col.lw.panel, col.dia.panel}{The colour for the upper,
-lower, and diagonal pannels, respectively. Set to 'gray'.}
+\item{col.up.panel, col.lw.panel, col.dia.panel}{The color for the upper,
+lower, and diagonal panels, respectively. Set to 'gray'.}
 
 \item{prob}{The probability of error. Significant correlations will be
-highlated with '*', '**', and '***' (0.05, 0.01, and 0.001, respectively).
-Scatterplots with significant correlations may be colour-highlated.}
+highlighted with '*', '**', and '***' (0.05, 0.01, and 0.001, respectively).
+Scatterplots with significant correlations may be color-highlighted.}
 
-\item{col.sign}{The colour that will highlight the significant correlations.
+\item{col.sign}{The color that will highlight the significant correlations.
 Set to 'green'.}
 
 \item{alpha.sign}{Alpha-transparency scale [0-1] to make the plot area
-transparent. 0 = fully transparente; 1 = full colour. Set to 0.15}
+transparent. 0 = fully transparent; 1 = full color. Set to 0.15}
 
-\item{lab.position}{The position that the labeles will apper. Set to
-\code{'tr'}, i.e., the legends will apper in the top and right of the plot.
+\item{lab.position}{The position that the labels will appear. Set to
+\code{'tr'}, i.e., the legends will appear in the top and right of the plot.
 Other allowed options are \code{'tl'} (top and left), \code{'br'} (bottom
-and rigth), \code{'bl'} (bottom and left).}
+and right), \code{'bl'} (bottom and left).}
 
 \item{progress}{\code{NULL} (default) for a progress bar in interactive
 sessions with more than 15 plots, \code{TRUE} for a progress bar,
@@ -77,7 +77,7 @@ sessions with more than 15 plots, \code{TRUE} for a progress bar,
 \item{smooth}{Should a linear smooth line be shown in the scatterplots? Set
 to \code{FALSE}.}
 
-\item{col.smooth}{The colour for the smooth line.}
+\item{col.smooth}{The color for the smooth line.}
 
 \item{size.smooth}{The size for the smooth line.}
 
@@ -89,7 +89,7 @@ to \code{TRUE}.}
 \item{shape.point}{The shape of the point, set to \code{1}.}
 
 \item{alpha.point}{Alpha-transparency scale [0-1] to make the points
-transparent. 0 = fully transparente; 1 = full colour. Set to 0.7}
+transparent. 0 = fully transparent; 1 = full color. Set to 0.7}
 
 \item{fill.point}{The color to fill the points. Valid argument if points are
 between 21 and 25.}
@@ -102,7 +102,7 @@ correlation coefficient.}
 \item{maxsize}{The size of the letter that will represent the largest
 correlation coefficient.}
 
-\item{pan.spacing}{The space between the pannels. Set to 0.15.}
+\item{pan.spacing}{The space between the panels. Set to 0.15.}
 
 \item{digits}{The number of digits to show in the plot.}
 

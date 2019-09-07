@@ -10,12 +10,12 @@ performs_ammi(.data, env, gen, rep, resp)
 \item{.data}{The dataset containing the columns related to Environments,
 Genotypes, replication/block and response variable(s).}
 
-\item{env}{The name of the collum that contains the levels of the
+\item{env}{The name of the column that contains the levels of the
 environments}
 
-\item{gen}{The name of the collum that contains the levels of the genotypes}
+\item{gen}{The name of the column that contains the levels of the genotypes}
 
-\item{rep}{The name of the collum that contains the levels of the
+\item{rep}{The name of the column that contains the levels of the
 replications/blocks}
 
 \item{resp}{The response variable}
@@ -27,7 +27,7 @@ replications/blocks}
 
 \item{means}{means of genotype vs environment}
 
-\item{biplot}{escores for genotypes and environments in all the possible
+\item{biplot}{scores for genotypes and environments in all the possible
 axes.}
 }
 \description{

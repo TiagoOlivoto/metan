@@ -56,16 +56,16 @@ Defaults to \code{3.2}.}
 \item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
 size of the shape will be \code{size.shape + size.bor.tick}}
 
-\item{col.gen}{Colour for genotype attributes on biplot. Defaults to
+\item{col.gen}{Color for genotype attributes on biplot. Defaults to
 'orange'}
 
-\item{col.env}{colour for environment attributes on biplot. Defaults to 'forestgreen'}
+\item{col.env}{color for environment attributes on biplot. Defaults to 'forestgreen'}
 
 \item{col.alpha}{The alpha value for the color. Default is \code{1}.
 Values must be between \code{0} (full transparency) to \code{1} (full
 color).}
 
-\item{col.circle}{The colour for segment or circle lines. Defaults to 'gray'}
+\item{col.circle}{The color for segment or circle lines. Defaults to 'gray'}
 
 \item{leg.lab}{The labs of legend. Default is \code{c('Gen', 'Env')}.}
 

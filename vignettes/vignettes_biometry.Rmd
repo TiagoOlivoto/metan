@@ -443,7 +443,7 @@ d3 = clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)
 ```
 
 ### Select variables for compute the distances
-When `selvar = TRUE` is used, an algorithm for variable selction is implemented. See `?clustering` for more details.
+When `selvar = TRUE` is used, an algorithm for variable selection is implemented. See `?clustering` for more details.
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE}
 d4 = clustering(data_ge2, means_by = GEN, selvar = TRUE)
 ```
@@ -490,7 +490,7 @@ d7 = data_ge2 %>%
 ```
 
 ### Check the correlation between distance matrices
-The function `pairs_mantel()` may be used to check the relationships between the distance matrices when the clustering is performed for each level of a grouping factor. In this example, we have four distance matrices correponding to four environments.
+The function `pairs_mantel()` may be used to check the relationships between the distance matrices when the clustering is performed for each level of a grouping factor. In this example, we have four distance matrices corresponding to four environments.
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 pairs_mantel(d7, names = c("A1", "A2", "A3", "A4"))
 

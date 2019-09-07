@@ -22,37 +22,37 @@
 #' @param diag.type The type of plot to show in the diagonal if \code{diag  TRUE}.
 #' It must be one of the 'histogram' (to show an histogram), 'density' to show
 #' the Kernel density, or 'boxplot' (to show a boxplot).
-#' @param  bins The number of bins, Defauls to 20.
+#' @param  bins The number of bins, Defaults to 20.
 #' @param col.diag If \code{diag = TRUE} then \code{diagcol} is the color for
 #' the distribution. Set to gray.
 #' @param alpha.diag Alpha-transparency scale [0-1] to make the diagonal plot
-#' transparent. 0 = fully transparente; 1 = full colour. Set to 0.15
-#' @param col.up.panel,col.lw.panel,col.dia.panel The colour for the upper,
-#' lower, and diagonal pannels, respectively. Set to 'gray'.
+#' transparent. 0 = fully transparent; 1 = full color. Set to 0.15
+#' @param col.up.panel,col.lw.panel,col.dia.panel The color for the upper,
+#' lower, and diagonal panels, respectively. Set to 'gray'.
 #' @param prob The probability of error. Significant correlations will be
-#' highlated with '*', '**', and '***' (0.05, 0.01, and 0.001, respectively).
-#' Scatterplots with significant correlations may be colour-highlated.
-#' @param col.sign The colour that will highlight the significant correlations.
+#' highlighted with '*', '**', and '***' (0.05, 0.01, and 0.001, respectively).
+#' Scatterplots with significant correlations may be color-highlighted.
+#' @param col.sign The color that will highlight the significant correlations.
 #' Set to 'green'.
 #' @param alpha.sign Alpha-transparency scale [0-1] to make the plot area
-#' transparent. 0 = fully transparente; 1 = full colour. Set to 0.15
-#' @param lab.position The position that the labeles will apper. Set to
-#' \code{'tr'}, i.e., the legends will apper in the top and right of the plot.
+#' transparent. 0 = fully transparent; 1 = full color. Set to 0.15
+#' @param lab.position The position that the labels will appear. Set to
+#' \code{'tr'}, i.e., the legends will appear in the top and right of the plot.
 #' Other allowed options are \code{'tl'} (top and left), \code{'br'} (bottom
-#' and rigth), \code{'bl'} (bottom and left).
+#' and right), \code{'bl'} (bottom and left).
 #' @param progress \code{NULL} (default) for a progress bar in interactive
 #' sessions with more than 15 plots, \code{TRUE} for a progress bar,
 #' \code{FALSE} for no progress bar.
 #' @param smooth Should a linear smooth line be shown in the scatterplots? Set
 #' to \code{FALSE}.
-#' @param col.smooth The colour for the smooth line.
+#' @param col.smooth The color for the smooth line.
 #' @param size.smooth The size for the smooth line.
 #' @param confint Should a confidence band be shown with the smooth line? Set
 #' to \code{TRUE}.
 #' @param size.point The size of the points in the plot. Set to \code{0.5}.
 #' @param shape.point The shape of the point, set to \code{1}.
 #' @param alpha.point Alpha-transparency scale [0-1] to make the points
-#' transparent. 0 = fully transparente; 1 = full colour. Set to 0.7
+#' transparent. 0 = fully transparent; 1 = full color. Set to 0.7
 #' @param fill.point The color to fill the points. Valid argument if points are
 #' between 21 and 25.
 #' @param col.point The color for the edge of the point, set to \code{black}.
@@ -60,7 +60,7 @@
 #' correlation coefficient.
 #' @param maxsize The size of the letter that will represent the largest
 #' correlation coefficient.
-#' @param pan.spacing The space between the pannels. Set to 0.15.
+#' @param pan.spacing The space between the panels. Set to 0.15.
 #' @param digits The number of digits to show in the plot.
 #' @param export Logical argument. If \code{TRUE}, then the plot is exported to
 #' the current directory.

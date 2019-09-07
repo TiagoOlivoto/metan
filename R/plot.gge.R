@@ -37,13 +37,13 @@
 #'  Defaults to \code{3.2}.
 #' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
 #' size of the shape will be \code{size.shape + size.bor.tick}
-#' @param col.gen Colour for genotype attributes on biplot. Defaults to
+#' @param col.gen Color for genotype attributes on biplot. Defaults to
 #'  'orange'
-#' @param col.env colour for environment attributes on biplot. Defaults to 'forestgreen'
+#' @param col.env color for environment attributes on biplot. Defaults to 'forestgreen'
 #' @param col.alpha The alpha value for the color. Default is \code{1}.
 #' Values must be between \code{0} (full transparency) to \code{1} (full
 #' color).
-#' @param col.circle The colour for segment or circle lines. Defaults to 'gray'
+#' @param col.circle The color for segment or circle lines. Defaults to 'gray'
 #' @param leg.lab The labs of legend. Default is \code{c('Gen', 'Env')}.
 #' @param size.text The size of the text of the plot area. Defaults to 4.
 #' @param size.text.gen The text size for genotype labels. Defaults to 4

@@ -91,7 +91,7 @@ The function  `cv_blup()` provides a cross-validation of replicate-based data us
 BLUP_g = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 5, nrepval = 2, random = "gen")
 ```
 
-## Environment, replication-whitin-environment and interaction as random effects
+## Environment, replication-within-environment and interaction as random effects
 ```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
 BLUP_e = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 5, nrepval = 2, random = "env")
 ```
