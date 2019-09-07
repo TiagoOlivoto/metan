@@ -5,7 +5,7 @@
 \title{Mantel test for a set of correlation matrices}
 \usage{
 pairs_mantel(..., type = 1, nrepet = 1000, names = NULL,
-  prob = 0.05, diag = FALSEALSE, export = FALSE, main = "auto",
+  prob = 0.05, diag = FALSE, export = FALSE, main = "auto",
   file.type = "pdf", file.name = NULL, width = 8, height = 7,
   resolution = 300, size.point = 0.5, shape.point = 19,
   alpha.point = 1, fill.point = NULL, col.point = "black",
