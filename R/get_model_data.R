@@ -23,10 +23,10 @@
 #' @export
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'  V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-#'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. doi:10.2134/agronj2019.03.0220.
+#'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
 #'  Mean performance and stability in multi-environment trials II: Selection based on multiple
-#'   traits. Agron. J.doi:10.2134/agronj2019.03.0221.
+#'   traits. Agron. J. (in press)
 #' @examples
 #'
 #' library(metan)
