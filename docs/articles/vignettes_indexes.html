@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Indexes for simultaneous selection • metan</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Indexes for simultaneous selection">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -124,6 +131,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -145,22 +153,22 @@
 <div id="fai-blup-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
-<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/waasb.html">waasb()</a></code> and then the function <code><a href="../reference/fai_blup.html">fai_blup()</a></code> is used to compute the FAI-BLUP index.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/waasb.html">waasb()</a></code> and then the function <code><a href="../reference/fai_blup.html">fai_blup()</a></code> is used to compute the FAI-BLUP index.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
 <a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
 <a class="sourceLine" id="cb1-10" title="10">}</a>
 <a class="sourceLine" id="cb1-11" title="11"></a>
 <a class="sourceLine" id="cb1-12" title="12">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"max, max, max, min"</span>),</a>
-<a class="sourceLine" id="cb1-15" title="15">               <span class="dt">UI =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"min, min, min, max"</span>),</a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"max, max, max, min"</span>),</a>
+<a class="sourceLine" id="cb1-15" title="15">               <span class="dt">UI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"min, min, min, max"</span>),</a>
 <a class="sourceLine" id="cb1-16" title="16">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>Evaluating variable KW 25 % 
 Evaluating variable NKE 50 % 
@@ -210,7 +218,7 @@ EH       1   1.343326   1.343326 3.234146e-10 2.407567e-08
 Selected genotypes
 H13 H6
 -----------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(FAI)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(FAI)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="multi-trait-stability-index" class="section level1">
@@ -220,10 +228,10 @@ H13 H6
 <div id="based-on-stability-only" class="section level2">
 <h2 class="hasAnchor">
 <a href="#based-on-stability-only" class="anchor"></a>Based on stability only</h2>
-<p>In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function <code><a href="../reference/waasb.html">waasb()</a></code> is passed to the function <code><a href="../reference/mtsi.html">mtsi()</a></code> by the forward-pipe operator <code>%&gt;%</code>. Finally, the MTSI index is plotted using the function <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code>.</p>
+<p>In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function <code><a href="../reference/waasb.html">waasb()</a></code> is passed to the function <code><a href="../reference/mtsi.html">mtsi()</a></code> by the forward-pipe operator <code><a href="../reference/pipe.html">%&gt;%</a></code>. Finally, the MTSI index is plotted using the function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">MTSI_index =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb4-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>()</a></code></pre></div>
 <pre><code>Evaluating variable KW 20 % 
 Evaluating variable NKE 40 % 
@@ -287,7 +295,7 @@ Selected genotypes
 -------------------------------------------------------------------------------
 H11 H5
 -------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(MTSI_index)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="based-on-mean-performance-and-stability" class="section level2">
@@ -296,9 +304,9 @@ H11 H5
 <p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. By using <code>wresp = 65</code>, the simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">MTSI_index2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb7-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
-<a class="sourceLine" id="cb7-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb7-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
+<a class="sourceLine" id="cb7-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW),</a>
+<a class="sourceLine" id="cb7-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb7-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
 <a class="sourceLine" id="cb7-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
 <pre><code>Evaluating variable KW 20 % 
 Evaluating variable NKE 40 % 
@@ -362,7 +370,7 @@ Selected genotypes
 -------------------------------------------------------------------------------
 H5 H11
 -------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MTSI_index2)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(MTSI_index2)</a></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -381,6 +389,7 @@ H5 H11
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -401,17 +410,20 @@ H5 H11
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

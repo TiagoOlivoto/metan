@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Analyzing multienvironment trials using GGE • metan</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Analyzing multienvironment trials using GGE">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -124,6 +131,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -142,9 +150,9 @@
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p>Genotype plus Genotype-vs-Environment interaction (GGE) model has been widely used to genotype evaluation and mega-environment identification in multi-environment trials (MET). This model considers a GGE (i.e., G + GE) biplot, which is constructed by the first two symmetrically scaled principal components (PC1 and PC2) derived from singular value decomposition of environment-centered MET data. The GGE biplot graphically displays G plus GE of a MET in a way that facilitates visual genotype evaluation and mega-environment identification <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span></p>
 <p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a></code></pre></div>
 </div>
 <div id="the-gge-model" class="section level1">
 <h1 class="hasAnchor">
@@ -152,7 +160,7 @@
 <p>The mean yield of genotype <em>i</em> in environment <em>j</em> is commonly described by a general linear model</p>
 <p><span class="math display">\[
 \hat y_{ij} + \mu + \alpha_i + \beta_j + \phi_{ij}
-\]</span> where <span class="math inline">\(\hat y_{ij}\)</span> is the mean yield of genotype <em>i</em> in environment <em>j</em>, <span class="math inline">\(i = 1, ... g; j = 1, ...e\)</span> being <em>g</em> and <em>e</em> the numbers of genotypes and environments, respectively; <span class="math inline">\(\mu_j\)</span> is the grand mean; <span class="math inline">\(\alpha_i\)</span> is the main effect of the genotype <em>i</em>; <span class="math inline">\(\beta_j\)</span> is the main effect of the environment <em>j</em>, and <span class="math inline">\(\phi_{ij}\)</span> is the interaction effect between genotype <em>i</em> and environment <em>j</em>. Subjecting the <span class="math inline">\(\phi_{ij}\)</span> to Singular Value Decomposition (SVD) results in the AMMI model. The deletion of <span class="math inline">\(\alpha_i\)</span> allows the variation explained by this term to be absorved into the <span class="math inline">\(\phi_{ij}\)</span> term. In the Genotype plus Genotype-vs-Environment interaction (GGE) model the <span class="math inline">\(\alpha_i\)</span> term is is deteled from the above model and then the environment-centered data matrix, <span class="math inline">\(\phi_{ij}\)</span>, is subjected to SVD <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>; Yan and Kang <a href="#ref-Yan2003">2003</a>)</span>. Explicitly, we have</p>
+\]</span> where <span class="math inline">\(\hat y_{ij}\)</span> is the mean yield of genotype <em>i</em> in environment <em>j</em>, <span class="math inline">\(i = 1, ... g; j = 1, ...e\)</span> being <em>g</em> and <em>e</em> the numbers of genotypes and environments, respectively; <span class="math inline">\(\mu_j\)</span> is the grand mean; <span class="math inline">\(\alpha_i\)</span> is the main effect of the genotype <em>i</em>; <span class="math inline">\(\beta_j\)</span> is the main effect of the environment <em>j</em>, and <span class="math inline">\(\phi_{ij}\)</span> is the interaction effect between genotype <em>i</em> and environment <em>j</em>. Subjecting the <span class="math inline">\(\phi_{ij}\)</span> to Singular Value Decomposition (SVD) results in the AMMI model. The deletion of <span class="math inline">\(\alpha_i\)</span> allows the variation explained by this term to be absorbed into the <span class="math inline">\(\phi_{ij}\)</span> term. In the Genotype plus Genotype-vs-Environment interaction (GGE) model the <span class="math inline">\(\alpha_i\)</span> term is is deleted from the above model and then the environment-centered data matrix, <span class="math inline">\(\phi_{ij}\)</span>, is subjected to SVD <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>; Yan and Kang <a href="#ref-Yan2003">2003</a>)</span>. Explicitly, we have</p>
 <p><span class="math display">\[
 {\phi_{ij} =  \hat y_{ij}} - \mu - \beta_j  = \sum\limits_{k = 1}^p \xi_{ik}^*\eta_{jk}^*
 \]</span></p>
@@ -193,7 +201,7 @@
 <h2 class="hasAnchor">
 <a href="#fitting-the-gge-model" class="anchor"></a>Fitting the GGE model</h2>
 <p>To fit the GGE model we will use the data in <code>data_ge</code>, which contains data for grain yield evaluated in 10 genotypes conducted in 14 environments. First of all, let’s create a two-way table for that data using the function <code><a href="../reference/make_mat.html">make_mat()</a></code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -201,7 +209,7 @@
  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...
  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">ge_table =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, GEN, ENV, GY)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print.dataframe">print.data.frame</a></span>(ge_table, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/print.dataframe.html">print.data.frame</a></span>(ge_table, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>      E1  E10   E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9
 G1  2.37 2.31 1.356 1.34 3.00 1.53 3.04 4.08 3.49 4.17 2.81 1.90 2.27 2.78
 G10 1.97 1.54 0.899 1.02 1.83 1.86 3.15 4.11 4.27 3.37 2.48 2.24 2.70 3.15
@@ -227,7 +235,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualizing-the-biplot" class="anchor"></a>Visualizing the Biplot</h2>
-<p>The generic function <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to <span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>.</p>
+<p>The generic function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to <span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>.</p>
 <ul>
 <li>
 <code>type = 1</code> A basic biplot.</li>
@@ -255,9 +263,9 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <div id="biplot-type-1-a-basic-biplot-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-1-a-basic-biplot-" class="anchor"></a>Biplot type 1: A basic biplot.</h2>
-<p>This is the default setting in the function plot, thus, this biplot is produced by just calling <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot(model)</a></code>, as shown below.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model)</a>
-<a class="sourceLine" id="cb7-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<p>This is the default setting in the function plot, thus, this biplot is produced by just calling <code><a href="https://rdrr.io/r/graphics/plot.html">plot(model)</a></code>, as shown below.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model)</a>
+<a class="sourceLine" id="cb7-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb7-3" title="3">          <span class="dt">col.gen =</span> <span class="st">"blue"</span>,</a>
 <a class="sourceLine" id="cb7-4" title="4">          <span class="dt">size.text.env =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb7-5" title="5"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
@@ -269,8 +277,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <p>In this biplot, the visualization of the mean and stability of genotypes is achieved by drawing an average environment coordinate (AEC) on the genotype-focused biplot. First, an average environment, represented by the small circle, is defined by the mean PC1 and PC2 scores of the environments. The line that passes through the biplot origin and the AEC may be called the average. The projections of genotype markers onto this axis should, therefore, approximate the mean yield of the genotypes. Thus, the G8 was clearly the highest-yielding genotype, on average.</p>
 <p>The AEC ordinate is the line that passes through the biplot origin and is perpendicular to the AEC abscissa. Therefore, if the AEC abscissa represents the G, the AEC ordinate must approximate the GEI associated with each genotype, which is a measure of variability or instability of the genotypes <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>. A greater projection onto the AEC ordinate, regardless of the direction, means greater instability. In our example, G3 was found to be the most stable and the second most productive genotype, while G9 had great instability.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb8-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb8-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb8-4" title="4">          <span class="dt">type =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb8-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb8-6" title="6">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
@@ -284,8 +292,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <p>In this biplot a polygon is drawn joining the genotypes (G7, G8, G9, G10, and G4) that are located farthest from the biplot origin so that all other genotypes are contained in the polygon. The vertex genotypes have the longest vectors, in their respective directions, which is a measure of responsiveness to environments. The vertex genotypes are, therefore, among the most responsive genotypes; all other genotypes are less responsive in their respective directions. A genotype located at the origin would rank the same in all environments and is not at all responsive to the environments.</p>
 <p>The perpendicular lines to the sides of the polygon divide the biplot into sectors. Each sector has a vertex genotype. For example, the sector with the vertex genotype G4 may be referred to as the G4 sector; and one environment (E9), fell in this sector. As a rule, the vertex genotype is the highest-yielding genotype in all environments that share the sector with it <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>. In this case, G4 was the highest-yielding in E9, as shown in the two-way table above.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb9-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb9-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb9-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb9-4" title="4">          <span class="dt">type =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb9-5" title="5">          <span class="dt">size.shape.win =</span> <span class="dv">5</span>,</a>
 <a class="sourceLine" id="cb9-6" title="6">          <span class="dt">large_label =</span> <span class="dv">6</span>,</a>
@@ -299,8 +307,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <div id="biplot-type-4-discriminativeness-vs--representativeness-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-4-discriminativeness-vs--representativeness-" class="anchor"></a>Biplot type 4: Discriminativeness vs. representativeness.</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb10-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb10-3" title="3">          <span class="dt">type =</span> <span class="dv">4</span>,</a>
 <a class="sourceLine" id="cb10-4" title="4">          <span class="dt">plot_theme =</span> <span class="kw">theme_gray</span>())<span class="op">+</span></a>
 <a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"bottom"</span>)</a>
@@ -312,8 +320,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a href="#biplot-type-5-examine-an-environment-" class="anchor"></a>Biplot type 5: Examine an environment.</h2>
 <p>Identifying genotypes most adapted to an environment can be easily achieved via a GGE biplot. For example, to visualize the performance of different genotypes in a given environment, e.g., E10, simply draw a line that passes through the biplot origin and the marker of E10. The genotypes can be ranked according to their projections onto the E10 axis based on their performance in E10, in the direction pointed by the arrow. In our example, at E10, the highest-yielding genotype G8, and the lowest-yielding genotype was G10, and the order of the genotypes were G8 &gt; G7 &gt; G3 &gt; G2 &gt; G4 &gt; G1 &gt; G6 &gt; G5 &gt; G9 &gt; G10.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">5</span>, <span class="dt">sel_env =</span> <span class="st">"E10"</span>)</a>
-<a class="sourceLine" id="cb11-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb11-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">5</span>, <span class="dt">sel_env =</span> <span class="st">"E10"</span>)</a>
+<a class="sourceLine" id="cb11-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb11-4" title="4">          <span class="dt">type =</span> <span class="dv">5</span>,</a>
 <a class="sourceLine" id="cb11-5" title="5">          <span class="dt">sel_env =</span> <span class="st">"E10"</span>,</a>
 <a class="sourceLine" id="cb11-6" title="6">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
@@ -328,8 +336,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a href="#biplot-type-6-ranking-environments-" class="anchor"></a>Biplot type 6: Ranking environments.</h2>
 <p>In this biplot the “ideal” environment is used as the center of a set of concentric lines that serve as a ruler to measure the distance between an environment and the ideal environment. since the main focus in this biplot is environments, then, the singular value partition used is “environment” (default). It can be seen that E13 is the closest to the ideal environment, and, therefore, is most desirable of all 14 environments. E4 and E9 were the least desirable test environments.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb12-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb12-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb12-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb12-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb12-4" title="4">          <span class="dt">type =</span> <span class="dv">6</span>,</a>
 <a class="sourceLine" id="cb12-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb12-6" title="6">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
@@ -343,8 +351,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a href="#biplot-type-7-examine-a-genotype" class="anchor"></a>Biplot type 7: Examine a genotype</h2>
 <p>Analogous to visualizing genotype performances in a given environment (biplot 5) visualization of the mean and stability of genotypes is achieved by drawing an average environment coordinate (AEC) on the genotype-focused biplot <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
-<a class="sourceLine" id="cb13-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">7</span>, <span class="dt">sel_gen =</span> <span class="st">"G8"</span>)</a>
-<a class="sourceLine" id="cb13-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb13-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">7</span>, <span class="dt">sel_gen =</span> <span class="st">"G8"</span>)</a>
+<a class="sourceLine" id="cb13-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb13-4" title="4">          <span class="dt">type =</span> <span class="dv">7</span>,</a>
 <a class="sourceLine" id="cb13-5" title="5">          <span class="dt">sel_gen =</span> <span class="st">"G8"</span>,</a>
 <a class="sourceLine" id="cb13-6" title="6">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
@@ -359,8 +367,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a href="#biplot-type-8-ranking-gentoypes-" class="anchor"></a>Biplot type 8: Ranking gentoypes.</h2>
 <p>This biplot compares all genotypes with the “ideal” genotype The ideal genotype, represented by the small circle with an arrow pointing to it, is defined as having the highest yield in all environments. That is, it has the highest mean yield and is absolutely stable. The genotypes are ranked based on their distance from the ideal genotype <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>. In our example, G3 and G8 were found to outperform the other genotypes.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
-<a class="sourceLine" id="cb14-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">8</span>)</a>
-<a class="sourceLine" id="cb14-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb14-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb14-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb14-4" title="4">          <span class="dt">type =</span> <span class="dv">8</span>,</a>
 <a class="sourceLine" id="cb14-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb14-6" title="6">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
@@ -373,8 +381,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a href="#biplot-type-9-compare-two-genotypes-" class="anchor"></a>Biplot type 9: Compare two genotypes.</h2>
 <p>To compare two genotypes, for example, G10 and G8, draw a connector line to connect them and draw a perpendicular line that passes through the biplot origin and is perpendicular to the connector line. We see one environment, E9, is on the same side of the perpendicular line as G10, and the other 13 environments are on the other side of the perpendicular line, together with G8. This indicates that G10 yielded more than G8 in E9, but G8. yielded more than G10 in the other 13 environments <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb15-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">9</span>, <span class="dt">sel_gen1 =</span> <span class="st">"G8"</span>, <span class="dt">sel_gen2 =</span> <span class="st">"G10"</span>)</a>
-<a class="sourceLine" id="cb15-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb15-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">9</span>, <span class="dt">sel_gen1 =</span> <span class="st">"G8"</span>, <span class="dt">sel_gen2 =</span> <span class="st">"G10"</span>)</a>
+<a class="sourceLine" id="cb15-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb15-4" title="4">          <span class="dt">type =</span> <span class="dv">9</span>,</a>
 <a class="sourceLine" id="cb15-5" title="5">          <span class="dt">sel_gen1 =</span> <span class="st">"G8"</span>,</a>
 <a class="sourceLine" id="cb15-6" title="6">          <span class="dt">sel_gen2 =</span> <span class="st">"G10"</span>,</a>
@@ -388,8 +396,8 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <h2 class="hasAnchor">
 <a href="#biplot-type-10-relationship-among-environments-" class="anchor"></a>Biplot type 10: Relationship among environments.</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb16-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb16-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb16-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb16-4" title="4">          <span class="dt">type =</span> <span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb16-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb16-6" title="6">          <span class="dt">title =</span> <span class="ot">FALSE</span>,</a>
@@ -413,6 +421,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -446,17 +455,20 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

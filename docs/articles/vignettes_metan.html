@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Multi-environment Trial Analysis • metan</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Multi-environment Trial Analysis">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -124,6 +131,7 @@
 <!--/.navbar -->
 
       
+
       </header><script src="vignettes_metan_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -141,16 +149,16 @@
 <h1 class="hasAnchor">
 <a href="#brief-examples" class="anchor"></a>Brief examples</h1>
 <p>Brief examples will be shown using the dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see <code><a href="../reference/data_ge.html">?data_ge</a></code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
 <a class="sourceLine" id="cb1-4" title="4"></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>,        <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>,        <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
 <a class="sourceLine" id="cb1-9" title="9">}</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -172,7 +180,7 @@
 <a class="sourceLine" id="cb3-5" title="5">                <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb3-6" title="6">                <span class="dt">nboot =</span> <span class="dv">500</span>,</a>
 <a class="sourceLine" id="cb3-7" title="7">                <span class="dt">nrepval =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(CVAL)</a></code></pre></div>
+<a class="sourceLine" id="cb3-8" title="8"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(CVAL)</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-2-1.png" width="480"></p>
 <div id="fitting-the-model" class="section level3">
 <h3 class="hasAnchor">
@@ -195,16 +203,16 @@
 <a class="sourceLine" id="cb6-8" title="8">                  <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
 <a class="sourceLine" id="cb6-9" title="9"><span class="kw">plot_grid</span>(p1, p2,</a>
 <a class="sourceLine" id="cb6-10" title="10">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
-<a class="sourceLine" id="cb6-11" title="11">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>),</a>
+<a class="sourceLine" id="cb6-11" title="11">          <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>),</a>
 <a class="sourceLine" id="cb6-12" title="12">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-4-1.png" width="480"></p>
 </div>
 <div id="s3-method-predict" class="section level3">
 <h3 class="hasAnchor">
 <a href="#s3-method-predict" class="anchor"></a>S3 method predict()</h3>
-<p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted <code>model</code> object.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(predicted<span class="op">$</span>GY))</a></code></pre></div>
+<p>The S3 method <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted <code>model</code> object.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(predicted<span class="op">$</span>GY))</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -405,15 +413,15 @@ G5
 <h2 class="hasAnchor">
 <a href="#residual-plots" class="anchor"></a>Residual plots</h2>
 <p>Several residual plots may be obtained applying the function <code>autoplot()</code> to an object of class <code>waasb</code> (or <code>waas</code>).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-7-1.png" width="384"></p>
 </div>
-<div id="distributin-of-random-effects" class="section level2">
+<div id="distribution-of-random-effects" class="section level2">
 <h2 class="hasAnchor">
-<a href="#distributin-of-random-effects" class="anchor"></a>Distributin of random effects</h2>
+<a href="#distribution-of-random-effects" class="anchor"></a>Distribution of random effects</h2>
 <p>The distribution of the random effects may be obtained using the argument <code>type = "re"</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">type =</span> <span class="st">"re"</span>, <span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>,<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">type =</span> <span class="st">"re"</span>, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">1</span>))</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-8-1.png" width="384"></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">print_table</span>(model2<span class="op">$</span>GY<span class="op">$</span>LRT)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -871,7 +879,7 @@ G10
 </tr>
 </tbody>
 </table>
-<p>An easy way to check the results in the R console is by using the function <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code></p>
+<p>An easy way to check the results in the R console is by using the function <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code></p>
 </div>
 <div id="plotting-the-blups-for-genotypes" class="section level2">
 <h2 class="hasAnchor">
@@ -879,18 +887,18 @@ G10
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
 <a class="sourceLine" id="cb16-2" title="2">p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb16-3" title="3">                <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb16-4" title="4">                <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-4" title="4">                <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb16-5" title="5"><span class="st">      </span><span class="kw">coord_flip</span>()</a>
 <a class="sourceLine" id="cb16-6" title="6"><span class="kw">plot_grid</span>(p1, p2,</a>
 <a class="sourceLine" id="cb16-7" title="7">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
-<a class="sourceLine" id="cb16-8" title="8">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
+<a class="sourceLine" id="cb16-8" title="8">          <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
 <a class="sourceLine" id="cb16-9" title="9">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-10-1.png" width="384"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blups-for-genotype-vs-environment-interaction" class="anchor"></a>BLUPS for genotype-vs-environment interaction</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">print_table</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge))</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">print_table</span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge))</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1522,7 +1530,7 @@ G9
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualizing-the-biplot" class="anchor"></a>Visualizing the Biplot</h2>
-<p>The generic function <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>}.</p>
+<p>The generic function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>}.</p>
 <ul>
 <li>
 <code>type = 1</code> A basic biplot.</li>
@@ -1545,11 +1553,11 @@ G9
 <li>
 <code>type =  10</code> Relationship among environments.</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model)</a>
-<a class="sourceLine" id="cb21-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model)</a>
+<a class="sourceLine" id="cb21-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb21-3" title="3"><span class="kw">plot_grid</span>(p1, p2,</a>
 <a class="sourceLine" id="cb21-4" title="4">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
-<a class="sourceLine" id="cb21-5" title="5">          <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
+<a class="sourceLine" id="cb21-5" title="5">          <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
 <a class="sourceLine" id="cb21-6" title="6">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-15-1.png" width="384"></p>
 </div>
@@ -1576,20 +1584,20 @@ G9
 <h1 class="hasAnchor">
 <a href="#computing-the-indexes" class="anchor"></a>Computing the indexes</h1>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">stat_ge &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, GY)</a></code></pre></div>
-<p>If you whant to export a summary of results, the simplest way is by using the function summary, as follows:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>If you want to export a summary of results, the simplest way is by using the function summary, as follows:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>This comand will create a text file called <em>ge_stats summary.txt</em> in the current working directory.</p>
 </div>
 <div id="selection-based-on-multiple-traits" class="section level1">
 <h1 class="hasAnchor">
 <a href="#selection-based-on-multiple-traits" class="anchor"></a>Selection based on multiple traits</h1>
-<p>The multi-trait stability index (MTSI) was proposed by <span class="citation">Olivoto, Lúcio, Da silva, Sari, et al. (<a href="#ref-Olivoto2019a">2019</a>)</span> and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. Note that a model may be fitted easier and faster using the forward-pipe <code>%&gt;%</code> and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). Using <code>%&gt;%</code> make it the coding logical and clean especially when the output of a function is used as input in a second function.</p>
+<p>The multi-trait stability index (MTSI) was proposed by <span class="citation">Olivoto, Lúcio, Da silva, Sari, et al. (<a href="#ref-Olivoto2019a">2019</a>)</span> and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. Note that a model may be fitted easier and faster using the forward-pipe <code><a href="../reference/pipe.html">%&gt;%</a></code> and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). Using <code><a href="../reference/pipe.html">%&gt;%</a></code> make it the coding logical and clean especially when the output of a function is used as input in a second function.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb24-3" title="3">        <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(KW, NKE, PH, EH, TKW),</a>
+<a class="sourceLine" id="cb24-3" title="3">        <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW),</a>
 <a class="sourceLine" id="cb24-4" title="4">        <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb24-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-6" title="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb24-6" title="6"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>()</a></code></pre></div>
 </div>
 <div id="getting-help" class="section level1">
 <h1 class="hasAnchor">
@@ -1635,6 +1643,7 @@ G9
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -1648,7 +1657,7 @@ G9
       <li>
 <a href="#blup-model">BLUP model</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#residual-plots">Residual plots</a></li>
-      <li><a href="#distributin-of-random-effects">Distributin of random effects</a></li>
+      <li><a href="#distribution-of-random-effects">Distribution of random effects</a></li>
       <li><a href="#plotting-the-blups-for-genotypes">Plotting the BLUPs for genotypes</a></li>
       <li><a href="#blups-for-genotype-vs-environment-interaction">BLUPS for genotype-vs-environment interaction</a></li>
       <li><a href="#blup-based-stability-index">BLUP-based stability index</a></li>
@@ -1672,17 +1681,20 @@ G9
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

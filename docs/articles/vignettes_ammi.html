@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Analyzing multienvironment trials using AMMI • metan</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Analyzing multienvironment trials using AMMI">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -124,6 +131,7 @@
 <!--/.navbar -->
 
       
+
       </header><script src="vignettes_ammi_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -141,17 +149,17 @@
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
 <a class="sourceLine" id="cb1-9" title="9">}</a>
 <a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
+<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -172,7 +180,7 @@
 <a class="sourceLine" id="cb3-4" title="4">                  <span class="dt">rep =</span> REP,</a>
 <a class="sourceLine" id="cb3-5" title="5">                  <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb3-6" title="6">                  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<p>Note that using the arguments in the correct order, the model above may be fitted cleanly using the forward-pipe operator <code>%&gt;%</code>.</p>
+<p>Note that using the arguments in the correct order, the model above may be fitted cleanly using the forward-pipe operator <code><a href="../reference/pipe.html">%&gt;%</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">AMMI_model =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="within-environment-anova" class="section level2">
@@ -762,7 +770,7 @@ E9
 <p>The following comand creates the well-known ANOVA table for the AMMI model. Note that since</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">print_table</span>(AMMI_model<span class="op">$</span>GY<span class="op">$</span>anova) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="kw">row_spec</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">bold =</span> T) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="kw">add_indent</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">5</span><span class="op">:</span><span class="dv">13</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw">add_indent</span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span><span class="op">:</span><span class="dv">13</span>))</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1188,7 +1196,7 @@ NA
 <div id="estimating-the-response-variable-based-on-significant-ipca-axes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#estimating-the-response-variable-based-on-significant-ipca-axes" class="anchor"></a>Estimating the response variable based on significant IPCA axes</h1>
-<p>The response variable of a two-way table (for example, the yield of <em>m</em> genotypes in <em>n</em> environments) may be estimated using the S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> applyed to an object of class <code>waas</code>. This estimation is based on the number of multiplicative terms declared in the function. If <code>naxis = 1</code>, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If <code>naxis = min(g - 1; e - 1)</code>, the AMMIF is fitted. A summary of all possible AMMI models is presented below.</p>
+<p>The response variable of a two-way table (for example, the yield of <em>m</em> genotypes in <em>n</em> environments) may be estimated using the S3 method <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> applyed to an object of class <code>waas</code>. This estimation is based on the number of multiplicative terms declared in the function. If <code>naxis = 1</code>, the AMMI1 (with one multiplicative term) is used for estimating the response variable. If <code>naxis = min(g - 1; e - 1)</code>, the AMMIF is fitted. A summary of all possible AMMI models is presented below.</p>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -1222,8 +1230,8 @@ NA
 </tbody>
 </table>
 <p>Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968">1968</a>)</span> or predictive success, such as cross-validation <span class="citation">(Piepho <a href="#ref-Piepho:1994">1994</a>)</span> should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The <code><a href="../reference/waas.html">waas()</a></code> function compute traditional AMMI analysis showing the number of significant axes according to Gollobs’s test. On the other hand, <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code> function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(predicted<span class="op">$</span>GY, <span class="dt">n =</span> <span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(predicted<span class="op">$</span>GY, <span class="dt">n =</span> <span class="dv">10</span>))</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2437,7 +2445,7 @@ E9
 <a class="sourceLine" id="cb10-5" title="5">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb10-6" title="6">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb10-7" title="7">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb10-8" title="8"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb10-8" title="8"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-gy-x-pc1" class="section level3">
@@ -2447,10 +2455,10 @@ E9
 <a class="sourceLine" id="cb11-2" title="2">p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb11-3" title="3">                 <span class="dt">col.segm.env =</span> <span class="st">"transparent"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb11-4" title="4"><span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
 <a class="sourceLine" id="cb11-6" title="6">                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))</a>
 <a class="sourceLine" id="cb11-7" title="7"></a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb11-8" title="8"><span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</a></code></pre></div>
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-3-gy-x-waas" class="section level3">
@@ -2462,10 +2470,10 @@ E9
 <a class="sourceLine" id="cb12-3" title="3">                 <span class="dt">x.lab =</span> <span class="st">"My customized x label"</span>,</a>
 <a class="sourceLine" id="cb12-4" title="4">                 <span class="dt">size.shape =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb12-5" title="5">                 <span class="dt">size.tex.pa =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb12-6" title="6">                 <span class="dt">x.lim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">1.2</span>, <span class="fl">4.7</span>),</a>
-<a class="sourceLine" id="cb12-7" title="7">                 <span class="dt">x.breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))</a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb12-6" title="6">                 <span class="dt">x.lim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1.2</span>, <span class="fl">4.7</span>),</a>
+<a class="sourceLine" id="cb12-7" title="7">                 <span class="dt">x.breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))</a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</a></code></pre></div>
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-4-nominal-yield-and-environment-ipca1" class="section level3">
@@ -2485,10 +2493,10 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 \]</span></p>
 <p>where <span class="math inline">\(WAASY_i\)</span> is the superiority index for the <em>i</em>-th genotype that weights between performance and stability; <span class="math inline">\(rG_i\)</span> and <span class="math inline">\(rW_i\)</span> are the rescaled values (0-100) for GY and WAASB, respectively; <span class="math inline">\(\theta _Y\)</span> and <span class="math inline">\(\theta_S\)</span> are the weights for GY and WAASB, respectively.</p>
 <p>This index was also already computed and stored into AMMI_model&gt;GY&gt;model. An intuitively plot may be obtained by running</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb14-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(AMMI_model<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb14-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb14-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>The values of WAASY in the plot above were computed considering equal weights for mean performance and stability. Different weights may be assigned using the <code>wresp</code> argument of the <code><a href="../reference/waas.html">waas()</a></code> function.</p>
 </div>
@@ -3264,13 +3272,13 @@ G9
 <div id="ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAAS</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASratio<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(WAASratio<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-17-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="ranks-of-genotypes-depending-on-the-waasgy-ratio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-waasgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAAS/GY ratio</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(WAASratio<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(WAASratio<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-18-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -3279,7 +3287,7 @@ G9
 <a href="#getting-model-data" class="anchor"></a>Getting model data</h2>
 <p>The function <code><a href="../reference/get_model_data.html">get_model_data()</a></code> may be used to easily get the data from a model fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, especially when more than one variables are used. See the example below.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge2, ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb20-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(PH, ED, TKW, NKR)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, ED, TKW, NKR)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st"> </span><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb20-4" title="4"><span class="st"> </span><span class="kw">print_table</span>()</a></code></pre></div>
 <pre><code>Evaluating variable PH 25 % 
@@ -4015,6 +4023,7 @@ G9
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -4051,17 +4060,20 @@ G9
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

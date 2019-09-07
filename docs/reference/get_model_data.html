@@ -8,21 +8,32 @@
 
 <title>Easily get data from a model — get_model_data • metan</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,12 +41,12 @@
 
 
 
+
 <meta property="og:title" content="Easily get data from a model — get_model_data" />
-
 <meta property="og:description" content="Easily get data from a model of class waas or waasb (Olivoto et al., 2019a, 2019b)" />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -58,6 +69,7 @@
 
   gtag('config', 'UA-140429633-1');
 </script>
+
 
   </head>
 
@@ -143,7 +155,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/TiagoOlivoto">Github</a>
@@ -161,6 +172,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -172,13 +184,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Easily get data from a model of class <code>waas</code> or <code>waasb</code> (Olivoto et al., 2019a, 2019b)</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>get_model_data</span>(<span class='no'>x</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"Y"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"GEN"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -193,12 +203,12 @@
 predicted mean (if the object is of class <code>waasb</code> only); <code>"Y"</code> for raw means (Default);
 <code>"PCn"</code> for the scores of the nth Interaction Principal Component Axis (IPCA),
  where <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>); <code>"WAASB"</code> for the weighted
- average of the absolute scores; <code>"PctResp"</code> and <code>"PctWAASB"</code> for the reescaled
+ average of the absolute scores; <code>"PctResp"</code> and <code>"PctWAASB"</code> for the rescaled
  values of the response variable and WAASB, respectively; <code>"wResp"</code> and <code>"wWAASB"</code>
  for weight of the response variable and stability, respectively; <code>"OrResp"</code> and
  <code>"OrWAASB"</code> for the ranking regarding the response variable and WAASB, respectively;
  <code>"OrPC1"</code> for the ranking regarding the first principal component axix; <code>"WAASBY"</code>
- for the superiority index, <code>"OrWAASBY"</code> for the ranking regarding the superiorirty
+ for the superiority index, <code>"OrWAASBY"</code> for the ranking regarding the superiority
  index.</p></td>
     </tr>
     <tr>
@@ -207,7 +217,7 @@ predicted mean (if the object is of class <code>waasb</code> only); <code>"Y"</c
 or environment (<code>type = "ENV"</code>), when possible.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
@@ -216,17 +226,16 @@ or environment (<code>type = "ENV"</code>), when possible.</p></td>
 <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
  Mean performance and stability in multi-environment trials II: Selection based on multiple
   traits. Agron. J.doi:10.2134/agronj2019.03.0221.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>,
              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
 #&gt; Evaluating variable ED 50 % 
 #&gt; Evaluating variable TKW 75 % 
 #&gt; Evaluating variable NKR 100 % 
@@ -248,7 +257,7 @@ or environment (<code>type = "ENV"</code>), when possible.</p></td>
 #&gt; </span><span style='color: #555555;'>13</span><span> H9        5    13    13     9</div><div class='input'>
 
 <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>)) <span class='kw'>%&gt;%</span>
+      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>)) <span class='kw'>%&gt;%</span>
 <span class='fu'>get_model_data</span>(<span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"blupg"</span>)</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
 #&gt; Evaluating variable ED 50 % 
 #&gt; Evaluating variable TKW 75 % 
@@ -276,9 +285,7 @@ or environment (<code>type = "ENV"</code>), when possible.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#references">References</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -287,19 +294,23 @@ or environment (<code>type = "ENV"</code>), when possible.</p></td>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

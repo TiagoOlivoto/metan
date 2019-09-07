@@ -8,21 +8,32 @@
 
 <title>Mantel test for a set of correlation matrices — pairs_mantel • metan</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,15 +41,15 @@
 
 
 
-<meta property="og:title" content="Mantel test for a set of correlation matrices — pairs_mantel" />
 
+<meta property="og:title" content="Mantel test for a set of correlation matrices — pairs_mantel" />
 <meta property="og:description" content="This function generate a pairwise matrix of plots to compare the similarity
 of two or more correlation matrices. In the upper diagonal are presented the
 plots and in the lower diagonal the result of Mantel test based on
 permutations." />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -61,6 +72,7 @@ permutations." />
 
   gtag('config', 'UA-140429633-1');
 </script>
+
 
   </head>
 
@@ -146,7 +158,6 @@ permutations." />
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/TiagoOlivoto">Github</a>
@@ -164,6 +175,7 @@ permutations." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -175,12 +187,10 @@ permutations." />
     </div>
 
     <div class="ref-description">
-    
     <p>This function generate a pairwise matrix of plots to compare the similarity
 of two or more correlation matrices. In the upper diagonal are presented the
 plots and in the lower diagonal the result of Mantel test based on
 permutations.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>pairs_mantel</span>(<span class='no'>...</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>nrepet</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -191,7 +201,7 @@ permutations.</p>
   <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>signcol</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
   <span class='kw'>diagcol</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
   <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -208,7 +218,7 @@ correlation matrices.</p></td>
     </tr>
     <tr>
       <th>nrepet</th>
-      <td><p>The number of permutateions. Default is 1000</p></td>
+      <td><p>The number of permutations. Default is 1000</p></td>
     </tr>
     <tr>
       <th>names</th>
@@ -315,17 +325,17 @@ lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p>
       <td><p>The number of digits to show in the plot.</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='co'># iris dataset</span>
 <span class='no'>lpc</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='kw'>%&gt;%</span>
-      <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))</div><div class='output co'>#&gt; <span class='message'>The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
+      <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))</div><div class='output co'>#&gt; <span class='message'>The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Level: setosa 
 #&gt; ----------------------------------------------------------------------------
@@ -361,10 +371,10 @@ lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p>
 
 <span class='co'># mtcars dataset</span>
 <span class='no'>mt_num</span> <span class='kw'>=</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select_all.html'>select_if</a></span>(<span class='no'>.</span>, <span class='no'>is.numeric</span>)
-<span class='no'>lpdata</span> <span class='kw'>=</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
-                  <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
-                  <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>2</span>:<span class='fl'>6</span>]),
-                  <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>4</span>:<span class='fl'>8</span>])) <span class='kw'>%&gt;%</span>
+<span class='no'>lpdata</span> <span class='kw'>=</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
+                  <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
+                  <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>2</span>:<span class='fl'>6</span>]),
+                  <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>4</span>:<span class='fl'>8</span>])) <span class='kw'>%&gt;%</span>
          <span class='fu'>pairs_mantel</span>()</div><div class='img'><img src='pairs_mantel-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
@@ -372,7 +382,6 @@ lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -381,19 +390,23 @@ lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cross-validation procedures for AMMI and BLUP • metan</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Cross-validation procedures for AMMI and BLUP">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -124,6 +131,7 @@
 <!--/.navbar -->
 
       
+
       </header><script src="vignettes_cross-validation_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -154,13 +162,13 @@
   }
 </style>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Importing data</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
 <a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
 <a class="sourceLine" id="cb1-10" title="10">}</a></code></pre></div>
 </div>
@@ -208,9 +216,9 @@
 <a href="#genotype-and-genotype-vs-environment-as-random-effects" class="anchor"></a>Genotype and genotype-vs-environment as random effects</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">BLUP_g =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"gen"</span>)</a></code></pre></div>
 </div>
-<div id="environment-replication-whitin-environment-and-interaction-as-random-effects" class="section level2">
+<div id="environment-replication-within-environment-and-interaction-as-random-effects" class="section level2">
 <h2 class="hasAnchor">
-<a href="#environment-replication-whitin-environment-and-interaction-as-random-effects" class="anchor"></a>Environment, replication-whitin-environment and interaction as random effects</h2>
+<a href="#environment-replication-within-environment-and-interaction-as-random-effects" class="anchor"></a>Environment, replication-within-environment and interaction as random effects</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">BLUP_e =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"env"</span>)</a></code></pre></div>
 </div>
 <div id="a-random-model-all-terms-as-random-effects" class="section level2">
@@ -473,11 +481,11 @@ AMMI1
 <div id="plotting-the-rmspd-values" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-the-rmspd-values" class="anchor"></a>Plotting the RMSPD values</h2>
-<p>The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function<code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code>.</p>
+<p>The values of the RMSPD estimates obtained in the cross-validation process may be plotted using the function<code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">bind1 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
 <a class="sourceLine" id="cb8-2" title="2">bind2 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP_g, BLUP_e, BLUP_ge)</a>
-<a class="sourceLine" id="cb8-3" title="3">p1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind1, <span class="dt">violin =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb8-4" title="4">p2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bind2,</a>
+<a class="sourceLine" id="cb8-3" title="3">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(bind1, <span class="dt">violin =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-4" title="4">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(bind2,</a>
 <a class="sourceLine" id="cb8-5" title="5">          <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>,</a>
 <a class="sourceLine" id="cb8-6" title="6">          <span class="dt">col.boxplot =</span> <span class="st">"transparent"</span>,</a>
 <a class="sourceLine" id="cb8-7" title="7">          <span class="dt">order_box =</span> <span class="ot">TRUE</span>)</a>
@@ -501,6 +509,7 @@ AMMI1
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -516,7 +525,7 @@ AMMI1
       <li>
 <a href="#cross-validation-for-blup-prediction">Cross-validation for BLUP prediction</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#genotype-and-genotype-vs-environment-as-random-effects">Genotype and genotype-vs-environment as random effects</a></li>
-      <li><a href="#environment-replication-whitin-environment-and-interaction-as-random-effects">Environment, replication-whitin-environment and interaction as random effects</a></li>
+      <li><a href="#environment-replication-within-environment-and-interaction-as-random-effects">Environment, replication-within-environment and interaction as random effects</a></li>
       <li><a href="#a-random-model-all-terms-as-random-effects">A random model (all terms as random effects)</a></li>
       <li><a href="#printing-the-means-of-rmspd-estimates">Printing the means of RMSPD estimates</a></li>
       <li><a href="#plotting-the-rmspd-values">Plotting the RMSPD values</a></li>
@@ -530,17 +539,20 @@ AMMI1
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

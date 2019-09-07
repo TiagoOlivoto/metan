@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Helper functions for metan • metan</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Helper functions for metan">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -124,6 +131,7 @@
 <!--/.navbar -->
 
       
+
       </header><script src="vignettes_helper_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -140,14 +148,14 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
 <a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
 <a class="sourceLine" id="cb1-10" title="10">}</a></code></pre></div>
 </div>
@@ -254,7 +262,7 @@ G1
 <h2 class="hasAnchor">
 <a href="#group-a-data-frame-using-all-factor-variables" class="anchor"></a>Group a data frame using all factor variables</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">g3 =<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(g3)</a></code></pre></div>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(g3)</a></code></pre></div>
 <pre><code> [1] "Qn1 / Quebec / nonchilled"      "Qn2 / Quebec / nonchilled"     
  [3] "Qn3 / Quebec / nonchilled"      "Qc1 / Quebec / chilled"        
  [5] "Qc3 / Quebec / chilled"         "Qc2 / Quebec / chilled"        
@@ -266,7 +274,7 @@ G1
 <div id="make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="anchor"></a>Make a two-way table based on categorical and numerical arguments</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data_ge)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_ge)</a></code></pre></div>
 <pre><code># A tibble: 6 x 5
   ENV   GEN   REP      GY    HM
   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -802,8 +810,8 @@ G9
 <div id="make-a-symmetric-matrix" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-symmetric-matrix" class="anchor"></a>Make a symmetric matrix</h1>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">m &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="ot">NA</span>, <span class="dv">10</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2">m[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lower.tri">lower.tri</a></span>(m)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">45</span></a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">m &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="ot">NA</span>, <span class="dv">10</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2">m[<span class="kw"><a href="https://rdrr.io/r/base/lower.tri.html">lower.tri</a></span>(m)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">45</span></a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="kw">print_table</span>(m)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive"><tbody>
 <tr>
@@ -1455,11 +1463,11 @@ NA
 <div id="generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="section level1">
 <h1 class="hasAnchor">
 <a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="anchor"></a>Generate pairwise combinations of variables by applying one function to each pair</h1>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
-<a class="sourceLine" id="cb13-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb13-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
-<a class="sourceLine" id="cb13-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
-<a class="sourceLine" id="cb13-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb13-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb13-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb13-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb13-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
 <a class="sourceLine" id="cb13-6" title="6">c1 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a>
 <a class="sourceLine" id="cb13-7" title="7"><span class="kw">print_table</span>(c1)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -1860,8 +1868,8 @@ DxE
 <div id="combining-data-frames-by-row-filling-missing-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-data-frames-by-row-filling-missing-values" class="anchor"></a>Combining data.frames by row, filling missing values</h1>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb15-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb15-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
 <a class="sourceLine" id="cb15-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
 <pre><code>  v1 v2 v3
 1  1  2  .
@@ -1881,7 +1889,7 @@ DxE
 <div id="rescale-a-numeric-vector" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-a-numeric-vector" class="anchor"></a>Rescale a numeric vector</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
 <pre><code>[1]   0  25  50  75 100</code></pre>
 </div>
 <div id="rescale-using-a-data-frame-and-select-rescaled-variables-only" class="section level2">
@@ -1889,7 +1897,7 @@ DxE
 <a href="#rescale-using-a-data-frame-and-select-rescaled-variables-only" class="anchor"></a>Rescale using a data frame and select rescaled variables only</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">data_ge <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="../reference/resca.html">resca</a></span>(GY, HM, <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">1</span>,  <span class="dt">keep =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
@@ -1952,16 +1960,16 @@ HM_res
 </tbody>
 </table>
 </div>
-<div id="reescale-within-factors" class="section level2">
+<div id="rescale-within-factors" class="section level2">
 <h2 class="hasAnchor">
-<a href="#reescale-within-factors" class="anchor"></a>Reescale within factors</h2>
+<a href="#rescale-within-factors" class="anchor"></a>Rescale within factors</h2>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">  data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb22-2" title="2"><span class="st">    </span><span class="kw">select</span>(ENV, GEN, <span class="kw">starts_with</span>(<span class="st">"N"</span>), <span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb22-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(ENV, GEN) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb22-4" title="4"><span class="st">    </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb22-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb22-6" title="6"><span class="st">    </span><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-7" title="7"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dt">n =</span> <span class="dv">13</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-7" title="7"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">13</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb22-8" title="8"><span class="st">    </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
@@ -2378,6 +2386,7 @@ H9
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -2399,7 +2408,7 @@ H9
 <a href="#rescale-a-continuous-vector-to-have-specified-minimum-and-maximum-values">Rescale a continuous vector to have specified minimum and maximum values</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#rescale-a-numeric-vector">Rescale a numeric vector</a></li>
       <li><a href="#rescale-using-a-data-frame-and-select-rescaled-variables-only">Rescale using a data frame and select rescaled variables only</a></li>
-      <li><a href="#reescale-within-factors">Reescale within factors</a></li>
+      <li><a href="#rescale-within-factors">Rescale within factors</a></li>
       </ul>
 </li>
       </ul>
@@ -2409,17 +2418,20 @@ H9
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -8,21 +8,32 @@
 
 <title>Predict a two-way table based on GGE model — predict.gge • metan</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,13 +41,13 @@
 
 
 
+
 <meta property="og:title" content="Predict a two-way table based on GGE model — predict.gge" />
-
 <meta property="og:description" content="Predict the means for a genotype-vs-environment trial based on a Genotype plus
-Genotype-vs-Environment interction (GGE) model." />
-
+Genotype-vs-Environment interaction (GGE) model." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -59,6 +70,7 @@ Genotype-vs-Environment interction (GGE) model." />
 
   gtag('config', 'UA-140429633-1');
 </script>
+
 
   </head>
 
@@ -144,7 +156,6 @@ Genotype-vs-Environment interction (GGE) model." />
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/TiagoOlivoto">Github</a>
@@ -162,6 +173,7 @@ Genotype-vs-Environment interction (GGE) model." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -173,15 +185,13 @@ Genotype-vs-Environment interction (GGE) model." />
     </div>
 
     <div class="ref-description">
-    
     <p>Predict the means for a genotype-vs-environment trial based on a Genotype plus
-Genotype-vs-Environment interction (GGE) model.</p>
-    
+Genotype-vs-Environment interaction (GGE) model.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gge</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/predict'>predict</a></span>(<span class='no'>object</span>, <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"wide"</span>, <span class='no'>...</span>)</pre>
-    
+<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>object</span>, <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"wide"</span>, <span class='no'>...</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -192,7 +202,7 @@ Genotype-vs-Environment interction (GGE) model.</p>
     <tr>
       <th>naxis</th>
       <td><p>The the number of principal components to be used in the prediction.
-Generaly, two axis may be used. In this case, the estimated values will be those shown
+Generally, two axis may be used. In this case, the estimated values will be those shown
 in the biplot.</p></td>
     </tr>
     <tr>
@@ -207,25 +217,23 @@ in the columns, filled by the estimated values.</p></td>
       <td><p>Additional parameter for the function</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is used to predict the response variable of a two-way table
 (for examples the yielding of g genotypes in e environments)
 based on GGE model. This prediction is based on the number of
-principal components used. For more detais see Yan and Kang (2007).</p>
-    
+principal components used. For more details see Yan and Kang (2007).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
  geneticists, and agronomists. CRC Press.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>mod</span> <span class='kw'>=</span> <span class='fu'><a href='gge.html'>gge</a></span>(<span class='no'>data_ge</span>, <span class='no'>GEN</span>, <span class='no'>ENV</span>, <span class='no'>GY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/predict'>predict</a></span>(<span class='no'>mod</span>)</div><div class='output co'>#&gt;           G1       G10       G2       G3       G4       G5       G6       G7
+<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>mod</span>)</div><div class='output co'>#&gt;           G1       G10       G2       G3       G4       G5       G6       G7
 #&gt; E1  2.518587 2.0306120 2.618031 2.804462 2.419847 2.319841 2.379029 2.696073
 #&gt; E10 2.137539 1.6512896 2.243120 2.439484 2.094831 2.012357 2.076414 2.402064
 #&gt; E11 1.255415 0.9131181 1.391875 1.621847 1.401209 1.359064 1.410244 1.713249
@@ -261,11 +269,8 @@ principal components used. For more detais see Yan and Kang (2007).</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#references">References</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -274,19 +279,23 @@ principal components used. For more detais see Yan and Kang (2007).</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

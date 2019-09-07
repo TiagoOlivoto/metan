@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parametric and non-parametric stability statistics • metan</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Parametric and non-parametric stability statistics">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -124,6 +131,7 @@
 <!--/.navbar -->
 
       
+
       </header><script src="vignettes_stability_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -141,16 +149,16 @@
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p>In this section, we will use the data in <code>data_ge</code> and <code>data_ge2</code>. For more information see <code><a href="../reference/data_ge.html">?data_ge</a></code> and <code><a href="../reference/data_ge2.html">?data_ge2</a></code>, respectively. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse) <span class="co"># for data manipulation and pipe %&gt;%</span></a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse) <span class="co"># for data manipulation and pipe %&gt;%</span></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
 <a class="sourceLine" id="cb1-9" title="9">}</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -170,9 +178,9 @@
 <div id="clustering-tester-locations" class="section level1">
 <h1 class="hasAnchor">
 <a href="#clustering-tester-locations" class="anchor"></a>Clustering tester locations</h1>
-<p>The function <code><a href="../reference/ge_cluster.html">ge_cluster()</a></code> computes a cluter analysis for grouping environments based on its similarities using an Euclidean distance based on standardized data. Line means are divided by the phenotypic standard error of the relevant environment after its mean has been subtracted. By standardizing the data each environment will have a mean of zero and unit variance, and the effect of variability in phenotypic variance (as well as the mean) should be reduced <span class="citation">(Fox and Rosielle <a href="#ref-Fox1982">1982</a>)</span>.</p>
+<p>The function <code><a href="../reference/ge_cluster.html">ge_cluster()</a></code> computes a cluster analysis for grouping environments based on its similarities using an Euclidean distance based on standardized data. Line means are divided by the phenotypic standard error of the relevant environment after its mean has been subtracted. By standardizing the data each environment will have a mean of zero and unit variance, and the effect of variability in phenotypic variance (as well as the mean) should be reduced <span class="citation">(Fox and Rosielle <a href="#ref-Fox1982">1982</a>)</span>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">d1 =<span class="st"> </span><span class="kw"><a href="../reference/ge_cluster.html">ge_cluster</a></span>(data_ge, ENV, GEN, GY, <span class="dt">nclust =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(d1, <span class="dt">nclust =</span> <span class="dv">4</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d1, <span class="dt">nclust =</span> <span class="dv">4</span>)</a></code></pre></div>
 <p><img src="vignettes_stability_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="joint-regression-analysis" class="section level1">
@@ -181,7 +189,7 @@
 <p><span class="citation">Eberhart and Russell (<a href="#ref-Eberhart1966">1966</a>)</span> popularized the regression-based stability analysis. In these procedures, the adaptability and stability analysis is performed by means of adjustments of regression equations where the dependent variable is predicted as a function of an environmental index, according to the following model:</p>
 <p><span class="math display">\[
 \mathop Y\nolimits_{ij}  = {\beta _{0i}} + {\beta _{1i}}{I_j} + {\delta _{ij}} + {\bar \varepsilon _{ij}}
-\]</span> where <span class="math inline">\({\beta _{0i}}\)</span> is the grand mean of the genotype <em>i</em> (<em>i</em> = 1, 2, …, I); <span class="math inline">\({\beta _{1i}}\)</span> is the linear response (slope) of the genotype <em>i</em> to the environmental index; <em>Ij</em> is the environmental index (<em>j</em> = 1, 2, …, <em>e</em>), where <span class="math inline">\({I_j} = [(y_{.j}/g)- (y_{..}/ge)]\)</span>, <span class="math inline">\({\delta _{ij}}\)</span> is the deviation from the regression, and <span class="math inline">\({\bar \varepsilon _{ij}}\)</span> is the experimental error. The model is fitted with the function <code><a href="../reference/ge_reg.html">ge_reg()</a></code>. The S3 methods <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code> may be used to explore the fitted model.</p>
+\]</span> where <span class="math inline">\({\beta _{0i}}\)</span> is the grand mean of the genotype <em>i</em> (<em>i</em> = 1, 2, …, I); <span class="math inline">\({\beta _{1i}}\)</span> is the linear response (slope) of the genotype <em>i</em> to the environmental index; <em>Ij</em> is the environmental index (<em>j</em> = 1, 2, …, <em>e</em>), where <span class="math inline">\({I_j} = [(y_{.j}/g)- (y_{..}/ge)]\)</span>, <span class="math inline">\({\delta _{ij}}\)</span> is the deviation from the regression, and <span class="math inline">\({\bar \varepsilon _{ij}}\)</span> is the experimental error. The model is fitted with the function <code><a href="../reference/ge_reg.html">ge_reg()</a></code>. The S3 methods <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> may be used to explore the fitted model.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">reg_model =<span class="st"> </span><span class="kw"><a href="../reference/ge_reg.html">ge_reg</a></span>(data_ge, ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw">print_table</span>(reg_model<span class="op">$</span>GY<span class="op">$</span>anova)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -795,9 +803,9 @@ W_i = Z_{i.}/e - \alpha \times sd(Z_{i.})
 <a href="#environment-classification" class="anchor"></a>Environment classification</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">df =<span class="st"> </span>ann5<span class="op">$</span>GY</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw">kable</span>(df<span class="op">$</span>environments, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw">row_spec</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(df<span class="op">$</span>environments<span class="op">$</span>index <span class="op">&lt;</span><span class="dv">0</span>), <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"red"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="kw">row_spec</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(df<span class="op">$</span>environments<span class="op">$</span>index <span class="op">&gt;</span><span class="dv">0</span>), <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"green"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw">row_spec</span>(<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(df<span class="op">$</span>environments<span class="op">$</span>index <span class="op">&lt;</span><span class="dv">0</span>), <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"red"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="kw">row_spec</span>(<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(df<span class="op">$</span>environments<span class="op">$</span>index <span class="op">&gt;</span><span class="dv">0</span>), <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"green"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1019,7 +1027,7 @@ favorable
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">kable</span>(df<span class="op">$</span>general, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw">row_spec</span>(<span class="dv">2</span>, <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"red"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-3" title="3"><span class="kw">row_spec</span>(<span class="dv">4</span>, <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"green"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb9-4" title="4"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1259,7 +1267,7 @@ P_i = \sum\limits_{j = 1}^n{(y_{ij} - y_{.j})^2/(2n)}
 <a class="sourceLine" id="cb10-3" title="3"><span class="kw">kable</span>(super<span class="op">$</span>GY<span class="op">$</span>index, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-4" title="4"><span class="st">  </span><span class="kw">row_spec</span>(<span class="dv">2</span>, <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"red"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">row_spec</span>(<span class="dv">4</span>, <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"green"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-6" title="6"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb10-6" title="6"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1523,7 +1531,7 @@ G9
 <a href="#environmental-stratification" class="anchor"></a>Environmental stratification</h1>
 <p>A method that combines stability analysis and environmental stratification using factor analysis was proposed by <span class="citation">Murakami and Cruz (<a href="#ref-murakami2004">2004</a>)</span>. This method is implemented with the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>, as follows:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">fact =<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(fact<span class="op">$</span>GY)</a></code></pre></div>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(fact<span class="op">$</span>GY)</a></code></pre></div>
 <p><img src="vignettes_stability_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>PCA)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -2447,8 +2455,8 @@ FA5
 <a href="#computing-the-indexes" class="anchor"></a>Computing the indexes</h1>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">stat_ge &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb15-2" title="2">dat =<span class="st"> </span>stat_ge<span class="op">$</span>GY</a></code></pre></div>
-<p>If you whant to export a summary of results, the simplest way is by using the function summary, as follows:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>If you want to export a summary of results, the simplest way is by using the function summary, as follows:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>This comand will create a text file called <em>ge_stats summary.txt</em> in the current working directory.</p>
 </div>
 <div id="within-environment-analysis-of-variance" class="section level1">
@@ -2456,8 +2464,8 @@ FA5
 <a href="#within-environment-analysis-of-variance" class="anchor"></a>Within-environment analysis of variance</h1>
 <p>The following table shows the results for the analysis of variance in each environment. Environment with a gray background had a significant genotype effect, considering 5% probability error.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">kable</span>(dat<span class="op">$</span>individual, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="st">  </span><span class="kw">row_spec</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(dat<span class="op">$</span>individual<span class="op">$</span>PRFG <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>), <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"gray80"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb17-2" title="2"><span class="st">  </span><span class="kw">row_spec</span>(<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(dat<span class="op">$</span>individual<span class="op">$</span>PRFG <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>), <span class="dt">bold =</span> T, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">background =</span> <span class="st">"gray80"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -3037,20 +3045,20 @@ E9
 <h1 class="hasAnchor">
 <a href="#genotype-by-environment-means" class="anchor"></a>Genotype-by-environment means</h1>
 <p>The two-way table with the means for each genotype in each environment is stored into <code>ge_mean</code>. The following code creates a custom table highlighting with a red background the genotype with the lowest mean in each environment, and with a green background the genotype with the highest mean.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(dat<span class="op">$</span>ge_mean, <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(dat<span class="op">$</span>ge_mean, <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb18-2" title="2"><span class="kw">rownames_to_column</span>(<span class="st">'gen'</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># used to store row names (mutate deletes them)</span></a>
 <a class="sourceLine" id="cb18-3" title="3"><span class="kw">mutate_if</span>(is.numeric, <span class="cf">function</span>(x){</a>
 <a class="sourceLine" id="cb18-4" title="4">  <span class="kw">cell_spec</span>(x, <span class="st">"html"</span>,</a>
-<a class="sourceLine" id="cb18-5" title="5">            <span class="dt">color =</span> <span class="kw">case_when</span>(x <span class="op">==</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(x) <span class="op">~</span><span class="st"> "white"</span>,</a>
-<a class="sourceLine" id="cb18-6" title="6">                              x <span class="op">==</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(x) <span class="op">~</span><span class="st"> "white"</span>,</a>
+<a class="sourceLine" id="cb18-5" title="5">            <span class="dt">color =</span> <span class="kw">case_when</span>(x <span class="op">==</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(x) <span class="op">~</span><span class="st"> "white"</span>,</a>
+<a class="sourceLine" id="cb18-6" title="6">                              x <span class="op">==</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(x) <span class="op">~</span><span class="st"> "white"</span>,</a>
 <a class="sourceLine" id="cb18-7" title="7">                              <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> "black"</span>),</a>
-<a class="sourceLine" id="cb18-8" title="8">            <span class="dt">background  =</span> <span class="kw">case_when</span>(x <span class="op">==</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(x) <span class="op">~</span><span class="st"> "green"</span>,</a>
-<a class="sourceLine" id="cb18-9" title="9">                                    x <span class="op">==</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(x) <span class="op">~</span><span class="st"> "red"</span>,</a>
+<a class="sourceLine" id="cb18-8" title="8">            <span class="dt">background  =</span> <span class="kw">case_when</span>(x <span class="op">==</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(x) <span class="op">~</span><span class="st"> "green"</span>,</a>
+<a class="sourceLine" id="cb18-9" title="9">                                    x <span class="op">==</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(x) <span class="op">~</span><span class="st"> "red"</span>,</a>
 <a class="sourceLine" id="cb18-10" title="10">                                    <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> "transparent"</span>))</a>
 <a class="sourceLine" id="cb18-11" title="11">}) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb18-12" title="12"><span class="kw">column_to_rownames</span>(<span class="st">'gen'</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># used to put row names back in place</span></a>
 <a class="sourceLine" id="cb18-13" title="13"><span class="kw">kable</span>(<span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>, <span class="dt">escape =</span> F) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-14" title="14"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb18-14" title="14"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -3576,16 +3584,16 @@ G9
 <h1 class="hasAnchor">
 <a href="#genotype-by-environment-interaction-effects" class="anchor"></a>Genotype-by-environment interaction effects</h1>
 <p>Highlighting with a red background the genotypes with negative interaction effects within each environment</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(dat<span class="op">$</span>ge_effect, <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(dat<span class="op">$</span>ge_effect, <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb19-2" title="2"><span class="st">  </span><span class="kw">rownames_to_column</span>(<span class="st">'gen'</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># used to store row names (mutate deletes them)</span></a>
 <a class="sourceLine" id="cb19-3" title="3"><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, <span class="cf">function</span>(x){</a>
 <a class="sourceLine" id="cb19-4" title="4">    <span class="kw">cell_spec</span>(x, <span class="st">"html"</span>,</a>
-<a class="sourceLine" id="cb19-5" title="5">              <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"white"</span>, <span class="st">"black"</span>),</a>
-<a class="sourceLine" id="cb19-6" title="6">              <span class="dt">background  =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"red"</span>, <span class="st">"transparent"</span>))</a>
+<a class="sourceLine" id="cb19-5" title="5">              <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"white"</span>, <span class="st">"black"</span>),</a>
+<a class="sourceLine" id="cb19-6" title="6">              <span class="dt">background  =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"red"</span>, <span class="st">"transparent"</span>))</a>
 <a class="sourceLine" id="cb19-7" title="7">  }) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb19-8" title="8"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">'gen'</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># used to put row names back in place</span></a>
 <a class="sourceLine" id="cb19-9" title="9"><span class="st">  </span><span class="kw">kable</span>(<span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>, <span class="dt">escape =</span> F) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-10" title="10"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb19-10" title="10"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -4110,16 +4118,16 @@ G9
 <div id="genotype-plus-genotype-by-environment-effects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#genotype-plus-genotype-by-environment-effects" class="anchor"></a>Genotype plus Genotype-by-environment effects</h1>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(dat<span class="op">$</span>gge_effect, <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(dat<span class="op">$</span>gge_effect, <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb20-2" title="2"><span class="st">  </span><span class="kw">rownames_to_column</span>(<span class="st">'gen'</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># used to store row names (mutate deletes them)</span></a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, <span class="cf">function</span>(x){</a>
 <a class="sourceLine" id="cb20-4" title="4">    <span class="kw">cell_spec</span>(x, <span class="st">"html"</span>,</a>
-<a class="sourceLine" id="cb20-5" title="5">              <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"white"</span>, <span class="st">"black"</span>),</a>
-<a class="sourceLine" id="cb20-6" title="6">              <span class="dt">background  =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"red"</span>, <span class="st">"transparent"</span>))</a>
+<a class="sourceLine" id="cb20-5" title="5">              <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"white"</span>, <span class="st">"black"</span>),</a>
+<a class="sourceLine" id="cb20-6" title="6">              <span class="dt">background  =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"red"</span>, <span class="st">"transparent"</span>))</a>
 <a class="sourceLine" id="cb20-7" title="7">  }) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb20-8" title="8"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">'gen'</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># used to put row names back in place</span></a>
 <a class="sourceLine" id="cb20-9" title="9"><span class="st">  </span><span class="kw">kable</span>(<span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>, <span class="dt">escape =</span> F) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-10" title="10"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb20-10" title="10"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -4665,6 +4673,7 @@ G9
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -4695,17 +4704,20 @@ G9
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

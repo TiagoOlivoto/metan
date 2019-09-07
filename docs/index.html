@@ -6,11 +6,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Multi Environment Trials Analysis • metan</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Multi Environment Trials Analysis">
-<meta property="og:description" content="This package has useful functions for computing stability analysis using the most widely-know parametric and nonparametric methods. Tools for personalized graphics used in stability analysis are also provided.">
+<meta property="og:description" content="The metan package provides functions for performing the most
+             used analyses in the evaluation of multi-environment trials.
+             This includes stability analysis using widely-known parametric
+             and nonparametric methods, functions for biometrical analysis such
+             as path analysis, canonical correlation, partial correlation,
+             clustering analysis, as well as tools for summarizing and plotting data.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -25,7 +37,7 @@
 </script>
 </head>
 <body>
-    <div class="container template-article">
+    <div class="container template-home">
       <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -124,16 +136,13 @@
 <!--/.navbar -->
 
       
-      </header><script src="index_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    
 
-    
-    
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-<div id="metan" class="section level1">
+      </header><div class="row">
+  <div class="contents col-md-9">
+
+<div id="metan-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#metan" class="anchor"></a>metan <img src="reference/figures/logo.png" align="right" height="140/">
+<a href="#metan-" class="anchor"></a>metan <img src="reference/figures/logo.png" align="right" height="140/">
 </h1></div>
 <p>The metan (<strong>m</strong>ulti-<strong>e</strong>nvironment <strong>t</strong>rials <strong>an</strong>alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to:</p>
 <ul>
@@ -155,22 +164,22 @@
 <a href="#installation" class="anchor"></a>Installation</h1>
 <p>The latest development version can be download from GitHub by running</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"TiagoOlivoto/metan"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"TiagoOlivoto/metan"</span>)</a></code></pre></div>
 </div>
 <div id="brief-examples" class="section level1">
 <h1 class="hasAnchor">
 <a href="#brief-examples" class="anchor"></a>Brief examples</h1>
 <p>The <code>metan</code> contains some datasets for examples. We will use the example <code>data_ge</code> that contains data from two variables assessed in 10 genotypes growing in 14 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2) <span class="co"># used to create the plots</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cowplot) <span class="co"># used to arrange the plots</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(data_ge)</a></code></pre></div>
-<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
-##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
-##  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
-##  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...
-##  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2) <span class="co"># used to create the plots</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the plots</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co">##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">##  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">##  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">##  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</span></a></code></pre></div>
 <div id="ammi-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ammi-model" class="anchor"></a>AMMI model</h2>
@@ -188,168 +197,312 @@
 <div id="predicting-the-response-variable" class="section level3">
 <h3 class="hasAnchor">
 <a href="#predicting-the-response-variable" class="anchor"></a>Predicting the response variable</h3>
-<p>The S3 method <code><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kableExtra)</a>
-<a class="sourceLine" id="cb5-2" title="2">predicted =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
+<p>The S3 method <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra)</a>
+<a class="sourceLine" id="cb5-2" title="2">predicted =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="kw">kable</span>(predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,], <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
-<table class="table table table table-striped table-condensed table-responsive">
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
+<table class="table table table-striped table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
+
 ENV
+
 </th>
+
 <th style="text-align:left;">
+
 GEN
+
 </th>
+
 <th style="text-align:right;">
+
 Y
+
 </th>
+
 <th style="text-align:right;">
+
 resOLS
+
 </th>
+
 <th style="text-align:right;">
+
 Ypred
+
 </th>
+
 <th style="text-align:right;">
+
 ResAMMI
+
 </th>
+
 <th style="text-align:right;">
+
 YpredAMMI
+
 </th>
+
 <th style="text-align:right;">
+
 AMMI0
+
 </th>
+
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G1
+
 </td>
+
 <td style="text-align:right;">
+
 2.366
+
 </td>
+
 <td style="text-align:right;">
--0.084
+
+\-0.084
+
 </td>
+
 <td style="text-align:right;">
+
 2.450
+
 </td>
+
 <td style="text-align:right;">
+
 0.07115484
+
 </td>
+
 <td style="text-align:right;">
+
 2.521273
+
 </td>
+
 <td style="text-align:right;">
+
 2.450
+
 </td>
+
 </tr>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G10
+
 </td>
+
 <td style="text-align:right;">
+
 1.974
+
 </td>
+
 <td style="text-align:right;">
--0.344
+
+\-0.344
+
 </td>
+
 <td style="text-align:right;">
+
 2.318
+
 </td>
+
 <td style="text-align:right;">
--0.35391141
+
+\-0.35391141
+
 </td>
+
 <td style="text-align:right;">
+
 1.963751
+
 </td>
+
 <td style="text-align:right;">
+
 2.318
+
 </td>
+
 </tr>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G2
+
 </td>
+
 <td style="text-align:right;">
+
 2.902
+
 </td>
+
 <td style="text-align:right;">
+
 0.311
+
 </td>
+
 <td style="text-align:right;">
+
 2.591
+
 </td>
+
 <td style="text-align:right;">
+
 0.29035016
+
 </td>
+
 <td style="text-align:right;">
+
 2.880939
+
 </td>
+
 <td style="text-align:right;">
+
 2.591
+
 </td>
+
 </tr>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G3
+
 </td>
+
 <td style="text-align:right;">
+
 2.889
+
 </td>
+
 <td style="text-align:right;">
+
 0.087
+
 </td>
+
 <td style="text-align:right;">
+
 2.802
+
 </td>
+
 <td style="text-align:right;">
--0.04518795
+
+\-0.04518795
+
 </td>
+
 <td style="text-align:right;">
+
 2.756598
+
 </td>
+
 <td style="text-align:right;">
+
 2.802
+
 </td>
+
 </tr>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G4
+
 </td>
+
 <td style="text-align:right;">
+
 2.589
+
 </td>
+
 <td style="text-align:right;">
+
 0.100
+
 </td>
+
 <td style="text-align:right;">
+
 2.488
+
 </td>
+
 <td style="text-align:right;">
+
 0.04942370
+
 </td>
+
 <td style="text-align:right;">
+
 2.537781
+
 </td>
+
 <td style="text-align:right;">
+
 2.488
+
 </td>
+
 </tr>
 </tbody>
 </table>
@@ -366,8 +519,8 @@ G4
 <a class="sourceLine" id="cb6-6" title="6">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb6-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb6-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;"></p>
+<a class="sourceLine" id="cb6-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="gge-model" class="section level2">
@@ -376,14 +529,14 @@ G4
 <p>The GGE model is fitted with the function <code><a href="reference/gge.html">gge()</a></code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html">complete vignette</a>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
 <a class="sourceLine" id="cb7-2" title="2">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb7-3" title="3">p1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(model)</a>
-<a class="sourceLine" id="cb7-4" title="4">p2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(model2,</a>
+<a class="sourceLine" id="cb7-3" title="3">p1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model)</a>
+<a class="sourceLine" id="cb7-4" title="4">p2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2,</a>
 <a class="sourceLine" id="cb7-5" title="5">           <span class="dt">type =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb7-6" title="6">           <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb7-7" title="7">           <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb7-8" title="8">           <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;"></p>
+<a class="sourceLine" id="cb7-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="README_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;"></p>
 </div>
 <div id="blup-model" class="section level2">
 <h2 class="hasAnchor">
@@ -401,173 +554,317 @@ G4
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
 <a class="sourceLine" id="cb9-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb9-3" title="3">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb9-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
+<a class="sourceLine" id="cb9-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level3">
 <h3 class="hasAnchor">
 <a href="#blups-for-genotype-vs-environment-interaction" class="anchor"></a>BLUPS for genotype-vs-environment interaction</h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">data =<span class="st"> </span>model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw">kable</span>(data, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
-<table class="table table table table-striped table-condensed table-responsive">
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
+<table class="table table table-striped table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
+
 ENV
+
 </th>
+
 <th style="text-align:left;">
+
 GEN
+
 </th>
+
 <th style="text-align:right;">
+
 BLUPge
+
 </th>
+
 <th style="text-align:right;">
+
 BLUPg
+
 </th>
+
 <th style="text-align:right;">
+
 BLUPg+ge
+
 </th>
+
 <th style="text-align:right;">
+
 Predicted
+
 </th>
+
 <th style="text-align:right;">
+
 LL
+
 </th>
+
 <th style="text-align:right;">
+
 UL
+
 </th>
+
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G1
+
 </td>
+
 <td style="text-align:right;">
--0.062
+
+\-0.062
+
 </td>
+
 <td style="text-align:right;">
--0.058
+
+\-0.058
+
 </td>
+
 <td style="text-align:right;">
--0.120
+
+\-0.120
+
 </td>
+
 <td style="text-align:right;">
+
 2.401
+
 </td>
+
 <td style="text-align:right;">
+
 2.298
+
 </td>
+
 <td style="text-align:right;">
+
 2.505
+
 </td>
+
 </tr>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G10
+
 </td>
+
 <td style="text-align:right;">
--0.243
+
+\-0.243
+
 </td>
+
 <td style="text-align:right;">
--0.166
+
+\-0.166
+
 </td>
+
 <td style="text-align:right;">
--0.409
+
+\-0.409
+
 </td>
+
 <td style="text-align:right;">
+
 2.112
+
 </td>
+
 <td style="text-align:right;">
+
 2.009
+
 </td>
+
 <td style="text-align:right;">
+
 2.216
+
 </td>
+
 </tr>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G2
+
 </td>
+
 <td style="text-align:right;">
+
 0.207
+
 </td>
+
 <td style="text-align:right;">
+
 0.057
+
 </td>
+
 <td style="text-align:right;">
+
 0.264
+
 </td>
+
 <td style="text-align:right;">
+
 2.784
+
 </td>
+
 <td style="text-align:right;">
+
 2.681
+
 </td>
+
 <td style="text-align:right;">
+
 2.888
+
 </td>
+
 </tr>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G3
+
 </td>
+
 <td style="text-align:right;">
+
 0.088
+
 </td>
+
 <td style="text-align:right;">
+
 0.229
+
 </td>
+
 <td style="text-align:right;">
+
 0.318
+
 </td>
+
 <td style="text-align:right;">
+
 2.838
+
 </td>
+
 <td style="text-align:right;">
+
 2.735
+
 </td>
+
 <td style="text-align:right;">
+
 2.942
+
 </td>
+
 </tr>
 <tr>
 <td style="text-align:left;">
+
 E1
+
 </td>
+
 <td style="text-align:left;">
+
 G4
+
 </td>
+
 <td style="text-align:right;">
+
 0.060
+
 </td>
+
 <td style="text-align:right;">
--0.026
+
+\-0.026
+
 </td>
+
 <td style="text-align:right;">
+
 0.034
+
 </td>
+
 <td style="text-align:right;">
+
 2.554
+
 </td>
+
 <td style="text-align:right;">
+
 2.451
+
 </td>
+
 <td style="text-align:right;">
+
 2.658
+
 </td>
+
 </tr>
 </tbody>
 </table>
@@ -582,6 +879,7 @@ G4
 <li><p>If you encounter a clear bug, please file a minimal reproducible example on <a href="https://github.com/TiagoOlivoto/metan/issues">github</a></p></li>
 </ul>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -601,16 +899,22 @@ G4
 <li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></small></li>
 </ul>
 </div>
+<div class="community">
+<h2>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-0241-9636" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
+<a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-0241-9636" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
 </ul>
 </div>
 
-      </div>
-
+  </div>
 </div>
 
 
@@ -619,12 +923,14 @@ G4
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
