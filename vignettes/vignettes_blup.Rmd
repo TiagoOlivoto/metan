@@ -190,7 +190,8 @@ The function `get_model_data()` may be used to easily get the data from a model 
 ```{r warning=FALSE }
 waasb(data_ge2, ENV, GEN, REP,
       resp = c(PH, ED, TKW, NKR, CD)) %>% 
-  get_model_data(what = "blupg")
+  get_model_data(what = "blupg") %>% 
+  print_table()
 
 ```
 
