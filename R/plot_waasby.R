@@ -87,7 +87,7 @@ plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, them
         colour = "black"), axis.title = element_text(size = size.tex.lab, colour = "black")) +
         labs(x = y.lab, y = x.lab)
 
-    if (export == F | FALSE) {
+    if (export == FALSE) {
         return(p1)
     } else if (file.type == "pdf") {
         if (is.null(file.name)) {

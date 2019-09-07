@@ -92,7 +92,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
                                                      1]]] - diag(mat)[[index[i, 2]]])/2
         }
       }
-      mat[lower.tri(mat, diag = F)] <- temp
+      mat[lower.tri(mat, diag = FALSE)] <- temp
       rownames(mat) <- colnames(mat) <- colnames(means)
       dist <- mahala(.means = means, covar = make_sym(mat),
                      inverted = FALSE)
@@ -150,7 +150,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
                                                    1]]] - diag(mat)[[index[i, 2]]])/2
       }
     }
-    mat[lower.tri(mat, diag = F)] <- temp
+    mat[lower.tri(mat, diag = FALSE)] <- temp
     rownames(mat) <- colnames(mat) <- colnames(means)
     dist <- mahala(.means = means, covar = make_sym(mat),
                    inverted = FALSE)

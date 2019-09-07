@@ -99,12 +99,12 @@ plot_factlines <- function(.data, x, y, group, fit, level = 0.95,
   } else {
     legend.position <- legend.position
   }
-  if (is.null(ylab) == T) {
+if (is.null(ylab) == TRUE) {
     ylab <- cl$y
   } else {
     ylab <- ylab
   }
-  if (is.null(xlab) == T) {
+  if (is.null(xlab) == TRUE) {
     xlab <- cl$x
   } else {
     xlab <- xlab

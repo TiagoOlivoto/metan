@@ -317,14 +317,14 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         for (i in 1:nproced) {
           FDSel <- FWDselect::selection(x = xxx, y = unlist(yyy),
                                         q = npred, method = "lm", criterion = "aic",
-                                        cluster = F)
+                                        cluster = FALSE)
           predstw <- FDSel$Variable_names
           x <- data[, c(predstw)]
           names <- colnames(x)
           y <- data %>% dplyr::select(!!resp)
           cor.y <- cor(x, y, use = missingval)
           cor.x <- cor(x, use = missingval)
-          if (is.null(correction) == F) {
+          if (is.null(correction) == FALSE) {
             diag(cor.x) <- diag(cor.x) + correction
           } else {
             cor.x <- cor(x, use = missingval)
@@ -622,14 +622,14 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       for (i in 1:nproced) {
         FDSel <- FWDselect::selection(x = xxx, y = unlist(yyy),
                                       q = npred, method = "lm", criterion = "aic",
-                                      cluster = F)
+                                      cluster = FALSE)
         predstw <- FDSel$Variable_names
         x <- data[, c(predstw)]
         names <- colnames(x)
         y <- data %>% dplyr::select(!!resp)
         cor.y <- cor(x, y, use = missingval)
         cor.x <- cor(x, use = missingval)
-        if (is.null(correction) == F) {
+        if (is.null(correction) == FALSE) {
           diag(cor.x) <- diag(cor.x) + correction
         } else {
           cor.x <- cor(x, use = missingval)

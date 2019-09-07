@@ -144,13 +144,13 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1,
   Communality <- diag(A %*% t(A))
   Uniquenesses <- 1 - Communality
   fa <- cbind(A, Communality, Uniquenesses)
-  z <- scale(means, center = F, scale = apply(means, 2, sd))
+  z <- scale(means, center = FALSE, scale = apply(means, 2, sd))
   canonical.loadings <- t(t(A) %*% solve(cor.means))
   scores <- z %*% canonical.loadings
   colnames(scores) <- paste("FA", 1:ncol(scores), sep = "")
   rownames(scores) <- data[, 1]
   pos.var.factor <- which(abs(A) == apply(abs(A), 1, max),
-                          arr.ind = T)
+                          arr.ind = TRUE)
   var.factor <- lapply(1:ncol(A), function(i) {
     rownames(pos.var.factor)[pos.var.factor[, 2] == i]
   })
@@ -167,7 +167,7 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1,
   ideotypes.scores <- ideotypes.matrix %*% canonical.loadings
   gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
   MTSI <- sort(apply(gen_ide, 1, function(x) sqrt(sum(x^2))),
-               decreasing = F)
+               decreasing = FALSE)
   contr.factor <- (gen_ide^2/apply(gen_ide, 1, function(x) sum(x^2))) *
     100
   means.factor <- means[, names.pos.var.factor]

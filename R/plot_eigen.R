@@ -66,7 +66,7 @@ plot_eigen <- function(x, export = FALSE, theme = theme_waasb(), file.type = "pd
         legend.position = c(0.15, 0.1))
 
 
-    if (export == F | FALSE) {
+    if (export == FALSE) {
         return(p)
     } else if (file.type == "pdf") {
         if (is.null(file.name)) {

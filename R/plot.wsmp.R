@@ -67,7 +67,7 @@ plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf",
         if (is.null(y.lab)) {
             y.lab <- "Genotypes"
         } else y.lab <- y.lab
-        if (export == F | FALSE) {
+        if (export == FALSE) {
             mat <- as.matrix(data$hetdata)
             Rowv <- mat %>% dist %>% hclust %>% as.dendrogram %>%
                 dendextend::set("branches_k_color", k = 4) %>%
@@ -143,7 +143,7 @@ plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf",
             y.lab <- "Genotypes"
         } else y.lab <- y.lab
         mat2 <- as.matrix(data$hetcomb)
-        if (export == F | FALSE) {
+        if (export == FALSE) {
             Rowv <- mat2 %>% dist %>% hclust %>% as.dendrogram %>%
                 dendextend::set("branches_k_color", k = 4) %>%
                 dendextend::set("branches_lwd", 2) %>% dendextend::rotate_DendSer(ser_weight = dist(mat2)) %>%

@@ -80,7 +80,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100,
     if (verbose == TRUE) {
         pb <- progress_bar$new(
             format = "Validating :what [:bar]:percent (:elapsedfull -:eta left)",
-            clear = F, total = totalboot, width = 90)
+            clear = FALSE, total = totalboot, width = 90)
     }
     condition <- (design == "CRD")
     condition2 <- (design == "RCBD")
@@ -99,7 +99,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100,
                 tmp <- split_factors(data, ENV, keep_factors = TRUE,
                                      verbose = FALSE)
                 modeling <- do.call(rbind, lapply(tmp, function(x) {
-                    X2 <- sample(unique(data$REP), nrepval, replace = F)
+                    X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
                     x %>% dplyr::group_by(GEN) %>% dplyr::filter(unique(data$REP) %in%
                                                                      c(X2))
                 })) %>% as.data.frame()

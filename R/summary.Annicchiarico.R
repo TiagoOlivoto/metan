@@ -31,7 +31,7 @@ summary.Annicchiarico <- function(object, export = FALSE, file.name = NULL, digi
   }
 
   if (export == TRUE) {
-    if (is.null(file.name) == T) {
+    if (is.null(file.name) == TRUE) {
       file.name <- "Annicchiarico summary"
     } else {
       file.name <- file.name

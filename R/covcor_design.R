@@ -146,12 +146,12 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
       corres <- matrix(1, nvar, nvar)
       corrgen <- matrix(1, nvar, nvar)
       corrfen <- matrix(1, nvar, nvar)
-      vres[lower.tri(vres, diag = F)] <- covres
-      vfen[lower.tri(vfen, diag = F)] <- covfen
-      vgen[lower.tri(vgen, diag = F)] <- covgen
-      corres[lower.tri(corres, diag = F)] <- cores
-      corrfen[lower.tri(corrfen, diag = F)] <- corfen
-      corrgen[lower.tri(corrgen, diag = F)] <- corgen
+      vres[lower.tri(vres, diag = FALSE)] <- covres
+      vfen[lower.tri(vfen, diag = FALSE)] <- covfen
+      vgen[lower.tri(vgen, diag = FALSE)] <- covgen
+      corres[lower.tri(corres, diag = FALSE)] <- cores
+      corrfen[lower.tri(corrfen, diag = FALSE)] <- corfen
+      corrgen[lower.tri(corrgen, diag = FALSE)] <- corgen
       colnames(vres) <- rownames(vres) <- names(means)
       colnames(vfen) <- rownames(vfen) <- names(means)
       colnames(vgen) <- rownames(vgen) <- names(means)
@@ -274,12 +274,12 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
     corres <- matrix(1, nvar, nvar)
     corrgen <- matrix(1, nvar, nvar)
     corrfen <- matrix(1, nvar, nvar)
-    vres[lower.tri(vres, diag = F)] <- covres
-    vfen[lower.tri(vfen, diag = F)] <- covfen
-    vgen[lower.tri(vgen, diag = F)] <- covgen
-    corres[lower.tri(corres, diag = F)] <- cores
-    corrfen[lower.tri(corrfen, diag = F)] <- corfen
-    corrgen[lower.tri(corrgen, diag = F)] <- corgen
+    vres[lower.tri(vres, diag = FALSE)] <- covres
+    vfen[lower.tri(vfen, diag = FALSE)] <- covfen
+    vgen[lower.tri(vgen, diag = FALSE)] <- covgen
+    corres[lower.tri(corres, diag = FALSE)] <- cores
+    corrfen[lower.tri(corrfen, diag = FALSE)] <- corfen
+    corrgen[lower.tri(corrgen, diag = FALSE)] <- corgen
     colnames(vres) <- rownames(vres) <- names(means)
     colnames(vfen) <- rownames(vfen) <- names(means)
     colnames(vgen) <- rownames(vgen) <- names(means)

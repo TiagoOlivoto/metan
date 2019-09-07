@@ -27,7 +27,7 @@ summary.ge_reg <- function(object, export = FALSE, file.name = NULL, digits = 3,
   }
 
   if (export == TRUE) {
-    if (is.null(file.name) == T) {
+    if (is.null(file.name) == TRUE) {
       file.name <- "ge_reg summary"
     } else {
       file.name <- file.name

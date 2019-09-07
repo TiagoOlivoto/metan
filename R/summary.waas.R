@@ -32,7 +32,7 @@ summary.waas <- function(object, export = FALSE, file.name = NULL, digits = 4,
     }
 
     if (export == TRUE) {
-        if (is.null(file.name) == T) {
+        if (is.null(file.name) == TRUE) {
             file.name <- "waas summary"
         } else {
             file.name <- file.name

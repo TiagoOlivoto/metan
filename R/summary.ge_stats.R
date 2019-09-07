@@ -31,7 +31,7 @@ summary.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 
   }
 
   if (export == TRUE) {
-    if (is.null(file.name) == T) {
+    if (is.null(file.name) == TRUE) {
       file.name <- "ge_stats summary"
     } else {
       file.name <- file.name

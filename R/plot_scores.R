@@ -153,20 +153,20 @@ nenv <- nrow(subset(x$model, type == "ENV"))
 ngen <- nrow(subset(x$model, type == "GEN"))
 
 if (type == 1) {
-y.lab = ifelse((is.null(y.lab) == F), y.lab, ifelse(class(x) ==
+y.lab = ifelse((is.null(y.lab) == FALSE), y.lab, ifelse(class(x) ==
 "waas", paste0("PC2 (", round(x$PCA[2, 6], 2), "%)"),
 paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")))
-x.lab = ifelse((is.null(x.lab) == F), x.lab, ifelse(class(x) ==
+x.lab = ifelse((is.null(x.lab) == FALSE), x.lab, ifelse(class(x) ==
 "waas", paste0("PC1 (", round(x$PCA[1, 6], 2), "%)"),
 paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")))
-if (is.null(x.lim) == F) {
+if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
 } else {
 x.lim <- c(min(x$model$PC1 * axis.expand), max(x$model$PC1 *
 axis.expand))
 }
 
-if (is.null(y.lim) == F) {
+if (is.null(y.lim) == FALSE) {
 y.lim <- y.lim
 } else {
 y.lim <- c(min(x$model$PC2 * axis.expand), max(x$model$PC2 *
@@ -280,7 +280,7 @@ y.lab = ifelse(is.null(y.lab) == F, y.lab, ifelse(class(x) ==
 "waas", paste0("PC1 (", round(x$PCA[1, 6], 2), "%)"),
 paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")))
 x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
-if (is.null(x.lim) == F) {
+if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
 } else {
 x.lim <- c(min(x$model$Y) - (min(x$model$Y) * axis.expand -
@@ -288,7 +288,7 @@ min(x$model$Y)), max(x$model$Y) + (max(x$model$Y) *
 axis.expand - max(x$model$Y)))
 }
 
-if (is.null(y.lim) == F) {
+if (is.null(y.lim) == FALSE) {
 y.lim <- y.lim
 } else {
 y.lim <- c(min(x$model$PC1 * axis.expand), max(x$model$PC1 *
@@ -351,14 +351,14 @@ y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Weighted average of the absol
 x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
 if (class == "waasb") {
 
-if (is.null(x.lim) == F) {
+if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
 } else {
 x.lim <- c(min(x$model$Y) - (min(x$model$Y) *
   axis.expand - min(x$model$Y)), max(x$model$Y) +
   (max(x$model$Y) * axis.expand - max(x$model$Y)))
 }
-if (is.null(y.lim) == F) {
+if (is.null(y.lim) == FALSE) {
 y.lim <- y.lim
 } else {
 y.lim <- c(min(x$model$WAASB) - (min(x$model$WAASB) *
@@ -398,7 +398,7 @@ annotation_custom(III) + annotation_custom(IV)
 }
 
 if (class == "waas") {
-if (is.null(x.lim) == F) {
+if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
 } else {
 x.lim <- c(min(x$model$Y) - (min(x$model$Y) *
@@ -406,7 +406,7 @@ x.lim <- c(min(x$model$Y) - (min(x$model$Y) *
   (max(x$model$Y) * axis.expand - max(x$model$Y)))
 }
 
-if (is.null(y.lim) == F) {
+if (is.null(y.lim) == FALSE) {
 y.lim <- y.lim
 } else {
 y.lim <- c(min(x$model$WAAS) - (min(x$model$WAAS) *
@@ -475,13 +475,13 @@ minim <- min(data$nominal)
 y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Nominal Yield (Mg/ha)"))
 x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Environment PC1 [square root of  (Mg/ha)]"))
 
-if (is.null(x.lim) == F) {
+if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
 } else {
 x.lim <- c(min(data$envPC1), max(data$envPC1))
 }
 
-if (is.null(y.lim) == F) {
+if (is.null(y.lim) == FALSE) {
 y.lim <- y.lim
 } else {
 y.lim <- c(min(data$nominal), max(data$nominal))

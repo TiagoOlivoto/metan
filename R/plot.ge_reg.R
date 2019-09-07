@@ -42,12 +42,12 @@ plot.ge_reg <- function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = waive
   if (!class(x) == "ge_reg") {
     stop("The object 'x' is not of class 'ge_reg'")
   }
-  if (is.null(y.lab) == F) {
+  if (is.null(y.lab) == FALSE) {
     y.lab <- y.lab
   } else {
     y.lab <- paste("Response variable")
   }
-  if (is.null(x.lab) == F) {
+  if (is.null(x.lab) == FALSE) {
     x.lab <- x.lab
   } else {
     x.lab <- paste("Environmental index")

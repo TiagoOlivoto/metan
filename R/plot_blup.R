@@ -85,7 +85,7 @@ plot_blup <- function(x, prob = 0.05, export = FALSE, file.type = "pdf", file.na
                                axis.title = element_text(size = size.tex.lab, colour = "black"))
 
 
-    if (export == F | FALSE) {
+    if (export == FALSE) {
         return(p1)
     } else if (file.type == "pdf") {
         if (is.null(file.name)) {

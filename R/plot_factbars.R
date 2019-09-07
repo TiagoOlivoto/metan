@@ -68,19 +68,19 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
   } else {
     names(datac) <- c("x", "N", "mean_var", "sd", "se", "ci")
   }
-  if (is.null(ylab) == T) {
+  if (is.null(ylab) == TRUE) {
     ylab <- cl$resp
   } else {
     ylab <- ylab
   }
   if (invert == FALSE) {
-    if (is.null(xlab) == T) {
+    if (is.null(xlab) == TRUE) {
       xlab <- nam[1]
     } else {
       xlab <- xlab
     }
   } else {
-    if (is.null(xlab) == T) {
+    if (is.null(xlab) == TRUE) {
       xlab <- nam[2]
     } else {
       xlab <- xlab

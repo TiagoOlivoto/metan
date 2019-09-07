@@ -276,7 +276,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
             }
         }
     }
-    if (verbose == T) {
+    if (verbose == TRUE) {
         if (length(which(unlist(lapply(listres, function(x) {
             x[["probint"]]
         })) > prob)) > 0) {

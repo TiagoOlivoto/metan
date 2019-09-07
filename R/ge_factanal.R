@@ -107,14 +107,14 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
         Uniquenesses <- 1 - Communality
         fa <- data.frame(Env = names(means), A, Communality,
                          Uniquenesses)
-        z <- scale(means, center = F, scale = apply(means, 2,
+        z <- scale(means, center = FALSE, scale = apply(means, 2,
                                                     sd))
         canonical.loadings <- t(t(A) %*% solve_svd(cor.means))
         scores <- z %*% canonical.loadings
         colnames(scores) <- paste("FA", 1:ncol(scores), sep = "")
         rownames(scores) <- rownames(means)
         pos.var.factor <- which(abs(A) == apply(abs(A), 1, max),
-                                arr.ind = T)
+                                arr.ind = TRUE)
         var.factor <- lapply(1:ncol(A), function(i) {
             rownames(pos.var.factor)[pos.var.factor[, 2] == i]
         })

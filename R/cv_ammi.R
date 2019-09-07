@@ -93,7 +93,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100,
   if (verbose == TRUE) {
     pb <- progress_bar$new(
       format = "Validating :current of :total sets [:bar] :percent (:elapsedfull -:eta left)",
-      clear = F, total = nboot, width = 80)
+      clear = FALSE, total = nboot, width = 80)
   }
   condition <- (design == "CRD")
   condition2 <- (design == "RCBD")
@@ -102,7 +102,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100,
       X <- sample(1:10000, 1)
       set.seed(X)
       modeling <- data %>% dplyr::group_by(ENV, GEN) %>%
-        dplyr::sample_n(nrepval, replace = F) %>% arrange(ID) %>%
+        dplyr::sample_n(nrepval, replace = FALSE) %>% arrange(ID) %>%
         as.data.frame()
       rownames(modeling) <- modeling$ID
     }
@@ -110,7 +110,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100,
       tmp <- split_factors(data, ENV, keep_factors = TRUE,
                            verbose = FALSE)
       modeling <- do.call(rbind, lapply(tmp, function(x) {
-        X2 <- sample(unique(data$REP), nrepval, replace = F)
+        X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
         x %>% dplyr::group_by(GEN) %>% dplyr::filter(unique(data$REP) %in%
                                                        c(X2))
       })) %>% as.data.frame()

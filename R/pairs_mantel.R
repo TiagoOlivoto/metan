@@ -69,7 +69,7 @@
 #'          pairs_mantel()
 #'
 pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
-                         prob = 0.05, diag = FALSE, export = FALSE, main = "auto",
+                         prob = 0.05, diag = FALSEALSE, export = FALSE, main = "auto",
                          file.type = "pdf", file.name = NULL, width = 8, height = 7,
                          resolution = 300, size.point = 0.5, shape.point = 19, alpha.point = 1,
                          fill.point = NULL, col.point = "black", minsize = 2, maxsize = 3,
@@ -107,7 +107,7 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
   for (i in 1:length(data)) {
     if (i == 1) {
       Dataset <- data.frame(var = as.vector(t(data[[1]])[lower.tri(data[[1]],
-                                                                   diag = F)]))
+                                                                   diag = FALSE)]))
       if (is.null(names)) {
         names(Dataset)[which(colnames(Dataset) == "var")] <- paste0("Matrix 1")
       } else {
@@ -116,7 +116,7 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
     }
     if (i >= 2) {
       Dataset <- dplyr::mutate(Dataset, var = as.vector(t(data[[i]])[lower.tri(data[[i]],
-                                                                               diag = F)]))
+                                                                               diag = FALSE)]))
       if (is.null(names)) {
         names(Dataset)[which(colnames(Dataset) == "var")] <- paste0("Matrix ",
                                                                     i)
@@ -132,12 +132,12 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
     x <- GGally::eval_data_col(data, mapping$x)
     y <- GGally::eval_data_col(data, mapping$y)
     D <- matrix(nrow = dim, ncol = dim)
-    D[lower.tri(D, diag = F)] <- x
-    D[upper.tri(D, diag = F)] <- x
+    D[lower.tri(D, diag = FALSE)] <- x
+    D[upper.tri(D, diag = FALSE)] <- x
     diag(D) <- 0
     D2 <- matrix(nrow = dim, ncol = dim)
-    D2[lower.tri(D2, diag = F)] <- y
-    D2[upper.tri(D2, diag = F)] <- y
+    D2[lower.tri(D2, diag = FALSE)] <- y
+    D2[upper.tri(D2, diag = FALSE)] <- y
     diag(D2) <- 0
     ct <- ade4::mantel.randtest(as.dist(D), as.dist(D2),
                                 nrepet = nrepet)
@@ -164,12 +164,12 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
     x <- GGally::eval_data_col(data, mapping$x)
     y <- GGally::eval_data_col(data, mapping$y)
     D <- matrix(nrow = dim, ncol = dim)
-    D[lower.tri(D, diag = F)] <- x
-    D[upper.tri(D, diag = F)] <- x
+    D[lower.tri(D, diag = FALSE)] <- x
+    D[upper.tri(D, diag = FALSE)] <- x
     diag(D) <- 0
     D2 <- matrix(nrow = dim, ncol = dim)
-    D2[lower.tri(D2, diag = F)] <- y
-    D2[upper.tri(D2, diag = F)] <- y
+    D2[lower.tri(D2, diag = FALSE)] <- y
+    D2[upper.tri(D2, diag = FALSE)] <- y
     diag(D2) <- 0
     ct <- ade4::mantel.randtest(as.dist(D), as.dist(D2),
                                 nrepet = nrepet)
@@ -212,7 +212,7 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
                         axisLabels = "none")
   ggplot2::theme_set(ggplot2::theme_gray() + ggplot2::theme(panel.spacing = grid::unit(pan.spacing,
                                                                                        "lines")))
-  if (export == F | FALSE) {
+  if (export == FALSE) {
     print(p1)
   } else if (file.type == "pdf") {
     if (is.null(file.name)) {

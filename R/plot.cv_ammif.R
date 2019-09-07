@@ -73,11 +73,11 @@ plot.cv_ammif <- function(x, violin = FALSE, export = FALSE, order_box =  FALSE,
     if (!class(x) == "cv_ammif") {
         stop("The object 'x' must be of class 'cv_ammif'.")
     }
-    if (is.null(y.lab) == F) {
+    if (is.null(y.lab) == FALSE) {
         y.lab <- y.lab
     } else y.lab <- expression(paste("Root mean square prediction difference (Mg ha"^-1,
                                      ")"))
-    if (is.null(x.lab) == F) {
+    if (is.null(x.lab) == FALSE) {
         x.lab <- x.lab
     } else x.lab <- "AMMI family models"
     a <- suppressMessages(x$RMSPD %>% group_by(MODEL) %>% summarise(RMSPD = mean(RMSPD)) %>%
@@ -117,7 +117,7 @@ plot.cv_ammif <- function(x, violin = FALSE, export = FALSE, order_box =  FALSE,
                                                                                         colour = "black")) + coord_flip() + scale_y_continuous(limits = x.lim,
                                                                                                                                                breaks = x.breaks) + labs(x = x.lab, y = y.lab)
     }
-    if (export == F | FALSE) {
+    if (export == FALSE) {
         return(p1)
     } else if (file.type == "pdf") {
         if (is.null(file.name)) {

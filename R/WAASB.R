@@ -338,7 +338,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
 
 
             if (length(d$resp) > 1) {
-                if (verbose == T) {
+                if (verbose == TRUE) {
                     cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
                                                                                         1) * 100, 1), "%", "\n")
                 }
@@ -530,7 +530,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                                    residuals = as_tibble(residuals)), class = "waasb")
 
             if (length(d$resp) > 1) {
-                if (verbose == T) {
+                if (verbose == TRUE) {
                     cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
                                                                                         1) * 100, 1), "%", "\n")
                 }
@@ -736,7 +736,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
 
 
             if (length(d$resp) > 1) {
-                if (verbose == T) {
+                if (verbose == TRUE) {
                     cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
                                                                                         1) * 100, 1), "%", "\n")
                 }
@@ -746,7 +746,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             }
         }
     }
-    if (verbose == T) {
+    if (verbose == TRUE) {
         if (length(which(unlist(lapply(listres, function(x) {
             x[["LRT"]][3, 6]
         })) > prob)) > 0) {

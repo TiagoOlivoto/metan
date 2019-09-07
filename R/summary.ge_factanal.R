@@ -30,7 +30,7 @@ summary.ge_factanal <- function(object, export = FALSE, file.name = NULL, digits
         stop("The object must be of class 'ge_factanal'")
     }
     if (export == TRUE) {
-        if (is.null(file.name) == T) {
+        if (is.null(file.name) == TRUE) {
             file.name <- "ge_factanal Summary"
         } else {
             file.name <- file.name

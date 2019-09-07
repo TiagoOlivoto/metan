@@ -27,7 +27,7 @@ summary.superiority <- function(object, export = FALSE, file.name = NULL, digits
   }
 
   if (export == TRUE) {
-    if (is.null(file.name) == T) {
+    if (is.null(file.name) == TRUE) {
       file.name <- "superiority summary"
     } else {
       file.name <- file.name

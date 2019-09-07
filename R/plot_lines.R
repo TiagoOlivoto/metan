@@ -48,12 +48,12 @@ plot_lines <- function(.data, x, y, fit, level = 0.95, xlab = NULL,
                                      data = data2, level = level, alpha = alpha, col = col,
                                      size = size.line)
   }
-  if (is.null(ylab) == T) {
+  if (is.null(ylab) == TRUE) {
     ylab <- cl$y
   } else {
     ylab <- ylab
   }
-  if (is.null(xlab) == T) {
+  if (is.null(xlab) == TRUE) {
     xlab <- cl$x
   } else {
     xlab <- xlab

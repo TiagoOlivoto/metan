@@ -93,12 +93,12 @@ plot.ge_factanal <- function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = 
     }
     data <- data.frame(x$scores.gen)
 
-    if (is.null(y.lab) == F) {
+    if (is.null(y.lab) == FALSE) {
         y.lab <- y.lab
     } else {
         y.lab <- paste("Factor 2 (",round(x$PCA$Variance[[2]],2), "%)", sep = "")
     }
-    if (is.null(x.lab) == F) {
+    if (is.null(x.lab) == FALSE) {
         x.lab <- x.lab
     } else {
         x.lab <- paste("Factor 1 (",round(x$PCA$Variance[[1]],2), "%)", sep = "")

@@ -33,7 +33,7 @@ summary.can_cor <- function(object, export = FALSE, file.name = NULL, digits = 3
     stop("The object must be of class 'can_cor'")
   }
   if (export == TRUE) {
-    if (is.null(file.name) == T) {
+    if (is.null(file.name) == TRUE) {
       file.name <- "Canonical summary"
     } else {
       file.name <- file.name

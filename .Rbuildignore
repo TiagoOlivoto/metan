@@ -30,3 +30,4 @@
 ^\.Rproj\.user$
 ^doc$
 ^pkgdown$
+^cran-comments\.md$

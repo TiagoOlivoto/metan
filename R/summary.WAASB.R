@@ -32,7 +32,7 @@ summary.waasb <- function(object, export = FALSE, blup = FALSE, file.name = NULL
         stop("The object must be of class 'waasb'")
     }
     if (export == TRUE) {
-        if (is.null(file.name) == T) {
+        if (is.null(file.name) == TRUE) {
             file.name <- "waasb summary"
         } else {
             file.name <- file.name
