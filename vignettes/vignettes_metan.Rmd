@@ -36,7 +36,7 @@ str(data_ge)
 
 # AMMI model
 ## Cross-validation procedures
-The cross-validation procedures implemented in the \bold{metan} are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/metan/articles/vignettes_CROSS-VALIDATION.html)
+The cross-validation procedures implemented in the \bold{metan} are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/metan/articles/vignettes_cross-validation.html)
 
 ```{r, fig.height=3.5, fig.width=5}
 CVAL = cv_ammif(data_ge,
