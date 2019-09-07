@@ -11,7 +11,7 @@ vignette: >
 ---
 
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(comment = "", cache = TRUE)
+knitr::opts_chunk$set(comment = "")
 
 ```
 
@@ -44,7 +44,7 @@ CVAL = cv_ammif(data_ge,
                 gen = GEN,
                 rep = REP,
                 resp = GY,
-                nboot = 500,
+                nboot = 50,
                 nrepval = 2)
 plot(CVAL)
 ```
