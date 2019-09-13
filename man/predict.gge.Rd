@@ -20,6 +20,10 @@ in the columns, filled by the estimated values.}
 
 \item{...}{Additional parameter for the function}
 }
+\value{
+A two-way table (genotypes in rows and environments in columns)
+ with the predicted values by the GGE model.
+}
 \description{
 Predict the means for a genotype-vs-environment trial based on a Genotype plus
 Genotype-vs-Environment interaction (GGE) model.

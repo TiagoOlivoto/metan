@@ -14,6 +14,7 @@
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #' silently.
 #' @importFrom methods as
+#' @return An object of class \code{split_factors}.
 #' @export
 #' @examples
 #'

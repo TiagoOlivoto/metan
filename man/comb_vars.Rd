@@ -21,6 +21,10 @@ default is \code{+}, i.e., V1 + V2.}
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
 }
+\value{
+A data frame containing all possible combination of variables. Each combination
+is the result of the function in \code{FUN} applied to the two variables.
+}
 \description{
 Pairwise combinations of variables that will be the result of a function
 applied to each combination.

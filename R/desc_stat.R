@@ -23,6 +23,9 @@
 #' @param level The confidence level to compute the confidence interval of mean. Defaults to 0.95.
 #' @param digits The number of significant figures.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code is run silently.
+#' @return A tibble with the statistics in the lines and variables in columns. If
+#' \code{.data} is an object of class \code{split_factors}, then the statistics will be
+#' shown for each level of the grouping variable in the function \code{split_factors()}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @importFrom tidyr spread gather separate

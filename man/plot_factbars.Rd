@@ -76,6 +76,9 @@ Defaults to true}
 \item{verbose}{Logical argument. If TRUE a tibble containing the mean, N,
 standard deviation, standard error of mean and confidence interval is returned.}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Create a bar plot based on categorical (one or two) variables
 and one numeric variable.

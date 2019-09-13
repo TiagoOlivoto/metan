@@ -48,6 +48,7 @@
 #' title. Use a string text to create an own title or set to \code{main = FALSE} to omit the
 #' plot title.
 #' @param ... Other arguments of the function
+#' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot can_cor
 #' @importFrom ggforce geom_circle

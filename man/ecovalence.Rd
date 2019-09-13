@@ -24,6 +24,10 @@ single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
 }
+\value{
+An object of class \code{ecovalence} containing the results for each
+variable used in the argument \code{resp}.
+}
 \description{
 The function computes the ecovalence (Wricke, 1965) for stability analysis.
 }

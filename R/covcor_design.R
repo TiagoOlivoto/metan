@@ -22,6 +22,16 @@
 #' variance-covariance matrices, respectively). Alternatively, it is possible
 #' to get a matrix with the means of each genotype in each trait, by using
 #' \code{type = 'means'}.
+#' @return An object of class \code{covcor_design} containing the following items:
+#' \item{geno_cov}{The genotypic covariance}.
+#' \item{phen_cov}{The phenotypic covariance}.
+#' \item{resi_cov}{The residual covariance}.
+#' \item{geno_cor}{The phenotypic correlation}.
+#' \item{phen_cor}{The phenotypic correlation}.
+#' \item{resi_cor}{The residual correlation}.
+#'
+#' If \code{.data} is an object of class \code{split_factors} then the output will be
+#' a list with the above values for each grouping variable in the function \code{\link{split_factors}}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

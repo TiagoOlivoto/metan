@@ -52,6 +52,9 @@ plot. Possible values are 'free' (default), 'fixed', 'free_x' or 'free_y'.}
 
 \item{theme}{The default theme for the plot.}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Create a graphic to show a fitted line based on numerical
 variables and one grouping variable.

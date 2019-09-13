@@ -11,6 +11,7 @@
 #'
 #' @param x The input data.
 #' @importFrom methods is
+#' @return  A logical value \code{TRUE} or \code{FALSE}.
 #' @export
 #' @examples
 #'

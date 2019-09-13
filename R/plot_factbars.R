@@ -38,6 +38,7 @@
 #' Defaults to true
 #' @param verbose Logical argument. If TRUE a tibble containing the mean, N,
 #' standard deviation, standard error of mean and confidence interval is returned.
+#' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @seealso \code{\link{plot_lines}}, \code{\link{plot_factlines}}
 #'

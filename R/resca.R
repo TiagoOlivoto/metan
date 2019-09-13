@@ -26,6 +26,8 @@
 #' @param new_max The maximum value of the new scale. Default is 100
 #' @param keep Should all variables be kept after rescaling? If false, only rescaled
 #' variables will be kept.
+#' @return A numeric vector if \code{values} is used as input data or a tibble if
+#' a data frame is used as input in \code{.data}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

@@ -21,6 +21,10 @@ resca(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100,
 \item{keep}{Should all variables be kept after rescaling? If false, only rescaled
 variables will be kept.}
 }
+\value{
+A numeric vector if \code{values} is used as input data or a tibble if
+a data frame is used as input in \code{.data}.
+}
 \description{
 Helper function used in the WAASB package. It rescales a continuous variable
 to have specified minimum and maximum values.

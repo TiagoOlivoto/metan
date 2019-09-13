@@ -18,6 +18,8 @@
 #' Mahalanobis distance. Alternatively, it is possible to return the matrix of
 #' means \code{return = 'means'}, or the variance-covariance matrix of
 #' residuals \code{return = 'covmat'}.
+#' @return A symmetric matrix with the Mahalanobis' distance. If the \code{.data} is an object
+#' of class \code{split_factors} then a list of distances will be returned.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

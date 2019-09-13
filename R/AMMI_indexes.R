@@ -43,7 +43,8 @@
 #' @param level The confidence level. Defaults to 0.95.
 #' @return
 #'
-#' A list where each element is the result for one variable.
+#' A list where each element contains the result AMMI-based stability indexes
+#' for one variable.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.

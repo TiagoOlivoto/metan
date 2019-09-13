@@ -9,6 +9,7 @@
 #' @param covar The covariance matrix.
 #' @param inverted Logical argument. If \code{TRUE}, \code{covar} is supposed
 #' to contain the inverse of the covariance matrix.
+#' @return A symmetric matrix with the Mahalanobis' distance.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

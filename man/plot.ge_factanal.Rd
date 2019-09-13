@@ -89,6 +89,9 @@ Default is \code{0.5}.}
 
 \item{...}{Other arguments of the function.}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 This function plot the scores for genotypes obtained in the factor analysis
 to interpret the stability

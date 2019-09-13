@@ -39,9 +39,7 @@
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'  V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
 #'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).
-#' @return The function returns the results in a list for each analyzed
-#' variable. For each variable, the following objects are returned.
-#'
+#' @return An object of class \code{waasb} with the following items for each variable:
 #' \item{individual}{A within-environments ANOVA considering a fixed-effect
 #' model.}
 #'
@@ -92,7 +90,6 @@
 #' genotype-environment correlation; \code{CVg} the genotypic coefficient of
 #' variation; \code{CVr} the residual coefficient of variation; \code{CVratio}
 #' the ratio between genotypic and residual coefficient of variation.}
-#'
 #' \item{residuals}{The residuals of the model.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{waas}}

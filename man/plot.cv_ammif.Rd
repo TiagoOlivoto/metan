@@ -68,6 +68,9 @@ c(breaks)}}
 
 \item{...}{Other arguments of the function}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Boxplot showing the Root Means Square Prediction Difference of of a cross
 validation procedure.

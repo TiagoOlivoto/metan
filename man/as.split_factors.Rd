@@ -12,6 +12,9 @@ as.split_factors(x, verbose = TRUE)
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
 }
+\value{
+An object of class \code{split_factors}.
+}
 \description{
 Functions to coerce an object to a list of class \code{split_factors},
 if possible.

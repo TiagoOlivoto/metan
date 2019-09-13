@@ -35,6 +35,11 @@ vector.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run silently.}
 }
+\value{
+A tibble with the statistics in the lines and variables in columns. If
+\code{.data} is an object of class \code{split_factors}, then the statistics will be
+shown for each level of the grouping variable in the function \code{split_factors()}.
+}
 \description{
 Compute the most used measures of central tendency, position, and dispersion.
 }

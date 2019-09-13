@@ -47,6 +47,7 @@
 #' lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.
 #' @param pan.spacing The space between the pannels. Set to 0.15.
 #' @param digits The number of digits to show in the plot.
+#' @return An object of class \code{gg, ggmatrix}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
@@ -213,7 +214,7 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
   ggplot2::theme_set(ggplot2::theme_gray() + ggplot2::theme(panel.spacing = grid::unit(pan.spacing,
                                                                                        "lines")))
   if (export == FALSE) {
-    print(p1)
+    return(p1)
   } else if (file.type == "pdf") {
     if (is.null(file.name)) {
       pdf("Pairs of Mantel's test.pdf", width = width,

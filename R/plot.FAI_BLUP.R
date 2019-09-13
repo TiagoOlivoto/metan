@@ -25,6 +25,7 @@
 #' \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
 #' @method plot fai_blup
 #' @export
+#' @return An object of class \code{gg, ggplot}.
 #' @examples
 #' \dontrun{
 #' library(metan)

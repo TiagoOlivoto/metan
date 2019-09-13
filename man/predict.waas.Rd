@@ -15,6 +15,9 @@ vector.}
 
 \item{...}{Additional parameter for the function}
 }
+\value{
+A list where each element is the predicted values by the AMMI model for each variable.
+}
 \description{
 Predict the means of a waas object considering a specific number of
 axis.

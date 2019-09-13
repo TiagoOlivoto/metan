@@ -19,6 +19,10 @@ informed.}
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
 }
+\value{
+A tibble containing the values of the correlation, confidence interval,
+upper and lower limits for all combination of variables.
+}
 \description{
 Computes the half-width confidence interval for correlation coefficient
 using the nonparametric method proposed by Olivoto et al. (2018).

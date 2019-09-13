@@ -11,6 +11,9 @@ solve_svd(x, tolerance = 2.220446e-16)
 
 \item{tolerance}{The tolerance to consider an eigenvalue equals to zero.}
 }
+\value{
+A matrix with the same dimension of \code{x}.
+}
 \description{
 This function computes the Moore-Penrose pseudoinverse of a square matrix
 using singular value decomposition.

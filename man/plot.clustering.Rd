@@ -17,8 +17,20 @@
 \item{...}{Other arguments passed from the function \code{plot.dendrogram}
 or \code{abline}.}
 }
+\value{
+An object of class \code{gg, ggplot} if \code{type == "cophenetic"}.
+}
 \description{
 Plot an object of class clustering
+}
+\examples{
+# Define 4 clusters
+d = clustering(data_ge2,
+               means_by = GEN,
+               scale = TRUE,
+               nclust = 4)
+plot(d)
+
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -51,6 +51,9 @@ of multiplicative terms"}.}
 
 \item{...}{Other arguments of the function}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Plot the eigenvalues for from singular value decomposition of BLUP
 interaction effects matrix.

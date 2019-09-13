@@ -67,6 +67,9 @@ genotypes above and below of the mean, respectively. Default is
 
 \item{...}{Other arguments of the function}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Plot the predicted BLUP of the genotypes.
 }

@@ -24,6 +24,9 @@ here)}. For more details, please, see \code{?ggplot2::theme}.}
 
 \item{colour}{Logical argument. If \code{FALSE} then the plot will not be colored.}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 This function produces a line plot for a graphical interpretation of the
 genotype-vs-environment interaction. By default, environments are in the

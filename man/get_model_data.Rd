@@ -25,6 +25,9 @@ predicted mean (if the object is of class \code{waasb} only); \code{"Y"} for raw
 \item{type}{Chose if the statistics must be show by genotype (\code{type = "GEN"}, default)
 or environment (\code{type = "ENV"}), when possible.}
 }
+\value{
+A tibble showing the values of the variable chosen in argument \code{what}.
+}
 \description{
 Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et al., 2019a, 2019b)
 }

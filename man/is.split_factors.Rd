@@ -9,6 +9,9 @@ is.split_factors(x)
 \arguments{
 \item{x}{The input data.}
 }
+\value{
+A logical value \code{TRUE} or \code{FALSE}.
+}
 \description{
 Functions to check if an object is of class \code{split_factors}
 }

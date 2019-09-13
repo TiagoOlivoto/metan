@@ -12,7 +12,11 @@
 #' @param resp The response variable(s). To analyze multiple variables in a
 #' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run silently.
-#'
+#' @return An object of class \code{ge_reg} with the folloing items for each variable:
+#' \item{data}{The data with means for genotype and environment combinations and the
+#' environment index}
+#' \item{anova}{The analysis of variance for the regression model.}
+#' \item{regression}{The estimated coefficients of the regression model.}
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

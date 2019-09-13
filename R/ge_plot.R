@@ -16,6 +16,7 @@
 #' applied using the arguments: \code{theme = theme(some stuff
 #' here)}. For more details, please, see \code{?ggplot2::theme}.
 #' @param colour Logical argument. If \code{FALSE} then the plot will not be colored.
+#' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

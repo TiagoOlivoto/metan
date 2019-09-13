@@ -51,17 +51,15 @@
 #'
 #' # Using the correlation matrix
 #' library(metan)
-#' cor_iris = cor(iris[,1:4])
-#' n = nrow(iris)
-#' colindiag(cor_iris, n = n, verbose = FALSE)
+#' cor_iris <- cor(iris[,1:4])
+#' n <- nrow(iris)
+#' diag1 <- colindiag(cor_iris, n = n)
 #'
-#' # Using the pipe operator %>%
-#' cor_iris %>% colindiag(n = n, verbose = FALSE)
 #'
-#' # Diagnostic by species, storing into an object
-#' col_diag_spec = iris %>%
-#'                 split_factors(Species) %>%
-#'                 colindiag()
+#' # Using a data frame, diagnostic by species, and using the pipe operator %>%
+#' col_diag_spec <- iris %>%
+#'                  split_factors(Species) %>%
+#'                  colindiag()
 #'
 #'
 colindiag <- function(.data, n = NULL, verbose = TRUE) {

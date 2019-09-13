@@ -17,6 +17,12 @@
 #' factor analysis.
 #' @param verbose Logical value. If \code{TRUE} some results are shown in
 #' console.
+#' @return An object of class \code{fai_blup} with the following items:
+#' \item{data}{The data (BLUPS) used to compute the index.}
+#' \item{FA}{The results of the factor analysis.}
+#' \item{canonical.loadings}{The canonical loadings for each factor retained.}
+#' \item{FAI}{A list with the FAI-BLUP index for each ideotype design.}
+#' \item{selection.diferential}{A list with the selection differential for each ideotype design.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
 #' Multitrait index based on factor analysis and ideotype-design: proposal and

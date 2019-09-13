@@ -28,6 +28,7 @@
 #' theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
 #' applied using the arguments: `theme = theme_waasb() + theme(some stuff
 #' here)`. For more details, please, see `?ggplot2::theme`
+#' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @examples
 #' \dontrun{

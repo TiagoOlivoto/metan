@@ -14,6 +14,11 @@
 #' @param resp The response variable(s). To analyze multiple variables in a
 #' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run silently.
+#' @return An object of class \code{superiority} where each element is the result of
+#' one variable and contains the following items:
+#' \item{environments}{The mean for each environment, the environment index and classification
+#' as favorable and unfavorable environments.}
+#' \item{index}{The superiority index computed for all, favorable and unfavorable environments.}
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{Annicchiarico}, \link{ecovalence}, \link{ge_stats}}
 #' @references Lin, C.S., and M.R. Binns. 1988. A superiority measure of

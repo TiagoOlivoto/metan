@@ -15,6 +15,20 @@
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #' factor analysis.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run silently.
+#' @return An object of class \code{ge_factanal} with the following items:
+#' \item{data}{The data used to compute the factor analysis.}
+#' \item{cormat}{The correlation matrix among the environments.}
+#' \item{PCA}{The eigenvalues and explained variance.}
+#' \item{FA}{The factor analysis.}
+#' \item{env_strat}{The environmental stratification.}
+#' \item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
+#' \item{MSA}{The measure of sampling adequacy for individual variable.}
+#' \item{communalities}{The communalities.}
+#' \item{communalities.mean}{The communalities' mean.}
+#' \item{initial.loadings}{The initial loadings.}
+#' \item{finish.loadings}{The final loadings after varimax rotation.}
+#' \item{canonical.loadings}{The canonical loadings.}
+#' \item{scores.gen}{The scores for genotypes for the first and second factors.}
 #' @references Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of methodologies for
 #' environment stratification and analysis of genotype adaptability.
 #' Crop Breed. Appl. Biotechnol. 4:7-11.
@@ -128,7 +142,7 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
                                                                                                                           2, mean)) * 100)
         temp <- (structure(list(data = as_tibble(data), cormat = as.matrix(cor.means),
                                 PCA = as_tibble(pca), FA = as_tibble(fa), env_strat = as_tibble(genv),
-                                KMO = KMO, MSA = MSA, comunalits = Communality, comunalits.mean = mean(Communality),
+                                KMO = KMO, MSA = MSA, communalities = Communality, communalities.mean = mean(Communality),
                                 initial.loadings = as_tibble(cbind(Env = names(means),
                                                                    as_tibble(initial.loadings))), finish.loadings = as_tibble(cbind(Env = names(means),
                                                                                                                                     as_tibble(A))), canonical.loadings = as_tibble(cbind(Env = names(means),

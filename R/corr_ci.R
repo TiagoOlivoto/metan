@@ -17,6 +17,8 @@
 #' informed.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #' console.
+#' @return A tibble containing the values of the correlation, confidence interval,
+#' upper and lower limits for all combination of variables.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
 #' B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence

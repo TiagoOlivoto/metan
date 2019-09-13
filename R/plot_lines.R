@@ -15,6 +15,7 @@
 #' @param size.line The size for the line in the plot
 #' @param size.text The size of the text
 #' @param fontfam The family of the font text
+#' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @seealso \code{\link{plot_factbars}} \code{\link{plot_factlines}}
 plot_lines <- function(.data, x, y, fit, level = 0.95, xlab = NULL,

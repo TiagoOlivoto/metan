@@ -15,6 +15,7 @@
 #' @param col.nonsel The colour for nonselected genotypes.
 #' @param size.text The size for the text in the plot. Defaults to 10.
 #' @param ... Other arguments to be passed from ggplot2::theme().
+#' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot mtsi
 #' @export

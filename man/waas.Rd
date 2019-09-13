@@ -47,6 +47,8 @@ within-environment ANOVA is not performed.}
 silently.}
 }
 \value{
+An object of class \code{waas} with the following items for each variable:
+
 \item{individual}{A within-environments ANOVA considering a fixed-effect
 model.}
 \item{model}{A data frame with the response variable, the scores of all
@@ -71,6 +73,8 @@ and environment), \code{Max} the maximum observed, \code{Max} the maximum
 observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
 the environment with the larger mean observed, \code{MinGEN} the genotype
 with the lower mean, \code{MaxGEN} the genotype with the larger.}
+\item{residuals}{The residuals of the model.}
+\item{probint}{The p-value for the genotype-vs-environment interaction.}
 }
 \description{
 Compute the Weighted Average of Absolute Scores for AMMI analysis (Olivoto et al., 2019).

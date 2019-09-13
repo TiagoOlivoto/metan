@@ -78,6 +78,9 @@ plot title.}
 
 \item{...}{Other arguments of the function}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Graphs of the Canonical Correlation Analysis
 }

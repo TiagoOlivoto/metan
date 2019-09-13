@@ -6,6 +6,7 @@
 #' @param x A square matrix
 #' @param tolerance The tolerance to consider an eigenvalue equals to zero.
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
+#' @return A matrix with the same dimension of \code{x}.
 #' @export
 #' @examples
 #' library(metan)

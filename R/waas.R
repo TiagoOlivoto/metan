@@ -47,7 +47,7 @@
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'  V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
 #'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).
-#' @return
+#' @return An object of class \code{waas} with the following items for each variable:
 #'
 #' \item{individual}{A within-environments ANOVA considering a fixed-effect
 #' model.}
@@ -73,6 +73,8 @@
 #' observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
 #' the environment with the larger mean observed, \code{MinGEN} the genotype
 #' with the lower mean, \code{MaxGEN} the genotype with the larger.}
+#' \item{residuals}{The residuals of the model.}
+#' \item{probint}{The p-value for the genotype-vs-environment interaction.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{waasb}}
 #' @export

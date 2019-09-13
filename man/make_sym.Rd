@@ -13,6 +13,9 @@ make_sym(.matrix, make = "upper")
 case, a symetric matrix will be built based on the values of a lower
 triangular values.}
 }
+\value{
+A symmetric matrix.
+}
 \description{
 This function help users to easily make a symmetric matrix using a lower or
 an upper triangular matrix.

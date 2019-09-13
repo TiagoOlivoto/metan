@@ -19,7 +19,8 @@ names. For example, \code{order.y = c("h, h, l, h, l")}.}
 \item{level}{The confidence level. Defaults to 0.95.}
 }
 \value{
-A list where each element is the result for one variable.
+A list where each element contains the result AMMI-based stability indexes
+for one variable.
 }
 \description{
 This function computes the following AMMI-based stability indexes: ASV, AMMI

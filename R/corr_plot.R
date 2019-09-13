@@ -73,10 +73,10 @@
 #' @param height The height of the plot, set to \code{7}.
 #' @param resolution The resolution of the plot if \code{file.type = 'tiff'} is
 #' used. Set to \code{300} (300 dpi).
+#' @return An object of class \code{gg, ggmatrix}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
 #' \dontrun{
 #' library(metan)
 #' dataset = data_ge2

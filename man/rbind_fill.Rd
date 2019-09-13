@@ -11,6 +11,9 @@ rbind_fill(..., fill = ".")
 
 \item{fill}{What use to fill? Default is \code{"."}}
 }
+\value{
+A data frame.
+}
 \description{
 Helper function similar to \code{plyr::rbind.fill} that combines data.frames
 by row and fills with \code{.} missing values

@@ -23,6 +23,7 @@
 #' @param size.text The size of the text
 #' @param fontfam The family of the font text
 #' @param theme The default theme for the plot.
+#' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @seealso \code{\link{plot_lines}}, \code{\link{plot_factbars}}
 plot_factlines <- function(.data, x, y, group, fit, level = 0.95,

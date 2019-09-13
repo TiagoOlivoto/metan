@@ -6,6 +6,7 @@
 #'
 #' @param ... Input dataframes.
 #' @param fill What use to fill? Default is \code{"."}
+#' @return A data frame.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

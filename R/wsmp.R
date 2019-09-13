@@ -31,19 +31,12 @@
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'  V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
 #'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).
-#' @return
-#' \item{MeansGxE}{The means of genotypes in the environments, with observed,
-#' predicted and residual values.}
-#'
-#' \item{WAASxGY}{A list with the estimates for each scenario.}
-#'
-#'
+#' @return An object of class \code{wsmp} with the following items for each variable:
+#' \item{scenarios}{A list with the model for all computed scenarios.}
 #' \item{WAASY}{The values of the WAASY estimated when the weight for the
 #' stability in the loop match with argument \code{saveWAASY}.}
-#'
-#' \item{hetdata, hetcomb, CorcombWAASY}{The data used to produce the heatmaps.}
-#'
-#' \item{WAASY.values}{All the values of WAASY estimated in the different
+#' \item{hetdata, hetcomb}{The data used to produce the heatmaps.}
+#' \item{Ranks}{All the values of WAASY estimated in the different
 #' scenarios of WAAS/GY weighting ratio.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{resca}}

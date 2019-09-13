@@ -9,6 +9,9 @@ as.lpcor(...)
 \arguments{
 \item{...}{A comma-separated list of matrices to be coerced to a list.}
 }
+\value{
+An object of class \code{lpcor}.
+}
 \description{
 Functions to check if an object is of class \code{lpcor}, or coerce it if
 possible.

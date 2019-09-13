@@ -18,6 +18,7 @@
 #'  index.
 #' @param type Chose if the statistics must be show by genotype (\code{type = "GEN"}, default)
 #' or environment (\code{type = "ENV"}), when possible.
+#' @return A tibble showing the values of the variable chosen in argument \code{what}.
 #' @importFrom dplyr starts_with matches case_when
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export

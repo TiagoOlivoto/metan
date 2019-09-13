@@ -21,7 +21,9 @@ table.}
 \item{fun}{The function to apply. Defaults to \code{mean}, i.e., the two-way table
 will show the mean values for each genotype-environment combination. Other R base functions
 such as \code{max}, \code{min}, \code{sd}, \code{var}, or an own function that return
- a single numeric value can be used.}
+ a single numeric value can be used.
+ @return A two-way table with the argument \code{row} in the rows, \code{col} in the columns,
+ filled by the argument \code{value}.}
 }
 \description{
 This function help users to easily make a two-way table from a "long format"

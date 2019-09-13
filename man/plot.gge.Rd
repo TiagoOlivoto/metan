@@ -97,6 +97,8 @@ Please, see `?metan::theme_waasb`. An own theme can be applied using the argumen
 }
 \value{
 A ggplot2-based biplot.
+
+An object of class \code{gg, ggplot}.
 }
 \description{
 Produces a ggplot2-based GGE biplot based on a model of class \code{gge}.

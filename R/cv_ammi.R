@@ -24,20 +24,22 @@
 #' replications/blocks.
 #' @param resp The response variable.
 #' @param nboot The number of resamples to be used in the cross-validation. Defaults to 100.
-#' @param design The experimental desig to be considered. Default is
-#' \code{RCBD} (Randomized complete Block Design). For Completely Randomized
-#' Designs inform \code{design = 'CRD'}.
 #' @param nrepval The number of replicates (r) from total number of replicates
 #' (R) to be used in the modeling dataset. Only one replicate is used as
 #' validating data each step, so, \code{Nrepval} must be equal \code{R-1}
 #' @param naxis The number of axis to be considered for estimation of GE
 #' effects.
+#' @param design The experimental desig to be considered. Default is
+#' \code{RCBD} (Randomized complete Block Design). For Completely Randomized
+#' Designs inform \code{design = 'CRD'}.
 #' @param verbose A logical argument to define if a progress bar is shown.
 #' Default is \code{TRUE}.
-#' @return \item{RMSE}{A vector with Nboot-estimates of the root mean squared
-#' error estimated with the difference between predicted and validating data.}
+#' @return
+#' An object of class \code{cv_ammi} with the following items:
+#' \item{RMSPD}{A vector with nboot-estimates of the root mean squared
+#' prediction difference between predicted and validating data.}
 #'
-#' \item{RSMEmean}{The mean of RMSE estimates.}
+#' \item{RMSPDmean}{The mean of RMSPDmean estimates.}
 #'
 #' \item{Estimated}{A data frame that contain the values (predicted, observed,
 #' validation) of the last loop.}
@@ -64,13 +66,13 @@
 #'
 #' # Alternatively using the pipe operator %>%
 #' model = data_ge %>%
-#'         cv_ammiF(ENV, GEN, REP, GY, 100, 2, 2)
+#'         cv_ammi(ENV, GEN, REP, GY, 100, 2, 2)
 #'
 #' }
 #'
 #'
 cv_ammi <- function(.data, env, gen, rep, resp, nboot = 100,
-                    design = "RCBD", nrepval, naxis, verbose = TRUE) {
+                    nrepval, naxis, design = "RCBD", verbose = TRUE) {
   if (!design %in% c("RCBD", "CRD")) {
     stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")
   }

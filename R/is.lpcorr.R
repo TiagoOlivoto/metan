@@ -6,6 +6,7 @@
 #' @param x An object to check.
 #' @importFrom methods is
 #' @export
+#' @return  A logical value \code{TRUE} or \code{FALSE}.
 #' @examples
 #'
 #' library(metan)

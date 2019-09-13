@@ -32,6 +32,11 @@
 #' random effects.
 #' @param verbose A logical argument to define if a progress bar is shown.
 #' Default is \code{TRUE}.
+#' @return
+#' An object of class \code{cv_blup} with the following items:
+#' \item{RMSPD}{A vector with nboot-estimates of the root mean squared
+#' prediction difference between predicted and validating data.}
+#' \item{RMSPDmean}{The mean of RMSPDmean estimates.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{cv_ammi}}, \code{\link{cv_ammif}}
 #' @export

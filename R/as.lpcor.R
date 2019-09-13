@@ -6,6 +6,7 @@
 #'
 #' @param ... A comma-separated list of matrices to be coerced to a list.
 #' @importFrom methods as
+#' @return An object of class \code{lpcor}.
 #' @export
 #' @examples
 #'

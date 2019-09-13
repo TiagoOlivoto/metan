@@ -30,6 +30,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{ge_factanal}}
 #' @method plot ge_reg
+#' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @examples
 #' library(metan)

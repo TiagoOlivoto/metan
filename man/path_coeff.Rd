@@ -48,37 +48,28 @@ please see \code{?cor}.}
 console.}
 }
 \value{
+An object of class \code{path_coeff, group_path, or brute_path} with the following items:
 \item{Corr.x}{A correlation matrix between the predictor variables.}
-
 \item{Corr.y}{A vector of correlations between each predictor variable with
 the dependent variable.}
-
 \item{Coefficients}{The path coefficients. Direct effects are the diagonal
 elements, and the indirect effects those in the off-diagonal elements
 (column)}
-
 \item{Eigen}{Eigenvectors and eigenvalues of the \code{Corr.x.}}
-
 \item{VIF}{The Variance Inflation Factors.}
-
 \item{plot}{A ggplot2-based graphic showing the direct effects in 21
 different k values..}
-
 \item{Predictors}{The predictor variables used in the model.}
-
 \item{CN}{The Condition Number, i.e., the ratio between the highest and
 lowest eigenvalue.}
-
 \item{Det}{The matrix determinant of the \code{Corr.x.}.}
-
 \item{R2}{The coefficient of determination of the model.}
-
 \item{Residual}{The residual effect of the model.}
-
 \item{Response}{The response variable.}
-
 \item{weightvar}{The order of the predictor variables with the highest weight
 (highest eigenvector) in the lowest eigenvalue.}
+ If \code{.data} is an object of class \code{split_factors} then a list is returned with the
+ above items for each level of the grouping variable in the function \code{split_factors}.
 }
 \description{
 Computes direct and indirect effects in path analysis. An algorithm to select

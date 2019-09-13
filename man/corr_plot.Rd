@@ -123,11 +123,13 @@ i.e., automatically.}
 \item{resolution}{The resolution of the plot if \code{file.type = 'tiff'} is
 used. Set to \code{300} (300 dpi).}
 }
+\value{
+An object of class \code{gg, ggmatrix}.
+}
 \description{
 Graphical and numerical visualization of a correlation matrix
 }
 \examples{
-
 \dontrun{
 library(metan)
 dataset = data_ge2

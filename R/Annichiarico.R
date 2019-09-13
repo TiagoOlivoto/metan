@@ -19,6 +19,13 @@
 #' @seealso \code{\link{superiority}, \link{ecovalence}, \link{ge_stats}}
 #' @references Annicchiarico, P. 1992. Cultivar adaptation and recommendation
 #' from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.
+#' @return
+#' A list where each element is the result for one variable and contains the following data frames:
+#' \item{environments}{Contains the mean, environmental index and classification as
+#' favorables and unfavorables environments.}
+#' \item{general}{Contains the genotypic confidence index considering all environments.}
+#' \item{favorable}{Contains the genotypic confidence index considering favorable environments.}
+#' \item{unfavorable}{Contains the genotypic confidence index considering unfavorable environments.}
 #' @export
 #' @examples
 #'

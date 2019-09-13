@@ -139,6 +139,9 @@ scores values.}
 
 \item{...}{Other arguments of the function}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Plot scores of genotypes and environments in different graphics. \code{1 =
 PC1 x PC2}, \code{2 = GY x PC1}, \code{3 = GY x WAASB}, and \code{4 =

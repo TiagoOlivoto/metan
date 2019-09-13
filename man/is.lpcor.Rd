@@ -9,6 +9,9 @@ is.lpcor(x)
 \arguments{
 \item{x}{An object to check.}
 }
+\value{
+A logical value \code{TRUE} or \code{FALSE}.
+}
 \description{
 Functions to check if an object is of class \code{lpcor}
 }

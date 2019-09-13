@@ -49,9 +49,7 @@ within-environment ANOVA is not performed.}
 silently.}
 }
 \value{
-The function returns the results in a list for each analyzed
-variable. For each variable, the following objects are returned.
-
+An object of class \code{waasb} with the following items for each variable:
 \item{individual}{A within-environments ANOVA considering a fixed-effect
 model.}
 
@@ -102,7 +100,6 @@ the mean; \code{AccuGen} the selective accuracy; \code{rge} the
 genotype-environment correlation; \code{CVg} the genotypic coefficient of
 variation; \code{CVr} the residual coefficient of variation; \code{CVratio}
 the ratio between genotypic and residual coefficient of variation.}
-
 \item{residuals}{The residuals of the model.}
 }
 \description{

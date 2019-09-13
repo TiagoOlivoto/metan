@@ -30,6 +30,9 @@ This becomes useful when the number of genotypes is large, say, more than 30.}
 
 \item{...}{Other arguments to be passed from ggplot2::theme().}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Makes a radar plot showing the multitrait stability index proposed by Olivoto et al. (2019)
 }

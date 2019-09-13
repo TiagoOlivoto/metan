@@ -23,6 +23,30 @@ factor analysis.}
 \item{verbose}{If \code{verbose = TRUE} (Default) then some results are
 shown in the console.}
 }
+\value{
+An object of class \code{ge_factanal} with the following items:
+\item{data}{The data used to compute the factor analysis.}
+\item{cormat}{The correlation matrix among the environments.}
+\item{PCA}{The eigenvalues and explained variance.}
+\item{FA}{The factor analysis.}
+\item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
+\item{MSA}{The measure of sampling adequacy for individual variable.}
+\item{communalities}{The communalities.}
+\item{communalities.mean}{The communalities' mean.}
+\item{initial.loadings}{The initial loadings.}
+\item{finish.loadings}{The final loadings after varimax rotation.}
+\item{canonical.loadings}{The canonical loadings.}
+\item{scores.gen}{The scores for genotypes in all retained factors.}
+\item{scores.ide}{The scores for the ideotype in all retained factors.}
+\item{MTSI}{The multi-trait stability index.}
+\item{contri.fac}{The relative contribution of each factor on the MTSI value.
+The lower the contribution of a factor, the close of the ideotype the variables in such
+factor are.}
+\item{sel.dif}{The selection diferential for the WAASBY or WAASB index.}
+\item{mean.sd}{The mean for the differential selection.}
+\item{sel.dif.var}{The selection diferential for the variables.}
+\item{Selected}{The selected genotypes.}
+}
 \description{
 Computes the multitrait stability index proposed by Olivoto et al. (2019)
 }

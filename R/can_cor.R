@@ -34,6 +34,8 @@
 #' collinearity diagnostic is performed for each group of variables according
 #' to Olivoto et al.(2017).
 #' @return
+#' If \code{.data} is an object of class \code{split_factors} then the results will be
+#' returned into a list where each element has the following values.
 #'
 #' \item{Matrix}{The correlation (or covariance) matrix of the variables}
 #'
@@ -48,6 +50,8 @@
 #'
 #' \item{Loads_FG, Loads_SG}{Matrix of the canonical loadings of the first
 #' group or second group, respectively.}
+#'
+#' \item{Score_FG, Score_SG}{Canonical scores for the variables in FG and SG, respectively.}
 #'
 #' \item{Crossload_FG, Crossload_FG}{Canonical cross-loadings for FG variables on
 #' the SG scores, and cross-loadings for SG variables on the FG scores, respectively.}
@@ -66,15 +70,14 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
 #' library(metan)
 #'
 #' cc1 = can_corr(data_ge2,
 #'                FG = c(PH, EH, EP),
 #'                SG = c(EL, ED, CL, CD, CW, KW, NR))
 #'
-#' cc2 = can_corr(FG = datage_2[, 4:6],
-#'                SG = datage_2[, 7:13],
+#' cc2 = can_corr(FG = data_ge2[, 4:6],
+#'                SG = data_ge2[, 7:13],
 #'                verbose = FALSE,
 #'                collinearity = FALSE)
 #'
@@ -82,9 +85,9 @@
 #' cc3 = data_ge2 %>%
 #'       split_factors(ENV, REP) %>%
 #'       can_corr(FG = c(PH, EH, EP),
-#'                SG = c(EL, ED, CL, CD, CW, KW, NR))
+#'                SG = c(EL, ED, CL, CD, CW, KW, NR),
+#'                verbose = FALSE)
 #'
-#' }
 #'
 can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = "cor",
                      test = "Bartlett", prob = 0.05, center = TRUE, stdscores = FALSE,

@@ -26,6 +26,17 @@ silently.}
 
 \item{prob}{The probability error assumed.}
 }
+\value{
+An object of class \code{ge_stats} with the following items for each variable:
+\item{individual}{The individual analysis of variance. Call the function \code{\link{anova_ind}} internally.}
+\item{ge_mean, ge_effect}{The genotype-vs-environment means and effects, respectively.}
+\item{gge_effect}{The genotype plus genotype-vs-environment effects.}
+\item{ge_stats}{The variance, sum of squares and mean squares for each genotype.}
+\item{ER}{The Eberhart and Russell regression model. Call the function \code{\link{ge_reg}} internally.}
+\item{ANN}{The Annicchiarico's genotypic confidence index. Call the function \code{\link{Annicchiarico}} internally.}
+\item{Ecoval}{The Wrike's ecovalence. Call the function \code{\link{ecovalence}} internally.}
+\item{Superiority}{The Lin and Binns' superiority index. Call the function \code{\link{superiority}} internally.}
+}
 \description{
 Compute parametric and nonparametric statistics for genotype-vs-environment
 interaction (GEI), including within-environment analysis of

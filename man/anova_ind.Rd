@@ -24,6 +24,12 @@ replications/blocks.}
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
 }
+\value{
+A list where each element is the result for one variable and contains:
+\item{individual}{A data frame with the results of the individual analysis of
+variance.}
+\item{MSRatio}{The ratio between the higher and lower residual mean square.}
+}
 \description{
 This is a helper function that performs a within-environment analysis of
 variance and returns values such as Mean Squares, p-values, coefficient of

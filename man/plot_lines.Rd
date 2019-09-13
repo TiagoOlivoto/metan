@@ -36,6 +36,9 @@ plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
 
 \item{fontfam}{The family of the font text}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Create a graphic with fitted line based on numerical
 variables.

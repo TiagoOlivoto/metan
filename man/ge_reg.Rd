@@ -23,6 +23,13 @@ single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
 }
+\value{
+An object of class \code{ge_reg} with the folloing items for each variable:
+\item{data}{The data with means for genotype and environment combinations and the
+environment index}
+\item{anova}{The analysis of variance for the regression model.}
+\item{regression}{The estimated coefficients of the regression model.}
+}
 \description{
 Regression-based stability analysis using the Eberhart and Russell (1966) model.
 }

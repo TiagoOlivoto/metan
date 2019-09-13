@@ -14,6 +14,8 @@
 #' default is \code{+}, i.e., V1 + V2.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #' silently.
+#' @return A data frame containing all possible combination of variables. Each combination
+#' is the result of the function in \code{FUN} applied to the two variables.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

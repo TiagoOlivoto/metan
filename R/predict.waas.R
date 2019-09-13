@@ -26,6 +26,7 @@
 #' \code{object} has more than one variable, then \code{naxis} must be a
 #' vector.
 #' @param ... Additional parameter for the function
+#' @return A list where each element is the predicted values by the AMMI model for each variable.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method predict waas
 #' @export

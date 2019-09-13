@@ -47,6 +47,7 @@
 #' \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
 #' c(breaks)}
 #' @param ... Other arguments of the function
+#' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot cv_ammif
 #' @export

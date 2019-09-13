@@ -72,6 +72,7 @@
 #' @importFrom tidyr gather
 #' @importFrom ggforce geom_arc
 #' @export
+#' @return An object of class \code{gg, ggplot}.
 #' @examples
 #' library(metan)
 #' mod = gge(data_ge, GEN, ENV, GY)

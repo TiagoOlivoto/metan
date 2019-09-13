@@ -14,6 +14,8 @@
 #' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #' silently.
+#' @return An object of class \code{ecovalence} containing the results for each
+#' variable used in the argument \code{resp}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen
 #' und hafer. Z. Pflanzenzuchtg 52:127-138.

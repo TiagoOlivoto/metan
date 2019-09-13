@@ -81,6 +81,9 @@ lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.}
 
 \item{digits}{The number of digits to show in the plot.}
 }
+\value{
+An object of class \code{gg, ggmatrix}.
+}
 \description{
 This function generate a pairwise matrix of plots to compare the similarity
 of two or more correlation matrices. In the upper diagonal are presented the

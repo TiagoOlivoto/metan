@@ -1,6 +1,6 @@
 #' Multi-Environment Trial Analysis
 #'
-#' The \pkg{metan} package provides functions for performing the most
+#' Provides functions for performing the most
 #' used analyses in the evaluation of multi-environment trials.
 #' This includes stability analysis using widely-known parametric
 #' and nonparametric methods, functions for biometrical analysis such

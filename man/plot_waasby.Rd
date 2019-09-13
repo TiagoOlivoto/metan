@@ -53,6 +53,9 @@ c(breaks)}}
 
 \item{...}{Other arguments of the function}
 }
+\value{
+An object of class \code{gg, ggplot}.
+}
 \description{
 Plot heat maps with genotype ranking in two ways.
 }

@@ -16,6 +16,11 @@
 #' @param resp The response variable.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #' silently.
+#' @return
+#' A list where each element is the result for one variable and contains:
+#' \item{individual}{A data frame with the results of the individual analysis of
+#' variance.}
+#' \item{MSRatio}{The ratio between the higher and lower residual mean square.}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

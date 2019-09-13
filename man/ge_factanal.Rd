@@ -26,6 +26,22 @@ factor analysis.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
 }
+\value{
+An object of class \code{ge_factanal} with the following items:
+\item{data}{The data used to compute the factor analysis.}
+\item{cormat}{The correlation matrix among the environments.}
+\item{PCA}{The eigenvalues and explained variance.}
+\item{FA}{The factor analysis.}
+\item{env_strat}{The environmental stratification.}
+\item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
+\item{MSA}{The measure of sampling adequacy for individual variable.}
+\item{communalities}{The communalities.}
+\item{communalities.mean}{The communalities' mean.}
+\item{initial.loadings}{The initial loadings.}
+\item{finish.loadings}{The final loadings after varimax rotation.}
+\item{canonical.loadings}{The canonical loadings.}
+\item{scores.gen}{The scores for genotypes for the first and second factors.}
+}
 \description{
 This function computes the stability analysis and environmental stratification
 using factor analysis as proposed by Murakami and Cruz (2004).
