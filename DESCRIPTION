@@ -8,7 +8,7 @@ Authors@R: c(person("Tiago", "Olivoto",
              comment = c(ORCID = "0000-0002-0241-9636")))
 Language: en-US
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
-Description: The metan package provides functions for performing the most
+Description: Provides functions for performing the most
              used analyses in the evaluation of multi-environment trials.
              This includes stability analysis using widely-known parametric
              and nonparametric methods, functions for biometrical analysis such
