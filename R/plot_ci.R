@@ -31,13 +31,13 @@
 #' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @examples
-#' \dontrun{
 #' library(metan)
+#' library(dplyr)
+#'
 #' data_ge2 %>%
 #' select(contains('E')) %>%
 #' corr_ci() %>%
 #' plot_ci()
-#' }
 #'
 plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
                     y.breaks = waiver(), shape = 21, col.shape = "black", fill.shape = "orange",

@@ -93,21 +93,20 @@ variables in the iterative process.
 }
 \examples{
 
-\dontrun{
 library(metan)
 
 # Using KW as the response variable and all other ones as predictors
-pcoeff = path_coeff(data_ge2, resp = KW)
+pcoeff <- path_coeff(data_ge2, resp = KW)
 
 
 # Declaring the predictors
-pcoeff2 = path_coeff(data_ge2,
+pcoeff2 <- path_coeff(data_ge2,
                      resp = KW,
                      pred = c(PH, EH, NKE, TKW))
 
 
 # Selecting variables to be excluded from the analysis
-pcoeff3 = path_coeff(data_ge2,
+pcoeff3 <- path_coeff(data_ge2,
                      resp = KW,
                      pred = c(PH, EH, NKE, TKW),
                      exclude = TRUE)
@@ -115,7 +114,7 @@ pcoeff3 = path_coeff(data_ge2,
 
 # Selecting a set of predictors with minimal multicollinearity
 # Maximum variance Inflation factor of 5
-pcoeff4 = path_coeff(data_ge2,
+pcoeff4 <- path_coeff(data_ge2,
                      resp = KW,
                      brutstep = TRUE,
                      maxvif = 5)
@@ -123,20 +122,18 @@ pcoeff4 = path_coeff(data_ge2,
 
 # When one analysis should be carried out for each environment
 # Using the forward-pipe operator \%>\%
-pcoeff5 = data_ge2 \%>\%
-          split_factors(ENV) \%>\%
-          path_coeff(resp = KW,
-                     pred = c(PH, EH, NKE, TKW))
+pcoeff5 <- data_ge2 \%>\%
+           split_factors(ENV) \%>\%
+           path_coeff(resp = KW,
+                      pred = c(PH, EH, NKE, TKW))
 
 
 # One analysis for each environment with minimal multicollinearity
-pcoeff6 = data_ge2 \%>\%
-          split_factors(ENV) \%>\%
-          path_coeff(resp = KW,
-                     brutstep = TRUE,
-                     maxvif = 5)
-
-}
+pcoeff6 <- data_ge2 \%>\%
+           split_factors(ENV) \%>\%
+           path_coeff(resp = KW,
+                      brutstep = TRUE,
+                      maxvif = 5)
 
 }
 \references{

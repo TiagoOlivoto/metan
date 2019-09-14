@@ -27,7 +27,6 @@
 #' @export
 #' @return An object of class \code{gg, ggplot}.
 #' @examples
-#' \dontrun{
 #' library(metan)
 #' multivariate = waasb(data_ge,
 #'                      resp = c(GY, HM),
@@ -37,11 +36,10 @@
 #'
 #' FAI = data_ge2 %>%
 #'       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-#'       fai_blup(DI = c('max', 'max', 'max', 'min'),
-#'                UI = c('min', 'min', 'min', 'max'),
+#'       fai_blup(DI = c('max, max, max, min'),
+#'                UI = c('min, min, min, max'),
 #'                SI = 15)
-#'       plot(FAI)
-#'       }
+#' plot(FAI)
 #'
 plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, arrange.label = FALSE,
                           size.point = 2, col.sel = "red", col.nonsel = "black", size.text = 10,

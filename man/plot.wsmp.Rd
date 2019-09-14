@@ -67,7 +67,6 @@ productive and stable genotypes.
 }
 \examples{
 
-\dontrun{
 library(metan)
 model = waas(data_ge2,
              env = ENV,
@@ -76,7 +75,6 @@ model = waas(data_ge2,
              resp = PH) \%>\%
          wsmp()
          plot(model$PH)
-}
 
 }
 \author{

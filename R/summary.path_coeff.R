@@ -18,8 +18,6 @@
 #' @method summary path_coeff
 #' @export
 #' @examples
-#'
-#' \dontrun{
 #' library(metan)
 #'
 #' # KW as dependent trait and all others as predictors
@@ -27,13 +25,12 @@
 #' summary(pcoeff)
 #'
 #' # Call the algorithm for selecting a set of predictors
-#' # with minimal multicollinearity (no VIF larger than 5)
+#' # With minimal multicollinearity (no VIF larger than 5)
 #' pcoeff2 = path_coeff(data_ge2,
 #'                      resp = KW,
 #'                      brutstep = TRUE,
 #'                      maxvif = 5)
 #' summary(pcoeff2)
-#' }
 #'
 summary.path_coeff = function(object,
                               model = NULL,

@@ -31,16 +31,14 @@ applied to each combination.
 }
 \examples{
 
-\dontrun{
 library(metan)
-data = data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
+data <- data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
                   B = rnorm(n = 5, mean = 120, sd = 30),
                   C = rnorm(n = 5, mean = 40, sd = 10),
                   D = rnorm(n = 5, mean = 1100, sd = 200),
                   E = rnorm(n = 5, mean = 2, sd = 1))
-comb_vars(data)
-comb_vars(data, FUN = '*', order = 'second')
-}
+comb1 <- comb_vars(data)
+comb2 <- comb_vars(data, FUN = '*', order = 'second')
 
 }
 \author{

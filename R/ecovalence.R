@@ -22,14 +22,12 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
 #' library(metan)
 #' out = ecovalence(data_ge2,
 #'                  env = ENV,
 #'                  gen = GEN,
 #'                  rep = REP,
 #'                  resp = PH)
-#' }
 #'
 ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   datain <- .data

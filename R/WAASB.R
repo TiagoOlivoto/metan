@@ -95,14 +95,13 @@
 #' @seealso \code{\link{waas}}
 #' @export
 #' @examples
-#' \dontrun{
 #' library(metan)
 #'
 #' # Genotypes as random effects and equal weights for both
 #'
 #' # response variable and stability
 #'
-#' model <-  waasb(data_ge,
+#' model <- waasb(data_ge,
 #'                env = ENV,
 #'                gen = GEN,
 #'                rep = REP,
@@ -131,7 +130,6 @@
 #'                 random = "env",
 #'                 mresp = c(100, 0),
 #'                 wresp = c(60, 40))
-#'}
 #'
 waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random = "gen",
                   prob = 0.05, ind_anova = TRUE, verbose = TRUE) {

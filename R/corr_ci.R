@@ -29,14 +29,11 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
 #' library(metan)
 #'
-#' corr_ci(data_ge)
+#' CI1 <- corr_ci(data_ge)
 #'
-#' ci = data_ge %>% split_factors(ENV) %>% corr_ci()
-#'
-#' }
+#' CI2 <- data_ge %>% split_factors(ENV) %>% corr_ci()
 #'
 corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
   if (any(!is.na(.data))) {

@@ -21,23 +21,21 @@
 #' @export
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J. (in press).
 #' @examples
-#' \dontrun{
 #' library(metan)
-#' mtsi_model = waasb(data_ge,
+#' mtsi_model <- waasb(data_ge,
 #'                    env = ENV,
 #'                    gen = GEN,
 #'                    rep = REP,
 #'                    resp = c(GY, HM))
 #'
-#' mtsi_index = mtsi(mtsi_model)
+#' mtsi_index <- mtsi(mtsi_model)
 #' plot(mtsi_index)
 #'
 #' # Alternatively using the pipe operator %>%
-#' mtsi_index2 = data_ge %>%
-#'               waasb(ENV, GEN, REP, c(GY, HM)) %>%
-#'               mtsi()
+#' mtsi_index2 <- data_ge %>%
+#'                waasb(ENV, GEN, REP, c(GY, HM)) %>%
+#'                mtsi()
 #' plot(mtsi_index2)
-#'}
 #'
 #'
 plot.mtsi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.point = 2.5,

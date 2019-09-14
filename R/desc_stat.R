@@ -31,23 +31,22 @@
 #' @importFrom tidyr spread gather separate
 #' @importFrom rlang quo quo_text
 #' @examples
-#' \dontrun{
 #' library(metan)
+#' library(dplyr)
+#' desc1 <- data_ge2 %>% desc_stat(TKW)
 #'
-#' data_ge2 %>%
-#'   desc_stat(TKW)
-#'
-#' vect = data_ge2 %>%
+#' vect <- data_ge2 %>%
 #'   select(TKW) %>%
 #'   pull()
 #'
-#' desc_stat(values = vect)
+#' desc2 <- desc_stat(values = vect)
 #'
+#' desc3 <-
 #' data_ge2 %>%
 #'   split_factors(ENV) %>%
 #'   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
-#'   stats = c('mean, SE.mean, CV'))
-#'   }
+#'   stats = c('mean, SE.mean, CV'),
+#'   verbose = FALSE)
 #'
 desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
                       level = 0.95, digits = 4, verbose = TRUE) {

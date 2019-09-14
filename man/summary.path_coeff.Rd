@@ -29,8 +29,6 @@ the results are shown in the R console. The results can also be exported to
 the directory.
 }
 \examples{
-
-\dontrun{
 library(metan)
 
 # KW as dependent trait and all others as predictors
@@ -38,13 +36,12 @@ pcoeff = path_coeff(data_ge2, resp = KW)
 summary(pcoeff)
 
 # Call the algorithm for selecting a set of predictors
-# with minimal multicollinearity (no VIF larger than 5)
+# With minimal multicollinearity (no VIF larger than 5)
 pcoeff2 = path_coeff(data_ge2,
                      resp = KW,
                      brutstep = TRUE,
                      maxvif = 5)
 summary(pcoeff2)
-}
 
 }
 \author{

@@ -44,7 +44,6 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
 #' library(metan)
 #' model = waas(data_ge2,
 #'              env = ENV,
@@ -53,7 +52,6 @@
 #'              resp = PH) %>%
 #'          wsmp()
 #'          plot(model$PH)
-#' }
 #'
 plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf",
                       file.name = NULL, width = 6, height = 5, size.lab = 1, margins = c(5,

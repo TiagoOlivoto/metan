@@ -28,9 +28,8 @@ the RMSPD values of those cross-validation procedures.
 }
 \examples{
 
-\dontrun{
 library(metan)
-# Using too few number of resamples (5)
+# Two examples with only 5 resampling procedures
 AMMI = cv_ammif(data_ge,
                 resp = GY,
                 gen = GEN,
@@ -49,7 +48,6 @@ bind_data = bind_cv(AMMI, BLUP)
 plot(bind_data)
 
 print(bind_cv(AMMI, BLUP, bind = 'means'))
-}
 
 }
 \author{

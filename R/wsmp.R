@@ -43,8 +43,6 @@
 #' @importFrom progress progress_bar
 #' @export
 #' @examples
-#'
-#' \dontrun{
 #' library(metan)
 #' model = waas(data_ge2,
 #'              env = ENV,
@@ -52,7 +50,6 @@
 #'              rep = REP,
 #'              resp = PH)
 #' scenarios = wsmp(model)
-#' }
 #'
 wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
                  prob = 0.05, progbar = TRUE) {

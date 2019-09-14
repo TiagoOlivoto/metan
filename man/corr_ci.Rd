@@ -36,14 +36,11 @@ coefficient.
 }
 \examples{
 
-\dontrun{
 library(metan)
 
-corr_ci(data_ge)
+CI1 <- corr_ci(data_ge)
 
-ci = data_ge \%>\% split_factors(ENV) \%>\% corr_ci()
-
-}
+CI2 <- data_ge \%>\% split_factors(ENV) \%>\% corr_ci()
 
 }
 \references{

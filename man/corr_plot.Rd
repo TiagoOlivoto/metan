@@ -130,7 +130,6 @@ An object of class \code{gg, ggmatrix}.
 Graphical and numerical visualization of a correlation matrix
 }
 \examples{
-\dontrun{
 library(metan)
 dataset = data_ge2
 
@@ -175,7 +174,6 @@ corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
           col.dia.panel = 'black',
           pan.spacing = 0,
           lab.position = 'tl')
-}
 
 }
 \author{

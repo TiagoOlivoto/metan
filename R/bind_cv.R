@@ -18,9 +18,8 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
 #' library(metan)
-#' # Using too few number of resamples (5)
+#' # Two examples with only 5 resampling procedures
 #' AMMI = cv_ammif(data_ge,
 #'                 resp = GY,
 #'                 gen = GEN,
@@ -39,7 +38,6 @@
 #' plot(bind_data)
 #'
 #' print(bind_cv(AMMI, BLUP, bind = 'means'))
-#' }
 #'
 bind_cv <- function(..., bind = "boot", sort = TRUE) {
   class <- list(...)

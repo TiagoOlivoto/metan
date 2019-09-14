@@ -85,7 +85,6 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
 #' library(metan)
 #'
 #' # All rows and all numeric variables from data
@@ -124,7 +123,6 @@
 #'
 #' # Check the correlation between distance matrices
 #' pairs_mantel(d7)
-#' }
 #'
 clustering <- function(.data, ... = NULL, means_by = NULL, scale = FALSE,
                        selvar = FALSE, verbose = TRUE, distmethod = "euclidean",

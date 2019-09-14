@@ -14,7 +14,6 @@
 #' @method summary mtsi
 #' @export
 #' @examples
-#' \dontrun{
 #' library(metan)
 #' # Based on stability only
 #' MTSI_MODEL = waasb(data_ge,
@@ -28,7 +27,6 @@
 #' summary(MTSI_index,
 #'         export = TRUE,
 #'         file.name = "my results")
-#' }
 #'
 summary.mtsi <- function(object, export = FALSE, file.name = NULL, digits = 4, ...) {
     class <- class(object)

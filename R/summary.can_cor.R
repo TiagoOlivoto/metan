@@ -16,17 +16,14 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
 #' library(metan)
-#' cc = can_corr(data_ge2,
-#'               FG = c(PH, EH, EP),
-#'               SG = c(EL, CL, CD, CW, KW, NR, TKW),
-#'               verbose = FALSE)
+#' cc <- can_corr(data_ge2,
+#'                FG = c(PH, EH, EP),
+#'                SG = c(EL, CL, CD, CW, KW, NR, TKW),
+#'                verbose = FALSE)
 #' summary(cc)
-#' summary(cc,
-#'         export = TRUE,
+#' summary(cc, export = TRUE,
 #'         file.name = "canonical results")
-#' }
 #'
 summary.can_cor <- function(object, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(object) == "can_cor") {

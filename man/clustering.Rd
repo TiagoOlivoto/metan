@@ -102,7 +102,6 @@ original distances.
 }
 \examples{
 
-\dontrun{
 library(metan)
 
 # All rows and all numeric variables from data
@@ -141,7 +140,6 @@ d7 = data_ge2 \%>\%
 
 # Check the correlation between distance matrices
 pairs_mantel(d7)
-}
 
 }
 \references{
