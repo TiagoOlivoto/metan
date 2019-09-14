@@ -12,6 +12,8 @@
 #'
 #' @param r The magnitude of the correlation coefficient.
 #' @param CI The half-width for confidence interval at p < 0.05.
+#' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
+#' silently.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
 #' B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
