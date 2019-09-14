@@ -1,7 +1,6 @@
-#' Combining data.frames by row, filling missing values
+#' Combines data.frames by row filling missing values
 #'
-#' Helper function similar to \code{plyr::rbind.fill} that combines data.frames
-#' by row and fills with \code{.} missing values
+#' Helper function that combines data.frames by row and fills with \code{.} missing values.
 #'
 #'
 #' @param ... Input dataframes.

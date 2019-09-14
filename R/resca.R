@@ -56,7 +56,7 @@
 #'
 resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, keep = TRUE) {
   if(!missing(.data) && !missing(values)){
-    stop("You can not inform a vector of values if a data frame is used as imput.")
+    stop("You cannot inform a vector of values if a data frame is used as input.")
   }
   if(!missing(.data)){
     rescc <- function(x){

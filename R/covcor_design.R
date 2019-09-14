@@ -48,7 +48,7 @@
 #'                       type = 'gcor')
 #'
 #' # Residual (co)variance matrix for each environment
-#' rcov <- datage2 %>%
+#' rcov <- data_ge2 %>%
 #'         split_factors(ENV, keep_factors = TRUE) %>%
 #'         covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
 #'                       type = 'rcov')

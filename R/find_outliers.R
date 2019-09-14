@@ -147,6 +147,7 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
     }
     na2 <- sum(is.na(var_name))
     if ((na2 - na1) > 0) {
+      if(verbose == TRUE){
       cat("Number of possible outliers:", na2 - na1, "\n")
       cat("Lines:", names_out, "\n")
       cat("Proportion: ", round((na2 - na1)/sum(!is.na(var_name)) *
@@ -162,9 +163,12 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
           round(m11, 3), "%", sep = "", "\n")
       cat("Without outliers: mean = ", round(m2, 3), " | CV = ",
           round(m22, 3), "%", sep = "", "\n")
+      }
     }
     if ((na2 - na1) == 0) {
+      if(verbose == TRUE){
       cat("No possible outlier identified. \n")
+      }
     }
   }
 }

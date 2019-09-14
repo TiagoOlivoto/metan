@@ -17,7 +17,8 @@
 #' variable (Y); or \code{'wide'} to return a two-way table with genotypes in the row, environments
 #' in the columns, filled by the estimated values.
 #' @param ... Additional parameter for the function
-#' @return A two-way table (genotypes in rows and environments in columns)
+#' @return A two-way table with genotypes in rows and environments in columns if \code{output = "wide"} or
+#' a long format (columns ENV, GEN and Y) if \code{output = "long"}
 #'  with the predicted values by the GGE model.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,

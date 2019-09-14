@@ -71,7 +71,8 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
       out <- lapply(seq_along(.data), function(x) {
         internal(.data[[x]])
       })
-      names(out) <- names(.data)
+      names(out) = names(.data)
+      return(out)
     }
     if (is.data.frame(.data)) {
       if (sum(lapply(.data, is.factor) == TRUE) > 0) {
@@ -83,8 +84,8 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
                                        names(.data[, unlist(lapply(.data, is.factor))])),
                 " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
       }
+      return(as_tibble(out))
     }
-    invisible(as_tibble(out))
   } else {
     CI <- (0.45304^r) * 2.25152 * (n^-0.50089)
     UP <- r + CI

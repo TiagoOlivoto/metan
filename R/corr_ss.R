@@ -26,12 +26,17 @@
 #' corr_ss(r = 0.60, CI = 0.1)
 #'
 #'
-corr_ss <- function(r, CI) {
-    n <- (CI/(0.45304^r * 2.25152))^(1/-0.50089)
+corr_ss <- function(r, CI, verbose = TRUE) {
+    n <- round((CI/(0.45304^r * 2.25152))^(1/-0.50089), 0)
+    if(verbose == TRUE){
     cat("-------------------------------------------------", "\n")
     cat("Sample size planning for correlation coefficient", "\n")
     cat("-------------------------------------------------", "\n")
     cat(paste0("Level of significance: 5%", "\nCorrelation coefficient: ", r, "\n95% half-width CI: ",
-        CI, "\nRequired sample size: ", round(n, 0)), "\n")
+        CI, "\nRequired sample size: ", n, "\n"))
     cat("-------------------------------------------------", "\n")
+    }
+    return(tibble(`Description` = c("Significance level (%)", "Correlation", "95% half-width CI", "Sample size"),
+                  `Value` = c(95, r, CI, n))
+    )
 }
