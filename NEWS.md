@@ -1,3 +1,75 @@
+# metan 1.0.0
+The changes in this version were made based on suggestions received when metan was submitted to CRAN for the first time.
+
+## Major changes
+The documentation of the following functions was updated by including/updating the \\value section of .Rd files.
+
+* `AMMI_indexes()`
+* `Annichiarico()`
+* `anova_ind()`
+* `as.lpcor()`
+* `as.split_factors()`
+* `bind_cv()`
+* `can_cor()`
+* `comb_vars()`
+* `corr_ci()`
+* `corr_plot()`
+* `covcor_design()`
+* `cv_ammi()`
+* `cv_ammif()`
+* `cv_blup()`
+* `desc_stat()`
+* `ecovalence()`
+* `fai_blup()`
+* `ge_factanal()`
+* `ge_plot()`
+* `ge_reg()`
+* `ge_stats()`
+* `get_model_data()`
+* `is.lpcorr()`
+* `is.split_factors()`
+* `mahala()`
+* `mahala_design()`
+* `make_mat()`
+* `make_sym()`
+* `mtsi()`
+* `pairs_mantel()`
+* `plot.*()` and `plot_*()` functions
+* `rbind_fill()`
+* `resca()`
+* `resp_surf()` 
+* `waas()`
+* `wsmp()`
+* `waasb()`
+      
+## Minor changes
+
+To allow automatic testing, the examples of the following functions were unwrapped by deleting \\dontrun{}.
+
+* `bind_cv()`
+* `clustering()`
+* `comb_vars()`
+* `corr_ci()`
+* `corr_plot()`
+* `covcor_design()`
+* `desc_stat()`
+* `ecovalence()`
+* `path_coefff()`
+* `plot.fai_blup()`
+* `plot.mtsi()`
+* `plot.wsmp()`
+* `plot_ci()`
+* `summary.mtsi()`
+* `summary.can_cor()`
+* `summary.path_coeff()`
+* `wsmp()`
+
+In the examples of the functions for cross-validation \\dontrun{} was changed with \\donttest{}
+* `cv_ammi()`
+* `cv_ammif()`
+* `cv_blup()`
+* `plot.cv_ammif()`
+      
 # metan 0.2.0
 This is the first version that will be submitted to CRAN. In this version, deprecated functions in the last versions were defunct. Some new features were implemented.
 
