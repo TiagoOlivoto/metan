@@ -54,19 +54,19 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #' library(metan)
-#' model = cv_ammif(data_ge,
-#'                          env = ENV,
-#'                          gen = GEN,
-#'                          rep = REP,
-#'                          resp = GY,
-#'                          nboot = 100,
-#'                          nrepval = 2)
+#' model <- cv_ammif(data_ge,
+#'                   env = ENV,
+#'                   gen = GEN,
+#'                   rep = REP,
+#'                   resp = GY,
+#'                   nboot = 100,
+#'                   nrepval = 2)
 #'
 #' # Alternatively (and more intuitively) using the pipe operator %>%
-#' model = data_ge %>%
-#'         cv_ammif(ENV, GEN, REP, GY, 100, 2)
+#' model <- data_ge %>%
+#'          cv_ammif(ENV, GEN, REP, GY, 100, 2)
 #' }
 #'
 cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100,

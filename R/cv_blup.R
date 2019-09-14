@@ -53,8 +53,8 @@
 #'                  nrepval = 2)
 #'
 #' # Alternatively using the pipe operator %>%
-#' model = data_ge %>% cv_blup(ENV, GEN, REP, GY, 100, 2)
-#'
+#' model <- data_ge %>%
+#'          cv_blup(ENV, GEN, REP, GY, 100, 2)
 #' }
 #'
 cv_blup <- function(.data, env, gen, rep, resp, nboot = 100,

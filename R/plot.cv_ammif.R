@@ -53,13 +53,13 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #' validation <- cv_ammif(data_ge,
 #'                        resp = GY,
 #'                        gen = GEN,
 #'                        env = ENV,
 #'                        rep = REP,
-#'                        nboot = 500,
+#'                        nboot = 100,
 #'                        nrepval = 2)
 #' plot(validation)
 #' }
