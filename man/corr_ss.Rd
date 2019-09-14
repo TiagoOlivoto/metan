@@ -4,7 +4,7 @@
 \alias{corr_ss}
 \title{Sample size planning for a desired Pearson's correlation confidence interval}
 \usage{
-corr_ss(r, CI)
+corr_ss(r, CI, verbose = TRUE)
 }
 \arguments{
 \item{r}{The magnitude of the correlation coefficient.}

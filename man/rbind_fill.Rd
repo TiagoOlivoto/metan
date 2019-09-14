@@ -2,7 +2,7 @@
 % Please edit documentation in R/rbind_fill.R
 \name{rbind_fill}
 \alias{rbind_fill}
-\title{Combining data.frames by row, filling missing values}
+\title{Combines data.frames by row filling missing values}
 \usage{
 rbind_fill(..., fill = ".")
 }
@@ -15,8 +15,7 @@ rbind_fill(..., fill = ".")
 A data frame.
 }
 \description{
-Helper function similar to \code{plyr::rbind.fill} that combines data.frames
-by row and fills with \code{.} missing values
+Helper function that combines data.frames by row and fills with \code{.} missing values.
 }
 \examples{
 

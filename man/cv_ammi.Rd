@@ -70,9 +70,9 @@ with the following values.
 }
 \examples{
 
-\dontrun{
+\donttest{
 library(metan)
-model = cv_ammi(data_ge,
+model <- cv_ammi(data_ge,
                 env = ENV,
                 gen = GEN,
                 rep = REP,
@@ -82,9 +82,8 @@ model = cv_ammi(data_ge,
                 naxis = 2)
 
 # Alternatively using the pipe operator \%>\%
-model = data_ge \%>\%
-        cv_ammi(ENV, GEN, REP, GY, 100, 2, 2)
-
+model <- data_ge \%>\%
+         cv_ammi(ENV, GEN, REP, GY, 100, 2, 2)
 }
 
 

@@ -59,20 +59,19 @@ boots, a list is returned.
 }
 \examples{
 
-\dontrun{
+\donttest{
 library(metan)
-model = cv_blup(data_ge,
-                        env = ENV,
-                        gen = GEN,
-                        rep = REP,
-                        resp = GY,
-                        nboot = 100,
-                        nrepval = 2)
+model <- cv_blup(data_ge,
+                 env = ENV,
+                 gen = GEN,
+                 rep = REP,
+                 resp = GY,
+                 nboot = 100,
+                 nrepval = 2)
 
 # Alternatively using the pipe operator \%>\%
-model = data_ge \%>\%
-        cv_blup(ENV, GEN, REP, GY, 100, 2)
-
+model <- data_ge \%>\%
+         cv_blup(ENV, GEN, REP, GY, 100, 2)
 }
 
 }
