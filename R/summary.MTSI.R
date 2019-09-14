@@ -24,9 +24,7 @@
 #'
 #' MTSI_index = mtsi(MTSI_MODEL)
 #' summary(MTSI_index)
-#' summary(MTSI_index,
-#'         export = TRUE,
-#'         file.name = "my results")
+#'
 #'
 summary.mtsi <- function(object, export = FALSE, file.name = NULL, digits = 4, ...) {
     class <- class(object)

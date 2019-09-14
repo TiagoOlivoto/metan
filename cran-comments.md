@@ -88,7 +88,9 @@ This is a resubmission. In this version, I have made the following changes based
 I have a vignette that I want to build it when the package is installed but when I run `devtools::check()` the files in inst/doc are deleted. How should I proceed in this case?
 
 Thank for your time in reviewing my R package
+
 Best Regards
+
 Tiago Olivoto
 
 # Test environments

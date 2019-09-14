@@ -34,9 +34,7 @@ MTSI_MODEL = waasb(data_ge,
 
 MTSI_index = mtsi(MTSI_MODEL)
 summary(MTSI_index)
-summary(MTSI_index,
-        export = TRUE,
-        file.name = "my results")
+
 
 }
 \author{

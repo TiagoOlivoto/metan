@@ -22,9 +22,7 @@
 #'                SG = c(EL, CL, CD, CW, KW, NR, TKW),
 #'                verbose = FALSE)
 #' summary(cc)
-#' summary(cc, export = TRUE,
-#'         file.name = "canonical results")
-#'
+
 summary.can_cor <- function(object, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(object) == "can_cor") {
     stop("The object must be of class 'can_cor'")

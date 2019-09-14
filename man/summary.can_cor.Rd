@@ -32,9 +32,6 @@ cc <- can_corr(data_ge2,
                SG = c(EL, CL, CD, CW, KW, NR, TKW),
                verbose = FALSE)
 summary(cc)
-summary(cc, export = TRUE,
-        file.name = "canonical results")
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
