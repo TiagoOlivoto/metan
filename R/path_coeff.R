@@ -132,7 +132,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
     for (k in 1:length(.data)) {
-      data <- .data[[k]]
+      data <- .data[[k]] %>% as.data.frame()
       nam <- names(.data[k])
       resp <- dplyr::enquo(resp)
       if (!missing(pred)) {
@@ -265,8 +265,8 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         dfs[[paste(nam)]] <- temp
       }
       if (brutstep == TRUE) {
-        yyy <- data %>% dplyr::select(!!resp)
-        xxx <- data %>% dplyr::select(-c(!!resp))
+        yyy <- data %>% dplyr::select(!!resp) %>% as.data.frame()
+        xxx <- data %>% dplyr::select(-c(!!resp)) %>% as.data.frame()
         cor.xx <- cor(xxx, use = missingval)
         VIF <- data.frame(VIF = diag(solve_svd(cor.xx))) %>%
           rownames_to_column("VAR") %>%
@@ -290,7 +290,6 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         modelcode <- 1
         nproced <- npred - 1
         if (verbose == TRUE) {
-          cat("\n----------------------------------------------------------------------------\n")
           cat("Level", nam, "\n")
           cat("----------------------------------------------------------------------------\n")
           cat(paste("The algorithm has selected a set of ",
@@ -299,10 +298,11 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           cat("Selected predictors:", paste0(selectedpred),"\n")
           cat(paste("A forward stepwise-based selection procedure will fit",
                     nproced, "models.", "\n"))
-          cat("--------------------------------------------------------------------------",
-              "\n")
+          cat("--------------------------------------------------------------------------\n")
         }
+
         for (i in 1:nproced) {
+
           FDSel <- FWDselect::selection(x = xxx, y = unlist(yyy),
                                         q = npred, method = "lm", criterion = "aic",
                                         cluster = FALSE)
@@ -410,10 +410,11 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           statistics[i, 6] <- R2
           statistics[i, 7] <- Residual
           statistics[i, 8] <- max(VIF)
-          cat(paste("Adjusting the model ", modelcode,
-                    " with ", npred, " predictor variables (",
-                    round(modelcode/nproced * 100, 2), "% concluded)",
+          if(verbose == TRUE){
+          cat(paste("Adjusting the model", modelcode,
+                    "with", npred, "predictor variables (",round(modelcode/nproced * 100, 2), "% concluded)",
                     "\n"), sep = "")
+            }
           npred <- npred - 1
           modelcode <- modelcode + 1
         }
@@ -427,7 +428,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           cat("Summary of the adjusted models", "\n")
           cat("--------------------------------------------------------------------------\n")
           print(statistics, digits = 3, row.names = FALSE)
-          cat("--------------------------------------------------------------------------")
+          cat("--------------------------------------------------------------------------\n")
         }
         temp <- structure(list(Models = ModelEstimates,
                                Summary = statistics, Selectedpred = selectedpred),
@@ -598,13 +599,12 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       modelcode <- 1
       nproced <- npred - 1
       if (verbose == TRUE) {
-        cat("--------------------------------------------------------------------------",
-            "\n")
+        cat("--------------------------------------------------------------------------\n")
         cat(paste("The algorithm has selected a set of ",
                   nrow(VIF3), " predictors with largest VIF = ",
                   round(max(VIF3$VIF), 3), ".", sep = ""), "\n")
         cat("Selected predictors:", paste0(selectedpred),"\n")
-        cat(paste("A forward stepwise-based selection procedure will fit", nproced, "models.", "\n"))
+        cat(paste("A forward stepwise-based selection procedure will fit", nproced, "models.\n"))
         cat("--------------------------------------------------------------------------\n")
       }
       for (i in 1:nproced) {
@@ -732,7 +732,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         cat("Summary of the adjusted models", "\n")
         cat("--------------------------------------------------------------------------\n")
         print(statistics, digits = 3, row.names = FALSE)
-        cat("--------------------------------------------------------------------------")
+        cat("--------------------------------------------------------------------------\n")
       }
       temp <- list(Models = ModelEstimates, Summary = statistics,
                    Selectedpred = selectedpred)
