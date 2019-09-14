@@ -112,12 +112,6 @@
 #'                       pred = c(PH, EH, NKE, TKW))
 #'
 #'
-#' # One analysis for each environment with minimal multicollinearity
-#' pcoeff6 <- data_ge2 %>%
-#'            split_factors(ENV) %>%
-#'            path_coeff(resp = KW,
-#'                       brutstep = TRUE,
-#'                       maxvif = 5)
 #'
 path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                        correction = NULL, knumber = 50, brutstep = FALSE, maxvif = 10,

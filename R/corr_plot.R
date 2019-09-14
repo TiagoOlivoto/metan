@@ -77,6 +77,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' dataset = data_ge2
 #'
@@ -121,7 +122,7 @@
 #'           col.dia.panel = 'black',
 #'           pan.spacing = 0,
 #'           lab.position = 'tl')
-#'
+#'}
 corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
                       axis.labels = FALSE, diag = TRUE, diag.type = "histogram",
                       bins = 20, col.diag = "gray", alpha.diag = 1, col.up.panel = "gray",

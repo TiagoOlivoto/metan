@@ -10,6 +10,9 @@ corr_ss(r, CI, verbose = TRUE)
 \item{r}{The magnitude of the correlation coefficient.}
 
 \item{CI}{The half-width for confidence interval at p < 0.05.}
+
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
+silently.}
 }
 \description{
 Find the required (sufficient) sample size for computing a Pearson

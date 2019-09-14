@@ -108,21 +108,15 @@
 #'                 nclust = 4)
 #'
 #' # Compute the distances for each environment
-#' # All rows of each environment and all numeric variables used
-#' d6 = data_ge2 %>%
-#'      split_factors(ENV) %>%
-#'      clustering()
-#'
-#' # Compute the distances for each environment
 #' # Select the variables NKR, TKW, and NKE
 #' # Use the mean for each genotype
-#' d7 = data_ge2 %>%
+#' d6 = data_ge2 %>%
 #'      split_factors(ENV, keep_factors = TRUE) %>%
 #'      clustering(NKR, TKW, NKE,
 #'                 means_by = GEN)
 #'
 #' # Check the correlation between distance matrices
-#' pairs_mantel(d7)
+#' pairs_mantel(d6)
 #'
 clustering <- function(.data, ... = NULL, means_by = NULL, scale = FALSE,
                        selvar = FALSE, verbose = TRUE, distmethod = "euclidean",
