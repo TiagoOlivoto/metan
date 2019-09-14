@@ -70,6 +70,8 @@ This is a resubmission. In this version, I have made the following changes based
       * `summary.path_coeff()`
       * `wsmp()`
    * Changed \\dontrun{} with \\donttest{} in the following functions:
+      * `corr_plot()`
+      * `clustering()`
       * `cv_ammi()`
       * `cv_ammif()`
       * `cv_blup()`

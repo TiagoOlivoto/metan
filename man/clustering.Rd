@@ -101,7 +101,7 @@ presents acceptable cophenetic correlation and high similarity with the
 original distances.
 }
 \examples{
-
+\donttest{
 library(metan)
 
 # All rows and all numeric variables from data
@@ -135,6 +135,7 @@ d6 = data_ge2 \%>\%
 # Check the correlation between distance matrices
 pairs_mantel(d6)
 
+}
 }
 \references{
 Mojena, R. 2015. Hierarchical grouping methods and stopping

@@ -84,7 +84,7 @@
 #' \href{https://academic.oup.com/comjnl/article/20/4/359/393930}{doi:10.1093/comjnl/20.4.359}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'
 #' # All rows and all numeric variables from data
@@ -118,6 +118,7 @@
 #' # Check the correlation between distance matrices
 #' pairs_mantel(d6)
 #'
+#'}
 clustering <- function(.data, ... = NULL, means_by = NULL, scale = FALSE,
                        selvar = FALSE, verbose = TRUE, distmethod = "euclidean",
                        clustmethod = "average", nclust = NULL) {
