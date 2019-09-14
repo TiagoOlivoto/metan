@@ -8,12 +8,12 @@ Authors@R: c(person("Tiago", "Olivoto",
              comment = c(ORCID = "0000-0002-0241-9636")))
 Language: en-US
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
-Description: Provides functions for performing the most
-             used analyses in the evaluation of multi-environment trials.
-             This includes stability analysis using widely-known parametric
-             and nonparametric methods, functions for biometrical analysis such
-             as path analysis, canonical correlation, partial correlation,
-             clustering analysis, as well as tools for summarizing and plotting data.
+Description: Provides functions for performing the most used analyses in the 
+             evaluation of multi-environment trials. This includes stability
+             analysis using widely-known parametric and nonparametric methods,
+             functions for biometrical analysis such as path analysis, canonical
+             correlation, partial correlation, clustering analysis, as well as
+             tools for summarizing and plotting data.
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
