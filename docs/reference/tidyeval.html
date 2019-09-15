@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fast way to create a line plot — plot_lines • metan</title>
+<title>Tidy eval helpers — tidyeval • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,9 +42,40 @@
 
 
 
-<meta property="og:title" content="Fast way to create a line plot — plot_lines" />
-<meta property="og:description" content="Create a graphic with fitted line based on numerical
-variables." />
+<meta property="og:title" content="Tidy eval helpers — tidyeval" />
+<meta property="og:description" content="
+
+sym() creates a symbol from a string and
+syms() creates a list of symbols from a
+character vector.
+enquo() and
+enquos() delay the execution of one or
+several function arguments. enquo() returns a single quoted
+expression, which is like a blueprint for the delayed computation.
+enquos() returns a list of such quoted expressions.
+expr() quotes a new expression locally. It
+is mostly useful to build new expressions around arguments
+captured with enquo() or enquos():
+expr(mean(!!enquo(arg), na.rm = TRUE)).
+as_name() transforms a quoted variable name
+into a string. Supplying something else than a quoted variable
+name is an error.
+That's unlike as_label() which also returns
+a single string but supports any kind of R object as input,
+including quoted function calls and vectors. Its purpose is to
+summarise that object into a single label. That label is often
+suitable as a default name.
+If you don't know what a quoted expression contains (for instance
+expressions captured with enquo() could be a variable
+name, a call to a function, or an unquoted constant), then use
+as_label(). If you know you have quoted a simple variable
+name, or would like to enforce this, use as_name().
+
+
+To learn more about tidy eval and how to use these tools, visit
+https://tidyeval.tidyverse.org and the
+Metaprogramming
+section of Advanced R." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -188,92 +219,54 @@ variables." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fast way to create a line plot</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot_lines.R'><code>R/plot_lines.R</code></a></small>
-    <div class="hidden name"><code>plot_lines.Rd</code></div>
+    <h1>Tidy eval helpers</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/utils-tidy-eval.R'><code>R/utils-tidy-eval.R</code></a></small>
+    <div class="hidden name"><code>tidyeval.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a graphic with fitted line based on numerical
-variables.</p>
+    
+<ul>
+<li><p><code><a href='https://rlang.r-lib.org/reference/quotation.html'>sym</a>()</code> creates a symbol from a string and
+<code><a href='https://rlang.r-lib.org/reference/quotation.html'>syms</a>()</code> creates a list of symbols from a
+character vector.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/quotation.html'>enquo</a>()</code> and
+<code><a href='https://rlang.r-lib.org/reference/quotation.html'>enquos</a>()</code> delay the execution of one or
+several function arguments. <code>enquo()</code> returns a single quoted
+expression, which is like a blueprint for the delayed computation.
+<code>enquos()</code> returns a list of such quoted expressions.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/quotation.html'>expr</a>()</code> quotes a new expression <em>locally</em>. It
+is mostly useful to build new expressions around arguments
+captured with <code>enquo()</code> or <code>enquos()</code>:
+<code>expr(mean(!!enquo(arg), na.rm = TRUE))</code>.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/as_name.html'>as_name</a>()</code> transforms a quoted variable name
+into a string. Supplying something else than a quoted variable
+name is an error.</p>
+<p>That's unlike <code><a href='https://rlang.r-lib.org/reference/as_label.html'>as_label</a>()</code> which also returns
+a single string but supports any kind of R object as input,
+including quoted function calls and vectors. Its purpose is to
+summarise that object into a single label. That label is often
+suitable as a default name.</p>
+<p>If you don't know what a quoted expression contains (for instance
+expressions captured with <code>enquo()</code> could be a variable
+name, a call to a function, or an unquoted constant), then use
+<code>as_label()</code>. If you know you have quoted a simple variable
+name, or would like to enforce this, use <code>as_name()</code>.</p></li>
+</ul>
+
+<p>To learn more about tidy eval and how to use these tools, visit
+<a href='https://tidyeval.tidyverse.org'>https://tidyeval.tidyverse.org</a> and the
+<a href='https://adv-r.hadley.nz/metaprogramming.html'>Metaprogramming
+section</a> of <a href='https://adv-r.hadley.nz'>Advanced R</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_lines</span>(<span class='no'>.data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>fit</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>fontfam</span> <span class='kw'>=</span> <span class='st'>"sans"</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>.data</th>
-      <td><p>The data set</p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>The variable in data to be shown in the x axis</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>The variable in data to be shown in the y axis</p></td>
-    </tr>
-    <tr>
-      <th>fit</th>
-      <td><p>The polynomial degree to use. It must be between
-1 (linear fit) to 4 (fourth-order polynomial regression.)</p></td>
-    </tr>
-    <tr>
-      <th>level</th>
-      <td><p>The fonfidence level</p></td>
-    </tr>
-    <tr>
-      <th>xlab</th>
-      <td><p>The x lab</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>The y lab</p></td>
-    </tr>
-    <tr>
-      <th>col</th>
-      <td><p>The colour to be used in the line plot and points</p></td>
-    </tr>
-    <tr>
-      <th>alpha</th>
-      <td><p>The alpha for the color in confidence band</p></td>
-    </tr>
-    <tr>
-      <th>size.shape</th>
-      <td><p>The size for the shape in plot</p></td>
-    </tr>
-    <tr>
-      <th>size.line</th>
-      <td><p>The size for the line in the plot</p></td>
-    </tr>
-    <tr>
-      <th>size.text</th>
-      <td><p>The size of the text</p></td>
-    </tr>
-    <tr>
-      <th>fontfam</th>
-      <td><p>The family of the font text</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>An object of class <code>gg, ggplot</code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='plot_factbars.html'>plot_factbars</a></code> <code><a href='plot_factlines.html'>plot_factlines</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
     </ul>
 
   </div>
