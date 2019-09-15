@@ -39,7 +39,7 @@ Imports:
     progress (>= 1.2.2),
     rlang (>= 0.1.2),
     tibble (>= 2.1.3),
-    tidyr (>= 1.0.0.9000)
+    tidyr (>= 1.0.0)
 Suggests:
     cowplot (>= 1.0.0),
     kableExtra (>= 1.1.0),
