@@ -14,7 +14,7 @@
 #' \item Examine an environment.
 #' \item Ranking environments.
 #' \item Examine a genotype.
-#' \item Ranking gentoypes.
+#' \item Ranking genotypes.
 #' \item Compare two genotypes.
 #' \item Relationship among environments}
 #' @param sel_env The name of the environment to examine when \code{type = 5}. Must be a
@@ -397,7 +397,7 @@ plot.gge <- function(x, type = 1, sel_env = NA, sel_gen = NA,
       P2 <- P2 + ggtitle(paste("Genotype:", sel_gen))
     }
   }
-  # Ranking gentoypes
+  # Ranking genotypes
   if (type == 8) {
     med1 <- mean(coord_env[, 1])
     med2 <- mean(coord_env[, 2])

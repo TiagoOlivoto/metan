@@ -39,7 +39,7 @@
 #' FALSE. If TRUE, then, each observation will be divided by the standard
 #' deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}
 #' @param selvar Logical argument, set to \code{FALSE}. If \code{TRUE}, then an
-#' algorithm for selecting variables is implemente. See the section
+#' algorithm for selecting variables is implemented. See the section
 #' \bold{Details} for additional information.
 #' @param verbose Logical argument. If \code{TRUE} (default) then the results
 #' for variable selection are shown in the console.

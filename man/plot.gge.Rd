@@ -24,7 +24,7 @@
 \item Examine an environment.
 \item Ranking environments.
 \item Examine a genotype.
-\item Ranking gentoypes.
+\item Ranking genotypes.
 \item Compare two genotypes.
 \item Relationship among environments}}
 

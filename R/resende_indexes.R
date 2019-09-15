@@ -24,7 +24,7 @@
 #' @param .data An object of class \code{waasb}
 #' @return
 #'
-#' A dataframe contaning the indexes.
+#' A dataframe containing the indexes.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Alves, R.S., L. de Azevedo Peixoto, P.E. Teodoro, L.A. Silva,
 #' E.V. Rodrigues, M.D.V. de Resende, B.G. Laviola, and L.L. Bhering. 2018.

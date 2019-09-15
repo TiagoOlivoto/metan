@@ -4,7 +4,7 @@
 #' @param .data The data set
 #' @param x The variable in data to be shown in the x axis
 #' @param y The variable in data to be shown in the y axis
-#' @param fit The polinomial degree to use. It must be between
+#' @param fit The polynomial degree to use. It must be between
 #' 1 (linear fit) to 4 (fourth-order polynomial regression.)
 #' @param level The fonfidence level
 #' @param xlab The x lab

@@ -6,7 +6,7 @@
 #'
 #' @param .matrix The upper or lower triangular matrix.
 #' @param make The triangular to built. Default is \code{"upper"}. In this
-#' case, a symetric matrix will be built based on the values of a lower
+#' case, a symmetric matrix will be built based on the values of a lower
 #' triangular values.
 #' @return A symmetric matrix.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

@@ -42,9 +42,9 @@ An object of class \code{ge_factanal} with the following items:
 \item{contri.fac}{The relative contribution of each factor on the MTSI value.
 The lower the contribution of a factor, the close of the ideotype the variables in such
 factor are.}
-\item{sel.dif}{The selection diferential for the WAASBY or WAASB index.}
+\item{sel.dif}{The selection differential for the WAASBY or WAASB index.}
 \item{mean.sd}{The mean for the differential selection.}
-\item{sel.dif.var}{The selection diferential for the variables.}
+\item{sel.dif.var}{The selection differential for the variables.}
 \item{Selected}{The selected genotypes.}
 }
 \description{

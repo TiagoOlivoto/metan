@@ -30,7 +30,7 @@ the minimum value is 0.}
 
 \item{wresp}{The weight for the response variable(s) for computing the
 WAASBY index. Must be a numeric vector of the same length of \code{resp}.
-Defatults is 50, i.e., equal weights for stability and mean performance.}
+Defaults to 50, i.e., equal weights for stability and mean performance.}
 
 \item{prob}{The p-value for considering an interaction principal component axis significant.}
 

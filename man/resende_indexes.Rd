@@ -10,7 +10,7 @@ Resende_indexes(.data)
 \item{.data}{An object of class \code{waasb}}
 }
 \value{
-A dataframe contaning the indexes.
+A dataframe containing the indexes.
 }
 \description{
 This function computes the following indexes proposed by Resende (2007): the

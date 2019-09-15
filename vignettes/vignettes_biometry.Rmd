@@ -314,7 +314,7 @@ corr_ss(r = 0.6, CI = 0.1)
 
 # Collinearity diagnostic
 
-The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor traits. Several indicators, such as Variance Inflaction Factor, Condition Number, and Matrix Determinant are considered [@Olivoto2017f; @Olivoto2017c] The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class `group_factor`, which split a dataframe into subsets based on one or more grouping factors.
+The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor traits. Several indicators, such as Variance Inflation Factor, Condition Number, and Matrix Determinant are considered [@Olivoto2017f; @Olivoto2017c] The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class `group_factor`, which split a dataframe into subsets based on one or more grouping factors.
 
 ## Using a correlation matrix, which was estimated earlier
 

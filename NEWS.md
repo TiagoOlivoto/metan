@@ -111,7 +111,7 @@ stratification using factor analysis.
 # METAAB 0.1.4
 In the latest development version, some useful functions were included. One of the most interesting features included in this version was allowing the functions to receive data from the forward-pipe operator %>%. Bellow are the functions included in this version.
 
-* `anova_ind()` to perform a within-environment analysis of variance easely;
+* `anova_ind()` to perform a within-environment analysis of variance easily;
 * `colindiag()` to perform a collinearity diagnostic of a set of predictors;a
 * `find_outliers()` to easily find possible outliers in the dataset;
 * `group_factors()` to split a dataset into a list of subsets using one or more grouping factors. This function may be used befor some functions, e.g., `find_outliers()`, `colindiag()`, `path_coeff()` to compute the statistics for each level of the factor (or combination of levels of factors).
@@ -127,7 +127,7 @@ The following S3 Methods were also implemented:
 
 # METAAB 0.1.3
 * AMMI-based stability indexes;
-* Allow analizing multiple variables at the same time;
+* Allow analyzing multiple variables at the same time;
 * S3 methods such as `plot()`, `predict()`, `summary()` implemented.
 
 # METAAB 0.1.2

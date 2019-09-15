@@ -15,7 +15,7 @@ plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
 
 \item{y}{The variable in data to be shown in the y axis}
 
-\item{fit}{The polinomial degree to use. It must be between
+\item{fit}{The polynomial degree to use. It must be between
 1 (linear fit) to 4 (fourth-order polynomial regression.)}
 
 \item{level}{The fonfidence level}
