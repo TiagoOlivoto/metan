@@ -1,4 +1,5 @@
 # Resubmission
+## Changes based on submission comments
 This is a resubmission. In this version, I have made the following changes based on the Martina Schmirl's comments. Each comment was labeled and my responses were inserted following each one.
 
 1. Please do not start the description with "This package", package name, title or similar. Just start with "Provides ...".
@@ -83,11 +84,14 @@ This is a resubmission. In this version, I have made the following changes based
 * Thank you for the suggestion! In this version I have included "verbose" argument that allows supressing messages to the console in the following functions.
    * `corr_ss()`
    * `find_outliers()`
-* For all functions that write information message to the console the argument `verbose = FALSE` may be used to easily suppress those messages. Thank you!
+* For all functions that write information message to the console the argument `verbose = FALSE` may be used to easily suppress those messages.
+
+## Other questions and minor changes
+In this version I have made some minore changes, such as incrementing version number and adding "CONTRIBUTIN.md", "ISSUE_TEMPLATE.md" and "SUPPORT.md" to .github folder.
 
 I have a vignette that I want to build it when the package is installed but when I run `devtools::check()` the files in inst/doc are deleted. How should I proceed in this case?
 
-Thank for your time in reviewing my R package
+Thank for your time in helping me with this submission.
 
 Best Regards
 

@@ -136,12 +136,18 @@ navbar:
         href: articles/vignettes_helper.html
     - text: "Functions"
       href: reference/index.html
+    - text: News
+      href: news/index.html
     - text: More
       menu:
       - text: Code of Conduct
         href: CODE_OF_CONDUCT.html
-      - text: News
-        href: news/index.html
+      - text: Contributing
+        href: CONTRIBUTING.html
+      - text: Issues
+        href: ISSUE_TEMPLATE.html
+      - text: Support
+        href: SUPPORT.html
       - text: Licence
         href: LICENSE.html
   right:
