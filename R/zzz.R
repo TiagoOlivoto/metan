@@ -1,10 +1,10 @@
 #' @import ggplot2
 #' @import stats
 #' @importFrom dplyr  select  everything  mutate  group_by  group_by_if  group_keys
-#'             group_split  left_join  sample_n  anti_join  enquo  pull  summarise_all
+#'             group_split  left_join  sample_n  anti_join pull  summarise_all
 #'             select_if arrange slice contains top_n summarise ungroup rename
-#'             is_grouped_df mutate_at desc tibble as_tibble n summarise_if funs
-#' @importFrom tibble rownames_to_column column_to_rownames
+#'             is_grouped_df mutate_at desc n summarise_if funs
+#' @importFrom tibble rownames_to_column column_to_rownames tibble as_tibble
 #' @importFrom grid grobTree textGrob grid.newpage pushViewport viewport grid.layout
 #' @importFrom ggrepel  geom_text_repel
 #' @importFrom magrittr  %>% %<>%
