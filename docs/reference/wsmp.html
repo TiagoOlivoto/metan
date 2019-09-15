@@ -88,7 +88,7 @@ scenarios of weights for stability and mean performance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -232,20 +232,12 @@ Default is <code>TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-<dt>MeansGxE</dt><dd><p>The means of genotypes in the environments, with observed,
-predicted and residual values.</p></dd>
-
-<dt>WAASxGY</dt><dd><p>A list with the estimates for each scenario.</p></dd>
-
-
+    <p>An object of class <code>wsmp</code> with the following items for each variable:</p>
+<dt>scenarios</dt><dd><p>A list with the model for all computed scenarios.</p></dd>
 <dt>WAASY</dt><dd><p>The values of the WAASY estimated when the weight for the
 stability in the loop match with argument <code>saveWAASY</code>.</p></dd>
-
-<dt>hetdata, hetcomb, CorcombWAASY</dt><dd><p>The data used to produce the heatmaps.</p></dd>
-
-<dt>WAASY.values</dt><dd><p>All the values of WAASY estimated in the different
+<dt>hetdata, hetcomb</dt><dd><p>The data used to produce the heatmaps.</p></dd>
+<dt>Ranks</dt><dd><p>All the values of WAASY estimated in the different
 scenarios of WAAS/GY weighting ratio.</p></dd>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -269,16 +261,12 @@ ranking for WAASY or WAASBY matches perfectly with the ranks of the response var
     <div class='dont-index'><p><code><a href='resca.html'>resca</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>,
              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
-<span class='no'>scenarios</span> <span class='kw'>=</span> <span class='fu'>wsmp</span>(<span class='no'>model</span>)
-}</div></pre>
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'><span class='no'>scenarios</span> <span class='kw'>=</span> <span class='fu'>wsmp</span>(<span class='no'>model</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

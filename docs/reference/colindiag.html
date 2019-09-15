@@ -89,7 +89,7 @@ predictor variables based several indicators, as shown by Olivoto et al.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -254,17 +254,23 @@ doi:10.2134/agronj2016.04.0196.
     <pre class="examples"><div class='input'>
 <span class='co'># Using the correlation matrix</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>cor_iris</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>iris</span>[,<span class='fl'>1</span>:<span class='fl'>4</span>])
-<span class='no'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>iris</span>)
-<span class='fu'>colindiag</span>(<span class='no'>cor_iris</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='no'>cor_iris</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>iris</span>[,<span class='fl'>1</span>:<span class='fl'>4</span>])
+<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>iris</span>)
+<span class='no'>diag1</span> <span class='kw'>&lt;-</span> <span class='fu'>colindiag</span>(<span class='no'>cor_iris</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>)</div><div class='output co'>#&gt; The multicollinearity in the matrix should be investigated.
+#&gt; NC = 140.889
+#&gt; Largest VIF = 31.2614977749215
+#&gt; Matrix determinant: 0.0081096 
+#&gt; Largest correlation: Petal.Length x Petal.Width = 0.963 
+#&gt; Smallest correlation: Sepal.Length x Sepal.Width = -0.118 
+#&gt; Number of VIFs &gt; 10: 4 
+#&gt; Number of correlations with r &gt;= |0.8|: 3 
+#&gt; Variables with largest weight in the last eigenvalues: 
+#&gt; Petal.Length &gt; Petal.Width &gt; Sepal.Length &gt; Sepal.Width </div><div class='input'>
 
-<span class='co'># Using the pipe operator %&gt;%</span>
-<span class='no'>cor_iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>colindiag</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='co'># Diagnostic by species, storing into an object</span>
-<span class='no'>col_diag_spec</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-                <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
-                <span class='fu'>colindiag</span>()</div><div class='output co'>#&gt; <span class='message'>The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
+<span class='co'># Using a data frame, diagnostic by species, and using the pipe operator %&gt;%</span>
+<span class='no'>col_diag_spec</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+                 <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+                 <span class='fu'>colindiag</span>()</div><div class='output co'>#&gt; <span class='message'>The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Level: setosa 
 #&gt; ----------------------------------------------------------------------------

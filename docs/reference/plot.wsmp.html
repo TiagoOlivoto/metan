@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -281,16 +281,16 @@ productive and stable genotypes.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>,
              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'><a href='wsmp.html'>wsmp</a></span>()
-         <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>$<span class='no'>PH</span>)
-}</div></pre>
+         <span class='fu'><a href='wsmp.html'>wsmp</a></span>()</div><div class='output co'>#&gt; Done!</div><div class='input'>         <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>$<span class='no'>PH</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'seriation':</span>
+#&gt; <span class='message'>  method         from </span>
+#&gt; <span class='message'>  reorder.hclust gclus</span></div><div class='img'><img src='plot.wsmp-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

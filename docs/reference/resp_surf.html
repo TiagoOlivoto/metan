@@ -88,7 +88,7 @@ to obtain the stacionary point." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -229,11 +229,89 @@ console.</p></td>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='co'># A small toy example</span>
+
+<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+ <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>1</span>),
+             <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>1</span>)),
+ <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>,
+       <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,
+       <span class='fl'>16</span>, <span class='fl'>17</span>, <span class='fl'>18</span>, <span class='fl'>17</span>, <span class='fl'>16</span>,
+       <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,
+       <span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>)
+)
+<span class='no'>mod</span> <span class='kw'>=</span> <span class='fu'>resp_surf</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>z</span>)</div><div class='output co'>#&gt; -----------------------------------------------------------------
+#&gt; Anova table for the response surface model 
+#&gt; -----------------------------------------------------------------
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: z
+#&gt;           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+#&gt; x          1   0.000   0.000    0.00         1    
+#&gt; y          1   0.000   0.000    0.00         1    
+#&gt; I(x^2)     1  12.857  12.857  106.88 3.073e-09 ***
+#&gt; I(y^2)     1 142.857 142.857 1187.50 &lt; 2.2e-16 ***
+#&gt; x:y        1   0.000   0.000    0.00         1    
+#&gt; Residuals 19   2.286   0.120                      
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; -----------------------------------------------------------------
+#&gt; Model equation for response surface model 
+#&gt; Y = B0 + B1*A + B2*D + B11*A^2 + B22*D^2 + B12*A*D 
+#&gt; -----------------------------------------------------------------
+#&gt; Estimated parameters 
+#&gt; B0: 9.8857143
+#&gt; B1: 1.7142857
+#&gt; B2: 5.7142857
+#&gt; B11: -0.4285714
+#&gt; B22: -1.4285714
+#&gt; B12: 0.0000000
+#&gt; -----------------------------------------------------------------
+#&gt; Matrix of parameters (A) 
+#&gt; -----------------------------------------------------------------
+#&gt; -0.4285714    0.0000000 
+#&gt; 0.0000000    -1.4285714 
+#&gt; -----------------------------------------------------------------
+#&gt; Inverse of the matrix A (invA) 
+#&gt; -2.3333333    0.0000000 
+#&gt; 0.0000000    -0.7000000 
+#&gt; -----------------------------------------------------------------
+#&gt; Vetor of parameters B1 e B2 (X) 
+#&gt; -----------------------------------------------------------------
+#&gt; B1: 1.7142857
+#&gt; B2: 5.7142857
+#&gt; -----------------------------------------------------------------
+#&gt; Equation for the optimal points (A and D) 
+#&gt; -----------------------------------------------------------------
+#&gt; -0.5*(invA*X)
+#&gt; Eigenvalue 1: -0.428571
+#&gt; Eigenvalue 2: -1.428571
+#&gt; Stacionary point is maximum!
+#&gt; -----------------------------------------------------------------
+#&gt; Stacionary point obtained with the following original units: 
+#&gt; -----------------------------------------------------------------
+#&gt; Optimal dose (x): 2
+#&gt; Optimal dose (y): 2
+#&gt; -----------------------------------------------------------------
+#&gt; Fitted model 
+#&gt; -----------------------------------------------------------------
+#&gt; A = x
+#&gt; D = y
+#&gt; y = 9.88571+1.71429A+5.71429D+-0.42857A^2+-1.42857D^2+0A*D
+#&gt; -----------------------------------------------------------------
+#&gt; Shapiro-Wilk normality test
+#&gt; p-value:  0.04213785 
+#&gt; WARNING: at 5% of significance, residuals can not be considered normal! 
+#&gt; ------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='resp_surf-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>

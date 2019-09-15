@@ -88,7 +88,7 @@ Genotype-vs-Environment interaction (GGE) model." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -218,6 +218,11 @@ in the columns, filled by the estimated values.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A two-way table with genotypes in rows and environments in columns if <code>output = "wide"</code> or
+a long format (columns ENV, GEN and Y) if <code>output = "long"</code>
+ with the predicted values by the GGE model.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is used to predict the response variable of a two-way table
@@ -269,6 +274,7 @@ principal components used. For more details see Yan and Kang (2007).</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>

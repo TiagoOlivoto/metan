@@ -88,7 +88,7 @@ using factor analysis as proposed by Murakami and Cruz (2004)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -229,6 +229,23 @@ factor analysis.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class <code>ge_factanal</code> with the following items:</p>
+<dt>data</dt><dd><p>The data used to compute the factor analysis.</p></dd>
+<dt>cormat</dt><dd><p>The correlation matrix among the environments.</p></dd>
+<dt>PCA</dt><dd><p>The eigenvalues and explained variance.</p></dd>
+<dt>FA</dt><dd><p>The factor analysis.</p></dd>
+<dt>env_strat</dt><dd><p>The environmental stratification.</p></dd>
+<dt>KMO</dt><dd><p>The result for the Kaiser-Meyer-Olkin test.</p></dd>
+<dt>MSA</dt><dd><p>The measure of sampling adequacy for individual variable.</p></dd>
+<dt>communalities</dt><dd><p>The communalities.</p></dd>
+<dt>communalities.mean</dt><dd><p>The communalities' mean.</p></dd>
+<dt>initial.loadings</dt><dd><p>The initial loadings.</p></dd>
+<dt>finish.loadings</dt><dd><p>The final loadings after varimax rotation.</p></dd>
+<dt>canonical.loadings</dt><dd><p>The canonical loadings.</p></dd>
+<dt>scores.gen</dt><dd><p>The scores for genotypes for the first and second factors.</p></dd>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of methodologies for
@@ -250,6 +267,7 @@ Crop Breed. Appl. Biotechnol. 4:7-11.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>

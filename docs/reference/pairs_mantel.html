@@ -90,7 +90,7 @@ permutations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -326,6 +326,9 @@ lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class <code>gg, ggmatrix</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -367,7 +370,7 @@ lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p>
 #&gt; Sepal.Length x Petal.Width  0.2811077 -0.12536431 -0.8570233 3.958750e-01
 #&gt; Sepal.Width x Petal.Length  0.4010446 -0.07558634 -0.5141223 6.096277e-01
 #&gt; Sepal.Width x Petal.Width   0.5377280  0.48387140  3.7500043 4.933633e-04
-#&gt; Petal.Length x Petal.Width  0.3221082  0.17966044  1.2386712 2.217511e-01</div><div class='img'><img src='pairs_mantel-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; Petal.Length x Petal.Width  0.3221082  0.17966044  1.2386712 2.217511e-01</div><div class='input'>
 
 <span class='co'># mtcars dataset</span>
 <span class='no'>mt_num</span> <span class='kw'>=</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select_all.html'>select_if</a></span>(<span class='no'>.</span>, <span class='no'>is.numeric</span>)
@@ -375,13 +378,13 @@ lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p>
                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>2</span>:<span class='fl'>6</span>]),
                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>4</span>:<span class='fl'>8</span>])) <span class='kw'>%&gt;%</span>
-         <span class='fu'>pairs_mantel</span>()</div><div class='img'><img src='pairs_mantel-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+         <span class='fu'>pairs_mantel</span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

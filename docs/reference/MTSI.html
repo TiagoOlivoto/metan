@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -220,6 +220,31 @@ shown in the console.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class <code>ge_factanal</code> with the following items:</p>
+<dt>data</dt><dd><p>The data used to compute the factor analysis.</p></dd>
+<dt>cormat</dt><dd><p>The correlation matrix among the environments.</p></dd>
+<dt>PCA</dt><dd><p>The eigenvalues and explained variance.</p></dd>
+<dt>FA</dt><dd><p>The factor analysis.</p></dd>
+<dt>KMO</dt><dd><p>The result for the Kaiser-Meyer-Olkin test.</p></dd>
+<dt>MSA</dt><dd><p>The measure of sampling adequacy for individual variable.</p></dd>
+<dt>communalities</dt><dd><p>The communalities.</p></dd>
+<dt>communalities.mean</dt><dd><p>The communalities' mean.</p></dd>
+<dt>initial.loadings</dt><dd><p>The initial loadings.</p></dd>
+<dt>finish.loadings</dt><dd><p>The final loadings after varimax rotation.</p></dd>
+<dt>canonical.loadings</dt><dd><p>The canonical loadings.</p></dd>
+<dt>scores.gen</dt><dd><p>The scores for genotypes in all retained factors.</p></dd>
+<dt>scores.ide</dt><dd><p>The scores for the ideotype in all retained factors.</p></dd>
+<dt>MTSI</dt><dd><p>The multi-trait stability index.</p></dd>
+<dt>contri.fac</dt><dd><p>The relative contribution of each factor on the MTSI value.
+The lower the contribution of a factor, the close of the ideotype the variables in such
+factor are.</p></dd>
+<dt>sel.dif</dt><dd><p>The selection diferential for the WAASBY or WAASB index.</p></dd>
+<dt>mean.sd</dt><dd><p>The mean for the differential selection.</p></dd>
+<dt>sel.dif.var</dt><dd><p>The selection diferential for the variables.</p></dd>
+<dt>Selected</dt><dd><p>The selected genotypes.</p></dd>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J. (in press).</p>
@@ -334,6 +359,7 @@ shown in the console.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

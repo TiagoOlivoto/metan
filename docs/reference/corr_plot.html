@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -380,24 +380,23 @@ used. Set to <code>300</code> (300 dpi).</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class <code>gg, ggmatrix</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>dataset</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>
 
 <span class='co'># Default plot setting</span>
-<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>)
-
+<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. Only numeric variables were used. </span></div><div class='img'><img src='corr_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Chosing variables to be correlated</span>
-<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>)
-
+<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>)</div><div class='img'><img src='corr_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Changing the layout</span>
 <span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>,
           <span class='kw'>lower</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-          <span class='kw'>upper</span> <span class='kw'>=</span> <span class='st'>'corr'</span>)
-
+          <span class='kw'>upper</span> <span class='kw'>=</span> <span class='st'>'corr'</span>)</div><div class='img'><img src='corr_plot-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Axis labels, similar to the function pairs()</span>
 <span class='co'># Gray scale</span>
 <span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>,
@@ -408,8 +407,7 @@ used. Set to <code>300</code> (300 dpi).</p></td>
           <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0</span>,
           <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>'gray'</span>,
           <span class='kw'>alpha.sign</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-          <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
+          <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='corr_plot-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>, <span class='no'>CW</span>, <span class='no'>NKE</span>,
           <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
           <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>21</span>,
@@ -427,13 +425,14 @@ used. Set to <code>300</code> (300 dpi).</p></td>
           <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>'black'</span>,
           <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>'black'</span>,
           <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-          <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>'tl'</span>)
-}</div></pre>
+          <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>'tl'</span>)</div><div class='img'><img src='corr_plot-5.png' alt='' width='700' height='433' /></div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

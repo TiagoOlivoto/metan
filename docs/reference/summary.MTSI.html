@@ -88,7 +88,7 @@ in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -221,21 +221,116 @@ to the working directory</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='co'># Based on stability only</span>
 <span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)
+                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+#&gt; Evaluating variable HM 100 % 
+#&gt; Done!</div><div class='input'>
+<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>MTSI_MODEL</span>)</div><div class='output co'>#&gt; 
+#&gt; -------------------------------------------------------------------------------
+#&gt; Principal Component Analysis
+#&gt; -------------------------------------------------------------------------------
+#&gt;     Eigenvalues Variance (%) Cum. variance (%)
+#&gt; PC1   1.6566277     82.83139          82.83139
+#&gt; PC2   0.3433723     17.16861         100.00000
+#&gt; -------------------------------------------------------------------------------
+#&gt; Factor Analysis - factorial loadings after rotation-
+#&gt; -------------------------------------------------------------------------------
+#&gt;          FA1 Communality Uniquenesses
+#&gt; GY 0.9101175   0.8283139    0.1716861
+#&gt; HM 0.9101175   0.8283139    0.1716861
+#&gt; -------------------------------------------------------------------------------
+#&gt; Comunalit Mean: 0.8283139 
+#&gt; -------------------------------------------------------------------------------
+#&gt; Multitrait stability index
+#&gt; -------------------------------------------------------------------------------
+#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
+#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
+#&gt; -------------------------------------------------------------------------------
+#&gt; Selection differential for the  waasb index
+#&gt; -------------------------------------------------------------------------------
+#&gt;    Factor        Xo        Xs         SD    SDperc
+#&gt; GY    FA1 0.2504736 0.1165028 -0.1339708 -53.48700
+#&gt; HM    FA1 0.6141648 0.3732404 -0.2409244 -39.22798
+#&gt; ------------------------------------------------------------------------------
+#&gt; Mean of selection differential
+#&gt; -------------------------------------------------------------------------------
+#&gt;          Xo          Xs          SD      SDperc 
+#&gt;   0.4323192   0.2448716  -0.1874476 -46.3574863 
+#&gt; -------------------------------------------------------------------------------
+#&gt; Selection differential for the mean of the variables
+#&gt; -------------------------------------------------------------------------------
+#&gt;    Factor        Xo       Xs         SD    SDperc
+#&gt; GY    FA1  2.674242  2.77951  0.1052684  3.936384
+#&gt; HM    FA1 48.088286 47.34179 -0.7465000 -1.552353
+#&gt; ------------------------------------------------------------------------------
+#&gt; Selected genotypes
+#&gt; -------------------------------------------------------------------------------
+#&gt; G3 G1
+#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>MTSI_index</span>)</div><div class='output co'>#&gt; -------------------- Correlation matrix used used in factor analysis -----------------
+#&gt;        GY     HM
+#&gt; GY 1.0000 0.6566
+#&gt; HM 0.6566 1.0000
+#&gt; 
+#&gt; ---------------------------- Principal component analysis -----------------------------
+#&gt;     Eigenvalues Variance.... Cum..variance....
+#&gt; PC1      1.6566        82.83             82.83
+#&gt; PC2      0.3434        17.17            100.00
+#&gt; 
+#&gt; --------------------------------- Initial loadings -----------------------------------
+#&gt;      [,1]
+#&gt; GY 0.9101
+#&gt; HM 0.9101
+#&gt; 
+#&gt; -------------------------- Loadings after varimax rotation ---------------------------
+#&gt;       FA1
+#&gt; GY 0.9101
+#&gt; HM 0.9101
+#&gt; 
+#&gt; --------------------------- Scores for genotypes-ideotype -----------------------------
+#&gt;       FA1
+#&gt; G1  1.585
+#&gt; G10 4.772
+#&gt; G2  2.957
+#&gt; G3  1.355
+#&gt; G4  2.650
+#&gt; G5  3.192
+#&gt; G6  1.839
+#&gt; G7  3.200
+#&gt; G8  2.361
+#&gt; G9  3.186
+#&gt; ID1 1.355
+#&gt; 
+#&gt; ---------------------------- Multitrait stability index ------------------------------
+#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
+#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
+#&gt; 
+#&gt; --------------------------- Selection differential (index) ----------------------------
+#&gt;    Factor     Xo     Xs      SD SDperc
+#&gt; GY    FA1 0.2505 0.1165 -0.1340 -53.49
+#&gt; HM    FA1 0.6142 0.3732 -0.2409 -39.23
+#&gt; 
+#&gt; -------------------------- Mean of Selection differential -----------------------------
+#&gt;       Xo       Xs       SD   SDperc 
+#&gt;   0.4323   0.2449  -0.1874 -46.3575 
+#&gt; 
+#&gt; ------------------------- Selection differential (variables) --------------------------
+#&gt;    Factor     Xo    Xs      SD SDperc
+#&gt; GY    FA1  2.674  2.78  0.1053  3.936
+#&gt; HM    FA1 48.088 47.34 -0.7465 -1.552
+#&gt; 
+#&gt; -------------------------------- Selected genotypes -----------------------------------
+#&gt; G3 G1 4
+#&gt; ------------------------------------ End of data -------------------------------------
+#&gt; 
+#&gt; 
+#&gt; </div><div class='input'>
 
-<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>MTSI_MODEL</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>MTSI_index</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>MTSI_index</span>,
-        <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"my results"</span>)
-}</div></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

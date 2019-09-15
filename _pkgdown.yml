@@ -7,6 +7,9 @@ template:
 development:
   mode: auto
 
+toc:
+  depth: 2
+
 authors:
   Tiago Olivoto:
     href: https://www.researchgate.net/profile/Tiago_Olivoto2

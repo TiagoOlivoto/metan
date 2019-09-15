@@ -89,7 +89,7 @@ correlation coefficient with a desired confidence interval (Olivoto et al.,
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -191,7 +191,7 @@ correlation coefficient with a desired confidence interval (Olivoto et al.,
 2018).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>corr_ss</span>(<span class='no'>r</span>, <span class='no'>CI</span>)</pre>
+    <pre class="usage"><span class='fu'>corr_ss</span>(<span class='no'>r</span>, <span class='no'>CI</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -203,6 +203,11 @@ correlation coefficient with a desired confidence interval (Olivoto et al.,
     <tr>
       <th>CI</th>
       <td><p>The half-width for confidence interval at p &lt; 0.05.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical argument. If <code>verbose = FALSE</code> the code is run
+silently.</p></td>
     </tr>
     </table>
 
@@ -230,10 +235,16 @@ estimator based on sample size and strength of association. Agron. J.
 #&gt; Level of significance: 5%
 #&gt; Correlation coefficient: 0.6
 #&gt; 95% half-width CI: 0.1
-#&gt; Required sample size: 194 
-#&gt; ------------------------------------------------- </div><div class='input'>
+#&gt; Required sample size: 194
+#&gt; ------------------------------------------------- </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 2</span><span>
+#&gt;   Description            Value
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Significance level (%)  95  
+#&gt; </span><span style='color: #555555;'>2</span><span> Correlation              0.6
+#&gt; </span><span style='color: #555555;'>3</span><span> 95% half-width CI        0.1
+#&gt; </span><span style='color: #555555;'>4</span><span> Sample size            194  </div><div class='input'>
 
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

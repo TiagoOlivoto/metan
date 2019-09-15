@@ -89,7 +89,7 @@ the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -229,22 +229,182 @@ to the working directory</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='co'># KW as dependent trait and all others as predictors</span>
-<span class='no'>pcoeff</span> <span class='kw'>=</span> <span class='fu'><a href='path_coeff.html'>path_coeff</a></span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>pcoeff</span>)
-
+<span class='no'>pcoeff</span> <span class='kw'>=</span> <span class='fu'><a href='path_coeff.html'>path_coeff</a></span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt; Severe multicollinearity. 
+#&gt; Condition Number = 7865.84
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>pcoeff</span>)</div><div class='output co'>#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Correlation matrix between the predictor traits
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt;            PH       EH       EP       EL       ED       CL       CD      CW
+#&gt; PH    1.00000  0.93183  0.63841  0.38020  0.66131  0.32516  0.31539  0.5047
+#&gt; EH    0.93183  1.00000  0.86955  0.36265  0.63026  0.39719  0.28051  0.5193
+#&gt; EP    0.63841  0.86955  1.00000  0.26342  0.45802  0.39082  0.17504  0.4248
+#&gt; EL    0.38020  0.36265  0.26342  1.00000  0.38515  0.25541  0.91187  0.4582
+#&gt; ED    0.66131  0.63026  0.45802  0.38515  1.00000  0.69746  0.38971  0.7371
+#&gt; CL    0.32516  0.39719  0.39082  0.25541  0.69746  1.00000  0.30036  0.7383
+#&gt; CD    0.31539  0.28051  0.17504  0.91187  0.38971  0.30036  1.00000  0.4840
+#&gt; CW    0.50474  0.51931  0.42481  0.45817  0.73713  0.73834  0.48403  1.0000
+#&gt; NR    0.32861  0.26481  0.14043 -0.01387  0.55253  0.26194 -0.03585  0.1657
+#&gt; NKR   0.35305  0.33105  0.25883  0.61715  0.22207 -0.11494  0.59332  0.3403
+#&gt; CDED -0.19202 -0.06591  0.08966 -0.01258 -0.01004  0.70800  0.04531  0.2999
+#&gt; PERK  0.04081 -0.02135 -0.08709  0.03526 -0.22440 -0.57313 -0.04820 -0.6811
+#&gt; TKW   0.56854  0.56236  0.42631  0.44210  0.64199  0.61870  0.44332  0.6735
+#&gt; NKE   0.45838  0.38812  0.23305  0.46570  0.50508  0.04894  0.41562  0.3463
+#&gt;            NR      NKR     CDED     PERK      TKW      NKE
+#&gt; PH    0.32861  0.35305 -0.19202  0.04081  0.56854  0.45838
+#&gt; EH    0.26481  0.33105 -0.06591 -0.02135  0.56236  0.38812
+#&gt; EP    0.14043  0.25883  0.08966 -0.08709  0.42631  0.23305
+#&gt; EL   -0.01387  0.61715 -0.01258  0.03526  0.44210  0.46570
+#&gt; ED    0.55253  0.22207 -0.01004 -0.22440  0.64199  0.50508
+#&gt; CL    0.26194 -0.11494  0.70800 -0.57313  0.61870  0.04894
+#&gt; CD   -0.03585  0.59332  0.04531 -0.04820  0.44332  0.41562
+#&gt; CW    0.16566  0.34032  0.29986 -0.68107  0.67346  0.34628
+#&gt; NR    1.00000  0.02055 -0.16966  0.12054 -0.10876  0.62609
+#&gt; NKR   0.02055  1.00000 -0.37442  0.13554  0.09286  0.70783
+#&gt; CDED -0.16966 -0.37442  1.00000 -0.57138  0.23283 -0.42051
+#&gt; PERK  0.12054  0.13554 -0.57138  1.00000 -0.27789  0.20528
+#&gt; TKW  -0.10876  0.09286  0.23283 -0.27789  1.00000 -0.06516
+#&gt; NKE   0.62609  0.70783 -0.42051  0.20528 -0.06516  1.00000
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Vector of correlations between dependent and each predictor
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt;        PH     EH     EP     EL     ED     CL    CD     CW     NR    NKR   CDED
+#&gt; KW 0.7534 0.7029 0.4974 0.6686 0.8241 0.4709 0.626 0.7349 0.3621 0.5974 -0.147
+#&gt;        PERK   TKW    NKE
+#&gt; KW -0.02683 0.673 0.6811
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Multicollinearity diagnosis and goodness-of-fit
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Condition number:  7865.84 
+#&gt; Determinant:       0 
+#&gt; R-square:          0.9889 
+#&gt; Residual:          0.0111 </div><div class='output co'>#&gt; <span class='warning'>Warning: Using `as.character()` on a quosure is deprecated as of rlang 0.3.0.</span>
+#&gt; <span class='warning'>Please use `as_label()` or `as_name()` instead.</span>
+#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once per session.</span><span></span></div><div class='output co'>#&gt; Response:          KW 
+#&gt; Predictors:        PH EH EP EL ED CL CD CW NR NKR CDED PERK TKW NKE 
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Variance inflation factors
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt;          VIF
+#&gt; PH   123.573
+#&gt; EH   278.296
+#&gt; EP    60.310
+#&gt; EL     7.569
+#&gt; ED   351.297
+#&gt; CL   665.127
+#&gt; CD     7.219
+#&gt; CW    46.458
+#&gt; NR     5.768
+#&gt; NKR    6.451
+#&gt; CDED 327.064
+#&gt; PERK  18.239
+#&gt; TKW   19.693
+#&gt; NKE   26.069
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Eigenvalues and eigenvectors
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt;    Eigenvalues       PH         EH        EP        EL       ED       CL
+#&gt; 1    5.7023318 -0.33440 -0.3424199 -0.280475 -0.275646 -0.35782 -0.27910
+#&gt; 2    2.9601967  0.12845  0.0699546 -0.007025  0.146303 -0.02762 -0.37564
+#&gt; 3    1.8191243 -0.23287 -0.2506826 -0.222030  0.453278 -0.19812 -0.06882
+#&gt; 4    1.3641967  0.26286  0.3518038  0.386129 -0.006280 -0.20130 -0.20078
+#&gt; 5    0.7746781 -0.03192  0.1043879  0.278325 -0.233220 -0.21963 -0.17462
+#&gt; 6    0.6653968 -0.12460  0.1277520  0.431652  0.186280 -0.27311  0.19652
+#&gt; 7    0.2472948  0.59668  0.2244853 -0.383087  0.162242 -0.33740 -0.17585
+#&gt; 8    0.2213657 -0.29179  0.0004341  0.404986  0.298481  0.10874 -0.19902
+#&gt; 9    0.0918536  0.12045  0.0778826 -0.053548 -0.421025  0.40944  0.24135
+#&gt; 10   0.0845320  0.01898  0.0231611 -0.075353  0.407206  0.20851  0.14579
+#&gt; 11   0.0524147  0.11064  0.0025311 -0.102683  0.385560  0.27293  0.14811
+#&gt; 12   0.0135920 -0.01388 -0.0324472  0.042551 -0.029216  0.03773 -0.08825
+#&gt; 13   0.0022978  0.50631 -0.7688389  0.353169  0.004010  0.08191 -0.09833
+#&gt; 14   0.0007249 -0.08362  0.1219072 -0.052004 -0.002194  0.49920 -0.69095
+#&gt;           CD       CW        NR       NKR     CDED     PERK      TKW       NKE
+#&gt; 1  -0.265134 -0.35091 -0.138473 -0.204596 -0.03865  0.10935 -0.29958 -0.229524
+#&gt; 2   0.100570 -0.19827  0.159411  0.348789 -0.49276  0.43148 -0.20892  0.382319
+#&gt; 3   0.494546  0.08589 -0.452788  0.316539  0.10201 -0.08571  0.08417 -0.046692
+#&gt; 4  -0.073631 -0.17397 -0.510680 -0.032111 -0.08669  0.21394  0.28456 -0.381307
+#&gt; 5  -0.241004  0.27901 -0.196305  0.416605 -0.04110 -0.53375 -0.33527  0.174618
+#&gt; 6   0.122015 -0.26535  0.153055  0.023079  0.55195  0.23201 -0.39288  0.108769
+#&gt; 7   0.173221 -0.01350  0.113225 -0.288485  0.10903 -0.28098 -0.24149 -0.018737
+#&gt; 8   0.252214 -0.01928  0.149441 -0.446208 -0.39976 -0.32486 -0.17357 -0.171557
+#&gt; 9   0.450730 -0.24540 -0.355293  0.004512 -0.08733 -0.02577 -0.41690 -0.040967
+#&gt; 10 -0.436497  0.09010 -0.492779 -0.331275 -0.02983  0.09963 -0.24776  0.373439
+#&gt; 11 -0.330549 -0.37479  0.136328  0.408387 -0.04455 -0.21089 -0.16983 -0.470875
+#&gt; 12 -0.006893 -0.65832 -0.064423 -0.040685  0.09652 -0.40921  0.39390  0.464439
+#&gt; 13  0.002041  0.03853 -0.026068 -0.025263  0.07985  0.02501 -0.03920 -0.008524
+#&gt; 14 -0.001490  0.08610 -0.002878  0.002069  0.48326  0.04911 -0.05107 -0.053252
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Variables with the largest weight in the eigenvalue of smallest magnitude
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt; CL &gt; ED &gt; CDED &gt; EH &gt; CW &gt; PH &gt; NKE &gt; EP &gt; TKW &gt; PERK &gt; NR &gt; EL &gt; NKR &gt; CD 
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Direct (diagonal) and indirect (off-diagonal) effects
+#&gt; ----------------------------------------------------------------------------------------------
+#&gt;             PH        EH        EP         EL        ED        CL         CD
+#&gt; PH    0.134391  0.125229  0.085797  0.0510948  0.088875  0.043699  0.0423856
+#&gt; EH   -0.171223 -0.183749 -0.159779 -0.0666374 -0.115809 -0.072984 -0.0515439
+#&gt; EP    0.061878  0.084280  0.096924  0.0255321  0.044393  0.037880  0.0169661
+#&gt; EL    0.010884  0.010382  0.007541  0.0286267  0.011025  0.007311  0.0261037
+#&gt; ED    0.446624  0.425648  0.309327  0.2601105  0.675357  0.471037  0.2631953
+#&gt; CL   -0.293365 -0.358349 -0.352602 -0.2304286 -0.629253 -0.902203 -0.2709888
+#&gt; CD   -0.005267 -0.004684 -0.002923 -0.0152272 -0.006508 -0.005016 -0.0166989
+#&gt; CW    0.265533  0.273200  0.223484  0.2410354  0.387789  0.388425  0.2546383
+#&gt; NR   -0.005372 -0.004329 -0.002296  0.0002268 -0.009033 -0.004282  0.0005861
+#&gt; NKR   0.003360  0.003151  0.002464  0.0058742  0.002114 -0.001094  0.0056473
+#&gt; CDED -0.119616 -0.041058  0.055855 -0.0078364 -0.006251  0.441042  0.0282236
+#&gt; PERK  0.014202 -0.007429 -0.030304  0.0122697 -0.078081 -0.199429 -0.0167731
+#&gt; TKW   0.226823  0.224357  0.170080  0.1763800  0.256126  0.246836  0.1768682
+#&gt; NKE   0.184592  0.156298  0.093851  0.1875394  0.203399  0.019709  0.1673710
+#&gt;             CW         NR       NKR       CDED      PERK        TKW       NKE
+#&gt; PH    0.067832  0.0441617  0.047447 -0.0258054  0.005485  0.0764063  0.061602
+#&gt; EH   -0.095424 -0.0486578 -0.060831  0.0121109  0.003923 -0.1033327 -0.071317
+#&gt; EP    0.041174  0.0136112  0.025087  0.0086906 -0.008441  0.0413198  0.022588
+#&gt; EL    0.013116 -0.0003972  0.017667 -0.0003601  0.001009  0.0126559  0.013331
+#&gt; ED    0.497826  0.3731581  0.149978 -0.0067775 -0.151547  0.4335705  0.341110
+#&gt; CL   -0.666130 -0.2363192  0.103700 -0.6387587  0.517083 -0.5581928 -0.044156
+#&gt; CD   -0.008083  0.0005987 -0.009908 -0.0007566  0.000805 -0.0074030 -0.006940
+#&gt; CW    0.526080  0.0871491  0.179033  0.1577507 -0.358296  0.3542929  0.182170
+#&gt; NR   -0.002708 -0.0163488 -0.000336  0.0027737 -0.001971  0.0017781 -0.010236
+#&gt; NKR   0.003239  0.0001956  0.009518 -0.0035638  0.001290  0.0008839  0.006737
+#&gt; CDED  0.186796 -0.1056863 -0.233244  0.6229408 -0.355936  0.1450367 -0.261954
+#&gt; PERK -0.236986  0.0419438  0.047163 -0.1988189  0.347962 -0.0966967  0.071431
+#&gt; TKW   0.268682 -0.0433918  0.037048  0.0928879 -0.110868  0.3989585 -0.025996
+#&gt; NKE   0.139448  0.2521277  0.285048 -0.1693424  0.082669 -0.0262402  0.402705
+#&gt; ----------------------------------------------------------------------------------------------</div><div class='input'>
 <span class='co'># Call the algorithm for selecting a set of predictors</span>
-<span class='co'># with minimal multicollinearity (no VIF larger than 5)</span>
+<span class='co'># With minimal multicollinearity (no VIF larger than 5)</span>
 <span class='no'>pcoeff2</span> <span class='kw'>=</span> <span class='fu'><a href='path_coeff.html'>path_coeff</a></span>(<span class='no'>data_ge2</span>,
                      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
                      <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                     <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>pcoeff2</span>)
-}</div></pre>
+                     <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt; --------------------------------------------------------------------------
+#&gt; The algorithm has selected a set of 8 predictors with largest VIF = 3.346. 
+#&gt; Selected predictors: NR PERK EP CDED EL NKR TKW PH 
+#&gt; A forward stepwise-based selection procedure will fit 6 models.
+#&gt; --------------------------------------------------------------------------
+#&gt; Adjusting the model 1 with 7 predictors (16.67% concluded)
+#&gt; Adjusting the model 2 with 6 predictors (33.33% concluded)
+#&gt; Adjusting the model 3 with 5 predictors (50% concluded)
+#&gt; Adjusting the model 4 with 4 predictors (66.67% concluded)
+#&gt; Adjusting the model 5 with 3 predictors (83.33% concluded)
+#&gt; Adjusting the model 6 with 2 predictors (100% concluded)
+#&gt; Done!
+#&gt; --------------------------------------------------------------------------
+#&gt; Summary of the adjusted models 
+#&gt; --------------------------------------------------------------------------
+#&gt;   Model  AIC Numpred    CN Determinant    R2 Residual maxVIF
+#&gt;  Model6 1329       2  2.23      0.8555 0.738   0.2616   1.17
+#&gt;  Model5 1148       3  1.34      0.9787 0.919   0.0808   1.02
+#&gt;  Model4 1138       4  6.40      0.4595 0.925   0.0747   2.13
+#&gt;  Model3 1126       5 12.05      0.1989 0.932   0.0683   2.31
+#&gt;  Model2 1125       6 12.26      0.1383 0.933   0.0670   2.46
+#&gt;  Model1 1127       7 13.67      0.0841 0.933   0.0669   2.59
+#&gt; --------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>pcoeff2</span>)</div><div class='output co'>#&gt;              Length Class      Mode     
+#&gt; Models       6      -none-     list     
+#&gt; Summary      8      data.frame list     
+#&gt; Selectedpred 8      -none-     character</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

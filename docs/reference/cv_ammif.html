@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -187,8 +187,8 @@
     <p>Cross-validation for estimation of all AMMI-family models</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cv_ammif</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>,
-  <span class='no'>nrepval</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>cv_ammif</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>nrepval</span>,
+  <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -221,16 +221,16 @@ replications/blocks.</p></td>
       <td><p>The number of resamples to be used in the cross-validation. Defaults to 100.</p></td>
     </tr>
     <tr>
+      <th>nrepval</th>
+      <td><p>The number of replicates (r) from total number of replicates
+(R) to be used in the modeling dataset. Only one replicate is used as
+validating data each step, so, <code>Nrepval</code> must be equal <code>R-1</code>.</p></td>
+    </tr>
+    <tr>
       <th>design</th>
       <td><p>The experimental desig to be considered. Default is
 <code>RCBD</code> (Randomized complete Block Design). For Completely Randomized
 Designs inform <code>design = 'CRD'</code>.</p></td>
-    </tr>
-    <tr>
-      <th>nrepval</th>
-      <td><p>The number of replicates (r) from total number of replicates
-(R) to be used in the modeling dataset. Only one replicate is used as
-validating data each step, so, <code>Nrepval</code> must be equal <code>R-1</code></p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -238,6 +238,21 @@ validating data each step, so, <code>Nrepval</code> must be equal <code>R-1</cod
 Default is <code>TRUE</code>.</p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class <code>cv_ammif</code> with the following items:</p>
+<dt>RMSPD</dt><dd><p>A vector with nboot-estimates of the root mean squared
+prediction difference between predicted and validating data.</p></dd>
+
+<dt>RMSPDmean</dt><dd><p>The mean of RMSPDmean estimates.</p></dd>
+
+<dt>Estimated</dt><dd><p>A data frame that contain the values (predicted, observed,
+validation) of the last loop.</p></dd>
+
+<dt>Modeling</dt><dd><p>The dataset used as modeling data in the last loop.</p></dd>
+
+<dt>Testing</dt><dd><p>The dataset used as testing data in the last loop.</p></dd>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -262,25 +277,26 @@ a list is returned.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'>cv_ammif</span>(<span class='no'>data_ge</span>,
-                         <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                         <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                         <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                         <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                         <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-                         <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'>cv_ammif</span>(<span class='no'>data_ge</span>,
+                  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
+                  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+                  <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Alternatively (and more intuitively) using the pipe operator %&gt;%</span>
-<span class='no'>model</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>cv_ammif</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='fl'>100</span>, <span class='fl'>2</span>)
-}</div></pre>
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+         <span class='fu'>cv_ammif</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='fl'>100</span>, <span class='fl'>2</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>

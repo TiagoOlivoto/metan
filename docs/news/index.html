@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -181,6 +181,87 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="metan-100" class="section level1">
+<h1 class="page-header">
+<a href="#metan-100" class="anchor"></a>metan 1.0.0</h1>
+<p>The changes in this version were made based on suggestions received when metan was submitted to CRAN for the first time.</p>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<p>The documentation of the following functions was updated by including/updating the \value section of .Rd files.</p>
+<ul>
+<li><code><a href="../reference/AMMI_indexes.html">AMMI_indexes()</a></code></li>
+<li><code>Annichiarico()</code></li>
+<li><code><a href="../reference/anova_ind.html">anova_ind()</a></code></li>
+<li><code><a href="../reference/as.lpcor.html">as.lpcor()</a></code></li>
+<li><code><a href="../reference/as.split_factors.html">as.split_factors()</a></code></li>
+<li><code><a href="../reference/bind_cv.html">bind_cv()</a></code></li>
+<li><code>can_cor()</code></li>
+<li><code><a href="../reference/comb_vars.html">comb_vars()</a></code></li>
+<li><code><a href="../reference/corr_ci.html">corr_ci()</a></code></li>
+<li><code><a href="../reference/corr_plot.html">corr_plot()</a></code></li>
+<li><code><a href="../reference/covcor_design.html">covcor_design()</a></code></li>
+<li><code><a href="../reference/cv_ammi.html">cv_ammi()</a></code></li>
+<li><code><a href="../reference/cv_ammif.html">cv_ammif()</a></code></li>
+<li><code><a href="../reference/cv_blup.html">cv_blup()</a></code></li>
+<li><code><a href="../reference/desc_stat.html">desc_stat()</a></code></li>
+<li><code><a href="../reference/ecovalence.html">ecovalence()</a></code></li>
+<li><code><a href="../reference/fai_blup.html">fai_blup()</a></code></li>
+<li><code><a href="../reference/ge_factanal.html">ge_factanal()</a></code></li>
+<li><code><a href="../reference/ge_plot.html">ge_plot()</a></code></li>
+<li><code><a href="../reference/ge_reg.html">ge_reg()</a></code></li>
+<li><code><a href="../reference/ge_stats.html">ge_stats()</a></code></li>
+<li><code><a href="../reference/get_model_data.html">get_model_data()</a></code></li>
+<li><code>is.lpcorr()</code></li>
+<li><code><a href="../reference/is.split_factors.html">is.split_factors()</a></code></li>
+<li><code><a href="../reference/mahala.html">mahala()</a></code></li>
+<li><code><a href="../reference/mahala_design.html">mahala_design()</a></code></li>
+<li><code><a href="../reference/make_mat.html">make_mat()</a></code></li>
+<li><code><a href="../reference/make_sym.html">make_sym()</a></code></li>
+<li><code><a href="../reference/mtsi.html">mtsi()</a></code></li>
+<li><code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code></li>
+<li>
+<code>plot.*()</code> and <code>plot_*()</code> functions</li>
+<li><code><a href="../reference/rbind_fill.html">rbind_fill()</a></code></li>
+<li><code><a href="../reference/resca.html">resca()</a></code></li>
+<li><code><a href="../reference/resp_surf.html">resp_surf()</a></code></li>
+<li><code><a href="../reference/waas.html">waas()</a></code></li>
+<li><code><a href="../reference/wsmp.html">wsmp()</a></code></li>
+<li><code><a href="../reference/waasb.html">waasb()</a></code></li>
+</ul>
+</div>
+<div id="minor-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<p>To allow automatic testing, the examples of the following functions were unwrapped by deleting \dontrun{}.</p>
+<ul>
+<li><code><a href="../reference/bind_cv.html">bind_cv()</a></code></li>
+<li><code><a href="../reference/clustering.html">clustering()</a></code></li>
+<li><code><a href="../reference/comb_vars.html">comb_vars()</a></code></li>
+<li><code><a href="../reference/corr_ci.html">corr_ci()</a></code></li>
+<li><code><a href="../reference/corr_plot.html">corr_plot()</a></code></li>
+<li><code><a href="../reference/covcor_design.html">covcor_design()</a></code></li>
+<li><code><a href="../reference/desc_stat.html">desc_stat()</a></code></li>
+<li><code><a href="../reference/ecovalence.html">ecovalence()</a></code></li>
+<li><code>path_coefff()</code></li>
+<li><code><a href="../reference/plot.fai_blup.html">plot.fai_blup()</a></code></li>
+<li><code><a href="../reference/plot.mtsi.html">plot.mtsi()</a></code></li>
+<li><code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code></li>
+<li><code><a href="../reference/plot_ci.html">plot_ci()</a></code></li>
+<li><code><a href="../reference/summary.mtsi.html">summary.mtsi()</a></code></li>
+<li><code><a href="../reference/summary.can_cor.html">summary.can_cor()</a></code></li>
+<li><code><a href="../reference/summary.path_coeff.html">summary.path_coeff()</a></code></li>
+<li><code><a href="../reference/wsmp.html">wsmp()</a></code></li>
+</ul>
+<p>In the examples of the functions for cross-validation \dontrun{} was changed with \donttest{}</p>
+<ul>
+<li><code><a href="../reference/cv_ammi.html">cv_ammi()</a></code></li>
+<li><code><a href="../reference/cv_ammif.html">cv_ammif()</a></code></li>
+<li><code><a href="../reference/cv_blup.html">cv_blup()</a></code></li>
+<li><code><a href="../reference/plot.cv_ammif.html">plot.cv_ammif()</a></code></li>
+</ul>
+</div>
+</div>
     <div id="metan-020" class="section level1">
 <h1 class="page-header">
 <a href="#metan-020" class="anchor"></a>metan 0.2.0</h1>
@@ -301,6 +382,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#metan-100">1.0.0</a></li>
         <li><a href="#metan-020">0.2.0</a></li>
         <li><a href="#metan-015">0.1.5</a></li>
         <li><a href="#metaab-014">0.1.4</a></li>

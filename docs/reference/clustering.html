@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -312,13 +312,11 @@ rules: an evaluation. Comput. J. 20:359-363.
 <a href='https://academic.oup.com/comjnl/article/20/4/359/393930'>doi:10.1093/comjnl/20.4.359</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='co'># All rows and all numeric variables from data</span>
-<span class='no'>d1</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>)
-
+<span class='no'>d1</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>)</div><div class='output co'>#&gt; <span class='message'>The columns ENV GEN REP where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.' </span></div><div class='input'>
 <span class='co'># Based on the mean for each genotype</span>
 <span class='no'>d2</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
 
@@ -327,8 +325,47 @@ rules: an evaluation. Comput. J. 20:359-363.
 <span class='no'>d3</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='no'>NKR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
 
 <span class='co'># Select variables for compute the distances</span>
-<span class='no'>d4</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
+<span class='no'>d4</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
+#&gt; Calculating model 2 with 14 variables. EP excluded in this step (14.3%).
+#&gt; Calculating model 3 with 13 variables. CDED excluded in this step (21.4%).
+#&gt; Calculating model 4 with 12 variables. PH excluded in this step (28.6%).
+#&gt; Calculating model 5 with 11 variables. CL excluded in this step (35.7%).
+#&gt; Calculating model 6 with 10 variables. NR excluded in this step (42.9%).
+#&gt; Calculating model 7 with 9 variables. PERK excluded in this step (50%).
+#&gt; Calculating model 8 with 8 variables. EL excluded in this step (57.1%).
+#&gt; Calculating model 9 with 7 variables. CD excluded in this step (64.3%).
+#&gt; Calculating model 10 with 6 variables. ED excluded in this step (71.4%).
+#&gt; Calculating model 11 with 5 variables. KW excluded in this step (78.6%).
+#&gt; Calculating model 12 with 4 variables. CW excluded in this step (85.7%).
+#&gt; Calculating model 13 with 3 variables. NKR excluded in this step (92.9%).
+#&gt; Calculating model 14 with 2 variables. TKW excluded in this step (100%).
+#&gt; Done! 
+#&gt; -------------------------------------------------------------------------- 
+#&gt; 
+#&gt; Summary of the adjusted models 
+#&gt; -------------------------------------------------------------------------- 
+#&gt;     Model excluded cophenetic remaining cormantel    pvmantel
+#&gt;   Model 1        -  0.8656190        15 1.0000000 0.000999001
+#&gt;   Model 2       EH  0.8656191        14 1.0000000 0.000999001
+#&gt;   Model 3       EP  0.8656191        13 1.0000000 0.000999001
+#&gt;   Model 4     CDED  0.8656191        12 1.0000000 0.000999001
+#&gt;   Model 5       PH  0.8656189        11 1.0000000 0.000999001
+#&gt;   Model 6       CL  0.8655939        10 0.9999996 0.000999001
+#&gt;   Model 7       NR  0.8656719         9 0.9999982 0.000999001
+#&gt;   Model 8     PERK  0.8657259         8 0.9999977 0.000999001
+#&gt;   Model 9       EL  0.8657904         7 0.9999972 0.000999001
+#&gt;  Model 10       CD  0.8658997         6 0.9999964 0.000999001
+#&gt;  Model 11       ED  0.8658274         5 0.9999931 0.000999001
+#&gt;  Model 12       KW  0.8643556         4 0.9929266 0.000999001
+#&gt;  Model 13       CW  0.8640355         3 0.9927593 0.000999001
+#&gt;  Model 14      NKR  0.8648384         2 0.9925396 0.000999001
+#&gt; --------------------------------------------------------------------------
+#&gt; Suggested variables to be used in the analysis 
+#&gt; -------------------------------------------------------------------------- 
+#&gt; The clustering was calculated with the  Model 10 
+#&gt; The variables included in this model were...
+#&gt;  ED CW KW NKR TKW NKE 
+#&gt; --------------------------------------------------------------------------</div><div class='input'>
 <span class='co'># Compute the distances with standardized data</span>
 <span class='co'># Define 4 clusters</span>
 <span class='no'>d5</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>,
@@ -337,22 +374,17 @@ rules: an evaluation. Comput. J. 20:359-363.
                 <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
 <span class='co'># Compute the distances for each environment</span>
-<span class='co'># All rows of each environment and all numeric variables used</span>
-<span class='no'>d6</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'>clustering</span>()
-
-<span class='co'># Compute the distances for each environment</span>
 <span class='co'># Select the variables NKR, TKW, and NKE</span>
 <span class='co'># Use the mean for each genotype</span>
-<span class='no'>d7</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
+<span class='no'>d6</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'>clustering</span>(<span class='no'>NKR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>,
                 <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
 
 <span class='co'># Check the correlation between distance matrices</span>
-<span class='fu'><a href='pairs_mantel.html'>pairs_mantel</a></span>(<span class='no'>d7</span>)
-}</div></pre>
+<span class='fu'><a href='pairs_mantel.html'>pairs_mantel</a></span>(<span class='no'>d6</span>)</div><div class='img'><img src='clustering-1.png' alt='' width='700' height='433' /></div><div class='input'>
+# }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
