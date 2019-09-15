@@ -1,6 +1,6 @@
-# Contributing to METAAB
+# Contributing to metan
 
-This outlines how to propose a change to METAAB. For more detailed
+This outlines how to propose a change to metan. For more detailed
 info about contributing to this, and other tidyverse packages, please see the
 [**development contributing guide**](https://rstd.io/tidy-contrib).
 
@@ -25,7 +25,7 @@ bug, create an associated issue and illustrate the bug with a minimal
 *  Look at the Travis and AppVeyor build status before and after making changes.
 The `README` should contain badges for any continuous integration services used
 by the package.  
-*  New code should follow the tidyverse [style guide](http://style.tidyverse.org).
+*  New code should follow the tidyverse [style guide](https://style.tidyverse.org).
 You can use the [styler](https://CRAN.R-project.org/package=styler) package to
 apply these styles, but please don't restyle code that has nothing to do with 
 your PR.  
@@ -40,7 +40,7 @@ GitHub username, and links to relevant issue(s)/PR(s).
 
 ### Code of Conduct
 
-Please note that the METAAB project is released with a
+Please note that the metan project is released with a
 [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this
 project you agree to abide by its terms.
 

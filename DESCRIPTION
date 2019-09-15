@@ -1,51 +1,57 @@
-Package: metan
 Type: Package
+Package: metan
 Title: Multi Environment Trials Analysis
 Version: 1.0.0
-Authors@R: c(person("Tiago", "Olivoto",
-             email = "tiagoolivoto@gmail.com",
-             role = c("aut", "cre", "cph"), 
-             comment = c(ORCID = "0000-0002-0241-9636")))
-Language: en-US
+Authors@R: 
+    person(given = "Tiago",
+           family = "Olivoto",
+           role = c("aut", "cre", "cph"),
+           email = "tiagoolivoto@gmail.com",
+           comment = c(ORCID = "0000-0002-0241-9636"))
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
-Description: Provides functions for performing the most used analyses in the 
-             evaluation of multi-environment trials. This includes stability
-             analysis using widely-known parametric and nonparametric methods,
-             functions for biometrical analysis such as path analysis, canonical
-             correlation, partial correlation, clustering analysis, as well as
-             tools for summarizing and plotting data.
-Depends: R (>= 3.5.0)
+Description: Provides functions for performing the most used
+    analyses in the evaluation of multi-environment trials. This includes
+    stability analysis using widely-known parametric and nonparametric
+    methods, functions for biometrical analysis such as path analysis,
+    canonical correlation, partial correlation, clustering analysis, as
+    well as tools for summarizing and plotting data.
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
-Imports: dendextend,
-         dplyr,
-         gplots,
-         grid,
-         ggplot2,
-         ggrepel, 
-         lme4,
-         lmerTest,
-         magrittr,
-         methods,
-         GGally,
-         ade4,
-         FWDselect,
-         rlang,
-         tibble,
-         lattice,
-         ggforce,
-         tidyr,
-         progress
-RoxygenNote: 6.1.1
-Suggests:
-    knitr,
-    rmarkdown,
-    xlsx,
-    readxl,
-    cowplot,
-    prettydoc,
-    kableExtra
 URL: https://github.com/TiagoOlivoto/metan
-VignetteBuilder: knitr
 BugReports: https://github.com/TiagoOlivoto/metan/issues
+Depends: 
+    R (>= 3.5.0)
+Imports: 
+    ade4 (>= 1.7.13),
+    dendextend (>= 1.12.0),
+    dplyr (>= 0.8.3),
+    FWDselect (>= 2.1.0),
+    GGally (>= 1.4.0),
+    ggforce (>= 0.3.1),
+    ggplot2 (>= 3.2.1),
+    ggrepel (>= 0.8.1),
+    gplots (>= 3.0.1.1),
+    grid,
+    lattice,
+    lme4 (>= 1.1.21),
+    lmerTest (>= 3.1.0),
+    magrittr (>= 1.5),
+    methods,
+    progress (>= 1.2.2),
+    rlang (>= 0.1.2),
+    tibble (>= 2.1.3),
+    tidyr (>= 1.0.0.9000)
+Suggests:
+    cowplot (>= 1.0.0),
+    kableExtra (>= 1.1.0),
+    knitr (>= 1.24),
+    prettydoc (>= 0.3.0),
+    readxl (>= 1.3.1),
+    rmarkdown (>= 1.15),
+    xlsx (>= 0.6.1),
+    roxygen2 (>= 6.1.1)
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+RoxygenNote: 6.1.1

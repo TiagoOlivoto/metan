@@ -810,6 +810,10 @@ G4
 
 </table>
 
+Please note that the ‘metan’ project is released with a [Contributor
+Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this
+project, you agree to abide by its terms.
+
 # Getting help
 
   - Suggestions and criticisms to improve the quality and usability of
