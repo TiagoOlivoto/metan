@@ -5,7 +5,7 @@
 #' This function is used to split a data frame into a list where each element
 #' is a level of the grouping variable (or combination of grouping variables).
 #' By combining the function \code{split_factors} with the forward-pipe operator
-#' \code{%>%}, it is possible to apply some functions of the metan package to each element
+#' %>%, it is possible to apply some functions of the metan package to each element
 #' of the list.
 #'
 #' @param .data The data that will be split. Must contain at least one grouping

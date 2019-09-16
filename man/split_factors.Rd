@@ -27,6 +27,13 @@ of the grouping variables.
 \description{
 Split a data frame into subsets grouping by one or more factors.
 }
+\details{
+This function is used to split a data frame into a list where each element
+is a level of the grouping variable (or combination of grouping variables).
+By combining the function \code{split_factors} with the forward-pipe operator
+%>%, it is possible to apply some functions of the metan package to each element
+of the list.
+}
 \examples{
 library(metan)
 
