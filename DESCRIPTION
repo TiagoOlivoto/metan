@@ -21,34 +21,34 @@ BugReports: https://github.com/TiagoOlivoto/metan/issues
 Depends: 
     R (>= 3.5.0)
 Imports: 
-    ade4 (>= 1.7.13),
-    dendextend (>= 1.12.0),
-    dplyr (>= 0.8.3),
-    FWDselect (>= 2.1.0),
-    GGally (>= 1.4.0),
-    ggforce (>= 0.3.1),
-    ggplot2 (>= 3.2.1),
-    ggrepel (>= 0.8.1),
-    gplots (>= 3.0.1.1),
+    ade4,
+    dendextend,
+    dplyr,
+    FWDselect,
+    GGally,
+    ggforce,
+    ggplot2,
+    ggrepel,
+    gplots,
     grid,
     lattice,
-    lme4 (>= 1.1.21),
-    lmerTest (>= 3.1.0),
-    magrittr (>= 1.5),
+    lme4,
+    lmerTest,
+    magrittr,
     methods,
-    progress (>= 1.2.2),
-    rlang (>= 0.1.2),
-    tibble (>= 2.1.3),
-    tidyr (>= 1.0.0)
+    progress,
+    rlang,
+    tibble,
+    tidyr
 Suggests:
-    cowplot (>= 1.0.0),
-    kableExtra (>= 1.1.0),
-    knitr (>= 1.24),
-    prettydoc (>= 0.3.0),
-    readxl (>= 1.3.1),
-    rmarkdown (>= 1.15),
-    xlsx (>= 0.6.1),
-    roxygen2 (>= 6.1.1)
+    cowplot,
+    kableExtra,
+    knitr,
+    prettydoc,
+    readxl,
+    rmarkdown,
+    xlsx,
+    roxygen2
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
