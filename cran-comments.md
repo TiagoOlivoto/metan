@@ -14,10 +14,12 @@ After committing the changes I ran:
 - `devtools::check_rhub()`
    - CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
    
-   - After twenty minutes I've received other email with an error (metan_1.0.0.tar.gz-9476b30b1f12409d9087c94ce38cb571) saying: Packages suggested but not available: 'kableExtra', 'roxygen2'. Sounds strange because I have these two packages installed and updated. What would a possible reason for this error?
+   - After twenty minutes I've received other email with an error (metan_1.0.0.tar.gz-f4b74c8beceb45098d5ae31e899dbeee) saying: Packages suggested but not available: 'kableExtra', 'roxygen2'. This sounds strange because I have these two packages installed and updated. What would a possible reason for this error?
+   - A few minutes latter other email (metan_1.0.0.tar.gz-639d6271c76b43c8ba4ff2b56104ed95): metan 1.0.0: OK
 
 
 - `devtools::check_win_devel()`
+   - CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
 
 - `devtools::check_win_release()`
 

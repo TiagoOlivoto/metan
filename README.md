@@ -32,25 +32,30 @@ The latest development version can be download from GitHub by running
 devtools::install_github("TiagoOlivoto/metan")
 ```
 
-# Brief examples
+# Getting started
 
-The `metan` contains some datasets for examples. We will use the example
-`data_ge` that contains data from two variables assessed in 10 genotypes
-growing in 14 environments. For more details see `?data_ge`
+Here, we will use the example dataset `data_ge` that contains data on
+two variables assessed in 10 genotypes growing in 14 environments. For
+more details see `?data_ge`
 
 ``` r
 library(metan)
 library(ggplot2) # used to create the plots
 library(cowplot) # used to arrange the plots
+library(kableExtra) # Used to produce HTML tables
+print_table = function(table){
+  kable(table, "html", digits = 3) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                  font_size = 12)
+}
 str(data_ge)
+#> Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
+#>  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
+#>  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
+#>  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...
+#>  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...
 ```
-
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:
-    ##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
-    ##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
-    ##  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
-    ##  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...
-    ##  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...
 
 ## AMMI model
 
@@ -76,15 +81,17 @@ may be used to estimate the response of each genotype in each
 environment considering different number of Interaction Principal
 Component Axis (IPCA). For example, we will use four IPCA (number of
 significant IPCAs) to estimate the variable GY using the `model` object.
+Note that `$GY` was used because using the `predict()` function to a
+model of class `waas` return a list, with one `tbl_df` for each
+variable.
 
 ``` r
-library(kableExtra)
-predicted = predict(model, naxis = 4)
-kable(predicted$GY[1:5,], "html", digits = 3) %>%
-  kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
+predict(model, naxis = 4)$GY %>% 
+  head() %>% 
+  print_table()
 ```
 
-<table class="table table-striped table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 
 <thead>
 
@@ -404,6 +411,58 @@ G4
 
 </tr>
 
+<tr>
+
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G5
+
+</td>
+
+<td style="text-align:right;">
+
+2.188
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.196
+
+</td>
+
+<td style="text-align:right;">
+
+2.384
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.07091881
+
+</td>
+
+<td style="text-align:right;">
+
+2.312867
+
+</td>
+
+<td style="text-align:right;">
+
+2.384
+
+</td>
+
+</tr>
+
 </tbody>
 
 </table>
@@ -428,7 +487,7 @@ p2 = plot_scores(model$GY,
 plot_grid(p1, p2, labels = c("p1","p2"))
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/AMMI.png"/>
 
 ## GGE model
 
@@ -448,25 +507,283 @@ p2 <- plot(model2,
 plot_grid(p1, p2, labels = c("p1","p2"))
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/GGE.png"/>
 
 ## BLUP model
 
-The implementation of linear-mixed effect models to predict the response
-variable in MET is based on the `waasb()` function. For more details,
+Linear-mixed effect models to predict the response variable in METs are
+fitted using the function `waasb()`. Here we will obtain the predicted
+means for genotypes in the variables `GY` and `HM`. For more details,
 see the [complete
 vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
 
 ``` r
-model2 <- waasb(data_ge,
-                resp = GY,
-                gen = GEN,
-                env = ENV,
-                rep = REP,
+model2 <- waasb(data_ge, ENV, GEN, REP,
+                resp = c(GY, HM),
                 verbose = FALSE)
+
+get_model_data(model2, what = "blupg") %>% 
+  print_table()
 ```
 
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+gen
+
+</th>
+
+<th style="text-align:right;">
+
+GY
+
+</th>
+
+<th style="text-align:right;">
+
+HM
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+G1
+
+</td>
+
+<td style="text-align:right;">
+
+2.617
+
+</td>
+
+<td style="text-align:right;">
+
+47.396
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G10
+
+</td>
+
+<td style="text-align:right;">
+
+2.509
+
+</td>
+
+<td style="text-align:right;">
+
+48.375
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G2
+
+</td>
+
+<td style="text-align:right;">
+
+2.731
+
+</td>
+
+<td style="text-align:right;">
+
+47.108
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G3
+
+</td>
+
+<td style="text-align:right;">
+
+2.903
+
+</td>
+
+<td style="text-align:right;">
+
+47.756
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G4
+
+</td>
+
+<td style="text-align:right;">
+
+2.648
+
+</td>
+
+<td style="text-align:right;">
+
+48.050
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G5
+
+</td>
+
+<td style="text-align:right;">
+
+2.563
+
+</td>
+
+<td style="text-align:right;">
+
+48.918
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G6
+
+</td>
+
+<td style="text-align:right;">
+
+2.560
+
+</td>
+
+<td style="text-align:right;">
+
+48.530
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G7
+
+</td>
+
+<td style="text-align:right;">
+
+2.729
+
+</td>
+
+<td style="text-align:right;">
+
+48.004
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G8
+
+</td>
+
+<td style="text-align:right;">
+
+2.943
+
+</td>
+
+<td style="text-align:right;">
+
+48.784
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+G9
+
+</td>
+
+<td style="text-align:right;">
+
+2.541
+
+</td>
+
+<td style="text-align:right;">
+
+47.962
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
 ### Plotting the BLUPs for genotypes
+
+To produce a plot with the predicted means, use the function
+`plot_blup()`.
 
 ``` r
 p1 = plot_blup(model2$GY)
@@ -476,17 +793,20 @@ p2 = plot_blup(model2$GY,
 plot_grid(p1, p2, labels = c("p1", "p2"))
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/BLUP.png" height=340/>
 
 ### BLUPS for genotype-vs-environment interaction
 
+The object `BLUPgge` contains the blups for the genotype-vs-environment
+interaction. In the following example, the values for `GY` are shown.
+
 ``` r
-data = model2$GY$BLUPgge[1:5,]
-kable(data, "html", digits = 3) %>%
-  kable_styling(bootstrap_options = c("striped", "condensed", "responsive"))
+model2$GY$BLUPgge[1:5,] %>% 
+  head() %>% 
+  print_table()
 ```
 
-<table class="table table-striped table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 
 <thead>
 
@@ -801,6 +1121,224 @@ G4
 <td style="text-align:right;">
 
 2.658
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+Quando mais de uma variável é ajustada, os meios previstos para a
+combinação genótipo versus ambiente podem ser obtidos para todas as
+variáveis no modelo usando `get_model_data()`.
+
+``` r
+get_model_data(model2, what = "blupge") %>% 
+  head() %>% 
+  print_table()
+```
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+ENV
+
+</th>
+
+<th style="text-align:left;">
+
+GEN
+
+</th>
+
+<th style="text-align:right;">
+
+GY
+
+</th>
+
+<th style="text-align:right;">
+
+HM
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G1
+
+</td>
+
+<td style="text-align:right;">
+
+2.401
+
+</td>
+
+<td style="text-align:right;">
+
+46.587
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G10
+
+</td>
+
+<td style="text-align:right;">
+
+2.112
+
+</td>
+
+<td style="text-align:right;">
+
+47.152
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G2
+
+</td>
+
+<td style="text-align:right;">
+
+2.784
+
+</td>
+
+<td style="text-align:right;">
+
+45.664
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G3
+
+</td>
+
+<td style="text-align:right;">
+
+2.838
+
+</td>
+
+<td style="text-align:right;">
+
+46.249
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G4
+
+</td>
+
+<td style="text-align:right;">
+
+2.554
+
+</td>
+
+<td style="text-align:right;">
+
+48.017
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G5
+
+</td>
+
+<td style="text-align:right;">
+
+2.268
+
+</td>
+
+<td style="text-align:right;">
+
+49.390
 
 </td>
 
