@@ -1130,9 +1130,9 @@ G4
 
 </table>
 
-Quando mais de uma variável é ajustada, os meios previstos para a
-combinação genótipo versus ambiente podem ser obtidos para todas as
-variáveis no modelo usando `get_model_data()`.
+When more than one variable is fitted, the predicted means for
+genotype-vs-environment combination may be obtained for all variables in
+the model using `get_model_data()`.
 
 ``` r
 get_model_data(model2, what = "blupge") %>% 
