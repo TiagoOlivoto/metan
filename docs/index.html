@@ -164,7 +164,7 @@
 <li>Variance components and genetic parameters in mixed-effect models;</li>
 <li>Cross-validation procedures for AMMI-family and BLUP models;</li>
 <li>Graphics tools for generating biplots;</li>
-<li>Parametric and nonparametric stability statistics.</li>
+<li>Parametric and nonparametric stability statistics</li>
 </ul>
 <p>For more details see the <a href="https://tiagoolivoto.github.io/metan/">complete vignette</a>.</p>
 </div>
@@ -175,20 +175,26 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install.packages("devtools")</span></a>
 <a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"TiagoOlivoto/metan"</span>)</a></code></pre></div>
 </div>
-<div id="brief-examples" class="section level1">
+<div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
-<a href="#brief-examples" class="anchor"></a>Brief examples</h1>
-<p>The <code>metan</code> contains some datasets for examples. We will use the example <code>data_ge</code> that contains data from two variables assessed in 10 genotypes growing in 14 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code></p>
+<a href="#getting-started" class="anchor"></a>Getting started</h1>
+<p>Here, we will use the example dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2) <span class="co"># used to create the plots</span></a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the plots</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">## Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co">##  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">##  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">##  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">##  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">##  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to produce HTML tables</span></a>
+<a class="sourceLine" id="cb2-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb2-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb2-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb2-9" title="9">}</a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt; Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...</span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...</span></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt;  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</span></a></code></pre></div>
 <div id="ammi-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ammi-model" class="anchor"></a>AMMI model</h2>
@@ -196,22 +202,21 @@
 <h3 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h3>
 <p>The AMMI model is fitted with the function <code><a href="reference/waas.html">waas()</a></code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html">complete vignette</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/waas.html">waas</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb4-2" title="2">              <span class="dt">resp =</span> GY,</a>
-<a class="sourceLine" id="cb4-3" title="3">              <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb4-4" title="4">              <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb4-5" title="5">              <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb4-6" title="6">              <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/waas.html">waas</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb3-2" title="2">              <span class="dt">resp =</span> GY,</a>
+<a class="sourceLine" id="cb3-3" title="3">              <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb3-4" title="4">              <span class="dt">env =</span> ENV,</a>
+<a class="sourceLine" id="cb3-5" title="5">              <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb3-6" title="6">              <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="predicting-the-response-variable" class="section level3">
 <h3 class="hasAnchor">
 <a href="#predicting-the-response-variable" class="anchor"></a>Predicting the response variable</h3>
-<p>The S3 method <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra)</a>
-<a class="sourceLine" id="cb5-2" title="2">predicted =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw">kable</span>(predicted<span class="op">$</span>GY[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,], <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
-<table class="table table table-striped table-condensed table-responsive">
+<p>The S3 method <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> is implemented for objects of class <code>waas</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the <code>model</code> object. Note that <code>$GY</code> was used because using the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function to a model of class <code>waas</code> return a list, with one <code>tbl_df</code> for each variable.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(model, <span class="dt">naxis =</span> <span class="dv">4</span>)<span class="op">$</span>GY <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 
@@ -513,6 +518,56 @@ G4
 </td>
 
 </tr>
+<tr>
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G5
+
+</td>
+
+<td style="text-align:right;">
+
+2.188
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.196
+
+</td>
+
+<td style="text-align:right;">
+
+2.384
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.07091881
+
+</td>
+
+<td style="text-align:right;">
+
+2.312867
+
+</td>
+
+<td style="text-align:right;">
+
+2.384
+
+</td>
+
+</tr>
 </tbody>
 </table>
 </div>
@@ -520,60 +575,286 @@ G4
 <h3 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h3>
 <p>ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/waas.html">waas()</a></code> function allows analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>model</code> is a list, in this case with one element, GY.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb6-3" title="3">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb6-5" title="5">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb6-6" title="6">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb6-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb6-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb5-3" title="3">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb5-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb5-5" title="5">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb5-6" title="6">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb5-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb5-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="reference/figures/AMMI.png"></p>
 </div>
 </div>
 <div id="gge-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#gge-model" class="anchor"></a>GGE model</h2>
 <p>The GGE model is fitted with the function <code><a href="reference/gge.html">gge()</a></code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html">complete vignette</a>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
-<a class="sourceLine" id="cb7-2" title="2">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb7-3" title="3">p1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model)</a>
-<a class="sourceLine" id="cb7-4" title="4">p2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2,</a>
-<a class="sourceLine" id="cb7-5" title="5">           <span class="dt">type =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb7-6" title="6">           <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb7-7" title="7">           <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb7-8" title="8">           <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
+<a class="sourceLine" id="cb6-2" title="2">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3">p1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model)</a>
+<a class="sourceLine" id="cb6-4" title="4">p2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2,</a>
+<a class="sourceLine" id="cb6-5" title="5">           <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb6-6" title="6">           <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb6-7" title="7">           <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb6-8" title="8">           <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="reference/figures/GGE.png"></p>
 </div>
 <div id="blup-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h2>
-<p>The implementation of linear-mixed effect models to predict the response variable in MET is based on the <code><a href="reference/waasb.html">waasb()</a></code> function. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html">complete vignette</a>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/waasb.html">waasb</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb8-2" title="2">                <span class="dt">resp =</span> GY,</a>
-<a class="sourceLine" id="cb8-3" title="3">                <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb8-4" title="4">                <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb8-5" title="5">                <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb8-6" title="6">                <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Linear-mixed effect models to predict the response variable in METs are fitted using the function <code><a href="reference/waasb.html">waasb()</a></code>. Here we will obtain the predicted means for genotypes in the variables <code>GY</code> and <code>HM</code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html">complete vignette</a>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/waasb.html">waasb</a></span>(data_ge, ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb7-2" title="2">                <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(GY, HM),</a>
+<a class="sourceLine" id="cb7-3" title="3">                <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb7-4" title="4"></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="kw"><a href="reference/get_model_data.html">get_model_data</a></span>(model2, <span class="dt">what =</span> <span class="st">"blupg"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:left;">
+
+gen
+
+</th>
+
+<th style="text-align:right;">
+
+GY
+
+</th>
+
+<th style="text-align:right;">
+
+HM
+
+</th>
+
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+G1
+
+</td>
+
+<td style="text-align:right;">
+
+2.617
+
+</td>
+
+<td style="text-align:right;">
+
+47.396
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G10
+
+</td>
+
+<td style="text-align:right;">
+
+2.509
+
+</td>
+
+<td style="text-align:right;">
+
+48.375
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G2
+
+</td>
+
+<td style="text-align:right;">
+
+2.731
+
+</td>
+
+<td style="text-align:right;">
+
+47.108
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G3
+
+</td>
+
+<td style="text-align:right;">
+
+2.903
+
+</td>
+
+<td style="text-align:right;">
+
+47.756
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G4
+
+</td>
+
+<td style="text-align:right;">
+
+2.648
+
+</td>
+
+<td style="text-align:right;">
+
+48.050
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G5
+
+</td>
+
+<td style="text-align:right;">
+
+2.563
+
+</td>
+
+<td style="text-align:right;">
+
+48.918
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G6
+
+</td>
+
+<td style="text-align:right;">
+
+2.560
+
+</td>
+
+<td style="text-align:right;">
+
+48.530
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G7
+
+</td>
+
+<td style="text-align:right;">
+
+2.729
+
+</td>
+
+<td style="text-align:right;">
+
+48.004
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G8
+
+</td>
+
+<td style="text-align:right;">
+
+2.943
+
+</td>
+
+<td style="text-align:right;">
+
+48.784
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+G9
+
+</td>
+
+<td style="text-align:right;">
+
+2.541
+
+</td>
+
+<td style="text-align:right;">
+
+47.962
+
+</td>
+
+</tr>
+</tbody>
+</table>
 <div id="plotting-the-blups-for-genotypes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plotting-the-blups-for-genotypes" class="anchor"></a>Plotting the BLUPs for genotypes</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb9-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb9-3" title="3">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb9-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;"></p>
+<p>To produce a plot with the predicted means, use the function <code><a href="reference/plot_blup.html">plot_blup()</a></code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb8-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb8-3" title="3">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
+<a class="sourceLine" id="cb8-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="reference/figures/BLUP.png" height="340/"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level3">
 <h3 class="hasAnchor">
 <a href="#blups-for-genotype-vs-environment-interaction" class="anchor"></a>BLUPS for genotype-vs-environment interaction</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">data =<span class="st"> </span>model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">kable</span>(data, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</a></code></pre></div>
-<table class="table table table-striped table-condensed table-responsive">
+<p>The object <code>BLUPgge</code> contains the blups for the genotype-vs-environment interaction. In the following example, the values for <code>GY</code> are shown.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">model2<span class="op">$</span>GY<span class="op">$</span>BLUPgge[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,] <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 
@@ -877,7 +1158,196 @@ G4
 </tr>
 </tbody>
 </table>
-<p>Please note that the ‘metan’ project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>When more than one variable is fitted, the predicted means for genotype-vs-environment combination may be obtained for all variables in the model using <code><a href="reference/get_model_data.html">get_model_data()</a></code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="reference/get_model_data.html">get_model_data</a></span>(model2, <span class="dt">what =</span> <span class="st">"blupge"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:left;">
+
+ENV
+
+</th>
+
+<th style="text-align:left;">
+
+GEN
+
+</th>
+
+<th style="text-align:right;">
+
+GY
+
+</th>
+
+<th style="text-align:right;">
+
+HM
+
+</th>
+
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G1
+
+</td>
+
+<td style="text-align:right;">
+
+2.401
+
+</td>
+
+<td style="text-align:right;">
+
+46.587
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G10
+
+</td>
+
+<td style="text-align:right;">
+
+2.112
+
+</td>
+
+<td style="text-align:right;">
+
+47.152
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G2
+
+</td>
+
+<td style="text-align:right;">
+
+2.784
+
+</td>
+
+<td style="text-align:right;">
+
+45.664
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G3
+
+</td>
+
+<td style="text-align:right;">
+
+2.838
+
+</td>
+
+<td style="text-align:right;">
+
+46.249
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G4
+
+</td>
+
+<td style="text-align:right;">
+
+2.554
+
+</td>
+
+<td style="text-align:right;">
+
+48.017
+
+</td>
+
+</tr>
+<tr>
+<td style="text-align:left;">
+
+E1
+
+</td>
+
+<td style="text-align:left;">
+
+G5
+
+</td>
+
+<td style="text-align:right;">
+
+2.268
+
+</td>
+
+<td style="text-align:right;">
+
+49.390
+
+</td>
+
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -885,8 +1355,8 @@ G4
 <h1 class="hasAnchor">
 <a href="#getting-help" class="anchor"></a>Getting help</h1>
 <ul>
-<li><p>Suggestions and criticisms to improve the quality and usability of the package are welcome!</p></li>
 <li><p>If you encounter a clear bug, please file a minimal reproducible example on <a href="https://github.com/TiagoOlivoto/metan/issues">github</a></p></li>
+<li><p>Suggestions and criticisms to improve the quality and usability of the package are welcome!</p></li>
 </ul>
 </div>
 
