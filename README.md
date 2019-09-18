@@ -810,14 +810,10 @@ G4
 
 </table>
 
-Please note that the ‘metan’ project is released with a [Contributor
-Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
-you agree to abide by its terms.
-
 # Getting help
-
-  - Suggestions and criticisms to improve the quality and usability of
-    the package are welcome\!
 
   - If you encounter a clear bug, please file a minimal reproducible
     example on [github](https://github.com/TiagoOlivoto/metan/issues)
+
+  - Suggestions and criticisms to improve the quality and usability of
+    the package are welcome\!
