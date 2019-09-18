@@ -44,10 +44,8 @@ Suggests:
     cowplot,
     kableExtra,
     knitr,
-    prettydoc,
     readxl,
     rmarkdown,
-    xlsx,
     roxygen2
 VignetteBuilder: 
     knitr
