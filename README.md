@@ -18,7 +18,7 @@ to:
   - Variance components and genetic parameters in mixed-effect models;
   - Cross-validation procedures for AMMI-family and BLUP models;
   - Graphics tools for generating biplots;
-  - Parametric and nonparametric stability statistics.
+  - Parametric and nonparametric stability statistics
 
 For more details see the [complete
 vignette](https://tiagoolivoto.github.io/metan/).

@@ -1,6 +1,7 @@
 ---
 always_allow_html: yes
 output: github_document
+
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -19,7 +20,7 @@ The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides u
 * Variance components and genetic parameters in mixed-effect models;
 * Cross-validation procedures for AMMI-family and BLUP models;
 * Graphics tools for generating biplots;
-* Parametric and nonparametric stability statistics.
+* Parametric and nonparametric stability statistics
 
 For more details see the [complete vignette](https://tiagoolivoto.github.io/metan/).
 
