@@ -12,16 +12,14 @@ After committing the changes I ran:
    - 0 errors | 0 warnings | 0 notes
    
 - `devtools::check_rhub()`
-   - CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
+   - Build ID (metan_1.0.0.tar.gz-844323c730174fbc93ac7742490cd86b): CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
+   - Build ID (metan_1.0.0.tar.gz-f05d6122c07b42448691b3c4c2d7205a): metan 1.0.0: OK.
    
-   - After twenty minutes I've received other email with an error (metan_1.0.0.tar.gz-f4b74c8beceb45098d5ae31e899dbeee) saying: Packages suggested but not available: 'kableExtra', 'roxygen2'. This sounds strange because I have these two packages installed and updated. What would a possible reason for this error?
-   - A few minutes latter other email (metan_1.0.0.tar.gz-639d6271c76b43c8ba4ff2b56104ed95): metan 1.0.0: OK
-
-
 - `devtools::check_win_devel()`
    - CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
 
 - `devtools::check_win_release()`
+   - CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
 
 # Test environments
 
@@ -31,12 +29,10 @@ After committing the changes I ran:
    - Windows Server 2008 R2 SP1, R-devel, 32/64 bit
    - Ubuntu Linux 16.04 LTS, R-release, GCC
    - Fedora Linux, R-devel, clang, gfortran
-   - One note
-      - Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>'
 - win-builder (devel and release)
 
 # R CMD check results
-
+0 errors | 0 warnings | 0 notes
 
 
 # Other questions
