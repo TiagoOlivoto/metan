@@ -129,14 +129,14 @@
 #'           lab.position = 'tl')
 #'}
 corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
-                      axis.labels = FALSE, show.labels.in = "show", size.axis.label = 12, diag = TRUE, diag.type = "histogram",
-                      bins = 20, col.diag = "gray", alpha.diag = 1, col.up.panel = "gray",
-                      col.lw.panel = "gray", col.dia.panel = "gray", prob = 0.05,
-                      col.sign = "green", alpha.sign = 0.15, lab.position = "tr",
-                      progress = NULL, smooth = FALSE, col.smooth = "red", size.smooth = 0.3,
-                      confint = TRUE, size.point = 1, shape.point = 19, alpha.point = 0.7,
-                      fill.point = NULL, col.point = "black", minsize = 2, maxsize = 3,
-                      pan.spacing = 0.15, digits = 2, export = FALSE, file.type = "pdf",
+                      axis.labels = FALSE, show.labels.in = "show", size.axis.label = 12,
+                      diag = TRUE, diag.type = "histogram", bins = 20, col.diag = "gray",
+                      alpha.diag = 1, col.up.panel = "gray", col.lw.panel = "gray",
+                      col.dia.panel = "gray", prob = 0.05, col.sign = "green", alpha.sign = 0.15,
+                      lab.position = "tr", progress = NULL, smooth = FALSE, col.smooth = "red",
+                      size.smooth = 0.3, confint = TRUE, size.point = 1, shape.point = 19,
+                      alpha.point = 0.7, fill.point = NULL, col.point = "black", minsize = 2,
+                      maxsize = 3, pan.spacing = 0.15, digits = 2, export = FALSE, file.type = "pdf",
                       file.name = NULL, width = 8, height = 7, resolution = 300) {
   if(!show.labels.in %in% c("show", "internal", "none")){
     stop("The argument 'show.labels.in' must be one of the 'show', 'internal', or 'none'. ")
