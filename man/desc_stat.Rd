@@ -24,7 +24,7 @@ vector.}
 \code{'n'} (the length of the data), \code{'norm.pval'} (the p-value for the Shapiro-Wilk test),
  \code{'norm.stat'} (the statistic for the Shapiro-Wilk test), \code{'Q2.5'} (the percentile 2.5%),
  \code{'Q25'} (the first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the percentile 97.5%),
- \code{'SD.amo'} (the sample standard deviation), \code{'SD.pop'} (the population standard deviation),
+ \code{range} (The range of data), \code{'SD.amo'} (the sample standard deviation), \code{'SD.pop'} (the population standard deviation),
  \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the skewness), \code{'var.amo'} (the sample variance),
  \code{'var.pop'} (the population variance). Use a comma-separated vector of names to select the statistics.
  For example, \code{stats = c("media, mean, CV, n")}.}
