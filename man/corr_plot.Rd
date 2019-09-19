@@ -5,17 +5,18 @@
 \title{Visualization of a correlation matrix}
 \usage{
 corr_plot(.data, ... = NULL, upper = "corr", lower = "scatter",
-  axis.labels = FALSE, diag = TRUE, diag.type = "histogram",
-  bins = 20, col.diag = "gray", alpha.diag = 1,
-  col.up.panel = "gray", col.lw.panel = "gray",
-  col.dia.panel = "gray", prob = 0.05, col.sign = "green",
-  alpha.sign = 0.15, lab.position = "tr", progress = NULL,
-  smooth = FALSE, col.smooth = "red", size.smooth = 0.3,
-  confint = TRUE, size.point = 1, shape.point = 19,
-  alpha.point = 0.7, fill.point = NULL, col.point = "black",
-  minsize = 2, maxsize = 3, pan.spacing = 0.15, digits = 2,
-  export = FALSE, file.type = "pdf", file.name = NULL, width = 8,
-  height = 7, resolution = 300)
+  axis.labels = FALSE, show.labels.in = "show", size.axis.label = 12,
+  diag = TRUE, diag.type = "histogram", bins = 20,
+  col.diag = "gray", alpha.diag = 1, col.up.panel = "gray",
+  col.lw.panel = "gray", col.dia.panel = "gray", prob = 0.05,
+  col.sign = "green", alpha.sign = 0.15, lab.position = "tr",
+  progress = NULL, smooth = FALSE, col.smooth = "red",
+  size.smooth = 0.3, confint = TRUE, size.point = 1,
+  shape.point = 19, alpha.point = 0.7, fill.point = NULL,
+  col.point = "black", minsize = 2, maxsize = 3,
+  pan.spacing = 0.15, digits = 2, export = FALSE,
+  file.type = "pdf", file.name = NULL, width = 8, height = 7,
+  resolution = 300)
 }
 \arguments{
 \item{.data}{The data. Should, preferentially, contain numeric variables
@@ -37,6 +38,13 @@ diagonal.}
 
 \item{axis.labels}{Should the axis labels be shown in the plot? Set to
 \code{FALSE}.}
+
+\item{show.labels.in}{Where to show the axis labels. Defaults to "show" bottom and left.
+Use "diag" to show the labels on the diagonal. In this case, the diagonal layer
+ (boxplot, density or histogram) will be overwritten.}
+
+\item{size.axis.label}{The size of the text for axis labels if \code{axis.labels = TRUE}.
+Defaults to 12.}
 
 \item{diag}{Should the diagonal be shown?}
 

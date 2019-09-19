@@ -18,6 +18,11 @@
 #' diagonal.
 #' @param axis.labels Should the axis labels be shown in the plot? Set to
 #' \code{FALSE}.
+#' @param show.labels.in Where to show the axis labels. Defaults to "show" bottom and left.
+#'  Use "diag" to show the labels on the diagonal. In this case, the diagonal layer
+#'   (boxplot, density or histogram) will be overwritten.
+#' @param size.axis.label The size of the text for axis labels if \code{axis.labels = TRUE}.
+#' Defaults to 12.
 #' @param diag Should the diagonal be shown?
 #' @param diag.type The type of plot to show in the diagonal if \code{diag  TRUE}.
 #' It must be one of the 'histogram' (to show an histogram), 'density' to show
@@ -124,7 +129,7 @@
 #'           lab.position = 'tl')
 #'}
 corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
-                      axis.labels = FALSE, diag = TRUE, diag.type = "histogram",
+                      axis.labels = FALSE, show.labels.in = "show", size.axis.label = 12, diag = TRUE, diag.type = "histogram",
                       bins = 20, col.diag = "gray", alpha.diag = 1, col.up.panel = "gray",
                       col.lw.panel = "gray", col.dia.panel = "gray", prob = 0.05,
                       col.sign = "green", alpha.sign = 0.15, lab.position = "tr",
@@ -133,6 +138,9 @@ corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
                       fill.point = NULL, col.point = "black", minsize = 2, maxsize = 3,
                       pan.spacing = 0.15, digits = 2, export = FALSE, file.type = "pdf",
                       file.name = NULL, width = 8, height = 7, resolution = 300) {
+  if(!show.labels.in %in% c("show", "internal", "none")){
+    stop("The argument 'show.labels.in' must be one of the 'show', 'internal', or 'none'. ")
+  }
   if (!lab.position %in% c("tr", "tl", "br", "bl")) {
     stop("The argument 'lab.position' must be one of the 'tr', 'tl', 'br', or 'bl'.")
   }
@@ -283,14 +291,15 @@ corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
     switch <- "both"
   }
   if (axis.labels == TRUE) {
-    axis.labels <- "show"
+    axis.labels <- show.labels.in
   } else {
     axis.labels <- "none"
   }
   p1 <- GGally::ggpairs(data, upper = upper, lower = lower,
-                        switch = switch, diag = diag, progress = progress, axisLabels = axis.labels)
-  ggplot2::theme_set(ggplot2::theme_gray() + ggplot2::theme(panel.spacing = grid::unit(pan.spacing,
-                                                                                       "lines")))
+                        switch = switch, diag = diag, progress = progress, axisLabels = axis.labels)+
+                    theme(panel.spacing = grid::unit(pan.spacing, "lines"),
+                          axis.text = element_text(size = size.axis.label, color = "black"),
+                          axis.ticks.length = unit(0.2, "cm"))
   if (export == FALSE) {
     return(p1)
   } else if (file.type == "pdf") {
