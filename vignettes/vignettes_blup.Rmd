@@ -29,8 +29,7 @@ library(kableExtra) # Used to make the tables
 # Function to make HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                  font_size = 12)
+kable_styling(latex_options = c("striped", "scale_down", "HOLD_position"))
 }
 
 str(data_ge)

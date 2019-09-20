@@ -257,7 +257,7 @@
       <tr>
         <th colspan="2">
           <h2 id="section-blup" class="hasAnchor"><a href="#section-blup" class="anchor"></a>BLUP</h2>
-          <p class="section-desc"><p>Functions for BLUP analysis</p></p>
+          <p class="section-desc"><p>Functions for BLUP prediction in multi-environment trial analysis</p></p>
         </th>
       </tr>
       <tr>
@@ -299,6 +299,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="summary.waasb.html">summary(<i>&lt;waasb&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summarise a waasb object</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="cv_blup.html">cv_blup()</a></code> </p>
         </td>
         <td><p>Cross-validation procedure</p></td>
@@ -314,6 +320,12 @@
           <p><code><a href="wsmp.html">wsmp()</a></code> </p>
         </td>
         <td><p>Weighting between stability and mean performance</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot.wsmp.html">plot(<i>&lt;wsmp&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot heat maps with genotype ranking</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -345,7 +357,7 @@
       <tr>
         <th colspan="2">
           <h2 id="section-mtsi" class="hasAnchor"><a href="#section-mtsi" class="anchor"></a>MTSI</h2>
-          <p class="section-desc"><p>Multi-trait indexes</p></p>
+          <p class="section-desc"><p>Multi-trait stability indexes</p></p>
         </th>
       </tr>
       <tr>
@@ -407,6 +419,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="ge_cluster.html">ge_cluster()</a></code> </p>
+        </td>
+        <td><p>Cluster genotypes or environments</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="ge_factanal.html">ge_factanal()</a></code> </p>
         </td>
         <td><p>Stability analysis and environment stratification</p></td>
@@ -431,9 +449,57 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="plot.ge_cluster.html">plot(<i>&lt;ge_cluster&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot an object of class ge_cluster</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot.ge_factanal.html">plot(<i>&lt;ge_factanal&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot the ge_factanal model</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot.ge_reg.html">plot(<i>&lt;ge_reg&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot an object of class ge_reg</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="superiority.html">superiority()</a></code> </p>
         </td>
         <td><p>Lin e Binns' superiority index</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summary.Annicchiarico.html">summary(<i>&lt;Annicchiarico&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summary an Annicchiarico object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summary.ge_factanal.html">summary(<i>&lt;ge_factanal&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summary a ge_factanal object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summary.ge_reg.html">summary(<i>&lt;ge_reg&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summary a ge_reg object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summary.ge_stats.html">summary(<i>&lt;ge_stats&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summary a ge_stats object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summary.superiority.html">summary(<i>&lt;superiority&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summary a superiority object</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -445,51 +511,9 @@
       <tr>
         
         <td>
-          <p><code><a href="AMMI_indexes.html">AMMI_indexes()</a></code> </p>
-        </td>
-        <td><p>AMMI-based stability indexes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Annicchiarico.html">Annicchiarico()</a></code> </p>
-        </td>
-        <td><p>Annicchiarico's genotypic confidence index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="anova_ind.html">anova_ind()</a></code> </p>
-        </td>
-        <td><p>Within-environment analysis of variance</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="as.lpcor.html">as.lpcor()</a></code> </p>
         </td>
         <td><p>Coerce to an object of class lpcor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as.split_factors.html">as.split_factors()</a></code> </p>
-        </td>
-        <td><p>Coerce to an object of class split_factors</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.waas.html">autoplot(<i>&lt;waas&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Several types of residual plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.waasb.html">autoplot(<i>&lt;waasb&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Several types of residual plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bind_cv.html">bind_cv()</a></code> </p>
-        </td>
-        <td><p>Bind cross-validation objects</p></td>
       </tr><tr>
         
         <td>
@@ -511,21 +535,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="comb_vars.html">comb_vars()</a></code> </p>
+          <p><code><a href="corr_plot.html">corr_plot()</a></code> </p>
         </td>
-        <td><p>Pairwise combinations of variables</p></td>
+        <td><p>Visualization of a correlation matrix</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="corr_ci.html">corr_ci()</a></code> </p>
         </td>
         <td><p>Confidence interval for correlation coefficient</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="corr_plot.html">corr_plot()</a></code> </p>
-        </td>
-        <td><p>Visualization of a correlation matrix</p></td>
       </tr><tr>
         
         <td>
@@ -541,51 +559,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="cv_ammi.html">cv_ammi()</a></code> </p>
-        </td>
-        <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cv_ammif.html">cv_ammif()</a></code> </p>
-        </td>
-        <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cv_blup.html">cv_blup()</a></code> </p>
-        </td>
-        <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_ge.html">data_ge</a></code> </p>
-        </td>
-        <td><p>Data for examples</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_ge2.html">data_ge2</a></code> </p>
-        </td>
-        <td><p>Data for examples</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="desc_stat.html">desc_stat()</a></code> </p>
         </td>
         <td><p>Descriptive statistics</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ecovalence.html">ecovalence()</a></code> </p>
-        </td>
-        <td><p>Stability analysis based on Wricke's model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fai_blup.html">fai_blup()</a></code> </p>
-        </td>
-        <td><p>Multi-trait selection index</p></td>
       </tr><tr>
         
         <td>
@@ -595,63 +571,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="get_model_data.html">get_model_data()</a></code> </p>
-        </td>
-        <td><p>Easily get data from a model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_cluster.html">ge_cluster()</a></code> </p>
-        </td>
-        <td><p>Cluster genotypes or environments</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_factanal.html">ge_factanal()</a></code> </p>
-        </td>
-        <td><p>Stability analysis and environment stratification</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_plot.html">ge_plot()</a></code> </p>
-        </td>
-        <td><p>Graphical analysis of genotype-vs-environment interaction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_reg.html">ge_reg()</a></code> </p>
-        </td>
-        <td><p>Eberhart and Russell's regression model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_stats.html">ge_stats()</a></code> </p>
-        </td>
-        <td><p>Statistics for genotype-vs-environment interaction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gge.html">gge()</a></code> </p>
-        </td>
-        <td><p>Genotype plus genotype-by-environment model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="int.effects.html">int.effects</a></code> </p>
-        </td>
-        <td><p>Data for examples</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="is.lpcor.html">is.lpcor()</a></code> </p>
         </td>
         <td><p>Coerce to an object of class lpcor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="is.split_factors.html">is.split_factors()</a></code> </p>
-        </td>
-        <td><p>Check if an object is of class split_factors</p></td>
       </tr><tr>
         
         <td>
@@ -673,36 +595,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="make_mat.html">make_mat()</a></code> </p>
-        </td>
-        <td><p>Make a two-way table</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_sym.html">make_sym()</a></code> </p>
-        </td>
-        <td><p>Make a symmetric matrix on a triangular matrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="meansGxE.html">meansGxE</a></code> </p>
-        </td>
-        <td><p>Data for examples</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="metan-package.html">metan-package</a></code> </p>
-        </td>
-        <td><p>Multi-Environment Trial Analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mtsi.html">mtsi()</a></code> </p>
-        </td>
-        <td><p>Multi-trait stability index</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="pairs_mantel.html">pairs_mantel()</a></code> </p>
         </td>
         <td><p>Mantel test for a set of correlation matrices</p></td>
@@ -712,12 +604,6 @@
           <p><code><a href="path_coeff.html">path_coeff()</a></code> </p>
         </td>
         <td><p>Path coefficients with minimal multicollinearity</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="performs_ammi.html">performs_ammi()</a></code> </p>
-        </td>
-        <td><p>Additive Main effects and Multiplicative Interaction</p></td>
       </tr><tr>
         
         <td>
@@ -733,75 +619,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="plot.cv_ammif.html">plot(<i>&lt;cv_ammif&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the RMSPD of a cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.fai_blup.html">plot(<i>&lt;fai_blup&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Multi-trait selection index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.ge_cluster.html">plot(<i>&lt;ge_cluster&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot an object of class ge_cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.ge_factanal.html">plot(<i>&lt;ge_factanal&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the ge_factanal model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.ge_reg.html">plot(<i>&lt;ge_reg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot an object of class ge_reg</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.gge.html">plot(<i>&lt;gge&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Create GGE biplots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.mtsi.html">plot(<i>&lt;mtsi&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the multi-trait stability index</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="plot.resp_surf.html">plot(<i>&lt;resp_surf&gt;</i>)</a></code> </p>
         </td>
         <td><p>Plot the response surface model</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="plot.wsmp.html">plot(<i>&lt;wsmp&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot heat maps with genotype ranking</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_blup.html">plot_blup()</a></code> </p>
-        </td>
-        <td><p>Plot the BLUPs for genotypes</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="plot_ci.html">plot_ci()</a></code> </p>
         </td>
         <td><p>Plot the confidence interval for correlation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_eigen.html">plot_eigen()</a></code> </p>
-        </td>
-        <td><p>Plot the eigenvalues</p></td>
       </tr><tr>
         
         <td>
@@ -823,69 +649,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="plot_scores.html">plot_scores()</a></code> </p>
-        </td>
-        <td><p>Plot scores in different graphical interpretations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_waasby.html">plot_waasby()</a></code> </p>
-        </td>
-        <td><p>Plot WAASBY values for genotype ranking</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict.gge.html">predict(<i>&lt;gge&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Predict a two-way table based on GGE model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict.waas.html">predict(<i>&lt;waas&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Predict the means of a waas object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rbind_fill.html">rbind_fill()</a></code> </p>
-        </td>
-        <td><p>Combines data.frames by row filling missing values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="resca.html">resca()</a></code> </p>
-        </td>
-        <td><p>Rescale a variable to have specified minimum and maximum values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Resende_indexes.html">Resende_indexes()</a></code> </p>
-        </td>
-        <td><p>Stability indexes based on a mixed-effect model</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="resp_surf.html">resp_surf()</a></code> </p>
         </td>
         <td><p>Response surface model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="solve_svd.html">solve_svd()</a></code> </p>
-        </td>
-        <td><p>Pseudoinverse of a square matrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="split_factors.html">split_factors()</a></code> </p>
-        </td>
-        <td><p>Split a data frame by factors</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.Annicchiarico.html">summary(<i>&lt;Annicchiarico&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary an Annicchiarico object</p></td>
       </tr><tr>
         
         <td>
@@ -895,81 +661,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="summary.ge_factanal.html">summary(<i>&lt;ge_factanal&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary a ge_factanal object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.ge_reg.html">summary(<i>&lt;ge_reg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary a ge_reg object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.ge_stats.html">summary(<i>&lt;ge_stats&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary a ge_stats object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.mtsi.html">summary(<i>&lt;mtsi&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarise a mtsi object</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="summary.path_coeff.html">summary(<i>&lt;path_coeff&gt;</i>)</a></code> </p>
         </td>
         <td><p>Summarize an object generated by the function <code>path_coeff()</code></p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.superiority.html">summary(<i>&lt;superiority&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary a superiority object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.waas.html">summary(<i>&lt;waas&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarise a waas object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.waasb.html">summary(<i>&lt;waasb&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarise a waasb object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="superiority.html">superiority()</a></code> </p>
-        </td>
-        <td><p>Lin e Binns' superiority index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_waasb.html">theme_waasb()</a></code> </p>
-        </td>
-        <td><p>A personalized theme for ggplot2-based graphics</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="waas.html">waas()</a></code> </p>
-        </td>
-        <td><p>Weighted Average of Absolute Scores</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="waasb.html">waasb()</a></code> </p>
-        </td>
-        <td><p>Weighted Average of Absolute Scores</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wsmp.html">wsmp()</a></code> </p>
-        </td>
-        <td><p>Weighting between stability and mean performance</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -981,45 +675,9 @@
       <tr>
         
         <td>
-          <p><code><a href="AMMI_indexes.html">AMMI_indexes()</a></code> </p>
-        </td>
-        <td><p>AMMI-based stability indexes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Annicchiarico.html">Annicchiarico()</a></code> </p>
-        </td>
-        <td><p>Annicchiarico's genotypic confidence index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="anova_ind.html">anova_ind()</a></code> </p>
-        </td>
-        <td><p>Within-environment analysis of variance</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as.lpcor.html">as.lpcor()</a></code> </p>
-        </td>
-        <td><p>Coerce to an object of class lpcor</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="as.split_factors.html">as.split_factors()</a></code> </p>
         </td>
         <td><p>Coerce to an object of class split_factors</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.waas.html">autoplot(<i>&lt;waas&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Several types of residual plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.waasb.html">autoplot(<i>&lt;waasb&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Several types of residual plots</p></td>
       </tr><tr>
         
         <td>
@@ -1029,105 +687,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="can_corr.html">can_corr()</a></code> </p>
-        </td>
-        <td><p>Canonical correlation analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clustering.html">clustering()</a></code> </p>
-        </td>
-        <td><p>Clustering analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="colindiag.html">colindiag()</a></code> </p>
-        </td>
-        <td><p>Collinearity Diagnostics</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="comb_vars.html">comb_vars()</a></code> </p>
         </td>
         <td><p>Pairwise combinations of variables</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="corr_ci.html">corr_ci()</a></code> </p>
-        </td>
-        <td><p>Confidence interval for correlation coefficient</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="corr_plot.html">corr_plot()</a></code> </p>
-        </td>
-        <td><p>Visualization of a correlation matrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="corr_ss.html">corr_ss()</a></code> </p>
-        </td>
-        <td><p>Sample size planning for a desired Pearson's correlation confidence interval</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="covcor_design.html">covcor_design()</a></code> </p>
-        </td>
-        <td><p>Variance-covariance matrices for designed experiments</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cv_ammi.html">cv_ammi()</a></code> </p>
-        </td>
-        <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cv_ammif.html">cv_ammif()</a></code> </p>
-        </td>
-        <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cv_blup.html">cv_blup()</a></code> </p>
-        </td>
-        <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_ge.html">data_ge</a></code> </p>
-        </td>
-        <td><p>Data for examples</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_ge2.html">data_ge2</a></code> </p>
-        </td>
-        <td><p>Data for examples</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="desc_stat.html">desc_stat()</a></code> </p>
-        </td>
-        <td><p>Descriptive statistics</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ecovalence.html">ecovalence()</a></code> </p>
-        </td>
-        <td><p>Stability analysis based on Wricke's model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fai_blup.html">fai_blup()</a></code> </p>
-        </td>
-        <td><p>Multi-trait selection index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_outliers.html">find_outliers()</a></code> </p>
-        </td>
-        <td><p>Find possible outliers in a dataset</p></td>
       </tr><tr>
         
         <td>
@@ -1137,75 +699,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="ge_cluster.html">ge_cluster()</a></code> </p>
-        </td>
-        <td><p>Cluster genotypes or environments</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_factanal.html">ge_factanal()</a></code> </p>
-        </td>
-        <td><p>Stability analysis and environment stratification</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_plot.html">ge_plot()</a></code> </p>
-        </td>
-        <td><p>Graphical analysis of genotype-vs-environment interaction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_reg.html">ge_reg()</a></code> </p>
-        </td>
-        <td><p>Eberhart and Russell's regression model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ge_stats.html">ge_stats()</a></code> </p>
-        </td>
-        <td><p>Statistics for genotype-vs-environment interaction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gge.html">gge()</a></code> </p>
-        </td>
-        <td><p>Genotype plus genotype-by-environment model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="int.effects.html">int.effects</a></code> </p>
-        </td>
-        <td><p>Data for examples</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="is.lpcor.html">is.lpcor()</a></code> </p>
-        </td>
-        <td><p>Coerce to an object of class lpcor</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="is.split_factors.html">is.split_factors()</a></code> </p>
         </td>
         <td><p>Check if an object is of class split_factors</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="lpcor.html">lpcor()</a></code> </p>
+          <p><code><a href="make_long.html">make_long()</a></code> </p>
         </td>
-        <td><p>Linear and Partial Correlation Coefficients</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mahala.html">mahala()</a></code> </p>
-        </td>
-        <td><p>Mahalanobis Distance</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mahala_design.html">mahala_design()</a></code> </p>
-        </td>
-        <td><p>Mahalanobis distance from designed experiments</p></td>
+        <td><p>Two-way table to a 'long' format</p></td>
       </tr><tr>
         
         <td>
@@ -1221,165 +723,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="meansGxE.html">meansGxE</a></code> </p>
-        </td>
-        <td><p>Data for examples</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="metan-package.html">metan-package</a></code> </p>
-        </td>
-        <td><p>Multi-Environment Trial Analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mtsi.html">mtsi()</a></code> </p>
-        </td>
-        <td><p>Multi-trait stability index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pairs_mantel.html">pairs_mantel()</a></code> </p>
-        </td>
-        <td><p>Mantel test for a set of correlation matrices</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="path_coeff.html">path_coeff()</a></code> </p>
-        </td>
-        <td><p>Path coefficients with minimal multicollinearity</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="performs_ammi.html">performs_ammi()</a></code> </p>
         </td>
         <td><p>Additive Main effects and Multiplicative Interaction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.can_cor.html">plot(<i>&lt;can_cor&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plots an object of class can_cor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.clustering.html">plot(<i>&lt;clustering&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot an object of class clustering</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.cv_ammif.html">plot(<i>&lt;cv_ammif&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the RMSPD of a cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.fai_blup.html">plot(<i>&lt;fai_blup&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Multi-trait selection index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.ge_cluster.html">plot(<i>&lt;ge_cluster&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot an object of class ge_cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.ge_factanal.html">plot(<i>&lt;ge_factanal&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the ge_factanal model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.ge_reg.html">plot(<i>&lt;ge_reg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot an object of class ge_reg</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.gge.html">plot(<i>&lt;gge&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Create GGE biplots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.mtsi.html">plot(<i>&lt;mtsi&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the multi-trait stability index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.resp_surf.html">plot(<i>&lt;resp_surf&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the response surface model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.wsmp.html">plot(<i>&lt;wsmp&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot heat maps with genotype ranking</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_blup.html">plot_blup()</a></code> </p>
-        </td>
-        <td><p>Plot the BLUPs for genotypes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_ci.html">plot_ci()</a></code> </p>
-        </td>
-        <td><p>Plot the confidence interval for correlation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_eigen.html">plot_eigen()</a></code> </p>
-        </td>
-        <td><p>Plot the eigenvalues</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_factbars.html">plot_factbars()</a></code> </p>
-        </td>
-        <td><p>Fast way to create a bar plot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_factlines.html">plot_factlines()</a></code> </p>
-        </td>
-        <td><p>Fast way to create a line plot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_lines.html">plot_lines()</a></code> </p>
-        </td>
-        <td><p>Fast way to create a line plot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_scores.html">plot_scores()</a></code> </p>
-        </td>
-        <td><p>Plot scores in different graphical interpretations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_waasby.html">plot_waasby()</a></code> </p>
-        </td>
-        <td><p>Plot WAASBY values for genotype ranking</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict.gge.html">predict(<i>&lt;gge&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Predict a two-way table based on GGE model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict.waas.html">predict(<i>&lt;waas&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Predict the means of a waas object</p></td>
       </tr><tr>
         
         <td>
@@ -1395,15 +741,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="Resende_indexes.html">Resende_indexes()</a></code> </p>
+          <p><code><a href="split_factors.html">split_factors()</a></code> </p>
         </td>
-        <td><p>Stability indexes based on a mixed-effect model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="resp_surf.html">resp_surf()</a></code> </p>
-        </td>
-        <td><p>Response surface model</p></td>
+        <td><p>Split a data frame by factors</p></td>
       </tr><tr>
         
         <td>
@@ -1413,99 +753,23 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="split_factors.html">split_factors()</a></code> </p>
-        </td>
-        <td><p>Split a data frame by factors</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.Annicchiarico.html">summary(<i>&lt;Annicchiarico&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary an Annicchiarico object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.can_cor.html">summary(<i>&lt;can_cor&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarize an object of class can_cor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.ge_factanal.html">summary(<i>&lt;ge_factanal&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary a ge_factanal object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.ge_reg.html">summary(<i>&lt;ge_reg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary a ge_reg object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.ge_stats.html">summary(<i>&lt;ge_stats&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary a ge_stats object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.mtsi.html">summary(<i>&lt;mtsi&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarise a mtsi object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.path_coeff.html">summary(<i>&lt;path_coeff&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarize an object generated by the function <code>path_coeff()</code></p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.superiority.html">summary(<i>&lt;superiority&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary a superiority object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.waas.html">summary(<i>&lt;waas&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarise a waas object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.waasb.html">summary(<i>&lt;waasb&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarise a waasb object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="superiority.html">superiority()</a></code> </p>
-        </td>
-        <td><p>Lin e Binns' superiority index</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="theme_waasb.html">theme_waasb()</a></code> </p>
         </td>
         <td><p>A personalized theme for ggplot2-based graphics</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-misc" class="hasAnchor"><a href="#section-misc" class="anchor"></a>Misc</h2>
+          <p class="section-desc"><p>Miscellaneous small functions</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
-          <p><code><a href="waas.html">waas()</a></code> </p>
+          <p><code><a href="metan-package.html">metan-package</a></code> </p>
         </td>
-        <td><p>Weighted Average of Absolute Scores</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="waasb.html">waasb()</a></code> </p>
-        </td>
-        <td><p>Weighted Average of Absolute Scores</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wsmp.html">wsmp()</a></code> </p>
-        </td>
-        <td><p>Weighting between stability and mean performance</p></td>
+        <td><p>Multi-Environment Trial Analysis</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -1553,6 +817,7 @@
       <li><a href="#section-stability">Stability</a></li>
       <li><a href="#section-biometry">Biometry</a></li>
       <li><a href="#section-helper">Helper</a></li>
+      <li><a href="#section-misc">Misc</a></li>
       <li><a href="#section-datasets">Datasets</a></li>
     </ul>
   </div>

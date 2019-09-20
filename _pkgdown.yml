@@ -14,101 +14,6 @@ authors:
   Tiago Olivoto:
     href: https://www.researchgate.net/profile/Tiago_Olivoto2
 
-reference:
-  - title: AMMI
-    desc: Functions for AMMI analysis
-    contents:
-      - AMMI_indexes
-      - autoplot.waas
-      - plot.cv_ammi
-      - plot.cv_ammif
-      - predict.waas
-      - summary.waas
-      - cv_ammi
-      - cv_ammif
-      - waas
-  - title: BLUP
-    desc: Functions for BLUP analysis
-    contents:
-      - autoplot.waasb
-      - plot_blup
-      - plot_eigen
-      - plot_scores
-      - plot_waasby
-      - Resende_indexes
-      - summary_waasb
-      - cv_blup
-      - waasb
-      - wsmp
-  - title: GGE
-    desc: Functions for GGE analysis
-    contents:
-      - gge
-      - plot.gge
-      - predict.gge
-  - title: MTSI
-    desc: Multi-trait indexes
-    contents:
-      - fai_blup
-      - mtsi
-      - plot.fai_blup
-      - plot.mtsi
-      - summary.mtsi
-  - title: Stability
-    desc: Useful functions for stability analysis
-    contents:
-      - Annicchiarico
-      - anova_ind
-      - ecovalence
-      - ge_factanal
-      - ge_plot
-      - ge_reg
-      - ge_stats
-      - superiority
-  - title: Biometry
-    desc: Useful functions for biometric models
-    contents:
-      - as.group_factors
-      - as.lpcorr
-      - clustering
-      - colindiag
-      - corr_plot
-      - corr_ci
-      - corr_ss
-      - covcor_design
-      - find_outliers
-      - is.lpcorr
-      - lpcorr
-      - mahala
-      - mahala_design
-      - pairs_mantel
-      - path_coeff
-      - partial.corr
-      - summary.path_coeff
-  - title: Helper
-    desc: Helper functions for metan package
-    contents:
-      - as.group_factors
-      - bind_cv
-      - can_cor
-      - comb_vars
-      - group_factors
-      - is.group_factors
-      - make_mat
-      - make_sym
-      - performs_ammi
-      - rbind_fill
-      - resca
-      - solve_sdv
-      - theme_waasb
-  - title: Datasets
-    desc: Data for reproducible examples
-    contents:
-      - data_ge
-      - data_ge2
-      - int.effects
-      - meansGxE
-
 navbar:
   title: "sparklyr"
   type: inverse
@@ -157,3 +62,123 @@ navbar:
       href: https://www.researchgate.net/profile/Tiago_Olivoto2
     - text: "Mendeley"
       href: https://www.mendeley.com/profiles/tiago-olivoto/
+
+
+reference:
+  - title: "AMMI"
+    desc: "Functions for AMMI analysis"
+    contents:
+      - AMMI_indexes
+      - autoplot.waas
+      - plot.cv_ammif
+      - predict.waas
+      - summary.waas
+      - cv_ammi
+      - cv_ammif
+      - waas
+  - title: "BLUP"
+    desc: "Functions for BLUP prediction in multi-environment trial analysis"
+    contents:
+      - autoplot.waasb
+      - plot_blup
+      - plot_eigen
+      - plot_scores
+      - plot_waasby
+      - Resende_indexes
+      - summary.waasb
+      - cv_blup
+      - waasb
+      - wsmp
+      - plot.wsmp
+  - title: "GGE"
+    desc: "Functions for GGE analysis"
+    contents:
+      - gge
+      - plot.gge
+      - predict.gge
+  - title: "MTSI"
+    desc: "Multi-trait stability indexes"
+    contents:
+      - fai_blup
+      - mtsi
+      - plot.fai_blup
+      - plot.mtsi
+      - summary.mtsi
+  - title: "Stability"
+    desc: "Useful functions for stability analysis"
+    contents:
+      - Annicchiarico
+      - anova_ind
+      - ecovalence
+      - ge_cluster
+      - ge_factanal
+      - ge_plot
+      - ge_reg
+      - ge_stats
+      - plot.ge_cluster
+      - plot.ge_factanal
+      - plot.ge_reg
+      - superiority
+      - summary.Annicchiarico
+      - summary.ge_factanal
+      - summary.ge_reg
+      - summary.ge_stats
+      - summary.superiority
+  - title: "Biometry"
+    desc: "Useful functions for biometric models"
+    contents:
+      - as.lpcor
+      - can_corr
+      - clustering
+      - colindiag
+      - corr_plot
+      - corr_ci
+      - corr_ss
+      - covcor_design
+      - desc_stat
+      - find_outliers
+      - is.lpcor
+      - lpcor
+      - mahala
+      - mahala_design
+      - pairs_mantel
+      - path_coeff
+      - plot.can_cor
+      - plot.clustering
+      - plot.resp_surf
+      - plot_ci
+      - plot_factbars
+      - plot_factlines
+      - plot_lines
+      - resp_surf
+      - summary.can_cor
+      - summary.path_coeff
+  - title: "Helper"
+    desc: "Helper functions for metan package"
+    contents:
+      - as.split_factors
+      - bind_cv
+      - comb_vars
+      - get_model_data
+      - is.split_factors
+      - make_long
+      - make_mat
+      - make_sym
+      - performs_ammi
+      - rbind_fill
+      - resca
+      - split_factors
+      - solve_svd
+      - theme_waasb
+  - title: "Misc"
+    desc: "Miscellaneous small functions"
+    contents:
+      - metan-package
+  - title: "Datasets"
+    desc: "Data for reproducible examples"
+    contents:
+      - data_ge
+      - data_ge2
+      - int.effects
+      - meansGxE
+

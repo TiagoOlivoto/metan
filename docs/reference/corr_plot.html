@@ -197,17 +197,18 @@
     </div>
 
     <pre class="usage"><span class='fu'>corr_plot</span>(<span class='no'>.data</span>, <span class='kw'>...</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>upper</span> <span class='kw'>=</span> <span class='st'>"corr"</span>, <span class='kw'>lower</span> <span class='kw'>=</span> <span class='st'>"scatter"</span>,
-  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>diag.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>col.diag</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>alpha.diag</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
-  <span class='kw'>alpha.sign</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>"tr"</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.smooth</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>size.smooth</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-  <span class='kw'>confint</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
-  <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>)</pre>
+  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.labels.in</span> <span class='kw'>=</span> <span class='st'>"show"</span>, <span class='kw'>size.axis.label</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>diag.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+  <span class='kw'>col.diag</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>alpha.diag</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>alpha.sign</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>"tr"</span>,
+  <span class='kw'>progress</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.smooth</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+  <span class='kw'>size.smooth</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>confint</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -241,6 +242,17 @@ diagonal.</p></td>
       <th>axis.labels</th>
       <td><p>Should the axis labels be shown in the plot? Set to
 <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>show.labels.in</th>
+      <td><p>Where to show the axis labels. Defaults to "show" bottom and left.
+Use "diag" to show the labels on the diagonal. In this case, the diagonal layer
+ (boxplot, density or histogram) will be overwritten.</p></td>
+    </tr>
+    <tr>
+      <th>size.axis.label</th>
+      <td><p>The size of the text for axis labels if <code>axis.labels = TRUE</code>.
+Defaults to 12.</p></td>
     </tr>
     <tr>
       <th>diag</th>

@@ -164,11 +164,10 @@
 <a class="sourceLine" id="cb1-4" title="4"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
-<a class="sourceLine" id="cb1-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">kable_styling</span>(<span class="dt">latex_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"scale_down"</span>, <span class="st">"HOLD_position"</span>))</a>
+<a class="sourceLine" id="cb1-8" title="8">}</a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -217,7 +216,7 @@
 <p>The output <code>LRT</code> contains the Likelihood Ratio Tests for genotype and genotype-vs-environment random effects.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">data =<span class="st"> </span>WAASB_model<span class="op">$</span>GY<span class="op">$</span>LRT</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:right;">
 npar
@@ -332,7 +331,7 @@ CVr = \left( {\sqrt {\mathop {\hat \sigma }\nolimits_e^2 } /\mu } \right) \times
 <p><strong>CV ratio</strong> is the ratio between genotypic and residual coefficient of variation.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">data =<span class="st"> </span>WAASB_model<span class="op">$</span>GY<span class="op">$</span>ESTIMATES</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 Parameters
@@ -447,7 +446,7 @@ CV ratio
 <p>The following pieces of information are provided in <code>Details</code> output. <strong>WgtResponse</strong> is the weight for the response variable in estimating WAASB; <strong>WgtWAAS</strong> is the weight for stability; <strong>Ngen</strong> is the number of genotypes; <strong>Nenv</strong> is the number of environments; <strong>OVmean</strong> is the overall mean; <strong>Min</strong> is the minimum value observed (returning the genotype and environment); <strong>Max</strong> is the maximum observed; <strong>MinENV</strong> is the environment with the lower mean; <strong>MaxENV</strong> is the environment with the largest mean observed; <strong>MinGEN</strong> is the genotype with the lower mean; <strong>MaxGEN</strong> is the genotype with the largest mean.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">data =<span class="st"> </span>WAASB_model<span class="op">$</span>GY<span class="op">$</span>Details</a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 Parameters
@@ -543,7 +542,7 @@ Genotype 18 (4.064)
 <p>where <span class="math inline">\(WAASB_i\)</span> is the weighted average of absolute scores of the <em>i</em>th genotype; <span class="math inline">\(IPCA_{ik}\)</span> is the scores of the <em>i</em>th genotype in the <em>k</em>th IPCA; and <span class="math inline">\(EP_k\)</span> is the explained variance of the <em>k</em>th PCA for <span class="math inline">\(k = 1,2,..,p\)</span>, <span class="math inline">\(p = min(g-1; e-1)\)</span>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">data =<span class="st"> </span>WAASB_model<span class="op">$</span>GY<span class="op">$</span>model[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">13</span><span class="op">:</span><span class="dv">17</span>, <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>)]</a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 type
@@ -1353,7 +1352,7 @@ E9
 <h3 class="hasAnchor">
 <a href="#blup-for-genotypes" class="anchor"></a>BLUP for genotypes</h3>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">print_table</span>(WAASB_model<span class="op">$</span>GY<span class="op">$</span>blupGEN)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:right;">
 Rank
@@ -1588,7 +1587,7 @@ Evaluating variable TKW 60 %
 Evaluating variable NKR 80 % 
 Evaluating variable CD 100 % 
 Done!</code></pre>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 gen
@@ -1901,7 +1900,7 @@ CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}
 <h3 class="hasAnchor">
 <a href="#blup-for-genotypes-x-environment-combination" class="anchor"></a>BLUP for genotypes X environment combination</h3>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">print_table</span>(WAASB_model<span class="op">$</span>GY<span class="op">$</span>BLUPgge[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 ENV
@@ -2201,7 +2200,7 @@ G9
 <a href="#eigenvalues-of-the-blup_gei-matrix" class="anchor"></a>Eigenvalues of the BLUP_GEI matrix</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">data =<span class="st"> </span>WAASB_model<span class="op">$</span>GY<span class="op">$</span>PCA</a>
 <a class="sourceLine" id="cb16-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 PC
@@ -2353,7 +2352,7 @@ PC9
 <a href="#phenotypic-means" class="anchor"></a>Phenotypic means</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">data =<span class="st"> </span>WAASB_model<span class="op">$</span>GY<span class="op">$</span>MeansGxE[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]</a>
 <a class="sourceLine" id="cb18-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 ENV
@@ -2635,7 +2634,7 @@ Evaluating variable ED 50 %
 Evaluating variable TKW 75 % 
 Evaluating variable NKR 100 % 
 Done!</code></pre>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 gen
@@ -2906,7 +2905,7 @@ waasby_i = \frac{{\left( {r {Y_i} \times {\theta _Y}} \right) + \left( {r {W_i} 
 <h2 class="hasAnchor">
 <a href="#printing-the-model-outputs-1" class="anchor"></a>Printing the model outputs</h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">print_table</span>(scenarios<span class="op">$</span>GY<span class="op">$</span>hetcomb)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 </th>
@@ -3659,7 +3658,7 @@ G9
 </table>
 <p>In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">print_table</span>(scenarios<span class="op">$</span>GY<span class="op">$</span>hetdata)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<table class="table table">
 <thead><tr>
 <th style="text-align:left;">
 </th>
@@ -4052,7 +4051,7 @@ HMRPGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}/{\mu _j}}}}
 <a class="sourceLine" id="cb31-2" title="2"><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(GEN, ENV, REP, <span class="dt">resp =</span> GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb31-3" title="3"><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb31-4" title="4"><span class="kw">print_table</span>()</a></code></pre></div>
-<table class="table kable_wrapper table table-striped table-hover table-condensed table-responsive"><tbody><tr>
+<table class="table kable_wrapper table"><tbody><tr>
 <td>
 <table class="table">
 <thead><tr>
