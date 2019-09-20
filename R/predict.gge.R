@@ -75,9 +75,12 @@ predict.gge <- function(object, naxis = 2, output = "wide", ...) {
   rownames(pred) <- object$labelgen
   colnames(pred) <- object$labelenv
   if (output == "wide") {
-    return(t(pred))
+      return(as_tibble(t(pred), rownames = NA))
   }
   if (output == "long") {
-    return(make_long(t(pred)))
+    t(pred) %>%
+      make_long() %>%
+      as_tibble() %>%
+      return()
   }
 }
