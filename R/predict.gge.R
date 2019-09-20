@@ -75,11 +75,9 @@ predict.gge <- function(object, naxis = 2, output = "wide", ...) {
   rownames(pred) <- object$labelgen
   colnames(pred) <- object$labelenv
   if (output == "wide") {
-    return(pred)
+    return(t(pred))
   }
   if (output == "long") {
-    return(pred %>% as.data.frame() %>% rownames_to_column("GEN") %>%
-             gather(-GEN, key = "ENV", value = "Y") %>% select(ENV,
-                                                               everything()))
+    return(make_long(t(pred)))
   }
 }
