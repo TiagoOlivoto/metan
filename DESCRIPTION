@@ -2,6 +2,7 @@ Type: Package
 Package: metan
 Title: Multi Environment Trials Analysis
 Version: 1.0.0
+Year: 2019
 Authors@R: 
     person(given = "Tiago",
            family = "Olivoto",
