@@ -6,7 +6,7 @@
 #' @param .data The data. Should, preferentially, contain numeric variables
 #' only. If \code{.data} has factor-columns, these columns will be deleted with
 #' a warning message.
-#' @param ... Variables to use in the correlation. Set to \code{NULL}, i.e.,
+#' @param ... Variables to use in the correlation. If no variable is informed
 #' all the numeric variables from \code{.data} are used.
 #' @param upper The visualization method for the upper triangular correlation
 #' matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'} (the
@@ -128,7 +128,7 @@
 #'           pan.spacing = 0,
 #'           lab.position = 'tl')
 #'}
-corr_plot <- function(.data, ... = NULL, upper = "corr", lower = "scatter",
+corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
                       axis.labels = FALSE, show.labels.in = "show", size.axis.label = 12,
                       diag = TRUE, diag.type = "histogram", bins = 20, col.diag = "gray",
                       alpha.diag = 1, col.up.panel = "gray", col.lw.panel = "gray",

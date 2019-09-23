@@ -171,7 +171,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">data_out =<span class="st"> </span>data_ge2</a>
 <a class="sourceLine" id="cb2-2" title="2">data_out[<span class="dv">12</span>, <span class="dv">4</span>] =<span class="st"> </span><span class="dv">26</span></a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="../reference/find_outliers.html">find_outliers</a></span>(data_out, <span class="dt">var =</span> PH, <span class="dt">plots =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
 <pre><code>Number of possible outliers: 1 
 Lines: 12 
 Proportion: 0.6%
@@ -392,7 +392,7 @@ NKR x NKE
 <a class="sourceLine" id="cb11-4" title="4"><span class="st">       </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="co"># Don't show the result in the console</span></a></code></pre></div>
 <p>Using the <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> function, it is possible to compute a Mantel’s test <span class="citation">(Mantel <a href="#ref-Mantel1967">1967</a>)</span> for all pairwise correlation matrices of the above example.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">lpc2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">names =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"H"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">""</span>))</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-7-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-7-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>This same plot may be obtained by passing correlation matrices with the same dimension to an object of class <code>lpcor</code> and then applying the function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="../reference/as.lpcor.html">as.lpcor</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
 <a class="sourceLine" id="cb13-2" title="2">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
@@ -408,18 +408,18 @@ NKR x NKE
 <a class="sourceLine" id="cb13-12" title="12">               <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</a>
 <a class="sourceLine" id="cb13-13" title="13">               <span class="dt">main =</span> <span class="st">"My own plot"</span>,</a>
 <a class="sourceLine" id="cb13-14" title="14">               <span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-8-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-8-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="graphical-and-numerical-visualization-of-a-correlation-matrix" class="section level2">
 <h2 class="hasAnchor">
 <a href="#graphical-and-numerical-visualization-of-a-correlation-matrix" class="anchor"></a>Graphical and numerical visualization of a correlation matrix</h2>
 <p>The function <code><a href="../reference/corr_plot.html">corr_plot()</a></code> may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the <code><a href="https://rdrr.io/r/graphics/pairs.html">pairs()</a></code>base R function.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-9-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-9-1.png" width="528" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR,</a>
 <a class="sourceLine" id="cb15-2" title="2">          <span class="dt">lower =</span> <span class="ot">NULL</span>,</a>
 <a class="sourceLine" id="cb15-3" title="3">          <span class="dt">upper =</span> <span class="st">"corr"</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-9-2.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-9-2.png" width="528" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR,</a>
 <a class="sourceLine" id="cb16-2" title="2">          <span class="dt">shape.point =</span> <span class="dv">19</span>,</a>
 <a class="sourceLine" id="cb16-3" title="3">          <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
@@ -430,7 +430,7 @@ NKR x NKE
 <a class="sourceLine" id="cb16-8" title="8">          <span class="dt">col.sign =</span> <span class="st">"gray"</span>,</a>
 <a class="sourceLine" id="cb16-9" title="9">          <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</a>
 <a class="sourceLine" id="cb16-10" title="10">          <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-9-3.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-9-3.png" width="528" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR, CW, NKE,</a>
 <a class="sourceLine" id="cb17-2" title="2">          <span class="dt">prob =</span> <span class="fl">0.01</span>,</a>
 <a class="sourceLine" id="cb17-3" title="3">          <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
@@ -449,7 +449,7 @@ NKR x NKE
 <a class="sourceLine" id="cb17-16" title="16">          <span class="dt">col.dia.panel =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb17-17" title="17">          <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
 <a class="sourceLine" id="cb17-18" title="18">          <span class="dt">lab.position =</span> <span class="st">"tl"</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-9-4.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-9-4.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="covariance-and-correlations-for-designed-experiments" class="section level2">
 <h2 class="hasAnchor">
@@ -1414,7 +1414,7 @@ H9
 <a class="sourceLine" id="cb23-3" title="3"><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb23-4" title="4"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb23-5" title="5"><span class="kw"><a href="../reference/plot_ci.html">plot_ci</a></span>()</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>In the following examples, the confidence interval is calculated by declaring the sample size (n) and the correlation coefficient (r). If the function <code><a href="../reference/split_factors.html">split_factors()</a></code> is used before <code><a href="../reference/corr_ci.html">corr_ci()</a></code> then the confidence interval will be calculated within each level of the splitting factor.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Inform n and r</span></a>
 <a class="sourceLine" id="cb24-2" title="2"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">n =</span> <span class="dv">145</span>, <span class="dt">r =</span> <span class="fl">0.34</span>)</a></code></pre></div>
@@ -1830,7 +1830,7 @@ NR 0.4351188  0.29047403  0.18639351</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">d2 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">nclust =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p>The S3 generic function plot() may be used to plot the dendrogram generated by the function <code><a href="../reference/clustering.html">clustering()</a></code>. A dashed line is draw at the cutpoint suggested according to <span class="citation">Mojena (<a href="#ref-Mojena1977">1977</a>)</span>.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d2, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-29-1.png" width="528" style="display: block; margin: auto;"> According to the suggested cutpoint, two clusters are formed. The number of clusters may also be found using intensive computation. I suggest the package <a href="http://stat.sys.i.kyoto-u.ac.jp/prog/pvclust/">pcvlust</a>, an R package for assessing the uncertainty in hierarchical cluster analysis. The implementation may be see below.</p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-29-1.png" width="528" style="display: block; margin: auto;"> According to the suggested cutpoint, two clusters are formed. The number of clusters may also be found using intensive computation. I suggest the package <a href="http://stat.sys.i.kyoto-u.ac.jp/prog/pvclust/">pcvlust</a>, an R package for assessing the uncertainty in hierarchical cluster analysis. The implementation may be see below.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(pvclust)</a>
 <a class="sourceLine" id="cb58-2" title="2">pv_clust &lt;-<span class="st"> </span><span class="kw">pvclust</span>(<span class="kw"><a href="https://rdrr.io/r/base/t.html">t</a></span>(d2<span class="op">$</span>data), <span class="dt">nboot =</span> <span class="dv">100</span>, <span class="dt">method.dist =</span> <span class="st">"euclidean"</span>)</a></code></pre></div>
 <pre><code>Bootstrap (r = 0.47)... Done.
@@ -1845,7 +1845,7 @@ Bootstrap (r = 1.27)... Done.
 Bootstrap (r = 1.4)... Done.</code></pre>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(pv_clust, <span class="dt">hang =</span> <span class="dv">-1</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb60-2" title="2"><span class="kw">pvrect</span>(pv_clust, <span class="dt">alpha =</span> <span class="fl">0.95</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-30-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-30-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="indicating-the-variables-to-compute-the-distances" class="section level3">
 <h3 class="hasAnchor">
@@ -1911,7 +1911,7 @@ The variables included in this model were...
 <a class="sourceLine" id="cb64-4" title="4"><span class="st">  </span><span class="kw">branches_color</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb64-5" title="5"><span class="st">  </span><span class="kw">highlight_branches_lwd</span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb64-6" title="6"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">"Euclidean distance"</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-33-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-33-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="compute-the-distances-with-standardized-data" class="section level3">
 <h3 class="hasAnchor">
@@ -1944,7 +1944,7 @@ The variables included in this model were...
 <a href="#check-the-correlation-between-distance-matrices" class="anchor"></a>Check the correlation between distance matrices</h3>
 <p>The function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> may be used to check the relationships between the distance matrices when the clustering is performed for each level of a grouping factor. In this example, we have four distance matrices corresponding to four environments.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(d7, <span class="dt">names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"A3"</span>, <span class="st">"A4"</span>))</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-37-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-37-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>The highest degree of association (0.36) was observed between <strong>A1</strong> and <strong>A4</strong>. The low values of correlation between the distance matrices suggest that the genotype clustering should vary significantly among environments.</p>
 </div>
 </div>
@@ -2591,7 +2591,7 @@ H9
 <a class="sourceLine" id="cb71-4" title="4">              <span class="dt">rep =</span> REP,</a>
 <a class="sourceLine" id="cb71-5" title="5">              <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(ED, CW, KW, NKR, TKW, NKE)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb71-6" title="6"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>()</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-39-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-39-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="if-i-have-the-matrices-of-means-and-covariances" class="section level3">
 <h3 class="hasAnchor">
@@ -2620,7 +2620,7 @@ H9
 <a class="sourceLine" id="cb74-2" title="2"></a>
 <a class="sourceLine" id="cb74-3" title="3"><span class="co"># Dendrogram</span></a>
 <a class="sourceLine" id="cb74-4" title="4">D2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">as.dist</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>()</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_biometry_files/figure-html/unnamed-chunk-42-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-42-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>#References</p>
 <div id="refs" class="references">
 <div id="ref-Mantel1967">

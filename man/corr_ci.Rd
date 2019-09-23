@@ -43,7 +43,7 @@ library(metan)
 
 CI1 <- corr_ci(data_ge)
 
-CI2 <- data_ge \%>\%
+CI2 <- data_ge2 \%>\%
 split_factors(ENV) \%>\%
 corr_ci(CD, TKW, NKE)
 

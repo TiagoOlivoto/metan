@@ -254,9 +254,9 @@ estimator based on sample size and strength of association. Agron. J.
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='no'>CI1</span> <span class='kw'>&lt;-</span> <span class='fu'>corr_ci</span>(<span class='no'>data_ge</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='input'>
-<span class='no'>CI2</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+<span class='no'>CI2</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'>corr_ci</span>(<span class='no'>CD</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>)</div><div class='output co'>#&gt; <span class='message'>The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; <span class='error'>Error in .f(.x[[i]], ...): objeto 'CD' não encontrado</span></div><div class='input'>
+<span class='fu'>corr_ci</span>(<span class='no'>CD</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>)</div><div class='output co'>#&gt; <span class='message'>The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

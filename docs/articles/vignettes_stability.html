@@ -182,7 +182,7 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, ENV, GEN, GY)</a>
 <a class="sourceLine" id="cb3-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, ENV, GEN, GY) <span class="op">+</span><span class="st"> </span><span class="kw">theme_grey</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_stability_files/figure-html/unnamed-chunk-2-1.png" width="960"></p>
+<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-2-1.png" width="960"></p>
 </div>
 <div id="clustering-tester-locations" class="section level1">
 <h1 class="hasAnchor">
@@ -190,7 +190,7 @@
 <p>The function <code><a href="../reference/ge_cluster.html">ge_cluster()</a></code> computes a cluster analysis for grouping environments based on its similarities using an Euclidean distance based on standardized data. Line means are divided by the phenotypic standard error of the relevant environment after its mean has been subtracted. By standardizing the data each environment will have a mean of zero and unit variance, and the effect of variability in phenotypic variance (as well as the mean) should be reduced <span class="citation">(Fox and Rosielle <a href="#ref-Fox1982">1982</a>)</span>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">d1 =<span class="st"> </span><span class="kw"><a href="../reference/ge_cluster.html">ge_cluster</a></span>(data_ge, ENV, GEN, GY, <span class="dt">nclust =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d1, <span class="dt">nclust =</span> <span class="dv">4</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_stability_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="joint-regression-analysis" class="section level1">
 <h1 class="hasAnchor">
@@ -1541,7 +1541,7 @@ G9
 <p>A method that combines stability analysis and environmental stratification using factor analysis was proposed by <span class="citation">Murakami and Cruz (<a href="#ref-murakami2004">2004</a>)</span>. This method is implemented with the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>, as follows:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">fact =<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(data_ge, ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(fact<span class="op">$</span>GY)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_stability_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
+<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>PCA)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>

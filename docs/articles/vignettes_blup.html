@@ -203,9 +203,9 @@
 <a href="#diagnostic-plot-for-residuals" class="anchor"></a>Diagnostic plot for residuals</h2>
 <p>The function <code>autoplot()</code> is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using <code>type = "re"</code>. Please, see <code>?autoplot_WAASB</code> for more details.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">autoplot</span>(WAASB_model<span class="op">$</span>GY)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">autoplot</span>(WAASB_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="st">"re"</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="printing-the-model-outputs" class="section level2">
 <h2 class="hasAnchor">
@@ -1881,7 +1881,7 @@ H9
 <a class="sourceLine" id="cb14-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
 <a class="sourceLine" id="cb14-5" title="5"><span class="kw">plot_grid</span>(p1, p2,</a>
 <a class="sourceLine" id="cb14-6" title="6">          <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>This output shows the predicted means for genotypes. <strong>BLUPg</strong> is the genotypic effect <span class="math inline">\((\hat{g}_{i})\)</span>, which considering balanced data and genotype as random effect is estimated by</p>
 <p><span class="math display">\[
 \hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})
@@ -2345,7 +2345,7 @@ PC9
 </tbody>
 </table>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="../reference/plot_eigen.html">plot_eigen</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">size.lab =</span> <span class="dv">14</span>, <span class="dt">size.tex.lab =</span> <span class="dv">14</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-13-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-13-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>The above output shows the eigenvalues and the proportion of variance explained by each principal component axis of the BLUP interaction effects matrix.</p>
 <div id="phenotypic-means" class="section level3">
 <h3 class="hasAnchor">
@@ -2595,7 +2595,7 @@ G9
 <a class="sourceLine" id="cb19-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb19-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
 <a class="sourceLine" id="cb19-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-gy-x-pc1" class="section level3">
 <h3 class="hasAnchor">
@@ -2608,7 +2608,7 @@ G9
 <a class="sourceLine" id="cb20-6" title="6">                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))</a>
 <a class="sourceLine" id="cb20-7" title="7"></a>
 <a class="sourceLine" id="cb20-8" title="8"><span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-16-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-16-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-3-gy-x-waasb" class="section level3">
 <h3 class="hasAnchor">
@@ -2623,7 +2623,7 @@ G9
 <a class="sourceLine" id="cb21-7" title="7">                 <span class="dt">x.breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb21-8" title="8"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))</a>
 <a class="sourceLine" id="cb21-9" title="9"><span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-17-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-17-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>To obtain the WAASB index for a set of variables, the function <code><a href="../reference/get_model_data.html">get_model_data()</a></code> is used, as shown bellow.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge2, ENV, GEN, REP,</a>
 <a class="sourceLine" id="cb22-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, ED, TKW, NKR)) <span class="op">%&gt;%</span></a>
@@ -2882,7 +2882,7 @@ H9
 <a href="#biplot-type-4-nominal-yield-and-environment-ipca1" class="anchor"></a>biplot type 4 : nominal yield and environment IPCA1</h3>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(WAASB_model<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb24-2" title="2">            <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">size.tex.pa =</span> <span class="fl">1.5</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-19-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-19-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -2898,7 +2898,7 @@ waasby_i = \frac{{\left( {r {Y_i} \times {\theta _Y}} \right) + \left( {r {W_i} 
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASB_model<span class="op">$</span>GY)</a>
 <a class="sourceLine" id="cb25-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(WAASB_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
 <a class="sourceLine" id="cb25-3" title="3"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-20-1.png" width="960" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-20-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>In the following example, we will apply the function <code><a href="../reference/wsmp.html">wsmp()</a></code> to the previously fitted model <strong>WAASB_model</strong> aiming at planning different scenarios of <strong>waasby</strong> estimation by changing the weights assigned to the stability and the mean performance.vThe number of scenarios is defined by the arguments <code>increment</code>. By default, twenty-one different scenarios are computed. In this case, the the superiority index <strong>waasby</strong> is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">scenarios =<span class="st"> </span><span class="kw"><a href="../reference/wsmp.html">wsmp</a></span>(WAASB_model)</a></code></pre></div>
 <div id="printing-the-model-outputs-1" class="section level2">
@@ -4022,13 +4022,13 @@ G9
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waasb" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAASB</h3>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(scenarios<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-24-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-24-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="ranks-of-genotypes-depending-on-the-waasbgy-ratio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-waasbgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAASB/GY ratio</h3>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(scenarios<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-25-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-25-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -4553,7 +4553,7 @@ EH       1   1.343326   1.343326 3.234146e-10 2.407567e-08
 Selected genotypes
 H13 H6
 -----------------------------------------------------------------------------------</code></pre>
-<p><img src="../docs/articles/vignettes_blup_files/figure-html/unnamed-chunk-27-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_blup_files/figure-html/unnamed-chunk-27-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
