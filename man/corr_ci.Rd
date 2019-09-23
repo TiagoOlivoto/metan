@@ -4,11 +4,14 @@
 \alias{corr_ci}
 \title{Confidence interval for correlation coefficient}
 \usage{
-corr_ci(.data = NA, r = NULL, n = NULL, verbose = TRUE)
+corr_ci(.data = NA, ..., r = NULL, n = NULL, verbose = TRUE)
 }
 \arguments{
 \item{.data}{A dataset containing variables only or a symmetric correlation
 matrix.}
+
+\item{...}{Variables to compute the confidence interval. If not informed, all
+the numeric variables from \code{.data} are used.}
 
 \item{r}{If \code{data} is not available, provide the value for correlation
 coefficient.}
@@ -40,7 +43,9 @@ library(metan)
 
 CI1 <- corr_ci(data_ge)
 
-CI2 <- data_ge \%>\% split_factors(ENV) \%>\% corr_ci()
+CI2 <- data_ge \%>\%
+split_factors(ENV) \%>\%
+corr_ci(CD, TKW, NKE)
 
 }
 \references{

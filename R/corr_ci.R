@@ -11,6 +11,8 @@
 #'
 #' @param .data A dataset containing variables only or a symmetric correlation
 #' matrix.
+#' @param ... Variables to compute the confidence interval. If not informed, all
+#' the numeric variables from \code{.data} are used.
 #' @param r If \code{data} is not available, provide the value for correlation
 #' coefficient.
 #' @param n The sample size if \code{data} is a correlation matrix or if r is
@@ -33,9 +35,11 @@
 #'
 #' CI1 <- corr_ci(data_ge)
 #'
-#' CI2 <- data_ge %>% split_factors(ENV) %>% corr_ci()
+#' CI2 <- data_ge %>%
+#' split_factors(ENV) %>%
+#' corr_ci(CD, TKW, NKE)
 #'
-corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
+corr_ci <- function(.data = NA, ..., r = NULL, n = NULL, verbose = TRUE) {
   if (any(!is.na(.data))) {
     if (!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)) {
       stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
@@ -68,16 +72,36 @@ corr_ci <- function(.data = NA, r = NULL, n = NULL, verbose = TRUE) {
       out <- internal(.data)
     }
     if (any(class(.data) == "split_factors")) {
-      out <- lapply(seq_along(.data), function(x) {
-        internal(.data[[x]])
+      if (missing(...)) {
+        data <- lapply(.data, function(x){
+          select_if(x, is.numeric)
+        })
+      }
+      if (!missing(...)) {
+        data <- lapply(.data, function(x){
+          dplyr::select(x, ...)
+        })
+      }
+      out <- lapply(seq_along(data), function(x) {
+        internal(data[[x]])
       })
-      names(out) = names(.data)
-      return(out)
+      names(out) = names(data)
+      df = do.call(rbind, lapply(out, function(x){
+        x
+      })) %>%
+        arrange(Pair) %>%
+        mutate(LEVEL = paste(rep(names(out), nrow(out[[1]])))) %>%
+        arrange(LEVEL) %>%
+        select(LEVEL, everything())
+      return(df)
     }
     if (is.data.frame(.data)) {
-      if (sum(lapply(.data, is.factor) == TRUE) > 0) {
+      if (missing(...)) {
+        data <- select_if(.data, is.numeric)
       }
-      data <- data.frame(.data[, unlist(lapply(.data, is.numeric))])
+      if (!missing(...)) {
+        data <- dplyr::select(.data, ...)
+      }
       out <- internal(data)
       if (verbose == TRUE) {
         message("The factors ", paste0(collapse = " ",
