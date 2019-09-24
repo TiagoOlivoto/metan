@@ -9,7 +9,7 @@
 #' @param values An alternative way to pass the data to the function. It must be a numeric
 #' vector.
 #' @param stats The descriptive statistics to show. Defaults to \code{NULL} (all statistics shown).
-#'  It must be one of the \code{'AV.dev'} (average deviation),
+#'  It must be one or more of the following: \code{'AV.dev'} (average deviation),
 #' \code{'CI.mean'} (confidence interval for the mean), \code{'CV'} (coefficient of variation),
 #' \code{'IQR'} (interquartile range), \code{'Kurt'} (kurtosis), \code{'max'} (maximum value),
 #' \code{'mean'} (arithmetic mean), \code{'median'} (median), \code{'min'} (minimum value),
