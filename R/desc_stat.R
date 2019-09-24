@@ -17,11 +17,14 @@
 #'  \code{'norm.stat'} (the statistic for the Shapiro-Wilk test), \code{'Q2.5'} (the percentile 2.5%),
 #'  \code{'Q25'} (the first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the percentile 97.5%),
 #'  \code{range} (The range of data), \code{'SD.amo'} (the sample standard deviation), \code{'SD.pop'} (the population standard deviation),
-#'  \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the skewness), \code{'var.amo'} (the sample variance),
+#'  \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the skewness), \code{sum} (the sum of the values),
+#'  \code{sum.dev} (the sum of the absolute deviations), \code{sum.sq.dev} (the sum of the squared deviations),
+#'  \code{valid.n} (The size of sample with valid number (not NA), \code{'var.amo'} (the sample variance),
 #'  \code{'var.pop'} (the population variance). Use a comma-separated vector of names to select the statistics.
 #'  For example, \code{stats = c("media, mean, CV, n")}.
 #' @param level The confidence level to compute the confidence interval of mean. Defaults to 0.95.
-#' @param digits The number of significant figures.
+#' @param digits The number of significant digits.
+#' @param na.rm Logical. Should missing values be removed?
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code is run silently.
 #' @return A tibble with the statistics in the lines and variables in columns. If
 #' \code{.data} is an object of class \code{split_factors}, then the statistics will be
@@ -33,6 +36,7 @@
 #' @examples
 #' library(metan)
 #' library(dplyr)
+#'
 #' desc1 <- data_ge2 %>% desc_stat(TKW)
 #'
 #' vect <- data_ge2 %>%
@@ -41,7 +45,10 @@
 #'
 #' desc2 <- desc_stat(values = vect)
 #'
-#' desc3 <-
+#' desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
+#'           na.rm = TRUE,
+#'           stats = c('mean, SE.mean, CV, n, valid.n'))
+#'
 #' data_ge2 %>%
 #'   split_factors(ENV) %>%
 #'   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
@@ -49,15 +56,15 @@
 #'   verbose = FALSE)
 #'
 desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
-                      level = 0.95, digits = 4, verbose = TRUE) {
-  test = c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean", "median", "min", "range", "n", "norm.pval", "norm.stat", "Q2.5", "Q25", "Q75", "Q97.5", "SD.amo", "SD.pop", "SE.mean", "skew", "var.amo", "var.pop")
+                      level = 0.95, digits = 4, na.rm = FALSE, verbose = TRUE) {
+  test = c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean", "median", "min", "n", "norm.pval", "norm.stat", "Q2.5", "Q25", "Q75", "Q97.5", "range", "SD.amo", "SD.pop", "SE.mean", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
   if(!missing(stats)){
     stats = unlist(strsplit(stats, split=", "))
   } else {
     stats = unlist(strsplit(test, split=", "))
   }
   if (any(!stats %in% test) == TRUE) {
-    stop("Invalid value for the argument 'stat'. Allowed values are one of the AV.dev, CI.mean, CV, IQR, Kurt, max, mean, median, min, range, n, norm.pval, norm.stat, Q2.5, Q25, Q75, Q97.5, SD.amo, SD.pop, SE.mean, skew, var.amo, and var.pop. Did you accidentally omit the space between the comma and the following word?")
+    stop("Invalid value for the argument 'stat'. Allowed values are one of the AV.dev, CI.mean, CV, IQR, Kurt, max, mean, median, min, n, norm.pval, norm.stat, Q2.5, Q25, Q75, Q97.5, range, SD.amo, SD.pop, SE.mean, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop. Did you accidentally omit the space between the comma and the following word?")
   }
   if (!missing(.data) & !missing(values)) {
     stop("You can not inform a vector of values if a data frame is used as imput.")
@@ -70,40 +77,49 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
   }
   # Helper functions
   var_p <- function(x) {
-    sum((x - mean(x))^2)/length(x)
+    sum((x - mean(x, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(x)))
   }
   range_data <- function(x){
-    max(x) - min(x)
+    max(x, na.rm = na.rm) - min(x, na.rm = na.rm)
   }
   var_a <- function(x) {
-    sum((x - mean(x))^2)/(length(x) - 1)
+    sum((x - mean(x, na.rm = na.rm))^2, na.rm = na.rm) / (length(which(!is.na(x))) - 1)
   }
   sd_p <- function(x) {
-    sqrt(sum((x - mean(x))^2)/length(x))
+    sqrt(sum((x - mean(x, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(x))))
   }
   AV_dev <- function(x) {
-    sum(abs(x - mean(x)))/length(x)
+    sum(abs(x - mean(x, na.rm = na.rm)), na.rm = na.rm) / length(which(!is.na(x)))
+  }
+  sum_dev <- function(x) {
+    sum(abs(x - mean(x, na.rm = na.rm)), na.rm = na.rm)
+  }
+  sum_sq_dev <- function(x) {
+    sum((x - mean(x, na.rm = na.rm))^2, na.rm = na.rm)
   }
   SE_mean <- function(x) {
-    sd(x)/sqrt(length(x))
+    sd(x, na.rm = na.rm) / sqrt(length(which(!is.na(x))))
   }
   CI_mean <- function(x, level = 0.95) {
-    qt((0.5 + level/2), (length(x) - 1)) * sd(x)/sqrt(length(x))
+    qt((0.5 + level/2), (length(which(!is.na(x))) - 1)) * sd(x, na.rm = na.rm)/sqrt(length(which(!is.na(x))))
   }
   CV <- function(x) {
-    sd(x)/mean(x) * 100
+    sd(x, na.rm = na.rm)/mean(x, na.rm = na.rm) * 100
   }
   skew <- function(x) {
-    sum((x - mean(x))^3)/(length(x) * sqrt(var_a(x))^3)
+    sum((x - mean(x, na.rm = na.rm))^3, na.rm = na.rm)/(length(which(!is.na(x))) * sqrt(var_a(x))^3)
   }
   Kurt <- function(x) {
-    sum((x - mean(x))^4)/(length(x) * var_a(x)^2) - 3
+    sum((x - mean(x, na.rm = na.rm))^4, na.rm = na.rm)/(length(which(!is.na(x))) * var_a(x)^2) - 3
   }
   norm_st <- function(x) {
     shapiro.test(x)[[1]]
   }
   norm_pv <- function(x) {
     shapiro.test(x)[[2]]
+  }
+  valid_n <- function(x){
+    length(which(!is.na(x)))
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
@@ -117,14 +133,18 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
         cat(nam, "\n")
         cat("---------------------------------------------------------------------------\n")
       }
-      data %<>% summarise_all(funs(n = n(), mean = mean, range = range_data, min = min,
-                                   Q2.5 = quantile(., 0.025), Q25 = quantile(., 0.25), median = median,
-                                   Q75 = quantile(., 0.75), Q97.5 = quantile(., 0.975), max = max,
-                                   IQR = IQR, AV.dev = AV_dev, var.pop = var_p, var.amo = var_a,
-                                   SD.pop = sd_p, SD.amo = sd, SE.mean = SE_mean, CI.mean = CI_mean,
-                                   skew = skew, Kurt = Kurt, norm.stat = norm_st, norm.pval = norm_pv,
-                                   CV = CV))
-      if (ncol(data) > 23) {
+      if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){
+        stop("NAs values in data. Set the argument 'na.rm' to TRUE to compute the statistics removing missing values.")
+      }
+      data %<>% summarise_all(funs(n = n(), valid.n = valid_n, mean = mean(., na.rm = na.rm), range = range_data,
+                                   min = min(., na.rm = na.rm), Q2.5 = quantile(., 0.025, na.rm = na.rm),
+                                   Q25 = quantile(., 0.25, na.rm = na.rm), median = median(., na.rm = na.rm),
+                                   Q75 = quantile(., 0.75, na.rm = na.rm), Q97.5 = quantile(., 0.975, na.rm = na.rm),
+                                   max = max(., na.rm = na.rm), IQR = IQR(., na.rm = na.rm), AV.dev = AV_dev,
+                                   var.pop = var_p, var.amo = var_a, SD.pop = sd_p, SD.amo = sd(., na.rm = na.rm),
+                                   SE.mean = SE_mean, CI.mean = CI_mean, skew = skew, Kurt = Kurt, norm.stat = norm_st,
+                                   norm.pval = norm_pv, CV = CV, sum = sum(., na.rm = na.rm), sum.dev = sum_dev, sum.sq.dev = sum_sq_dev))
+      if (ncol(data) > 27) {
         statistics <- suppressWarnings(data %>% gather(stat, val) %>%
                                          separate(stat, into = c("var", "stat"), sep = "_") %>%
                                          make_mat(stat, var, val) %>%
@@ -136,7 +156,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
           print(statistics, digits = digits, row.names = FALSE)
         }
       }
-      if (ncol(data) == 23) {
+      if (ncol(data) == 27) {
         statistics <- t(data) %>%
           as_tibble(rownames = NA) %>%
           rownames_to_column("Statistic") %>%
@@ -157,17 +177,26 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
     invisible(df)
   } else {
     if (is.null(values) == FALSE) {
+      if(!is.vector(values)){
+        stop("The data in 'values' must be a numeric vector. Please check and fix.")
+      }
       data <- data.frame(values)
     } else {
       data <- dplyr::select(.data, ...)
     }
-    data %<>% summarise_all(funs(n = n(), mean = mean, range = range_data, min = min, Q2.5 = quantile(.,
-                                                                                  0.025), Q25 = quantile(., 0.25), median = median, Q75 = quantile(.,
-                                                                                                                                                   0.75), Q97.5 = quantile(., 0.975), max = max, IQR = IQR, AV.dev = AV_dev,
-                                 var.pop = var_p, var.amo = var_a, SD.pop = sd_p, SD.amo = sd,
-                                 SE.mean = SE_mean, CI.mean = CI_mean, skew = skew, Kurt = Kurt,
-                                 norm.stat = norm_st, norm.pval = norm_pv, CV = CV))
-    if (ncol(data) > 23) {
+    if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){
+      stop("NAs values in data. Set the argument 'na.rm' to TRUE to compute the statistics removing missing values.")
+    }
+    data %<>% summarise_all(funs(n = n(), valid.n = valid_n, mean = mean(., na.rm = na.rm), range = range_data,
+                                 min = min(., na.rm = na.rm), Q2.5 = quantile(., 0.025, na.rm = na.rm),
+                                 Q25 = quantile(., 0.25, na.rm = na.rm), median = median(., na.rm = na.rm),
+                                 Q75 = quantile(., 0.75, na.rm = na.rm), Q97.5 = quantile(., 0.975, na.rm = na.rm),
+                                 max = max(., na.rm = na.rm), IQR = IQR(., na.rm = na.rm), AV.dev = AV_dev,
+                                 var.pop = var_p, var.amo = var_a, SD.pop = sd_p, SD.amo = sd(., na.rm = na.rm),
+                                 SE.mean = SE_mean, CI.mean = CI_mean, skew = skew, Kurt = Kurt, norm.stat = norm_st,
+                                 norm.pval = norm_pv, CV = CV, sum = sum(., na.rm = na.rm), sum.dev = sum_dev, sum.sq.dev = sum_sq_dev))
+
+    if (ncol(data) > 27) {
       statistics <- suppressWarnings(data %>% gather(stat, val) %>%
                                        separate(stat, into = c("var", "stat"), sep = "_") %>%
                                        make_mat(stat, var, val) %>%
@@ -175,13 +204,12 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
                                        rownames_to_column("Statistic") %>%
                                        dplyr::filter(Statistic %in% stats))
     }
-    if (ncol(data) == 23) {
+    if (ncol(data) == 27) {
       statistics <- t(data) %>%
         as_tibble(rownames = NA) %>%
         rownames_to_column("Statistic") %>%
         dplyr::filter(Statistic %in% stats)
       names(statistics)[2] <- quo_text(quo(...))
-
     }
     if(verbose == TRUE){
     print(statistics, digits = digits, row.names = FALSE)

@@ -5,7 +5,7 @@
 \title{Descriptive statistics}
 \usage{
 desc_stat(.data = NULL, ..., values = NULL, stats = NULL,
-  level = 0.95, digits = 4, verbose = TRUE)
+  level = 0.95, digits = 4, na.rm = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
@@ -25,13 +25,17 @@ vector.}
  \code{'norm.stat'} (the statistic for the Shapiro-Wilk test), \code{'Q2.5'} (the percentile 2.5%),
  \code{'Q25'} (the first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the percentile 97.5%),
  \code{range} (The range of data), \code{'SD.amo'} (the sample standard deviation), \code{'SD.pop'} (the population standard deviation),
- \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the skewness), \code{'var.amo'} (the sample variance),
+ \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the skewness), \code{sum} (the sum of the values),
+ \code{sum.dev} (the sum of the absolute deviations), \code{sum.sq.dev} (the sum of the squared deviations),
+ \code{valid.n} (The size of sample with valid number (not NA), \code{'var.amo'} (the sample variance),
  \code{'var.pop'} (the population variance). Use a comma-separated vector of names to select the statistics.
  For example, \code{stats = c("media, mean, CV, n")}.}
 
 \item{level}{The confidence level to compute the confidence interval of mean. Defaults to 0.95.}
 
-\item{digits}{The number of significant figures.}
+\item{digits}{The number of significant digits.}
+
+\item{na.rm}{Logical. Should missing values be removed?}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run silently.}
 }
@@ -46,6 +50,7 @@ Compute the most used measures of central tendency, position, and dispersion.
 \examples{
 library(metan)
 library(dplyr)
+
 desc1 <- data_ge2 \%>\% desc_stat(TKW)
 
 vect <- data_ge2 \%>\%
@@ -54,7 +59,10 @@ vect <- data_ge2 \%>\%
 
 desc2 <- desc_stat(values = vect)
 
-desc3 <-
+desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
+          na.rm = TRUE,
+          stats = c('mean, SE.mean, CV, n, valid.n'))
+
 data_ge2 \%>\%
   split_factors(ENV) \%>\%
   desc_stat(EP, EL, PH, CL, CW, NR, NKR,
