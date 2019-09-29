@@ -18,7 +18,7 @@ to the working directory}
 \item{digits}{The significant digits to be shown.}
 
 \item{...}{Options used by the tibble package to format the output.
-See \code{\link{tibble::trunc_mat}} for more details.}
+See \code{\link[tibble]{trunc_mat}} for more details.}
 }
 \description{
 Print a \code{mtsi} object in two ways. By default, the results are shown

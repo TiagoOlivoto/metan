@@ -45,7 +45,7 @@ Ann = Annicchiarico(data_ge2,
                    gen = GEN,
                    rep = REP,
                    resp = PH)
-summary(Ann)
+print(Ann)
 
 
 }
