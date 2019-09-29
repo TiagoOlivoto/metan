@@ -195,8 +195,9 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             }
             Complete <- lmerTest::lmer(data = data, Y ~ GEN + (1 | ENV/REP) + (1 |
                                                                                    GEN:ENV))
-            LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
-            rownames(LRT) <- c("Complete", "Env/Rep", "Env", "Gen vs Env")
+            LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
+                mutate(model = c("Complete", "Env/Rep", "Env", "Gen:Env")) %>%
+                select(model, everything())
             random = lme4::VarCorr(Complete) %>%
                 as.data.frame() %>%
                 select(1, 4) %>%
@@ -212,17 +213,14 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             GEVper <- (GEV/FV) * 100
             RVper <- (RV/FV) * 100
             BEVper <- (BEV/FV) * 100
-            GEV <- paste0(round(GEV, 6), " (", round(GEVper, 2), "% of phenotypic variance.)")
-            ENVIR <- paste0(round(ENVIR, 6), " (", round(ENVper, 2), "% of phenotypic variance.)")
-            RV <- paste0(round(RV, 6), " (", round(RVper, 2), "% of phenotypic variance.)")
-            BEV <- paste0(round(BEV, 6), " (", round(BEVper, 2), "% of phenotypic variance.)")
-            ESTIMATES <- list(GEV = GEV, ENVIR = ENVIR, RV = RV, BEV = BEV, FV = FV)
-            ESTIMATES <- do.call(rbind.data.frame, ESTIMATES)
-            names(ESTIMATES) <- "Values"
-            ESTIMATES <- dplyr::mutate(ESTIMATES, Parameters = c("GEI variance", "Environment variance",
-                                                                 "Residual variance", "Env/block variance",
-                                                                 "Phenotypic variance")) %>%
-                dplyr::select(Parameters, everything())
+            ESTIMATES <- tibble(
+                Parameters = c("GEI variance", "GEI(%)", "Environment variance", "ENV(%)",
+                                               "Residual variance", "Res(%)", "Env/block variance",
+                                               "Env/block(%)", "Phenotypic variance"),
+                Values = c(GEV, GEVper, ENVIR, ENVper, RV, RVper, BEV, BEVper, FV)
+
+            )
+
             bups <- lme4::ranef(Complete)
             blups <- data.frame(Names = rownames(bups$`GEN:ENV`))
             blups = blups %>%
@@ -327,11 +325,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                                    PCA = as_tibble(Eigenvalue),
                                    MeansGxE = as_tibble(MEDIAS),
                                    Details = as_tibble(Details),
-                                   ESTIMATES = as_tibble(ESTIMATES),
+                                   ESTIMATES = ESTIMATES,
                                    residuals = as_tibble(residuals)), class = "waasb")
-
-
-
             if (length(d$resp) > 1) {
                 if (verbose == TRUE) {
                     cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
@@ -342,7 +337,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 listres[[paste(d$resp)]] <- temp
             }
         }
-    } else if (random == "gen") {
+    } else if(random == "gen") {
         for (var in 2:length(d$resp)) {
             if (length(d$resp) > 1) {
                 Y <- eval(substitute(resp)[[var]], eval(datain))
@@ -369,9 +364,10 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             }
             Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(data = data,
                                                                          Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV))))
-            LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
+            LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
+                mutate(model = c("Complete", "Genotype", "Gen:Env")) %>%
+                select(model, everything())
             fixed <- anova(Complete)
-            rownames(LRT) <- c("Complete", "Genotype", "Gen vs Env")
             random = lme4::VarCorr(Complete) %>%
                 as.data.frame() %>%
                 select(1, 4) %>%
@@ -395,17 +391,11 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             GEVper <- (GEV/FV) * 100
             GVper <- (GV/FV) * 100
             RVper <- (RV/FV) * 100
-            GEV <- paste0(round(GEV, 6), " (", round(GEVper, 2), "% of phenotypic variance.)")
-            GV <- paste0(round(GV, 6), " (", round(GVper, 2), "% of phenotypic variance.)")
-            RV <- paste0(round(RV, 6), " (", round(RVper, 2), "% of phenotypic variance.)")
-            ESTIMATES <- list(GEV = GEV, GV = GV, RV = RV, FV = FV, h2g = h2g, GEr2 = GEr2,
-                              h2mg = h2mg, AccuGen = AccuGen, rge = rge, CVg = CVg, CVr = CVr, CVratio = CVratio)
-            ESTIMATES <- do.call(rbind.data.frame, ESTIMATES)
-            names(ESTIMATES) <- "Values"
-            ESTIMATES <- dplyr::mutate(ESTIMATES, Parameters = c("GEI variance", "Genotypic variance",
-                                                                 "Residual variance", "Phenotypic variance", "Heritability", "GEIr2",
-                                                                 "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio"))
-            ESTIMATES <- ESTIMATES %>% dplyr::select(Parameters, everything())
+            ESTIMATES <- tibble(Parameters = c("GEI variance", "GEI (%)", "Genotypic variance", "Gen (%)", "Residual variance",
+                                               "Res (%)", "Phenotypic variance", "Heritability", "GEIr2", "Heribatility of means",
+                                               "Accuracy", "rge", "CVg", "CVr", "CV ratio"),
+                                Values = c(GEV, GEVper, GV, GVper, RV, RVper, FV, h2g, GEr2, h2mg, AccuGen, rge, CVg, CVr, CVratio))
+
             bups <- lme4::ranef(Complete)
             blups <- data.frame(Names = rownames(bups$`GEN:ENV`))
             blups = blups %>%
@@ -560,8 +550,9 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 individual = NULL
             }
             Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ 1 + (1 | GEN) + (1 | ENV/REP) + (1 | GEN:ENV), data = data)))
-            LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE)
-            rownames(LRT) <- c("Complete", "Genotype", "Env/Rep", "Environment", "Gen:Env")
+            LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
+                mutate(model = c("Complete", "Genotype", "Env/Rep", "Environment", "Gen:Env")) %>%
+                select(model, everything())
             random = lme4::VarCorr(Complete) %>%
                 as.data.frame() %>%
                 select(1, 4) %>%
@@ -588,20 +579,13 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             GVper <- (GV/FV) * 100
             RVper <- (RV/FV) * 100
             EVper <- (EV/FV) * 100
-            GEV <- paste0(round(GEV, 6), " (", round(GEVper, 2), "% of phenotypic variance.)")
-            GV <- paste0(round(GV, 6), " (", round(GVper, 2), "% of phenotypic variance.)")
-            RV <- paste0(round(RV, 6), " (", round(RVper, 2), "% of phenotypic variance.)")
-            EV <- paste0(round(EV, 6), " (", round(EVper, 2), "% of phenotypic variance.)")
-            ESTIMATES <- list(GEV = GEV, GV = GV, EV = EV, RV = RV, FV = FV, h2g = h2g,
-                              GEr2 = GEr2, h2mg = h2mg, AccuGen = AccuGen, rge = rge, CVg = CVg,
-                              CVr = CVr, CVratio = CVratio)
-            ESTIMATES <- do.call(rbind.data.frame, ESTIMATES)
-            names(ESTIMATES) <- "Values"
-            ESTIMATES <- dplyr::mutate(ESTIMATES, Parameters = c("GEI variance", "Genotypic variance",
-                                                                 "Environmental variance", "Residual variance", "Phenotypic variance",
-                                                                 "Heritability", "GEIr2", "Heribatility of means", "Accuracy", "rge",
-                                                                 "CVg", "CVr", "CV ratio")) %>%
-                dplyr::select(Parameters, everything())
+            BWEper <- (BWE/FV) * 100
+            ESTIMATES <- tibble(Parameters = c("GEI variance", "GEI (%)",  "Genotypic variance", "Gen (%)",
+                                               "Environmental variance", "Env (%)", "Block/Env", "Block/Env (%)",
+                                               "Residual variance", "Res (%)", "Phenotypic variance", "Heritability",
+                                               "GEIr2", "Heribatility of means", "Accuracy", "rge", "CVg", "CVr", "CV ratio"),
+                                Values = c(GEV, GEVper, GV, GVper, EV, EVper, BWE, BWEper, RV, RVper, FV, h2g, GEr2,
+                                           h2mg, AccuGen, rge, CVg, CVr, CVratio))
             bups <- lme4::ranef(Complete)
             blups <- data.frame(Names = rownames(bups$`GEN:ENV`))
             blups = blups %>%
@@ -743,12 +727,12 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
     }
     if (verbose == TRUE) {
         if (length(which(unlist(lapply(listres, function(x) {
-            x[["LRT"]][3, 6]
+            x[["LRT"]] %>% dplyr::filter(model == "Gen:Env") %>% pull(`Pr(>Chisq)`)
         })) > prob)) > 0) {
             cat("------------------------------------------------------------\n")
             cat("Variables with nonsignificant GxE interaction\n")
             cat(names(which(unlist(lapply(listres, function(x) {
-                pull(x[["LRT"]][3, 6])
+                pull(x[["LRT"]][3, 7])
             })) > prob)), "\n")
             cat("------------------------------------------------------------\n")
         }
