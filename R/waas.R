@@ -263,9 +263,15 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                                                      "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"))%>%
         dplyr::select(Parameters, everything())
 
-    temp <- structure(list(individual = individual[[1]], model = WAASAbs, MeansGxE = MeansGxE,
-                           PCA = PC, anova = anova, Details = Details, residuals = model$residuals,
-                           probint = model$probint), class = "waas")
+    temp <- structure(list(individual = individual[[1]],
+                           model = WAASAbs,
+                           MeansGxE = MeansGxE,
+                           PCA = as_tibble(PC, rownames = NA),
+                           anova = as_tibble(anova, rownames = NA),
+                           Details = as_tibble(Details, rownames = NA),
+                           residuals = as_tibble(model$residuals, rownames = NA),
+                           probint = model$probint),
+                      class = "waas")
 
             if (length(d$resp) > 1) {
                 listres[[paste(d$resp[var])]] <- temp
