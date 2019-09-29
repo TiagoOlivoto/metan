@@ -157,15 +157,16 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1,
   }))
   names(MSA) <- colnames(means)
   colnames(A) <- paste("FA", 1:ncol(initial.loadings), sep = "")
-  variance <- (eigen.values/sum(eigen.values)) * 100
-  cumulative.var <- cumsum(eigen.values/sum(eigen.values)) *
-    100
-  pca <- cbind(eigen.values, variance, cumulative.var)
-  colnames(pca) <- c("Eigenvalues", "Variance (%)", "Cum. variance (%)")
-  rownames(pca) <- paste("PC", 1:ncol(means), sep = "")
+
+  pca <- tibble(PC = paste("PC", 1:ncol(means), sep = ""),
+                Eigenvalues = eigen.values,
+                `Variance (%)` = (eigen.values/sum(eigen.values)) * 100,
+                `Cum. variance (%)` = cumsum(`Variance (%)`))
+
+
   Communality <- diag(A %*% t(A))
   Uniquenesses <- 1 - Communality
-  fa <- cbind(A, Communality, Uniquenesses)
+  fa <- cbind(A, Communality, Uniquenesses) %>% as_tibble(rownames = NA) %>%  rownames_to_column("VAR")
   z <- scale(means, center = FALSE, scale = apply(means, 2, sd))
   canonical.loadings <- t(t(A) %*% solve(cor.means))
   scores <- z %*% canonical.loadings
@@ -190,27 +191,26 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1,
   gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
   MTSI <- sort(apply(gen_ide, 1, function(x) sqrt(sum(x^2))),
                decreasing = FALSE)
-  contr.factor <- (gen_ide^2/apply(gen_ide, 1, function(x) sum(x^2))) *
-    100
+  contr.factor <- data.frame((gen_ide^2/apply(gen_ide, 1, function(x) sum(x^2))) *    100) %>%
+    rownames_to_column("Gen") %>%
+    as_tibble()
   means.factor <- means[, names.pos.var.factor]
   observed <- observed[, names.pos.var.factor]
   if (!is.null(ngs)) {
-    sel.dif <- data.frame(cbind(Factor = pos.var.factor[,
-                                                                      2], Xo = colMeans(means.factor), Xs = colMeans(means.factor[names(MTSI)[1:ngs],
-                                                                                                                                  ]), SD = colMeans(means.factor[names(MTSI)[1:ngs],
-                                                                                                                                                                 ]) - colMeans(means.factor), SDperc = (colMeans(means.factor[names(MTSI)[1:ngs],
-                                                                                                                                                                                                                              ]) - colMeans(means.factor))/colMeans(means.factor) *
-                                                100))
-    sel.dif[, 1] <- paste("FA", sel.dif[,
-                                                                    1], sep = "")
-    mean_sd_ind <- apply(sel.dif[, 2:5], 2,
-                         mean)
-    sel.dif.mean <- data.frame(cbind(Factor = pos.var.factor[,
-                                                             2], Xo = colMeans(observed), Xs = colMeans(observed[names(MTSI)[1:ngs],
-                                                                                                                 ]), SD = colMeans(observed[names(MTSI)[1:ngs], ]) -
-                                       colMeans(observed), SDperc = (colMeans(observed[names(MTSI)[1:ngs],
-                                                                                       ]) - colMeans(observed))/colMeans(observed) * 100))
-    sel.dif.mean[, 1] <- paste("FA", sel.dif.mean[, 1], sep = "")
+
+    sel.dif <- tibble(VAR = names(pos.var.factor[, 2]),
+                      Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
+                      Xo = colMeans(means.factor),
+                      Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]),
+                      SD = Xs - Xo,
+                      SDperc = (Xs - Xo) / Xo * 100)
+    mean_sd_ind <- apply(sel.dif[, 3:6], 2, mean)
+    sel.dif.mean <- tibble(VAR = names(pos.var.factor[, 2]),
+                           Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
+                           xo = colMeans(observed),
+                           Xs = colMeans(observed[names(MTSI)[1:ngs], ]),
+                           SD = Xs - colMeans(observed),
+                           SDperc = (Xs - colMeans(observed)) / colMeans(observed) * 100)
   }
   if (is.null(ngs)) {
     sel.dif <- NULL
@@ -250,13 +250,24 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1,
       cat("\n-------------------------------------------------------------------------------\n")
     }
   }
-  return(structure(list(data = data, cormat = as.matrix(cor.means),
-                        PCA = data.frame(pca), FA = data.frame(fa), KMO = KMO,
-                        MSA = MSA, communalities = Communality, communalities.mean = mean(Communality),
-                        initial.loadings = initial.loadings, finish.loadings = A,
-                        canonical.loadings = canonical.loadings, scores.gen = scores,
-                        scores.ide = ideotypes.scores, MTSI = MTSI, contri.fac = data.frame(contr.factor),
-                        sel.dif = sel.dif, mean.sd = mean_sd_ind,
-                        sel.dif.var = sel.dif.mean, Selected = names(MTSI)[1:ngs]),
+  return(structure(list(data = as_tibble(data),
+                        cormat = as.matrix(cor.means),
+                        PCA = pca,
+                        FA = fa,
+                        KMO = KMO,
+                        MSA = MSA,
+                        communalities = Communality,
+                        communalities.mean = mean(Communality),
+                        initial.loadings = data.frame(initial.loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
+                        finish.loadings = data.frame(A) %>% rownames_to_column("VAR") %>% as_tibble(),
+                        canonical.loadings = data.frame(canonical.loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
+                        scores.gen = data.frame(scores) %>% rownames_to_column("GEN") %>% as_tibble(),
+                        scores.ide = data.frame(ideotypes.scores) %>% rownames_to_column("GEN") %>% as_tibble(),
+                        MTSI = MTSI,
+                        contri.fac = contr.factor,
+                        sel.dif = sel.dif,
+                        mean.sd = mean_sd_ind,
+                        sel.dif.var = sel.dif.mean,
+                        Selected = names(MTSI)[1:ngs]),
                    class = "mtsi"))
 }

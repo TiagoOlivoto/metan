@@ -35,7 +35,7 @@
 #'                    gen = GEN,
 #'                    rep = REP,
 #'                    resp = PH)
-#' summary(Ann)
+#' print(Ann)
 #'
 #'
 Annicchiarico <- function(.data, env, gen, rep, resp, prob = 0.05,

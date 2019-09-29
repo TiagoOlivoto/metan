@@ -250,11 +250,19 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         last <- abs[order(abs[, "weight"], decreasing = T),
                     , drop = FALSE]
         weightvarname <- paste(rownames(last), collapse = " > ")
-        temp <- structure(list(Corr.x = data.frame(cor.x),
-                               Corr.y = data.frame(cor.y), Coefficients = data.frame(t(Coeff)),
-                               Eigen = AvAvet, VIF = VIF, plot = p1, Predictors = names(pr),
-                               CN = NC, Det = Det, R2 = R2, Residual = Residual,
-                               Response = resp, weightvar = weightvarname),
+        temp <- structure(list(Corr.x = as_tibble(cor.x, rownames = NA),
+                               Corr.y = as_tibble(cor.y, rownames = NA),
+                               Coefficients = as_tibble(t(Coeff), rownames = NA),
+                               Eigen = as_tibble(AvAvet),
+                               VIF =  rownames_to_column(VIF, "VAR") %>% as.tibble(),
+                               plot = p1,
+                               Predictors = names(pr),
+                               CN = NC,
+                               Det = Det,
+                               R2 = R2,
+                               Residual = Residual,
+                               Response = resp,
+                               weightvar = weightvarname),
                           class = "path_coeff")
         dfs[[paste(nam)]] <- temp
       }
@@ -559,11 +567,19 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
       last <- abs[order(abs[, "weight"], decreasing = T),
                   , drop = FALSE]
       weightvarname <- paste(rownames(last), collapse = " > ")
-      temp <- structure(list(Corr.x = data.frame(cor.x),
-                             Corr.y = data.frame(cor.y), Coefficients = data.frame(t(Coeff)),
-                             Eigen = AvAvet, VIF = VIF, plot = p1, Predictors = names(pr),
-                             CN = NC, Det = Det, R2 = R2, Residual = Residual,
-                             Response = resp, weightvar = weightvarname),
+      temp <- structure(list(Corr.x = as_tibble(cor.x, rownames = NA),
+                             Corr.y = as_tibble(cor.y, rownames = NA),
+                             Coefficients = as_tibble(t(Coeff), rownames = NA),
+                             Eigen = as_tibble(AvAvet),
+                             VIF =  rownames_to_column(VIF, "VAR") %>% as.tibble(),
+                             plot = p1,
+                             Predictors = names(pr),
+                             CN = NC,
+                             Det = Det,
+                             R2 = R2,
+                             Residual = Residual,
+                             Response = resp,
+                             weightvar = weightvarname),
                         class = "path_coeff")
       return(temp)
     }
