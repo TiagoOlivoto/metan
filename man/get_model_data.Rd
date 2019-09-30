@@ -75,6 +75,7 @@ get_model_data(blup, what = "vcomp")
 # Getting the genetic parameters
 get_model_data(blup, what = "genpar")
 
+
 }
 \references{
 Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
