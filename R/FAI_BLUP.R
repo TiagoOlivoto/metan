@@ -56,8 +56,14 @@
 fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   ideotype.D <- unlist(strsplit(DI, split=", "))
   ideotype.U <- unlist(strsplit(UI, split=", "))
-  if (!class(.data) %in% c("waasb", "data.frame", "tbl_df")) {
+  if (!any(class(.data) %in% c("data.frame", "tbl_df", "tbl", "waasb"))) {
     stop("The .data must be an object of class 'waasb' or a data.frame/tbl_df.")
+  }
+  if(any(sapply(.data, is.numeric)) == FALSE){
+    stop("All columns in .data must be numeric.")
+  }
+  if(has_rownames(.data) == FALSE){
+    stop("Please, provide rownames (with genotype's code).")
   }
   nvar <- ifelse(class(.data) == "waasb", length(.data), ncol(.data))
   if (nvar == 1) {
@@ -66,7 +72,6 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   if (length(ideotype.D) != nvar || length(ideotype.U) != nvar) {
     stop("The length of DI and UI must be the same length of data.")
   }
-
   if (class(.data) == "waasb") {
     datt <- .data[[1]][["blupGEN"]]
     data <- data.frame(do.call(cbind, lapply(.data, function(x) {
