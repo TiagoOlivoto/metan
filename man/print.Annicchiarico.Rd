@@ -4,11 +4,11 @@
 \alias{print.Annicchiarico}
 \title{Print an object of class Annicchiarico}
 \usage{
-\method{print}{Annicchiarico}(object, export = FALSE, file.name = NULL,
+\method{print}{Annicchiarico}(x, export = FALSE, file.name = NULL,
   digits = 3, ...)
 }
 \arguments{
-\item{object}{The \code{Annicchiarico} object}
+\item{x}{The \code{Annicchiarico} x}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported
 to the working directory.}
@@ -28,13 +28,13 @@ directory into a *.txt file.
 \examples{
 
 library(metan)
-Ann = Annicchiarico(data_ge2,
-                    env = ENV,
-                    gen = GEN,
-                    rep = REP,
-                    resp = PH)
+Ann <- Annicchiarico(data_ge2,
+  env = ENV,
+  gen = GEN,
+  rep = REP,
+  resp = PH
+)
 print(Ann)
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

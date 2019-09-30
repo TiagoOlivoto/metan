@@ -4,11 +4,11 @@
 \alias{print.superiority}
 \title{Print an object ofclass \code{superiority}}
 \usage{
-\method{print}{superiority}(object, export = FALSE, file.name = NULL,
+\method{print}{superiority}(x, export = FALSE, file.name = NULL,
   digits = 3, ...)
 }
 \arguments{
-\item{object}{The \code{superiority} object}
+\item{x}{An object of class \code{superiority}.}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported
 to the working directory.}
@@ -27,9 +27,8 @@ directory into a *.txt file.
 \examples{
 
 library(metan)
-model = superiority(data_ge2, ENV, GEN, REP, PH)
+model <- superiority(data_ge2, ENV, GEN, REP, PH)
 print(model)
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

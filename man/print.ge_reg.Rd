@@ -4,11 +4,11 @@
 \alias{print.ge_reg}
 \title{Print an object of class ge_reg}
 \usage{
-\method{print}{ge_reg}(object, export = FALSE, file.name = NULL,
+\method{print}{ge_reg}(x, export = FALSE, file.name = NULL,
   digits = 3, ...)
 }
 \arguments{
-\item{object}{The \code{ge_reg} object}
+\item{x}{An object of class \code{ge_reg}.}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported
 to the working directory.}
@@ -28,9 +28,8 @@ directory into a *.txt file.
 \examples{
 
 library(metan)
-model = ge_reg(data_ge2, ENV, GEN, REP, PH)
+model <- ge_reg(data_ge2, ENV, GEN, REP, PH)
 print(model)
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

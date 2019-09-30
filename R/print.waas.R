@@ -4,7 +4,7 @@
 #' shown in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param object The \code{waas} object
+#' @param x An object of class \code{waas}.
 #' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
 #' to the working directory
 #' @param file.name The name of the file if \code{export = TRUE}
@@ -17,46 +17,45 @@
 #' @examples
 #'
 #' library(metan)
-#' model = waas(data_ge,
-#'              resp = c(GY, HM),
-#'              gen = GEN,
-#'              env = ENV,
-#'              rep = REP)
+#' model <- waas(data_ge,
+#'   resp = c(GY, HM),
+#'   gen = GEN,
+#'   env = ENV,
+#'   rep = REP
+#' )
 #' print(model)
-#'
-print.waas <- function(object, export = FALSE, file.name = NULL, digits = 4,
-                         ...) {
-    if (!class(object) == "waas") {
-        stop("The object must be of class 'waas'")
-    }
+print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
+  if (!class(x) == "waas") {
+    stop("The object must be of class 'waas'")
+  }
+  if (export == TRUE) {
+    file.name <- ifelse(is.null(file.name) == TRUE, "waas print", file.name)
+    sink(paste0(file.name, ".txt"))
+  }
+  backup_options <- options()
+  options(pillar.sigfig = digits, ...)
+  for (i in 1:length(x)) {
+    var <- x[[i]]
+    cat("Variable", names(x)[i], "\n")
+    cat("---------------------------------------------------------------------------\n")
+    cat("Individual analysis of variance\n")
+    cat("---------------------------------------------------------------------------\n")
+    print(var$individual$individual, ...)
+    cat("---------------------------------------------------------------------------\n")
+    cat("AMMI analysis table\n")
+    cat("---------------------------------------------------------------------------\n")
+    print(var$anova, ...)
+    cat("---------------------------------------------------------------------------\n")
+    cat("Weighted average of the absolute scores\n")
+    cat("---------------------------------------------------------------------------\n")
+    print(var$model, ...)
+    cat("---------------------------------------------------------------------------\n")
+    cat("Some information regarding the analysis\n")
+    cat("---------------------------------------------------------------------------\n")
+    print(var$Details, ...)
     if (export == TRUE) {
-        file.name <- ifelse(is.null(file.name) == TRUE, "waas print", file.name)
-        sink(paste0(file.name, ".txt"))
+      sink()
     }
-    backup_options <- options()
-    options(pillar.sigfig = digits, ...)
-    for (i in 1:length(object)) {
-        var <- object[[i]]
-        cat("Variable", names(object)[i], "\n")
-        cat("---------------------------------------------------------------------------\n")
-        cat("Individual analysis of variance\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(var$individual$individual, ...)
-        cat("---------------------------------------------------------------------------\n")
-        cat("AMMI analysis table\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(var$anova, ...)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Weighted average of the absolute scores\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(var$model, ...)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Some information regarding the analysis\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(var$Details, ...)
-        if (export == TRUE) {
-            sink()
-        }
-    }
-    options(backup_options)
+  }
+  options(backup_options)
 }

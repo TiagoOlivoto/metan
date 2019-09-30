@@ -4,11 +4,11 @@
 \alias{print.can_cor}
 \title{Print an object of class can_cor}
 \usage{
-\method{print}{can_cor}(object, export = FALSE, file.name = NULL,
+\method{print}{can_cor}(x, export = FALSE, file.name = NULL,
   digits = 3, ...)
 }
 \arguments{
-\item{object}{The \code{can_cor} object}
+\item{x}{An object of class \code{can_cor}.}
 
 \item{export}{A logical argument. If \code{TRUE|T}, a *.txt file is exported
 to the working directory}
@@ -29,9 +29,10 @@ the directory.
 
 library(metan)
 cc <- can_corr(data_ge2,
-               FG = c(PH, EH, EP),
-               SG = c(EL, CL, CD, CW, KW, NR, TKW),
-               verbose = FALSE)
+  FG = c(PH, EH, EP),
+  SG = c(EL, CL, CD, CW, KW, NR, TKW),
+  verbose = FALSE
+)
 print(cc)
 }
 \author{

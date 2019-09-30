@@ -4,11 +4,11 @@
 \alias{print.waas}
 \title{Print an object of class waas}
 \usage{
-\method{print}{waas}(object, export = FALSE, file.name = NULL,
-  digits = 4, ...)
+\method{print}{waas}(x, export = FALSE, file.name = NULL, digits = 4,
+  ...)
 }
 \arguments{
-\item{object}{The \code{waas} object}
+\item{x}{An object of class \code{waas}.}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported
 to the working directory}
@@ -27,13 +27,13 @@ shown in the R console. The results can also be exported to the directory.
 \examples{
 
 library(metan)
-model = waas(data_ge,
-             resp = c(GY, HM),
-             gen = GEN,
-             env = ENV,
-             rep = REP)
+model <- waas(data_ge,
+  resp = c(GY, HM),
+  gen = GEN,
+  env = ENV,
+  rep = REP
+)
 print(model)
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

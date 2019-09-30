@@ -4,8 +4,7 @@
 #' are shown in the R console. The results can also be exported to the
 #' directory into a *.txt file.
 #'
-#'
-#' @param object The \code{ge_reg} object
+#' @param x An object of class \code{ge_reg}.
 #' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
 #' to the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
@@ -18,12 +17,10 @@
 #' @examples
 #'
 #' library(metan)
-#' model = ge_reg(data_ge2, ENV, GEN, REP, PH)
+#' model <- ge_reg(data_ge2, ENV, GEN, REP, PH)
 #' print(model)
-#'
-print.ge_reg <- function(object, export = FALSE, file.name = NULL, digits = 3,
-                           ...) {
-  if (!class(object) == "ge_reg") {
+print.ge_reg <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
+  if (!class(x) == "ge_reg") {
     stop("The object must be of class 'ge_reg'")
   }
   backup_options <- options()
@@ -32,9 +29,9 @@ print.ge_reg <- function(object, export = FALSE, file.name = NULL, digits = 3,
     file.name <- ifelse(is.null(file.name) == TRUE, "ge_reg print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  for (i in 1:length(object)) {
-    var <- object[[i]]
-    cat("Variable", names(object)[i], "\n")
+  for (i in 1:length(x)) {
+    var <- x[[i]]
+    cat("Variable", names(x)[i], "\n")
     cat("---------------------------------------------------------------------------\n")
     cat("Joint-regression Analysis of variance\n")
     cat("---------------------------------------------------------------------------\n")

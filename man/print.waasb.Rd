@@ -4,11 +4,11 @@
 \alias{print.waasb}
 \title{Print an object of class waasb}
 \usage{
-\method{print}{waasb}(object, export = FALSE, blup = FALSE,
+\method{print}{waasb}(x, export = FALSE, blup = FALSE,
   file.name = NULL, digits = 4, ...)
 }
 \arguments{
-\item{object}{The \code{waasb} object}
+\item{x}{An object of class \code{waasb}.}
 
 \item{export}{A logical argument. If \code{TRUE|T}, a *.txt file is exported
 to the working directory}
@@ -29,13 +29,13 @@ shown in the R console. The results can also be exported to the directory.
 \examples{
 
 library(metan)
-model = waasb(data_ge,
-              resp = c(GY, HM),
-              gen = GEN,
-              env = ENV,
-              rep = REP)
+model <- waasb(data_ge,
+  resp = c(GY, HM),
+  gen = GEN,
+  env = ENV,
+  rep = REP
+)
 print(model)
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

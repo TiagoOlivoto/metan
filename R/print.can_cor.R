@@ -5,7 +5,7 @@
 #' the directory.
 #'
 #'
-#' @param object The \code{can_cor} object
+#' @param x An object of class \code{can_cor}.
 #' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
 #' to the working directory
 #' @param file.name The name of the file if \code{export = TRUE}
@@ -19,13 +19,13 @@
 #'
 #' library(metan)
 #' cc <- can_corr(data_ge2,
-#'                FG = c(PH, EH, EP),
-#'                SG = c(EL, CL, CD, CW, KW, NR, TKW),
-#'                verbose = FALSE)
+#'   FG = c(PH, EH, EP),
+#'   SG = c(EL, CL, CD, CW, KW, NR, TKW),
+#'   verbose = FALSE
+#' )
 #' print(cc)
-
-print.can_cor <- function(object, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(object) == "can_cor") {
+print.can_cor <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
+  if (!class(x) == "can_cor") {
     stop("The object must be of class 'can_cor'")
   }
   if (export == TRUE) {
@@ -35,43 +35,43 @@ print.can_cor <- function(object, export = FALSE, file.name = NULL, digits = 3, 
   cat("---------------------------------------------------------------------------\n")
   cat("Matrix (correlation/covariance) between variables of first group (FG)\n")
   cat("---------------------------------------------------------------------------\n")
-  print(object$MFG, digits = digits)
+  print(x$MFG, digits = digits)
   cat("\n---------------------------------------------------------------------------\n")
   cat("Collinearity diagnostic between first group\n")
   cat("---------------------------------------------------------------------------\n")
-  colindiag(object$MFG, n = nrow(object$Score_FG))
+  colindiag(x$MFG, n = nrow(x$Score_FG))
   cat("\n---------------------------------------------------------------------------\n")
   cat("Matrix (correlation/covariance) between variables of second group (SG)\n")
   cat("---------------------------------------------------------------------------\n")
-  print(object$MSG, digits = digits)
+  print(x$MSG, digits = digits)
   cat("\n---------------------------------------------------------------------------\n")
   cat("Collinearity diagnostic between second group\n")
   cat("---------------------------------------------------------------------------\n")
-  colindiag(object$MSG, n = nrow(object$Score_SG))
+  colindiag(x$MSG, n = nrow(x$Score_SG))
   cat("\n---------------------------------------------------------------------------\n")
   cat("Matrix (correlation/covariance) between FG and SG)\n")
   cat("---------------------------------------------------------------------------\n")
-  print(object$MFG_SG, digits = digits)
+  print(x$MFG_SG, digits = digits)
   cat("\n---------------------------------------------------------------------------\n")
   cat("Correlation of the canonical pairs and hypothesis testing \n")
   cat("---------------------------------------------------------------------------\n")
-  print(object$Sigtest, digits = digits)
+  print(x$Sigtest, digits = digits)
   cat("\n---------------------------------------------------------------------------\n")
   cat("Canonical coefficients of the first group \n")
   cat("---------------------------------------------------------------------------\n")
-  print(object$Coef_FG, digits = digits)
+  print(x$Coef_FG, digits = digits)
   cat("\n---------------------------------------------------------------------------\n")
   cat("Canonical coefficients of the second group \n")
   cat("---------------------------------------------------------------------------\n")
-  print(object$Coef_SG, digits = digits)
+  print(x$Coef_SG, digits = digits)
   cat("\n---------------------------------------------------------------------------\n")
   cat("Canonical loads of the first group \n")
   cat("---------------------------------------------------------------------------\n")
-  print(object$Loads_FG, digits = digits)
+  print(x$Loads_FG, digits = digits)
   cat("\n---------------------------------------------------------------------------\n")
   cat("Canonical loads of the second group \n")
   cat("---------------------------------------------------------------------------\n")
-  print(object$Loads_SG, digits = digits)
+  print(x$Loads_SG, digits = digits)
   if (export == TRUE) {
     sink()
   }

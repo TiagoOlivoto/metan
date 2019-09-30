@@ -4,11 +4,11 @@
 \alias{print.ge_stats}
 \title{Print an object of class ge_stats}
 \usage{
-\method{print}{ge_stats}(object, export = FALSE, file.name = NULL,
+\method{print}{ge_stats}(x, export = FALSE, file.name = NULL,
   digits = 3, ...)
 }
 \arguments{
-\item{object}{The \code{ge_stats} object}
+\item{x}{An object of class \code{ge_stats}.}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported
 to the working directory.}

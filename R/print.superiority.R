@@ -5,7 +5,7 @@
 #' directory into a *.txt file.
 #'
 #'
-#' @param object The \code{superiority} object
+#' @param x An object of class \code{superiority}.
 #' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
 #' to the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
@@ -17,12 +17,10 @@
 #' @examples
 #'
 #' library(metan)
-#' model = superiority(data_ge2, ENV, GEN, REP, PH)
+#' model <- superiority(data_ge2, ENV, GEN, REP, PH)
 #' print(model)
-#'
-print.superiority <- function(object, export = FALSE, file.name = NULL, digits = 3,
-                              ...) {
-  if (!class(object) == "superiority") {
+print.superiority <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
+  if (!class(x) == "superiority") {
     stop("The object must be of class 'superiority'")
   }
   if (export == TRUE) {
@@ -31,9 +29,9 @@ print.superiority <- function(object, export = FALSE, file.name = NULL, digits =
   }
   backup_options <- options()
   options(pillar.sigfig = digits, ...)
-  for (i in 1:length(object)) {
-    var <- object[[i]]
-    cat("Variable", names(object)[i], "\n")
+  for (i in 1:length(x)) {
+    var <- x[[i]]
+    cat("Variable", names(x)[i], "\n")
     cat("---------------------------------------------------------------------------\n")
     cat("Superiority index considering all, favorable and unfavorable environments\n")
     cat("---------------------------------------------------------------------------\n")

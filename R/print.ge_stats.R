@@ -5,7 +5,7 @@
 #' into a *.txt file.
 #'
 #'
-#' @param object The \code{ge_stats} object
+#' @param x An object of class \code{ge_stats}.
 #' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
 #' to the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
@@ -25,9 +25,9 @@
 #'                  resp = PH)
 #' print(model)
 #'
-print.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 3,
+print.ge_stats <- function(x, export = FALSE, file.name = NULL, digits = 3,
                               ...) {
-  if (!class(object) == "ge_stats") {
+  if (!class(x) == "ge_stats") {
     stop("The object must be of class 'ge_stats'")
   }
     if (export == TRUE) {
@@ -36,9 +36,9 @@ print.ge_stats <- function(object, export = FALSE, file.name = NULL, digits = 3,
     }
   backup_options <- options()
   options(pillar.sigfig = digits, ...)
-    for (i in 1:length(object)) {
-      var <- object[[i]]
-      cat("Variable", names(object)[i], "\n")
+    for (i in 1:length(x)) {
+      var <- x[[i]]
+      cat("Variable", names(x)[i], "\n")
       cat("---------------------------------------------------------------------------\n")
       cat("Individual analysis of variance\n")
       cat("---------------------------------------------------------------------------\n")

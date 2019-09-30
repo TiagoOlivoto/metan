@@ -117,5 +117,5 @@ if (getRversion() >= "2.15.1") {
       "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI", "Pair", "LL", "UL",
       "ci", "mean_var", "se", "x", "d1", "d2", "radio", "x0", "x1_x", "x1_y", "y0",
       "val", "Statistic", "Cluster", "CCP", "U1", "U2", "V1", "V2", "Var", "LEVEL",
-      "GROUP"))
+      "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)"))
 }

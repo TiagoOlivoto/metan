@@ -4,11 +4,11 @@
 \alias{print.mtsi}
 \title{Print an object of class mtsi}
 \usage{
-\method{print}{mtsi}(object, export = FALSE, file.name = NULL,
-  digits = 4, ...)
+\method{print}{mtsi}(x, export = FALSE, file.name = NULL, digits = 4,
+  ...)
 }
 \arguments{
-\item{object}{The \code{mtsi} object}
+\item{x}{An object of class \code{mtsi}.}
 
 \item{export}{A logical argument. If \code{TRUE|T}, a *.txt file is exported
 to the working directory}
@@ -27,16 +27,15 @@ in the R console. The results can also be exported to the directory.
 \examples{
 library(metan)
 # Based on stability only
-MTSI_MODEL = waasb(data_ge,
-                   resp = c(GY, HM),
-                   gen = GEN,
-                   env = ENV,
-                   rep = REP)
+MTSI_MODEL <- waasb(data_ge,
+  resp = c(GY, HM),
+  gen = GEN,
+  env = ENV,
+  rep = REP
+)
 
-MTSI_index = mtsi(MTSI_MODEL)
+MTSI_index <- mtsi(MTSI_MODEL)
 print(MTSI_index)
-
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

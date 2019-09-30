@@ -9,18 +9,7 @@ get_model_data(x, what = "Y", type = "GEN")
 \arguments{
 \item{x}{An object created with the functions \code{\link{waas}} or \code{\link{waasb}}.}
 
-\item{what}{What should be captured from the model. The following options are allowed:
-\code{"blupg"} for genotype's predicted mean and \code{"blupge"} for genotype-vs-environment's
-predicted mean (if the object is of class \code{waasb} only); \code{"Y"} for raw means (Default);
-\code{"PCn"} for the scores of the nth Interaction Principal Component Axis (IPCA),
- where \code{n} is the desired IPCA (e.g. \code{"PC3"}); \code{"WAASB"} for the weighted
- average of the absolute scores; \code{"PctResp"} and \code{"PctWAASB"} for the rescaled
- values of the response variable and WAASB, respectively; \code{"wResp"} and \code{"wWAASB"}
- for weight of the response variable and stability, respectively; \code{"OrResp"} and
- \code{"OrWAASB"} for the ranking regarding the response variable and WAASB, respectively;
- \code{"OrPC1"} for the ranking regarding the first principal component axix; \code{"WAASBY"}
- for the superiority index, \code{"OrWAASBY"} for the ranking regarding the superiority
- index.}
+\item{what}{What should be captured from the model. See more details in \strong{Details} section.}
 
 \item{type}{Chose if the statistics must be show by genotype (\code{type = "GEN"}, default)
 or environment (\code{type = "ENV"}), when possible.}
@@ -31,32 +20,70 @@ A tibble showing the values of the variable chosen in argument \code{what}.
 \description{
 Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et al., 2019a, 2019b)
 }
+\details{
+The next options are valid for both \code{waas} and \code{waasb} objects.
+\itemize{
+\item \code{"Y"} for raw means (Default) .
+\item \code{"PCn"} for the scores of the nth Interaction Principal Component Axis (IPCA) .
+where * \code{n} is the desired IPCA (e.g. \code{"PC3"}) .
+\item \code{"WAASB"}  The weighted average of the absolute scores .
+\item \code{"PctResp"} The rescaled values of the response variable .
+\item \code{"PctWAASB"} The rescaled values of the WAASB .
+\item \code{"wResp"} The weight for the response variable .
+\item \code{"wWAASB"} The weight for the stability .
+\item \code{"OrResp"} The ranking regarding the response variable .
+\item \code{"OrWAASB"} The ranking regarding the WAASB .
+\item \code{"OrPC1"} The ranking regarding the first principal component axix .
+\item \code{"WAASBY"} The superiority index WAASBY .
+\item \code{"OrWAASBY"} The ranking regarding the superiority index .
+}
+
+The next options are only allowed if the object is of class \code{waasb}:
+\itemize{
+\item \code{"blupg"} For genotype's predicted mean.
+\item \code{"blupge"} for genotype-vs-environment's predicted mean.
+\item \code{"genpar"} Genetic parameters.
+\item \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
+\item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
+\item \code{"vcomp"} The variance components for random effects.
+}
+}
 \examples{
 
 library(metan)
-
-model = waas(data_ge2,
-             env = ENV,
-             gen = GEN,
-             rep = REP,
+# Fit an AMMI model for 5 variables.
+AMMI <- waas(data_ge2, ENV, GEN, REP,
              resp = c(PH, ED, TKW, NKR))
-get_model_data(model, what = "OrWAASBY")
 
+# Getting the weighted average of absolute scores
+get_model_data(AMMI, what = "WAASB")
 
-waasb(data_ge2, ENV, GEN, REP,
-      resp = c(PH, ED, TKW, NKR)) \%>\%
-get_model_data(what = "blupg")
+# And the rank for the WAASB inde.
+get_model_data(AMMI, what = "OrWAASB")
 
+# Fitting a mixed-effect model
+
+blup <- waasb(data_ge2, ENV, GEN, REP,
+              resp = c(PH, ED, TKW, NKR))
+
+# Getting p-values for likelihood-ratio test
+get_model_data(blup, what = "pval_lrt")
+
+# Getting the variance components
+get_model_data(blup, what = "vcomp")
+
+# Getting the genetic parameters
+get_model_data(blup, what = "genpar")
 
 }
 \references{
-Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
- V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-  trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).
+Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
+trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).
 
-Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
- Mean performance and stability in multi-environment trials II: Selection based on multiple
-  traits. Agron. J. (in press)
+Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
+Mean performance and stability in multi-environment trials II: Selection based on multiple
+traits. Agron. J. (in press)
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

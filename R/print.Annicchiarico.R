@@ -5,7 +5,7 @@
 #' directory into a *.txt file.
 #'
 #'
-#' @param object The \code{Annicchiarico} object
+#' @param x The \code{Annicchiarico} x
 #' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
 #' to the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
@@ -18,16 +18,15 @@
 #' @examples
 #'
 #' library(metan)
-#' Ann = Annicchiarico(data_ge2,
-#'                     env = ENV,
-#'                     gen = GEN,
-#'                     rep = REP,
-#'                     resp = PH)
+#' Ann <- Annicchiarico(data_ge2,
+#'   env = ENV,
+#'   gen = GEN,
+#'   rep = REP,
+#'   resp = PH
+#' )
 #' print(Ann)
-#'
-print.Annicchiarico <- function(object, export = FALSE, file.name = NULL, digits = 3,
-                                  ...) {
-  if (!class(object) == "Annicchiarico") {
+print.Annicchiarico <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
+  if (!class(x) == "Annicchiarico") {
     stop("The object must be of class 'Annicchiarico'")
   }
   backup_options <- options()
@@ -36,9 +35,9 @@ print.Annicchiarico <- function(object, export = FALSE, file.name = NULL, digits
     file.name <- ifelse(is.null(file.name) == TRUE, "Annicchiarico print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  for (i in 1:length(object)) {
-    var <- object[[i]]
-    cat("Variable", names(object)[i], "\n")
+  for (i in 1:length(x)) {
+    var <- x[[i]]
+    cat("Variable", names(x)[i], "\n")
     cat("---------------------------------------------------------------------------\n")
     cat("Environmental index\n")
     cat("---------------------------------------------------------------------------\n")

@@ -4,11 +4,11 @@
 \alias{print.ge_factanal}
 \title{Print an object of class ge_factanal}
 \usage{
-\method{print}{ge_factanal}(object, export = FALSE, file.name = NULL,
+\method{print}{ge_factanal}(x, export = FALSE, file.name = NULL,
   digits = 4, ...)
 }
 \arguments{
-\item{object}{The \code{ge_factanal} object}
+\item{x}{An object of class \code{ge_factanal}.}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported
 to the working directory}
@@ -26,13 +26,13 @@ shown in the R console. The results can also be exported to the directory.
 }
 \examples{
 
-model = ge_factanal(data_ge2,
-                    env = ENV,
-                    gen = GEN,
-                    rep = REP,
-                    resp = PH)
+model <- ge_factanal(data_ge2,
+  env = ENV,
+  gen = GEN,
+  rep = REP,
+  resp = PH
+)
 print(model)
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
