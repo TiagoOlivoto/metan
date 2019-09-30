@@ -245,8 +245,8 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
             }
             min_group <- Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
             max_group <- Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
-            min <- MeansGxE %>% top_n(1, -Y) %>% select(ENV, GEN, Y)
-            max <- MeansGxE %>% top_n(1, Y) %>% select(ENV, GEN, Y)
+            min <- MeansGxE %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            max <- MeansGxE %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
             Details <- tibble(Parameters = c("Ngen", "Nenv", "OVmean","Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"),
                               Values = c(Ngen, Nenv, round(mean(MeansGxE$Y), 4),
                                          paste0(round(min[3], 4), " (", min$GEN, " in ", min$ENV,")"),
@@ -261,7 +261,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                            MeansGxE = MeansGxE,
                            PCA = as_tibble(PC, rownames = NA),
                            anova = as_tibble(anova, rownames = NA),
-                           Details = as_tibble(Details, rownames = NA),
+                           Details = Details,
                            residuals = as_tibble(model$residuals, rownames = NA),
                            probint = model$probint),
                       class = "waas")

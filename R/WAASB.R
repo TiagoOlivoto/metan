@@ -295,8 +295,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
 
             min_group <- Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
             max_group <- Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
-            min <- MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y)
-            max <- MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y)
+            min <- MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            max <- MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
             Details <- tibble(Parameters = c("Ngen", "Nenv", "OVmean","Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"),
                               Values = c(Ngen, Nenv, round(mean(MEDIAS$Y), 4),
                                          paste0(round(min[3], 4), " (", min$GEN, " in ", min$ENV,")"),
@@ -462,8 +462,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
             }
             min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
             max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
-            min = MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y)
-            max = MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y)
+            min = MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            max = MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
             Details <- tibble(Parameters = c("Ngen", "Nenv", "OVmean","Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"),
                               Values = c(Ngen, Nenv, round(mean(MEDIAS$Y), 4),
                                          paste0(round(min[3], 4), " (", min$GEN, " in ", min$ENV,")"),
@@ -649,8 +649,8 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
 
             min_group <- Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
             max_group <- Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
-            min <- MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y)
-            max <- MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y)
+            min <- MEDIAS %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
+            max <- MEDIAS %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
             Details <- tibble(Parameters = c("Ngen", "Nenv", "OVmean","Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"),
                               Values = c(Ngen, Nenv, round(mean(MEDIAS$Y), 4),
                                          paste0(round(min[3], 4), " (", min$GEN, " in ", min$ENV,")"),
