@@ -273,15 +273,19 @@ factor are.</p></dd>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
-#&gt;     Eigenvalues Variance (%) Cum. variance (%)
-#&gt; PC1   1.6566277     82.83139          82.83139
-#&gt; PC2   0.3433723     17.16861         100.00000
+#&gt; <span style='color: #555555;'># A tibble: 2 x 4</span><span>
+#&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.66            82.8                82.8
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2         0.343           17.2               100  
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
-#&gt;          FA1 Communality Uniquenesses
-#&gt; GY 0.9101175   0.8283139    0.1716861
-#&gt; HM 0.9101175   0.8283139    0.1716861
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
+#&gt;   VAR     FA1 Communality Uniquenesses
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.910       0.828        0.172
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.910       0.828        0.172
 #&gt; -------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.8283139 
 #&gt; -------------------------------------------------------------------------------
@@ -292,9 +296,11 @@ factor are.</p></dd>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the  waasb index
 #&gt; -------------------------------------------------------------------------------
-#&gt;    Factor        Xo        Xs         SD    SDperc
-#&gt; GY    FA1 0.2504736 0.1165028 -0.1339708 -53.48700
-#&gt; HM    FA1 0.6141648 0.3732404 -0.2409244 -39.22798
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
+#&gt;   VAR   Factor    Xo    Xs     SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1   0.250 0.117 -</span><span style='color: #BB0000;'>0.134</span><span>  -</span><span style='color: #BB0000;'>53.5</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   0.614 0.373 -</span><span style='color: #BB0000;'>0.241</span><span>  -</span><span style='color: #BB0000;'>39.2</span><span>
 #&gt; ------------------------------------------------------------------------------
 #&gt; Mean of selection differential
 #&gt; -------------------------------------------------------------------------------
@@ -303,9 +309,11 @@ factor are.</p></dd>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
-#&gt;    Factor        Xo       Xs         SD    SDperc
-#&gt; GY    FA1  2.674242  2.77951  0.1052684  3.936384
-#&gt; HM    FA1 48.088286 47.34179 -0.7465000 -1.552353
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
+#&gt;   VAR   Factor    xo    Xs     SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.78  0.105   3.94
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  47.3  -</span><span style='color: #BB0000;'>0.747</span><span>  -</span><span style='color: #BB0000;'>1.55</span><span>
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
@@ -324,15 +332,19 @@ factor are.</p></dd>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
-#&gt;     Eigenvalues Variance (%) Cum. variance (%)
-#&gt; PC1   1.5844965     79.22483          79.22483
-#&gt; PC2   0.4155035     20.77517         100.00000
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
+#&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.58            79.2                79.2
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2         0.416           20.8               100  
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
-#&gt;          FA1 Communality Uniquenesses
-#&gt; GY 0.8900833   0.7922483    0.2077517
-#&gt; HM 0.8900833   0.7922483    0.2077517
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
+#&gt;   VAR     FA1 Communality Uniquenesses
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.890       0.792        0.208
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.890       0.792        0.208
 #&gt; -------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.7922483 
 #&gt; -------------------------------------------------------------------------------
@@ -343,9 +355,11 @@ factor are.</p></dd>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the  waasby index
 #&gt; -------------------------------------------------------------------------------
-#&gt;    Factor       Xo       Xs       SD   SDperc
-#&gt; GY    FA1 48.34113 76.54450 28.20337 58.34239
-#&gt; HM    FA1 54.11473 86.20436 32.08962 59.29924
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
+#&gt;   VAR   Factor    Xo    Xs    SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    48.3  76.5  28.2   58.3
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1    54.1  86.2  32.1   59.3
 #&gt; ------------------------------------------------------------------------------
 #&gt; Mean of selection differential
 #&gt; -------------------------------------------------------------------------------
@@ -354,15 +368,17 @@ factor are.</p></dd>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
-#&gt;    Factor        Xo       Xs         SD    SDperc
-#&gt; GY    FA1  2.674242  2.77951  0.1052684  3.936384
-#&gt; HM    FA1 48.088286 47.34179 -0.7465000 -1.552353
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
+#&gt;   VAR   Factor    xo    Xs     SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.78  0.105   3.94
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  47.3  -</span><span style='color: #BB0000;'>0.747</span><span>  -</span><span style='color: #BB0000;'>1.55</span><span>
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
 #&gt; G3 G1
 #&gt; -------------------------------------------------------------------------------</div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

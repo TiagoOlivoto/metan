@@ -435,6 +435,9 @@ G5
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">print_table</span>(model2<span class="op">$</span>GY<span class="op">$</span>LRT)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
+<th style="text-align:left;">
+model
+</th>
 <th style="text-align:right;">
 npar
 </th>
@@ -456,6 +459,9 @@ Pr(&gt;Chisq)
 </tr></thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+Complete
+</td>
 <td style="text-align:right;">
 45
 </td>
@@ -476,6 +482,9 @@ NA
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Genotype
+</td>
 <td style="text-align:right;">
 44
 </td>
@@ -496,6 +505,9 @@ NA
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Gen:Env
+</td>
 <td style="text-align:right;">
 44
 </td>
@@ -560,7 +572,7 @@ Residual
 <th style="text-align:left;">
 Parameters
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 Values
 </th>
 </tr></thead>
@@ -569,96 +581,120 @@ Values
 <td style="text-align:left;">
 GEI variance
 </td>
+<td style="text-align:right;">
+0.057
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
-0.056714 (31.26% of phenotypic variance.)
+GEI (%)
+</td>
+<td style="text-align:right;">
+31.259
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Genotypic variance
 </td>
+<td style="text-align:right;">
+0.028
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
-0.028025 (15.45% of phenotypic variance.)
+Gen (%)
+</td>
+<td style="text-align:right;">
+15.447
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Residual variance
 </td>
+<td style="text-align:right;">
+0.097
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
-0.096693 (53.29% of phenotypic variance.)
+Res (%)
+</td>
+<td style="text-align:right;">
+53.294
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Phenotypic variance
 </td>
-<td style="text-align:left;">
-0.181432000765268
+<td style="text-align:right;">
+0.181
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Heritability
 </td>
-<td style="text-align:left;">
-0.154466820776706
+<td style="text-align:right;">
+0.154
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 GEIr2
 </td>
-<td style="text-align:left;">
-0.31258908175788
+<td style="text-align:right;">
+0.313
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Heribatility of means
 </td>
-<td style="text-align:left;">
-0.815198214388929
+<td style="text-align:right;">
+0.815
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Accuracy
 </td>
-<td style="text-align:left;">
-0.902883278385932
+<td style="text-align:right;">
+0.903
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 rge
 </td>
-<td style="text-align:left;">
-0.369694636992275
+<td style="text-align:right;">
+0.370
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 CVg
 </td>
-<td style="text-align:left;">
-6.25999359149609
+<td style="text-align:right;">
+6.260
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 CVr
 </td>
-<td style="text-align:left;">
-11.6277882108427
+<td style="text-align:right;">
+11.628
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 CV ratio
 </td>
-<td style="text-align:left;">
-0.53836494765692
+<td style="text-align:right;">
+0.538
 </td>
 </tr>
 </tbody>
@@ -888,7 +924,7 @@ G10
 </tr>
 </tbody>
 </table>
-<p>An easy way to check the results in the R console is by using the function <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code></p>
+<p>An easy way to check the results in the R console is by using the function <code><a href="https://rdrr.io/r/base/print.html">print()</a></code></p>
 </div>
 <div id="plotting-the-blups-for-genotypes" class="section level2">
 <h2 class="hasAnchor">
@@ -1587,26 +1623,24 @@ G9
 <li>Stability analysis and environmental stratification <span class="citation">(Murakami and Cruz <a href="#ref-murakami2004">2004</a>)</span>, using the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>
 </li>
 </ul>
-<p>The easiest way to compute the above-mentioned stability indexes is by using the function <code><a href="../reference/ge_stats.html">ge_stats()</a></code>. This function basically returns a summary of each method. If you are looking for more details from each method, like plot() and summary(), I suggest computing that methods using their own function.</p>
+<p>The easiest way to compute the above-mentioned stability indexes is by using the function <code><a href="../reference/ge_stats.html">ge_stats()</a></code>. This function basically returns a summary of each method. If you are looking for more details from each method like <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, I suggest computing that methods using their own function.</p>
 </div>
 <div id="computing-the-indexes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#computing-the-indexes" class="anchor"></a>Computing the indexes</h1>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">stat_ge &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, GY)</a></code></pre></div>
-<p>If you want to export a summary of results, the simplest way is by using the function summary, as follows:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>This comand will create a text file called <em>ge_stats summary.txt</em> in the current working directory.</p>
+<p>If you want to export a summary of results to the working directory, the simplest way is by using the function  with the argument .</p>
 </div>
 <div id="selection-based-on-multiple-traits" class="section level1">
 <h1 class="hasAnchor">
 <a href="#selection-based-on-multiple-traits" class="anchor"></a>Selection based on multiple traits</h1>
 <p>The multi-trait stability index (MTSI) was proposed by <span class="citation">Olivoto, Lúcio, Da silva, Sari, et al. (<a href="#ref-Olivoto2019a">2019</a>)</span> and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. Note that a model may be fitted easier and faster using the forward-pipe <code><a href="../reference/pipe.html">%&gt;%</a></code> and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). Using <code><a href="../reference/pipe.html">%&gt;%</a></code> make it the coding logical and clean especially when the output of a function is used as input in a second function.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb24-3" title="3">        <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW),</a>
-<a class="sourceLine" id="cb24-4" title="4">        <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-6" title="6"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb23-3" title="3">        <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW),</a>
+<a class="sourceLine" id="cb23-4" title="4">        <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-6" title="6"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>()</a></code></pre></div>
 </div>
 <div id="getting-help" class="section level1">
 <h1 class="hasAnchor">

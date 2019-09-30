@@ -72,7 +72,7 @@ reference:
       - autoplot.waas
       - plot.cv_ammif
       - predict.waas
-      - summary.waas
+      - print.waas
       - cv_ammi
       - cv_ammif
       - waas
@@ -85,7 +85,7 @@ reference:
       - plot_scores
       - plot_waasby
       - Resende_indexes
-      - summary.waasb
+      - print.waasb
       - cv_blup
       - waasb
       - wsmp
@@ -103,7 +103,7 @@ reference:
       - mtsi
       - plot.fai_blup
       - plot.mtsi
-      - summary.mtsi
+      - print.mtsi
   - title: "Stability"
     desc: "Useful functions for stability analysis"
     contents:
@@ -119,11 +119,11 @@ reference:
       - plot.ge_factanal
       - plot.ge_reg
       - superiority
-      - summary.Annicchiarico
-      - summary.ge_factanal
-      - summary.ge_reg
-      - summary.ge_stats
-      - summary.superiority
+      - print.Annicchiarico
+      - print.ge_factanal
+      - print.ge_reg
+      - print.ge_stats
+      - print.superiority
   - title: "Biometry"
     desc: "Useful functions for biometric models"
     contents:
@@ -151,8 +151,8 @@ reference:
       - plot_factlines
       - plot_lines
       - resp_surf
-      - summary.can_cor
-      - summary.path_coeff
+      - print.can_cor
+      - print.path_coeff
   - title: "Helper"
     desc: "Helper functions for metan package"
     contents:

@@ -122,7 +122,7 @@ print_table(model2$GY$ESTIMATES)
 print_table(model2$GY$blupGEN)
 ```
 
-An easy way to check the results in the R console is by using the function `summary()`
+An easy way to check the results in the R console is by using the function `print()`
 
 
 ## Plotting the BLUPs for genotypes
@@ -213,22 +213,14 @@ Up to the version 0.2.0, the following stability methods are implemented:
 * Ecovalence [@Wricke1965], using the function `ecovalence()`
 * Stability analysis and environmental stratification [@murakami2004], using the function `ge_factanal()`
 
-The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This function basically returns a summary of each method. If you are looking for more details from each method, like plot() and summary(), I suggest computing that methods using their own function.
+The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This function basically returns a summary of each method. If you are looking for more details from each method like `plot()` and `print()`, I suggest computing that methods using their own function.
 
 # Computing the indexes
 
 ```{r }
 stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)
 ```
-If you want to export a summary of results, the simplest way is by using the function summary, as follows:
-
-
-```{r, eval=FALSE }
-summary(stat_ge, export = TRUE)
-
-```
-
-This comand will create a text file called *ge_stats summary.txt* in the current working directory.
+If you want to export a summary of results to the working directory, the simplest way is by using the function \code{print()} with the argument \code{export = TRUE}.
 
 # Selection based on multiple traits
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary a superiority object — summary.superiority • metan</title>
+<title>Print an object ofclass <code>superiority</code> — print.superiority • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Summary a superiority object — summary.superiority" />
-<meta property="og:description" content="Summary the superiority object in two ways. By default, the results
+<meta property="og:title" content="Print an object ofclass <code>superiority</code> — print.superiority" />
+<meta property="og:description" content="Print the superiority object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the
 directory into a *.txt file." />
 <meta property="og:image" content="/logo.png" />
@@ -189,27 +189,27 @@ directory into a *.txt file." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary a superiority object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.superiority.R'><code>R/summary.superiority.R</code></a></small>
-    <div class="hidden name"><code>summary.superiority.Rd</code></div>
+    <h1>Print an object ofclass <code>superiority</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.superiority.R'><code>R/print.superiority.R</code></a></small>
+    <div class="hidden name"><code>print.superiority.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Summary the <code>superiority</code> object in two ways. By default, the results
+    <p>Print the <code>superiority</code> object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the
 directory into a *.txt file.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for superiority</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>The <code>superiority</code> object</p></td>
+      <th>x</th>
+      <td><p>An object of class <code>superiority</code>.</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -234,8 +234,8 @@ to the working directory.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='superiority.html'>superiority</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='superiority.html'>superiority</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>PH</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Superiority index considering all, favorable and unfavorable environments
 #&gt; ---------------------------------------------------------------------------
@@ -255,11 +255,7 @@ to the working directory.</p></td>
 #&gt; </span><span style='color: #555555;'>11</span><span> H7        0.109      9      0.009</span><span style='text-decoration: underline;'>47</span><span>     6         0.208      9
 #&gt; </span><span style='color: #555555;'>12</span><span> H8        0.161     13      0.016</span><span style='text-decoration: underline;'>5</span><span>     10         0.306     13
 #&gt; </span><span style='color: #555555;'>13</span><span> H9        0.124     11      0.027</span><span style='text-decoration: underline;'>8</span><span>     13         0.221     10
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'>
-</div></span></pre>
+#&gt; ---------------------------------------------------------------------------</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

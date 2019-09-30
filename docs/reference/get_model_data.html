@@ -207,18 +207,7 @@
     </tr>
     <tr>
       <th>what</th>
-      <td><p>What should be captured from the model. The following options are allowed:
-<code>"blupg"</code> for genotype's predicted mean and <code>"blupge"</code> for genotype-vs-environment's
-predicted mean (if the object is of class <code>waasb</code> only); <code>"Y"</code> for raw means (Default);
-<code>"PCn"</code> for the scores of the nth Interaction Principal Component Axis (IPCA),
- where <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>); <code>"WAASB"</code> for the weighted
- average of the absolute scores; <code>"PctResp"</code> and <code>"PctWAASB"</code> for the rescaled
- values of the response variable and WAASB, respectively; <code>"wResp"</code> and <code>"wWAASB"</code>
- for weight of the response variable and stability, respectively; <code>"OrResp"</code> and
- <code>"OrWAASB"</code> for the ranking regarding the response variable and WAASB, respectively;
- <code>"OrPC1"</code> for the ranking regarding the first principal component axix; <code>"WAASBY"</code>
- for the superiority index, <code>"OrWAASBY"</code> for the ranking regarding the superiority
- index.</p></td>
+      <td><p>What should be captured from the model. See more details in <strong>Details</strong> section.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -230,66 +219,127 @@ or environment (<code>type = "ENV"</code>), when possible.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble showing the values of the variable chosen in argument <code>what</code>.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The next options are valid for both <code>waas</code> and <code>waasb</code> objects.</p><ul>
+<li><p><code>"Y"</code> for raw means (Default) .</p></li>
+<li><p><code>"PCn"</code> for the scores of the nth Interaction Principal Component Axis (IPCA) .
+where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>) .</p></li>
+<li><p><code>"WAASB"</code>  The weighted average of the absolute scores .</p></li>
+<li><p><code>"PctResp"</code> The rescaled values of the response variable .</p></li>
+<li><p><code>"PctWAASB"</code> The rescaled values of the WAASB .</p></li>
+<li><p><code>"wResp"</code> The weight for the response variable .</p></li>
+<li><p><code>"wWAASB"</code> The weight for the stability .</p></li>
+<li><p><code>"OrResp"</code> The ranking regarding the response variable .</p></li>
+<li><p><code>"OrWAASB"</code> The ranking regarding the WAASB .</p></li>
+<li><p><code>"OrPC1"</code> The ranking regarding the first principal component axix .</p></li>
+<li><p><code>"WAASBY"</code> The superiority index WAASBY .</p></li>
+<li><p><code>"OrWAASBY"</code> The ranking regarding the superiority index .</p></li>
+</ul>
+
+<p>The next options are only allowed if the object is of class <code>waasb</code>:</p><ul>
+<li><p><code>"blupg"</code> For genotype's predicted mean.</p></li>
+<li><p><code>"blupge"</code> for genotype-vs-environment's predicted mean.</p></li>
+<li><p><code>"genpar"</code> Genetic parameters.</p></li>
+<li><p><code>"lrt"</code> The statistic for the likelihood-ratio test for random effects.</p></li>
+<li><p><code>"pval_lrt"</code>  The p-values for the likelihood-ratio test.</p></li>
+<li><p><code>"vcomp"</code> The variance components for random effects.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
- V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-  trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).</p>
-<p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
- Mean performance and stability in multi-environment trials II: Selection based on multiple
-  traits. Agron. J. (in press)</p>
+    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
+trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).</p>
+<p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
+Mean performance and stability in multi-environment trials II: Selection based on multiple
+traits. Agron. J. (in press)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>,
-             <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-             <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-             <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+<span class='co'># Fit an AMMI model for 5 variables.</span>
+<span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
 #&gt; Evaluating variable ED 50 % 
 #&gt; Evaluating variable TKW 75 % 
 #&gt; Evaluating variable NKR 100 % 
-#&gt; Done!</div><div class='input'><span class='fu'>get_model_data</span>(<span class='no'>model</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"OrWAASBY"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 13 x 5</span><span>
+#&gt; Done!</div><div class='input'>
+<span class='co'># Getting the weighted average of absolute scores</span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"WAASB"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 13 x 5</span><span>
 #&gt;    gen      PH    ED   TKW   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1        3     2     2    10
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10      11    12    11     3
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11       7     9     5     6
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12      12     6     7     8
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13      10     8     3    12
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2        6    10     8     5
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3        9     7    10     4
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4        4     4     6     1
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5        1     5     4     2
-#&gt; </span><span style='color: #555555;'>10</span><span> H6        2     1     1    13
-#&gt; </span><span style='color: #555555;'>11</span><span> H7        8     3     9     7
-#&gt; </span><span style='color: #555555;'>12</span><span> H8       13    11    12    11
-#&gt; </span><span style='color: #555555;'>13</span><span> H9        5    13    13     9</div><div class='input'>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1    0.318 0.667 2.72  0.929
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10   0.230 0.973 2.15  0.506
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11   0.201 0.649 1.26  0.836
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12   0.364 0.315 0.558 0.228
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13   0.363 0.838 0.514 0.946
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2    0.342 1.08  4.41  0.404
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3    0.374 0.486 4.10  0.252
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4    0.294 0.378 3.07  0.281
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5    0.168 0.567 0.738 0.611
+#&gt; </span><span style='color: #555555;'>10</span><span> H6    0.270 0.409 1.64  1.60 
+#&gt; </span><span style='color: #555555;'>11</span><span> H7    0.228 0.384 3.44  0.518
+#&gt; </span><span style='color: #555555;'>12</span><span> H8    0.315 0.653 4.91  0.941
+#&gt; </span><span style='color: #555555;'>13</span><span> H9    0.146 0.907 5.50  0.888</div><div class='input'>
+<span class='co'># And the rank for the WAASB inde.</span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"OrWAASB"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
+#&gt;    gen      PH    ED   TKW   NKR
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1        9     9     7    10
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10       5    12     6     5
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11       3     7     4     8
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12      12     1     2     1
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13      11    10     1    12
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2       10    13    11     4
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3       13     5    10     2
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4        7     2     8     3
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5        2     6     3     7
+#&gt; </span><span style='color: #555555;'>10</span><span> H6        6     4     5    13
+#&gt; </span><span style='color: #555555;'>11</span><span> H7        4     3     9     6
+#&gt; </span><span style='color: #555555;'>12</span><span> H8        8     8    12    11
+#&gt; </span><span style='color: #555555;'>13</span><span> H9        1    11    13     9</div><div class='input'>
+<span class='co'># Fitting a mixed-effect model</span>
 
-<span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>)) <span class='kw'>%&gt;%</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"blupg"</span>)</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
+<span class='no'>blup</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
+              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
 #&gt; Evaluating variable ED 50 % 
 #&gt; Evaluating variable TKW 75 % 
 #&gt; Evaluating variable NKR 100 % 
-#&gt; Done!</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
-#&gt;    gen      PH    ED   TKW   NKR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1     2.49  50.2  339.  32.2
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10    2.48  49.1  339.  32.3
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11    2.48  49.2  339.  32.3
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12    2.48  49.2  339.  32.0
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13    2.49  49.9  339.  32.1
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2     2.49  50.1  339.  32.2
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3     2.49  49.5  339.  32.1
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4     2.49  49.4  339.  32.6
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5     2.49  49.7  339.  32.4
-#&gt; </span><span style='color: #555555;'>10</span><span> H6     2.49  50.3  339.  32.3
-#&gt; </span><span style='color: #555555;'>11</span><span> H7     2.48  49.5  339.  32.2
-#&gt; </span><span style='color: #555555;'>12</span><span> H8     2.48  49.1  339.  32.1
-#&gt; </span><span style='color: #555555;'>13</span><span> H9     2.48  48.8  339.  32.3</div><div class='input'>
+#&gt; Done!</div><div class='input'>
+<span class='co'># Getting p-values for likelihood-ratio test</span>
+<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"pval_lrt"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
+#&gt;   model           PH            ED       TKW      NKR
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Complete </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    </span><span style='color: #BB0000;'>NA</span><span>      
+#&gt; </span><span style='color: #555555;'>2</span><span> Genotype  9.39</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>  0.299         1.00</span><span style='color: #555555;'>e</span><span>+ 0  0.787  
+#&gt; </span><span style='color: #555555;'>3</span><span> Gen:Env   1.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-13</span><span>  0.000</span><span style='text-decoration: underline;'>000</span><span>016</span><span style='text-decoration: underline;'>9</span><span>  4.21</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span>  0.004</span><span style='text-decoration: underline;'>04</span><span></div><div class='input'>
+<span class='co'># Getting the variance components</span>
+<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"vcomp"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
+#&gt;   Group          PH    ED     TKW   NKR
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GEN      0.000</span><span style='text-decoration: underline;'>456</span><span> 0.556 8.27</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-7</span><span> 0.187
+#&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV  0.042</span><span style='text-decoration: underline;'>5</span><span>   2.82  1.15</span><span style='color: #555555;'>e</span><span>+3 2.96 
+#&gt; </span><span style='color: #555555;'>3</span><span> Residual 0.022</span><span style='text-decoration: underline;'>4</span><span>   2.59  9.19</span><span style='color: #555555;'>e</span><span>+2 7.85 </div><div class='input'>
+<span class='co'># Getting the genetic parameters</span>
+<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"genpar"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 5</span><span>
+#&gt;    Parameters                   PH      ED      TKW     NKR
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> GEI variance           0.042</span><span style='text-decoration: underline;'>5</span><span>    2.82   1.15</span><span style='color: #555555;'>e</span><span>+ 3  2.96  
+#&gt; </span><span style='color: #555555;'> 2</span><span> GEI (%)               65.0      47.2    5.55</span><span style='color: #555555;'>e</span><span>+ 1 26.9   
+#&gt; </span><span style='color: #555555;'> 3</span><span> Genotypic variance     0.000</span><span style='text-decoration: underline;'>456</span><span>  0.556  8.27</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 7</span><span>  0.187 
+#&gt; </span><span style='color: #555555;'> 4</span><span> Gen (%)                0.698     9.32   4.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>  1.70  
+#&gt; </span><span style='color: #555555;'> 5</span><span> Residual variance      0.022</span><span style='text-decoration: underline;'>4</span><span>    2.59   9.19</span><span style='color: #555555;'>e</span><span>+ 2  7.85  
+#&gt; </span><span style='color: #555555;'> 6</span><span> Res (%)               34.3      43.4    4.45</span><span style='color: #555555;'>e</span><span>+ 1 71.4   
+#&gt; </span><span style='color: #555555;'> 7</span><span> Phenotypic variance    0.065</span><span style='text-decoration: underline;'>4</span><span>    5.97   2.06</span><span style='color: #555555;'>e</span><span>+ 3 11.0   
+#&gt; </span><span style='color: #555555;'> 8</span><span> Heritability           0.006</span><span style='text-decoration: underline;'>98</span><span>   0.093</span><span style='text-decoration: underline;'>2</span><span> 4.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span>  0.017</span><span style='text-decoration: underline;'>0</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> GEIr2                  0.650     0.472  5.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>  0.269 
+#&gt; </span><span style='color: #555555;'>10</span><span> Heribatility of means  0.035</span><span style='text-decoration: underline;'>2</span><span>    0.376  2.28</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 9</span><span>  0.118 
+#&gt; </span><span style='color: #555555;'>11</span><span> Accuracy               0.188     0.614  4.77</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>  0.344 
+#&gt; </span><span style='color: #555555;'>12</span><span> rge                    0.655     0.521  5.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>  0.274 
+#&gt; </span><span style='color: #555555;'>13</span><span> CVg                    0.860     1.51   2.68</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>  1.34  
+#&gt; </span><span style='color: #555555;'>14</span><span> CVr                    6.03      3.25   8.95</span><span style='color: #555555;'>e</span><span>+ 0  8.69  
+#&gt; </span><span style='color: #555555;'>15</span><span> CV ratio               0.143     0.463  3.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>  0.154 </div><div class='input'>
 
 </div></span></pre>
   </div>
@@ -298,6 +348,7 @@ or environment (<code>type = "ENV"</code>), when possible.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

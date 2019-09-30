@@ -359,7 +359,7 @@ pcoeff2 = data_ge2 %>%
   path_coeff(resp = KW,
              pred = c(PH, NKE, TKW),
              verbose = FALSE)
-summary(pcoeff2)
+print(pcoeff2)
 ```
 
 

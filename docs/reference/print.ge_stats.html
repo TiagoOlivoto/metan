@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary a ge_stats object — summary.ge_stats • metan</title>
+<title>Print an object of class ge_stats — print.ge_stats • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Summary a ge_stats object — summary.ge_stats" />
-<meta property="og:description" content="Summary the ge_stats object in two ways. By default, the results are
+<meta property="og:title" content="Print an object of class ge_stats — print.ge_stats" />
+<meta property="og:description" content="Print the ge_stats object in two ways. By default, the results are
 shown in the R console. The results can also be exported to the directory
 into a *.txt file." />
 <meta property="og:image" content="/logo.png" />
@@ -189,27 +189,27 @@ into a *.txt file." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary a ge_stats object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.ge_stats.R'><code>R/summary.ge_stats.R</code></a></small>
-    <div class="hidden name"><code>summary.ge_stats.Rd</code></div>
+    <h1>Print an object of class ge_stats</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.ge_stats.R'><code>R/print.ge_stats.R</code></a></small>
+    <div class="hidden name"><code>print.ge_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Summary the <code>ge_stats</code> object in two ways. By default, the results are
+    <p>Print the <code>ge_stats</code> object in two ways. By default, the results are
 shown in the R console. The results can also be exported to the directory
 into a *.txt file.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for ge_stats</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>The <code>ge_stats</code> object</p></td>
+      <th>x</th>
+      <td><p>An object of class <code>ge_stats</code>.</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -226,7 +226,8 @@ to the working directory.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments of the function</p></td>
+      <td><p>Options used by the tibble package to format the output.
+See <code><a href='https://tibble.tidyverse.org/reference/formatting.html'>trunc_mat</a></code> for more details.</p></td>
     </tr>
     </table>
 
@@ -239,14 +240,22 @@ to the working directory.</p></td>
                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Individual analysis of variance
-#&gt; ---------------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown or uninitialised column: 'individual'.</span></div><div class='output co'>#&gt; NULL
+#&gt; ---------------------------------------------------------------------------
+#&gt; <span style='color: #555555;'># A tibble: 4 x 12</span><span>
+#&gt;   ENV    MEAN     MSB    MSG    MSR   FCB  PRFB    FCG     PRFG    CV     h2
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> A1     2.79 0.004</span><span style='text-decoration: underline;'>37</span><span> 0.018</span><span style='text-decoration: underline;'>5</span><span> 0.014</span><span style='text-decoration: underline;'>6</span><span> 0.300 0.743  1.27  2.98</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>  4.32  0.212
+#&gt; </span><span style='color: #555555;'>2</span><span> A2     2.46 0.007</span><span style='text-decoration: underline;'>47</span><span> 0.477  0.012</span><span style='text-decoration: underline;'>8</span><span> 0.585 0.565 37.4   1.43</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-12</span><span>  4.59  0.973
+#&gt; </span><span style='color: #555555;'>3</span><span> A3     2.17 0.050</span><span style='text-decoration: underline;'>7</span><span>  0.084</span><span style='text-decoration: underline;'>0</span><span> 0.032</span><span style='text-decoration: underline;'>8</span><span> 1.55  0.233  2.56  2.39</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>  8.35  0.610
+#&gt; </span><span style='color: #555555;'>4</span><span> A4     2.52 0.017</span><span style='text-decoration: underline;'>9</span><span>  0.025</span><span style='text-decoration: underline;'>4</span><span> 0.029</span><span style='text-decoration: underline;'>6</span><span> 0.603 0.555  0.858 5.96</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>  6.84 -</span><span style='color: #BB0000;'>0.166</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 1 more variable: AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Genotype-vs-environment mean
 #&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #555555;'># A tibble: 13 x 4</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 4</span><span>
 #&gt;       A1    A2    A3    A4
 #&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span>  2.72  2.93  2.20  2.64
@@ -420,11 +429,7 @@ to the working directory.</p></td>
 #&gt; </span><span style='color: #555555;'>10</span><span> H6        0.033</span><span style='text-decoration: underline;'>0</span><span>     3      0.012</span><span style='text-decoration: underline;'>8</span><span>      9         0.053</span><span style='text-decoration: underline;'>3</span><span>     3
 #&gt; </span><span style='color: #555555;'>11</span><span> H7        0.109      9      0.009</span><span style='text-decoration: underline;'>47</span><span>     6         0.208      9
 #&gt; </span><span style='color: #555555;'>12</span><span> H8        0.161     13      0.016</span><span style='text-decoration: underline;'>5</span><span>     10         0.306     13
-#&gt; </span><span style='color: #555555;'>13</span><span> H9        0.124     11      0.027</span><span style='text-decoration: underline;'>8</span><span>     13         0.221     10
-#&gt; ------------------------------- End of data -----------------------------
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'>
+#&gt; </span><span style='color: #555555;'>13</span><span> H9        0.124     11      0.027</span><span style='text-decoration: underline;'>8</span><span>     13         0.221     10</div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

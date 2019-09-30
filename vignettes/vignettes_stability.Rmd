@@ -158,14 +158,7 @@ The easiest way to compute the above-mentioned stability indexes is by using the
 stat_ge <- data_ge %>% ge_stats(ENV, GEN, REP, GY)
 dat = stat_ge$GY
 ```
-If you want to export a summary of results, the simplest way is by using the function summary, as follows:
-
-
-```{r, eval=FALSE }
-summary(stat_ge, export = TRUE)
-```
-This comand will create a text file called *ge_stats summary.txt* in the current working directory.
-
+If you want to export a print of results, the simplest way is by using the function `print()` with the argument `export = TRUE`
 
 # Within-environment analysis of variance
 The following table shows the results for the analysis of variance in each environment. Environment with a gray background had a significant genotype effect, considering 5% probability error.

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary an Annicchiarico object — summary.Annicchiarico • metan</title>
+<title>Print an object of class Annicchiarico — print.Annicchiarico • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Summary an Annicchiarico object — summary.Annicchiarico" />
-<meta property="og:description" content="Summary the Annicchiarico object in two ways. By default, the results
+<meta property="og:title" content="Print an object of class Annicchiarico — print.Annicchiarico" />
+<meta property="og:description" content="Print the Annicchiarico object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the
 directory into a *.txt file." />
 <meta property="og:image" content="/logo.png" />
@@ -189,27 +189,27 @@ directory into a *.txt file." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary an Annicchiarico object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.Annicchiarico.R'><code>R/summary.Annicchiarico.R</code></a></small>
-    <div class="hidden name"><code>summary.Annicchiarico.Rd</code></div>
+    <h1>Print an object of class Annicchiarico</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.Annicchiarico.R'><code>R/print.Annicchiarico.R</code></a></small>
+    <div class="hidden name"><code>print.Annicchiarico.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Summary the <code>Annicchiarico</code> object in two ways. By default, the results
+    <p>Print the <code>Annicchiarico</code> object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the
 directory into a *.txt file.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for Annicchiarico</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>The <code>Annicchiarico</code> object</p></td>
+      <th>x</th>
+      <td><p>The <code>Annicchiarico</code> x</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -226,7 +226,8 @@ to the working directory.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments of the function</p></td>
+      <td><p>Options used by the tibble package to format the output.
+See <code><a href='https://tibble.tidyverse.org/reference/formatting.html'>trunc_mat</a></code> for more details.</p></td>
     </tr>
     </table>
 
@@ -234,12 +235,13 @@ to the working directory.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>Ann</span> <span class='kw'>=</span> <span class='fu'><a href='Annicchiarico.html'>Annicchiarico</a></span>(<span class='no'>data_ge2</span>,
-                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>Ann</span>)</div><div class='output co'>#&gt; Variable PH 
+<span class='no'>Ann</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Annicchiarico.html'>Annicchiarico</a></span>(<span class='no'>data_ge2</span>,
+  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>
+)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>Ann</span>)</div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Environmental index
 #&gt; ---------------------------------------------------------------------------
@@ -306,11 +308,7 @@ to the working directory.</p></td>
 #&gt; </span><span style='color: #555555;'>10</span><span> H6        2.49   107.  10.9   89.2     2
 #&gt; </span><span style='color: #555555;'>11</span><span> H7        2.16    93.6  9.69  77.7     8
 #&gt; </span><span style='color: #555555;'>12</span><span> H8        2.03    88.3 12.3   68.1    12
-#&gt; </span><span style='color: #555555;'>13</span><span> H9        2.11    91.5  3.02  86.5     4
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'>
-</div></span></pre>
+#&gt; </span><span style='color: #555555;'>13</span><span> H9        2.11    91.5  3.02  86.5     4</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

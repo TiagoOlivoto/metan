@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summarise a mtsi object — summary.mtsi • metan</title>
+<title>Print an object of class can_cor — print.can_cor • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,9 +42,10 @@
 
 
 
-<meta property="og:title" content="Summarise a mtsi object — summary.mtsi" />
-<meta property="og:description" content="Summary a mtsi object in two ways. By default, the results are shown
-in the R console. The results can also be exported to the directory." />
+<meta property="og:title" content="Print an object of class can_cor — print.can_cor" />
+<meta property="og:description" content="Print an object of class can_cor object in two ways. By default,
+the results are shown in the R console. The results can also be exported to
+the directory." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -188,26 +189,27 @@ in the R console. The results can also be exported to the directory." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summarise a mtsi object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/summary.mtsi.R'><code>R/summary.mtsi.R</code></a></small>
-    <div class="hidden name"><code>summary.mtsi.Rd</code></div>
+    <h1>Print an object of class can_cor</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.can_cor.R'><code>R/print.can_cor.R</code></a></small>
+    <div class="hidden name"><code>print.can_cor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Summary a <code>mtsi</code> object in two ways. By default, the results are shown
-in the R console. The results can also be exported to the directory.</p>
+    <p>Print an object of class <code>can_cor</code> object in two ways. By default,
+the results are shown in the R console. The results can also be exported to
+the directory.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for mtsi</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for can_cor</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>The <code>mtsi</code> object</p></td>
+      <th>x</th>
+      <td><p>An object of class <code>can_cor</code>.</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -224,122 +226,122 @@ to the working directory</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments of the function</p></td>
+      <td><p>Options used by the tibble package to format the output.
+See <code><a href='https://tibble.tidyverse.org/reference/formatting.html'>trunc_mat</a></code> for more details.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='co'># Based on stability only</span>
-<span class='no'>MTSI_MODEL</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
-                   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-                   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; Done!</div><div class='input'>
-<span class='no'>MTSI_index</span> <span class='kw'>=</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>MTSI_MODEL</span>)</div><div class='output co'>#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Principal Component Analysis
-#&gt; -------------------------------------------------------------------------------
-#&gt;     Eigenvalues Variance (%) Cum. variance (%)
-#&gt; PC1   1.6566277     82.83139          82.83139
-#&gt; PC2   0.3433723     17.16861         100.00000
-#&gt; -------------------------------------------------------------------------------
-#&gt; Factor Analysis - factorial loadings after rotation-
-#&gt; -------------------------------------------------------------------------------
-#&gt;          FA1 Communality Uniquenesses
-#&gt; GY 0.9101175   0.8283139    0.1716861
-#&gt; HM 0.9101175   0.8283139    0.1716861
-#&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.8283139 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Multitrait stability index
-#&gt; -------------------------------------------------------------------------------
-#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
-#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for the  waasb index
-#&gt; -------------------------------------------------------------------------------
-#&gt;    Factor        Xo        Xs         SD    SDperc
-#&gt; GY    FA1 0.2504736 0.1165028 -0.1339708 -53.48700
-#&gt; HM    FA1 0.6141648 0.3732404 -0.2409244 -39.22798
-#&gt; ------------------------------------------------------------------------------
-#&gt; Mean of selection differential
-#&gt; -------------------------------------------------------------------------------
-#&gt;          Xo          Xs          SD      SDperc 
-#&gt;   0.4323192   0.2448716  -0.1874476 -46.3574863 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for the mean of the variables
-#&gt; -------------------------------------------------------------------------------
-#&gt;    Factor        Xo       Xs         SD    SDperc
-#&gt; GY    FA1  2.674242  2.77951  0.1052684  3.936384
-#&gt; HM    FA1 48.088286 47.34179 -0.7465000 -1.552353
-#&gt; ------------------------------------------------------------------------------
-#&gt; Selected genotypes
-#&gt; -------------------------------------------------------------------------------
-#&gt; G3 G1
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>MTSI_index</span>)</div><div class='output co'>#&gt; -------------------- Correlation matrix used used in factor analysis -----------------
-#&gt;        GY     HM
-#&gt; GY 1.0000 0.6566
-#&gt; HM 0.6566 1.0000
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='no'>cc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='can_corr.html'>can_corr</a></span>(<span class='no'>data_ge2</span>,
+  <span class='kw'>FG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>EP</span>),
+  <span class='kw'>SG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>EL</span>, <span class='no'>CL</span>, <span class='no'>CD</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>, <span class='no'>TKW</span>),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>cc</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+#&gt; Matrix (correlation/covariance) between variables of first group (FG)
+#&gt; ---------------------------------------------------------------------------
+#&gt;       PH    EH    EP
+#&gt; PH 1.000 0.932 0.638
+#&gt; EH 0.932 1.000 0.870
+#&gt; EP 0.638 0.870 1.000
 #&gt; 
-#&gt; ---------------------------- Principal component analysis -----------------------------
-#&gt;     Eigenvalues Variance.... Cum..variance....
-#&gt; PC1      1.6566        82.83             82.83
-#&gt; PC2      0.3434        17.17            100.00
+#&gt; ---------------------------------------------------------------------------
+#&gt; Collinearity diagnostic between first group
+#&gt; ---------------------------------------------------------------------------
+#&gt; The multicollinearity in the matrix should be investigated.
+#&gt; NC = 977.586
+#&gt; Largest VIF = 229.164618380199
+#&gt; Matrix determinant: 0.0025852 
+#&gt; Largest correlation: PH x EH = 0.932 
+#&gt; Smallest correlation: PH x EP = 0.638 
+#&gt; Number of VIFs &gt; 10: 3 
+#&gt; Number of correlations with r &gt;= |0.8|: 2 
+#&gt; Variables with largest weight in the last eigenvalues: 
+#&gt; EH &gt; PH &gt; EP 
 #&gt; 
-#&gt; --------------------------------- Initial loadings -----------------------------------
-#&gt;      [,1]
-#&gt; GY 0.9101
-#&gt; HM 0.9101
+#&gt; ---------------------------------------------------------------------------
+#&gt; Matrix (correlation/covariance) between variables of second group (SG)
+#&gt; ---------------------------------------------------------------------------
+#&gt;          EL    CL      CD    CW    KW      NR    TKW
+#&gt; EL   1.0000 0.255  0.9119 0.458 0.669 -0.0139  0.442
+#&gt; CL   0.2554 1.000  0.3004 0.738 0.471  0.2619  0.619
+#&gt; CD   0.9119 0.300  1.0000 0.484 0.626 -0.0358  0.443
+#&gt; CW   0.4582 0.738  0.4840 1.000 0.735  0.1657  0.673
+#&gt; KW   0.6686 0.471  0.6260 0.735 1.000  0.3621  0.673
+#&gt; NR  -0.0139 0.262 -0.0358 0.166 0.362  1.0000 -0.109
+#&gt; TKW  0.4421 0.619  0.4433 0.673 0.673 -0.1088  1.000
 #&gt; 
-#&gt; -------------------------- Loadings after varimax rotation ---------------------------
-#&gt;       FA1
-#&gt; GY 0.9101
-#&gt; HM 0.9101
+#&gt; ---------------------------------------------------------------------------
+#&gt; Collinearity diagnostic between second group
+#&gt; ---------------------------------------------------------------------------
+#&gt; Weak multicollinearity in the matrix
+#&gt; NC = 66.912
+#&gt; Matrix determinant: 0.0026584 
+#&gt; Largest correlation: EL x CD = 0.912 
+#&gt; Smallest correlation: EL x NR = -0.014 
+#&gt; Number of VIFs &gt; 10: 7 
+#&gt; Number of correlations with r &gt;= |0.8|: 1 
+#&gt; Variables with largest weight in the last eigenvalues: 
+#&gt; KW &gt; TKW &gt; EL &gt; CW &gt; CL &gt; NR &gt; CD 
 #&gt; 
-#&gt; --------------------------- Scores for genotypes-ideotype -----------------------------
-#&gt;       FA1
-#&gt; G1  1.585
-#&gt; G10 4.772
-#&gt; G2  2.957
-#&gt; G3  1.355
-#&gt; G4  2.650
-#&gt; G5  3.192
-#&gt; G6  1.839
-#&gt; G7  3.200
-#&gt; G8  2.361
-#&gt; G9  3.186
-#&gt; ID1 1.355
+#&gt; ---------------------------------------------------------------------------
+#&gt; Matrix (correlation/covariance) between FG and SG)
+#&gt; ---------------------------------------------------------------------------
+#&gt;       EL    CL    CD    CW    KW    NR   TKW
+#&gt; PH 0.380 0.325 0.315 0.505 0.753 0.329 0.569
+#&gt; EH 0.363 0.397 0.281 0.519 0.703 0.265 0.562
+#&gt; EP 0.263 0.391 0.175 0.425 0.497 0.140 0.426
 #&gt; 
-#&gt; ---------------------------- Multitrait stability index ------------------------------
-#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
-#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Correlation of the canonical pairs and hypothesis testing 
+#&gt; ---------------------------------------------------------------------------
+#&gt;         Var Percent   Sum  Corr Lambda  Chisq DF p_val
+#&gt; U1V1 0.6500   74.35  74.4 0.806  0.273 194.28 21 0e+00
+#&gt; U2V2 0.2087   23.87  98.2 0.457  0.779  37.33 12 2e-04
+#&gt; U3V3 0.0156    1.78 100.0 0.125  0.984   2.35  5 8e-01
 #&gt; 
-#&gt; --------------------------- Selection differential (index) ----------------------------
-#&gt;    Factor     Xo     Xs      SD SDperc
-#&gt; GY    FA1 0.2505 0.1165 -0.1340 -53.49
-#&gt; HM    FA1 0.6142 0.3732 -0.2409 -39.23
+#&gt; ---------------------------------------------------------------------------
+#&gt; Canonical coefficients of the first group 
+#&gt; ---------------------------------------------------------------------------
+#&gt;       U1    U2     U3
+#&gt; PH  2.66  5.26   7.72
+#&gt; EH -2.58 -7.33 -12.99
+#&gt; EP  1.15  2.27   6.67
 #&gt; 
-#&gt; -------------------------- Mean of Selection differential -----------------------------
-#&gt;       Xo       Xs       SD   SDperc 
-#&gt;   0.4323   0.2449  -0.1874 -46.3575 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Canonical coefficients of the second group 
+#&gt; ---------------------------------------------------------------------------
+#&gt;           V1     V2      V3
+#&gt; EL  -0.00776 -0.832  0.4561
+#&gt; CL  -0.25837 -1.430  0.1989
+#&gt; CD  -0.23630  1.177 -1.1116
+#&gt; CW  -0.06101  0.338  0.0822
+#&gt; KW   0.91468 -0.691  1.4550
+#&gt; NR   0.21616  0.914 -0.5313
+#&gt; TKW  0.39749  0.717 -1.5248
 #&gt; 
-#&gt; ------------------------- Selection differential (variables) --------------------------
-#&gt;    Factor     Xo    Xs      SD SDperc
-#&gt; GY    FA1  2.674  2.78  0.1053  3.936
-#&gt; HM    FA1 48.088 47.34 -0.7465 -1.552
+#&gt; ---------------------------------------------------------------------------
+#&gt; Canonical loads of the first group 
+#&gt; ---------------------------------------------------------------------------
+#&gt;       U1     U2       U3
+#&gt; PH 0.985 -0.116 -0.13038
+#&gt; EH 0.893 -0.449 -0.00101
+#&gt; EP 0.601 -0.741  0.29893
 #&gt; 
-#&gt; -------------------------------- Selected genotypes -----------------------------------
-#&gt; G3 G1 4
-#&gt; ------------------------------------ End of data -------------------------------------
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'>
-
-</div></pre>
+#&gt; ---------------------------------------------------------------------------
+#&gt; Canonical loads of the second group 
+#&gt; ---------------------------------------------------------------------------
+#&gt;        V1       V2        V3
+#&gt; EL  0.467 -0.12762 -0.163108
+#&gt; CL  0.357 -0.68261 -0.355191
+#&gt; CD  0.391  0.00411 -0.342359
+#&gt; CW  0.606 -0.40360 -0.145732
+#&gt; KW  0.941 -0.12285 -0.000523
+#&gt; NR  0.435  0.23635  0.260740
+#&gt; TKW 0.680 -0.35153 -0.600539</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
