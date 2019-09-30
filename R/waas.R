@@ -243,26 +243,19 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                            OrWAASY = rank(-WAASY)) %>%
                     ungroup()
             }
-    min_group = Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1)
-    max_group = Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1)
-    min = MeansGxE %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
-    max = MeansGxE %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
-    Details <- list(Ngen = Ngen,
-                    Nenv = Nenv,
-                    OVmean = round(mean(MeansGxE$Y), 4),
-                    Min = paste0(round(min[3], 4), " (Genotype ", min$GEN, " in ", min$ENV,")"),
-                    Max = paste0(round(max$Y, 4), " (Genotype ", max$GEN, " in ", max$ENV,")"),
-                    MinENV = paste0("Environment ", min_group[2,2], " (", round(min_group[2,3], 3),")"),
-                    MaxENV = paste0("Environment ", max_group[2,2], " (", round(max_group[2,3], 3),")"),
-                    MinGEN = paste0("Genotype ", min_group[1,2], " (", round(min_group[1,3], 3), ") "),
-                    MaxGEN =  paste0("Genotype ", max_group[1,2], " (", round(max_group[1,3], 3), ") "),
-                    SigPC = SigPC1)
-    Details <- do.call(rbind.data.frame, Details)
-    names(Details) <- "Values"
-    Details <- dplyr::mutate(Details, Parameters = c("Ngen", "Nenv", "OVmean",
-                                                     "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"))%>%
-        dplyr::select(Parameters, everything())
-
+            min_group <- Escores %>% group_by(type) %>% top_n(1, -Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
+            max_group <- Escores %>% group_by(type) %>% top_n(1, Y) %>% select(type, Code, Y) %>% slice(1) %>% as.data.frame()
+            min <- MeansGxE %>% top_n(1, -Y) %>% select(ENV, GEN, Y)
+            max <- MeansGxE %>% top_n(1, Y) %>% select(ENV, GEN, Y)
+            Details <- tibble(Parameters = c("Ngen", "Nenv", "OVmean","Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN", "SigPC"),
+                              Values = c(Ngen, Nenv, round(mean(MeansGxE$Y), 4),
+                                         paste0(round(min[3], 4), " (", min$GEN, " in ", min$ENV,")"),
+                                         paste0(round(max$Y, 4), " (", max$GEN, " in ", max$ENV,")"),
+                                         paste0(min_group[1,2], " (", round(min_group[1,3], 3),")"),
+                                         paste0(max_group[1,2], " (", round(max_group[1,3], 3),")"),
+                                         paste0(min_group[2,2], " (", round(min_group[2,3], 3), ") "),
+                                         paste0(max_group[2,2], " (", round(max_group[2,3], 3), ") "),
+                                         SigPC1))
     temp <- structure(list(individual = individual[[1]],
                            model = WAASAbs,
                            MeansGxE = MeansGxE,
