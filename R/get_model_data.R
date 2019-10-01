@@ -4,11 +4,13 @@
 #'
 #'
 #' @param x An object created with the functions \code{\link{waas}} or \code{\link{waasb}}.
-#' @param what What should be captured from the model. See more details in \strong{Details} section.
+#' @param what What should be captured from the model. See more in \strong{Details} section.
 #' @param type Chose if the statistics must be show by genotype (\code{type = "GEN"}, default)
 #' or environment (\code{type = "ENV"}), when possible.
 #' @return A tibble showing the values of the variable chosen in argument \code{what}.
-#' @details The next options are valid for both \code{waas} and \code{waasb} objects.
+#' @details
+#'
+#' \strong{The next options are valid in the argument \code{what} for both \code{waas} and \code{waasb} objects.}
 #' * \code{"Y"} for raw means (Default) .
 #' * \code{"PCn"} for the scores of the nth Interaction Principal Component Axis (IPCA) .
 #'  where * \code{n} is the desired IPCA (e.g. \code{"PC3"}) .
@@ -23,7 +25,7 @@
 #' * \code{"WAASBY"} The superiority index WAASBY .
 #' * \code{"OrWAASBY"} The ranking regarding the superiority index .
 #'
-#'  The next options are only allowed if the object is of class \code{waasb}:
+#'  \strong{The next options are only allowed if the object is of class \code{waasb}.}
 #'
 #' * \code{"blupg"} For genotype's predicted mean.
 #' * \code{"blupge"} for genotype-vs-environment's predicted mean.
@@ -37,7 +39,8 @@
 #' @export
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'  V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-#'   trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).
+#'   trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+#'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
 #'  Mean performance and stability in multi-environment trials II: Selection based on multiple
 #'   traits. Agron. J. (in press)
@@ -55,7 +58,6 @@
 #' get_model_data(AMMI, what = "OrWAASB")
 #'
 #' # Fitting a mixed-effect model
-#'
 #' blup <- waasb(data_ge2, ENV, GEN, REP,
 #'               resp = c(PH, ED, TKW, NKR))
 #'
