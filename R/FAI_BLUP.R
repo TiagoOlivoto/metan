@@ -59,10 +59,10 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   if (!any(class(.data) %in% c("data.frame", "tbl_df", "tbl", "waasb"))) {
     stop("The .data must be an object of class 'waasb' or a data.frame/tbl_df.")
   }
-  if(any(sapply(.data, is.numeric)) == FALSE){
+  if(class(.data) != "waasb" & any(sapply(.data, is.numeric)) == FALSE){
     stop("All columns in .data must be numeric.")
   }
-  if(has_rownames(.data) == FALSE){
+  if(class(.data) != "waasb" & has_rownames(.data) == FALSE){
     stop("Please, provide rownames (with genotype's code).")
   }
   nvar <- ifelse(class(.data) == "waasb", length(.data), ncol(.data))
