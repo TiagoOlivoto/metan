@@ -1,3 +1,5 @@
+# metan 1.0.1
+
 # metan 1.0.0
 The changes in this version were made based on suggestions received when metan was submitted to CRAN for the first time.
 
