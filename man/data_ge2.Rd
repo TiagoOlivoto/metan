@@ -3,45 +3,34 @@
 \docType{data}
 \name{data_ge2}
 \alias{data_ge2}
-\title{Data for examples}
-\arguments{
-\item{ENV}{A factor with 4 levels; each level represents one cultivation
-environment.}
-
-\item{GEN}{A factor with 13 levels; each level represents one maize hybrid.}
-
-\item{REP}{A factor with 3 levels; each level represents one
-replication/block.}
-
-\item{PH}{Plant height, in cm.}
-
-\item{EH}{Ear height, in cm.}
-
-\item{EP}{Ear position, i.e., the ratio EH/PH.}
-
-\item{EL}{Ear length, in cm.}
-
-\item{ED}{Ear diameter, in mm.}
-
-\item{CL}{Cob length, in cm.}
-
-\item{CD}{Cob diameter, in mm.}
-
-\item{CW}{Cob weight, in g.}
-
-\item{KW}{Kernel weight, in cm.}
-
-\item{NR}{Number of rows.}
-
-\item{NKR}{Number of kernels per row.}
-
-\item{CDED}{Cob diameter / Ear diameter ratio.}
-
-\item{PERK}{Percentage of kernels.}
-
-\item{TKW}{Thousand-kernel weight}
-
-\item{NKE}{Number of kernels per row.}
+\title{Multi-environment trial of maize}
+\format{A tibble with 156 observations on the following 18 variables.
+\enumerate{
+\itemize{
+\item \strong{ENV} A factor with 4 levels; each level represents one cultivation
+environment.
+\item \strong{GEN} A factor with 13 levels; each level represents one maize hybrid.
+\item \strong{REP} A factor with 3 levels; each level represents one
+replication/block.
+\item \strong{PH} Plant height, in cm.
+\item \strong{EH} Ear height, in cm.
+\item \strong{EP} Ear position, i.e., the ratio EH/PH.
+\item \strong{EL} Ear length, in cm.
+\item \strong{ED} Ear diameter, in mm.
+\item \strong{CL} Cob length, in cm.
+\item \strong{CD} Cob diameter, in mm.
+\item \strong{CW} Cob weight, in g.
+\item \strong{KW} Kernel weight, in cm.
+\item \strong{NR} Number of rows.
+\item \strong{NKR} Number of kernels per row.
+\item \strong{CDED} Cob diameter / Ear diameter ratio.
+\item \strong{PERK} Percentage of kernels.
+\item \strong{TKW} Thousand-kernel weight
+\item \strong{NKE} Number of kernels per row.
+}
+}}
+\source{
+Personal data
 }
 \description{
 This dataset contain data on 15 traits assessed in 13 maize hybrids growing

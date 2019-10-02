@@ -28,7 +28,7 @@ NULL
 #'
 #' @description This dataset contains the means for grain yield of 10 genotypes cultivated
 #' in 5 environments. The interaction effects for this data is found in
-#' \link{int.effects}
+#' \code{\link{int.effects}}
 #'
 #' @name meansGxE
 #' @docType data
@@ -45,50 +45,120 @@ NULL
 NULL
 
 
-#' @title Data for examples
+#' @title Multi-environment trial of oat
 #' @description This dataset contain data on two variables assessed in 10 genotypes growing
 #' in in 11 environments. The experimental design was a RCBD with 3
 #' replicates(blocks). This data provide examples for several functions of
 #' \pkg{metan} package.
-#' @param ENV A factor with 14 levels; each level represents one cultivation
+#' @format A tibble with 420 observations on the following 5 variables.
+#' \enumerate{
+#' * \strong{ENV} A factor with 14 levels; each level represents one cultivation
 #' environment.
-#' @param GEN A factor with 10 levels; each level represents one genotype.
-#' @param REP A factor with 3 levels; each level represents one
+#' * \strong{GEN} A factor with 10 levels; each level represents one genotype.
+#' * \strong{REP} A factor with 3 levels; each level represents one
 #' replication/block.
-#' @param GY A continuous variable (grain yield) observed in each plot.
-#' @param HM A continuous variable (hectoliter mass) observed in each plot.
+#' * \strong{GY} A continuous variable (grain yield) observed in each plot.
+#' * \strong{HM} A continuous variable (hectoliter mass) observed in each plot.
+#' }
+#' @md
+#' @source Personal data
 #' @name data_ge
 #' @docType data
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @keywords data
 NULL
 
-#' @title Data for examples
+#' @title Multi-environment trial of maize
 #' @description This dataset contain data on 15 traits assessed in 13 maize hybrids growing
 #' in 4 environments. The experimental design was a RCBD with 3 blocks and 1
 #' replications per block. It may be used as example in several functions of
 #' \pkg{metan} package.
-#' @param ENV A factor with 4 levels; each level represents one cultivation
+#' @format A tibble with 156 observations on the following 18 variables.
+#' \enumerate{
+#' * \strong{ENV} A factor with 4 levels; each level represents one cultivation
 #' environment.
-#' @param GEN A factor with 13 levels; each level represents one maize hybrid.
-#' @param REP A factor with 3 levels; each level represents one
+#' * \strong{GEN} A factor with 13 levels; each level represents one maize hybrid.
+#' * \strong{REP} A factor with 3 levels; each level represents one
 #' replication/block.
-#' @param PH Plant height, in cm.
-#' @param EH Ear height, in cm.
-#' @param EP Ear position, i.e., the ratio EH/PH.
-#' @param EL Ear length, in cm.
-#' @param ED Ear diameter, in mm.
-#' @param CL Cob length, in cm.
-#' @param CD Cob diameter, in mm.
-#' @param CW Cob weight, in g.
-#' @param KW Kernel weight, in cm.
-#' @param NR Number of rows.
-#' @param NKR Number of kernels per row.
-#' @param CDED Cob diameter / Ear diameter ratio.
-#' @param PERK Percentage of kernels.
-#' @param TKW Thousand-kernel weight
-#' @param NKE Number of kernels per row.
+#' * \strong{PH} Plant height, in cm.
+#' * \strong{EH} Ear height, in cm.
+#' * \strong{EP} Ear position, i.e., the ratio EH/PH.
+#' * \strong{EL} Ear length, in cm.
+#' * \strong{ED} Ear diameter, in mm.
+#' * \strong{CL} Cob length, in cm.
+#' * \strong{CD} Cob diameter, in mm.
+#' * \strong{CW} Cob weight, in g.
+#' * \strong{KW} Kernel weight, in cm.
+#' * \strong{NR} Number of rows.
+#' * \strong{NKR} Number of kernels per row.
+#' * \strong{CDED} Cob diameter / Ear diameter ratio.
+#' * \strong{PERK} Percentage of kernels.
+#' * \strong{TKW} Thousand-kernel weight
+#' * \strong{NKE} Number of kernels per row.
+#' }
+#' @md
 #' @name data_ge2
+#' @source Personal data
+#' @docType data
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @keywords data
+NULL
+
+
+
+#' @title Single maize trial
+#' @description This dataset contain data on 15 traits assessed in 13 maize hybrids.
+#' The experimental design was a RCBD with 3 blocks and 1
+#' replications per block. It is used as an example in the function \code{\link{gamem}}
+#'  of the \pkg{metan} package.
+#' @format A tibble with 39 observations on the following 17 variables.
+#' \enumerate{
+#' * \strong{GEN} A factor with 13 levels; each level represents one maize hybrid.
+#' * \strong{REP} A factor with 3 levels; each level represents one replication/block.
+#' * \strong{PH} Plant height, in cm.
+#' * \strong{EH} Ear height, in cm.
+#' * \strong{EP} Ear position, i.e., the ratio EH/PH.
+#' * \strong{EL} Ear length, in cm.
+#' * \strong{ED} Ear diameter, in mm.
+#' * \strong{CL} Cob length, in cm.
+#' * \strong{CD} Cob diameter, in mm.
+#' * \strong{CW} Cob weight, in g.
+#' * \strong{KW} Kernel weight, in cm.
+#' * \strong{NR} Number of rows.
+#' * \strong{NKR} Number of kernels per row.
+#' * \strong{CDED} Cob diameter / Ear diameter ratio.
+#' * \strong{PERK} Percentage of kernels.
+#' * \strong{TKW} Thousand-kernel weight
+#' * \strong{NKE} Number of kernels per row.
+#' }
+#' @md
+#' @name data_g
+#' @source Personal data
+#' @docType data
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @keywords data
+NULL
+
+
+
+#' @title Data from an alpha lattice design
+#' @description Alpha lattice design of spring oats
+#' @format A tibble with 72 observations on the following 5 variables.
+#' \enumerate{
+#' * \strong{PLOT} Plot number
+#' * \strong{REP} Replicate code
+#' * \strong{BLOCK} Incomplete block code
+#' * \strong{GEN} Genotype code
+#' * \strong{YIELD} Observed dry matter yield (tonnes/ha)
+#' }
+#'
+#' @details A spring oats trial grown in Craibstone. There were 24 varieties
+#'  in 3 replicates, each consisting of 6 incomplete blocks of 4 plots.
+#'  Planted in a resolvable alpha design. The plots were laid out in a single line.
+#' @source J. A. John & E. R. Williams (1995). Cyclic and computer generated designs,
+#'  Chapman and Hall, London. Page 146.
+#' @name data_alpha
+#' @md
 #' @docType data
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @keywords data
@@ -117,5 +187,5 @@ if (getRversion() >= "2.15.1") {
       "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI", "Pair", "LL", "UL",
       "ci", "mean_var", "se", "x", "d1", "d2", "radio", "x0", "x1_x", "x1_y", "y0",
       "val", "Statistic", "Cluster", "CCP", "U1", "U2", "V1", "V2", "Var", "LEVEL",
-      "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)"))
+      "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)", "dat"))
 }

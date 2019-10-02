@@ -3,19 +3,21 @@
 \docType{data}
 \name{data_ge}
 \alias{data_ge}
-\title{Data for examples}
-\arguments{
-\item{ENV}{A factor with 14 levels; each level represents one cultivation
-environment.}
-
-\item{GEN}{A factor with 10 levels; each level represents one genotype.}
-
-\item{REP}{A factor with 3 levels; each level represents one
-replication/block.}
-
-\item{GY}{A continuous variable (grain yield) observed in each plot.}
-
-\item{HM}{A continuous variable (hectoliter mass) observed in each plot.}
+\title{Multi-environment trial of oat}
+\format{A tibble with 420 observations on the following 5 variables.
+\enumerate{
+\itemize{
+\item \strong{ENV} A factor with 14 levels; each level represents one cultivation
+environment.
+\item \strong{GEN} A factor with 10 levels; each level represents one genotype.
+\item \strong{REP} A factor with 3 levels; each level represents one
+replication/block.
+\item \strong{GY} A continuous variable (grain yield) observed in each plot.
+\item \strong{HM} A continuous variable (hectoliter mass) observed in each plot.
+}
+}}
+\source{
+Personal data
 }
 \description{
 This dataset contain data on two variables assessed in 10 genotypes growing
