@@ -283,7 +283,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
             break
           VIF <- VIF3
         }
-        xxx <- data[VIF3$VAR]
+        xxx <- data[VIF3$VAR] %>% as.data.frame()
         selectedpred <- VIF3$VAR
         npred <- ncol(xxx) - 1
         statistics <- data.frame(matrix(nrow = npred -
@@ -600,7 +600,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           break
         VIF <- VIF3
       }
-      xxx <- data[VIF3$VAR]
+      xxx <- data[VIF3$VAR] %>% as.data.frame()
       selectedpred <- VIF3$VAR
       npred <- ncol(xxx) - 1
       statistics <- data.frame(matrix(nrow = npred - 1,
