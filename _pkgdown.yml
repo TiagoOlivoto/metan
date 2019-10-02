@@ -79,6 +79,22 @@ reference:
   - title: "BLUP"
     desc: "Functions for BLUP prediction in multi-environment trial analysis"
     contents:
+      - gamem
+      - autoplot.waasb
+      - plot_blup
+      - plot_eigen
+      - plot_scores
+      - plot_waasby
+      - Resende_indexes
+      - print.waasb
+      - cv_blup
+      - waasb
+      - wsmp
+      - plot.wsmp
+      - print.gamem
+  - title: "BLUP"
+    desc: "Functions for BLUP prediction in multi-environment trial analysis"
+    contents:
       - autoplot.waasb
       - plot_blup
       - plot_eigen
@@ -177,6 +193,7 @@ reference:
   - title: "Datasets"
     desc: "Data for reproducible examples"
     contents:
+      - data_g
       - data_ge
       - data_ge2
       - int.effects

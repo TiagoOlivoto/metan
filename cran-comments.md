@@ -1,9 +1,10 @@
 # Resubmission
-This is a resubmission. In this version, I have made the following changes based on the Uwe Ligges' comments. 
+This is a resubmission for the new package 'metan'. Now in version 1.0.1. I have incorporated the feedback kindly provided by Martina Schmirl on Septempber 27th, 2019. See responses inline below. 
 
-- Fixed invalid link in README.md
-- Updated DESCRIPTION file
-- updated cran-comments.md
+- Please ensure that your functions do not write by default or in your examples/vignettes/tests in the user's home filespace. That is not allow by CRAN policies. Please only write/save files if the user has specified a directory. In your examples/vignettes/tests you can write to tempdir().
+
+   * Done! I have reviewed twice and no functions write files by default. In addition, I have updated the vignette "vignettes_stability.Rmd" that was writing a file in the working directory.
+
 
 After committing the changes I ran:
 
@@ -43,5 +44,5 @@ Thank for your time in helping me with this submission.
 
 Best Regards
 
-Tiago Olivoto
+Tiago Olivoto  
 

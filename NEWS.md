@@ -59,9 +59,6 @@ To allow automatic testing, the examples of the following functions were unwrapp
 * `plot.mtsi()`
 * `plot.wsmp()`
 * `plot_ci()`
-* `summary.mtsi()`
-* `summary.can_cor()`
-* `summary.path_coeff()`
 * `wsmp()`
 
 In the examples of the functions for cross-validation \\dontrun{} was changed with \\donttest{}
