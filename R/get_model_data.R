@@ -72,7 +72,8 @@
 #'
 #'
 get_model_data <- function(x, what = "Y", type = "GEN") {
-  if (!class(x) %in% c("waasb", "waas")) {
+
+  if (!class(x) %in% c("waasb", "waas", "gamem")) {
     stop("Invalid input in 'x' argument. It must be one object of class 'waas' or 'waasb'")
   }
   if (substr(what, 1, 2) == "PC") {
@@ -90,11 +91,14 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
     "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "pval_lrt"
   )
   check2 <- paste("PC", 1:200, sep = "")
+  check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt", "details")
+  check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
+              "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
   if (!what %in% c(check, check2)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
-  if (what %in% c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt") && class(x) != "waasb") {
-    stop("Invalid argument 'what'. It can only be used with an object of class 'waasb'. Please, check and fix.")
+  if (what %in% check3 && !class(x) %in% c("waasb", "gamem")) {
+    stop("Invalid argument 'what'. It can only be used with an object of class 'waasb' or 'gamem'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
@@ -140,11 +144,15 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
         select(Parameters, everything())
     }
   }
-  if (class(x) == "waasb") {
-    if (what %in% c(
-      "Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB", "OrResp",
-      "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY"
-    )) {
+  if (class(x)  %in% c("waasb", "gamem")) {
+    if(class(x) == "gamem" & what == "Y"){
+      message("setting the argument 'what' to 'blupg'.")
+      what <- "blupg"
+    }
+    if(class(x) == "gamem" & !what %in% check3){
+      stop("Invalid value in 'what' for an object of class 'gamem'")
+    }
+    if (class(x) == "waasb" & what %in% check4) {
       bind <- do.call(
         cbind,
         lapply(x, function(x) {
@@ -227,5 +235,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
       }
     }
   }
-  return(bind)
+
+return(bind)
+
 }
