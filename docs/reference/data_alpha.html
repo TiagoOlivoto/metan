@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multi-environment trial of oat — data_ge • metan</title>
+<title>Data from an alpha lattice design — data_alpha • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,11 +42,8 @@
 
 
 
-<meta property="og:title" content="Multi-environment trial of oat — data_ge" />
-<meta property="og:description" content="This dataset contain data on two variables assessed in 10 genotypes growing
-in in 11 environments. The experimental design was a RCBD with 3
-replicates(blocks). This data provide examples for several functions of
-metan package." />
+<meta property="og:title" content="Data from an alpha lattice design — data_alpha" />
+<meta property="og:description" content="Alpha lattice design of spring oats" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -190,36 +187,37 @@ metan package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Multi-environment trial of oat</h1>
+    <h1>Data from an alpha lattice design</h1>
     <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/zzz.R'><code>R/zzz.R</code></a></small>
-    <div class="hidden name"><code>data_ge.Rd</code></div>
+    <div class="hidden name"><code>data_alpha.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This dataset contain data on two variables assessed in 10 genotypes growing
-in in 11 environments. The experimental design was a RCBD with 3
-replicates(blocks). This data provide examples for several functions of
-<span class="pkg">metan</span> package.</p>
+    <p>Alpha lattice design of spring oats</p>
     </div>
 
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 420 observations on the following 5 variables.</p><ol>
+    <p>A tibble with 72 observations on the following 5 variables.</p><ol>
 <li><ul>
-<li><p><strong>ENV</strong> A factor with 14 levels; each level represents one cultivation
-environment.</p></li>
-<li><p><strong>GEN</strong> A factor with 10 levels; each level represents one genotype.</p></li>
-<li><p><strong>REP</strong> A factor with 3 levels; each level represents one
-replication/block.</p></li>
-<li><p><strong>GY</strong> A continuous variable (grain yield) observed in each plot.</p></li>
-<li><p><strong>HM</strong> A continuous variable (hectoliter mass) observed in each plot.</p></li>
+<li><p><strong>PLOT</strong> Plot number</p></li>
+<li><p><strong>REP</strong> Replicate code</p></li>
+<li><p><strong>BLOCK</strong> Incomplete block code</p></li>
+<li><p><strong>GEN</strong> Genotype code</p></li>
+<li><p><strong>YIELD</strong> Observed dry matter yield (tonnes/ha)</p></li>
 </ul></li>
 </ol>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>Personal data</p>
+    <p>J. A. John &amp; E. R. Williams (1995). Cyclic and computer generated designs,
+Chapman and Hall, London. Page 146.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>A spring oats trial grown in Craibstone. There were 24 varieties
+in 3 replicates, each consisting of 6 incomplete blocks of 4 plots.
+Planted in a resolvable alpha design. The plots were laid out in a single line.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -227,6 +225,7 @@ replication/block.</p></li>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#format">Format</a></li>
       <li><a href="#source">Source</a></li>
+      <li><a href="#details">Details</a></li>
     </ul>
 
     <h2>Author</h2>

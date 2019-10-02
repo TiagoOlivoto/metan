@@ -207,7 +207,7 @@
     </tr>
     <tr>
       <th>what</th>
-      <td><p>What should be captured from the model. See more details in <strong>Details</strong> section.</p></td>
+      <td><p>What should be captured from the model. See more in <strong>Details</strong> section.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -221,7 +221,7 @@ or environment (<code>type = "ENV"</code>), when possible.</p></td>
     <p>A tibble showing the values of the variable chosen in argument <code>what</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The next options are valid for both <code>waas</code> and <code>waasb</code> objects.</p><ul>
+    <p><strong>The next options are valid in the argument <code>what</code> for both <code>waas</code> and <code>waasb</code> objects.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default) .</p></li>
 <li><p><code>"PCn"</code> for the scores of the nth Interaction Principal Component Axis (IPCA) .
 where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>) .</p></li>
@@ -237,7 +237,7 @@ where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>) .</p></li>
 <li><p><code>"OrWAASBY"</code> The ranking regarding the superiority index .</p></li>
 </ul>
 
-<p>The next options are only allowed if the object is of class <code>waasb</code>:</p><ul>
+<p><strong>The next options are only allowed if the object is of class <code>waasb</code>.</strong></p><ul>
 <li><p><code>"blupg"</code> For genotype's predicted mean.</p></li>
 <li><p><code>"blupge"</code> for genotype-vs-environment's predicted mean.</p></li>
 <li><p><code>"genpar"</code> Genetic parameters.</p></li>
@@ -250,7 +250,8 @@ where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>) .</p></li>
 
     <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-trials I: Combining features of AMMI and BLUP techniques. Agron. J. (in press).</p>
+trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
 <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
 Mean performance and stability in multi-environment trials II: Selection based on multiple
 traits. Agron. J. (in press)</p>
@@ -300,7 +301,6 @@ traits. Agron. J. (in press)</p>
 #&gt; </span><span style='color: #555555;'>12</span><span> H8        8     8    12    11
 #&gt; </span><span style='color: #555555;'>13</span><span> H9        1    11    13     9</div><div class='input'>
 <span class='co'># Fitting a mixed-effect model</span>
-
 <span class='no'>blup</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
 #&gt; Evaluating variable ED 50 % 

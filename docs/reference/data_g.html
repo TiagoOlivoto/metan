@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multi-environment trial of oat — data_ge • metan</title>
+<title>Single maize trial — data_g • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,11 +42,11 @@
 
 
 
-<meta property="og:title" content="Multi-environment trial of oat — data_ge" />
-<meta property="og:description" content="This dataset contain data on two variables assessed in 10 genotypes growing
-in in 11 environments. The experimental design was a RCBD with 3
-replicates(blocks). This data provide examples for several functions of
-metan package." />
+<meta property="og:title" content="Single maize trial — data_g" />
+<meta property="og:description" content="This dataset contain data on 15 traits assessed in 13 maize hybrids.
+The experimental design was a RCBD with 3 blocks and 1
+replications per block. It is used as an example in the function gamem
+of the metan package." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -190,31 +190,41 @@ metan package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Multi-environment trial of oat</h1>
+    <h1>Single maize trial</h1>
     <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/zzz.R'><code>R/zzz.R</code></a></small>
-    <div class="hidden name"><code>data_ge.Rd</code></div>
+    <div class="hidden name"><code>data_g.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This dataset contain data on two variables assessed in 10 genotypes growing
-in in 11 environments. The experimental design was a RCBD with 3
-replicates(blocks). This data provide examples for several functions of
-<span class="pkg">metan</span> package.</p>
+    <p>This dataset contain data on 15 traits assessed in 13 maize hybrids.
+The experimental design was a RCBD with 3 blocks and 1
+replications per block. It is used as an example in the function <code><a href='gamem.html'>gamem</a></code>
+of the <span class="pkg">metan</span> package.</p>
     </div>
 
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 420 observations on the following 5 variables.</p><ol>
+    <p>A tibble with 39 observations on the following 17 variables.</p><ol>
 <li><ul>
-<li><p><strong>ENV</strong> A factor with 14 levels; each level represents one cultivation
-environment.</p></li>
-<li><p><strong>GEN</strong> A factor with 10 levels; each level represents one genotype.</p></li>
-<li><p><strong>REP</strong> A factor with 3 levels; each level represents one
-replication/block.</p></li>
-<li><p><strong>GY</strong> A continuous variable (grain yield) observed in each plot.</p></li>
-<li><p><strong>HM</strong> A continuous variable (hectoliter mass) observed in each plot.</p></li>
+<li><p><strong>GEN</strong> A factor with 13 levels; each level represents one maize hybrid.</p></li>
+<li><p><strong>REP</strong> A factor with 3 levels; each level represents one replication/block.</p></li>
+<li><p><strong>PH</strong> Plant height, in cm.</p></li>
+<li><p><strong>EH</strong> Ear height, in cm.</p></li>
+<li><p><strong>EP</strong> Ear position, i.e., the ratio EH/PH.</p></li>
+<li><p><strong>EL</strong> Ear length, in cm.</p></li>
+<li><p><strong>ED</strong> Ear diameter, in mm.</p></li>
+<li><p><strong>CL</strong> Cob length, in cm.</p></li>
+<li><p><strong>CD</strong> Cob diameter, in mm.</p></li>
+<li><p><strong>CW</strong> Cob weight, in g.</p></li>
+<li><p><strong>KW</strong> Kernel weight, in cm.</p></li>
+<li><p><strong>NR</strong> Number of rows.</p></li>
+<li><p><strong>NKR</strong> Number of kernels per row.</p></li>
+<li><p><strong>CDED</strong> Cob diameter / Ear diameter ratio.</p></li>
+<li><p><strong>PERK</strong> Percentage of kernels.</p></li>
+<li><p><strong>TKW</strong> Thousand-kernel weight</p></li>
+<li><p><strong>NKE</strong> Number of kernels per row.</p></li>
 </ul></li>
 </ol>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data for examples — data_ge2 • metan</title>
+<title>Multi-environment trial of maize — data_ge2 • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,7 +42,7 @@
 
 
 
-<meta property="og:title" content="Data for examples — data_ge2" />
+<meta property="og:title" content="Multi-environment trial of maize — data_ge2" />
 <meta property="og:description" content="This dataset contain data on 15 traits assessed in 13 maize hybrids growing
 in 4 environments. The experimental design was a RCBD with 3 blocks and 1
 replications per block. It may be used as example in several functions of
@@ -190,7 +190,7 @@ metan package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data for examples</h1>
+    <h1>Multi-environment trial of maize</h1>
     <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/zzz.R'><code>R/zzz.R</code></a></small>
     <div class="hidden name"><code>data_ge2.Rd</code></div>
     </div>
@@ -203,91 +203,43 @@ replications per block. It may be used as example in several functions of
     </div>
 
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>ENV</th>
-      <td><p>A factor with 4 levels; each level represents one cultivation
-environment.</p></td>
-    </tr>
-    <tr>
-      <th>GEN</th>
-      <td><p>A factor with 13 levels; each level represents one maize hybrid.</p></td>
-    </tr>
-    <tr>
-      <th>REP</th>
-      <td><p>A factor with 3 levels; each level represents one
-replication/block.</p></td>
-    </tr>
-    <tr>
-      <th>PH</th>
-      <td><p>Plant height, in cm.</p></td>
-    </tr>
-    <tr>
-      <th>EH</th>
-      <td><p>Ear height, in cm.</p></td>
-    </tr>
-    <tr>
-      <th>EP</th>
-      <td><p>Ear position, i.e., the ratio EH/PH.</p></td>
-    </tr>
-    <tr>
-      <th>EL</th>
-      <td><p>Ear length, in cm.</p></td>
-    </tr>
-    <tr>
-      <th>ED</th>
-      <td><p>Ear diameter, in mm.</p></td>
-    </tr>
-    <tr>
-      <th>CL</th>
-      <td><p>Cob length, in cm.</p></td>
-    </tr>
-    <tr>
-      <th>CD</th>
-      <td><p>Cob diameter, in mm.</p></td>
-    </tr>
-    <tr>
-      <th>CW</th>
-      <td><p>Cob weight, in g.</p></td>
-    </tr>
-    <tr>
-      <th>KW</th>
-      <td><p>Kernel weight, in cm.</p></td>
-    </tr>
-    <tr>
-      <th>NR</th>
-      <td><p>Number of rows.</p></td>
-    </tr>
-    <tr>
-      <th>NKR</th>
-      <td><p>Number of kernels per row.</p></td>
-    </tr>
-    <tr>
-      <th>CDED</th>
-      <td><p>Cob diameter / Ear diameter ratio.</p></td>
-    </tr>
-    <tr>
-      <th>PERK</th>
-      <td><p>Percentage of kernels.</p></td>
-    </tr>
-    <tr>
-      <th>TKW</th>
-      <td><p>Thousand-kernel weight</p></td>
-    </tr>
-    <tr>
-      <th>NKE</th>
-      <td><p>Number of kernels per row.</p></td>
-    </tr>
-    </table>
 
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A tibble with 156 observations on the following 18 variables.</p><ol>
+<li><ul>
+<li><p><strong>ENV</strong> A factor with 4 levels; each level represents one cultivation
+environment.</p></li>
+<li><p><strong>GEN</strong> A factor with 13 levels; each level represents one maize hybrid.</p></li>
+<li><p><strong>REP</strong> A factor with 3 levels; each level represents one
+replication/block.</p></li>
+<li><p><strong>PH</strong> Plant height, in cm.</p></li>
+<li><p><strong>EH</strong> Ear height, in cm.</p></li>
+<li><p><strong>EP</strong> Ear position, i.e., the ratio EH/PH.</p></li>
+<li><p><strong>EL</strong> Ear length, in cm.</p></li>
+<li><p><strong>ED</strong> Ear diameter, in mm.</p></li>
+<li><p><strong>CL</strong> Cob length, in cm.</p></li>
+<li><p><strong>CD</strong> Cob diameter, in mm.</p></li>
+<li><p><strong>CW</strong> Cob weight, in g.</p></li>
+<li><p><strong>KW</strong> Kernel weight, in cm.</p></li>
+<li><p><strong>NR</strong> Number of rows.</p></li>
+<li><p><strong>NKR</strong> Number of kernels per row.</p></li>
+<li><p><strong>CDED</strong> Cob diameter / Ear diameter ratio.</p></li>
+<li><p><strong>PERK</strong> Percentage of kernels.</p></li>
+<li><p><strong>TKW</strong> Thousand-kernel weight</p></li>
+<li><p><strong>NKE</strong> Number of kernels per row.</p></li>
+</ul></li>
+</ol>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Personal data</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#source">Source</a></li>
     </ul>
 
     <h2>Author</h2>
