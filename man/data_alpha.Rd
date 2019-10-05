@@ -5,14 +5,12 @@
 \alias{data_alpha}
 \title{Data from an alpha lattice design}
 \format{A tibble with 72 observations on the following 5 variables.
-\enumerate{
 \itemize{
 \item \strong{PLOT} Plot number
 \item \strong{REP} Replicate code
 \item \strong{BLOCK} Incomplete block code
 \item \strong{GEN} Genotype code
 \item \strong{YIELD} Observed dry matter yield (tonnes/ha)
-}
 }}
 \source{
 J. A. John & E. R. Williams (1995). Cyclic and computer generated designs,
