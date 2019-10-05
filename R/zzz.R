@@ -51,7 +51,6 @@ NULL
 #' replicates(blocks). This data provide examples for several functions of
 #' \pkg{metan} package.
 #' @format A tibble with 420 observations on the following 5 variables.
-#' \enumerate{
 #' * \strong{ENV} A factor with 14 levels; each level represents one cultivation
 #' environment.
 #' * \strong{GEN} A factor with 10 levels; each level represents one genotype.
@@ -59,7 +58,6 @@ NULL
 #' replication/block.
 #' * \strong{GY} A continuous variable (grain yield) observed in each plot.
 #' * \strong{HM} A continuous variable (hectoliter mass) observed in each plot.
-#' }
 #' @md
 #' @source Personal data
 #' @name data_ge
@@ -74,7 +72,6 @@ NULL
 #' replications per block. It may be used as example in several functions of
 #' \pkg{metan} package.
 #' @format A tibble with 156 observations on the following 18 variables.
-#' \enumerate{
 #' * \strong{ENV} A factor with 4 levels; each level represents one cultivation
 #' environment.
 #' * \strong{GEN} A factor with 13 levels; each level represents one maize hybrid.
@@ -95,7 +92,6 @@ NULL
 #' * \strong{PERK} Percentage of kernels.
 #' * \strong{TKW} Thousand-kernel weight
 #' * \strong{NKE} Number of kernels per row.
-#' }
 #' @md
 #' @name data_ge2
 #' @source Personal data
@@ -112,7 +108,6 @@ NULL
 #' replications per block. It is used as an example in the function \code{\link{gamem}}
 #'  of the \pkg{metan} package.
 #' @format A tibble with 39 observations on the following 17 variables.
-#' \enumerate{
 #' * \strong{GEN} A factor with 13 levels; each level represents one maize hybrid.
 #' * \strong{REP} A factor with 3 levels; each level represents one replication/block.
 #' * \strong{PH} Plant height, in cm.
@@ -130,7 +125,6 @@ NULL
 #' * \strong{PERK} Percentage of kernels.
 #' * \strong{TKW} Thousand-kernel weight
 #' * \strong{NKE} Number of kernels per row.
-#' }
 #' @md
 #' @name data_g
 #' @source Personal data
@@ -144,13 +138,11 @@ NULL
 #' @title Data from an alpha lattice design
 #' @description Alpha lattice design of spring oats
 #' @format A tibble with 72 observations on the following 5 variables.
-#' \enumerate{
 #' * \strong{PLOT} Plot number
 #' * \strong{REP} Replicate code
 #' * \strong{BLOCK} Incomplete block code
 #' * \strong{GEN} Genotype code
 #' * \strong{YIELD} Observed dry matter yield (tonnes/ha)
-#' }
 #'
 #' @details A spring oats trial grown in Craibstone. There were 24 varieties
 #'  in 3 replicates, each consisting of 6 incomplete blocks of 4 plots.
@@ -187,5 +179,6 @@ if (getRversion() >= "2.15.1") {
       "OrWAAS", ".stdresid", "WAASB", "grp", "Names", "ID", "MTSI", "Pair", "LL", "UL",
       "ci", "mean_var", "se", "x", "d1", "d2", "radio", "x0", "x1_x", "x1_y", "y0",
       "val", "Statistic", "Cluster", "CCP", "U1", "U2", "V1", "V2", "Var", "LEVEL",
-      "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)", "dat"))
+      "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)", "dat",
+      "BLOCK", "rowid"))
 }
