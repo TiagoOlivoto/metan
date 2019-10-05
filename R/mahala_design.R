@@ -49,8 +49,8 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
-    for (k in 1:length(.data)) {
-      datain <- .data[[k]]
+    for (k in 1:length(.data[[1]])) {
+      datain <- .data[[1]][[k]]
       nam <- names(.data[k])
       GEN <- factor(eval(substitute(gen), eval(datain)))
       REP <- factor(eval(substitute(rep), eval(datain)))

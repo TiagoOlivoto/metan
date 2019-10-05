@@ -136,8 +136,8 @@ clustering <- function(.data, ... = NULL, means_by = NULL, scale = FALSE,
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
-    datain <- .data
-    for (k in 1:length(.data)) {
+    datain <- .data[[1]]
+    for (k in 1:length(datain)) {
       .data <- datain[[k]]
       nam <- names(datain[k])
       if (!missing(...) && !missing(means_by)) {

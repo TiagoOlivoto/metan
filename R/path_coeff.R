@@ -126,7 +126,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
     for (k in 1:length(.data)) {
-      data <- .data[[k]] %>% as.data.frame()
+      data <- .data[[1]][[k]] %>% as.data.frame()
       nam <- names(.data[k])
       resp <- dplyr::enquo(resp)
       if (!missing(pred)) {

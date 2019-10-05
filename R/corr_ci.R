@@ -73,12 +73,12 @@ corr_ci <- function(.data = NA, ..., r = NULL, n = NULL, verbose = TRUE) {
     }
     if (any(class(.data) == "split_factors")) {
       if (missing(...)) {
-        data <- lapply(.data, function(x){
+        data <- lapply(.data[[1]], function(x){
           select_if(x, is.numeric)
         })
       }
       if (!missing(...)) {
-        data <- lapply(.data, function(x){
+        data <- lapply(.data[[1]], function(x){
           dplyr::select(x, ...)
         })
       }

@@ -158,15 +158,15 @@ colindiag <- function(.data, n = NULL, verbose = TRUE) {
     out <- internal(.data)
   }
   if (any(class(.data) %in% c("split_factors", "covcor_design"))) {
-    out <- lapply(seq_along(.data), function(x) {
+    out <- lapply(seq_along(.data[[1]]), function(x) {
       if (verbose == TRUE) {
         cat("\n----------------------------------------------------------------------------\n")
-        cat("Level:", names(.data)[[x]], "\n")
+        cat("Level:", names(.data[[1]])[[x]], "\n")
         cat("----------------------------------------------------------------------------\n")
       }
-      internal(.data[[x]])
+      internal(.data[[1]][[x]])
     })
-    names(out) <- names(.data)
+    names(out) <- names(.data[[1]])
   }
   if (is.data.frame(.data)) {
     data <- .data[, unlist(lapply(.data, is.numeric))]

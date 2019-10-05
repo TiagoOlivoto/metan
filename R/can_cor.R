@@ -111,9 +111,9 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
-    datain <- .data
+    datain <- .data[[1]]
 
-    for (k in 1:length(.data)) {
+    for (k in 1:length(datain)) {
       if(!missing(means_by)){
         .data <- suppressWarnings(group_by(datain[[k]], {{means_by}}) %>%
           summarise_all(mean) %>%

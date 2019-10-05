@@ -25,15 +25,13 @@
 #'                 gen = GEN,
 #'                 env = ENV,
 #'                 rep = REP,
-#'                 nboot = 5,
-#'                 nrepval = 2)
+#'                 nboot = 5)
 #' BLUP = cv_blup(data_ge,
 #'                resp = GY,
 #'                gen = GEN,
 #'                env = ENV,
 #'                rep = REP,
-#'                nboot = 5,
-#'                nrepval = 2)
+#'                nboot = 5)
 #' bind_data = bind_cv(AMMI, BLUP)
 #' plot(bind_data)
 #'

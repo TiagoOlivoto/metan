@@ -84,15 +84,15 @@ lpcor <- function(.data, n = NULL, method = "pearson", verbose = TRUE) {
     out <- internal(.data)
   }
   if (any(class(.data) == "split_factors")) {
-    out <- lapply(seq_along(.data), function(x) {
+    out <- lapply(seq_along(.data[[1]]), function(x) {
       if (verbose == TRUE) {
         cat("\n----------------------------------------------------------------------------\n")
-        cat("Level:", names(.data)[[x]], "\n")
+        cat("Level:", names(.data[[1]])[[x]], "\n")
         cat("----------------------------------------------------------------------------\n")
       }
-      internal(.data[[x]])
+      internal(.data[[1]][[x]])
     })
-    names(out) <- names(.data)
+    names(out) <- names(.data[[1]])
   }
   if (is.data.frame(.data)) {
     if (sum(lapply(.data, is.factor) == TRUE) > 0) {
