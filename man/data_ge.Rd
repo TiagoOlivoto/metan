@@ -5,7 +5,6 @@
 \alias{data_ge}
 \title{Multi-environment trial of oat}
 \format{A tibble with 420 observations on the following 5 variables.
-\enumerate{
 \itemize{
 \item \strong{ENV} A factor with 14 levels; each level represents one cultivation
 environment.
@@ -14,7 +13,6 @@ environment.
 replication/block.
 \item \strong{GY} A continuous variable (grain yield) observed in each plot.
 \item \strong{HM} A continuous variable (hectoliter mass) observed in each plot.
-}
 }}
 \source{
 Personal data
