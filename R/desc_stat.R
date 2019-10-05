@@ -31,7 +31,7 @@
 #' shown for each level of the grouping variable in the function \code{split_factors()}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
-#' @importFrom tidyr spread gather separate
+#' @importFrom tidyr spread gather separate pivot_wider
 #' @importFrom rlang quo quo_text
 #' @examples
 #' library(metan)
@@ -123,11 +123,11 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
-    datain <- .data
-    for (k in 1:length(.data)) {
-      .data <- datain[[k]]
+    datain <- .data[[1]]
+    for (k in 1:length(datain)) {
+      data <- datain[[k]]
       nam <- names(datain[k])
-      data <- dplyr::select(.data, ...)
+      data <- dplyr::select(data, ...)
       if(verbose == TRUE){
         cat("---------------------------------------------------------------------------\n")
         cat(nam, "\n")
@@ -161,6 +161,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
           as_tibble(rownames = NA) %>%
           rownames_to_column("Statistic") %>%
           dplyr::filter(Statistic %in% stats)
+        names(statistics)[ncol(statistics)] <- quo_text(quo(...))
         dfs[[paste(nam)]] <- statistics
         if(verbose == TRUE){
           print(statistics, digits = digits, row.names = FALSE)
@@ -173,8 +174,15 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
       rownames_to_column("LEVEL") %>%
       arrange(Statistic) %>%
       mutate(LEVEL = paste(rep(names(dfs), nrow(dfs[[1]])))) %>%
-      arrange(LEVEL)
-    invisible(df)
+      arrange(LEVEL) %>%
+      separate(LEVEL, into = .data[[2]], sep = "[/|]")
+
+    if(ncol(df) - length(.data[[2]]) == 2){
+      invisible(df %>% pivot_wider(names_from = Statistic, values_from = quo_text(quo(...))))
+    } else{
+      invisible(df)
+    }
+
   } else {
     if (is.null(values) == FALSE) {
       if(!is.vector(values)){
