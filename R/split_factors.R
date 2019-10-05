@@ -32,6 +32,9 @@
 #'
 split_factors <- function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
   grouped <- group_by(.data, ...)
+  dots <- match.call(expand.dots = FALSE)$...
+  dots <- dots[sapply(dots, is.name)]
+
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " | ")))
   gd <- grouped %>% group_split(keep = TRUE) %>% set_names(names)
   if (keep_factors == FALSE) {
@@ -49,5 +52,6 @@ split_factors <- function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
       as_tibble(x)
     })
   }
-  return(structure(gd, class = "split_factors"))
+  return(structure(list(dfs = gd, names = sapply(dots, deparse)),
+                   class = "split_factors"))
 }

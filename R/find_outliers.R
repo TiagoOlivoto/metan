@@ -34,7 +34,7 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
   }
   if (any(class(.data) == "split_factors")) {
     for (k in 1:length(.data)) {
-      data <- .data[[k]]
+      data <- .data[[1]][[k]]
       var <- dplyr::enquo(var)
       nam <- names(.data[k])
       var_name <- data %>% dplyr::select(!!var) %>% unlist() %>%
