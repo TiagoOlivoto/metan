@@ -59,8 +59,7 @@
 #'                        gen = GEN,
 #'                        env = ENV,
 #'                        rep = REP,
-#'                        nboot = 100,
-#'                        nrepval = 2)
+#'                        nboot = 100)
 #' plot(validation)
 #' }
 #'

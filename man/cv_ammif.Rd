@@ -4,7 +4,7 @@
 \alias{cv_ammif}
 \title{Cross-validation procedure}
 \usage{
-cv_ammif(.data, env, gen, rep, resp, nboot = 100, nrepval,
+cv_ammif(.data, env, gen, rep, resp, nboot = 100, block,
   design = "RCBD", verbose = TRUE)
 }
 \arguments{
@@ -23,11 +23,11 @@ replications/blocks.}
 
 \item{nboot}{The number of resamples to be used in the cross-validation. Defaults to 100.}
 
-\item{nrepval}{The number of replicates (r) from total number of replicates
-(R) to be used in the modeling dataset. Only one replicate is used as
-validating data each step, so, \code{Nrepval} must be equal \code{R-1}.}
+\item{block}{Defaults to \code{NULL}. In this case, a randomized complete
+block design is considered. If block is informed, then a resolvable alpha-lattice
+design (Patterson and Williams, 1976) is employed. \strong{All effects are assumed to be fixed.}}
 
-\item{design}{The experimental desig to be considered. Default is
+\item{design}{The experimental design used in each environment. Defaults to
 \code{RCBD} (Randomized complete Block Design). For Completely Randomized
 Designs inform \code{design = 'CRD'}.}
 
@@ -36,36 +36,34 @@ Default is \code{TRUE}.}
 }
 \value{
 An object of class \code{cv_ammif} with the following items:
-\item{RMSPD}{A vector with nboot-estimates of the root mean squared
-prediction difference between predicted and validating data.}
-
-\item{RMSPDmean}{The mean of RMSPDmean estimates.}
-
-\item{Estimated}{A data frame that contain the values (predicted, observed,
-validation) of the last loop.}
-
-\item{Modeling}{The dataset used as modeling data in the last loop.}
-
-\item{Testing}{The dataset used as testing data in the last loop.}
+\itemize{
+\item \strong{RMSPD}: A vector with nboot-estimates of the Root Mean Squared
+Prediction Difference between predicted and validating data.
+\item \strong{RMSPDmean}: The mean of RMSPDmean estimates.
+\item \strong{Estimated}: A data frame that contain the values (predicted, observed,
+validation) of the last loop.
+\item \strong{Modeling}: The dataset used as modeling data in the last loop
+\item \strong{Testing}: The dataset used as testing data in the last loop.
+}
 }
 \description{
 Cross-validation for estimation of all AMMI-family models
 }
 \details{
-This function provides a complete cross-validation of replicate-based data
+\code{cv_ammif} provides a complete cross-validation of replicate-based data
 using AMMI-family models. By default, the first validation is carried out
 considering the AMMIF (all possible axis used). Considering this model, the
 original dataset is split up into two datasets: training set and validation
 set. The 'training' set has all combinations (genotype x environment) with
-the number of replications informed in \code{nrepval}. The dataset
-'validation' set has the remaining replication. The splitting of the dataset
-into modeling and validating data depends on the design informed. For
-Completely Randomized Block Design (default), completely blocks are selected
-within environments. The remained block serves validation data. If
+N-1 replications. The 'validation' set has the remaining replication.
+The splitting of the dataset into modeling and validation sets depends on the
+design informed. For Completely Randomized Block Design (default), and alpha-lattice
+design (declaring \code{block} arguments), complete replicates are selected
+within environments. The remained replicate serves as validation data. If
 \code{design = 'RCD'} is informed, completely randomly samples are made for
-each genotype-by-environment combination. The estimated values (depending on
-the \code{naxis} informed) are compared with the 'validation' data. the Root
-Mean Square Prediction Difference (RMSPD) is computed. At the end of boots,
+each genotype-by-environment combination (Olivoto et al. 2019). The estimated
+values for each member of the AMMI-family model are compared with the 'validation' data.
+The Root Mean Square Prediction Difference (RMSPD) is computed. At the end of boots,
 a list is returned.
 }
 \examples{
@@ -77,14 +75,17 @@ model <- cv_ammif(data_ge,
                   gen = GEN,
                   rep = REP,
                   resp = GY,
-                  nboot = 100,
-                  nrepval = 2)
+                  nboot = 100)
 
 # Alternatively (and more intuitively) using the pipe operator \%>\%
 model <- data_ge \%>\%
-         cv_ammif(ENV, GEN, REP, GY, 100, 2)
+         cv_ammif(ENV, GEN, REP, GY)
 }
 
+}
+\references{
+Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
+Biometrika 63:83-92. \href{https://www.jstor.org/stable/2335087}{doi:10.2307/2335087}
 }
 \seealso{
 \code{\link{cv_ammi}, \link{cv_blup}}
