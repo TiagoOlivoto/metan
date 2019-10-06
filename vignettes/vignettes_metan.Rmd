@@ -44,8 +44,7 @@ CVAL = cv_ammif(data_ge,
                 gen = GEN,
                 rep = REP,
                 resp = GY,
-                nboot = 50,
-                nrepval = 2)
+                nboot = 50)
 plot(CVAL)
 ```
 
