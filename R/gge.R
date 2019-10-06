@@ -61,7 +61,7 @@
 #'  *\strong{grand_mean} The grand mean of the trial.
 #'  *\strong{mean_gen} A vector with the means of the genotypes.
 #'  *\strong{mean_env} A vector with the means of the environments.
-#'  *\strong{scale_var} The scaling vector when the scaling method is \code'sd' .
+#'  *\strong{scale_var} The scaling vector when the scaling method is \code{'sd'}.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,

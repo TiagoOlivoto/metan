@@ -71,7 +71,7 @@ are comparable when singular value partitioning is set to 'genotype' or 'environ
 *\strong{grand_mean} The grand mean of the trial.
 *\strong{mean_gen} A vector with the means of the genotypes.
 *\strong{mean_env} A vector with the means of the environments.
-*\strong{scale_var} The scaling vector when the scaling method is \code'sd' .
+*\strong{scale_var} The scaling vector when the scaling method is \code{'sd'}.
 }
 \description{
 Produces genotype plus genotype-by-environment model based on a multi-environment

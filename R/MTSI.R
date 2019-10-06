@@ -8,7 +8,7 @@
 #' be computed considering the stability of genotypes only. If \code{index =
 #' 'waasby'} both stability and mean performance are considered. More details
 #' can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.
-#' @param SI An integer [0-100]. The selection intensity in percentage of the
+#' @param SI An integer (0-100). The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #' factor analysis.
