@@ -11,41 +11,57 @@ desc_stat(.data = NULL, ..., values = NULL, stats = NULL,
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
 class \code{split_factors}.}
 
-\item{...}{A single variable name or a comma-separated list of unquoted variables names.}
+\item{...}{A single variable name or a comma-separated list of unquoted
+variables names.}
 
-\item{values}{An alternative way to pass the data to the function. It must be a numeric
-vector.}
+\item{values}{An alternative way to pass the data to the function. It must be
+a numeric vector.}
 
-\item{stats}{The descriptive statistics to show. Defaults to \code{NULL} (all statistics shown).
- It must be one or more of the following: \code{'AV.dev'} (average deviation),
-\code{'CI.mean'} (confidence interval for the mean), \code{'CV'} (coefficient of variation),
-\code{'IQR'} (interquartile range), \code{'Kurt'} (kurtosis), \code{'max'} (maximum value),
-\code{'mean'} (arithmetic mean), \code{'median'} (median), \code{'min'} (minimum value),
-\code{'n'} (the length of the data), \code{'norm.pval'} (the p-value for the Shapiro-Wilk test),
- \code{'norm.stat'} (the statistic for the Shapiro-Wilk test), \code{'Q2.5'} (the percentile 2.5%),
- \code{'Q25'} (the first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the percentile 97.5%),
- \code{range} (The range of data), \code{'SD.amo'} (the sample standard deviation), \code{'SD.pop'} (the population standard deviation),
- \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the skewness), \code{sum} (the sum of the values),
- \code{sum.dev} (the sum of the absolute deviations), \code{sum.sq.dev} (the sum of the squared deviations),
- \code{valid.n} (The size of sample with valid number (not NA), \code{'var.amo'} (the sample variance),
- \code{'var.pop'} (the population variance). Use a comma-separated vector of names to select the statistics.
- For example, \code{stats = c("media, mean, CV, n")}.}
+\item{stats}{The descriptive statistics to show. Defaults to \code{NULL} (all
+statistics shown). It must be one or more of the following: \code{'AV.dev'}
+(average deviation), \code{'CI.mean'} (confidence interval for the mean),
+\code{'CV'} (coefficient of variation), \code{'IQR'} (interquartile range),
+\code{'Kurt'} (kurtosis), \code{'max'} (maximum value), \code{'mean'}
+(arithmetic mean), \code{'median'} (median), \code{'min'} (minimum value),
+\code{'n'} (the length of the data), \code{'norm.pval'} (the p-value for the
+Shapiro-Wilk test), \code{'norm.stat'} (the statistic for the Shapiro-Wilk
+test), \code{'Q2.5'} (the percentile 2.5%), \code{'Q25'} (the first
+quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the
+percentile 97.5%), \code{range} (The range of data), \code{'SD.amo'} (the
+sample standard deviation), \code{'SD.pop'} (the population standard
+deviation), \code{'SE.mean'} (the standard error of the mean), \code{'skew'}
+(the skewness), \code{sum} (the sum of the values), \code{sum.dev} (the sum
+of the absolute deviations), \code{sum.sq.dev} (the sum of the squared
+deviations), \code{valid.n} (The size of sample with valid number (not NA),
+\code{'var.amo'} (the sample variance), \code{'var.pop'} (the population
+variance). Use a comma-separated vector of names to select the statistics.
+For example, \code{stats = c("media, mean, CV, n")}.}
 
-\item{level}{The confidence level to compute the confidence interval of mean. Defaults to 0.95.}
+\item{level}{The confidence level to compute the confidence interval of mean.
+Defaults to 0.95.}
 
 \item{digits}{The number of significant digits.}
 
 \item{na.rm}{Logical. Should missing values be removed?}
 
-\item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run silently.}
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
+silently.}
 }
 \value{
 A tibble with the statistics in the lines and variables in columns. If
-\code{.data} is an object of class \code{split_factors}, then the statistics will be
-shown for each level of the grouping variable in the function \code{split_factors()}.
+ \code{.data} is an object of class \code{split_factors}, then the statistics
+ will be shown for each level of the grouping variable in the function
+ \code{\link{split_factors}}.
 }
 \description{
 Compute the most used measures of central tendency, position, and dispersion.
+}
+\details{
+In cases when the statistics are computed for more than two variables
+ with data coming from the function \code{\link{split_factors}} the results
+ are returned in a \emph{long} format. Thus, use the function
+ \code{\link{desc_wider}} to convert it into a \emph{wide} format (levels of
+ the factors in the rows and statistics in the columns).
 }
 \examples{
 library(metan)
@@ -63,11 +79,15 @@ desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
           na.rm = TRUE,
           stats = c('mean, SE.mean, CV, n, valid.n'))
 
+stats <-
 data_ge2 \%>\%
-  split_factors(ENV) \%>\%
-  desc_stat(EP, EL, PH, CL, CW, NR, NKR,
-  stats = c('mean, SE.mean, CV'),
+  split_factors(GEN) \%>\%
+  desc_stat(EP, EL, EH, ED, PH, CD,
+  stats = c('mean, min, max, median, SE.mean, CI.mean, n, CV'),
   verbose = FALSE)
+
+# To get a 'wide' format with the statistics of the variable EP above.
+desc_wider(stats, PH)
 
 }
 \author{

@@ -1,16 +1,16 @@
-#' Descriptive statistics from long to wide
+#'Descriptive statistics from long to wide
 #'
-#'  \code{desc_wider} 'widens' an object of class \code{desc_stat} increasing the number of
-#'  columns and decreasing the number of rows. This is speccialy useful when
-#'  the descriptive statistics were computed for each level of a factor using the
-#'  function \code{\link{split_factors}}.
+#'\code{desc_wider} 'widens' an object of class \code{desc_stat} increasing the
+#'number of columns and decreasing the number of rows. This is speccialy useful
+#'when the descriptive statistics were computed for each level of a factor using
+#'the function \code{\link{split_factors}}.
 #'
-#' @param .data An object of class \code{desc_stat}.
-#' @param var The variable in \code{.data} to show the results.
-#' @return A tibble with the \strong{statistics in the columns} and
-#' \strong{levels of the factor(s) in the rows}.
-#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @export
+#'@param .data An output of the function \code{\link{desc_stat}}.
+#'@param var The variable in \code{.data} to show the results.
+#'@return A tibble with the \strong{statistics in the columns} and
+#'  \strong{levels of the factor(s) in the rows}.
+#'@author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#'@export
 #' @examples
 #' library(metan)
 #'

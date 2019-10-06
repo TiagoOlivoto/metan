@@ -7,19 +7,19 @@
 desc_wider(.data, var)
 }
 \arguments{
-\item{.data}{An object of class \code{desc_stat}.}
+\item{.data}{An output of the function \code{\link{desc_stat}}.}
 
 \item{var}{The variable in \code{.data} to show the results.}
 }
 \value{
 A tibble with the \strong{statistics in the columns} and
-\strong{levels of the factor(s) in the rows}.
+ \strong{levels of the factor(s) in the rows}.
 }
 \description{
-\code{desc_wider} 'widens' an object of class \code{desc_stat} increasing the number of
- columns and decreasing the number of rows. This is speccialy useful when
- the descriptive statistics were computed for each level of a factor using the
- function \code{\link{split_factors}}.
+\code{desc_wider} 'widens' an object of class \code{desc_stat} increasing the
+number of columns and decreasing the number of rows. This is speccialy useful
+when the descriptive statistics were computed for each level of a factor using
+the function \code{\link{split_factors}}.
 }
 \examples{
 library(metan)
