@@ -64,7 +64,7 @@
 #'
 colindiag <- function(.data, n = NULL, verbose = TRUE) {
   if (!class(.data) %in% c("matrix", "data.frame", "split_factors",
-                           "covcor_design")) {
+                           "covcor_design", "tbl_df")) {
     stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
   }
   if (is.matrix(.data) && is.null(n)) {
