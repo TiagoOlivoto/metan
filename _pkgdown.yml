@@ -152,6 +152,7 @@ reference:
       - corr_ss
       - covcor_design
       - desc_stat
+      - desc_wider
       - find_outliers
       - is.lpcor
       - lpcor

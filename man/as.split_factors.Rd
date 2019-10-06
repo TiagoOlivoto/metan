@@ -16,8 +16,8 @@ silently.}
 An object of class \code{split_factors}.
 }
 \description{
-Functions to coerce an object to a list of class \code{split_factors},
-if possible.
+Functions to coerce an object to a list of class \code{split_factors}, if
+possible.
 }
 \details{
 A dataframe may be easily coerced to be split into named subsets based on
