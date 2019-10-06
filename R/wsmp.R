@@ -33,12 +33,13 @@
 #'   trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 #' @return An object of class \code{wsmp} with the following items for each variable:
-#' \item{scenarios}{A list with the model for all computed scenarios.}
-#' \item{WAASY}{The values of the WAASY estimated when the weight for the
-#' stability in the loop match with argument \code{saveWAASY}.}
-#' \item{hetdata, hetcomb}{The data used to produce the heatmaps.}
-#' \item{Ranks}{All the values of WAASY estimated in the different
-#' scenarios of WAAS/GY weighting ratio.}
+#' * \strong{scenarios} A list with the model for all computed scenarios.
+#' * \strong{WAASY} The values of the WAASY estimated when the weight for the
+#' stability in the loop match with argument \code{saveWAASY}.
+#' * \strong{hetdata, hetcomb} The data used to produce the heatmaps.
+#' * \strong{Ranks} All the values of WAASY estimated in the different
+#' scenarios of WAAS/GY weighting ratio.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{resca}}
 #' @importFrom progress progress_bar

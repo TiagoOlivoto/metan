@@ -27,7 +27,6 @@
 
 #' @return An object of class \code{gamem}, which is a list with the following items for each
 #' element (variable):
-#' \enumerate{
 #'  * \strong{fixed:} Test for fixed effects.
 #'
 #'  * \strong{random:} Variance components for random effects.
@@ -48,7 +47,6 @@
 #' and ratio between genotypic and residual coefficient of variation.
 #'
 #'  * \strong{residuals:} The residuals of the model.
-#' }
 #'
 #' @details \code{gamem} analyses data from a one-way genotype testing experiment.
 #' By default, a randomized complete block design is used according to the following model:
@@ -245,7 +243,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       Nbloc <- nlevels(data$BLOCK)
       vin <- vin + 1
       ovmean <- mean(data$Y)
-      Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ REP + (1 | GEN) + (1 | REP:BLOCK), data = data)))
+      Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ (1 | GEN) + REP + (1 | REP:BLOCK), data = data)))
       LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
         mutate(model = c("Complete", "Genotype", "rep:block")) %>%
         select(model, everything())

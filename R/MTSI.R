@@ -15,27 +15,28 @@
 #' @param verbose If \code{verbose = TRUE} (Default) then some results are
 #' shown in the console.
 #' @return An object of class \code{ge_factanal} with the following items:
-#' \item{data}{The data used to compute the factor analysis.}
-#' \item{cormat}{The correlation matrix among the environments.}
-#' \item{PCA}{The eigenvalues and explained variance.}
-#' \item{FA}{The factor analysis.}
-#' \item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
-#' \item{MSA}{The measure of sampling adequacy for individual variable.}
-#' \item{communalities}{The communalities.}
-#' \item{communalities.mean}{The communalities' mean.}
-#' \item{initial.loadings}{The initial loadings.}
-#' \item{finish.loadings}{The final loadings after varimax rotation.}
-#' \item{canonical.loadings}{The canonical loadings.}
-#' \item{scores.gen}{The scores for genotypes in all retained factors.}
-#' \item{scores.ide}{The scores for the ideotype in all retained factors.}
-#' \item{MTSI}{The multi-trait stability index.}
-#' \item{contri.fac}{The relative contribution of each factor on the MTSI value.
+#' * \strong{data} The data used to compute the factor analysis.
+#' * \strong{cormat} The correlation matrix among the environments.
+#' * \strong{PCA} The eigenvalues and explained variance.
+#' * \strong{FA} The factor analysis.
+#' * \strong{KMO} The result for the Kaiser-Meyer-Olkin test.
+#' * \strong{MSA} The measure of sampling adequacy for individual variable.
+#' * \strong{communalities} The communalities.
+#' * \strong{communalities.mean} The communalities' mean.
+#' * \strong{initial.loadings} The initial loadings.
+#' * \strong{finish.loadings} The final loadings after varimax rotation.
+#' * \strong{canonical.loadings} The canonical loadings.
+#' * \strong{scores.gen} The scores for genotypes in all retained factors.
+#' * \strong{scores.ide} The scores for the ideotype in all retained factors.
+#' * \strong{MTSI} The multi-trait stability index.
+#' * \strong{contri.fac} The relative contribution of each factor on the MTSI value.
 #' The lower the contribution of a factor, the close of the ideotype the variables in such
-#' factor are.}
-#' \item{sel.dif}{The selection differential for the WAASBY or WAASB index.}
-#' \item{mean.sd}{The mean for the differential selection.}
-#' \item{sel.dif.var}{The selection differential for the variables.}
-#' \item{Selected}{The selected genotypes.}
+#' factor are.
+#' * \strong{sel.dif} The selection differential for the WAASBY or WAASB index.
+#' * \strong{mean.sd} The mean for the differential selection.
+#' * \strong{sel.dif.var} The selection differential for the variables.
+#' * \strong{Selected} The selected genotypes.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J. (in press).

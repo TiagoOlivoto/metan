@@ -34,35 +34,35 @@
 #'
 #' @return The function returns a list of class \code{gge} containing the following objects
 #'
-#' \item{coordgen}{The coordinates for genotypes for all components.}
+#'  *\strong{coordgen} The coordinates for genotypes for all components.
 #'
-#' \item{coordenv}{The coordinates for environments for all components.}
+#'  *\strong{coordenv} The coordinates for environments for all components.
 #'
-#' \item{eigenvalues}{The vector of eigenvalues.}
+#'  *\strong{eigenvalues} The vector of eigenvalues.
 #'
-#' \item{totalvar}{The overall variance.}
+#'  *\strong{totalvar} The overall variance.
 #'
-#' \item{labelgen}{The name of the genotypes.}
+#'  *\strong{labelgen} The name of the genotypes.
 #'
-#' \item{labelenv}{The names of the environments.}
+#'  *\strong{labelenv} The names of the environments.
 #'
-#' \item{labelaxes}{The axes labels.}
+#'  *\strong{labelaxes} The axes labels.
 #'
-#' \item{ge_mat}{The data used to produce the model (scaled and centered).}
+#'  *\strong{ge_mat} The data used to produce the model (scaled and centered).
 #'
-#' \item{centering}{The centering method.}
+#'  *\strong{centering} The centering method.
 #'
-#' \item{scaling}{The scaling method.}
+#'  *\strong{scaling} The scaling method.
 #'
-#' \item{svp}{The singular value partitioning method.}
+#'  *\strong{svp} The singular value partitioning method.
 #'
-#' \item{d}{The factor used to generate in which the ranges of genotypes and environments
-#'  are comparable when singular value partitioning is set to 'genotype' or 'environment'.}
-#'  \item{grand_mean}{The grand mean of the trial.}
-#'  \item{mean_gen}{A vector with the means of the genotypes.}
-#'  \item{mean_env}{A vector with the means of the environments.}
-#'  \item{scale_var}{The scaling vector when the scaling method is \code{'sd'}.}
-#'
+#'  *\strong{d} The factor used to generate in which the ranges of genotypes and environments
+#'  are comparable when singular value partitioning is set to 'genotype' or 'environment'.
+#'  *\strong{grand_mean} The grand mean of the trial.
+#'  *\strong{mean_gen} A vector with the means of the genotypes.
+#'  *\strong{mean_env} A vector with the means of the environments.
+#'  *\strong{scale_var} The scaling vector when the scaling method is \code'sd' .
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
 #'  geneticists, and agronomists. CRC Press.

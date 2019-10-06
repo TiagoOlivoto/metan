@@ -14,7 +14,7 @@ be computed considering the stability of genotypes only. If \code{index =
 'waasby'} both stability and mean performance are considered. More details
 can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.}
 
-\item{SI}{An integer [0-100]. The selection intensity in percentage of the
+\item{SI}{An integer \link{0-100}. The selection intensity in percentage of the
 total number of genotypes.}
 
 \item{mineval}{The minimum value so that an eigenvector is retained in the
@@ -25,27 +25,29 @@ shown in the console.}
 }
 \value{
 An object of class \code{ge_factanal} with the following items:
-\item{data}{The data used to compute the factor analysis.}
-\item{cormat}{The correlation matrix among the environments.}
-\item{PCA}{The eigenvalues and explained variance.}
-\item{FA}{The factor analysis.}
-\item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
-\item{MSA}{The measure of sampling adequacy for individual variable.}
-\item{communalities}{The communalities.}
-\item{communalities.mean}{The communalities' mean.}
-\item{initial.loadings}{The initial loadings.}
-\item{finish.loadings}{The final loadings after varimax rotation.}
-\item{canonical.loadings}{The canonical loadings.}
-\item{scores.gen}{The scores for genotypes in all retained factors.}
-\item{scores.ide}{The scores for the ideotype in all retained factors.}
-\item{MTSI}{The multi-trait stability index.}
-\item{contri.fac}{The relative contribution of each factor on the MTSI value.
+\itemize{
+\item \strong{data} The data used to compute the factor analysis.
+\item \strong{cormat} The correlation matrix among the environments.
+\item \strong{PCA} The eigenvalues and explained variance.
+\item \strong{FA} The factor analysis.
+\item \strong{KMO} The result for the Kaiser-Meyer-Olkin test.
+\item \strong{MSA} The measure of sampling adequacy for individual variable.
+\item \strong{communalities} The communalities.
+\item \strong{communalities.mean} The communalities' mean.
+\item \strong{initial.loadings} The initial loadings.
+\item \strong{finish.loadings} The final loadings after varimax rotation.
+\item \strong{canonical.loadings} The canonical loadings.
+\item \strong{scores.gen} The scores for genotypes in all retained factors.
+\item \strong{scores.ide} The scores for the ideotype in all retained factors.
+\item \strong{MTSI} The multi-trait stability index.
+\item \strong{contri.fac} The relative contribution of each factor on the MTSI value.
 The lower the contribution of a factor, the close of the ideotype the variables in such
-factor are.}
-\item{sel.dif}{The selection differential for the WAASBY or WAASB index.}
-\item{mean.sd}{The mean for the differential selection.}
-\item{sel.dif.var}{The selection differential for the variables.}
-\item{Selected}{The selected genotypes.}
+factor are.
+\item \strong{sel.dif} The selection differential for the WAASBY or WAASB index.
+\item \strong{mean.sd} The mean for the differential selection.
+\item \strong{sel.dif.var} The selection differential for the variables.
+\item \strong{Selected} The selected genotypes.
+}
 }
 \description{
 Computes the multitrait stability index proposed by Olivoto et al. (2019)
@@ -72,7 +74,7 @@ mtsi_index2 = data_ge \%>\%
 
 }
 \references{
-Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J. (in press).
+Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J. (in press).
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

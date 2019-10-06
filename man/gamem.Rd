@@ -35,7 +35,6 @@ silently.}
 \value{
 An object of class \code{gamem}, which is a list with the following items for each
 element (variable):
-\enumerate{
 \itemize{
 \item \strong{fixed:} Test for fixed effects.
 \item \strong{random:} Variance components for random effects.
@@ -51,7 +50,6 @@ variance and their respective contribution to the phenotypic variance; broad-sen
 heritability on the entry-mean basis, genotypic coeffient of variation residual coefficient of variation
 and ratio between genotypic and residual coefficient of variation.
 \item \strong{residuals:} The residuals of the model.
-}
 }
 }
 \description{

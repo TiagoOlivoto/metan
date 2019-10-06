@@ -50,22 +50,22 @@
 #'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 #' @return An object of class \code{waas} with the following items for each variable:
 #'
-#' \item{individual}{A within-environments ANOVA considering a fixed-effect
-#' model.}
-#' \item{model}{A data frame with the response variable, the scores of all
+#' * \strong{individual} A within-environments ANOVA considering a fixed-effect
+#' model.
+#' * \strong{model} A data frame with the response variable, the scores of all
 #' Principal Components, the estimates of Weighted Average of Absolute Scores,
 #' and WAASY (the index that consider the weights for stability and
-#' productivity in the genotype ranking.}
+#' productivity in the genotype ranking.
 #'
-#' \item{MeansGxE}{The means of genotypes in the environments, with observed,
-#' predicted and residual values.}
+#' * \strong{MeansGxE} The means of genotypes in the environments, with observed,
+#' predicted and residual values.
 #'
-#' \item{PCA}{Principal Component Analysis.}
+#' * \strong{PCA} Principal Component Analysis.
 #'
-#' \item{anova}{Joint analysis of variance for the main effects and Principal
-#' Component analysis of the interaction effect.}
+#' * \strong{anova} Joint analysis of variance for the main effects and Principal
+#' Component analysis of the interaction effect.
 #'
-#' \item{Details}{A list summarizing the results. The following information are
+#' * \strong{Details} A list summarizing the results. The following information are
 #' showed. \code{WgtResponse}, the weight for the response variable in
 #' estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the
 #' number of genotypes, \code{Nenv} the number of environments, \code{OVmean}
@@ -73,9 +73,10 @@
 #' and environment), \code{Max} the maximum observed, \code{Max} the maximum
 #' observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
 #' the environment with the larger mean observed, \code{MinGEN} the genotype
-#' with the lower mean, \code{MaxGEN} the genotype with the larger.}
-#' \item{residuals}{The residuals of the model.}
-#' \item{probint}{The p-value for the genotype-vs-environment interaction.}
+#' with the lower mean, \code{MaxGEN} the genotype with the larger.
+#' * \strong{residuals} The residuals of the model.
+#' * \strong{probint} The p-value for the genotype-vs-environment interaction.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{waasb}}
 #' @export

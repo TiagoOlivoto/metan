@@ -48,23 +48,19 @@ silently.}
 }
 \value{
 An object of class \code{waas} with the following items for each variable:
-
-\item{individual}{A within-environments ANOVA considering a fixed-effect
-model.}
-\item{model}{A data frame with the response variable, the scores of all
+\itemize{
+\item \strong{individual} A within-environments ANOVA considering a fixed-effect
+model.
+\item \strong{model} A data frame with the response variable, the scores of all
 Principal Components, the estimates of Weighted Average of Absolute Scores,
 and WAASY (the index that consider the weights for stability and
-productivity in the genotype ranking.}
-
-\item{MeansGxE}{The means of genotypes in the environments, with observed,
-predicted and residual values.}
-
-\item{PCA}{Principal Component Analysis.}
-
-\item{anova}{Joint analysis of variance for the main effects and Principal
-Component analysis of the interaction effect.}
-
-\item{Details}{A list summarizing the results. The following information are
+productivity in the genotype ranking.
+\item \strong{MeansGxE} The means of genotypes in the environments, with observed,
+predicted and residual values.
+\item \strong{PCA} Principal Component Analysis.
+\item \strong{anova} Joint analysis of variance for the main effects and Principal
+Component analysis of the interaction effect.
+\item \strong{Details} A list summarizing the results. The following information are
 showed. \code{WgtResponse}, the weight for the response variable in
 estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the
 number of genotypes, \code{Nenv} the number of environments, \code{OVmean}
@@ -72,9 +68,10 @@ the overall mean, \code{Min} the minimum observed (returning the genotype
 and environment), \code{Max} the maximum observed, \code{Max} the maximum
 observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
 the environment with the larger mean observed, \code{MinGEN} the genotype
-with the lower mean, \code{MaxGEN} the genotype with the larger.}
-\item{residuals}{The residuals of the model.}
-\item{probint}{The p-value for the genotype-vs-environment interaction.}
+with the lower mean, \code{MaxGEN} the genotype with the larger.
+\item \strong{residuals} The residuals of the model.
+\item \strong{probint} The p-value for the genotype-vs-environment interaction.
+}
 }
 \description{
 Compute the Weighted Average of Absolute Scores for AMMI analysis (Olivoto et al., 2019).
@@ -89,7 +86,7 @@ follows:
 where \eqn{WAAS_i} is the weighted average of absolute scores of the
 \emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype
 in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the
-*k*th IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of
+\emph{k}th IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of
 significant PCAs, or a declared number of PCAs. For example if \code{prob =
 0.05}, all axis that are significant considering this probability level are
 used. The number of axis can be also informed by declaring \code{naxis = x}.
@@ -136,10 +133,10 @@ model3 <- waas(data_ge,
 
 }
 \references{
-Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
- V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-  trials I: Combining features of AMMI and BLUP techniques. Agron. J.
-  \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
+Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
+trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+\href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 }
 \seealso{
 \code{\link{waasb}}

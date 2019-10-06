@@ -24,11 +24,11 @@ in case of the input data is a two-way table.}
 \item{centering}{The centering method. Must be one of the \code{'none | 0'}, for no
 centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),
 for environment-centered (G+GE); or \code{'double | 3'}, for double centred (GE).
- A biplot cannot be produced with models produced without centering.}
+A biplot cannot be produced with models produced without centering.}
 
 \item{scaling}{The scaling method. Must be one of the \code{'none | 0'} (default), for no scaling;
 or \code{'sd | 1'}, where each value is divided by the standard deviation of its corresponding
- environment (column). This will put all environments roughly he same rang of values.}
+environment (column). This will put all environments roughly he same rang of values.}
 
 \item{svp}{The method for singular value partitioning. Must be one of the \code{'genotype | 1'},
 (The singular value is entirely partitioned into the genotype eigenvectors, also called row
@@ -44,34 +44,34 @@ in the rows and environments in the columns. Defaults to \code{FALSE}.}
 \value{
 The function returns a list of class \code{gge} containing the following objects
 
-\item{coordgen}{The coordinates for genotypes for all components.}
+*\strong{coordgen} The coordinates for genotypes for all components.
 
-\item{coordenv}{The coordinates for environments for all components.}
+*\strong{coordenv} The coordinates for environments for all components.
 
-\item{eigenvalues}{The vector of eigenvalues.}
+*\strong{eigenvalues} The vector of eigenvalues.
 
-\item{totalvar}{The overall variance.}
+*\strong{totalvar} The overall variance.
 
-\item{labelgen}{The name of the genotypes.}
+*\strong{labelgen} The name of the genotypes.
 
-\item{labelenv}{The names of the environments.}
+*\strong{labelenv} The names of the environments.
 
-\item{labelaxes}{The axes labels.}
+*\strong{labelaxes} The axes labels.
 
-\item{ge_mat}{The data used to produce the model (scaled and centered).}
+*\strong{ge_mat} The data used to produce the model (scaled and centered).
 
-\item{centering}{The centering method.}
+*\strong{centering} The centering method.
 
-\item{scaling}{The scaling method.}
+*\strong{scaling} The scaling method.
 
-\item{svp}{The singular value partitioning method.}
+*\strong{svp} The singular value partitioning method.
 
-\item{d}{The factor used to generate in which the ranges of genotypes and environments
- are comparable when singular value partitioning is set to 'genotype' or 'environment'.}
- \item{grand_mean}{The grand mean of the trial.}
- \item{mean_gen}{A vector with the means of the genotypes.}
- \item{mean_env}{A vector with the means of the environments.}
- \item{scale_var}{The scaling vector when the scaling method is \code{'sd'}.}
+*\strong{d} The factor used to generate in which the ranges of genotypes and environments
+are comparable when singular value partitioning is set to 'genotype' or 'environment'.
+*\strong{grand_mean} The grand mean of the trial.
+*\strong{mean_gen} A vector with the means of the genotypes.
+*\strong{mean_env} A vector with the means of the environments.
+*\strong{scale_var} The scaling vector when the scaling method is \code'sd' .
 }
 \description{
 Produces genotype plus genotype-by-environment model based on a multi-environment
@@ -93,7 +93,7 @@ data_ge2 \%>\%
 }
 \references{
 Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
- geneticists, and agronomists. CRC Press.
+geneticists, and agronomists. CRC Press.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

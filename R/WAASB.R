@@ -41,36 +41,36 @@
 #'   trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 #' @return An object of class \code{waasb} with the following items for each variable:
-#' \item{individual}{A within-environments ANOVA considering a fixed-effect
-#' model.}
+#' * \strong{individual} A within-environments ANOVA considering a fixed-effect
+#' model.
 #'
-#' \item{fixed}{Test for fixed effects.}
+#' * \strong{fixed} Test for fixed effects.
 #'
-#' \item{random}{Variance components for random effects.}
+#' * \strong{random} Variance components for random effects.
 #'
-#' \item{LRT}{The Likelihood Ratio Test for the random effects.}
+#' * \strong{LRT} The Likelihood Ratio Test for the random effects.
 #'
-#' \item{model}{A data frame with the response variable, the scores of all
+#' * \strong{model} A data frame with the response variable, the scores of all
 #' Principal Components, the estimates of Weighted Average of Absolute Scores,
 #' and WAASY (the index that consider the weights for stability and
-#' productivity in the genotype ranking.}
+#' productivity in the genotype ranking.
 #'
-#' \item{blupGEN}{The estimated BLUPS for genotypes (If \code{random = "gen"}
-#' or \code{random = "all"})}
+#' * \strong{blupGEN} The estimated BLUPS for genotypes (If \code{random = "gen"}
+#' or \code{random = "all"})
 #'
-#' \item{BLUPenv}{The estimated BLUPS for environments, (If \code{random =
-#' "env"} or \code{random = "all"}).}
+#' * \strong{BLUPenv} The estimated BLUPS for environments, (If \code{random =
+#' "env"} or \code{random = "all"}).
 #'
-#' \item{BLUPge}{The estimated BLUPS of all genotypes in all environments
-#' "BLUPij".}
+#' * \strong{BLUPge} The estimated BLUPS of all genotypes in all environments
+#' "BLUPij".
 #'
-#' \item{PCA}{The results of Principal Component Analysis with eigenvalues and
-#' explained variance of BLUP-interaction matrix.}
+#' * \strong{PCA} The results of Principal Component Analysis with eigenvalues and
+#' explained variance of BLUP-interaction matrix.
 #'
-#' \item{MeansGxE}{The phenotypic means of genotypes in the environments, with
-#' observed, predicted and OLS residual prediction.}
+#' * MeansGxE The phenotypic means of genotypes in the environments, with
+#' observed, predicted and OLS residual prediction.
 #'
-#' \item{Details}{A list summarizing the results. The following information are
+#' * \strong{Details} A list summarizing the results. The following information are
 #' showed. \code{WgtResponse}, the weight for the response variable in
 #' estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the
 #' number of genotypes, \code{Nenv} the number of environments, \code{OVmean}
@@ -78,9 +78,9 @@
 #' and environment), \code{Max} the maximum observed, \code{Max} the maximum
 #' observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
 #' the environment with the larger mean observed, \code{MinGEN} the genotype
-#' with the lower mean, \code{MaxGEN} the genotype with the larger.}
+#' with the lower mean, \code{MaxGEN} the genotype with the larger.
 #'
-#' \item{ESTIMATES}{A list with the following values: \code{GEV} the
+#' * \strong{ESTIMATES} A list with the following values: \code{GEV} the
 #' genotype-by-environment variance (and percentage of phenotypic variance);
 #' \code{GV} the genotypic variance (and percentage of phenotypic variance);
 #' \code{EV} the environmental variance;\code{RV} the residual variance (and
@@ -90,8 +90,9 @@
 #' the mean; \code{AccuGen} the selective accuracy; \code{rge} the
 #' genotype-environment correlation; \code{CVg} the genotypic coefficient of
 #' variation; \code{CVr} the residual coefficient of variation; \code{CVratio}
-#' the ratio between genotypic and residual coefficient of variation.}
-#' \item{residuals}{The residuals of the model.}
+#' the ratio between genotypic and residual coefficient of variation
+#' * \strong{residuals} The residuals of the model.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{waas}}
 #' @export
