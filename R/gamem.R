@@ -217,7 +217,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       if (length(d$resp) > 1) {
         if (verbose == TRUE) {
           cat("Evaluating variable", paste(d$resp[var]), round((var - 1) / (length(d$resp) -
-            1) * 100, 1), "%", "\n")
+                                                                              1) * 100, 1), "%", "\n")
         }
         listres[[paste(d$resp[var])]] <- temp
       } else {
@@ -240,7 +240,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         data <- data.frame(GEN, REP, BLOCK, Y)
       }
       Ngen <- nlevels(data$GEN)
-      Nbloc <- nlevels(data$BLOCK)
+      Nbloc <- nlevels(data$REP)
       vin <- vin + 1
       ovmean <- mean(data$Y)
       Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ (1 | GEN) + REP + (1 | REP:BLOCK), data = data)))
@@ -268,6 +268,9 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       CVg <- (sqrt(GV) / ovmean) * 100
       CVr <- (sqrt(RV) / ovmean) * 100
       CVratio <- CVg / CVr
+      PROB <- ((1 - (1 - prob)) / 2) + (1 - prob)
+      t <- qt(PROB, Nbloc)
+      Limits <- t * sqrt(((1 - AccuGen) * GV))
       GVper <- (GV / FV) * 100
       BRper <- (BRV / FV) * 100
       RVper <- (RV / FV) * 100
@@ -278,10 +281,11 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         ),
         Values = c(GV, GVper, BRV, BRper, RV, RVper, FV, h2g, h2mg, AccuGen, CVg, CVr, CVratio)
       )
-
       blups <- fortify.merMod(Complete) %>%
         group_by(GEN) %>%
-        summarise_at(vars(observed = Y, Predicted = .fitted, resid = .resid), funs(mean))
+        summarise_at(vars(observed = Y, Predicted = .fitted, resid = .resid), funs(mean)) %>%
+        mutate(LL = Predicted - Limits,
+               UL = Predicted + Limits)
 
       min_gen <- data %>%
         group_by(GEN) %>%
@@ -327,7 +331,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       if (length(d$resp) > 1) {
         if (verbose == TRUE) {
           cat("Evaluating variable", paste(d$resp[var]), round((var - 1) / (length(d$resp) -
-            1) * 100, 1), "%", "\n")
+                                                                              1) * 100, 1), "%", "\n")
         }
         listres[[paste(d$resp[var])]] <- temp
       } else {

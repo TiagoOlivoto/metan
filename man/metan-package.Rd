@@ -5,11 +5,26 @@
 \alias{metan-package}
 \title{Multi-Environment Trial Analysis}
 \description{
-Provides functions for performing the most
-used analyses in the evaluation of multi-environment trials.
-This includes stability analysis using widely-known parametric
-and nonparametric methods, functions for biometrical analysis such
-as path analysis, canonical correlation, partial correlation,
-clustering analysis, as well as tools for summarizing and plotting data.
-A complete guide may be found at https://tiagoolivoto.github.io/metan/
+Provides functions for performing the most used analyses in the evaluation of
+multi-environment trials, including, but not limited to:
+\itemize{
+\item ANOVA-based stability statistics;
+\item AMMI-based stability indexes;
+\item BLUP-based stability indexes;
+\item Cross-validation procedures for AMMI-family and BLUP models;
+\item GGE biplot analysis;
+\item Estimation using AMMI considering different numbers of interaction
+principal component axes;
+\item Graphics tools for generating biplots;
+\item Parametric and nonparametric stability statistics;
+\item stability analysis using widely-known parametric;
+\item Variance components and genetic parameters in mixed-effect models;
+\item Within-environment analysis of variance;
+}
+
+\pkg{metan} also provides functions for biometrical analysis such as path
+analysis, canonical correlation, partial correlation, clustering analysis, as
+well as tools for summarizing and plotting data.
+
+A complete guide may be found at \href{https://tiagoolivoto.github.io/metan/}{https://tiagoolivoto.github.io/metan/}
 }

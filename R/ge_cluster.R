@@ -49,9 +49,9 @@
 #' * \strong{tab} A table with the clusters and similarity.
 #'
 #' * \strong{clusters} The sum of square and the mean of the clusters for each
-#' genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).}
+#' genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).
 #'
-#' * \strong{labclust The labels of genotypes/environments within each cluster.
+#' * \strong{labclust The labels} of genotypes/environments within each cluster.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Mojena, R. 2015. Hierarchical grouping methods and stopping

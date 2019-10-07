@@ -12,7 +12,7 @@
 #'   vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
 #'   numeric value. Use a comma-separated vector of text. For example, \code{DI
 #'   = c("max, max, min, min")}.
-#' @param SI An integer [0-100]. The selection intensity in percentage of the
+#' @param SI An integer (0-100). The selection intensity in percentage of the
 #'   total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #'   factor analysis.

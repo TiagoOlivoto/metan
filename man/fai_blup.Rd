@@ -17,7 +17,7 @@ vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
 numeric value. Use a comma-separated vector of text. For example, \code{DI
   = c("max, max, min, min")}.}
 
-\item{SI}{An integer \link{0-100}. The selection intensity in percentage of the
+\item{SI}{An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.}
 
 \item{mineval}{The minimum value so that an eigenvector is retained in the

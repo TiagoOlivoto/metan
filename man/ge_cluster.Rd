@@ -56,8 +56,8 @@ and cophenetic matrix
 \item \strong{Sqt} The total sum of squares.
 \item \strong{tab} A table with the clusters and similarity.
 \item \strong{clusters} The sum of square and the mean of the clusters for each
-genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).}
-\item \strong{labclust The labels of genotypes/environments within each cluster.
+genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).
+\item \strong{labclust The labels} of genotypes/environments within each cluster.
 }
 }
 \description{
