@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -205,15 +205,15 @@
 <h2 class="hasAnchor">
 <a href="#declaring-the-number-of-axes" class="anchor"></a>Declaring the number of axes</h2>
 <p>The function <code><a href="../reference/cv_ammi.html">cv_ammi()</a></code> is used to compute a cross-validation procedure for the AMMI0, AMMI2 and AMMIF (9 axes) models.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>) <span class="co"># AMMI0</span></a>
-<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>) <span class="co"># AMMI2</span></a>
-<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>) <span class="co"># AMMIF</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">5</span>) <span class="co"># AMMI0</span></a>
+<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">5</span>) <span class="co"># AMMI2</span></a>
+<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">5</span>) <span class="co"># AMMIF</span></a></code></pre></div>
 </div>
 <div id="ammi0-to-ammif" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ammi0-to-ammif" class="anchor"></a>AMMI0 to AMMIF</h2>
 <p>The function <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code> is used to compute a cross-validation procedure for all members of the AMMI-family model. In this case, AMMI0-AMMI9.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="cross-validation-for-blup-prediction" class="section level1">
@@ -223,17 +223,17 @@
 <div id="genotype-and-genotype-vs-environment-as-random-effects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#genotype-and-genotype-vs-environment-as-random-effects" class="anchor"></a>Genotype and genotype-vs-environment as random effects</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">BLUP_g =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"gen"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">BLUP_g =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">random =</span> <span class="st">"gen"</span>)</a></code></pre></div>
 </div>
 <div id="environment-replication-within-environment-and-interaction-as-random-effects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#environment-replication-within-environment-and-interaction-as-random-effects" class="anchor"></a>Environment, replication-within-environment and interaction as random effects</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">BLUP_e =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"env"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">BLUP_e =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">random =</span> <span class="st">"env"</span>)</a></code></pre></div>
 </div>
 <div id="a-random-model-all-terms-as-random-effects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#a-random-model-all-terms-as-random-effects" class="anchor"></a>A random model (all terms as random effects)</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">BLUP_ge =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>, <span class="dt">random =</span> <span class="st">"all"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">BLUP_ge =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">5</span>, <span class="dt">random =</span> <span class="st">"all"</span>)</a></code></pre></div>
 </div>
 <div id="printing-the-means-of-rmspd-estimates" class="section level2">
 <h2 class="hasAnchor">

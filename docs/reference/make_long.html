@@ -43,11 +43,11 @@
 
 
 <meta property="og:title" content="Two-way table to a 'long' format — make_long" />
-<meta property="og:description" content="Helps users to easily convert a two-way table (genotype vs environment)
- to a 'long' format data. The data in mat will be gathered into three columns.
- The row names will compose the first column. The column names will
- compose the second column and the third column will contain the data
- that fills the two-way table." />
+<meta property="og:description" content="Helps users to easily convert a two-way table (genotype vs environment) to a
+'long' format data. The data in mat will be gathered into three
+columns. The row names will compose the first column. The column names will
+compose the second column and the third column will contain the data that
+fills the two-way table." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -91,7 +91,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -197,11 +197,11 @@
     </div>
 
     <div class="ref-description">
-    <p>Helps users to easily convert a two-way table (genotype vs environment)
- to a 'long' format data. The data in <code>mat</code> will be gathered into three columns.
- The row names will compose the first column. The column names will
- compose the second column and the third column will contain the data
- that fills the two-way table.</p>
+    <p>Helps users to easily convert a two-way table (genotype vs environment) to a
+'long' format data. The data in <code>mat</code> will be gathered into three
+columns. The row names will compose the first column. The column names will
+compose the second column and the third column will contain the data that
+fills the two-way table.</p>
     </div>
 
     <pre class="usage"><span class='fu'>make_long</span>(<span class='no'>mat</span>, <span class='kw'>gen_in</span> <span class='kw'>=</span> <span class='st'>"rows"</span>)</pre>
@@ -211,19 +211,21 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mat</th>
-      <td><p>A two-way table. It must be a matrix or a data.frame with rownames.</p></td>
+      <td><p>A two-way table. It must be a matrix or a data.frame with
+rownames.</p></td>
     </tr>
     <tr>
       <th>gen_in</th>
-      <td><p>Where are the genotypes? Defaults to <code>'rows'</code>. If genotypes
-are in columns and environments in rows, set to <code>gen_in = 'cols'</code>.</p></td>
+      <td><p>Where are the genotypes? Defaults to <code>'rows'</code>. If
+genotypes are in columns and environments in rows, set to <code>gen_in =
+'cols'</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble with three columns: GEN (genotype), ENV (environment), and Y
-(response) variable.</p>
+  (response) variable.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

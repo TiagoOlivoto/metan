@@ -35,8 +35,69 @@ kable_styling(latex_options = c("striped", "scale_down", "HOLD_position"))
 str(data_ge)
 ```
 
+# Analysis of single experiments using mixed-models
+The function `gamem()` may be used to analyze single experiments (one-way experiments) using a mixed-effect model according to the following model:
 
-# The BLUP model
+$$
+y_{ij}= \mu  + \alpha_i + \tau_j + \varepsilon_{ij}
+$$
+where $y_{ij}$ is the value observed for the *i*th genotype in the *j*th replicate (*i* = 1, 2, ... *g*; *j* = 1, 2, .., *r*); being *g* and *r* the number of genotypes and replicates, respectively; $\alpha_i$ is the random effect of the *i*th genotype; $\tau_j$ is the fixed effect of the *j*th replicate; and $\varepsilon_{ij}$ is the random error associated to $y_{ij}$. In this example, we will use the example data `data_g` from metan package.
+
+```{r}
+gen_mod <- gamem(data_g, GEN, REP,
+                 resp = c(ED, CL, CD, KW, TKW, NKR))
+
+```
+
+The easiest way of obtaining the results of the model above is by using the function `get_model_data()`. Let's do it.
+
+* Details of the analysis
+```{r}
+get_model_data(gen_mod, "details")
+```
+
+* Likelihood ratio test for genotype effect
+```{r}
+get_model_data(gen_mod, "pval_lrt")
+```
+
+* Variance components and genetic parameters
+```{r}
+get_model_data(gen_mod, "genpar")
+```
+
+
+* Predicted means
+```{r}
+get_model_data(gen_mod, "blupg")
+
+```
+
+
+In the above example, the experimental design was a complete randomized block. It is also possible to analyze an experiment conducted in an alpha-lattice design with the function `gamem()`. In this case, the following model is fitted:
+
+$$
+y_{ijk}= \mu  + \alpha_i + \gamma_j + (\gamma \tau)_{jk} + \varepsilon_{ijk}
+$$
+
+
+where $y_{ijk}$ is the observed value of the *i*th genotype in the *k*th block of the *j*th replicate (*i* = 1, 2, ... *g*; *j* = 1, 2, .., *r*; *k* = 1, 2, .., *b*); respectively; $\alpha_i$ is the random effect of the *i*th genotype; $\gamma_j$ is the fixed effect of the *j*th complete replicate; $(\gamma \tau)_{jk}$ is the random effect of the *k*th incomplete block nested within the *j* replicate; and $\varepsilon_{ijk}$ is the random error associated to $y_{ijk}$. In this example, we will use the example data `data_alpha` from metan package.
+
+
+```{r}
+gen_alpha <- gamem(data_alpha, GEN, REP, YIELD, block = BLOCK)
+get_model_data(gen_alpha, "pval_lrt")
+get_model_data(gen_alpha, "details")
+get_model_data(gen_alpha, "genpar")
+
+
+```
+
+
+
+
+
+# The BLUP model for MET trials
 
 The simplest and well-known linear model with interaction effect used to analyze data from multi-environment trials is
 	$$

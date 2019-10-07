@@ -88,7 +88,7 @@ validation procedure." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -215,8 +215,7 @@ validation procedure.</p>
     </tr>
     <tr>
       <th>violin</th>
-      <td><p>Define if a violin plot is used with boxplot. Default is
-'TRUE'</p></td>
+      <td><p>Define if a violin plot is used with boxplot. Default is 'TRUE'</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -224,8 +223,8 @@ validation procedure.</p>
     </tr>
     <tr>
       <th>order_box</th>
-      <td><p>Logical argument. If <code>TRUE</code> then the boxplots will be ordered
-according to the values of the RMSPD.</p></td>
+      <td><p>Logical argument. If <code>TRUE</code> then the boxplots will be
+ordered according to the values of the RMSPD.</p></td>
     </tr>
     <tr>
       <th>x.lab</th>
@@ -283,7 +282,8 @@ the violin plot. Default is 'gray90.</p></td>
     </tr>
     <tr>
       <th>col.boxplot.win</th>
-      <td><p>Define the color for boxplot of the best model. Default is 'cyan'.</p></td>
+      <td><p>Define the color for boxplot of the best model.
+Default is 'cyan'.</p></td>
     </tr>
     <tr>
       <th>width.boxplot</th>
@@ -291,9 +291,9 @@ the violin plot. Default is 'gray90.</p></td>
     </tr>
     <tr>
       <th>x.lim</th>
-      <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and
-minimum values of the data set). New arguments can be inserted as
-<code>x.lim = c(x.min, x.max)</code>.</p></td>
+      <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and minimum
+values of the data set). New arguments can be inserted as <code>x.lim =
+c(x.min, x.max)</code>.</p></td>
     </tr>
     <tr>
       <th>x.breaks</th>
@@ -314,11 +314,10 @@ c(breaks)</code></p></td>
 
     <p>Five statistics are shown in this type of plot. The lower and upper hinges
 correspond to the first and third quartiles (the 25th and 75th percentiles).
-The upper whisker extends from the hinge to the largest value no further
-than 1.5 * IQR from the hinge (where IQR is the inter-quartile range). The
-lower whisker extends from the hinge to the smallest value at most 1.5 * IQR
-of the hinge. Data beyond the end of the whiskers are considered outlying
-points.</p>
+The upper whisker extends from the hinge to the largest value no further than
+1.5 * IQR from the hinge (where IQR is the inter-quartile range). The lower
+whisker extends from the hinge to the smallest value at most 1.5 * IQR of the
+hinge. Data beyond the end of the whiskers are considered outlying points.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -328,8 +327,7 @@ points.</p>
                        <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                        <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                        <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                       <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-                       <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+                       <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>validation</span>)</div><div class='img'><img src='plot.cv_ammif-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 

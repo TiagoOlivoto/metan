@@ -88,7 +88,7 @@ designed (RCBD or CRD) experiment." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -207,8 +207,8 @@ designed (RCBD or CRD) experiment.</p>
       <th>.data</th>
       <td><p>The dataset containing the columns related to Genotypes,
 replication/block and response variables. Alternatively, it is possible to
-use an object of class 'split_factors' to compute the results for each level
-of the grouping factor. See <code><a href='split_factors.html'>?split_factors</a></code>.</p></td>
+use an object of class 'split_factors' to compute the results for each
+level of the grouping factor. See <code><a href='split_factors.html'>?split_factors</a></code>.</p></td>
     </tr>
     <tr>
       <th>gen</th>
@@ -230,11 +230,11 @@ var3)</code>.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>What the matrices should return? Set to <code>NULL</code>, i.e., a
-list of matrices is returned. The argument type allow the following values
+      <td><p>What the matrices should return? Set to <code>NULL</code>, i.e., a list
+of matrices is returned. The argument type allow the following values
 <code>'pcor', 'gcor', 'rcor'</code>, (which will return the phenotypic, genotypic
 and residual correlation matrices, respectively) or <code>'pcov', 'gcov',
-'rcov'</code> (which will return the phenotypic, genotypic and residual
+  'rcov'</code> (which will return the phenotypic, genotypic and residual
 variance-covariance matrices, respectively). Alternatively, it is possible
 to get a matrix with the means of each genotype in each trait, by using
 <code>type = 'means'</code>.</p></td>
@@ -243,17 +243,19 @@ to get a matrix with the means of each genotype in each trait, by using
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>covcor_design</code> containing the following items:</p>
-<dt>geno_cov</dt><dd><p>The genotypic covariance</p></dd>.
-<dt>phen_cov</dt><dd><p>The phenotypic covariance</p></dd>.
-<dt>resi_cov</dt><dd><p>The residual covariance</p></dd>.
-<dt>geno_cor</dt><dd><p>The phenotypic correlation</p></dd>.
-<dt>phen_cor</dt><dd><p>The phenotypic correlation</p></dd>.
-<dt>resi_cor</dt><dd><p>The residual correlation</p></dd>.
+    <p>An object of class <code>covcor_design</code> containing the following
+items:</p><ul>
+<li><p><strong>geno_cov</strong> The genotypic covariance.</p></li>
+<li><p><strong>phen_cov</strong> The phenotypic covariance.</p></li>
+<li><p><strong>resi_cov</strong> The residual covariance.</p></li>
+<li><p><strong>geno_cor</strong> The phenotypic correlation.</p></li>
+<li><p><strong>phen_cor</strong> The phenotypic correlation.</p></li>
+<li><p><strong>resi_cor</strong> The residual correlation.</p></li>
+</ul>
 
-If .data is an object of class split_factors then the output will be
-a list with the above values for each grouping variable in the function <a href='split_factors.html'>split_factors</a>.
-
+<p>If <code>.data</code> is an object of class <code>split_factors</code> then the output
+will be a list with the above values for each grouping variable in the
+function <code><a href='split_factors.html'>split_factors</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -272,9 +274,7 @@ a list with the above values for each grouping variable in the function <a href=
 <span class='no'>rcov</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'>covcor_design</span>(<span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>),
-                      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'rcov'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='input'>
-
-</div></pre>
+                      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'rcov'</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

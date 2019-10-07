@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -209,7 +209,8 @@
       <th>x</th>
       <td><p>The object returned by the function <code>wsmp</code>. Note that this
 object is a list where each element is one variable. Thus, it is necessary
-to assess the desired variable using <code>$</code>; for example, <code><a href='https://rdrr.io/r/graphics/plot.html'>plot(model$GY)</a></code></p></td>
+to assess the desired variable using <code>$</code>; for example,
+<code><a href='https://rdrr.io/r/graphics/plot.html'>plot(model$GY)</a></code></p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -277,16 +278,15 @@ resolution of the plot. Default is '300'.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The first type of heatmap shows the genotype ranking depending on the number
-of principal component axis used for estimating the WAASB index. An
-euclidean distance-based dendrogram is used for grouping the genotype
-ranking for both genotypes and principal component axis. The second type of
-heatmap shows the genotype ranking depending on the WAASB/GY ratio. The
-ranks obtained with a ratio of 100/0 considers exclusively the stability for
-the genotype ranking. On the other hand, a ratio of 0/100 considers
-exclusively the productivity for the genotype ranking.  Four clusters are
-estimated (1) unproductive and unstable genotypes; (2) productive, but
-unstable genotypes; (3) stable, but unproductive genotypes; and (4),
-productive and stable genotypes.</p>
+of principal component axis used for estimating the WAASB index. An euclidean
+distance-based dendrogram is used for grouping the genotype ranking for both
+genotypes and principal component axis. The second type of heatmap shows the
+genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a
+ratio of 100/0 considers exclusively the stability for the genotype ranking.
+On the other hand, a ratio of 0/100 considers exclusively the productivity
+for the genotype ranking.  Four clusters are estimated (1) unproductive and
+unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but
+unproductive genotypes; and (4), productive and stable genotypes.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

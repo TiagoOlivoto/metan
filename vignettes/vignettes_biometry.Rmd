@@ -71,10 +71,19 @@ To compute the statistics for each level of a factor, use the function `split_fa
    
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-data_ge2 %>%
-  split_factors(ENV) %>%
+stats <- 
+  data_ge2 %>%
+  split_factors(GEN) %>%
   desc_stat(EP, EL, CL, CD, CW, NR,
-            stats = c("mean, SE.mean, CV, max, min"))
+            stats = c("mean, SE.mean, CV, max, min, median"),
+            verbose = F)
+print(stats)
+```
+
+We may convert the results above into a *wider* format by using the function `desc_wider()`
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+desc_wider(stats, CD)
 ```
 
 

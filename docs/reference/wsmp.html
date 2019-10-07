@@ -88,7 +88,7 @@ scenarios of weights for stability and mean performance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -241,13 +241,14 @@ Default is <code>TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>wsmp</code> with the following items for each variable:</p>
-<dt>scenarios</dt><dd><p>A list with the model for all computed scenarios.</p></dd>
-<dt>WAASY</dt><dd><p>The values of the WAASY estimated when the weight for the
-stability in the loop match with argument <code>saveWAASY</code>.</p></dd>
-<dt>hetdata, hetcomb</dt><dd><p>The data used to produce the heatmaps.</p></dd>
-<dt>Ranks</dt><dd><p>All the values of WAASY estimated in the different
-scenarios of WAAS/GY weighting ratio.</p></dd>
+    <p>An object of class <code>wsmp</code> with the following items for each variable:</p><ul>
+<li><p><strong>scenarios</strong> A list with the model for all computed scenarios.</p></li>
+<li><p><strong>WAASY</strong> The values of the WAASY estimated when the weight for the
+stability in the loop match with argument <code>saveWAASY</code>.</p></li>
+<li><p><strong>hetdata, hetcomb</strong> The data used to produce the heatmaps.</p></li>
+<li><p><strong>Ranks</strong> All the values of WAASY estimated in the different
+scenarios of WAAS/GY weighting ratio.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -262,10 +263,10 @@ next iteration, the weights becomes 95/5 (since increment = 5). In the third sce
 ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
- V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
-  trials I: Combining features of AMMI and BLUP techniques. Agron. J.
-  <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
+    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='resca.html'>resca</a></code></p></div>

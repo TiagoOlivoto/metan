@@ -44,8 +44,9 @@
 
 <meta property="og:title" content="Additive Main effects and Multiplicative Interaction — performs_ammi" />
 <meta property="og:description" content="Compute the Additive Main effects and Multiplicative interaction. This is a
-helper function for other procedures performed in the metan package such as
-waas, cv_ammi, and cv_ammif." />
+helper function for other procedures performed in the metan package
+such as waas, cv_ammi, and
+cv_ammif." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -89,7 +90,7 @@ waas, cv_ammi, and cv_ammif." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -196,8 +197,9 @@ waas, cv_ammi, and cv_ammif." />
 
     <div class="ref-description">
     <p>Compute the Additive Main effects and Multiplicative interaction. This is a
-helper function for other procedures performed in the <span class="pkg">metan</span> package such as
-<code><a href='waas.html'>waas</a></code>, <code><a href='cv_ammi.html'>cv_ammi</a></code>, and <code><a href='cv_ammif.html'>cv_ammif</a></code>.</p>
+helper function for other procedures performed in the <span class="pkg">metan</span> package
+such as <code><a href='waas.html'>waas</a></code>, <code><a href='cv_ammi.html'>cv_ammi</a></code>, and
+<code><a href='cv_ammif.html'>cv_ammif</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>performs_ammi</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>)</pre>
@@ -233,16 +235,14 @@ replications/blocks</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     
+<ul>
+<li><p><strong>ANOVA</strong> The analysis of variance for the AMMI model.</p></li>
+<li><p><strong>analysis</strong> The principal component analysis</p></li>
+<li><p><strong>means</strong> means of genotype vs environment</p></li>
+</ul>
 
-<dt>ANOVA</dt><dd><p>The analysis of variance for the AMMI model.</p></dd>
-
-<dt>analysis</dt><dd><p>The principal component analysis</p></dd>
-
-<dt>means</dt><dd><p>means of genotype vs environment</p></dd>
-
-<dt>biplot</dt><dd><p>scores for genotypes and environments in all the possible
-axes.</p></dd>
-
+<p>*<strong>biplot</strong> scores for genotypes and environments in all the possible
+axes.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

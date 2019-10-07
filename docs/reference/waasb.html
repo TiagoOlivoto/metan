@@ -43,8 +43,8 @@
 
 
 <meta property="og:title" content="Weighted Average of Absolute Scores — waasb" />
-<meta property="og:description" content="Compute the Weighted Average of Absolute Scores for quantifying the
-stability in multienvironment trials using mixed-effect models (Olivoto et al., 2019)." />
+<meta property="og:description" content="Compute the Weighted Average of Absolute Scores for quantifying the stability
+in multienvironment trials using mixed-effect models (Olivoto et al., 2019)." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -88,7 +88,7 @@ stability in multienvironment trials using mixed-effect models (Olivoto et al., 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -194,8 +194,8 @@ stability in multienvironment trials using mixed-effect models (Olivoto et al., 
     </div>
 
     <div class="ref-description">
-    <p>Compute the Weighted Average of Absolute Scores for quantifying the
-stability in multienvironment trials using mixed-effect models (Olivoto et al., 2019).</p>
+    <p>Compute the Weighted Average of Absolute Scores for quantifying the stability
+in multienvironment trials using mixed-effect models (Olivoto et al., 2019).</p>
     </div>
 
     <pre class="usage"><span class='fu'>waasb</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -226,8 +226,8 @@ replications/blocks.</p></td>
     <tr>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example <code>resp =
-c(var1, var2, var3)</code>.</p></td>
+single procedure a vector of variables may be used. For example <code>resp
+  = c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
       <th>mresp</th>
@@ -238,9 +238,9 @@ the minimum value is 0.</p></td>
     </tr>
     <tr>
       <th>wresp</th>
-      <td><p>The weight for the response variable(s) for computing the
-WAASBY index. Must be a numeric vector of the same length of <code>resp</code>.
-Defaults to 50, i.e., equal weights for stability and mean performance.</p></td>
+      <td><p>The weight for the response variable(s) for computing the WAASBY
+index. Must be a numeric vector of the same length of <code>resp</code>. Defaults
+to 50, i.e., equal weights for stability and mean performance.</p></td>
     </tr>
     <tr>
       <th>random</th>
@@ -270,70 +270,61 @@ silently.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>waasb</code> with the following items for each variable:</p>
-<dt>individual</dt><dd><p>A within-environments ANOVA considering a fixed-effect
-model.</p></dd>
-
-<dt>fixed</dt><dd><p>Test for fixed effects.</p></dd>
-
-<dt>random</dt><dd><p>Variance components for random effects.</p></dd>
-
-<dt>LRT</dt><dd><p>The Likelihood Ratio Test for the random effects.</p></dd>
-
-<dt>model</dt><dd><p>A data frame with the response variable, the scores of all
+    <p>An object of class <code>waasb</code> with the following items for each
+variable: * <strong>individual</strong> A within-environments ANOVA considering a
+fixed-effect model.</p><ul>
+<li><p><strong>fixed</strong> Test for fixed effects.</p></li>
+<li><p><strong>random</strong> Variance components for random effects.</p></li>
+<li><p><strong>LRT</strong> The Likelihood Ratio Test for the random effects.</p></li>
+<li><p><strong>model</strong> A data frame with the response variable, the scores of all
 Principal Components, the estimates of Weighted Average of Absolute Scores,
-and WAASY (the index that consider the weights for stability and
-productivity in the genotype ranking.</p></dd>
-
-<dt>blupGEN</dt><dd><p>The estimated BLUPS for genotypes (If <code>random = "gen"</code>
-or <code>random = "all"</code>)</p></dd>
-
-<dt>BLUPenv</dt><dd><p>The estimated BLUPS for environments, (If <code>random =
-"env"</code> or <code>random = "all"</code>).</p></dd>
-
-<dt>BLUPge</dt><dd><p>The estimated BLUPS of all genotypes in all environments
-"BLUPij".</p></dd>
-
-<dt>PCA</dt><dd><p>The results of Principal Component Analysis with eigenvalues and
-explained variance of BLUP-interaction matrix.</p></dd>
-
-<dt>MeansGxE</dt><dd><p>The phenotypic means of genotypes in the environments, with
-observed, predicted and OLS residual prediction.</p></dd>
-
-<dt>Details</dt><dd><p>A list summarizing the results. The following information are
-showed. <code>WgtResponse</code>, the weight for the response variable in
+and WAASY (the index that consider the weights for stability and productivity
+in the genotype ranking.</p></li>
+<li><p><strong>blupGEN</strong> The estimated BLUPS for genotypes (If <code>random =
+"gen"</code> or <code>random = "all"</code>)</p></li>
+<li><p><strong>BLUPenv</strong> The estimated BLUPS for environments, (If <code>random =
+"env"</code> or <code>random = "all"</code>).</p></li>
+<li><p><strong>BLUPge</strong> The estimated BLUPS of all genotypes in all environments
+"BLUPij".</p></li>
+<li><p><strong>PCA</strong> The results of Principal Component Analysis with eigenvalues
+and explained variance of BLUP-interaction matrix.</p></li>
+<li><p><strong>MeansGxE</strong> The phenotypic means of genotypes in the environments,
+with observed, predicted and OLS residual prediction.</p></li>
+<li><p><strong>Details</strong> A list summarizing the results. The following information
+are showed. <code>WgtResponse</code>, the weight for the response variable in
 estimating WAASB, <code>WgtWAAS</code> the weight for stability, <code>Ngen</code> the
 number of genotypes, <code>Nenv</code> the number of environments, <code>OVmean</code>
-the overall mean, <code>Min</code> the minimum observed (returning the genotype
-and environment), <code>Max</code> the maximum observed, <code>Max</code> the maximum
+the overall mean, <code>Min</code> the minimum observed (returning the genotype and
+environment), <code>Max</code> the maximum observed, <code>Max</code> the maximum
 observed, <code>MinENV</code> the environment with the lower mean, <code>MaxENV</code>
 the environment with the larger mean observed, <code>MinGEN</code> the genotype
-with the lower mean, <code>MaxGEN</code> the genotype with the larger.</p></dd>
-
-<dt>ESTIMATES</dt><dd><p>A list with the following values: <code>GEV</code> the
+with the lower mean, <code>MaxGEN</code> the genotype with the larger.</p></li>
+<li><p><strong>ESTIMATES</strong> A list with the following values: <code>GEV</code> the
 genotype-by-environment variance (and percentage of phenotypic variance);
 <code>GV</code> the genotypic variance (and percentage of phenotypic variance);
 <code>EV</code> the environmental variance;<code>RV</code> the residual variance (and
 percentage of phenotypic variance); <code>FV</code> the phenotypic variance;
 <code>h2g</code> the heritability of the trait; <code>GEr2</code> the coefficient of
-determination of the interaction effects; <code>h2mg</code> the heritability of
-the mean; <code>AccuGen</code> the selective accuracy; <code>rge</code> the
+determination of the interaction effects; <code>h2mg</code> the heritability of the
+mean; <code>AccuGen</code> the selective accuracy; <code>rge</code> the
 genotype-environment correlation; <code>CVg</code> the genotypic coefficient of
 variation; <code>CVr</code> the residual coefficient of variation; <code>CVratio</code>
-the ratio between genotypic and residual coefficient of variation.</p></dd>
-<dt>residuals</dt><dd><p>The residuals of the model.</p></dd>
+the ratio between genotypic and residual coefficient of variation *
+<strong>residuals</strong> The residuals of the model.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function compute the weighted average of absolute scores considering
-all principal component axis from the Singular Value Decomposition (SVD) of
-the BLUP'S GxE effects matrix generated by a linear mixed-effect model.</p>
+    <p>This function compute the weighted average of absolute scores considering all
+principal component axis from the Singular Value Decomposition (SVD) of the
+BLUP'S GxE effects matrix generated by a linear mixed-effect model.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
- V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
-  trials I: Combining features of AMMI and BLUP techniques. Agron. J.
-  <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
+    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='waas.html'>waas</a></code></p></div>

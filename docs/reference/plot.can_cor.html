@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -213,10 +213,11 @@
     </tr>
     <tr>
       <th>type</th>
-      <td><p>The type of the plot. Defaults to <code>type = 1</code> (Scree-plot of the correlations of the
-canonical loadings). Use <code>type = 2</code>, to produce a plot with the scores of the variables in the
-first group, <code>type = 3</code> to produce a plot with the scores of the variables in the second group,
-or <code>type = 4</code> to produce a circle of correlations.</p></td>
+      <td><p>The type of the plot. Defaults to <code>type = 1</code> (Scree-plot of
+the correlations of the canonical loadings). Use <code>type = 2</code>, to
+produce a plot with the scores of the variables in the first group,
+<code>type = 3</code> to produce a plot with the scores of the variables in the
+second group, or <code>type = 4</code> to produce a circle of correlations.</p></td>
     </tr>
     <tr>
       <th>theme</th>
@@ -231,7 +232,8 @@ here)`. For more details, please, see ` ?ggplot2::theme`</p></td>
     </tr>
     <tr>
       <th>size.tex.pa</th>
-      <td><p>The size of the text of the plot area. Default is <code>3.5</code>.</p></td>
+      <td><p>The size of the text of the plot area. Default is
+<code>3.5</code>.</p></td>
     </tr>
     <tr>
       <th>x.lab</th>
@@ -240,9 +242,9 @@ arguments can be inserted as <code>x.lab = 'my label'</code>.</p></td>
     </tr>
     <tr>
       <th>x.lim</th>
-      <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and
-minimum values of the data set). New arguments can be inserted as
-<code>x.lim = c(x.min, x.max)</code>.</p></td>
+      <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and minimum
+values of the data set). New arguments can be inserted as <code>x.lim =
+c(x.min, x.max)</code>.</p></td>
     </tr>
     <tr>
       <th>x.breaks</th>
@@ -273,22 +275,21 @@ enable fitting of labels. Default is <code>1.1</code>.</p></td>
     </tr>
     <tr>
       <th>shape</th>
-      <td><p>The shape of points in the plot. Default is
-<code>21</code> (circle). Values must be between <code>21-25</code>: <code>21</code> (circle),
-<code>22</code> (square), <code>23</code> (diamond), <code>24</code> (up triangle), and
-<code>25</code> (low triangle).</p></td>
+      <td><p>The shape of points in the plot. Default is <code>21</code> (circle).
+Values must be between <code>21-25</code>: <code>21</code> (circle), <code>22</code>
+(square), <code>23</code> (diamond), <code>24</code> (up triangle), and <code>25</code> (low
+triangle).</p></td>
     </tr>
     <tr>
       <th>col.shape</th>
       <td><p>A vector of length 2 that contains the color of shapes for
-genotypes above and below of the mean, respectively. Defaults to <code>"orange"</code>.
-<code><a href='https://rdrr.io/r/base/c.html'>c("blue", "red")</a></code>.</p></td>
+genotypes above and below of the mean, respectively. Defaults to
+<code>"orange"</code>. <code><a href='https://rdrr.io/r/base/c.html'>c("blue", "red")</a></code>.</p></td>
     </tr>
     <tr>
       <th>col.alpha</th>
-      <td><p>The alpha value for the color. Default is <code>0.9</code>.
-Values must be between <code>0</code> (full transparency) to <code>1</code> (full
-color).</p></td>
+      <td><p>The alpha value for the color. Default is <code>0.9</code>. Values
+must be between <code>0</code> (full transparency) to <code>1</code> (full color).</p></td>
     </tr>
     <tr>
       <th>size.shape</th>
@@ -301,13 +302,14 @@ size of the shape will be <code>size.shape + size.bor.tick</code></p></td>
     </tr>
     <tr>
       <th>labels</th>
-      <td><p>Logical arguments. If <code>TRUE</code> then the points in the plot will have labels.</p></td>
+      <td><p>Logical arguments. If <code>TRUE</code> then the points in the plot
+will have labels.</p></td>
     </tr>
     <tr>
       <th>main</th>
-      <td><p>The title of the plot. Defaults to <code>NULL</code>, in which each plot will have a default
-title. Use a string text to create an own title or set to <code>main = FALSE</code> to omit the
-plot title.</p></td>
+      <td><p>The title of the plot. Defaults to <code>NULL</code>, in which each
+plot will have a default title. Use a string text to create an own title or
+set to <code>main = FALSE</code> to omit the plot title.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -363,7 +365,7 @@ plot title.</p></td>
 #&gt; Matrix determinant: 0.0015322 
 #&gt; Largest correlation: EL x CD = 0.912 
 #&gt; Smallest correlation: EL x NR = -0.014 
-#&gt; Number of VIFs &gt; 10: 7 
+#&gt; Number of VIFs &gt; 10: 0 
 #&gt; Number of correlations with r &gt;= |0.8|: 2 
 #&gt; Variables with largest weight in the last eigenvalues: 
 #&gt; KW &gt; ED &gt; EL &gt; CD &gt; CL &gt; CW &gt; NR 
@@ -458,7 +460,7 @@ plot title.</p></td>
 #&gt; Matrix determinant: 7.9e-06 
 #&gt; Largest correlation: EL x CD = 0.938 
 #&gt; Smallest correlation: EL x NR = -0.072 
-#&gt; Number of VIFs &gt; 10: 7 
+#&gt; Number of VIFs &gt; 10: 6 
 #&gt; Number of correlations with r &gt;= |0.8|: 5 
 #&gt; Variables with largest weight in the last eigenvalues: 
 #&gt; ED &gt; KW &gt; CL &gt; CW &gt; EL &gt; NR &gt; CD 

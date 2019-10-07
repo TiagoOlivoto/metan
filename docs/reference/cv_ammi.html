@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -196,8 +196,8 @@
     <p>Cross-validation for estimation of AMMI models</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cv_ammi</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>nrepval</span>, <span class='no'>naxis</span>,
-  <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>cv_ammi</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,14 +226,10 @@ replications/blocks.</p></td>
       <td><p>The response variable.</p></td>
     </tr>
     <tr>
-      <th>nboot</th>
-      <td><p>The number of resamples to be used in the cross-validation. Defaults to 100.</p></td>
-    </tr>
-    <tr>
-      <th>nrepval</th>
-      <td><p>The number of replicates (r) from total number of replicates
-(R) to be used in the modeling dataset. Only one replicate is used as
-validating data each step, so, <code>Nrepval</code> must be equal <code>R-1</code></p></td>
+      <th>block</th>
+      <td><p>Defaults to <code>NULL</code>. In this case, a randomized complete
+block design is considered. If block is informed, then a resolvable alpha-lattice
+design (Patterson and Williams, 1976) is employed. <strong>All effects are assumed to be fixed.</strong></p></td>
     </tr>
     <tr>
       <th>naxis</th>
@@ -241,10 +237,13 @@ validating data each step, so, <code>Nrepval</code> must be equal <code>R-1</cod
 effects.</p></td>
     </tr>
     <tr>
+      <th>nboot</th>
+      <td><p>The number of resamples to be used in the cross-validation. Defaults to 100.</p></td>
+    </tr>
+    <tr>
       <th>design</th>
-      <td><p>The experimental desig to be considered. Default is
-<code>RCBD</code> (Randomized complete Block Design). For Completely Randomized
-Designs inform <code>design = 'CRD'</code>.</p></td>
+      <td><p>The experimental design. Defaults to <code>RCBD</code> (Randomized complete Block Design).
+For Completely Randomized Designs inform <code>design = 'CRD'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -255,33 +254,38 @@ Default is <code>TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>cv_ammi</code> with the following items:</p>
-<dt>RMSPD</dt><dd><p>A vector with nboot-estimates of the root mean squared
-prediction difference between predicted and validating data.</p></dd>
-
-<dt>RMSPDmean</dt><dd><p>The mean of RMSPDmean estimates.</p></dd>
-
-<dt>Estimated</dt><dd><p>A data frame that contain the values (predicted, observed,
-validation) of the last loop.</p></dd>
-
-<dt>Modeling</dt><dd><p>The dataset used as modeling data in the last loop.</p></dd>
-
-<dt>Testing</dt><dd><p>The dataset used as testing data in the last loop.</p></dd>
+    <p>An object of class <code>cv_ammi</code> with the following items:</p><ul>
+<li><p><strong>RMSPD</strong>: A vector with nboot-estimates of the Root Mean Squared
+Prediction Difference between predicted and validating data.</p></li>
+<li><p><strong>RMSPDmean</strong>: The mean of RMSPDmean estimates.</p></li>
+<li><p><strong>Estimated</strong>: A data frame that contain the values (predicted, observed,
+validation) of the last loop.</p></li>
+<li><p><strong>Modeling</strong>: The dataset used as modeling data in the last loop</p></li>
+<li><p><strong>Testing</strong>: The dataset used as testing data in the last loop.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>For each iteration, the original dataset is split into two datasets:
-modeling and validating data. The dataset 'modeling' has all combinations
-(genotype x environment) with the number of replications informed in
-<code>nrepval</code>. The dataset 'validating' has one replication. The splitting
-of the dataset into modeling and validating data depends on the design
-informed. For Completely Randomized Block Design (default), completely blocks
-are selected within environments. The remained block serves validation data.
-If <code>design = 'RCD'</code> is informed, completely randomly samples are made
-for each genotype-by-environment combination. The estimated values
-(depending on NAXIS informed) are compared with the 'validating' data. the
-Root Means Square error is computed. At the end of boots, a list is returned
-with the following values.</p>
+    <p>THe original dataset is split into two datasets: training set and validation
+set. The 'training' set has all combinations (genotype x environment) with
+N-1 replications. The 'validation' set has the remaining replication.
+The splitting of the dataset into modeling and validation sets depends on the
+design informed. For Completely Randomized Block Design (default), and alpha-lattice
+design (declaring <code>block</code> arguments), complete replicates are selected
+within environments. The remained replicate serves as validation data. If
+<code>design = 'RCD'</code> is informed, completely randomly samples are made for
+each genotype-by-environment combination (Olivoto et al. 2019). The estimated
+values considering <code>naxis</code>-Interaction Principal Component Axis are
+compared with the 'validation' data. The Root Mean Square Prediction
+Difference (RMSPD) is computed. At the end of boots, a list is returned.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
+<p>Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
+Biometrika 63:83-92. <a href='https://www.jstor.org/stable/2335087'>doi:10.2307/2335087</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cv_ammif.html'>cv_ammif</a>, <a href='cv_blup.html'>cv_blup</a></code></p></div>
@@ -296,12 +300,11 @@ with the following values.</p>
                 <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                 <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
                 <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-                <span class='kw'>nrepval</span> <span class='kw'>=</span> <span class='fl'>2</span>,
                 <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-         <span class='fu'>cv_ammi</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='fl'>100</span>, <span class='fl'>2</span>, <span class='fl'>2</span>)
+         <span class='fu'>cv_ammi</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)
 <span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -310,6 +313,7 @@ with the following values.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -246,8 +246,8 @@ WPGMC) or <code>'centroid'</code> (= UPGMC).</p></td>
       <td><p>Should the data be scaled befor computing the distances? Set to
 TRUE. Let \(Y_{ij}\) be the yield of Hybrid <em>i</em> in Location <em>j</em>,
 \(\bar Y_{.j}\) be the mean yield, and \(S_j\) be the standard deviation of
- Location <em>j</em>. The standardized yield (Zij) is computed as (Ouyang et al. 1995):
- \(Z_{ij} = (Y_{ij} - Y_{.j}) / S_j\).</p></td>
+Location <em>j</em>. The standardized yield (Zij) is computed as (Ouyang et al. 1995):
+\(Z_{ij} = (Y_{ij} - Y_{.j}) / S_j\).</p></td>
     </tr>
     <tr>
       <th>cluster</th>
@@ -263,26 +263,20 @@ To cluster the genotypes use <code>cluster = "gen"</code>.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     
-
-<dt>data</dt><dd><p>The data that was used to compute the distances.</p></dd>
-
-<dt>cutpoint</dt><dd><p>The cutpoint of the dendrogram according to Mojena (1977).</p></dd>
-
-<dt>distance</dt><dd><p>The matrix with the distances.</p></dd>
-
-<dt>de</dt><dd><p>The distances in an object of class <code>dist</code>.</p></dd>
-
-<dt>hc</dt><dd><p>The hierarchical clustering.</p></dd>
-
-<dt>cophenetic</dt><dd><p>The cophenetic correlation coefficient between distance matrix and cophenetic matrix</p></dd>
-
-<dt>Sqt</dt><dd><p>The total sum of squares.</p></dd>
-
-<dt>tab</dt><dd><p>A table with the clusters and similarity.</p></dd>
-
-<dt>clusters</dt><dd><p>The sum of square and the mean of the clusters for each
-genotype (if <code>cluster = "env"</code> or environment (if <code>cluster = "gen"</code>).</p></dd>
-<dt>labclust</dt><dd><p>The labels of genotypes/environments within each cluster</p></dd>
+<ul>
+<li><p><strong>data</strong> The data that was used to compute the distances.</p></li>
+<li><p><strong>cutpoint</strong> The cutpoint of the dendrogram according to Mojena (1977).</p></li>
+<li><p><strong>distance</strong> The matrix with the distances.</p></li>
+<li><p><strong>de</strong> The distances in an object of class <code>dist</code>.</p></li>
+<li><p><strong>hc</strong> The hierarchical clustering.</p></li>
+<li><p><strong>cophenetic</strong> The cophenetic correlation coefficient between distance matrix
+and cophenetic matrix</p></li>
+<li><p><strong>Sqt</strong> The total sum of squares.</p></li>
+<li><p><strong>tab</strong> A table with the clusters and similarity.</p></li>
+<li><p><strong>clusters</strong> The sum of square and the mean of the clusters for each
+genotype (if <code>cluster = "env"</code> or environment (if <code>cluster = "gen"</code>).</p></li>
+<li><p><strong>labclust The labels</strong> of genotypes/environments within each cluster.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -290,8 +284,8 @@ genotype (if <code>cluster = "env"</code> or environment (if <code>cluster = "ge
 rules: an evaluation. Comput. J. 20:359-363.
 <a href='https://academic.oup.com/comjnl/article/20/4/359/393930'>doi:10.1093/comjnl/20.4.359</a></p>
 <p>Ouyang, Z., R.P. Mowers, A. Jensen, S. Wang, and S. Zheng. 1995.
- Cluster analysis for genotype x environment interaction with unbalanced data. Crop Sci. 35:1300-1305.
- <a href='https://dl.sciencesocieties.org/publications/cs/abstracts/35/5/CS0350051300?access=0&amp;view=pdf'>doi:10.2135/cropsci1995.0011183X003500050008x</a></p>
+Cluster analysis for genotype x environment interaction with unbalanced data. Crop Sci. 35:1300-1305.
+<a href='https://dl.sciencesocieties.org/publications/cs/abstracts/35/5/CS0350051300?access=0&amp;view=pdf'>doi:10.2135/cropsci1995.0011183X003500050008x</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

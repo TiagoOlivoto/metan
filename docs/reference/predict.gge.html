@@ -43,8 +43,8 @@
 
 
 <meta property="og:title" content="Predict a two-way table based on GGE model — predict.gge" />
-<meta property="og:description" content="Predict the means for a genotype-vs-environment trial based on a Genotype plus
-Genotype-vs-Environment interaction (GGE) model." />
+<meta property="og:description" content="Predict the means for a genotype-vs-environment trial based on a Genotype
+plus Genotype-vs-Environment interaction (GGE) model." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -88,7 +88,7 @@ Genotype-vs-Environment interaction (GGE) model." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -194,8 +194,8 @@ Genotype-vs-Environment interaction (GGE) model." />
     </div>
 
     <div class="ref-description">
-    <p>Predict the means for a genotype-vs-environment trial based on a Genotype plus
-Genotype-vs-Environment interaction (GGE) model.</p>
+    <p>Predict the means for a genotype-vs-environment trial based on a Genotype
+plus Genotype-vs-Environment interaction (GGE) model.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gge</span>
@@ -210,16 +210,17 @@ Genotype-vs-Environment interaction (GGE) model.</p>
     </tr>
     <tr>
       <th>naxis</th>
-      <td><p>The the number of principal components to be used in the prediction.
-Generally, two axis may be used. In this case, the estimated values will be those shown
-in the biplot.</p></td>
+      <td><p>The the number of principal components to be used in the
+prediction. Generally, two axis may be used. In this case, the estimated
+values will be those shown in the biplot.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>The type of output. It must be one of the <code>'long'</code> (default) returning
-a long-format table with the columns for environment (ENV), genotypes (GEN) and response
-variable (Y); or <code>'wide'</code> to return a two-way table with genotypes in the row, environments
-in the columns, filled by the estimated values.</p></td>
+      <td><p>The type of output. It must be one of the <code>'long'</code>
+(default) returning a long-format table with the columns for environment
+(ENV), genotypes (GEN) and response variable (Y); or <code>'wide'</code> to
+return a two-way table with genotypes in the row, environments in the
+columns, filled by the estimated values.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -229,19 +230,19 @@ in the columns, filled by the estimated values.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A two-way table with genotypes in rows and environments in columns if <code>output = "wide"</code> or
-a long format (columns ENV, GEN and Y) if <code>output = "long"</code>
- with the predicted values by the GGE model.</p>
+    <p>A two-way table with genotypes in rows and environments in columns if
+  <code>output = "wide"</code> or a long format (columns ENV, GEN and Y) if
+  <code>output = "long"</code> with the predicted values by the GGE model.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is used to predict the response variable of a two-way table
-(for examples the yielding of g genotypes in e environments)
-based on GGE model. This prediction is based on the number of
-principal components used. For more details see Yan and Kang (2007).</p>
+(for examples the yielding of g genotypes in e environments) based on GGE
+model. This prediction is based on the number of principal components used.
+For more details see Yan and Kang (2007).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
- geneticists, and agronomists. CRC Press.</p>
+    <p>Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
+  tool for breeders, geneticists, and agronomists. CRC Press.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

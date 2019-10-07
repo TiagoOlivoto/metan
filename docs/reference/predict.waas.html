@@ -43,8 +43,7 @@
 
 
 <meta property="og:title" content="Predict the means of a waas object — predict.waas" />
-<meta property="og:description" content="Predict the means of a waas object considering a specific number of
-axis." />
+<meta property="og:description" content="Predict the means of a waas object considering a specific number of axis." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -88,7 +87,7 @@ axis." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -194,8 +193,7 @@ axis." />
     </div>
 
     <div class="ref-description">
-    <p>Predict the means of a waas object considering a specific number of
-axis.</p>
+    <p>Predict the means of a waas object considering a specific number of axis.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for waas</span>
@@ -222,26 +220,26 @@ vector.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list where each element is the predicted values by the AMMI model for each variable.</p>
+    <p>A list where each element is the predicted values by the AMMI model
+  for each variable.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is used to predict the response variable of a two-way table
 (for examples the yielding of the i-th genotype in the j-th environment)
-based on AMMI model. This prediction is based on the number of
-multiplicative terms used. If <code>naxis = 0</code>, only the main effects
-(AMMI0) are used. In this case, the predicted mean will be the predicted
-value from OLS estimation. If <code>naxis = 1</code> the AMMI1 (with one
-multiplicative term) is used for predicting the response variable. If
-<code>naxis = min(gen-1;env-1)</code>, the AMMIF is fitted and the predicted value
-will be the cell mean, i.e. the mean of R-replicates of the i-th genotype in
-the j-th environment. The number of axis to be used must be carefully
-chosen. Procedures based on Postdictive success (such as Gollobs's d.f.) or
+based on AMMI model. This prediction is based on the number of multiplicative
+terms used. If <code>naxis = 0</code>, only the main effects (AMMI0) are used. In
+this case, the predicted mean will be the predicted value from OLS
+estimation. If <code>naxis = 1</code> the AMMI1 (with one multiplicative term) is
+used for predicting the response variable. If <code>naxis =
+min(gen-1;env-1)</code>, the AMMIF is fitted and the predicted value will be the
+cell mean, i.e. the mean of R-replicates of the i-th genotype in the j-th
+environment. The number of axis to be used must be carefully chosen.
+Procedures based on Postdictive success (such as Gollobs's d.f.) or
 Predictive sucess (such as cross-validation) should be used to do this. This
-package provide both. <code><a href='waas.html'>waas</a></code> function compute traditional
-AMMI analysis showing the number of significant axis. On the other hand,
-<code><a href='cv_ammif.html'>cv_ammif</a></code> function provide a cross-validation,
-estimating the RMSPD of all AMMI-family models, based on resampling
-procedures.</p>
+package provide both. <code><a href='waas.html'>waas</a></code> function compute traditional AMMI
+analysis showing the number of significant axis. On the other hand,
+<code><a href='cv_ammif.html'>cv_ammif</a></code> function provide a cross-validation, estimating the
+RMSPD of all AMMI-family models, based on resampling procedures.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

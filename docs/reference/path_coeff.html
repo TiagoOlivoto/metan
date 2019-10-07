@@ -89,7 +89,7 @@ is implemented." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -224,17 +224,16 @@ variables are all the numeric variables in the data except that in
     </tr>
     <tr>
       <th>exclude</th>
-      <td><p>Logical argument, set to false. If <code>exclude = TRUE</code>,
-then the variables in <code>pred</code> are deleted from the data, and the
-analysis will use as predictor those that remained, except that in
-<code>resp</code>.</p></td>
+      <td><p>Logical argument, set to false. If <code>exclude = TRUE</code>, then
+the variables in <code>pred</code> are deleted from the data, and the analysis
+will use as predictor those that remained, except that in <code>resp</code>.</p></td>
     </tr>
     <tr>
       <th>correction</th>
       <td><p>Set to <code>NULL</code>. A correction value (k) that will be
-added into the diagonal elements of the <b>X'X</b> matrix aiming at reducing
-the harmful problems of the multicollinearity in path analysis (Olivoto et
-al., 2017)</p></td>
+added into the diagonal elements of the <b>X'X</b> matrix aiming at
+reducing the harmful problems of the multicollinearity in path analysis
+(Olivoto et al., 2017)</p></td>
     </tr>
     <tr>
       <th>knumber</th>
@@ -251,9 +250,8 @@ information.</p></td>
     </tr>
     <tr>
       <th>maxvif</th>
-      <td><p>The maximum value for the Variance Inflation Factor (cut
-point) that will be accepted. See the <b>Details</b> section for more
-information.</p></td>
+      <td><p>The maximum value for the Variance Inflation Factor (cut point)
+that will be accepted. See the <b>Details</b> section for more information.</p></td>
     </tr>
     <tr>
       <th>missingval</th>
@@ -269,29 +267,32 @@ console.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>path_coeff, group_path, or brute_path</code> with the following items:</p>
-<dt>Corr.x</dt><dd><p>A correlation matrix between the predictor variables.</p></dd>
-<dt>Corr.y</dt><dd><p>A vector of correlations between each predictor variable with
-the dependent variable.</p></dd>
-<dt>Coefficients</dt><dd><p>The path coefficients. Direct effects are the diagonal
+    <p>An object of class <code>path_coeff, group_path, or brute_path</code> with
+the following items:</p><ul>
+<li><p><strong>Corr.x</strong> A correlation matrix between the predictor variables.</p></li>
+<li><p><strong>Corr.y</strong> A vector of correlations between each predictor variable with
+the dependent variable.</p></li>
+<li><p><strong>Coefficients</strong> The path coefficients. Direct effects are the diagonal
 elements, and the indirect effects those in the off-diagonal elements
-(column)</p></dd>
-<dt>Eigen</dt><dd><p>Eigenvectors and eigenvalues of the <code>Corr.x.</code></p></dd>
-<dt>VIF</dt><dd><p>The Variance Inflation Factors.</p></dd>
-<dt>plot</dt><dd><p>A ggplot2-based graphic showing the direct effects in 21
-different k values..</p></dd>
-<dt>Predictors</dt><dd><p>The predictor variables used in the model.</p></dd>
-<dt>CN</dt><dd><p>The Condition Number, i.e., the ratio between the highest and
-lowest eigenvalue.</p></dd>
-<dt>Det</dt><dd><p>The matrix determinant of the <code>Corr.x.</code>.</p></dd>
-<dt>R2</dt><dd><p>The coefficient of determination of the model.</p></dd>
-<dt>Residual</dt><dd><p>The residual effect of the model.</p></dd>
-<dt>Response</dt><dd><p>The response variable.</p></dd>
-<dt>weightvar</dt><dd><p>The order of the predictor variables with the highest weight
-(highest eigenvector) in the lowest eigenvalue.</p></dd>
- If .data is an object of class split_factors then a list is returned with the
- above items for each level of the grouping variable in the function split_factors.
+(column)</p></li>
+<li><p><strong>Eigen</strong> Eigenvectors and eigenvalues of the <code>Corr.x.</code></p></li>
+<li><p><strong>VIF</strong> The Variance Inflation Factors.</p></li>
+<li><p><strong>plot</strong> A ggplot2-based graphic showing the direct effects in 21
+different k values.</p></li>
+<li><p><strong>Predictors</strong> The predictor variables used in the model.</p></li>
+<li><p><strong>CN</strong> The Condition Number, i.e., the ratio between the highest and
+lowest eigenvalue.</p></li>
+<li><p><strong>Det</strong> The matrix determinant of the <code>Corr.x.</code>.</p></li>
+<li><p><strong>R2</strong> The coefficient of determination of the model.</p></li>
+<li><p><strong>Residual</strong> The residual effect of the model.</p></li>
+<li><p><strong>Response</strong> The response variable.</p></li>
+<li><p><strong>weightvar</strong> The order of the predictor variables with the highest weight
+(highest eigenvector) in the lowest eigenvalue.</p></li>
+</ul>
 
+<p>If <code>.data</code> is an object of class <code>split_factors</code> then a list is
+returned with the above items for each level of the grouping variable in the
+function <code>split_factors</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>When <code>brutstep = TRUE</code>, first, the algorithm will select a set of
@@ -300,19 +301,19 @@ variance inflation factor (VIF). An iterative process is performed until the
 maximum VIF observed is less than <code>maxvif</code>. The variables selected in
 this iterative process are then used in a series of stepwise-based
 regressions. The first model is fitted and p-1 predictor variables are
-retained (p is the number of variables selected in the iterative process.
-The second model adjusts a regression considering p-2 selected variables,
-and so on until the last model, which considers only two variables. Three
-objects are created. <code>Summary</code>, with the process summary,
-<code>Models</code>, containing the aforementioned values for all the adjusted
-models; and <code>Selectedpred</code>, a vector with the name of the selected
-variables in the iterative process.</p>
+retained (p is the number of variables selected in the iterative process. The
+second model adjusts a regression considering p-2 selected variables, and so
+on until the last model, which considers only two variables. Three objects
+are created. <code>Summary</code>, with the process summary, <code>Models</code>,
+containing the aforementioned values for all the adjusted models; and
+<code>Selectedpred</code>, a vector with the name of the selected variables in the
+iterative process.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,
 A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in
-path analysis: a simple method to reduce its effects. Agron. J. 109:131-142.
-doi:10.2134/agronj2016.04.0196.
+path analysis: a simple method to reduce its effects. Agron. J.
+109:131-142. doi:10.2134/agronj2016.04.0196.
 <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131'>10.2134/agronj2016.04.0196</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -375,31 +376,17 @@ doi:10.2134/agronj2016.04.0196.
            <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
                       <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))</div><div class='output co'>#&gt; <span class='message'>The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Level A1 
+#&gt; Level dfs 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Weak multicollinearity. 
 #&gt; Condition Number = 5.183
 #&gt; You will probably have path coefficients close to being unbiased. 
 #&gt; 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Level A2 
+#&gt; Level names 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Weak multicollinearity. 
 #&gt; Condition Number = 81.987
-#&gt; You will probably have path coefficients close to being unbiased. 
-#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level A3 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Weak multicollinearity. 
-#&gt; Condition Number = 24.788
-#&gt; You will probably have path coefficients close to being unbiased. 
-#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level A4 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Weak multicollinearity. 
-#&gt; Condition Number = 10.276
 #&gt; You will probably have path coefficients close to being unbiased. </div><div class='input'>
 
 

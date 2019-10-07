@@ -43,8 +43,8 @@
 
 
 <meta property="og:title" content="Confidence interval for correlation coefficient — corr_ci" />
-<meta property="og:description" content="Computes the half-width confidence interval for correlation coefficient
-using the nonparametric method proposed by Olivoto et al. (2018)." />
+<meta property="og:description" content="Computes the half-width confidence interval for correlation coefficient using
+the nonparametric method proposed by Olivoto et al. (2018)." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -88,7 +88,7 @@ using the nonparametric method proposed by Olivoto et al. (2018)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -194,8 +194,8 @@ using the nonparametric method proposed by Olivoto et al. (2018)." />
     </div>
 
     <div class="ref-description">
-    <p>Computes the half-width confidence interval for correlation coefficient
-using the nonparametric method proposed by Olivoto et al. (2018).</p>
+    <p>Computes the half-width confidence interval for correlation coefficient using
+the nonparametric method proposed by Olivoto et al. (2018).</p>
     </div>
 
     <pre class="usage"><span class='fu'>corr_ci</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>, <span class='kw'>r</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -232,22 +232,21 @@ console.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble containing the values of the correlation, confidence interval,
-upper and lower limits for all combination of variables.</p>
+    <p>A tibble containing the values of the correlation, confidence
+  interval, upper and lower limits for all combination of variables.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The half-width confidence interval is computed according to the following
 equation: $$CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}$$</p>
-<p>where \(n\) is the sample size and <code>r</code> is the correlation
-coefficient.</p>
+<p>where \(n\) is the sample size and <code>r</code> is the correlation coefficient.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
-B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
-interval width for Pearson's correlation coefficient: a Gaussian-independent
-estimator based on sample size and strength of association. Agron. J.
-110:1-8.
-<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131'>10.2134/agronj2016.04.0196</a></p>
+  B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
+  interval width for Pearson's correlation coefficient: a
+  Gaussian-independent estimator based on sample size and strength of
+  association. Agron. J. 110:1-8.
+  <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131'>10.2134/agronj2016.04.0196</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

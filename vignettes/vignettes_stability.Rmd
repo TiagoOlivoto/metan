@@ -149,7 +149,6 @@ print_table(fact$GY$env_strat)
 
 ```
 
-
 The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This function basically returns a summary of each method. If you are looking for more details from each method, like plot() and summary(), I suggest computing that methods using their own function.
 
 # Computing the indexes
@@ -219,6 +218,8 @@ round(dat$gge_effect, 2) %>%
   kable("html", digits = 3, escape = F) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
 ```
+
+
 
 
 # References

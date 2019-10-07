@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -206,11 +206,11 @@
     <tr>
       <th>.data</th>
       <td><p>The data to be analyzed. It may be a data frame containing the
-means of each observation in each variable or, alternatively, replicates for
-each factor. In this case, a grouping variable is required in the argument
-<code>means_by</code> to compute the means. In addition, .data may be an object
-passed from the function <code>split_factors</code>. In this case, the distances
-are computed for each level of the grouping variable.</p></td>
+means of each observation in each variable or, alternatively, replicates
+for each factor. In this case, a grouping variable is required in the
+argument <code>means_by</code> to compute the means. In addition, .data may be an
+object passed from the function <code>split_factors</code>. In this case, the
+distances are computed for each level of the grouping variable.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -222,8 +222,8 @@ are computed for each level of the grouping variable.</p></td>
       <td><p>If <code>.data</code> doesn't contain the mean for each
 observation, then <code>means_by</code> is a grouping variable to compute the
 means. For example, if <code>means_by = GEN</code>, then the means of the
-numerical variables will be computed for each level of the grouping variable
-GEN.</p></td>
+numerical variables will be computed for each level of the grouping
+variable <code>GEN</code>.</p></td>
     </tr>
     <tr>
       <th>scale</th>
@@ -245,14 +245,15 @@ for variable selection are shown in the console.</p></td>
     <tr>
       <th>distmethod</th>
       <td><p>The distance measure to be used. This must be one of
-<code>'euclidean'</code>, <code>'maximum'</code>, <code>'manhattan'</code>, <code>'canberra'</code>,
-<code>'binary'</code>, <code>'minkowski'</code>, <code>'pearson'</code>, <code>'spearman'</code>, or
-<code>'kendall'</code>. The last three are correlation-based distance.</p></td>
+<code>'euclidean'</code>, <code>'maximum'</code>, <code>'manhattan'</code>,
+<code>'canberra'</code>, <code>'binary'</code>, <code>'minkowski'</code>, <code>'pearson'</code>,
+<code>'spearman'</code>, or <code>'kendall'</code>. The last three are
+correlation-based distance.</p></td>
     </tr>
     <tr>
       <th>clustmethod</th>
-      <td><p>The agglomeration method to be used. This should be one
-of <code>'ward.D'</code>, <code>'ward.D2'</code>, <code>'single'</code>, <code>'complete'</code>,
+      <td><p>The agglomeration method to be used. This should be one of
+<code>'ward.D'</code>, <code>'ward.D2'</code>, <code>'single'</code>, <code>'complete'</code>,
 <code>'average'</code> (= UPGMA), <code>'mcquitty'</code> (= WPGMA), <code>'median'</code> (=
 WPGMC) or <code>'centroid'</code> (= UPGMC).</p></td>
     </tr>
@@ -265,55 +266,46 @@ WPGMC) or <code>'centroid'</code> (= UPGMC).</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     
-
-<dt>data</dt><dd><p>The data that was used to compute the distances.</p></dd>
-
-<dt>cutpoint</dt><dd><p>The cutpoint of the dendrogram according to Mojena (1977).</p></dd>
-
-<dt>distance</dt><dd><p>The matrix with the distances.</p></dd>
-
-<dt>de</dt><dd><p>The distances in an object of class <code>dist</code>.</p></dd>
-
-<dt>hc</dt><dd><p>The hierarchical clustering.</p></dd>
-
-<dt>Sqt</dt><dd><p>The total sum of squares.</p></dd>
-
-<dt>tab</dt><dd><p>A table with the clusters and similarity.</p></dd>
-
-<dt>clusters</dt><dd><p>The sum of square and the mean of the clusters for each
-variable.</p></dd>
-
-<dt>cofgrap</dt><dd><p>If <code>selectvar = TRUE</code>, then, <code>cofpgrap</code> is a
+<ul>
+<li><p><strong>data</strong> The data that was used to compute the distances.</p></li>
+<li><p><strong>cutpoint</strong> The cutpoint of the dendrogram according to Mojena (1977).</p></li>
+<li><p><strong>distance</strong> The matrix with the distances.</p></li>
+<li><p><strong>de</strong> The distances in an object of class <code>dist</code>.</p></li>
+<li><p><strong>hc</strong> The hierarchical clustering.</p></li>
+<li><p><strong>Sqt</strong> The total sum of squares.</p></li>
+<li><p><strong>tab</strong> A table with the clusters and similarity.</p></li>
+<li><p><strong>clusters</strong> The sum of square and the mean of the clusters for each
+variable.</p></li>
+<li><p><strong>cofgrap</strong> If <code>selectvar = TRUE</code>, then, <code>cofpgrap</code> is a
 ggplot2-based graphic showing the cophenetic correlation for each model
-(with different number of variables). Else, will be a <code>NULL</code> object.</p></dd>
-
-<dt>statistics</dt><dd><p>If <code>selectvar = TRUE</code>, then, <code>statistics</code> shows
+(with different number of variables). Else, will be a <code>NULL</code> object.</p></li>
+<li><p><strong>statistics</strong> If <code>selectvar = TRUE</code>, then, <code>statistics</code> shows
 the summary of the models fitted with different number of variables,
 including cophenetic correlation, Mantel's correlation with the original
-distances (all variables) and the p-value associated with the Mantel's test.
-Else, will be a <code>NULL</code> object.</p></dd>
+distances (all variables) and the p-value associated with the Mantel's
+test. Else, will be a <code>NULL</code> object.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>When <code>selvar = TRUE</code> a variable selection algorithm is executed. The
 objective is to select a group of variables that most contribute to explain
-the variability of the original data. The selection of the variables is
-based on eigenvalue/eigenvectors solution based on the following steps.
-<b>1:</b> compute the distance matrix and the co-optic correlation with the
-original variables (all numeric variables in dataset); <b>2:</b> compute the
-eigenvalues and eigenvectors of the correlation matrix between the
-variables; <b>3:</b> delete the variable with the largest weight (highest
-eigenvector in the lowest eigenvalue); <b>4:</b> compute the distance matrix
-and co-phenetic correlation with the remaining variables; <b>5:</b> compute
-the Mantel's correlation between the obtained distances matrix and the
-original distance matrix; <b>6:</b> iterate steps 2 to 5 <em>p</em> - 2 times,
-where <em>p</em> is the number of original variables. At the end of the
-<em>p</em> - 2 iterations, a summary of the models is returned. The distance
-is calculated with the variables that generated the model with the largest
-cophenetic correlation. I suggest a careful evaluation aiming at choosing a
-parsimonious model, i.e., the one with the fewer number of variables, that
-presents acceptable cophenetic correlation and high similarity with the
-original distances.</p>
+the variability of the original data. The selection of the variables is based
+on eigenvalue/eigenvectors solution based on the following steps. <b>1:</b>
+compute the distance matrix and the co-optic correlation with the original
+variables (all numeric variables in dataset); <b>2:</b> compute the
+eigenvalues and eigenvectors of the correlation matrix between the variables;
+<b>3:</b> delete the variable with the largest weight (highest eigenvector in
+the lowest eigenvalue); <b>4:</b> compute the distance matrix and co-phenetic
+correlation with the remaining variables; <b>5:</b> compute the Mantel's
+correlation between the obtained distances matrix and the original distance
+matrix; <b>6:</b> iterate steps 2 to 5 <em>p</em> - 2 times, where <em>p</em> is
+the number of original variables. At the end of the <em>p</em> - 2 iterations,
+a summary of the models is returned. The distance is calculated with the
+variables that generated the model with the largest cophenetic correlation. I
+suggest a careful evaluation aiming at choosing a parsimonious model, i.e.,
+the one with the fewer number of variables, that presents acceptable
+cophenetic correlation and high similarity with the original distances.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Mojena, R. 2015. Hierarchical grouping methods and stopping
