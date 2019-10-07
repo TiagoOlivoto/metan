@@ -38,8 +38,7 @@ here)`. For more details, please, see ` ?ggplot2::theme`}
 genotypes above and below of the mean, respectively. Default is
 \code{c("blue", "red")}.}
 
-\item{x.lab}{The label of the x axis in the plot. Default is
-\code{"WAASBY"}.}
+\item{x.lab}{The label of the x axis in the plot. Default is \code{"WAASBY"}.}
 
 \item{y.lab}{The label of the y axis in the plot. Default is
 \code{"Genotypes"}.}

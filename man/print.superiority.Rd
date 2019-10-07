@@ -10,8 +10,8 @@
 \arguments{
 \item{x}{An object of class \code{superiority}.}
 
-\item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported
-to the working directory.}
+\item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported to
+the working directory.}
 
 \item{file.name}{The name of the file if \code{export = TRUE}}
 
@@ -20,9 +20,9 @@ to the working directory.}
 \item{...}{Other arguments of the function}
 }
 \description{
-Print the \code{superiority} object in two ways. By default, the results
-are shown in the R console. The results can also be exported to the
-directory into a *.txt file.
+Print the \code{superiority} object in two ways. By default, the results are
+shown in the R console. The results can also be exported to the directory
+into a *.txt file.
 }
 \examples{
 

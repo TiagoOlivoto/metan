@@ -35,11 +35,11 @@ corr_ss(r = 0.60, CI = 0.1)
 }
 \references{
 Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
-B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
-interval width for Pearson's correlation coefficient: a Gaussian-independent
-estimator based on sample size and strength of association. Agron. J.
-110:1-8.
-\href{https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131}{10.2134/agronj2016.04.0196}
+  B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
+  interval width for Pearson's correlation coefficient: a
+  Gaussian-independent estimator based on sample size and strength of
+  association. Agron. J. 110:1-8.
+  \href{https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131}{10.2134/agronj2016.04.0196}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -17,12 +17,12 @@
 
 \item{theme}{The graphical theme of the plot. Default is `theme =
 theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme(some stuff
-here)`. For more details, please, see `?ggplot2::theme`}
+applied using the arguments: `theme = theme(some stuff here)`. For more
+details, please, see `?ggplot2::theme`}
 
-\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and
-minimum values of the data set). New arguments can be inserted as
-\code{x.lim = c(x.min, x.max)}.}
+\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
+values of the data set). New arguments can be inserted as \code{x.lim =
+c(x.min, x.max)}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
 \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
@@ -49,12 +49,11 @@ arguments can be inserted as \code{y.lab = "my label"}.}
 \item{col.shape}{The shape color for genotypes. Must be one value or a vector
 of colors with the same length of the number of genotypes. Default is
 \code{"gray30"}. Other values can be attributed. For example,
-\code{"transparent"}, will make a plot with only an outline around the shape
-area.}
+\code{"transparent"}, will make a plot with only an outline around the
+shape area.}
 
-\item{col.alpha}{The alpha value for the color. Default is \code{1}.
-Values must be between \code{0} (full transparency) to \code{1} (full
-color).}
+\item{col.alpha}{The alpha value for the color. Default is \code{1}. Values
+must be between \code{0} (full transparency) to \code{1} (full color).}
 
 \item{size.shape}{The size of the shape (both for genotypes and
 environments). Default is \code{2.2}.}
@@ -62,8 +61,8 @@ environments). Default is \code{2.2}.}
 \item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
 size of the shape will be \code{size.shape + size.bor.tick}}
 
-\item{size.tex.lab}{The size of the text in the axes text and labels.
-Default is \code{12}.}
+\item{size.tex.lab}{The size of the text in the axes text and labels. Default
+is \code{12}.}
 
 \item{size.tex.pa}{The size of the text of the plot area. Default is
 \code{3.5}.}
@@ -73,8 +72,8 @@ Defaults to 1.}
 
 \item{line.type}{The type of the line that indicate the means in the biplot.
 Default is \code{"solid"}. Other values that can be attributed are:
-\code{"blank"}, no lines in the biplot, \code{"dashed", "dotted", "dotdash",
-"longdash", and "twodash"}.}
+\code{"blank"}, no lines in the biplot, \code{"dashed", "dotted",
+"dotdash", "longdash", and "twodash"}.}
 
 \item{line.alpha}{The alpha value that combine the line with the background
 to create the appearance of partial or full transparency. Default is

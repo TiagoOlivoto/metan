@@ -5,26 +5,32 @@
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments,
-#' Genotypes, replication/block and response variable(s)
+#'   Genotypes, replication/block and response variable(s)
 #' @param env The name of the column that contains the levels of the
-#' environments.
+#'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks
+#'   replications/blocks
 #' @param resp The response variable(s). To analyze multiple variables in a
-#' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run silently.
-#' @return An object of class \code{superiority} where each element is the result of
-#' one variable and contains the following items:
-#' \item{environments}{The mean for each environment, the environment index and classification
-#' as favorable and unfavorable environments.}
-#' \item{index}{The superiority index computed for all, favorable and unfavorable environments.}
+#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
+#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   silently.
+#' @return An object of class \code{superiority} where each element is the
+#'   result of one variable and contains the following items:
+#'
+#' * \strong{environments} The mean for each environment, the environment index
+#' and classification as favorable and unfavorable environments.
+#' * \strong{index} The superiority index computed for all, favorable and
+#' unfavorable environments.
+#'
+#' @md
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{Annicchiarico}, \link{ecovalence}, \link{ge_stats}}
 #' @references Lin, C.S., and M.R. Binns. 1988. A superiority measure of
-#' cultivar performance for cultivar x location data. Can. J. Plant Sci.
-#' 68:193-198.
-#' \href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
+#'   cultivar performance for cultivar x location data. Can. J. Plant Sci.
+#'   68:193-198.
+#'   \href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
+#'
 #' @export
 #' @examples
 #'

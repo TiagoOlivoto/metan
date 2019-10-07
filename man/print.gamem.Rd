@@ -10,19 +10,19 @@
 \arguments{
 \item{x}{An object fitted with the function \code{\link{gamem}} .}
 
-\item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported
-to the working directory}
+\item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported to
+the working directory}
 
 \item{file.name}{The name of the file if \code{export = TRUE}}
 
 \item{digits}{The significant digits to be shown.}
 
-\item{...}{Options used by the tibble package to format the output.
-See \code{\link[tibble]{trunc_mat}} for more details.}
+\item{...}{Options used by the tibble package to format the output. See
+\code{\link[tibble]{trunc_mat}} for more details.}
 }
 \description{
-Print the \code{gamem} object in two ways. By default, the results are
-shown in the R console. The results can also be exported to the directory.
+Print the \code{gamem} object in two ways. By default, the results are shown
+in the R console. The results can also be exported to the directory.
 }
 \examples{
 

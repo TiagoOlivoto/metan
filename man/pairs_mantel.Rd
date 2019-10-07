@@ -74,8 +74,8 @@ the \code{prob} value.), set to 'green'.}
 
 \item{diagcol}{The color in the kernel distribution. Set to 'gray'.}
 
-\item{col.up.panel, col.lw.panel, col.dia.panel}{The color for the opper,
-lower and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.}
+\item{col.up.panel, col.lw.panel, col.dia.panel}{The color for the opper, lower
+and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.}
 
 \item{pan.spacing}{The space between the pannels. Set to 0.15.}
 

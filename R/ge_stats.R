@@ -1,44 +1,54 @@
 #' Statistics for genotype-vs-environment interaction
 #'
 #' Compute parametric and nonparametric statistics for genotype-vs-environment
-#' interaction (GEI), including within-environment analysis of
-#' variance, GEI effect, GEI means, genotype plus GEI effects, Ecovalence (Wricke, 1965)
+#' interaction (GEI), including within-environment analysis of variance, GEI
+#' effect, GEI means, genotype plus GEI effects, Ecovalence (Wricke, 1965)
 #' regression-based stability (Eberhart and Russell., 1966), and superiority
 #' index (Lin and Binns, 1988)
 #'
 #' @param .data The dataset containing the columns related to Environments,
-#' Genotypes, replication/block and response variable(s).
+#'   Genotypes, replication/block and response variable(s).
 #' @param env The name of the column that contains the levels of the
-#' environments.
+#'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks.
+#'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
+#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
-#' silently.
+#'   silently.
 #' @param prob The probability error assumed.
-#' @return An object of class \code{ge_stats} with the following items for each variable:
-#' \item{individual}{The individual analysis of variance. Call the function \code{\link{anova_ind}} internally.}
-#' \item{ge_mean, ge_effect}{The genotype-vs-environment means and effects, respectively.}
-#' \item{gge_effect}{The genotype plus genotype-vs-environment effects.}
-#' \item{ge_stats}{The variance, sum of squares and mean squares for each genotype.}
-#' \item{ER}{The Eberhart and Russell regression model. Call the function \code{\link{ge_reg}} internally.}
-#' \item{ANN}{The Annicchiarico's genotypic confidence index. Call the function \code{\link{Annicchiarico}} internally.}
-#' \item{Ecoval}{The Wrike's ecovalence. Call the function \code{\link{ecovalence}} internally.}
-#' \item{Superiority}{The Lin and Binns' superiority index. Call the function \code{\link{superiority}} internally.}
-#'
+#' @return An object of class \code{ge_stats} with the following items for each
+#'   variable:
+#' * \strong{individual} The individual analysis of variance. Call the function
+#' \code{\link{anova_ind}} internally.
+#' * \strong{ge_mean}, ge_effect The genotype-vs-environment means and effects,
+#' respectively.
+#' * \strong{gge_effect} The genotype plus genotype-vs-environment effects.
+#' * \strong{ge_stats} The variance, sum of squares and mean squares for each
+#' genotype.
+#' * \strong{ER} The Eberhart and Russell regression model. Call the function
+#' \code{\link{ge_reg}} internally.
+#' * \strong{ANN} The Annicchiarico's genotypic confidence index. Call the
+#' function \code{\link{Annicchiarico}} internally.
+#' * \strong{Ecoval} The Wrike's ecovalence. Call the function
+#' \code{\link{ecovalence}} internally.
+#' * \strong{Superiority} The Lin and Binns' superiority index. Call the
+#' function \code{\link{superiority}} internally.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @references Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for comparing Varieties.
-#' Crop Sci. 6:36-40. \href{https://www.crops.org/publications/cs/abstracts/6/1/CS0060010036}{doi:10.2135/cropsci1966.0011183X000600010011x}
+#' @references Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for
+#'   comparing Varieties. Crop Sci. 6:36-40.
+#'   \href{https://www.crops.org/publications/cs/abstracts/6/1/CS0060010036}{doi:10.2135/cropsci1966.0011183X000600010011x}
 #'
-#' Lin, C.S., and M.R. Binns. 1988. A superiority measure of
-#' cultivar performance for cultivar x location data. Can. J. Plant Sci.
-#' 68:193-198.
-#' \href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
 #'
-#' Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer. Z.
-#' Pflanzenzuchtg 52:127-138.
+#'   Lin, C.S., and M.R. Binns. 1988. A superiority measure of cultivar
+#'   performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
+#'   \href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
+#'
+#'
+#'   Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer.
+#'   Z. Pflanzenzuchtg 52:127-138.
 #' @export
 #' @examples
 #'

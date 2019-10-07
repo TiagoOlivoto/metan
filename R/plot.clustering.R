@@ -4,11 +4,12 @@
 #'
 #'
 #' @param x An object of class \code{clustering}
-#' @param horiz Logical indicating if the dendrogram should be drawn horizontally or not.
+#' @param horiz Logical indicating if the dendrogram should be drawn
+#'   horizontally or not.
 #' @param type The type of plot. Must be one of the 'dendrogram' or
-#' 'cophenetic'.
-#' @param ... Other arguments passed from the function \code{plot.dendrogram}
-#' or \code{abline}.
+#'   'cophenetic'.
+#' @param ... Other arguments passed from the function \code{plot.dendrogram} or
+#'   \code{abline}.
 #' @return An object of class \code{gg, ggplot} if \code{type == "cophenetic"}.
 #' @method plot clustering
 #' @export

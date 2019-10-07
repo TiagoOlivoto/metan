@@ -4,21 +4,21 @@
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments,
-#' Genotypes, replication/block and response variable(s).
+#'   Genotypes, replication/block and response variable(s).
 #' @param env The name of the column that contains the levels of the
-#' environments.
+#'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks.
+#'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
+#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
-#' silently.
+#'   silently.
 #' @return An object of class \code{ecovalence} containing the results for each
-#' variable used in the argument \code{resp}.
+#'   variable used in the argument \code{resp}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen
-#' und hafer. Z. Pflanzenzuchtg 52:127-138.
+#'   und hafer. Z. Pflanzenzuchtg 52:127-138.
 #' @export
 #' @examples
 #'

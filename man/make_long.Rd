@@ -7,21 +7,23 @@
 make_long(mat, gen_in = "rows")
 }
 \arguments{
-\item{mat}{A two-way table. It must be a matrix or a data.frame with rownames.}
+\item{mat}{A two-way table. It must be a matrix or a data.frame with
+rownames.}
 
-\item{gen_in}{Where are the genotypes? Defaults to \code{'rows'}. If genotypes
-are in columns and environments in rows, set to \code{gen_in = 'cols'}.}
+\item{gen_in}{Where are the genotypes? Defaults to \code{'rows'}. If
+genotypes are in columns and environments in rows, set to \code{gen_in =
+'cols'}.}
 }
 \value{
 A tibble with three columns: GEN (genotype), ENV (environment), and Y
-(response) variable.
+  (response) variable.
 }
 \description{
-Helps users to easily convert a two-way table (genotype vs environment)
- to a 'long' format data. The data in \code{mat} will be gathered into three columns.
- The row names will compose the first column. The column names will
- compose the second column and the third column will contain the data
- that fills the two-way table.
+Helps users to easily convert a two-way table (genotype vs environment) to a
+'long' format data. The data in \code{mat} will be gathered into three
+columns. The row names will compose the first column. The column names will
+compose the second column and the third column will contain the data that
+fills the two-way table.
 }
 \examples{
 

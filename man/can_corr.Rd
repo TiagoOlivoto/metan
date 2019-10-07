@@ -18,18 +18,19 @@ estimated for each level of the grouping variable in that function.}
 
 \item{FG}{If a dataframe is informed in \code{.data}, then \code{FG} is a
 comma-separated list of unquoted variable names that will compose the first
-(smallest) group of the correlation analysis. FG can also be a coordinate for
-the variables; for example, \code{FG = data[,1:3]}.}
+(smallest) group of the correlation analysis. FG can also be a coordinate
+for the variables; for example, \code{FG = data[,1:3]}.}
 
 \item{SG}{Similar than \code{FG} but for the second group of variables.}
 
-\item{means_by}{The argument \code{means_by} is a grouping variable to compute the
-means by. For example, if \code{means_by = GEN}, then the means of the
-numerical variables will be computed for each level of the grouping variable
-GEN, and the canonical correlation analysis will be computed using these means.}
+\item{means_by}{The argument \code{means_by} is a grouping variable to
+compute the means by. For example, if \code{means_by = GEN}, then the means
+of the numerical variables will be computed for each level of the grouping
+variable GEN, and the canonical correlation analysis will be computed using
+these means.}
 
-\item{use}{The matrix to be used. Must be one of 'cor' for analysis using
-the correlation matrix (default) or 'cov' for analysis using the covariance
+\item{use}{The matrix to be used. Must be one of 'cor' for analysis using the
+correlation matrix (default) or 'cov' for analysis using the covariance
 matrix.}
 
 \item{test}{The test of significance of the relationship between the FG and
@@ -49,33 +50,29 @@ collinearity diagnostic is performed for each group of variables according
 to Olivoto et al.(2017).}
 }
 \value{
-If \code{.data} is an object of class \code{split_factors} then the results will be
-returned into a list where each element has the following values.
-
-\item{Matrix}{The correlation (or covariance) matrix of the variables}
-
-\item{MFG, MSG}{The correlation (or covariance) matrix for the variables of
-the first group or second group, respectively.}
-
-\item{MFG_SG}{The correlation (or covariance) matrix for the variables of
-the first group with the second group.}
-
-\item{Coef_FG, Coef_SG}{Matrix of the canonical coefficients of the first
-group or second group, respectively.}
-
-\item{Loads_FG, Loads_SG}{Matrix of the canonical loadings of the first
-group or second group, respectively.}
-
-\item{Score_FG, Score_SG}{Canonical scores for the variables in FG and SG, respectively.}
-
-\item{Crossload_FG, Crossload_FG}{Canonical cross-loadings for FG variables on
-the SG scores, and cross-loadings for SG variables on the FG scores, respectively.}
-
-\item{SigTest}{A dataframe with the correlation of the canonical pairs and
-hypothesis testing results.}
-
-\item{collinearity}{A list with the collinearity diagnostic for each group
-of variables.}
+If \code{.data} is an object of class \code{split_factors} then the
+results will be returned into a list where each element has the following
+values.
+\itemize{
+\item \strong{Matrix} The correlation (or covariance) matrix of the variables
+\item \strong{MFG, MSG} The correlation (or covariance) matrix for the variables of
+the first group or second group, respectively.
+\item \strong{MFG_SG} The correlation (or covariance) matrix for the variables of the
+first group with the second group.
+\item \strong{Coef_FG, Coef_SG} Matrix of the canonical coefficients of the first
+group or second group, respectively.
+\item Loads_FG, Loads_SG Matrix of the canonical loadings of the first group
+or second group, respectively.
+\item \strong{Score_FG, Score_SG} Canonical scores for the variables in FG and SG,
+respectively.
+\item \strong{Crossload_FG, Crossload_FG} Canonical cross-loadings for FG variables
+on the SG scores, and cross-loadings for SG variables on the FG scores,
+respectively.
+\item \strong{SigTest} A dataframe with the correlation of the canonical pairs and
+hypothesis testing results.
+\item \strong{collinearity} A list with the collinearity diagnostic for each group of
+variables.
+}
 }
 \description{
 Performs canonical correlation analysis with collinearity diagnostic,
@@ -107,8 +104,8 @@ cc3 = data_ge2 \%>\%
 \references{
 Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,
 A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in
-path analysis: a simple method to reduce its effects. Agron. J. 109:131-142.
-doi:10.2134/agronj2016.04.0196.
+path analysis: a simple method to reduce its effects. Agron. J.
+109:131-142. doi:10.2134/agronj2016.04.0196.
 \href{https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131}{10.2134/agronj2016.04.0196}
 }
 \author{

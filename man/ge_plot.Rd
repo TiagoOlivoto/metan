@@ -19,18 +19,19 @@ environments}
 
 \item{theme}{The graphical theme of the plot. Default is \code{theme =
 theme_waasb()}. Please, see \code{?WAASB::theme_waasb}. An own theme can be
-applied using the arguments: \code{theme = theme(some stuff
-here)}. For more details, please, see \code{?ggplot2::theme}.}
+applied using the arguments: \code{theme = theme(some stuff here)}. For
+more details, please, see \code{?ggplot2::theme}.}
 
-\item{colour}{Logical argument. If \code{FALSE} then the plot will not be colored.}
+\item{colour}{Logical argument. If \code{FALSE} then the plot will not be
+colored.}
 }
 \value{
 An object of class \code{gg, ggplot}.
 }
 \description{
 This function produces a line plot for a graphical interpretation of the
-genotype-vs-environment interaction. By default, environments are in the
-x axis whereas the genotypes are depicted by different lines. The y axis
+genotype-vs-environment interaction. By default, environments are in the x
+axis whereas the genotypes are depicted by different lines. The y axis
 contains the value of the selected variable.
 }
 \examples{

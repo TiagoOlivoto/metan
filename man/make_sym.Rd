@@ -9,9 +9,9 @@ make_sym(.matrix, make = "upper")
 \arguments{
 \item{.matrix}{The upper or lower triangular matrix.}
 
-\item{make}{The triangular to built. Default is \code{"upper"}. In this
-case, a symmetric matrix will be built based on the values of a lower
-triangular values.}
+\item{make}{The triangular to built. Default is \code{"upper"}. In this case,
+a symmetric matrix will be built based on the values of a lower triangular
+values.}
 }
 \value{
 A symmetric matrix.

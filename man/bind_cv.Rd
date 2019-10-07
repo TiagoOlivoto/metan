@@ -10,21 +10,23 @@ bind_cv(..., bind = "boot", sort = TRUE)
 \item{...}{Input objects of class \code{cv_ammi}, \code{cv_ammif} or
 \code{cv_blup}.}
 
-\item{bind}{What data should be used? To plot the RMSPD, use 'boot' (default).
-Use \code{bind = 'means'} to return the RMSPD mean for each model.}
+\item{bind}{What data should be used? To plot the RMSPD, use 'boot'
+(default). Use \code{bind = 'means'} to return the RMSPD mean for each
+model.}
 
 \item{sort}{Used to sort the RMSPD mean in ascending order.}
 }
 \value{
-An object of class \code{cv_ammif}. The results will depend on the argument
-\code{bind}. If \code{bind = 'boot'} then the RMSPD of all models in \code{...} will
-be bind to a unique data frame. If \code{bind = 'means'} then the RMSPD mean of all
-models in \code{...} will be bind to an unique data frame.
+An object of class \code{cv_ammif}. The results will depend on the
+  argument \code{bind}. If \code{bind = 'boot'} then the RMSPD of all models
+  in \code{...} will be bind to a unique data frame. If \code{bind = 'means'}
+  then the RMSPD mean of all models in \code{...} will be bind to an unique
+  data frame.
 }
 \description{
-Helper function that combines objects of class \code{cv_ammi}, \code{cv_ammif}
- or \code{cv_blup}. It is useful when looking for a boxplot containing
-the RMSPD values of those cross-validation procedures.
+Helper function that combines objects of class \code{cv_ammi},
+\code{cv_ammif} or \code{cv_blup}. It is useful when looking for a boxplot
+containing the RMSPD values of those cross-validation procedures.
 }
 \examples{
 

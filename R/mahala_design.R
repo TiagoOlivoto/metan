@@ -1,25 +1,26 @@
 #' Mahalanobis distance from designed experiments
 #'
-#' Compute the Mahalanobis distance using data from an experiment conducted in
-#' a randomized complete block design or completely randomized design.
+#' Compute the Mahalanobis distance using data from an experiment conducted in a
+#' randomized complete block design or completely randomized design.
 #'
 #'
 #' @param .data The dataset containing the columns related to Genotypes,
-#' replication/block and response variables. Alternatively, it is possible to
-#' use an object of class 'split_factors' to compute the distance for each
-#' level of the grouping factor. See \code{?split_factors}.
+#'   replication/block and response variables. Alternatively, it is possible to
+#'   use an object of class 'split_factors' to compute the distance for each
+#'   level of the grouping factor. See \code{?split_factors}.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks.
+#'   replications/blocks.
 #' @param resp The response variables. For example \code{resp = c(var1, var2,
-#' var3)}.
+#'   var3)}.
 #' @param design The experimental design. Must be RCBD or CRD.
 #' @param return What the function return? Default is 'distance', i.e., the
-#' Mahalanobis distance. Alternatively, it is possible to return the matrix of
-#' means \code{return = 'means'}, or the variance-covariance matrix of
-#' residuals \code{return = 'covmat'}.
-#' @return A symmetric matrix with the Mahalanobis' distance. If the \code{.data} is an object
-#' of class \code{split_factors} then a list of distances will be returned.
+#'   Mahalanobis distance. Alternatively, it is possible to return the matrix of
+#'   means \code{return = 'means'}, or the variance-covariance matrix of
+#'   residuals \code{return = 'covmat'}.
+#' @return A symmetric matrix with the Mahalanobis' distance. If the
+#'   \code{.data} is an object of class \code{split_factors} then a list of
+#'   distances will be returned.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

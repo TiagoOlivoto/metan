@@ -7,18 +7,22 @@
 get_model_data(x, what = "Y", type = "GEN")
 }
 \arguments{
-\item{x}{An object created with the functions \code{\link{waas}} or \code{\link{waasb}}.}
+\item{x}{An object created with the functions \code{\link{waas}} or
+\code{\link{waasb}}.}
 
-\item{what}{What should be captured from the model. See more in \strong{Details} section.}
+\item{what}{What should be captured from the model. See more in
+\strong{Details} section.}
 
-\item{type}{Chose if the statistics must be show by genotype (\code{type = "GEN"}, default)
-or environment (\code{type = "ENV"}), when possible.}
+\item{type}{Chose if the statistics must be show by genotype (\code{type =
+"GEN"}, default) or environment (\code{type = "ENV"}), when possible.}
 }
 \value{
-A tibble showing the values of the variable chosen in argument \code{what}.
+A tibble showing the values of the variable chosen in argument
+\code{what}.
 }
 \description{
-Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et al., 2019a, 2019b)
+Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et
+al., 2019a, 2019b)
 }
 \details{
 \strong{The next options are valid in the argument \code{what} for both \code{waas} and \code{waasb} objects.}

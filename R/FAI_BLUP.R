@@ -4,31 +4,34 @@
 #' Rocha et al. (2018).
 #'
 #'
-#' @param .data An object of class \code{waasb} or a two-way table with genotypes in the rows
-#' and traits in columns. In the last case the row names must contain the genotypes names.
+#' @param .data An object of class \code{waasb} or a two-way table with
+#'   genotypes in the rows and traits in columns. In the last case the row names
+#'   must contain the genotypes names.
 #' @param DI,UI A vector of the same length of \code{.data} to construct the
-#' desirable (DI) and undesirable (UI) ideotypes. For each element of the
-#' vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
-#' numeric value. Use a comma-separated vector of text. For example,
-#'  \code{DI = c("max, max, min, min")}.
+#'   desirable (DI) and undesirable (UI) ideotypes. For each element of the
+#'   vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
+#'   numeric value. Use a comma-separated vector of text. For example, \code{DI
+#'   = c("max, max, min, min")}.
 #' @param SI An integer [0-100]. The selection intensity in percentage of the
-#' total number of genotypes.
+#'   total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
-#' factor analysis.
+#'   factor analysis.
 #' @param verbose Logical value. If \code{TRUE} some results are shown in
-#' console.
+#'   console.
 #' @return An object of class \code{fai_blup} with the following items:
-#' \item{data}{The data (BLUPS) used to compute the index.}
-#' \item{FA}{The results of the factor analysis.}
-#' \item{canonical.loadings}{The canonical loadings for each factor retained.}
-#' \item{FAI}{A list with the FAI-BLUP index for each ideotype design.}
-#' \item{selection.diferential}{A list with the selection differential for each ideotype design.}
+#' * \strong{data} The data (BLUPS) used to compute the index.
+#' * \strong{FA} The results of the factor analysis.
+#' * \strong{canonical.loadings} The canonical loadings for each factor retained.
+#' * \strong{FAI} A list with the FAI-BLUP index for each ideotype design.
+#' * \strong{selection.diferential} A list with the selection differential for each ideotype design.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
-#' Multitrait index based on factor analysis and ideotype-design: proposal and
-#' application on elephant grass breeding for bioenergy. GCB Bioenergy
-#' 10:52-60. doi:
-#' \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}
+#'   Multitrait index based on factor analysis and ideotype-design: proposal and
+#'   application on elephant grass breeding for bioenergy. GCB Bioenergy
+#'   10:52-60. doi:
+#'   \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}
+#'
 #' @export
 #' @examples
 #'

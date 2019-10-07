@@ -15,8 +15,8 @@ plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
 
 \item{y}{The variable in data to be shown in the y axis}
 
-\item{fit}{The polynomial degree to use. It must be between
-1 (linear fit) to 4 (fourth-order polynomial regression.)}
+\item{fit}{The polynomial degree to use. It must be between 1 (linear fit) to
+4 (fourth-order polynomial regression.)}
 
 \item{level}{The fonfidence level}
 
@@ -40,8 +40,7 @@ plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
 An object of class \code{gg, ggplot}.
 }
 \description{
-Create a graphic with fitted line based on numerical
-variables.
+Create a graphic with fitted line based on numerical variables.
 }
 \seealso{
 \code{\link{plot_factbars}} \code{\link{plot_factlines}}

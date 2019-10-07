@@ -1,33 +1,33 @@
 #' Confidence interval for correlation coefficient
 #'
-#' Computes the half-width confidence interval for correlation coefficient
-#' using the nonparametric method proposed by Olivoto et al. (2018).
+#' Computes the half-width confidence interval for correlation coefficient using
+#' the nonparametric method proposed by Olivoto et al. (2018).
 #'
 #' The half-width confidence interval is computed according to the following
 #' equation: \deqn{CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}}
 #'
-#' where \eqn{n} is the sample size and \code{r} is the correlation
-#' coefficient.
+#' where \eqn{n} is the sample size and \code{r} is the correlation coefficient.
 #'
 #' @param .data A dataset containing variables only or a symmetric correlation
-#' matrix.
+#'   matrix.
 #' @param ... Variables to compute the confidence interval. If not informed, all
-#' the numeric variables from \code{.data} are used.
+#'   the numeric variables from \code{.data} are used.
 #' @param r If \code{data} is not available, provide the value for correlation
-#' coefficient.
+#'   coefficient.
 #' @param n The sample size if \code{data} is a correlation matrix or if r is
-#' informed.
+#'   informed.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
-#' console.
-#' @return A tibble containing the values of the correlation, confidence interval,
-#' upper and lower limits for all combination of variables.
+#'   console.
+#' @return A tibble containing the values of the correlation, confidence
+#'   interval, upper and lower limits for all combination of variables.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
-#' B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
-#' interval width for Pearson's correlation coefficient: a Gaussian-independent
-#' estimator based on sample size and strength of association. Agron. J.
-#' 110:1-8.
-#' \href{https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131}{10.2134/agronj2016.04.0196}
+#'   B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
+#'   interval width for Pearson's correlation coefficient: a
+#'   Gaussian-independent estimator based on sample size and strength of
+#'   association. Agron. J. 110:1-8.
+#'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131}{10.2134/agronj2016.04.0196}
+#'
 #' @export
 #' @examples
 #'

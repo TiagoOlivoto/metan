@@ -7,11 +7,12 @@
 #' @param x An object of class \code{waasb}
 #' @param ideotype The ideotype to be plotted. Default is 1.
 #' @param SI An integer [0-100]. The selection intensity in percentage of the
-#' total number of genotypes.
+#'   total number of genotypes.
 #' @param radar Logical argument. If true (default) a radar plot is generated
-#' after using \code{coord_polar()}.
-#' @param arrange.label Logical argument. If \code{TRUE}, the labels are arranged to avoid text overlapping.
-#' This becomes useful when the number of genotypes is large, say, more than 30.
+#'   after using \code{coord_polar()}.
+#' @param arrange.label Logical argument. If \code{TRUE}, the labels are
+#'   arranged to avoid text overlapping. This becomes useful when the number of
+#'   genotypes is large, say, more than 30.
 #' @param size.point The size of the point in graphic.
 #' @param col.sel The colour for selected genotypes.
 #' @param col.nonsel The colour for nonselected genotypes.
@@ -19,10 +20,11 @@
 #' @param ... Other arguments to be passed from ggplot2::theme().
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
-#' Multitrait index based on factor analysis and ideotype-design: proposal and
-#' application on elephant grass breeding for bioenergy. GCB Bioenergy
-#' 10:52-60. doi:
-#' \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
+#'   Multitrait index based on factor analysis and ideotype-design: proposal and
+#'   application on elephant grass breeding for bioenergy. GCB Bioenergy
+#'   10:52-60. doi:
+#'   \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
+#'
 #' @method plot fai_blup
 #' @export
 #' @return An object of class \code{gg, ggplot}.

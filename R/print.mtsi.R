@@ -1,15 +1,15 @@
 #' Print an object of class mtsi
 #'
-#' Print a \code{mtsi} object in two ways. By default, the results are shown
-#' in the R console. The results can also be exported to the directory.
+#' Print a \code{mtsi} object in two ways. By default, the results are shown in
+#' the R console. The results can also be exported to the directory.
 #'
 #' @param x An object of class \code{mtsi}.
 #' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
-#' to the working directory
+#'   to the working directory
 #' @param file.name The name of the file if \code{export = TRUE}
 #' @param digits The significant digits to be shown.
-#' @param ... Options used by the tibble package to format the output.
-#' See \code{\link[tibble]{trunc_mat}} for more details.
+#' @param ... Options used by the tibble package to format the output. See
+#'   \code{\link[tibble]{trunc_mat}} for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print mtsi
 #' @export

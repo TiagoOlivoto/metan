@@ -30,26 +30,29 @@
 #'  To cluster the genotypes use \code{cluster = "gen"}.
 #' @param nclust The number of clust to be formed. Set to \code{NULL}.
 #'
-#' @return \item{data}{The data that was used to compute the distances.}
+#' @return
+#' * \strong{data} The data that was used to compute the distances.
 #'
-#' \item{cutpoint}{The cutpoint of the dendrogram according to Mojena (1977).}
+#' * \strong{cutpoint} The cutpoint of the dendrogram according to Mojena (1977).
 #'
-#' \item{distance}{The matrix with the distances.}
+#' * \strong{distance} The matrix with the distances.
 #'
-#' \item{de}{The distances in an object of class \code{dist}.}
+#' * \strong{de} The distances in an object of class \code{dist}.
 #'
-#' \item{hc}{The hierarchical clustering.}
+#' * \strong{hc} The hierarchical clustering.
 #'
-#' \item{cophenetic}{The cophenetic correlation coefficient between distance matrix and cophenetic matrix}
+#' * \strong{cophenetic} The cophenetic correlation coefficient between distance matrix
+#' and cophenetic matrix
 #'
-#' \item{Sqt}{The total sum of squares.}
+#' * \strong{Sqt} The total sum of squares.
 #'
-#' \item{tab}{A table with the clusters and similarity.}
+#' * \strong{tab} A table with the clusters and similarity.
 #'
-#' \item{clusters}{The sum of square and the mean of the clusters for each
+#' * \strong{clusters} The sum of square and the mean of the clusters for each
 #' genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).}
-#' \item{labclust}{The labels of genotypes/environments within each cluster}
 #'
+#' * \strong{labclust The labels of genotypes/environments within each cluster.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Mojena, R. 2015. Hierarchical grouping methods and stopping
 #' rules: an evaluation. Comput. J. 20:359-363.

@@ -5,47 +5,46 @@
 #'
 #' Five statistics are shown in this type of plot. The lower and upper hinges
 #' correspond to the first and third quartiles (the 25th and 75th percentiles).
-#' The upper whisker extends from the hinge to the largest value no further
-#' than 1.5 * IQR from the hinge (where IQR is the inter-quartile range). The
-#' lower whisker extends from the hinge to the smallest value at most 1.5 * IQR
-#' of the hinge. Data beyond the end of the whiskers are considered outlying
-#' points.
+#' The upper whisker extends from the hinge to the largest value no further than
+#' 1.5 * IQR from the hinge (where IQR is the inter-quartile range). The lower
+#' whisker extends from the hinge to the smallest value at most 1.5 * IQR of the
+#' hinge. Data beyond the end of the whiskers are considered outlying points.
 #'
 #' @param x An object of class \code{cv_ammif}.
-#' @param violin Define if a violin plot is used with boxplot. Default is
-#' 'TRUE'
+#' @param violin Define if a violin plot is used with boxplot. Default is 'TRUE'
 #' @param export Export (or not) the plot. Default is \code{T}.
-#' @param order_box Logical argument. If \code{TRUE} then the boxplots will be ordered
-#' according to the values of the RMSPD.
+#' @param order_box Logical argument. If \code{TRUE} then the boxplots will be
+#'   ordered according to the values of the RMSPD.
 #' @param x.lab The label of x-axis. New arguments can be inserted as
-#' \code{x.lab = 'my x label'}.
+#'   \code{x.lab = 'my x label'}.
 #' @param y.lab The label of y-axis. New arguments can be inserted as
-#' \code{y.lab = 'my y label'}.
+#'   \code{y.lab = 'my y label'}.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param file.type The type of file to be exported. Default is \code{pdf},
-#' Graphic can also be exported in \code{*.tiff} format by declaring
-#' \code{file.type = 'tiff'}.
+#'   Graphic can also be exported in \code{*.tiff} format by declaring
+#'   \code{file.type = 'tiff'}.
 #' @param file.name The name of the file for exportation, default is
-#' \code{NULL}, i.e. the files are automatically named.
+#'   \code{NULL}, i.e. the files are automatically named.
 #' @param theme The graphical theme of the plot. Default is `theme =
-#' theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#' applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#' here)`. For more details, please, see `?ggplot2::theme`
+#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
+#'   here)`. For more details, please, see `?ggplot2::theme`
 #' @param width The width 'inch' of the plot. Default is \code{6}.
 #' @param height The height 'inch' of the plot. Default is \code{6}.
 #' @param resolution The resolution of the plot. Parameter valid if
-#' \code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)
+#'   \code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)
 #' @param col.violin Parameter valid if \code{violin = T}. Define the color of
-#' the violin plot. Default is 'gray90.
+#'   the violin plot. Default is 'gray90.
 #' @param col.boxplot Define the color for boxplot. Default is 'gray70'.
-#' @param col.boxplot.win Define the color for boxplot of the best model. Default is 'cyan'.
+#' @param col.boxplot.win Define the color for boxplot of the best model.
+#'   Default is 'cyan'.
 #' @param width.boxplot The width of boxplots. Default is \code{0.2}.
-#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and
-#' minimum values of the data set). New arguments can be inserted as
-#' \code{x.lim = c(x.min, x.max)}.
+#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
+#'   values of the data set). New arguments can be inserted as \code{x.lim =
+#'   c(x.min, x.max)}.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#' c(breaks)}
+#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
+#'   c(breaks)}
 #' @param ... Other arguments of the function
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

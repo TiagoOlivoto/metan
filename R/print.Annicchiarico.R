@@ -1,17 +1,17 @@
 #' Print an object of class Annicchiarico
 #'
 #' Print the \code{Annicchiarico} object in two ways. By default, the results
-#' are shown in the R console. The results can also be exported to the
-#' directory into a *.txt file.
+#' are shown in the R console. The results can also be exported to the directory
+#' into a *.txt file.
 #'
 #'
 #' @param x The \code{Annicchiarico} x
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
-#' to the working directory.
+#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#'   the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
 #' @param digits The significant digits to be shown.
-#' @param ... Options used by the tibble package to format the output.
-#' See \code{\link[tibble]{trunc_mat}} for more details.
+#' @param ... Options used by the tibble package to format the output. See
+#'   \code{\link[tibble]{trunc_mat}} for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print Annicchiarico
 #' @export

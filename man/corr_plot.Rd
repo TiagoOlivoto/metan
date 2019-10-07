@@ -20,37 +20,38 @@ corr_plot(.data, ..., upper = "corr", lower = "scatter",
 }
 \arguments{
 \item{.data}{The data. Should, preferentially, contain numeric variables
-only. If \code{.data} has factor-columns, these columns will be deleted with
-a warning message.}
+only. If \code{.data} has factor-columns, these columns will be deleted
+with a warning message.}
 
 \item{...}{Variables to use in the correlation. If no variable is informed
 all the numeric variables from \code{.data} are used.}
 
 \item{upper}{The visualization method for the upper triangular correlation
-matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'} (the
-scatterplot for each pairwise combination), or \code{NULL} to set a blank
-diagonal.}
+matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'}
+(the scatterplot for each pairwise combination), or \code{NULL} to set a
+blank diagonal.}
 
 \item{lower}{The visualization method for the lower triangular correlation
-matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'} (the
-scatterplot for each pairwise combination), or \code{NULL} to set a blank
-diagonal.}
+matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'}
+(the scatterplot for each pairwise combination), or \code{NULL} to set a
+blank diagonal.}
 
 \item{axis.labels}{Should the axis labels be shown in the plot? Set to
 \code{FALSE}.}
 
-\item{show.labels.in}{Where to show the axis labels. Defaults to "show" bottom and left.
-Use "diag" to show the labels on the diagonal. In this case, the diagonal layer
- (boxplot, density or histogram) will be overwritten.}
+\item{show.labels.in}{Where to show the axis labels. Defaults to "show"
+bottom and left. Use "diag" to show the labels on the diagonal. In this
+case, the diagonal layer (boxplot, density or histogram) will be
+overwritten.}
 
-\item{size.axis.label}{The size of the text for axis labels if \code{axis.labels = TRUE}.
-Defaults to 12.}
+\item{size.axis.label}{The size of the text for axis labels if
+\code{axis.labels = TRUE}. Defaults to 12.}
 
 \item{diag}{Should the diagonal be shown?}
 
-\item{diag.type}{The type of plot to show in the diagonal if \code{diag  TRUE}.
-It must be one of the 'histogram' (to show an histogram), 'density' to show
-the Kernel density, or 'boxplot' (to show a boxplot).}
+\item{diag.type}{The type of plot to show in the diagonal if \code{diag
+TRUE}. It must be one of the 'histogram' (to show an histogram), 'density'
+to show the Kernel density, or 'boxplot' (to show a boxplot).}
 
 \item{bins}{The number of bins, Defaults to 20.}
 
@@ -64,8 +65,9 @@ transparent. 0 = fully transparent; 1 = full color. Set to 0.15}
 lower, and diagonal panels, respectively. Set to 'gray'.}
 
 \item{prob}{The probability of error. Significant correlations will be
-highlighted with '*', '**', and '***' (0.05, 0.01, and 0.001, respectively).
-Scatterplots with significant correlations may be color-highlighted.}
+highlighted with '*', '**', and '***' (0.05, 0.01, and 0.001,
+respectively). Scatterplots with significant correlations may be
+color-highlighted.}
 
 \item{col.sign}{The color that will highlight the significant correlations.
 Set to 'green'.}
@@ -74,9 +76,9 @@ Set to 'green'.}
 transparent. 0 = fully transparent; 1 = full color. Set to 0.15}
 
 \item{lab.position}{The position that the labels will appear. Set to
-\code{'tr'}, i.e., the legends will appear in the top and right of the plot.
-Other allowed options are \code{'tl'} (top and left), \code{'br'} (bottom
-and right), \code{'bl'} (bottom and left).}
+\code{'tr'}, i.e., the legends will appear in the top and right of the
+plot. Other allowed options are \code{'tl'} (top and left), \code{'br'}
+(bottom and right), \code{'bl'} (bottom and left).}
 
 \item{progress}{\code{NULL} (default) for a progress bar in interactive
 sessions with more than 15 plots, \code{TRUE} for a progress bar,
@@ -89,8 +91,8 @@ to \code{FALSE}.}
 
 \item{size.smooth}{The size for the smooth line.}
 
-\item{confint}{Should a confidence band be shown with the smooth line? Set
-to \code{TRUE}.}
+\item{confint}{Should a confidence band be shown with the smooth line? Set to
+\code{TRUE}.}
 
 \item{size.point}{The size of the points in the plot. Set to \code{0.5}.}
 

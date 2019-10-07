@@ -21,14 +21,18 @@ replications/blocks}
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
 
-\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
+silently.}
 }
 \value{
-An object of class \code{superiority} where each element is the result of
-one variable and contains the following items:
-\item{environments}{The mean for each environment, the environment index and classification
-as favorable and unfavorable environments.}
-\item{index}{The superiority index computed for all, favorable and unfavorable environments.}
+An object of class \code{superiority} where each element is the
+result of one variable and contains the following items:
+\itemize{
+\item \strong{environments} The mean for each environment, the environment index
+and classification as favorable and unfavorable environments.
+\item \strong{index} The superiority index computed for all, favorable and
+unfavorable environments.
+}
 }
 \description{
 Nonparametric stability analysis using the superiority index proposed by Lin

@@ -15,8 +15,8 @@ plot_factbars(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
 \arguments{
 \item{.data}{The data set}
 
-\item{...}{A comma-separated list of unquoted variable names. Must be up to two
-variables.}
+\item{...}{A comma-separated list of unquoted variable names. Must be up to
+two variables.}
 
 \item{resp}{The response variable}
 
@@ -32,37 +32,41 @@ used.}
 
 \item{lab.bar}{A vector of characters to show in each bar. Defaults to NULL.}
 
-\item{lab.bar.vjust}{The vertical adjust for the labels in the bar. Defaults to -0.2}
+\item{lab.bar.vjust}{The vertical adjust for the labels in the bar. Defaults
+to -0.2}
 
 \item{size.text.bar}{The size of the text in the bar labels.}
 
-\item{errorbar}{Logical argument, set to TRUE. In this case, an error bar is shown.}
+\item{errorbar}{Logical argument, set to TRUE. In this case, an error bar is
+shown.}
 
-\item{stat.erbar}{The statistic to be shown in the errorbar. Must be one of the 'se'
-(standard error, default), 'sd' (standard deviation), or 'ci' confidence interval, based
-on the confidence level}
+\item{stat.erbar}{The statistic to be shown in the errorbar. Must be one of
+the 'se' (standard error, default), 'sd' (standard deviation), or 'ci'
+confidence interval, based on the confidence level}
 
 \item{width.erbar}{The width of the error bar.}
 
 \item{level}{The confidence level}
 
-\item{invert}{Logical argument. If \code{TRUE}, the order of the factors entered
-in changes in the graph}
+\item{invert}{Logical argument. If \code{TRUE}, the order of the factors
+entered in changes in the graph}
 
 \item{col}{Logical argument. If \code{FALSE}, a gray scale is used.}
 
 \item{palette}{The color palette to be used. For more details, see
 \code{?scale_colour_brewer}}
 
-\item{width.bar}{The width of the bars in the graph. Defaults to 0.9
-possible values [0-1].}
+\item{width.bar}{The width of the bars in the graph. Defaults to 0.9 possible
+values [0-1].}
 
 \item{lab.x.angle}{The angle of the caption text. Default is 0.}
 
-\item{lab.x.hjust}{The horizontal adjustment of the caption text. Defaults to 0.5.}
+\item{lab.x.hjust}{The horizontal adjustment of the caption text. Defaults to
+0.5.}
 
-\item{lab.x.vjust}{The vertical adjustment of the caption text. Defaults to 1.
-Use this argument to adjust the text when the angle of the text is different from 0.}
+\item{lab.x.vjust}{The vertical adjustment of the caption text. Defaults to
+1. Use this argument to adjust the text when the angle of the text is
+different from 0.}
 
 \item{legend.position}{The legend position.}
 
@@ -74,14 +78,15 @@ Use this argument to adjust the text when the angle of the text is different fro
 Defaults to true}
 
 \item{verbose}{Logical argument. If TRUE a tibble containing the mean, N,
-standard deviation, standard error of mean and confidence interval is returned.}
+standard deviation, standard error of mean and confidence interval is
+returned.}
 }
 \value{
 An object of class \code{gg, ggplot}.
 }
 \description{
 Create a bar plot based on categorical (one or two) variables
-and one numeric variable.
+  and one numeric variable.
 }
 \examples{
 library(metan)

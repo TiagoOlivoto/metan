@@ -1,13 +1,17 @@
 #' Easily get data from a model
 #'
-#' Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et al., 2019a, 2019b)
+#' Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et
+#' al., 2019a, 2019b)
 #'
 #'
-#' @param x An object created with the functions \code{\link{waas}} or \code{\link{waasb}}.
-#' @param what What should be captured from the model. See more in \strong{Details} section.
-#' @param type Chose if the statistics must be show by genotype (\code{type = "GEN"}, default)
-#' or environment (\code{type = "ENV"}), when possible.
-#' @return A tibble showing the values of the variable chosen in argument \code{what}.
+#' @param x An object created with the functions \code{\link{waas}} or
+#'   \code{\link{waasb}}.
+#' @param what What should be captured from the model. See more in
+#'   \strong{Details} section.
+#' @param type Chose if the statistics must be show by genotype (\code{type =
+#'   "GEN"}, default) or environment (\code{type = "ENV"}), when possible.
+#' @return A tibble showing the values of the variable chosen in argument
+#'   \code{what}.
 #' @details
 #'
 #' \strong{The next options are valid in the argument \code{what} for both \code{waas} and \code{waasb} objects.}

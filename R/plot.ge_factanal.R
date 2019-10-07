@@ -5,58 +5,57 @@
 #'
 #' @param x An object of class \code{ge_factanal}
 #' @param theme The graphical theme of the plot. Default is `theme =
-#' theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#' applied using the arguments: `theme = theme(some stuff
-#' here)`. For more details, please, see `?ggplot2::theme`
-#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and
-#' minimum values of the data set). New arguments can be inserted as
-#' \code{x.lim = c(x.min, x.max)}.
+#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+#'   applied using the arguments: `theme = theme(some stuff here)`. For more
+#'   details, please, see `?ggplot2::theme`
+#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
+#'   values of the data set). New arguments can be inserted as \code{x.lim =
+#'   c(x.min, x.max)}.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#' c(breaks)}
+#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
+#'   c(breaks)}
 #' @param x.lab The label of x-axis. Each plot has a default value. New
-#' arguments can be inserted as \code{x.lab = "my label"}.
+#'   arguments can be inserted as \code{x.lab = "my label"}.
 #' @param y.lim The range of x-axis. Default is \code{NULL}. The same arguments
-#' than \code{x.lim} can be used.
+#'   than \code{x.lim} can be used.
 #' @param y.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
-#' used.
+#'   \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+#'   used.
 #' @param y.lab The label of y-axis. Each plot has a default value. New
-#' arguments can be inserted as \code{y.lab = "my label"}.
+#'   arguments can be inserted as \code{y.lab = "my label"}.
 #' @param shape The shape for genotype indication in the plot. Default is
-#' \code{1} (circle). Values between  \code{21-25}: \code{21} (circle),
-#' \code{22} (square), \code{23} (diamond), \code{24} (up triangle), and
-#' \code{25} (low triangle) allows a color for fill the shape.
+#'   \code{1} (circle). Values between  \code{21-25}: \code{21} (circle),
+#'   \code{22} (square), \code{23} (diamond), \code{24} (up triangle), and
+#'   \code{25} (low triangle) allows a color for fill the shape.
 #' @param col.shape The shape color for genotypes. Must be one value or a vector
-#' of colors with the same length of the number of genotypes. Default is
-#' \code{"gray30"}. Other values can be attributed. For example,
-#' \code{"transparent"}, will make a plot with only an outline around the shape
-#' area.
-#' @param col.alpha The alpha value for the color. Default is \code{1}.
-#' Values must be between \code{0} (full transparency) to \code{1} (full
-#' color).
+#'   of colors with the same length of the number of genotypes. Default is
+#'   \code{"gray30"}. Other values can be attributed. For example,
+#'   \code{"transparent"}, will make a plot with only an outline around the
+#'   shape area.
+#' @param col.alpha The alpha value for the color. Default is \code{1}. Values
+#'   must be between \code{0} (full transparency) to \code{1} (full color).
 #' @param size.shape The size of the shape (both for genotypes and
-#' environments). Default is \code{2.2}.
+#'   environments). Default is \code{2.2}.
 #' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
-#' size of the shape will be \code{size.shape + size.bor.tick}
-#' @param size.tex.lab The size of the text in the axes text and labels.
-#' Default is \code{12}.
+#'   size of the shape will be \code{size.shape + size.bor.tick}
+#' @param size.tex.lab The size of the text in the axes text and labels. Default
+#'   is \code{12}.
 #' @param size.tex.pa The size of the text of the plot area. Default is
-#' \code{3.5}.
+#'   \code{3.5}.
 #' @param force.repel Force of repulsion between overlapping text labels.
-#' Defaults to 1.
+#'   Defaults to 1.
 #' @param line.type The type of the line that indicate the means in the biplot.
-#' Default is \code{"solid"}. Other values that can be attributed are:
-#' \code{"blank"}, no lines in the biplot, \code{"dashed", "dotted", "dotdash",
-#' "longdash", and "twodash"}.
+#'   Default is \code{"solid"}. Other values that can be attributed are:
+#'   \code{"blank"}, no lines in the biplot, \code{"dashed", "dotted",
+#'   "dotdash", "longdash", and "twodash"}.
 #' @param line.alpha The alpha value that combine the line with the background
-#' to create the appearance of partial or full transparency. Default is
-#' \code{0.4}. Values must be between "0" (full transparency) to "1" (full
-#' color).
+#'   to create the appearance of partial or full transparency. Default is
+#'   \code{0.4}. Values must be between "0" (full transparency) to "1" (full
+#'   color).
 #' @param col.line The color of the line that indicate the means in the biplot.
-#' Default is \code{"gray"}
+#'   Default is \code{"gray"}
 #' @param size.line The size of the line that indicate the means in the biplot.
-#' Default is \code{0.5}.
+#'   Default is \code{0.5}.
 #' @param ... Other arguments of the function.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{ge_factanal}}

@@ -5,27 +5,27 @@
 #'
 #' @param x An object of class \code{ge_factanal}
 #' @param theme The graphical theme of the plot. Default is `theme =
-#' theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#' applied using the arguments: `theme = theme(some stuff
-#' here)`. For more details, please, see `?ggplot2::theme`
-#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and
-#' minimum values of the data set). New arguments can be inserted as
-#' \code{x.lim = c(x.min, x.max)}.
+#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+#'   applied using the arguments: `theme = theme(some stuff here)`. For more
+#'   details, please, see `?ggplot2::theme`
+#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
+#'   values of the data set). New arguments can be inserted as \code{x.lim =
+#'   c(x.min, x.max)}.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#' c(breaks)}
+#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
+#'   c(breaks)}
 #' @param x.lab The label of x-axis. Each plot has a default value. New
-#' arguments can be inserted as \code{x.lab = "my label"}.
+#'   arguments can be inserted as \code{x.lab = "my label"}.
 #' @param y.lim The range of x-axis. Default is \code{NULL}. The same arguments
-#' than \code{x.lim} can be used.
+#'   than \code{x.lim} can be used.
 #' @param y.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
-#' used.
+#'   \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+#'   used.
 #' @param y.lab The label of y-axis. Each plot has a default value. New
-#' arguments can be inserted as \code{y.lab = "my label"}.
+#'   arguments can be inserted as \code{y.lab = "my label"}.
 #' @param leg.position The position of the legend.
-#' @param size.tex.lab The size of the text in the axes text and labels.
-#' Default is \code{12}.
+#' @param size.tex.lab The size of the text in the axes text and labels. Default
+#'   is \code{12}.
 #' @param ... Other arguments of the function.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{ge_factanal}}

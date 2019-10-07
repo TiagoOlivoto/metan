@@ -19,8 +19,9 @@ total number of genotypes.}
 \item{radar}{Logical argument. If true (default) a radar plot is generated
 after using \code{coord_polar()}.}
 
-\item{arrange.label}{Logical argument. If \code{TRUE}, the labels are arranged to avoid text overlapping.
-This becomes useful when the number of genotypes is large, say, more than 30.}
+\item{arrange.label}{Logical argument. If \code{TRUE}, the labels are
+arranged to avoid text overlapping. This becomes useful when the number of
+genotypes is large, say, more than 30.}
 
 \item{size.point}{The size of the point in graphic.}
 
@@ -57,10 +58,10 @@ plot(FAI)
 }
 \references{
 Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
-Multitrait index based on factor analysis and ideotype-design: proposal and
-application on elephant grass breeding for bioenergy. GCB Bioenergy
-10:52-60. doi:
-\href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
+  Multitrait index based on factor analysis and ideotype-design: proposal and
+  application on elephant grass breeding for bioenergy. GCB Bioenergy
+  10:52-60. doi:
+  \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

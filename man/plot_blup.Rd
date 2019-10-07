@@ -44,9 +44,9 @@ environments). Default is \code{3.5}.}
 
 \item{height.err.bar}{The height for error bar. Default is \code{0.3}.}
 
-\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and
-minimum values of the data set). New arguments can be inserted as
-\code{x.lim = c(x.min, x.max)}.}
+\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
+values of the data set). New arguments can be inserted as \code{x.lim =
+c(x.min, x.max)}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
 \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
@@ -59,8 +59,8 @@ genotypes above and below of the mean, respectively. Default is
 \item{y.lab}{The label of the y-axis in the plot. Default is
 \code{"Genotypes"}.}
 
-\item{x.lab}{The label of the x-axis in the plot. Default is
-\code{"Predicted Grain Yield"}.}
+\item{x.lab}{The label of the x-axis in the plot. Default is \code{"Predicted
+Grain Yield"}.}
 
 \item{resolution}{The resolution of the plot. Parameter valid if
 \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}

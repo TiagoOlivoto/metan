@@ -9,13 +9,14 @@
 \arguments{
 \item{x}{An object of class \code{clustering}}
 
-\item{horiz}{Logical indicating if the dendrogram should be drawn horizontally or not.}
+\item{horiz}{Logical indicating if the dendrogram should be drawn
+horizontally or not.}
 
 \item{type}{The type of plot. Must be one of the 'dendrogram' or
 'cophenetic'.}
 
-\item{...}{Other arguments passed from the function \code{plot.dendrogram}
-or \code{abline}.}
+\item{...}{Other arguments passed from the function \code{plot.dendrogram} or
+\code{abline}.}
 }
 \value{
 An object of class \code{gg, ggplot} if \code{type == "cophenetic"}.

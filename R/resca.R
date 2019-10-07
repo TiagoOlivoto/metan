@@ -3,31 +3,33 @@
 #' Helper function used in the WAASB package. It rescales a continuous variable
 #' to have specified minimum and maximum values.
 #'
-#' The function rescale a continuous variable as follows:
-#' \deqn{Rv_i = (Nmax - Nmin)/(Omax - Omin) * (O_i - Omax) + Nmax}
-#' Where \eqn{Rv_i} is the rescaled value of the ith position of the variable/
-#' vector; \eqn{Nmax} and \eqn{Nmin} are the new maximum and minimum values;
-#' \eqn{Omax and Omin} are the maximum and minimum values of the original data,
-#' and \eqn{O_i} is the ith value of the original data.
+#' The function rescale a continuous variable as follows: \deqn{Rv_i = (Nmax -
+#' Nmin)/(Omax - Omin) * (O_i - Omax) + Nmax} Where \eqn{Rv_i} is the rescaled
+#' value of the ith position of the variable/ vector; \eqn{Nmax} and \eqn{Nmin}
+#' are the new maximum and minimum values; \eqn{Omax and Omin} are the maximum
+#' and minimum values of the original data, and \eqn{O_i} is the ith value of
+#' the original data.
 #'
 #' There are basically two options to use \code{resca} to Rescale a variable.
 #' The first is passing a data frame to \code{.data} argument and selecting one
-#' or more variables to be scaled using \code{...}. The function will return
-#' the original variables in \code{.data} plus the rescaled variable(s) with the
+#' or more variables to be scaled using \code{...}. The function will return the
+#' original variables in \code{.data} plus the rescaled variable(s) with the
 #' prefix \code{_res}. By using the function \code{group_by} from \bold{dplyr}
 #' package it is possible to rescale the variable(s) within each level of the
 #' grouping factor. The second option is pass a numeric vector in the argument
-#'  \code{values}. The output, of course, will be a numeric vector of rescaled values.
+#' \code{values}. The output, of course, will be a numeric vector of rescaled
+#' values.
 #'
 #' @param .data The dataset. Grouped data is allowed.
-#' @param ... Comma-separated list of unquoted variable names that will be rescaled.
+#' @param ... Comma-separated list of unquoted variable names that will be
+#'   rescaled.
 #' @param values Optional vector of values to rescale
 #' @param new_min The minimum value of the new scale. Default is 0.
 #' @param new_max The maximum value of the new scale. Default is 100
-#' @param keep Should all variables be kept after rescaling? If false, only rescaled
-#' variables will be kept.
-#' @return A numeric vector if \code{values} is used as input data or a tibble if
-#' a data frame is used as input in \code{.data}.
+#' @param keep Should all variables be kept after rescaling? If false, only
+#'   rescaled variables will be kept.
+#' @return A numeric vector if \code{values} is used as input data or a tibble
+#'   if a data frame is used as input in \code{.data}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

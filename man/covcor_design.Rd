@@ -9,8 +9,8 @@ covcor_design(.data, gen, rep, resp, design = "RCBD", type = NULL)
 \arguments{
 \item{.data}{The dataset containing the columns related to Genotypes,
 replication/block and response variables. Alternatively, it is possible to
-use an object of class 'split_factors' to compute the results for each level
-of the grouping factor. See \code{?split_factors}.}
+use an object of class 'split_factors' to compute the results for each
+level of the grouping factor. See \code{?split_factors}.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
@@ -22,26 +22,30 @@ var3)}.}
 
 \item{design}{The experimental design. Must be RCBD or CRD.}
 
-\item{type}{What the matrices should return? Set to \code{NULL}, i.e., a
-list of matrices is returned. The argument type allow the following values
+\item{type}{What the matrices should return? Set to \code{NULL}, i.e., a list
+of matrices is returned. The argument type allow the following values
 \code{'pcor', 'gcor', 'rcor'}, (which will return the phenotypic, genotypic
 and residual correlation matrices, respectively) or \code{'pcov', 'gcov',
-'rcov'} (which will return the phenotypic, genotypic and residual
+  'rcov'} (which will return the phenotypic, genotypic and residual
 variance-covariance matrices, respectively). Alternatively, it is possible
 to get a matrix with the means of each genotype in each trait, by using
 \code{type = 'means'}.}
 }
 \value{
-An object of class \code{covcor_design} containing the following items:
-\item{geno_cov}{The genotypic covariance}.
-\item{phen_cov}{The phenotypic covariance}.
-\item{resi_cov}{The residual covariance}.
-\item{geno_cor}{The phenotypic correlation}.
-\item{phen_cor}{The phenotypic correlation}.
-\item{resi_cor}{The residual correlation}.
+An object of class \code{covcor_design} containing the following
+items:
+\itemize{
+\item \strong{geno_cov} The genotypic covariance.
+\item \strong{phen_cov} The phenotypic covariance.
+\item \strong{resi_cov} The residual covariance.
+\item \strong{geno_cor} The phenotypic correlation.
+\item \strong{phen_cor} The phenotypic correlation.
+\item \strong{resi_cor} The residual correlation.
+}
 
-If \code{.data} is an object of class \code{split_factors} then the output will be
-a list with the above values for each grouping variable in the function \code{\link{split_factors}}.
+If \code{.data} is an object of class \code{split_factors} then the output
+will be a list with the above values for each grouping variable in the
+function \code{\link{split_factors}}.
 }
 \description{
 Compute variance-covariance and correlation matrices using data from a

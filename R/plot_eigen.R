@@ -7,27 +7,27 @@
 #' @param x The \code{waasb object}
 #' @param export Export (or not) the plot. Default is \code{TRUE}.
 #' @param theme The graphical theme of the plot. Default is `theme =
-#' theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
-#' applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#' here)`. For more details, please, see `?ggplot2::theme`
+#'   theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
+#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
+#'   here)`. For more details, please, see `?ggplot2::theme`
 #' @param file.type If \code{export = TRUE}, define the type of file to be
-#' exported. Default is \code{pdf}, Graphic can also be exported in
-#' \code{*.tiff} format by declaring \code{file.type = "tiff"}.
+#'   exported. Default is \code{pdf}, Graphic can also be exported in
+#'   \code{*.tiff} format by declaring \code{file.type = "tiff"}.
 #' @param file.name The name of the file for exportation, default is
-#' \code{NULL}, i.e. the files are automatically named.
+#'   \code{NULL}, i.e. the files are automatically named.
 #' @param width The width "inch" of the plot. Default is \code{6}.
 #' @param height The height "inch" of the plot. Default is \code{6}.
 #' @param size.shape The size of the shape. Default is \code{3.5}.
 #' @param size.line The size of the line. Default is \code{1}.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param y.lab The label of the y-axis in the plot. Default is
-#' \code{"Eigenvalue"}.
+#'   \code{"Eigenvalue"}.
 #' @param y2.lab The label of the second y-axis in the plot. Default is
-#' \code{"Accumulated variance"}.
-#' @param x.lab The label of the x-axis in the plot. Default is \code{"Number
-#' of multiplicative terms"}.
+#'   \code{"Accumulated variance"}.
+#' @param x.lab The label of the x-axis in the plot. Default is \code{"Number of
+#'   multiplicative terms"}.
 #' @param resolution The resolution of the plot. Parameter valid if
-#' \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
+#'   \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
 #' @param ... Other arguments of the function
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

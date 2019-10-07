@@ -4,84 +4,88 @@
 #'
 #' When \code{selvar = TRUE} a variable selection algorithm is executed. The
 #' objective is to select a group of variables that most contribute to explain
-#' the variability of the original data. The selection of the variables is
-#' based on eigenvalue/eigenvectors solution based on the following steps.
-#' \bold{1:} compute the distance matrix and the co-optic correlation with the
-#' original variables (all numeric variables in dataset); \bold{2:} compute the
-#' eigenvalues and eigenvectors of the correlation matrix between the
-#' variables; \bold{3:} delete the variable with the largest weight (highest
-#' eigenvector in the lowest eigenvalue); \bold{4:} compute the distance matrix
-#' and co-phenetic correlation with the remaining variables; \bold{5:} compute
-#' the Mantel's correlation between the obtained distances matrix and the
-#' original distance matrix; \bold{6:} iterate steps 2 to 5 \emph{p} - 2 times,
-#' where \emph{p} is the number of original variables. At the end of the
-#' \emph{p} - 2 iterations, a summary of the models is returned. The distance
-#' is calculated with the variables that generated the model with the largest
-#' cophenetic correlation. I suggest a careful evaluation aiming at choosing a
-#' parsimonious model, i.e., the one with the fewer number of variables, that
-#' presents acceptable cophenetic correlation and high similarity with the
-#' original distances.
+#' the variability of the original data. The selection of the variables is based
+#' on eigenvalue/eigenvectors solution based on the following steps. \bold{1:}
+#' compute the distance matrix and the co-optic correlation with the original
+#' variables (all numeric variables in dataset); \bold{2:} compute the
+#' eigenvalues and eigenvectors of the correlation matrix between the variables;
+#' \bold{3:} delete the variable with the largest weight (highest eigenvector in
+#' the lowest eigenvalue); \bold{4:} compute the distance matrix and co-phenetic
+#' correlation with the remaining variables; \bold{5:} compute the Mantel's
+#' correlation between the obtained distances matrix and the original distance
+#' matrix; \bold{6:} iterate steps 2 to 5 \emph{p} - 2 times, where \emph{p} is
+#' the number of original variables. At the end of the \emph{p} - 2 iterations,
+#' a summary of the models is returned. The distance is calculated with the
+#' variables that generated the model with the largest cophenetic correlation. I
+#' suggest a careful evaluation aiming at choosing a parsimonious model, i.e.,
+#' the one with the fewer number of variables, that presents acceptable
+#' cophenetic correlation and high similarity with the original distances.
 #'
 #' @param .data The data to be analyzed. It may be a data frame containing the
-#' means of each observation in each variable or, alternatively, replicates for
-#' each factor. In this case, a grouping variable is required in the argument
-#' \code{means_by} to compute the means. In addition, .data may be an object
-#' passed from the function \code{split_factors}. In this case, the distances
-#' are computed for each level of the grouping variable.
+#'   means of each observation in each variable or, alternatively, replicates
+#'   for each factor. In this case, a grouping variable is required in the
+#'   argument \code{means_by} to compute the means. In addition, .data may be an
+#'   object passed from the function \code{split_factors}. In this case, the
+#'   distances are computed for each level of the grouping variable.
 #' @param ... The variables in \code{.data} to compute the distances. Set to
-#' \code{NULL}, i.e., all the numeric variables in \code{.data} are used.
+#'   \code{NULL}, i.e., all the numeric variables in \code{.data} are used.
 #' @param means_by If \code{.data} doesn't contain the mean for each
-#' observation, then \code{means_by} is a grouping variable to compute the
-#' means. For example, if \code{means_by = GEN}, then the means of the
-#' numerical variables will be computed for each level of the grouping variable
-#' GEN.
+#'   observation, then \code{means_by} is a grouping variable to compute the
+#'   means. For example, if \code{means_by = GEN}, then the means of the
+#'   numerical variables will be computed for each level of the grouping
+#'   variable \code{GEN}.
 #' @param scale Should the data be scaled befor computing the distances? Set to
-#' FALSE. If TRUE, then, each observation will be divided by the standard
-#' deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}
+#'   FALSE. If TRUE, then, each observation will be divided by the standard
+#'   deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}
 #' @param selvar Logical argument, set to \code{FALSE}. If \code{TRUE}, then an
-#' algorithm for selecting variables is implemented. See the section
-#' \bold{Details} for additional information.
+#'   algorithm for selecting variables is implemented. See the section
+#'   \bold{Details} for additional information.
 #' @param verbose Logical argument. If \code{TRUE} (default) then the results
-#' for variable selection are shown in the console.
+#'   for variable selection are shown in the console.
 #' @param distmethod The distance measure to be used. This must be one of
-#' \code{'euclidean'}, \code{'maximum'}, \code{'manhattan'}, \code{'canberra'},
-#' \code{'binary'}, \code{'minkowski'}, \code{'pearson'}, \code{'spearman'}, or
-#' \code{'kendall'}. The last three are correlation-based distance.
-#' @param clustmethod The agglomeration method to be used. This should be one
-#' of \code{'ward.D'}, \code{'ward.D2'}, \code{'single'}, \code{'complete'},
-#' \code{'average'} (= UPGMA), \code{'mcquitty'} (= WPGMA), \code{'median'} (=
-#' WPGMC) or \code{'centroid'} (= UPGMC).
+#'   \code{'euclidean'}, \code{'maximum'}, \code{'manhattan'},
+#'   \code{'canberra'}, \code{'binary'}, \code{'minkowski'}, \code{'pearson'},
+#'   \code{'spearman'}, or \code{'kendall'}. The last three are
+#'   correlation-based distance.
+#' @param clustmethod The agglomeration method to be used. This should be one of
+#'   \code{'ward.D'}, \code{'ward.D2'}, \code{'single'}, \code{'complete'},
+#'   \code{'average'} (= UPGMA), \code{'mcquitty'} (= WPGMA), \code{'median'} (=
+#'   WPGMC) or \code{'centroid'} (= UPGMC).
 #' @param nclust The number of clust to be formed. Set to \code{NULL}
-#' @return \item{data}{The data that was used to compute the distances.}
+#' @return
 #'
-#' \item{cutpoint}{The cutpoint of the dendrogram according to Mojena (1977).}
+#' * \strong{data} The data that was used to compute the distances.
 #'
-#' \item{distance}{The matrix with the distances.}
+#' * \strong{cutpoint} The cutpoint of the dendrogram according to Mojena (1977).
 #'
-#' \item{de}{The distances in an object of class \code{dist}.}
+#' * \strong{distance} The matrix with the distances.
 #'
-#' \item{hc}{The hierarchical clustering.}
+#' * \strong{de} The distances in an object of class \code{dist}.
 #'
-#' \item{Sqt}{The total sum of squares.}
+#' * \strong{hc} The hierarchical clustering.
 #'
-#' \item{tab}{A table with the clusters and similarity.}
+#' * \strong{Sqt} The total sum of squares.
 #'
-#' \item{clusters}{The sum of square and the mean of the clusters for each
-#' variable.}
+#' * \strong{tab} A table with the clusters and similarity.
 #'
-#' \item{cofgrap}{If \code{selectvar = TRUE}, then, \code{cofpgrap} is a
-#' ggplot2-based graphic showing the cophenetic correlation for each model
-#' (with different number of variables). Else, will be a \code{NULL} object.}
+#' * \strong{clusters} The sum of square and the mean of the clusters for each
+#'   variable.
 #'
-#' \item{statistics}{If \code{selectvar = TRUE}, then, \code{statistics} shows
-#' the summary of the models fitted with different number of variables,
-#' including cophenetic correlation, Mantel's correlation with the original
-#' distances (all variables) and the p-value associated with the Mantel's test.
-#' Else, will be a \code{NULL} object.}
+#' * \strong{cofgrap} If \code{selectvar = TRUE}, then, \code{cofpgrap} is a
+#'   ggplot2-based graphic showing the cophenetic correlation for each model
+#'   (with different number of variables). Else, will be a \code{NULL} object.
+#'
+#' * \strong{statistics} If \code{selectvar = TRUE}, then, \code{statistics} shows
+#'   the summary of the models fitted with different number of variables,
+#'   including cophenetic correlation, Mantel's correlation with the original
+#'   distances (all variables) and the p-value associated with the Mantel's
+#'   test. Else, will be a \code{NULL} object.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Mojena, R. 2015. Hierarchical grouping methods and stopping
-#' rules: an evaluation. Comput. J. 20:359-363.
-#' \href{https://academic.oup.com/comjnl/article/20/4/359/393930}{doi:10.1093/comjnl/20.4.359}
+#'   rules: an evaluation. Comput. J. 20:359-363.
+#'   \href{https://academic.oup.com/comjnl/article/20/4/359/393930}{doi:10.1093/comjnl/20.4.359}
+#'
 #' @export
 #' @examples
 #' \donttest{

@@ -25,10 +25,14 @@ replications/blocks.}
 silently.}
 }
 \value{
-A list where each element is the result for one variable and contains:
-\item{individual}{A data frame with the results of the individual analysis of
-variance.}
-\item{MSRatio}{The ratio between the higher and lower residual mean square.}
+A list where each element is the result for one variable and
+contains:
+\itemize{
+\item \strong{individual} A data frame with the results of the individual
+analysis of variance.
+\item \strong{MSRatio} The ratio between the higher and lower residual mean
+square.
+}
 }
 \description{
 This is a helper function that performs a within-environment analysis of

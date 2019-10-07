@@ -4,13 +4,13 @@
 #'
 #'
 #' @param .data The data to be analyzed. Must be a dataframe or an object of
-#' class \code{split_factors}.
+#'   class \code{split_factors}.
 #' @param var The variable to be analyzed..
 #' @param plots If \code{TRUE}, then histograms and boxplots are shown.
-#' @param coef The multiplication coefficient, defaults to 1.5. For more details see
-#' \code{?boxplot.stat}.
+#' @param coef The multiplication coefficient, defaults to 1.5. For more details
+#'   see \code{?boxplot.stat}.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
-#' console.
+#'   console.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

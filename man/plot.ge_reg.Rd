@@ -14,12 +14,12 @@
 
 \item{theme}{The graphical theme of the plot. Default is `theme =
 theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme(some stuff
-here)`. For more details, please, see `?ggplot2::theme`}
+applied using the arguments: `theme = theme(some stuff here)`. For more
+details, please, see `?ggplot2::theme`}
 
-\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and
-minimum values of the data set). New arguments can be inserted as
-\code{x.lim = c(x.min, x.max)}.}
+\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
+values of the data set). New arguments can be inserted as \code{x.lim =
+c(x.min, x.max)}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
 \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
@@ -40,8 +40,8 @@ arguments can be inserted as \code{y.lab = "my label"}.}
 
 \item{leg.position}{The position of the legend.}
 
-\item{size.tex.lab}{The size of the text in the axes text and labels.
-Default is \code{12}.}
+\item{size.tex.lab}{The size of the text in the axes text and labels. Default
+is \code{12}.}
 
 \item{...}{Other arguments of the function.}
 }

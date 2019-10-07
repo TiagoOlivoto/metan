@@ -27,20 +27,30 @@ silently.}
 \item{prob}{The probability error assumed.}
 }
 \value{
-An object of class \code{ge_stats} with the following items for each variable:
-\item{individual}{The individual analysis of variance. Call the function \code{\link{anova_ind}} internally.}
-\item{ge_mean, ge_effect}{The genotype-vs-environment means and effects, respectively.}
-\item{gge_effect}{The genotype plus genotype-vs-environment effects.}
-\item{ge_stats}{The variance, sum of squares and mean squares for each genotype.}
-\item{ER}{The Eberhart and Russell regression model. Call the function \code{\link{ge_reg}} internally.}
-\item{ANN}{The Annicchiarico's genotypic confidence index. Call the function \code{\link{Annicchiarico}} internally.}
-\item{Ecoval}{The Wrike's ecovalence. Call the function \code{\link{ecovalence}} internally.}
-\item{Superiority}{The Lin and Binns' superiority index. Call the function \code{\link{superiority}} internally.}
+An object of class \code{ge_stats} with the following items for each
+variable:
+\itemize{
+\item \strong{individual} The individual analysis of variance. Call the function
+\code{\link{anova_ind}} internally.
+\item \strong{ge_mean}, ge_effect The genotype-vs-environment means and effects,
+respectively.
+\item \strong{gge_effect} The genotype plus genotype-vs-environment effects.
+\item \strong{ge_stats} The variance, sum of squares and mean squares for each
+genotype.
+\item \strong{ER} The Eberhart and Russell regression model. Call the function
+\code{\link{ge_reg}} internally.
+\item \strong{ANN} The Annicchiarico's genotypic confidence index. Call the
+function \code{\link{Annicchiarico}} internally.
+\item \strong{Ecoval} The Wrike's ecovalence. Call the function
+\code{\link{ecovalence}} internally.
+\item \strong{Superiority} The Lin and Binns' superiority index. Call the
+function \code{\link{superiority}} internally.
+}
 }
 \description{
 Compute parametric and nonparametric statistics for genotype-vs-environment
-interaction (GEI), including within-environment analysis of
-variance, GEI effect, GEI means, genotype plus GEI effects, Ecovalence (Wricke, 1965)
+interaction (GEI), including within-environment analysis of variance, GEI
+effect, GEI means, genotype plus GEI effects, Ecovalence (Wricke, 1965)
 regression-based stability (Eberhart and Russell., 1966), and superiority
 index (Lin and Binns, 1988)
 }
@@ -63,16 +73,16 @@ model2 = data_ge2 \%>\%
 
 }
 \references{
-Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for comparing Varieties.
-Crop Sci. 6:36-40. \href{https://www.crops.org/publications/cs/abstracts/6/1/CS0060010036}{doi:10.2135/cropsci1966.0011183X000600010011x}
+Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for
+comparing Varieties. Crop Sci. 6:36-40.
+\href{https://www.crops.org/publications/cs/abstracts/6/1/CS0060010036}{doi:10.2135/cropsci1966.0011183X000600010011x}
 
-Lin, C.S., and M.R. Binns. 1988. A superiority measure of
-cultivar performance for cultivar x location data. Can. J. Plant Sci.
-68:193-198.
+Lin, C.S., and M.R. Binns. 1988. A superiority measure of cultivar
+performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
 \href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
 
-Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer. Z.
-Pflanzenzuchtg 52:127-138.
+Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer.
+Z. Pflanzenzuchtg 52:127-138.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

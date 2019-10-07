@@ -36,8 +36,8 @@ WPGMC) or \code{'centroid'} (= UPGMC).}
 \item{scale}{Should the data be scaled befor computing the distances? Set to
 TRUE. Let \eqn{Y_{ij}} be the yield of Hybrid \emph{i} in Location \emph{j},
 \eqn{\bar Y_{.j}} be the mean yield, and \eqn{S_j} be the standard deviation of
- Location \emph{j}. The standardized yield (Zij) is computed as (Ouyang et al. 1995):
- \eqn{Z_{ij} = (Y_{ij} - Y_{.j}) / S_j}.}
+Location \emph{j}. The standardized yield (Zij) is computed as (Ouyang et al. 1995):
+\eqn{Z_{ij} = (Y_{ij} - Y_{.j}) / S_j}.}
 
 \item{cluster}{What should be clustered? Defaults to \code{cluster = "env"} (cluster environments).
 To cluster the genotypes use \code{cluster = "gen"}.}
@@ -45,25 +45,20 @@ To cluster the genotypes use \code{cluster = "gen"}.}
 \item{nclust}{The number of clust to be formed. Set to \code{NULL}.}
 }
 \value{
-\item{data}{The data that was used to compute the distances.}
-
-\item{cutpoint}{The cutpoint of the dendrogram according to Mojena (1977).}
-
-\item{distance}{The matrix with the distances.}
-
-\item{de}{The distances in an object of class \code{dist}.}
-
-\item{hc}{The hierarchical clustering.}
-
-\item{cophenetic}{The cophenetic correlation coefficient between distance matrix and cophenetic matrix}
-
-\item{Sqt}{The total sum of squares.}
-
-\item{tab}{A table with the clusters and similarity.}
-
-\item{clusters}{The sum of square and the mean of the clusters for each
+\itemize{
+\item \strong{data} The data that was used to compute the distances.
+\item \strong{cutpoint} The cutpoint of the dendrogram according to Mojena (1977).
+\item \strong{distance} The matrix with the distances.
+\item \strong{de} The distances in an object of class \code{dist}.
+\item \strong{hc} The hierarchical clustering.
+\item \strong{cophenetic} The cophenetic correlation coefficient between distance matrix
+and cophenetic matrix
+\item \strong{Sqt} The total sum of squares.
+\item \strong{tab} A table with the clusters and similarity.
+\item \strong{clusters} The sum of square and the mean of the clusters for each
 genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).}
-\item{labclust}{The labels of genotypes/environments within each cluster}
+\item \strong{labclust The labels of genotypes/environments within each cluster.
+}
 }
 \description{
 Performs clustering for genotypes or tester environments based on a dissimilarity matrix.
@@ -82,8 +77,8 @@ rules: an evaluation. Comput. J. 20:359-363.
 \href{https://academic.oup.com/comjnl/article/20/4/359/393930}{doi:10.1093/comjnl/20.4.359}
 
 Ouyang, Z., R.P. Mowers, A. Jensen, S. Wang, and S. Zheng. 1995.
- Cluster analysis for genotype x environment interaction with unbalanced data. Crop Sci. 35:1300-1305.
- \href{https://dl.sciencesocieties.org/publications/cs/abstracts/35/5/CS0350051300?access=0&view=pdf}{doi:10.2135/cropsci1995.0011183X003500050008x}
+Cluster analysis for genotype x environment interaction with unbalanced data. Crop Sci. 35:1300-1305.
+\href{https://dl.sciencesocieties.org/publications/cs/abstracts/35/5/CS0350051300?access=0&view=pdf}{doi:10.2135/cropsci1995.0011183X003500050008x}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

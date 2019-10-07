@@ -6,67 +6,72 @@
 #'
 #'
 #' @param .data The data to be analyzed. Must be a dataframe containing the
-#' numeric variables that will be used in the estimation of the correlations.
-#' The data can also be passed directly by the arguments \code{FG} and
-#' \code{SG}. Alternatively, \code{.data} may be passed from the function
-#' \code{split_factors}. In such case, the canonical correlation will be
-#' estimated for each level of the grouping variable in that function.
+#'   numeric variables that will be used in the estimation of the correlations.
+#'   The data can also be passed directly by the arguments \code{FG} and
+#'   \code{SG}. Alternatively, \code{.data} may be passed from the function
+#'   \code{split_factors}. In such case, the canonical correlation will be
+#'   estimated for each level of the grouping variable in that function.
 #' @param FG If a dataframe is informed in \code{.data}, then \code{FG} is a
-#' comma-separated list of unquoted variable names that will compose the first
-#' (smallest) group of the correlation analysis. FG can also be a coordinate for
-#' the variables; for example, \code{FG = data[,1:3]}.
+#'   comma-separated list of unquoted variable names that will compose the first
+#'   (smallest) group of the correlation analysis. FG can also be a coordinate
+#'   for the variables; for example, \code{FG = data[,1:3]}.
 #' @param SG Similar than \code{FG} but for the second group of variables.
-#' @param means_by The argument \code{means_by} is a grouping variable to compute the
-#' means by. For example, if \code{means_by = GEN}, then the means of the
-#' numerical variables will be computed for each level of the grouping variable
-#' GEN, and the canonical correlation analysis will be computed using these means.
-#' @param use The matrix to be used. Must be one of 'cor' for analysis using
-#' the correlation matrix (default) or 'cov' for analysis using the covariance
-#' matrix.
+#' @param means_by The argument \code{means_by} is a grouping variable to
+#'   compute the means by. For example, if \code{means_by = GEN}, then the means
+#'   of the numerical variables will be computed for each level of the grouping
+#'   variable GEN, and the canonical correlation analysis will be computed using
+#'   these means.
+#' @param use The matrix to be used. Must be one of 'cor' for analysis using the
+#'   correlation matrix (default) or 'cov' for analysis using the covariance
+#'   matrix.
 #' @param test The test of significance of the relationship between the FG and
-#' SG. Must be one of the 'Bartlett' (default) or 'Rao'.
+#'   SG. Must be one of the 'Bartlett' (default) or 'Rao'.
 #' @param prob The probability of error assumed. Set to 0.05.
 #' @param center Should the data be centered to compute the scores?
 #' @param stdscores Rescale scores to produce scores of unit variance?
 #' @param verbose Logical argument. If \code{TRUE} (default) then the results
-#' are shown in the console.
+#'   are shown in the console.
 #' @param collinearity Logical argument. If \code{TRUE} (default) then a
-#' collinearity diagnostic is performed for each group of variables according
-#' to Olivoto et al.(2017).
-#' @return
-#' If \code{.data} is an object of class \code{split_factors} then the results will be
-#' returned into a list where each element has the following values.
+#'   collinearity diagnostic is performed for each group of variables according
+#'   to Olivoto et al.(2017).
+#' @return If \code{.data} is an object of class \code{split_factors} then the
+#' results will be returned into a list where each element has the following
+#' values.
 #'
-#' \item{Matrix}{The correlation (or covariance) matrix of the variables}
+#' * \strong{Matrix} The correlation (or covariance) matrix of the variables
 #'
-#' \item{MFG, MSG}{The correlation (or covariance) matrix for the variables of
-#' the first group or second group, respectively.}
+#' * \strong{MFG, MSG} The correlation (or covariance) matrix for the variables of
+#' the first group or second group, respectively.
 #'
-#' \item{MFG_SG}{The correlation (or covariance) matrix for the variables of
-#' the first group with the second group.}
+#' * \strong{MFG_SG} The correlation (or covariance) matrix for the variables of the
+#' first group with the second group.
 #'
-#' \item{Coef_FG, Coef_SG}{Matrix of the canonical coefficients of the first
-#' group or second group, respectively.}
+#' * \strong{Coef_FG, Coef_SG} Matrix of the canonical coefficients of the first
+#' group or second group, respectively.
 #'
-#' \item{Loads_FG, Loads_SG}{Matrix of the canonical loadings of the first
-#' group or second group, respectively.}
+#' * Loads_FG, Loads_SG Matrix of the canonical loadings of the first group
+#' or second group, respectively.
 #'
-#' \item{Score_FG, Score_SG}{Canonical scores for the variables in FG and SG, respectively.}
+#' * \strong{Score_FG, Score_SG} Canonical scores for the variables in FG and SG,
+#' respectively.
 #'
-#' \item{Crossload_FG, Crossload_FG}{Canonical cross-loadings for FG variables on
-#' the SG scores, and cross-loadings for SG variables on the FG scores, respectively.}
+#' * \strong{Crossload_FG, Crossload_FG} Canonical cross-loadings for FG variables
+#' on the SG scores, and cross-loadings for SG variables on the FG scores,
+#' respectively.
 #'
-#' \item{SigTest}{A dataframe with the correlation of the canonical pairs and
-#' hypothesis testing results.}
+#' * \strong{SigTest} A dataframe with the correlation of the canonical pairs and
+#' hypothesis testing results.
 #'
-#' \item{collinearity}{A list with the collinearity diagnostic for each group
-#' of variables.}
+#' * \strong{collinearity} A list with the collinearity diagnostic for each group of
+#' variables.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,
-#' A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in
-#' path analysis: a simple method to reduce its effects. Agron. J. 109:131-142.
-#' doi:10.2134/agronj2016.04.0196.
-#' \href{https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131}{10.2134/agronj2016.04.0196}
+#'   A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in
+#'   path analysis: a simple method to reduce its effects. Agron. J.
+#'   109:131-142. doi:10.2134/agronj2016.04.0196.
+#'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131}{10.2134/agronj2016.04.0196}
+#'
 #' @export
 #' @examples
 #'

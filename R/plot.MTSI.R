@@ -1,15 +1,17 @@
 #' Plot the multi-trait stability index
 #'
-#' Makes a radar plot showing the multitrait stability index proposed by Olivoto et al. (2019)
+#' Makes a radar plot showing the multitrait stability index proposed by Olivoto
+#' et al. (2019)
 #'
 #'
 #' @param x An object of class \code{mtsi}
 #' @param SI An integer [0-100]. The selection intensity in percentage of the
-#' total number of genotypes.
+#'   total number of genotypes.
 #' @param radar Logical argument. If true (default) a radar plot is generated
-#' after using \code{coord_polar()}.
-#' @param arrange.label Logical argument. If \code{TRUE}, the labels are arranged to avoid text overlapping.
-#' This becomes useful when the number of genotypes is large, say, more than 30.
+#'   after using \code{coord_polar()}.
+#' @param arrange.label Logical argument. If \code{TRUE}, the labels are
+#'   arranged to avoid text overlapping. This becomes useful when the number of
+#'   genotypes is large, say, more than 30.
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
 #' @param col.sel The colour for selected genotypes.
 #' @param col.nonsel The colour for nonselected genotypes.

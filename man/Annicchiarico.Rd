@@ -23,19 +23,26 @@ single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
 
 \item{prob}{The probability of error assumed.}
 
-\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
+silently.}
 }
 \value{
-A list where each element is the result for one variable and contains the following data frames:
-\item{environments}{Contains the mean, environmental index and classification as
-favorables and unfavorables environments.}
-\item{general}{Contains the genotypic confidence index considering all environments.}
-\item{favorable}{Contains the genotypic confidence index considering favorable environments.}
-\item{unfavorable}{Contains the genotypic confidence index considering unfavorable environments.}
+A list where each element is the result for one variable and contains the
+following data frames:
+\itemize{
+\item \strong{environments} Contains the mean, environmental index and
+classification as favorables and unfavorables environments.
+\item \strong{general} Contains the genotypic confidence index considering all
+environments.
+\item \strong{favorable} Contains the genotypic confidence index considering
+favorable environments.
+\item \strong{unfavorable} Contains the genotypic confidence index considering
+unfavorable environments.
+}
 }
 \description{
-Stability analysis using the known genotypic confidence index
-(Annicchiarico, 1992).
+Stability analysis using the known genotypic confidence index (Annicchiarico,
+1992).
 }
 \examples{
 

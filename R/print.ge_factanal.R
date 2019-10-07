@@ -5,12 +5,12 @@
 #'
 #'
 #' @param x An object of class \code{ge_factanal}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
-#' to the working directory
+#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#'   the working directory
 #' @param file.name The name of the file if \code{export = TRUE}
 #' @param digits The significant digits to be shown.
-#' @param ... Options used by the tibble package to format the output.
-#' See \code{\link[tibble]{trunc_mat}} for more details.
+#' @param ... Options used by the tibble package to format the output. See
+#'   \code{\link[tibble]{trunc_mat}} for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print ge_factanal
 #' @export

@@ -1,31 +1,37 @@
 #' Annicchiarico's genotypic confidence index
 #'
-#' Stability analysis using the known genotypic confidence index
-#' (Annicchiarico, 1992).
+#' Stability analysis using the known genotypic confidence index (Annicchiarico,
+#' 1992).
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments,
-#' Genotypes, replication/block and response variable(s)
+#'   Genotypes, replication/block and response variable(s)
 #' @param env The name of the column that contains the levels of the
-#' environments.
+#'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks
+#'   replications/blocks
 #' @param resp The response variable(s). To analyze multiple variables in a
-#' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
+#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
 #' @param prob The probability of error assumed.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run silently.
+#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   silently.
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{superiority}, \link{ecovalence}, \link{ge_stats}}
 #' @references Annicchiarico, P. 1992. Cultivar adaptation and recommendation
-#' from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.
+#'   from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.
 #' @return
-#' A list where each element is the result for one variable and contains the following data frames:
-#' \item{environments}{Contains the mean, environmental index and classification as
-#' favorables and unfavorables environments.}
-#' \item{general}{Contains the genotypic confidence index considering all environments.}
-#' \item{favorable}{Contains the genotypic confidence index considering favorable environments.}
-#' \item{unfavorable}{Contains the genotypic confidence index considering unfavorable environments.}
+#' A list where each element is the result for one variable and contains the
+#' following data frames:
+#' * \strong{environments} Contains the mean, environmental index and
+#' classification as favorables and unfavorables environments.
+#' * \strong{general} Contains the genotypic confidence index considering all
+#' environments.
+#' * \strong{favorable} Contains the genotypic confidence index considering
+#' favorable environments.
+#' * \strong{unfavorable} Contains the genotypic confidence index considering
+#' unfavorable environments.
+#' @md
 #' @export
 #' @examples
 #'

@@ -3,50 +3,52 @@
 #' Graphs of the Canonical Correlation Analysis
 #'
 #' @param x The \code{waasb object}
-#' @param type The type of the plot. Defaults to \code{type = 1} (Scree-plot of the correlations of the
-#'  canonical loadings). Use \code{type = 2}, to produce a plot with the scores of the variables in the
-#'  first group, \code{type = 3} to produce a plot with the scores of the variables in the second group,
-#'  or \code{type = 4} to produce a circle of correlations.
+#' @param type The type of the plot. Defaults to \code{type = 1} (Scree-plot of
+#'   the correlations of the canonical loadings). Use \code{type = 2}, to
+#'   produce a plot with the scores of the variables in the first group,
+#'   \code{type = 3} to produce a plot with the scores of the variables in the
+#'   second group, or \code{type = 4} to produce a circle of correlations.
 #' @param theme The graphical theme of the plot. Default is \code{theme =
-#' theme_waasb()}. Please, see `?WAASB::theme_waasb`. An own theme can be
-#' applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#' here)`. For more details, please, see ` ?ggplot2::theme`
-#' @param size.tex.pa The size of the text of the plot area. Default is \code{3.5}.
+#'   theme_waasb()}. Please, see `?WAASB::theme_waasb`. An own theme can be
+#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
+#'   here)`. For more details, please, see ` ?ggplot2::theme`
+#' @param size.tex.pa The size of the text of the plot area. Default is
+#'   \code{3.5}.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param x.lab The label of x-axis. Each plot has a default value. New
-#' arguments can be inserted as \code{x.lab = 'my label'}.
-#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and
-#' minimum values of the data set). New arguments can be inserted as
-#' \code{x.lim = c(x.min, x.max)}.
+#'   arguments can be inserted as \code{x.lab = 'my label'}.
+#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
+#'   values of the data set). New arguments can be inserted as \code{x.lim =
+#'   c(x.min, x.max)}.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#' c(breaks)}
+#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
+#'   c(breaks)}
 #' @param y.lab The label of y-axis. Each plot has a default value. New
-#' arguments can be inserted as \code{y.lab = 'my label'}.
+#'   arguments can be inserted as \code{y.lab = 'my label'}.
 #' @param y.lim The range of y-axis. Default is \code{NULL}. The same arguments
-#' than \code{x.lim} can be used.
+#'   than \code{x.lim} can be used.
 #' @param y.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
-#' used.
+#'   \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+#'   used.
 #' @param axis.expand Multiplication factor to expand the axis limits by to
-#' enable fitting of labels. Default is \code{1.1}.
-#' @param shape The shape of points in the plot. Default is
-#' \code{21} (circle). Values must be between \code{21-25}: \code{21} (circle),
-#' \code{22} (square), \code{23} (diamond), \code{24} (up triangle), and
-#' \code{25} (low triangle).
+#'   enable fitting of labels. Default is \code{1.1}.
+#' @param shape The shape of points in the plot. Default is \code{21} (circle).
+#'   Values must be between \code{21-25}: \code{21} (circle), \code{22}
+#'   (square), \code{23} (diamond), \code{24} (up triangle), and \code{25} (low
+#'   triangle).
 #' @param col.shape A vector of length 2 that contains the color of shapes for
-#' genotypes above and below of the mean, respectively. Defaults to \code{"orange"}.
-#' \code{c("blue", "red")}.
-#' @param col.alpha The alpha value for the color. Default is \code{0.9}.
-#' Values must be between \code{0} (full transparency) to \code{1} (full
-#' color).
+#'   genotypes above and below of the mean, respectively. Defaults to
+#'   \code{"orange"}. \code{c("blue", "red")}.
+#' @param col.alpha The alpha value for the color. Default is \code{0.9}. Values
+#'   must be between \code{0} (full transparency) to \code{1} (full color).
 #' @param size.shape The size of the shape in the plot. Default is \code{3.5}.
 #' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
-#' size of the shape will be \code{size.shape + size.bor.tick}
-#' @param labels Logical arguments. If \code{TRUE} then the points in the plot will have labels.
-#' @param main The title of the plot. Defaults to \code{NULL}, in which each plot will have a default
-#' title. Use a string text to create an own title or set to \code{main = FALSE} to omit the
-#' plot title.
+#'   size of the shape will be \code{size.shape + size.bor.tick}
+#' @param labels Logical arguments. If \code{TRUE} then the points in the plot
+#'   will have labels.
+#' @param main The title of the plot. Defaults to \code{NULL}, in which each
+#'   plot will have a default title. Use a string text to create an own title or
+#'   set to \code{main = FALSE} to omit the plot title.
 #' @param ... Other arguments of the function
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

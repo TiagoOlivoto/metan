@@ -28,21 +28,21 @@
 \item Compare two genotypes.
 \item Relationship among environments}}
 
-\item{sel_env}{The name of the environment to examine when \code{type = 5}. Must be a
-string which matches an environment label.}
+\item{sel_env}{The name of the environment to examine when \code{type = 5}.
+Must be a string which matches an environment label.}
 
-\item{sel_gen}{The name of the genotype to examine when \code{type = 7}. Must be a string
-which matches a genotype label.}
+\item{sel_gen}{The name of the genotype to examine when \code{type = 7}. Must
+be a string which matches a genotype label.}
 
 \item{sel_gen1}{The name of a genotype to compare when \code{type = 9}.}
 
-\item{sel_gen2}{The name of a genotype to compare when \code{type = 9}.
-Must be a string not equal to \code{sel_gen1}.}
+\item{sel_gen2}{The name of a genotype to compare when \code{type = 9}. Must
+be a string not equal to \code{sel_gen1}.}
 
 \item{shape.gen}{The shape for genotype indication in the biplot. Default is
-\code{21} (circle). Values must be between \code{21-25}: \code{21} (circle),
-\code{22} (square), \code{23} (rhombus), \code{24} (up triangle), and
-\code{25} (low triangle).}
+\code{21} (circle). Values must be between \code{21-25}: \code{21}
+(circle), \code{22} (square), \code{23} (rhombus), \code{24} (up triangle),
+and \code{25} (low triangle).}
 
 \item{shape.env}{The shape for environment indication in the biplot. Default
 is \code{23} (rhombus). The same arguments than \code{'shape.gen'}.}
@@ -50,20 +50,19 @@ is \code{23} (rhombus). The same arguments than \code{'shape.gen'}.}
 \item{size.shape}{The size of the shape (both for genotypes and
 environments). Defaults to \code{2.2}.}
 
-\item{size.shape.win}{The size of the shape for winners genotypes when \code{type = 3}.
-Defaults to \code{3.2}.}
+\item{size.shape.win}{The size of the shape for winners genotypes when
+\code{type = 3}. Defaults to \code{3.2}.}
 
 \item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
 size of the shape will be \code{size.shape + size.bor.tick}}
 
-\item{col.gen}{Color for genotype attributes on biplot. Defaults to
-'orange'}
+\item{col.gen}{Color for genotype attributes on biplot. Defaults to 'orange'}
 
-\item{col.env}{color for environment attributes on biplot. Defaults to 'forestgreen'}
+\item{col.env}{color for environment attributes on biplot. Defaults to
+'forestgreen'}
 
-\item{col.alpha}{The alpha value for the color. Default is \code{1}.
-Values must be between \code{0} (full transparency) to \code{1} (full
-color).}
+\item{col.alpha}{The alpha value for the color. Default is \code{1}. Values
+must be between \code{0} (full transparency) to \code{1} (full color).}
 
 \item{col.circle}{The color for segment or circle lines. Defaults to 'gray'}
 
@@ -75,23 +74,24 @@ color).}
 
 \item{size.text.env}{The text size for environment labels. Defaults to 4}
 
-\item{large_label}{The text size to use for larger labels where \code{type = 3},
-used for the outermost genotypes and where \code{type = 9}, used for the
-two selected genotypes. Defaults to 4.5}
+\item{large_label}{The text size to use for larger labels where \code{type =
+3}, used for the outermost genotypes and where \code{type = 9}, used for
+the two selected genotypes. Defaults to 4.5}
 
 \item{axis_expand}{multiplication factor to expand the axis limits by to
 enable fitting of labels. Defaults to 1.2}
 
-\item{title}{Logical values (Defaults to \code{TRUE}) to include automatically generated
-titles}
+\item{title}{Logical values (Defaults to \code{TRUE}) to include
+automatically generated titles}
 
-\item{annotation}{Logical values (Defaults to \code{TRUE}) to include automatically generated
-informations in the plot such as singular value partitioning, scaling and centering.}
+\item{annotation}{Logical values (Defaults to \code{TRUE}) to include
+automatically generated informations in the plot such as singular value
+partitioning, scaling and centering.}
 
 \item{plot_theme}{The default theme of the plot, set to \code{theme_waasb}.
-Please, see `?metan::theme_waasb`. An own theme can be applied using the arguments:
-\code{theme = theme_waasb() + theme(some stuff here)}. For more details,
- please, see \code{?ggplot2::theme}}
+Please, see `?metan::theme_waasb`. An own theme can be applied using the
+arguments: \code{theme = theme_waasb() + theme(some stuff here)}. For more
+details, please, see \code{?ggplot2::theme}}
 
 \item{...}{Other arguments of the function.}
 }
@@ -123,8 +123,8 @@ gge(ENV, GEN, NKE) \%>\%
 plot(type = 3)
 }
 \references{
-Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
- geneticists, and agronomists. CRC Press.
+Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
+  tool for breeders, geneticists, and agronomists. CRC Press.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

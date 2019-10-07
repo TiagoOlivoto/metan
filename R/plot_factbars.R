@@ -1,43 +1,48 @@
 #' @title Fast way to create a bar plot
 #' @description Create a bar plot based on categorical (one or two) variables
-#' and one numeric variable.
+#'   and one numeric variable.
 #' @param .data The data set
-#' @param ... A comma-separated list of unquoted variable names. Must be up to two
-#' variables.
+#' @param ... A comma-separated list of unquoted variable names. Must be up to
+#'   two variables.
 #' @param resp The response variable
 #' @param y.expand A multiplication factor to expand the y axis.. Defaults to 1.
 #' @param y.breaks The breaks to be plotted in the y-axis. Defaults to waiver().
-#' \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
-#' used.
+#'   \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+#'   used.
 #' @param xlab The x label
 #' @param ylab The y label
 #' @param lab.bar A vector of characters to show in each bar. Defaults to NULL.
-#' @param lab.bar.vjust The vertical adjust for the labels in the bar. Defaults to -0.2
+#' @param lab.bar.vjust The vertical adjust for the labels in the bar. Defaults
+#'   to -0.2
 #' @param size.text.bar The size of the text in the bar labels.
-#' @param errorbar Logical argument, set to TRUE. In this case, an error bar is shown.
-#' @param stat.erbar The statistic to be shown in the errorbar. Must be one of the 'se'
-#' (standard error, default), 'sd' (standard deviation), or 'ci' confidence interval, based
-#' on the confidence level
+#' @param errorbar Logical argument, set to TRUE. In this case, an error bar is
+#'   shown.
+#' @param stat.erbar The statistic to be shown in the errorbar. Must be one of
+#'   the 'se' (standard error, default), 'sd' (standard deviation), or 'ci'
+#'   confidence interval, based on the confidence level
 #' @param width.erbar The width of the error bar.
 #' @param level The confidence level
-#' @param invert Logical argument. If \code{TRUE}, the order of the factors entered
-#' in changes in the graph
+#' @param invert Logical argument. If \code{TRUE}, the order of the factors
+#'   entered in changes in the graph
 #' @param col Logical argument. If \code{FALSE}, a gray scale is used.
 #' @param palette The color palette to be used. For more details, see
-#' \code{?scale_colour_brewer}
-#' @param width.bar The width of the bars in the graph. Defaults to 0.9
-#' possible values [0-1].
+#'   \code{?scale_colour_brewer}
+#' @param width.bar The width of the bars in the graph. Defaults to 0.9 possible
+#'   values [0-1].
 #' @param lab.x.angle The angle of the caption text. Default is 0.
-#' @param lab.x.hjust The horizontal adjustment of the caption text. Defaults to 0.5.
-#' @param lab.x.vjust The vertical adjustment of the caption text. Defaults to 1.
-#' Use this argument to adjust the text when the angle of the text is different from 0.
+#' @param lab.x.hjust The horizontal adjustment of the caption text. Defaults to
+#'   0.5.
+#' @param lab.x.vjust The vertical adjustment of the caption text. Defaults to
+#'   1. Use this argument to adjust the text when the angle of the text is
+#'   different from 0.
 #' @param legend.position The legend position.
 #' @param size.text The size of the text
 #' @param fontfam The family of the font text
 #' @param na.rm Should 'NA' values be removed to compute the statistics?
-#' Defaults to true
+#'   Defaults to true
 #' @param verbose Logical argument. If TRUE a tibble containing the mean, N,
-#' standard deviation, standard error of mean and confidence interval is returned.
+#'   standard deviation, standard error of mean and confidence interval is
+#'   returned.
 #' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @seealso \code{\link{plot_lines}}, \code{\link{plot_factlines}}

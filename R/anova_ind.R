@@ -6,22 +6,24 @@
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments,
-#' Genotypes, replication/block and response variable(s).
+#'   Genotypes, replication/block and response variable(s).
 #' @param env The name of the column that contains the levels of the
-#' environments. The analysis of variance is computed for each level of this
-#' factor.
+#'   environments. The analysis of variance is computed for each level of this
+#'   factor.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks.
+#'   replications/blocks.
 #' @param resp The response variable.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
-#' silently.
-#' @return
-#' A list where each element is the result for one variable and contains:
-#' \item{individual}{A data frame with the results of the individual analysis of
-#' variance.}
-#' \item{MSRatio}{The ratio between the higher and lower residual mean square.}
+#'   silently.
+#' @return A list where each element is the result for one variable and
+#' contains:
+#' * \strong{individual} A data frame with the results of the individual
+#' analysis of variance.
+#' * \strong{MSRatio} The ratio between the higher and lower residual mean
+#' square.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @md
 #' @export
 #' @examples
 #'

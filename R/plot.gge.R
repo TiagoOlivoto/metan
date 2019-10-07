@@ -17,57 +17,57 @@
 #' \item Ranking genotypes.
 #' \item Compare two genotypes.
 #' \item Relationship among environments}
-#' @param sel_env The name of the environment to examine when \code{type = 5}. Must be a
-#'  string which matches an environment label.
-#' @param sel_gen The name of the genotype to examine when \code{type = 7}. Must be a string
-#'  which matches a genotype label.
+#' @param sel_env The name of the environment to examine when \code{type = 5}.
+#'   Must be a string which matches an environment label.
+#' @param sel_gen The name of the genotype to examine when \code{type = 7}. Must
+#'   be a string which matches a genotype label.
 #' @param sel_gen1 The name of a genotype to compare when \code{type = 9}.
-#' @param sel_gen2 The name of a genotype to compare when \code{type = 9}.
-#' Must be a string not equal to \code{sel_gen1}.
+#' @param sel_gen2 The name of a genotype to compare when \code{type = 9}. Must
+#'   be a string not equal to \code{sel_gen1}.
 #' @param shape.gen The shape for genotype indication in the biplot. Default is
-#' \code{21} (circle). Values must be between \code{21-25}: \code{21} (circle),
-#' \code{22} (square), \code{23} (rhombus), \code{24} (up triangle), and
-#' \code{25} (low triangle).
+#'   \code{21} (circle). Values must be between \code{21-25}: \code{21}
+#'   (circle), \code{22} (square), \code{23} (rhombus), \code{24} (up triangle),
+#'   and \code{25} (low triangle).
 #' @param shape.env The shape for environment indication in the biplot. Default
-#' is \code{23} (rhombus). The same arguments than \code{'shape.gen'}.
+#'   is \code{23} (rhombus). The same arguments than \code{'shape.gen'}.
 #' @param size.shape The size of the shape (both for genotypes and
-#' environments). Defaults to \code{2.2}.
+#'   environments). Defaults to \code{2.2}.
 #'
-#' @param size.shape.win The size of the shape for winners genotypes when \code{type = 3}.
-#'  Defaults to \code{3.2}.
+#' @param size.shape.win The size of the shape for winners genotypes when
+#'   \code{type = 3}. Defaults to \code{3.2}.
 #' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
-#' size of the shape will be \code{size.shape + size.bor.tick}
-#' @param col.gen Color for genotype attributes on biplot. Defaults to
-#'  'orange'
-#' @param col.env color for environment attributes on biplot. Defaults to 'forestgreen'
-#' @param col.alpha The alpha value for the color. Default is \code{1}.
-#' Values must be between \code{0} (full transparency) to \code{1} (full
-#' color).
+#'   size of the shape will be \code{size.shape + size.bor.tick}
+#' @param col.gen Color for genotype attributes on biplot. Defaults to 'orange'
+#' @param col.env color for environment attributes on biplot. Defaults to
+#'   'forestgreen'
+#' @param col.alpha The alpha value for the color. Default is \code{1}. Values
+#'   must be between \code{0} (full transparency) to \code{1} (full color).
 #' @param col.circle The color for segment or circle lines. Defaults to 'gray'
 #' @param leg.lab The labs of legend. Default is \code{c('Gen', 'Env')}.
 #' @param size.text The size of the text of the plot area. Defaults to 4.
 #' @param size.text.gen The text size for genotype labels. Defaults to 4
 #' @param size.text.env The text size for environment labels. Defaults to 4
 #'
-#' @param large_label The text size to use for larger labels where \code{type = 3},
-#' used for the outermost genotypes and where \code{type = 9}, used for the
-#' two selected genotypes. Defaults to 4.5
+#' @param large_label The text size to use for larger labels where \code{type =
+#'   3}, used for the outermost genotypes and where \code{type = 9}, used for
+#'   the two selected genotypes. Defaults to 4.5
 #'
 #' @param axis_expand multiplication factor to expand the axis limits by to
-#'  enable fitting of labels. Defaults to 1.2
-#' @param title Logical values (Defaults to \code{TRUE}) to include automatically generated
-#'  titles
-#' @param annotation Logical values (Defaults to \code{TRUE}) to include automatically generated
-#'  informations in the plot such as singular value partitioning, scaling and centering.
+#'   enable fitting of labels. Defaults to 1.2
+#' @param title Logical values (Defaults to \code{TRUE}) to include
+#'   automatically generated titles
+#' @param annotation Logical values (Defaults to \code{TRUE}) to include
+#'   automatically generated informations in the plot such as singular value
+#'   partitioning, scaling and centering.
 #' @param plot_theme The default theme of the plot, set to \code{theme_waasb}.
-#'   Please, see `?metan::theme_waasb`. An own theme can be applied using the arguments:
-#'   \code{theme = theme_waasb() + theme(some stuff here)}. For more details,
-#'    please, see \code{?ggplot2::theme}
+#'   Please, see `?metan::theme_waasb`. An own theme can be applied using the
+#'   arguments: \code{theme = theme_waasb() + theme(some stuff here)}. For more
+#'   details, please, see \code{?ggplot2::theme}
 #' @param ... Other arguments of the function.
 #' @return A ggplot2-based biplot.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
-#'  geneticists, and agronomists. CRC Press.
+#' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
+#'   tool for breeders, geneticists, and agronomists. CRC Press.
 #' @method plot gge
 #' @importFrom tidyr gather
 #' @importFrom ggforce geom_arc

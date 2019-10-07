@@ -15,7 +15,8 @@ rbind_fill(..., fill = ".")
 A data frame.
 }
 \description{
-Helper function that combines data.frames by row and fills with \code{.} missing values.
+Helper function that combines data.frames by row and fills with \code{.}
+missing values.
 }
 \examples{
 

@@ -5,18 +5,20 @@
 #'
 #'
 #' @param .data The data to be analyzed. Must be a symmetric correlation matrix
-#' or, a dataframe containing the predictor variables, or an object of class
-#' \code{split_factors}.
+#'   or, a dataframe containing the predictor variables, or an object of class
+#'   \code{split_factors}.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
-#' objects used to compute the correlation coefficients.
-#' @param method a character string indicating which correlation coefficient is to be computed.
-#' One of 'pearson' (default), 'kendall', or 'spearman'.
+#'   objects used to compute the correlation coefficients.
+#' @param method a character string indicating which correlation coefficient is
+#'   to be computed. One of 'pearson' (default), 'kendall', or 'spearman'.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
-#' console.
+#'   console.
 #' @return If a grouping factor is used then a list is returned with the
-#' following values. \item{linear.mat}{The matrix of linear correlation.}
-#' \item{partial.mat}{The matrix of partial correlations.}
-#' \item{results}{Hypothesis testing for each pairwise comparison.}
+#'   following values.
+#' * \strong{linear.mat} The matrix of linear correlation.
+#' * \strong{partial.mat} The matrix of partial correlations.
+#' * \strong{results} Hypothesis testing for each pairwise comparison.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

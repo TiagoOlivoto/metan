@@ -1,27 +1,28 @@
 #' Additive Main effects and Multiplicative Interaction
 #'
 #' Compute the Additive Main effects and Multiplicative interaction. This is a
-#' helper function for other procedures performed in the \pkg{metan} package such as
-#' \code{\link{waas}}, \code{\link{cv_ammi}}, and \code{\link{cv_ammif}}.
+#' helper function for other procedures performed in the \pkg{metan} package
+#' such as \code{\link{waas}}, \code{\link{cv_ammi}}, and
+#' \code{\link{cv_ammif}}.
 #'
 #' @param .data The dataset containing the columns related to Environments,
-#' Genotypes, replication/block and response variable(s).
+#'   Genotypes, replication/block and response variable(s).
 #' @param env The name of the column that contains the levels of the
-#' environments
+#'   environments
 #' @param gen The name of the column that contains the levels of the genotypes
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks
+#'   replications/blocks
 #' @param resp The response variable
 #' @return
+#' * \strong{ANOVA} The analysis of variance for the AMMI model.
 #'
-#' \item{ANOVA}{The analysis of variance for the AMMI model.}
+#' * \strong{analysis} The principal component analysis
 #'
-#' \item{analysis}{The principal component analysis}
+#' * \strong{means} means of genotype vs environment
 #'
-#' \item{means}{means of genotype vs environment}
-#'
-#' \item{biplot}{scores for genotypes and environments in all the possible
-#' axes.}
+#' *\strong{biplot} scores for genotypes and environments in all the possible
+#' axes.
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

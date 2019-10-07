@@ -20,17 +20,17 @@ environments.}
 replications/blocks.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp =
-c(var1, var2, var3)}.}
+single procedure a vector of variables may be used. For example \code{resp
+  = c(var1, var2, var3)}.}
 
 \item{mresp}{A numeric vector of the same length of \code{resp}. The
 \code{mresp} will be the new maximum value after rescaling. By default, all
 variables in \code{resp} are rescaled so that de maximum value is 100 and
 the minimum value is 0.}
 
-\item{wresp}{The weight for the response variable(s) for computing the
-WAASBY index. Must be a numeric vector of the same length of \code{resp}.
-Defaults to 50, i.e., equal weights for stability and mean performance.}
+\item{wresp}{The weight for the response variable(s) for computing the WAASBY
+index. Must be a numeric vector of the same length of \code{resp}. Defaults
+to 50, i.e., equal weights for stability and mean performance.}
 
 \item{random}{The effects of the model assumed to be random. Default is
 \code{random = "gen"} (genotype and genotype-vs-environment as random
@@ -49,33 +49,33 @@ within-environment ANOVA is not performed.}
 silently.}
 }
 \value{
-An object of class \code{waasb} with the following items for each variable:
+An object of class \code{waasb} with the following items for each
+variable: * \strong{individual} A within-environments ANOVA considering a
+fixed-effect model.
 \itemize{
-\item \strong{individual} A within-environments ANOVA considering a fixed-effect
-model.
 \item \strong{fixed} Test for fixed effects.
 \item \strong{random} Variance components for random effects.
 \item \strong{LRT} The Likelihood Ratio Test for the random effects.
 \item \strong{model} A data frame with the response variable, the scores of all
 Principal Components, the estimates of Weighted Average of Absolute Scores,
-and WAASY (the index that consider the weights for stability and
-productivity in the genotype ranking.
-\item \strong{blupGEN} The estimated BLUPS for genotypes (If \code{random = "gen"}
-or \code{random = "all"})
+and WAASY (the index that consider the weights for stability and productivity
+in the genotype ranking.
+\item \strong{blupGEN} The estimated BLUPS for genotypes (If \code{random =
+"gen"} or \code{random = "all"})
 \item \strong{BLUPenv} The estimated BLUPS for environments, (If \code{random =
 "env"} or \code{random = "all"}).
 \item \strong{BLUPge} The estimated BLUPS of all genotypes in all environments
 "BLUPij".
-\item \strong{PCA} The results of Principal Component Analysis with eigenvalues and
-explained variance of BLUP-interaction matrix.
-\item MeansGxE The phenotypic means of genotypes in the environments, with
-observed, predicted and OLS residual prediction.
-\item \strong{Details} A list summarizing the results. The following information are
-showed. \code{WgtResponse}, the weight for the response variable in
+\item \strong{PCA} The results of Principal Component Analysis with eigenvalues
+and explained variance of BLUP-interaction matrix.
+\item \strong{MeansGxE} The phenotypic means of genotypes in the environments,
+with observed, predicted and OLS residual prediction.
+\item \strong{Details} A list summarizing the results. The following information
+are showed. \code{WgtResponse}, the weight for the response variable in
 estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the
 number of genotypes, \code{Nenv} the number of environments, \code{OVmean}
-the overall mean, \code{Min} the minimum observed (returning the genotype
-and environment), \code{Max} the maximum observed, \code{Max} the maximum
+the overall mean, \code{Min} the minimum observed (returning the genotype and
+environment), \code{Max} the maximum observed, \code{Max} the maximum
 observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
 the environment with the larger mean observed, \code{MinGEN} the genotype
 with the lower mean, \code{MaxGEN} the genotype with the larger.
@@ -85,22 +85,22 @@ genotype-by-environment variance (and percentage of phenotypic variance);
 \code{EV} the environmental variance;\code{RV} the residual variance (and
 percentage of phenotypic variance); \code{FV} the phenotypic variance;
 \code{h2g} the heritability of the trait; \code{GEr2} the coefficient of
-determination of the interaction effects; \code{h2mg} the heritability of
-the mean; \code{AccuGen} the selective accuracy; \code{rge} the
+determination of the interaction effects; \code{h2mg} the heritability of the
+mean; \code{AccuGen} the selective accuracy; \code{rge} the
 genotype-environment correlation; \code{CVg} the genotypic coefficient of
 variation; \code{CVr} the residual coefficient of variation; \code{CVratio}
-the ratio between genotypic and residual coefficient of variation
-\item \strong{residuals} The residuals of the model.
+the ratio between genotypic and residual coefficient of variation *
+\strong{residuals} The residuals of the model.
 }
 }
 \description{
-Compute the Weighted Average of Absolute Scores for quantifying the
-stability in multienvironment trials using mixed-effect models (Olivoto et al., 2019).
+Compute the Weighted Average of Absolute Scores for quantifying the stability
+in multienvironment trials using mixed-effect models (Olivoto et al., 2019).
 }
 \details{
-This function compute the weighted average of absolute scores considering
-all principal component axis from the Singular Value Decomposition (SVD) of
-the BLUP'S GxE effects matrix generated by a linear mixed-effect model.
+This function compute the weighted average of absolute scores considering all
+principal component axis from the Singular Value Decomposition (SVD) of the
+BLUP'S GxE effects matrix generated by a linear mixed-effect model.
 }
 \examples{
 library(metan)
@@ -142,8 +142,9 @@ model3 <- waasb(data_ge,
 }
 \references{
 Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
-trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
 \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 }
 \seealso{

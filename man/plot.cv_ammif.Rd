@@ -14,13 +14,12 @@
 \arguments{
 \item{x}{An object of class \code{cv_ammif}.}
 
-\item{violin}{Define if a violin plot is used with boxplot. Default is
-'TRUE'}
+\item{violin}{Define if a violin plot is used with boxplot. Default is 'TRUE'}
 
 \item{export}{Export (or not) the plot. Default is \code{T}.}
 
-\item{order_box}{Logical argument. If \code{TRUE} then the boxplots will be ordered
-according to the values of the RMSPD.}
+\item{order_box}{Logical argument. If \code{TRUE} then the boxplots will be
+ordered according to the values of the RMSPD.}
 
 \item{x.lab}{The label of x-axis. New arguments can be inserted as
 \code{x.lab = 'my x label'}.}
@@ -54,13 +53,14 @@ the violin plot. Default is 'gray90.}
 
 \item{col.boxplot}{Define the color for boxplot. Default is 'gray70'.}
 
-\item{col.boxplot.win}{Define the color for boxplot of the best model. Default is 'cyan'.}
+\item{col.boxplot.win}{Define the color for boxplot of the best model.
+Default is 'cyan'.}
 
 \item{width.boxplot}{The width of boxplots. Default is \code{0.2}.}
 
-\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and
-minimum values of the data set). New arguments can be inserted as
-\code{x.lim = c(x.min, x.max)}.}
+\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
+values of the data set). New arguments can be inserted as \code{x.lim =
+c(x.min, x.max)}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
 \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
@@ -78,11 +78,10 @@ validation procedure.
 \details{
 Five statistics are shown in this type of plot. The lower and upper hinges
 correspond to the first and third quartiles (the 25th and 75th percentiles).
-The upper whisker extends from the hinge to the largest value no further
-than 1.5 * IQR from the hinge (where IQR is the inter-quartile range). The
-lower whisker extends from the hinge to the smallest value at most 1.5 * IQR
-of the hinge. Data beyond the end of the whiskers are considered outlying
-points.
+The upper whisker extends from the hinge to the largest value no further than
+1.5 * IQR from the hinge (where IQR is the inter-quartile range). The lower
+whisker extends from the hinge to the smallest value at most 1.5 * IQR of the
+hinge. Data beyond the end of the whiskers are considered outlying points.
 }
 \examples{
 

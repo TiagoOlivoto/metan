@@ -1,16 +1,16 @@
 #' Print an object of class ge_reg
 #'
-#' Print the \code{ge_reg} object in two ways. By default, the results
-#' are shown in the R console. The results can also be exported to the
-#' directory into a *.txt file.
+#' Print the \code{ge_reg} object in two ways. By default, the results are shown
+#' in the R console. The results can also be exported to the directory into a
+#' *.txt file.
 #'
 #' @param x An object of class \code{ge_reg}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
-#' to the working directory.
+#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#'   the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
 #' @param digits The significant digits to be shown.
-#' @param ... Options used by the tibble package to format the output.
-#' See \code{\link[tibble]{trunc_mat}} for more details.
+#' @param ... Options used by the tibble package to format the output. See
+#'   \code{\link[tibble]{trunc_mat}} for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print ge_reg
 #' @export

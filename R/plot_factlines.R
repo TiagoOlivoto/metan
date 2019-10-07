@@ -1,21 +1,22 @@
 #' @title Fast way to create a line plot
 #' @description Create a graphic to show a fitted line based on numerical
-#' variables and one grouping variable.
+#'   variables and one grouping variable.
 #' @param .data The data set
 #' @param x The variable in data to be shown in the x axis
 #' @param y The variable in data to be shown in the y axis
 #' @param group The grouping variable
-#' @param fit The polynomial degree to use. It must be an integer
-#' between 1 (linear fit) to 4 (fourth-order polynomial regression.),
-#' or a numeric vector with the same length of the variable in \code{group}
+#' @param fit The polynomial degree to use. It must be an integer between 1
+#'   (linear fit) to 4 (fourth-order polynomial regression.), or a numeric
+#'   vector with the same length of the variable in \code{group}
 #' @param level The fonfidence level
-#' @param confidence Display confidence interval around smooth? (TRUE by default)
+#' @param confidence Display confidence interval around smooth? (TRUE by
+#'   default)
 #' @param xlab The x label
 #' @param ylab The y label
 #' @param legend.position The position of the legend. Defaults to 'bottom'.
 #' @param grid Logical argument. If \code{TRUE} then a grid will be created.
 #' @param scales If \code{grid = TRUE} scales controls how the scales are in the
-#' plot. Possible values are 'free' (default), 'fixed', 'free_x' or 'free_y'.
+#'   plot. Possible values are 'free' (default), 'fixed', 'free_x' or 'free_y'.
 #' @param col The colour to be used in the line plot and points
 #' @param alpha The alpha for the color in confidence band
 #' @param size.shape The size for the shape in plot

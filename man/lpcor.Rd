@@ -14,17 +14,20 @@ or, a dataframe containing the predictor variables, or an object of class
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
 
-\item{method}{a character string indicating which correlation coefficient is to be computed.
-One of 'pearson' (default), 'kendall', or 'spearman'.}
+\item{method}{a character string indicating which correlation coefficient is
+to be computed. One of 'pearson' (default), 'kendall', or 'spearman'.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
 }
 \value{
 If a grouping factor is used then a list is returned with the
-following values. \item{linear.mat}{The matrix of linear correlation.}
-\item{partial.mat}{The matrix of partial correlations.}
-\item{results}{Hypothesis testing for each pairwise comparison.}
+following values.
+\itemize{
+\item \strong{linear.mat} The matrix of linear correlation.
+\item \strong{partial.mat} The matrix of partial correlations.
+\item \strong{results} Hypothesis testing for each pairwise comparison.
+}
 }
 \description{
 Estimates the linear and partial correlation coefficients using as input a

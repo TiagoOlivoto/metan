@@ -16,7 +16,8 @@ factor1, factor2, replication/block and response variable(s).}
 \item{factor2}{The second factor, for example, dose of potassium.}
 
 \item{rep}{The name of the column that contains the levels of the
-replications/blocks, if a designed experiment was conducted. Defaults to \code{NULL}.}
+replications/blocks, if a designed experiment was conducted. Defaults to
+\code{NULL}.}
 
 \item{resp}{The response variable(s).}
 

@@ -6,30 +6,29 @@
 #' @param x The \code{WAASBY object}
 #' @param export Export (or not) the plot. Default is \code{T}.
 #' @param file.type The type of file to be exported. Default is \code{pdf},
-#' Graphic can also be exported in \code{*.tiff} format by declaring
-#' \code{file.type = "tiff"}.
+#'   Graphic can also be exported in \code{*.tiff} format by declaring
+#'   \code{file.type = "tiff"}.
 #' @param file.name The name of the file for exportation, default is
-#' \code{NULL}, i.e. the files are automatically named.
+#'   \code{NULL}, i.e. the files are automatically named.
 #' @param theme The graphical theme of the plot. Default is `theme =
-#' theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#' applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#' here)`. For more details, please, see ` ?ggplot2::theme`
+#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
+#'   here)`. For more details, please, see ` ?ggplot2::theme`
 #' @param width The width "inch" of the plot. Default is \code{8}.
 #' @param height The height "inch" of the plot. Default is \code{7}.
 #' @param size.shape The size of the shape in the plot. Default is \code{3.5}.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param col.shape A vector of length 2 that contains the color of shapes for
-#' genotypes above and below of the mean, respectively. Default is
-#' \code{c("blue", "red")}.
-#' @param x.lab The label of the x axis in the plot. Default is
-#' \code{"WAASBY"}.
+#'   genotypes above and below of the mean, respectively. Default is
+#'   \code{c("blue", "red")}.
+#' @param x.lab The label of the x axis in the plot. Default is \code{"WAASBY"}.
 #' @param y.lab The label of the y axis in the plot. Default is
-#' \code{"Genotypes"}.
+#'   \code{"Genotypes"}.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#' c(breaks)}
+#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
+#'   c(breaks)}
 #' @param resolution The resolution of the plot. Parameter valid if
-#' \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
+#'   \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
 #' @param ... Other arguments of the function
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

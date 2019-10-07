@@ -43,8 +43,8 @@ exported. Default is \code{pdf}, Graphic can also be exported in
 \item{y2.lab}{The label of the second y-axis in the plot. Default is
 \code{"Accumulated variance"}.}
 
-\item{x.lab}{The label of the x-axis in the plot. Default is \code{"Number
-of multiplicative terms"}.}
+\item{x.lab}{The label of the x-axis in the plot. Default is \code{"Number of
+multiplicative terms"}.}
 
 \item{resolution}{The resolution of the plot. Parameter valid if
 \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}

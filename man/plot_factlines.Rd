@@ -19,13 +19,14 @@ plot_factlines(.data, x, y, group, fit, level = 0.95,
 
 \item{group}{The grouping variable}
 
-\item{fit}{The polynomial degree to use. It must be an integer
-between 1 (linear fit) to 4 (fourth-order polynomial regression.),
-or a numeric vector with the same length of the variable in \code{group}}
+\item{fit}{The polynomial degree to use. It must be an integer between 1
+(linear fit) to 4 (fourth-order polynomial regression.), or a numeric
+vector with the same length of the variable in \code{group}}
 
 \item{level}{The fonfidence level}
 
-\item{confidence}{Display confidence interval around smooth? (TRUE by default)}
+\item{confidence}{Display confidence interval around smooth? (TRUE by
+default)}
 
 \item{xlab}{The x label}
 
@@ -57,7 +58,7 @@ An object of class \code{gg, ggplot}.
 }
 \description{
 Create a graphic to show a fitted line based on numerical
-variables and one grouping variable.
+  variables and one grouping variable.
 }
 \seealso{
 \code{\link{plot_lines}}, \code{\link{plot_factbars}}

@@ -6,12 +6,12 @@
 #' @param x An object of class \code{resp_surf}
 #' @param xlab The label for the x axis
 #' @param ylab The label for the y axis
-#' @param region Logical argument indicating whether regions between contour lines
-#'  should be colored.
-#' @param resolution The resolution of the contour plot. Defaults to 100.
-#'  higher values produce high-resolution plots but may increase the computation time.
-#' @param ... Other arguments passed from \code{contourplot} function.
-#' See \code{?lattice::contourplot} for more details.
+#' @param region Logical argument indicating whether regions between contour
+#'   lines should be colored.
+#' @param resolution The resolution of the contour plot. Defaults to 100. higher
+#'   values produce high-resolution plots but may increase the computation time.
+#' @param ... Other arguments passed from \code{contourplot} function. See
+#'   \code{?lattice::contourplot} for more details.
 #' @importFrom lattice contourplot
 #' @return An object of class \code{trellis}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

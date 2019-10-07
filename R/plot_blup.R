@@ -7,37 +7,37 @@
 #' @param prob The probability error for constructing confidence interval.
 #' @param export Export (or not) the plot. Default is \code{TRUE}.
 #' @param file.type If \code{export = TRUE}, define the type of file to be
-#' exported. Default is \code{pdf}, Graphic can also be exported in
-#' \code{*.tiff} format by declaring \code{file.type = "tiff"}.
+#'   exported. Default is \code{pdf}, Graphic can also be exported in
+#'   \code{*.tiff} format by declaring \code{file.type = "tiff"}.
 #' @param file.name The name of the file for exportation, default is
-#' \code{NULL}, i.e. the files are automatically named.
+#'   \code{NULL}, i.e. the files are automatically named.
 #' @param theme The graphical theme of the plot. Default is `theme =
-#' theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#' applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#' here)`. For more details, please, see ` ?ggplot2::theme`
+#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
+#'   here)`. For more details, please, see ` ?ggplot2::theme`
 #' @param width The width "inch" of the plot. Default is \code{6}.
 #' @param height The height "inch" of the plot. Default is \code{6}.
 #' @param size.err.bar The size of the error bar for the plot. Default is
-#' \code{0.5}.
+#'   \code{0.5}.
 #' @param size.shape The size of the shape (both for genotypes and
-#' environments). Default is \code{3.5}.
+#'   environments). Default is \code{3.5}.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param height.err.bar The height for error bar. Default is \code{0.3}.
-#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and
-#' minimum values of the data set). New arguments can be inserted as
-#' \code{x.lim = c(x.min, x.max)}.
+#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
+#'   values of the data set). New arguments can be inserted as \code{x.lim =
+#'   c(x.min, x.max)}.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#' \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#' c(breaks)}
+#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
+#'   c(breaks)}
 #' @param col.shape A vector of length 2 that contains the color of shapes for
-#' genotypes above and below of the mean, respectively. Default is
-#' \code{c("blue", "red")}.
-#' @param x.lab The label of the x-axis in the plot. Default is
-#' \code{"Predicted Grain Yield"}.
+#'   genotypes above and below of the mean, respectively. Default is
+#'   \code{c("blue", "red")}.
+#' @param x.lab The label of the x-axis in the plot. Default is \code{"Predicted
+#'   Grain Yield"}.
 #' @param y.lab The label of the y-axis in the plot. Default is
-#' \code{"Genotypes"}.
+#'   \code{"Genotypes"}.
 #' @param resolution The resolution of the plot. Parameter valid if
-#' \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
+#'   \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
 #' @param ... Other arguments of the function
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

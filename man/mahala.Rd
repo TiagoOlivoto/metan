@@ -11,8 +11,8 @@ mahala(.means, covar, inverted = FALSE)
 
 \item{covar}{The covariance matrix.}
 
-\item{inverted}{Logical argument. If \code{TRUE}, \code{covar} is supposed
-to contain the inverse of the covariance matrix.}
+\item{inverted}{Logical argument. If \code{TRUE}, \code{covar} is supposed to
+contain the inverse of the covariance matrix.}
 }
 \value{
 A symmetric matrix with the Mahalanobis' distance.
