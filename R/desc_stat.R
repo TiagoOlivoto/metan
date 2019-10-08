@@ -46,7 +46,7 @@
 #'@author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@export
 #'@importFrom tidyr spread gather separate pivot_wider
-#'@importFrom rlang quo quo_text
+#'@importFrom rlang quo as_label
 #' @examples
 #' library(metan)
 #' library(dplyr)
@@ -154,7 +154,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
       if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){
         stop("NAs values in data. Set the argument 'na.rm' to TRUE to compute the statistics removing missing values.")
       }
-      data %<>% summarise_all(funs(n = n(), valid.n = valid_n, mean = mean(., na.rm = na.rm), range = range_data,
+      data %<>%  summarise_all(funs(n = n(), valid.n = valid_n, mean = mean(., na.rm = na.rm), range = range_data,
                                    min = min(., na.rm = na.rm), Q2.5 = quantile(., 0.025, na.rm = na.rm),
                                    Q25 = quantile(., 0.25, na.rm = na.rm), median = median(., na.rm = na.rm),
                                    Q75 = quantile(., 0.75, na.rm = na.rm), Q97.5 = quantile(., 0.975, na.rm = na.rm),
@@ -164,7 +164,9 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
                                    norm.pval = norm_pv, CV = CV, sum = sum(., na.rm = na.rm), sum.dev = sum_dev, sum.sq.dev = sum_sq_dev))
       if (ncol(data) > 27) {
         statistics <- suppressWarnings(data %>% gather(stat, val) %>%
-                                         separate(stat, into = c("var", "stat"), sep = "_") %>%
+                                         separate(stat,
+                                                  into = c("var", "stat"),
+                                                  sep = "_(?=[^_]*$)") %>%
                                          make_mat(stat, var, val) %>%
                                          as_tibble(rownames = NA) %>%
                                          rownames_to_column("Statistic") %>%
@@ -179,7 +181,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
           as_tibble(rownames = NA) %>%
           rownames_to_column("Statistic") %>%
           dplyr::filter(Statistic %in% stats)
-        names(statistics)[ncol(statistics)] <- quo_text(quo(...))
+        names(statistics)[ncol(statistics)] <- as_label(quo(...))
         dfs[[paste(nam)]] <- statistics
         if(verbose == TRUE){
           print(statistics, digits = digits, row.names = FALSE)
@@ -196,7 +198,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
       separate(LEVEL, into = .data[[2]], sep = "[/|]")
 
     if(ncol(df) - length(.data[[2]]) == 2){
-      invisible(df %>% pivot_wider(names_from = Statistic, values_from = quo_text(quo(...))))
+      invisible(df %>% pivot_wider(names_from = Statistic, values_from = as_label(quo(...))))
     } else{
       invisible(df)
     }
@@ -224,18 +226,18 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
 
     if (ncol(data) > 27) {
       statistics <- suppressWarnings(data %>% gather(stat, val) %>%
-                                       separate(stat, into = c("var", "stat"), sep = "_") %>%
+                                       separate(stat,
+                                                into = c("var", "stat"),
+                                                sep = "_(?=[^_]*$)") %>%
                                        make_mat(stat, var, val) %>%
                                        as_tibble(rownames = NA) %>%
                                        rownames_to_column("Statistic") %>%
                                        dplyr::filter(Statistic %in% stats))
-    }
-    if (ncol(data) == 27) {
       statistics <- t(data) %>%
         as_tibble(rownames = NA) %>%
         rownames_to_column("Statistic") %>%
         dplyr::filter(Statistic %in% stats)
-      names(statistics)[2] <- quo_text(quo(...))
+      names(statistics)[2] <- as_label(quo(...))
     }
     if(verbose == TRUE){
     print(statistics, digits = digits, row.names = FALSE)

@@ -5,8 +5,8 @@
 \alias{metan-package}
 \title{Multi-Environment Trial Analysis}
 \description{
-Provides functions for performing the most used analyses in the evaluation of
-multi-environment trials, including, but not limited to:
+\pkg{metan} provides functions for performing the most used analyses in the
+evaluation of multi-environment trials, including, but not limited to:
 \itemize{
 \item ANOVA-based stability statistics;
 \item AMMI-based stability indexes;
@@ -16,8 +16,7 @@ multi-environment trials, including, but not limited to:
 \item Estimation using AMMI considering different numbers of interaction
 principal component axes;
 \item Graphics tools for generating biplots;
-\item Parametric and nonparametric stability statistics;
-\item stability analysis using widely-known parametric;
+\item Nonparametric stability statistics;
 \item Variance components and genetic parameters in mixed-effect models;
 \item Within-environment analysis of variance;
 }
