@@ -212,6 +212,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
     } else {
       data <- dplyr::select(.data, ...)
     }
+
     if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){
       stop("NAs values in data. Set the argument 'na.rm' to TRUE to compute the statistics removing missing values.")
     }
@@ -239,8 +240,15 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
         dplyr::filter(Statistic %in% stats)
       names(statistics)[2] <- as_label(quo(...))
     }
-    if(verbose == TRUE){
-    print(statistics, digits = digits, row.names = FALSE)
+    if (ncol(data) == 27) {
+      statistics <- t(data) %>%
+        as_tibble(rownames = NA) %>%
+        rownames_to_column("Statistic") %>%
+        dplyr::filter(Statistic %in% stats)
+      names(statistics)[2] <- ifelse(missing(...), "value", as_label(quo(...)))
+      if(verbose == TRUE){
+        print(statistics, digits = digits, row.names = FALSE)
+      }
     }
     invisible(statistics)
   }
