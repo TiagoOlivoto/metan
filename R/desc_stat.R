@@ -234,11 +234,6 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
                                        as_tibble(rownames = NA) %>%
                                        rownames_to_column("Statistic") %>%
                                        dplyr::filter(Statistic %in% stats))
-      statistics <- t(data) %>%
-        as_tibble(rownames = NA) %>%
-        rownames_to_column("Statistic") %>%
-        dplyr::filter(Statistic %in% stats)
-      names(statistics)[2] <- as_label(quo(...))
     }
     if (ncol(data) == 27) {
       statistics <- t(data) %>%
