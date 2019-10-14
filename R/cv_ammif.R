@@ -36,7 +36,7 @@
 #' @param verbose A logical argument to define if a progress bar is shown.
 #' Default is \code{TRUE}.
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
-#'  Biometrika 63:83-92. \href{https://www.jstor.org/stable/2335087}{doi:10.2307/2335087}
+#'  Biometrika 63:83-92.
 #' @return
 #' An object of class \code{cv_ammif} with the following items:
 #' * \strong{RMSPD}: A vector with nboot-estimates of the Root Mean Squared

@@ -85,7 +85,7 @@ model <- data_ge \%>\%
 }
 \references{
 Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
-Biometrika 63:83-92. \href{https://www.jstor.org/stable/2335087}{doi:10.2307/2335087}
+Biometrika 63:83-92.
 }
 \seealso{
 \code{\link{cv_ammi}, \link{cv_blup}}
