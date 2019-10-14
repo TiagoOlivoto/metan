@@ -42,6 +42,9 @@
 #'
 Fox <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   datain <- .data
+  GEN <- factor(eval(substitute(gen), eval(datain)))
+  ENV <- factor(eval(substitute(env), eval(datain)))
+  REP <- factor(eval(substitute(rep), eval(datain)))
   listres <- list()
   d <- match.call()
   nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
