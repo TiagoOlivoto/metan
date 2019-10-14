@@ -43,15 +43,21 @@ genotype.
 function \code{\link{Annicchiarico}} internally.
 \item \strong{Ecoval} The Wrike's ecovalence. Call the function
 \code{\link{ecovalence}} internally.
+\item \strong{Shukla} The Shukla's stability variance. Call the function
+\code{\link{Shukla}} internally.
+\item \strong{Fox} The Fox's stability function. Call the function
+\code{\link{Fox}} internally.
 \item \strong{Superiority} The Lin and Binns' superiority index. Call the
 function \code{\link{superiority}} internally.
 }
 }
 \description{
-Compute parametric and nonparametric statistics for genotype-vs-environment
-interaction (GEI), including within-environment analysis of variance, GEI
-effect, GEI means, genotype plus GEI effects, Ecovalence (Wricke, 1965)
-regression-based stability (Eberhart and Russell., 1966), and superiority
+Computes \strong{(i)} within-environment analysis of variance, GEI effect,
+GEI means, and genotype plus GEI effects; \strong{(ii)} parametric statistics
+including Annicchiarico's genotypic confidence index (1992), Ecovalence
+(Wricke, 1965), regression-based stability (Eberhart and Russell., 1966),
+Shukla's stability variance parameter (1972); and \strong{(iii)}
+nonparametric Fox's stability function (Fox et al. 1990), and  superiority
 index (Lin and Binns, 1988)
 }
 \examples{
@@ -73,13 +79,29 @@ model2 = data_ge2 \%>\%
 
 }
 \references{
+Annicchiarico, P. 1992. Cultivar adaptation and recommendation from alfalfa
+trials in Northern Italy. Journal of Genetic & Breeding, 46:269-278
+
 Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for
 comparing Varieties. Crop Sci. 6:36-40.
 \href{https://www.crops.org/publications/cs/abstracts/6/1/CS0060010036}{doi:10.2135/cropsci1966.0011183X000600010011x}
 
+Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
+Cormier. 1990. Yield and adaptation of hexaploid spring triticale.
+Euphytica 47:57-64.
+\href{https://link.springer.com/article/10.1007/BF00040364}{doi:10.1007/BF00040364}.
+
+Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
+Yielding and Stable Crop Genotypes. Agron. J. 83:161.
+\href{https://dl.sciencesocieties.org/publications/aj/abstracts/83/1/AJ0830010161}{doi:10.2134/agronj1991.00021962008300010037x}.
+
 Lin, C.S., and M.R. Binns. 1988. A superiority measure of cultivar
 performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
 \href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
+
+Shukla, G.K. 1972. Some statistical aspects of partitioning
+genotype-environmental components of variability. Heredity. 29:238-245.
+\href{http://www.nature.com/articles/hdy197287}{doi:10.1038/hdy.1972.87}.
 
 Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer.
 Z. Pflanzenzuchtg 52:127-138.
