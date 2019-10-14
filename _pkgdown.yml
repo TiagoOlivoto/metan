@@ -131,15 +131,17 @@ reference:
       - ge_plot
       - ge_reg
       - ge_stats
+      - Fox
       - plot.ge_cluster
       - plot.ge_factanal
       - plot.ge_reg
-      - superiority
       - print.Annicchiarico
       - print.ge_factanal
       - print.ge_reg
       - print.ge_stats
       - print.superiority
+      - Shukla
+      - superiority
   - title: "Biometry"
     desc: "Useful functions for biometric models"
     contents:

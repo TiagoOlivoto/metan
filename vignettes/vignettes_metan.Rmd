@@ -1,5 +1,7 @@
 ---
 title: "Multi-environment Trial Analysis"
+author: "Tiago Olivoto"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 fig_caption: yes
 link-citations: true

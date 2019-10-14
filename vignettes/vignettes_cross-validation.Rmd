@@ -1,5 +1,7 @@
 ---
 title: "Cross-validation procedures for AMMI and BLUP"
+author: "Tiago Olivoto"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 link-citations: true
 bibliography: metanref.bib

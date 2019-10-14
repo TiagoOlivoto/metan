@@ -1,5 +1,7 @@
 ---
 title: "Analyzing multienvironment trials using GGE"
+author: "Tiago Olivoto"
+date: "`r Sys.Date()`"
 always_allow_html: yes
 output: rmarkdown::html_vignette
 fig_caption: yes

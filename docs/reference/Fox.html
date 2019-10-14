@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Statistics for genotype-vs-environment interaction — ge_stats • metan</title>
+<title>Fox's stability function — Fox • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,14 +42,11 @@
 
 
 
-<meta property="og:title" content="Statistics for genotype-vs-environment interaction — ge_stats" />
-<meta property="og:description" content="Computes (i) within-environment analysis of variance, GEI effect,
-GEI means, and genotype plus GEI effects; (ii) parametric statistics
-including Annicchiarico's genotypic confidence index (1992), Ecovalence
-(Wricke, 1965), regression-based stability (Eberhart and Russell., 1966),
-Shukla's stability variance parameter (1972); and (iii)
-nonparametric Fox's stability function (Fox et al. 1990), and  superiority
-index (Lin and Binns, 1988)" />
+<meta property="og:title" content="Fox's stability function — Fox" />
+<meta property="og:description" content="Performs a stability analysis based on the criteria of Fox et al. (1990),
+using the statistical &quot;TOP third&quot; only. A stratified ranking of the genotypes
+at each environment is done. The proportion of locations at which the
+genotype occurred in the top third are expressed in the output." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -193,22 +190,19 @@ index (Lin and Binns, 1988)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Statistics for genotype-vs-environment interaction</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/ge_stats.R'><code>R/ge_stats.R</code></a></small>
-    <div class="hidden name"><code>ge_stats.Rd</code></div>
+    <h1>Fox's stability function</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/Fox.R'><code>R/Fox.R</code></a></small>
+    <div class="hidden name"><code>Fox.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Computes <strong>(i)</strong> within-environment analysis of variance, GEI effect,
-GEI means, and genotype plus GEI effects; <strong>(ii)</strong> parametric statistics
-including Annicchiarico's genotypic confidence index (1992), Ecovalence
-(Wricke, 1965), regression-based stability (Eberhart and Russell., 1966),
-Shukla's stability variance parameter (1972); and <strong>(iii)</strong>
-nonparametric Fox's stability function (Fox et al. 1990), and  superiority
-index (Lin and Binns, 1988)</p>
+    <p>Performs a stability analysis based on the criteria of Fox et al. (1990),
+using the statistical "TOP third" only. A stratified ranking of the genotypes
+at each environment is done. The proportion of locations at which the
+genotype occurred in the top third are expressed in the output.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ge_stats</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
+    <pre class="usage"><span class='fu'>Fox</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -242,79 +236,33 @@ single procedure use, for example, <code>resp = c(var1, var2, var3)</code>.</p><
       <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run
 silently.</p></td>
     </tr>
-    <tr>
-      <th>prob</th>
-      <td><p>The probability error assumed.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>ge_stats</code> with the following items for each
-variable:</p><ul>
-<li><p><strong>individual</strong> The individual analysis of variance. Call the function
-<code><a href='anova_ind.html'>anova_ind</a></code> internally.</p></li>
-<li><p><strong>ge_mean</strong>, ge_effect The genotype-vs-environment means and effects,
-respectively.</p></li>
-<li><p><strong>gge_effect</strong> The genotype plus genotype-vs-environment effects.</p></li>
-<li><p><strong>ge_stats</strong> The variance, sum of squares and mean squares for each
-genotype.</p></li>
-<li><p><strong>ER</strong> The Eberhart and Russell regression model. Call the function
-<code><a href='ge_reg.html'>ge_reg</a></code> internally.</p></li>
-<li><p><strong>ANN</strong> The Annicchiarico's genotypic confidence index. Call the
-function <code><a href='Annicchiarico.html'>Annicchiarico</a></code> internally.</p></li>
-<li><p><strong>Ecoval</strong> The Wrike's ecovalence. Call the function
-<code><a href='ecovalence.html'>ecovalence</a></code> internally.</p></li>
-<li><p><strong>Shukla</strong> The Shukla's stability variance. Call the function
-<code><a href='Shukla.html'>Shukla</a></code> internally.</p></li>
-<li><p><strong>Fox</strong> The Fox's stability function. Call the function
-<code><a href='Fox.html'>Fox</a></code> internally.</p></li>
-<li><p><strong>Superiority</strong> The Lin and Binns' superiority index. Call the
-function <code><a href='superiority.html'>superiority</a></code> internally.</p></li>
+    <p>An object of class <code>Fox</code>, which is a list containing the results
+for each variable used in the argument <code>resp</code>. For each variable, a
+tibble with the following columns is returned.</p><ul>
+<li><p><strong>GEN</strong> the genotype's code.</p></li>
+<li><p><strong>mean</strong> the mean for the response variable.</p></li>
+<li><p><strong>TOP</strong> The proportion of locations at which the</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Annicchiarico, P. 1992. Cultivar adaptation and recommendation from alfalfa
-trials in Northern Italy. Journal of Genetic &amp; Breeding, 46:269-278</p>
-<p>Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for
-comparing Varieties. Crop Sci. 6:36-40.
-<a href='https://www.crops.org/publications/cs/abstracts/6/1/CS0060010036'>doi:10.2135/cropsci1966.0011183X000600010011x</a></p>
-<p>Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
+    <p>Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
 Cormier. 1990. Yield and adaptation of hexaploid spring triticale.
 Euphytica 47:57-64.
 <a href='https://link.springer.com/article/10.1007/BF00040364'>doi:10.1007/BF00040364</a>.</p>
-<p>Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
-Yielding and Stable Crop Genotypes. Agron. J. 83:161.
-<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/83/1/AJ0830010161'>doi:10.2134/agronj1991.00021962008300010037x</a>.</p>
-<p>Lin, C.S., and M.R. Binns. 1988. A superiority measure of cultivar
-performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
-<a href='http://pubs.aic.ca/doi/abs/10.4141/cjps88-018'>doi:10.4141/cjps88-018</a></p>
-<p>Shukla, G.K. 1972. Some statistical aspects of partitioning
-genotype-environmental components of variability. Heredity. 29:238-245.
-<a href='http://www.nature.com/articles/hdy197287'>doi:10.1038/hdy.1972.87</a>.</p>
-<p>Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer.
-Z. Pflanzenzuchtg 52:127-138.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'>ge_stats</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>,
-                 <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                 <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                 <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                 <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
-
-<span class='co'>#Alternatively, using the forward-pipe operator %&gt;%</span>
-<span class='co'>#More than one trait</span>
-
-<span class='no'>model2</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-         <span class='fu'>ge_stats</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>EL</span>))</div><div class='output co'>#&gt; Evaluating variable PH 33.3 % 
-#&gt; Evaluating variable EH 66.7 % 
-#&gt; Evaluating variable EL 100 % </div><div class='input'>
-
-</div></pre>
+<span class='no'>out</span> <span class='kw'>=</span> <span class='fu'>Fox</span>(<span class='no'>data_ge2</span>,
+          <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+          <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+          <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+          <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
