@@ -13,8 +13,9 @@ After committing the changes I ran:
    - 0 errors | 0 warnings | 0 notes
    
 - `devtools::check_rhub()`
-   - Build ID (metan_1.0.0.tar.gz-844323c730174fbc93ac7742490cd86b): CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
-   - Build ID (metan_1.0.0.tar.gz-f05d6122c07b42448691b3c4c2d7205a): metan 1.0.0: OK.
+   - Windows Server 2008 R2 SP1, R-devel, 32/64 bit (metan_1.0.1.tar.gz-e3c70471e7064a0a861acb6dd2a95778): CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
+   - Ubuntu Linux 16.04 LTS, R-release, GCC (metan_1.0.1.tar.gz-c6c4a9429b734b86a645945d1d47db53): CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
+   - Fedora Linux, R-devel, clang, gfortran (metan_1.0.1.tar.gz-a604f728e70540bd9623e027bcbb081d): Ok
    
 - `devtools::check_win_devel()`
    - CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')

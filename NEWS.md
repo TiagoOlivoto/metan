@@ -1,4 +1,11 @@
 # metan 1.0.1
+* New function `gamem()` for analyzing genotypes in one-way trials using mixed-effect models;
+* New function `desc_wider()` to convert an output of the function `desc_stat()` to a 'wide' format;
+* New function `Fox()` for Stability analysis;
+* New function `Shukla()` for stability analysis;
+* Improve usability of `get_model_data()` function;
+* Update function's doccumentation;
+* Update vignettes;
 
 # metan 1.0.0
 The changes in this version were made based on suggestions received when metan was submitted to CRAN for the first time.
