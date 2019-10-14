@@ -26,6 +26,7 @@
 #' * \strong{rShukaVar} The rank for \strong{ShukaVar}.
 #' * \strong{ssiShukaVar} The simultaneous selection index (\eqn{ssiShukaVar = rMean + rShukaVar}).
 #' @md
+#' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Shukla, G.K. 1972. Some statistical aspects of partitioning
 #'   genotype-environmental components of variability. Heredity. 29:238-245.
@@ -34,7 +35,6 @@
 #'   Yielding and Stable Crop Genotypes. Agron. J. 83:161.
 #'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/83/1/AJ0830010161}{doi:10.2134/agronj1991.00021962008300010037x}.
 #'
-#' @export
 #' @examples
 #'
 #' library(metan)
