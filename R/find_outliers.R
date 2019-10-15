@@ -33,10 +33,10 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
     stop("A variable must be declared.")
   }
   if (any(class(.data) == "split_factors")) {
-    for (k in 1:length(.data)) {
+    for (k in 1:length(.data[[1]])) {
       data <- .data[[1]][[k]]
       var <- dplyr::enquo(var)
-      nam <- names(.data[k])
+      nam <- names(.data[[1]][k])
       var_name <- data %>% dplyr::select(!!var) %>% unlist() %>%
         as.numeric()
       tot <- sum(!is.na(var_name))
@@ -47,7 +47,7 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
         op <- par(mfrow = c(2, 2), oma = c(0, 0, 2, 0),
                   mar = c(2, 2, 2, 2))
         boxplot(var_name, main = "With outliers")
-        hist(var_name, main = "Without outliers", xlab = NA,
+        hist(var_name, main = "With outliers", xlab = NA,
              ylab = NA)
       }
       outlier <- boxplot.stats(var_name, coef = coef)$out
@@ -63,7 +63,7 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
       var_name <- ifelse(var_name %in% outlier, NA, var_name)
       names <- rownames(var_name)
       if (any(plots == TRUE)) {
-        boxplot(var_name, main = "With outliers")
+        boxplot(var_name, main = "Without outliers")
         hist(var_name, main = "Without outliers", xlab = NA,
              ylab = NA)
         mtext(paste(nam), outer = TRUE, cex = 1.5)
