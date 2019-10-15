@@ -145,7 +145,7 @@ autoplot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
                                                         colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                                      colour = "black"), plot.title = element_text(size = size.tex.lab,
                                                                                                                                                   hjust = 0, vjust = 1))
-    p7 <- ggplot(df, aes(.fitted, Y)) + geom_point(col = col.point) +
+    p7 <- ggplot(df, aes(fitted, Y)) + geom_point(col = col.point) +
         facet_wrap(~GEN) + geom_abline(intercept = 0, slope = 1,
                                        col = col.line) + labs(x = "Fitted values", y = "Observed values") +
         ggtitle("1:1 line plot") + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
