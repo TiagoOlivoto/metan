@@ -67,7 +67,7 @@ plot_blup <- function(x, prob = 0.05, export = FALSE, file.type = "pdf", file.na
         PROB <- ((1 - (1 - prob))/2) + (1 - prob)
         t <- qt(PROB, nlevels(x$residuals$REP))
         GV <- as.numeric(x$ESTIMATES[1, 2])
-        AccuGen <- as.numeric(x$ESTIMATES[10, 2])
+        AccuGen <- as.numeric(x$ESTIMATES[8, 2])
         Limits <- t * sqrt(((1 - AccuGen) * GV))
         blup <- x$blupGEN %>%
             mutate(LL = Predicted - Limits,
