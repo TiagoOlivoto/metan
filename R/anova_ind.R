@@ -13,7 +13,9 @@
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
-#' @param resp The response variable.
+#' @param resp The response variable(s). To analyze multiple variables in a
+#'   single procedure a vector of variables may be used. For example \code{resp
+#'   = c(var1, var2, var3)}.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
 #' @return A list where each element is the result for one variable and
@@ -89,5 +91,5 @@ anova_ind <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       listres[[paste(d$resp)]] <- temp
     }
   }
-  return(listres)
+  return(structure(listres, class = "anova_ind"))
 }
