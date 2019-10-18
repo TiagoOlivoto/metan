@@ -28,6 +28,8 @@
 #'  \code{'var.amo'} (the sample variance), \code{'var.pop'} (the population
 #'  variance). Use a comma-separated vector of names to select the statistics.
 #'  For example, \code{stats = c("media, mean, CV, n")}.
+#'@param hist Logical argument defaults to \code{FALSE}. If \code{hist = TRUE}
+#'  then a histogram is created for each selected variable.
 #'@param level The confidence level to compute the confidence interval of mean.
 #'  Defaults to 0.95.
 #'@param digits The number of significant digits.
@@ -73,7 +75,7 @@
 #' # To get a 'wide' format with the statistics of the variable EP above.
 #' desc_wider(stats, PH)
 #'
-desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
+desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL, hist = FALSE,
                       level = 0.95, digits = 4, na.rm = FALSE, verbose = TRUE) {
   test = c("AV.dev", "CI.mean", "CV", "IQR", "Kurt", "max", "mean", "median", "min", "n", "norm.pval", "norm.stat", "Q2.5", "Q25", "Q75", "Q97.5", "range", "SD.amo", "SD.pop", "SE.mean", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
   if(!missing(stats)){
@@ -154,6 +156,25 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
       if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){
         stop("NAs values in data. Set the argument 'na.rm' to TRUE to compute the statistics removing missing values.")
       }
+      if(hist == TRUE){
+        stats_facet <- data %>% pivot_longer(1:ncol(data))
+        nbins <- round(1 + 3.322 * log(nrow(data)), 0)
+        plt <-
+          ggplot(stats_facet, aes(value)) +
+          geom_histogram(color = "black", fill = "gray70", bins = nbins)+
+          facet_wrap(.~name, scales = "free")+
+          labs(x = "Observed value",
+               y = "Count")+
+          scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+          theme(axis.text = element_text(size = 12, colour = "black"),
+                axis.title = element_text(size = 14, color = "black"),
+                axis.ticks.length = unit(0.25, "cm"),
+                panel.grid.minor = element_blank(),
+                strip.background = element_rect(color = "black", fill = NA),
+                panel.border = element_rect(color = "black", fill = NA))+
+          ggtitle(paste("Histogram for ", nam))
+        print(plt)
+      }
       data %<>%  summarise_all(funs(n = n(), valid.n = valid_n, mean = mean(., na.rm = na.rm), range = range_data,
                                    min = min(., na.rm = na.rm), Q2.5 = quantile(., 0.025, na.rm = na.rm),
                                    Q25 = quantile(., 0.25, na.rm = na.rm), median = median(., na.rm = na.rm),
@@ -212,10 +233,29 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = NULL,
     } else {
       data <- dplyr::select(.data, ...)
     }
-
     if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){
       stop("NAs values in data. Set the argument 'na.rm' to TRUE to compute the statistics removing missing values.")
     }
+    if(hist == TRUE){
+      stats_facet <- data %>% pivot_longer(1:ncol(data))
+      nbins <- round(1 + 3.322 * log(nrow(data)), 0)
+      plt <-
+        ggplot(stats_facet, aes(value)) +
+        geom_histogram(color = "black", fill = "gray70", bins = nbins)+
+        facet_wrap(.~name, scales = "free")+
+        labs(x = "Observed value",
+             y = "Count")+
+        scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+        theme(axis.text = element_text(size = 12, colour = "black"),
+              axis.title = element_text(size = 14, color = "black"),
+              axis.ticks.length = unit(0.25, "cm"),
+              panel.grid.minor = element_blank(),
+              strip.background = element_rect(color = "black", fill = NA),
+              panel.border = element_rect(color = "black", fill = NA))
+      print(plt)
+    }
+
+
     data %<>% summarise_all(funs(n = n(), valid.n = valid_n, mean = mean(., na.rm = na.rm), range = range_data,
                                  min = min(., na.rm = na.rm), Q2.5 = quantile(., 0.025, na.rm = na.rm),
                                  Q25 = quantile(., 0.25, na.rm = na.rm), median = median(., na.rm = na.rm),

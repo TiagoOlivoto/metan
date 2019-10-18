@@ -5,7 +5,8 @@
 \title{Descriptive statistics}
 \usage{
 desc_stat(.data = NULL, ..., values = NULL, stats = NULL,
-  level = 0.95, digits = 4, na.rm = FALSE, verbose = TRUE)
+  hist = FALSE, level = 0.95, digits = 4, na.rm = FALSE,
+  verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
@@ -36,6 +37,9 @@ deviations), \code{valid.n} (The size of sample with valid number (not NA),
 \code{'var.amo'} (the sample variance), \code{'var.pop'} (the population
 variance). Use a comma-separated vector of names to select the statistics.
 For example, \code{stats = c("media, mean, CV, n")}.}
+
+\item{hist}{Logical argument defaults to \code{FALSE}. If \code{hist = TRUE}
+then a histogram is created for each selected variable.}
 
 \item{level}{The confidence level to compute the confidence interval of mean.
 Defaults to 0.95.}
