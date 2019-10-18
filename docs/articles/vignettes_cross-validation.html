@@ -147,7 +147,7 @@
       <h1>Cross-validation procedures for AMMI and BLUP</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-14</h4>
+            <h4 class="date">2019-10-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_cross-validation.Rmd"><code>vignettes/vignettes_cross-validation.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_cross-validation.Rmd</code></div>
@@ -191,7 +191,7 @@
 <div class="figure">
 <img src="validation.png" alt="Diagram for cross-validation of AMMI models."><p class="caption">Diagram for cross-validation of AMMI models.</p>
 </div>
-<p>The training set has all combinations (genotype x environment) with the number of replications informed in <code>nrepval</code> argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by <span class="citation">Piepho (<a href="#ref-Piepho:1994">1994</a>)</span>. The remaining block serves as validation data. If <code>design = "CRD"</code> is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by <span class="citation">Gauch and Zobel (<a href="#ref-Gauch:1988">1988</a>)</span>. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:</p>
+<p>The training set has all combinations (genotype x environment) with the number of replications informed in <code>nrepval</code> argument. The validation set has one replication that were not included in the training set. The splitting of the data set into training and validation sets depends on the design considered. For a Randomized Complete Block Design (default option) and the procedure we used in the article, completely blocks are randomly selected within environments, as suggested by <span class="citation">Piepho (<a href="#ref-Piepho:1994" role="doc-biblioref">1994</a>)</span>. The remaining block serves as validation data. If <code>design = "CRD"</code> is informed, thus declaring that a completely randomized design was used, single observations are randomized for each treatment (genotype-by-environment combination). This is the same procedure suggested by <span class="citation">Gauch and Zobel (<a href="#ref-Gauch:1988" role="doc-biblioref">1988</a>)</span>. The estimated values for each member of the AMMI model family in each re-sampling cycle are compared with the observed values in the validation data. Then, the Root Mean Square Prediction Difference is computed as follows:</p>
 <p><span class="math display">\[
    RMSPD = 
    {\left[ {\left( {\sum\nolimits_{i = 1}^n {{{\left( {{{\hat y}_{ij}} - {y_{ij}}} \right)}^2}} } \right)/n} \right]^{0.5}}
@@ -267,82 +267,42 @@ Q97.5
 <tbody>
 <tr>
 <td style="text-align:left;">
-AMMI3
+AMMI2
 </td>
 <td style="text-align:right;">
-0.413
+0.400
 </td>
 <td style="text-align:right;">
-0.011
+0.037
 </td>
 <td style="text-align:right;">
-0.005
+0.017
 </td>
 <td style="text-align:right;">
-0.397
+0.357
 </td>
 <td style="text-align:right;">
-0.426
+0.434
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-AMMI5
+AMMI6
 </td>
 <td style="text-align:right;">
-0.416
+0.405
 </td>
 <td style="text-align:right;">
-0.007
+0.020
 </td>
 <td style="text-align:right;">
-0.003
+0.009
 </td>
 <td style="text-align:right;">
-0.410
+0.385
 </td>
 <td style="text-align:right;">
-0.426
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI7
-</td>
-<td style="text-align:right;">
-0.418
-</td>
-<td style="text-align:right;">
-0.023
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-<td style="text-align:right;">
-0.384
-</td>
-<td style="text-align:right;">
-0.441
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI1
-</td>
-<td style="text-align:right;">
-0.425
-</td>
-<td style="text-align:right;">
-0.039
-</td>
-<td style="text-align:right;">
-0.018
-</td>
-<td style="text-align:right;">
-0.390
-</td>
-<td style="text-align:right;">
-0.475
+0.431
 </td>
 </tr>
 <tr>
@@ -350,27 +310,127 @@ AMMI1
 AMMI4
 </td>
 <td style="text-align:right;">
-0.427
-</td>
-<td style="text-align:right;">
-0.013
-</td>
-<td style="text-align:right;">
-0.006
-</td>
-<td style="text-align:right;">
 0.408
 </td>
 <td style="text-align:right;">
-0.440
+0.036
+</td>
+<td style="text-align:right;">
+0.016
+</td>
+<td style="text-align:right;">
+0.374
+</td>
+<td style="text-align:right;">
+0.460
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-BLUP_g
+BLUP_g_RCBD
+</td>
+<td style="text-align:right;">
+0.410
+</td>
+<td style="text-align:right;">
+0.018
+</td>
+<td style="text-align:right;">
+0.008
+</td>
+<td style="text-align:right;">
+0.393
+</td>
+<td style="text-align:right;">
+0.435
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI0
+</td>
+<td style="text-align:right;">
+0.414
+</td>
+<td style="text-align:right;">
+0.031
+</td>
+<td style="text-align:right;">
+0.014
+</td>
+<td style="text-align:right;">
+0.397
+</td>
+<td style="text-align:right;">
+0.462
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI3
+</td>
+<td style="text-align:right;">
+0.424
+</td>
+<td style="text-align:right;">
+0.010
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.411
+</td>
+<td style="text-align:right;">
+0.436
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMIF
+</td>
+<td style="text-align:right;">
+0.427
+</td>
+<td style="text-align:right;">
+0.024
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+0.402
+</td>
+<td style="text-align:right;">
+0.460
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI7
 </td>
 <td style="text-align:right;">
 0.428
+</td>
+<td style="text-align:right;">
+0.020
+</td>
+<td style="text-align:right;">
+0.009
+</td>
+<td style="text-align:right;">
+0.411
+</td>
+<td style="text-align:right;">
+0.454
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI5
+</td>
+<td style="text-align:right;">
+0.430
 </td>
 <td style="text-align:right;">
 0.027
@@ -379,30 +439,10 @@ BLUP_g
 0.012
 </td>
 <td style="text-align:right;">
-0.406
+0.399
 </td>
 <td style="text-align:right;">
-0.468
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI6
-</td>
-<td style="text-align:right;">
-0.429
-</td>
-<td style="text-align:right;">
-0.019
-</td>
-<td style="text-align:right;">
-0.008
-</td>
-<td style="text-align:right;">
-0.411
-</td>
-<td style="text-align:right;">
-0.456
+0.454
 </td>
 </tr>
 <tr>
@@ -410,79 +450,39 @@ AMMI6
 AMMI8
 </td>
 <td style="text-align:right;">
-0.429
+0.435
+</td>
+<td style="text-align:right;">
+0.026
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+<td style="text-align:right;">
+0.410
+</td>
+<td style="text-align:right;">
+0.470
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI1
+</td>
+<td style="text-align:right;">
+0.450
+</td>
+<td style="text-align:right;">
+0.025
 </td>
 <td style="text-align:right;">
 0.011
 </td>
 <td style="text-align:right;">
-0.005
-</td>
-<td style="text-align:right;">
-0.418
-</td>
-<td style="text-align:right;">
-0.445
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMIF
-</td>
-<td style="text-align:right;">
-0.431
-</td>
-<td style="text-align:right;">
-0.022
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-<td style="text-align:right;">
-0.404
-</td>
-<td style="text-align:right;">
-0.457
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI2
-</td>
-<td style="text-align:right;">
-0.433
-</td>
-<td style="text-align:right;">
-0.018
-</td>
-<td style="text-align:right;">
-0.008
-</td>
-<td style="text-align:right;">
 0.414
 </td>
 <td style="text-align:right;">
-0.456
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI0
-</td>
-<td style="text-align:right;">
-0.442
-</td>
-<td style="text-align:right;">
-0.019
-</td>
-<td style="text-align:right;">
-0.008
-</td>
-<td style="text-align:right;">
-0.414
-</td>
-<td style="text-align:right;">
-0.459
+0.470
 </td>
 </tr>
 </tbody>
@@ -510,10 +510,10 @@ AMMI0
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
 <div id="ref-Gauch:1988">
-<p>Gauch, H.G, and Zobel R.W. 1988. “Predictive and Postdictive Success of Statistical Analyses of Yield Trials.” <em>Theor. Appl. Genet.</em> 76 (1): 1–10. <a href="https://doi.org/10.1007/BF00288824">https://doi.org/10.1007/BF00288824</a>.</p>
+<p>Gauch, H.G, and Zobel R. W. 1988. “Predictive and Postdictive Success of Statistical Analyses of Yield Trials.” <em>Theor. Appl. Genet.</em> 76 (1): 1–10. <a href="https://doi.org/10.1007/BF00288824">https://doi.org/10.1007/BF00288824</a>.</p>
 </div>
 <div id="ref-Piepho:1994">
-<p>Piepho, H.P. 1994. “Best Linear Unbiased Prediction (Blup) for Regional Yield Trials: A Comparison to Additive Main Effects and Multiplicative Interaction (Ammi) Analysis.” <em>Theor. Appl. Genet.</em> 89 (5): 647–54. <a href="https://doi.org/10.1007/BF00222462">https://doi.org/10.1007/BF00222462</a>.</p>
+<p>Piepho, H. P. 1994. “Best Linear Unbiased Prediction (Blup) for Regional Yield Trials: A Comparison to Additive Main Effects and Multiplicative Interaction (Ammi) Analysis.” <em>Theor. Appl. Genet.</em> 89 (5): 647–54. <a href="https://doi.org/10.1007/BF00222462">https://doi.org/10.1007/BF00222462</a>.</p>
 </div>
 </div>
 </div>

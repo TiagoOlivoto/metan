@@ -147,7 +147,7 @@
       <h1>Useful functions for biometrical models</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-14</h4>
+            <h4 class="date">2019-10-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_biometry.Rmd"><code>vignettes/vignettes_biometry.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_biometry.Rmd</code></div>
@@ -217,10 +217,14 @@ No outlier identified. </code></pre>
 <div id="descriptive-statistics" class="section level1">
 <h1 class="hasAnchor">
 <a href="#descriptive-statistics" class="anchor"></a>Descriptive statistics</h1>
-<p>The function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> may be used to compute measures of central tendency, position, and dispersion.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/desc_stat.html">desc_stat</a></span>(EP, EL, CL, CD, CW, NR)</a></code></pre></div>
-<pre><code># A tibble: 23 x 7
+<p>The function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> may be used to compute measures of central tendency, position, and dispersion. Use <code>hist = TRUE</code> to create a histrogram for each variable.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb6-2" title="2">data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/desc_stat.html">desc_stat</a></span>(EP, EL, CL, CD, CW, NR,</a>
+<a class="sourceLine" id="cb6-4" title="4">            <span class="dt">hist =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>()</a></code></pre></div>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;"></p>
+<pre><code># A tibble: 27 x 7
    Statistic      CD      CL      CW       EL        EP      NR
    &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
  1 AV.dev      0.948   1.98    5.21    0.995    0.0459    1.30 
@@ -233,7 +237,7 @@ No outlier identified. </code></pre>
  8 median     16      28.7    24.5    15.1      0.544    16    
  9 min        12.9    23.5    11.1    11.5      0.386    12.4  
 10 n         156     156     156     156      156       156    
-# ... with 13 more rows</code></pre>
+# ... with 17 more rows</code></pre>
 <p>To compute the statistics for each level of a factor, use the function <code>split_factor()</code> before calling <code><a href="../reference/desc_stat.html">desc_stat()</a></code>. In addition, it is possible to select the statistics to compute using the argument <code>stats</code>, that is a comma-separated vector of names with <code>"</code> at the beginning and end of vector only.</p>
 <ul>
 <li>This will work:
@@ -385,7 +389,7 @@ NKR x NKE
 <a class="sourceLine" id="cb15-2" title="2">lpc2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb15-3" title="3"><span class="st">       </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb15-4" title="4"><span class="st">       </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="co"># Don't show the result in the console</span></a></code></pre></div>
-<p>Using the <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> function, it is possible to compute a Mantel’s test <span class="citation">(Mantel <a href="#ref-Mantel1967">1967</a>)</span> for all pairwise correlation matrices of the above example.</p>
+<p>Using the <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> function, it is possible to compute a Mantel’s test <span class="citation">(Mantel <a href="#ref-Mantel1967" role="doc-biblioref">1967</a>)</span> for all pairwise correlation matrices of the above example.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">lpc2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">names =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"H"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">""</span>))</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-8-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>This same plot may be obtained by passing correlation matrices with the same dimension to an object of class <code>lpcor</code> and then applying the function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code>.</p>
@@ -1403,7 +1407,7 @@ H9
 <div id="nonparametric-confidence-interval-for-pearsons-correlation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nonparametric-confidence-interval-for-pearsons-correlation" class="anchor"></a>Nonparametric confidence interval for Pearson’s correlation</h2>
-<p>Recently, a Gaussian-independent estimator for the confidence interval of Pearson’s correlation coefficient was proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018">2018</a>)</span>. This estimator is based on the sample size and strength of associations and may be estimated using the function <code><a href="../reference/corr_ci.html">corr_ci()</a></code>. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (r), or using a dataframe. The following code computes the confidence interval and make a plot to show the results.</p>
+<p>Recently, a Gaussian-independent estimator for the confidence interval of Pearson’s correlation coefficient was proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018" role="doc-biblioref">2018</a>)</span>. This estimator is based on the sample size and strength of associations and may be estimated using the function <code><a href="../reference/corr_ci.html">corr_ci()</a></code>. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (r), or using a dataframe. The following code computes the confidence interval and make a plot to show the results.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># Use a data frame</span></a>
 <a class="sourceLine" id="cb27-2" title="2">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb27-3" title="3"><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
@@ -1452,7 +1456,7 @@ Required sample size: 194
 <div id="collinearity-diagnostic" class="section level1">
 <h1 class="hasAnchor">
 <a href="#collinearity-diagnostic" class="anchor"></a>Collinearity diagnostic</h1>
-<p>The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor traits. Several indicators, such as Variance Inflation Factor, Condition Number, and Matrix Determinant are considered <span class="citation">(T. Olivoto et al. <a href="#ref-Olivoto2017f">2017</a>; Olivoto T. et al. <a href="#ref-Olivoto2017c">2017</a>)</span> The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class <code>group_factor</code>, which split a dataframe into subsets based on one or more grouping factors.</p>
+<p>The following codes compute a complete collinearity diagnostic of a correlation matrix of predictor traits. Several indicators, such as Variance Inflation Factor, Condition Number, and Matrix Determinant are considered <span class="citation">(T. Olivoto et al. <a href="#ref-Olivoto2017f" role="doc-biblioref">2017</a>; Olivoto T. et al. <a href="#ref-Olivoto2017c" role="doc-biblioref">2017</a>)</span> The diagnostic may be performed using: (i) correlation matrices; (ii) dataframes, or (iii) an object of class <code>group_factor</code>, which split a dataframe into subsets based on one or more grouping factors.</p>
 <div id="using-a-correlation-matrix-which-was-estimated-earlier" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-a-correlation-matrix-which-was-estimated-earlier" class="anchor"></a>Using a correlation matrix, which was estimated earlier</h2>
@@ -1817,7 +1821,7 @@ NR 0.4351188  0.29047403  0.18639351</code></pre>
 <h3 class="hasAnchor">
 <a href="#based-on-the-mean-for-each-genotype" class="anchor"></a>Based on the mean for each genotype</h3>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">d2 =<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">nclust =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p>The S3 generic function plot() may be used to plot the dendrogram generated by the function <code><a href="../reference/clustering.html">clustering()</a></code>. A dashed line is draw at the cutpoint suggested according to <span class="citation">Mojena (<a href="#ref-Mojena1977">1977</a>)</span>.</p>
+<p>The S3 generic function plot() may be used to plot the dendrogram generated by the function <code><a href="../reference/clustering.html">clustering()</a></code>. A dashed line is draw at the cutpoint suggested according to <span class="citation">Mojena (<a href="#ref-Mojena1977" role="doc-biblioref">1977</a>)</span>.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d2, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-30-1.png" width="528" style="display: block; margin: auto;"> According to the suggested cutpoint, two clusters are formed. The number of clusters may also be found using intensive computation. I suggest the package <a href="http://stat.sys.i.kyoto-u.ac.jp/prog/pvclust/">pcvlust</a>, an R package for assessing the uncertainty in hierarchical cluster analysis. The implementation may be see below.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(pvclust)</a>

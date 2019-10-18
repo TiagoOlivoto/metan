@@ -147,7 +147,7 @@
       <h1>Parametric and non-parametric stability statistics</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-14</h4>
+            <h4 class="date">2019-10-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_stability.Rmd"><code>vignettes/vignettes_stability.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_stability.Rmd</code></div>
@@ -189,7 +189,7 @@
 <div id="clustering-tester-locations" class="section level1">
 <h1 class="hasAnchor">
 <a href="#clustering-tester-locations" class="anchor"></a>Clustering tester locations</h1>
-<p>The function <code><a href="../reference/ge_cluster.html">ge_cluster()</a></code> computes a cluster analysis for grouping environments based on its similarities using an Euclidean distance based on standardized data. Line means are divided by the phenotypic standard error of the relevant environment after its mean has been subtracted. By standardizing the data each environment will have a mean of zero and unit variance, and the effect of variability in phenotypic variance (as well as the mean) should be reduced <span class="citation">(Fox and Rosielle <a href="#ref-Fox1982">1982</a>)</span>.</p>
+<p>The function <code><a href="../reference/ge_cluster.html">ge_cluster()</a></code> computes a cluster analysis for grouping environments based on its similarities using an Euclidean distance based on standardized data. Line means are divided by the phenotypic standard error of the relevant environment after its mean has been subtracted. By standardizing the data each environment will have a mean of zero and unit variance, and the effect of variability in phenotypic variance (as well as the mean) should be reduced <span class="citation">(Fox and Rosielle <a href="#ref-Fox1982" role="doc-biblioref">1982</a>)</span>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">d1 =<span class="st"> </span><span class="kw"><a href="../reference/ge_cluster.html">ge_cluster</a></span>(data_ge, ENV, GEN, GY, <span class="dt">nclust =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d1, <span class="dt">nclust =</span> <span class="dv">4</span>)</a></code></pre></div>
 <p><img src="vignettes_stability_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;"></p>
@@ -197,7 +197,7 @@
 <div id="joint-regression-analysis" class="section level1">
 <h1 class="hasAnchor">
 <a href="#joint-regression-analysis" class="anchor"></a>Joint regression analysis</h1>
-<p><span class="citation">Eberhart and Russell (<a href="#ref-Eberhart1966">1966</a>)</span> popularized the regression-based stability analysis. In these procedures, the adaptability and stability analysis is performed by means of adjustments of regression equations where the dependent variable is predicted as a function of an environmental index, according to the following model:</p>
+<p><span class="citation">Eberhart and Russell (<a href="#ref-Eberhart1966" role="doc-biblioref">1966</a>)</span> popularized the regression-based stability analysis. In these procedures, the adaptability and stability analysis is performed by means of adjustments of regression equations where the dependent variable is predicted as a function of an environmental index, according to the following model:</p>
 <p><span class="math display">\[
 \mathop Y\nolimits_{ij}  = {\beta _{0i}} + {\beta _{1i}}{I_j} + {\delta _{ij}} + {\bar \varepsilon _{ij}}
 \]</span> where <span class="math inline">\({\beta _{0i}}\)</span> is the grand mean of the genotype <em>i</em> (<em>i</em> = 1, 2, …, I); <span class="math inline">\({\beta _{1i}}\)</span> is the linear response (slope) of the genotype <em>i</em> to the environmental index; <em>Ij</em> is the environmental index (<em>j</em> = 1, 2, …, <em>e</em>), where <span class="math inline">\({I_j} = [(y_{.j}/g)- (y_{..}/ge)]\)</span>, <span class="math inline">\({\delta _{ij}}\)</span> is the deviation from the regression, and <span class="math inline">\({\bar \varepsilon _{ij}}\)</span> is the experimental error. The model is fitted with the function <code><a href="../reference/ge_reg.html">ge_reg()</a></code>. The S3 methods <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> may be used to explore the fitted model.</p>
@@ -796,7 +796,7 @@ G9
 <div id="genotypic-confidence-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#genotypic-confidence-index" class="anchor"></a>Genotypic confidence index</h1>
-<p><span class="citation">Annicchiarico (<a href="#ref-Annicchiarico1992">1992</a>)</span> proposed a stability method in which the stability parameter is measured by the superiority of the genotype in relation to the average of each environment, according to the following model:</p>
+<p><span class="citation">Annicchiarico (<a href="#ref-Annicchiarico1992" role="doc-biblioref">1992</a>)</span> proposed a stability method in which the stability parameter is measured by the superiority of the genotype in relation to the average of each environment, according to the following model:</p>
 <p><span class="math display">\[
 {Z_{ij}} = \frac{{{Y_{ij}}}}{{{{\bar Y}_{.j}}}} \times 100
 \]</span> The genotypic confidence index of the genotype <em>i</em> (<span class="math inline">\(W_i\)</span>) is then estimated as follows:</p>
@@ -1268,7 +1268,7 @@ G9
 <div id="superiority-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#superiority-index" class="anchor"></a>Superiority index</h1>
-<p>The function <code><a href="../reference/superiority.html">superiority()</a></code> implements the nonparametric method proposed by <span class="citation">Lin and Binns (<a href="#ref-Lin1988">1988</a>)</span>, which considers that a measure of cultivar general superiority for cultivar x location data is defined as the distance mean square between the cultivar’s response and the maximum response averaged over all locations, according to the following model.</p>
+<p>The function <code><a href="../reference/superiority.html">superiority()</a></code> implements the nonparametric method proposed by <span class="citation">Lin and Binns (<a href="#ref-Lin1988" role="doc-biblioref">1988</a>)</span>, which considers that a measure of cultivar general superiority for cultivar x location data is defined as the distance mean square between the cultivar’s response and the maximum response averaged over all locations, according to the following model.</p>
 <p><span class="math display">\[
 P_i = \sum\limits_{j = 1}^n{(y_{ij} - y_{.j})^2/(2n)}
 \]</span> where <em>n</em> is the number of environments</p>
@@ -1540,7 +1540,7 @@ G9
 <div id="environmental-stratification" class="section level1">
 <h1 class="hasAnchor">
 <a href="#environmental-stratification" class="anchor"></a>Environmental stratification</h1>
-<p>A method that combines stability analysis and environmental stratification using factor analysis was proposed by <span class="citation">Murakami and Cruz (<a href="#ref-murakami2004">2004</a>)</span>. This method is implemented with the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>, as follows:</p>
+<p>A method that combines stability analysis and environmental stratification using factor analysis was proposed by <span class="citation">Murakami and Cruz (<a href="#ref-murakami2004" role="doc-biblioref">2004</a>)</span>. This method is implemented with the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>, as follows:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">fact =<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(data_ge, ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(fact<span class="op">$</span>GY)</a></code></pre></div>
 <p><img src="vignettes_stability_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
@@ -4675,7 +4675,7 @@ G9
 <p>Lin, C. S., and M. R. Binns. 1988. “A superiority measure of cultivar performance for cultivar x location data.” <em>Canadian Journal of Plant Science</em> 68 (1): 193–98. <a href="https://doi.org/10.4141/cjps88-018">https://doi.org/10.4141/cjps88-018</a>.</p>
 </div>
 <div id="ref-murakami2004">
-<p>Murakami, D.M., and C.D. Cruz. 2004. “Proposal of methodologies for environment stratification and analysis of genotype adaptability.” <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11. <a href="http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf">http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf</a>.</p>
+<p>Murakami, D. M., and C. D. Cruz. 2004. “Proposal of methodologies for environment stratification and analysis of genotype adaptability.” <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11. <a href="http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf">http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf</a>.</p>
 </div>
 </div>
 </div>

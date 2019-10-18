@@ -54,11 +54,14 @@ data_ge2 %>%
 
 
 # Descriptive statistics
-The function `desc_stat()` may be used to compute measures of central tendency, position, and dispersion.
+The function `desc_stat()` may be used to compute measures of central tendency, position, and dispersion. Use `hist = TRUE` to create a histrogram for each variable.
 
-```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
+library(metan)
 data_ge2 %>%
-  desc_stat(EP, EL, CL, CD, CW, NR)
+  desc_stat(EP, EL, CL, CD, CW, NR,
+            hist = TRUE) %>% 
+  print()
 ```
 
 To compute the statistics for each level of a factor, use the function `split_factor()` before calling `desc_stat()`. In addition, it is possible to select the statistics to compute using the argument `stats`, that is a comma-separated vector of names with `"` at the beginning and end of vector only.

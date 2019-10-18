@@ -147,7 +147,7 @@
       <h1>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-14</h4>
+            <h4 class="date">2019-10-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_metan.Rmd"><code>vignettes/vignettes_metan.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_metan.Rmd</code></div>
@@ -195,7 +195,7 @@
 <div id="fitting-the-model" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h3>
-<p>The AMMI model is fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, which is the acronym for the weighted average of absolute scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019">2019</a>)</span>. For more details, please see <code><a href="../reference/waas.html">?waas</a></code>.</p>
+<p>The AMMI model is fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, which is the acronym for the weighted average of absolute scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span>. For more details, please see <code><a href="../reference/waas.html">?waas</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge, ENV, GEN, REP, GY)</a></code></pre></div>
 <pre><code>Done!</code></pre>
 </div>
@@ -1135,7 +1135,7 @@ G5
 <div id="blup-based-stability-index" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blup-based-stability-index" class="anchor"></a>BLUP-based stability index</h2>
-<p>The WAASB index <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019">2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects and was already computed when we fitted the model with <code><a href="../reference/waas.html">waas()</a></code>. This statistic may be shown with <code><a href="../reference/get_model_data.html">get_model_data()</a></code>.</p>
+<p>The WAASB index <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects and was already computed when we fitted the model with <code><a href="../reference/waas.html">waas()</a></code>. This statistic may be shown with <code><a href="../reference/get_model_data.html">get_model_data()</a></code>.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(model2, <span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb18-2" title="2"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -1230,7 +1230,7 @@ G9
 </tr>
 </tbody>
 </table>
-<p>The function <code><a href="../reference/Resende_indexes.html">Resende_indexes()</a></code> may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See <span class="citation">Alves et al. (<a href="#ref-Alves2018">2018</a>)</span> for more details.</p>
+<p>The function <code><a href="../reference/Resende_indexes.html">Resende_indexes()</a></code> may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See <span class="citation">Alves et al. (<a href="#ref-Alves2018" role="doc-biblioref">2018</a>)</span> for more details.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">index =<span class="st"> </span>model2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb19-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>()</a>
 <a class="sourceLine" id="cb19-3" title="3">  <span class="kw">print_table</span>(index<span class="op">$</span>GY)</a></code></pre></div>
@@ -1576,7 +1576,7 @@ G9
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualizing-the-biplot" class="anchor"></a>Visualizing the Biplot</h2>
-<p>The generic function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation">Yan and Kang (<a href="#ref-Yan2003">2003</a>)</span>}.</p>
+<p>The generic function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation">Yan and Kang (<a href="#ref-Yan2003" role="doc-biblioref">2003</a>)</span>}.</p>
 <ul>
 <li>
 <code>type = 1</code> A basic biplot.</li>
@@ -1613,15 +1613,15 @@ G9
 <a href="#parametric-and-non-parametric-statistics" class="anchor"></a>Parametric and non-parametric statistics</h1>
 <p>The metan package provides an easy way to compute several world-known stability methods. Up to the version 0.2.0, the following stability methods are implemented:</p>
 <ul>
-<li>Joint regression analysis <span class="citation">(Eberhart and Russell <a href="#ref-Eberhart1966">1966</a>)</span>, using the function <code><a href="../reference/ge_reg.html">ge_reg()</a></code>
+<li>Joint regression analysis <span class="citation">(Eberhart and Russell <a href="#ref-Eberhart1966" role="doc-biblioref">1966</a>)</span>, using the function <code><a href="../reference/ge_reg.html">ge_reg()</a></code>
 </li>
-<li>Genotypic confidence index <span class="citation">(Annicchiarico <a href="#ref-Annicchiarico1992">1992</a>)</span>, using the function <code><a href="../reference/Annicchiarico.html">Annicchiarico()</a></code>
+<li>Genotypic confidence index <span class="citation">(Annicchiarico <a href="#ref-Annicchiarico1992" role="doc-biblioref">1992</a>)</span>, using the function <code><a href="../reference/Annicchiarico.html">Annicchiarico()</a></code>
 </li>
-<li>Nonparametric superiority index <span class="citation">(Lin and Binns <a href="#ref-Lin1988">1988</a>)</span>, using the function <code><a href="../reference/superiority.html">superiority()</a></code>
+<li>Nonparametric superiority index <span class="citation">(Lin and Binns <a href="#ref-Lin1988" role="doc-biblioref">1988</a>)</span>, using the function <code><a href="../reference/superiority.html">superiority()</a></code>
 </li>
-<li>Ecovalence <span class="citation">(Wricke <a href="#ref-Wricke1965">1965</a>)</span>, using the function <code><a href="../reference/ecovalence.html">ecovalence()</a></code>
+<li>Ecovalence <span class="citation">(Wricke <a href="#ref-Wricke1965" role="doc-biblioref">1965</a>)</span>, using the function <code><a href="../reference/ecovalence.html">ecovalence()</a></code>
 </li>
-<li>Stability analysis and environmental stratification <span class="citation">(Murakami and Cruz <a href="#ref-murakami2004">2004</a>)</span>, using the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>
+<li>Stability analysis and environmental stratification <span class="citation">(Murakami and Cruz <a href="#ref-murakami2004" role="doc-biblioref">2004</a>)</span>, using the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>
 </li>
 </ul>
 <p>The easiest way to compute the above-mentioned stability indexes is by using the function <code><a href="../reference/ge_stats.html">ge_stats()</a></code>. This function basically returns a summary of each method. If you are looking for more details from each method like <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, I suggest computing that methods using their own function.</p>
@@ -1635,7 +1635,7 @@ G9
 <div id="selection-based-on-multiple-traits" class="section level1">
 <h1 class="hasAnchor">
 <a href="#selection-based-on-multiple-traits" class="anchor"></a>Selection based on multiple traits</h1>
-<p>The multi-trait stability index (MTSI) was proposed by <span class="citation">Olivoto, Lúcio, Da silva, Sari, et al. (<a href="#ref-Olivoto2019a">2019</a>)</span> and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. Note that a model may be fitted easier and faster using the forward-pipe <code><a href="../reference/pipe.html">%&gt;%</a></code> and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). Using <code><a href="../reference/pipe.html">%&gt;%</a></code> make it the coding logical and clean especially when the output of a function is used as input in a second function.</p>
+<p>The multi-trait stability index (MTSI) was proposed by <span class="citation">Olivoto, Lúcio, Da silva, Sari, et al. (<a href="#ref-Olivoto2019a" role="doc-biblioref">2019</a>)</span> and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. Note that a model may be fitted easier and faster using the forward-pipe <code><a href="../reference/pipe.html">%&gt;%</a></code> and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). Using <code><a href="../reference/pipe.html">%&gt;%</a></code> make it the coding logical and clean especially when the output of a function is used as input in a second function.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
 <a class="sourceLine" id="cb23-3" title="3">        <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW),</a>
@@ -1668,10 +1668,10 @@ G9
 <p>Lin, C. S., and M. R. Binns. 1988. “A superiority measure of cultivar performance for cultivar x location data.” <em>Canadian Journal of Plant Science</em> 68 (1): 193–98. <a href="https://doi.org/10.4141/cjps88-018">https://doi.org/10.4141/cjps88-018</a>.</p>
 </div>
 <div id="ref-murakami2004">
-<p>Murakami, D.M., and C.D. Cruz. 2004. “Proposal of methodologies for environment stratification and analysis of genotype adaptability.” <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11. <a href="http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf">http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf</a>.</p>
+<p>Murakami, D. M., and C. D. Cruz. 2004. “Proposal of methodologies for environment stratification and analysis of genotype adaptability.” <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11. <a href="http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf">http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf</a>.</p>
 </div>
 <div id="ref-Olivoto2019">
-<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, V.S. Marchioro, V.Q. de Souza, and E. Jost. 2019. “Mean performance and stability in multi-environment trials I: Combining features of AMMI and BLUP techniques.” <em>Agronomy Journal</em>.</p>
+<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, V. S. Marchioro, V. Q. de Souza, and E. Jost. 2019. “Mean performance and stability in multi-environment trials I: Combining features of AMMI and BLUP techniques.” <em>Agronomy Journal</em>.</p>
 </div>
 <div id="ref-Olivoto2019a">
 <p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, B. G. Sari, and M. I. Diel. 2019. “Mean performance and stability in multi-environment trials II: Selection based on multiple traits.” <em>Agronomy Journal</em>.</p>

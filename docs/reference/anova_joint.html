@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Graphical analysis of genotype-vs-environment interaction — ge_plot • metan</title>
+<title>Joint analysis of variance — anova_joint • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,11 +42,9 @@
 
 
 
-<meta property="og:title" content="Graphical analysis of genotype-vs-environment interaction — ge_plot" />
-<meta property="og:description" content="This function produces a line plot for a graphical interpretation of the
-genotype-vs-environment interaction. By default, environments are in the x
-axis whereas the genotypes are depicted by different lines. The y axis
-contains the value of the selected variable." />
+<meta property="og:title" content="Joint analysis of variance — anova_joint" />
+<meta property="og:description" content="Performs a joint analysis of variance to check for the presence of
+genotype-vs-environment interactions." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -190,19 +188,17 @@ contains the value of the selected variable." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Graphical analysis of genotype-vs-environment interaction</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/ge_plot.R'><code>R/ge_plot.R</code></a></small>
-    <div class="hidden name"><code>ge_plot.Rd</code></div>
+    <h1>Joint analysis of variance</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/anova_joint.R'><code>R/anova_joint.R</code></a></small>
+    <div class="hidden name"><code>anova_joint.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function produces a line plot for a graphical interpretation of the
-genotype-vs-environment interaction. By default, environments are in the x
-axis whereas the genotypes are depicted by different lines. The y axis
-contains the value of the selected variable.</p>
+    <p>Performs a joint analysis of variance to check for the presence of
+genotype-vs-environment interactions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ge_plot</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>resp</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>anova_joint</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -215,39 +211,54 @@ Genotypes, replication/block and response variable(s).</p></td>
     <tr>
       <th>env</th>
       <td><p>The name of the column that contains the levels of the
-environments</p></td>
+environments. The analysis of variance is computed for each level of this
+factor.</p></td>
     </tr>
     <tr>
       <th>gen</th>
       <td><p>The name of the column that contains the levels of the genotypes.</p></td>
     </tr>
     <tr>
+      <th>rep</th>
+      <td><p>The name of the column that contains the levels of the
+replications/blocks.</p></td>
+    </tr>
+    <tr>
       <th>resp</th>
-      <td><p>The response variable.</p></td>
+      <td><p>The response variable(s). To analyze multiple variables in a
+single procedure a vector of variables may be used. For example <code>resp
+= c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
-      <th>theme</th>
-      <td><p>The graphical theme of the plot. Default is <code>theme =
-theme_waasb()</code>. Please, see <code>?WAASB::theme_waasb</code>. An own theme can be
-applied using the arguments: <code>theme = theme(some stuff here)</code>. For
-more details, please, see <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>?ggplot2::theme</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>colour</th>
-      <td><p>Logical argument. If <code>FALSE</code> then the plot will not be
-colored.</p></td>
+      <th>verbose</th>
+      <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run
+silently.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>gg, ggplot</code>.</p>
+    <p>A list where each element is the result for one variable containing
+  the ANOVA table.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'>ge_plot</span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>PH</span>)</div><div class='img'><img src='ge_plot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ge_plot</span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>PH</span>)+
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_gray</a></span>()</div><div class='img'><img src='ge_plot-2.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='co'># traditional usage approach</span>
+<span class='no'>anova1</span> <span class='kw'>=</span> <span class='fu'>anova_joint</span>(<span class='no'>data_ge</span>,
+                     <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                     <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                     <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                     <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; All variables analyzed had significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
+<span class='co'># Using the pipe operator %&gt;%</span>
+<span class='co'># Two variables, one run.</span>
+<span class='no'>anova2</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span> <span class='fu'>anova_joint</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+#&gt; Evaluating variable HM 100 % 
+#&gt; All variables analyzed had significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

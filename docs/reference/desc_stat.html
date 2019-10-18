@@ -197,7 +197,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>desc_stat</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>hist</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -238,6 +239,11 @@ deviations), <code>valid.n</code> (The size of sample with valid number (not NA)
 <code>'var.amo'</code> (the sample variance), <code>'var.pop'</code> (the population
 variance). Use a comma-separated vector of names to select the statistics.
 For example, <code>stats = c("media, mean, CV, n")</code>.</p></td>
+    </tr>
+    <tr>
+      <th>hist</th>
+      <td><p>Logical argument defaults to <code>FALSE</code>. If <code>hist = TRUE</code>
+then a histogram is created for each selected variable.</p></td>
     </tr>
     <tr>
       <th>level</th>

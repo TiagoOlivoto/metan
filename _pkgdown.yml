@@ -125,6 +125,7 @@ reference:
     contents:
       - Annicchiarico
       - anova_ind
+      - anova_joint
       - ecovalence
       - ge_cluster
       - ge_factanal
@@ -136,6 +137,8 @@ reference:
       - plot.ge_factanal
       - plot.ge_reg
       - print.Annicchiarico
+      - print.anova_ind
+      - print.anova_joint
       - print.ge_factanal
       - print.ge_reg
       - print.ge_stats
@@ -196,6 +199,7 @@ reference:
   - title: "Datasets"
     desc: "Data for reproducible examples"
     contents:
+      - data_alpha
       - data_g
       - data_ge
       - data_ge2

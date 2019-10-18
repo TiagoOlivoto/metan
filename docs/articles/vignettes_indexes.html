@@ -147,7 +147,7 @@
       <h1>Indexes for simultaneous selection</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-14</h4>
+            <h4 class="date">2019-10-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_indexes.Rmd"><code>vignettes/vignettes_indexes.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_indexes.Rmd</code></div>
@@ -164,7 +164,7 @@
 <div id="fai-blup-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
-<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/waasb.html">waasb()</a></code> and then the function <code><a href="../reference/fai_blup.html">fai_blup()</a></code> is used to compute the FAI-BLUP index.</p>
+<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/waasb.html">waasb()</a></code> and then the function <code><a href="../reference/fai_blup.html">fai_blup()</a></code> is used to compute the FAI-BLUP index.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
@@ -235,7 +235,7 @@ H13 H6
 <div id="multi-trait-stability-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#multi-trait-stability-index" class="anchor"></a>Multi-trait stability index</h1>
-<p>The function <code><a href="../reference/mtsi.html">mtsi()</a></code> is used to compute the multi-trait stability index (<em>MTSI</em>) proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2019a">2019</a>)</span>. The first argument is a model of the class <code>waasb</code> or <code>waas</code>. It is possible to compute the <em>MTSI</em> for both <em>WAASB</em> -stability only- and <em>WAASBY</em> -simultaneous selection for mean performance and stability.</p>
+<p>The function <code><a href="../reference/mtsi.html">mtsi()</a></code> is used to compute the multi-trait stability index (<em>MTSI</em>) proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2019a" role="doc-biblioref">2019</a>)</span>. The first argument is a model of the class <code>waasb</code> or <code>waas</code>. It is possible to compute the <em>MTSI</em> for both <em>WAASB</em> -stability only- and <em>WAASBY</em> -simultaneous selection for mean performance and stability.</p>
 <div id="based-on-stability-only" class="section level2">
 <h2 class="hasAnchor">
 <a href="#based-on-stability-only" class="anchor"></a>Based on stability only</h2>

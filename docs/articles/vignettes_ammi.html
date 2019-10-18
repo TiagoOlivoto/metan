@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-14</h4>
+            <h4 class="date">2019-10-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -1240,7 +1240,7 @@ NA
 </tr>
 </tbody>
 </table>
-<p>Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968">1968</a>)</span> or predictive success, such as cross-validation <span class="citation">(Piepho <a href="#ref-Piepho:1994">1994</a>)</span> should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The <code><a href="../reference/waas.html">waas()</a></code> function compute traditional AMMI analysis showing the number of significant axes according to Gollobs’s test. On the other hand, <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code> function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).</p>
+<p>Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968" role="doc-biblioref">1968</a>)</span> or predictive success, such as cross-validation <span class="citation">(Piepho <a href="#ref-Piepho:1994" role="doc-biblioref">1994</a>)</span> should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The <code><a href="../reference/waas.html">waas()</a></code> function compute traditional AMMI analysis showing the number of significant axes according to Gollobs’s test. On the other hand, <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code> function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(predicted<span class="op">$</span>GY, <span class="dt">n =</span> <span class="dv">10</span>))</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -3480,7 +3480,7 @@ H9
 <a href="#other-ammi-based-stability-indexes" class="anchor"></a>Other AMMI-based stability indexes</h1>
 <p>The following AMMI-based stability indexes may be computed using the function <code><a href="../reference/AMMI_indexes.html">AMMI_indexes()</a></code>:</p>
 <ul>
-<li><strong>AMMI stability value, ASV, <span class="citation">(Purchase, Hatting, and Deventer <a href="#ref-Purchase2000">2000</a>)</span>.</strong></li>
+<li><strong>AMMI stability value, ASV, <span class="citation">(Purchase, Hatting, and Deventer <a href="#ref-Purchase2000" role="doc-biblioref">2000</a>)</span>.</strong></li>
 </ul>
 <p><span class="math display">\[
 ASV = \sqrt {{{\left[ {\frac{{IPCA{1_{ss}}}}{{IPCA{2_{ss}}}} \times \left( {IPCA{1_{score}}} \right)} \right]}^2} + {{\left( {IPCA{2_{score}}} \right)}^2}}
@@ -3496,14 +3496,14 @@ SIP{C_i} = \sum\nolimits_{k = 1}^P {\left| {\mathop {\lambda }\nolimits_k^{0.5} 
 </ul>
 <p><span class="math display">\[
 E{V_i} = \sum\nolimits_{k = 1}^P {\mathop a\nolimits_{ik}^2 } /P
-\]</span> described by <span class="citation">Sneller, Kilgore-Norquest, and Dombek (<a href="#ref-Sneller1997">1997</a>)</span>, where <em>P</em> is the number of IPCA retained via F-tests;</p>
+\]</span> described by <span class="citation">Sneller, Kilgore-Norquest, and Dombek (<a href="#ref-Sneller1997" role="doc-biblioref">1997</a>)</span>, where <em>P</em> is the number of IPCA retained via F-tests;</p>
 <ul>
-<li><strong>absolute value of the relative contribution of IPCAs to the interaction <span class="citation">(Zali et al. <a href="#ref-Zali2012">2012</a>)</span>.</strong></li>
+<li><strong>absolute value of the relative contribution of IPCAs to the interaction <span class="citation">(Zali et al. <a href="#ref-Zali2012" role="doc-biblioref">2012</a>)</span>.</strong></li>
 </ul>
 <p><span class="math display">\[
 Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 \]</span></p>
-<p>where <span class="math inline">\({\theta _k}\)</span> is the percentage sum of squares explained by the <em>k</em>-th IPCA. Simultaneous selection indexes (ssi), are computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields <span class="citation">(Farshadfar <a href="#ref-Farshadfar2008">2008</a>)</span>, which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.</p>
+<p>where <span class="math inline">\({\theta _k}\)</span> is the percentage sum of squares explained by the <em>k</em>-th IPCA. Simultaneous selection indexes (ssi), are computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields <span class="citation">(Farshadfar <a href="#ref-Farshadfar2008" role="doc-biblioref">2008</a>)</span>, which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.</p>
 <p>The <code>AMMI_index()</code> function has two arguments. The first (x) is the model, which must be an object of the class <code>waas</code>. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If <code>x</code> is a list with more than one variable, <code>order.y</code> must be a vector of the same length of x. Each element of the vector must be one of the “h” or “l”. If “h” is used, the response variable will be ordered from maximum to minimum. If “l” is used then the response variable will be ordered from minimum to maximum. Using the forward-pipe operator <em>%&gt;%</em> it is possible to structure sequences of data operations left-to-right. The operators pipe their left-hand side values forward into expressions that appear on the right-hand side. When coupling several function calls with the pipe-operator, the benefit will become more apparent. Let’s construct this model.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">stab_indexes =<span class="st"> </span>data_ge <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb22-2" title="2"><span class="st">               </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
@@ -3943,7 +3943,7 @@ G9
 <p>Gollob, H. F. 1968. “A statistical model which combines features of factor analytic and analysis of variance techniques.” <em>Psychometrika</em> 33 (1): 73–115. <a href="https://doi.org/10.1007/BF02289676">https://doi.org/10.1007/BF02289676</a>.</p>
 </div>
 <div id="ref-Piepho:1994">
-<p>Piepho, H.P. 1994. “Best Linear Unbiased Prediction (Blup) for Regional Yield Trials: A Comparison to Additive Main Effects and Multiplicative Interaction (Ammi) Analysis.” <em>Theor. Appl. Genet.</em> 89 (5): 647–54. <a href="https://doi.org/10.1007/BF00222462">https://doi.org/10.1007/BF00222462</a>.</p>
+<p>Piepho, H. P. 1994. “Best Linear Unbiased Prediction (Blup) for Regional Yield Trials: A Comparison to Additive Main Effects and Multiplicative Interaction (Ammi) Analysis.” <em>Theor. Appl. Genet.</em> 89 (5): 647–54. <a href="https://doi.org/10.1007/BF00222462">https://doi.org/10.1007/BF00222462</a>.</p>
 </div>
 <div id="ref-Purchase2000">
 <p>Purchase, J. L., Hesta Hatting, and C. S. van Deventer. 2000. “Genotype × environment interaction of winter wheat ( Triticum aestivum L.) in South Africa: II. Stability analysis of yield performance.” <em>South African Journal of Plant and Soil</em> 17 (3): 101–7. <a href="https://doi.org/10.1080/02571862.2000.10634878">https://doi.org/10.1080/02571862.2000.10634878</a>.</p>
@@ -3952,7 +3952,7 @@ G9
 <p>Sneller, C. H., L. Kilgore-Norquest, and D. Dombek. 1997. “Repeatability of Yield Stability Statistics in Soybean.” <em>Crop Science</em> 37 (2): 383–90. <a href="https://doi.org/10.2135/cropsci1997.0011183X003700020013x">https://doi.org/10.2135/cropsci1997.0011183X003700020013x</a>.</p>
 </div>
 <div id="ref-Zali2012">
-<p>Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012. “Evaluation of genotype × environment interaction in chickpea using measures of stability from AMMI model.” <em>Annals of Biological Research</em> 3 (7): 3126–36. <a href="http://eprints.icrisat.ac.in/7173/">http://eprints.icrisat.ac.in/7173/</a>.</p>
+<p>Zali, H., E. Farshadfar, S. H. Sabaghpour, and R. Karimizadeh. 2012. “Evaluation of genotype × environment interaction in chickpea using measures of stability from AMMI model.” <em>Annals of Biological Research</em> 3 (7): 3126–36. <a href="http://eprints.icrisat.ac.in/7173/">http://eprints.icrisat.ac.in/7173/</a>.</p>
 </div>
 </div>
 </div>
