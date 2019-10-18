@@ -47,7 +47,7 @@
 #'  the factors in the rows and statistics in the columns).
 #'@author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@export
-#'@importFrom tidyr spread gather separate pivot_wider
+#'@importFrom tidyr spread gather separate pivot_wider pivot_longer
 #'@importFrom rlang quo as_label
 #' @examples
 #' library(metan)
