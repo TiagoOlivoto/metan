@@ -33,7 +33,7 @@
 #' yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, and
 #' ssiZa, respectively.
 #'
-#' @param .data An object of class \code{WAAS.AMMI}
+#' @param .data An object of class \code{waas} or \code{performs_ammi}
 #' @param order.y A vector of the same length of \code{x} used to order the
 #' response variable. Each element of the vector must be one of the \code{'h'}
 #' or \code{'l'}. If \code{'h'} is used, the response variable will be ordered
@@ -47,7 +47,8 @@
 #' for one variable.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @references Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
+#' @references
+#' Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
 #' Genotype vs environment interaction of winter wheat (Triticum aestivum L.)
 #' in South Africa: II. Stability analysis of yield performance. South African
 #' J. Plant Soil 17:101-107.
@@ -85,8 +86,8 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
     } else {
         order.y <- rep("h", length(.data))
     }
-    if (!is(.data, "waas")) {
-        stop("The object 'x' must be an object of class \"waas\"")
+    if (!class(.data)  %in% c("waas", "performs_ammi")) {
+        stop("The object 'x' must be an object of class \"waas\" or \"performs_ammi\"")
     }
     if (any(!order.y %in% c("h", "l")) == TRUE) {
         stop("The argument 'order.y' must be a comma-separated vector with 'h' or 'l'. Did you accidentally omit the space between the comma and the following word?")
@@ -152,14 +153,23 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         rEV <- rank(EV)
         ssiEV <- rEV + rY
         # AMMI stability values
-        pc <- model$anova$`Sum Sq`[5]/model$anova$`Sum Sq`[6]
+        pc <- model$PCA$`Sum Sq`[1]/model$PCA$`Sum Sq`[2]
         SCOR2 <- PCA[PCA[, 1] == "GEN", c(seq(4, 2 + 3))]
         ASV <- sqrt((pc * SCOR2[, 1])^2 + SCOR2[, 2]^2)
         rASV <- rank(ASV)
         ssiASV <- rASV + rY
-        temp <- data.frame(GEN = mean[1], Y = mean[2], rY = rY, ASV = ASV,
-                           rASV = rASV, ssiASV = ssiASV, SIPC = SIPC, rSIPC = rS, ssiSIPC = ssiSIPC,
-                           EV = EV, rEV = rEV, ssiEV = ssiEV)
+        temp <- data.frame(GEN = mean[1],
+                           Y = mean[2],
+                           rY = rY,
+                           ASV = ASV,
+                           rASV = rASV,
+                           ssiASV = ssiASV,
+                           SIPC = SIPC,
+                           rSIPC = rS,
+                           ssiSIPC = ssiSIPC,
+                           EV = EV,
+                           rEV = rEV,
+                           ssiEV = ssiEV)
         listres[[paste(names(.data[var]))]] <- temp
     }
     invisible(listres)
