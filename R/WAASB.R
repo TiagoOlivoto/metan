@@ -721,9 +721,10 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 pull(x[["LRT"]][3, 7])
             })) > prob)), "\n")
             cat("------------------------------------------------------------\n")
+        } else {
+            cat("All variables with significant (p < 0.05) genotype-vs-environment interaction\n")
         }
         cat("Done!\n")
     }
     invisible(structure(listres, class = "waasb"))
-
 }

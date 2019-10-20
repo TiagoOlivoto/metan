@@ -95,7 +95,7 @@ anova_joint <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       })) > 0.05)), "\n")
       cat("------------------------------------------------------------\n")
     } else {
-      cat("All variables analyzed had significant (p < 0.05) genotype-vs-environment interaction\n")
+      cat("All variables with significant (p < 0.05) genotype-vs-environment interaction\n")
     }
     cat("Done!\n")
   }

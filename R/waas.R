@@ -295,7 +295,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
             })) > prob)), "\n")
             cat("------------------------------------------------------------\n")
         } else {
-            cat("All variables analyzed had significant (p < 0.05) genotype-vs-environment interaction\n")
+            cat("All variables with significant (p < 0.05) genotype-vs-environment interaction\n")
         }
         cat("Done!\n")
     }
