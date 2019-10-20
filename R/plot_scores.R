@@ -17,13 +17,14 @@
 #' exploitation of narrow adaptations.
 #'
 #' @param x An object of class \code{performs_ammi}, \code{waas} or \code{waasb}.
-#' @param type Four types of graphics can be generated: \code{1 = PC1 x PC2},
-#'   default, to make inferences related to the interaction effects; \code{2 =
-#'   GY x PC1} to make inferences related to stability and productivity; \code{3
-#'   = GY x WAASB} (valid for objects of class \code{waas} or \code{waasb}), and
-#'   \code{4 = Nominal yield x Environment PC1}.
+#' @param type Four types of graphics can be generated: \code{1 = GY x PC1} to
+#'   make inferences related to stability and productivity; \code{2 = PC1 x PC2}
+#'   (default) default, to make inferences related to the interaction effects;
+#'   \code{3 = GY x WAASB} (valid for objects of class \code{waas} or
+#'   \code{waasb}), and \code{4 = Nominal yield x Environment PC1}.
 #' @param polygon Logical argument. If \code{TRUE}, a polygon is drawn when
-#' \code{type 1}.
+#' \code{type = 2}.
+#' @param main
 #' @param file.type The type of file to be exported. Valid parameter if
 #' \code{export = T|TRUE}.  Default is \code{'pdf'}. The graphic can also be
 #' exported in \code{*.tiff} format by declaring \code{file.type = 'tiff'}.
@@ -115,17 +116,17 @@
 #'                gen = GEN,
 #'                env = ENV,
 #'                rep = REP)
-#' # PC1 x PC2
-#' plot_scores(scores$GY,
-#'             type = 1,
-#'             polygon = TRUE)
-#'
 #' # GY x PC1
 #' plot_scores(scores$GY,
-#'             type = 2,
 #'             col.env = 'olivedrab',
 #'             col.gen = 'orange2',
 #'             x.lab = 'My own x label')
+#'
+#' # PC1 x PC2
+#' plot_scores(scores$GY,
+#'             type = 2,
+#'             polygon = TRUE)
+#'
 #'
 #' # GY x WAASB
 #' plot_scores(scores$GY,
@@ -134,7 +135,7 @@
 #'             size.tex.lab = 16)
 #'
 #'
-plot_scores <- function(x, type = 1, polygon = FALSE, file.type = "pdf",
+plot_scores <- function(x, type = 1, polygon = FALSE, title = TRUE, file.type = "pdf",
 export = FALSE, file.name = NULL, theme = theme_waasb(),
 axis.expand = 1.1, width = 8, height = 7, x.lim = NULL, x.breaks = waiver(),
 x.lab = NULL, y.lab = NULL, y.lim = NULL, y.breaks = waiver(),
@@ -145,7 +146,7 @@ line.alpha = 0.9, col.line = "black", col.gen = "orange",
 col.env = "forestgreen", col.alpha = 0.9, col.segm.gen = "transparent",
 col.segm.env = "forestgreen", resolution = 300, ...) {
 
-if (polygon == TRUE & type != 1) {
+if (polygon == TRUE & type != 2) {
 stop("The polygon can be drawn with type 1 graphic only.")
 }
   if (class(x) == "performs_ammi" & type == 3) {
@@ -158,6 +159,86 @@ nenv <- nrow(subset(x$model, type == "ENV"))
 ngen <- nrow(subset(x$model, type == "GEN"))
 
 if (type == 1) {
+  y.lab <- ifelse(!is.null(y.lab),
+                  y.lab,
+                  ifelse(
+                    class(x)  %in% c("waas", "performs_ammi"), paste0("PC1 (", round(x$PCA[1, 7], 2), "%)"),
+                    paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
+                  )
+  )
+  x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
+
+
+  if (is.null(x.lim) == FALSE) {
+    x.lim <- x.lim
+  } else {
+    x.lim <- c(min(x$model$Y) - (min(x$model$Y) * axis.expand -
+                                   min(x$model$Y)), max(x$model$Y) + (max(x$model$Y) *
+                                                                        axis.expand - max(x$model$Y)))
+  }
+
+  if (is.null(y.lim) == FALSE) {
+    y.lim <- y.lim
+  } else {
+    y.lim <- c(min(x$model$PC1 * axis.expand), max(x$model$PC1 *
+                                                     axis.expand))
+  }
+  mean <- mean(x$model$Y)
+  p1 <- ggplot2::ggplot(x$model, aes(Y, PC1, shape = type,
+                                     fill = type)) + geom_vline(xintercept = mean(x$model$Y),
+                                                                linetype = line.type, color = col.line, size = size.line,
+                                                                alpha = line.alpha) + geom_hline(yintercept = 0,
+                                                                                                 linetype = line.type, size = size.line, color = col.line,
+                                                                                                 alpha = line.alpha) + geom_segment(data = x$model,
+                                                                                                                                    aes(x = mean, y = 0, xend = Y, yend = PC1, size = type,
+                                                                                                                                        color = type, group = type)) + geom_point(size = size.shape,
+                                                                                                                                                                                  stroke = size.bor.tick, aes(fill = type), alpha = col.alpha) +
+    scale_shape_manual(labels = leg.lab, values = c(shape.env,
+                                                    shape.gen)) + scale_fill_manual(labels = leg.lab,
+                                                                                    values = c(col.env, col.gen)) + ggrepel::geom_text_repel(aes(Y,
+                                                                                                                                                 PC1, label = (Code)), size = size.tex.pa, col = c(rep(col.gen,
+                                                                                                                                                                                                       ngen), rep(col.env, nenv)), force = repulsion) +
+    theme %+replace% theme(aspect.ratio = 1, axis.text = element_text(size = size.tex.lab,
+                                                                      colour = "black"), axis.title = element_text(size = size.tex.lab,
+                                                                                                                   colour = "black"), legend.text = element_text(size = size.tex.leg),
+                           plot.title = element_text(size = size.tex.lab,
+                                                     hjust = 0, vjust = 1)) + labs(x = paste(x.lab),
+                                                                                   y = paste(y.lab)) + scale_x_continuous(limits = x.lim,
+                                                                                                                          breaks = x.breaks) + scale_y_continuous(limits = y.lim,
+                                                                                                                                                                  breaks = y.breaks) + scale_color_manual(name = "",
+                                                                                                                                                                                                          values = c(col.segm.env, col.segm.gen), theme(legend.position = "none")) +
+    scale_size_manual(name = "", values = c(size.segm.line,
+                                            size.segm.line), theme(legend.position = "none"))
+
+  if(title == TRUE){
+    p1 <- p1 + ggtitle("AMMI1 Biplot")
+  }
+  if (export == F | FALSE) {
+    return(p1)
+  } else if (file.type == "pdf") {
+    if (is.null(file.name)) {
+      pdf("GY x PC1.pdf", width = width, height = height)
+    } else pdf(paste0(file.name, ".pdf"), width = width,
+               height = height)
+    plot(p1)
+    dev.off()
+
+  }
+
+  if (file.type == "tiff") {
+    if (is.null(file.name)) {
+      tiff(filename = "GY x PC1.tiff", width = width,
+           height = height, units = "in", compression = "lzw",
+           res = resolution)
+    } else tiff(filename = paste0(file.name, ".tiff"),
+                width = width, height = height, units = "in",
+                compression = "lzw", res = resolution)
+    plot(p1)
+    dev.off()
+  }
+}
+
+if (type == 2) {
 y.lab <- ifelse(!is.null(y.lab),
                 y.lab,
                 ifelse(
@@ -186,7 +267,7 @@ y.lim <- c(min(x$model$PC2 * axis.expand), max(x$model$PC2 *
 axis.expand))
 }
 
-p1 <- ggplot(x$model, aes(PC1, PC2, shape = type, fill = type)) +
+p2 <- ggplot(x$model, aes(PC1, PC2, shape = type, fill = type)) +
 geom_vline(xintercept = 0, linetype = line.type,
 color = col.line, size = size.line, alpha = line.alpha) +
 geom_hline(yintercept = 0, linetype = line.type,
@@ -256,21 +337,23 @@ rownames(segs) <- NULL
 colnames(segs) <- NULL
 segs <- data.frame(segs)
 
-p1 <- p1 + geom_segment(aes(x = X1, y = X2), xend = 0,
+p2 <- p2 + geom_segment(aes(x = X1, y = X2), xend = 0,
 yend = 0, linetype = 2, size = size.segm.line,
 color = col.gen, data = segs, inherit.aes = FALSE) +
 geom_polygon(data = gen[indice, ], fill = NA,
   col = col.gen, linetype = 2)
 }
-
+if(title == TRUE){
+  p2 <- p2 + ggtitle("AMMI2 Biplot")
+}
 if (export == F | FALSE) {
-return(p1)
+return(p2)
 } else if (file.type == "pdf") {
 if (is.null(file.name)) {
 pdf("PC1 x PC2.pdf", width = width, height = height)
 } else pdf(paste0(file.name, ".pdf"), width = width,
 height = height)
-plot(p1)
+plot(p2)
 dev.off()
 }
 
@@ -282,94 +365,16 @@ tiff(filename = "PC1 x PC2.tiff", width = width,
 } else tiff(filename = paste0(file.name, ".tiff"),
 width = width, height = height, units = "in",
 compression = "lzw", res = resolution)
-plot(p1)
-dev.off()
-}
-
-}
-
-if (type == 2) {
-  y.lab <- ifelse(!is.null(y.lab),
-                  y.lab,
-                  ifelse(
-                    class(x)  %in% c("waas", "performs_ammi"), paste0("PC1 (", round(x$PCA[1, 7], 2), "%)"),
-                    paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
-                  )
-  )
-  x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
-
-
-if (is.null(x.lim) == FALSE) {
-x.lim <- x.lim
-} else {
-x.lim <- c(min(x$model$Y) - (min(x$model$Y) * axis.expand -
-min(x$model$Y)), max(x$model$Y) + (max(x$model$Y) *
-axis.expand - max(x$model$Y)))
-}
-
-if (is.null(y.lim) == FALSE) {
-y.lim <- y.lim
-} else {
-y.lim <- c(min(x$model$PC1 * axis.expand), max(x$model$PC1 *
-axis.expand))
-}
-mean <- mean(x$model$Y)
-p2 <- ggplot2::ggplot(x$model, aes(Y, PC1, shape = type,
-fill = type)) + geom_vline(xintercept = mean(x$model$Y),
-linetype = line.type, color = col.line, size = size.line,
-alpha = line.alpha) + geom_hline(yintercept = 0,
-linetype = line.type, size = size.line, color = col.line,
-alpha = line.alpha) + geom_segment(data = x$model,
-aes(x = mean, y = 0, xend = Y, yend = PC1, size = type,
-color = type, group = type)) + geom_point(size = size.shape,
-stroke = size.bor.tick, aes(fill = type), alpha = col.alpha) +
-scale_shape_manual(labels = leg.lab, values = c(shape.env,
-shape.gen)) + scale_fill_manual(labels = leg.lab,
-values = c(col.env, col.gen)) + ggrepel::geom_text_repel(aes(Y,
-PC1, label = (Code)), size = size.tex.pa, col = c(rep(col.gen,
-ngen), rep(col.env, nenv)), force = repulsion) +
-theme %+replace% theme(aspect.ratio = 1, axis.text = element_text(size = size.tex.lab,
-colour = "black"), axis.title = element_text(size = size.tex.lab,
-colour = "black"), legend.text = element_text(size = size.tex.leg),
-plot.title = element_text(size = size.tex.lab,
-  hjust = 0, vjust = 1)) + labs(x = paste(x.lab),
-y = paste(y.lab)) + scale_x_continuous(limits = x.lim,
-breaks = x.breaks) + scale_y_continuous(limits = y.lim,
-breaks = y.breaks) + scale_color_manual(name = "",
-values = c(col.segm.env, col.segm.gen), theme(legend.position = "none")) +
-scale_size_manual(name = "", values = c(size.segm.line,
-size.segm.line), theme(legend.position = "none"))
-
-if (export == F | FALSE) {
-return(p2)
-} else if (file.type == "pdf") {
-if (is.null(file.name)) {
-pdf("GY x PC1.pdf", width = width, height = height)
-} else pdf(paste0(file.name, ".pdf"), width = width,
-height = height)
-plot(p2)
-dev.off()
-
-}
-
-if (file.type == "tiff") {
-if (is.null(file.name)) {
-tiff(filename = "GY x PC1.tiff", width = width,
-  height = height, units = "in", compression = "lzw",
-  res = resolution)
-} else tiff(filename = paste0(file.name, ".tiff"),
-width = width, height = height, units = "in",
-compression = "lzw", res = resolution)
 plot(p2)
 dev.off()
 }
+
 }
 
 if (type == 3) {
-y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Weighted average of the absolute scores"))
-x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
+y.lab = ifelse(!is.null(y.lab), y.lab, paste0("Weighted average of the absolute scores"))
+x.lab = ifelse(!is.null(x.lab), x.lab, paste0("Grain yield"))
 if (class == "waasb") {
-
 if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
 } else {
@@ -415,7 +420,6 @@ breaks = x.breaks) + scale_y_continuous(limits = y.lim,
 breaks = y.breaks) + annotation_custom(I) + annotation_custom(II) +
 annotation_custom(III) + annotation_custom(IV)
 }
-
 if (class == "waas") {
 if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
@@ -424,7 +428,6 @@ x.lim <- c(min(x$model$Y) - (min(x$model$Y) *
   axis.expand - min(x$model$Y)), max(x$model$Y) +
   (max(x$model$Y) * axis.expand - max(x$model$Y)))
 }
-
 if (is.null(y.lim) == FALSE) {
 y.lim <- y.lim
 } else {
@@ -463,7 +466,9 @@ breaks = x.breaks) + scale_y_continuous(limits = y.lim,
 breaks = y.breaks) + annotation_custom(I) + annotation_custom(II) +
 annotation_custom(III) + annotation_custom(IV)
 }
-
+if(title == TRUE){
+  p3 <- p3 + ggtitle("WAASB x Y biplot")
+}
 if (export == F | FALSE) {
 return(p3)
 } else if (file.type == "pdf") {
@@ -522,7 +527,9 @@ colour = "black"), plot.title = element_text(size = size.tex.lab,
 hjust = 0, vjust = 1)) + scale_x_continuous(limits = x.lim,
 breaks = x.breaks) + scale_y_continuous(limits = y.lim,
 breaks = y.breaks, expand = expand_scale(mult = c(0.002, 0.1))) + labs(x = paste(x.lab), y = y.lab)
-
+if(title == TRUE){
+  p4 <- p4 + ggtitle("Nominal yield plot")
+}
 if (export == F | FALSE) {
 return(p4)
 } else if (file.type == "pdf") {

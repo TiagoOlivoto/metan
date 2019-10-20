@@ -1,8 +1,8 @@
 #' Additive Main effects and Multiplicative Interaction
 #'
-#' Compute the Additive Main effects and Multiplicative interaction. This is a
-#' helper function for other procedures performed in the \pkg{metan} package
-#' such as \code{\link{waas}} and \code{\link{wsmp}}
+#' Compute the Additive Main effects and Multiplicative interaction. This
+#' function also serves as a helper function for other procedures performed in
+#' the \pkg{metan} package such as \code{\link{waas}} and \code{\link{wsmp}}
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
@@ -31,7 +31,25 @@
 #' @examples
 #'
 #' library(metan)
-#' ammi_model = performs_ammi(data_ge, ENV, GEN, REP, GY)
+#' ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
+#'                            resp = c(GY, HM))
+#'
+#' # GY x PC1 (variable GY)
+#' plot_scores(scores$GY,
+#'             col.env = 'olivedrab',
+#'             col.gen = 'orange2',
+#'             x.lab = 'My own x label')
+#'
+#' # PC1 x PC2 (variable HM)
+#' plot_scores(scores$HM,
+#'             type = 2,
+#'             polygon = TRUE)
+#'
+#' # PC1 x PC2 (variable HM)
+#' # Draw a convex hull polygon
+#' plot_scores(scores$HM,
+#'             type = 2,
+#'             polygon = TRUE)
 #'
 #'
 performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {

@@ -4,14 +4,14 @@
 \alias{plot_scores}
 \title{Plot scores in different graphical interpretations}
 \usage{
-plot_scores(x, type = 1, polygon = FALSE, file.type = "pdf",
-  export = FALSE, file.name = NULL, theme = theme_waasb(),
-  axis.expand = 1.1, width = 8, height = 7, x.lim = NULL,
-  x.breaks = waiver(), x.lab = NULL, y.lab = NULL, y.lim = NULL,
-  y.breaks = waiver(), shape.gen = 21, shape.env = 23,
-  size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
-  size.tex.pa = 3.5, repulsion = 1, size.line = 0.5,
-  size.segm.line = 0.5, leg.lab = c("Env", "Gen"),
+plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
+  file.type = "pdf", export = FALSE, file.name = NULL,
+  theme = theme_waasb(), axis.expand = 1.1, width = 8, height = 7,
+  x.lim = NULL, x.breaks = waiver(), x.lab = NULL, y.lab = NULL,
+  y.lim = NULL, y.breaks = waiver(), shape.gen = 21,
+  shape.env = 23, size.shape = 2.2, size.bor.tick = 0.3,
+  size.tex.lab = 12, size.tex.pa = 3.5, repulsion = 1,
+  size.line = 0.5, size.segm.line = 0.5, leg.lab = c("Env", "Gen"),
   line.type = "solid", line.alpha = 0.9, col.line = "black",
   col.gen = "orange", col.env = "forestgreen", col.alpha = 0.9,
   col.segm.gen = "transparent", col.segm.env = "forestgreen",
@@ -20,14 +20,14 @@ plot_scores(x, type = 1, polygon = FALSE, file.type = "pdf",
 \arguments{
 \item{x}{An object of class \code{performs_ammi}, \code{waas} or \code{waasb}.}
 
-\item{type}{Four types of graphics can be generated: \code{1 = PC1 x PC2},
-default, to make inferences related to the interaction effects; \code{2 =
-GY x PC1} to make inferences related to stability and productivity; \code{3
-= GY x WAASB} (valid for objects of class \code{waas} or \code{waasb}), and
-\code{4 = Nominal yield x Environment PC1}.}
+\item{type}{Four types of graphics can be generated: \code{1 = GY x PC1} to
+make inferences related to stability and productivity; \code{2 = PC1 x PC2}
+(default) default, to make inferences related to the interaction effects;
+\code{3 = GY x WAASB} (valid for objects of class \code{waas} or
+\code{waasb}), and \code{4 = Nominal yield x Environment PC1}.}
 
 \item{polygon}{Logical argument. If \code{TRUE}, a polygon is drawn when
-\code{type 1}.}
+\code{type = 2}.}
 
 \item{file.type}{The type of file to be exported. Valid parameter if
 \code{export = T|TRUE}.  Default is \code{'pdf'}. The graphic can also be
@@ -169,17 +169,17 @@ scores = waasb(data_ge,
                gen = GEN,
                env = ENV,
                rep = REP)
-# PC1 x PC2
-plot_scores(scores$GY,
-            type = 1,
-            polygon = TRUE)
-
 # GY x PC1
 plot_scores(scores$GY,
-            type = 2,
             col.env = 'olivedrab',
             col.gen = 'orange2',
             x.lab = 'My own x label')
+
+# PC1 x PC2
+plot_scores(scores$GY,
+            type = 2,
+            polygon = TRUE)
+
 
 # GY x WAASB
 plot_scores(scores$GY,
