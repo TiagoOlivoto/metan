@@ -4,7 +4,7 @@
 \alias{cv_ammif}
 \title{Cross-validation procedure}
 \usage{
-cv_ammif(.data, env, gen, rep, resp, nboot = 100, block,
+cv_ammif(.data, env, gen, rep, resp, nboot = 200, block,
   design = "RCBD", verbose = TRUE)
 }
 \arguments{
@@ -21,11 +21,13 @@ replications/blocks.}
 
 \item{resp}{The response variable.}
 
-\item{nboot}{The number of resamples to be used in the cross-validation. Defaults to 100.}
+\item{nboot}{The number of resamples to be used in the cross-validation.
+Defaults to 200.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
-block design is considered. If block is informed, then a resolvable alpha-lattice
-design (Patterson and Williams, 1976) is employed. \strong{All effects are assumed to be fixed.}}
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+\strong{All effects are assumed to be fixed.}}
 
 \item{design}{The experimental design used in each environment. Defaults to
 \code{RCBD} (Randomized complete Block Design). For Completely Randomized
@@ -55,16 +57,16 @@ using AMMI-family models. By default, the first validation is carried out
 considering the AMMIF (all possible axis used). Considering this model, the
 original dataset is split up into two datasets: training set and validation
 set. The 'training' set has all combinations (genotype x environment) with
-N-1 replications. The 'validation' set has the remaining replication.
-The splitting of the dataset into modeling and validation sets depends on the
-design informed. For Completely Randomized Block Design (default), and alpha-lattice
-design (declaring \code{block} arguments), complete replicates are selected
-within environments. The remained replicate serves as validation data. If
-\code{design = 'RCD'} is informed, completely randomly samples are made for
-each genotype-by-environment combination (Olivoto et al. 2019). The estimated
-values for each member of the AMMI-family model are compared with the 'validation' data.
-The Root Mean Square Prediction Difference (RMSPD) is computed. At the end of boots,
-a list is returned.
+N-1 replications. The 'validation' set has the remaining replication. The
+splitting of the dataset into modeling and validation sets depends on the
+design informed. For Completely Randomized Block Design (default), and
+alpha-lattice design (declaring \code{block} arguments), complete replicates
+are selected within environments. The remained replicate serves as validation
+data. If \code{design = 'RCD'} is informed, completely randomly samples are
+made for each genotype-by-environment combination (Olivoto et al. 2019). The
+estimated values for each member of the AMMI-family model are compared with
+the 'validation' data. The Root Mean Square Prediction Difference (RMSPD) is
+computed. At the end of boots, a list is returned.
 }
 \examples{
 
@@ -74,8 +76,7 @@ model <- cv_ammif(data_ge,
                   env = ENV,
                   gen = GEN,
                   rep = REP,
-                  resp = GY,
-                  nboot = 100)
+                  resp = GY)
 
 # Alternatively (and more intuitively) using the pipe operator \%>\%
 model <- data_ge \%>\%
@@ -84,8 +85,8 @@ model <- data_ge \%>\%
 
 }
 \references{
-Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
-Biometrika 63:83-92.
+Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.
 }
 \seealso{
 \code{\link{cv_ammi}, \link{cv_blup}}

@@ -7,36 +7,38 @@
 #' considering the AMMIF (all possible axis used). Considering this model, the
 #' original dataset is split up into two datasets: training set and validation
 #' set. The 'training' set has all combinations (genotype x environment) with
-#' N-1 replications. The 'validation' set has the remaining replication.
-#' The splitting of the dataset into modeling and validation sets depends on the
-#' design informed. For Completely Randomized Block Design (default), and alpha-lattice
-#' design (declaring \code{block} arguments), complete replicates are selected
-#' within environments. The remained replicate serves as validation data. If
-#' \code{design = 'RCD'} is informed, completely randomly samples are made for
-#' each genotype-by-environment combination (Olivoto et al. 2019). The estimated
-#' values for each member of the AMMI-family model are compared with the 'validation' data.
-#' The Root Mean Square Prediction Difference (RMSPD) is computed. At the end of boots,
-#' a list is returned.
+#' N-1 replications. The 'validation' set has the remaining replication. The
+#' splitting of the dataset into modeling and validation sets depends on the
+#' design informed. For Completely Randomized Block Design (default), and
+#' alpha-lattice design (declaring \code{block} arguments), complete replicates
+#' are selected within environments. The remained replicate serves as validation
+#' data. If \code{design = 'RCD'} is informed, completely randomly samples are
+#' made for each genotype-by-environment combination (Olivoto et al. 2019). The
+#' estimated values for each member of the AMMI-family model are compared with
+#' the 'validation' data. The Root Mean Square Prediction Difference (RMSPD) is
+#' computed. At the end of boots, a list is returned.
 #'
 #' @param .data The dataset containing the columns related to Environments,
-#' Genotypes, replication/block and response variable(s).
+#'   Genotypes, replication/block and response variable(s).
 #' @param env The name of the column that contains the levels of the
-#' environments.
+#'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#' replications/blocks.
+#'   replications/blocks.
 #' @param resp The response variable.
 #' @param block Defaults to \code{NULL}. In this case, a randomized complete
-#' block design is considered. If block is informed, then a resolvable alpha-lattice
-#' design (Patterson and Williams, 1976) is employed. \strong{All effects are assumed to be fixed.}
-#' @param nboot The number of resamples to be used in the cross-validation. Defaults to 100.
+#'   block design is considered. If block is informed, then a resolvable
+#'   alpha-lattice design (Patterson and Williams, 1976) is employed.
+#'   \strong{All effects are assumed to be fixed.}
+#' @param nboot The number of resamples to be used in the cross-validation.
+#'   Defaults to 200.
 #' @param design The experimental design used in each environment. Defaults to
-#' \code{RCBD} (Randomized complete Block Design). For Completely Randomized
-#' Designs inform \code{design = 'CRD'}.
+#'   \code{RCBD} (Randomized complete Block Design). For Completely Randomized
+#'   Designs inform \code{design = 'CRD'}.
 #' @param verbose A logical argument to define if a progress bar is shown.
-#' Default is \code{TRUE}.
-#' @references Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
-#'  Biometrika 63:83-92.
+#'   Default is \code{TRUE}.
+#' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
+#'   resolvable incomplete block designs. Biometrika 63:83-92.
 #' @return
 #' An object of class \code{cv_ammif} with the following items:
 #' * \strong{RMSPD}: A vector with nboot-estimates of the Root Mean Squared
@@ -63,15 +65,14 @@
 #'                   env = ENV,
 #'                   gen = GEN,
 #'                   rep = REP,
-#'                   resp = GY,
-#'                   nboot = 100)
+#'                   resp = GY)
 #'
 #' # Alternatively (and more intuitively) using the pipe operator %>%
 #' model <- data_ge %>%
 #'          cv_ammif(ENV, GEN, REP, GY)
 #' }
 #'
-cv_ammif <- function(.data, env, gen, rep, resp, nboot = 100, block, design = "RCBD", verbose = TRUE) {
+cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "RCBD", verbose = TRUE) {
   if(missing(block)){
     if (!design %in% c("RCBD", "CRD")) {
       stop("Incorrect experimental design informed! Plesease inform RCBD for randomized complete block or CRD for completely randomized design.")

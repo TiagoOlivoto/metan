@@ -5,7 +5,7 @@
 \title{Cross-validation procedure}
 \usage{
 cv_ammi(.data, env, gen, rep, resp, block = NULL, naxis = 2,
-  nboot = 100, design = "RCBD", verbose = TRUE)
+  nboot = 200, design = "RCBD", verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -22,28 +22,31 @@ replications/blocks.}
 \item{resp}{The response variable.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
-block design is considered. If block is informed, then a resolvable alpha-lattice
-design (Patterson and Williams, 1976) is employed. \strong{All effects are assumed to be fixed.}}
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+\strong{All effects are assumed to be fixed.}}
 
 \item{naxis}{The number of axis to be considered for estimation of GE
 effects.}
 
-\item{nboot}{The number of resamples to be used in the cross-validation. Defaults to 100.}
+\item{nboot}{The number of resamples to be used in the cross-validation.
+Defaults to 200.}
 
-\item{design}{The experimental design. Defaults to \code{RCBD} (Randomized complete Block Design).
-For Completely Randomized Designs inform \code{design = 'CRD'}.}
+\item{design}{The experimental design. Defaults to \code{RCBD} (Randomized
+complete Block Design). For Completely Randomized Designs inform
+\code{design = 'CRD'}.}
 
 \item{verbose}{A logical argument to define if a progress bar is shown.
 Default is \code{TRUE}.}
 }
 \value{
-An object of class \code{cv_ammi} with the following items:
-\itemize{
-\item \strong{RMSPD}: A vector with nboot-estimates of the Root Mean Squared
+An object of class \code{cv_ammi} with the following items: *
+\strong{RMSPD}: A vector with nboot-estimates of the Root Mean Squared
 Prediction Difference between predicted and validating data.
+\itemize{
 \item \strong{RMSPDmean}: The mean of RMSPDmean estimates.
-\item \strong{Estimated}: A data frame that contain the values (predicted, observed,
-validation) of the last loop.
+\item \strong{Estimated}: A data frame that contain the values (predicted,
+observed, validation) of the last loop.
 \item \strong{Modeling}: The dataset used as modeling data in the last loop
 \item \strong{Testing}: The dataset used as testing data in the last loop.
 }
@@ -54,15 +57,15 @@ Cross-validation for estimation of AMMI models
 \details{
 THe original dataset is split into two datasets: training set and validation
 set. The 'training' set has all combinations (genotype x environment) with
-N-1 replications. The 'validation' set has the remaining replication.
-The splitting of the dataset into modeling and validation sets depends on the
-design informed. For Completely Randomized Block Design (default), and alpha-lattice
-design (declaring \code{block} arguments), complete replicates are selected
-within environments. The remained replicate serves as validation data. If
-\code{design = 'RCD'} is informed, completely randomly samples are made for
-each genotype-by-environment combination (Olivoto et al. 2019). The estimated
-values considering \code{naxis}-Interaction Principal Component Axis are
-compared with the 'validation' data. The Root Mean Square Prediction
+N-1 replications. The 'validation' set has the remaining replication. The
+splitting of the dataset into modeling and validation sets depends on the
+design informed. For Completely Randomized Block Design (default), and
+alpha-lattice design (declaring \code{block} arguments), complete replicates
+are selected within environments. The remained replicate serves as validation
+data. If \code{design = 'RCD'} is informed, completely randomly samples are
+made for each genotype-by-environment combination (Olivoto et al. 2019). The
+estimated values considering \code{naxis}-Interaction Principal Component
+Axis are compared with the 'validation' data. The Root Mean Square Prediction
 Difference (RMSPD) is computed. At the end of boots, a list is returned.
 }
 \examples{
@@ -86,12 +89,13 @@ model <- data_ge \%>\%
 }
 \references{
 Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
-trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
 \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 
-Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
-Biometrika 63:83-92.
+Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.
 }
 \seealso{
 \code{\link{cv_ammif}, \link{cv_blup}}
