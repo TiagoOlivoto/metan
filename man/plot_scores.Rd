@@ -18,16 +18,23 @@ plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
   resolution = 300, ...)
 }
 \arguments{
-\item{x}{An object of class \code{performs_ammi}, \code{waas} or \code{waasb}.}
+\item{x}{An object fitted with the functions \code{\link{performs_ammi}},
+\code{\link{waas}} or \code{\link{waasb}}.}
 
-\item{type}{Four types of graphics can be generated: \code{1 = GY x PC1} to
-make inferences related to stability and productivity; \code{2 = PC1 x PC2}
-(default) default, to make inferences related to the interaction effects;
-\code{3 = GY x WAASB} (valid for objects of class \code{waas} or
-\code{waasb}), and \code{4 = Nominal yield x Environment PC1}.}
+\item{type}{type of biplot to produce \enumerate{
+\itemize{
+\item \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences related to stability and productivity.
+\item \code{type = 2} The default, produces an AMMI2 biplot (PC1 x PC2) to make inferences related to the interaction effects.
+\item \code{type = 3} Valid for objects of class \code{waas} or \code{waasb}, produces a biplot showing the GY x WAASB.
+\item \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
+}
+}}
 
 \item{polygon}{Logical argument. If \code{TRUE}, a polygon is drawn when
 \code{type = 2}.}
+
+\item{title}{Logical values (Defaults to \code{TRUE}) to include
+automatically generated titles}
 
 \item{file.type}{The type of file to be exported. Valid parameter if
 \code{export = T|TRUE}.  Default is \code{'pdf'}. The graphic can also be
@@ -38,10 +45,8 @@ exported in \code{*.tiff} format by declaring \code{file.type = 'tiff'}.}
 \item{file.name}{The name of the file for exportation, default is
 \code{NULL}, i.e. the files are automatically named.}
 
-\item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme_waasb() + theme(some stuff
-here)`. For more details, please, see `?ggplot2::theme`}
+\item{theme}{The graphical theme of the plot. Default is \code{theme = theme_waasb()}. Please, see \code{?metan::theme_waasb}. An own theme can be
+applied using the arguments: \code{theme = theme_waasb() + theme(some stuff here)}. For more details, please, see \code{?ggplot2::theme}}
 
 \item{axis.expand}{Multiplication factor to expand the axis limits by to
 enable fitting of labels. Default is \code{1.1}.}
@@ -144,50 +149,60 @@ scores values.}
 An object of class \code{gg, ggplot}.
 }
 \description{
-Plot scores of genotypes and environments in different graphics. \code{1 =
-PC1 x PC2}, \code{2 = GY x PC1}, \code{3 = GY x WAASB}, and \code{4 =
-Nominal yield x EPCA1}.
+Plot scores of genotypes and environments in different graphical
+interpretations.
 }
 \details{
-The plots type 1 and 2 have the same interpretation than those used in
-traditional-usage AMMI analysis (well know as AMMI2 and AMMI1,
-respectively). In the plot type 3, the scores of both genotypes and
-environments are plotted considering the response variable and the WAASB
-(stability index that considers all significant principal component axis of
-traditional AMMI models or all principal component axis estimated with
-BLUP-interaction effects. Plot type 4 may be used to better understand the
-well known 'which-won-where' pattern, facilitating the recommendation of
-appropriate genotypes targeted for specific environments, thus allowing the
-exploitation of narrow adaptations.
+Biplots type 1 and 2 are well known in AMMI analysis. In the plot type 3, the
+scores of both genotypes and environments are plotted considering the
+response variable and the WAASB, an stability index that considers all
+significant principal component axis of traditional AMMI models or all
+principal component axis estimated with BLUP-interaction effects (Olivoto et
+al. 2019). Plot type 4 may be used to better understand the well known
+'which-won-where' pattern, facilitating the recommendation of appropriate
+genotypes targeted for specific environments, thus allowing the exploitation
+of narrow adaptations.
 }
 \examples{
 
 library(metan)
-library(ggplot2)
-scores = waasb(data_ge,
-               resp = GY,
-               gen = GEN,
-               env = ENV,
-               rep = REP)
-# GY x PC1
+# AMMI model
+ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
+                           resp = c(GY, HM))
+
+# GY x PC1 (variable GY)
 plot_scores(scores$GY,
             col.env = 'olivedrab',
             col.gen = 'orange2',
             x.lab = 'My own x label')
 
-# PC1 x PC2
-plot_scores(scores$GY,
+# PC1 x PC2 (variable HM)
+plot_scores(scores$HM,
             type = 2,
             polygon = TRUE)
 
+# PC1 x PC2 (variable HM)
+# Draw a convex hull polygon
+plot_scores(scores$HM,
+            type = 2,
+            polygon = TRUE)
+
+# WAASB index
+waasb_model = waasb(data_ge, ENV, GEN, REP, GY)
 
 # GY x WAASB
-plot_scores(scores$GY,
+plot_scores(waasb_model$GY,
             type = 3,
             size.tex.pa = 2,
             size.tex.lab = 16)
 
-
+}
+\references{
+Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
+\href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 }
 \seealso{
 \code{\link{plot_eigen}}

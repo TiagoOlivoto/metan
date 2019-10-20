@@ -1,30 +1,31 @@
 #' Plot scores in different graphical interpretations
 #'
 #'
-#' Plot scores of genotypes and environments in different graphics. \code{1 =
-#' PC1 x PC2}, \code{2 = GY x PC1}, \code{3 = GY x WAASB}, and \code{4 =
-#' Nominal yield x EPCA1}.
+#' Plot scores of genotypes and environments in different graphical
+#' interpretations.
 #'
-#' The plots type 1 and 2 have the same interpretation than those used in
-#' traditional-usage AMMI analysis (well know as AMMI2 and AMMI1,
-#' respectively). In the plot type 3, the scores of both genotypes and
-#' environments are plotted considering the response variable and the WAASB
-#' (stability index that considers all significant principal component axis of
-#' traditional AMMI models or all principal component axis estimated with
-#' BLUP-interaction effects. Plot type 4 may be used to better understand the
-#' well known 'which-won-where' pattern, facilitating the recommendation of
-#' appropriate genotypes targeted for specific environments, thus allowing the
-#' exploitation of narrow adaptations.
+#' Biplots type 1 and 2 are well known in AMMI analysis. In the plot type 3, the
+#' scores of both genotypes and environments are plotted considering the
+#' response variable and the WAASB, an stability index that considers all
+#' significant principal component axis of traditional AMMI models or all
+#' principal component axis estimated with BLUP-interaction effects (Olivoto et
+#' al. 2019). Plot type 4 may be used to better understand the well known
+#' 'which-won-where' pattern, facilitating the recommendation of appropriate
+#' genotypes targeted for specific environments, thus allowing the exploitation
+#' of narrow adaptations.
 #'
-#' @param x An object of class \code{performs_ammi}, \code{waas} or \code{waasb}.
-#' @param type Four types of graphics can be generated: \code{1 = GY x PC1} to
-#'   make inferences related to stability and productivity; \code{2 = PC1 x PC2}
-#'   (default) default, to make inferences related to the interaction effects;
-#'   \code{3 = GY x WAASB} (valid for objects of class \code{waas} or
-#'   \code{waasb}), and \code{4 = Nominal yield x Environment PC1}.
+#' @param x An object fitted with the functions \code{\link{performs_ammi}},
+#'   \code{\link{waas}} or \code{\link{waasb}}.
+#' @param type type of biplot to produce \enumerate{
+#' * \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences related to stability and productivity.
+#' * \code{type = 2} The default, produces an AMMI2 biplot (PC1 x PC2) to make inferences related to the interaction effects.
+#' * \code{type = 3} Valid for objects of class \code{waas} or \code{waasb}, produces a biplot showing the GY x WAASB.
+#' * \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
+#' }
 #' @param polygon Logical argument. If \code{TRUE}, a polygon is drawn when
 #' \code{type = 2}.
-#' @param main
+#' @param title Logical values (Defaults to \code{TRUE}) to include
+#'   automatically generated titles
 #' @param file.type The type of file to be exported. Valid parameter if
 #' \code{export = T|TRUE}.  Default is \code{'pdf'}. The graphic can also be
 #' exported in \code{*.tiff} format by declaring \code{file.type = 'tiff'}.
@@ -103,6 +104,13 @@
 #' @param resolution The resolution of the plot. Parameter valid if
 #' \code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)
 #' @param ... Other arguments of the function
+#' @md
+#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+#'   V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
+#'   multi-environment trials I: Combining features of AMMI and BLUP techniques.
+#'   Agron. J.
+#'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
+#'
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{plot_eigen}}
@@ -110,30 +118,35 @@
 #' @examples
 #'
 #' library(metan)
-#' library(ggplot2)
-#' scores = waasb(data_ge,
-#'                resp = GY,
-#'                gen = GEN,
-#'                env = ENV,
-#'                rep = REP)
-#' # GY x PC1
+#' # AMMI model
+#' ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
+#'                            resp = c(GY, HM))
+#'
+#' # GY x PC1 (variable GY)
 #' plot_scores(scores$GY,
 #'             col.env = 'olivedrab',
 #'             col.gen = 'orange2',
 #'             x.lab = 'My own x label')
 #'
-#' # PC1 x PC2
-#' plot_scores(scores$GY,
+#' # PC1 x PC2 (variable HM)
+#' plot_scores(scores$HM,
 #'             type = 2,
 #'             polygon = TRUE)
 #'
+#' # PC1 x PC2 (variable HM)
+#' # Draw a convex hull polygon
+#' plot_scores(scores$HM,
+#'             type = 2,
+#'             polygon = TRUE)
+#'
+#' # WAASB index
+#' waasb_model = waasb(data_ge, ENV, GEN, REP, GY)
 #'
 #' # GY x WAASB
-#' plot_scores(scores$GY,
+#' plot_scores(waasb_model$GY,
 #'             type = 3,
 #'             size.tex.pa = 2,
 #'             size.tex.lab = 16)
-#'
 #'
 plot_scores <- function(x, type = 1, polygon = FALSE, title = TRUE, file.type = "pdf",
 export = FALSE, file.name = NULL, theme = theme_waasb(),

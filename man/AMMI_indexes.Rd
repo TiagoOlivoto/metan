@@ -7,7 +7,7 @@
 AMMI_indexes(.data, order.y = NULL, level = 0.95)
 }
 \arguments{
-\item{.data}{An object of class \code{WAAS.AMMI}}
+\item{.data}{An object of class \code{waas} or \code{performs_ammi}}
 
 \item{order.y}{A vector of the same length of \code{x} used to order the
 response variable. Each element of the vector must be one of the \code{'h'}
