@@ -4,7 +4,7 @@
 \alias{performs_ammi}
 \title{Additive Main effects and Multiplicative Interaction}
 \usage{
-performs_ammi(.data, env, gen, rep, resp)
+performs_ammi(.data, env, gen, rep, resp, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -18,23 +18,26 @@ environments}
 \item{rep}{The name of the column that contains the levels of the
 replications/blocks}
 
-\item{resp}{The response variable}
+\item{resp}{The response variable(s). To analyze multiple variables in a
+single procedure a vector of variables may be used. For example \code{resp
+  = c(var1, var2, var3)}.}
+
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
+silently.}
 }
 \value{
 \itemize{
 \item \strong{ANOVA} The analysis of variance for the AMMI model.
-\item \strong{analysis} The principal component analysis
-\item \strong{means} means of genotype vs environment
-}
-
-*\strong{biplot} scores for genotypes and environments in all the possible
+\item \strong{PCA} The principal component analysis
+\item \strong{MeansGxE} The means of genotypes in the environments
+\item \strong{model} scores for genotypes and environments in all the possible
 axes.
+}
 }
 \description{
 Compute the Additive Main effects and Multiplicative interaction. This is a
 helper function for other procedures performed in the \pkg{metan} package
-such as \code{\link{waas}}, \code{\link{cv_ammi}}, and
-\code{\link{cv_ammif}}.
+such as \code{\link{waas}} and \code{\link{wsmp}}
 }
 \examples{
 

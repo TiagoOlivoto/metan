@@ -2,8 +2,7 @@
 #'
 #' Compute the Additive Main effects and Multiplicative interaction. This is a
 #' helper function for other procedures performed in the \pkg{metan} package
-#' such as \code{\link{waas}}, \code{\link{cv_ammi}}, and
-#' \code{\link{cv_ammif}}.
+#' such as \code{\link{waas}} and \code{\link{wsmp}}
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
@@ -12,15 +11,19 @@
 #' @param gen The name of the column that contains the levels of the genotypes
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks
-#' @param resp The response variable
+#' @param resp The response variable(s). To analyze multiple variables in a
+#'   single procedure a vector of variables may be used. For example \code{resp
+#'   = c(var1, var2, var3)}.
+#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   silently.
 #' @return
 #' * \strong{ANOVA} The analysis of variance for the AMMI model.
 #'
-#' * \strong{analysis} The principal component analysis
+#' * \strong{PCA} The principal component analysis
 #'
-#' * \strong{means} means of genotype vs environment
+#' * \strong{MeansGxE} The means of genotypes in the environments
 #'
-#' *\strong{biplot} scores for genotypes and environments in all the possible
+#' * \strong{model} scores for genotypes and environments in all the possible
 #' axes.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -31,24 +34,37 @@
 #' ammi_model = performs_ammi(data_ge, ENV, GEN, REP, GY)
 #'
 #'
-performs_ammi <- function(.data, env, gen, rep, resp) {
-    data <- .data %>% select(!!enquo(env), !!enquo(gen), !!enquo(rep),
-                             !!enquo(resp)) %>% as.data.frame()
-    names(data) <- c("ENV", "GEN", "REP", "Y")
-    GEN <- factor(data[, 2])
-    ENV <- factor(data[, 1])
-    REP <- factor(data[, 3])
-    Y <- eval(data[, 4])
-    nenv <- length(unique(ENV))
-    ngen <- length(unique(GEN))
+performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {
+    datain <- .data
+    listres <- list()
+    d <- match.call()
+    nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
+    data <- datain %>%
+        select(ENV = {{env}},
+               GEN = {{gen}},
+               REP = {{rep}}) %>%
+        mutate_at(1:3, as.factor)
+    for (var in 2:length(d$resp)) {
+        if (length(d$resp) > 1) {
+            Y <- eval(substitute(resp)[[var]], eval(datain))
+            varnam <- paste(d$resp[var])
+        } else {
+            Y <- eval(substitute(resp), eval(datain))
+            varnam <- paste(d$resp)
+        }
+    data <- mutate(data, mean = Y)
+    nenv <- nlevels(data$ENV)
+    ngen <- nlevels(data$GEN)
+    nrep <- nlevels(data$REP)
     minimo <- min(ngen, nenv) - 1
-    nrep <- length(unique(REP))
-    model <- aov(Y ~ ENV + REP %in% ENV + GEN + ENV:GEN)
+    model <- aov(mean ~ ENV + REP %in% ENV + GEN + ENV:GEN, data = data)
     df <- fortify(model)
     datares <- model$model
     datares$factors <- paste(datares$ENV, datares$GEN)
-    residuals <- cbind(datares, df %>% select(fitted = .fitted,
-                                              resid = .resid, stdres = .stdresid))
+    residuals <- cbind(datares, df %>%
+                           select(fitted = .fitted,
+                                  resid = .resid,
+                                  stdres = .stdresid))
     if (minimo < 2) {
         stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
     }
@@ -64,7 +80,9 @@ performs_ammi <- function(.data, env, gen, rep, resp) {
     probint <- anova[4, 5]
     DFE <- df.residual(model)
     MSE <- deviance(model)/DFE
-    MEANS <- data %>% group_by(ENV, GEN) %>% summarise(Y = mean(Y)) %>%
+    MEANS <- data %>%
+        group_by(ENV, GEN) %>%
+        summarise(Y = mean(mean)) %>%
         ungroup()
     residual <- residuals(lm(Y ~ ENV + GEN, data = MEANS))
     MEANS %<>% mutate(RESIDUAL = residual)
@@ -99,22 +117,33 @@ performs_ammi <- function(.data, env, gen, rep, resp) {
     acum <- round(acum, 1)
     SS <- round(SS, 5)
     MSAMMI <- round(MSAMMI, 5)
-    SSAMMI <- data.frame(percent, acum, Df = DFAMMI, `Sum Sq` = SS,
-                         `Mean Sq` = MSAMMI, `F value` = F.AMMI, Pr.F = PROBF)
+    SSAMMI <- data.frame(percent, acum,
+                         Df = DFAMMI,
+                         `Sum Sq` = SS,
+                         `Mean Sq` = MSAMMI,
+                         `F value` = F.AMMI,
+                         Pr.F = PROBF)
     nssammi <- nrow(SSAMMI)
     SSAMMI <- SSAMMI[SSAMMI$Df > 0, ]
     nss <- nrow(SSAMMI)
     row.names(SSAMMI) <- paste("PC", 1:nss, sep = "")
     SCOREG <- U %*% LL^0.5
     SCOREE <- V %*% LL^0.5
-    colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo,
-                                                  sep = "")
-    bplot <- MEANS %>% group_by(GEN) %>% summarise(Y = mean(Y)) %>%
-        mutate(type = "GEN") %>% rename(Code = GEN) %>% cbind(.,
-                                                              SCOREG) %>% rbind(., MEANS %>% group_by(ENV) %>% summarise(Y = mean(Y)) %>%
-                                                                                    mutate(type = "ENV") %>% rename(Code = ENV) %>% cbind(.,
-                                                                                                                                          SCOREE)) %>% select(type, Code, everything())
-    PC <- SSAMMI %>% dplyr::select(-percent, -acum, everything())
+    colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
+    bplot <- MEANS %>%
+        group_by(GEN) %>%
+        summarise(Y = mean(Y)) %>%
+        mutate(type = "GEN") %>%
+        rename(Code = GEN) %>%
+        cbind(., SCOREG) %>%
+        rbind(., MEANS %>%
+                  group_by(ENV) %>%
+                  summarise(Y = mean(Y)) %>%
+                  mutate(type = "ENV") %>%
+                  rename(Code = ENV) %>%
+                  cbind(., SCOREE)) %>%
+        select(type, Code, everything())
+    PC <- SSAMMI %>% select(-percent, -acum, everything())
     resid <- as.data.frame(anova[nrow(anova), ])
     rownames(resid) <- "Residuals"
     sum <- as.data.frame(anova[nrow(anova), ])
@@ -126,7 +155,53 @@ performs_ammi <- function(.data, env, gen, rep, resp) {
     names(PC) <- paste(c("Df", "Sum Sq", "Mean Sq", "F value",
                          "Pr(>F)", "Percent", "Accumul"))
     anova <- rbind_fill(mm[-nrow(mm), ], PC, ERRO)
-    invisible(structure(list(ANOVA = anova, analysis = PC, means = MEANS,
-                             biplot = bplot, residuals = residuals, probint = probint),
-                        class = "WAASB"))
+    MeansGxE <- MEANS[, 1:3]
+    EscGEN <- subset(bplot, type == "GEN")
+    names(EscGEN)[2] <- "GEN"
+    names(EscGEN)[3] <- "y"
+    EscENV <- subset(bplot, type == "ENV")
+    names(EscENV)[2] <- "ENV"
+    MeansGxE <- suppressMessages(
+        suppressWarnings(
+            mutate(MeansGxE,
+                   envPC1 = left_join(MeansGxE, EscENV %>% select(ENV, PC1))$PC1,
+                   genPC1 = left_join(MeansGxE, EscGEN %>% select(GEN, PC1))$PC1,
+                   nominal = left_join(MeansGxE, EscGEN %>% select(GEN, y))$y + genPC1 * envPC1)
+            )
+        )
+    temp <- structure(list(ANOVA = anova %>% rownames_to_column("Source") %>% as_tibble(),
+                           PCA = PC %>% rownames_to_column("PC") %>% as_tibble(),
+                           MeansGxE = MeansGxE,
+                           model = bplot %>% as_tibble(),
+                           residuals = residuals %>% as_tibble(),
+                           probint = probint),
+                      class = "performs_ammi"
+    )
+    if (length(d$resp) > 1) {
+        listres[[paste(d$resp[var])]] <- temp
+        if (verbose == TRUE) {
+            cat("Evaluating variable", paste(d$resp[var]),
+                round((var - 1)/(length(d$resp) - 1) * 100,
+                      1), "%", "\n")
+        }
+    } else {
+        listres[[paste(d$resp)]] <- temp
+    }
+    }
+    if (verbose == TRUE) {
+        if (length(which(unlist(lapply(listres, function(x) {
+            x[["probint"]]
+        })) > 0.05)) > 0) {
+            cat("------------------------------------------------------------\n")
+            cat("Variables with nonsignificant GxE interaction\n")
+            cat(names(which(unlist(lapply(listres, function(x) {
+                x[["probint"]]
+            })) > 0.05)), "\n")
+            cat("------------------------------------------------------------\n")
+        } else {
+            cat("All variables with significant (p < 0.05) genotype-vs-environment interaction\n")
+        }
+        cat("Done!\n")
+    }
+    return(structure(listres, class = "performs_ammi"))
 }
