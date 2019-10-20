@@ -221,7 +221,7 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
       CombWAASY <- data.frame(type = matrix(".", (Ngen +
                                                     Nenv), 1))
       WAASY.Values <- list()
-      model <- performs_ammi(data, ENV, GEN, REP, Y)
+      model <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
       anova <- model$ANOVA
       PC <- model$analysis
       MeansGxE <- model$means

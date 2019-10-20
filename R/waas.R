@@ -187,7 +187,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
         } else{
             individual = NULL
         }
-        model <- performs_ammi(data, ENV, GEN, REP, Y)
+        model <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
         anova <- model$ANOVA
         PC <- model$analysis
         MeansGxE <- model$means[, 1:3]
@@ -294,6 +294,8 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                 x[["probint"]]
             })) > prob)), "\n")
             cat("------------------------------------------------------------\n")
+        } else {
+            cat("All variables analyzed had significant (p < 0.05) genotype-vs-environment interaction\n")
         }
         cat("Done!\n")
     }
