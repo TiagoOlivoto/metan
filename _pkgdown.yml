@@ -70,8 +70,11 @@ reference:
     contents:
       - AMMI_indexes
       - autoplot.waas
+      - performs_ammi
       - plot.cv_ammif
       - predict.waas
+      - predict.performs_ammi
+      - print.performs_ammi
       - print.waas
       - cv_ammi
       - cv_ammif
@@ -186,7 +189,6 @@ reference:
       - make_long
       - make_mat
       - make_sym
-      - performs_ammi
       - rbind_fill
       - resca
       - split_factors

@@ -16,11 +16,12 @@
 #' appropriate genotypes targeted for specific environments, thus allowing the
 #' exploitation of narrow adaptations.
 #'
-#' @param x The object \code{WAASB} or \code{WAAS.AMMI}
-#' @param type Three types of graphics can be generated: \code{1 = PC1 x PC2},
-#' default, to make inferences related to the interaction effects; \code{2 = GY
-#' x PC1} to make inferences related to stability and productivity; \code{3 =
-#' GY x WAASB}, and \code{4 = Nominal yield x Environment PC1}.
+#' @param x An object of class \code{performs_ammi}, \code{waas} or \code{waasb}.
+#' @param type Four types of graphics can be generated: \code{1 = PC1 x PC2},
+#'   default, to make inferences related to the interaction effects; \code{2 =
+#'   GY x PC1} to make inferences related to stability and productivity; \code{3
+#'   = GY x WAASB} (valid for objects of class \code{waas} or \code{waasb}), and
+#'   \code{4 = Nominal yield x Environment PC1}.
 #' @param polygon Logical argument. If \code{TRUE}, a polygon is drawn when
 #' \code{type 1}.
 #' @param file.type The type of file to be exported. Valid parameter if
@@ -147,6 +148,9 @@ col.segm.env = "forestgreen", resolution = 300, ...) {
 if (polygon == TRUE & type != 1) {
 stop("The polygon can be drawn with type 1 graphic only.")
 }
+  if (class(x) == "performs_ammi" & type == 3) {
+    stop("Biplot type invalid. Type 3 biplot can only be made with objects of class 'waas' or 'waasb'.")
+  }
 
 size.tex.leg <- size.tex.pa/0.2917
 class <- class(x)
@@ -154,12 +158,20 @@ nenv <- nrow(subset(x$model, type == "ENV"))
 ngen <- nrow(subset(x$model, type == "GEN"))
 
 if (type == 1) {
-y.lab = ifelse((is.null(y.lab) == FALSE), y.lab, ifelse(class(x) ==
-"waas", paste0("PC2 (", round(x$PCA[2, 6], 2), "%)"),
-paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")))
-x.lab = ifelse((is.null(x.lab) == FALSE), x.lab, ifelse(class(x) ==
-"waas", paste0("PC1 (", round(x$PCA[1, 6], 2), "%)"),
-paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")))
+y.lab <- ifelse(!is.null(y.lab),
+                y.lab,
+                ifelse(
+                  class(x) %in% c("waas", "performs_ammi"), paste0("PC2 (", round(x$PCA[2, 7], 2), "%)"),
+                  paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")
+                )
+)
+x.lab = ifelse(!is.null(x.lab),
+               x.lab,
+               ifelse(
+                 class(x)  %in% c("waas", "performs_ammi"), paste0("PC1 (", round(x$PCA[1, 7], 2), "%)"),
+                 paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
+               )
+)
 if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
 } else {
@@ -277,10 +289,16 @@ dev.off()
 }
 
 if (type == 2) {
-y.lab = ifelse(is.null(y.lab) == F, y.lab, ifelse(class(x) ==
-"waas", paste0("PC1 (", round(x$PCA[1, 6], 2), "%)"),
-paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")))
-x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
+  y.lab <- ifelse(!is.null(y.lab),
+                  y.lab,
+                  ifelse(
+                    class(x)  %in% c("waas", "performs_ammi"), paste0("PC1 (", round(x$PCA[1, 7], 2), "%)"),
+                    paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
+                  )
+  )
+  x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
+
+
 if (is.null(x.lim) == FALSE) {
 x.lim <- x.lim
 } else {
@@ -492,7 +510,7 @@ p4 <- ggplot2::ggplot(data, aes(x = envPC1, y = nominal,
 group = GEN)) + geom_line(size = 1, aes(colour = GEN),
 data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1)))) +
 geom_point(aes(x = envPC1, y = minim), data = subset(data,
-GEN == data[1, 2])) + ggrepel::geom_label_repel(data = subset(data,
+GEN == data[1, 2]), shape = 17, size = 2.5) + ggrepel::geom_label_repel(data = subset(data,
 envPC1 == min(envPC1)), aes(label = GEN, fill = GEN),
 size = size.tex.pa, color = "white", force = repulsion,
 segment.color = "#bbbbbb") + ggrepel::geom_text_repel(aes(x = envPC1,
@@ -503,7 +521,7 @@ colour = "black"), axis.title = element_text(size = size.tex.lab,
 colour = "black"), plot.title = element_text(size = size.tex.lab,
 hjust = 0, vjust = 1)) + scale_x_continuous(limits = x.lim,
 breaks = x.breaks) + scale_y_continuous(limits = y.lim,
-breaks = y.breaks) + labs(x = paste(x.lab), y = y.lab)
+breaks = y.breaks, expand = expand_scale(mult = c(0.002, 0.1))) + labs(x = paste(x.lab), y = y.lab)
 
 if (export == F | FALSE) {
 return(p4)

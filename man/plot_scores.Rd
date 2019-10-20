@@ -18,12 +18,13 @@ plot_scores(x, type = 1, polygon = FALSE, file.type = "pdf",
   resolution = 300, ...)
 }
 \arguments{
-\item{x}{The object \code{WAASB} or \code{WAAS.AMMI}}
+\item{x}{An object of class \code{performs_ammi}, \code{waas} or \code{waasb}.}
 
-\item{type}{Three types of graphics can be generated: \code{1 = PC1 x PC2},
-default, to make inferences related to the interaction effects; \code{2 = GY
-x PC1} to make inferences related to stability and productivity; \code{3 =
-GY x WAASB}, and \code{4 = Nominal yield x Environment PC1}.}
+\item{type}{Four types of graphics can be generated: \code{1 = PC1 x PC2},
+default, to make inferences related to the interaction effects; \code{2 =
+GY x PC1} to make inferences related to stability and productivity; \code{3
+= GY x WAASB} (valid for objects of class \code{waas} or \code{waasb}), and
+\code{4 = Nominal yield x Environment PC1}.}
 
 \item{polygon}{Logical argument. If \code{TRUE}, a polygon is drawn when
 \code{type 1}.}

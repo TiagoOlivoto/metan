@@ -74,8 +74,7 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
       PesoWAAS <- 100
       PesoResp <- 0
       minresp <- 100 - mresp
-      data <- datain[[k]][["residuals"]] %>% select(ENV,
-                                                    GEN, REP, Y)
+      data <- datain[[k]][["residuals"]] %>% select(ENV, GEN, REP, Y)
       nam <- names(datain[k])
       Nenv <- length(unique(data$ENV))
       Ngen <- length(unique(data$GEN))
@@ -212,7 +211,7 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
       PesoResp <- 0
       minresp <- 100 - mresp
       data <- datain[[k]][["residuals"]] %>% select(ENV,
-                                                    GEN, REP, Y)
+                                                    GEN, REP, mean)
       nam <- names(datain[k])
       Nenv <- length(unique(data$ENV))
       Ngen <- length(unique(data$GEN))
@@ -221,10 +220,10 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
       CombWAASY <- data.frame(type = matrix(".", (Ngen +
                                                     Nenv), 1))
       WAASY.Values <- list()
-      model <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+      model <- performs_ammi(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
       anova <- model$ANOVA
-      PC <- model$analysis
-      MeansGxE <- model$means
+      PC <- model$PCA
+      MeansGxE <- model$MeansGxE
       totalcomb <- ncomb * nrow(PC)
       initial <- 0
       if (progbar == TRUE) {
@@ -233,9 +232,9 @@ wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
           clear = F, total = totalcomb, width = 90)
       }
       for (k in 1:ncomb) {
-        Escores <- model$biplot
-        SigPC1 <- nrow(PC[which(PC[, 5] < prob), ])
-        Pesos <- as.data.frame(model$analysis[6][c(1:SigPC1),
+        Escores <- model$model
+        SigPC1 <- nrow(PC[which(PC[, 6] < prob), ])
+        Pesos <- as.data.frame(model$PCA[7][c(1:SigPC1),
                                                  ])
         colnames(Pesos) <- "Percent"
         WAAS <- Escores %>% select(contains("PC")) %>%

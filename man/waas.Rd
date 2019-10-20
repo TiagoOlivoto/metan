@@ -57,8 +57,7 @@ model.
 Principal Components, the estimates of Weighted Average of Absolute Scores,
 and WAASY (the index that consider the weights for stability and productivity
 in the genotype ranking.
-\item \strong{MeansGxE} The means of genotypes in the environments, with
-observed, predicted and residual values.
+\item \strong{MeansGxE} The means of genotypes in the environments
 \item \strong{PCA} Principal Component Analysis.
 \item \strong{anova} Joint analysis of variance for the main effects and
 Principal Component analysis of the interaction effect.

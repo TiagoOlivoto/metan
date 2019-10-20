@@ -62,8 +62,7 @@
 #' and WAASY (the index that consider the weights for stability and productivity
 #' in the genotype ranking.
 #'
-#' * \strong{MeansGxE} The means of genotypes in the environments, with
-#' observed, predicted and residual values.
+#' * \strong{MeansGxE} The means of genotypes in the environments
 #'
 #' * \strong{PCA} Principal Component Analysis.
 #'
@@ -188,21 +187,11 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
             individual = NULL
         }
         model <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
-        anova <- model$ANOVA
-        PC <- model$analysis
-        MeansGxE <- model$means[, 1:3]
-        Escores <- model$biplot
-        EscGEN <- subset(Escores, type == "GEN")
-        names(EscGEN)[2] <- "GEN"
-        names(EscGEN)[3] <- "y"
-        EscENV <- subset(Escores, type == "ENV")
-        names(EscENV)[2] <- "ENV"
-        MeansGxE <- suppressMessages(suppressWarnings(dplyr::mutate(MeansGxE, envPC1 = left_join(MeansGxE,
-            EscENV %>% select(ENV, PC1))$PC1, genPC1 = left_join(MeansGxE, EscGEN %>%
-            select(GEN, PC1))$PC1, nominal = left_join(MeansGxE, EscGEN %>% select(GEN,
-            y))$y + genPC1 * envPC1)))
+        PC <- model$PCA
+        Escores <- model$model
+        MeansGxE <- model$MeansGxE
         if (is.null(naxis)) {
-            SigPC1 <- nrow(PC[which(PC[, 5] < prob), ])
+            SigPC1 <- nrow(PC[which(PC[, 6] < prob), ])
         } else {
             if (nvar == 1) {
                 SigPC1 <- naxis
@@ -214,7 +203,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
             stop("The number of axis to be used must be lesser than or equal to ",
                 minimo, " [min(GEN-1;ENV-1)]")
         } else {
-            Pesos <- slice(model$analysis[6], 1:SigPC1)
+            Pesos <- slice(model$PCA[7], 1:SigPC1)
             WAAS <- Escores %>%
                 select(contains("PC")) %>%
                 abs() %>%
@@ -267,7 +256,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                            model = WAASAbs,
                            MeansGxE = MeansGxE,
                            PCA = as_tibble(PC, rownames = NA),
-                           anova = as_tibble(anova, rownames = NA),
+                           anova = model$ANOVA,
                            Details = Details,
                            residuals = as_tibble(model$residuals, rownames = NA),
                            probint = model$probint),
