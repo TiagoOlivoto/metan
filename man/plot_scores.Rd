@@ -5,17 +5,18 @@
 \title{Plot scores in different graphical interpretations}
 \usage{
 plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
-  file.type = "pdf", export = FALSE, file.name = NULL,
-  theme = theme_waasb(), axis.expand = 1.1, width = 8, height = 7,
-  x.lim = NULL, x.breaks = waiver(), x.lab = NULL, y.lab = NULL,
-  y.lim = NULL, y.breaks = waiver(), shape.gen = 21,
-  shape.env = 23, size.shape = 2.2, size.bor.tick = 0.3,
-  size.tex.lab = 12, size.tex.pa = 3.5, repulsion = 1,
-  size.line = 0.5, size.segm.line = 0.5, leg.lab = c("Env", "Gen"),
-  line.type = "solid", line.alpha = 0.9, col.line = "black",
-  col.gen = "orange", col.env = "forestgreen", col.alpha = 0.9,
-  col.segm.gen = "transparent", col.segm.env = "forestgreen",
-  resolution = 300, ...)
+  theme = theme_waasb(), axis.expand = 1.1, x.lim = NULL,
+  y.lim = NULL, x.breaks = waiver(), y.breaks = waiver(),
+  x.lab = NULL, y.lab = NULL, shape.gen = 21, shape.env = 23,
+  size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
+  size.tex.pa = 3.5, size.line = 0.5, size.segm.line = 0.5,
+  col.bor.gen = "black", col.bor.env = "black", col.line = "black",
+  col.gen = "orange", col.env = "forestgreen", col.alpha.gen = 0.9,
+  col.alpha.env = 0.9, col.segm.gen = "transparent",
+  col.segm.env = "forestgreen", repulsion = 1, leg.lab = c("Env",
+  "Gen"), line.type = "solid", line.alpha = 0.9, resolution = 300,
+  file.type = "pdf", export = FALSE, file.name = NULL, width = 8,
+  height = 7, ...)
 }
 \arguments{
 \item{x}{An object fitted with the functions \code{\link{performs_ammi}},
@@ -23,9 +24,12 @@ plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
 
 \item{type}{type of biplot to produce \enumerate{
 \itemize{
-\item \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences related to stability and productivity.
-\item \code{type = 2} The default, produces an AMMI2 biplot (PC1 x PC2) to make inferences related to the interaction effects.
-\item \code{type = 3} Valid for objects of class \code{waas} or \code{waasb}, produces a biplot showing the GY x WAASB.
+\item \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences
+related to stability and productivity.
+\item \code{type = 2} The default, produces an AMMI2 biplot (PC1 x PC2) to make
+inferences related to the interaction effects.
+\item \code{type = 3} Valid for objects of class \code{waas} or \code{waasb},
+produces a biplot showing the GY x WAASB.
 \item \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
 }
 }}
@@ -36,6 +40,85 @@ plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
 \item{title}{Logical values (Defaults to \code{TRUE}) to include
 automatically generated titles}
 
+\item{theme}{The graphical theme of the plot. Default is \code{theme = theme_waasb()}. Please, see \code{?metan::theme_waasb}. An own theme can be
+applied using the arguments: \code{theme = theme_waasb() + theme(some stuff here)}. For more details, please, see \code{?ggplot2::theme}}
+
+\item{axis.expand}{Multiplication factor to expand the axis limits by to
+enable fitting of labels. Default is \code{1.1}.}
+
+\item{x.lim, y.lim}{The range of x and y axes, respectively. Default is
+\code{NULL} (maximum and minimum values of the data set). New values can be
+inserted as \code{x.lim = c(x.min, x.max)} or \code{y.lim = c(y.min,
+  y.max)}.}
+
+\item{x.breaks, y.breaks}{The breaks to be plotted in the x and y axes,
+respectively. Defaults to \code{waiver()} (authomatic breaks). New values
+can be inserted, for example, as \code{x.breaks = c(0.1, 0.2, 0.3)} or
+\code{x.breaks = seq(0, 1, by = 0.2)}}
+
+\item{x.lab, y.lab}{The label of x and y axes, respectively. Defaults to
+\code{NULL}, i.e., each plot has a default axis label. New values can be
+inserted as \code{x.lab = 'my label'}.}
+
+\item{shape.gen, shape.gen}{The shape for genotypes and environments
+indication in the biplot. Default is \code{21} (circle) for genotypes and
+\code{23} (diamond) for environments. Values must be between \code{21-25}:
+\code{21} (circle), \code{22} (square), \code{23} (diamond), \code{24} (up
+triangle), and \code{25} (low triangle).}
+
+\item{size.shape}{The size of the shape (both for genotypes and
+environments). Default is \code{2.2}.}
+
+\item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
+size of the shape will be \code{size.shape + size.bor.tick}}
+
+\item{size.tex.lab, size.tex.pa}{The size of the text for labels (Defaults to
+12) and plot area (Defaults to 3.5), respectively.}
+
+\item{size.line}{The size of the line that indicate the means in the biplot.
+Default is \code{0.5}.}
+
+\item{size.segm.line}{The size of the segment that start in the origin of the
+biplot and end in the scores values. Default is \code{0.5}.}
+
+\item{col.bor.gen, col.bor.env}{The color of the shape's border for genotypes
+and environments, respectively.}
+
+\item{col.line}{The color of the line that indicate the means in the biplot.
+Default is \code{'gray'}}
+
+\item{col.gen, col.env}{The shape color for genotypes (Defaults to
+\code{'orange'}) and environments (\code{'forestgreen'}). Must be length
+one or a vector of colours with the same length of the number of
+genotypes/environments.}
+
+\item{col.alpha.gen, col.alpha.env}{The alpha value for the color for
+genotypes and environments, respectively. Default is \code{0.9}. Values
+must be between \code{0} (full transparency) to \code{1} (full color).}
+
+\item{col.segm.gen, col.segm.env}{The color of segment for genotypes (Defaults
+to 'transparent') and environments (Defaults to 'forestgreen'),
+respectively. Valid arguments for plots with \code{type = 1} or \code{type
+  = 2} graphics.}
+
+\item{repulsion}{Force of repulsion between overlapping text labels. Defaults
+to 1.}
+
+\item{leg.lab}{The labs of legend. Default is \code{Gen} and \code{Env}.}
+
+\item{line.type}{The type of the line that indicate the means in the biplot.
+Default is \code{'solid'}. Other values that can be attributed are:
+\code{'blank'}, no lines in the biplot, \code{'dashed', 'dotted',
+  'dotdash', 'longdash', and 'twodash'}.}
+
+\item{line.alpha}{The alpha value that combine the line with the background
+to create the appearance of partial or full transparency. Default is
+\code{0.4}. Values must be between '0' (full transparency) to '1' (full
+color).}
+
+\item{resolution}{The resolution of the plot. Parameter valid if
+\code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)}
+
 \item{file.type}{The type of file to be exported. Valid parameter if
 \code{export = T|TRUE}.  Default is \code{'pdf'}. The graphic can also be
 exported in \code{*.tiff} format by declaring \code{file.type = 'tiff'}.}
@@ -45,103 +128,9 @@ exported in \code{*.tiff} format by declaring \code{file.type = 'tiff'}.}
 \item{file.name}{The name of the file for exportation, default is
 \code{NULL}, i.e. the files are automatically named.}
 
-\item{theme}{The graphical theme of the plot. Default is \code{theme = theme_waasb()}. Please, see \code{?metan::theme_waasb}. An own theme can be
-applied using the arguments: \code{theme = theme_waasb() + theme(some stuff here)}. For more details, please, see \code{?ggplot2::theme}}
-
-\item{axis.expand}{Multiplication factor to expand the axis limits by to
-enable fitting of labels. Default is \code{1.1}.}
-
 \item{width}{The width 'inch' of the plot. Default is \code{8}.}
 
 \item{height}{The height 'inch' of the plot. Default is \code{7}.}
-
-\item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and
-minimum values of the data set). New arguments can be inserted as
-\code{x.lim = c(x.min, x.max)}.}
-
-\item{x.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-c(breaks)}}
-
-\item{x.lab}{The label of x-axis. Each plot has a default value. New
-arguments can be inserted as \code{x.lab = 'my label'}.}
-
-\item{y.lab}{The label of y-axis. Each plot has a default value. New
-arguments can be inserted as \code{y.lab = 'my label'}.}
-
-\item{y.lim}{The range of y-axis. Default is \code{NULL}. The same arguments
-than \code{x.lim} can be used.}
-
-\item{y.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. The same arguments than \code{x.breaks} can be
-used.}
-
-\item{shape.gen}{The shape for genotype indication in the biplot. Default is
-\code{21} (circle). Values must be between \code{21-25}: \code{21} (circle),
-\code{22} (square), \code{23} (diamond), \code{24} (up triangle), and
-\code{25} (low triangle).}
-
-\item{shape.env}{The shape for environment indication in the biplot. Default
-is \code{23} (diamond). The same arguments than \code{'shape.gen'}.}
-
-\item{size.shape}{The size of the shape (both for genotypes and
-environments). Default is \code{2.2}.}
-
-\item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
-size of the shape will be \code{size.shape + size.bor.tick}}
-
-\item{size.tex.lab}{The size of the text in the axes text and labels.
-Default is \code{12}.}
-
-\item{size.tex.pa}{The size of the text of the plot area. Default is
-\code{3.5}.}
-
-\item{repulsion}{Force of repulsion between overlapping text labels. Defaults to 1.}
-
-\item{size.line}{The size of the line that indicate the means in the biplot.
-Default is \code{0.5}.}
-
-\item{size.segm.line}{The size of the segment that start in the origin of
-the biplot and end in the scores values. Default is \code{0.5}.}
-
-\item{leg.lab}{The labs of legend. Default is \code{Gen} and \code{Env}.}
-
-\item{line.type}{The type of the line that indicate the means in the biplot.
-Default is \code{'solid'}. Other values that can be attributed are:
-\code{'blank'}, no lines in the biplot, \code{'dashed', 'dotted', 'dotdash',
-'longdash', and 'twodash'}.}
-
-\item{line.alpha}{The alpha value that combine the line with the background
-to create the appearance of partial or full transparency. Default is
-\code{0.4}. Values must be between '0' (full transparency) to '1' (full
-color).}
-
-\item{col.line}{The color of the line that indicate the means in the biplot.
-Default is \code{'gray'}}
-
-\item{col.gen}{The shape color for genotypes. Must be one value or a vector
-of colours with the same length of the number of genotypes. Default is
-\code{'orange'}. Other values can be attributed. For example,
-\code{'transparent'}, will make a plot with only an outline around the shape
-area.}
-
-\item{col.env}{The shape color for environments. Default is \code{'forestgreen'}.
-The same usability than \code{'col.gen'}.}
-
-\item{col.alpha}{The alpha value for the color. Default is \code{0.9}.
-Values must be between \code{0} (full transparency) to \code{1} (full
-color).}
-
-\item{col.segm.gen}{The color of segment for genotypes.Default is
-\code{'transparent'}. Parameter valid for \code{type = 1} and \code{type =
-2} graphics. This segment start in the origin of the biplot and end in the
-scores values.}
-
-\item{col.segm.env}{The color of segment for environments. Default is
-\code{'forestgreen'}. The same usability than \code{'col.segm.gen'}}
-
-\item{resolution}{The resolution of the plot. Parameter valid if
-\code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)}
 
 \item{...}{Other arguments of the function}
 }
