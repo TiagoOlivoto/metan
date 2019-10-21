@@ -55,6 +55,9 @@
 #'
 wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
                  prob = 0.05, progbar = TRUE) {
+  if(!class(model) %in% c("waas", "waasb")){
+    stop("The model must be an object of class 'waas' or 'waasb'")
+  }
   test <- 100%%increment == 0
   test2 <- saveWAASY%%increment == 0
   if (!mresp %in% c(100, 0)) {
