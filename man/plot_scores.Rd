@@ -16,7 +16,7 @@ plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
   col.segm.env = "forestgreen", repulsion = 1, leg.lab = c("Env",
   "Gen"), line.type = "solid", line.alpha = 0.9, resolution = 300,
   file.type = "pdf", export = FALSE, file.name = NULL, width = 8,
-  height = 7, ...)
+  height = 7, color = TRUE, ...)
 }
 \arguments{
 \item{x}{An object fitted with the functions \code{\link{performs_ammi}},
@@ -131,6 +131,8 @@ exported in \code{*.tiff} format by declaring \code{file.type = 'tiff'}.}
 \item{width}{The width 'inch' of the plot. Default is \code{8}.}
 
 \item{height}{The height 'inch' of the plot. Default is \code{7}.}
+
+\item{color}{Should type 4 plot have colors? Default to \code{TRUE}.}
 
 \item{...}{Other arguments of the function}
 }

@@ -97,6 +97,7 @@
 #'   \code{NULL}, i.e. the files are automatically named.
 #' @param width The width 'inch' of the plot. Default is \code{8}.
 #' @param height The height 'inch' of the plot. Default is \code{7}.
+#' @param color Should type 4 plot have colors? Default to \code{TRUE}.
 #' @param ... Other arguments of the function
 #' @md
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
@@ -180,7 +181,9 @@ plot_scores <- function(x,
                         export = FALSE,
                         file.name = NULL,
                         width = 8,
-                        height = 7,...) {
+                        height = 7,
+                        color = TRUE,
+                        ...) {
 
   if (polygon == TRUE & type != 2) {
     stop("The polygon can be drawn with type 1 graphic only.")
@@ -572,23 +575,37 @@ plot_scores <- function(x,
     } else {
       y.lim <- c(min(data$nominal), max(data$nominal))
 
-    p4 <- ggplot2::ggplot(data, aes(x = envPC1, y = nominal, group = GEN)) +
-      geom_line(data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1))),
-                aes(colour = GEN),
-                size = 0.8) +
+    p4 <- ggplot2::ggplot(data, aes(x = envPC1, y = nominal, group = GEN))
+    if(color == TRUE){
+      p4 <- p4 +
+        geom_line(data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1))),
+                  aes(colour = GEN),
+                  size = 0.8) +
+        geom_label_repel(data = subset(data, envPC1 == min(envPC1)),
+                         aes(label = GEN, color = GEN),
+                         size = size.tex.pa,
+                         force = repulsion,
+                         alpha = rep(col.alpha.gen, ngen))
+    } else {
+      p4 <- p4 +
+        geom_line(data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1))),
+                  size = 0.8) +
+        geom_label_repel(data = subset(data, envPC1 == min(envPC1)),
+                         aes(label = GEN),
+                         size = size.tex.pa,
+                         force = repulsion,
+                         alpha = rep(col.alpha.gen, ngen))
+    }
+    p4 <- p4 +
+    geom_text_repel(data = subset(data, GEN == data[1, 2]),
+                    aes(x = envPC1, y = minim, label = ENV),
+                    size = size.tex.pa,
+                    force = repulsion,
+                    alpha = rep(col.alpha.env, nenv)) +
       geom_point(data = subset(data, GEN == data[1, 2]),
                  aes(x = envPC1, y = minim),
                  shape = 17,
                  size = 2.8) +
-      geom_label_repel(data = subset(data, envPC1 == min(envPC1)),
-                       aes(label = GEN, color = GEN),
-                       size = size.tex.pa,
-                       force = repulsion,
-                       alpha = rep(col.alpha.gen, ngen)) +
-      geom_text_repel(data = subset(data, GEN == data[1, 2]),
-                      aes(x = envPC1, y = minim, label = ENV),
-                      size = size.tex.pa,
-                      force = repulsion) +
       theme %+replace%
       theme(legend.position = "none",
             axis.text = element_text(size = size.tex.lab, colour = "black"),
