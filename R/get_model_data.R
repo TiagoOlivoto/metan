@@ -1,11 +1,12 @@
 #' Easily get data from a model
 #'
-#' Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et
-#' al., 2019a, 2019b)
+#' Easily get data from some objects generated in the \strong{metan} package
+#' such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
+#' variance components, and details of AMMI models.
 #'
 #'
-#' @param x An object created with the functions \code{\link{waas}} or
-#'   \code{\link{waasb}}.
+#' @param x An object created with the functions \code{\link{gamem}},
+#'   \code{\link{performs_ammmi}}, \code{\link{waas}} or \code{\link{waasb}}.
 #' @param what What should be captured from the model. See more in
 #'   \strong{Details} section.
 #' @param type Chose if the statistics must be show by genotype (\code{type =
@@ -13,6 +14,14 @@
 #' @return A tibble showing the values of the variable chosen in argument
 #'   \code{what}.
 #' @details
+#'  \strong{The next options are allowed if the object is of class \code{performs_ammi}.}
+#' * \code{"Y"} for raw means (Default) .
+#' * \code{"ipca_ss"} Sum of square for each IPCA.
+#' * \code{"ipca_ms"} Mean square for each IPCA.
+#' * \code{"ipca_fval"} F value for each IPCA.
+#' * \code{"ipca_pval"} P-value for for each IPCA.
+#' * \code{"ipca_expl"}  Explained sum of square for each IPCA.
+#' * \code{"ipca_accum"} Accumulated explained sum of square.
 #'
 #' \strong{The next options are valid in the argument \code{what} for both \code{waas} and \code{waasb} objects.}
 #' * \code{"Y"} for raw means (Default) .
@@ -29,10 +38,12 @@
 #' * \code{"WAASBY"} The superiority index WAASBY .
 #' * \code{"OrWAASBY"} The ranking regarding the superiority index .
 #'
-#'  \strong{The next options are only allowed if the object is of class \code{waasb}.}
+#'  \strong{The next options are allowed if the object is of class \code{waasb}
+#'  or \code{gamem}.}
 #'
 #' * \code{"blupg"} For genotype's predicted mean.
-#' * \code{"blupge"} for genotype-vs-environment's predicted mean.
+#' * \code{"blupge"} for genotype-vs-environment's predicted mean (only for
+#' objects of class \code{waasb}).
 #' * \code{"genpar"} Genetic parameters.
 #' * \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
 #' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
@@ -41,17 +52,44 @@
 #' @importFrom dplyr starts_with matches case_when
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
-#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
-#'  V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-#'   trials I: Combining features of AMMI and BLUP techniques. Agron. J.
-#'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
-#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
-#'  Mean performance and stability in multi-environment trials II: Selection based on multiple
-#'   traits. Agron. J. (in press)
+#' @references
+#' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
+#' Souza, and E. Jost. 2019a. Mean performance and stability in
+#' multi-environment trials I: Combining features of AMMI and BLUP techniques.
+#' Agron. J.
+#' \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
+#'
+#' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel.
+#' 2019b. Mean performance and stability in multi-environment trials II:
+#' Selection based on multiple traits. Agron. J.
+#' \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0221}{doi:10.2134/agronj2019.03.0221}
 #' @examples
 #'
 #' library(metan)
-#' # Fit an AMMI model for 5 variables.
+#' #################### AMMI model #####################
+#' # Fit an AMMI model for 7 variables.
+#' AMMI <- data_ge2 %>%
+#'  performs_ammi(ENV, GEN, REP,
+#'                resp = c(PH, ED, TKW, NKR, CD, CL, CW))
+#'
+#' # Sum of squares
+#' get_model_data(AMMI, "ipca_ss")
+#'
+#' # Mean squares
+#' get_model_data(AMMI, "ipca_ms")
+#'
+#' # Examine the significance (p-value) of the IPCAs
+#' get_model_data(AMMI, "ipca_pval")
+#'
+#' # Explained sum of square for each IPCA
+#' get_model_data(AMMI, "ipca_expl")
+#'
+#' # Accumulated sum of square
+#' get_model_data(AMMI, "ipca_accum")
+#'
+#'
+#' #################### WAASB model #####################
+#' # Fitting the WAAS index
 #' AMMI <- waas(data_ge2, ENV, GEN, REP,
 #'              resp = c(PH, ED, TKW, NKR))
 #'
@@ -61,6 +99,8 @@
 #' # And the rank for the WAASB inde.
 #' get_model_data(AMMI, what = "OrWAASB")
 #'
+#'
+#' #################### BLUP model #####################
 #' # Fitting a mixed-effect model
 #' blup <- waasb(data_ge2, ENV, GEN, REP,
 #'               resp = c(PH, ED, TKW, NKR))
@@ -77,8 +117,8 @@
 #'
 get_model_data <- function(x, what = "Y", type = "GEN") {
 
-  if (!class(x) %in% c("waasb", "waas", "gamem")) {
-    stop("Invalid input in 'x' argument. It must be one object of class 'waas' or 'waasb'")
+  if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi")) {
+    stop("Invalid input in 'x' argument. It must be one object of class 'gamem', 'performs_ammi', 'waas' or 'waasb'")
   }
   if (substr(what, 1, 2) == "PC") {
     npc <- ncol(x[[1]][["model"]] %>%
@@ -98,7 +138,8 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt", "details")
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
-  if (!what %in% c(check, check2)) {
+  ckeck4 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
+  if (!what %in% c(check, check2, ckeck4)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (what %in% check3 && !class(x) %in% c("waasb", "gamem")) {
@@ -107,6 +148,47 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
+
+  if (class(x) == "performs_ammi") {
+    if (!what %in% c("Y", check2, ckeck4)) {
+      stop("Invalid value in 'what' for object of class 'performs_ammi'.")
+    }
+    if (what == "Y" | what %in% check2) {
+      bind <- do.call(
+        cbind,
+        lapply(x, function(x) {
+          x$model[[what]]
+        })
+      ) %>%
+        as_tibble() %>%
+        mutate(
+          gen = x[[1]][["model"]][["Code"]],
+          type = x[[1]][["model"]][["type"]]
+        ) %>%
+        dplyr::filter(type == {{type}}) %>%
+        select(-type) %>%
+        select(gen, everything())
+    }
+    if (what  %in% ckeck4) {
+        what <- case_when(
+          what == "ipca_ss" ~ "Sum Sq",
+          what == "ipca_ms" ~ "Mean Sq",
+          what == "ipca_fval" ~ "F value",
+          what == "ipca_pval" ~ "Pr(>F)",
+          what == "ipca_expl" ~ "Percent",
+          what == "ipca_accum" ~ "Accumul"
+        )
+
+      bind <- do.call(cbind, lapply(x, function(x) {
+        val <- x[["PCA"]][[what]]
+      })) %>%
+        as_tibble() %>%
+        mutate(PC = x[[1]][["PCA"]][["PC"]],
+               DF = x[[1]][["PCA"]][["Df"]]) %>%
+        select(PC, DF, everything())
+    }
+  }
+
   if (class(x) == "waas") {
     if (what %in% c("WAASB", "PctWAASB", "wWAASB", "OrWAASB", "WAASBY", "OrWAASBY")) {
       what <- case_when(
@@ -148,6 +230,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
         select(Parameters, everything())
     }
   }
+
   if (class(x)  %in% c("waasb", "gamem")) {
     if(class(x) == "gamem" & what == "Y"){
       message("setting the argument 'what' to 'blupg'.")

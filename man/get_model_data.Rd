@@ -7,8 +7,8 @@
 get_model_data(x, what = "Y", type = "GEN")
 }
 \arguments{
-\item{x}{An object created with the functions \code{\link{waas}} or
-\code{\link{waasb}}.}
+\item{x}{An object created with the functions \code{\link{gamem}},
+\code{\link{performs_ammmi}}, \code{\link{waas}} or \code{\link{waasb}}.}
 
 \item{what}{What should be captured from the model. See more in
 \strong{Details} section.}
@@ -21,10 +21,22 @@ A tibble showing the values of the variable chosen in argument
 \code{what}.
 }
 \description{
-Easily get data from a model of class \code{waas} or \code{waasb} (Olivoto et
-al., 2019a, 2019b)
+Easily get data from some objects generated in the \strong{metan} package
+such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
+variance components, and details of AMMI models.
 }
 \details{
+\strong{The next options are allowed if the object is of class \code{performs_ammi}.}
+\itemize{
+\item \code{"Y"} for raw means (Default) .
+\item \code{"ipca_ss"} Sum of square for each IPCA.
+\item \code{"ipca_ms"} Mean square for each IPCA.
+\item \code{"ipca_fval"} F value for each IPCA.
+\item \code{"ipca_pval"} P-value for for each IPCA.
+\item \code{"ipca_expl"}  Explained sum of square for each IPCA.
+\item \code{"ipca_accum"} Accumulated explained sum of square.
+}
+
 \strong{The next options are valid in the argument \code{what} for both \code{waas} and \code{waasb} objects.}
 \itemize{
 \item \code{"Y"} for raw means (Default) .
@@ -42,10 +54,12 @@ where * \code{n} is the desired IPCA (e.g. \code{"PC3"}) .
 \item \code{"OrWAASBY"} The ranking regarding the superiority index .
 }
 
-\strong{The next options are only allowed if the object is of class \code{waasb}.}
+\strong{The next options are allowed if the object is of class \code{waasb}
+or \code{gamem}.}
 \itemize{
 \item \code{"blupg"} For genotype's predicted mean.
-\item \code{"blupge"} for genotype-vs-environment's predicted mean.
+\item \code{"blupge"} for genotype-vs-environment's predicted mean (only for
+objects of class \code{waasb}).
 \item \code{"genpar"} Genetic parameters.
 \item \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
 \item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
@@ -55,7 +69,30 @@ where * \code{n} is the desired IPCA (e.g. \code{"PC3"}) .
 \examples{
 
 library(metan)
-# Fit an AMMI model for 5 variables.
+#################### AMMI model #####################
+# Fit an AMMI model for 7 variables.
+AMMI <- data_ge2 \%>\%
+ performs_ammi(ENV, GEN, REP,
+               resp = c(PH, ED, TKW, NKR, CD, CL, CW))
+
+# Sum of squares
+get_model_data(AMMI, "ipca_ss")
+
+# Mean squares
+get_model_data(AMMI, "ipca_ms")
+
+# Examine the significance (p-value) of the IPCAs
+get_model_data(AMMI, "ipca_pval")
+
+# Explained sum of square for each IPCA
+get_model_data(AMMI, "ipca_expl")
+
+# Accumulated sum of square
+get_model_data(AMMI, "ipca_accum")
+
+
+#################### WAASB model #####################
+# Fitting the WAAS index
 AMMI <- waas(data_ge2, ENV, GEN, REP,
              resp = c(PH, ED, TKW, NKR))
 
@@ -65,6 +102,8 @@ get_model_data(AMMI, what = "WAASB")
 # And the rank for the WAASB inde.
 get_model_data(AMMI, what = "OrWAASB")
 
+
+#################### BLUP model #####################
 # Fitting a mixed-effect model
 blup <- waasb(data_ge2, ENV, GEN, REP,
               resp = c(PH, ED, TKW, NKR))
@@ -81,14 +120,16 @@ get_model_data(blup, what = "genpar")
 
 }
 \references{
-Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-trials I: Combining features of AMMI and BLUP techniques. Agron. J.
-\href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
+Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
+Souza, and E. Jost. 2019a. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
+\href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
 
-Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
-Mean performance and stability in multi-environment trials II: Selection based on multiple
-traits. Agron. J. (in press)
+Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel.
+2019b. Mean performance and stability in multi-environment trials II:
+Selection based on multiple traits. Agron. J.
+\href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0221}{doi:10.2134/agronj2019.03.0221}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
