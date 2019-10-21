@@ -5,7 +5,9 @@
 #'
 #' @param .data The data to be analyzed. Must be a dataframe or an object of
 #'   class \code{split_factors}.
-#' @param var The variable to be analyzed..
+#' @param var The variable to be analyzed.
+#' @param values An alternative way to pass the data to the function. It must be
+#'  a numeric vector.
 #' @param plots If \code{TRUE}, then histograms and boxplots are shown.
 #' @param coef The multiplication coefficient, defaults to 1.5. For more details
 #'   see \code{?boxplot.stat}.
@@ -24,13 +26,22 @@
 #' find_outliers(var = PH)
 #'
 #'
-find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
+find_outliers <- function(.data =  NULL,
+                          var = NULL,
+                          values = NULL,
+                          plots = FALSE,
+                          coef = 1.5,
                           verbose = TRUE) {
-  if (!is.data.frame(.data) && !is.split_factors(.data)) {
-    stop("The object 'x' must be a data.frame or an object of class split_factors")
+  if(!missing(.data)){
+    if (!any(class(.data) %in% c("data.frame", "tbl_df", "split_factors"))) {
+      stop("The object 'x' must be a data.frame or an object of class split_factors")
+    }
   }
-  if (missing(var) == TRUE) {
-    stop("A variable must be declared.")
+  if (!missing(.data) & !missing(values)) {
+    stop("You can not inform a vector of values if a data frame is used as imput.")
+  }
+  if (!missing(.data) & missing(var)) {
+    stop("At least one variable must be informed when using a data frame as input.")
   }
   if (any(class(.data) == "split_factors")) {
     for (k in 1:length(.data[[1]])) {
@@ -113,9 +124,14 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
                 " were ignored. Use 'split_factors()' before if you want to perform an analysis for each level of a factor.' ")
       }
     }
-    var <- dplyr::enquo(var)
-    var_name <- .data %>% dplyr::select(!!var) %>% unlist() %>%
-      as.numeric()
+    if (is.null(values) == FALSE) {
+
+      var_name <- as.numeric(values)
+      dd <- data.frame(values)
+    } else {
+      var_name <- .data %>% dplyr::select({{var}}) %>% unlist() %>% as.numeric()
+      dd <- data.frame(.data %>% select({{var}}))
+    }
     tot <- sum(!is.na(var_name))
     na1 <- sum(is.na(var_name))
     m1 <- mean(var_name, na.rm = T)
@@ -128,7 +144,7 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
            ylab = NA)
     }
     outlier <- boxplot.stats(var_name, coef = coef)$out
-    dd <- data.frame(.data %>% select(!!var))
+
     names_out <- paste(which(dd[, 1] %in% outlier), sep = " ")
     if (length(outlier) >= 1) {
       mo <- mean(outlier)
@@ -171,4 +187,6 @@ find_outliers <- function(.data, var, plots = FALSE, coef = 1.5,
       }
     }
   }
+  outlier <- ifelse(((na2 - na1) == 0), "No", "Yes")
+  invisible(outlier)
 }

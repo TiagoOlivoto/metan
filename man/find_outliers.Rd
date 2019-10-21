@@ -4,13 +4,17 @@
 \alias{find_outliers}
 \title{Find possible outliers in a dataset}
 \usage{
-find_outliers(.data, var, plots = FALSE, coef = 1.5, verbose = TRUE)
+find_outliers(.data = NULL, var = NULL, values = NULL,
+  plots = FALSE, coef = 1.5, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
 class \code{split_factors}.}
 
-\item{var}{The variable to be analyzed..}
+\item{var}{The variable to be analyzed.}
+
+\item{values}{An alternative way to pass the data to the function. It must be
+a numeric vector.}
 
 \item{plots}{If \code{TRUE}, then histograms and boxplots are shown.}
 
