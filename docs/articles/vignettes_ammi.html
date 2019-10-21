@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-18</h4>
+            <h4 class="date">2019-10-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -163,7 +163,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2) <span class="co"># used to set plot themes</span></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
 <a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
@@ -177,29 +177,14 @@
  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...
  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</code></pre>
-<div id="the-ammi-model" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-ammi-model" class="anchor"></a>The AMMI model</h2>
-<p>The estimate of the response for the <em>i</em>th genotype in the <em>j</em>th environment using The Additive Main Effect and Multiplicative interaction (AMMI) model, is given as follows:</p>
-<p><span class="math display">\[
-{y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^p {{\lambda _k}{a_{ik}}} {t_{jk}} + {\rho _{ij}} + {\varepsilon _{ij}}
-\]</span> where <span class="math inline">\({\lambda_k}\)</span> is the singular value for the <em>k</em>-th interaction principal component axis (IPCA); <span class="math inline">\(a_{ik}\)</span> is the <em>i</em>-th element of the <em>k</em>-th eigenvector; <span class="math inline">\(t_{jk}\)</span> is the <em>j</em>th element of the <em>k</em>th eigenvector. A residual <span class="math inline">\(\rho _{ij}\)</span> remains, if not all <em>p</em> IPCA are used, where <span class="math inline">\(p \le min(g - 1; e - 1)\)</span>.</p>
-<p>The AMMI model is fitted with the <code><a href="../reference/waas.html">waas()</a></code> function. The first argument is the data, in our example <code>data_ge</code>. The second argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contains the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code will run silently.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">AMMI_model =<span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb3-2" title="2">                  <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb3-3" title="3">                  <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb3-4" title="4">                  <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb3-5" title="5">                  <span class="dt">resp =</span> GY,</a>
-<a class="sourceLine" id="cb3-6" title="6">                  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<p>Note that using the arguments in the correct order, the model above may be fitted cleanly using the forward-pipe operator <code><a href="../reference/pipe.html">%&gt;%</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">AMMI_model =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
-<div id="within-environment-anova" class="section level2">
-<h2 class="hasAnchor">
-<a href="#within-environment-anova" class="anchor"></a>Within-environment ANOVA</h2>
-<p>A within-environment ANOVA considering a fixed-effect model is computed. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">data =<span class="st"> </span>AMMI_model<span class="op">$</span>GY<span class="op">$</span>individual<span class="op">$</span>individual</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">print_table</span>(data)</a></code></pre></div>
+<div id="individual-and-joint-anova" class="section level1">
+<h1 class="hasAnchor">
+<a href="#individual-and-joint-anova" class="anchor"></a>Individual and joint ANOVA</h1>
+<p>It is suggested to check if genotype-vs-environment interaction is significant before procceding with the AMMI analysis.</p>
+<p>A within-environment ANOVA considering a fixed-effect model is computed with the function <code><a href="../reference/anova_ind.html">anova_ind()</a></code>. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">indiv =<span class="st"> </span><span class="kw"><a href="../reference/anova_ind.html">anova_ind</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">print_table</span>(indiv<span class="op">$</span>GY<span class="op">$</span>individual)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -774,17 +759,225 @@ E9
 </tr>
 </tbody>
 </table>
+<p>The joint ANOVA is performed with the function <code>joint_anova()</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">joint &lt;-<span class="st"> </span><span class="kw"><a href="../reference/anova_joint.html">anova_joint</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">print_table</span>(joint<span class="op">$</span>GY) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="kw">row_spec</span>(<span class="dv">4</span>, <span class="dt">bold =</span> T) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="kw">add_indent</span>(<span class="dv">4</span>)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:right;">
+Df
+</th>
+<th style="text-align:right;">
+Sum Sq
+</th>
+<th style="text-align:right;">
+Mean Sq
+</th>
+<th style="text-align:right;">
+F value
+</th>
+<th style="text-align:right;">
+Pr(&gt;F)
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ENV
+</td>
+<td style="text-align:right;">
+13.000
+</td>
+<td style="text-align:right;">
+279.574
+</td>
+<td style="text-align:right;">
+21.506
+</td>
+<td style="text-align:right;">
+222.411
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GEN
+</td>
+<td style="text-align:right;">
+9.000
+</td>
+<td style="text-align:right;">
+12.995
+</td>
+<td style="text-align:right;">
+1.444
+</td>
+<td style="text-align:right;">
+14.933
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+REP(ENV)
+</td>
+<td style="text-align:right;">
+28.000
+</td>
+<td style="text-align:right;">
+9.662
+</td>
+<td style="text-align:right;">
+0.345
+</td>
+<td style="text-align:right;">
+3.569
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold; padding-left: 2em;" indentlevel="1">
+ENV:GEN
+</td>
+<td style="text-align:right;font-weight: bold;">
+117.000
+</td>
+<td style="text-align:right;font-weight: bold;">
+31.220
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.267
+</td>
+<td style="text-align:right;font-weight: bold;">
+2.760
+</td>
+<td style="text-align:right;font-weight: bold;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residuals
+</td>
+<td style="text-align:right;">
+252.000
+</td>
+<td style="text-align:right;">
+24.367
+</td>
+<td style="text-align:right;">
+0.097
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CV(%)
+</td>
+<td style="text-align:right;">
+11.628
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MSR+/MSR-
+</td>
+<td style="text-align:right;">
+6.709
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OVmean
+</td>
+<td style="text-align:right;">
+2.674
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<p>The genotype-vs-environment interaction was higly significant. So we’ll proced with the AMMI analysis.</p>
+<div id="the-ammi-model" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-ammi-model" class="anchor"></a>The AMMI model</h2>
+<p>The estimate of the response for the <em>i</em>th genotype in the <em>j</em>th environment using The Additive Main Effect and Multiplicative interaction (AMMI) model, is given as follows:</p>
+<p><span class="math display">\[
+{y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^p {{\lambda _k}{a_{ik}}} {t_{jk}} + {\rho _{ij}} + {\varepsilon _{ij}}
+\]</span></p>
+<p>where <span class="math inline">\({\lambda_k}\)</span> is the singular value for the <em>k</em>-th interaction principal component axis (IPCA); <span class="math inline">\(a_{ik}\)</span> is the <em>i</em>-th element of the <em>k</em>-th eigenvector; <span class="math inline">\(t_{jk}\)</span> is the <em>j</em>th element of the <em>k</em>th eigenvector. A residual <span class="math inline">\(\rho _{ij}\)</span> remains, if not all <em>p</em> IPCA are used, where <span class="math inline">\(p \le min(g - 1; e - 1)\)</span>.</p>
+<p>The AMMI model is fitted with the <code><a href="../reference/performs_ammi.html">performs_ammi()</a></code> function. The first argument is the data, in our example <code>data_ge</code>. The second argument (<code>resp</code>) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (<code>gen</code>, <code>env</code>, and <code>rep</code>) are the name of the columns that contains the levels for genotypes, environments, and replications, respectively. The last argument (<code>verbose</code>) control if the code will run silently.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">AMMI_model =<span class="st"> </span><span class="kw"><a href="../reference/performs_ammi.html">performs_ammi</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb5-2" title="2">                           <span class="dt">env =</span> ENV,</a>
+<a class="sourceLine" id="cb5-3" title="3">                           <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb5-4" title="4">                           <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb5-5" title="5">                           <span class="dt">resp =</span> GY,</a>
+<a class="sourceLine" id="cb5-6" title="6">                           <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Note that using the arguments in the correct order, the model above may be fitted cleanly with:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">AMMI_model =<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/performs_ammi.html">performs_ammi</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="the-ammi-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-ammi-table" class="anchor"></a>The AMMI table</h2>
 <p>The following comand creates the well-known ANOVA table for the AMMI model. Note that since</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">print_table</span>(AMMI_model<span class="op">$</span>GY<span class="op">$</span>anova) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">row_spec</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">bold =</span> T) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="kw">add_indent</span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span><span class="op">:</span><span class="dv">13</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">print_table</span>(AMMI_model<span class="op">$</span>GY<span class="op">$</span>ANOVA) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">row_spec</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">bold =</span> T) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="kw">add_indent</span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span><span class="op">:</span><span class="dv">13</span>))</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
+Source
 </th>
 <th style="text-align:right;">
 Df
@@ -1241,8 +1434,9 @@ NA
 </tbody>
 </table>
 <p>Procedures based on postdictive success, such as Gollobs’s test <span class="citation">(Gollob <a href="#ref-Gollob:1968" role="doc-biblioref">1968</a>)</span> or predictive success, such as cross-validation <span class="citation">(Piepho <a href="#ref-Piepho:1994" role="doc-biblioref">1994</a>)</span> should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The <code><a href="../reference/waas.html">waas()</a></code> function compute traditional AMMI analysis showing the number of significant axes according to Gollobs’s test. On the other hand, <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code> function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(predicted<span class="op">$</span>GY, <span class="dt">n =</span> <span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">predicted =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(predicted<span class="op">$</span>GY), <span class="kw"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(predicted<span class="op">$</span>GY)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1288,7 +1482,7 @@ G1
 2.450
 </td>
 <td style="text-align:right;">
-0.071154845
+0.07115484
 </td>
 <td style="text-align:right;">
 2.521273
@@ -1314,7 +1508,7 @@ G10
 2.318
 </td>
 <td style="text-align:right;">
--0.353911412
+-0.35391141
 </td>
 <td style="text-align:right;">
 1.963751
@@ -1340,7 +1534,7 @@ G2
 2.591
 </td>
 <td style="text-align:right;">
-0.290350157
+0.29035016
 </td>
 <td style="text-align:right;">
 2.880939
@@ -1366,7 +1560,7 @@ G3
 2.802
 </td>
 <td style="text-align:right;">
--0.045187946
+-0.04518795
 </td>
 <td style="text-align:right;">
 2.756598
@@ -1392,7 +1586,7 @@ G4
 2.488
 </td>
 <td style="text-align:right;">
-0.049423700
+0.04942370
 </td>
 <td style="text-align:right;">
 2.537781
@@ -1418,7 +1612,7 @@ G5
 2.384
 </td>
 <td style="text-align:right;">
--0.070918809
+-0.07091881
 </td>
 <td style="text-align:right;">
 2.312867
@@ -1429,128 +1623,181 @@ G5
 </tr>
 <tr>
 <td style="text-align:left;">
-E1
+E9
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:right;">
+3.725
+</td>
+<td style="text-align:right;">
+0.700
+</td>
+<td style="text-align:right;">
+3.024
+</td>
+<td style="text-align:right;">
+0.62341084
+</td>
+<td style="text-align:right;">
+3.647685
+</td>
+<td style="text-align:right;">
+3.024
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:right;">
+3.300
+</td>
+<td style="text-align:right;">
+0.380
+</td>
+<td style="text-align:right;">
+2.920
+</td>
+<td style="text-align:right;">
+0.41556051
+</td>
+<td style="text-align:right;">
+3.335263
+</td>
+<td style="text-align:right;">
+2.920
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
 </td>
 <td style="text-align:left;">
 G6
 </td>
 <td style="text-align:right;">
-2.301
+3.040
 </td>
 <td style="text-align:right;">
--0.080
+0.123
 </td>
 <td style="text-align:right;">
-2.380
+2.916
 </td>
 <td style="text-align:right;">
--0.082930171
+0.20504170
 </td>
 <td style="text-align:right;">
-2.297542
+3.121430
 </td>
 <td style="text-align:right;">
-2.380
+2.916
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-E1
+E9
 </td>
 <td style="text-align:left;">
 G7
 </td>
 <td style="text-align:right;">
-2.774
+3.140
 </td>
 <td style="text-align:right;">
-0.186
+0.017
 </td>
 <td style="text-align:right;">
-2.587
+3.123
 </td>
 <td style="text-align:right;">
-0.164334817
+0.06459463
 </td>
 <td style="text-align:right;">
-2.751686
+3.187862
 </td>
 <td style="text-align:right;">
-2.587
+3.123
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-E1
+E9
 </td>
 <td style="text-align:left;">
 G8
 </td>
 <td style="text-align:right;">
-2.899
+2.828
 </td>
 <td style="text-align:right;">
-0.049
+-0.558
 </td>
 <td style="text-align:right;">
-2.850
+3.386
 </td>
 <td style="text-align:right;">
--0.005355416
+-0.59779881
 </td>
 <td style="text-align:right;">
-2.844724
+2.788197
 </td>
 <td style="text-align:right;">
-2.850
+3.386
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-E1
+E9
 </td>
 <td style="text-align:left;">
 G9
 </td>
 <td style="text-align:right;">
-2.326
+1.943
 </td>
 <td style="text-align:right;">
--0.031
+-0.949
 </td>
 <td style="text-align:right;">
-2.357
+2.893
 </td>
 <td style="text-align:right;">
--0.016959765
+-0.89919929
 </td>
 <td style="text-align:right;">
-2.339674
+1.993351
 </td>
 <td style="text-align:right;">
-2.357
+2.893
 </td>
 </tr>
 </tbody>
 </table>
-<p>Only the first five values are shown. The following values are presented: <strong>ENV</strong> is the environment; <strong>GEN</strong> is the genotype; <strong>Y</strong> is the response variable; <strong>resOLS</strong> is the residual (<span class="math inline">\(\hat{z}_{ij}\)</span>) estimated by the Ordinary Least Square (OLS), where <span class="math inline">\(\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}\)</span>; <strong>Ypred</strong> is the predicted value by OLS (<span class="math inline">\(\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}\)</span>); <strong>ResAMMI</strong> is the residual estimated by the AMMI model (<span class="math inline">\(\hat{a}_{ij}\)</span>) considering the number of multiplicative terms informed in the function (in this case 5), where <span class="math inline">\(\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}\)</span>; <strong>YpredAMMI</strong> is the predicted value by AMMI model <span class="math inline">\(\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}\)</span>; and <strong>AMMI0</strong> is the predicted value when no multiplicative terms are used, i.e., <span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}\)</span>.</p>
+<p>The following values are presented: <strong>ENV</strong> is the environment; <strong>GEN</strong> is the genotype; <strong>Y</strong> is the response variable; <strong>resOLS</strong> is the residual (<span class="math inline">\(\hat{z}_{ij}\)</span>) estimated by the Ordinary Least Square (OLS), where <span class="math inline">\(\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}\)</span>; <strong>Ypred</strong> is the predicted value by OLS (<span class="math inline">\(\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}\)</span>); <strong>ResAMMI</strong> is the residual estimated by the AMMI model (<span class="math inline">\(\hat{a}_{ij}\)</span>) considering the number of multiplicative terms informed in the function (in this case 5), where <span class="math inline">\(\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}\)</span>; <strong>YpredAMMI</strong> is the predicted value by AMMI model <span class="math inline">\(\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}\)</span>; and <strong>AMMI0</strong> is the predicted value when no multiplicative terms are used, i.e., <span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}\)</span>.</p>
 </div>
 <div id="estimating-the-waas-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#estimating-the-waas-index" class="anchor"></a>Estimating the WAAS index</h1>
-<p>The <code><a href="../reference/waas.html">waas()</a></code> function computes the Weighted Average of Absolute Scores considering (i) all principal component axes that were significant (<span class="math inline">\(p &lt; 0.05\)</span> by default); or (ii) declaring a specific number of axes to be used, according to the following equation:</p>
+<p>The <code><a href="../reference/waas.html">waas()</a></code> function computes the Weighted Average of Absolute Scores <span class="citation">(Olivoto et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> considering (i) all principal component axes that were significant (<span class="math inline">\(p &lt; 0.05\)</span> by default); or (ii) declaring a specific number of axes to be used, according to the following equation:</p>
 <p><span class="math display">\[
         WAAS_i  = 
         \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
 \]</span></p>
 <p>where <span class="math inline">\(WAAS_i\)</span> is the weighted average of absolute scores of the <em>i</em>th genotype; <span class="math inline">\(PCA_{ik}\)</span> is the score of the <em>i</em>th genotype in the <em>k</em>th IPCA; and <span class="math inline">\(EP_k\)</span> is the explained variance of the <em>k</em>th IPCA for <span class="math inline">\(k = 1,2,..,p\)</span>, considering <em>p</em> the number of significant PCAs, or a declared number of PCAs. The following functions may be used to do that.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">waas_index &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <div id="number-of-axes-based-on-f-test" class="section level2">
 <h2 class="hasAnchor">
 <a href="#number-of-axes-based-on-f-test" class="anchor"></a>Number of axes based on F-test</h2>
 <p>In this example only IPCAs with <em>P</em>-value &lt; 0.05 will be considered in the WAAS estimation. This is the default setting and the model was already fitted and stored into AMMI_model&gt;GY&gt;model</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">AMMI_model<span class="op">$</span>GY<span class="op">$</span>model <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">select</span>(type, Code, Y, <span class="kw">contains</span>(<span class="st">"Pct"</span>), <span class="kw">contains</span>(<span class="st">"Pes"</span>), <span class="kw">contains</span>(<span class="st">"WAAS"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw">print_table</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">waas_index<span class="op">$</span>GY<span class="op">$</span>model <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">select</span>(type, Code, Y, <span class="kw">contains</span>(<span class="st">"Pct"</span>), <span class="kw">contains</span>(<span class="st">"Pes"</span>), <span class="kw">contains</span>(<span class="st">"WAAS"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2361,62 +2608,68 @@ E9
 <h2 class="hasAnchor">
 <a href="#number-of-axes-declared-manually" class="anchor"></a>Number of axes declared manually</h2>
 <p>The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument <code>naxis</code> in the function <code>waas</code> is then used to overwrite the default chose of significant terms.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">AMMI_model_<span class="dv">2</span> =<span class="st"> </span>data_ge <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY,</a>
-<a class="sourceLine" id="cb9-3" title="3">       <span class="dt">naxis =</span> <span class="dv">7</span>, <span class="co"># Use 7 IPCA for computing WAAS</span></a>
-<a class="sourceLine" id="cb9-4" title="4">       <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">waas_index2 &lt;-<span class="st"> </span>data_ge <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY,</a>
+<a class="sourceLine" id="cb11-3" title="3">       <span class="dt">naxis =</span> <span class="dv">7</span>, <span class="co"># Use 7 IPCA for computing WAAS</span></a>
+<a class="sourceLine" id="cb11-4" title="4">       <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>The only difference in this output is that here we declared that seven IPCA axes should be used for computing the WAAS value. Thus, only the values of WAAS, OrWAAS, WAASY and OrWAASY may have significant changes.</p>
 </div>
 <div id="biplots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h2>
-<p>Provided that an object of class “waas” is available in the global environment, the graphics may be obtained using the function <code><a href="../reference/plot_scores.html">plot_scores()</a></code>. To do that, we will revisit the previusly fitted model <code>AMMI_model</code> . Please, refer to <code><a href="../reference/plot_scores.html">?plot_scores</a></code> for more details. Four types of graphics can be generated: 1 = <span class="math inline">\(PC1 \times PC2\)</span>; 2 = <span class="math inline">\(GY \times PC1\)</span>; 3 = <span class="math inline">\(GY \times WAASB\)</span>; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.</p>
-<div id="biplot-type-1-pc1-x-pc2" class="section level3">
+<p>Provided that an object of class <code>waas</code> or <code>performs_ammi</code> is available in the global environment, the graphics may be obtained using the function <code><a href="../reference/plot_scores.html">plot_scores()</a></code>. To do that, we will revisit the previusly fitted model <code>AMMI_model</code> . Please, refer to <code><a href="../reference/plot_scores.html">plot_scores()</a></code> for more details.</p>
+<div id="biplot-type-1-gy-x-pc1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#biplot-type-1-pc1-x-pc2" class="anchor"></a>biplot type 1: PC1 x PC2</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.2</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb10-3" title="3">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb10-4" title="4">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb10-5" title="5">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb10-6" title="6">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb10-7" title="7">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb10-8" title="8"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
+<a href="#biplot-type-1-gy-x-pc1" class="anchor"></a>biplot type 1: GY x PC1</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb12-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb12-3" title="3">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb12-4" title="4">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb12-5" title="5">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb12-6" title="6">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
-<div id="biplot-type-2-gy-x-pc1" class="section level3">
+<div id="biplot-type-2-pc1-x-pc2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#biplot-type-2-gy-x-pc1" class="anchor"></a>biplot type 2: GY x PC1</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">p3 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2">p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb11-3" title="3">                 <span class="dt">col.segm.env =</span> <span class="st">"transparent"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
-<a class="sourceLine" id="cb11-6" title="6">                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb11-7" title="7"></a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</a></code></pre></div>
-<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
+<a href="#biplot-type-2-pc1-x-pc2" class="anchor"></a>biplot type 2: PC1 x PC2</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">p3 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2">p4 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb13-3" title="3">                 <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb13-4" title="4">                 <span class="dt">polygon =</span> T,</a>
+<a class="sourceLine" id="cb13-5" title="5">                 <span class="dt">col.segm.env =</span> <span class="st">"transparent"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
+<a class="sourceLine" id="cb13-8" title="8">                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb13-9" title="9"></a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p3"</span>,<span class="st">"p4"</span>))</a></code></pre></div>
+<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-3-gy-x-waas" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-3-gy-x-waas" class="anchor"></a>biplot type 3: GY x WAAS</h3>
-<p>The quadrants in the following biplot represent four classes of genotypes/environments regarding the joint interpretation of mean performance and stability. The genotypes or environments included in quadrant I can be considered unstable genotypes or environments with high discrimination ability, and with productivity below the grand mean. In quadrant II are included unstable genotypes, although with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within quadrant III have low productivity, but can be considered stable due to the lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV are highly productive and broadly adapted due to the high magnitude of the response variable and high stability performance (lower values of WAASB).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">p5 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb12-2" title="2">p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb12-3" title="3">                 <span class="dt">x.lab =</span> <span class="st">"My customized x label"</span>,</a>
-<a class="sourceLine" id="cb12-4" title="4">                 <span class="dt">size.shape =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb12-5" title="5">                 <span class="dt">size.tex.pa =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb12-6" title="6">                 <span class="dt">x.lim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1.2</span>, <span class="fl">4.7</span>),</a>
-<a class="sourceLine" id="cb12-7" title="7">                 <span class="dt">x.breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))</a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</a></code></pre></div>
-<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
+<p>The quadrants proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> in the following biplot represent four classifications regarding the joint interpretation of mean performance and stability. The genotypes or environments included in quadrant I can be considered unstable genotypes or environments with high discrimination ability, and with productivity below the grand mean. In quadrant II are included unstable genotypes, although with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within quadrant III have low productivity, but can be considered stable due to the lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV are highly productive and broadly adapted due to the high magnitude of the response variable and high stability performance (lower values of WAASB). . To obtain this biplot must use an object of class <code>waas</code> (in our example, <code>waas_index</code>).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">p5 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(waas_index<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb14-2" title="2">p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(waas_index<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb14-3" title="3">            <span class="dt">type =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb14-4" title="4">            <span class="dt">x.lab =</span> <span class="st">"My custom x label"</span>,</a>
+<a class="sourceLine" id="cb14-5" title="5">            <span class="dt">size.shape =</span> <span class="dv">4</span>, <span class="co"># Size of the shape point</span></a>
+<a class="sourceLine" id="cb14-6" title="6">            <span class="dt">col.gen =</span> <span class="st">"gray50"</span>, <span class="co"># Color for genotypes</span></a>
+<a class="sourceLine" id="cb14-7" title="7">            <span class="dt">size.tex.pa =</span> <span class="dv">4</span>, <span class="co"># Size of the text</span></a>
+<a class="sourceLine" id="cb14-8" title="8">            <span class="dt">col.alpha.env =</span> <span class="dv">0</span>, <span class="co"># Transparency of environment's point</span></a>
+<a class="sourceLine" id="cb14-9" title="9">            <span class="dt">x.lim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2.4</span>, <span class="fl">3.1</span>), <span class="co"># Limits of x axis</span></a>
+<a class="sourceLine" id="cb14-10" title="10">            <span class="dt">x.breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">2.4</span>, <span class="fl">3.1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>), <span class="co"># Markers of x axis</span></a>
+<a class="sourceLine" id="cb14-11" title="11">            <span class="dt">y.lim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="fl">0.7</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb14-12" title="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-13" title="13"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"WAASB vs GY plot"</span>, <span class="dt">subtitle =</span> <span class="st">"Zoom in genotypes' scores"</span>)</a>
+<a class="sourceLine" id="cb14-14" title="14"><span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p5"</span>,<span class="st">"p6"</span>))</a></code></pre></div>
+<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-4-nominal-yield-and-environment-ipca1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-4-nominal-yield-and-environment-ipca1" class="anchor"></a>biplot type 4 : nominal yield and environment IPCA1</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dv">4</span>)</a></code></pre></div>
-<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-12-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dv">4</span>)</a></code></pre></div>
+<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-14-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -2429,23 +2682,22 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 \]</span></p>
 <p>where <span class="math inline">\(WAASY_i\)</span> is the superiority index for the <em>i</em>-th genotype that weights between performance and stability; <span class="math inline">\(rG_i\)</span> and <span class="math inline">\(rW_i\)</span> are the rescaled values (0-100) for GY and WAASB, respectively; <span class="math inline">\(\theta _Y\)</span> and <span class="math inline">\(\theta_S\)</span> are the weights for GY and WAASB, respectively.</p>
 <p>This index was also already computed and stored into AMMI_model&gt;GY&gt;model. An intuitively plot may be obtained by running</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb14-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(AMMI_model<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb14-3" title="3">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(AMMI_model<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
-<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">p1 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(waas_index<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb16-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="../reference/plot_waasby.html">plot_waasby</a></span>(waas_index<span class="op">$</span>GY, <span class="dt">col.shape =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>))</a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
+<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>The values of WAASY in the plot above were computed considering equal weights for mean performance and stability. Different weights may be assigned using the <code>wresp</code> argument of the <code><a href="../reference/waas.html">waas()</a></code> function.</p>
 </div>
 <div id="weighting-the-stability-and-mean-performance" class="section level1">
 <h1 class="hasAnchor">
 <a href="#weighting-the-stability-and-mean-performance" class="anchor"></a>Weighting the stability and mean performance</h1>
 <p>After fitting a model with the functions <code><a href="../reference/waas.html">waas()</a></code> or <code><a href="../reference/waasb.html">waasb()</a></code> it is possible to compute the superiority indexes WAASY or WAASBY in different scenarios of weights for stability and mean performance. The number of scenarios is defined by the arguments <code>increment</code>. By default, twenty-one different scenarios are computed. In this case, the the superiority index is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">WAASratio =<span class="st"> </span><span class="kw"><a href="../reference/wsmp.html">wsmp</a></span>(AMMI_model, <span class="dt">increment =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">WAASratio =<span class="st"> </span><span class="kw"><a href="../reference/wsmp.html">wsmp</a></span>(waas_index, <span class="dt">increment =</span> <span class="dv">5</span>)</a></code></pre></div>
 <div id="printing-the-model-outputs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#printing-the-model-outputs" class="anchor"></a>Printing the model outputs</h2>
 <p>The genotype ranking for each scenario of WAASY/GY weight ratio is shown bellow</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">print_table</span>(WAASratio<span class="op">$</span>GY<span class="op">$</span>hetcomb)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">print_table</span>(WAASratio<span class="op">$</span>GY<span class="op">$</span>hetcomb)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -3198,7 +3450,7 @@ G9
 </tbody>
 </table>
 <p>In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">print_table</span>(WAASratio<span class="op">$</span>hetdata)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">print_table</span>(WAASratio<span class="op">$</span>hetdata)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive"><tbody><tr></tr></tbody></table>
 </div>
 <div id="plotting-the-heat-map-graphics" class="section level2">
@@ -3208,28 +3460,29 @@ G9
 <div id="ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-number-of-pca-used-to-estimate-the-waas" class="anchor"></a>Ranks of genotypes depending on the number of PCA used to estimate the WAAS</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(WAASratio<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-17-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(WAASratio<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-19-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="ranks-of-genotypes-depending-on-the-waasgy-ratio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ranks-of-genotypes-depending-on-the-waasgy-ratio" class="anchor"></a>Ranks of genotypes depending on the WAAS/GY ratio</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(WAASratio<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-18-1.png" width="528" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(WAASratio<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="vignettes_ammi_files/figure-html/unnamed-chunk-20-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="getting-model-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-model-data" class="anchor"></a>Getting model data</h2>
 <p>The function <code><a href="../reference/get_model_data.html">get_model_data()</a></code> may be used to easily get the data from a model fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, especially when more than one variables are used. See the example below.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge2, ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb20-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, ED, TKW, NKR)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="st"> </span><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="st"> </span><span class="kw">print_table</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge2, ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb22-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, ED, TKW, NKR)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="st"> </span><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-4" title="4"><span class="st"> </span><span class="kw">print_table</span>()</a></code></pre></div>
 <pre><code>Evaluating variable PH 25 % 
 Evaluating variable ED 50 % 
 Evaluating variable TKW 75 % 
 Evaluating variable NKR 100 % 
+All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 Done!</code></pre>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
@@ -3504,11 +3757,9 @@ E{V_i} = \sum\nolimits_{k = 1}^P {\mathop a\nolimits_{ik}^2 } /P
 Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 \]</span></p>
 <p>where <span class="math inline">\({\theta _k}\)</span> is the percentage sum of squares explained by the <em>k</em>-th IPCA. Simultaneous selection indexes (ssi), are computed by summation of the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean yields <span class="citation">(Farshadfar <a href="#ref-Farshadfar2008" role="doc-biblioref">2008</a>)</span>, which results in ssiASV, ssiSIPC, ssiEV, and ssiZa, respectively.</p>
-<p>The <code>AMMI_index()</code> function has two arguments. The first (x) is the model, which must be an object of the class <code>waas</code>. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If <code>x</code> is a list with more than one variable, <code>order.y</code> must be a vector of the same length of x. Each element of the vector must be one of the “h” or “l”. If “h” is used, the response variable will be ordered from maximum to minimum. If “l” is used then the response variable will be ordered from minimum to maximum. Using the forward-pipe operator <em>%&gt;%</em> it is possible to structure sequences of data operations left-to-right. The operators pipe their left-hand side values forward into expressions that appear on the right-hand side. When coupling several function calls with the pipe-operator, the benefit will become more apparent. Let’s construct this model.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">stab_indexes =<span class="st"> </span>data_ge <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="st">               </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="st">               </span><span class="kw"><a href="../reference/AMMI_indexes.html">AMMI_indexes</a></span>()</a>
-<a class="sourceLine" id="cb22-4" title="4"><span class="kw">print_table</span>(stab_indexes<span class="op">$</span>GY)</a></code></pre></div>
+<p>The <code>AMMI_index()</code> function has two arguments. The first (x) is the model, which must be an object of the class <code>waas</code> or <code>performs_ammi</code>. The second, (order.y) is the order for ranking the response variable. By default, it is set to NULL, which means that the response variable is ordered in descending order. If <code>x</code> is a list with more than one variable, <code>order.y</code> must be a vector of the same length of x. Each element of the vector must be one of the “h” or “l”. If “h” is used, the response variable will be ordered from maximum to minimum. If “l” is used then the response variable will be ordered from minimum to maximum. We will use the previously fitted model <code>AMMI_model</code> to compute the AMMI-based stability indexes.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">stab_indexes =<span class="st"> </span><span class="kw"><a href="../reference/AMMI_indexes.html">AMMI_indexes</a></span>(AMMI_model)</a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="kw">print_table</span>(stab_indexes<span class="op">$</span>GY)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -3942,6 +4193,9 @@ G9
 <div id="ref-Gollob:1968">
 <p>Gollob, H. F. 1968. “A statistical model which combines features of factor analytic and analysis of variance techniques.” <em>Psychometrika</em> 33 (1): 73–115. <a href="https://doi.org/10.1007/BF02289676">https://doi.org/10.1007/BF02289676</a>.</p>
 </div>
+<div id="ref-Olivoto2019">
+<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, V. S. Marchioro, V. Q. de Souza, and E. Jost. 2019. “Mean performance and stability in multi-environment trials I: Combining features of AMMI and BLUP techniques.” <em>Agronomy Journal</em>.</p>
+</div>
 <div id="ref-Piepho:1994">
 <p>Piepho, H. P. 1994. “Best Linear Unbiased Prediction (Blup) for Regional Yield Trials: A Comparison to Additive Main Effects and Multiplicative Interaction (Ammi) Analysis.” <em>Theor. Appl. Genet.</em> 89 (5): 647–54. <a href="https://doi.org/10.1007/BF00222462">https://doi.org/10.1007/BF00222462</a>.</p>
 </div>
@@ -3964,10 +4218,10 @@ G9
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#getting-started">Getting started</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#getting-started">Getting started</a></li>
+      <li>
+<a href="#individual-and-joint-anova">Individual and joint ANOVA</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#the-ammi-model">The AMMI model</a></li>
-      <li><a href="#within-environment-anova">Within-environment ANOVA</a></li>
       <li><a href="#the-ammi-table">The AMMI table</a></li>
       </ul>
 </li>

@@ -196,7 +196,7 @@
     <p>Cross-validation for blup prediction.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cv_blup</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <pre class="usage"><span class='fu'>cv_blup</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>200</span>,
   <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"gen"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -228,18 +228,19 @@ replications/blocks.</p></td>
     <tr>
       <th>block</th>
       <td><p>Defaults to <code>NULL</code>. In this case, a randomized complete
-block design is considered. If block is informed, then a resolvable alpha-lattice
-design (Patterson and Williams, 1976) is employed. See how fixed and random effects are
-considered, see the section <strong>Details</strong>.</p></td>
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed. See how
+fixed and random effects are considered, see the section <strong>Details</strong>.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
-      <td><p>The number of resamples to be used in the cross-validation. Defaults to 100.</p></td>
+      <td><p>The number of resamples to be used in the cross-validation.
+Defaults to 200</p></td>
     </tr>
     <tr>
       <th>random</th>
-      <td><p>The effects of the model assumed to be random. See <strong>Details</strong> for more
-information.</p></td>
+      <td><p>The effects of the model assumed to be random. See
+<strong>Details</strong> for more information.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -250,59 +251,63 @@ Default is <code>TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>cv_blup</code> with the following items:</p><ul>
-<li><p><strong>RMSPD</strong>: A vector with nboot-estimates of the root mean squared
-prediction difference between predicted and validating data.</p></li>
-<li><p><strong>RMSPDmean</strong> The mean of RMSPDmean estimates.</p></li>
-</ul>
-
+    <p>An object of class <code>cv_blup</code> with the following items: *
+<strong>RMSPD</strong>: A vector with nboot-estimates of the root mean squared
+prediction difference between predicted and validating data. *
+<strong>RMSPDmean</strong> The mean of RMSPDmean estimates.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function provides a cross-validation procedure for mixed models using
 replicate-based data. By default, complete blocks are randomly selected
 within each environment. In each iteration, the original dataset is split up
 into two datasets: training and validation data. The 'training' set has all
-combinations (genotype x environment) with R - 1 replications.
-The 'validation' set has the remaining replication.
-The estimated values are compared with the 'validation' data
-and the Root Means Square Prediction Difference (Olivoto et al. 2019) is computed.
-At the end of boots, a list is returned.</p>
-<p>Six models may be fitted depending upon the values in <code>block</code> and <code>random</code> arguments.</p><ul>
-<li><p><strong>Model 1:</strong> <code>block = NULL</code> and <code>random = "gen"</code> (The default option).
-This model considers a Randomized Complete Block Design assuming genotype and
-genotype-vs-environment as random effects. Environment and blocks nested  within environments
+combinations (genotype x environment) with R - 1 replications. The
+'validation' set has the remaining replication. The estimated values are
+compared with the 'validation' data and the Root Means Square Prediction
+Difference (Olivoto et al. 2019) is computed. At the end of boots, a list is
+returned.</p>
+<p>Six models may be fitted depending upon the values in <code>block</code>
+and <code>random</code> arguments. *  <strong>Model 1:</strong> <code>block = NULL</code> and
+<code>random = "gen"</code> (The default option). This model considers a
+Randomized Complete Block Design assuming genotype and
+genotype-vs-environment as random effects. Environment and blocks nested
+within environments are treated as fixed factors.</p><ul>
+<li><p><strong>Model 2:</strong> <code>block = NULL</code> and <code>random = "env"</code>. This
+model considers a Randomized Complete Block Design treating environment,
+genotype-vs-environment, and blocks-within-environments as random factors.
+Genotypes are assumed to be fixed factors.</p></li>
+<li><p><strong>Model 3:</strong> <code>block = NULL</code> and <code>random = "all"</code>. This
+model considers a Randomized Complete Block Design assuming all effects
+(genotypes, environments, genotype-vs-environment interaction and blocks
+nested within environments) as random.</p></li>
+<li><p><strong>Model 4:</strong> <code>block != NULL</code> and <code>random = "gen"</code>. This
+model considers an alpha-lattice design assuming genotype,
+genotype-vs-environment interaction, and incomplete block nested within
+replicates as random to make use of inter-block information (Mohring et
+al., 2015). Complete replicates nested within environments and environments
 are treated as fixed factors.</p></li>
-<li><p><strong>Model 2:</strong> <code>block = NULL</code> and <code>random = "env"</code>.
-This model considers a Randomized Complete Block Design treating environment,
-genotype-vs-environment, and blocks-within-environments as random factors. Genotypes
-are assumed to be fixed factors.</p></li>
-<li><p><strong>Model 3:</strong> <code>block = NULL</code> and <code>random = "all"</code>.
-This model considers a Randomized Complete Block Design assuming all effects (genotypes, environments,
-genotype-vs-environment interaction and blocks nested within environments) as random.</p></li>
-<li><p><strong>Model 4:</strong> <code>block != NULL</code> and <code>random = "gen"</code>.
-This model considers an alpha-lattice design assuming genotype, genotype-vs-environment
-interaction, and incomplete block nested within replicates as random to make use of inter-block
-information (Mohring et al., 2015). Complete replicates nested within environments and environments
-are treated as fixed factors.</p></li>
-<li><p><strong>Model 5:</strong> <code>block != NULL</code> and <code>random = "env"</code>.
-This model considers an alpha-lattice design assuming genotype as fixed. All other sources of
-variation (environment, complete replicates nested within environments, and incomplete blocks nested
-within replicates) as treated as random factors.</p></li>
-<li><p><strong>Model 6:</strong> <code>block != NULL</code> and <code>random = "all"</code>.
-This model considers an alpha-lattice design assuming all effects, except the intercept, as random
-factors.</p></li>
+<li><p><strong>Model 5:</strong> <code>block != NULL</code> and <code>random = "env"</code>. This
+model considers an alpha-lattice design assuming genotype as fixed. All
+other sources of variation (environment, complete replicates nested within
+environments, and incomplete blocks nested within replicates) as treated as
+random factors.</p></li>
+<li><p><strong>Model 6:</strong> <code>block != NULL</code> and <code>random = "all"</code>. This
+model considers an alpha-lattice design assuming all effects, except the
+intercept, as random factors.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
-trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
 <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
-<p>Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
-Biometrika 63:83-92.</p>
-<p>Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information:
-to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
+<p>Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.</p>
+<p>Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block
+information: to recover or not to recover it? TAG. Theor. Appl. Genet.
+128:1541-54.
 <a href='http://www.ncbi.nlm.nih.gov/pubmed/25972114'>doi:10.1007/s00122-015-2530-0</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

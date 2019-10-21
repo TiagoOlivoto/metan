@@ -196,7 +196,7 @@
     <p>Cross-validation for estimation of all AMMI-family models</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cv_ammif</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>block</span>,
+    <pre class="usage"><span class='fu'>cv_ammif</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='no'>block</span>,
   <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -227,13 +227,15 @@ replications/blocks.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
-      <td><p>The number of resamples to be used in the cross-validation. Defaults to 100.</p></td>
+      <td><p>The number of resamples to be used in the cross-validation.
+Defaults to 200.</p></td>
     </tr>
     <tr>
       <th>block</th>
       <td><p>Defaults to <code>NULL</code>. In this case, a randomized complete
-block design is considered. If block is informed, then a resolvable alpha-lattice
-design (Patterson and Williams, 1976) is employed. <strong>All effects are assumed to be fixed.</strong></p></td>
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+<strong>All effects are assumed to be fixed.</strong></p></td>
     </tr>
     <tr>
       <th>design</th>
@@ -267,20 +269,20 @@ using AMMI-family models. By default, the first validation is carried out
 considering the AMMIF (all possible axis used). Considering this model, the
 original dataset is split up into two datasets: training set and validation
 set. The 'training' set has all combinations (genotype x environment) with
-N-1 replications. The 'validation' set has the remaining replication.
-The splitting of the dataset into modeling and validation sets depends on the
-design informed. For Completely Randomized Block Design (default), and alpha-lattice
-design (declaring <code>block</code> arguments), complete replicates are selected
-within environments. The remained replicate serves as validation data. If
-<code>design = 'RCD'</code> is informed, completely randomly samples are made for
-each genotype-by-environment combination (Olivoto et al. 2019). The estimated
-values for each member of the AMMI-family model are compared with the 'validation' data.
-The Root Mean Square Prediction Difference (RMSPD) is computed. At the end of boots,
-a list is returned.</p>
+N-1 replications. The 'validation' set has the remaining replication. The
+splitting of the dataset into modeling and validation sets depends on the
+design informed. For Completely Randomized Block Design (default), and
+alpha-lattice design (declaring <code>block</code> arguments), complete replicates
+are selected within environments. The remained replicate serves as validation
+data. If <code>design = 'RCD'</code> is informed, completely randomly samples are
+made for each genotype-by-environment combination (Olivoto et al. 2019). The
+estimated values for each member of the AMMI-family model are compared with
+the 'validation' data. The Root Mean Square Prediction Difference (RMSPD) is
+computed. At the end of boots, a list is returned.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable incomplete block designs.
-Biometrika 63:83-92.</p>
+    <p>Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cv_ammi.html'>cv_ammi</a>, <a href='cv_blup.html'>cv_blup</a></code></p></div>
@@ -293,8 +295,7 @@ Biometrika 63:83-92.</p>
                   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)
 
 <span class='co'># Alternatively (and more intuitively) using the pipe operator %&gt;%</span>
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>

@@ -52,20 +52,21 @@ plot(CVAL)
 
 
 ### Fitting the model
-The AMMI model is fitted with the function `waas()`, which is the acronym for the weighted average of absolute scores [@Olivoto2019]. For more details, please see `?waas`.
+The AMMI model may be fitted with with both functions `performs_ammi()` and `waas()`, which is the acronym for the weighted average of absolute scores [@Olivoto2019].
 
 ```{r}
-model <- waas(data_ge, ENV, GEN, REP, GY)
+ammi_model <- performs_ammi(data_ge, ENV, GEN, REP, resp = c(GY, HM))
+waas_index <- waas(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
 ```
 
 ### Biplots
 
-The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `waas()` and `waasb()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list that in this case has one element, GY.
+The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `performs_ammi()` and , `waas()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `ammi_model` is a list that in this case has two elements, (GY and HM).
 
 ```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
-p1 <- plot_scores(model$GY, axis.expand = 1.2)
-p2 <- plot_scores(model$GY,
-                  type = 1,
+p1 <- plot_scores(ammi_model$GY, axis.expand = 1.2)
+p2 <- plot_scores(ammi_model$GY,
+                  type = 2,
                   polygon = TRUE,
                   col.gen = "black",
                   col.env = "gray70",
@@ -79,10 +80,10 @@ plot_grid(p1, p2,
 
 
 ### S3 method predict()
-The S3 method `predict()` is implemented for objects of class `waas` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, we will use four IPCA (number of significant IPCAs) to estimate the GY using the previously fitted `model` object.
+The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively).
 
 ```{r }
-predicted <- predict(model, naxis = 4)
+predicted <- predict(ammi_model, naxis = c(4, 6))
 print_table(head(predicted$GY))
 ```
 

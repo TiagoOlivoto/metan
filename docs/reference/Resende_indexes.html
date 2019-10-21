@@ -267,6 +267,7 @@ genotype in the jth environment.</p>
                 <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                 <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='no'>model_indexes</span> <span class='kw'>=</span> <span class='fu'>Resende_indexes</span>(<span class='no'>res_ind</span>)
 
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
@@ -274,6 +275,7 @@ genotype in the jth environment.</p>
           <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
           <span class='fu'>Resende_indexes</span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 
 </div></pre>

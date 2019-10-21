@@ -341,7 +341,8 @@ Agron. J.
                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>70</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'>
+               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>70</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
 <span class='co'># Higher weight for response variable</span>
 
 <span class='no'>model2</span> <span class='kw'>&lt;-</span> <span class='fu'>waasb</span>(<span class='no'>data_ge</span>,
@@ -349,7 +350,8 @@ Agron. J.
                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>65</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'>
+               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>65</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
 <span class='co'># Environment as random effects analyzing more than one variables</span>
 <span class='co'># considering that smaller values of HM are better and higher</span>
 <span class='co'># values of GY are better, assigning a larger weight for the GY</span>
@@ -364,6 +366,7 @@ Agron. J.
                 <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>),
                 <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 </div></pre>
   </div>

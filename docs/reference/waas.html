@@ -277,8 +277,7 @@ model.</p></li>
 Principal Components, the estimates of Weighted Average of Absolute Scores,
 and WAASY (the index that consider the weights for stability and productivity
 in the genotype ranking.</p></li>
-<li><p><strong>MeansGxE</strong> The means of genotypes in the environments, with
-observed, predicted and residual values.</p></li>
+<li><p><strong>MeansGxE</strong> The means of genotypes in the environments</p></li>
 <li><p><strong>PCA</strong> Principal Component Analysis.</p></li>
 <li><p><strong>anova</strong> Joint analysis of variance for the main effects and
 Principal Component analysis of the interaction effect.</p></li>
@@ -330,7 +329,8 @@ Agron. J.
               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'>
+              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
 
 <span class='co'># Declaring the number of axis to be used for computing WAAS</span>
 <span class='co'># and assigning a larger weight for the response variable when</span>
@@ -342,7 +342,8 @@ Agron. J.
                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
                <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>60</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'>
+               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>60</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
 <span class='co'># Analyzing multiple variables (GY and HM) at the same time</span>
 <span class='co'># considering that smaller values of HM are better and higher</span>
 <span class='co'># values of GY are better, assigning a larger weight for the GY</span>
@@ -356,6 +357,7 @@ Agron. J.
                <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>),
                <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 
 </div></pre>

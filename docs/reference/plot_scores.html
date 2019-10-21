@@ -43,9 +43,8 @@
 
 
 <meta property="og:title" content="Plot scores in different graphical interpretations — plot_scores" />
-<meta property="og:description" content="Plot scores of genotypes and environments in different graphics. 1 =
-PC1 x PC2, 2 = GY x PC1, 3 = GY x WAASB, and 4 =
-Nominal yield x EPCA1." />
+<meta property="og:description" content="Plot scores of genotypes and environments in different graphical
+interpretations." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -195,42 +194,176 @@ Nominal yield x EPCA1." />
     </div>
 
     <div class="ref-description">
-    <p>Plot scores of genotypes and environments in different graphics. <code>1 =
-PC1 x PC2</code>, <code>2 = GY x PC1</code>, <code>3 = GY x WAASB</code>, and <code>4 =
-Nominal yield x EPCA1</code>.</p>
+    <p>Plot scores of genotypes and environments in different graphical
+interpretations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_scores</span>(<span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
-  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(),
-  <span class='kw'>axis.expand</span> <span class='kw'>=</span> <span class='fl'>1.1</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>shape.gen</span> <span class='kw'>=</span> <span class='fl'>21</span>, <span class='kw'>shape.env</span> <span class='kw'>=</span> <span class='fl'>23</span>,
+    <pre class="usage"><span class='fu'>plot_scores</span>(<span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='kw'>axis.expand</span> <span class='kw'>=</span> <span class='fl'>1.1</span>, <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>y.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
+  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>shape.gen</span> <span class='kw'>=</span> <span class='fl'>21</span>, <span class='kw'>shape.env</span> <span class='kw'>=</span> <span class='fl'>23</span>,
   <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>size.bor.tick</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>size.tex.pa</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>repulsion</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>size.segm.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Env"</span>, <span class='st'>"Gen"</span>),
-  <span class='kw'>line.type</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>line.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>, <span class='kw'>col.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>col.segm.gen</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>, <span class='kw'>col.segm.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>size.tex.pa</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>size.segm.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>col.bor.gen</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.bor.env</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>, <span class='kw'>col.alpha.gen</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>col.alpha.env</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>col.segm.gen</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>,
+  <span class='kw'>col.segm.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>, <span class='kw'>repulsion</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Env"</span>,
+  <span class='st'>"Gen"</span>), <span class='kw'>line.type</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>line.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The object <code>WAASB</code> or <code>WAAS.AMMI</code></p></td>
+      <td><p>An object fitted with the functions <code><a href='performs_ammi.html'>performs_ammi</a></code>,
+<code><a href='waas.html'>waas</a></code> or <code><a href='waasb.html'>waasb</a></code>.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Three types of graphics can be generated: <code>1 = PC1 x PC2</code>,
-default, to make inferences related to the interaction effects; <code>2 = GY
-x PC1</code> to make inferences related to stability and productivity; <code>3 =
-GY x WAASB</code>, and <code>4 = Nominal yield x Environment PC1</code>.</p></td>
+      <td><p>type of biplot to produce</p><ol>
+<li><ul>
+<li><p><code>type = 1</code> Produces an AMMI1 biplot (Y x PC1) to make inferences
+related to stability and productivity.</p></li>
+<li><p><code>type = 2</code> The default, produces an AMMI2 biplot (PC1 x PC2) to make
+inferences related to the interaction effects.</p></li>
+<li><p><code>type = 3</code> Valid for objects of class <code>waas</code> or <code>waasb</code>,
+produces a biplot showing the GY x WAASB.</p></li>
+<li><p><code>type = 4</code> Produces a plot with the Nominal yield x Environment PC.</p></li>
+</ul></li>
+</ol></td>
     </tr>
     <tr>
       <th>polygon</th>
       <td><p>Logical argument. If <code>TRUE</code>, a polygon is drawn when
-<code>type 1</code>.</p></td>
+<code>type = 2</code>.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>Logical values (Defaults to <code>TRUE</code>) to include
+automatically generated titles</p></td>
+    </tr>
+    <tr>
+      <th>theme</th>
+      <td><p>The graphical theme of the plot. Default is <code>theme = theme_waasb()</code>. Please, see <code><a href='theme_waasb.html'>?metan::theme_waasb</a></code>. An own theme can be
+applied using the arguments: <code>theme = theme_waasb() + theme(some stuff here)</code>. For more details, please, see <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>?ggplot2::theme</a></code></p></td>
+    </tr>
+    <tr>
+      <th>axis.expand</th>
+      <td><p>Multiplication factor to expand the axis limits by to
+enable fitting of labels. Default is <code>1.1</code>.</p></td>
+    </tr>
+    <tr>
+      <th>x.lim, y.lim</th>
+      <td><p>The range of x and y axes, respectively. Default is
+<code>NULL</code> (maximum and minimum values of the data set). New values can be
+inserted as <code>x.lim = c(x.min, x.max)</code> or <code>y.lim = c(y.min,
+  y.max)</code>.</p></td>
+    </tr>
+    <tr>
+      <th>x.breaks, y.breaks</th>
+      <td><p>The breaks to be plotted in the x and y axes,
+respectively. Defaults to <code>waiver()</code> (authomatic breaks). New values
+can be inserted, for example, as <code>x.breaks = c(0.1, 0.2, 0.3)</code> or
+<code>x.breaks = seq(0, 1, by = 0.2)</code></p></td>
+    </tr>
+    <tr>
+      <th>x.lab, y.lab</th>
+      <td><p>The label of x and y axes, respectively. Defaults to
+<code>NULL</code>, i.e., each plot has a default axis label. New values can be
+inserted as <code>x.lab = 'my label'</code>.</p></td>
+    </tr>
+    <tr>
+      <th>shape.gen, shape.gen</th>
+      <td><p>The shape for genotypes and environments
+indication in the biplot. Default is <code>21</code> (circle) for genotypes and
+<code>23</code> (diamond) for environments. Values must be between <code>21-25</code>:
+<code>21</code> (circle), <code>22</code> (square), <code>23</code> (diamond), <code>24</code> (up
+triangle), and <code>25</code> (low triangle).</p></td>
+    </tr>
+    <tr>
+      <th>size.shape</th>
+      <td><p>The size of the shape (both for genotypes and
+environments). Default is <code>2.2</code>.</p></td>
+    </tr>
+    <tr>
+      <th>size.bor.tick</th>
+      <td><p>The size of tick of shape. Default is <code>0.3</code>. The
+size of the shape will be <code>size.shape + size.bor.tick</code></p></td>
+    </tr>
+    <tr>
+      <th>size.tex.lab, size.tex.pa</th>
+      <td><p>The size of the text for labels (Defaults to
+12) and plot area (Defaults to 3.5), respectively.</p></td>
+    </tr>
+    <tr>
+      <th>size.line</th>
+      <td><p>The size of the line that indicate the means in the biplot.
+Default is <code>0.5</code>.</p></td>
+    </tr>
+    <tr>
+      <th>size.segm.line</th>
+      <td><p>The size of the segment that start in the origin of the
+biplot and end in the scores values. Default is <code>0.5</code>.</p></td>
+    </tr>
+    <tr>
+      <th>col.bor.gen, col.bor.env</th>
+      <td><p>The color of the shape's border for genotypes
+and environments, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>col.line</th>
+      <td><p>The color of the line that indicate the means in the biplot.
+Default is <code>'gray'</code></p></td>
+    </tr>
+    <tr>
+      <th>col.gen, col.env</th>
+      <td><p>The shape color for genotypes (Defaults to
+<code>'orange'</code>) and environments (<code>'forestgreen'</code>). Must be length
+one or a vector of colours with the same length of the number of
+genotypes/environments.</p></td>
+    </tr>
+    <tr>
+      <th>col.alpha.gen, col.alpha.env</th>
+      <td><p>The alpha value for the color for
+genotypes and environments, respectively. Default is <code>0.9</code>. Values
+must be between <code>0</code> (full transparency) to <code>1</code> (full color).</p></td>
+    </tr>
+    <tr>
+      <th>col.segm.gen, col.segm.env</th>
+      <td><p>The color of segment for genotypes (Defaults
+to 'transparent') and environments (Defaults to 'forestgreen'),
+respectively. Valid arguments for plots with <code>type = 1</code> or <code>type
+  = 2</code> graphics.</p></td>
+    </tr>
+    <tr>
+      <th>repulsion</th>
+      <td><p>Force of repulsion between overlapping text labels. Defaults
+to 1.</p></td>
+    </tr>
+    <tr>
+      <th>leg.lab</th>
+      <td><p>The labs of legend. Default is <code>Gen</code> and <code>Env</code>.</p></td>
+    </tr>
+    <tr>
+      <th>line.type</th>
+      <td><p>The type of the line that indicate the means in the biplot.
+Default is <code>'solid'</code>. Other values that can be attributed are:
+<code>'blank'</code>, no lines in the biplot, <code>'dashed', 'dotted',
+  'dotdash', 'longdash', and 'twodash'</code>.</p></td>
+    </tr>
+    <tr>
+      <th>line.alpha</th>
+      <td><p>The alpha value that combine the line with the background
+to create the appearance of partial or full transparency. Default is
+<code>0.4</code>. Values must be between '0' (full transparency) to '1' (full
+color).</p></td>
+    </tr>
+    <tr>
+      <th>resolution</th>
+      <td><p>The resolution of the plot. Parameter valid if
+<code>file.type = 'tiff'</code> is used. Default is <code>300</code> (300 dpi)</p></td>
     </tr>
     <tr>
       <th>file.type</th>
@@ -248,162 +381,12 @@ exported in <code>*.tiff</code> format by declaring <code>file.type = 'tiff'</co
 <code>NULL</code>, i.e. the files are automatically named.</p></td>
     </tr>
     <tr>
-      <th>theme</th>
-      <td><p>The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme_waasb() + theme(some stuff
-here)`. For more details, please, see `?ggplot2::theme`</p></td>
-    </tr>
-    <tr>
-      <th>axis.expand</th>
-      <td><p>Multiplication factor to expand the axis limits by to
-enable fitting of labels. Default is <code>1.1</code>.</p></td>
-    </tr>
-    <tr>
       <th>width</th>
       <td><p>The width 'inch' of the plot. Default is <code>8</code>.</p></td>
     </tr>
     <tr>
       <th>height</th>
       <td><p>The height 'inch' of the plot. Default is <code>7</code>.</p></td>
-    </tr>
-    <tr>
-      <th>x.lim</th>
-      <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and
-minimum values of the data set). New arguments can be inserted as
-<code>x.lim = c(x.min, x.max)</code>.</p></td>
-    </tr>
-    <tr>
-      <th>x.breaks</th>
-      <td><p>The breaks to be plotted in the x-axis. Default is
-<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks =
-c(breaks)</code></p></td>
-    </tr>
-    <tr>
-      <th>x.lab</th>
-      <td><p>The label of x-axis. Each plot has a default value. New
-arguments can be inserted as <code>x.lab = 'my label'</code>.</p></td>
-    </tr>
-    <tr>
-      <th>y.lab</th>
-      <td><p>The label of y-axis. Each plot has a default value. New
-arguments can be inserted as <code>y.lab = 'my label'</code>.</p></td>
-    </tr>
-    <tr>
-      <th>y.lim</th>
-      <td><p>The range of y-axis. Default is <code>NULL</code>. The same arguments
-than <code>x.lim</code> can be used.</p></td>
-    </tr>
-    <tr>
-      <th>y.breaks</th>
-      <td><p>The breaks to be plotted in the x-axis. Default is
-<code>authomatic breaks</code>. The same arguments than <code>x.breaks</code> can be
-used.</p></td>
-    </tr>
-    <tr>
-      <th>shape.gen</th>
-      <td><p>The shape for genotype indication in the biplot. Default is
-<code>21</code> (circle). Values must be between <code>21-25</code>: <code>21</code> (circle),
-<code>22</code> (square), <code>23</code> (diamond), <code>24</code> (up triangle), and
-<code>25</code> (low triangle).</p></td>
-    </tr>
-    <tr>
-      <th>shape.env</th>
-      <td><p>The shape for environment indication in the biplot. Default
-is <code>23</code> (diamond). The same arguments than <code>'shape.gen'</code>.</p></td>
-    </tr>
-    <tr>
-      <th>size.shape</th>
-      <td><p>The size of the shape (both for genotypes and
-environments). Default is <code>2.2</code>.</p></td>
-    </tr>
-    <tr>
-      <th>size.bor.tick</th>
-      <td><p>The size of tick of shape. Default is <code>0.3</code>. The
-size of the shape will be <code>size.shape + size.bor.tick</code></p></td>
-    </tr>
-    <tr>
-      <th>size.tex.lab</th>
-      <td><p>The size of the text in the axes text and labels.
-Default is <code>12</code>.</p></td>
-    </tr>
-    <tr>
-      <th>size.tex.pa</th>
-      <td><p>The size of the text of the plot area. Default is
-<code>3.5</code>.</p></td>
-    </tr>
-    <tr>
-      <th>repulsion</th>
-      <td><p>Force of repulsion between overlapping text labels. Defaults to 1.</p></td>
-    </tr>
-    <tr>
-      <th>size.line</th>
-      <td><p>The size of the line that indicate the means in the biplot.
-Default is <code>0.5</code>.</p></td>
-    </tr>
-    <tr>
-      <th>size.segm.line</th>
-      <td><p>The size of the segment that start in the origin of
-the biplot and end in the scores values. Default is <code>0.5</code>.</p></td>
-    </tr>
-    <tr>
-      <th>leg.lab</th>
-      <td><p>The labs of legend. Default is <code>Gen</code> and <code>Env</code>.</p></td>
-    </tr>
-    <tr>
-      <th>line.type</th>
-      <td><p>The type of the line that indicate the means in the biplot.
-Default is <code>'solid'</code>. Other values that can be attributed are:
-<code>'blank'</code>, no lines in the biplot, <code>'dashed', 'dotted', 'dotdash',
-'longdash', and 'twodash'</code>.</p></td>
-    </tr>
-    <tr>
-      <th>line.alpha</th>
-      <td><p>The alpha value that combine the line with the background
-to create the appearance of partial or full transparency. Default is
-<code>0.4</code>. Values must be between '0' (full transparency) to '1' (full
-color).</p></td>
-    </tr>
-    <tr>
-      <th>col.line</th>
-      <td><p>The color of the line that indicate the means in the biplot.
-Default is <code>'gray'</code></p></td>
-    </tr>
-    <tr>
-      <th>col.gen</th>
-      <td><p>The shape color for genotypes. Must be one value or a vector
-of colours with the same length of the number of genotypes. Default is
-<code>'orange'</code>. Other values can be attributed. For example,
-<code>'transparent'</code>, will make a plot with only an outline around the shape
-area.</p></td>
-    </tr>
-    <tr>
-      <th>col.env</th>
-      <td><p>The shape color for environments. Default is <code>'forestgreen'</code>.
-The same usability than <code>'col.gen'</code>.</p></td>
-    </tr>
-    <tr>
-      <th>col.alpha</th>
-      <td><p>The alpha value for the color. Default is <code>0.9</code>.
-Values must be between <code>0</code> (full transparency) to <code>1</code> (full
-color).</p></td>
-    </tr>
-    <tr>
-      <th>col.segm.gen</th>
-      <td><p>The color of segment for genotypes.Default is
-<code>'transparent'</code>. Parameter valid for <code>type = 1</code> and <code>type =
-2</code> graphics. This segment start in the origin of the biplot and end in the
-scores values.</p></td>
-    </tr>
-    <tr>
-      <th>col.segm.env</th>
-      <td><p>The color of segment for environments. Default is
-<code>'forestgreen'</code>. The same usability than <code>'col.segm.gen'</code></p></td>
-    </tr>
-    <tr>
-      <th>resolution</th>
-      <td><p>The resolution of the plot. Parameter valid if
-<code>file.type = 'tiff'</code> is used. Default is <code>300</code> (300 dpi)</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -416,16 +399,22 @@ scores values.</p></td>
     <p>An object of class <code>gg, ggplot</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The plots type 1 and 2 have the same interpretation than those used in
-traditional-usage AMMI analysis (well know as AMMI2 and AMMI1,
-respectively). In the plot type 3, the scores of both genotypes and
-environments are plotted considering the response variable and the WAASB
-(stability index that considers all significant principal component axis of
-traditional AMMI models or all principal component axis estimated with
-BLUP-interaction effects. Plot type 4 may be used to better understand the
-well known 'which-won-where' pattern, facilitating the recommendation of
-appropriate genotypes targeted for specific environments, thus allowing the
-exploitation of narrow adaptations.</p>
+    <p>Biplots type 1 and 2 are well known in AMMI analysis. In the plot type 3, the
+scores of both genotypes and environments are plotted considering the
+response variable and the WAASB, an stability index that considers all
+significant principal component axis of traditional AMMI models or all
+principal component axis estimated with BLUP-interaction effects (Olivoto et
+al. 2019). Plot type 4 may be used to better understand the well known
+'which-won-where' pattern, facilitating the recommendation of appropriate
+genotypes targeted for specific environments, thus allowing the exploitation
+of narrow adaptations.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='plot_eigen.html'>plot_eigen</a></code></p></div>
@@ -433,27 +422,34 @@ exploitation of narrow adaptations.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='no'>scores</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Done!</div><div class='input'><span class='co'># PC1 x PC2</span>
+<span class='co'># AMMI model</span>
+<span class='no'>ammi_model</span> <span class='kw'>=</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
+                           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+#&gt; Evaluating variable HM 100 % 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
+<span class='co'># GY x PC1 (variable GY)</span>
 <span class='fu'>plot_scores</span>(<span class='no'>scores</span>$<span class='no'>GY</span>,
-            <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-            <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plot_scores-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># GY x PC1</span>
-<span class='fu'>plot_scores</span>(<span class='no'>scores</span>$<span class='no'>GY</span>,
-            <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>,
             <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>'olivedrab'</span>,
             <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>'orange2'</span>,
-            <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>'My own x label'</span>)</div><div class='img'><img src='plot_scores-2.png' alt='' width='700' height='433' /></div><div class='input'>
+            <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>'My own x label'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot_scores(scores$GY, col.env = "olivedrab", col.gen = "orange2",     x.lab = "My own x label"): objeto 'scores' não encontrado</span></div><div class='input'>
+<span class='co'># PC1 x PC2 (variable HM)</span>
+<span class='fu'>plot_scores</span>(<span class='no'>scores</span>$<span class='no'>HM</span>,
+            <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+            <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot_scores(scores$HM, type = 2, polygon = TRUE): objeto 'scores' não encontrado</span></div><div class='input'>
+<span class='co'># PC1 x PC2 (variable HM)</span>
+<span class='co'># Draw a convex hull polygon</span>
+<span class='fu'>plot_scores</span>(<span class='no'>scores</span>$<span class='no'>HM</span>,
+            <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+            <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot_scores(scores$HM, type = 2, polygon = TRUE): objeto 'scores' não encontrado</span></div><div class='input'>
+<span class='co'># WAASB index</span>
+<span class='no'>waasb_model</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
 <span class='co'># GY x WAASB</span>
-<span class='fu'>plot_scores</span>(<span class='no'>scores</span>$<span class='no'>GY</span>,
+<span class='fu'>plot_scores</span>(<span class='no'>waasb_model</span>$<span class='no'>GY</span>,
             <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>3</span>,
             <span class='kw'>size.tex.pa</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-            <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>16</span>)</div><div class='img'><img src='plot_scores-3.png' alt='' width='700' height='433' /></div><div class='input'>
-
+            <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>16</span>)</div><div class='img'><img src='plot_scores-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -462,6 +458,7 @@ exploitation of narrow adaptations.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
