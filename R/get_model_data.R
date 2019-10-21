@@ -6,7 +6,7 @@
 #'
 #'
 #' @param x An object created with the functions \code{\link{gamem}},
-#'   \code{\link{performs_ammmi}}, \code{\link{waas}} or \code{\link{waasb}}.
+#'   \code{\link{performs_ammi}}, \code{\link{waas}} or \code{\link{waasb}}.
 #' @param what What should be captured from the model. See more in
 #'   \strong{Details} section.
 #' @param type Chose if the statistics must be show by genotype (\code{type =

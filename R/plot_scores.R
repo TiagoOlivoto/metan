@@ -46,7 +46,7 @@
 #' @param x.lab,y.lab The label of x and y axes, respectively. Defaults to
 #'   \code{NULL}, i.e., each plot has a default axis label. New values can be
 #'   inserted as \code{x.lab = 'my label'}.
-#' @param shape.gen,shape.gen The shape for genotypes and environments
+#' @param shape.gen,shape.env The shape for genotypes and environments
 #'   indication in the biplot. Default is \code{21} (circle) for genotypes and
 #'   \code{23} (diamond) for environments. Values must be between \code{21-25}:
 #'   \code{21} (circle), \code{22} (square), \code{23} (diamond), \code{24} (up
@@ -118,19 +118,19 @@
 #'                            resp = c(GY, HM))
 #'
 #' # GY x PC1 (variable GY)
-#' plot_scores(scores$GY,
+#' plot_scores(ammi_model$GY,
 #'             col.env = 'olivedrab',
 #'             col.gen = 'orange2',
 #'             x.lab = 'My own x label')
 #'
 #' # PC1 x PC2 (variable HM)
-#' plot_scores(scores$HM,
+#' plot_scores(ammi_model$HM,
 #'             type = 2,
 #'             polygon = TRUE)
 #'
 #' # PC1 x PC2 (variable HM)
 #' # Draw a convex hull polygon
-#' plot_scores(scores$HM,
+#' plot_scores(ammi_model$HM,
 #'             type = 2,
 #'             polygon = TRUE)
 #'

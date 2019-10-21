@@ -8,7 +8,7 @@ get_model_data(x, what = "Y", type = "GEN")
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{gamem}},
-\code{\link{performs_ammmi}}, \code{\link{waas}} or \code{\link{waasb}}.}
+\code{\link{performs_ammi}}, \code{\link{waas}} or \code{\link{waasb}}.}
 
 \item{what}{What should be captured from the model. See more in
 \strong{Details} section.}
