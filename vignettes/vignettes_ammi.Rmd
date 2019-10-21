@@ -235,7 +235,7 @@ plot_scores(AMMI_model$GY, 4)
 
 # Simultaneous selection for mean performance and stability
 
-The WAASY index is used for genotype ranking considering both the stability (WAAS) and mean performance based on the following model:
+The WAASY index [@Olivoto2019a] is used for genotype ranking considering both the stability (WAAS) and mean performance based on the following model:
 
 $$
 WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _S}} \right)}}{{{\theta _Y} + {\theta _S}}}

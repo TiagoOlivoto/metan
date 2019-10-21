@@ -42,8 +42,7 @@
 #'
 #' # PC1 x PC2 (variable HM)
 #' plot_scores(ammi_model$HM,
-#'             type = 2,
-#'             polygon = TRUE)
+#'             type = 2)
 #'
 #' # PC1 x PC2 (variable HM)
 #' # Draw a convex hull polygon

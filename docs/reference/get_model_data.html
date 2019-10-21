@@ -43,8 +43,9 @@
 
 
 <meta property="og:title" content="Easily get data from a model — get_model_data" />
-<meta property="og:description" content="Easily get data from a model of class waas or waasb (Olivoto et
-al., 2019a, 2019b)" />
+<meta property="og:description" content="Easily get data from some objects generated in the metan package
+such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
+variance components, and details of AMMI models." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -194,8 +195,9 @@ al., 2019a, 2019b)" />
     </div>
 
     <div class="ref-description">
-    <p>Easily get data from a model of class <code>waas</code> or <code>waasb</code> (Olivoto et
-al., 2019a, 2019b)</p>
+    <p>Easily get data from some objects generated in the <strong>metan</strong> package
+such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
+variance components, and details of AMMI models.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_model_data</span>(<span class='no'>x</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"Y"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"GEN"</span>)</pre>
@@ -205,8 +207,8 @@ al., 2019a, 2019b)</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object created with the functions <code><a href='waas.html'>waas</a></code> or
-<code><a href='waasb.html'>waasb</a></code>.</p></td>
+      <td><p>An object created with the functions <code><a href='gamem.html'>gamem</a></code>,
+<code><a href='performs_ammi.html'>performs_ammi</a></code>, <code><a href='waas.html'>waas</a></code> or <code><a href='waasb.html'>waasb</a></code>.</p></td>
     </tr>
     <tr>
       <th>what</th>
@@ -226,7 +228,17 @@ al., 2019a, 2019b)</p>
 <code>what</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><strong>The next options are valid in the argument <code>what</code> for both <code>waas</code> and <code>waasb</code> objects.</strong></p><ul>
+    <p><strong>The next options are allowed if the object is of class <code>performs_ammi</code>.</strong></p><ul>
+<li><p><code>"Y"</code> for raw means (Default) .</p></li>
+<li><p><code>"ipca_ss"</code> Sum of square for each IPCA.</p></li>
+<li><p><code>"ipca_ms"</code> Mean square for each IPCA.</p></li>
+<li><p><code>"ipca_fval"</code> F value for each IPCA.</p></li>
+<li><p><code>"ipca_pval"</code> P-value for for each IPCA.</p></li>
+<li><p><code>"ipca_expl"</code>  Explained sum of square for each IPCA.</p></li>
+<li><p><code>"ipca_accum"</code> Accumulated explained sum of square.</p></li>
+</ul>
+
+<p><strong>The next options are valid in the argument <code>what</code> for both <code>waas</code> and <code>waasb</code> objects.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default) .</p></li>
 <li><p><code>"PCn"</code> for the scores of the nth Interaction Principal Component Axis (IPCA) .
 where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>) .</p></li>
@@ -242,9 +254,11 @@ where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>) .</p></li>
 <li><p><code>"OrWAASBY"</code> The ranking regarding the superiority index .</p></li>
 </ul>
 
-<p><strong>The next options are only allowed if the object is of class <code>waasb</code>.</strong></p><ul>
+<p><strong>The next options are allowed if the object is of class <code>waasb</code>
+or <code>gamem</code>.</strong></p><ul>
 <li><p><code>"blupg"</code> For genotype's predicted mean.</p></li>
-<li><p><code>"blupge"</code> for genotype-vs-environment's predicted mean.</p></li>
+<li><p><code>"blupge"</code> for genotype-vs-environment's predicted mean (only for
+objects of class <code>waasb</code>).</p></li>
 <li><p><code>"genpar"</code> Genetic parameters.</p></li>
 <li><p><code>"lrt"</code> The statistic for the likelihood-ratio test for random effects.</p></li>
 <li><p><code>"pval_lrt"</code>  The p-values for the likelihood-ratio test.</p></li>
@@ -253,18 +267,70 @@ where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>) .</p></li>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in multi-environment
-trials I: Combining features of AMMI and BLUP techniques. Agron. J.
-<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
-<p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019b.
-Mean performance and stability in multi-environment trials II: Selection based on multiple
-traits. Agron. J. (in press)</p>
+    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro, V.Q. de
+Souza, and E. Jost. 2019a. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220'>doi:10.2134/agronj2019.03.0220</a></p>
+<p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel.
+2019b. Mean performance and stability in multi-environment trials II:
+Selection based on multiple traits. Agron. J.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0221'>doi:10.2134/agronj2019.03.0221</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='co'># Fit an AMMI model for 5 variables.</span>
+<span class='co'>#################### AMMI model #####################</span>
+<span class='co'># Fit an AMMI model for 7 variables.</span>
+<span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
+ <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>CW</span>))</div><div class='output co'>#&gt; Evaluating variable PH 14.3 % 
+#&gt; Evaluating variable ED 28.6 % 
+#&gt; Evaluating variable TKW 42.9 % 
+#&gt; Evaluating variable NKR 57.1 % 
+#&gt; Evaluating variable CD 71.4 % 
+#&gt; Evaluating variable CL 85.7 % 
+#&gt; Evaluating variable CW 100 % 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'>
+<span class='co'># Sum of squares</span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_ss"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 9</span><span>
+#&gt;   PC       DF    PH    ED     TKW   NKR    CD    CL    CW
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14 4.47  212.  </span><span style='text-decoration: underline;'>104</span><span>276. 337.   48.2 321.  </span><span style='text-decoration: underline;'>2</span><span>224.
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.653 135.   </span><span style='text-decoration: underline;'>33</span><span>361. 192.   20.7 129.   503.
+#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.277  51.3  </span><span style='text-decoration: underline;'>26</span><span>935.  73.1  12.6  77.5  330.</div><div class='input'>
+<span class='co'># Mean squares</span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_ms"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+#&gt;   PC       DF     PH    ED   TKW   NKR    CD    CL    CW
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14 0.319  15.2  </span><span style='text-decoration: underline;'>7</span><span>448. 24.1   3.45 22.9  159. 
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.054</span><span style='text-decoration: underline;'>5</span><span> 11.2  </span><span style='text-decoration: underline;'>2</span><span>780. 16.0   1.73 10.8   41.9
+#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.027</span><span style='text-decoration: underline;'>7</span><span>  5.13 </span><span style='text-decoration: underline;'>2</span><span>694.  7.31  1.26  7.75  33.0</div><div class='input'>
+<span class='co'># Examine the significance (p-value) of the IPCAs</span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_pval"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+#&gt;   PC       DF     PH     ED     TKW      NKR     CD    CL       CW
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14 0      0      0       0.000</span><span style='text-decoration: underline;'>600</span><span> 0          0 0       
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.008</span><span style='text-decoration: underline;'>4</span><span> 0      0.001</span><span style='text-decoration: underline;'>20</span><span> 0.028</span><span style='text-decoration: underline;'>5</span><span>   0.042</span><span style='text-decoration: underline;'>3</span><span>     0 0.000</span><span style='text-decoration: underline;'>300</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.276  0.043</span><span style='text-decoration: underline;'>8</span><span> 0.003   0.509    0.192      0 0.005</span><span style='text-decoration: underline;'>2</span><span>  </div><div class='input'>
+<span class='co'># Explained sum of square for each IPCA</span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_expl"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+#&gt;   PC       DF    PH    ED   TKW   NKR    CD    CL    CW
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14  82.8  53.3  63.4  56    59.1  60.8  72.8
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12  12.1  33.8  20.3  31.9  25.4  24.5  16.4
+#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10   5.1  12.9  16.4  12.1  15.5  14.7  10.8</div><div class='input'>
+<span class='co'># Accumulated sum of square</span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_accum"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+#&gt;   PC       DF    PH    ED   TKW   NKR    CD    CL    CW
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14  82.8  53.3  63.4  56    59.1  60.8  72.8
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12  94.9  87.1  83.6  87.9  84.5  85.3  89.2
+#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 100   100   100   100   100   100   100  </div><div class='input'>
+
+<span class='co'>#################### WAASB model #####################</span>
+<span class='co'># Fitting the WAAS index</span>
 <span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
 #&gt; Evaluating variable ED 50 % 
@@ -273,7 +339,7 @@ traits. Agron. J. (in press)</p>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Getting the weighted average of absolute scores</span>
-<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"WAASB"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 13 x 5</span><span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"WAASB"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
 #&gt;    gen      PH    ED   TKW   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    0.318 0.667 2.72  0.929
@@ -306,6 +372,8 @@ traits. Agron. J. (in press)</p>
 #&gt; </span><span style='color: #555555;'>11</span><span> H7        4     3     9     6
 #&gt; </span><span style='color: #555555;'>12</span><span> H8        8     8    12    11
 #&gt; </span><span style='color: #555555;'>13</span><span> H9        1    11    13     9</div><div class='input'>
+
+<span class='co'>#################### BLUP model #####################</span>
 <span class='co'># Fitting a mixed-effect model</span>
 <span class='no'>blup</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 

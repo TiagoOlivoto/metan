@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-20</h4>
+            <h4 class="date">2019-10-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -1784,7 +1784,7 @@ G9
 <div id="estimating-the-waas-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#estimating-the-waas-index" class="anchor"></a>Estimating the WAAS index</h1>
-<p>The <code><a href="../reference/waas.html">waas()</a></code> function computes the Weighted Average of Absolute Scores <span class="citation">(Olivoto et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> considering (i) all principal component axes that were significant (<span class="math inline">\(p &lt; 0.05\)</span> by default); or (ii) declaring a specific number of axes to be used, according to the following equation:</p>
+<p>The <code><a href="../reference/waas.html">waas()</a></code> function computes the Weighted Average of Absolute Scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> considering (i) all principal component axes that were significant (<span class="math inline">\(p &lt; 0.05\)</span> by default); or (ii) declaring a specific number of axes to be used, according to the following equation:</p>
 <p><span class="math display">\[
         WAAS_i  = 
         \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
@@ -2648,7 +2648,7 @@ E9
 <div id="biplot-type-3-gy-x-waas" class="section level3">
 <h3 class="hasAnchor">
 <a href="#biplot-type-3-gy-x-waas" class="anchor"></a>biplot type 3: GY x WAAS</h3>
-<p>The quadrants proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> in the following biplot represent four classifications regarding the joint interpretation of mean performance and stability. The genotypes or environments included in quadrant I can be considered unstable genotypes or environments with high discrimination ability, and with productivity below the grand mean. In quadrant II are included unstable genotypes, although with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within quadrant III have low productivity, but can be considered stable due to the lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV are highly productive and broadly adapted due to the high magnitude of the response variable and high stability performance (lower values of WAASB). . To obtain this biplot must use an object of class <code>waas</code> (in our example, <code>waas_index</code>).</p>
+<p>The quadrants proposed by <span class="citation">Olivoto, Lúcio, Da silva, Marchioro, et al. (<a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> in the following biplot represent four classifications regarding the joint interpretation of mean performance and stability. The genotypes or environments included in quadrant I can be considered unstable genotypes or environments with high discrimination ability, and with productivity below the grand mean. In quadrant II are included unstable genotypes, although with productivity above the grand mean. The environments included in this quadrant deserve special attention since, in addition to providing high magnitudes of the response variable, they present a good discrimination ability. Genotypes within quadrant III have low productivity, but can be considered stable due to the lower values of WAASB. The lower this value, the more stable the genotype can be considered. The environments included in this quadrant can be considered as poorly productive and with low discrimination ability. The genotypes within the quadrant IV are highly productive and broadly adapted due to the high magnitude of the response variable and high stability performance (lower values of WAASB). . To obtain this biplot must use an object of class <code>waas</code> (in our example, <code>waas_index</code>).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">p5 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(waas_index<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb14-2" title="2">p6 =<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(waas_index<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb14-3" title="3">            <span class="dt">type =</span> <span class="dv">3</span>,</a>
@@ -2676,7 +2676,7 @@ E9
 <div id="simultaneous-selection-for-mean-performance-and-stability" class="section level1">
 <h1 class="hasAnchor">
 <a href="#simultaneous-selection-for-mean-performance-and-stability" class="anchor"></a>Simultaneous selection for mean performance and stability</h1>
-<p>The WAASY index is used for genotype ranking considering both the stability (WAAS) and mean performance based on the following model:</p>
+<p>The WAASY index <span class="citation">(Olivoto, Lúcio, Da silva, Sari, et al. <a href="#ref-Olivoto2019a" role="doc-biblioref">2019</a>)</span> is used for genotype ranking considering both the stability (WAAS) and mean performance based on the following model:</p>
 <p><span class="math display">\[
 WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \times {\theta _S}} \right)}}{{{\theta _Y} + {\theta _S}}}
 \]</span></p>
@@ -4195,6 +4195,9 @@ G9
 </div>
 <div id="ref-Olivoto2019">
 <p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, V. S. Marchioro, V. Q. de Souza, and E. Jost. 2019. “Mean performance and stability in multi-environment trials I: Combining features of AMMI and BLUP techniques.” <em>Agronomy Journal</em>.</p>
+</div>
+<div id="ref-Olivoto2019a">
+<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, B. G. Sari, and M. I. Diel. 2019. “Mean performance and stability in multi-environment trials II: Selection based on multiple traits.” <em>Agronomy Journal</em>.</p>
 </div>
 <div id="ref-Piepho:1994">
 <p>Piepho, H. P. 1994. “Best Linear Unbiased Prediction (Blup) for Regional Yield Trials: A Comparison to Additive Main Effects and Multiplicative Interaction (Ammi) Analysis.” <em>Theor. Appl. Genet.</em> 89 (5): 647–54. <a href="https://doi.org/10.1007/BF00222462">https://doi.org/10.1007/BF00222462</a>.</p>

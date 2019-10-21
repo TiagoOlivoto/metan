@@ -258,19 +258,18 @@ axes.</p></li>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># GY x PC1 (variable GY)</span>
-<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>scores</span>$<span class='no'>GY</span>,
+<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>ammi_model</span>$<span class='no'>GY</span>,
             <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>'olivedrab'</span>,
             <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>'orange2'</span>,
-            <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>'My own x label'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot_scores(scores$GY, col.env = "olivedrab", col.gen = "orange2",     x.lab = "My own x label"): objeto 'scores' não encontrado</span></div><div class='input'>
+            <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>'My own x label'</span>)</div><div class='img'><img src='performs_ammi-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># PC1 x PC2 (variable HM)</span>
-<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>scores</span>$<span class='no'>HM</span>,
-            <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-            <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot_scores(scores$HM, type = 2, polygon = TRUE): objeto 'scores' não encontrado</span></div><div class='input'>
+<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>ammi_model</span>$<span class='no'>HM</span>,
+            <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='performs_ammi-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># PC1 x PC2 (variable HM)</span>
 <span class='co'># Draw a convex hull polygon</span>
-<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>scores</span>$<span class='no'>HM</span>,
+<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>ammi_model</span>$<span class='no'>HM</span>,
             <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-            <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot_scores(scores$HM, type = 2, polygon = TRUE): objeto 'scores' não encontrado</span></div><div class='input'>
+            <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='performs_ammi-3.png' alt='' width='700' height='433' /></div><div class='input'>
 
 </div></pre>
   </div>
