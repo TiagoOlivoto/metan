@@ -571,21 +571,20 @@ plot_scores <- function(x,
       y.lim <- y.lim
     } else {
       y.lim <- c(min(data$nominal), max(data$nominal))
-    }
+
     p4 <- ggplot2::ggplot(data, aes(x = envPC1, y = nominal, group = GEN)) +
       geom_line(data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1))),
                 aes(colour = GEN),
-                size = 1) +
+                size = 0.8) +
       geom_point(data = subset(data, GEN == data[1, 2]),
                  aes(x = envPC1, y = minim),
                  shape = 17,
-                 size = 2.5) +
+                 size = 2.8) +
       geom_label_repel(data = subset(data, envPC1 == min(envPC1)),
-                       aes(label = GEN, fill = GEN),
+                       aes(label = GEN, color = GEN),
                        size = size.tex.pa,
-                       color = "white",
                        force = repulsion,
-                       segment.color = "#bbbbbb") +
+                       alpha = rep(col.alpha.gen, ngen)) +
       geom_text_repel(data = subset(data, GEN == data[1, 2]),
                       aes(x = envPC1, y = minim, label = ENV),
                       size = size.tex.pa,
@@ -597,7 +596,7 @@ plot_scores <- function(x,
             plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks,
-                         expand = expand_scale(mult = c(0.002, 0.1))) +
+                         expand = expand_scale(mult = c(0.003, 0.1))) +
       labs(x = paste(x.lab), y = y.lab)
     if(title == TRUE){
       p4 <- p4 + ggtitle("Nominal yield plot")
