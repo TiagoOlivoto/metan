@@ -625,5 +625,6 @@ plot_scores <- function(x,
       dev.off()
     }
   }
+  }
 }
 
