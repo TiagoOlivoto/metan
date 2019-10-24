@@ -72,7 +72,7 @@ inspect <- function (.data,
     if(any(df$Outlier[!is.na(df$Outlier)] != 0)){
       warning("Possible outliers in variable(s) ", paste(df$Variable[c(which(df$Outlier != 0))], collapse = " "),". Use the function find_outliers() for more details.", call. = F)
     }
-    if(nfactors >= 3 && all(df$Missing == "No") && any(df$Outlier[!is.na(df$Outlier)] == 0) == TRUE){
+    if(nfactors >= 3 && all(df$Missing == "No") && all(df$Outlier[!is.na(df$Outlier)] == 0) == TRUE){
       message("No issues detected while inspecting data.")
     }
   }
