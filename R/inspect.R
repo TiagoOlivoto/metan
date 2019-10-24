@@ -49,7 +49,10 @@ inspect <- function (.data,
       Missing= sapply(.data, function(x) ifelse(any(is.na(x)), "Yes", "No")),
       Levels = sapply(.data, function(x) ifelse(!is.numeric(x), nlevels(x), "-")),
       Valid_n = sapply(.data, function(x) length(which(!is.na(x)))),
-      Outlier = sapply(.data, function(x) ifelse(is.numeric(x), find_outliers(values = x, verbose = F), "-"))
+      Min = sapply(.data, function(x) ifelse(is.numeric(x), round(min(x),2), NA)),
+      Median = sapply(.data, function(x) ifelse(is.numeric(x), round(median(x),2), NA)),
+      Max = sapply(.data, function(x) ifelse(is.numeric(x), round(max(x),2), NA)),
+      Outlier = sapply(.data, function(x) ifelse(is.numeric(x), find_outliers(values = x, verbose = F), NA))
     ) %>%
     rownames_to_column("Variable") %>%
     as_tibble()
@@ -66,10 +69,10 @@ inspect <- function (.data,
     if(any(df$Missing == "Yes")){
       warning("Missing values in variable(s) ", paste(df$Variable[c(which(df$Missing == "Yes"))], collapse = " "), call. = F)
     }
-    if(any(df$Outlier == "Yes")){
-      warning("Possible outliers in variable(s) ", paste(df$Variable[c(which(df$Outlier == "Yes"))], collapse = " "),". Use the function find_outliers() for more details.", call. = F)
+    if(any(df$Outlier[!is.na(df$Outlier)] != 0)){
+      warning("Possible outliers in variable(s) ", paste(df$Variable[c(which(df$Outlier != 0))], collapse = " "),". Use the function find_outliers() for more details.", call. = F)
     }
-    if(nfactors >= 3 && all(df$Missing == "No") && all(df$Outlier != "Yes")){
+    if(nfactors >= 3 && all(df$Missing == "No") && any(A$Outlier[!is.na(A$Outlier)] == 0) == TRUE){
       message("No issues detected while inspecting data.")
     }
   }

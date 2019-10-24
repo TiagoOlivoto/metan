@@ -187,6 +187,6 @@ find_outliers <- function(.data =  NULL,
       }
     }
   }
-  outlier <- ifelse(((na2 - na1) == 0), "No", "Yes")
+  outlier <- ifelse(((na2 - na1) == 0), 0, na2 - na1)
   invisible(outlier)
 }
