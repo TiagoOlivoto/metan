@@ -96,6 +96,7 @@ find_outliers <- function(.data =  NULL,
       if (any(plots == TRUE)) {
         df_out <- data.frame(with = var_name,
                              without = var_name2)
+        nbins <- round(1 + 3.322 * log(nrow(df_out)), 0)
         with_box <-
           ggplot(df_out, aes(x = "Outlier", y = with)) +
           stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
@@ -228,6 +229,7 @@ find_outliers <- function(.data =  NULL,
     if (any(plots == TRUE)) {
       df_out <- data.frame(with = var_name,
                            without = var_name2)
+      nbins <- round(1 + 3.322 * log(nrow(df_out)), 0)
       with_box <-
         ggplot(df_out, aes(x = "Outlier", y = with)) +
         stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
