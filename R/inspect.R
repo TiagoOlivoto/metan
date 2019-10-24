@@ -31,7 +31,7 @@
 #' # Create a toy example with messy data
 #' df <- data_ge2[-c(2, 30, 45, 134), c(1:6)]
 #' df[c(1, 20, 50), c(4, 6)] <- NA
-#' df[40, 6] <- df[40, 6] * 10
+#' df[40, 6] <- df[40, 6] * 2
 #'
 #' inspect(df, plot = TRUE)
 inspect <- function (.data,
@@ -76,10 +76,10 @@ inspect <- function (.data,
   if(plot == TRUE){
     ggpair <-
       .data %>%
-      ggpairs(
-        lower = NULL,
-        upper = list(continuous ="smooth")
-      )
+      ggpairs(lower = NULL,
+              upper = list(continuous ="smooth"))+
+      theme(panel.spacing = unit(0.1, "cm"))
+
     suppressMessages(suppressWarnings(print(ggpair, progress = FALSE)))
   }
   invisible(df)

@@ -24,12 +24,7 @@ A tibble with the following variables:
 \item \strong{Class} The class of the variable
 \item \strong{Missing} Contains missing values?
 \item \strong{Levels} The number of levels of a factor variable
-\item \strong{n} The length of the variable
-\item \strong{Valid} Number of valid n (omit NAs)
-\item \strong{Min} The minimum value
-\item \strong{Mean} The mean value
-\item \strong{Median} The median value
-\item \strong{Max} The maximum value
+\item \strong{Valid_n} Number of valid n (omit NAs)
 \item \strong{Outlier} Contains possible outliers?
 }
 }
@@ -47,7 +42,7 @@ inspect(data_ge)
 # Create a toy example with messy data
 df <- data_ge2[-c(2, 30, 45, 134), c(1:6)]
 df[c(1, 20, 50), c(4, 6)] <- NA
-df[40, 6] <- df[40, 6] * 10
+df[40, 6] <- df[40, 6] * 2
 
 inspect(df, plot = TRUE)
 }
