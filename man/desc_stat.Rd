@@ -4,7 +4,7 @@
 \alias{desc_stat}
 \title{Descriptive statistics}
 \usage{
-desc_stat(.data = NULL, ..., values = NULL, stats = NULL,
+desc_stat(.data = NULL, ..., values = NULL, stats = "main",
   hist = FALSE, level = 0.95, digits = 4, na.rm = FALSE,
   verbose = TRUE)
 }
@@ -18,25 +18,27 @@ variables names.}
 \item{values}{An alternative way to pass the data to the function. It must be
 a numeric vector.}
 
-\item{stats}{The descriptive statistics to show. Defaults to \code{NULL} (all
-statistics shown). It must be one or more of the following: \code{'AV.dev'}
-(average deviation), \code{'CI.mean'} (confidence interval for the mean),
-\code{'CV'} (coefficient of variation), \code{'IQR'} (interquartile range),
-\code{'Kurt'} (kurtosis), \code{'max'} (maximum value), \code{'mean'}
-(arithmetic mean), \code{'median'} (median), \code{'min'} (minimum value),
-\code{'n'} (the length of the data), \code{'norm.pval'} (the p-value for the
-Shapiro-Wilk test), \code{'norm.stat'} (the statistic for the Shapiro-Wilk
-test), \code{'Q2.5'} (the percentile 2.5%), \code{'Q25'} (the first
-quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the
-percentile 97.5%), \code{range} (The range of data), \code{'SD.amo'} (the
-sample standard deviation), \code{'SD.pop'} (the population standard
-deviation), \code{'SE.mean'} (the standard error of the mean), \code{'skew'}
-(the skewness), \code{sum} (the sum of the values), \code{sum.dev} (the sum
-of the absolute deviations), \code{sum.sq.dev} (the sum of the squared
+\item{stats}{The descriptive statistics to show. Defaults to \code{"main"}
+(main statistics). Set to \code{"all"} to compute all the statistics bellow
+or chose one (or more) of the following: \code{'AV.dev'} (average
+deviation), \code{'CI.mean'} (confidence interval for the mean), \code{'CV'}
+(coefficient of variation), \code{'IQR'} (interquartile range),
+\code{'Kurt'} (kurtosis), \code{'mad'} (median absolute deviation),
+\code{'max'} (maximum value), \code{'mean'} (arithmetic mean),
+\code{'median'} (median), \code{'min'} (minimum value), \code{'n'} (the
+length of the data), \code{'norm.pval'} (the p-value for the Shapiro-Wilk
+test), \code{'norm.stat'} (the statistic for the Shapiro-Wilk test),
+\code{'Q2.5'} (the percentile 2.5%), \code{'Q25'} (the first quartile, Q1),
+\code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the percentile
+97.5%), \code{range} (The range of data), \code{'SD.amo'} (the sample
+standard deviation), \code{'SD.pop'} (the population standard deviation),
+\code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the
+skewness), \code{sum} (the sum of the values), \code{sum.dev} (the sum of
+the absolute deviations), \code{sum.sq.dev} (the sum of the squared
 deviations), \code{valid.n} (The size of sample with valid number (not NA),
 \code{'var.amo'} (the sample variance), \code{'var.pop'} (the population
 variance). Use a comma-separated vector of names to select the statistics.
-For example, \code{stats = c("media, mean, CV, n")}.}
+For example, \code{stats = c("median, mean, CV, n")}.}
 
 \item{hist}{Logical argument defaults to \code{FALSE}. If \code{hist = TRUE}
 then a histogram is created for each selected variable.}
@@ -69,20 +71,20 @@ In cases when the statistics are computed for more than two variables
 }
 \examples{
 library(metan)
-library(dplyr)
 
-desc1 <- data_ge2 \%>\% desc_stat(TKW)
+desc_stat(data_ge2, TKW)
 
-vect <- data_ge2 \%>\%
-  select(TKW) \%>\%
-  pull()
+# Compute all statistics
+# Use a numeric vector as input data
+vect <- data_ge2$TKW
+desc_stat(values = vect, stats = "all")
 
-desc2 <- desc_stat(values = vect)
-
+# Select specific statistics
 desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
           na.rm = TRUE,
           stats = c('mean, SE.mean, CV, n, valid.n'))
 
+# Compute the statistics for each level of "ENV"
 stats <-
 data_ge2 \%>\%
   split_factors(GEN) \%>\%
