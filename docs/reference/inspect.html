@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find possible outliers in a dataset — find_outliers • metan</title>
+<title>Check for common erros in multi-environment trial data — inspect • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,12 @@
 
 
 
-<meta property="og:title" content="Find possible outliers in a dataset — find_outliers" />
-<meta property="og:description" content="Find possible outliers in the dataset." />
+<meta property="og:title" content="Check for common erros in multi-environment trial data — inspect" />
+<meta property="og:description" content="inspect() scans a data.frame object for errors that may affect the use
+of functions in metan. By default, all variables are checked regarding
+the class (numeric or factor), missing values, and presence of possible
+outliers. The function will return a warning if the data looks like
+unbalanced, has missing values or possible outliers." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -187,93 +191,86 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find possible outliers in a dataset</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/find_outliers.R'><code>R/find_outliers.R</code></a></small>
-    <div class="hidden name"><code>find_outliers.Rd</code></div>
+    <h1>Check for common erros in multi-environment trial data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/inspect.R'><code>R/inspect.R</code></a></small>
+    <div class="hidden name"><code>inspect.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Find possible outliers in the dataset.</p>
+    <p><code>inspect()</code> scans a data.frame object for errors that may affect the use
+of functions in <code>metan</code>. By default, all variables are checked regarding
+the class (numeric or factor), missing values, and presence of possible
+outliers. The function will return a warning if the data looks like
+unbalanced, has missing values or possible outliers.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_outliers</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plots</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>inspect</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data to be analyzed. Must be a dataframe or an object of
-class <code>split_factors</code>.</p></td>
+      <td><p>The data to be analyzed</p></td>
     </tr>
     <tr>
-      <th>var</th>
-      <td><p>The variable to be analyzed.</p></td>
+      <th>...</th>
+      <td><p>The variables in <code>.data</code> to check. Set to
+<code>NULL</code>, i.e., all the variables in <code>.data</code> are used.</p></td>
     </tr>
     <tr>
-      <th>values</th>
-      <td><p>An alternative way to pass the data to the function. It must be
-a numeric vector.</p></td>
-    </tr>
-    <tr>
-      <th>plots</th>
-      <td><p>If <code>TRUE</code>, then histograms and boxplots are shown.</p></td>
-    </tr>
-    <tr>
-      <th>coef</th>
-      <td><p>The multiplication coefficient, defaults to 1.5. For more details
-see <code>?boxplot.stat</code>.</p></td>
+      <th>plot</th>
+      <td><p>Create a plot to show the check? Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>verbose = TRUE</code> then some results are shown in the
-console.</p></td>
+      <td><p>Logical argument. If <code>TRUE</code> (default) then the results
+for checks are shown in the console.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A tibble with the following variables:</p><ul>
+<li><p><strong>Variable</strong> The name of variable</p></li>
+<li><p><strong>Class</strong> The class of the variable</p></li>
+<li><p><strong>Missing</strong> Contains missing values?</p></li>
+<li><p><strong>Levels</strong> The number of levels of a factor variable</p></li>
+<li><p><strong>Valid_n</strong> Number of valid n (omit NAs)</p></li>
+<li><p><strong>Outlier</strong> Contains possible outliers?</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'>inspect</span>(<span class='no'>data_ge</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 6</span><span>
+#&gt;   Variable Class   Missing Levels Valid_n Outlier
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>1</span><span> ENV      factor  No      14         420 -      
+#&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      10         420 -      
+#&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      3          420 -      
+#&gt; </span><span style='color: #555555;'>4</span><span> GY       numeric No      -          420 No     
+#&gt; </span><span style='color: #555555;'>5</span><span> HM       numeric No      -          420 No     </div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data.</span></div><div class='input'>
+<span class='co'># Create a toy example with messy data</span>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span>[-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>30</span>, <span class='fl'>45</span>, <span class='fl'>134</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>6</span>)]
+<span class='no'>df</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>20</span>, <span class='fl'>50</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>6</span>)] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
+<span class='no'>df</span>[<span class='fl'>40</span>, <span class='fl'>6</span>] <span class='kw'>&lt;-</span> <span class='no'>df</span>[<span class='fl'>40</span>, <span class='fl'>6</span>] * <span class='fl'>2</span>
 
-<span class='fu'>find_outliers</span>(<span class='no'>data_ge2</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>PH</span>, <span class='kw'>plots</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP were ignored. Use 'split_factors()' before if you want to perform an analysis for each level of a factor.' </span></div><div class='img'><img src='find_outliers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; No possible outlier identified. </div><div class='input'>
-<span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'>find_outliers</span>(<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div><div class='output co'>#&gt; <span class='message'>The columns ENV GEN REP where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level: A1 
-#&gt; ----------------------------------------------------------------------------
-#&gt; No outlier identified. 
-#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level: A2 
-#&gt; ----------------------------------------------------------------------------
-#&gt; No outlier identified. 
-#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level: A3 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Number of possible outliers: 4 
-#&gt; Lines: 7 11 14 15 
-#&gt; Proportion: 11.4%
-#&gt; Mean of the outliers: 2.438 
-#&gt; Maximum of the outliers: 2.766  | Line 11 
-#&gt; Minimum of the outliers: 1.71  | Line 7 
-#&gt; With outliers:    mean = 2.167 | CV = 10.309%
-#&gt; Without outliers: mean = 2.136 | CV = 7.377%
-#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level: A4 
-#&gt; ----------------------------------------------------------------------------
-#&gt; No outlier identified. </div><div class='input'>
-
-</div></pre>
+<span class='fu'>inspect</span>(<span class='no'>df</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
+#&gt;   Variable Class   Missing Levels Valid_n Outlier
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>1</span><span> ENV      factor  No      4          152 -      
+#&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      13         152 -      
+#&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      3          152 -      
+#&gt; </span><span style='color: #555555;'>4</span><span> PH       numeric Yes     -          149 No     
+#&gt; </span><span style='color: #555555;'>5</span><span> EH       numeric No      -          152 No     
+#&gt; </span><span style='color: #555555;'>6</span><span> EP       numeric Yes     -          149 Yes    </div><div class='output co'>#&gt; <span class='warning'>Warning: Considering the levels of factors, .data should have 156 rows, but it has 152</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Missing values in variable(s) PH EP</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Possible outliers in variable(s) EP. Use the function find_outliers() for more details.</span></div><div class='img'><img src='inspect-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

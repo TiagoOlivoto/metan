@@ -147,7 +147,7 @@
       <h1>Useful functions for biometrical models</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-21</h4>
+            <h4 class="date">2019-10-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_biometry.Rmd"><code>vignettes/vignettes_biometry.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_biometry.Rmd</code></div>
@@ -217,27 +217,22 @@ No outlier identified. </code></pre>
 <div id="descriptive-statistics" class="section level1">
 <h1 class="hasAnchor">
 <a href="#descriptive-statistics" class="anchor"></a>Descriptive statistics</h1>
-<p>The function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> may be used to compute measures of central tendency, position, and dispersion. Use <code>hist = TRUE</code> to create a histrogram for each variable.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb6-2" title="2">data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/desc_stat.html">desc_stat</a></span>(EP, EL, CL, CD, CW, NR,</a>
-<a class="sourceLine" id="cb6-4" title="4">            <span class="dt">hist =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>()</a></code></pre></div>
+<p>The function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> may be used to compute measures of central tendency, position, and dispersion. By default, seven statistics (coefficient of variation, maximum, mean, median, minimum, standard error, and sample variance) are computed. To compute all the statistics, use the argument <code>stats = "all"</code>, or use a comma-separated vector with the statistic names, e.g., <code>stats = c("mean, CV")</code>. Use <code>hist = TRUE</code> to create a histogram for each variable.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/desc_stat.html">desc_stat</a></span>(EP, EL, CL, CD, CW, NR,</a>
+<a class="sourceLine" id="cb6-3" title="3">            <span class="dt">hist =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>()</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;"></p>
-<pre><code># A tibble: 27 x 7
-   Statistic      CD      CL      CW       EL        EP      NR
-   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
- 1 AV.dev      0.948   1.98    5.21    0.995    0.0459    1.30 
- 2 CI.mean     0.185   0.365   0.990   0.199    0.00891   0.259
- 3 CV          7.34    7.95   25.2     8.28    10.5      10.2  
- 4 IQR         1.65    3.70    9.19    1.73     0.0820    2.40 
- 5 Kurt       -0.413  -0.791  -0.709  -0.0927  -0.429     0.154
- 6 max        18.6    34.7    38.5    17.9      0.660    21.2  
- 7 mean       16.0    29.0    24.8    15.2      0.537    16.1  
- 8 median     16      28.7    24.5    15.1      0.544    16    
- 9 min        12.9    23.5    11.1    11.5      0.386    12.4  
-10 n         156     156     156     156      156       156    
-# ... with 17 more rows</code></pre>
+<pre><code># A tibble: 7 x 7
+  Statistic      CD     CL     CW     EL       EP     NR
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+1 CV         7.34    7.95  25.2    8.28  10.5     10.2  
+2 max       18.6    34.7   38.5   17.9    0.660   21.2  
+3 mean      16.0    29.0   24.8   15.2    0.537   16.1  
+4 median    16      28.7   24.5   15.1    0.544   16    
+5 min       12.9    23.5   11.1   11.5    0.386   12.4  
+6 SE.mean    0.0939  0.185  0.501  0.101  0.00451  0.131
+7 var.amo    1.37    5.32  39.2    1.58   0.00318  2.68 </code></pre>
 <p>To compute the statistics for each level of a factor, use the function <code>split_factor()</code> before calling <code><a href="../reference/desc_stat.html">desc_stat()</a></code>. In addition, it is possible to select the statistics to compute using the argument <code>stats</code>, that is a comma-separated vector of names with <code>"</code> at the beginning and end of vector only.</p>
 <ul>
 <li>This will work:
