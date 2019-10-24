@@ -52,15 +52,8 @@ find_outliers <- function(.data =  NULL,
         as.numeric()
       tot <- sum(!is.na(var_name))
       na1 <- sum(is.na(var_name))
-      m1 <- mean(var_name, na.rm = T)
-      m11 <- (sd(var_name, na.rm = T)/m1) * 100
-      if (any(plots == TRUE)) {
-        op <- par(mfrow = c(2, 2), oma = c(0, 0, 2, 0),
-                  mar = c(2, 2, 2, 2))
-        boxplot(var_name, main = "With outliers")
-        hist(var_name, main = "With outliers", xlab = NA,
-             ylab = NA)
-      }
+      m1 <- mean(var_name, na.rm = TRUE)
+      m11 <- (sd(var_name, na.rm = TRUE)/m1) * 100
       outlier <- boxplot.stats(var_name, coef = coef)$out
       dd <- data.frame(data %>% select(!!var))
       names_out <- paste(which(dd[, 1] %in% outlier), sep = " ")
@@ -71,16 +64,9 @@ find_outliers <- function(.data =  NULL,
         names_out_max <- paste(which(dd[, 1] == maxo))
         names_out_min <- paste(which(dd[, 1] == mino))
       }
-      var_name <- ifelse(var_name %in% outlier, NA, var_name)
-      names <- rownames(var_name)
-      if (any(plots == TRUE)) {
-        boxplot(var_name, main = "Without outliers")
-        hist(var_name, main = "Without outliers", xlab = NA,
-             ylab = NA)
-        mtext(paste(nam), outer = TRUE, cex = 1.5)
-        par(op)
-      }
-      na2 <- sum(is.na(var_name))
+      var_name2 <- ifelse(var_name %in% outlier, NA, var_name)
+      names <- rownames(var_name2)
+      na2 <- sum(is.na(var_name2))
       if ((na2 - na1) > 0) {
         if (verbose == TRUE) {
           cat("\n----------------------------------------------------------------------------\n")
@@ -89,7 +75,7 @@ find_outliers <- function(.data =  NULL,
           cat("Number of possible outliers:", na2 - na1,
               "\n")
           cat("Lines:", names_out, "\n")
-          cat("Proportion: ", round((na2 - na1)/sum(!is.na(var_name)) *
+          cat("Proportion: ", round((na2 - na1)/sum(!is.na(var_name2)) *
                                       100, 1), "%\n", sep = "")
           cat("Mean of the outliers:", round(mo, 3),
               "\n")
@@ -97,8 +83,8 @@ find_outliers <- function(.data =  NULL,
                                                 3), " | Line", names_out_max, "\n")
           cat("Minimum of the outliers:", round(mino,
                                                 3), " | Line", names_out_min, "\n")
-          m2 <- mean(var_name, na.rm = T)
-          m22 <- (sd(var_name, na.rm = T)/m2) * 100
+          m2 <- mean(var_name2, na.rm = TRUE)
+          m22 <- (sd(var_name2, na.rm = TRUE)/m2) * 100
           cat("With outliers:    mean = ", round(m1,
                                                  3), " | CV = ", round(m11, 3), "%", sep = "",
               "\n")
@@ -106,6 +92,77 @@ find_outliers <- function(.data =  NULL,
                                                  3), " | CV = ", round(m22, 3), "%", sep = "",
               "\n")
         }
+      }
+      if (any(plots == TRUE)) {
+        df_out <- data.frame(with = var_name,
+                             without = var_name2)
+        with_box <-
+          ggplot(df_out, aes(x = "Outlier", y = with)) +
+          stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
+          geom_boxplot(outlier.color = "black",
+                       outlier.shape = 21,
+                       outlier.size = 2.5,
+                       outlier.fill = "red",
+                       width = .5)+
+          theme(panel.border = element_rect(fill = NA, color = "black"),
+                axis.text.x = element_text(color = "white"),
+                axis.ticks.x = element_blank(),
+                panel.grid.minor = element_blank(),
+                axis.text = element_text(color = "black", size = 12),
+                axis.ticks.length = unit(0.2, "cm"))+
+          labs(y = "Observed value", x = "")+
+          ggtitle("With outliers")
+        without_box <-
+          ggplot(df_out, aes(x = "Outlier", y = without)) +
+          stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
+          geom_boxplot(outlier.color = "black",
+                       outlier.shape = 21,
+                       outlier.size = 2.5,
+                       outlier.fill = "red",
+                       width = .5)+
+          theme(panel.border = element_rect(fill = NA, color = "black"),
+                axis.text.x = element_text(color = "white"),
+                axis.ticks.x = element_blank(),
+                panel.grid.minor = element_blank(),
+                axis.text = element_text(color = "black", size = 12),
+                axis.ticks.length = unit(0.2, "cm"))+
+          labs(y = "Observed value", x = "")+
+          ggtitle("Without outliers")
+        with_hist <-
+          ggplot(df_out, aes(x = with))+
+          geom_histogram(position="identity",
+                         color = "black",
+                         fill = "gray",
+                         na.rm = TRUE,
+                         bins = nbins)+
+          scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+          theme(legend.position = "bottom",
+                panel.border = element_rect(fill = NA, color = "black"),
+                panel.grid.minor = element_blank(),
+                axis.text = element_text(color = "black", size = 12),
+                axis.ticks.length = unit(0.2, "cm"))+
+          labs(x = "Observed value",
+               y = "Count")+
+          ggtitle("With outliers")
+
+        without_hist <-
+          ggplot(df_out, aes(x = without))+
+          geom_histogram(position="identity",
+                         color = "black",
+                         fill = "gray",
+                         na.rm = TRUE,
+                         bins = nbins)+
+          scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+          theme(legend.position = "bottom",
+                panel.border = element_rect(fill = NA, color = "black"),
+                panel.grid.minor = element_blank(),
+                axis.text = element_text(color = "black", size = 12),
+                axis.ticks.length = unit(0.2, "cm"))+
+          labs(x = "Observed value",
+               y = "Count")+
+          ggtitle("Without outliers")
+
+        arrange_ggplot(with_box, with_hist, without_box, without_hist)
       }
       if ((na2 - na1) == 0) {
         if (verbose == TRUE) {
@@ -134,17 +191,9 @@ find_outliers <- function(.data =  NULL,
     }
     tot <- sum(!is.na(var_name))
     na1 <- sum(is.na(var_name))
-    m1 <- mean(var_name, na.rm = T)
-    m11 <- (sd(var_name, na.rm = T)/m1) * 100
-    if (plots == TRUE) {
-      op <- par(mfrow = c(2, 2), oma = c(0, 0, 2, 0), mar = c(2,
-                                                              2, 2, 2))
-      boxplot(var_name, main = "With outliers")
-      hist(var_name, main = "With outliers", xlab = NA,
-           ylab = NA)
-    }
+    m1 <- mean(var_name, na.rm = TRUE)
+    m11 <- (sd(var_name, na.rm = TRUE)/m1) * 100
     outlier <- boxplot.stats(var_name, coef = coef)$out
-
     names_out <- paste(which(dd[, 1] %in% outlier), sep = " ")
     if (length(outlier) >= 1) {
       mo <- mean(outlier)
@@ -153,34 +202,101 @@ find_outliers <- function(.data =  NULL,
       names_out_max <- paste(which(dd[, 1] == maxo))
       names_out_min <- paste(which(dd[, 1] == mino))
     }
-    var_name <- ifelse(var_name %in% outlier, NA, var_name)
-    names <- rownames(var_name)
-    if (any(plots == TRUE)) {
-      boxplot(var_name, main = "Without outliers")
-      hist(var_name, main = "Without outliers", xlab = NA,
-           ylab = NA)
-      par(op)
-    }
-    na2 <- sum(is.na(var_name))
+    var_name2 <- ifelse(var_name %in% outlier, NA, var_name)
+    names <- rownames(var_name2)
+    na2 <- sum(is.na(var_name2))
     if ((na2 - na1) > 0) {
       if(verbose == TRUE){
       cat("Number of possible outliers:", na2 - na1, "\n")
       cat("Lines:", names_out, "\n")
-      cat("Proportion: ", round((na2 - na1)/sum(!is.na(var_name)) *
+      cat("Proportion: ", round((na2 - na1)/sum(!is.na(var_name2)) *
                                   100, 1), "%\n", sep = "")
       cat("Mean of the outliers:", round(mo, 3), "\n")
       cat("Maximum of the outliers:", round(maxo, 3), " | Line",
           names_out_max, "\n")
       cat("Minimum of the outliers:", round(mino, 3), " | Line",
           names_out_min, "\n")
-      m2 <- mean(var_name, na.rm = T)
-      m22 <- (sd(var_name, na.rm = T)/m2) * 100
+      m2 <- mean(var_name2, na.rm = TRUE)
+      m22 <- (sd(var_name2, na.rm = TRUE)/m2) * 100
       cat("With outliers:    mean = ", round(m1, 3), " | CV = ",
           round(m11, 3), "%", sep = "", "\n")
       cat("Without outliers: mean = ", round(m2, 3), " | CV = ",
           round(m22, 3), "%", sep = "", "\n")
       }
     }
+
+    if (any(plots == TRUE)) {
+      df_out <- data.frame(with = var_name,
+                           without = var_name2)
+      with_box <-
+        ggplot(df_out, aes(x = "Outlier", y = with)) +
+        stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
+        geom_boxplot(outlier.color = "black",
+                     outlier.shape = 21,
+                     outlier.size = 2.5,
+                     outlier.fill = "red",
+                     width = .5)+
+        theme(panel.border = element_rect(fill = NA, color = "black"),
+              axis.text.x = element_text(color = "white"),
+              axis.ticks.x = element_blank(),
+              panel.grid.minor = element_blank(),
+              axis.text = element_text(color = "black", size = 12),
+              axis.ticks.length = unit(0.2, "cm"))+
+        labs(y = "Observed value", x = "")+
+        ggtitle("With outliers")
+      without_box <-
+        ggplot(df_out, aes(x = "Outlier", y = without)) +
+        stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
+        geom_boxplot(outlier.color = "black",
+                     outlier.shape = 21,
+                     outlier.size = 2.5,
+                     outlier.fill = "red",
+                     width = .5)+
+        theme(panel.border = element_rect(fill = NA, color = "black"),
+              axis.text.x = element_text(color = "white"),
+              axis.ticks.x = element_blank(),
+              panel.grid.minor = element_blank(),
+              axis.text = element_text(color = "black", size = 12),
+              axis.ticks.length = unit(0.2, "cm"))+
+        labs(y = "Observed value", x = "")+
+        ggtitle("Without outliers")
+      with_hist <-
+        ggplot(df_out, aes(x = with))+
+        geom_histogram(position="identity",
+                       color = "black",
+                       fill = "gray",
+                       na.rm = TRUE,
+                       bins = nbins)+
+        scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+        theme(legend.position = "bottom",
+              panel.border = element_rect(fill = NA, color = "black"),
+              panel.grid.minor = element_blank(),
+              axis.text = element_text(color = "black", size = 12),
+              axis.ticks.length = unit(0.2, "cm"))+
+        labs(x = "Observed value",
+             y = "Count")+
+        ggtitle("With outliers")
+
+      without_hist <-
+        ggplot(df_out, aes(x = without))+
+        geom_histogram(position="identity",
+                       color = "black",
+                       fill = "gray",
+                       na.rm = TRUE,
+                       bins = nbins)+
+        scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+        theme(legend.position = "bottom",
+              panel.border = element_rect(fill = NA, color = "black"),
+              panel.grid.minor = element_blank(),
+              axis.text = element_text(color = "black", size = 12),
+              axis.ticks.length = unit(0.2, "cm"))+
+        labs(x = "Observed value",
+             y = "Count")+
+        ggtitle("Without outliers")
+
+      arrange_ggplot(with_box, with_hist, without_box, without_hist)
+    }
+
     if ((na2 - na1) == 0) {
       if(verbose == TRUE){
       cat("No possible outlier identified. \n")
