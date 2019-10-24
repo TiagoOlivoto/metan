@@ -57,13 +57,18 @@ anova_ind <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       Y <- eval(substitute(resp), eval(datain))
       varnam <- paste(d$resp)
     }
-    data <- datain %>% select(ENV = !!enquo(env), GEN = !!enquo(gen),
-                              REP = !!enquo(rep)) %>% mutate(mean = Y)
+    data <- datain %>%
+      select(ENV = {{env}},
+             GEN = {{gen}},
+             REP = {{rep}}) %>%
+      mutate(mean = Y)
     grouped <- data %>% split(dplyr::pull(., ENV))
     formula <- as.formula(paste0("mean ~ GEN + REP"))
     individual <- do.call(rbind, lapply(grouped, function(x) {
-      anova <- suppressMessages(suppressWarnings(anova(aov(formula,
-                                                           data = x))))
+      anova <- aov(formula, data = x) %>%
+        anova() %>%
+        suppressMessages() %>%
+        suppressWarnings()
       MSB <- anova[2, 3]
       MSG <- anova[1, 3]
       MSE <- anova[3, 3]
@@ -73,13 +78,20 @@ anova_ind <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       } else {
         AS <- sqrt(h2)
       }
-      final <- data.frame(cbind(MEAN = mean(x$mean), MSB = MSB,
-                                MSG = MSG, MSR = MSE, FCB = anova[2, 4], PRFB = anova[2,
-                                                                                      5], FCG = anova[1, 4], PRFG = anova[1, 5],
-                                CV = sqrt(MSE)/mean(x$mean) * 100, h2 = h2, AS = AS))
+      final <- tibble(MEAN = mean(x$mean),
+                     MSB = MSB,
+                     MSG = MSG,
+                     MSR = MSE,
+                     FCB = anova[2, 4],
+                     PRFB = anova[2, 5],
+                     FCG = anova[1, 4],
+                     PRFG = anova[1, 5],
+                     CV = sqrt(MSE)/mean(x$mean) * 100,
+                     h2 = h2,
+                     AS = AS)
     }))
-    temp <- list(individual = as_tibble(rownames_to_column(individual,
-                                                           "ENV")), MSRratio = max(individual$MSR)/min(individual$MSR))
+    temp <- list(individual = as_tibble(rownames_to_column(individual, "ENV")),
+                 MSRratio = max(individual$MSR)/min(individual$MSR))
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
