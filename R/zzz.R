@@ -180,5 +180,5 @@ if (getRversion() >= "2.15.1") {
       "ci", "mean_var", "se", "x", "d1", "d2", "radio", "x0", "x1_x", "x1_y", "y0",
       "val", "Statistic", "Cluster", "CCP", "U1", "U2", "V1", "V2", "Var", "LEVEL",
       "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)", "dat",
-      "BLOCK", "rowid", "grank", "rMean", "rShukaVar", "value", "DF"))
+      "BLOCK", "rowid", "grank", "rMean", "rShukaVar", "value", "DF", "without"))
 }
