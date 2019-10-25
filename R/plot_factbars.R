@@ -59,22 +59,24 @@
 #'               palette = 'Greys')
 plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
                           xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.vjust = -0.5,
-                          lab.bar.hjust = 0.5, lab.bar.angle = 0,
-                          size.text.bar = 5, errorbar = TRUE, stat.erbar = "se", width.erbar = 0.3,
+                          lab.bar.hjust = 0.5, lab.bar.angle = 0, size.text.bar = 5,
+                          errorbar = TRUE, stat.erbar = "se", width.erbar = 0.3,
                           level = 0.95, invert = FALSE, col = TRUE, palette = "Spectral",
                           width.bar = 0.9, lab.x.angle = 0, lab.x.hjust = 0.5, lab.x.vjust = 1,
                           legend.position = "bottom", size.text = 12, fontfam = "sans",
                           na.rm = TRUE, verbose = FALSE) {
   cl <- match.call()
-  datac <- .data %>% mutate_at(quos(...), as.factor) %>% select(...,
-                                                                Y = !!enquo(resp)) %>% group_by(...) %>% summarise(N = n(),
-                                                                                                                   mean_var = mean(Y, na.rm = na.rm), sd = sd(Y, na.rm = na.rm),
-                                                                                                                   se = sd/sqrt(n()), ci = se * qt(level/2 + 0.5, n() -
-                                                                                                                                                     1))
+  datac <- .data %>%
+    mutate_at(quos(...), as.factor) %>%
+    select(..., Y = {{resp}}) %>%
+    group_by(...) %>%
+    summarise(N = n(),
+              mean_var = mean(Y, na.rm = na.rm),
+              sd = sd(Y, na.rm = na.rm), se = sd/sqrt(n()),
+              ci = se * qt(level/2 + 0.5, n() - 1))
   nam <- names(select(.data, ...))
   if (length(nam) > 1) {
-    names(datac) <- c("x", "y", "N", "mean_var", "sd", "se",
-                      "ci")
+    names(datac) <- c("x", "y", "N", "mean_var", "sd", "se", "ci")
   } else {
     names(datac) <- c("x", "N", "mean_var", "sd", "se", "ci")
   }
@@ -97,25 +99,32 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
     }
   }
   y.lim <- c(0, (max(datac$mean_var) + max(datac$ci)) * y.expand)
-  pd <- ggplot2::position_dodge(width.bar)
+  pd <- position_dodge(width.bar)
   if (length(nam) > 1) {
     if (invert == FALSE) {
-      p <- ggplot2::ggplot(data = datac, aes(x = x, y = mean_var,
-                                             fill = y)) + geom_bar(aes(fill = y), colour = "black",
-                                                                   stat = "identity", position = position_dodge(),
-                                                                   width = width.bar) + scale_fill_brewer(palette = palette)
+      p <- ggplot(data = datac, aes(x = x, y = mean_var, fill = y)) +
+        geom_bar(aes(fill = y),
+                 colour = "black",
+                 stat = "identity",
+                 position = position_dodge(),
+                 width = width.bar) +
+        scale_fill_brewer(palette = palette)
     } else {
-      p <- ggplot2::ggplot(data = datac, aes(x = y, y = mean_var,
-                                             fill = x)) + geom_bar(aes(fill = x), colour = "black",
-                                                                   stat = "identity", position = position_dodge(),
-                                                                   width = width.bar) + scale_fill_brewer(palette = palette)
+      p <- ggplot(data = datac, aes(x = y, y = mean_var, fill = x)) +
+        geom_bar(aes(fill = x),
+                 colour = "black",
+                 stat = "identity",
+                 position = position_dodge(),
+                 width = width.bar) +
+        scale_fill_brewer(palette = palette)
     }
   } else {
-    p <- ggplot2::ggplot(data = datac, aes(x = x, y = mean_var)) +
-      geom_bar(stat = "identity", position = position_dodge(),
+    p <- ggplot(data = datac, aes(x = x, y = mean_var)) +
+      geom_bar(stat = "identity",
+               position = position_dodge(),
                width = width.bar)
   }
-  p <- p + ggplot2::theme_bw()
+  p <- p + theme_bw()
   if (col == FALSE) {
     p <- p + scale_fill_grey(start = 0, end = 0.9)
   } else {
@@ -124,15 +133,21 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
   if (errorbar == TRUE) {
     if (stat.erbar == "ci") {
       p <- p + geom_errorbar(aes(ymin = mean_var - ci,
-                                 ymax = mean_var + ci), width = width.erbar, position = pd)
+                                 ymax = mean_var + ci),
+                             width = width.erbar,
+                             position = pd)
     }
     if (stat.erbar == "sd") {
       p <- p + geom_errorbar(aes(ymin = mean_var - sd,
-                                 ymax = mean_var + sd), width = width.erbar, position = pd)
+                                 ymax = mean_var + sd),
+                             width = width.erbar,
+                             position = pd)
     }
     if (stat.erbar == "se") {
       p <- p + geom_errorbar(aes(ymin = mean_var - se,
-                                 ymax = mean_var + se), width = width.erbar, position = pd)
+                                 ymax = mean_var + se),
+                             width = width.erbar,
+                             position = pd)
     }
   }
   if (!missing(lab.bar)) {
@@ -148,20 +163,35 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
                        family = fontfam,
                        angle = lab.bar.angle)
   }
-  p <- p + ggplot2::theme(axis.ticks.length = unit(0.2, "cm"),
-                          axis.text = element_text(size = size.text, family = fontfam,
-                                                   colour = "black"), axis.title = element_text(size = size.text,
-                                                                                                family = fontfam, colour = "black"), axis.text.x = element_text(angle = lab.x.angle,
-                                                                                                                                                                hjust = lab.x.hjust, vjust = lab.x.vjust, size = size.text,
-                                                                                                                                                                colour = "black"), axis.ticks = element_line(colour = "black"),
-                          plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"), legend.title = element_blank(),
-                          legend.position = legend.position, legend.text = element_text(size = size.text,
-                                                                                        family = fontfam), panel.border = element_rect(colour = "black",
-                                                                                                                                       fill = NA, size = 1), panel.grid.major.x = element_blank(),
-                          panel.grid.major.y = element_blank(), panel.grid.minor.x = element_blank(),
-                          panel.grid.minor.y = element_blank()) + ggplot2::labs(y = ylab,
-                                                                                x = xlab) + scale_y_continuous(limits = y.lim, breaks = y.breaks,
-                                                                                                               expand = expand_scale(mult = c(0, 0.1)))
+  p <- p + theme(axis.ticks.length = unit(0.2, "cm"),
+                 axis.text = element_text(size = size.text,
+                                          family = fontfam,
+                                          colour = "black"),
+                 axis.title = element_text(size = size.text,
+                                           family = fontfam,
+                                           colour = "black"),
+                 axis.text.x = element_text(angle = lab.x.angle,
+                                            hjust = lab.x.hjust,
+                                            vjust = lab.x.vjust,
+                                            size = size.text,
+                                            colour = "black"),
+                 axis.ticks = element_line(colour = "black"),
+                 plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"),
+                 legend.title = element_blank(),
+                 legend.position = legend.position,
+                 legend.text = element_text(size = size.text,
+                                            family = fontfam),
+                 panel.border = element_rect(colour = "black",
+                                             fill = NA,
+                                             size = 1),
+                 panel.grid.major.x = element_blank(),
+                 panel.grid.major.y = element_blank(),
+                 panel.grid.minor.x = element_blank(),
+                 panel.grid.minor.y = element_blank()) +
+    labs(y = ylab, x = xlab) +
+    scale_y_continuous(limits = y.lim,
+                       breaks = y.breaks,
+                       expand = expand_scale(mult = c(0, 0.1)))
   if (verbose == TRUE) {
     print(datac)
   }
