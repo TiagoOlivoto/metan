@@ -98,7 +98,12 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
       xlab <- xlab
     }
   }
-  y.lim <- c(0, (max(datac$mean_var) + max(datac$ci)) * y.expand)
+  if(any(is.na(datac$ci))){
+    y.lim <- c(0, (max(datac$mean_var) * y.expand))
+  } else{
+    y.lim <- c(0, (max(datac$mean_var) + max(datac$ci)) * y.expand)
+  }
+
   pd <- position_dodge(width.bar)
   if (length(nam) > 1) {
     if (invert == FALSE) {
