@@ -12,8 +12,11 @@
 #' @param xlab The x label
 #' @param ylab The y label
 #' @param lab.bar A vector of characters to show in each bar. Defaults to NULL.
-#' @param lab.bar.vjust The vertical adjust for the labels in the bar. Defaults
-#'   to -0.2
+#' @param lab.bar.vjust,lab.bar.hjust The vertical and horizontal adjust for the
+#'   labels in the bar. Defaults to -0.5 and 0.5, respectively.
+#' @param lab.bar.angle The angle for the labels in the plot. Defaults to 0. Use
+#'   in combination with \code{lab.bar.hjust} and \code{lab.bar.vjust} to best
+#'   fit the labels in the plot.
 #' @param size.text.bar The size of the text in the bar labels.
 #' @param errorbar Logical argument, set to TRUE. In this case, an error bar is
 #'   shown.
@@ -55,7 +58,8 @@
 #'               resp = PH,
 #'               palette = 'Greys')
 plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
-                          xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.vjust = -0.2,
+                          xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.vjust = -0.5,
+                          lab.bar.hjust = 0.5, lab.bar.angle = 0,
                           size.text.bar = 5, errorbar = TRUE, stat.erbar = "se", width.erbar = 0.3,
                           level = 0.95, invert = FALSE, col = TRUE, palette = "Spectral",
                           width.bar = 0.9, lab.x.angle = 0, lab.x.hjust = 0.5, lab.x.vjust = 1,
@@ -136,8 +140,13 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
       stop("The labels must be either length 1 or the same as the levels of ",
            paste(quos(...)), " (", nrow(datac), ")")
     }
-    p <- p + geom_text(aes(label = lab.bar), position = pd,
-                       vjust = lab.bar.vjust, size = size.text.bar)
+    p <- p + geom_text(aes(label = lab.bar),
+                       position = pd,
+                       vjust = lab.bar.vjust,
+                       hjust = lab.bar.hjust,
+                       size = size.text.bar,
+                       family = fontfam,
+                       angle = lab.bar.angle)
   }
   p <- p + ggplot2::theme(axis.ticks.length = unit(0.2, "cm"),
                           axis.text = element_text(size = size.text, family = fontfam,

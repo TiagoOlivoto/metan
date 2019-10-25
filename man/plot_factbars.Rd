@@ -5,12 +5,13 @@
 \title{Fast way to create a bar plot}
 \usage{
 plot_factbars(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
-  xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.vjust = -0.2,
-  size.text.bar = 5, errorbar = TRUE, stat.erbar = "se",
-  width.erbar = 0.3, level = 0.95, invert = FALSE, col = TRUE,
-  palette = "Spectral", width.bar = 0.9, lab.x.angle = 0,
-  lab.x.hjust = 0.5, lab.x.vjust = 1, legend.position = "bottom",
-  size.text = 12, fontfam = "sans", na.rm = TRUE, verbose = FALSE)
+  xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.vjust = -0.5,
+  lab.bar.hjust = 0.5, lab.bar.angle = 0, size.text.bar = 5,
+  errorbar = TRUE, stat.erbar = "se", width.erbar = 0.3,
+  level = 0.95, invert = FALSE, col = TRUE, palette = "Spectral",
+  width.bar = 0.9, lab.x.angle = 0, lab.x.hjust = 0.5,
+  lab.x.vjust = 1, legend.position = "bottom", size.text = 12,
+  fontfam = "sans", na.rm = TRUE, verbose = FALSE)
 }
 \arguments{
 \item{.data}{The data set}
@@ -32,8 +33,12 @@ used.}
 
 \item{lab.bar}{A vector of characters to show in each bar. Defaults to NULL.}
 
-\item{lab.bar.vjust}{The vertical adjust for the labels in the bar. Defaults
-to -0.2}
+\item{lab.bar.vjust, lab.bar.hjust}{The vertical and horizontal adjust for the
+labels in the bar. Defaults to -0.5 and 0.5, respectively.}
+
+\item{lab.bar.angle}{The angle for the labels in the plot. Defaults to 0. Use
+in combination with \code{lab.bar.hjust} and \code{lab.bar.vjust} to best
+fit the labels in the plot.}
 
 \item{size.text.bar}{The size of the text in the bar labels.}
 
