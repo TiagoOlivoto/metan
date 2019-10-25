@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-24</h4>
+            <h4 class="date">2019-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -181,8 +181,7 @@
 <div id="individual-and-joint-anova" class="section level1">
 <h1 class="hasAnchor">
 <a href="#individual-and-joint-anova" class="anchor"></a>Individual and joint ANOVA</h1>
-<p>It is suggested to check if genotype-vs-environment interaction is significant before procceding with the AMMI analysis.</p>
-<p>A within-environment ANOVA considering a fixed-effect model is computed with the function <code><a href="../reference/anova_ind.html">anova_ind()</a></code>. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
+<p>It is suggested to check if genotype-vs-environment interaction is significant before procceding with the AMMI analysis. A within-environment ANOVA considering a fixed-effect model is computed with the function <code><a href="../reference/anova_ind.html">anova_ind()</a></code>. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">indiv =<span class="st"> </span><span class="kw"><a href="../reference/anova_ind.html">anova_ind</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw">print_table</span>(indiv<span class="op">$</span>GY<span class="op">$</span>individual)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -948,7 +947,7 @@ NA
 </tr>
 </tbody>
 </table>
-<p>The genotype-vs-environment interaction was higly significant. So we’ll proced with the AMMI analysis.</p>
+<p>The genotype-vs-environment interaction was highly significant. So we’ll proced with the AMMI analysis.</p>
 <div id="the-ammi-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-ammi-model" class="anchor"></a>The AMMI model</h2>

@@ -38,9 +38,7 @@ str(data_ge)
 ```
 
 # Individual and joint ANOVA
-It is suggested to check if genotype-vs-environment interaction is significant before procceding with the AMMI analysis. 
-
-A within-environment ANOVA considering a fixed-effect model is computed with the function `anova_ind()`. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, $CV = (\sqrt{MS_{res}}/Mean) \times 100$; the heritability, $h2 = (MS_{gen} - MS_{res})/MS_{gen}$, and the accuracy of selection, $As = \sqrt{h2}$.
+It is suggested to check if genotype-vs-environment interaction is significant before procceding with the AMMI analysis. A within-environment ANOVA considering a fixed-effect model is computed with the function `anova_ind()`. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, $CV = (\sqrt{MS_{res}}/Mean) \times 100$; the heritability, $h2 = (MS_{gen} - MS_{res})/MS_{gen}$, and the accuracy of selection, $As = \sqrt{h2}$.
 
 
 ```{r }
@@ -58,7 +56,7 @@ row_spec(4, bold = T) %>%
 add_indent(4)
 ```
 
-The genotype-vs-environment interaction was higly significant. So we'll proced with the AMMI analysis.
+The genotype-vs-environment interaction was highly significant. So we'll proced with the AMMI analysis.
 
 ## The AMMI model
 

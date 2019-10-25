@@ -39,7 +39,7 @@ The function `find_outlier()` may be used to identify possible outliers in a dat
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 data_out = data_ge2
-data_out[12, 4] = 26
+data_out[12, 4] = 5
 find_outliers(data_out, var = PH, plots = TRUE)
 ```
 

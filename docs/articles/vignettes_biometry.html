@@ -147,7 +147,7 @@
       <h1>Useful functions for biometrical models</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-24</h4>
+            <h4 class="date">2019-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_biometry.Rmd"><code>vignettes/vignettes_biometry.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_biometry.Rmd</code></div>
@@ -171,17 +171,17 @@
 <a href="#find-possible-outliers-in-a-data-frame" class="anchor"></a>Find possible outliers in a data frame</h1>
 <p>The function <code>find_outlier()</code> may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked out.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">data_out =<span class="st"> </span>data_ge2</a>
-<a class="sourceLine" id="cb2-2" title="2">data_out[<span class="dv">12</span>, <span class="dv">4</span>] =<span class="st"> </span><span class="dv">26</span></a>
+<a class="sourceLine" id="cb2-2" title="2">data_out[<span class="dv">12</span>, <span class="dv">4</span>] =<span class="st"> </span><span class="dv">5</span></a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="../reference/find_outliers.html">find_outliers</a></span>(data_out, <span class="dt">var =</span> PH, <span class="dt">plots =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
 <pre><code>Number of possible outliers: 1 
 Lines: 12 
 Proportion: 0.6%
-Mean of the outliers: 26 
-Maximum of the outliers: 26  | Line 12 
-Minimum of the outliers: 26  | Line 12 
-With outliers:    mean = 2.634 | CV = 72.605%
+Mean of the outliers: 5 
+Maximum of the outliers: 5  | Line 12 
+Minimum of the outliers: 5  | Line 12 
+With outliers:    mean = 2.499 | CV = 15.58%
 Without outliers: mean = 2.483 | CV = 13.46%</code></pre>
+<p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>To check the outliers in different levels of a factor, the function <code><a href="../reference/split_factors.html">split_factors()</a></code> is used. As an example, we will find possible outliers for each level of the factor <code>ENV</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
