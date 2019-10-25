@@ -104,7 +104,8 @@ find_outliers <- function(.data =  NULL,
                        outlier.shape = 21,
                        outlier.size = 2.5,
                        outlier.fill = "red",
-                       width = .5)+
+                       width = .5,
+                       na.rm = TRUE)+
           theme(panel.border = element_rect(fill = NA, color = "black"),
                 axis.text.x = element_text(color = "white"),
                 axis.ticks.x = element_blank(),
@@ -120,7 +121,8 @@ find_outliers <- function(.data =  NULL,
                        outlier.shape = 21,
                        outlier.size = 2.5,
                        outlier.fill = "red",
-                       width = .5)+
+                       width = .5,
+                       na.rm = TRUE)+
           theme(panel.border = element_rect(fill = NA, color = "black"),
                 axis.text.x = element_text(color = "white"),
                 axis.ticks.x = element_blank(),
@@ -237,7 +239,8 @@ find_outliers <- function(.data =  NULL,
                      outlier.shape = 21,
                      outlier.size = 2.5,
                      outlier.fill = "red",
-                     width = .5)+
+                     width = .5,
+                     na.rm = TRUE)+
         theme(panel.border = element_rect(fill = NA, color = "black"),
               axis.text.x = element_text(color = "white"),
               axis.ticks.x = element_blank(),
@@ -253,7 +256,8 @@ find_outliers <- function(.data =  NULL,
                      outlier.shape = 21,
                      outlier.size = 2.5,
                      outlier.fill = "red",
-                     width = .5)+
+                     width = .5,
+                     na.rm = TRUE)+
         theme(panel.border = element_rect(fill = NA, color = "black"),
               axis.text.x = element_text(color = "white"),
               axis.ticks.x = element_blank(),
