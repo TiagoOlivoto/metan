@@ -117,6 +117,7 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         } else {
             SIPC <- unname(rowSums(apply(SCOR, 2, FUN = abs)))
         }
+
         mean <- PCA[PCA[, 1] == "GEN", c(2:3)]
         rS <- rank(SIPC)
         if (length(order.y) == 1) {
@@ -158,18 +159,37 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         ASV <- sqrt((pc * SCOR2[, 1])^2 + SCOR2[, 2]^2)
         rASV <- rank(ASV)
         ssiASV <- rASV + rY
-        temp <- data.frame(GEN = mean[1],
-                           Y = mean[2],
-                           rY = rY,
-                           ASV = ASV,
-                           rASV = rASV,
-                           ssiASV = ssiASV,
-                           SIPC = SIPC,
-                           rSIPC = rS,
-                           ssiSIPC = ssiSIPC,
-                           EV = EV,
-                           rEV = rEV,
-                           ssiEV = ssiEV)
+        # Weighted average of absolute scores
+        explan <- model$PCA[which(model$PCA[6]<0.05),][7]
+        WAAS <- SCOR %>%
+            abs() %>%
+            t() %>%
+            as.data.frame() %>%
+            mutate(w = explan$Percent)
+        WAAS <- sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = perc)
+        rWAAS <- rank(WAAS)
+        ssiWAAS <- rWAAS + rY
+        temp <- list(statistics = data.frame(GEN = mean[1],
+                                             Y = mean[2],
+                                             rY = rY,
+                                             ASV = ASV,
+                                             SIPC = SIPC,
+                                             EV = EV,
+                                             WAAS = WAAS),
+                     ranks = data.frame(GEN = mean[1],
+                                        Y = mean[2],
+                                        rY = rY,
+                                        rASV = rASV,
+                                        rSIPC = rS,
+                                        rEV = rEV,
+                                        rWAAS = rWAAS),
+                     ssi = data.frame(GEN = mean[1],
+                                      Y = mean[2],
+                                      rY = rY,
+                                      ssiASV = ssiASV,
+                                      ssiSIPC = ssiSIPC,
+                                      ssiEV = ssiEV,
+                                      ssiWAAS = ssiWAAS))
         listres[[paste(names(.data[var]))]] <- temp
     }
     invisible(listres)
