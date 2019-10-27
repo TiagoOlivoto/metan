@@ -12,17 +12,23 @@
 #' @param xlab The x label
 #' @param ylab The y label
 #' @param lab.bar A vector of characters to show in each bar. Defaults to NULL.
-#' @param lab.bar.vjust,lab.bar.hjust The vertical and horizontal adjust for the
-#'   labels in the bar. Defaults to -0.5 and 0.5, respectively.
+#' @param lab.bar.hjust,lab.bar.vjust The horizontal and vertical adjust for the
+#'   labels in the bar. Defaults to 0.5 and -0.5, respectively.
 #' @param lab.bar.angle The angle for the labels in the plot. Defaults to 0. Use
 #'   in combination with \code{lab.bar.hjust} and \code{lab.bar.vjust} to best
 #'   fit the labels in the plot.
 #' @param size.text.bar The size of the text in the bar labels.
+#' @param lab.x.hjust,lab.x.vjust The horizontal and vertical adjust for the
+#'   labels in the bar. Defaults to 0.5 and 1, respectively.
+#' @param lab.x.angle The angle for the labels in x axis. Defaults to 0. Use
+#'   in combination with \code{lab.x.hjust} and \code{lab.x.vjust} to best
+#'   fit the labels in the axis.
 #' @param errorbar Logical argument, set to TRUE. In this case, an error bar is
 #'   shown.
 #' @param stat.erbar The statistic to be shown in the errorbar. Must be one of
-#'   the 'se' (standard error, default), 'sd' (standard deviation), or 'ci'
-#'   confidence interval, based on the confidence level
+#'   the \code{stat.erbar = "se"} (standard error, default), \code{stat.erbar =
+#'   "sd"} (standard deviation), or \code{stat.erbar = "ci"} (confidence
+#'   interval), based on the confidence level in the argument \code{level}.
 #' @param width.erbar The width of the error bar.
 #' @param level The confidence level
 #' @param invert Logical argument. If \code{TRUE}, the order of the factors
@@ -32,13 +38,7 @@
 #'   \code{?scale_colour_brewer}
 #' @param width.bar The width of the bars in the graph. Defaults to 0.9 possible
 #'   values [0-1].
-#' @param lab.x.angle The angle of the caption text. Default is 0.
-#' @param lab.x.hjust The horizontal adjustment of the caption text. Defaults to
-#'   0.5.
-#' @param lab.x.vjust The vertical adjustment of the caption text. Defaults to
-#'   1. Use this argument to adjust the text when the angle of the text is
-#'   different from 0.
-#' @param legend.position The legend position.
+#' @param legend.position The position of the legend in the plot.
 #' @param size.text The size of the text
 #' @param fontfam The family of the font text
 #' @param na.rm Should 'NA' values be removed to compute the statistics?
@@ -55,16 +55,16 @@
 #' plot_factbars(data_ge2,
 #'               GEN,
 #'               ENV,
-#'               resp = PH,
-#'               palette = 'Greys')
+#'               resp = PH)
+#'
 plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
-                          xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.vjust = -0.5,
-                          lab.bar.hjust = 0.5, lab.bar.angle = 0, size.text.bar = 5,
+                          xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.hjust = 0.5,
+                          lab.bar.vjust = -0.5, lab.bar.angle = 0, size.text.bar = 5,
+                          lab.x.hjust = 0.5, lab.x.vjust = 1, lab.x.angle = 0,
                           errorbar = TRUE, stat.erbar = "se", width.erbar = 0.3,
                           level = 0.95, invert = FALSE, col = TRUE, palette = "Spectral",
-                          width.bar = 0.9, lab.x.angle = 0, lab.x.hjust = 0.5, lab.x.vjust = 1,
-                          legend.position = "bottom", size.text = 12, fontfam = "sans",
-                          na.rm = TRUE, verbose = FALSE) {
+                          width.bar = 0.9, legend.position = "bottom", size.text = 12,
+                          fontfam = "sans", na.rm = TRUE, verbose = FALSE) {
   cl <- match.call()
   datac <- .data %>%
     mutate_at(quos(...), as.factor) %>%
@@ -73,12 +73,13 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
     summarise(N = n(),
               mean_var = mean(Y, na.rm = na.rm),
               sd = sd(Y, na.rm = na.rm), se = sd/sqrt(n()),
-              ci = se * qt(level/2 + 0.5, n() - 1))
+              ci = se * qt(level/2 + 0.5, n() - 1),
+              max = mean_var + ci)
   nam <- names(select(.data, ...))
   if (length(nam) > 1) {
-    names(datac) <- c("x", "y", "N", "mean_var", "sd", "se", "ci")
+    names(datac) <- c("x", "y", "N", "mean_var", "sd", "se", "ci", "max")
   } else {
-    names(datac) <- c("x", "N", "mean_var", "sd", "se", "ci")
+    names(datac) <- c("x", "N", "mean_var", "sd", "se", "ci", "max")
   }
   if (is.null(ylab) == TRUE) {
     ylab <- cl$resp
@@ -101,7 +102,7 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
   if(any(is.na(datac$ci))){
     y.lim <- c(0, (max(datac$mean_var) * y.expand))
   } else{
-    y.lim <- c(0, (max(datac$mean_var) + max(datac$ci)) * y.expand)
+    y.lim <- c(0, (max(datac$max) * y.expand))
   }
 
   pd <- position_dodge(width.bar)
@@ -196,7 +197,7 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
     labs(y = ylab, x = xlab) +
     scale_y_continuous(limits = y.lim,
                        breaks = y.breaks,
-                       expand = expand_scale(mult = c(0, 0.1)))
+                       expand = expand_scale(mult = c(0, 0)))
   if (verbose == TRUE) {
     print(datac)
   }

@@ -5,12 +5,12 @@
 \title{Fast way to create a bar plot}
 \usage{
 plot_factbars(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
-  xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.vjust = -0.5,
-  lab.bar.hjust = 0.5, lab.bar.angle = 0, size.text.bar = 5,
+  xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.hjust = 0.5,
+  lab.bar.vjust = -0.5, lab.bar.angle = 0, size.text.bar = 5,
+  lab.x.hjust = 0.5, lab.x.vjust = 1, lab.x.angle = 0,
   errorbar = TRUE, stat.erbar = "se", width.erbar = 0.3,
   level = 0.95, invert = FALSE, col = TRUE, palette = "Spectral",
-  width.bar = 0.9, lab.x.angle = 0, lab.x.hjust = 0.5,
-  lab.x.vjust = 1, legend.position = "bottom", size.text = 12,
+  width.bar = 0.9, legend.position = "bottom", size.text = 12,
   fontfam = "sans", na.rm = TRUE, verbose = FALSE)
 }
 \arguments{
@@ -33,8 +33,8 @@ used.}
 
 \item{lab.bar}{A vector of characters to show in each bar. Defaults to NULL.}
 
-\item{lab.bar.vjust, lab.bar.hjust}{The vertical and horizontal adjust for the
-labels in the bar. Defaults to -0.5 and 0.5, respectively.}
+\item{lab.bar.hjust, lab.bar.vjust}{The horizontal and vertical adjust for the
+labels in the bar. Defaults to 0.5 and -0.5, respectively.}
 
 \item{lab.bar.angle}{The angle for the labels in the plot. Defaults to 0. Use
 in combination with \code{lab.bar.hjust} and \code{lab.bar.vjust} to best
@@ -42,12 +42,20 @@ fit the labels in the plot.}
 
 \item{size.text.bar}{The size of the text in the bar labels.}
 
+\item{lab.x.hjust, lab.x.vjust}{The horizontal and vertical adjust for the
+labels in the bar. Defaults to 0.5 and 1, respectively.}
+
+\item{lab.x.angle}{The angle for the labels in x axis. Defaults to 0. Use
+in combination with \code{lab.x.hjust} and \code{lab.x.vjust} to best
+fit the labels in the axis.}
+
 \item{errorbar}{Logical argument, set to TRUE. In this case, an error bar is
 shown.}
 
 \item{stat.erbar}{The statistic to be shown in the errorbar. Must be one of
-the 'se' (standard error, default), 'sd' (standard deviation), or 'ci'
-confidence interval, based on the confidence level}
+the \code{stat.erbar = "se"} (standard error, default), \code{stat.erbar =
+"sd"} (standard deviation), or \code{stat.erbar = "ci"} (confidence
+interval), based on the confidence level in the argument \code{level}.}
 
 \item{width.erbar}{The width of the error bar.}
 
@@ -64,16 +72,7 @@ entered in changes in the graph}
 \item{width.bar}{The width of the bars in the graph. Defaults to 0.9 possible
 values [0-1].}
 
-\item{lab.x.angle}{The angle of the caption text. Default is 0.}
-
-\item{lab.x.hjust}{The horizontal adjustment of the caption text. Defaults to
-0.5.}
-
-\item{lab.x.vjust}{The vertical adjustment of the caption text. Defaults to
-1. Use this argument to adjust the text when the angle of the text is
-different from 0.}
-
-\item{legend.position}{The legend position.}
+\item{legend.position}{The position of the legend in the plot.}
 
 \item{size.text}{The size of the text}
 
@@ -98,8 +97,8 @@ library(metan)
 plot_factbars(data_ge2,
               GEN,
               ENV,
-              resp = PH,
-              palette = 'Greys')
+              resp = PH)
+
 }
 \seealso{
 \code{\link{plot_lines}}, \code{\link{plot_factlines}}
