@@ -41,9 +41,10 @@ print.ge_reg <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
     cat("---------------------------------------------------------------------------\n")
     print(var$regression)
     cat("---------------------------------------------------------------------------\n")
-    if (export == TRUE) {
-      sink()
-    }
+    cat("\n\n\n")
+  }
+  if (export == TRUE) {
+    sink()
   }
   options(backup_options)
 }

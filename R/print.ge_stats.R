@@ -79,9 +79,10 @@ print.ge_stats <- function(x, export = FALSE, file.name = NULL, digits = 3,
       cat("Nonparametric Superiority index\n")
       cat("---------------------------------------------------------------------------\n")
       print(var$Superiority$index)
-      if (export == TRUE) {
-        sink()
-      }
+      cat("\n\n\n")
     }
+  if (export == TRUE) {
+    sink()
+  }
   options(backup_options)
 }

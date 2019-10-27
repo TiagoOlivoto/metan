@@ -41,9 +41,10 @@ print.performs_ammi <- function(x, export = FALSE, file.name = NULL, digits = 4,
     cat("Scores for genotypes and environments\n")
     cat("---------------------------------------------------------------------------\n")
     print(var$model)
-    if (export == TRUE) {
-      sink()
-    }
+    cat("\n\n\n")
+  }
+  if (export == TRUE) {
+    sink()
   }
   options(backup_options)
 }

@@ -59,8 +59,9 @@ print.gamem <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
     cat("Genetic parameters\n")
     cat("---------------------------------------------------------------------------\n")
     print(var$ESTIMATES, ...)
-    if (export == TRUE) {
-      sink()
-    }
+    cat("\n\n\n")
+  }
+  if (export == TRUE) {
+    sink()
   }
 }

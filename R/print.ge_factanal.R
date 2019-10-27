@@ -60,9 +60,10 @@ print.ge_factanal <- function(x, export = FALSE, file.name = NULL, digits = 4, .
     cat("Mean = mean; Min = minimum; Max = maximum; CV = coefficient of variation (%)\n")
     cat("The print statistics are based on the men values of ", length(unique(var$data$REP)), "replicates\n")
     cat("------------------------------------------------------------------------------------\n")
-    if (export == TRUE) {
-      sink()
-    }
+    cat("\n\n\n")
+  }
+  if (export == TRUE) {
+    sink()
   }
   options(backup_options)
 }

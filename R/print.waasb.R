@@ -75,9 +75,10 @@ print.waasb <- function(x, export = FALSE, blup = FALSE, file.name = NULL, digit
     cat("Some information regarding the analysis\n")
     cat("---------------------------------------------------------------------------\n")
     print(var$Details)
-    if (export == TRUE) {
-      sink()
-    }
+    cat("\n\n\n")
+  }
+  if (export == TRUE) {
+    sink()
   }
   options(backup_options)
 }

@@ -35,9 +35,10 @@ print.anova_joint <- function(x, export = FALSE, file.name = NULL, digits = 3, .
     cat("---------------------------------------------------------------------------\n")
     print(var)
     cat("---------------------------------------------------------------------------\n")
-    if (export == TRUE) {
-      sink()
-    }
+    cat("\n\n\n")
+  }
+  if (export == TRUE) {
+    sink()
   }
   options(backup_options)
 }
