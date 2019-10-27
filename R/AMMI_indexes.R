@@ -168,27 +168,34 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         WAAS <- sapply(WAAS, weighted.mean, w = explan$Percent)
         rWAAS <- rank(WAAS)
         ssiWAAS <- rWAAS + rY
-        temp <- list(statistics = data.frame(GEN = mean[1],
-                                             Y = mean[2],
-                                             rY = rY,
-                                             ASV = ASV,
-                                             SIPC = SIPC,
-                                             EV = EV,
-                                             WAAS = WAAS),
-                     ranks = data.frame(GEN = mean[1],
-                                        Y = mean[2],
-                                        rY = rY,
-                                        rASV = rASV,
-                                        rSIPC = rS,
-                                        rEV = rEV,
-                                        rWAAS = rWAAS),
-                     ssi = data.frame(GEN = mean[1],
-                                      Y = mean[2],
-                                      rY = rY,
-                                      ssiASV = ssiASV,
-                                      ssiSIPC = ssiSIPC,
-                                      ssiEV = ssiEV,
-                                      ssiWAAS = ssiWAAS))
+        temp <- list(
+            statistics = data.frame(
+                GEN = mean[1],
+                Y = mean[2],
+                rY = rY,
+                ASV = ASV,
+                SIPC = SIPC,
+                EV = EV,
+                WAAS = WAAS) %>%
+                as_tibble(),
+            ranks = data.frame(
+                GEN = mean[1],
+                Y = mean[2],
+                rY = rY,
+                rASV = rASV,
+                rSIPC = rS,
+                rEV = rEV,
+                rWAAS = rWAAS) %>%
+                as_tibble(),
+            ssi = data.frame(
+                GEN = mean[1],
+                Y = mean[2],
+                rY = rY,
+                ssiASV = ssiASV,
+                ssiSIPC = ssiSIPC,
+                ssiEV = ssiEV,
+                ssiWAAS = ssiWAAS) %>%
+                as_tibble())
         listres[[paste(names(.data[var]))]] <- temp
     }
     invisible(listres)
