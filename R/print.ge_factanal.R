@@ -39,7 +39,7 @@ print.ge_factanal <- function(x, export = FALSE, file.name = NULL, digits = 4, .
     cat("------------------------------------------------------------------------------------\n")
     cat("Correlation matrix among environments\n")
     cat("------------------------------------------------------------------------------------\n")
-    print(var$cormat)
+    print(as_tibble(var$cormat, rownames = "ENV"))
     cat("------------------------------------------------------------------------------------\n")
     cat("Eigenvalues and explained variance\n")
     cat("------------------------------------------------------------------------------------\n")
