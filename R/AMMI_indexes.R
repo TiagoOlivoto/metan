@@ -198,5 +198,5 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
                 as_tibble())
         listres[[paste(names(.data[var]))]] <- temp
     }
-    invisible(listres)
+    invisible(structure(listres, class = "AMMI_indexes"))
 }
