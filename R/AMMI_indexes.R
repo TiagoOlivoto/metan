@@ -164,9 +164,8 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         WAAS <- SCOR %>%
             abs() %>%
             t() %>%
-            as.data.frame() %>%
-            mutate(w = explan$Percent)
-        WAAS <- sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = perc)
+            as.data.frame()
+        WAAS <- sapply(WAAS, weighted.mean, w = explan$Percent)
         rWAAS <- rank(WAAS)
         ssiWAAS <- rWAAS + rY
         temp <- list(statistics = data.frame(GEN = mean[1],
