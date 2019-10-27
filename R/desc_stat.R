@@ -176,6 +176,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = "main", hist = F
           theme(axis.text = element_text(size = 12, colour = "black"),
                 axis.title = element_text(size = 14, color = "black"),
                 axis.ticks.length = unit(0.25, "cm"),
+                axis.ticks = element_line(color = "black"),
                 panel.grid.minor = element_blank(),
                 strip.background = element_rect(color = "black", fill = NA),
                 panel.border = element_rect(color = "black", fill = NA))+
