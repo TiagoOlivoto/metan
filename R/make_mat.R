@@ -43,6 +43,6 @@ make_mat <- function(.data, row, col, value, fun = mean) {
     summarise_if(is.numeric, fun) %>%
     spread({{col}}, {{value}}) %>%
     ungroup()
-  data %<>% column_to_rownames(data, var = names(data[1]))
+  data %<>% column_to_rownames(var = names(data[1]))
   return(data)
 }
