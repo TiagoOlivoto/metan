@@ -35,17 +35,14 @@
 #'
 
 make_mat <- function(.data, row, col, value, fun = mean) {
-  data <- data.frame(.data %>% dplyr::select(!!dplyr::enquo(row),
-                                            !!dplyr::enquo(col),
-                                            !!dplyr::enquo(value))) %>%
-
-    group_by(!!dplyr::enquo(row),
-             !!dplyr::enquo(col)) %>%
+  data <- .data %>%
+    select({{row}},
+           {{col}},
+           {{value}}) %>%
+    group_by({{row}}, {{col}}) %>%
     summarise_if(is.numeric, fun) %>%
-    spread(!!dplyr::enquo(col), !!dplyr::enquo(value))
-
-  data %<>%
-    column_to_rownames(var = names(data[1]))
-    return(data)
-
+    spread({{col}}, {{value}}) %>%
+    ungroup()
+  data %<>% column_to_rownames(data, var = names(data[1]))
+  return(data)
 }
