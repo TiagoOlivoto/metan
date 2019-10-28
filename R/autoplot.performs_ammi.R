@@ -71,14 +71,21 @@ autoplot.performs_ammi <- function(x, conf = 0.95, labels = FALSE, theme = theme
     df$label <- ifelse(df$stdres > df$upper | df$stdres < df$lower,
                        rownames(df), "")
     # residuals vs fitted
-    p1 <- ggplot(df, aes(fitted, resid)) + geom_point(col = col.point) +
-        geom_smooth(se = F, method = "loess", col = col.line) +
-        geom_hline(yintercept = 0, linetype = 2, col = "gray") +
-        labs(x = "Fitted values", y = "Residual") + ggtitle("Residuals vs fitted") +
-        theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
-                                                        colour = "black"), axis.title = element_text(size = size.tex.lab,
-                                                                                                     colour = "black"), plot.title = element_text(size = size.tex.lab,
-                                                                                                                                                  hjust = 0, vjust = 1))
+    p1 <- ggplot(df, aes(fitted, resid)) +
+        geom_point(col = col.point) +
+        geom_smooth(se = F,
+                    method = "loess",
+                    col = col.line) +
+        geom_hline(yintercept = 0,
+                   linetype = 2,
+                   col = "gray") +
+        labs(x = "Fitted values",
+             y = "Residual") +
+        ggtitle("Residuals vs fitted") +
+        theme %+replace%
+        theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+              axis.title = element_text(size = size.tex.lab, colour = "black"),
+              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
     if (labels != FALSE) {
         p1 <- p1 + geom_text(aes(label = label), size = size.lab.out,
                              hjust = "inward", col = col.lab.out)
@@ -86,31 +93,48 @@ autoplot.performs_ammi <- function(x, conf = 0.95, labels = FALSE, theme = theme
         p1 <- p1
     }
     # normal qq
-    p2 <- ggplot(df, aes(z, stdres)) + geom_point(col = col.point) +
-        geom_abline(intercept = coef[1], slope = coef[2], col = col.line,
-                    size = 1) + geom_ribbon(aes_(ymin = ~lower, ymax = ~upper),
-                                            alpha = alpha) + labs(x = "Theoretical quantiles", y = "Sample quantiles") +
-        ggtitle("Normal Q-Q") + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
-                                                                                colour = "black"), axis.title = element_text(size = size.tex.lab,
-                                                                                                                             colour = "black"), plot.title = element_text(size = size.tex.lab,
-                                                                                                                                                                          hjust = 0, vjust = 1))
+    p2 <- ggplot(df, aes(z, stdres)) +
+        geom_point(col = col.point) +
+        geom_abline(intercept = coef[1],
+                    slope = coef[2],
+                    col = col.line,
+                    size = 1) +
+        geom_ribbon(aes_(ymin = ~lower, ymax = ~upper),
+                    alpha = alpha) +
+        labs(x = "Theoretical quantiles",
+             y = "Sample quantiles") +
+        ggtitle("Normal Q-Q") +
+        theme %+replace%
+        theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+              axis.title = element_text(size = size.tex.lab, colour = "black"),
+              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
     if (labels != FALSE) {
-        p2 <- p2 + geom_text(aes(label = label), size = size.lab.out,
-                             hjust = "inward", col = col.lab.out)
+        p2 <- p2 + geom_text(aes(label = label),
+                             size = size.lab.out,
+                             hjust = "inward",
+                             col = col.lab.out)
     } else {
         p2 <- p2
     }
     # scale-location
-    p3 <- ggplot(df, aes(fitted, sqrt(abs(resid)))) + geom_point(col = col.point) +
-        geom_smooth(se = F, method = "loess", col = col.line) +
-        labs(x = "Fitted values", y = expression(sqrt("|Standardized residuals|"))) +
-        ggtitle("Scale-location") + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
-                                                                                    colour = "black"), axis.title = element_text(size = size.tex.lab,
-                                                                                                                                 colour = "black"), plot.title = element_text(size = size.tex.lab,
-                                                                                                                                                                              hjust = 0, vjust = 1))
+    p3 <- ggplot(df, aes(fitted, sqrt(abs(resid)))) +
+        geom_point(col = col.point) +
+        geom_smooth(se = F,
+                    method = "loess",
+                    col = col.line) +
+        labs(x = "Fitted values",
+             y = expression(sqrt("|Standardized residuals|"))) +
+        ggtitle("Scale-location") +
+        theme %+replace%
+        theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+              axis.title = element_text(size = size.tex.lab, colour = "black"),
+              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
+
     if (labels != FALSE) {
-        p3 <- p3 + geom_text(aes(label = label), size = size.lab.out,
-                             hjust = "inward", col = col.lab.out)
+        p3 <- p3 + geom_text(aes(label = label),
+                             size = size.lab.out,
+                             hjust = "inward",
+                             col = col.lab.out)
     } else {
         p3 <- p3
     }
@@ -118,40 +142,62 @@ autoplot.performs_ammi <- function(x, conf = 0.95, labels = FALSE, theme = theme
     p4 <- ggplot(df, aes(factors, stdres)) + geom_point(col = col.point) +
         geom_hline(yintercept = 0, linetype = 2, col = "gray") +
         labs(x = "Fitted values", y = "Standardized residuals") +
-        ggtitle("Residuals vs factor-levels") + theme %+replace%
+        ggtitle("Residuals vs factor-levels") +
+        theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
-              plot.title = element_text(size = size.tex.lab, hjust = 0,
-                                        vjust = 1))
+              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
     if (labels != FALSE) {
-        p4 <- p4 + geom_text(aes(label = label), size = size.lab.out,
-                             hjust = "inward", col = col.lab.out)
+        p4 <- p4 + geom_text(aes(label = label),
+                             size = size.lab.out,
+                             hjust = "inward",
+                             col = col.lab.out)
     } else {
         p4 <- p4
     }
     # Histogram of residuals
-    p5 <- ggplot(df, aes(x = resid)) + geom_histogram(bins = bins,
-                                                      colour = col.hist, fill = fill.hist, aes(y = ..density..)) +
-        stat_function(fun = dnorm, color = col.line, size = 1,
+    p5 <- ggplot(df, aes(x = resid)) +
+        geom_histogram(bins = bins,
+                       colour = col.hist,
+                       fill = fill.hist, aes(y = ..density..)) +
+        stat_function(fun = dnorm,
+                      color = col.line,
+                      size = 1,
                       args = list(mean = mean(df$resid), sd = sd(df$resid))) +
-        labs(x = "Raw residuals", y = "Density") + ggtitle("Histogram of residuals") +
-        theme
+        labs(x = "Raw residuals", y = "Density") +
+        ggtitle("Histogram of residuals") +
+        theme %+replace%
+        theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+              axis.title = element_text(size = size.tex.lab, colour = "black"),
+              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
     # Residuals vs order
     p6 <- ggplot(df, aes(as.numeric(id), stdres, group = 1)) +
-        geom_point(col = col.point) + geom_line() + geom_hline(yintercept = 0,
-                                                               linetype = 2, col = col.line) + labs(x = "Observation order",
-                                                                                                    y = "Standardized Residuals") + ggtitle("Residuals vs observation order") +
-        theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
-                                                        colour = "black"), axis.title = element_text(size = size.tex.lab,
-                                                                                                     colour = "black"), plot.title = element_text(size = size.tex.lab,
-                                                                                                                                                  hjust = 0, vjust = 1))
-    p7 <- ggplot(df, aes(fitted, Y)) + geom_point(col = col.point) +
-        facet_wrap(~GEN) + geom_abline(intercept = 0, slope = 1,
-                                       col = col.line) + labs(x = "Fitted values", y = "Observed values") +
-        ggtitle("1:1 line plot") + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
-                                                                                   colour = "black"), axis.title = element_text(size = size.tex.lab,
-                                                                                                                                colour = "black"), plot.title = element_text(size = size.tex.lab,
-                                                                                                                                                                             hjust = 0, vjust = 1), panel.spacing = unit(0, "cm"))
+        geom_point(col = col.point) +
+        geom_line() +
+        geom_hline(yintercept = 0,
+                   linetype = 2,
+                   col = col.line) +
+        labs(x = "Observation order", y = "Standardized Residuals") +
+        ggtitle("Residuals vs observation order") +
+        theme %+replace%
+        theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+              axis.title = element_text(size = size.tex.lab, colour = "black"),
+              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
+
+    p7 <- ggplot(df, aes(fitted, mean)) +
+        geom_point(col = col.point) +
+        facet_wrap(~GEN) +
+        geom_abline(intercept = 0,
+                    slope = 1,
+                    col = col.line) +
+        labs(x = "Fitted values",
+             y = "Observed values") +
+        ggtitle("1:1 line plot") +
+        theme %+replace%
+        theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+              axis.title = element_text(size = size.tex.lab, colour = "black"),
+              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
+              panel.spacing = unit(0, "cm"))
     plots <- list(p1, p2, p3, p4, p5, p6, p7)
     # making the plots
     grid::grid.newpage()
