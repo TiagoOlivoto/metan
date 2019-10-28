@@ -24,19 +24,6 @@
 #'
 NULL
 
-
-#' Autoplot
-#'
-#' See \code{\link{ggplot2::autoplot}} for details.
-#'
-#' @name autoplot
-#' @rdname autoplot
-#' @keywords internal
-#' @export
-#' @importFrom ggplot2 autoplot
-NULL
-
-
 #' @title Data for examples
 #'
 #' @description This dataset contains the means for grain yield of 10 genotypes cultivated
