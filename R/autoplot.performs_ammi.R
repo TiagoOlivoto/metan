@@ -1,13 +1,13 @@
 #' Several types of residual plots
 #'
-#' Residual plots for a output model of class \code{waas}. Six types
+#' Residual plots for a output model of class \code{performs_ammi}. Six types
 #' of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
 #' residuals, (3) scale-location plot (standardized residuals vs Fitted
 #' Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
 #' residuals and (6) standardized residuals vs observation order.
 #'
 #'
-#' @param x An object of class \code{waas}.
+#' @param x An object of class \code{performs_ammi}.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
 #' default).
 #' @param labels Logical argument. If \code{TRUE} labels the points outside
@@ -33,7 +33,7 @@
 #' of columns. Default is \code{mfrow = c(2, 2)}.
 #' @param ... Additional parameter for the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method autoplot waas
+#' @method autoplot performs_ammi
 #' @export
 #' @examples
 #'
@@ -48,11 +48,11 @@
 #'          labels = T,
 #'          size.lab.out = 4)
 #'
-autoplot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
-                          alpha = 0.2, fill.hist = "gray", col.hist = "black", col.point = "black",
-                          col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
-                          size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
-                          mfrow = c(2, 2), ...) {
+autoplot.performs_ammi <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
+                                   alpha = 0.2, fill.hist = "gray", col.hist = "black", col.point = "black",
+                                   col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
+                                   size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
+                                   mfrow = c(2, 2), ...) {
     df <- x$residuals
     df$id <- rownames(df)
     df <- data.frame(df[order(df$stdres), ])
