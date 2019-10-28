@@ -199,12 +199,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>plot_factbars</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='no'>resp</span>, <span class='kw'>y.expand</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lab.bar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lab.bar.vjust</span> <span class='kw'>=</span> -<span class='fl'>0.2</span>,
-  <span class='kw'>size.text.bar</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>errorbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stat.erbar</span> <span class='kw'>=</span> <span class='st'>"se"</span>,
-  <span class='kw'>width.erbar</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Spectral"</span>, <span class='kw'>width.bar</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>lab.x.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>lab.x.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>lab.x.vjust</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>fontfam</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lab.bar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lab.bar.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>lab.bar.vjust</span> <span class='kw'>=</span> -<span class='fl'>0.5</span>, <span class='kw'>lab.bar.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>size.text.bar</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>lab.x.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>lab.x.vjust</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lab.x.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>errorbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stat.erbar</span> <span class='kw'>=</span> <span class='st'>"se"</span>, <span class='kw'>width.erbar</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
+  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Spectral"</span>,
+  <span class='kw'>width.bar</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>, <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>fontfam</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -245,13 +246,30 @@ used.</p></td>
       <td><p>A vector of characters to show in each bar. Defaults to NULL.</p></td>
     </tr>
     <tr>
-      <th>lab.bar.vjust</th>
-      <td><p>The vertical adjust for the labels in the bar. Defaults
-to -0.2</p></td>
+      <th>lab.bar.hjust, lab.bar.vjust</th>
+      <td><p>The horizontal and vertical adjust for the
+labels in the bar. Defaults to 0.5 and -0.5, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>lab.bar.angle</th>
+      <td><p>The angle for the labels in the plot. Defaults to 0. Use
+in combination with <code>lab.bar.hjust</code> and <code>lab.bar.vjust</code> to best
+fit the labels in the plot.</p></td>
     </tr>
     <tr>
       <th>size.text.bar</th>
       <td><p>The size of the text in the bar labels.</p></td>
+    </tr>
+    <tr>
+      <th>lab.x.hjust, lab.x.vjust</th>
+      <td><p>The horizontal and vertical adjust for the
+labels in the bar. Defaults to 0.5 and 1, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>lab.x.angle</th>
+      <td><p>The angle for the labels in x axis. Defaults to 0. Use
+in combination with <code>lab.x.hjust</code> and <code>lab.x.vjust</code> to best
+fit the labels in the axis.</p></td>
     </tr>
     <tr>
       <th>errorbar</th>
@@ -261,8 +279,9 @@ shown.</p></td>
     <tr>
       <th>stat.erbar</th>
       <td><p>The statistic to be shown in the errorbar. Must be one of
-the 'se' (standard error, default), 'sd' (standard deviation), or 'ci'
-confidence interval, based on the confidence level</p></td>
+the <code>stat.erbar = "se"</code> (standard error, default), <code>stat.erbar =
+"sd"</code> (standard deviation), or <code>stat.erbar = "ci"</code> (confidence
+interval), based on the confidence level in the argument <code>level</code>.</p></td>
     </tr>
     <tr>
       <th>width.erbar</th>
@@ -292,23 +311,8 @@ entered in changes in the graph</p></td>
 values [0-1].</p></td>
     </tr>
     <tr>
-      <th>lab.x.angle</th>
-      <td><p>The angle of the caption text. Default is 0.</p></td>
-    </tr>
-    <tr>
-      <th>lab.x.hjust</th>
-      <td><p>The horizontal adjustment of the caption text. Defaults to
-0.5.</p></td>
-    </tr>
-    <tr>
-      <th>lab.x.vjust</th>
-      <td><p>The vertical adjustment of the caption text. Defaults to
-1. Use this argument to adjust the text when the angle of the text is
-different from 0.</p></td>
-    </tr>
-    <tr>
       <th>legend.position</th>
-      <td><p>The legend position.</p></td>
+      <td><p>The position of the legend in the plot.</p></td>
     </tr>
     <tr>
       <th>size.text</th>
@@ -343,8 +347,8 @@ returned.</p></td>
 <span class='fu'>plot_factbars</span>(<span class='no'>data_ge2</span>,
               <span class='no'>GEN</span>,
               <span class='no'>ENV</span>,
-              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>,
-              <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>'Greys'</span>)</div><div class='img'><img src='plot_factbars-1.png' alt='' width='700' height='433' /></div></pre>
+              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div><div class='img'><img src='plot_factbars-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -37,7 +37,7 @@ The mean yield of genotype *i* in environment *j* is commonly described by a gen
 $$
 \hat y_{ij} + \mu + \alpha_i + \beta_j + \phi_{ij}
 $$
-where $\hat y_{ij}$ is the mean yield of genotype *i* in environment *j*, $i = 1, ... g; j = 1, ...e$ being *g* and *e*  the numbers of genotypes and environments, respectively; $\mu_j$ is the grand mean; $\alpha_i$ is the main effect of the genotype *i*; $\beta_j$ is the main effect of the environment *j*, and $\phi_{ij}$ is the interaction effect between genotype *i* and environment *j*. Subjecting the $\phi_{ij}$ to Singular Value Decomposition (SVD) results in the AMMI model. The deletion of $\alpha_i$ allows the variation explained by this term to be absorbed into the $\phi_{ij}$ term. In the Genotype plus Genotype-vs-Environment interaction (GGE) model the $\alpha_i$ term is is deleted from the above model and then the environment-centered data matrix, $\phi_{ij}$, is subjected to SVD [@Yan2007; @Yan2003]. Explicitly, we have
+where $\hat y_{ij}$ is the mean yield of genotype *i* in environment *j*, $i = 1, ... g; j = 1, ...e$ being *g* and *e*  the numbers of genotypes and environments, respectively; $\mu$ is the grand mean; $\alpha_i$ is the main effect of the genotype *i*; $\beta_j$ is the main effect of the environment *j*, and $\phi_{ij}$ is the interaction effect between genotype *i* and environment *j*. Subjecting the $\phi_{ij}$ to Singular Value Decomposition (SVD) results in the AMMI model. The deletion of $\alpha_i$ allows the variation explained by this term to be absorbed into the $\phi_{ij}$ term. In the Genotype plus Genotype-vs-Environment interaction (GGE) model the $\alpha_i$ term is is deleted from the above model and then the environment-centered data matrix, $\phi_{ij}$, is subjected to SVD [@Yan2007; @Yan2003]. Explicitly, we have
 
 $$
 {\phi_{ij} =  \hat y_{ij}} - \mu - \beta_j  = \sum\limits_{k = 1}^p \xi_{ik}^*\eta_{jk}^*
@@ -252,7 +252,6 @@ p2 = plot(gge_model,
 plot_grid(p1, p2)
 
 ```
-
 
 
 ## Biplot type 9: Compare two genotypes.

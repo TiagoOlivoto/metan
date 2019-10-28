@@ -69,11 +69,13 @@ reference:
     desc: "Functions for AMMI analysis"
     contents:
       - AMMI_indexes
+      - autoplot.performs_ammi
       - autoplot.waas
       - performs_ammi
       - plot.cv_ammif
       - predict.waas
       - predict.performs_ammi
+      - print.AMMI_indexes
       - print.performs_ammi
       - print.waas
       - cv_ammi
@@ -142,9 +144,12 @@ reference:
       - print.Annicchiarico
       - print.anova_ind
       - print.anova_joint
+      - print.ecovalence
+      - print.Fox
       - print.ge_factanal
       - print.ge_reg
       - print.ge_stats
+      - print.Shukla
       - print.superiority
       - Shukla
       - superiority
@@ -181,10 +186,12 @@ reference:
   - title: "Helper"
     desc: "Helper functions for metan package"
     contents:
+      - arrange_ggplot
       - as.split_factors
       - bind_cv
       - comb_vars
       - get_model_data
+      - inspect
       - is.split_factors
       - make_long
       - make_mat

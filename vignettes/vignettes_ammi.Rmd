@@ -60,7 +60,7 @@ The genotype-vs-environment interaction was highly significant. So we'll proced 
 
 ## The AMMI model
 
-The estimate of the response for the *i*th genotype in the *j*th environment using The Additive Main Effect and Multiplicative interaction (AMMI) model, is given as follows:
+The estimate of the response variable for the *i*th genotype in the *j*th environment using The Additive Main Effect and Multiplicative interaction (AMMI) model, is given as follows:
 
 $$
 {y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^p {{\lambda _k}{a_{ik}}} {t_{jk}} + {\rho _{ij}} + {\varepsilon _{ij}}

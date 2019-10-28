@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print an object ofclass <code>superiority</code> — print.superiority • metan</title>
+<title>Several types of residual plots — autoplot.performs_ammi • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,10 +42,12 @@
 
 
 
-<meta property="og:title" content="Print an object ofclass <code>superiority</code> — print.superiority" />
-<meta property="og:description" content="Print the superiority object in two ways. By default, the results are
-shown in the R console. The results can also be exported to the directory
-into a *.txt file." />
+<meta property="og:title" content="Several types of residual plots — autoplot.performs_ammi" />
+<meta property="og:description" content="Residual plots for a output model of class performs_ammi. Six types
+of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
+residuals, (3) scale-location plot (standardized residuals vs Fitted
+Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
+residuals and (6) standardized residuals vs observation order." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -189,44 +191,105 @@ into a *.txt file." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print an object ofclass <code>superiority</code></h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.superiority.R'><code>R/print.superiority.R</code></a></small>
-    <div class="hidden name"><code>print.superiority.Rd</code></div>
+    <h1>Several types of residual plots</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/autoplot.performs_ammi.R'><code>R/autoplot.performs_ammi.R</code></a></small>
+    <div class="hidden name"><code>autoplot.performs_ammi.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Print the <code>superiority</code> object in two ways. By default, the results are
-shown in the R console. The results can also be exported to the directory
-into a *.txt file.</p>
+    <p>Residual plots for a output model of class <code>performs_ammi</code>. Six types
+of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
+residuals, (3) scale-location plot (standardized residuals vs Fitted
+Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
+residuals and (6) standardized residuals vs observation order.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for superiority</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for performs_ammi</span>
+<span class='fu'>autoplot</span>(<span class='no'>x</span>, <span class='kw'>conf</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>fill.hist</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>col.hist</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+  <span class='kw'>col.lab.out</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>), <span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>),
+  <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>superiority</code>.</p></td>
+      <td><p>An object of class <code>performs_ammi</code>.</p></td>
     </tr>
     <tr>
-      <th>export</th>
-      <td><p>A logical argument. If <code>TRUE</code>, a *.txt file is exported to
-the working directory.</p></td>
+      <th>conf</th>
+      <td><p>Level of confidence interval to use in the Q-Q plot (0.95 by
+default).</p></td>
     </tr>
     <tr>
-      <th>file.name</th>
-      <td><p>The name of the file if <code>export = TRUE</code></p></td>
+      <th>labels</th>
+      <td><p>Logical argument. If <code>TRUE</code> labels the points outside
+confidence interval limits.</p></td>
     </tr>
     <tr>
-      <th>digits</th>
-      <td><p>The significant digits to be shown.</p></td>
+      <th>theme</th>
+      <td><p>The theme to use in the graphics. Default is <code>theme =
+theme_waasb()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>The transparency of confidence band in the Q-Q plot. Must be a
+number between 0 (opaque) and 1 (full transparency).</p></td>
+    </tr>
+    <tr>
+      <th>fill.hist</th>
+      <td><p>The color to fill the histogram. Default is 'gray'.</p></td>
+    </tr>
+    <tr>
+      <th>col.hist</th>
+      <td><p>The color of the border of the the histogram. Default is
+'black'.</p></td>
+    </tr>
+    <tr>
+      <th>col.point</th>
+      <td><p>The color of the points in the graphic. Default is 'black'.</p></td>
+    </tr>
+    <tr>
+      <th>col.line</th>
+      <td><p>The color of the lines in the graphic. Default is 'red'.</p></td>
+    </tr>
+    <tr>
+      <th>col.lab.out</th>
+      <td><p>The color of the labels for the 'outlying' points.</p></td>
+    </tr>
+    <tr>
+      <th>size.lab.out</th>
+      <td><p>The size of the labels for the 'outlying' points.</p></td>
+    </tr>
+    <tr>
+      <th>size.tex.lab</th>
+      <td><p>The size of the text in axis text and labels.</p></td>
+    </tr>
+    <tr>
+      <th>size.shape</th>
+      <td><p>The size of the shape in the plots.</p></td>
+    </tr>
+    <tr>
+      <th>bins</th>
+      <td><p>The number of bins to use in the histogram. Default is 30.</p></td>
+    </tr>
+    <tr>
+      <th>which</th>
+      <td><p>Which graphics should be plotted. Default is <code>which =
+c(1:4)</code> that means that the first four graphics will be plotted.</p></td>
+    </tr>
+    <tr>
+      <th>mfrow</th>
+      <td><p>Allow creating a simple multi-paneled plot. Must be a vector of
+length 2. The first argument is the number of rows and the second the number
+of columns. Default is <code>mfrow = c(2, 2)</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments of the function</p></td>
+      <td><p>Additional parameter for the function</p></td>
     </tr>
     </table>
 
@@ -234,31 +297,15 @@ the working directory.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='superiority.html'>superiority</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Superiority index considering all, favorable and unfavorable environments
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #555555;'># A tibble: 13 x 7</span><span>
-#&gt;    Genotypes Pi_all  Or_a Pi_favorable  Or_f Pi_unfavorable  Or_u
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1        0.025</span><span style='text-decoration: underline;'>8</span><span>     1      0.011</span><span style='text-decoration: underline;'>3</span><span>      8         0.040</span><span style='text-decoration: underline;'>3</span><span>     1
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10       0.151     12      0.021</span><span style='text-decoration: underline;'>3</span><span>     12         0.280     12
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11       0.116     10      0.010</span><span style='text-decoration: underline;'>1</span><span>      7         0.222     11
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12       0.103      8      0.017</span><span style='text-decoration: underline;'>4</span><span>     11         0.189      8
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13       0.068</span><span style='text-decoration: underline;'>8</span><span>     7      0.008</span><span style='text-decoration: underline;'>32</span><span>     4         0.129      7
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2        0.028</span><span style='text-decoration: underline;'>9</span><span>     2      0.008</span><span style='text-decoration: underline;'>39</span><span>     5         0.049</span><span style='text-decoration: underline;'>4</span><span>     2
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3        0.042</span><span style='text-decoration: underline;'>5</span><span>     6      0.007</span><span style='text-decoration: underline;'>91</span><span>     3         0.077</span><span style='text-decoration: underline;'>1</span><span>     4
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4        0.040</span><span style='text-decoration: underline;'>4</span><span>     5      0.002</span><span style='text-decoration: underline;'>79</span><span>     2         0.078</span><span style='text-decoration: underline;'>0</span><span>     5
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5        0.040</span><span style='text-decoration: underline;'>3</span><span>     4      0.002</span><span style='text-decoration: underline;'>53</span><span>     1         0.078</span><span style='text-decoration: underline;'>1</span><span>     6
-#&gt; </span><span style='color: #555555;'>10</span><span> H6        0.033</span><span style='text-decoration: underline;'>0</span><span>     3      0.012</span><span style='text-decoration: underline;'>8</span><span>      9         0.053</span><span style='text-decoration: underline;'>3</span><span>     3
-#&gt; </span><span style='color: #555555;'>11</span><span> H7        0.109      9      0.009</span><span style='text-decoration: underline;'>47</span><span>     6         0.208      9
-#&gt; </span><span style='color: #555555;'>12</span><span> H8        0.161     13      0.016</span><span style='text-decoration: underline;'>5</span><span>     10         0.306     13
-#&gt; </span><span style='color: #555555;'>13</span><span> H9        0.124     11      0.027</span><span style='text-decoration: underline;'>8</span><span>     13         0.221     10
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; 
-#&gt; </div></span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'><span class='no'>model2</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+#&gt; Done!</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span>(<span class='no'>model</span>$<span class='no'>GY</span>)</div><div class='img'><img src='autoplot.performs_ammi-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span>(<span class='no'>model2</span>$<span class='no'>GY</span>,
+         <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>5</span>),
+         <span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>),
+         <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='img'><img src='autoplot.performs_ammi-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

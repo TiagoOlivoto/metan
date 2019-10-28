@@ -6,7 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print an object of class anova_joint — print.anova_joint • metan</title>
+<title>Print an object of class Fox
+Print the <code>Fox</code> object in two ways. By default, the results
+are shown in the R console. The results can also be exported to the directory
+into a *.txt file. — print.Fox • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,10 +45,14 @@
 
 
 
-<meta property="og:title" content="Print an object of class anova_joint — print.anova_joint" />
-<meta property="og:description" content="Print the anova_joint object in two ways. By default, the results are shown
-in the R console. The results can also be exported to the directory into a
-*.txt file." />
+<meta property="og:title" content="Print an object of class Fox
+Print the <code>Fox</code> object in two ways. By default, the results
+are shown in the R console. The results can also be exported to the directory
+into a *.txt file. — print.Fox" />
+<meta property="og:description" content="Print an object of class Fox
+Print the Fox object in two ways. By default, the results
+are shown in the R console. The results can also be exported to the directory
+into a *.txt file." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -189,27 +196,31 @@ in the R console. The results can also be exported to the directory into a
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print an object of class anova_joint</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.anova_joint.R'><code>R/print.anova_joint.R</code></a></small>
-    <div class="hidden name"><code>print.anova_joint.Rd</code></div>
+    <h1>Print an object of class Fox
+Print the <code>Fox</code> object in two ways. By default, the results
+are shown in the R console. The results can also be exported to the directory
+into a *.txt file.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.Fox.R'><code>R/print.Fox.R</code></a></small>
+    <div class="hidden name"><code>print.Fox.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Print the <code>anova_joint</code> object in two ways. By default, the results are shown
-in the R console. The results can also be exported to the directory into a
-*.txt file.</p>
+    <p>Print an object of class Fox
+Print the <code>Fox</code> object in two ways. By default, the results
+are shown in the R console. The results can also be exported to the directory
+into a *.txt file.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for anova_joint</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for Fox</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>anova_joint</code>.</p></td>
+      <td><p>The <code>Fox</code> x</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -235,40 +246,31 @@ the working directory.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='anova_joint.html'>anova_joint</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable GY 
+<span class='no'>fox</span> <span class='kw'>=</span> <span class='fu'><a href='Fox.html'>Fox</a></span>(<span class='no'>data_ge2</span>,
+          <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+          <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+          <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+          <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>fox</span>)</div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #555555;'># A tibble: 8 x 6</span><span>
-#&gt;   Source        Df `Sum Sq` `Mean Sq` `F value`   `Pr(&gt;F)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV        13      280.     21.5       222.    7.25</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-130</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN         9       13.0     1.44       14.9   2.19</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 19</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> REP(ENV)   28        9.66    0.345       3.57  3.59</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  8</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> ENV:GEN   117       31.2     0.267       2.76  1.01</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 11</span><span>
-#&gt; </span><span style='color: #555555;'>5</span><span> Residuals 252       24.4     0.096</span><span style='text-decoration: underline;'>7</span><span>     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    
-#&gt; </span><span style='color: #555555;'>6</span><span> CV(%)      11.6     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    
-#&gt; </span><span style='color: #555555;'>7</span><span> MSR+/MSR-   6.71    </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    
-#&gt; </span><span style='color: #555555;'>8</span><span> OVmean      2.67    </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    
+#&gt; Fox TOP third criteria
 #&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; Variable HM 
-#&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 8 x 6</span><span>
-#&gt;   Source        Df `Sum Sq` `Mean Sq` `F value`   `Pr(&gt;F)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV        13       </span><span style='text-decoration: underline;'>5</span><span>710.    439.      155.    5.86</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-112</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN         9        270.     30.0      10.6   7.41</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 14</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> REP(ENV)   28        215.      7.68      2.70  2.20</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  5</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> ENV:GEN   117       </span><span style='text-decoration: underline;'>1</span><span>101.      9.41      3.31  1.06</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 15</span><span>
-#&gt; </span><span style='color: #555555;'>5</span><span> Residuals 252        716.      2.84     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    
-#&gt; </span><span style='color: #555555;'>6</span><span> CV(%)       3.50      </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    
-#&gt; </span><span style='color: #555555;'>7</span><span> MSR+/MSR-   5.24      </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    
-#&gt; </span><span style='color: #555555;'>8</span><span> OVmean     48.1       </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    
-#&gt; ---------------------------------------------------------------------------
+#&gt; <span style='color: #555555;'># A tibble: 13 x 3</span><span>
+#&gt;    GEN    mean   TOP
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1     2.62     2
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10    2.31     0
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11    2.39     0
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12    2.44     1
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13    2.54     3
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2     2.60     1
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3     2.59     2
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4     2.58     1
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5     2.57     1
+#&gt; </span><span style='color: #555555;'>10</span><span> H6     2.56     0
+#&gt; </span><span style='color: #555555;'>11</span><span> H7     2.40     0
+#&gt; </span><span style='color: #555555;'>12</span><span> H8     2.33     0
+#&gt; </span><span style='color: #555555;'>13</span><span> H9     2.36     1
 #&gt; 
 #&gt; 
 #&gt; </div></span></pre>
