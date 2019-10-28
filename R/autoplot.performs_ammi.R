@@ -45,7 +45,7 @@
 #' autoplot(model2$GY,
 #'          which = c(3, 5),
 #'          mfrow = c(1, 2),
-#'          labels = T,
+#'          labels = TRUE,
 #'          size.lab.out = 4)
 #'
 autoplot.performs_ammi <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),

@@ -68,10 +68,10 @@ library(ggplot2)
 model = performs_ammi(data_ge, ENV, GEN, REP, GY)
 model2 = waas(data_ge, ENV, GEN, REP, GY)
 autoplot(model$GY)
-autoplot(AMMI_model2$GY,
+autoplot(model2$GY,
          which = c(3, 5),
          mfrow = c(1, 2),
-         labels = T,
+         labels = TRUE,
          size.lab.out = 4)
 
 }
