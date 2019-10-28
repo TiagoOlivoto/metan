@@ -80,7 +80,7 @@ response variable or a two-way table.
 }
 \examples{
 library(metan)
-mod = gge(data_ge, GEN, ENV, GY)
+mod = gge(data_ge, ENV, GEN, GY)
 plot(mod)
 
 # Using the \%>\% operator and a two-way table as input
