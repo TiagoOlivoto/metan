@@ -40,7 +40,7 @@ print.AMMI_indexes <- function(x, export = FALSE, file.name = NULL, digits = 3, 
     cat("---------------------------------------------------------------------------\n")
     cat("Ranks for stability indexes\n")
     cat("---------------------------------------------------------------------------\n")
-    print(var$statistics)
+    print(var$ranks)
     cat("---------------------------------------------------------------------------\n")
     cat("Simultaneous selection indexes\n")
     cat("---------------------------------------------------------------------------\n")
