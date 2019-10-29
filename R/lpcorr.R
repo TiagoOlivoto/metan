@@ -110,6 +110,14 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
       internal(dfs[[x]])
     })
     names(out) <- names(dfs)
+    summ = do.call(rbind, lapply(out, function(x){
+      x$results %>% rownames_to_column("Pairs")
+    })) %>%
+      rownames_to_column("LEVEL") %>%
+      mutate(LEVEL = paste(rep(names(out), nrow(out[[1]][[3]])))) %>%
+      arrange(LEVEL) %>%
+      separate(LEVEL, into = .data[[2]], sep = "[/|]") %>%
+      as_tibble()
   }
   if (is.data.frame(.data)) {
     if(!missing(...)){
@@ -127,7 +135,7 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
     out <- internal(dfs)
   }
   if (any(class(.data) == "split_factors")) {
-    invisible(structure(out, class = "lpcor_group"))
+    invisible(structure(list(matrices = out, summary = summ), class = "lpcor_group"))
   } else {
     invisible(structure(out, class = "lpcor"))
   }
