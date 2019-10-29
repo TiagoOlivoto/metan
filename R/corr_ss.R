@@ -39,7 +39,7 @@ corr_ss <- function(r, CI, verbose = TRUE) {
         CI, "\nRequired sample size: ", n, "\n"))
     cat("-------------------------------------------------", "\n")
     }
-    return(tibble(`Description` = c("Significance level (%)", "Correlation", "95% half-width CI", "Sample size"),
+    invisible(tibble(`Description` = c("Significance level (%)", "Correlation", "95% half-width CI", "Sample size"),
                   `Value` = c(95, r, CI, n))
     )
 }
