@@ -7,6 +7,10 @@
 #' @param .data The data to be analyzed. Must be a symmetric correlation matrix
 #'   or, a dataframe containing the predictor variables, or an object of class
 #'   \code{split_factors}.
+#' @param ... Variables to use in the correlation. If \code{...} is null
+#'   (Default) then all the numeric variables from \code{.data} are used. It
+#'   must be a single variable name or a comma-separated list of unquoted
+#'   variables names.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
 #'   objects used to compute the correlation coefficients.
 #' @param method a character string indicating which correlation coefficient is
@@ -29,15 +33,19 @@
 #' # Alternatively using the pipe operator %>%
 #' partial2 = iris %>% lpcor()
 #'
+#' # Using a correlation matrix
 #' partial3 = cor(iris[1:4]) %>%
 #'            lpcor(n = nrow(iris),
 #'                  verbose = FALSE)
 #'
+#' # Select variables and compute the partial correlation
+#' # For each level of \code{Species}
+#'
 #' partial4 = iris %>%
 #'            split_factors(Species) %>%
-#'            lpcor()
+#'            lpcor(Sepal.Length, Sepal.Width, Petal.Width)
 #'
-lpcor <- function(.data, n = NULL, method = "pearson", verbose = TRUE) {
+lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
   if (!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)) {
     stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
   }
@@ -86,29 +94,39 @@ lpcor <- function(.data, n = NULL, method = "pearson", verbose = TRUE) {
     out <- internal(.data)
   }
   if (any(class(.data) == "split_factors")) {
-    out <- lapply(seq_along(.data[[1]]), function(x) {
+    if(!missing(...)){
+      dfs <- lapply(.data[[1]], function(x){
+        dplyr::select(x, ...)
+      })
+    } else{
+      dfs <- .data[[1]]
+    }
+    out <- lapply(seq_along(dfs), function(x) {
       if (verbose == TRUE) {
         cat("\n----------------------------------------------------------------------------\n")
-        cat("Level:", names(.data[[1]])[[x]], "\n")
+        cat("Level:", names(dfs)[[x]], "\n")
         cat("----------------------------------------------------------------------------\n")
       }
-      internal(.data[[1]][[x]])
+      internal(dfs[[x]])
     })
-    names(out) <- names(.data[[1]])
+    names(out) <- names(dfs)
   }
   if (is.data.frame(.data)) {
-    if (sum(lapply(.data, is.factor) == TRUE) > 0) {
-    }
-    data <- .data[, unlist(lapply(.data, is.numeric))]
-    out <- internal(data)
-    if (verbose == TRUE) {
-      if(length(data) != length(.data)){
-      message("The factors ", paste0(collapse = " ", names(.data[,
-                                                                 unlist(lapply(.data, is.factor))])), " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
+    if(!missing(...)){
+      dfs <-  dplyr::select(.data, ...)
+    } else{
+      if (verbose == TRUE) {
+        if (sum(lapply(.data, is.factor) == TRUE) > 0) {
+          message("The factors ", paste0(collapse = " ",
+                                         names(.data[, unlist(lapply(.data, is.factor))])),
+                  " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
+        }
       }
+      dfs <- select_if(.data, is.numeric)
     }
+    out <- internal(dfs)
   }
-  if (class(.data) == "split_factors") {
+  if (any(class(.data) == "split_factors")) {
     invisible(structure(out, class = "lpcor_group"))
   } else {
     invisible(structure(out, class = "lpcor"))

@@ -4,12 +4,17 @@
 \alias{lpcor}
 \title{Linear and Partial Correlation Coefficients}
 \usage{
-lpcor(.data, n = NULL, method = "pearson", verbose = TRUE)
+lpcor(.data, ..., n = NULL, method = "pearson", verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a symmetric correlation matrix
 or, a dataframe containing the predictor variables, or an object of class
 \code{split_factors}.}
+
+\item{...}{Variables to use in the correlation. If \code{...} is null
+(Default) then all the numeric variables from \code{.data} are used. It
+must be a single variable name or a comma-separated list of unquoted
+variables names.}
 
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
@@ -41,13 +46,17 @@ partial1 = lpcor(iris)
 # Alternatively using the pipe operator \%>\%
 partial2 = iris \%>\% lpcor()
 
+# Using a correlation matrix
 partial3 = cor(iris[1:4]) \%>\%
            lpcor(n = nrow(iris),
                  verbose = FALSE)
 
+# Select variables and compute the partial correlation
+# For each level of \\code{Species}
+
 partial4 = iris \%>\%
            split_factors(Species) \%>\%
-           lpcor()
+           lpcor(Sepal.Length, Sepal.Width, Petal.Width)
 
 }
 \author{
