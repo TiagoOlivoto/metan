@@ -44,21 +44,19 @@
 #' @examples
 #'
 #' library(metan)
-#' library(ggplot2)
 #' model2 = waasb(data_ge,
 #'                resp = GY,
 #'                gen = GEN,
 #'                env = ENV,
 #'                rep = REP)
-#' autoplot(model2$GY)
+#' plot(model2$GY)
 #'
 #'
-autoplot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
-                           labels = FALSE, theme = theme_waasb(), alpha = 0.2, fill.hist = "gray",
-                           col.hist = "black", col.point = "black", col.line = "red",
-                           col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
-                           size.shape = 1.5, bins = 30, which = c(1:4), mfrow = c(2,
-                                                                                  2), ...) {
+plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
+                       labels = FALSE, theme = theme_waasb(), alpha = 0.2, fill.hist = "gray",
+                       col.hist = "black", col.point = "black", col.line = "red",
+                       col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
+                       size.shape = 1.5, bins = 30, which = c(1:4), mfrow = c(2, 2), ...) {
     if (type == "re" & max(which) >= 5) {
         stop("When type =\"re\", 'which' must be a value between 1 and 4")
     }

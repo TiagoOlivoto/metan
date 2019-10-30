@@ -33,26 +33,25 @@
 #' of columns. Default is \code{mfrow = c(2, 2)}.
 #' @param ... Additional parameter for the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method autoplot waas
+#' @method plot waas
 #' @export
 #' @examples
 #'
 #' library(metan)
-#' library(ggplot2)
 #' model = performs_ammi(data_ge, ENV, GEN, REP, GY)
 #' model2 = waas(data_ge, ENV, GEN, REP, GY)
-#' autoplot(model$GY)
-#' autoplot(model2$GY,
-#'          which = c(3, 5),
-#'          mfrow = c(1, 2),
-#'          labels = TRUE,
-#'          size.lab.out = 4)
+#' plot(model$GY)
+#' plot(model2$GY,
+#'      which = c(3, 5),
+#'      mfrow = c(1, 2),
+#'      labels = TRUE,
+#'      size.lab.out = 4)
 #'
-autoplot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
-                          alpha = 0.2, fill.hist = "gray", col.hist = "black", col.point = "black",
-                          col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
-                          size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
-                          mfrow = c(2, 2), ...) {
+plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
+                      alpha = 0.2, fill.hist = "gray", col.hist = "black", col.point = "black",
+                      col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
+                      size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
+                      mfrow = c(2, 2), ...) {
     df <- x$residuals
     df$id <- rownames(df)
     df <- data.frame(df[order(df$stdres), ])
