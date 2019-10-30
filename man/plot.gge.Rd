@@ -9,14 +9,15 @@
   size.shape = 2.2, size.shape.win = 3.2, size.bor.tick = 0.3,
   col.gen = "orange", col.env = "forestgreen", col.alpha = 1,
   col.circle = "gray", leg.lab = c("Gen", "Env"), size.text = 4,
-  size.text.gen = 4, size.text.env = 4, large_label = 4.5,
-  axis_expand = 1.2, title = TRUE, annotation = TRUE,
-  plot_theme = theme_waasb(), ...)
+  size.text.gen = 4, size.text.env = 4, size.line = 1,
+  large_label = 4.5, axis_expand = 1.2, title = TRUE,
+  annotation = TRUE, plot_theme = theme_waasb(), ...)
 }
 \arguments{
 \item{x}{An object of class \code{gge}}
 
-\item{type}{type of biplot to produce. \enumerate{
+\item{type}{The type of biplot to produce.
+\enumerate{
 \item Basic biplot.
 \item Mean performance vs. stability.
 \item Which-won-where.
@@ -28,24 +29,18 @@
 \item Compare two genotypes.
 \item Relationship among environments}}
 
-\item{sel_env}{The name of the environment to examine when \code{type = 5}.
-Must be a string which matches an environment label.}
+\item{sel_env, sel_gen}{The name of the environment and genotype to examine
+when \code{type = 5} and   \code{type = 7}, respectively. Must be a string
+which matches a environment or genotype label.}
 
-\item{sel_gen}{The name of the genotype to examine when \code{type = 7}. Must
-be a string which matches a genotype label.}
+\item{sel_gen1, sel_gen2}{The name of genotypes to compare between when
+\code{type = 9}. Must be a string present in the genotype's name.}
 
-\item{sel_gen1}{The name of a genotype to compare when \code{type = 9}.}
-
-\item{sel_gen2}{The name of a genotype to compare when \code{type = 9}. Must
-be a string not equal to \code{sel_gen1}.}
-
-\item{shape.gen}{The shape for genotype indication in the biplot. Default is
-\code{21} (circle). Values must be between \code{21-25}: \code{21}
-(circle), \code{22} (square), \code{23} (rhombus), \code{24} (up triangle),
-and \code{25} (low triangle).}
-
-\item{shape.env}{The shape for environment indication in the biplot. Default
-is \code{23} (rhombus). The same arguments than \code{'shape.gen'}.}
+\item{shape.gen, shape.env}{The shape for genotype and environment indication
+in the biplot. Defaults to \code{shape.gen = 21} (circle) for genotypes and
+\code{shape.env = 23} (rhombus) for environments. Values must be between
+\code{21-25}: \code{21} (circle), \code{22} (square), \code{23} (rhombus),
+\code{24} (up triangle), and \code{25} (low triangle).}
 
 \item{size.shape}{The size of the shape (both for genotypes and
 environments). Defaults to \code{2.2}.}
@@ -56,23 +51,20 @@ environments). Defaults to \code{2.2}.}
 \item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
 size of the shape will be \code{size.shape + size.bor.tick}}
 
-\item{col.gen}{Color for genotype attributes on biplot. Defaults to 'orange'}
+\item{col.gen, col.env}{Color for genotype and environment attributes in the
+biplot. Defaults to \code{col.gen = 'orange'} and \code{col.env =
+'forestgreen'}}
 
-\item{col.env}{color for environment attributes on biplot. Defaults to
-'forestgreen'}
-
-\item{col.alpha}{The alpha value for the color. Default is \code{1}. Values
+\item{col.alpha}{The alpha value for the color. Defaults to \code{1}. Values
 must be between \code{0} (full transparency) to \code{1} (full color).}
 
-\item{col.circle}{The color for segment or circle lines. Defaults to 'gray'}
+\item{col.circle}{The color for circle lines. Defaults to 'gray'}
 
 \item{leg.lab}{The labs of legend. Default is \code{c('Gen', 'Env')}.}
 
-\item{size.text}{The size of the text of the plot area. Defaults to 4.}
+\item{size.text, size.text.gen, size.text.env}{The size of the text of the plot area. Defaults to 4.}
 
-\item{size.text.gen}{The text size for genotype labels. Defaults to 4}
-
-\item{size.text.env}{The text size for environment labels. Defaults to 4}
+\item{size.line}{The size of the line in biplots (Both for segments and circles).}
 
 \item{large_label}{The text size to use for larger labels where \code{type =
 3}, used for the outermost genotypes and where \code{type = 9}, used for
