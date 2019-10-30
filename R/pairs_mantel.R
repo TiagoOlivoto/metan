@@ -87,8 +87,9 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
     stop("The object must be of the class lpcor. Please use 'as.lpcorr' to convert correlation matrices into the correct format.")
   }
   if (class(...) == "lpcor_group") {
-    data <- lapply(..., function(x) {
-      x[[type]]
+    data <- ...[[1]]
+    data <- lapply(data, function(x) {
+      x[[1]]
     })
   }
   if (class(...) == "group_clustering") {
@@ -107,8 +108,7 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
   }
   for (i in 1:length(data)) {
     if (i == 1) {
-      Dataset <- data.frame(var = as.vector(t(data[[1]])[lower.tri(data[[1]],
-                                                                   diag = FALSE)]))
+      Dataset <- data.frame(var = as.vector(t(data[[1]])[lower.tri(data[[1]], diag = FALSE)]))
       if (is.null(names)) {
         names(Dataset)[which(colnames(Dataset) == "var")] <- paste0("Matrix 1")
       } else {
@@ -116,11 +116,9 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
       }
     }
     if (i >= 2) {
-      Dataset <- dplyr::mutate(Dataset, var = as.vector(t(data[[i]])[lower.tri(data[[i]],
-                                                                               diag = FALSE)]))
+      Dataset <- mutate(Dataset, var = as.vector(t(data[[i]])[lower.tri(data[[i]], diag = FALSE)]))
       if (is.null(names)) {
-        names(Dataset)[which(colnames(Dataset) == "var")] <- paste0("Matrix ",
-                                                                    i)
+        names(Dataset)[which(colnames(Dataset) == "var")] <- paste0("Matrix ", i)
       } else {
         names(Dataset)[which(colnames(Dataset) == "var")] <- names[i]
       }
@@ -140,26 +138,34 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
     D2[lower.tri(D2, diag = FALSE)] <- y
     D2[upper.tri(D2, diag = FALSE)] <- y
     diag(D2) <- 0
-    ct <- ade4::mantel.randtest(as.dist(D), as.dist(D2),
-                                nrepet = nrepet)
-    sig <- symnum(ct$pvalue, corr = FALSE, na = FALSE, cutpoints = c(0,
-                                                                     0.001, 0.01, 0.05, 1), symbols = c("***", "**", "*",
-                                                                                                        ""))
+    ct <- ade4::mantel.randtest(as.dist(D), as.dist(D2), nrepet = nrepet)
+    sig <- symnum(ct$pvalue,
+                  corr = FALSE,
+                  na = FALSE,
+                  cutpoints = c(0, 0.001, 0.01, 0.05, 1),
+                  symbols = c("***", "**", "*", ""))
     r <- unname(ct$obs)
     rt <- format(r, digits = digits)[1]
     cex <- max(sizeRange)
     percent_of_range <- function(percent, range) {
       percent * diff(range) + min(range, na.rm = TRUE)
     }
-    GGally::ggally_text(label = as.character(rt), mapping = aes(),
-                        xP = 0.5, yP = 0.5, size = I(percent_of_range(cex *
-                                                                        abs(r), sizeRange)), color = color, ...) + # add the sig stars
-      geom_text(aes_string(x = 0.8, y = 0.8), label = sig,
-                size = I(cex), color = color, ...) + # remove all the background stuff and wrap it with a dashed
-      # line
-      theme_classic() + theme(panel.background = element_rect(color = col.lw.panel),
-                              axis.line = element_blank(), axis.ticks = element_blank(),
-                              axis.text.y = element_blank(), axis.text.x = element_blank())
+    GGally::ggally_text(label = as.character(rt),
+                        mapping = aes(),
+                        xP = 0.5,
+                        yP = 0.5,
+                        size = I(percent_of_range(cex * abs(r), sizeRange)),
+                        color = color, ...) +
+      geom_text(aes_string(x = 0.8, y = 0.8),
+                label = sig,
+                size = I(cex),
+                color = color, ...) +
+      theme_classic() +
+      theme(panel.background = element_rect(color = col.lw.panel),
+            axis.line = element_blank(),
+            axis.ticks = element_blank(),
+            axis.text.y = element_blank(),
+            axis.text.x = element_blank())
   }
   my_custom_smooth <- function(data, mapping, ...) {
     x <- GGally::eval_data_col(data, mapping$x)
@@ -172,31 +178,41 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
     D2[lower.tri(D2, diag = FALSE)] <- y
     D2[upper.tri(D2, diag = FALSE)] <- y
     diag(D2) <- 0
-    ct <- ade4::mantel.randtest(as.dist(D), as.dist(D2),
-                                nrepet = nrepet)
+    ct <- ade4::mantel.randtest(as.dist(D), as.dist(D2), nrepet = nrepet)
     pval <- unname(ct$pvalue)
     p <- ggplot(data = data, mapping = mapping)
     if (is.null(fill.point) == FALSE) {
-      p <- p + geom_point(color = I(col.point), fill = fill.point,
-                          shape = shape.point, size = size.point, alpha = alpha.point)
+      p <- p +
+        geom_point(color = I(col.point),
+                   fill = fill.point,
+                   shape = shape.point,
+                   size = size.point,
+                   alpha = alpha.point)
     } else {
-      p <- p + geom_point(color = I(col.point), shape = shape.point,
-                          size = size.point, alpha = alpha.point)
+      p <- p +
+        geom_point(color = I(col.point),
+                   shape = shape.point,
+                   size = size.point,
+                   alpha = alpha.point)
     }
-    p <- p + theme_classic() + theme(panel.background = element_rect(fill = "white",
-                                                                     color = col.up.panel), axis.line = element_blank(),
-                                     axis.ticks = element_blank(), axis.text.y = element_blank(),
-                                     axis.text.x = element_blank())
+    p <- p +
+      theme_classic() +
+      theme(panel.background = element_rect(fill = "white", color = col.up.panel),
+            axis.line = element_blank(),
+            axis.ticks = element_blank(),
+            axis.text.y = element_blank(),
+            axis.text.x = element_blank())
     if (pval < prob) {
-      p <- p + theme(panel.background = element_rect(fill = ggplot2::alpha(signcol,
-                                                                           alpha)))
+      p <- p +
+        theme(panel.background = element_rect(fill = ggplot2::alpha(signcol, alpha)))
     }
     p
   }
   ggally_mysmooth <- function(data, mapping, ...) {
-    ggplot(data = data, mapping = mapping) + geom_density(fill = alpha(diagcol,
-                                                                       1)) + theme_classic() + theme(panel.background = element_rect(fill = alpha("white",
-                                                                                                                                                  1), color = col.dia.panel))
+    ggplot(data = data, mapping = mapping) +
+      geom_density(fill = alpha(diagcol, 1)) +
+      theme_classic() +
+      theme(panel.background = element_rect(fill = alpha("white", 1), color = col.dia.panel))
   }
   if (main == "auto") {
     title <- paste0("Mantel's test with ", nrepet, " resamples")
@@ -208,11 +224,13 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
   } else {
     diag <- NULL
   }
-  p1 <- GGally::ggpairs(Dataset, title = title, diag = diag,
-                        lower = list(continuous = my_custom_cor), upper = list(continuous = my_custom_smooth),
-                        axisLabels = "none")
-  ggplot2::theme_set(ggplot2::theme_gray() + ggplot2::theme(panel.spacing = grid::unit(pan.spacing,
-                                                                                       "lines")))
+  p1 <- GGally::ggpairs(Dataset,
+                        title = title,
+                        diag = diag,
+                        lower = list(continuous = my_custom_cor),
+                        upper = list(continuous = my_custom_smooth),
+                        axisLabels = "none") +
+  theme(panel.spacing = grid::unit(pan.spacing, "lines"))
   if (export == FALSE) {
     return(p1)
   } else if (file.type == "pdf") {
