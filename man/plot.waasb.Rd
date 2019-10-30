@@ -4,7 +4,7 @@
 \alias{plot.waasb}
 \title{Several types of residual plots}
 \usage{
-\method{autoplot}{waasb}(x, type = "res", conf = 0.95, out = "print",
+\method{plot}{waasb}(x, type = "res", conf = 0.95, out = "print",
   labels = FALSE, theme = theme_waasb(), alpha = 0.2,
   fill.hist = "gray", col.hist = "black", col.point = "black",
   col.line = "red", col.lab.out = "red", size.lab.out = 2.5,

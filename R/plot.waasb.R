@@ -39,7 +39,7 @@
 #' of columns. Default is \code{mfrow = c(2, 2)}.
 #' @param ... Additional parameter for the function
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method autoplot waasb
+#' @method plot waasb
 #' @export
 #' @examples
 #'
