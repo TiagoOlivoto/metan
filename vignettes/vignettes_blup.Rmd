@@ -136,11 +136,11 @@ WAASB_model = waasb(data_ge,
 
 
 ## Diagnostic plot for residuals
-The function `autoplot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`. Please, see `?autoplot_WAASB` for more details.
+The S3 generic function `plot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`.
 
 ```{r  echo = TRUE, fig.width=7, fig.height=7, fig.align="center"}
-autoplot(WAASB_model$GY)
-autoplot(WAASB_model$GY, type = "re")
+plot(WAASB_model$GY)
+plot(WAASB_model$GY, type = "re")
     ```
 
 

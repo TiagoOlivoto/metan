@@ -208,31 +208,31 @@ The function `covcor_design()` may be used to compute genetic, phenotypic and re
 The phenotypic ($r_p$), genotypic ($r_g$) and residual ($r_r$) correlations are computed as follows:
 
 $$
-r^p_{xy} = \frac{cov^p_{xy}}{\sqrt{var^p_{x}var^p_{y}}} \
-r^g_{xy} = \frac{cov^g_{xy}}{\sqrt{var^g_{x}var^g_{y}}} \
+r^p_{xy} = \frac{cov^p_{xy}}{\sqrt{var^p_{x}var^p_{y}}} \\
+r^g_{xy} = \frac{cov^g_{xy}}{\sqrt{var^g_{x}var^g_{y}}} \\
 r^r_{xy} = \frac{cov^r_{xy}}{\sqrt{var^r_{x}var^r_{y}}}
 $$
 
 Using Mean Squares (*MS*) from the ANOVA method, the variances (*var*) and covariances (*cov*) are computed as follows:
 
-$$
+\begin{gather*}
 cov^p_{xy} = [(MST_{x+y} - MST_x - MST_y)/2]/r \\
 var^p_x = MST_x / r \\
 var^p_y = MST_y / r
-$$
+\end{gather}
 
 
-$$
+\begin{gather*}
 cov^r_{xy} = (MSR_{x+y} - MSR_x - MSR_y)/2 \\
 var^r_x = MSR_x \\
 var^r_y = MSR_y 
-$$
+\end{gather}
 
-$$
+\begin{gather*}
 cov^g_{xy} = [(cov^p_{xy} \times r) - cov^r_{xy}]/r \\
 var^g_x = (MST_x - MSE_x)/r \\
 var^g_y = (MST_x - MSE_y)/r 
-$$
+\end{gather}
 
 where *MST* is the mean square for treatment, *MSR* is the mean square for residuals, and *r* is the number of replications.
 

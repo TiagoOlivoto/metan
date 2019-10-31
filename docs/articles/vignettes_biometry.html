@@ -147,7 +147,7 @@
       <h1>Useful functions for biometrical models</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-28</h4>
+            <h4 class="date">2019-10-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_biometry.Rmd"><code>vignettes/vignettes_biometry.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_biometry.Rmd</code></div>
@@ -451,26 +451,14 @@ NKR x NKE
 <p>The function <code><a href="../reference/covcor_design.html">covcor_design()</a></code> may be used to compute genetic, phenotypic and residual correlation/(co)variance matrices through Analysis of Variance (ANOVA) method using randomized complete block design (RCBD) or completely randomized design (CRD).</p>
 <p>The phenotypic (<span class="math inline">\(r_p\)</span>), genotypic (<span class="math inline">\(r_g\)</span>) and residual (<span class="math inline">\(r_r\)</span>) correlations are computed as follows:</p>
 <p><span class="math display">\[
-r^p_{xy} = \frac{cov^p_{xy}}{\sqrt{var^p_{x}var^p_{y}}} \
-r^g_{xy} = \frac{cov^g_{xy}}{\sqrt{var^g_{x}var^g_{y}}} \
+r^p_{xy} = \frac{cov^p_{xy}}{\sqrt{var^p_{x}var^p_{y}}} \\
+r^g_{xy} = \frac{cov^g_{xy}}{\sqrt{var^g_{x}var^g_{y}}} \\
 r^r_{xy} = \frac{cov^r_{xy}}{\sqrt{var^r_{x}var^r_{y}}}
 \]</span></p>
 <p>Using Mean Squares (<em>MS</em>) from the ANOVA method, the variances (<em>var</em>) and covariances (<em>cov</em>) are computed as follows:</p>
-<p><span class="math display">\[
-cov^p_{xy} = [(MST_{x+y} - MST_x - MST_y)/2]/r \\
-var^p_x = MST_x / r \\
-var^p_y = MST_y / r
-\]</span></p>
-<p><span class="math display">\[
-cov^r_{xy} = (MSR_{x+y} - MSR_x - MSR_y)/2 \\
-var^r_x = MSR_x \\
-var^r_y = MSR_y 
-\]</span></p>
-<p><span class="math display">\[
-cov^g_{xy} = [(cov^p_{xy} \times r) - cov^r_{xy}]/r \\
-var^g_x = (MST_x - MSE_x)/r \\
-var^g_y = (MST_x - MSE_y)/r 
-\]</span></p>
+<p>\begin{gather*} cov^p_{xy} = [(MST_{x+y} - MST_x - MST_y)/2]/r \ var^p_x = MST_x / r \ var^p_y = MST_y / r \end{gather}</p>
+<p>\begin{gather*} cov^r_{xy} = (MSR_{x+y} - MSR_x - MSR_y)/2 \ var^r_x = MSR_x \ var^r_y = MSR_y \end{gather}</p>
+<p>\begin{gather*} cov^g_{xy} = [(cov^p_{xy} r) - cov^r_{xy}]/r \ var^g_x = (MST_x - MSE_x)/r \ var^g_y = (MST_x - MSE_y)/r \end{gather}</p>
 <p>where <em>MST</em> is the mean square for treatment, <em>MSR</em> is the mean square for residuals, and <em>r</em> is the number of replications.</p>
 <p>The function <code><a href="../reference/covcor_design.html">covcor_design()</a></code> returns a list with the matrices of (co)variances and correlations. Specific matrices may be returned using the argument <code>type</code>, as shown bellow.</p>
 </div>

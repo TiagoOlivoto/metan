@@ -322,13 +322,12 @@ information: to recover or not to recover it? TAG. Theor. Appl. Genet.
                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                 <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+                 <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-         <span class='fu'>cv_blup</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='fl'>100</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error: invalid column index : NA for variable: 'BLOCK' = 'NA'</span></div><div class='input'># }
-
-</div></pre>
+         <span class='fu'>cv_blup</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

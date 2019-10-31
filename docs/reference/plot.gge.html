@@ -208,9 +208,9 @@ ggplot2.</p>
   <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>size.shape.win</span> <span class='kw'>=</span> <span class='fl'>3.2</span>, <span class='kw'>size.bor.tick</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
   <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>, <span class='kw'>col.alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>col.circle</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Gen"</span>, <span class='st'>"Env"</span>), <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>size.text.gen</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>size.text.env</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>large_label</span> <span class='kw'>=</span> <span class='fl'>4.5</span>,
-  <span class='kw'>axis_expand</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>annotation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='no'>...</span>)</pre>
+  <span class='kw'>size.text.gen</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>size.text.env</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>large_label</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>axis_expand</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>annotation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -221,7 +221,7 @@ ggplot2.</p>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>type of biplot to produce.</p><ol>
+      <td><p>The type of biplot to produce.</p><ol>
 <li><p>Basic biplot.</p></li>
 <li><p>Mean performance vs. stability.</p></li>
 <li><p>Which-won-where.</p></li>
@@ -235,35 +235,23 @@ ggplot2.</p>
 </ol></td>
     </tr>
     <tr>
-      <th>sel_env</th>
-      <td><p>The name of the environment to examine when <code>type = 5</code>.
-Must be a string which matches an environment label.</p></td>
+      <th>sel_env, sel_gen</th>
+      <td><p>The name of the environment and genotype to examine
+when <code>type = 5</code> and   <code>type = 7</code>, respectively. Must be a string
+which matches a environment or genotype label.</p></td>
     </tr>
     <tr>
-      <th>sel_gen</th>
-      <td><p>The name of the genotype to examine when <code>type = 7</code>. Must
-be a string which matches a genotype label.</p></td>
+      <th>sel_gen1, sel_gen2</th>
+      <td><p>The name of genotypes to compare between when
+<code>type = 9</code>. Must be a string present in the genotype's name.</p></td>
     </tr>
     <tr>
-      <th>sel_gen1</th>
-      <td><p>The name of a genotype to compare when <code>type = 9</code>.</p></td>
-    </tr>
-    <tr>
-      <th>sel_gen2</th>
-      <td><p>The name of a genotype to compare when <code>type = 9</code>. Must
-be a string not equal to <code>sel_gen1</code>.</p></td>
-    </tr>
-    <tr>
-      <th>shape.gen</th>
-      <td><p>The shape for genotype indication in the biplot. Default is
-<code>21</code> (circle). Values must be between <code>21-25</code>: <code>21</code>
-(circle), <code>22</code> (square), <code>23</code> (rhombus), <code>24</code> (up triangle),
-and <code>25</code> (low triangle).</p></td>
-    </tr>
-    <tr>
-      <th>shape.env</th>
-      <td><p>The shape for environment indication in the biplot. Default
-is <code>23</code> (rhombus). The same arguments than <code>'shape.gen'</code>.</p></td>
+      <th>shape.gen, shape.env</th>
+      <td><p>The shape for genotype and environment indication
+in the biplot. Defaults to <code>shape.gen = 21</code> (circle) for genotypes and
+<code>shape.env = 23</code> (rhombus) for environments. Values must be between
+<code>21-25</code>: <code>21</code> (circle), <code>22</code> (square), <code>23</code> (rhombus),
+<code>24</code> (up triangle), and <code>25</code> (low triangle).</p></td>
     </tr>
     <tr>
       <th>size.shape</th>
@@ -281,38 +269,31 @@ environments). Defaults to <code>2.2</code>.</p></td>
 size of the shape will be <code>size.shape + size.bor.tick</code></p></td>
     </tr>
     <tr>
-      <th>col.gen</th>
-      <td><p>Color for genotype attributes on biplot. Defaults to 'orange'</p></td>
-    </tr>
-    <tr>
-      <th>col.env</th>
-      <td><p>color for environment attributes on biplot. Defaults to
-'forestgreen'</p></td>
+      <th>col.gen, col.env</th>
+      <td><p>Color for genotype and environment attributes in the
+biplot. Defaults to <code>col.gen = 'orange'</code> and <code>col.env =
+'forestgreen'</code></p></td>
     </tr>
     <tr>
       <th>col.alpha</th>
-      <td><p>The alpha value for the color. Default is <code>1</code>. Values
+      <td><p>The alpha value for the color. Defaults to <code>1</code>. Values
 must be between <code>0</code> (full transparency) to <code>1</code> (full color).</p></td>
     </tr>
     <tr>
       <th>col.circle</th>
-      <td><p>The color for segment or circle lines. Defaults to 'gray'</p></td>
+      <td><p>The color for circle lines. Defaults to 'gray'</p></td>
     </tr>
     <tr>
       <th>leg.lab</th>
       <td><p>The labs of legend. Default is <code><a href='https://rdrr.io/r/base/c.html'>c('Gen', 'Env')</a></code>.</p></td>
     </tr>
     <tr>
-      <th>size.text</th>
+      <th>size.text, size.text.gen, size.text.env</th>
       <td><p>The size of the text of the plot area. Defaults to 4.</p></td>
     </tr>
     <tr>
-      <th>size.text.gen</th>
-      <td><p>The text size for genotype labels. Defaults to 4</p></td>
-    </tr>
-    <tr>
-      <th>size.text.env</th>
-      <td><p>The text size for environment labels. Defaults to 4</p></td>
+      <th>size.line</th>
+      <td><p>The size of the line in biplots (Both for segments and circles).</p></td>
     </tr>
     <tr>
       <th>large_label</th>

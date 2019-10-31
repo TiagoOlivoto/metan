@@ -70,7 +70,7 @@
 #'                 gen = GEN,
 #'                 rep = REP,
 #'                 resp = GY,
-#'                 nboot = 100,
+#'                 nboot = 10,
 #'                 naxis = 2)
 #'
 #' # Alternatively using the pipe operator %>%

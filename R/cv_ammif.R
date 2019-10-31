@@ -65,11 +65,12 @@
 #'                   env = ENV,
 #'                   gen = GEN,
 #'                   rep = REP,
-#'                   resp = GY)
+#'                   resp = GY,
+#'                   nboot = 10)
 #'
 #' # Alternatively (and more intuitively) using the pipe operator %>%
 #' model <- data_ge %>%
-#'          cv_ammif(ENV, GEN, REP, GY)
+#'          cv_ammif(ENV, GEN, REP, GY, 10)
 #' }
 #'
 cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "RCBD", verbose = TRUE) {

@@ -69,10 +69,10 @@ reference:
     desc: "Functions for AMMI analysis"
     contents:
       - AMMI_indexes
-      - autoplot.performs_ammi
-      - autoplot.waas
       - performs_ammi
       - plot.cv_ammif
+      - plot.performs_ammi
+      - plot.waas
       - predict.waas
       - predict.performs_ammi
       - print.AMMI_indexes
@@ -85,7 +85,7 @@ reference:
     desc: "Functions for BLUP prediction in multi-environment trial analysis"
     contents:
       - gamem
-      - autoplot.waasb
+      - plot.waasb
       - plot_blup
       - plot_eigen
       - plot_scores
@@ -100,7 +100,7 @@ reference:
   - title: "BLUP"
     desc: "Functions for BLUP prediction in multi-environment trial analysis"
     contents:
-      - autoplot.waasb
+      - plot.waasb
       - plot_blup
       - plot_eigen
       - plot_scores

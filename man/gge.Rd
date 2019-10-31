@@ -43,35 +43,25 @@ in the rows and environments in the columns. Defaults to \code{FALSE}.}
 }
 \value{
 The function returns a list of class \code{gge} containing the following objects
-
-*\strong{coordgen} The coordinates for genotypes for all components.
-
-*\strong{coordenv} The coordinates for environments for all components.
-
-*\strong{eigenvalues} The vector of eigenvalues.
-
-*\strong{totalvar} The overall variance.
-
-*\strong{labelgen} The name of the genotypes.
-
-*\strong{labelenv} The names of the environments.
-
-*\strong{labelaxes} The axes labels.
-
-*\strong{ge_mat} The data used to produce the model (scaled and centered).
-
-*\strong{centering} The centering method.
-
-*\strong{scaling} The scaling method.
-
-*\strong{svp} The singular value partitioning method.
-
-*\strong{d} The factor used to generate in which the ranges of genotypes and environments
+\itemize{
+\item \strong{coordgen} The coordinates for genotypes for all components.
+\item \strong{coordenv} The coordinates for environments for all components.
+\item \strong{eigenvalues} The vector of eigenvalues.
+\item \strong{totalvar} The overall variance.
+\item \strong{labelgen} The name of the genotypes.
+\item \strong{labelenv} The names of the environments.
+\item \strong{labelaxes} The axes labels.
+\item \strong{ge_mat} The data used to produce the model (scaled and centered).
+\item \strong{centering} The centering method.
+\item \strong{scaling} The scaling method.
+\item \strong{svp} The singular value partitioning method.
+\item \strong{d} The factor used to generate in which the ranges of genotypes and environments
 are comparable when singular value partitioning is set to 'genotype' or 'environment'.
-*\strong{grand_mean} The grand mean of the trial.
-*\strong{mean_gen} A vector with the means of the genotypes.
-*\strong{mean_env} A vector with the means of the environments.
-*\strong{scale_var} The scaling vector when the scaling method is \code{'sd'}.
+\item \strong{grand_mean} The grand mean of the trial.
+\item \strong{mean_gen} A vector with the means of the genotypes.
+\item \strong{mean_env} A vector with the means of the environments.
+\item \strong{scale_var} The scaling vector when the scaling method is \code{'sd'}.
+}
 }
 \description{
 Produces genotype plus genotype-by-environment model based on a multi-environment

@@ -91,7 +91,7 @@ validation <- cv_ammif(data_ge,
                        gen = GEN,
                        env = ENV,
                        rep = REP,
-                       nboot = 100)
+                       nboot = 5)
 plot(validation)
 }
 

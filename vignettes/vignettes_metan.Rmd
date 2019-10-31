@@ -97,11 +97,10 @@ model2 <- waasb(data_ge, ENV, GEN, REP, GY)
 The mixed-effect model fitted in `model2` has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
 
 ## Residual plots
-Several residual plots may be obtained applying the function `autoplot()` to an object of class `waasb` (or `waas`). 
+Several residual plots may be obtained applying the S3 generic function `plot()` to an object of class `waasb` (or `waas`). 
 
 ```{r,fig.height=12, fig.width=4}
-library(ggplot2)
-autoplot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
+plot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
 ```
 
 ## Distribution of random effects
@@ -109,7 +108,7 @@ The distribution of the random effects may be obtained using the argument
 `type = "re"`.
 
 ```{r,fig.height=8, fig.width=4}
-autoplot(model2$GY, type = "re", which = c(1, 2), mfrow = c(2,1))
+plot(model2$GY, type = "re", which = c(1, 2), mfrow = c(2,1))
 ```
 
 
@@ -130,6 +129,7 @@ An easy way to check the results in the R console is by using the function `prin
 ## Plotting the BLUPs for genotypes
 
 ```{r, fig.height=8, fig.width=4}
+library(ggplot2)
 p1 <- plot_blup(model2$GY)
 p2 <- plot_blup(model2$GY,
                 prob = 0.1,

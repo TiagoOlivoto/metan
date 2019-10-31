@@ -147,7 +147,7 @@
       <h1>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-10-28</h4>
+            <h4 class="date">2019-10-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_metan.Rmd"><code>vignettes/vignettes_metan.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_metan.Rmd</code></div>
@@ -427,16 +427,15 @@ Done!</code></pre>
 <div id="residual-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#residual-plots" class="anchor"></a>Residual plots</h2>
-<p>Several residual plots may be obtained applying the function <code>autoplot()</code> to an object of class <code>waasb</code> (or <code>waas</code>).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a></code></pre></div>
+<p>Several residual plots may be obtained applying the S3 generic function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> to an object of class <code>waasb</code> (or <code>waas</code>).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2<span class="op">$</span>GY, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-7-1.png" width="384"></p>
 </div>
 <div id="distribution-of-random-effects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#distribution-of-random-effects" class="anchor"></a>Distribution of random effects</h2>
 <p>The distribution of the random effects may be obtained using the argument <code>type = "re"</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">autoplot</span>(model2<span class="op">$</span>GY, <span class="dt">type =</span> <span class="st">"re"</span>, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2<span class="op">$</span>GY, <span class="dt">type =</span> <span class="st">"re"</span>, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">1</span>))</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-8-1.png" width="384"></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">print_table</span>(model2<span class="op">$</span>GY<span class="op">$</span>LRT)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -935,15 +934,16 @@ G10
 <div id="plotting-the-blups-for-genotypes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-the-blups-for-genotypes" class="anchor"></a>Plotting the BLUPs for genotypes</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb17-2" title="2">p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb17-3" title="3">                <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb17-4" title="4">                <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-5" title="5"><span class="st">      </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb17-6" title="6"><span class="kw">plot_grid</span>(p1, p2,</a>
-<a class="sourceLine" id="cb17-7" title="7">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
-<a class="sourceLine" id="cb17-8" title="8">          <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
-<a class="sourceLine" id="cb17-9" title="9">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb17-2" title="2">p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb17-3" title="3">p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb17-4" title="4">                <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
+<a class="sourceLine" id="cb17-5" title="5">                <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-6" title="6"><span class="st">      </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb17-7" title="7"><span class="kw">plot_grid</span>(p1, p2,</a>
+<a class="sourceLine" id="cb17-8" title="8">          <span class="dt">align =</span> <span class="st">"v"</span>,</a>
+<a class="sourceLine" id="cb17-9" title="9">          <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>),</a>
+<a class="sourceLine" id="cb17-10" title="10">          <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-10-1.png" width="384"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level2">
