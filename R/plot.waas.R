@@ -1,10 +1,10 @@
 #' Several types of residual plots
 #'
-#' Residual plots for a output model of class \code{waas}. Six types
+#' Residual plots for a output model of class \code{waas}. Seven types
 #' of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
-#' residuals, (3) scale-location plot (standardized residuals vs Fitted
-#' Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
-#' residuals and (6) standardized residuals vs observation order.
+#' residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
+#' (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
+#' and (6) standardized residuals vs observation order, and (7) 1:1 line plot
 #'
 #'
 #' @param x An object of class \code{waas}.
@@ -14,8 +14,9 @@
 #' confidence interval limits.
 #' @param theme The theme to use in the graphics. Default is \code{theme =
 #' theme_waasb()}.
-#' @param alpha The transparency of confidence band in the Q-Q plot. Must be a
-#' number between 0 (opaque) and 1 (full transparency).
+#' @param band.alpha,point.alpha The transparency of confidence band in the Q-Q
+#'   plot and the points, respectively. Must be a number between 0 (opaque) and
+#'   1 (full transparency).
 #' @param fill.hist The color to fill the histogram. Default is 'gray'.
 #' @param col.hist The color of the border of the the histogram. Default is
 #' 'black'.
@@ -48,9 +49,10 @@
 #'      size.lab.out = 4)
 #'
 plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
-                      alpha = 0.2, fill.hist = "gray", col.hist = "black", col.point = "black",
-                      col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
-                      size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
+                      band.alpha = 0.2, point.alpha = 0.8, fill.hist = "gray",
+                      col.hist = "black", col.point = "black", col.line = "red",
+                      col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
+                      size.shape = 1.5, bins = 30, which = c(1:4),
                       mfrow = c(2, 2), ...) {
     df <- x$residuals
     df$id <- rownames(df)
@@ -71,7 +73,9 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
                        rownames(df), "")
     # residuals vs fitted
     p1 <- ggplot(df, aes(fitted, resid)) +
-        geom_point(col = col.point) +
+        geom_point(col = col.point,
+                   size = size.shape,
+                   alpha = point.alpha) +
         geom_smooth(se = F,
                     method = "loess",
                     col = col.line) +
@@ -93,13 +97,15 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
     }
     # normal qq
     p2 <- ggplot(df, aes(z, stdres)) +
-        geom_point(col = col.point) +
+        geom_point(col = col.point,
+                   size = size.shape,
+                   alpha = point.alpha) +
         geom_abline(intercept = coef[1],
                     slope = coef[2],
                     col = col.line,
                     size = 1) +
         geom_ribbon(aes_(ymin = ~lower, ymax = ~upper),
-                    alpha = alpha) +
+                    alpha = band.alpha) +
         labs(x = "Theoretical quantiles",
              y = "Sample quantiles") +
         ggtitle("Normal Q-Q") +
@@ -108,16 +114,19 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
     if (labels != FALSE) {
-        p2 <- p2 + geom_text(aes(label = label),
-                             size = size.lab.out,
-                             hjust = "inward",
-                             col = col.lab.out)
+        p2 <- p2 +
+            geom_text(aes(label = label),
+                      size = size.lab.out,
+                      hjust = "inward",
+                      col = col.lab.out)
     } else {
         p2 <- p2
     }
     # scale-location
     p3 <- ggplot(df, aes(fitted, sqrt(abs(resid)))) +
-        geom_point(col = col.point) +
+        geom_point(col = col.point,
+                   size = size.shape,
+                   alpha = point.alpha) +
         geom_smooth(se = F,
                     method = "loess",
                     col = col.line) +
@@ -138,7 +147,10 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
         p3 <- p3
     }
     # Residuals vs Factor-levels
-    p4 <- ggplot(df, aes(factors, stdres)) + geom_point(col = col.point) +
+    p4 <- ggplot(df, aes(factors, stdres)) +
+        geom_point(col = col.point,
+                   size = size.shape,
+                   alpha = point.alpha) +
         geom_hline(yintercept = 0, linetype = 2, col = "gray") +
         labs(x = "Fitted values", y = "Standardized residuals") +
         ggtitle("Residuals vs factor-levels") +
@@ -164,6 +176,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
                       size = 1,
                       args = list(mean = mean(df$resid), sd = sd(df$resid))) +
         labs(x = "Raw residuals", y = "Density") +
+        scale_y_continuous(expand = expand_scale(mult = c(0, 0.1))) +
         ggtitle("Histogram of residuals") +
         theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
@@ -171,7 +184,9 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
     # Residuals vs order
     p6 <- ggplot(df, aes(as.numeric(id), stdres, group = 1)) +
-        geom_point(col = col.point) +
+        geom_point(col = col.point,
+                   size = size.shape,
+                   alpha = point.alpha) +
         geom_line() +
         geom_hline(yintercept = 0,
                    linetype = 2,
@@ -184,7 +199,9 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
 
     p7 <- ggplot(df, aes(fitted, mean)) +
-        geom_point(col = col.point) +
+        geom_point(col = col.point,
+                   size = size.shape,
+                   alpha = point.alpha) +
         facet_wrap(~GEN) +
         geom_abline(intercept = 0,
                     slope = 1,
@@ -195,6 +212,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
         theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
+              strip.background = element_rect(fill = NA, color = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
               panel.spacing = unit(0, "cm"))
     plots <- list(p1, p2, p3, p4, p5, p6, p7)

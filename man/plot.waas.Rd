@@ -5,11 +5,11 @@
 \title{Several types of residual plots}
 \usage{
 \method{plot}{waas}(x, conf = 0.95, labels = FALSE,
-  theme = theme_waasb(), alpha = 0.2, fill.hist = "gray",
-  col.hist = "black", col.point = "black", col.line = "red",
-  col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
-  size.shape = 1.5, bins = 30, which = c(1:4), mfrow = c(2, 2),
-  ...)
+  theme = theme_waasb(), band.alpha = 0.2, point.alpha = 0.8,
+  fill.hist = "gray", col.hist = "black", col.point = "black",
+  col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
+  size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
+  mfrow = c(2, 2), ...)
 }
 \arguments{
 \item{x}{An object of class \code{waas}.}
@@ -23,8 +23,9 @@ confidence interval limits.}
 \item{theme}{The theme to use in the graphics. Default is \code{theme =
 theme_waasb()}.}
 
-\item{alpha}{The transparency of confidence band in the Q-Q plot. Must be a
-number between 0 (opaque) and 1 (full transparency).}
+\item{band.alpha, point.alpha}{The transparency of confidence band in the Q-Q
+plot and the points, respectively. Must be a number between 0 (opaque) and
+1 (full transparency).}
 
 \item{fill.hist}{The color to fill the histogram. Default is 'gray'.}
 
@@ -55,11 +56,11 @@ of columns. Default is \code{mfrow = c(2, 2)}.}
 \item{...}{Additional parameter for the function}
 }
 \description{
-Residual plots for a output model of class \code{waas}. Six types
+Residual plots for a output model of class \code{waas}. Seven types
 of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
-residuals, (3) scale-location plot (standardized residuals vs Fitted
-Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
-residuals and (6) standardized residuals vs observation order.
+residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
+(4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
+and (6) standardized residuals vs observation order, and (7) 1:1 line plot
 }
 \examples{
 
