@@ -67,54 +67,83 @@ plot.cv_ammif <- function(x, violin = FALSE, export = FALSE, order_box =  FALSE,
                           x.lab = NULL, y.lab = NULL, size.tex.lab = 12, file.type = "pdf",
                           file.name = NULL, theme = theme_waasb(), width = 6, height = 6,
                           resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
-                          col.boxplot.win = "cyan", width.boxplot = 0.2, x.lim = NULL,
+                          col.boxplot.win = "cyan", width.boxplot = 0.6, x.lim = NULL,
                           x.breaks = waiver(), ...) {
     if (!class(x) == "cv_ammif") {
         stop("The object 'x' must be of class 'cv_ammif'.")
     }
-    if (is.null(y.lab) == FALSE) {
-        y.lab <- y.lab
-    } else y.lab <- expression(paste("Root mean square prediction difference (Mg ha"^-1,
-                                     ")"))
-    if (is.null(x.lab) == FALSE) {
-        x.lab <- x.lab
-    } else x.lab <- "AMMI family models"
-    a <- suppressMessages(x$RMSPD %>% group_by(MODEL) %>% summarise(RMSPD = mean(RMSPD)) %>%
+    y.lab <- ifelse(missing(y.lab),
+                    expression(paste("Root mean square prediction difference (Mg ha"^-1, ")")),
+                    y.lab)
+    x.lab <- ifelse(missing(x.lab), "Model", x.lab)
+    a <- suppressMessages(x$RMSPD %>%
+                              group_by(MODEL) %>%
+                              summarise(RMSPD = mean(RMSPD)) %>%
                               top_n(-1))
     mod <- paste(a$MODEL[1])
     if (violin == TRUE) {
         dodge <- position_dodge(width = 1)
         if(order_box == TRUE){
-            p1 <- ggplot2::ggplot(x$RMSPD, aes(x = reorder(MODEL, RMSPD), y = RMSPD))
+            p1 <- ggplot(x$RMSPD, aes(x = reorder(MODEL, RMSPD), y = RMSPD))
         } else {
-            p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD))
+            p1 <- ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD))
         }
-          p1 = p1 + geom_violin(position = dodge, fill = col.violin) +
-            geom_boxplot(width = width.boxplot, position = dodge,
-                         fill = col.boxplot) + geom_boxplot(data = x$RMSPD[x$RMSPD$MODEL ==
-                                                                               mod, ], aes(x = MODEL, y = RMSPD), width = width.boxplot,
-                                                            position = dodge, fill = col.boxplot.win) + stat_summary(fun.y = mean,
-                                                                                                                     geom = "point", shape = 23, fill = "black") + theme %+replace%
-            theme(axis.text = element_text(size = size.tex.lab,
-                                           colour = "black"), axis.title = element_text(size = size.tex.lab,
-                                                                                        colour = "black")) + coord_flip() + scale_y_continuous(limits = x.lim,
-                                                                                                                                               breaks = x.breaks) + labs(x = x.lab, y = y.lab)
+        p1 = p1 +
+            geom_violin(position = dodge, fill = col.violin) +
+            stat_boxplot(geom = "errorbar", width=width.boxplot/2, na.rm = TRUE)+
+            geom_boxplot(width = width.boxplot,
+                         position = dodge,
+                         color = "black",
+                         outlier.color = "black",
+                         fill = col.boxplot) +
+            geom_boxplot(data = x$RMSPD[x$RMSPD$MODEL == mod, ],
+                         aes(x = MODEL, y = RMSPD),
+                         width = width.boxplot,
+                         position = dodge,
+                         color = "black",
+                         outlier.color = "black",
+                         fill = col.boxplot.win) +
+            stat_summary(fun.y = mean,
+                         geom = "point",
+                         shape = 23,
+                         fill = "black") +
+            theme %+replace%
+            theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+                  axis.title = element_text(size = size.tex.lab, colour = "black")) +
+            coord_flip() +
+            scale_y_continuous(limits = x.lim, breaks = x.breaks) +
+            labs(x = x.lab, y = y.lab)
     } else {
         dodge <- position_dodge(width = 1)
         if(order_box == TRUE){
-            p1 <- ggplot2::ggplot(x$RMSPD, aes(x = reorder(MODEL, RMSPD), y = RMSPD))
+            p1 <- ggplot(x$RMSPD, aes(x = reorder(MODEL, RMSPD), y = RMSPD))
         } else {
-            p1 <- ggplot2::ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD))
+            p1 <- ggplot(x$RMSPD, aes(x = MODEL, y = RMSPD))
         }
-         p1 = p1 + geom_boxplot(width = width.boxplot, position = dodge,
-                         fill = col.boxplot) + geom_boxplot(data = x$RMSPD[x$RMSPD$MODEL ==
-                                                                               mod, ], aes(x = MODEL, y = RMSPD), width = width.boxplot,
-                                                            position = dodge, fill = col.boxplot.win) + stat_summary(fun.y = mean,
-                                                                                                                     geom = "point", shape = 23, fill = "black") + theme %+replace%
-            theme(axis.text = element_text(size = size.tex.lab,
-                                           colour = "black"), axis.title = element_text(size = size.tex.lab,
-                                                                                        colour = "black")) + coord_flip() + scale_y_continuous(limits = x.lim,
-                                                                                                                                               breaks = x.breaks) + labs(x = x.lab, y = y.lab)
+        p1 = p1 +
+            stat_boxplot(geom = "errorbar", width=width.boxplot/2, na.rm = TRUE)+
+            geom_boxplot(width = width.boxplot,
+                         position = dodge,
+                         color = "black",
+                         outlier.color = "black",
+                         fill = col.boxplot) +
+            geom_boxplot(data = x$RMSPD[x$RMSPD$MODEL == mod, ],
+                         aes(x = MODEL, y = RMSPD),
+                         width = width.boxplot,
+                         position = dodge,
+                         color = "black",
+                         outlier.color = "black",
+                         fill = col.boxplot.win) +
+            stat_summary(fun.y = mean,
+                         geom = "point",
+                         shape = 23,
+                         fill = "black") +
+            theme %+replace%
+            theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+                  axis.title = element_text(size = size.tex.lab, colour = "black")) +
+            coord_flip() +
+            scale_y_continuous(limits = x.lim, breaks = x.breaks) +
+            labs(x = x.lab, y = y.lab)
     }
     if (export == FALSE) {
         return(p1)

@@ -9,7 +9,7 @@
   file.type = "pdf", file.name = NULL, theme = theme_waasb(),
   width = 6, height = 6, resolution = 300, col.violin = "gray90",
   col.boxplot = "gray70", col.boxplot.win = "cyan",
-  width.boxplot = 0.2, x.lim = NULL, x.breaks = waiver(), ...)
+  width.boxplot = 0.6, x.lim = NULL, x.breaks = waiver(), ...)
 }
 \arguments{
 \item{x}{An object of class \code{cv_ammif}.}
