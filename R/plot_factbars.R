@@ -130,7 +130,6 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
                position = position_dodge(),
                width = width.bar)
   }
-  p <- p + theme_bw()
   if (col == FALSE) {
     p <- p + scale_fill_grey(start = 0, end = 0.9)
   } else {
@@ -169,31 +168,30 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
                        family = fontfam,
                        angle = lab.bar.angle)
   }
-  p <- p + theme(axis.ticks.length = unit(0.2, "cm"),
-                 axis.text = element_text(size = size.text,
-                                          family = fontfam,
-                                          colour = "black"),
-                 axis.title = element_text(size = size.text,
-                                           family = fontfam,
-                                           colour = "black"),
-                 axis.text.x = element_text(angle = lab.x.angle,
-                                            hjust = lab.x.hjust,
-                                            vjust = lab.x.vjust,
-                                            size = size.text,
-                                            colour = "black"),
-                 axis.ticks = element_line(colour = "black"),
-                 plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"),
-                 legend.title = element_blank(),
-                 legend.position = legend.position,
-                 legend.text = element_text(size = size.text,
-                                            family = fontfam),
-                 panel.border = element_rect(colour = "black",
-                                             fill = NA,
-                                             size = 1),
-                 panel.grid.major.x = element_blank(),
-                 panel.grid.major.y = element_blank(),
-                 panel.grid.minor.x = element_blank(),
-                 panel.grid.minor.y = element_blank()) +
+  p <- p +
+    theme_bw() %+replace%
+    theme(axis.ticks.length = unit(0.2, "cm"),
+          axis.text = element_text(size = size.text,
+                                   family = fontfam,
+                                   colour = "black"),
+          axis.title = element_text(size = size.text,
+                                    family = fontfam,
+                                    colour = "black"),
+          axis.text.x = element_text(angle = lab.x.angle,
+                                     hjust = lab.x.hjust,
+                                     vjust = lab.x.vjust,
+                                     size = size.text,
+                                     colour = "black"),
+          axis.ticks = element_line(colour = "black"),
+          plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"),
+          legend.title = element_blank(),
+          legend.position = legend.position,
+          legend.text = element_text(size = size.text,
+                                     family = fontfam),
+          panel.border = element_rect(colour = "black",
+                                      fill = NA,
+                                      size = 1),
+          panel.grid = element_line(color = "transparent")) +
     labs(y = ylab, x = xlab) +
     scale_y_continuous(limits = y.lim,
                        breaks = y.breaks,
