@@ -110,6 +110,7 @@ find_outliers <- function(.data =  NULL,
                        na.rm = TRUE)+
           theme(panel.border = element_rect(fill = NA, color = "black"),
                 axis.text.x = element_text(color = "white"),
+                axis.ticks = element_line(color = "black"),
                 axis.ticks.x = element_blank(),
                 panel.grid = element_blank(),
                 axis.text = element_text(color = "black", size = 12),
@@ -128,6 +129,7 @@ find_outliers <- function(.data =  NULL,
                        na.rm = TRUE)+
           theme(panel.border = element_rect(fill = NA, color = "black"),
                 axis.text.x = element_text(color = "white"),
+                axis.ticks = element_line(color = "black"),
                 axis.ticks.x = element_blank(),
                 panel.grid = element_blank(),
                 axis.text = element_text(color = "black", size = 12),
@@ -146,6 +148,7 @@ find_outliers <- function(.data =  NULL,
                 panel.border = element_rect(fill = NA, color = "black"),
                 panel.grid = element_blank(),
                 axis.text = element_text(color = "black", size = 12),
+                axis.ticks = element_line(color = "black"),
                 axis.ticks.length = unit(0.2, "cm"))+
           labs(x = "Observed value",
                y = "Count")
@@ -162,6 +165,7 @@ find_outliers <- function(.data =  NULL,
                 panel.border = element_rect(fill = NA, color = "black"),
                 panel.grid = element_blank(),
                 axis.text = element_text(color = "black", size = 12),
+                axis.ticks = element_line(color = "black"),
                 axis.ticks.length = unit(0.2, "cm"))+
           labs(x = "Observed value",
                y = "Count")
@@ -257,6 +261,7 @@ find_outliers <- function(.data =  NULL,
               axis.ticks.x = element_blank(),
               panel.grid = element_blank(),
               axis.text = element_text(color = "black", size = 12),
+              axis.ticks = element_line(color = "black"),
               axis.ticks.length = unit(0.2, "cm"))+
         labs(y = "Observed value", x = "")
 
@@ -275,6 +280,7 @@ find_outliers <- function(.data =  NULL,
               axis.ticks.x = element_blank(),
               panel.grid = element_blank(),
               axis.text = element_text(color = "black", size = 12),
+              axis.ticks = element_line(color = "black"),
               axis.ticks.length = unit(0.2, "cm"))+
         labs(y = "Observed value", x = "")
 
@@ -290,6 +296,7 @@ find_outliers <- function(.data =  NULL,
               panel.border = element_rect(fill = NA, color = "black"),
               panel.grid = element_blank(),
               axis.text = element_text(color = "black", size = 12),
+              axis.ticks = element_line(color = "black"),
               axis.ticks.length = unit(0.2, "cm"))+
         labs(x = "Observed value",
              y = "Count")
@@ -306,6 +313,7 @@ find_outliers <- function(.data =  NULL,
               panel.border = element_rect(fill = NA, color = "black"),
               panel.grid = element_blank(),
               axis.text = element_text(color = "black", size = 12),
+              axis.ticks = element_line(color = "black"),
               axis.ticks.length = unit(0.2, "cm"))+
         labs(x = "Observed value",
              y = "Count")
