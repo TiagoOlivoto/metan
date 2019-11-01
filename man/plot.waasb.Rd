@@ -9,7 +9,7 @@
   fill.hist = "gray", col.hist = "black", col.point = "black",
   col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
   size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
-  mfrow = c(2, 2), ...)
+  ncol = NULL, nrow = NULL, ...)
 }
 \arguments{
 \item{x}{An object of class \code{waasb}.}
@@ -54,11 +54,11 @@ number between 0 (opaque) and 1 (full transparency).}
 \item{which}{Which graphics should be plotted. Default is \code{which =
 c(1:4)} that means that the first four graphics will be plotted.}
 
-\item{mfrow}{Allow creating a simple multi-paneled plot. Must be a vector of
-length 2. The first argument is the number of rows and the second the number
-of columns. Default is \code{mfrow = c(2, 2)}.}
+\item{ncol, nrow}{The number of columns and rows of the plot pannel. Defaults
+to \code{NULL}}
 
-\item{...}{Additional parameter for the function}
+\item{...}{Additional arguments passed on to the function
+\code{\link[cowplot]{plot_grid}}}
 }
 \description{
 Residual plots for a output model of class \code{waas} and \code{waasb}. Six types
