@@ -29,9 +29,9 @@
 #' inspect(data_ge)
 #'
 #' # Create a toy example with messy data
-#' df <- data_ge2[-c(2, 30, 45, 134), c(1:6)]
-#' df[c(1, 20, 50), c(4, 6)] <- NA
-#' df[40, 6] <- df[40, 6] * 2
+#' df <- data_ge2[-c(2, 30, 45, 134), c(1:5)]
+#' df[c(1, 20, 50), c(4, 5)] <- NA
+#' df[40, 5] <- df[40, 5] * 2
 #'
 #' inspect(df, plot = TRUE)
 inspect <- function (.data,
