@@ -29,12 +29,13 @@
 #' @param bins The number of bins to use in the histogram. Default is 30.
 #' @param which Which graphics should be plotted. Default is \code{which =
 #' c(1:4)} that means that the first four graphics will be plotted.
-#' @param mfrow Allow creating a simple multi-paneled plot. Must be a vector of
-#' length 2. The first argument is the number of rows and the second the number
-#' of columns. Default is \code{mfrow = c(2, 2)}.
-#' @param ... Additional parameter for the function
+#' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
+#'   to \code{NULL}
+#' @param ... Additional arguments passed on to the function
+#'   \code{\link[cowplot]{plot_grid}}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot performs_ammi
+#' @importFrom cowplot plot_grid
 #' @export
 #' @examples
 #'
@@ -44,7 +45,7 @@
 #' plot(model$GY)
 #' plot(model2$GY,
 #'      which = c(3, 5),
-#'      mfrow = c(1, 2),
+#'      ncol = 3,
 #'      labels = TRUE,
 #'      size.lab.out = 4)
 #'
@@ -52,8 +53,8 @@ plot.performs_ammi <- function(x, conf = 0.95, labels = FALSE, theme = theme_waa
                                band.alpha = 0.2, point.alpha = 0.8, fill.hist = "gray",
                                col.hist = "black", col.point = "black", col.line = "red",
                                col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
-                               size.shape = 1.5, bins = 30, which = c(1:4),
-                               mfrow = c(2, 2), ...) {
+                               size.shape = 1.5, bins = 30, which = c(1:4), ncol = NULL,
+                               nrow = NULL, ...) {
     df <- x$residuals
     df$id <- rownames(df)
     df <- data.frame(df[order(df$stdres), ])
@@ -216,28 +217,8 @@ plot.performs_ammi <- function(x, conf = 0.95, labels = FALSE, theme = theme_waa
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
               panel.spacing = unit(0, "cm"))
     plots <- list(p1, p2, p3, p4, p5, p6, p7)
-    # making the plots
-    grid::grid.newpage()
-    if (prod(mfrow) > 1) {
-        mypos <- expand.grid(1:mfrow[1], 1:mfrow[2])
-        mypos <- mypos[with(mypos, order(Var1)), ]
-        grid::pushViewport(viewport(layout = grid.layout(mfrow[1],
-                                                         mfrow[2])))
-        formatter <- function(.) {
-        }
-    } else {
-        mypos <- data.frame(matrix(1, length(which), 2))
-        grid::pushViewport(viewport(layout = grid.layout(1, 1)))
-        formatter <- function(.) {
-            .dontcare <- readline("Hit <Return> to see next plot: ")
-            grid::grid.newpage()
-        }
-    }
-    j <- 1
-    for (i in which) {
-        formatter()
-        print(plots[[i]], vp = viewport(layout.pos.row = mypos[j,
-                                                               ][1], layout.pos.col = mypos[j, ][2]))
-        j <- j + 1
-    }
+    plot_grid(plotlist = plots[c(which)],
+              ncol = ncol,
+              nrow = nrow,
+              ...)
 }

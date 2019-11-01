@@ -13,6 +13,7 @@
 #'   see \code{?boxplot.stat}.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #'   console.
+#' @importFrom cowplot ggdraw draw_label
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
@@ -113,8 +114,8 @@ find_outliers <- function(.data =  NULL,
                 panel.grid = element_blank(),
                 axis.text = element_text(color = "black", size = 12),
                 axis.ticks.length = unit(0.2, "cm"))+
-          labs(y = "Observed value", x = "")+
-          ggtitle("With outliers")
+          labs(y = "Observed value", x = "")
+
         without_box <-
           ggplot(df_out, aes(x = "Outlier", y = without)) +
           stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
@@ -131,8 +132,8 @@ find_outliers <- function(.data =  NULL,
                 panel.grid = element_blank(),
                 axis.text = element_text(color = "black", size = 12),
                 axis.ticks.length = unit(0.2, "cm"))+
-          labs(y = "Observed value", x = "")+
-          ggtitle("Without outliers")
+          labs(y = "Observed value", x = "")
+
         with_hist <-
           ggplot(df_out, aes(x = with))+
           geom_histogram(position="identity",
@@ -147,8 +148,7 @@ find_outliers <- function(.data =  NULL,
                 axis.text = element_text(color = "black", size = 12),
                 axis.ticks.length = unit(0.2, "cm"))+
           labs(x = "Observed value",
-               y = "Count")+
-          ggtitle("With outliers")
+               y = "Count")
 
         without_hist <-
           ggplot(df_out, aes(x = without))+
@@ -164,10 +164,18 @@ find_outliers <- function(.data =  NULL,
                 axis.text = element_text(color = "black", size = 12),
                 axis.ticks.length = unit(0.2, "cm"))+
           labs(x = "Observed value",
-               y = "Count")+
-          ggtitle("Without outliers")
+               y = "Count")
 
-        arrange_ggplot(with_box, with_hist, without_box, without_hist)
+        plist1 <- plot_grid(plotlist = list(with_box, with_hist), nrow = 1)
+        title_with <- ggdraw() +
+          draw_label("With outliers", fontface='bold')
+        p1 <- plot_grid(title_with, plist1, ncol=1, rel_heights=c(0.1, 1))
+
+        plist2 <- plot_grid(plotlist = list(without_box, without_hist), nrow = 1)
+        title_without <- ggdraw() +
+          draw_label("Without outliers", fontface='bold')
+        p2 <- plot_grid(title_without, plist2, ncol=1, rel_heights=c(0.1, 1))
+        plot(plot_grid(p1, p2, nrow = 2))
       }
       if ((na2 - na1) == 0) {
         if (verbose == TRUE) {
@@ -250,8 +258,8 @@ find_outliers <- function(.data =  NULL,
               panel.grid = element_blank(),
               axis.text = element_text(color = "black", size = 12),
               axis.ticks.length = unit(0.2, "cm"))+
-        labs(y = "Observed value", x = "")+
-        ggtitle("With outliers")
+        labs(y = "Observed value", x = "")
+
       without_box <-
         ggplot(df_out, aes(x = "Outlier", y = without)) +
         stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
@@ -268,8 +276,8 @@ find_outliers <- function(.data =  NULL,
               panel.grid = element_blank(),
               axis.text = element_text(color = "black", size = 12),
               axis.ticks.length = unit(0.2, "cm"))+
-        labs(y = "Observed value", x = "")+
-        ggtitle("Without outliers")
+        labs(y = "Observed value", x = "")
+
       with_hist <-
         ggplot(df_out, aes(x = with))+
         geom_histogram(position="identity",
@@ -284,8 +292,7 @@ find_outliers <- function(.data =  NULL,
               axis.text = element_text(color = "black", size = 12),
               axis.ticks.length = unit(0.2, "cm"))+
         labs(x = "Observed value",
-             y = "Count")+
-        ggtitle("With outliers")
+             y = "Count")
 
       without_hist <-
         ggplot(df_out, aes(x = without))+
@@ -301,10 +308,18 @@ find_outliers <- function(.data =  NULL,
               axis.text = element_text(color = "black", size = 12),
               axis.ticks.length = unit(0.2, "cm"))+
         labs(x = "Observed value",
-             y = "Count")+
-        ggtitle("Without outliers")
+             y = "Count")
 
-      arrange_ggplot(with_box, with_hist, without_box, without_hist)
+      plist1 <- plot_grid(plotlist = list(with_box, with_hist), nrow = 1)
+      title_with <- ggdraw() +
+        draw_label("With outliers", fontface='bold')
+      p1 <- plot_grid(title_with, plist1, ncol=1, rel_heights=c(0.1, 1))
+
+      plist2 <- plot_grid(plotlist = list(without_box, without_hist), nrow = 1)
+      title_without <- ggdraw() +
+        draw_label("Without outliers", fontface='bold')
+      p2 <- plot_grid(title_without, plist2, ncol=1, rel_heights=c(0.1, 1))
+      plot(plot_grid(p1, p2, nrow = 2))
     }
 
     if ((na2 - na1) == 0) {

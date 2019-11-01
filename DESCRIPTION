@@ -23,6 +23,7 @@ Depends:
 Imports: 
     ade4,
     dendextend,
+    cowplot,
     dplyr,
     FWDselect,
     GGally,
@@ -41,7 +42,6 @@ Imports:
     tibble,
     tidyr
 Suggests:
-    cowplot,
     kableExtra,
     knitr,
     readxl,

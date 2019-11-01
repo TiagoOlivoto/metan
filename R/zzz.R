@@ -5,7 +5,7 @@
 #'             select_if arrange slice contains top_n summarise ungroup rename
 #'             is_grouped_df mutate_at desc n summarise_if funs
 #' @importFrom tibble rownames_to_column column_to_rownames tibble as_tibble
-#' @importFrom grid grobTree textGrob grid.newpage pushViewport viewport grid.layout
+#' @importFrom grid grobTree textGrob
 #' @importFrom ggrepel  geom_text_repel geom_label_repel
 #' @importFrom magrittr  %>% %<>%
 #' @importFrom GGally  ggally_text  eval_data_col  ggpairs
