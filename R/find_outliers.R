@@ -100,13 +100,17 @@ find_outliers <- function(.data =  NULL,
         nbins <- round(1 + 3.322 * log(nrow(df_out)), 0)
         with_box <-
           ggplot(df_out, aes(x = "Outlier", y = with)) +
-          stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
+          stat_boxplot(geom = "errorbar",
+                       width=0.2,
+                       size = 0.2,
+                       na.rm = TRUE)+
           geom_boxplot(outlier.color = "black",
                        outlier.shape = 21,
                        outlier.size = 2.5,
                        outlier.fill = "red",
                        color = "black",
                        width = .5,
+                       size = 0.2,
                        na.rm = TRUE)+
           theme(panel.border = element_rect(fill = NA, color = "black"),
                 axis.text.x = element_text(color = "white"),
@@ -119,13 +123,17 @@ find_outliers <- function(.data =  NULL,
 
         without_box <-
           ggplot(df_out, aes(x = "Outlier", y = without)) +
-          stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
+          stat_boxplot(geom = "errorbar",
+                       width=0.2,
+                       size = 0.2,
+                       na.rm = TRUE)+
           geom_boxplot(outlier.color = "black",
                        outlier.shape = 21,
                        outlier.size = 2.5,
                        outlier.fill = "red",
                        color = "black",
                        width = .5,
+                       size = 0.2,
                        na.rm = TRUE)+
           theme(panel.border = element_rect(fill = NA, color = "black"),
                 axis.text.x = element_text(color = "white"),
@@ -142,6 +150,7 @@ find_outliers <- function(.data =  NULL,
                          color = "black",
                          fill = "gray",
                          na.rm = TRUE,
+                         size = 0.2,
                          bins = nbins)+
           scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
           theme(legend.position = "bottom",
@@ -159,6 +168,7 @@ find_outliers <- function(.data =  NULL,
                          color = "black",
                          fill = "gray",
                          na.rm = TRUE,
+                         size = 0.2,
                          bins = nbins)+
           scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
           theme(legend.position = "bottom",
@@ -248,13 +258,17 @@ find_outliers <- function(.data =  NULL,
       nbins <- round(1 + 3.322 * log(nrow(df_out)), 0)
       with_box <-
         ggplot(df_out, aes(x = "Outlier", y = with)) +
-        stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
+        stat_boxplot(geom = "errorbar",
+                     width=0.2,
+                     size = 0.2,
+                     na.rm = TRUE)+
         geom_boxplot(outlier.color = "black",
                      outlier.shape = 21,
                      outlier.size = 2.5,
                      outlier.fill = "red",
                      color = "black",
                      width = .5,
+                     size = 0.2,
                      na.rm = TRUE)+
         theme(panel.border = element_rect(fill = NA, color = "black"),
               axis.text.x = element_text(color = "white"),
@@ -267,13 +281,17 @@ find_outliers <- function(.data =  NULL,
 
       without_box <-
         ggplot(df_out, aes(x = "Outlier", y = without)) +
-        stat_boxplot(geom = "errorbar", width=0.2, na.rm = TRUE)+
+        stat_boxplot(geom = "errorbar",
+                     width=0.2,
+                     size = 0.2,
+                     na.rm = TRUE)+
         geom_boxplot(outlier.color = "black",
                      outlier.shape = 21,
                      outlier.size = 2.5,
                      outlier.fill = "red",
                      color = "black",
                      width = .5,
+                     size = 0.2,
                      na.rm = TRUE)+
         theme(panel.border = element_rect(fill = NA, color = "black"),
               axis.text.x = element_text(color = "white"),
@@ -290,6 +308,7 @@ find_outliers <- function(.data =  NULL,
                        color = "black",
                        fill = "gray",
                        na.rm = TRUE,
+                       size = 0.2,
                        bins = nbins)+
         scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
         theme(legend.position = "bottom",
@@ -307,6 +326,7 @@ find_outliers <- function(.data =  NULL,
                        color = "black",
                        fill = "gray",
                        na.rm = TRUE,
+                       size = 0.2,
                        bins = nbins)+
         scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
         theme(legend.position = "bottom",

@@ -21,6 +21,7 @@
 #' * \strong{Valid_n} Number of valid n (omit NAs)
 #' * \strong{Outlier} Contains possible outliers?
 #' @md
+#' @importFrom GGally wrap
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'
@@ -49,9 +50,9 @@ inspect <- function (.data,
       Missing= sapply(.data, function(x) ifelse(any(is.na(x)), "Yes", "No")),
       Levels = sapply(.data, function(x) ifelse(!is.numeric(x), nlevels(x), "-")),
       Valid_n = sapply(.data, function(x) length(which(!is.na(x)))),
-      Min = sapply(.data, function(x) ifelse(is.numeric(x), round(min(x),2), NA)),
-      Median = sapply(.data, function(x) ifelse(is.numeric(x), round(median(x),2), NA)),
-      Max = sapply(.data, function(x) ifelse(is.numeric(x), round(max(x),2), NA)),
+      Min = sapply(.data, function(x) ifelse(is.numeric(x), round(min(x, na.rm = TRUE),2), NA)),
+      Median = sapply(.data, function(x) ifelse(is.numeric(x), round(median(x, na.rm = TRUE),2), NA)),
+      Max = sapply(.data, function(x) ifelse(is.numeric(x), round(max(x, na.rm = TRUE),2), NA)),
       Outlier = sapply(.data, function(x) ifelse(is.numeric(x), find_outliers(values = x, verbose = F), NA))
     ) %>%
     rownames_to_column("Variable") %>%
@@ -82,6 +83,7 @@ inspect <- function (.data,
         geom_point(alpha = 0.65) +
         geom_smooth(method=method,
                     se = FALSE,
+                    size = 0.5,
                     color = "red")
     }
     ggpair <-
@@ -99,10 +101,14 @@ inspect <- function (.data,
                            combo = wrap("box_no_facet",
                                         outlier.color = "red",
                                         outlier.alpha = 0.7,
+                                        outlier.size = 0.8,
                                         size = 0.2,
                                         color = "black")))+
       theme(panel.spacing = unit(0.05, "cm"),
-            panel.grid = element_blank())
+            panel.grid = element_blank(),
+            axis.text.x = element_blank(),
+            axis.ticks.x = element_blank(),
+            axis.text.y = element_text(color = "black"))
 
     suppressMessages(suppressWarnings(print(ggpair, progress = FALSE)))
   }
