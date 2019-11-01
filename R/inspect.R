@@ -77,11 +77,32 @@ inspect <- function (.data,
     }
   }
   if(plot == TRUE){
+    my_smooth <- function(data, mapping, method = "lm", ...){
+      ggplot(data = data, mapping = mapping) +
+        geom_point(alpha = 0.65) +
+        geom_smooth(method=method,
+                    se = FALSE,
+                    color = "red")
+    }
     ggpair <-
       .data %>%
       ggpairs(lower = NULL,
-              upper = list(continuous ="smooth"))+
-      theme(panel.spacing = unit(0.1, "cm"))
+              diag = list(continuous = wrap("densityDiag",
+                                           size = 0.2),
+                          discrete = wrap("barDiag",
+                                          color = "black",
+                                          size = 0.2)),
+              upper = list(continuous = my_smooth,
+                           discrete = wrap("facetbar",
+                                           color = "black",
+                                           size = 0.2),
+                           combo = wrap("box_no_facet",
+                                        outlier.color = "red",
+                                        outlier.alpha = 0.7,
+                                        size = 0.2,
+                                        color = "black")))+
+      theme(panel.spacing = unit(0.05, "cm"),
+            panel.grid = element_blank())
 
     suppressMessages(suppressWarnings(print(ggpair, progress = FALSE)))
   }
