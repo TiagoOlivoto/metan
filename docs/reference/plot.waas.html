@@ -43,11 +43,11 @@
 
 
 <meta property="og:title" content="Several types of residual plots — plot.waas" />
-<meta property="og:description" content="Residual plots for a output model of class waas. Six types
+<meta property="og:description" content="Residual plots for a output model of class waas. Seven types
 of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
-residuals, (3) scale-location plot (standardized residuals vs Fitted
-Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
-residuals and (6) standardized residuals vs observation order." />
+residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
+(4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
+and (6) standardized residuals vs observation order, and (7) 1:1 line plot" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -197,20 +197,20 @@ residuals and (6) standardized residuals vs observation order." />
     </div>
 
     <div class="ref-description">
-    <p>Residual plots for a output model of class <code>waas</code>. Six types
+    <p>Residual plots for a output model of class <code>waas</code>. Seven types
 of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
-residuals, (3) scale-location plot (standardized residuals vs Fitted
-Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
-residuals and (6) standardized residuals vs observation order.</p>
+residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
+(4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
+and (6) standardized residuals vs observation order, and (7) 1:1 line plot</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for waas</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>conf</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>fill.hist</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.hist</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>col.lab.out</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>), <span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>),
-  <span class='no'>...</span>)</pre>
+  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(), <span class='kw'>band.alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>fill.hist</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.hist</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col.lab.out</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
+  <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>),
+  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -235,9 +235,10 @@ confidence interval limits.</p></td>
 theme_waasb()</code>.</p></td>
     </tr>
     <tr>
-      <th>alpha</th>
-      <td><p>The transparency of confidence band in the Q-Q plot. Must be a
-number between 0 (opaque) and 1 (full transparency).</p></td>
+      <th>band.alpha, point.alpha</th>
+      <td><p>The transparency of confidence band in the Q-Q
+plot and the points, respectively. Must be a number between 0 (opaque) and
+1 (full transparency).</p></td>
     </tr>
     <tr>
       <th>fill.hist</th>
@@ -282,14 +283,14 @@ number between 0 (opaque) and 1 (full transparency).</p></td>
 c(1:4)</code> that means that the first four graphics will be plotted.</p></td>
     </tr>
     <tr>
-      <th>mfrow</th>
-      <td><p>Allow creating a simple multi-paneled plot. Must be a vector of
-length 2. The first argument is the number of rows and the second the number
-of columns. Default is <code>mfrow = c(2, 2)</code>.</p></td>
+      <th>ncol, nrow</th>
+      <td><p>The number of columns and rows of the plot pannel. Defaults
+to <code>NULL</code></p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameter for the function</p></td>
+      <td><p>Additional arguments passed on to the function
+<code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>plot_grid</a></code></p></td>
     </tr>
     </table>
 
@@ -301,7 +302,7 @@ of columns. Default is <code>mfrow = c(2, 2)</code>.</p></td>
 #&gt; Done!</div><div class='input'><span class='no'>model2</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>$<span class='no'>GY</span>)</div><div class='img'><img src='plot.waas-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model2</span>$<span class='no'>GY</span>,
      <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>5</span>),
-     <span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>),
+     <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>,
      <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
      <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='img'><img src='plot.waas-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
