@@ -7,8 +7,9 @@
 get_model_data(x, what = "Y", type = "GEN")
 }
 \arguments{
-\item{x}{An object created with the functions \code{\link{gamem}},
-\code{\link{performs_ammi}}, \code{\link{waas}} or \code{\link{waasb}}.}
+\item{x}{An object created with the functions \code{\link{AMMI_indexes}},
+\code{\link{gamem}}, \code{\link{performs_ammi}},
+\code{\link{Resende_indexes}}, \code{\link{waas}} or \code{\link{waasb}}.}
 
 \item{what}{What should be captured from the model. See more in
 \strong{Details} section.}
@@ -23,9 +24,21 @@ A tibble showing the values of the variable chosen in argument
 \description{
 Easily get data from some objects generated in the \strong{metan} package
 such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
-variance components, and details of AMMI models.
+variance components, details of AMMI models and AMMI-based stability
+statistics
 }
 \details{
+\strong{The next options are allowed if the object is of class \code{AMMI_indexes}.}
+\itemize{
+\item \code{"Y"} for raw means (Default) .
+\item \code{"ASV"} AMMI stability value
+\item \code{"SIPC"} Sums of the absolute value of the IPCA scores
+\item \code{"EV"} Averages of the squared eigenvector values
+\item \code{"ZA"} Absolute value of the relative contribution of IPCAs to the
+interaction
+\item \code{"WAAS"} P-value for for each IPCA.
+}
+
 \strong{The next options are allowed if the object is of class \code{performs_ammi}.}
 \itemize{
 \item \code{"Y"} for raw means (Default) .
@@ -56,6 +69,13 @@ where * \code{n} is the desired IPCA (e.g. \code{"PC3"}) .
 
 \strong{The next options are allowed if the object is of class \code{waasb}
 or \code{gamem}.}
+\itemize{
+\item \code{"HMGV"} For harmonic mean of genotypic values.
+\item \code{"RPGV or RPGV_Y"} For relative performance of genotypic values
+\item \code{"HMRPGV"} For harmonic mean of relative performance of genotypic values
+}
+
+\strong{The next options are allowed if the object is of class \code{Res_ind}}
 \itemize{
 \item \code{"blupg"} For genotype's predicted mean.
 \item \code{"blupge"} for genotype-vs-environment's predicted mean (only for
@@ -90,6 +110,12 @@ get_model_data(AMMI, "ipca_expl")
 # Accumulated sum of square
 get_model_data(AMMI, "ipca_accum")
 
+### AMMI-based stability statistics ###
+# Get the AMMI stability value
+AMMI \%>\%
+AMMI_indexes() \%>\%
+get_model_data("ASV")
+
 
 #################### WAASB model #####################
 # Fitting the WAAS index
@@ -105,8 +131,6 @@ get_model_data(AMMI, what = "OrWAASB")
 
 #################### BLUP model #####################
 # Fitting a mixed-effect model
-blup <- waasb(data_ge2, ENV, GEN, REP,
-              resp = c(PH, ED, TKW, NKR))
 
 # Getting p-values for likelihood-ratio test
 get_model_data(blup, what = "pval_lrt")
@@ -117,6 +141,10 @@ get_model_data(blup, what = "vcomp")
 # Getting the genetic parameters
 get_model_data(blup, what = "genpar")
 
+### BLUP-based stability indexes ###
+blup \%>\%
+Resende_indexes() \%>\%
+get_model_data("HMRPGV")
 
 }
 \references{

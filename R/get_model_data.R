@@ -2,11 +2,13 @@
 #'
 #' Easily get data from some objects generated in the \strong{metan} package
 #' such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
-#' variance components, and details of AMMI models.
+#' variance components, details of AMMI models and AMMI-based stability
+#' statistics
 #'
 #'
-#' @param x An object created with the functions \code{\link{gamem}},
-#'   \code{\link{performs_ammi}}, \code{\link{waas}} or \code{\link{waasb}}.
+#' @param x An object created with the functions \code{\link{AMMI_indexes}},
+#'   \code{\link{gamem}}, \code{\link{performs_ammi}},
+#'   \code{\link{Resende_indexes}}, \code{\link{waas}} or \code{\link{waasb}}.
 #' @param what What should be captured from the model. See more in
 #'   \strong{Details} section.
 #' @param type Chose if the statistics must be show by genotype (\code{type =
@@ -14,6 +16,16 @@
 #' @return A tibble showing the values of the variable chosen in argument
 #'   \code{what}.
 #' @details
+#'  \strong{The next options are allowed if the object is of class \code{AMMI_indexes}.}
+#' * \code{"Y"} for raw means (Default) .
+#' * \code{"ASV"} AMMI stability value
+#' * \code{"SIPC"} Sums of the absolute value of the IPCA scores
+#' * \code{"EV"} Averages of the squared eigenvector values
+#' * \code{"ZA"} Absolute value of the relative contribution of IPCAs to the
+#' interaction
+#' * \code{"WAAS"} P-value for for each IPCA.
+#'
+#'
 #'  \strong{The next options are allowed if the object is of class \code{performs_ammi}.}
 #' * \code{"Y"} for raw means (Default) .
 #' * \code{"ipca_ss"} Sum of square for each IPCA.
@@ -38,9 +50,15 @@
 #' * \code{"WAASBY"} The superiority index WAASBY .
 #' * \code{"OrWAASBY"} The ranking regarding the superiority index .
 #'
+#'
 #'  \strong{The next options are allowed if the object is of class \code{waasb}
 #'  or \code{gamem}.}
 #'
+#' * \code{"HMGV"} For harmonic mean of genotypic values.
+#' * \code{"RPGV or RPGV_Y"} For relative performance of genotypic values
+#' * \code{"HMRPGV"} For harmonic mean of relative performance of genotypic values
+#'
+#'  \strong{The next options are allowed if the object is of class \code{Res_ind}}
 #' * \code{"blupg"} For genotype's predicted mean.
 #' * \code{"blupge"} for genotype-vs-environment's predicted mean (only for
 #' objects of class \code{waasb}).
@@ -48,6 +66,7 @@
 #' * \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
 #' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
 #' * \code{"vcomp"} The variance components for random effects.
+#'
 #' @md
 #' @importFrom dplyr starts_with matches case_when
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -87,6 +106,12 @@
 #' # Accumulated sum of square
 #' get_model_data(AMMI, "ipca_accum")
 #'
+#' ### AMMI-based stability statistics ###
+#' # Get the AMMI stability value
+#' AMMI %>%
+#' AMMI_indexes() %>%
+#' get_model_data("ASV")
+#'
 #'
 #' #################### WAASB model #####################
 #' # Fitting the WAAS index
@@ -102,8 +127,8 @@
 #'
 #' #################### BLUP model #####################
 #' # Fitting a mixed-effect model
-#' blup <- waasb(data_ge2, ENV, GEN, REP,
-#'               resp = c(PH, ED, TKW, NKR))
+# blup <- waasb(data_ge2, ENV, GEN, REP,
+#               resp = c(PH, ED, TKW, NKR))
 #'
 #' # Getting p-values for likelihood-ratio test
 #' get_model_data(blup, what = "pval_lrt")
@@ -114,11 +139,15 @@
 #' # Getting the genetic parameters
 #' get_model_data(blup, what = "genpar")
 #'
+#' ### BLUP-based stability indexes ###
+#' blup %>%
+#' Resende_indexes() %>%
+#' get_model_data("HMRPGV")
 #'
 get_model_data <- function(x, what = "Y", type = "GEN") {
 
-  if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi")) {
-    stop("Invalid input in 'x' argument. It must be one object of class 'gamem', 'performs_ammi', 'waas' or 'waasb'")
+  if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind", "AMMI_indexes")) {
+    stop("Invalid input in 'x' argument. It must be one object of class 'Ammi_indexes', gamem', 'performs_ammi', 'Res_ind', 'waas' or 'waasb'")
   }
   if (substr(what, 1, 2) == "PC") {
     npc <- ncol(x[[1]][["model"]] %>%
@@ -138,8 +167,12 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt", "details")
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
-  ckeck4 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
-  if (!what %in% c(check, check2, ckeck4)) {
+  check5 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
+  check6 <- c("HMGV", "RPGV", "HMRPGV", "RPGV_Y", "HMRPGV_Y")
+  check7 <- c("ASV", "SIPC", "EV", "ZA", "WAAS")
+
+
+  if (!what %in% c(check, check2, check5, check6, check7)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (what %in% check3 && !class(x) %in% c("waasb", "gamem")) {
@@ -149,8 +182,43 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
 
+
+  if (class(x) == "AMMI_indexes") {
+    if (!what %in% c("Y", check7)) {
+      stop("Invalid value in 'what' for object of class 'AMMI_indexes'.")
+    }
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        x[["statistics"]][[what]]
+      })
+    ) %>%
+      as_tibble() %>%
+      mutate(gen = x[[1]][["statistics"]][["Code"]]) %>%
+      select(gen, everything())
+  }
+
+
+
+  if (class(x) == "Res_ind") {
+    if (!what %in% c("Y", check6)) {
+      stop("Invalid value in 'what' for object of class 'Res_ind'.")
+    }
+      bind <- do.call(
+        cbind,
+        lapply(x, function(x) {
+          x[[what]]
+        })
+      ) %>%
+        as_tibble() %>%
+        mutate(gen = x[[1]][["GEN"]]) %>%
+        select(gen, everything())
+}
+
+
+
   if (class(x) == "performs_ammi") {
-    if (!what %in% c("Y", check2, ckeck4)) {
+    if (!what %in% c("Y", check2, check5)) {
       stop("Invalid value in 'what' for object of class 'performs_ammi'.")
     }
     if (what == "Y" | what %in% check2) {
@@ -169,7 +237,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
         select(-type) %>%
         select(gen, everything())
     }
-    if (what  %in% ckeck4) {
+    if (what  %in% check5) {
         what <- case_when(
           what == "ipca_ss" ~ "Sum Sq",
           what == "ipca_ms" ~ "Mean Sq",

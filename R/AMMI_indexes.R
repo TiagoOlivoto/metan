@@ -176,6 +176,7 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
                 ASV = ASV,
                 SIPC = SIPC,
                 EV = EV,
+                ZA = Za,
                 WAAS = WAAS) %>%
                 as_tibble(),
             ranks = data.frame(
@@ -185,6 +186,7 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
                 rASV = rASV,
                 rSIPC = rS,
                 rEV = rEV,
+                rZA = rZA,
                 rWAAS = rWAAS) %>%
                 as_tibble(),
             ssi = data.frame(
@@ -194,6 +196,7 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
                 ssiASV = ssiASV,
                 ssiSIPC = ssiSIPC,
                 ssiEV = ssiEV,
+                ssiZA = ssiZA,
                 ssiWAAS = ssiWAAS) %>%
                 as_tibble())
         listres[[paste(names(.data[var]))]] <- temp
