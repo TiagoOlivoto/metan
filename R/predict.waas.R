@@ -40,7 +40,7 @@
 #' # Predict GY with 3 IPCA and HM with 1 IPCA
 #' predict = predict(model, naxis = c(3, 1))
 #'
-predict.waas <- function(object, naxis, ...) {
+predict.waas <- function(object, naxis = 2, ...) {
     cal <- match.call()
     if (class(object) != "waas") {
         stop("The objectin must be an objectin of the class 'waas'")

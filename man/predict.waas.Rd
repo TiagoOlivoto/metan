@@ -4,7 +4,7 @@
 \alias{predict.waas}
 \title{Predict the means of a waas object}
 \usage{
-\method{predict}{waas}(object, naxis, ...)
+\method{predict}{waas}(object, naxis = 2, ...)
 }
 \arguments{
 \item{object}{An object of class waas}

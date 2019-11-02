@@ -38,7 +38,7 @@
 #' # Predict GY with 3 IPCA and HM with 1 IPCA
 #' predict = predict(model, naxis = c(3, 1))
 #'
-predict.performs_ammi <- function(object, naxis, ...) {
+predict.performs_ammi <- function(object, naxis = 2, ...) {
     cal <- match.call()
     if (class(object) != "performs_ammi") {
         stop("The objectin must be an objectin of the class 'performs_ammi'")

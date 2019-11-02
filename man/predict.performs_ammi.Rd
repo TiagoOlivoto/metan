@@ -4,7 +4,7 @@
 \alias{predict.performs_ammi}
 \title{Predict the means of a performs_ammi object}
 \usage{
-\method{predict}{performs_ammi}(object, naxis, ...)
+\method{predict}{performs_ammi}(object, naxis = 2, ...)
 }
 \arguments{
 \item{object}{An object of class performs_ammi}
