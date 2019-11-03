@@ -3,6 +3,7 @@
 * New function `desc_wider()` to convert an output of the function `desc_stat()` to a 'wide' format;
 * New function `Fox()` for Stability analysis;
 * New function `Shukla()` for stability analysis;
+* New function `to_factor()` to quickly convert variables to factors;
 * Improve usability of `get_model_data()` function;
 * Update function's doccumentation;
 * Update vignettes;
