@@ -54,8 +54,9 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     Ecoval <- rowSums(ge_effect^2 * length(unique(REP)))
     Ecov_perc <- (Ecoval/sum(Ecoval)) * 100
     rank <- rank(Ecoval)
-    temp <- as_tibble(cbind(ge_effect, Ecoval, Ecov_perc,
-                            rank), rownames = NA)
+    temp <- cbind(ge_effect, Ecoval, Ecov_perc, rank) %>%
+      as_tibble(rownames = NA) %>%
+      rownames_to_column("GEN")
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {

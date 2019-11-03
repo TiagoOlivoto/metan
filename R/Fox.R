@@ -59,7 +59,7 @@ Fox <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       group_by(ENV) %>%
       mutate(grank = rank(-Y)) %>%
       group_by(GEN) %>%
-      summarise(mean = mean(Y),
+      summarise(Y = mean(Y),
                 TOP = sum(grank <= 3)) %>%
       as_tibble()
 

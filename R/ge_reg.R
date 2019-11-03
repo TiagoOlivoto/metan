@@ -117,14 +117,14 @@ ge_reg = function(.data,
                            " GEN x ENV (linear)", "Pooled deviation",
                            levels(data$GEN), "Pooled error")
     temp = structure(list(data = iamb2,
-                anova = as_tibble(rownames_to_column(anovadf, "SV")),
-                regression = tibble(GEN = levels(mydf$GEN),
-                                        Mean = apply(matx, 1, mean),
-                                        bij = bij,
-                                        sdij = S2di,
-                                        RMSE = gof(pred, matx)$RMSE,
-                                        R2 = gof(pred, matx)$R2)),
-                class = "ge_reg")
+                          anova = as_tibble(rownames_to_column(anovadf, "SV")),
+                          regression = tibble(GEN = levels(mydf$GEN),
+                                              Y = apply(matx, 1, mean),
+                                              slope = as.numeric(bij),
+                                              deviations = as.numeric(S2di),
+                                              RMSE = gof(pred, matx)$RMSE,
+                                              R2 = gof(pred, matx)$R2)),
+                     class = "ge_reg")
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
