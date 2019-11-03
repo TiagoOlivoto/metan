@@ -45,7 +45,8 @@
 <meta property="og:title" content="Easily get data from a model — get_model_data" />
 <meta property="og:description" content="Easily get data from some objects generated in the metan package
 such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
-variance components, and details of AMMI models." />
+variance components, details of AMMI models and AMMI-based stability
+statistics" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -197,7 +198,8 @@ variance components, and details of AMMI models." />
     <div class="ref-description">
     <p>Easily get data from some objects generated in the <strong>metan</strong> package
 such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
-variance components, and details of AMMI models.</p>
+variance components, details of AMMI models and AMMI-based stability
+statistics</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_model_data</span>(<span class='no'>x</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"Y"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"GEN"</span>)</pre>
@@ -207,8 +209,11 @@ variance components, and details of AMMI models.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object created with the functions <code><a href='gamem.html'>gamem</a></code>,
-<code><a href='performs_ammi.html'>performs_ammi</a></code>, <code><a href='waas.html'>waas</a></code> or <code><a href='waasb.html'>waasb</a></code>.</p></td>
+      <td><p>An object created with the functions <code><a href='AMMI_indexes.html'>AMMI_indexes</a></code>,
+<code><a href='ecovalence.html'>ecovalence</a></code>,  <code><a href='Fox.html'>Fox</a></code>,  <code><a href='ge_reg.html'>ge_reg</a></code>,
+<code><a href='gamem.html'>gamem</a></code>, <code><a href='performs_ammi.html'>performs_ammi</a></code>,
+<code><a href='Resende_indexes.html'>Resende_indexes</a></code>, <code><a href='Shukla.html'>Shukla</a></code>,
+<code><a href='superiority.html'>superiority</a></code>, <code><a href='waas.html'>waas</a></code> or <code><a href='waasb.html'>waasb</a></code>.</p></td>
     </tr>
     <tr>
       <th>what</th>
@@ -228,8 +233,56 @@ variance components, and details of AMMI models.</p>
 <code>what</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><strong>The next options are allowed if the object is of class <code>performs_ammi</code>.</strong></p><ul>
-<li><p><code>"Y"</code> for raw means (Default) .</p></li>
+    <p>Bellow are listed the options allowed in the argument <code>what</code> depending
+on the class of the object</p>
+<p><strong>Object is of class <code>AMMI_indexes</code>.</strong></p><ul>
+<li><p><code>"Y"</code> for raw means (Default).</p></li>
+<li><p><code>"ASV"</code> AMMI stability value</p></li>
+<li><p><code>"SIPC"</code> Sums of the absolute value of the IPCA scores</p></li>
+<li><p><code>"EV"</code> Averages of the squared eigenvector values</p></li>
+<li><p><code>"ZA"</code> Absolute value of the relative contribution of IPCAs to the
+interaction</p></li>
+<li><p><code>"WAAS"</code> P-value for for each IPCA.</p></li>
+</ul>
+
+<p><strong>Object is of class <code>ecovalence</code>.</strong></p><ul>
+<li><p><code>"Ecoval"</code> Ecovalence value.</p></li>
+<li><p><code>"Ecov_perc"</code> Ecovalence in percentage value.</p></li>
+<li><p><code>"rank"</code> Rank for ecovalence</p></li>
+</ul>
+
+<p><strong>Object is of class <code>ge_reg</code>.</strong></p><ul>
+<li><p><code>"Y"</code> for raw means (Default).</p></li>
+<li><p><code>"slope"</code> The sloop of the regression</p></li>
+<li><p><code>"deviations"</code> The deviations from regression</p></li>
+<li><p><code>"RMSE"</code> The Root Mean Square Error</p></li>
+<li><p><code>"R2"</code> The r-square of the regression</p></li>
+</ul>
+
+<p><strong>Object is of class <code>Fox</code>.</strong></p><ul>
+<li><p><code>"Y"</code> for raw means (Default).</p></li>
+<li><p><code>"TOP"</code> The proportion of locations at which the genotype occurred in
+the top third</p></li>
+</ul>
+
+<p><strong>Object is of class <code>Shukla</code>.</strong></p><ul>
+<li><p><code>"Y"</code> for raw means (Default).</p></li>
+<li><p><code>"rMean"</code> Rank for the mean.</p></li>
+<li><p><code>"ShuklaVar"</code> Shukla's stablity variance.</p></li>
+<li><p><code>"rShukaVar"</code> Rank for Shukla's stablity variance.</p></li>
+<li><p><code>"ssiShukaVar"</code> Simultaneous selection index.</p>
+<p><strong>Object is of class <code>superiority</code>.</strong></p></li>
+<li><p><code>"Y"</code> for raw means (Default).</p></li>
+<li><p><code>"Pi_a"</code> The superiority measure for all environments.</p></li>
+<li><p><code>"R_a"</code> The rank for Pi_a.</p></li>
+<li><p><code>"Pi_f"</code> The superiority measure for favorable environments.</p></li>
+<li><p><code>"R_f"</code> The rank for Pi_f.</p></li>
+<li><p><code>"Pi_u"</code> The superiority measure for unfavorable environments.</p></li>
+<li><p><code>"R_u"</code> The rank for Pi_u.</p></li>
+</ul>
+
+<p><strong>Object is of class <code>performs_ammi</code>.</strong></p><ul>
+<li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"ipca_ss"</code> Sum of square for each IPCA.</p></li>
 <li><p><code>"ipca_ms"</code> Mean square for each IPCA.</p></li>
 <li><p><code>"ipca_fval"</code> F value for each IPCA.</p></li>
@@ -238,24 +291,30 @@ variance components, and details of AMMI models.</p>
 <li><p><code>"ipca_accum"</code> Accumulated explained sum of square.</p></li>
 </ul>
 
-<p><strong>The next options are valid in the argument <code>what</code> for both <code>waas</code> and <code>waasb</code> objects.</strong></p><ul>
-<li><p><code>"Y"</code> for raw means (Default) .</p></li>
-<li><p><code>"PCn"</code> for the scores of the nth Interaction Principal Component Axis (IPCA) .
-where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>) .</p></li>
-<li><p><code>"WAASB"</code>  The weighted average of the absolute scores .</p></li>
-<li><p><code>"PctResp"</code> The rescaled values of the response variable .</p></li>
-<li><p><code>"PctWAASB"</code> The rescaled values of the WAASB .</p></li>
-<li><p><code>"wResp"</code> The weight for the response variable .</p></li>
-<li><p><code>"wWAASB"</code> The weight for the stability .</p></li>
-<li><p><code>"OrResp"</code> The ranking regarding the response variable .</p></li>
-<li><p><code>"OrWAASB"</code> The ranking regarding the WAASB .</p></li>
-<li><p><code>"OrPC1"</code> The ranking regarding the first principal component axix .</p></li>
-<li><p><code>"WAASBY"</code> The superiority index WAASBY .</p></li>
-<li><p><code>"OrWAASBY"</code> The ranking regarding the superiority index .</p></li>
+<p><strong>Object is of class <code>waas</code> and <code>waasb</code>.</strong></p><ul>
+<li><p><code>"Y"</code> for raw means (Default).</p></li>
+<li><p><code>"PCn"</code> for the scores of the nth Interaction Principal Component Axis (IPCA).
+where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>).</p></li>
+<li><p><code>"WAASB"</code>  The weighted average of the absolute scores.</p></li>
+<li><p><code>"PctResp"</code> The rescaled values of the response variable.</p></li>
+<li><p><code>"PctWAASB"</code> The rescaled values of the WAASB.</p></li>
+<li><p><code>"wResp"</code> The weight for the response variable.</p></li>
+<li><p><code>"wWAASB"</code> The weight for the stability.</p></li>
+<li><p><code>"OrResp"</code> The ranking regarding the response variable.</p></li>
+<li><p><code>"OrWAASB"</code> The ranking regarding the WAASB.</p></li>
+<li><p><code>"OrPC1"</code> The ranking regarding the first principal component axix.</p></li>
+<li><p><code>"WAASBY"</code> The superiority index WAASBY.</p></li>
+<li><p><code>"OrWAASBY"</code> The ranking regarding the superiority index.</p></li>
 </ul>
 
-<p><strong>The next options are allowed if the object is of class <code>waasb</code>
+<p><strong>Object is of class <code>waasb</code>
 or <code>gamem</code>.</strong></p><ul>
+<li><p><code>"HMGV"</code> For harmonic mean of genotypic values.</p></li>
+<li><p><code>"RPGV or RPGV_Y"</code> For relative performance of genotypic values</p></li>
+<li><p><code>"HMRPGV"</code> For harmonic mean of relative performance of genotypic values</p></li>
+</ul>
+
+<p><strong>Object is of class <code>Res_ind</code></strong></p><ul>
 <li><p><code>"blupg"</code> For genotype's predicted mean.</p></li>
 <li><p><code>"blupge"</code> for genotype-vs-environment's predicted mean (only for
 objects of class <code>waasb</code>).</p></li>
@@ -328,6 +387,26 @@ Selection based on multiple traits. Agron. J.
 #&gt; </span><span style='color: #555555;'>1</span><span> PC1      14  82.8  53.3  63.4  56    59.1  60.8  72.8
 #&gt; </span><span style='color: #555555;'>2</span><span> PC2      12  94.9  87.1  83.6  87.9  84.5  85.3  89.2
 #&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 100   100   100   100   100   100   100  </div><div class='input'>
+<span class='co'>### AMMI-based stability statistics ###</span>
+<span class='co'># Get the AMMI stability value</span>
+<span class='no'>AMMI</span> <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='AMMI_indexes.html'>AMMI_indexes</a></span>() <span class='kw'>%&gt;%</span>
+<span class='fu'>get_model_data</span>(<span class='st'>"ASV"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 8</span><span>
+#&gt;    gen      PH    ED    TKW   NKR    CD    CL     CW
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1    2.27  1.41   7.76  2.01  0.314 2.75   6.24 
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10   1.61  2.11   6.58  1.00  0.725 2.67   4.63 
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11   1.48  1.31   3.55  2.05  0.505 0.918  3.16 
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12   2.62  0.610  0.981 0.547 1.08  1.36   0.881
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13   2.53  1.56   2.45  1.86  1.55  2.11   5.63 
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2    2.56  2.58  19.0   0.793 1.39  4.47  12.0  
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3    2.80  0.863 17.3   0.513 1.45  2.19   2.97 
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4    2.22  0.540 13.0   0.565 1.31  1.58   2.59 
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5    1.27  1.22   0.984 1.59  0.744 1.04   3.68 
+#&gt; </span><span style='color: #555555;'>10</span><span> H6    2.00  0.848  5.73  3.11  1.39  1.93   5.14 
+#&gt; </span><span style='color: #555555;'>11</span><span> H7    1.72  0.717  9.61  1.41  1.78  1.25   7.93 
+#&gt; </span><span style='color: #555555;'>12</span><span> H8    2.38  1.54  19.8   2.51  2.29  3.25  10.5  
+#&gt; </span><span style='color: #555555;'>13</span><span> H9    0.872 1.95  21.3   2.44  1.81  2.06   8.42 </div><div class='input'>
 
 <span class='co'>#################### WAASB model #####################</span>
 <span class='co'># Fitting the WAAS index</span>
@@ -415,7 +494,25 @@ Selection based on multiple traits. Agron. J.
 #&gt; </span><span style='color: #555555;'>13</span><span> CVg                    0.860     1.51   2.68</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>  1.34  
 #&gt; </span><span style='color: #555555;'>14</span><span> CVr                    6.03      3.25   8.95</span><span style='color: #555555;'>e</span><span>+ 0  8.69  
 #&gt; </span><span style='color: #555555;'>15</span><span> CV ratio               0.143     0.463  3.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>  0.154 </div><div class='input'>
-
+<span class='co'>### BLUP-based stability indexes ###</span>
+<span class='no'>blup</span> <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='Resende_indexes.html'>Resende_indexes</a></span>() <span class='kw'>%&gt;%</span>
+<span class='fu'>get_model_data</span>(<span class='st'>"HMRPGV"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
+#&gt;    gen      PH    ED   TKW   NKR
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1    1.04  1.03  1.06  0.998
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10   0.937 0.979 0.946 1.00 
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11   0.964 0.986 0.984 1.01 
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12   0.981 0.984 0.946 0.966
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13   1.02  1.02  1.00  0.976
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2    1.04  1.02  1.03  0.993
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3    1.03  0.998 1.01  0.984
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4    1.03  0.994 1.01  1.05 
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5    1.03  1.01  1.00  1.03 
+#&gt; </span><span style='color: #555555;'>10</span><span> H6    1.02  1.03  1.05  1.01 
+#&gt; </span><span style='color: #555555;'>11</span><span> H7    0.970 0.999 1.01  0.985
+#&gt; </span><span style='color: #555555;'>12</span><span> H8    0.939 0.978 0.945 0.980
+#&gt; </span><span style='color: #555555;'>13</span><span> H9    0.953 0.965 0.916 1.00 </div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
