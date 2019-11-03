@@ -62,11 +62,11 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
   B0 <- SurfMod$coef[1]
   B1 <- SurfMod$coef[2]
   B2 <- SurfMod$coef[3]
-  B11 <- SurfMod$coef[4]
-  B22 <- SurfMod$coef[5]
-  B12 <- SurfMod$coef[6]
-  B12c <- B12/2
-  P <- cbind(c(B11, B12c), c(B12c, B22))
+  B3 <- SurfMod$coef[4]
+  B4 <- SurfMod$coef[5]
+  B5 <- SurfMod$coef[6]
+  B5c <- B5/2
+  P <- cbind(c(B3, B5c), c(B5c, B4))
   P <- as.matrix(P)
   invA <- solve(P)
   X <- cbind(c(B1, B2))
@@ -103,22 +103,16 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
     print(anova(SurfMod))
     cat("-----------------------------------------------------------------\n")
     cat("Model equation for response surface model", "\n")
-    cat("Y = B0 + B1*A + B2*D + B11*A^2 + B22*D^2 + B12*A*D",
+    cat("Y = B0 + B1*A + B2*D + B3*A^2 + B4*D^2 + B5*A*D",
         "\n")
     cat("-----------------------------------------------------------------\n")
     cat("Estimated parameters", "\n")
-    cat(paste0("B0: ", format(round(B0, 7), nsmall = 7),
-               "\n"))
-    cat(paste0("B1: ", format(round(B1, 7), nsmall = 7),
-               "\n"))
-    cat(paste0("B2: ", format(round(B2, 7), nsmall = 7),
-               "\n"))
-    cat(paste0("B11: ", format(round(B11, 7), nsmall = 7),
-               "\n"))
-    cat(paste0("B22: ", format(round(B22, 7), nsmall = 7),
-               "\n"))
-    cat(paste0("B12: ", format(round(B12, 7), nsmall = 7),
-               "\n"))
+    cat(paste0("B0: ", format(round(B0, 7), nsmall = 7), "\n"))
+    cat(paste0("B1: ", format(round(B1, 7), nsmall = 7), "\n"))
+    cat(paste0("B2: ", format(round(B2, 7), nsmall = 7), "\n"))
+    cat(paste0("B3: ", format(round(B3, 7), nsmall = 7), "\n"))
+    cat(paste0("B4: ", format(round(B4, 7), nsmall = 7), "\n"))
+    cat(paste0("B5: ", format(round(B5, 7), nsmall = 7), "\n"))
     cat("-----------------------------------------------------------------\n")
     cat("Matrix of parameters (A)", "\n")
     cat("-----------------------------------------------------------------\n")
@@ -166,8 +160,8 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
     cat(paste0("A = ", A, "\n"))
     cat(paste0("D = ", D, "\n"))
     cat(paste0("y = ", round(B0, 5), "+", round(B1, 5), "A+",
-               round(B2, 5), "D+", round(B11, 5), "A^2+", round(B22,
-                                                                5), "D^2+", round(B12, 5), "A*D", "\n"))
+               round(B2, 5), "D+", round(B3, 5), "A^2+", round(B4,
+                                                                5), "D^2+", round(B5, 5), "A*D", "\n"))
     cat("-----------------------------------------------------------------\n")
     pvalor.shapiro <- shapiro.test(results$residuals)$p.value
     cat("Shapiro-Wilk normality test\n")
