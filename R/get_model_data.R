@@ -169,7 +169,7 @@
 #'
 #' #################### BLUP model #####################
 #' # Fitting a mixed-effect model
-# blup <- waasb(data_ge2, ENV, GEN, REP,
+#' blup <- waasb(data_ge2, ENV, GEN, REP,
 #               resp = c(PH, ED, TKW, NKR))
 #'
 #' # Getting p-values for likelihood-ratio test
