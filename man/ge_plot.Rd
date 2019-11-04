@@ -4,7 +4,8 @@
 \alias{ge_plot}
 \title{Graphical analysis of genotype-vs-environment interaction}
 \usage{
-ge_plot(.data, env, gen, resp, theme = theme_waasb(), colour = TRUE)
+ge_plot(.data, env, gen, resp, type = 1, theme = theme_waasb(),
+  colour = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -16,6 +17,9 @@ environments}
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{resp}{The response variable.}
+
+\item{type}{The type of plot \code{type = 1} for a line plot or \code{type =
+2} for a heatmap.}
 
 \item{theme}{The graphical theme of the plot. Default is \code{theme =
 theme_waasb()}. Please, see \code{?WAASB::theme_waasb}. An own theme can be
@@ -32,14 +36,14 @@ An object of class \code{gg, ggplot}.
 This function produces a line plot for a graphical interpretation of the
 genotype-vs-environment interaction. By default, environments are in the x
 axis whereas the genotypes are depicted by different lines. The y axis
-contains the value of the selected variable.
+contains the value of the selected variable. A heatmap can also be created.
 }
 \examples{
 library(metan)
 library(ggplot2)
 ge_plot(data_ge2, ENV, GEN, PH)
-ge_plot(data_ge2, ENV, GEN, PH)+
-theme_gray()
+ge_plot(data_ge, ENV, GEN, GY, type = 2)
+
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

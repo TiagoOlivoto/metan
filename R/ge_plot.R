@@ -3,7 +3,7 @@
 #' This function produces a line plot for a graphical interpretation of the
 #' genotype-vs-environment interaction. By default, environments are in the x
 #' axis whereas the genotypes are depicted by different lines. The y axis
-#' contains the value of the selected variable.
+#' contains the value of the selected variable. A heatmap can also be created.
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
@@ -11,6 +11,8 @@
 #'   environments
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable.
+#' @param type The type of plot \code{type = 1} for a line plot or \code{type =
+#'   2} for a heatmap.
 #' @param theme The graphical theme of the plot. Default is \code{theme =
 #'   theme_waasb()}. Please, see \code{?WAASB::theme_waasb}. An own theme can be
 #'   applied using the arguments: \code{theme = theme(some stuff here)}. For
@@ -24,19 +26,58 @@
 #' library(metan)
 #' library(ggplot2)
 #' ge_plot(data_ge2, ENV, GEN, PH)
-#' ge_plot(data_ge2, ENV, GEN, PH)+
-#' theme_gray()
-ge_plot <- function(.data, env, gen, resp, theme = theme_waasb(),
+#' ge_plot(data_ge, ENV, GEN, GY, type = 2)
+#'
+ge_plot <- function(.data,
+                    env,
+                    gen,
+                    resp,
+                    type = 1,
+                    theme = theme_waasb(),
                     colour = TRUE) {
-  p <- ggplot(.data, aes(x = !!enquo(env), y = !!enquo(resp)))
+  if(type == 1){
+  p <- ggplot(.data, aes(x = {{env}}, y = {{resp}}))
   if (colour == TRUE) {
-    p <- p + stat_summary(aes(colour = !!enquo(gen), group = !!enquo(gen)),
-                          fun.y = mean, geom = "line")
+    p <- p +
+      stat_summary(aes(colour = {{gen}},
+                       group = {{gen}}),
+                   fun.y = mean,
+                   geom = "line")
   } else {
-    p <- p + stat_summary(aes(group = !!enquo(gen)), fun.y = mean,
-                          geom = "line", colour = "black")
+    p <- p +
+      stat_summary(aes(group = {{gen}}),
+                   fun.y = mean,
+                   geom = "line",
+                   colour = "black")
   }
-  p <- p + geom_point(stat = "summary", fun.y = mean, size = 3,
-                      shape = 18) + theme %+replace% theme(legend.position = "right")
+  p <- p + geom_point(stat = "summary",
+                      fun.y = mean,
+                      size = 3,
+                      shape = 18) +
+    theme %+replace%
+    theme(legend.position = "right")
+  }
+  if(type == 2){
+    p <-
+      ggplot(.data, aes({{env}}, {{gen}}, fill= {{resp}})) +
+      geom_tile()+
+      scale_y_discrete(expand = expand_scale(mult = c(0,0)))+
+      scale_x_discrete(expand = expand_scale(mult = c(0,0)))+
+      scale_fill_viridis_c()+
+      guides(fill = guide_colourbar(label = TRUE,
+                                    draw.ulim = TRUE,
+                                    draw.llim = TRUE,
+                                    frame.colour = "black",
+                                    ticks = TRUE,
+                                    nbin = 10,
+                                    label.position = "right",
+                                    barwidth = 1.3,
+                                    barheight = 25,
+                                    direction = 'vertical'))+
+      theme %+replace%
+      theme(legend.position = "right",
+            legend.title = element_text())
+
+  }
   return(p)
 }
