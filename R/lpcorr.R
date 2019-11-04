@@ -76,18 +76,21 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
     X.resid <- -(solve_svd(m))
     diag(X.resid) <- 1/(1 - (1 - 1/diag(solve_svd(m))))
     X.resid <- cov2cor(X.resid)
-    results <- data.frame(linear = as.vector(t(m)[lower.tri(m,
-                                                            diag = F)]))
-    results <- suppressWarnings(dplyr::mutate(results, partial = as.vector(t(X.resid)[lower.tri(X.resid,
-                                                                                                diag = F)]), t = partial/(sqrt(1 - partial^2)) *
-                                                sqrt(n - nvar), prob = 2 * (1 - pt(abs(t), df = df))))
+    results <- data.frame(linear = as.vector(t(m)[lower.tri(m, diag = F)]))
+    results <- suppressWarnings(
+      results %>%
+        mutate(partial = as.vector(t(X.resid)[lower.tri(X.resid, diag = F)]),
+               t = partial/(sqrt(1 - partial^2)) * sqrt(n - nvar),
+               prob = 2 * (1 - pt(abs(t), df = df)))
+    )
     names <- colnames(x)
     combnam <- combn(names, 2, paste, collapse = " x ")
     rownames(results) <- names(sapply(combnam, names))
     if (verbose == TRUE) {
       print.data.frame(results)
     }
-    return(list(linear.mat = m, partial.mat = as.matrix(X.resid),
+    return(list(linear.mat = m,
+                partial.mat = as.matrix(X.resid),
                 results = results))
   }
   if (is.matrix(.data)) {
