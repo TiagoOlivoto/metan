@@ -72,7 +72,7 @@ ge_plot <- function(.data,
                                     nbin = 10,
                                     label.position = "right",
                                     barwidth = 1.3,
-                                    barheight = 25,
+                                    barheight = 10,
                                     direction = 'vertical'))+
       theme %+replace%
       theme(legend.position = "right",
