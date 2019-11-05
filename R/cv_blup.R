@@ -237,5 +237,5 @@ cv_blup <- function(.data, env, gen, rep, resp, block = NULL, nboot = 200, rando
                   Q2.5 = quantile(RMSPD, 0.025),
                   Q97.5 = quantile(RMSPD, 0.975))
     return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean),
-                     class = "cv_blup"))
+                     class = "cvalidation"))
 }

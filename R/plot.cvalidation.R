@@ -10,7 +10,9 @@
 #' whisker extends from the hinge to the smallest value at most 1.5 * IQR of the
 #' hinge. Data beyond the end of the whiskers are considered outlying points.
 #'
-#' @param x An object of class \code{cv_ammif}.
+#' @param x An object of class \code{cvalidation} fitted with the functions
+#'   \code{\link{cv_ammi}}, \code{\link{cv_ammif}}, \code{\link{cv_blup}}, or a
+#'   bound object fitted with \code{\link{bind_cv}}.
 #' @param violin Define if a violin plot is used with boxplot. Default is 'TRUE'
 #' @param export Export (or not) the plot. Default is \code{T}.
 #' @param order_box Logical argument. If \code{TRUE} then the boxplots will be
@@ -48,7 +50,7 @@
 #' @param ... Other arguments of the function
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @method plot cv_ammif
+#' @method plot cvalidation
 #' @export
 #' @examples
 #'
@@ -63,14 +65,14 @@
 #' }
 #'
 #'
-plot.cv_ammif <- function(x, violin = FALSE, export = FALSE, order_box =  FALSE,
+plot.cvalidation <- function(x, violin = FALSE, export = FALSE, order_box =  FALSE,
                           x.lab = NULL, y.lab = NULL, size.tex.lab = 12, file.type = "pdf",
                           file.name = NULL, theme = theme_waasb(), width = 6, height = 6,
                           resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
                           col.boxplot.win = "cyan", width.boxplot = 0.6, x.lim = NULL,
                           x.breaks = waiver(), ...) {
-    if (!class(x) == "cv_ammif") {
-        stop("The object 'x' must be of class 'cv_ammif'.")
+    if (!class(x) == "cvalidation") {
+        stop("The object 'x' must be of class 'cvalidation'.")
     }
     y.lab <- ifelse(missing(y.lab),
                     expression(paste("Root mean square prediction difference (Mg ha"^-1, ")")),

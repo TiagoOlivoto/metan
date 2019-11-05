@@ -41,8 +41,7 @@
 #'
 bind_cv <- function(..., bind = "boot", sort = TRUE) {
   class <- list(...)
-  if (sum(lapply(class, function(x) !class(x) %in% c("cv_ammi",
-                                                     "cv_ammif", "cv_blup") == TRUE) > 0)) {
+  if (sum(lapply(class, function(x) class(x) != "cvalidation") == TRUE) > 0) {
     stop("The object must be of the class 'cv_ammi', 'cv_ammif', or 'cv_blup'.")
   }
   if (!bind %in% c("boot", "means")) {
@@ -63,5 +62,5 @@ bind_cv <- function(..., bind = "boot", sort = TRUE) {
       data <- data %>% arrange(mean)
     }
   }
-  return(structure(list(RMSPD = data), class = "cv_ammif"))
+  return(structure(list(RMSPD = data), class = "cvalidation"))
 }

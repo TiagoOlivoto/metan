@@ -236,5 +236,6 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
 
   return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean,
                         Estimated = MEDIAS, Modeling = modeling, Testing = testing),
-                   class = "cv_ammi"))
+                   class = "cvalidation"))
 }
+

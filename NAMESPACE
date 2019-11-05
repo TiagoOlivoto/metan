@@ -2,7 +2,7 @@
 
 S3method(plot,can_cor)
 S3method(plot,clustering)
-S3method(plot,cv_ammif)
+S3method(plot,cvalidation)
 S3method(plot,fai_blup)
 S3method(plot,ge_cluster)
 S3method(plot,ge_factanal)

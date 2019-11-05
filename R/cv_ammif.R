@@ -178,7 +178,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
              Estimated = MEDIAS,
              Modeling = modeling,
              Testing = testing),
-        class = "cv_ammif")
+        class = "cvalidation")
     )
   }
 
@@ -280,7 +280,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
              Estimated = MEDIAS,
              Modeling = modeling,
              Testing = testing),
-        class = "cv_ammif")
+        class = "cvalidation")
     )
   }
 }
