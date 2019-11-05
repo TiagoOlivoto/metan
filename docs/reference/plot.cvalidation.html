@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bind cross-validation objects — bind_cv • metan</title>
+<title>Plot the RMSPD of a cross-validation procedure — plot.cvalidation • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,10 +42,9 @@
 
 
 
-<meta property="og:title" content="Bind cross-validation objects — bind_cv" />
-<meta property="og:description" content="Helper function that combines objects of class cv_ammi,
-cv_ammif or cv_blup. It is useful when looking for a boxplot
-containing the RMSPD values of those cross-validation procedures." />
+<meta property="og:title" content="Plot the RMSPD of a cross-validation procedure — plot.cvalidation" />
+<meta property="og:description" content="Boxplot showing the Root Means Square Prediction Difference of of a cross
+validation procedure." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -189,90 +188,159 @@ containing the RMSPD values of those cross-validation procedures." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bind cross-validation objects</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/bind_cv.R'><code>R/bind_cv.R</code></a></small>
-    <div class="hidden name"><code>bind_cv.Rd</code></div>
+    <h1>Plot the RMSPD of a cross-validation procedure</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.cvalidation.R'><code>R/plot.cvalidation.R</code></a></small>
+    <div class="hidden name"><code>plot.cvalidation.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Helper function that combines objects of class <code>cv_ammi</code>,
-<code>cv_ammif</code> or <code>cv_blup</code>. It is useful when looking for a boxplot
-containing the RMSPD values of those cross-validation procedures.</p>
+    <p>Boxplot showing the Root Means Square Prediction Difference of of a cross
+validation procedure.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bind_cv</span>(<span class='no'>...</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='st'>"boot"</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for cvalidation</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>violin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>order_box</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='theme_waasb.html'>theme_waasb</a></span>(),
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>col.violin</span> <span class='kw'>=</span> <span class='st'>"gray90"</span>,
+  <span class='kw'>col.boxplot</span> <span class='kw'>=</span> <span class='st'>"gray70"</span>, <span class='kw'>col.boxplot.win</span> <span class='kw'>=</span> <span class='st'>"cyan"</span>,
+  <span class='kw'>width.boxplot</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>x</th>
+      <td><p>An object of class <code>cvalidation</code> fitted with the functions
+<code><a href='cv_ammi.html'>cv_ammi</a></code>, <code><a href='cv_ammif.html'>cv_ammif</a></code>, <code><a href='cv_blup.html'>cv_blup</a></code>, or a
+bound object fitted with <code><a href='bind_cv.html'>bind_cv</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>violin</th>
+      <td><p>Define if a violin plot is used with boxplot. Default is 'TRUE'</p></td>
+    </tr>
+    <tr>
+      <th>export</th>
+      <td><p>Export (or not) the plot. Default is <code>T</code>.</p></td>
+    </tr>
+    <tr>
+      <th>order_box</th>
+      <td><p>Logical argument. If <code>TRUE</code> then the boxplots will be
+ordered according to the values of the RMSPD.</p></td>
+    </tr>
+    <tr>
+      <th>x.lab</th>
+      <td><p>The label of x-axis. New arguments can be inserted as
+<code>x.lab = 'my x label'</code>.</p></td>
+    </tr>
+    <tr>
+      <th>y.lab</th>
+      <td><p>The label of y-axis. New arguments can be inserted as
+<code>y.lab = 'my y label'</code>.</p></td>
+    </tr>
+    <tr>
+      <th>size.tex.lab</th>
+      <td><p>The size of the text in axis text and labels.</p></td>
+    </tr>
+    <tr>
+      <th>file.type</th>
+      <td><p>The type of file to be exported. Default is <code>pdf</code>,
+Graphic can also be exported in <code>*.tiff</code> format by declaring
+<code>file.type = 'tiff'</code>.</p></td>
+    </tr>
+    <tr>
+      <th>file.name</th>
+      <td><p>The name of the file for exportation, default is
+<code>NULL</code>, i.e. the files are automatically named.</p></td>
+    </tr>
+    <tr>
+      <th>theme</th>
+      <td><p>The graphical theme of the plot. Default is `theme =
+theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
+applied using the arguments: `theme = theme_waasb() + theme(some stuff
+here)`. For more details, please, see `?ggplot2::theme`</p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p>The width 'inch' of the plot. Default is <code>6</code>.</p></td>
+    </tr>
+    <tr>
+      <th>height</th>
+      <td><p>The height 'inch' of the plot. Default is <code>6</code>.</p></td>
+    </tr>
+    <tr>
+      <th>resolution</th>
+      <td><p>The resolution of the plot. Parameter valid if
+<code>file.type = 'tiff'</code> is used. Default is <code>300</code> (300 dpi)</p></td>
+    </tr>
+    <tr>
+      <th>col.violin</th>
+      <td><p>Parameter valid if <code>violin = T</code>. Define the color of
+the violin plot. Default is 'gray90.</p></td>
+    </tr>
+    <tr>
+      <th>col.boxplot</th>
+      <td><p>Define the color for boxplot. Default is 'gray70'.</p></td>
+    </tr>
+    <tr>
+      <th>col.boxplot.win</th>
+      <td><p>Define the color for boxplot of the best model.
+Default is 'cyan'.</p></td>
+    </tr>
+    <tr>
+      <th>width.boxplot</th>
+      <td><p>The width of boxplots. Default is <code>0.2</code>.</p></td>
+    </tr>
+    <tr>
+      <th>x.lim</th>
+      <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and minimum
+values of the data set). New arguments can be inserted as <code>x.lim =
+c(x.min, x.max)</code>.</p></td>
+    </tr>
+    <tr>
+      <th>x.breaks</th>
+      <td><p>The breaks to be plotted in the x-axis. Default is
+<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks =
+c(breaks)</code></p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>Input objects of class <code>cv_ammi</code>, <code>cv_ammif</code> or
-<code>cv_blup</code>.</p></td>
-    </tr>
-    <tr>
-      <th>bind</th>
-      <td><p>What data should be used? To plot the RMSPD, use 'boot'
-(default). Use <code>bind = 'means'</code> to return the RMSPD mean for each
-model.</p></td>
-    </tr>
-    <tr>
-      <th>sort</th>
-      <td><p>Used to sort the RMSPD mean in ascending order.</p></td>
+      <td><p>Other arguments of the function</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>cv_ammif</code>. The results will depend on the
-  argument <code>bind</code>. If <code>bind = 'boot'</code> then the RMSPD of all models
-  in <code>...</code> will be bind to a unique data frame. If <code>bind = 'means'</code>
-  then the RMSPD mean of all models in <code>...</code> will be bind to an unique
-  data frame.</p>
+    <p>An object of class <code>gg, ggplot</code>.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Five statistics are shown in this type of plot. The lower and upper hinges
+correspond to the first and third quartiles (the 25th and 75th percentiles).
+The upper whisker extends from the hinge to the largest value no further than
+1.5 * IQR from the hinge (where IQR is the inter-quartile range). The lower
+whisker extends from the hinge to the smallest value at most 1.5 * IQR of the
+hinge. Data beyond the end of the whiskers are considered outlying points.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='co'># Two examples with only 5 resampling procedures</span>
-<span class='no'>AMMI</span> <span class='kw'>=</span> <span class='fu'><a href='cv_ammif.html'>cv_ammif</a></span>(<span class='no'>data_ge</span>,
-                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='no'>BLUP</span> <span class='kw'>=</span> <span class='fu'><a href='cv_blup.html'>cv_blup</a></span>(<span class='no'>data_ge</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-               <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='no'>bind_data</span> <span class='kw'>=</span> <span class='fu'>bind_cv</span>(<span class='no'>AMMI</span>, <span class='no'>BLUP</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>bind_data</span>)</div><div class='img'><img src='bind_cv-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'>bind_cv</span>(<span class='no'>AMMI</span>, <span class='no'>BLUP</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='st'>'means'</span>))</div><div class='output co'>#&gt; $RMSPD
-#&gt; <span style='color: #555555;'># A tibble: 11 x 6</span><span>
-#&gt;    MODEL        mean     sd      se  Q2.5 Q97.5
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> AMMI2       0.391 0.028</span><span style='text-decoration: underline;'>8</span><span> 0.012</span><span style='text-decoration: underline;'>9</span><span>  0.366 0.432
-#&gt; </span><span style='color: #555555;'> 2</span><span> AMMI3       0.409 0.030</span><span style='text-decoration: underline;'>3</span><span> 0.013</span><span style='text-decoration: underline;'>5</span><span>  0.374 0.446
-#&gt; </span><span style='color: #555555;'> 3</span><span> AMMI5       0.413 0.030</span><span style='text-decoration: underline;'>1</span><span> 0.013</span><span style='text-decoration: underline;'>5</span><span>  0.389 0.454
-#&gt; </span><span style='color: #555555;'> 4</span><span> BLUP_g_RCBD 0.418 0.020</span><span style='text-decoration: underline;'>4</span><span> 0.009</span><span style='text-decoration: underline;'>11</span><span> 0.398 0.442
-#&gt; </span><span style='color: #555555;'> 5</span><span> AMMI4       0.423 0.022</span><span style='text-decoration: underline;'>9</span><span> 0.010</span><span style='text-decoration: underline;'>3</span><span>  0.400 0.450
-#&gt; </span><span style='color: #555555;'> 6</span><span> AMMI1       0.427 0.016</span><span style='text-decoration: underline;'>8</span><span> 0.007</span><span style='text-decoration: underline;'>51</span><span> 0.413 0.452
-#&gt; </span><span style='color: #555555;'> 7</span><span> AMMIF       0.434 0.025</span><span style='text-decoration: underline;'>0</span><span> 0.011</span><span style='text-decoration: underline;'>2</span><span>  0.397 0.456
-#&gt; </span><span style='color: #555555;'> 8</span><span> AMMI6       0.435 0.019</span><span style='text-decoration: underline;'>4</span><span> 0.008</span><span style='text-decoration: underline;'>69</span><span> 0.423 0.465
-#&gt; </span><span style='color: #555555;'> 9</span><span> AMMI8       0.436 0.020</span><span style='text-decoration: underline;'>4</span><span> 0.009</span><span style='text-decoration: underline;'>10</span><span> 0.407 0.457
-#&gt; </span><span style='color: #555555;'>10</span><span> AMMI0       0.440 0.017</span><span style='text-decoration: underline;'>6</span><span> 0.007</span><span style='text-decoration: underline;'>88</span><span> 0.418 0.459
-#&gt; </span><span style='color: #555555;'>11</span><span> AMMI7       0.447 0.025</span><span style='text-decoration: underline;'>1</span><span> 0.011</span><span style='text-decoration: underline;'>2</span><span>  0.417 0.478
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "cvalidation"</div><div class='input'>
-</div></span></pre>
+<span class='co'># \donttest{</span>
+<span class='no'>validation</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cv_ammif.html'>cv_ammif</a></span>(<span class='no'>data_ge</span>,
+                       <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
+                       <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                       <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                       <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                       <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>validation</span>)</div><div class='img'><img src='plot.cvalidation-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
