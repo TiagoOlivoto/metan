@@ -30,11 +30,6 @@
 #' @return An object of class \code{gg, ggplot}.
 #' @examples
 #' library(metan)
-#' multivariate = waasb(data_ge,
-#'                      resp = c(GY, HM),
-#'                      gen = GEN,
-#'                      env = ENV,
-#'                      rep = REP)
 #'
 #' FAI = data_ge2 %>%
 #'       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%

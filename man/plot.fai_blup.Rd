@@ -42,11 +42,6 @@ proposed by Rocha et al. (2018).
 }
 \examples{
 library(metan)
-multivariate = waasb(data_ge,
-                     resp = c(GY, HM),
-                     gen = GEN,
-                     env = ENV,
-                     rep = REP)
 
 FAI = data_ge2 \%>\%
       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%

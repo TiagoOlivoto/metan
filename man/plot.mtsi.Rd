@@ -40,20 +40,10 @@ et al. (2019)
 }
 \examples{
 library(metan)
-mtsi_model <- waasb(data_ge,
-                   env = ENV,
-                   gen = GEN,
-                   rep = REP,
-                   resp = c(GY, HM))
-
+mtsi_model <- waasb(data_ge, ENV, GEN, REP, resp = c(GY, HM))
 mtsi_index <- mtsi(mtsi_model)
 plot(mtsi_index)
 
-# Alternatively using the pipe operator \%>\%
-mtsi_index2 <- data_ge \%>\%
-               waasb(ENV, GEN, REP, c(GY, HM)) \%>\%
-               mtsi()
-plot(mtsi_index2)
 
 
 }
