@@ -205,7 +205,7 @@ find_outliers <- function(.data =  NULL,
       if (verbose == TRUE) {
         warning("The factors ", paste0(collapse = " ",
                                        names(.data[, unlist(lapply(.data, is.factor))])),
-                " were ignored. Use 'split_factors()' before if you want to perform an analysis for each level of a factor.' ", call. = FALSE)
+                " were ignored. Use 'split_factors()' to perform an analysis for each level of a factor.", call. = FALSE)
       }
     }
     if (is.null(values) == FALSE) {
