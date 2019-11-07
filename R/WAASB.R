@@ -101,16 +101,14 @@
 #' @examples
 #' library(metan)
 #'
-#' # Genotypes as random effects and equal weights for both
-#'
-#' # response variable and stability
+#' # Genotypes as random effects
+#' # Equal weights for response variable and stability
 #'
 #' model <- waasb(data_ge,
 #'                env = ENV,
 #'                gen = GEN,
 #'                rep = REP,
-#'                resp = GY,
-#'                wresp = 70)
+#'                resp = GY)
 #'
 #' # Higher weight for response variable
 #'
@@ -121,10 +119,11 @@
 #'                resp = GY,
 #'                wresp = 65)
 #'
-#' # Environment as random effects analyzing more than one variables
-#' # considering that smaller values of HM are better and higher
-#' # values of GY are better, assigning a larger weight for the GY
-#' # and a smaller weight for HM when computing WAASBY index.
+#' # Environment as random effects analyzing more than one variable
+#' # Smaller values of HM are better and higher
+#' # Higher values of GY are better
+#' # Larger weight for the GY (60%)
+#' # Smaller weight for HM (40%)
 #'
 #' model3 <- waasb(data_ge,
 #'                 env = ENV,
