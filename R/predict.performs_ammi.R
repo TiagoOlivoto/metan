@@ -13,7 +13,7 @@
 #' cell mean, i.e. the mean of R-replicates of the i-th genotype in the j-th
 #' environment. The number of axis to be used must be carefully chosen.
 #' Procedures based on Postdictive success (such as Gollobs's d.f.) or
-#' Predictive sucess (such as cross-validation) should be used to do this. This
+#' Predictive success (such as cross-validation) should be used to do this. This
 #' package provide both. \code{\link{performs_ammi}} function compute
 #' traditional AMMI analysis showing the number of significant axis. On the
 #' other hand, \code{\link{cv_ammif}} function provide a cross-validation,

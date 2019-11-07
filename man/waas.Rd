@@ -91,8 +91,8 @@ in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the \emph{k}
 IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant
 PCAs, or a declared number of PCAs. For example if \code{prob = 0.05}, all
 axis that are significant considering this probability level are used. The
-number of axis can be also informed by declaring \code{naxis = x}. This
-comand ignores the \code{prob} argument.
+number of axis can be also informed by declaring \code{naxis = x}. This will
+override the number of significant axes according to the argument code{prob}.
 }
 \examples{
 

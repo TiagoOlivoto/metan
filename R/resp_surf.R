@@ -1,7 +1,7 @@
 #' Response surface model
 #'
 #' Compute a surface model and find the best combination of factor1 and factor2
-#' to obtain the stacionary point.
+#' to obtain the stationary point.
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments,
@@ -144,7 +144,7 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
       cat(paste0("Stacionary point is minimum!"))
     } else if (AV1 < 0 && AV2 < 0) {
       cat(paste0("Stacionary point is maximum!"))
-    } else cat(paste0("The stacionary point is outside the intervals of the trataments"))
+    } else cat(paste0("The stationary point is outside the intervals of the trataments"))
     cat("\n")
     cat("-----------------------------------------------------------------\n")
     cat("Stacionary point obtained with the following original units:",

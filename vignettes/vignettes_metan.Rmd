@@ -94,7 +94,7 @@ The implementation of linear-mixed effect models to predict the response variabl
 model2 <- waasb(data_ge, ENV, GEN, REP, GY)
 ```
 
-The mixed-effect model fitted in `model2` has many outputs. For example, we can easely obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
+The mixed-effect model fitted in `model2` has many outputs. For example, we can easily obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
 
 ## Residual plots
 Several residual plots may be obtained applying the S3 generic function `plot()` to an object of class `waasb` (or `waas`). 

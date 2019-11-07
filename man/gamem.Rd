@@ -47,7 +47,7 @@ element (variable):
 \item \strong{ESTIMATES:} A tibble with the values for the genotypic variance, block-within-replicate
 variance (if an alpha-lattice design is used by informing the block in \code{block}), the residual
 variance and their respective contribution to the phenotypic variance; broad-sence heritability,
-heritability on the entry-mean basis, genotypic coeffient of variation residual coefficient of variation
+heritability on the entry-mean basis, genotypic coefficient of variation residual coefficient of variation
 and ratio between genotypic and residual coefficient of variation.
 \item \strong{residuals:} The residuals of the model.
 }

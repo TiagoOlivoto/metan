@@ -34,7 +34,7 @@
 #'   means. For example, if \code{means_by = GEN}, then the means of the
 #'   numerical variables will be computed for each level of the grouping
 #'   variable \code{GEN}.
-#' @param scale Should the data be scaled befor computing the distances? Set to
+#' @param scale Should the data be scaled before computing the distances? Set to
 #'   FALSE. If TRUE, then, each observation will be divided by the standard
 #'   deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}
 #' @param selvar Logical argument, set to \code{FALSE}. If \code{TRUE}, then an
@@ -51,7 +51,7 @@
 #'   \code{'ward.D'}, \code{'ward.D2'}, \code{'single'}, \code{'complete'},
 #'   \code{'average'} (= UPGMA), \code{'mcquitty'} (= WPGMA), \code{'median'} (=
 #'   WPGMC) or \code{'centroid'} (= UPGMC).
-#' @param nclust The number of clust to be formed. Set to \code{NULL}
+#' @param nclust The number of clusters to be formed. Set to \code{NULL}
 #' @return
 #'
 #' * \strong{data} The data that was used to compute the distances.

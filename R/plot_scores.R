@@ -40,7 +40,7 @@
 #'   inserted as \code{x.lim = c(x.min, x.max)} or \code{y.lim = c(y.min,
 #'   y.max)}.
 #' @param x.breaks,y.breaks The breaks to be plotted in the x and y axes,
-#'   respectively. Defaults to \code{waiver()} (authomatic breaks). New values
+#'   respectively. Defaults to \code{waiver()} (automatic breaks). New values
 #'   can be inserted, for example, as \code{x.breaks = c(0.1, 0.2, 0.3)} or
 #'   \code{x.breaks = seq(0, 1, by = 0.2)}
 #' @param x.lab,y.lab The label of x and y axes, respectively. Defaults to
@@ -67,7 +67,7 @@
 #'   Default is \code{'gray'}
 #' @param col.gen,col.env The shape color for genotypes (Defaults to
 #'   \code{'orange'}) and environments (\code{'forestgreen'}). Must be length
-#'   one or a vector of colours with the same length of the number of
+#'   one or a vector of colors with the same length of the number of
 #'   genotypes/environments.
 #' @param col.alpha.gen,col.alpha.env The alpha value for the color for
 #'   genotypes and environments, respectively. Default is \code{0.9}. Values

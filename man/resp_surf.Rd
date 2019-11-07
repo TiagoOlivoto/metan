@@ -28,7 +28,7 @@ console.}
 }
 \description{
 Compute a surface model and find the best combination of factor1 and factor2
-to obtain the stacionary point.
+to obtain the stationary point.
 }
 \examples{
 library(metan)

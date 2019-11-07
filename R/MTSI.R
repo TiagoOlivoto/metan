@@ -1,10 +1,10 @@
 #' Multi-trait stability index
 #'
-#' Computes the multitrait stability index proposed by Olivoto et al. (2019)
+#' Computes the multi-trait stability index proposed by Olivoto et al. (2019)
 #'
 #'
 #' @param .data An object of class \code{waasb} or \code{waas}.
-#' @param index If \code{index = 'waasb'} (Default) the multitrait index will
+#' @param index If \code{index = 'waasb'} (Default) the multi-trait index will
 #' be computed considering the stability of genotypes only. If \code{index =
 #' 'waasby'} both stability and mean performance are considered. More details
 #' can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.
@@ -66,7 +66,7 @@ mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1,
     stop("The argument 'index' must be of of the 'waasb' or 'waasby'.")
   }
   if (length(.data) == 1) {
-    stop("The multitrait stability index cannot be computed with one single variable.")
+    stop("The multi-trait stability index cannot be computed with one single variable.")
   }
   if (index == "waasby") {
     ideotype.D <- rep(100, length(.data))

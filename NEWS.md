@@ -5,7 +5,7 @@
 * New function `Shukla()` for stability analysis;
 * New function `to_factor()` to quickly convert variables to factors;
 * Improve usability of `get_model_data()` function;
-* Update function's doccumentation;
+* Update function's documentation;
 * Update vignettes;
 
 # metan 1.0.0
@@ -88,7 +88,7 @@ This is the first version that will be submitted to CRAN. In this version, depre
    * `can_corr()`computes canonical correlation coefficients.
    * `resp_surf()` computes response surface model using two quantitative factors.
    * `make_mat()` is used to create a two-way table using two columns (factors) and one response variable. 
-   * `make_sym()` is used to create a symetric matrix using a upper- or lower-diagonal matrix. 
+   * `make_sym()` is used to create a symmetric matrix using a upper- or lower-diagonal matrix. 
    
 * Minor improvements
    * New evaluation for text vectors are now used in the functions `AMMI_indexes()` and `fai_blup()` and `desc_stat()`. For example, to indicate the statistics to be computed in `desc_stat()` you must use now ` stats = c("mean, SE.mean, CV, max, min"))` instead  `stats = c("mean", "SE.mean", "CV", "max", "min"))`

@@ -25,7 +25,7 @@ means. For example, if \code{means_by = GEN}, then the means of the
 numerical variables will be computed for each level of the grouping
 variable \code{GEN}.}
 
-\item{scale}{Should the data be scaled befor computing the distances? Set to
+\item{scale}{Should the data be scaled before computing the distances? Set to
 FALSE. If TRUE, then, each observation will be divided by the standard
 deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}}
 
@@ -47,7 +47,7 @@ correlation-based distance.}
 \code{'average'} (= UPGMA), \code{'mcquitty'} (= WPGMA), \code{'median'} (=
 WPGMC) or \code{'centroid'} (= UPGMC).}
 
-\item{nclust}{The number of clust to be formed. Set to \code{NULL}}
+\item{nclust}{The number of clusters to be formed. Set to \code{NULL}}
 }
 \value{
 \itemize{

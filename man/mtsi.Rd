@@ -9,7 +9,7 @@ mtsi(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE)
 \arguments{
 \item{.data}{An object of class \code{waasb} or \code{waas}.}
 
-\item{index}{If \code{index = 'waasb'} (Default) the multitrait index will
+\item{index}{If \code{index = 'waasb'} (Default) the multi-trait index will
 be computed considering the stability of genotypes only. If \code{index =
 'waasby'} both stability and mean performance are considered. More details
 can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.}
@@ -50,7 +50,7 @@ factor are.
 }
 }
 \description{
-Computes the multitrait stability index proposed by Olivoto et al. (2019)
+Computes the multi-trait stability index proposed by Olivoto et al. (2019)
 }
 \examples{
 

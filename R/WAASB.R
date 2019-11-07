@@ -1,7 +1,7 @@
 #' Weighted Average of Absolute Scores
 #'
 #' Compute the Weighted Average of Absolute Scores for quantifying the stability
-#' in multienvironment trials using mixed-effect models (Olivoto et al., 2019).
+#' in multi-environment trials using mixed-effect models (Olivoto et al., 2019).
 #'
 #' This function compute the weighted average of absolute scores considering all
 #' principal component axis from the Singular Value Decomposition (SVD) of the

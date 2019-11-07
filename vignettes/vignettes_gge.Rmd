@@ -104,7 +104,7 @@ The generic function `plot()` is used to generate a biplot using as input a fitt
 * `type =  5` Examine an environment.
 * `type =  6` Ranking environments.
 * `type =  7` Examine a genotype.
-* `type =  8` Ranking gentoypes.
+* `type =  8` Ranking genotypes
 * `type =  9` Compare two genotypes.
 * `type =  10` Relationship among environments.
 
@@ -237,7 +237,7 @@ plot_grid(p1, p2)
 
 ```
 
-## Biplot type 8: Ranking gentoypes.
+## Biplot type 8: Ranking genotypes.
 
 This biplot compares all genotypes with the "ideal" genotype The ideal genotype, represented by the small circle with an arrow pointing to it, is defined as having the highest yield in all environments. That is, it has the highest mean yield and is absolutely stable. The genotypes are ranked based on their distance from the ideal genotype [@Yan2007]. In our example, G3 and G8 were found to outperform the other genotypes.
 
