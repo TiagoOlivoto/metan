@@ -38,7 +38,7 @@ split_factors <- function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
     if (verbose == TRUE) {
       if (sum(lapply(gd[[1]], is.factor) == TRUE) > 0) {
         warning("The columns ", paste0(collapse = " ", names(gd[[1]][,
-                                                                     unlist(lapply(gd[[1]], is.factor))])), " where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. ")
+                                                                     unlist(lapply(gd[[1]], is.factor))])), " where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. ", call. = FALSE)
       }
     }
     gd <- lapply(gd, function(x) {

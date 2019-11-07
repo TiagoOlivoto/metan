@@ -203,9 +203,9 @@ find_outliers <- function(.data =  NULL,
   } else {
     if (sum(lapply(.data, is.factor) == TRUE) > 0) {
       if (verbose == TRUE) {
-        message("The factors ", paste0(collapse = " ",
+        warning("The factors ", paste0(collapse = " ",
                                        names(.data[, unlist(lapply(.data, is.factor))])),
-                " were ignored. Use 'split_factors()' before if you want to perform an analysis for each level of a factor.' ")
+                " were ignored. Use 'split_factors()' before if you want to perform an analysis for each level of a factor.' ", call. = FALSE)
       }
     }
     if (is.null(values) == FALSE) {
