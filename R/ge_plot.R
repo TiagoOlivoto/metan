@@ -11,12 +11,12 @@
 #'   environments
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable.
-#' @param type The type of plot \code{type = 1} for a line plot or \code{type =
-#'   2} for a heatmap.
+#' @param type The type of plot \code{type = 1} for a heatmap or \code{type =
+#'   2} for a line plot.
 #' @param theme The graphical theme of the plot. Default is \code{theme =
-#'   theme_waasb()}. Please, see \code{?WAASB::theme_waasb}. An own theme can be
-#'   applied using the arguments: \code{theme = theme(some stuff here)}. For
-#'   more details, please, see \code{?ggplot2::theme}.
+#'   theme_waasb()}. See \code{\link{theme_waasb}} for more details. An own
+#'   theme can be applied using the arguments: \code{theme = theme(some stuff
+#'   here)}. For more details, please, see \code{\link[ggplot2{theme}}.
 #' @param colour Logical argument. If \code{FALSE} then the plot will not be
 #'   colored.
 #' @return An object of class \code{gg, ggplot}.
@@ -36,28 +36,6 @@ ge_plot <- function(.data,
                     theme = theme_waasb(),
                     colour = TRUE) {
   if(type == 1){
-  p <- ggplot(.data, aes(x = {{env}}, y = {{resp}}))
-  if (colour == TRUE) {
-    p <- p +
-      stat_summary(aes(colour = {{gen}},
-                       group = {{gen}}),
-                   fun.y = mean,
-                   geom = "line")
-  } else {
-    p <- p +
-      stat_summary(aes(group = {{gen}}),
-                   fun.y = mean,
-                   geom = "line",
-                   colour = "black")
-  }
-  p <- p + geom_point(stat = "summary",
-                      fun.y = mean,
-                      size = 3,
-                      shape = 18) +
-    theme %+replace%
-    theme(legend.position = "right")
-  }
-  if(type == 2){
     p <-
       ggplot(.data, aes({{env}}, {{gen}}, fill= {{resp}})) +
       geom_tile()+
@@ -79,5 +57,28 @@ ge_plot <- function(.data,
             legend.title = element_text())
 
   }
+  if(type == 2){
+  p <- ggplot(.data, aes(x = {{env}}, y = {{resp}}))
+  if (colour == TRUE) {
+    p <- p +
+      stat_summary(aes(colour = {{gen}},
+                       group = {{gen}}),
+                   fun.y = mean,
+                   geom = "line")
+  } else {
+    p <- p +
+      stat_summary(aes(group = {{gen}}),
+                   fun.y = mean,
+                   geom = "line",
+                   colour = "black")
+  }
+  p <- p + geom_point(stat = "summary",
+                      fun.y = mean,
+                      size = 3,
+                      shape = 18) +
+    theme %+replace%
+    theme(legend.position = "right")
+  }
+
   return(p)
 }
