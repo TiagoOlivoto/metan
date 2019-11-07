@@ -22,7 +22,7 @@ plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
 \item{x}{An object fitted with the functions \code{\link{performs_ammi}},
 \code{\link{waas}} or \code{\link{waasb}}.}
 
-\item{type}{type of biplot to produce \enumerate{
+\item{type}{type of biplot to produce
 \itemize{
 \item \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences
 related to stability and productivity.
@@ -31,7 +31,6 @@ inferences related to the interaction effects.
 \item \code{type = 3} Valid for objects of class \code{waas} or \code{waasb},
 produces a biplot showing the GY x WAASB.
 \item \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
-}
 }}
 
 \item{polygon}{Logical argument. If \code{TRUE}, a polygon is drawn when

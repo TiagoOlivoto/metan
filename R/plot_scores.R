@@ -16,7 +16,7 @@
 #'
 #' @param x An object fitted with the functions \code{\link{performs_ammi}},
 #'   \code{\link{waas}} or \code{\link{waasb}}.
-#' @param type type of biplot to produce \enumerate{
+#' @param type type of biplot to produce
 #' * \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences
 #' related to stability and productivity.
 #' * \code{type = 2} The default, produces an AMMI2 biplot (PC1 x PC2) to make
@@ -24,7 +24,7 @@
 #' * \code{type = 3} Valid for objects of class \code{waas} or \code{waasb},
 #' produces a biplot showing the GY x WAASB.
 #' * \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
-#' }
+#'
 #' @param polygon Logical argument. If \code{TRUE}, a polygon is drawn when
 #'   \code{type = 2}.
 #' @param title Logical values (Defaults to \code{TRUE}) to include
