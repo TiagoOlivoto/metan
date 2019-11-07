@@ -14,6 +14,7 @@
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
 #' @importFrom methods as
+#' @importFrom dplyr group_vars
 #' @return An object of class \code{split_factors}.
 #' @export
 #' @examples
@@ -28,14 +29,13 @@
 as.split_factors <- function(x, verbose = TRUE) {
   grouped <- group_by_if(x, is.factor)
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " / ")))
-  dots <- match.call(expand.dots = FALSE)$...
-  dots <- dots[sapply(dots, is.name)]
-  gd <- grouped %>% group_split(keep = FALSE) %>% set_names(names)
+  gd <- grouped %>%
+    group_split(keep = FALSE) %>%
+    set_names(names)
   if (verbose == TRUE) {
-    message("The data was splitted up considering the factors ",
-            paste0(collapse = " ", names(x[, unlist(lapply(x,
-                                                           is.factor))])), ".")
+    message("Columns ", paste0(collapse = " ", names(x[, unlist(lapply(x, is.factor))])),
+            " used to split the data.")
   }
-  return(structure(list(dfs = gd, names = sapply(dots, deparse)),
+  return(structure(list(dfs = gd,  names = group_vars(grouped)),
                    class = "split_factors"))
 }

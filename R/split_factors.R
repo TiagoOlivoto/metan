@@ -30,15 +30,14 @@
 #'
 split_factors <- function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
   grouped <- group_by(.data, ...)
-  dots <- match.call(expand.dots = FALSE)$...
-  dots <- dots[sapply(dots, is.name)]
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " | ")))
-  gd <- grouped %>% group_split(keep = TRUE) %>% set_names(names)
+  gd <- grouped %>%
+    group_split(keep = TRUE) %>%
+    set_names(names)
   if (keep_factors == FALSE) {
     if (verbose == TRUE) {
       if (sum(lapply(gd[[1]], is.factor) == TRUE) > 0) {
-        warning("The columns ", paste0(collapse = " ", names(gd[[1]][,
-                                                                     unlist(lapply(gd[[1]], is.factor))])), " where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. ", call. = FALSE)
+        warning("Use 'keep_factors = TRUE' to keep the columns ", paste0(collapse = " ", names(gd[[1]][, unlist(lapply(gd[[1]], is.factor))])), " in the grouped data. ", call. = FALSE)
       }
     }
     gd <- lapply(gd, function(x) {
@@ -49,6 +48,6 @@ split_factors <- function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
       as_tibble(x)
     })
   }
-  return(structure(list(dfs = gd, names = sapply(dots, deparse)),
+  return(structure(list(dfs = gd, names = group_vars(grouped)),
                    class = "split_factors"))
 }
