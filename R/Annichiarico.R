@@ -3,7 +3,6 @@
 #' Stability analysis using the known genotypic confidence index (Annicchiarico,
 #' 1992).
 #'
-#'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s)
 #' @param env The name of the column that contains the levels of the
@@ -52,8 +51,7 @@ Annicchiarico <- function(.data, env, gen, rep, resp, prob = 0.05,
   REP <- factor(eval(substitute(rep), eval(datain)))
   listres <- list()
   d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
-                              1, length(d$resp)))
+  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
   for (var in 2:length(d$resp)) {
     if (length(d$resp) > 1) {
       Y <- eval(substitute(resp)[[var]], eval(datain))
@@ -76,8 +74,7 @@ Annicchiarico <- function(.data, env, gen, rep, resp, prob = 0.05,
     Wi_g <- rowMeans(rp_g) - qnorm(1 - prob) * apply(rp_g,
                                                      1, sd)
     general <- tibble(Genotype = rownames(mat_g), Mean = rowMeans(mat_g),
-                      Mean_rp = rowMeans(rp_g), Sd_rp = apply(rp_g, 1,
-                                                              sd), Wi = Wi_g, rank = rank(-Wi_g))
+                      Mean_rp = rowMeans(rp_g), Sd_rp = apply(rp_g, 1, sd), Wi = Wi_g, rank = rank(-Wi_g))
     ge_mf <- subset(data, class == "favorable")
     mat_f <- dplyr::select_if(make_mat(ge_mf, row = GEN,
                                        col = ENV, value = mean), function(x) !any(is.na(x)))

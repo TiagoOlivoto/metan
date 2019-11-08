@@ -96,8 +96,7 @@ anova_ind <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       listres[[paste(d$resp[var])]] <- temp
       if (verbose == TRUE) {
         cat("Evaluating variable", paste(d$resp[var]),
-            round((var - 1)/(length(d$resp) - 1) * 100,
-                  1), "%", "\n")
+            round((var - 1)/(length(d$resp) - 1) * 100, 1), "%", "\n")
       }
     } else {
       listres[[paste(d$resp)]] <- temp
