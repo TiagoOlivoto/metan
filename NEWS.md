@@ -1,3 +1,10 @@
+# metan 1.0.2
+* New function `arrange_ggplot()` for arranging ggplot2 graphics;
+* New function `ge_effects()` for computing genotype-environment effects;
+* Improve usability of `get_model_data()` by supporting new classes of models;
+* Update function's documentation;
+* Update vignettes;
+
 # metan 1.0.1
 * New function `gamem()` for analyzing genotypes in one-way trials using mixed-effect models;
 * New function `desc_wider()` to convert an output of the function `desc_stat()` to a 'wide' format;
