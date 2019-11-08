@@ -60,6 +60,11 @@ interaction
 \item \code{"R2"} The r-square of the regression
 }
 
+\strong{Object is of class \code{ge_effects}.}
+\itemize{
+\item For objects of class \code{ge_effects} no argument \code{what} is required
+}
+
 \strong{Object is of class \code{Fox}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
@@ -135,6 +140,12 @@ objects of class \code{waasb}).
 \examples{
 
 library(metan)
+#################### joint-regression analysis #####################
+ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
+               resp = c(PH, EH, CD, CL, ED))
+get_model_data(ge_r, "slope")
+get_model_data(ge_r, "deviations")
+
 #################### AMMI model #####################
 # Fit an AMMI model for 7 variables.
 AMMI <- data_ge2 \%>\%

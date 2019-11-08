@@ -140,6 +140,7 @@ reference:
       - ge_stats
       - Fox
       - plot.ge_cluster
+      - plot.ge_effects
       - plot.ge_factanal
       - plot.ge_reg
       - print.Annicchiarico
