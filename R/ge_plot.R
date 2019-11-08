@@ -11,12 +11,12 @@
 #'   environments
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable.
-#' @param type The type of plot \code{type = 1} for a heatmap or \code{type =
-#'   2} for a line plot.
+#' @param type The type of plot \code{type = 1} for a heatmap or \code{type = 2}
+#'   for a line plot.
 #' @param theme The graphical theme of the plot. Default is \code{theme =
 #'   theme_waasb()}. See \code{\link{theme_waasb}} for more details. An own
 #'   theme can be applied using the arguments: \code{theme = theme(some stuff
-#'   here)}. For more details, please, see \code{\link[ggplot2{theme}}.
+#'   here)}. For more details, please, see \code{\link[ggplot2]{theme}}.
 #' @param colour Logical argument. If \code{FALSE} then the plot will not be
 #'   colored.
 #' @return An object of class \code{gg, ggplot}.

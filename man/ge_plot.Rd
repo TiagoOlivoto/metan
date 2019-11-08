@@ -18,13 +18,13 @@ environments}
 
 \item{resp}{The response variable.}
 
-\item{type}{The type of plot \code{type = 1} for a heatmap or \code{type =
-2} for a line plot.}
+\item{type}{The type of plot \code{type = 1} for a heatmap or \code{type = 2}
+for a line plot.}
 
 \item{theme}{The graphical theme of the plot. Default is \code{theme =
 theme_waasb()}. See \code{\link{theme_waasb}} for more details. An own
 theme can be applied using the arguments: \code{theme = theme(some stuff
-here)}. For more details, please, see \code{\link[ggplot2{theme}}.}
+here)}. For more details, please, see \code{\link[ggplot2]{theme}}.}
 
 \item{colour}{Logical argument. If \code{FALSE} then the plot will not be
 colored.}
