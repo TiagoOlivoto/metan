@@ -115,16 +115,9 @@ ge_stats = function(.data,
     data <- data.frame(ENV, GEN, REP, Y)
     names(data) = c("ENV", "GEN", "REP", "mean")
 individual <- data %>% anova_ind(ENV, GEN, REP, mean)
-data2 =  data  %>%
-  dplyr::group_by(ENV, GEN) %>%
-  dplyr::summarise(mean = mean(mean)) %>%
-  as.data.frame()
-data3 = mutate(data2,
-               ge = residuals(lm(mean ~ ENV + GEN, data = data2)),
-               gge = residuals(lm(mean ~ ENV, data = data2)))
-ge_mean = make_mat(data3, GEN, ENV, mean)
-ge_effect = make_mat(data3, GEN, ENV, ge)
-gge_effect = make_mat(data3, GEN, ENV, gge)
+ge_mean = make_mat(data, GEN, ENV, mean)
+ge_effect = ge_effects(data, ENV, GEN, REP, mean)[[1]]
+gge_effect = ge_effects(data, ENV, GEN, REP, mean, type = "gge")[[1]]
 Mean = apply(ge_mean, 1, mean)
 Variance = rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
 GENSS = (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/length(unique(ENV)))*length(unique(REP))
@@ -158,8 +151,8 @@ ge_stat = data.frame(Mean = Mean,
 
 temp = list(individual = individual[[1]][[1]],
             ge_mean = as_tibble(ge_mean, rownames = NA),
-            ge_effect = as_tibble(ge_effect, rownames = NA),
-            gge_effect = as_tibble(gge_effect, rownames = NA),
+            ge_effect = ge_effect,
+            gge_effect = gge_effect,
             ge_stats = as_tibble(ge_stat, rownames = NA),
             ER = ER,
             ANN = ANN,

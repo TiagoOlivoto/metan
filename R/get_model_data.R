@@ -43,6 +43,8 @@
 #' * \code{"RMSE"} The Root Mean Square Error
 #' * \code{"R2"} The r-square of the regression
 #'
+#'  \strong{Object is of class \code{ge_effects}.}
+#' * For objects of class \code{ge_effects} no argument \code{what} is required
 #'
 #'  \strong{Object is of class \code{Fox}.}
 #' * \code{"Y"} for raw means (Default).
@@ -127,6 +129,12 @@
 #' @examples
 #'
 #' library(metan)
+#' #################### joint-regression analysis #####################
+#' ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
+#'                resp = c(PH, EH, CD, CL, ED))
+#' get_model_data(ge_r, "slope")
+#' get_model_data(ge_r, "deviations")
+#'
 #' #################### AMMI model #####################
 #' # Fit an AMMI model for 7 variables.
 #' AMMI <- data_ge2 %>%
@@ -188,7 +196,8 @@
 #'
 get_model_data <- function(x, what = "Y", type = "GEN") {
   if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",
-                       "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla", "superiority")) {
+                       "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
+                       "superiority", "ge_effects")) {
     stop("Invalid class in object 'x'. See ?get_model_data for more information.")
   }
   if (substr(what, 1, 2) == "PC") {
@@ -227,6 +236,18 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
 
+  if (class(x) == "ge_effects") {
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        make_long(x)[[3]]
+      })) %>%
+      as_tibble()
+    factors <- x[[1]] %>%
+      make_long() %>%
+      select(1:2)
+    bind <- cbind(factors, bind)
+  }
   if (class(x) == "superiority") {
     if (!what %in% c("Y", check12)) {
       stop("Invalid value in 'what' for object of class 'superiority'. Allowed are ", paste(check12, collapse = " "))

@@ -133,6 +133,7 @@ reference:
       - anova_joint
       - ecovalence
       - ge_cluster
+      - ge_effects
       - ge_factanal
       - ge_plot
       - ge_reg
