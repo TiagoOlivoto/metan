@@ -85,7 +85,9 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
     )
     names <- colnames(x)
     combnam <- combn(names, 2, paste, collapse = " x ")
-    rownames(results) <- names(sapply(combnam, names))
+    results <- mutate(results,
+                      Pairs = names(sapply(combnam, names))) %>%
+      select(Pairs, everything())
     if (verbose == TRUE) {
       print.data.frame(results)
     }
@@ -114,7 +116,7 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
     })
     names(out) <- names(dfs)
     summ = do.call(rbind, lapply(out, function(x){
-      x$results %>% rownames_to_column("Pairs")
+      x$results
     })) %>%
       rownames_to_column("LEVEL") %>%
       mutate(LEVEL = paste(rep(names(out), nrow(out[[1]][[3]])))) %>%
