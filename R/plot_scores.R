@@ -186,10 +186,10 @@ plot_scores <- function(x,
                         ...) {
 
   if (polygon == TRUE & type != 2) {
-    stop("The polygon can be drawn with type 1 graphic only.")
+    stop("The polygon can be drawn with type 2 graphic only.", call. = FALSE)
   }
   if (class(x) == "performs_ammi" & type == 3) {
-    stop("Biplot type invalid. Type 3 biplot can only be made with objects of class 'waas' or 'waasb'.")
+    stop("Biplot type invalid. Type 3 biplot can only be made with objects of class 'waas' or 'waasb'.", call. = FALSE)
   }
 
   size.tex.leg <- size.tex.pa/0.2917
