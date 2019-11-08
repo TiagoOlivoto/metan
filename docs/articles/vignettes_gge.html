@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using GGE</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-05</h4>
+            <h4 class="date">2019-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_gge.Rmd"><code>vignettes/vignettes_gge.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_gge.Rmd</code></div>
@@ -162,8 +162,7 @@
 <p>Genotype plus Genotype-vs-Environment interaction (GGE) model has been widely used to genotype evaluation and mega-environment identification in multi-environment trials (MET). This model considers a GGE (i.e., G + GE) biplot, which is constructed by the first two symmetrically scaled principal components (PC1 and PC2) derived from singular value decomposition of environment-centered MET data. The GGE biplot graphically displays G plus GE of a MET in a way that facilitates visual genotype evaluation and mega-environment identification <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span></p>
 <p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a></code></pre></div>
 </div>
 <div id="the-gge-model" class="section level1">
 <h1 class="hasAnchor">
@@ -263,7 +262,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <li>
 <code>type =  7</code> Examine a genotype.</li>
 <li>
-<code>type =  8</code> Ranking gentoypes.</li>
+<code>type =  8</code> Ranking genotypes</li>
 <li>
 <code>type =  9</code> Compare two genotypes.</li>
 <li>
@@ -279,7 +278,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb7-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
 <a class="sourceLine" id="cb7-3" title="3">          <span class="dt">col.gen =</span> <span class="st">"blue"</span>,</a>
 <a class="sourceLine" id="cb7-4" title="4">          <span class="dt">size.text.env =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb7-5" title="5"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-mean-performance-vs--stability-" class="section level2">
@@ -294,7 +293,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb8-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb8-6" title="6">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
 <a class="sourceLine" id="cb8-7" title="7">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb8-8" title="8"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-3-which-won-where-" class="section level2">
@@ -312,7 +311,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb9-8" title="8">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
 <a class="sourceLine" id="cb9-9" title="9">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb9-10" title="10">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb9-11" title="11"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb9-11" title="11"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-4-discriminativeness-vs--representativeness-" class="section level2">
@@ -323,7 +322,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb10-3" title="3">          <span class="dt">type =</span> <span class="dv">4</span>,</a>
 <a class="sourceLine" id="cb10-4" title="4">          <span class="dt">plot_theme =</span> <span class="kw">theme_gray</span>())<span class="op">+</span></a>
 <a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"bottom"</span>)</a>
-<a class="sourceLine" id="cb10-6" title="6"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb10-6" title="6"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-5-examine-an-environment-" class="section level2">
@@ -339,7 +338,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb11-7" title="7">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb11-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb11-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb11-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb11-10" title="10"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-6-ranking-environments-" class="section level2">
@@ -354,7 +353,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb12-6" title="6">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb12-7" title="7">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb12-8" title="8">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb12-9" title="9"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-7-examine-a-genotype" class="section level2">
@@ -370,12 +369,12 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb13-7" title="7">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb13-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb13-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb13-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb13-10" title="10"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
-<div id="biplot-type-8-ranking-gentoypes-" class="section level2">
+<div id="biplot-type-8-ranking-genotypes-" class="section level2">
 <h2 class="hasAnchor">
-<a href="#biplot-type-8-ranking-gentoypes-" class="anchor"></a>Biplot type 8: Ranking gentoypes.</h2>
+<a href="#biplot-type-8-ranking-genotypes-" class="anchor"></a>Biplot type 8: Ranking genotypes.</h2>
 <p>This biplot compares all genotypes with the “ideal” genotype The ideal genotype, represented by the small circle with an arrow pointing to it, is defined as having the highest yield in all environments. That is, it has the highest mean yield and is absolutely stable. The genotypes are ranked based on their distance from the ideal genotype <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. In our example, G3 and G8 were found to outperform the other genotypes.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
 <a class="sourceLine" id="cb14-2" title="2">p1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">8</span>)</a>
@@ -384,7 +383,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb14-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb14-6" title="6">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
 <a class="sourceLine" id="cb14-7" title="7">          <span class="dt">size.text.gen =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb14-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb14-8" title="8"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-9-compare-two-genotypes-" class="section level2">
@@ -400,7 +399,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb15-7" title="7">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb15-8" title="8">          <span class="dt">title =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb15-9" title="9">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb15-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb15-10" title="10"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-10-relationship-among-environments-" class="section level2">
@@ -413,7 +412,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a class="sourceLine" id="cb16-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb16-6" title="6">          <span class="dt">title =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb16-7" title="7">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb16-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb16-8" title="8"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -453,7 +452,7 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
       <li><a href="#biplot-type-5-examine-an-environment-">Biplot type 5: Examine an environment.</a></li>
       <li><a href="#biplot-type-6-ranking-environments-">Biplot type 6: Ranking environments.</a></li>
       <li><a href="#biplot-type-7-examine-a-genotype">Biplot type 7: Examine a genotype</a></li>
-      <li><a href="#biplot-type-8-ranking-gentoypes-">Biplot type 8: Ranking gentoypes.</a></li>
+      <li><a href="#biplot-type-8-ranking-genotypes-">Biplot type 8: Ranking genotypes.</a></li>
       <li><a href="#biplot-type-9-compare-two-genotypes-">Biplot type 9: Compare two genotypes.</a></li>
       <li><a href="#biplot-type-10-relationship-among-environments-">Biplot type 10: Relationship among environments.</a></li>
       </ul>

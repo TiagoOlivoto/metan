@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-05</h4>
+            <h4 class="date">2019-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -161,16 +161,15 @@
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2) <span class="co"># used to set plot themes</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
-<a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2) <span class="co"># used to set plot themes</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-8" title="8">}</a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a></code></pre></div>
 <pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -181,7 +180,7 @@
 <div id="individual-and-joint-anova" class="section level1">
 <h1 class="hasAnchor">
 <a href="#individual-and-joint-anova" class="anchor"></a>Individual and joint ANOVA</h1>
-<p>It is suggested to check if genotype-vs-environment interaction is significant before procceding with the AMMI analysis. A within-environment ANOVA considering a fixed-effect model is computed with the function <code><a href="../reference/anova_ind.html">anova_ind()</a></code>. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namelly, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
+<p>It is suggested to check if genotype-vs-environment interaction is significant before proceeding with the AMMI analysis. A within-environment ANOVA considering a fixed-effect model is computed with the function <code><a href="../reference/anova_ind.html">anova_ind()</a></code>. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namely, coefficient of variation, <span class="math inline">\(CV = (\sqrt{MS_{res}}/Mean) \times 100\)</span>; the heritability, <span class="math inline">\(h2 = (MS_{gen} - MS_{res})/MS_{gen}\)</span>, and the accuracy of selection, <span class="math inline">\(As = \sqrt{h2}\)</span>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">indiv =<span class="st"> </span><span class="kw"><a href="../reference/anova_ind.html">anova_ind</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw">print_table</span>(indiv<span class="op">$</span>GY<span class="op">$</span>individual)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -947,7 +946,7 @@ NA
 </tr>
 </tbody>
 </table>
-<p>The genotype-vs-environment interaction was highly significant. So we’ll proced with the AMMI analysis.</p>
+<p>The genotype-vs-environment interaction was highly significant. So we’ll proceed with the AMMI analysis.</p>
 <div id="the-ammi-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-ammi-model" class="anchor"></a>The AMMI model</h2>

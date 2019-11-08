@@ -25,7 +25,6 @@ In this section, we will use the data in `data_ge`. For more information, please
 
 ```{r warning = FALSE, message = FALSE}
 library(metan)
-library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
 library(ggplot2) # used to set plot themes
 # Function to make HTML tables

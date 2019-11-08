@@ -41,7 +41,6 @@ more details see `?data_ge`
 ``` r
 library(metan)
 library(ggplot2) # used to create the plots
-library(cowplot) # used to arrange the plots
 library(kableExtra) # Used to produce HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
@@ -480,11 +479,11 @@ p1 = plot_scores(model$GY, axis.expand = 1.5)
 p2 = plot_scores(model$GY,
                  type = 1,
                  polygon = TRUE,
-                 col.gen = "black",
+                 # col.gen = "black",
                  col.env = "gray70",
                  col.segm.env = "gray70",
                  axis.expand = 1.5)
-plot_grid(p1, p2, labels = c("p1","p2"))
+arrange_ggplot(p1, p2, labels = c("p1","p2"))
 ```
 
 <img src="man/figures/AMMI.png"/>
@@ -504,7 +503,7 @@ p2 <- plot(model2,
            col.gen = "black",
            col.env = "gray70",
            axis.expand = 1.5)
-plot_grid(p1, p2, labels = c("p1","p2"))
+arrange_ggplot(p1, p2, labels = c("p1","p2"))
 ```
 
 <img src="man/figures/GGE.png"/>
@@ -790,7 +789,7 @@ p1 = plot_blup(model2$GY)
 p2 = plot_blup(model2$GY,
                prob = 0.1,
                col.shape  =  c("gray20", "gray80")) + coord_flip()
-plot_grid(p1, p2, labels = c("p1", "p2"))
+arrange_ggplot(p1, p2, labels = c("p1","p2"))
 ```
 
 <img src="man/figures/BLUP.png" height=340/>

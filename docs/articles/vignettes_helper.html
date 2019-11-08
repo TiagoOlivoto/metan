@@ -147,7 +147,7 @@
       <h1>Helper functions for metan</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-05</h4>
+            <h4 class="date">2019-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_helper.Rmd"><code>vignettes/vignettes_helper.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_helper.Rmd</code></div>
@@ -160,24 +160,23 @@
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
-<a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
-<a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-10" title="10">}</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
 </div>
 <div id="bind-cross-validation-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bind-cross-validation-objects" class="anchor"></a>Bind cross-validation objects</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>, <span class="dt">nboot =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>, <span class="dt">nboot =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>, <span class="dt">nboot =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb2-5" title="5">BLUP =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">100</span>)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb2-5" title="5">BLUP =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb2-6" title="6">bind1 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
 <a class="sourceLine" id="cb2-7" title="7">bind2 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9, <span class="dt">bind =</span> <span class="st">"means"</span>)</a></code></pre></div>
 </div>
@@ -187,16 +186,20 @@
 <div id="group-data-and-exclude-all-non-numeric-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-data-and-exclude-all-non-numeric-variables" class="anchor"></a>Group data and exclude all non-numeric variables</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">g1 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="../reference/is.split_factors.html">is.split_factors</a></span>(g1)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">g1 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a></code></pre></div>
+<pre><code>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the
+grouped data.</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/is.split_factors.html">is.split_factors</a></span>(g1)</a></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 </div>
 <div id="group-data-and-keep-all-original-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-data-and-keep-all-original-variables" class="anchor"></a>Group data and keep all original variables</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">g2 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV, GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">print_table</span>(g2[[<span class="dv">1</span>]])</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">g2 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV, GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(g2[[<span class="dv">1</span>]])</a></code></pre></div>
+<table class="table kable_wrapper table table-striped table-hover table-condensed table-responsive"><tbody><tr>
+<td>
+<table class="table">
 <thead><tr>
 <th style="text-align:left;">
 ENV
@@ -268,24 +271,10307 @@ G1
 </tr>
 </tbody>
 </table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.179
+</td>
+<td style="text-align:right;">
+47.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.267
+</td>
+<td style="text-align:right;">
+44.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.476
+</td>
+<td style="text-align:right;">
+48.80
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.208
+</td>
+<td style="text-align:right;">
+45.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.933
+</td>
+<td style="text-align:right;">
+45.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.565
+</td>
+<td style="text-align:right;">
+45.49
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.769
+</td>
+<td style="text-align:right;">
+46.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.621
+</td>
+<td style="text-align:right;">
+43.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.275
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.360
+</td>
+<td style="text-align:right;">
+47.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.024
+</td>
+<td style="text-align:right;">
+47.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.382
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.289
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.116
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.161
+</td>
+<td style="text-align:right;">
+49.65
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.522
+</td>
+<td style="text-align:right;">
+48.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.186
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.194
+</td>
+<td style="text-align:right;">
+48.40
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.592
+</td>
+<td style="text-align:right;">
+46.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.825
+</td>
+<td style="text-align:right;">
+47.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.904
+</td>
+<td style="text-align:right;">
+48.15
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.926
+</td>
+<td style="text-align:right;">
+47.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.881
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.891
+</td>
+<td style="text-align:right;">
+48.60
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.760
+</td>
+<td style="text-align:right;">
+50.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.211
+</td>
+<td style="text-align:right;">
+46.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E1
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.007
+</td>
+<td style="text-align:right;">
+46.05
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.550
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.351
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.022
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.700
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.737
+</td>
+<td style="text-align:right;">
+43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.171
+</td>
+<td style="text-align:right;">
+42
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.597
+</td>
+<td style="text-align:right;">
+46
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.148
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.146
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.557
+</td>
+<td style="text-align:right;">
+42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.400
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.053
+</td>
+<td style="text-align:right;">
+46
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.254
+</td>
+<td style="text-align:right;">
+42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.130
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.118
+</td>
+<td style="text-align:right;">
+43
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.216
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.423
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.780
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.267
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.534
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.824
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.596
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.553
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.177
+</td>
+<td style="text-align:right;">
+43
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.652
+</td>
+<td style="text-align:right;">
+42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.888
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.184
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.764
+</td>
+<td style="text-align:right;">
+41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.137
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E10
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.326
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.022
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.657
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.388
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+0.989
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.037
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+0.671
+</td>
+<td style="text-align:right;">
+56
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.897
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.129
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.446
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.857
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.655
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.191
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+0.984
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.675
+</td>
+<td style="text-align:right;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.451
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.218
+</td>
+<td style="text-align:right;">
+49.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.727
+</td>
+<td style="text-align:right;">
+53.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.032
+</td>
+<td style="text-align:right;">
+53.0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.327
+</td>
+<td style="text-align:right;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.034
+</td>
+<td style="text-align:right;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.141
+</td>
+<td style="text-align:right;">
+57
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.233
+</td>
+<td style="text-align:right;">
+54.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.858
+</td>
+<td style="text-align:right;">
+57.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.002
+</td>
+<td style="text-align:right;">
+53.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.156
+</td>
+<td style="text-align:right;">
+57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.410
+</td>
+<td style="text-align:right;">
+58
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.484
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.011
+</td>
+<td style="text-align:right;">
+53.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.437
+</td>
+<td style="text-align:right;">
+57.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E11
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+0.928
+</td>
+<td style="text-align:right;">
+53.0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.119
+</td>
+<td style="text-align:right;">
+50.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.591
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.317
+</td>
+<td style="text-align:right;">
+48.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+0.883
+</td>
+<td style="text-align:right;">
+48.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.211
+</td>
+<td style="text-align:right;">
+52.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+0.972
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.310
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.879
+</td>
+<td style="text-align:right;">
+43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.791
+</td>
+<td style="text-align:right;">
+46
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.590
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.992
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.711
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.372
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.766
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.444
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.763
+</td>
+<td style="text-align:right;">
+52.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.452
+</td>
+<td style="text-align:right;">
+48.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.852
+</td>
+<td style="text-align:right;">
+47.0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.653
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.391
+</td>
+<td style="text-align:right;">
+52.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.113
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.752
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.219
+</td>
+<td style="text-align:right;">
+52.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.884
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.910
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.321
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.769
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.171
+</td>
+<td style="text-align:right;">
+47.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.370
+</td>
+<td style="text-align:right;">
+48.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E12
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.687
+</td>
+<td style="text-align:right;">
+52.0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.762
+</td>
+<td style="text-align:right;">
+46.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.387
+</td>
+<td style="text-align:right;">
+44.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.845
+</td>
+<td style="text-align:right;">
+42.85
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.666
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.087
+</td>
+<td style="text-align:right;">
+49.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.739
+</td>
+<td style="text-align:right;">
+47.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.143
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.122
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.820
+</td>
+<td style="text-align:right;">
+42
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.135
+</td>
+<td style="text-align:right;">
+47.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.801
+</td>
+<td style="text-align:right;">
+46.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.471
+</td>
+<td style="text-align:right;">
+45.45
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.845
+</td>
+<td style="text-align:right;">
+48.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.481
+</td>
+<td style="text-align:right;">
+47.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.581
+</td>
+<td style="text-align:right;">
+44.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.666
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.853
+</td>
+<td style="text-align:right;">
+47.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.185
+</td>
+<td style="text-align:right;">
+45.45
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.643
+</td>
+<td style="text-align:right;">
+45.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.761
+</td>
+<td style="text-align:right;">
+46.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.331
+</td>
+<td style="text-align:right;">
+44.0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.597
+</td>
+<td style="text-align:right;">
+48.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.114
+</td>
+<td style="text-align:right;">
+49.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.841
+</td>
+<td style="text-align:right;">
+46.0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.848
+</td>
+<td style="text-align:right;">
+51.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.091
+</td>
+<td style="text-align:right;">
+49.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.621
+</td>
+<td style="text-align:right;">
+46.7
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.197
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.998
+</td>
+<td style="text-align:right;">
+47.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E13
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.657
+</td>
+<td style="text-align:right;">
+45.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.223
+</td>
+<td style="text-align:right;">
+42.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.767
+</td>
+<td style="text-align:right;">
+41.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.610
+</td>
+<td style="text-align:right;">
+39.05
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.611
+</td>
+<td style="text-align:right;">
+43.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.065
+</td>
+<td style="text-align:right;">
+43.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.901
+</td>
+<td style="text-align:right;">
+40.0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.452
+</td>
+<td style="text-align:right;">
+41.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.641
+</td>
+<td style="text-align:right;">
+39.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.187
+</td>
+<td style="text-align:right;">
+38.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.331
+</td>
+<td style="text-align:right;">
+40.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.094
+</td>
+<td style="text-align:right;">
+41.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.754
+</td>
+<td style="text-align:right;">
+39.05
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.128
+</td>
+<td style="text-align:right;">
+42.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.858
+</td>
+<td style="text-align:right;">
+42.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.598
+</td>
+<td style="text-align:right;">
+39.05
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.070
+</td>
+<td style="text-align:right;">
+42.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.829
+</td>
+<td style="text-align:right;">
+42.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.454
+</td>
+<td style="text-align:right;">
+39.05
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.004
+</td>
+<td style="text-align:right;">
+39.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.794
+</td>
+<td style="text-align:right;">
+40.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.599
+</td>
+<td style="text-align:right;">
+40.55
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.943
+</td>
+<td style="text-align:right;">
+45.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.572
+</td>
+<td style="text-align:right;">
+42.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.294
+</td>
+<td style="text-align:right;">
+44.35
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.768
+</td>
+<td style="text-align:right;">
+42.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.115
+</td>
+<td style="text-align:right;">
+40.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.093
+</td>
+<td style="text-align:right;">
+39.9
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.876
+</td>
+<td style="text-align:right;">
+42.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.672
+</td>
+<td style="text-align:right;">
+40.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E14
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.155
+</td>
+<td style="text-align:right;">
+40.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.041
+</td>
+<td style="text-align:right;">
+40.41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.157
+</td>
+<td style="text-align:right;">
+43.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.924
+</td>
+<td style="text-align:right;">
+44.29
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.019
+</td>
+<td style="text-align:right;">
+45.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.224
+</td>
+<td style="text-align:right;">
+46.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.194
+</td>
+<td style="text-align:right;">
+43.88
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.784
+</td>
+<td style="text-align:right;">
+41.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.677
+</td>
+<td style="text-align:right;">
+42.69
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.232
+</td>
+<td style="text-align:right;">
+46.25
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.395
+</td>
+<td style="text-align:right;">
+40.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.876
+</td>
+<td style="text-align:right;">
+41.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.554
+</td>
+<td style="text-align:right;">
+44.44
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.179
+</td>
+<td style="text-align:right;">
+41.29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.368
+</td>
+<td style="text-align:right;">
+43.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.023
+</td>
+<td style="text-align:right;">
+47.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.071
+</td>
+<td style="text-align:right;">
+46.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.418
+</td>
+<td style="text-align:right;">
+46.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.931
+</td>
+<td style="text-align:right;">
+48.60
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.155
+</td>
+<td style="text-align:right;">
+45.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.495
+</td>
+<td style="text-align:right;">
+45.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.224
+</td>
+<td style="text-align:right;">
+48.15
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.243
+</td>
+<td style="text-align:right;">
+46.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.898
+</td>
+<td style="text-align:right;">
+46.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.697
+</td>
+<td style="text-align:right;">
+43.38
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.211
+</td>
+<td style="text-align:right;">
+45.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.197
+</td>
+<td style="text-align:right;">
+47.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.926
+</td>
+<td style="text-align:right;">
+43.85
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.660
+</td>
+<td style="text-align:right;">
+40.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.204
+</td>
+<td style="text-align:right;">
+39.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E2
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.421
+</td>
+<td style="text-align:right;">
+39.70
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.110
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.663
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.468
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.002
+</td>
+<td style="text-align:right;">
+57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.597
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.744
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.614
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.320
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.772
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.511
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.916
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.970
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.349
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.437
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.777
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.179
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.008
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.037
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.057
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.161
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.086
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.580
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.718
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.006
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.347
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.544
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.439
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.407
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.634
+</td>
+<td style="text-align:right;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E3
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.477
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.543
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.826
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.114
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.081
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.269
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.463
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.649
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.049
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.449
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.457
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.166
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.779
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.560
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.446
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.901
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.473
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.159
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.505
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.981
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.977
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.253
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.391
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.081
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.585
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.995
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.027
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.392
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.371
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.243
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E4
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.075
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.158
+</td>
+<td style="text-align:right;">
+52.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.568
+</td>
+<td style="text-align:right;">
+50.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.786
+</td>
+<td style="text-align:right;">
+48.40
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.190
+</td>
+<td style="text-align:right;">
+54.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.688
+</td>
+<td style="text-align:right;">
+56.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.219
+</td>
+<td style="text-align:right;">
+55.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.941
+</td>
+<td style="text-align:right;">
+50.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.687
+</td>
+<td style="text-align:right;">
+55.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.854
+</td>
+<td style="text-align:right;">
+55.40
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.185
+</td>
+<td style="text-align:right;">
+54.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.768
+</td>
+<td style="text-align:right;">
+52.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.427
+</td>
+<td style="text-align:right;">
+56.05
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.794
+</td>
+<td style="text-align:right;">
+48.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.088
+</td>
+<td style="text-align:right;">
+52.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.466
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.493
+</td>
+<td style="text-align:right;">
+52.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.769
+</td>
+<td style="text-align:right;">
+53.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.145
+</td>
+<td style="text-align:right;">
+54.35
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.530
+</td>
+<td style="text-align:right;">
+51.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.921
+</td>
+<td style="text-align:right;">
+55.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.256
+</td>
+<td style="text-align:right;">
+48.6
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.835
+</td>
+<td style="text-align:right;">
+52.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+4.250
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.059
+</td>
+<td style="text-align:right;">
+48.60
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.810
+</td>
+<td style="text-align:right;">
+54.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+5.093
+</td>
+<td style="text-align:right;">
+52.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4.533
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4.117
+</td>
+<td style="text-align:right;">
+49.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.778
+</td>
+<td style="text-align:right;">
+56.62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E5
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.908
+</td>
+<td style="text-align:right;">
+49.25
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.782
+</td>
+<td style="text-align:right;">
+44.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.025
+</td>
+<td style="text-align:right;">
+45.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.620
+</td>
+<td style="text-align:right;">
+42.25
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.700
+</td>
+<td style="text-align:right;">
+40.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.554
+</td>
+<td style="text-align:right;">
+42.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.201
+</td>
+<td style="text-align:right;">
+41.40
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.821
+</td>
+<td style="text-align:right;">
+44.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.444
+</td>
+<td style="text-align:right;">
+44.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.359
+</td>
+<td style="text-align:right;">
+47.15
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.257
+</td>
+<td style="text-align:right;">
+45.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.954
+</td>
+<td style="text-align:right;">
+47.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.743
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.691
+</td>
+<td style="text-align:right;">
+48.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.497
+</td>
+<td style="text-align:right;">
+50.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.915
+</td>
+<td style="text-align:right;">
+49.25
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.661
+</td>
+<td style="text-align:right;">
+44.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.108
+</td>
+<td style="text-align:right;">
+48.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.531
+</td>
+<td style="text-align:right;">
+47.55
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.688
+</td>
+<td style="text-align:right;">
+43.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.286
+</td>
+<td style="text-align:right;">
+46.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.033
+</td>
+<td style="text-align:right;">
+48.85
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.561
+</td>
+<td style="text-align:right;">
+42.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.831
+</td>
+<td style="text-align:right;">
+46.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.606
+</td>
+<td style="text-align:right;">
+46.70
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.899
+</td>
+<td style="text-align:right;">
+48.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.581
+</td>
+<td style="text-align:right;">
+49.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.244
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.011
+</td>
+<td style="text-align:right;">
+45.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.847
+</td>
+<td style="text-align:right;">
+47.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E6
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.446
+</td>
+<td style="text-align:right;">
+43.0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.453
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.844
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.396
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.469
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.199
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.063
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.521
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.982
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.460
+</td>
+<td style="text-align:right;">
+46
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.762
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.523
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.191
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.413
+</td>
+<td style="text-align:right;">
+48.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.192
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.338
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.683
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.378
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.909
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.470
+</td>
+<td style="text-align:right;">
+48.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.863
+</td>
+<td style="text-align:right;">
+52.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.940
+</td>
+<td style="text-align:right;">
+48.6
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.472
+</td>
+<td style="text-align:right;">
+45.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.223
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.958
+</td>
+<td style="text-align:right;">
+48.60
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.465
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.124
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.196
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.268
+</td>
+<td style="text-align:right;">
+49.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.485
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E7
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.427
+</td>
+<td style="text-align:right;">
+49.25
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.912
+</td>
+<td style="text-align:right;">
+44.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.383
+</td>
+<td style="text-align:right;">
+43.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.521
+</td>
+<td style="text-align:right;">
+42.25
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.462
+</td>
+<td style="text-align:right;">
+40.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.860
+</td>
+<td style="text-align:right;">
+42.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.779
+</td>
+<td style="text-align:right;">
+43.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.951
+</td>
+<td style="text-align:right;">
+42.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.044
+</td>
+<td style="text-align:right;">
+44.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.141
+</td>
+<td style="text-align:right;">
+47.15
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.614
+</td>
+<td style="text-align:right;">
+45.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.831
+</td>
+<td style="text-align:right;">
+43.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.106
+</td>
+<td style="text-align:right;">
+47.75
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.781
+</td>
+<td style="text-align:right;">
+48.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.540
+</td>
+<td style="text-align:right;">
+46.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.581
+</td>
+<td style="text-align:right;">
+49.25
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.242
+</td>
+<td style="text-align:right;">
+46
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.803
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.080
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1.961
+</td>
+<td style="text-align:right;">
+43.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.844
+</td>
+<td style="text-align:right;">
+46.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.813
+</td>
+<td style="text-align:right;">
+47.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.294
+</td>
+<td style="text-align:right;">
+42.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.733
+</td>
+<td style="text-align:right;">
+45.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.724
+</td>
+<td style="text-align:right;">
+46.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.553
+</td>
+<td style="text-align:right;">
+47.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.797
+</td>
+<td style="text-align:right;">
+49.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.287
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.385
+</td>
+<td style="text-align:right;">
+43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.468
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E8
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.603
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.160
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.856
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.335
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.849
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.797
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G10
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.804
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.744
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.410
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.936
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.507
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.877
+</td>
+<td style="text-align:right;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G3
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.497
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.486
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.948
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.740
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.905
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.711
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G5
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+3.283
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.238
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.192
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G6
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.689
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+3.17
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G7
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.93
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+3.010
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2.609
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G8
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2.865
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+ENV
+</th>
+<th style="text-align:left;">
+GEN
+</th>
+<th style="text-align:left;">
+REP
+</th>
+<th style="text-align:right;">
+GY
+</th>
+<th style="text-align:right;">
+HM
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2.118
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1.930
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E9
+</td>
+<td style="text-align:left;">
+G9
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1.782
+</td>
+<td style="text-align:right;">
+54
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr></tbody></table>
 </div>
 <div id="group-a-data-frame-using-all-factor-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-a-data-frame-using-all-factor-variables" class="anchor"></a>Group a data frame using all factor variables</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">g3 =<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(g3)</a></code></pre></div>
-<pre><code> [1] "Qn1 / Quebec / nonchilled"      "Qn2 / Quebec / nonchilled"     
- [3] "Qn3 / Quebec / nonchilled"      "Qc1 / Quebec / chilled"        
- [5] "Qc3 / Quebec / chilled"         "Qc2 / Quebec / chilled"        
- [7] "Mn3 / Mississippi / nonchilled" "Mn2 / Mississippi / nonchilled"
- [9] "Mn1 / Mississippi / nonchilled" "Mc2 / Mississippi / chilled"   
-[11] "Mc3 / Mississippi / chilled"    "Mc1 / Mississippi / chilled"   </code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">g3 =<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(g3)</a></code></pre></div>
+<pre><code>[1] "dfs"   "names"</code></pre>
 </div>
 </div>
 <div id="make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="anchor"></a>Make a two-way table based on categorical and numerical arguments</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_ge)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_ge)</a></code></pre></div>
 <pre><code># A tibble: 6 x 5
   ENV   GEN   REP      GY    HM
   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -295,8 +10581,8 @@ G1
 4 E1    G2    1      3.21  45.2
 5 E1    G2    2      2.93  45.3
 6 E1    G2    3      2.56  45.5</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">matrix =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">print_table</span>(matrix)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">matrix =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw">print_table</span>(matrix)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -821,9 +11107,9 @@ G9
 <div id="make-a-symmetric-matrix" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-symmetric-matrix" class="anchor"></a>Make a symmetric matrix</h1>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">m &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="ot">NA</span>, <span class="dv">10</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2">m[<span class="kw"><a href="https://rdrr.io/r/base/lower.tri.html">lower.tri</a></span>(m)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">45</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="kw">print_table</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">m &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="ot">NA</span>, <span class="dv">10</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2">m[<span class="kw"><a href="https://rdrr.io/r/base/lower.tri.html">lower.tri</a></span>(m)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">45</span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="kw">print_table</span>(m)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive"><tbody>
 <tr>
 <td style="text-align:right;">
@@ -1146,8 +11432,8 @@ NA
 </td>
 </tr>
 </tbody></table>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">sym =<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(m)</a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="kw">print_table</span>(sym)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">sym =<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(m)</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw">print_table</span>(sym)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive"><tbody>
 <tr>
 <td style="text-align:right;">
@@ -1474,13 +11760,13 @@ NA
 <div id="generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="section level1">
 <h1 class="hasAnchor">
 <a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="anchor"></a>Generate pairwise combinations of variables by applying one function to each pair</h1>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
-<a class="sourceLine" id="cb13-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb13-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
-<a class="sourceLine" id="cb13-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
-<a class="sourceLine" id="cb13-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb13-6" title="6">c1 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a>
-<a class="sourceLine" id="cb13-7" title="7"><span class="kw">print_table</span>(c1)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb15-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb15-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb15-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb15-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb15-6" title="6">c1 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a>
+<a class="sourceLine" id="cb15-7" title="7"><span class="kw">print_table</span>(c1)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -1517,168 +11803,168 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-19.021
+21.704
 </td>
 <td style="text-align:right;">
-71.105
+47.258
 </td>
 <td style="text-align:right;">
-28.046
+77.246
 </td>
 <td style="text-align:right;">
-19.478
+22.227
 </td>
 <td style="text-align:right;">
-66.341
+42.348
 </td>
 <td style="text-align:right;">
-23.282
+72.336
 </td>
 <td style="text-align:right;">
-14.714
+17.317
 </td>
 <td style="text-align:right;">
-75.366
+97.891
 </td>
 <td style="text-align:right;">
-66.799
+42.871
 </td>
 <td style="text-align:right;">
-23.740
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-20.954
-</td>
-<td style="text-align:right;">
-31.575
-</td>
-<td style="text-align:right;">
-26.058
-</td>
-<td style="text-align:right;">
-24.393
-</td>
-<td style="text-align:right;">
-22.315
-</td>
-<td style="text-align:right;">
-16.798
-</td>
-<td style="text-align:right;">
-15.132
-</td>
-<td style="text-align:right;">
-27.419
-</td>
-<td style="text-align:right;">
-25.753
-</td>
-<td style="text-align:right;">
-20.236
+72.860
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-10.942
+26.712
 </td>
 <td style="text-align:right;">
-38.878
+55.720
 </td>
 <td style="text-align:right;">
-52.661
+63.261
 </td>
 <td style="text-align:right;">
-11.518
+31.493
 </td>
 <td style="text-align:right;">
-37.274
+34.891
 </td>
 <td style="text-align:right;">
-51.057
+42.432
 </td>
 <td style="text-align:right;">
-9.914
+10.664
 </td>
 <td style="text-align:right;">
-78.993
+71.441
 </td>
 <td style="text-align:right;">
-37.850
+39.673
 </td>
 <td style="text-align:right;">
-51.633
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-15.001
-</td>
-<td style="text-align:right;">
-56.975
-</td>
-<td style="text-align:right;">
-52.048
-</td>
-<td style="text-align:right;">
-16.295
-</td>
-<td style="text-align:right;">
-56.993
-</td>
-<td style="text-align:right;">
-52.066
-</td>
-<td style="text-align:right;">
-16.313
-</td>
-<td style="text-align:right;">
-94.040
-</td>
-<td style="text-align:right;">
-58.287
-</td>
-<td style="text-align:right;">
-53.360
+47.213
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-22.384
+6.156
 </td>
 <td style="text-align:right;">
-34.406
+65.898
 </td>
 <td style="text-align:right;">
-56.190
+64.714
 </td>
 <td style="text-align:right;">
-23.932
+13.583
 </td>
 <td style="text-align:right;">
-23.125
+63.698
 </td>
 <td style="text-align:right;">
-44.908
+62.514
 </td>
 <td style="text-align:right;">
-12.651
+11.383
 </td>
 <td style="text-align:right;">
-56.930
+122.256
 </td>
 <td style="text-align:right;">
-24.673
+71.125
 </td>
 <td style="text-align:right;">
-46.456
+69.941
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20.619
+</td>
+<td style="text-align:right;">
+26.807
+</td>
+<td style="text-align:right;">
+86.224
+</td>
+<td style="text-align:right;">
+20.228
+</td>
+<td style="text-align:right;">
+18.265
+</td>
+<td style="text-align:right;">
+77.682
+</td>
+<td style="text-align:right;">
+11.685
+</td>
+<td style="text-align:right;">
+83.869
+</td>
+<td style="text-align:right;">
+17.873
+</td>
+<td style="text-align:right;">
+77.290
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.583
+</td>
+<td style="text-align:right;">
+42.300
+</td>
+<td style="text-align:right;">
+8.116
+</td>
+<td style="text-align:right;">
+13.922
+</td>
+<td style="text-align:right;">
+38.987
+</td>
+<td style="text-align:right;">
+4.803
+</td>
+<td style="text-align:right;">
+10.610
+</td>
+<td style="text-align:right;">
+40.520
+</td>
+<td style="text-align:right;">
+46.326
+</td>
+<td style="text-align:right;">
+12.143
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">c2 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw">print_table</span>(c2)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">c2 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw">print_table</span>(c2)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -1715,162 +12001,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-84.775
+111.735
 </td>
 <td style="text-align:right;">
-704.183
+451.780
 </td>
 <td style="text-align:right;">
-192.108
+850.831
 </td>
 <td style="text-align:right;">
-90.216
+118.697
 </td>
 <td style="text-align:right;">
-422.092
+285.082
 </td>
 <td style="text-align:right;">
-115.151
+536.890
 </td>
 <td style="text-align:right;">
-54.076
+74.900
 </td>
 <td style="text-align:right;">
-956.507
+2170.815
 </td>
 <td style="text-align:right;">
-449.186
+302.845
 </td>
 <td style="text-align:right;">
-122.543
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-88.330
-</td>
-<td style="text-align:right;">
-248.786
-</td>
-<td style="text-align:right;">
-165.435
-</td>
-<td style="text-align:right;">
-140.278
-</td>
-<td style="text-align:right;">
-96.286
-</td>
-<td style="text-align:right;">
-64.027
-</td>
-<td style="text-align:right;">
-54.291
-</td>
-<td style="text-align:right;">
-180.336
-</td>
-<td style="text-align:right;">
-152.912
-</td>
-<td style="text-align:right;">
-101.682
+570.344
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-29.289
+69.915
 </td>
 <td style="text-align:right;">
-204.536
+759.467
 </td>
 <td style="text-align:right;">
-290.998
+938.714
 </td>
 <td style="text-align:right;">
-32.903
+183.572
 </td>
 <td style="text-align:right;">
-152.233
+93.972
 </td>
 <td style="text-align:right;">
-216.585
+116.151
 </td>
 <td style="text-align:right;">
-24.489
+22.714
 </td>
 <td style="text-align:right;">
-1512.494
+1261.724
 </td>
 <td style="text-align:right;">
-171.019
+246.739
 </td>
 <td style="text-align:right;">
-243.312
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-56.257
-</td>
-<td style="text-align:right;">
-370.706
-</td>
-<td style="text-align:right;">
-333.795
-</td>
-<td style="text-align:right;">
-65.953
-</td>
-<td style="text-align:right;">
-371.595
-</td>
-<td style="text-align:right;">
-334.596
-</td>
-<td style="text-align:right;">
-66.111
-</td>
-<td style="text-align:right;">
-2204.804
-</td>
-<td style="text-align:right;">
-435.634
-</td>
-<td style="text-align:right;">
-392.258
+304.973
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-93.443
+8.265
 </td>
 <td style="text-align:right;">
-295.806
+257.873
 </td>
 <td style="text-align:right;">
-662.481
+252.926
 </td>
 <td style="text-align:right;">
-119.499
+39.294
 </td>
 <td style="text-align:right;">
-97.555
+122.098
 </td>
 <td style="text-align:right;">
-218.482
+119.756
 </td>
 <td style="text-align:right;">
-39.410
+18.605
 </td>
 <td style="text-align:right;">
-691.632
+3736.283
 </td>
 <td style="text-align:right;">
-124.757
+580.465
 </td>
 <td style="text-align:right;">
-279.404
+569.331
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+88.047
+</td>
+<td style="text-align:right;">
+178.272
+</td>
+<td style="text-align:right;">
+1044.624
+</td>
+<td style="text-align:right;">
+82.334
+</td>
+<td style="text-align:right;">
+73.829
+</td>
+<td style="text-align:right;">
+432.618
+</td>
+<td style="text-align:right;">
+34.098
+</td>
+<td style="text-align:right;">
+875.933
+</td>
+<td style="text-align:right;">
+69.038
+</td>
+<td style="text-align:right;">
+404.545
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8.090
+</td>
+<td style="text-align:right;">
+184.807
+</td>
+<td style="text-align:right;">
+15.675
+</td>
+<td style="text-align:right;">
+44.404
+</td>
+<td style="text-align:right;">
+61.072
+</td>
+<td style="text-align:right;">
+5.180
+</td>
+<td style="text-align:right;">
+14.674
+</td>
+<td style="text-align:right;">
+118.338
+</td>
+<td style="text-align:right;">
+335.217
+</td>
+<td style="text-align:right;">
+28.433
 </td>
 </tr>
 </tbody>
@@ -1879,15 +12165,15 @@ DxE
 <div id="combining-data-frames-by-row-filling-missing-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-data-frames-by-row-filling-missing-values" class="anchor"></a>Combining data.frames by row, filling missing values</h1>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb15-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb17-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
 <pre><code>  v1 v2 v3
 1  1  2  .
 2  2  3  .
 3  .  .  4
 4  .  .  5</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
 <pre><code>  v1 v2 v3
 1  1  2 NA
 2  2  3 NA
@@ -1900,16 +12186,16 @@ DxE
 <div id="rescale-a-numeric-vector" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-a-numeric-vector" class="anchor"></a>Rescale a numeric vector</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
 <pre><code>[1]   0  25  50  75 100</code></pre>
 </div>
 <div id="rescale-using-a-data-frame-and-select-rescaled-variables-only" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-using-a-data-frame-and-select-rescaled-variables-only" class="anchor"></a>Rescale using a data frame and select rescaled variables only</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">data_ge <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="../reference/resca.html">resca</a></span>(GY, HM, <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">1</span>,  <span class="dt">keep =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">data_ge <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="kw"><a href="../reference/resca.html">resca</a></span>(GY, HM, <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">1</span>,  <span class="dt">keep =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-4" title="4"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -1974,14 +12260,14 @@ HM_res
 <div id="rescale-within-factors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-within-factors" class="anchor"></a>Rescale within factors</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">  data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="st">    </span><span class="kw">select</span>(ENV, GEN, <span class="kw">starts_with</span>(<span class="st">"N"</span>), <span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(ENV, GEN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-4" title="4"><span class="st">    </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-6" title="6"><span class="st">    </span><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-7" title="7"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">13</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-8" title="8"><span class="st">    </span><span class="kw">print_table</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">  data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="st">    </span><span class="kw">select</span>(ENV, GEN, <span class="kw">starts_with</span>(<span class="st">"N"</span>), <span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(ENV, GEN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="st">    </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="st">    </span><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-7" title="7"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">13</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-8" title="8"><span class="st">    </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">

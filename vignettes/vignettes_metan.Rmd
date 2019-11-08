@@ -24,7 +24,6 @@ Brief examples will be shown using the dataset `data_ge` that contains data on t
 
 ```{r, message=FALSE, warning=FALSE}
 library(metan)
-library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
 
 # Function to make HTML tables
@@ -72,10 +71,7 @@ p2 <- plot_scores(ammi_model$GY,
                   col.env = "gray70",
                   col.segm.env = "gray70",
                   axis.expand = 1.5)
-plot_grid(p1, p2,
-          align = "v",
-          labels = c("p1","p2"),
-          ncol = 1)
+arrange_ggplot(p1, p2, ncol = 1)
 ```
 
 
@@ -135,10 +131,7 @@ p2 <- plot_blup(model2$GY,
                 prob = 0.1,
                 col.shape  =  c("gray20", "gray80")) +
       coord_flip()
-plot_grid(p1, p2,
-          align = "v",
-          labels = c("p1", "p2"),
-          ncol = 1)
+arrange_ggplot(p1, p2, ncol = 1)
 ```
 
 
@@ -198,10 +191,7 @@ The generic function `plot()` is used to generate a biplot using as input a fitt
 ```{r echo = TRUE, fig.width = 4, fig.height=8, message=F, warning=F}
 p1 = plot(gge_model)
 p2 = plot(gge_model, type = 2)
-plot_grid(p1, p2,
-          align = "v",
-          labels = c("p1", "p2"),
-          ncol = 1)
+arrange_ggplot(p1, p2, ncol = 1)
 ```
 
 

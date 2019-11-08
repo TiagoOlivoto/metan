@@ -26,7 +26,6 @@ In this section, we will use the data in `data_ge`. For more information, please
 
 ```{r  warning = FALSE, message = FALSE}
 library(metan)
-library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
 # Function to make HTML tables
 print_table = function(table){
@@ -266,8 +265,7 @@ waasb(data_ge2, ENV, GEN, REP,
 p1 = plot_blup(WAASB_model$GY)
 p2 = plot_blup(WAASB_model$GY, 
                col.shape  =  c("gray20", "gray80")) + coord_flip()
-plot_grid(p1, p2,
-          labels = c("p1", "p2"))
+arrange_ggplot(p1, p2, labels = c("p1", "p2"))
 
 ```
 
@@ -342,12 +340,11 @@ Provided that an object of class `waasb` is available in the global environment,
 p1 = plot_scores(WAASB_model$GY, type = 1)
 p2 = plot_scores(WAASB_model$GY,
                  type = 1,
-                 polygon = TRUE,
                  col.gen = "black",
                  col.env = "gray70",
                  col.segm.env = "gray70",
                  axis.expand = 1.5)
-plot_grid(p1, p2, labels = c("p1","p2"))
+arrange_ggplot(p1, p2, labels = c("p1", "p2"))
 ```
 
 
@@ -356,13 +353,15 @@ plot_grid(p1, p2, labels = c("p1","p2"))
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 
 p3 = plot_scores(WAASB_model$GY, type = 2)
-p4 = plot_scores(WAASB_model$GY, type = 2,
+p4 = plot_scores(WAASB_model$GY,
+                 type = 2,
+                 polygon = TRUE,
                  col.segm.env = "transparent") +
                  theme_gray() +
                  theme(legend.position = c(0.1, 0.9),
                        legend.background = element_rect(fill = NA))
 
-plot_grid(p3, p4, labels = c("p3","p4"))
+arrange_ggplot(p3, p4, labels = c("p3","p4"))
 ```
 
 ### biplot type 3: GY x WAASB
@@ -379,7 +378,7 @@ p6 = plot_scores(WAASB_model$GY, type = 3,
                  x.lim = c(1.2, 4.7),
                  x.breaks = seq(1.5, 4.5, by = 0.5)) + 
                  theme(legend.position = c(0.1, 0.9))
-plot_grid(p5, p6, labels = c("p5","p6"))
+arrange_ggplot(p5, p6, labels = c("p5","p6"))
 ```
 
 To obtain the WAASB index for a set of variables, the function `get_model_data()` is used, as shown bellow.
@@ -418,7 +417,7 @@ This index was also already computed and stored into AMMI_model>GY>model. An int
 ```{r  echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
 p1 = plot_waasby(WAASB_model$GY)
 p2 = plot_waasby(WAASB_model$GY, col.shape = c("gray20", "gray80"))
-plot_grid(p1, p2, labels = c("p1", "p2"))
+arrange_ggplot(p1, p2, labels = c("p1", "p2"))
     ```
 
 In the following example, we will apply the function `wsmp()` to the previously fitted model **WAASB_model** aiming at planning different scenarios of **waasby** estimation by changing the weights assigned to the stability and the mean performance.vThe number of scenarios is defined by the arguments `increment`. By default, twenty-one different scenarios are computed. In this case, the the superiority index **waasby** is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
@@ -491,10 +490,12 @@ $$
 
 
 ```{r  }
+Res_ind <- 
 data_ge %>%
 waasb(GEN, ENV, REP, resp = GY, verbose = FALSE) %>% 
-Resende_indexes() %>%
-print_table()
+Resende_indexes()
+
+print_table(Res_ind$GY)
 
     ```
 

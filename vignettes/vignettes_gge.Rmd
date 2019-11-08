@@ -27,7 +27,6 @@ In this section, we will use the data in `data_ge`. For more information, please
 
 ```{r warning = FALSE, message = FALSE}
 library(metan)
-library(cowplot) # used to arrange the graphics
 library(tidyverse) # used for the forward-pipe operator %>%
 ```
 
@@ -118,7 +117,7 @@ p1 = plot(gge_model)
 p2 = plot(gge_model,
           col.gen = "blue",
           size.text.env = 2)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -139,7 +138,7 @@ p2 = plot(gge_model,
           col.gen = "black",
           col.env = "gray",
           axis_expand = 1.5)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -161,7 +160,7 @@ p2 = plot(gge_model,
           col.env = "gray",
           annotation = FALSE,
           title = FALSE)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -175,7 +174,7 @@ p2 = plot(gge_model,
           type = 4,
           plot_theme = theme_gray())+
   theme(legend.position = "bottom")
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -196,7 +195,7 @@ p2 = plot(gge_model,
           col.env = "black",
           size.text.env = 10,
           axis_expand = 1.5)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -213,7 +212,7 @@ p2 = plot(gge_model,
           col.env = "black",
           size.text.env = 10,
           axis_expand = 1.5)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -233,7 +232,7 @@ p2 = plot(gge_model,
           col.env = "black",
           size.text.env = 10,
           axis_expand = 1.5)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -249,7 +248,7 @@ p2 = plot(gge_model,
           col.gen = "black",
           col.env = "gray",
           size.text.gen = 6)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -268,7 +267,7 @@ p2 = plot(gge_model,
           col.gen = "black",
           title = FALSE,
           annotation = FALSE)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -282,7 +281,7 @@ p2 = plot(gge_model,
           col.gen = "black",
           title = FALSE,
           annotation = FALSE)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 

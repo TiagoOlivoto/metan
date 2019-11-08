@@ -147,7 +147,7 @@
       <h1>Indexes for simultaneous selection</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-05</h4>
+            <h4 class="date">2019-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_indexes.Rmd"><code>vignettes/vignettes_indexes.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_indexes.Rmd</code></div>
@@ -166,25 +166,25 @@
 <a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
 <p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/waasb.html">waasb()</a></code> and then the function <code><a href="../reference/fai_blup.html">fai_blup()</a></code> is used to compute the FAI-BLUP index.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
-<a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
-<a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-10" title="10">}</a>
-<a class="sourceLine" id="cb1-11" title="11"></a>
-<a class="sourceLine" id="cb1-12" title="12">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"max, max, max, min"</span>),</a>
-<a class="sourceLine" id="cb1-15" title="15">               <span class="dt">UI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"min, min, min, max"</span>),</a>
-<a class="sourceLine" id="cb1-16" title="16">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a>
+<a class="sourceLine" id="cb1-10" title="10"></a>
+<a class="sourceLine" id="cb1-11" title="11">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"max, max, max, min"</span>),</a>
+<a class="sourceLine" id="cb1-14" title="14">               <span class="dt">UI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"min, min, min, max"</span>),</a>
+<a class="sourceLine" id="cb1-15" title="15">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>Evaluating variable KW 25 % 
 Evaluating variable NKE 50 % 
 Evaluating variable PH 75 % 
 Evaluating variable EH 100 % 
+All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 Done!
 
 -----------------------------------------------------------------------------------

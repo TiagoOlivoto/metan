@@ -28,7 +28,6 @@ The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=FALSE}
 library(metan)
-library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
 library(dplyr)
 # Function to make HTML tables

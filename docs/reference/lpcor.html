@@ -246,21 +246,21 @@ following values.</p><ul>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>partial1</span> <span class='kw'>=</span> <span class='fu'>lpcor</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt;                                 linear    partial         t         prob
-#&gt; Sepal.Length x Sepal.Width  -0.1175698  0.6285707  9.765380 0.000000e+00
-#&gt; Sepal.Length x Petal.Length  0.8717538  0.7190656 12.502483 0.000000e+00
-#&gt; Sepal.Length x Petal.Width   0.8179411 -0.3396174 -4.362929 2.412876e-05
-#&gt; Sepal.Width x Petal.Length  -0.4284401 -0.6152919 -9.431189 0.000000e+00
-#&gt; Sepal.Width x Petal.Width   -0.3661259  0.3526260  4.553279 1.104958e-05
-#&gt; Petal.Length x Petal.Width   0.9628654  0.8707698 21.398708 0.000000e+00</div><div class='input'>
+<span class='no'>partial1</span> <span class='kw'>=</span> <span class='fu'>lpcor</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt;                         Pairs     linear    partial         t         prob
+#&gt; 1  Sepal.Length x Sepal.Width -0.1175698  0.6285707  9.765380 0.000000e+00
+#&gt; 2 Sepal.Length x Petal.Length  0.8717538  0.7190656 12.502483 0.000000e+00
+#&gt; 3  Sepal.Length x Petal.Width  0.8179411 -0.3396174 -4.362929 2.412876e-05
+#&gt; 4  Sepal.Width x Petal.Length -0.4284401 -0.6152919 -9.431189 0.000000e+00
+#&gt; 5   Sepal.Width x Petal.Width -0.3661259  0.3526260  4.553279 1.104958e-05
+#&gt; 6  Petal.Length x Petal.Width  0.9628654  0.8707698 21.398708 0.000000e+00</div><div class='input'>
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
-<span class='no'>partial2</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>lpcor</span>()</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt;                                 linear    partial         t         prob
-#&gt; Sepal.Length x Sepal.Width  -0.1175698  0.6285707  9.765380 0.000000e+00
-#&gt; Sepal.Length x Petal.Length  0.8717538  0.7190656 12.502483 0.000000e+00
-#&gt; Sepal.Length x Petal.Width   0.8179411 -0.3396174 -4.362929 2.412876e-05
-#&gt; Sepal.Width x Petal.Length  -0.4284401 -0.6152919 -9.431189 0.000000e+00
-#&gt; Sepal.Width x Petal.Width   -0.3661259  0.3526260  4.553279 1.104958e-05
-#&gt; Petal.Length x Petal.Width   0.9628654  0.8707698 21.398708 0.000000e+00</div><div class='input'>
+<span class='no'>partial2</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>lpcor</span>()</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt;                         Pairs     linear    partial         t         prob
+#&gt; 1  Sepal.Length x Sepal.Width -0.1175698  0.6285707  9.765380 0.000000e+00
+#&gt; 2 Sepal.Length x Petal.Length  0.8717538  0.7190656 12.502483 0.000000e+00
+#&gt; 3  Sepal.Length x Petal.Width  0.8179411 -0.3396174 -4.362929 2.412876e-05
+#&gt; 4  Sepal.Width x Petal.Length -0.4284401 -0.6152919 -9.431189 0.000000e+00
+#&gt; 5   Sepal.Width x Petal.Width -0.3661259  0.3526260  4.553279 1.104958e-05
+#&gt; 6  Petal.Length x Petal.Width  0.9628654  0.8707698 21.398708 0.000000e+00</div><div class='input'>
 <span class='co'># Using a correlation matrix</span>
 <span class='no'>partial3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>4</span>]) <span class='kw'>%&gt;%</span>
            <span class='fu'>lpcor</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>iris</span>),
@@ -271,30 +271,30 @@ following values.</p><ul>
 
 <span class='no'>partial4</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
            <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
-           <span class='fu'>lpcor</span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='no'>Petal.Width</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The columns Species where deleted. Use 'keep_factors = TRUE' to keep this columns in the grouped data. </span></div><div class='output co'>#&gt; 
+           <span class='fu'>lpcor</span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='no'>Petal.Width</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns Species in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Level: setosa 
 #&gt; ----------------------------------------------------------------------------
-#&gt;                               linear    partial         t         prob
-#&gt; Sepal.Length x Sepal.Width 0.7425467 0.72558229 7.2287250 3.680601e-09
-#&gt; Sepal.Length x Petal.Width 0.2780984 0.16160463 1.1226622 2.672834e-01
-#&gt; Sepal.Width x Petal.Width  0.2327520 0.04080217 0.2799587 7.807377e-01
+#&gt;                        Pairs    linear    partial         t         prob
+#&gt; 1 Sepal.Length x Sepal.Width 0.7425467 0.72558229 7.2287250 3.680601e-09
+#&gt; 2 Sepal.Length x Petal.Width 0.2780984 0.16160463 1.1226622 2.672834e-01
+#&gt; 3  Sepal.Width x Petal.Width 0.2327520 0.04080217 0.2799587 7.807377e-01
 #&gt; 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Level: versicolor 
 #&gt; ----------------------------------------------------------------------------
-#&gt;                               linear   partial        t         prob
-#&gt; Sepal.Length x Sepal.Width 0.5259107 0.2603917 1.848938 7.076217e-02
-#&gt; Sepal.Length x Petal.Width 0.5464611 0.3101636 2.236681 3.009043e-02
-#&gt; Sepal.Width x Petal.Width  0.6639987 0.5287121 4.270338 9.413348e-05
+#&gt;                        Pairs    linear   partial        t         prob
+#&gt; 1 Sepal.Length x Sepal.Width 0.5259107 0.2603917 1.848938 7.076217e-02
+#&gt; 2 Sepal.Length x Petal.Width 0.5464611 0.3101636 2.236681 3.009043e-02
+#&gt; 3  Sepal.Width x Petal.Width 0.6639987 0.5287121 4.270338 9.413348e-05
 #&gt; 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Level: virginica 
 #&gt; ----------------------------------------------------------------------------
-#&gt;                               linear    partial         t         prob
-#&gt; Sepal.Length x Sepal.Width 0.4572278 0.37827279 2.8014734 0.0073635897
-#&gt; Sepal.Length x Petal.Width 0.2811077 0.04700217 0.3225872 0.7484385758
-#&gt; Sepal.Width x Petal.Width  0.5377280 0.47944191 3.7454273 0.0004911884</div><div class='input'>
+#&gt;                        Pairs    linear    partial         t         prob
+#&gt; 1 Sepal.Length x Sepal.Width 0.4572278 0.37827279 2.8014734 0.0073635897
+#&gt; 2 Sepal.Length x Petal.Width 0.2811077 0.04700217 0.3225872 0.7484385758
+#&gt; 3  Sepal.Width x Petal.Width 0.5377280 0.47944191 3.7454273 0.0004911884</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

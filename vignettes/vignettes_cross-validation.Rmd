@@ -37,7 +37,6 @@ The dataset `data_ge` is used to reproduce the examples of this vignette. For mo
 ```{r warning = FALSE, message = FALSE}
 # Importing data
 library(metan)
-library(cowplot) # used to arrange the graphics
 library(kableExtra) # Used to make the tables
 # Function to make HTML tables
 print_table = function(table){
@@ -127,8 +126,9 @@ p2 = plot(bind2,
           width.boxplot = 0.6,
           col.boxplot = "transparent",
           order_box = TRUE)
-plot_grid(p1, p2)
-    ```
+arrange_ggplot(p1, p2)
+
+```
 
 Six statistics are shown in this boxplot. The mean (black rhombus), the median (black line), the lower and upper hinges that correspond sto the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than $1.5\times{IQR}$ from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most $1.5\times{IQR}$ of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added along with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
 

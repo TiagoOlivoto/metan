@@ -43,7 +43,9 @@
 
 
 <meta property="og:title" content="Arrange multiple ggplot2 graphics in a single image window — arrange_ggplot" />
-<meta property="og:description" content="This is a helper function to arrange ggplot2 objects in the metan package" />
+<meta property="og:description" content="This is a helper function to arrange ggplot2 objects in the metan package. It
+imports plot_grid. For a complete usability use that
+function." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -193,10 +195,14 @@
     </div>
 
     <div class="ref-description">
-    <p>This is a helper function to arrange ggplot2 objects in the metan package</p>
+    <p>This is a helper function to arrange ggplot2 objects in the metan package. It
+imports <code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>plot_grid</a></code>. For a complete usability use that
+function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>arrange_ggplot</span>(<span class='no'>...</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>arrange_ggplot</span>(<span class='no'>...</span>, <span class='kw'>plotlist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>rel_widths</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>rel_heights</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>hjust</span> <span class='kw'>=</span> -<span class='fl'>0.5</span>,
+  <span class='kw'>vjust</span> <span class='kw'>=</span> <span class='fl'>1.5</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,12 +212,25 @@
       <td><p>An object of class <code>gg</code></p></td>
     </tr>
     <tr>
-      <th>nrow</th>
-      <td><p>The number of rows</p></td>
+      <th>plotlist</th>
+      <td><p>List of plots to display.</p></td>
     </tr>
     <tr>
-      <th>ncol</th>
-      <td><p>The number of columns</p></td>
+      <th>nrow, ncol</th>
+      <td><p>The number of rows and columns, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>rel_widths, rel_heights</th>
+      <td><p>The Numerical vector of relative columns widths
+and rows heights, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>labels</th>
+      <td><p>List of labels to be added to the plots.</p></td>
+    </tr>
+    <tr>
+      <th>hjust, vjust</th>
+      <td><p>Adjusts the horizontal and vertical position of each label.</p></td>
     </tr>
     </table>
 

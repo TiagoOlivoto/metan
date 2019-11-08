@@ -257,15 +257,10 @@ genotypes is large, say, more than 30.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>mtsi_model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
-                   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+<span class='no'>mtsi_model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
-<span class='no'>mtsi_index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>mtsi_model</span>)</div><div class='output co'>#&gt; 
+#&gt; Done!</div><div class='input'><span class='no'>mtsi_index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>mtsi_model</span>)</div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
@@ -315,63 +310,7 @@ genotypes is large, say, more than 30.</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; G3 G1
 #&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mtsi_index</span>)</div><div class='img'><img src='plot.mtsi-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Alternatively using the pipe operator %&gt;%</span>
-<span class='no'>mtsi_index2</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-               <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
-               <span class='fu'><a href='mtsi.html'>mtsi</a></span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Principal Component Analysis
-#&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
-#&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.66            82.8                82.8
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2         0.343           17.2               100  
-#&gt; -------------------------------------------------------------------------------
-#&gt; Factor Analysis - factorial loadings after rotation-
-#&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
-#&gt;   VAR     FA1 Communality Uniquenesses
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.910       0.828        0.172
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.910       0.828        0.172
-#&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.8283139 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Multitrait stability index
-#&gt; -------------------------------------------------------------------------------
-#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
-#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for the  waasb index
-#&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor    Xo    Xs     SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1   0.250 0.117 -</span><span style='color: #BB0000;'>0.134</span><span>  -</span><span style='color: #BB0000;'>53.5</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   0.614 0.373 -</span><span style='color: #BB0000;'>0.241</span><span>  -</span><span style='color: #BB0000;'>39.2</span><span>
-#&gt; ------------------------------------------------------------------------------
-#&gt; Mean of selection differential
-#&gt; -------------------------------------------------------------------------------
-#&gt;          Xo          Xs          SD      SDperc 
-#&gt;   0.4323192   0.2448716  -0.1874476 -46.3574863 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for the mean of the variables
-#&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor    xo    Xs     SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.78  0.105   3.94
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  47.3  -</span><span style='color: #BB0000;'>0.747</span><span>  -</span><span style='color: #BB0000;'>1.55</span><span>
-#&gt; ------------------------------------------------------------------------------
-#&gt; Selected genotypes
-#&gt; -------------------------------------------------------------------------------
-#&gt; G3 G1
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mtsi_index2</span>)</div><div class='img'><img src='plot.mtsi-2.png' alt='' width='700' height='433' /></div><div class='input'>
+
 
 </div></span></pre>
   </div>

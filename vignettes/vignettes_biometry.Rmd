@@ -22,7 +22,6 @@ knitr::opts_chunk$set(comment = "", cache = TRUE)
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 library(metan)
-library(cowplot)
 library(kableExtra) # Used to make the tables
 library(tidyverse) # used for the forward-pipe operator %>%
 # Function to make HTML tables

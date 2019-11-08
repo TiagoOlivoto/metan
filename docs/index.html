@@ -181,20 +181,19 @@
 <p>Here, we will use the example dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2) <span class="co"># used to create the plots</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the plots</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to produce HTML tables</span></a>
-<a class="sourceLine" id="cb2-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb2-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
-<a class="sourceLine" id="cb2-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb2-9" title="9">}</a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt; Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...</span></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...</span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt;  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to produce HTML tables</span></a>
+<a class="sourceLine" id="cb2-4" title="4">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb2-5" title="5">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb2-7" title="7">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb2-8" title="8">}</a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(data_ge)</a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt; Classes 'tbl_df', 'tbl' and 'data.frame':    420 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  $ REP: Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  $ GY : num  2.17 2.5 2.43 3.21 2.93 ...</span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  $ HM : num  44.9 46.9 47.8 45.2 45.3 ...</span></a></code></pre></div>
 <div id="ammi-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ammi-model" class="anchor"></a>AMMI model</h2>
@@ -579,11 +578,11 @@ G5
 <a class="sourceLine" id="cb5-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb5-3" title="3">                 <span class="dt">type =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb5-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb5-5" title="5">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb5-5" title="5">                 <span class="co"># col.gen = "black",</span></a>
 <a class="sourceLine" id="cb5-6" title="6">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb5-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb5-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb5-9" title="9"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="reference/figures/AMMI.png"></p>
 </div>
 </div>
@@ -599,7 +598,7 @@ G5
 <a class="sourceLine" id="cb6-6" title="6">           <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb6-7" title="7">           <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb6-8" title="8">           <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb6-9" title="9"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="reference/figures/GGE.png"></p>
 </div>
 <div id="blup-model" class="section level2">
@@ -844,7 +843,7 @@ G9
 <a class="sourceLine" id="cb8-2" title="2">p2 =<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
 <a class="sourceLine" id="cb8-3" title="3">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
 <a class="sourceLine" id="cb8-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>))</a></code></pre></div>
 <p><img src="reference/figures/BLUP.png" height="340/"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level3">

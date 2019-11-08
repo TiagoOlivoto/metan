@@ -147,7 +147,7 @@
       <h1>Cross-validation procedures for AMMI and BLUP</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-05</h4>
+            <h4 class="date">2019-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_cross-validation.Rmd"><code>vignettes/vignettes_cross-validation.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_cross-validation.Rmd</code></div>
@@ -174,14 +174,13 @@
 </style>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Importing data</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cowplot) <span class="co"># used to arrange the graphics</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Function to make HTML tables</span></a>
-<a class="sourceLine" id="cb1-6" title="6">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-7" title="7">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
-<a class="sourceLine" id="cb1-9" title="9">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-10" title="10">}</a></code></pre></div>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
+<a class="sourceLine" id="cb1-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
 </div>
 <div id="predictive-accuracy" class="section level1">
 <h1 class="hasAnchor">
@@ -267,102 +266,42 @@ Q97.5
 <tbody>
 <tr>
 <td style="text-align:left;">
-AMMI2
-</td>
-<td style="text-align:right;">
-0.400
-</td>
-<td style="text-align:right;">
-0.037
-</td>
-<td style="text-align:right;">
-0.017
-</td>
-<td style="text-align:right;">
-0.357
-</td>
-<td style="text-align:right;">
-0.434
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI6
-</td>
-<td style="text-align:right;">
-0.405
-</td>
-<td style="text-align:right;">
-0.020
-</td>
-<td style="text-align:right;">
-0.009
-</td>
-<td style="text-align:right;">
-0.385
-</td>
-<td style="text-align:right;">
-0.431
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI4
+BLUP_g_RCBD
 </td>
 <td style="text-align:right;">
 0.408
 </td>
 <td style="text-align:right;">
-0.036
+0.026
 </td>
 <td style="text-align:right;">
-0.016
+0.002
 </td>
 <td style="text-align:right;">
-0.374
+0.359
 </td>
 <td style="text-align:right;">
-0.460
+0.458
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-BLUP_g_RCBD
+AMMI2
 </td>
 <td style="text-align:right;">
-0.410
+0.411
 </td>
 <td style="text-align:right;">
-0.018
+0.026
 </td>
 <td style="text-align:right;">
-0.008
+0.002
 </td>
 <td style="text-align:right;">
-0.393
+0.359
 </td>
 <td style="text-align:right;">
-0.435
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI0
-</td>
-<td style="text-align:right;">
-0.414
-</td>
-<td style="text-align:right;">
-0.031
-</td>
-<td style="text-align:right;">
-0.014
-</td>
-<td style="text-align:right;">
-0.397
-</td>
-<td style="text-align:right;">
-0.462
+0.464
 </td>
 </tr>
 <tr>
@@ -370,59 +309,39 @@ AMMI0
 AMMI3
 </td>
 <td style="text-align:right;">
-0.424
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-<td style="text-align:right;">
-0.004
-</td>
-<td style="text-align:right;">
-0.411
-</td>
-<td style="text-align:right;">
-0.436
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMIF
-</td>
-<td style="text-align:right;">
-0.427
+0.414
 </td>
 <td style="text-align:right;">
 0.024
 </td>
 <td style="text-align:right;">
-0.011
+0.002
 </td>
 <td style="text-align:right;">
-0.402
+0.364
 </td>
 <td style="text-align:right;">
-0.460
+0.459
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-AMMI7
+AMMI4
 </td>
 <td style="text-align:right;">
-0.428
+0.418
 </td>
 <td style="text-align:right;">
-0.020
+0.023
 </td>
 <td style="text-align:right;">
-0.009
+0.002
 </td>
 <td style="text-align:right;">
-0.411
+0.370
 </td>
 <td style="text-align:right;">
-0.454
+0.459
 </td>
 </tr>
 <tr>
@@ -430,19 +349,39 @@ AMMI7
 AMMI5
 </td>
 <td style="text-align:right;">
-0.430
+0.421
 </td>
 <td style="text-align:right;">
-0.027
+0.023
 </td>
 <td style="text-align:right;">
-0.012
+0.002
 </td>
 <td style="text-align:right;">
-0.399
+0.374
 </td>
 <td style="text-align:right;">
-0.454
+0.462
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI7
+</td>
+<td style="text-align:right;">
+0.424
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+0.377
+</td>
+<td style="text-align:right;">
+0.467
 </td>
 </tr>
 <tr>
@@ -450,19 +389,59 @@ AMMI5
 AMMI8
 </td>
 <td style="text-align:right;">
-0.435
+0.426
 </td>
 <td style="text-align:right;">
-0.026
+0.023
 </td>
 <td style="text-align:right;">
-0.012
+0.002
 </td>
 <td style="text-align:right;">
-0.410
+0.380
 </td>
 <td style="text-align:right;">
-0.470
+0.467
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI6
+</td>
+<td style="text-align:right;">
+0.426
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+0.381
+</td>
+<td style="text-align:right;">
+0.467
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMIF
+</td>
+<td style="text-align:right;">
+0.428
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+0.385
+</td>
+<td style="text-align:right;">
+0.467
 </td>
 </tr>
 <tr>
@@ -470,19 +449,39 @@ AMMI8
 AMMI1
 </td>
 <td style="text-align:right;">
-0.450
+0.430
 </td>
 <td style="text-align:right;">
 0.025
 </td>
 <td style="text-align:right;">
-0.011
+0.002
 </td>
 <td style="text-align:right;">
-0.414
+0.386
 </td>
 <td style="text-align:right;">
-0.470
+0.483
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI0
+</td>
+<td style="text-align:right;">
+0.436
+</td>
+<td style="text-align:right;">
+0.029
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+0.381
+</td>
+<td style="text-align:right;">
+0.494
 </td>
 </tr>
 </tbody>
@@ -500,7 +499,7 @@ AMMI1
 <a class="sourceLine" id="cb8-5" title="5">          <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>,</a>
 <a class="sourceLine" id="cb8-6" title="6">          <span class="dt">col.boxplot =</span> <span class="st">"transparent"</span>,</a>
 <a class="sourceLine" id="cb8-7" title="7">          <span class="dt">order_box =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<a class="sourceLine" id="cb8-8" title="8"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(p1, p2)</a></code></pre></div>
 <p><img src="vignettes_cross-validation_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>Six statistics are shown in this boxplot. The mean (black rhombus), the median (black line), the lower and upper hinges that correspond sto the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than <span class="math inline">\(1.5\times{IQR}\)</span> from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most <span class="math inline">\(1.5\times{IQR}\)</span> of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition <code>violin = TRUE</code>, a violin plot is added along with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.</p>
 </div>
