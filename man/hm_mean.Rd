@@ -2,9 +2,7 @@
 % Please edit documentation in R/hm_mean.R
 \name{hm_mean}
 \alias{hm_mean}
-\title{Harmonic mean
-Helper function to compute the harmonic mean. The harmonic mean is the
-reciprocal of the arithmetic mean of the reciprocals.}
+\title{Harmonic mean}
 \usage{
 hm_mean(x, ..., na.rm = TRUE)
 }
@@ -23,7 +21,6 @@ The harmonic mean(s) of \code{x}. If \code{x} is a numeric vector, the
   vector with the harmonic mean for each variable is returned.
 }
 \description{
-Harmonic mean
 Helper function to compute the harmonic mean. The harmonic mean is the
 reciprocal of the arithmetic mean of the reciprocals.
 }

@@ -1,4 +1,5 @@
 #' Harmonic mean
+#'
 #' Helper function to compute the harmonic mean. The harmonic mean is the
 #' reciprocal of the arithmetic mean of the reciprocals.
 #' @param x A numeric vector or a data frame.

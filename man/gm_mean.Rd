@@ -2,9 +2,7 @@
 % Please edit documentation in R/gm_mean.R
 \name{gm_mean}
 \alias{gm_mean}
-\title{Geometric mean
-Helper function to compute the geometric mean. The geometric mean is the nth
-root of n products.}
+\title{Geometric mean}
 \usage{
 gm_mean(x, ..., na.rm = TRUE)
 }
@@ -23,9 +21,8 @@ The geometric mean(s) of \code{x}. If \code{x} is a numeric vector, the
   vector with the geometric mean for each variable is returned.
 }
 \description{
-Geometric mean
-Helper function to compute the geometric mean. The geometric mean is the nth
-root of n products.
+Helper function to compute the geometric mean. The geometric mean is the \emph{n}th
+root of \emph{n} products.
 }
 \note{
 Not useful if there are elements with values \code{<=0}.

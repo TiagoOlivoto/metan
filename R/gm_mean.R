@@ -1,6 +1,7 @@
 #' Geometric mean
-#' Helper function to compute the geometric mean. The geometric mean is the nth
-#' root of n products.
+#'
+#' Helper function to compute the geometric mean. The geometric mean is the \emph{n}th
+#' root of \emph{n} products.
 #' @param x A numeric vector or a data frame.
 #' @param ... Variables to compute the geometric mean. If no variable is informed
 #'   and \code{x} is a data frame, all the numeric variables will be used.
