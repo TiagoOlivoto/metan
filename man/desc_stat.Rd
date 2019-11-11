@@ -13,7 +13,8 @@ desc_stat(.data = NULL, ..., values = NULL, stats = "main",
 class \code{split_factors}.}
 
 \item{...}{A single variable name or a comma-separated list of unquoted
-variables names.}
+variables names. If no variable is informed, all the numeric from
+\code{.data} variables will be used.}
 
 \item{values}{An alternative way to pass the data to the function. It must be
 a numeric vector.}
@@ -23,6 +24,7 @@ a numeric vector.}
 or chose one (or more) of the following: \code{'AV.dev'} (average
 deviation), \code{'CI.mean'} (confidence interval for the mean), \code{'CV'}
 (coefficient of variation), \code{'IQR'} (interquartile range),
+\code{'gm.mean'} (geometric mean), \code{'hm.mean'} (harmonic mean),
 \code{'Kurt'} (kurtosis), \code{'mad'} (median absolute deviation),
 \code{'max'} (maximum value), \code{'mean'} (arithmetic mean),
 \code{'median'} (median), \code{'min'} (minimum value), \code{'n'} (the
