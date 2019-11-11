@@ -25,8 +25,8 @@
 #' @export
 #' @examples
 #' library(metan)
-#' model <- ge_effects(data_ge2, ENV, GEN, REP, PH)
-#' plot(model$PH)
+#' ge_eff <- ge_effects(data_ge2, ENV, GEN, REP, PH)
+#' plot(ge_eff)
 #'
 plot.ge_effects <- function(x, var = 1, theme = theme_waasb(), x.lab = NULL, y.lab = NULL,
                         leg.position = "right", size.text = 12, ...){

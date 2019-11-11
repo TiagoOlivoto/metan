@@ -30,7 +30,7 @@
 #' library(metan)
 #' ge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY)
 #' gge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY, type = "gge")
-#'
+#' plot(ge_eff)
 #'
 ge_effects <- function(.data, env, gen, rep, resp, type = "ge", verbose = TRUE) {
   if(!type  %in% c("ge", "gge")){
