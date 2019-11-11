@@ -18,7 +18,7 @@
 #' num <- c(1:10, 50)
 #' gm_mean(num)
 #'
-#' num_df <- make_mat(data_ge, GEN, ENV, GY)
+#' num_df <- make_mat(data_ge, ENV, GEN, GY)
 #' gm_mean(num_df)
 gm_mean <- function(x, ..., na.rm = TRUE){
   if(is.null(nrow(x))){

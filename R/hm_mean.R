@@ -18,7 +18,7 @@
 #' num <- c(1:10, 50)
 #' hm_mean(num)
 #'
-#' num_df <- make_mat(data_ge, GEN, ENV, GY)
+#' num_df <- make_mat(data_ge, ENV, GEN, GY)
 #' hm_mean(num_df)
 hm_mean <- function(x, ..., na.rm = TRUE) {
   if(is.null(nrow(x))){

@@ -31,7 +31,7 @@ Not useful if there are elements with values \code{<=0}.
 num <- c(1:10, 50)
 hm_mean(num)
 
-num_df <- make_mat(data_ge, GEN, ENV, GY)
+num_df <- make_mat(data_ge, ENV, GEN, GY)
 hm_mean(num_df)
 }
 \seealso{
