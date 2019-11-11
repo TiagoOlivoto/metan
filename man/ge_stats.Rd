@@ -32,9 +32,13 @@ variable:
 \itemize{
 \item \strong{individual} The individual analysis of variance. Call the function
 \code{\link{anova_ind}} internally.
-\item \strong{ge_mean}, ge_effect The genotype-vs-environment means and effects,
-respectively.
-\item \strong{gge_effect} The genotype plus genotype-vs-environment effects.
+\item \strong{gai} The Geometric adaptability index. Call the function
+\code{\link{gai}} internally.
+\item \strong{ge_mean}, ge_effect The genotype-vs-environment means and effects, respectively.
+\item \strong{ge_effect} The genotype-environment effects. Call the function
+\code{\link{ge_effects}} internally.
+\item \strong{gge_effect} The genotype plus genotype-vs-environment effects. Call
+the function \code{\link{ge_effects}} internally.
 \item \strong{ge_stats} The variance, sum of squares and mean squares for each
 genotype.
 \item \strong{ER} The Eberhart and Russell regression model. Call the function
@@ -64,17 +68,17 @@ index (Lin and Binns, 1988)
 
 library(metan)
 
-model = ge_stats(.data = data_ge2,
-                 env = ENV,
-                 gen = GEN,
-                 rep = REP,
-                 resp = PH)
+model <- ge_stats(.data = data_ge2,
+                  env = ENV,
+                  gen = GEN,
+                  rep = REP,
+                  resp = PH)
 
 #Alternatively, using the forward-pipe operator \%>\%
 #More than one trait
 
-model2 = data_ge2 \%>\%
-         ge_stats(ENV, GEN, REP, c(PH, EH, EL))
+model2 <- data_ge2 \%>\%
+          ge_stats(ENV, GEN, REP, c(PH, EH, EL))
 
 
 }
@@ -98,6 +102,11 @@ Yielding and Stable Crop Genotypes. Agron. J. 83:161.
 Lin, C.S., and M.R. Binns. 1988. A superiority measure of cultivar
 performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
 \href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
+
+Shahbazi, E. 2019. Genotype selection and stability analysis for
+seed yield of Nigella sativa using parametric and non-parametric
+statistics. Sci. Hortic. (Amsterdam). 253:172-179.
+\href{https://www.sciencedirect.com/science/article/pii/S0304423819303012}{doi:10.1016/j.scienta.2019.04.047}.
 
 Shukla, G.K. 1972. Some statistical aspects of partitioning
 genotype-environmental components of variability. Heredity. 29:238-245.

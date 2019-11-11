@@ -7,7 +7,7 @@
 #'
 #'
 #' @param x An object created with the functions \code{\link{AMMI_indexes}},
-#'   \code{\link{ecovalence}},  \code{\link{Fox}},  \code{\link{ge_reg}},
+#'   \code{\link{ecovalence}},  \code{\link{Fox}}, \code{\link{gai}}, \code{\link{ge_reg}},
 #'   \code{\link{gamem}}, \code{\link{performs_ammi}},
 #'   \code{\link{Resende_indexes}}, \code{\link{Shukla}},
 #'   \code{\link{superiority}}, \code{\link{waas}} or \code{\link{waasb}}.
@@ -42,6 +42,10 @@
 #' * \code{"deviations"} The deviations from regression
 #' * \code{"RMSE"} The Root Mean Square Error
 #' * \code{"R2"} The r-square of the regression
+#'
+#'  \strong{Object is of class \code{gai}.}
+#' * \code{"GAI"} The geometric adaptability index.
+#' * \code{"RANK_GAI"} The rank for the GAI values.
 #'
 #'  \strong{Object is of class \code{ge_effects}.}
 #' * For objects of class \code{ge_effects} no argument \code{what} is required
@@ -197,7 +201,7 @@
 get_model_data <- function(x, what = "Y", type = "GEN") {
   if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",
                        "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
-                       "superiority", "ge_effects")) {
+                       "superiority", "ge_effects", "gai")) {
     stop("Invalid class in object 'x'. See ?get_model_data for more information.")
   }
   if (substr(what, 1, 2) == "PC") {
@@ -224,9 +228,10 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   check10 <- c("TOP")
   check11 <- c("ShuklaVar", "rMean", "rShukaVar", "ssiShukaVar")
   check12 <- c("Pi_a", "R_a", "Pi_f", "R_f", "Pi_u", "R_u")
+  check13 <- c("GAI", "RANK_GAI")
 
 
-  if (!what %in% c(check, check2, check5, check6, check7, check8, check9, check10, check11, check12)) {
+  if (!what %in% c(check, check2, check5, check6, check7, check8, check9, check10, check11, check12, check13)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (what %in% check3 && !class(x) %in% c("waasb", "gamem")) {
@@ -234,6 +239,20 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
+  }
+
+  if (class(x) == "gai") {
+    if (!what %in% check13) {
+      stop("Invalid value in 'what' for object of class 'gai'. Allowed are ", paste(check13, collapse = " "))
+    }
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        x[[what]]
+      })) %>%
+      as_tibble() %>%
+      mutate(gen = x[[1]][["GEN"]]) %>%
+      select(gen, everything())
   }
 
   if (class(x) == "ge_effects") {
@@ -248,6 +267,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
       select(1:2)
     bind <- cbind(factors, bind)
   }
+
   if (class(x) == "superiority") {
     if (!what %in% c("Y", check12)) {
       stop("Invalid value in 'what' for object of class 'superiority'. Allowed are ", paste(check12, collapse = " "))

@@ -8,7 +8,7 @@ get_model_data(x, what = "Y", type = "GEN")
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{AMMI_indexes}},
-\code{\link{ecovalence}},  \code{\link{Fox}},  \code{\link{ge_reg}},
+\code{\link{ecovalence}},  \code{\link{Fox}}, \code{\link{gai}}, \code{\link{ge_reg}},
 \code{\link{gamem}}, \code{\link{performs_ammi}},
 \code{\link{Resende_indexes}}, \code{\link{Shukla}},
 \code{\link{superiority}}, \code{\link{waas}} or \code{\link{waasb}}.}
@@ -58,6 +58,12 @@ interaction
 \item \code{"deviations"} The deviations from regression
 \item \code{"RMSE"} The Root Mean Square Error
 \item \code{"R2"} The r-square of the regression
+}
+
+\strong{Object is of class \code{gai}.}
+\itemize{
+\item \code{"GAI"} The geometric adaptability index.
+\item \code{"RANK_GAI"} The rank for the GAI values.
 }
 
 \strong{Object is of class \code{ge_effects}.}

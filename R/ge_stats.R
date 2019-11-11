@@ -24,9 +24,13 @@
 #'   variable:
 #' * \strong{individual} The individual analysis of variance. Call the function
 #' \code{\link{anova_ind}} internally.
-#' * \strong{ge_mean}, ge_effect The genotype-vs-environment means and effects,
-#' respectively.
-#' * \strong{gge_effect} The genotype plus genotype-vs-environment effects.
+#' * \strong{gai} The Geometric adaptability index. Call the function
+#' \code{\link{gai}} internally.
+#' * \strong{ge_mean}, ge_effect The genotype-vs-environment means and effects, respectively.
+#' * \strong{ge_effect} The genotype-environment effects. Call the function
+#' \code{\link{ge_effects}} internally.
+#' * \strong{gge_effect} The genotype plus genotype-vs-environment effects. Call
+#' the function \code{\link{ge_effects}} internally.
 #' * \strong{ge_stats} The variance, sum of squares and mean squares for each
 #' genotype.
 #' * \strong{ER} The Eberhart and Russell regression model. Call the function
@@ -64,6 +68,11 @@
 #'   performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
 #'   \href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
 #'
+#'   Shahbazi, E. 2019. Genotype selection and stability analysis for
+#'   seed yield of Nigella sativa using parametric and non-parametric
+#'   statistics. Sci. Hortic. (Amsterdam). 253:172-179.
+#'   \href{https://www.sciencedirect.com/science/article/pii/S0304423819303012}{doi:10.1016/j.scienta.2019.04.047}.
+#'
 #'   Shukla, G.K. 1972. Some statistical aspects of partitioning
 #'   genotype-environmental components of variability. Heredity. 29:238-245.
 #'   \href{http://www.nature.com/articles/hdy197287}{doi:10.1038/hdy.1972.87}.
@@ -77,17 +86,17 @@
 #'
 #' library(metan)
 #'
-#' model = ge_stats(.data = data_ge2,
-#'                  env = ENV,
-#'                  gen = GEN,
-#'                  rep = REP,
-#'                  resp = PH)
+#' model <- ge_stats(.data = data_ge2,
+#'                   env = ENV,
+#'                   gen = GEN,
+#'                   rep = REP,
+#'                   resp = PH)
 #'
 #' #Alternatively, using the forward-pipe operator %>%
 #' #More than one trait
 #'
-#' model2 = data_ge2 %>%
-#'          ge_stats(ENV, GEN, REP, c(PH, EH, EL))
+#' model2 <- data_ge2 %>%
+#'           ge_stats(ENV, GEN, REP, c(PH, EH, EL))
 #'
 #'
 ge_stats = function(.data,
@@ -130,6 +139,7 @@ lb_mod = superiority(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 an_mod = Annicchiarico(data, ENV, GEN, REP, mean, verbose = FALSE, prob = prob)
 shu_mod <- Shukla(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 fox_mod <- Fox(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
+gai_mod <- gai(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 ANN = list(environments = an_mod[[1]]$environments,
            general = an_mod[[1]]$general,
            favorable = an_mod[[1]]$favorable,
@@ -150,6 +160,7 @@ ge_stat = data.frame(Mean = Mean,
 
 
 temp = list(individual = individual[[1]][[1]],
+            gai = gai_mod,
             ge_mean = as_tibble(ge_mean, rownames = NA),
             ge_effect = ge_effect,
             gge_effect = gge_effect,
