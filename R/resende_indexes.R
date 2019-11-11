@@ -59,35 +59,30 @@
 #' @examples
 #'
 #' library(metan)
-#' res_ind = waasb(data_ge,
-#'                 env = ENV,
-#'                 gen = GEN,
-#'                 rep = REP,
-#'                 resp = c(GY, HM))
-#' model_indexes = Resende_indexes(res_ind)
+#' res_ind <- waasb(data_ge,
+#'                  env = ENV,
+#'                  gen = GEN,
+#'                  rep = REP,
+#'                  resp = c(GY, HM))
+#' model_indexes <- Resende_indexes(res_ind)
 #'
 #' # Alternatively using the pipe operator %>%
-#' res_ind = data_ge %>%
-#'           waasb(ENV, GEN, REP, c(GY, HM)) %>%
-#'           Resende_indexes()
+#' res_ind <- data_ge %>%
+#'            waasb(ENV, GEN, REP, c(GY, HM)) %>%
+#'            Resende_indexes()
 #'
 #'
 Resende_indexes <- function(.data) {
     if (!is(.data, "waasb")) {
         stop("The object '.data' must be an object of class \"waasb\"")
     }
-    # Helper functions
-    hmean_fun <- function(x) {
-        hmean <- length(x)/sum(1/x)
-        return(hmean)
-    }
     listres <- list()
     for (var in 1:length(.data)) {
         gge <- .data[[var]][["BLUPgge"]]
         # Harmonic mean
         GEPRED <- make_mat(gge, GEN, ENV, Predicted)
-        HMGV <- data.frame(HMGV = apply(GEPRED, 1, FUN = hmean_fun),
-                           HMGV_order = rank(-apply(GEPRED, 1, FUN = hmean_fun)))
+        HMGV <- data.frame(HMGV = apply(GEPRED, 1, FUN = hm_mean),
+                           HMGV_order = rank(-apply(GEPRED, 1, FUN = hm_mean)))
         ## Relative performance
         y <- .data[[var]][["MeansGxE"]]
         GEMEAN <- make_mat(y, GEN, ENV, Y)
@@ -98,7 +93,7 @@ Resende_indexes <- function(.data) {
             mutate(RPGV_Y = RPGV * ovmean,
                    RPGV_order = rank(-RPGV_Y))
         ## Harmonic mean of Relative performance
-        HMRPGV <- data.frame(HMRPGV = apply(t(t(GEPRED)/mean_env), 1, hmean_fun))
+        HMRPGV <- data.frame(HMRPGV = apply(t(t(GEPRED)/mean_env), 1, hm_mean))
         HMRPGV_data <- HMRPGV %>%
             mutate(HMRPGV_Y = HMRPGV * ovmean,
                    HMRPGV_order = rank(-HMRPGV_Y))

@@ -38,17 +38,17 @@ The HMRPGV index is computed as \deqn{HMRPGV_i = \frac{1}{E}\sum\limits_{j =
 \examples{
 
 library(metan)
-res_ind = waasb(data_ge,
-                env = ENV,
-                gen = GEN,
-                rep = REP,
-                resp = c(GY, HM))
-model_indexes = Resende_indexes(res_ind)
+res_ind <- waasb(data_ge,
+                 env = ENV,
+                 gen = GEN,
+                 rep = REP,
+                 resp = c(GY, HM))
+model_indexes <- Resende_indexes(res_ind)
 
 # Alternatively using the pipe operator \%>\%
-res_ind = data_ge \%>\%
-          waasb(ENV, GEN, REP, c(GY, HM)) \%>\%
-          Resende_indexes()
+res_ind <- data_ge \%>\%
+           waasb(ENV, GEN, REP, c(GY, HM)) \%>\%
+           Resende_indexes()
 
 
 }
