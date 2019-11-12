@@ -20,7 +20,7 @@
 #'   tibble with the following columns is returned.
 #' * \strong{GEN} the genotype's code.
 #' * \strong{GAI} Geometric adaptability index
-#' * \strong{RANK_GAI} The rank for the GAI value.
+#' * \strong{GAI_R} The rank for the GAI value.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Shahbazi, E. 2019. Genotype selection and stability analysis for
@@ -54,7 +54,7 @@ gai <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       as_tibble(rownames = NA) %>%
       rownames_to_column("GEN") %>%
       mutate(rank = rank(-value)) %>%
-      set_names("GEN", "GAI", "RANK_GAI")
+      set_names("GEN", "GAI", "GAI_R")
 
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- temp

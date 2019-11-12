@@ -31,7 +31,7 @@ tibble with the following columns is returned.
 \itemize{
 \item \strong{GEN} the genotype's code.
 \item \strong{GAI} Geometric adaptability index
-\item \strong{RANK_GAI} The rank for the GAI value.
+\item \strong{GAI_R} The rank for the GAI value.
 }
 }
 \description{
