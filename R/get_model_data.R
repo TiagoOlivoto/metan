@@ -43,17 +43,9 @@
 #' * \code{"RMSE"} The Root Mean Square Error
 #' * \code{"R2"} The r-square of the regression
 #'
-#'  \strong{Object is of class \code{gai}.}
-#' * \code{"GAI"} The geometric adaptability index.
-#' * \code{"RANK_GAI"} The rank for the GAI values.
 #'
 #'  \strong{Object is of class \code{ge_effects}.}
 #' * For objects of class \code{ge_effects} no argument \code{what} is required
-#'
-#'  \strong{Object is of class \code{Fox}.}
-#' * \code{"Y"} for raw means (Default).
-#' * \code{"TOP"} The proportion of locations at which the genotype occurred in
-#' the top third
 #'
 #'
 #'  \strong{Object is of class \code{Shukla}.}
@@ -63,7 +55,16 @@
 #' * \code{"rShukaVar"} Rank for Shukla's stablity variance.
 #' * \code{"ssiShukaVar"} Simultaneous selection index.
 #'
-#'   \strong{Object is of class \code{superiority}.}
+#'  \strong{Object is of class \code{Fox}.}
+#' * \code{"Y"} for raw means (Default).
+#' * \code{"TOP"} The proportion of locations at which the genotype occurred in
+#' the top third
+#'
+#'  \strong{Object is of class \code{gai}.}
+#' * \code{"GAI"} The geometric adaptability index.
+#' * \code{"GAI_R"} The rank for the GAI values.
+#'
+#'  \strong{Object is of class \code{superiority}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"Pi_a"} The superiority measure for all environments.
 #' * \code{"R_a"} The rank for Pi_a.
@@ -71,6 +72,28 @@
 #' * \code{"R_f"} The rank for Pi_f.
 #' * \code{"Pi_u"} The superiority measure for unfavorable environments.
 #' * \code{"R_u"} The rank for Pi_u.
+#'
+#'  \strong{Object is of class \code{Huehn}.}
+#' * \code{"Y"} for raw means (Default).
+#' * \code{"S1"} Mean of the absolute rank differences of a genotype over the n environments.
+#' * \code{"S1_R"} The rank for S1.
+#' * \code{"S2"} variance among the ranks over the k environments.
+#' * \code{"S2_R"} The rank for S2.
+#' * \code{"S3"} Sum of the absolute deviations.
+#' * \code{"S3_R"} The rank for S3.
+#' * \code{"S6"} Relative sum of squares of rank for each genotype.
+#' * \code{"S6_R"} The rank for S6.
+#'
+#'  \strong{Object is of class \code{Thennarasu}.}
+#' * \code{"Y"} for raw means (Default).
+#' * \code{"N1"} First statistic
+#' * \code{"N1_R"} The rank for S1.
+#' * \code{"N2"} Second statistic
+#' * \code{"N2_R"} The rank for S2.
+#' * \code{"N3"} Third statistic
+#' * \code{"N3_R"} The rank for S3.
+#' * \code{"N4"} Fourth statistic
+#' * \code{"N4_R"} The rank for S6.
 #'
 #'
 #'  \strong{Object is of class \code{performs_ammi}.}
@@ -201,7 +224,7 @@
 get_model_data <- function(x, what = "Y", type = "GEN") {
   if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",
                        "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
-                       "superiority", "ge_effects", "gai")) {
+                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu")) {
     stop("Invalid class in object 'x'. See ?get_model_data for more information.")
   }
   if (substr(what, 1, 2) == "PC") {
@@ -228,10 +251,13 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   check10 <- c("TOP")
   check11 <- c("ShuklaVar", "rMean", "rShukaVar", "ssiShukaVar")
   check12 <- c("Pi_a", "R_a", "Pi_f", "R_f", "Pi_u", "R_u")
-  check13 <- c("GAI", "RANK_GAI")
+  check13 <- c("GAI", "GAI_R")
+  check14 <- c("S1","S1_R", "S2", "S2_R", "S3", "S3_R", "S6", "S6_R")
+  check15 <- c("N1", "N1_R", "N2", "N2_R", "N3", "N3_R", "N4", "N4_R")
 
 
-  if (!what %in% c(check, check2, check5, check6, check7, check8, check9, check10, check11, check12, check13)) {
+  if (!what %in% c(check, check2, check5, check6, check7, check8, check9, check10,
+                   check11, check12, check13, check14, check15)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (what %in% check3 && !class(x) %in% c("waasb", "gamem")) {
@@ -241,9 +267,37 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
 
+  if (class(x) == "Thennarasu") {
+    if (!what %in% c("Y", check15)) {
+      stop("Invalid value in 'what' for object of class 'Thennarasu'. Allowed are ", paste(check15, collapse = ", "), call. = FALSE)
+    }
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        x[[what]]
+      })) %>%
+      as_tibble() %>%
+      mutate(gen = x[[1]][["GEN"]]) %>%
+      select(gen, everything())
+  }
+
+  if (class(x) == "Huehn") {
+    if (!what %in% c("Y", check14)) {
+      stop("Invalid value in 'what' for object of class 'Huehn'. Allowed are ", paste(check14, collapse = ", "), call. = FALSE)
+    }
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        x[[what]]
+      })) %>%
+      as_tibble() %>%
+      mutate(gen = x[[1]][["GEN"]]) %>%
+      select(gen, everything())
+  }
+
   if (class(x) == "gai") {
     if (!what %in% check13) {
-      stop("Invalid value in 'what' for object of class 'gai'. Allowed are ", paste(check13, collapse = " "))
+      stop("Invalid value in 'what' for object of class 'gai'. Allowed are ", paste(check13, collapse = ", "), call. = FALSE)
     }
     bind <- do.call(
       cbind,
@@ -270,7 +324,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
 
   if (class(x) == "superiority") {
     if (!what %in% c("Y", check12)) {
-      stop("Invalid value in 'what' for object of class 'superiority'. Allowed are ", paste(check12, collapse = " "))
+      stop("Invalid value in 'what' for object of class 'superiority'. Allowed are ", paste(check12, collapse = ", "), call. = FALSE)
     }
     bind <- do.call(
       cbind,
@@ -283,7 +337,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   }
   if (class(x) == "Shukla") {
     if (!what %in% c("Y", check11)) {
-      stop("Invalid value in 'what' for object of class 'Shukla'. Allowed are ", paste(check11, collapse = " "))
+      stop("Invalid value in 'what' for object of class 'Shukla'. Allowed are ", paste(check11, collapse = ", "), call. = FALSE)
     }
     bind <- do.call(
       cbind,
@@ -296,7 +350,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   }
   if (class(x) == "Fox") {
     if (!what %in% c("Y", check10)) {
-      stop("Invalid value in 'what' for object of class 'Fox'. Allowed are ", paste(check10, collapse = " "))
+      stop("Invalid value in 'what' for object of class 'Fox'. Allowed are ", paste(check10, collapse = ", "), call. = FALSE)
     }
     bind <- do.call(
       cbind,
@@ -309,7 +363,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   }
   if (class(x) == "ge_reg") {
     if (!what %in% c("Y", check9)) {
-      stop("Invalid value in 'what' for object of class 'ge_reg'. Allowed are ", paste(check9, collapse = " "))
+      stop("Invalid value in 'what' for object of class 'ge_reg'. Allowed are ", paste(check9, collapse = ", "), call. = FALSE)
     }
     bind <- do.call(
       cbind,
@@ -322,7 +376,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   }
   if (class(x) == "ecovalence") {
     if (what != check8) {
-      stop("Invalid value in 'what' for object of class 'ecovalence'. Allowed are ", paste(check8, collapse = " "))
+      stop("Invalid value in 'what' for object of class 'ecovalence'. Allowed are ", paste(check8, collapse = ", "), call. = FALSE)
     }
     bind <- do.call(
       cbind,
@@ -335,7 +389,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   }
   if (class(x) == "AMMI_indexes") {
     if (!what %in% c("Y", check7)) {
-      stop("Invalid value in 'what' for object of class 'AMMI_indexes'. Allowed are ", paste(check7, collapse = " "))
+      stop("Invalid value in 'what' for object of class 'AMMI_indexes'. Allowed are ", paste(check7, collapse = ", "), call. = FALSE)
     }
     bind <- do.call(
       cbind,
@@ -348,7 +402,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   }
   if (class(x) == "Res_ind") {
     if (!what %in% c("Y", check6)) {
-      stop("Invalid value in 'what' for object of class 'Res_ind'. Allowed are ", paste(check6, collapse = " "))
+      stop("Invalid value in 'what' for object of class 'Res_ind'. Allowed are ", paste(check6, collapse = ", "), call. = FALSE)
     }
     bind <- do.call(
       cbind,

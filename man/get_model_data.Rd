@@ -60,22 +60,9 @@ interaction
 \item \code{"R2"} The r-square of the regression
 }
 
-\strong{Object is of class \code{gai}.}
-\itemize{
-\item \code{"GAI"} The geometric adaptability index.
-\item \code{"RANK_GAI"} The rank for the GAI values.
-}
-
 \strong{Object is of class \code{ge_effects}.}
 \itemize{
 \item For objects of class \code{ge_effects} no argument \code{what} is required
-}
-
-\strong{Object is of class \code{Fox}.}
-\itemize{
-\item \code{"Y"} for raw means (Default).
-\item \code{"TOP"} The proportion of locations at which the genotype occurred in
-the top third
 }
 
 \strong{Object is of class \code{Shukla}.}
@@ -85,8 +72,23 @@ the top third
 \item \code{"ShuklaVar"} Shukla's stablity variance.
 \item \code{"rShukaVar"} Rank for Shukla's stablity variance.
 \item \code{"ssiShukaVar"} Simultaneous selection index.
+}
+
+\strong{Object is of class \code{Fox}.}
+\itemize{
+\item \code{"Y"} for raw means (Default).
+\item \code{"TOP"} The proportion of locations at which the genotype occurred in
+the top third
+}
+
+\strong{Object is of class \code{gai}.}
+\itemize{
+\item \code{"GAI"} The geometric adaptability index.
+\item \code{"GAI_R"} The rank for the GAI values.
+}
 
 \strong{Object is of class \code{superiority}.}
+\itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"Pi_a"} The superiority measure for all environments.
 \item \code{"R_a"} The rank for Pi_a.
@@ -94,6 +96,32 @@ the top third
 \item \code{"R_f"} The rank for Pi_f.
 \item \code{"Pi_u"} The superiority measure for unfavorable environments.
 \item \code{"R_u"} The rank for Pi_u.
+}
+
+\strong{Object is of class \code{Huehn}.}
+\itemize{
+\item \code{"Y"} for raw means (Default).
+\item \code{"S1"} Mean of the absolute rank differences of a genotype over the n environments.
+\item \code{"S1_R"} The rank for S1.
+\item \code{"S2"} variance among the ranks over the k environments.
+\item \code{"S2_R"} The rank for S2.
+\item \code{"S3"} Sum of the absolute deviations.
+\item \code{"S3_R"} The rank for S3.
+\item \code{"S6"} Relative sum of squares of rank for each genotype.
+\item \code{"S6_R"} The rank for S6.
+}
+
+\strong{Object is of class \code{Thennarasu}.}
+\itemize{
+\item \code{"Y"} for raw means (Default).
+\item \code{"N1"} First statistic
+\item \code{"N1_R"} The rank for S1.
+\item \code{"N2"} Second statistic
+\item \code{"N2_R"} The rank for S2.
+\item \code{"N3"} Third statistic
+\item \code{"N3_R"} The rank for S3.
+\item \code{"N4"} Fourth statistic
+\item \code{"N4_R"} The rank for S6.
 }
 
 \strong{Object is of class \code{performs_ammi}.}
