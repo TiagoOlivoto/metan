@@ -160,7 +160,11 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         rASV <- rank(ASV)
         ssiASV <- rASV + rY
         # Weighted average of absolute scores
-        explan <- model$PCA[which(model$PCA[6]<0.05),][7]
+        if(n == 1){
+            explan <- model$PCA[1, ][7]
+        } else{
+            explan <- model$PCA[which(model$PCA[6] < 1 - level),][7]
+        }
         WAAS <- SCOR %>%
             abs() %>%
             t() %>%
@@ -168,37 +172,25 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         WAAS <- sapply(WAAS, weighted.mean, w = explan$Percent)
         rWAAS <- rank(WAAS)
         ssiWAAS <- rWAAS + rY
-        temp <- list(
-            statistics = data.frame(
-                GEN = mean[1],
-                Y = mean[2],
-                rY = rY,
+        temp <- tibble(
+                GEN = mean[1] %>% pull(),
+                Y = mean[2] %>% pull(),
+                Y_R = rY,
                 ASV = ASV,
+                ASV_R = rASV,
+                ASV_SSI = ssiASV,
                 SIPC = SIPC,
+                SIPC_R = rS,
+                SIPC_SSI = ssiSIPC,
                 EV = EV,
+                EV_R = rEV,
+                EV_SSI = ssiEV,
                 ZA = Za,
-                WAAS = WAAS) %>%
-                as_tibble(),
-            ranks = data.frame(
-                GEN = mean[1],
-                Y = mean[2],
-                rY = rY,
-                rASV = rASV,
-                rSIPC = rS,
-                rEV = rEV,
-                rZA = rZA,
-                rWAAS = rWAAS) %>%
-                as_tibble(),
-            ssi = data.frame(
-                GEN = mean[1],
-                Y = mean[2],
-                rY = rY,
-                ssiASV = ssiASV,
-                ssiSIPC = ssiSIPC,
-                ssiEV = ssiEV,
-                ssiZA = ssiZA,
-                ssiWAAS = ssiWAAS) %>%
-                as_tibble())
+                ZA_R = rZA,
+                ZA_SSI = ssiZA,
+                WAAS = WAAS,
+                WAAS_R = rWAAS,
+                WAAS_SSI = ssiWAAS)
         listres[[paste(names(.data[var]))]] <- temp
     }
     invisible(structure(listres, class = "AMMI_indexes"))
