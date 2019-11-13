@@ -82,7 +82,7 @@ Resende_indexes <- function(.data) {
         # Harmonic mean
         GEPRED <- make_mat(gge, GEN, ENV, Predicted)
         HMGV <- data.frame(HMGV = apply(GEPRED, 1, FUN = hm_mean),
-                           HMGV_order = rank(-apply(GEPRED, 1, FUN = hm_mean)))
+                           HMGV_R = rank(-apply(GEPRED, 1, FUN = hm_mean)))
         ## Relative performance
         y <- .data[[var]][["MeansGxE"]]
         GEMEAN <- make_mat(y, GEN, ENV, Y)
@@ -91,12 +91,12 @@ Resende_indexes <- function(.data) {
         RPGV <- data.frame(RPGV = apply(t(t(GEPRED)/mean_env), 1, mean))
         RPGV_data <- RPGV %>%
             mutate(RPGV_Y = RPGV * ovmean,
-                   RPGV_order = rank(-RPGV_Y))
+                   RPGV_R = rank(-RPGV_Y))
         ## Harmonic mean of Relative performance
         HMRPGV <- data.frame(HMRPGV = apply(t(t(GEPRED)/mean_env), 1, hm_mean))
         HMRPGV_data <- HMRPGV %>%
             mutate(HMRPGV_Y = HMRPGV * ovmean,
-                   HMRPGV_order = rank(-HMRPGV_Y))
+                   HMRPGV_R = rank(-HMRPGV_Y))
         Y <- .data[[var]][["model"]] %>%
             dplyr::filter(type == "GEN") %>%
             select(Y)
