@@ -27,7 +27,8 @@ This function computes the following AMMI-based stability indexes: ASV, AMMI
 stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
 the IPCA scores (Sneller et al. 1997); EV, averages of the squared
 eigenvector values (Sneller et al. 1997); and Za, absolute value of the
-relative contribution of IPCAs to the interaction (Zali et al. 2012).
+relative contribution of IPCAs to the interaction (Zali et al. 2012), and
+WAAS, weighted average of absolute scores (Olivoto et al. 2019).
 }
 \details{
 The ASV index is computed as follows: \deqn{AS{V_i} = {\left[ {{{\left[
@@ -51,10 +52,19 @@ The ZA index is computed as follows: \deqn{Z{a_i} = \sum\nolimits_{k = 1}^P
 where \eqn{\theta _k} is the percentage sum of squares explained by the kth
 IPCA.
 
-Four simultaneous selection indexes (ssi) are also computed by summation of
+\deqn{ WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
+1}^{p}EP_k}
+
+where \eqn{WAAS_i} is the weighted average of absolute scores of the
+\emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype
+in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the *k*th
+IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant
+PCAs.
+
+Five simultaneous selection indexes (ssi) are also computed by summation of
 the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean
-yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, and
-ssiZa, respectively.
+yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, ssiZa,
+and ssiWAAS, respectively.
 }
 \examples{
 
@@ -90,6 +100,12 @@ Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
 Evaluation of genotype vs environment interaction in chickpea using measures
 of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 \href{http://eprints.icrisat.ac.in/id/eprint/7173}{http://eprints.icrisat.ac.in/id/eprint/7173}
+
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
+\href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
