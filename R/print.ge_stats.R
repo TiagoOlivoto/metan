@@ -6,6 +6,9 @@
 #'
 #'
 #' @param x An object of class \code{ge_stats}.
+#' @param what What should be printed. \code{what = "all"} for both statistics
+#'   and ranks, \code{what = "stats"} for statistics, and \code{what = "ranks"}
+#'   for ranks.
 #' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
 #'   the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
@@ -18,15 +21,15 @@
 #' @examples
 #'
 #' library(metan)
-#' model = ge_stats(.data = data_ge2,
-#'                  env = ENV,
-#'                  gen = GEN,
-#'                  rep = REP,
-#'                  resp = PH)
+#' model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 #' print(model)
 #'
-print.ge_stats <- function(x, what = "all", export = FALSE, file.name = NULL, digits = 3,
-                              ...) {
+print.ge_stats <- function(x,
+                           what = "all",
+                           export = FALSE,
+                           file.name = NULL,
+                           digits = 3,
+                           ...) {
   if (!class(x) == "ge_stats") {
     stop("The object must be of class 'ge_stats'")
   }
@@ -39,10 +42,24 @@ print.ge_stats <- function(x, what = "all", export = FALSE, file.name = NULL, di
     for (i in 1:length(x)) {
       var <- x[[i]]
       cat("Variable", names(x)[i], "\n")
-      cat("---------------------------------------------------------------------------\n")
-      cat("Individual analysis of variance\n")
-      cat("---------------------------------------------------------------------------\n")
-      print(select(var, -contains("_R")))
+      if(what == "all"){
+        cat("---------------------------------------------------------------------------\n")
+        cat("Stability statistics and ranks\n")
+        cat("---------------------------------------------------------------------------\n")
+      print(var)
+      }
+      if(what == "stats"){
+        cat("---------------------------------------------------------------------------\n")
+        cat("Stability statistics\n")
+        cat("---------------------------------------------------------------------------\n")
+        print(select(var, -contains("_R")))
+      }
+      if(what == "ranks"){
+        cat("---------------------------------------------------------------------------\n")
+        cat("Ranks for stability statistics\n")
+        cat("---------------------------------------------------------------------------\n")
+        print(select(var, contains("_R")))
+      }
       cat("---------------------------------------------------------------------------\n")
       cat("\n\n\n")
     }

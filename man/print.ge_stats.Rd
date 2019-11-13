@@ -4,11 +4,15 @@
 \alias{print.ge_stats}
 \title{Print an object of class ge_stats}
 \usage{
-\method{print}{ge_stats}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{ge_stats}(x, what = "all", export = FALSE,
+  file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{ge_stats}.}
+
+\item{what}{What should be printed. \code{what = "all"} for both statistics
+and ranks, \code{what = "stats"} for statistics, and \code{what = "ranks"}
+for ranks.}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported to
 the working directory.}
@@ -28,11 +32,7 @@ into a *.txt file.
 \examples{
 
 library(metan)
-model = ge_stats(.data = data_ge2,
-                 env = ENV,
-                 gen = GEN,
-                 rep = REP,
-                 resp = PH)
+model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 print(model)
 
 }
