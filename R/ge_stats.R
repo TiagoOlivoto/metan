@@ -134,49 +134,83 @@ mod = anova(lm(mean ~ REP/ENV + ENV * GEN, data = data))
 GENMS = GENSS / mod[2, 1]
 Fcal =  GENMS / mod[6, 3]
 pval = pf(Fcal, mod[2, 1], mod[6, 1], lower.tail = FALSE)
-ec_mod = ecovalence(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-lb_mod = superiority(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-an_mod = Annicchiarico(data, ENV, GEN, REP, mean, verbose = FALSE, prob = prob)
+er_mod <- ge_reg(data, ENV, GEN, REP, mean, verbose = FALSE)
+ec_mod <- ecovalence(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
+an_mod <- Annicchiarico(data, ENV, GEN, REP, mean, verbose = FALSE, prob = prob)
 shu_mod <- Shukla(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 fox_mod <- Fox(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 gai_mod <- gai(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-ANN = list(environments = an_mod[[1]]$environments,
-           general = an_mod[[1]]$general,
-           favorable = an_mod[[1]]$favorable,
-           unfavorable = an_mod[[1]]$unfavorable)
-
-er_mod = ge_reg(data, ENV, GEN, REP, mean, verbose = FALSE)
-ER = list(anova = er_mod[[1]]$anova,
-          regression = er_mod[[1]]$regression,
-          plot = er_mod[[1]]$plot)
-
-ge_stat = data.frame(Mean = Mean,
-                     Variance = Variance,
-                     SQE_Gi = GENSS,
-                     MSE_Gi = GENMS,
-                     Fcal = Fcal,
-                     P_val = pval) %>%
-  rownames_to_column("GEN")
-
-
-temp = list(individual = individual[[1]][[1]],
-            gai = gai_mod,
-            ge_mean = as_tibble(ge_mean, rownames = NA),
-            ge_effect = ge_effect,
-            gge_effect = gge_effect,
-            ge_stats = as_tibble(ge_stat, rownames = NA),
-            ER = ER,
-            ANN = ANN,
-            Ecoval = ec_mod,
-            Shukla = shu_mod,
-            Fox = fox_mod,
-            Superiority = lb_mod)
-
+hue_mod <- Huehn(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
+lb_mod <- superiority(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
+then_mod <- Thennarasu(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
+ammm_mod <- performs_ammi(data, ENV, GEN, REP, mean, verbose = FALSE)
+ammm_mod <- AMMI_indexes(ammm_mod)[[1]]
+blup_mod <- waasb(data, ENV, GEN, REP, mean, verbose = FALSE)
+blup_mod <- Resende_indexes(blup_mod)[[1]]
+temp <- tibble(GEN = an_mod[[1]]$general$Genotype,
+               Y = Mean,
+               Y_R = rank(-Mean),
+               Var = Variance,
+               Var_R = rank(Variance),
+               Shukla = shu_mod$ShuklaVar,
+               Shukla_R = shu_mod$rShukaVar,
+               Wi_g = an_mod[[1]]$general$Wi,
+               Wi_g_R = an_mod[[1]]$general$rank,
+               Wi_f = an_mod[[1]]$favorable$Wi,
+               Wi_f_R = an_mod[[1]]$favorable$rank,
+               Wi_u = an_mod[[1]]$unfavorable$Wi,
+               Wi_u_R = an_mod[[1]]$unfavorable$rank,
+               Ecoval = ec_mod$Ecoval,
+               Ecoval_R = ec_mod$rank,
+               bij = er_mod[[1]]$regression$slope,
+               Sij = er_mod[[1]]$regression$deviations,
+               Sij_R = rank(abs(er_mod[[1]]$regression$deviations)),
+               R2 = er_mod[[1]]$regression$R2,
+               R2_R = rank(-er_mod[[1]]$regression$R2),
+               ASV = ammm_mod$ASV,
+               ASV_R = ammm_mod$ASV_R,
+               SIPC = ammm_mod$SIPC,
+               SIPC_R = ammm_mod$SIPC_R,
+               EV = ammm_mod$EV,
+               EV_R = ammm_mod$EV_R,
+               ZA = ammm_mod$ZA,
+               ZA_R = ammm_mod$ZA_R,
+               WAAS = ammm_mod$WAAS,
+               WAAS_R = ammm_mod$WAAS_R,
+               HMGV = blup_mod$HMGV,
+               HMGV_R = blup_mod$HMGV_R,
+               RPGV = blup_mod$RPGV,
+               RPGV_R = blup_mod$RPGV_R,
+               HMRPGV = blup_mod$HMRPGV,
+               HMRPGV_R = blup_mod$HMRPGV_R,
+               Pi_a = lb_mod$index$Pi_a,
+               Pi_a_R = lb_mod$index$R_a,
+               Pi_f = lb_mod$index$Pi_f,
+               Pi_f_R = lb_mod$index$R_f,
+               Pi_u = lb_mod$index$Pi_u,
+               Pi_u_R = lb_mod$index$R_u,
+               Gai = gai_mod$GAI,
+               Gai_R = gai_mod$GAI_R,
+               S1 = hue_mod$S1,
+               S1_R = hue_mod$S1_R,
+               S2 = hue_mod$S2,
+               S2_R = hue_mod$S2_R,
+               S3 = hue_mod$S3,
+               S3_R = hue_mod$S3_R,
+               S6 = hue_mod$S6,
+               S6_R = hue_mod$S6_R,
+               N1 = then_mod$N1,
+               N1_R = then_mod$N1_R,
+               N2 = then_mod$N2,
+               N2_R = then_mod$N2_R,
+               N3 = then_mod$N3,
+               N3_R = then_mod$N3_R,
+               N4 = then_mod$N4,
+               N4_R = then_mod$N4_R)
 if (length(d$resp) > 1) {
   listres[[paste(d$resp[var])]] <- temp
   if (verbose == TRUE) {
-    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                                                                      1) * 100, 1), "%", "\n")
+    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) - 1) * 100, 1), "%", "\n")
   }
 } else {
   listres[[paste(d$resp)]] <- temp

@@ -224,7 +224,8 @@
 get_model_data <- function(x, what = "Y", type = "GEN") {
   if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",
                        "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
-                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu")) {
+                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
+                       "ge_stats")) {
     stop("Invalid class in object 'x'. See ?get_model_data for more information.")
   }
   if (substr(what, 1, 2) == "PC") {
@@ -245,7 +246,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
   check5 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
   check6 <- c("HMGV", "RPGV", "HMRPGV", "RPGV_Y", "HMRPGV_Y")
-  check7 <- c("ASV", "SIPC", "EV", "ZA", "WAAS")
+  check7 <- c("ASV", "SIPC", "EV", "ZA", "WAAS", "ASV_R", "SIPC_R", "EV_R", "ZA_R", "WAAS_R", "ASV_SSI", "SIPC_SSI", "EV_SSI", "ZA_SSI", "WAAS_SSI")
   check8 <- c("Ecoval", "Ecov_perc", "rank")
   check9 <- c("slope", "deviations", "RMSE", "R2")
   check10 <- c("TOP")
@@ -254,10 +255,11 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   check13 <- c("GAI", "GAI_R")
   check14 <- c("S1","S1_R", "S2", "S2_R", "S3", "S3_R", "S6", "S6_R")
   check15 <- c("N1", "N1_R", "N2", "N2_R", "N3", "N3_R", "N4", "N4_R")
+  check16 <- c("stats", "ranks")
 
 
   if (!what %in% c(check, check2, check5, check6, check7, check8, check9, check10,
-                   check11, check12, check13, check14, check15)) {
+                   check11, check12, check13, check14, check15, check16)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (what %in% check3 && !class(x) %in% c("waasb", "gamem")) {
@@ -267,6 +269,27 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
 
+  if (class(x) == "ge_stats") {
+    if (!what  %in%  check16) {
+      stop("Invalid value in 'what' for object of class 'ge_stats'. Allowed are ", paste(check16, collapse = ", "), call. = FALSE)
+    }
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        if(what == "stats"){
+          x %>% select(-contains("_R")) %>% select(-contains("GEN"))
+        } else{
+          x %>% select(contains("_R"))
+        }
+      })) %>%
+      as_tibble() %>%
+      mutate(gen = x[[1]][["GEN"]]) %>%
+      pivot_longer(cols = contains(".")) %>%
+      separate(name, into = c("var", "stat"), sep = "\\.") %>%
+      pivot_wider(values_from = value, names_from = stat) %>%
+      select(var, everything()) %>%
+      arrange(var)
+  }
   if (class(x) == "Thennarasu") {
     if (!what %in% c("Y", check15)) {
       stop("Invalid value in 'what' for object of class 'Thennarasu'. Allowed are ", paste(check15, collapse = ", "), call. = FALSE)
@@ -394,10 +417,10 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
     bind <- do.call(
       cbind,
       lapply(x, function(x) {
-        x[["statistics"]][[what]]
+        x[[what]]
       })) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["statistics"]][["Code"]]) %>%
+      mutate(gen = x[[1]][["GEN"]]) %>%
       select(gen, everything())
   }
   if (class(x) == "Res_ind") {
