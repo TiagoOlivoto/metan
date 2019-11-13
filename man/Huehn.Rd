@@ -47,7 +47,7 @@ S6 (relative sum of squares of rank for each genotype).
 \examples{
 
 library(metan)
-out <- Huehn(data_ge, ENV, GEN, REP, c(GY, HM))
+out <- Huehn(data_ge, ENV, GEN, REP, GY)
 
 }
 \references{
