@@ -39,7 +39,8 @@
 #'   'forestgreen'}
 #' @param col.alpha The alpha value for the color. Defaults to \code{1}. Values
 #'   must be between \code{0} (full transparency) to \code{1} (full color).
-#' @param col.circle The color for circle lines. Defaults to 'gray'
+#' @param col.circle,col.alpha.circle The color and alpha values for the circle
+#'   lines. Defaults to \code{'gray'} and \code{0.4}, respectively.
 #' @param leg.lab The labs of legend. Default is \code{c('Gen', 'Env')}.
 #' @param size.text,size.text.gen,size.text.env The size of the text of the plot area. Defaults to 4.
 #' @param size.line The size of the line in biplots (Both for segments and circles).
@@ -69,8 +70,8 @@
 #' @return An object of class \code{gg, ggplot}.
 #' @examples
 #' library(metan)
-#' mod = gge(data_ge, GEN, ENV, GY)
-#' plot(mod)
+#' mod <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
+#' plot(mod, type = 8)
 #' plot(mod,
 #'      type = 2,
 #'      col.gen = 'blue',
@@ -82,13 +83,32 @@
 #' data_ge2 %>%
 #' gge(ENV, GEN, NKE) %>%
 #' plot(type = 3)
-plot.gge <- function(x, type = 1, sel_env = NA, sel_gen = NA,
-                     sel_gen1 = NA, sel_gen2 = NA, shape.gen = 21, shape.env = 23,
-                     size.shape = 2.2, size.shape.win = 3.2, size.bor.tick = 0.3,
-                     col.gen = "orange", col.env = "forestgreen", col.alpha = 1,
-                     col.circle = "gray", leg.lab = c("Gen", "Env"), size.text = 4,
-                     size.text.gen = 4, size.text.env = 4, size.line = 0.8, large_label = 4.5,
-                     axis_expand = 1.2, title = TRUE, annotation = TRUE, plot_theme = theme_waasb(),
+plot.gge <- function(x,
+                     type = 1,
+                     sel_env = NA,
+                     sel_gen = NA,
+                     sel_gen1 = NA,
+                     sel_gen2 = NA,
+                     shape.gen = 21,
+                     shape.env = 23,
+                     size.shape = 2.2,
+                     size.shape.win = 3.2,
+                     size.bor.tick = 0.3,
+                     col.gen = "orange",
+                     col.env = "forestgreen",
+                     col.alpha = 1,
+                     col.circle = "gray",
+                     col.alpha.circle = 0.4,
+                     leg.lab = c("Gen", "Env"),
+                     size.text = 4,
+                     size.text.gen = 4,
+                     size.text.env = 4,
+                     size.line = 0.8,
+                     large_label = 4.5,
+                     axis_expand = 1.2,
+                     title = TRUE,
+                     annotation = TRUE,
+                     plot_theme = theme_waasb(),
                      ...) {
   model <- x
   if (!class(model) == "gge") {
@@ -304,6 +324,7 @@ plot.gge <- function(x, type = 1, sel_env = NA, sel_gen = NA,
                    start = start,
                    end = end),
                color = col.circle,
+               alpha = col.alpha.circle,
                size = size.line,
                inherit.aes = F,
                na.rm = TRUE) +
@@ -424,6 +445,7 @@ plot.gge <- function(x, type = 1, sel_env = NA, sel_gen = NA,
                    start = start,
                    end = end),
                col = col.circle,
+               alpha = col.alpha.circle,
                inherit.aes = F,
                na.rm = TRUE) +
       geom_segment(x = 0,
@@ -547,6 +569,7 @@ plot.gge <- function(x, type = 1, sel_env = NA, sel_gen = NA,
                    start = 0,
                    end = pi * 2),
                color = col.circle,
+               alpha = col.alpha.circle,
                size = size.line,
                inherit.aes = F) +
       geom_segment(x = 0,

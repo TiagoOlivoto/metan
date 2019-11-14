@@ -8,10 +8,10 @@
   sel_gen1 = NA, sel_gen2 = NA, shape.gen = 21, shape.env = 23,
   size.shape = 2.2, size.shape.win = 3.2, size.bor.tick = 0.3,
   col.gen = "orange", col.env = "forestgreen", col.alpha = 1,
-  col.circle = "gray", leg.lab = c("Gen", "Env"), size.text = 4,
-  size.text.gen = 4, size.text.env = 4, size.line = 0.8,
-  large_label = 4.5, axis_expand = 1.2, title = TRUE,
-  annotation = TRUE, plot_theme = theme_waasb(), ...)
+  col.circle = "gray", col.alpha.circle = 0.4, leg.lab = c("Gen",
+  "Env"), size.text = 4, size.text.gen = 4, size.text.env = 4,
+  size.line = 0.8, large_label = 4.5, axis_expand = 1.2,
+  title = TRUE, annotation = TRUE, plot_theme = theme_waasb(), ...)
 }
 \arguments{
 \item{x}{An object of class \code{gge}}
@@ -58,7 +58,8 @@ biplot. Defaults to \code{col.gen = 'orange'} and \code{col.env =
 \item{col.alpha}{The alpha value for the color. Defaults to \code{1}. Values
 must be between \code{0} (full transparency) to \code{1} (full color).}
 
-\item{col.circle}{The color for circle lines. Defaults to 'gray'}
+\item{col.circle, col.alpha.circle}{The color and alpha values for the circle
+lines. Defaults to \code{'gray'} and \code{0.4}, respectively.}
 
 \item{leg.lab}{The labs of legend. Default is \code{c('Gen', 'Env')}.}
 
@@ -100,8 +101,8 @@ ggplot2.
 }
 \examples{
 library(metan)
-mod = gge(data_ge, GEN, ENV, GY)
-plot(mod)
+mod <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
+plot(mod, type = 8)
 plot(mod,
      type = 2,
      col.gen = 'blue',
