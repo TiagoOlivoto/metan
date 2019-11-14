@@ -1,6 +1,11 @@
 # metan 1.0.2
 * New function `arrange_ggplot()` for arranging ggplot2 graphics;
 * New function `ge_effects()` for computing genotype-environment effects;
+* New function `gai()` for computing the geometric adaptability index;
+* New helper function `gm_mean()` for computing geometric mean;
+* New helper function `hm_mean()` for computing harmonic mean;
+* New helper function `Huehn()` for computing Huehn's stability statistic;
+* New helper function `Thennasaru()` for computing Thennasaru's stability statistic;
 * Improve usability of `get_model_data()` by supporting new classes of models;
 * Update function's documentation;
 * Update vignettes;
