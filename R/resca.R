@@ -1,7 +1,7 @@
 #' Rescale a variable to have specified minimum and maximum values
 #'
-#' Helper function used in the WAASB package. It rescales a continuous variable
-#' to have specified minimum and maximum values.
+#' Helper function that rescales a continuous variable to have specified minimum
+#' and maximum values.
 #'
 #' The function rescale a continuous variable as follows: \deqn{Rv_i = (Nmax -
 #' Nmin)/(Omax - Omin) * (O_i - Omax) + Nmax} Where \eqn{Rv_i} is the rescaled
@@ -10,7 +10,7 @@
 #' and minimum values of the original data, and \eqn{O_i} is the ith value of
 #' the original data.
 #'
-#' There are basically two options to use \code{resca} to Rescale a variable.
+#' There are basically two options to use \code{resca} to rescale a variable.
 #' The first is passing a data frame to \code{.data} argument and selecting one
 #' or more variables to be scaled using \code{...}. The function will return the
 #' original variables in \code{.data} plus the rescaled variable(s) with the

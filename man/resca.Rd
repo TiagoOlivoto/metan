@@ -27,8 +27,8 @@ A numeric vector if \code{values} is used as input data or a tibble
   if a data frame is used as input in \code{.data}.
 }
 \description{
-Helper function used in the WAASB package. It rescales a continuous variable
-to have specified minimum and maximum values.
+Helper function that rescales a continuous variable to have specified minimum
+and maximum values.
 }
 \details{
 The function rescale a continuous variable as follows: \deqn{Rv_i = (Nmax -
@@ -38,7 +38,7 @@ are the new maximum and minimum values; \eqn{Omax and Omin} are the maximum
 and minimum values of the original data, and \eqn{O_i} is the ith value of
 the original data.
 
-There are basically two options to use \code{resca} to Rescale a variable.
+There are basically two options to use \code{resca} to rescale a variable.
 The first is passing a data frame to \code{.data} argument and selecting one
 or more variables to be scaled using \code{...}. The function will return the
 original variables in \code{.data} plus the rescaled variable(s) with the
