@@ -90,7 +90,7 @@ genotypic values (HMRPGV)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -261,19 +261,19 @@ genotype in the jth environment.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>res_ind</span> <span class='kw'>=</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
-                <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+<span class='no'>res_ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
+                 <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                 <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                 <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                 <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='no'>model_indexes</span> <span class='kw'>=</span> <span class='fu'>Resende_indexes</span>(<span class='no'>res_ind</span>)
+#&gt; Done!</div><div class='input'><span class='no'>model_indexes</span> <span class='kw'>&lt;-</span> <span class='fu'>Resende_indexes</span>(<span class='no'>res_ind</span>)
 
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
-<span class='no'>res_ind</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-          <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
-          <span class='fu'>Resende_indexes</span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
+<span class='no'>res_ind</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
+           <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
+           <span class='fu'>Resende_indexes</span>()</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>

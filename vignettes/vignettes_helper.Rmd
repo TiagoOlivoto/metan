@@ -38,19 +38,19 @@ print_table = function(table){
 # Bind cross-validation objects
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
-AMMI0 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0)
-AMMI2 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2)
-AMMI9 = cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9)
-AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY)
-BLUP = cv_blup(data_ge, ENV, GEN, REP, GY)
-bind1 = bind_cv(AMMI0, AMMI2, AMMI9)
-bind2 = bind_cv(AMMI0, AMMI2, AMMI9, bind = "means")
+AMMI0 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0)
+AMMI2 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2)
+AMMI9 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9)
+AMMIF <- cv_ammif(data_ge, ENV, GEN, REP, GY)
+BLUP <- cv_blup(data_ge, ENV, GEN, REP, GY)
+bind1 <- bind_cv(AMMI0, AMMI2, AMMI9)
+bind2 <- bind_cv(AMMI0, AMMI2, AMMI9, bind = "means")
     ```
 
 # Split a dataframe into subsets grouped by one or more factors
 ## Group data and exclude all non-numeric variables
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-g1 = split_factors(data_ge, ENV)
+g1 <- split_factors(data_ge, ENV)
 is.split_factors(g1)
 
 ```
@@ -58,14 +58,14 @@ is.split_factors(g1)
 
 ## Group data and keep all original variables
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-g2 = split_factors(data_ge, ENV, GEN, keep_factors = TRUE)
+g2 <- split_factors(data_ge, ENV, GEN, keep_factors = TRUE)
 print_table(g2[[1]])
 ```
 
 
 ## Group a data frame using all factor variables
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-g3 = as.split_factors(CO2)
+g3 <- as.split_factors(CO2)
 names(g3)
     ```
 
@@ -74,20 +74,52 @@ names(g3)
 
 ```{r, message=FALSE }
 head(data_ge)
-matrix = make_mat(data_ge, row = GEN, col = ENV, val = GY)
+matrix <- make_mat(data_ge, row = GEN, col = ENV, val = GY)
 print_table(matrix)
+
+```
+
+# Make upper and lower triangular matrices
+```{r, message=FALSE }
+cor_mat <- corr_coef(data_ge2, EP, EL, ED, EL, CD, CL)$cor
+
+# Upper triangular
+upp_mat <- make_upper_tri(cor_mat)
+print_table(upp_mat)
+
+# Lower triangular
+low_mat <- make_lower_tri(cor_mat)
+print_table(low_mat)
 
 ```
 
 # Make a symmetric matrix
 
 ```{r, message=FALSE }
-m <- matrix(NA, 10, 10)
-m[lower.tri(m)] <- 1:45
-print_table(m)
-sym = make_sym(m)
+sym <- make_sym(low_mat)
 print_table(sym)
 
+```
+
+
+# Reorder a correlation matrix
+
+Reorder the correlation matrix according to the correlation coefficient by using  hclust for hierarchical clustering order. This is useful to identify the hidden pattern in the matrix.
+
+```{r}
+cor_mat
+reorder_cormat(cor_mat)
+```
+
+
+# Compute harmonic and geometric means
+```{r, message=FALSE }
+num <- c(1:20, 30, 50)
+hm_mean(num)
+gm_mean(num)
+
+hm_mean(data_ge2) %>% round(2)
+gm_mean(data_ge2, EP, EL, CL)
 ```
 
 

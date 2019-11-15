@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@
       <h1>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-08</h4>
+            <h4 class="date">2019-11-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_metan.Rmd"><code>vignettes/vignettes_metan.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_metan.Rmd</code></div>
@@ -425,8 +425,8 @@ Done!</code></pre>
 <a href="#residual-plots" class="anchor"></a>Residual plots</h2>
 <p>Several residual plots may be obtained applying the S3 generic function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> to an object of class <code>waasb</code> (or <code>waas</code>).</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2<span class="op">$</span>GY, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a></code></pre></div>
-<pre><code>Warning in as_grob.default(plot): Cannot convert object of class numeric
-into a grob.</code></pre>
+<pre><code>Warning in as_grob.default(plot): Cannot convert object of class numeric into a
+grob.</code></pre>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-7-1.png" width="384"></p>
 </div>
 <div id="distribution-of-random-effects" class="section level2">
@@ -434,8 +434,8 @@ into a grob.</code></pre>
 <a href="#distribution-of-random-effects" class="anchor"></a>Distribution of random effects</h2>
 <p>The distribution of the random effects may be obtained using the argument <code>type = "re"</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2<span class="op">$</span>GY, <span class="dt">type =</span> <span class="st">"re"</span>, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">1</span>))</a></code></pre></div>
-<pre><code>Warning in as_grob.default(plot): Cannot convert object of class numeric
-into a grob.</code></pre>
+<pre><code>Warning in as_grob.default(plot): Cannot convert object of class numeric into a
+grob.</code></pre>
 <p><img src="vignettes_metan_files/figure-html/unnamed-chunk-8-1.png" width="384"></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">print_table</span>(model2<span class="op">$</span>GY<span class="op">$</span>LRT)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -1248,7 +1248,7 @@ Y
 HMGV
 </th>
 <th style="text-align:right;">
-HMGV_order
+HMGV_R
 </th>
 <th style="text-align:right;">
 RPGV
@@ -1257,7 +1257,7 @@ RPGV
 RPGV_Y
 </th>
 <th style="text-align:right;">
-RPGV_order
+RPGV_R
 </th>
 <th style="text-align:right;">
 HMRPGV
@@ -1266,7 +1266,7 @@ HMRPGV
 HMRPGV_Y
 </th>
 <th style="text-align:right;">
-HMRPGV_order
+HMRPGV_R
 </th>
 </tr></thead>
 <tbody>

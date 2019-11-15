@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-08</h4>
+            <h4 class="date">2019-11-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -159,7 +159,7 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
+<p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package <a href="http://haozhu233.github.io/kableExtra/awesome_table_in_html.html"><code>kableExtra</code></a> was used to produce the tables of this vignette.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2) <span class="co"># used to set plot themes</span></a>
@@ -3761,40 +3761,58 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
-Code
+GEN
 </th>
 <th style="text-align:right;">
 Y
 </th>
 <th style="text-align:right;">
-rY
+Y_R
 </th>
 <th style="text-align:right;">
 ASV
 </th>
 <th style="text-align:right;">
-rASV
+ASV_R
 </th>
 <th style="text-align:right;">
-ssiASV
+ASV_SSI
 </th>
 <th style="text-align:right;">
 SIPC
 </th>
 <th style="text-align:right;">
-rSIPC
+SIPC_R
 </th>
 <th style="text-align:right;">
-ssiSIPC
+SIPC_SSI
 </th>
 <th style="text-align:right;">
 EV
 </th>
 <th style="text-align:right;">
-rEV
+EV_R
 </th>
 <th style="text-align:right;">
-ssiEV
+EV_SSI
+</th>
+<th style="text-align:right;">
+ZA
+</th>
+<th style="text-align:right;">
+ZA_R
+</th>
+<th style="text-align:right;">
+ZA_SSI
+</th>
+<th style="text-align:right;">
+WAAS
+</th>
+<th style="text-align:right;">
+WAAS_R
+</th>
+<th style="text-align:right;">
+WAAS_SSI
 </th>
 </tr></thead>
 <tbody>
@@ -3835,6 +3853,24 @@ G1
 <td style="text-align:right;">
 7
 </td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.151
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3866,6 +3902,24 @@ G10
 </td>
 <td style="text-align:right;">
 0.210
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0.437
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0.652
 </td>
 <td style="text-align:right;">
 10
@@ -3911,6 +3965,24 @@ G2
 <td style="text-align:right;">
 11
 </td>
+<td style="text-align:right;">
+0.216
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.283
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3948,6 +4020,24 @@ G3
 </td>
 <td style="text-align:right;">
 4
+</td>
+<td style="text-align:right;">
+0.080
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.106
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
 </td>
 </tr>
 <tr>
@@ -3987,6 +4077,24 @@ G4
 <td style="text-align:right;">
 9
 </td>
+<td style="text-align:right;">
+0.219
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.326
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4024,6 +4132,24 @@ G5
 </td>
 <td style="text-align:right;">
 10
+</td>
+<td style="text-align:right;">
+0.186
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.270
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+11
 </td>
 </tr>
 <tr>
@@ -4063,6 +4189,24 @@ G6
 <td style="text-align:right;">
 14
 </td>
+<td style="text-align:right;">
+0.172
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.233
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4100,6 +4244,24 @@ G7
 </td>
 <td style="text-align:right;">
 13
+</td>
+<td style="text-align:right;">
+0.303
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0.428
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+12
 </td>
 </tr>
 <tr>
@@ -4139,6 +4301,24 @@ G8
 <td style="text-align:right;">
 6
 </td>
+<td style="text-align:right;">
+0.225
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.327
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4176,6 +4356,24 @@ G9
 </td>
 <td style="text-align:right;">
 16
+</td>
+<td style="text-align:right;">
+0.336
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+0.507
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+18
 </td>
 </tr>
 </tbody>

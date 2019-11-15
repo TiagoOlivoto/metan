@@ -19,7 +19,7 @@ knitr::opts_chunk$set(comment = "", cache = TRUE)
 
 
 # Getting started
-The dataset `data_ge` is used to reproduce the examples of this vignette. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+The dataset `data_ge` is used to reproduce the examples of this vignette. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`kableExtra`](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html) was used to produce the tables of this vignette.
 
 <style>
   .col2 {
@@ -105,7 +105,6 @@ BLUP_ge = cv_blup(data_ge, ENV, GEN, REP, GY, random = "all")
 
 ## Printing the means of RMSPD estimates
 
-All outputs shown in tables were laid out using the R package kableExtra. The pdf file of this package can be found [here](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf).
 
 ```{r }
 bind_mod = bind_cv(AMMIF, BLUP_g, bind = "means")

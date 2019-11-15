@@ -47,7 +47,8 @@
 stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
 the IPCA scores (Sneller et al. 1997); EV, averages of the squared
 eigenvector values (Sneller et al. 1997); and Za, absolute value of the
-relative contribution of IPCAs to the interaction (Zali et al. 2012)." />
+relative contribution of IPCAs to the interaction (Zali et al. 2012), and
+WAAS, weighted average of absolute scores (Olivoto et al. 2019)." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -91,7 +92,7 @@ relative contribution of IPCAs to the interaction (Zali et al. 2012)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -201,7 +202,8 @@ relative contribution of IPCAs to the interaction (Zali et al. 2012)." />
 stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
 the IPCA scores (Sneller et al. 1997); EV, averages of the squared
 eigenvector values (Sneller et al. 1997); and Za, absolute value of the
-relative contribution of IPCAs to the interaction (Zali et al. 2012).</p>
+relative contribution of IPCAs to the interaction (Zali et al. 2012), and
+WAAS, weighted average of absolute scores (Olivoto et al. 2019).</p>
     </div>
 
     <pre class="usage"><span class='fu'>AMMI_indexes</span>(<span class='no'>.data</span>, <span class='kw'>order.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</pre>
@@ -248,10 +250,17 @@ for one variable.</p>
 {{\theta _k}{a_{ik}}} $$</p>
 <p>where \(\theta _k\) is the percentage sum of squares explained by the kth
 IPCA.</p>
-<p>Four simultaneous selection indexes (ssi) are also computed by summation of
+<p>$$ WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
+1}^{p}EP_k$$</p>
+<p>where \(WAAS_i\) is the weighted average of absolute scores of the
+<em>i</em>th genotype; \(PCA_{ik}\) is the score of the <em>i</em>th genotype
+in the <em>k</em>th IPCA; and \(EP_k\) is the explained variance of the *k*th
+IPCA for <em>k = 1,2,..,p</em>, considering <em>p</em> the number of significant
+PCAs.</p>
+<p>Five simultaneous selection indexes (ssi) are also computed by summation of
 the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean
-yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, and
-ssiZa, respectively.</p>
+yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, ssiZa,
+and ssiWAAS, respectively.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
@@ -266,6 +275,11 @@ Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
 Evaluation of genotype vs environment interaction in chickpea using measures
 of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 <a href='http://eprints.icrisat.ac.in/id/eprint/7173'>http://eprints.icrisat.ac.in/id/eprint/7173</a></p>
+<p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
+V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
+multi-environment trials I: Combining features of AMMI and BLUP techniques.
+Agron. J.
+<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

@@ -97,20 +97,6 @@ reference:
       - wsmp
       - plot.wsmp
       - print.gamem
-  - title: "BLUP"
-    desc: "Functions for BLUP prediction in multi-environment trial analysis"
-    contents:
-      - plot.waasb
-      - plot_blup
-      - plot_eigen
-      - plot_scores
-      - plot_waasby
-      - Resende_indexes
-      - print.waasb
-      - cv_blup
-      - waasb
-      - wsmp
-      - plot.wsmp
   - title: "GGE"
     desc: "Functions for GGE analysis"
     contents:
@@ -131,6 +117,7 @@ reference:
       - Annicchiarico
       - anova_ind
       - anova_joint
+      - corr_stab_ind
       - ecovalence
       - ge_cluster
       - ge_effects
@@ -139,6 +126,8 @@ reference:
       - ge_reg
       - ge_stats
       - Fox
+      - gai
+      - Huehn
       - plot.ge_cluster
       - plot.ge_effects
       - plot.ge_factanal
@@ -155,6 +144,7 @@ reference:
       - print.superiority
       - Shukla
       - superiority
+      - Thennarasu
   - title: "Biometry"
     desc: "Useful functions for biometric models"
     contents:
@@ -162,6 +152,7 @@ reference:
       - can_corr
       - clustering
       - colindiag
+      - corr_coef
       - corr_plot
       - corr_ci
       - corr_ss
@@ -176,6 +167,7 @@ reference:
       - pairs_mantel
       - path_coeff
       - plot.can_cor
+      - plot.corr_coef
       - plot.clustering
       - plot.resp_surf
       - plot_ci
@@ -193,12 +185,17 @@ reference:
       - bind_cv
       - comb_vars
       - get_model_data
+      - gm_mean
+      - hm_mean
       - inspect
       - is.split_factors
       - make_long
+      - make_lower_tri
       - make_mat
       - make_sym
+      - make_upper_tri
       - rbind_fill
+      - reorder_cormat
       - resca
       - split_factors
       - solve_svd

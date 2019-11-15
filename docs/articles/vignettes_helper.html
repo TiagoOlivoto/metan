@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@
       <h1>Helper functions for metan</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-08</h4>
+            <h4 class="date">2019-11-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_helper.Rmd"><code>vignettes/vignettes_helper.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_helper.Rmd</code></div>
@@ -172,13 +172,13 @@
 <div id="bind-cross-validation-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bind-cross-validation-objects" class="anchor"></a>Bind cross-validation objects</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2">AMMI2 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3">AMMI9 =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">AMMIF =<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb2-5" title="5">BLUP =<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb2-6" title="6">bind1 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
-<a class="sourceLine" id="cb2-7" title="7">bind2 =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9, <span class="dt">bind =</span> <span class="st">"means"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">AMMI0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">AMMI2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">AMMI9 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4">AMMIF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb2-5" title="5">BLUP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb2-6" title="6">bind1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
+<a class="sourceLine" id="cb2-7" title="7">bind2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9, <span class="dt">bind =</span> <span class="st">"means"</span>)</a></code></pre></div>
 </div>
 <div id="split-a-dataframe-into-subsets-grouped-by-one-or-more-factors" class="section level1">
 <h1 class="hasAnchor">
@@ -186,7 +186,7 @@
 <div id="group-data-and-exclude-all-non-numeric-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-data-and-exclude-all-non-numeric-variables" class="anchor"></a>Group data and exclude all non-numeric variables</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">g1 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">g1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a></code></pre></div>
 <pre><code>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the
 grouped data.</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/is.split_factors.html">is.split_factors</a></span>(g1)</a></code></pre></div>
@@ -195,7 +195,7 @@ grouped data.</code></pre>
 <div id="group-data-and-keep-all-original-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-data-and-keep-all-original-variables" class="anchor"></a>Group data and keep all original variables</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">g2 =<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV, GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">g2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV, GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(g2[[<span class="dv">1</span>]])</a></code></pre></div>
 <table class="table kable_wrapper table table-striped table-hover table-condensed table-responsive"><tbody><tr>
 <td>
@@ -10563,7 +10563,7 @@ G9
 <div id="group-a-data-frame-using-all-factor-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-a-data-frame-using-all-factor-variables" class="anchor"></a>Group a data frame using all factor variables</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">g3 =<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">g3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(g3)</a></code></pre></div>
 <pre><code>[1] "dfs"   "names"</code></pre>
 </div>
@@ -10581,7 +10581,7 @@ G9
 4 E1    G2    1      3.21  45.2
 5 E1    G2    2      2.93  45.3
 6 E1    G2    3      2.56  45.5</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">matrix =<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">matrix &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="kw">print_table</span>(matrix)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
@@ -11104,867 +11104,439 @@ G9
 </tbody>
 </table>
 </div>
-<div id="make-a-symmetric-matrix" class="section level1">
+<div id="make-upper-and-lower-triangular-matrices" class="section level1">
 <h1 class="hasAnchor">
-<a href="#make-a-symmetric-matrix" class="anchor"></a>Make a symmetric matrix</h1>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">m &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="ot">NA</span>, <span class="dv">10</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb13-2" title="2">m[<span class="kw"><a href="https://rdrr.io/r/base/lower.tri.html">lower.tri</a></span>(m)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">45</span></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="kw">print_table</span>(m)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive"><tbody>
-<tr>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-27
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-36
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-28
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-37
-</td>
-<td style="text-align:right;">
-40
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-16
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-41
-</td>
-<td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-17
-</td>
-<td style="text-align:right;">
-24
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-35
-</td>
-<td style="text-align:right;">
-39
-</td>
-<td style="text-align:right;">
-42
-</td>
-<td style="text-align:right;">
-44
-</td>
-<td style="text-align:right;">
-45
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-</tbody></table>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">sym =<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(m)</a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw">print_table</span>(sym)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive"><tbody>
-<tr>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-9
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-16
-</td>
-<td style="text-align:right;">
-17
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-24
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-27
-</td>
-<td style="text-align:right;">
-28
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-30
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-35
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-36
-</td>
-<td style="text-align:right;">
-37
-</td>
-<td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-39
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-27
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-36
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-40
-</td>
-<td style="text-align:right;">
-41
-</td>
-<td style="text-align:right;">
-42
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-28
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-37
-</td>
-<td style="text-align:right;">
-40
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-44
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-16
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-41
-</td>
-<td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-45
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-17
-</td>
-<td style="text-align:right;">
-24
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-35
-</td>
-<td style="text-align:right;">
-39
-</td>
-<td style="text-align:right;">
-42
-</td>
-<td style="text-align:right;">
-44
-</td>
-<td style="text-align:right;">
-45
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-</tbody></table>
-</div>
-<div id="generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="section level1">
-<h1 class="hasAnchor">
-<a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="anchor"></a>Generate pairwise combinations of variables by applying one function to each pair</h1>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
-<a class="sourceLine" id="cb15-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb15-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
-<a class="sourceLine" id="cb15-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
-<a class="sourceLine" id="cb15-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb15-6" title="6">c1 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a>
-<a class="sourceLine" id="cb15-7" title="7"><span class="kw">print_table</span>(c1)</a></code></pre></div>
+<a href="#make-upper-and-lower-triangular-matrices" class="anchor"></a>Make upper and lower triangular matrices</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">cor_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_coef.html">corr_coef</a></span>(data_ge2, EP, EL, ED, EL, CD, CL)<span class="op">$</span>cor</a>
+<a class="sourceLine" id="cb13-2" title="2"></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co"># Upper triangular</span></a>
+<a class="sourceLine" id="cb13-4" title="4">upp_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_upper_tri.html">make_upper_tri</a></span>(cor_mat)</a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="kw">print_table</span>(upp_mat)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
-<th style="text-align:right;">
-AxB
+<th style="text-align:left;">
 </th>
 <th style="text-align:right;">
-AxC
+EP
 </th>
 <th style="text-align:right;">
-AxD
+EL
 </th>
 <th style="text-align:right;">
-AxE
+ED
 </th>
 <th style="text-align:right;">
-BxC
+CD
 </th>
 <th style="text-align:right;">
-BxD
-</th>
-<th style="text-align:right;">
-BxE
-</th>
-<th style="text-align:right;">
-CxD
-</th>
-<th style="text-align:right;">
-CxE
-</th>
-<th style="text-align:right;">
-DxE
+CL
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:right;">
-21.704
+<td style="text-align:left;">
+EP
 </td>
 <td style="text-align:right;">
-47.258
+1
 </td>
 <td style="text-align:right;">
-77.246
+0.263
 </td>
 <td style="text-align:right;">
-22.227
+0.458
 </td>
 <td style="text-align:right;">
-42.348
+0.175
 </td>
 <td style="text-align:right;">
-72.336
-</td>
-<td style="text-align:right;">
-17.317
-</td>
-<td style="text-align:right;">
-97.891
-</td>
-<td style="text-align:right;">
-42.871
-</td>
-<td style="text-align:right;">
-72.860
+0.391
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
-26.712
+<td style="text-align:left;">
+EL
 </td>
 <td style="text-align:right;">
-55.720
+NA
 </td>
 <td style="text-align:right;">
-63.261
+1.000
 </td>
 <td style="text-align:right;">
-31.493
+0.385
 </td>
 <td style="text-align:right;">
-34.891
+0.912
 </td>
 <td style="text-align:right;">
-42.432
-</td>
-<td style="text-align:right;">
-10.664
-</td>
-<td style="text-align:right;">
-71.441
-</td>
-<td style="text-align:right;">
-39.673
-</td>
-<td style="text-align:right;">
-47.213
+0.255
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
-6.156
+<td style="text-align:left;">
+ED
 </td>
 <td style="text-align:right;">
-65.898
+NA
 </td>
 <td style="text-align:right;">
-64.714
+NA
 </td>
 <td style="text-align:right;">
-13.583
+1.000
 </td>
 <td style="text-align:right;">
-63.698
+0.390
 </td>
 <td style="text-align:right;">
-62.514
-</td>
-<td style="text-align:right;">
-11.383
-</td>
-<td style="text-align:right;">
-122.256
-</td>
-<td style="text-align:right;">
-71.125
-</td>
-<td style="text-align:right;">
-69.941
+0.697
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
-20.619
+<td style="text-align:left;">
+CD
 </td>
 <td style="text-align:right;">
-26.807
+NA
 </td>
 <td style="text-align:right;">
-86.224
+NA
 </td>
 <td style="text-align:right;">
-20.228
+NA
 </td>
 <td style="text-align:right;">
-18.265
+1.000
 </td>
 <td style="text-align:right;">
-77.682
-</td>
-<td style="text-align:right;">
-11.685
-</td>
-<td style="text-align:right;">
-83.869
-</td>
-<td style="text-align:right;">
-17.873
-</td>
-<td style="text-align:right;">
-77.290
+0.300
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
-6.583
+<td style="text-align:left;">
+CL
 </td>
 <td style="text-align:right;">
-42.300
+NA
 </td>
 <td style="text-align:right;">
-8.116
+NA
 </td>
 <td style="text-align:right;">
-13.922
+NA
 </td>
 <td style="text-align:right;">
-38.987
+NA
 </td>
 <td style="text-align:right;">
-4.803
-</td>
-<td style="text-align:right;">
-10.610
-</td>
-<td style="text-align:right;">
-40.520
-</td>
-<td style="text-align:right;">
-46.326
-</td>
-<td style="text-align:right;">
-12.143
+1.000
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">c2 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="kw">print_table</span>(c2)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Lower triangular</span></a>
+<a class="sourceLine" id="cb14-2" title="2">low_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_lower_tri.html">make_lower_tri</a></span>(cor_mat)</a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="kw">print_table</span>(low_mat)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+EP
+</th>
+<th style="text-align:right;">
+EL
+</th>
+<th style="text-align:right;">
+ED
+</th>
+<th style="text-align:right;">
+CD
+</th>
+<th style="text-align:right;">
+CL
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+EP
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EL
+</td>
+<td style="text-align:right;">
+0.263
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ED
+</td>
+<td style="text-align:right;">
+0.458
+</td>
+<td style="text-align:right;">
+0.385
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CD
+</td>
+<td style="text-align:right;">
+0.175
+</td>
+<td style="text-align:right;">
+0.912
+</td>
+<td style="text-align:right;">
+0.390
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CL
+</td>
+<td style="text-align:right;">
+0.391
+</td>
+<td style="text-align:right;">
+0.255
+</td>
+<td style="text-align:right;">
+0.697
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="make-a-symmetric-matrix" class="section level1">
+<h1 class="hasAnchor">
+<a href="#make-a-symmetric-matrix" class="anchor"></a>Make a symmetric matrix</h1>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">sym &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(low_mat)</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="kw">print_table</span>(sym)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+EP
+</th>
+<th style="text-align:right;">
+EL
+</th>
+<th style="text-align:right;">
+ED
+</th>
+<th style="text-align:right;">
+CD
+</th>
+<th style="text-align:right;">
+CL
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+EP
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.263
+</td>
+<td style="text-align:right;">
+0.458
+</td>
+<td style="text-align:right;">
+0.175
+</td>
+<td style="text-align:right;">
+0.391
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EL
+</td>
+<td style="text-align:right;">
+0.263
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.385
+</td>
+<td style="text-align:right;">
+0.912
+</td>
+<td style="text-align:right;">
+0.255
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ED
+</td>
+<td style="text-align:right;">
+0.458
+</td>
+<td style="text-align:right;">
+0.385
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.390
+</td>
+<td style="text-align:right;">
+0.697
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CD
+</td>
+<td style="text-align:right;">
+0.175
+</td>
+<td style="text-align:right;">
+0.912
+</td>
+<td style="text-align:right;">
+0.390
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CL
+</td>
+<td style="text-align:right;">
+0.391
+</td>
+<td style="text-align:right;">
+0.255
+</td>
+<td style="text-align:right;">
+0.697
+</td>
+<td style="text-align:right;">
+0.300
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="reorder-a-correlation-matrix" class="section level1">
+<h1 class="hasAnchor">
+<a href="#reorder-a-correlation-matrix" class="anchor"></a>Reorder a correlation matrix</h1>
+<p>Reorder the correlation matrix according to the correlation coefficient by using hclust for hierarchical clustering order. This is useful to identify the hidden pattern in the matrix.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">cor_mat</a></code></pre></div>
+<pre><code>          EP        EL        ED        CD        CL
+EP 1.0000000 0.2634237 0.4580196 0.1750448 0.3908239
+EL 0.2634237 1.0000000 0.3851451 0.9118653 0.2554068
+ED 0.4580196 0.3851451 1.0000000 0.3897128 0.6974629
+CD 0.1750448 0.9118653 0.3897128 1.0000000 0.3003636
+CL 0.3908239 0.2554068 0.6974629 0.3003636 1.0000000</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="../reference/reorder_cormat.html">reorder_cormat</a></span>(cor_mat)</a></code></pre></div>
+<pre><code>          EL        CD        EP        ED        CL
+EL 1.0000000 0.9118653 0.2634237 0.3851451 0.2554068
+CD 0.9118653 1.0000000 0.1750448 0.3897128 0.3003636
+EP 0.2634237 0.1750448 1.0000000 0.4580196 0.3908239
+ED 0.3851451 0.3897128 0.4580196 1.0000000 0.6974629
+CL 0.2554068 0.3003636 0.3908239 0.6974629 1.0000000</code></pre>
+</div>
+<div id="compute-harmonic-and-geometric-means" class="section level1">
+<h1 class="hasAnchor">
+<a href="#compute-harmonic-and-geometric-means" class="anchor"></a>Compute harmonic and geometric means</h1>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">num &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="kw"><a href="../reference/hm_mean.html">hm_mean</a></span>(num)</a></code></pre></div>
+<pre><code>[1] 6.025626</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/gm_mean.html">gm_mean</a></span>(num)</a></code></pre></div>
+<pre><code>[1] 9.552141</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="../reference/hm_mean.html">hm_mean</a></span>(data_ge2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>    PH     EH     EP     EL     ED     CL     CD     CW     KW     NR    NKR 
+  2.44   1.28   0.53  15.06  49.38  28.83  15.88  23.05 166.32  15.96  31.88 
+  CDED   PERK    TKW    NKE 
+  0.58  87.39 331.66 501.45 </code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="../reference/gm_mean.html">gm_mean</a></span>(data_ge2, EP, EL, CL)</a></code></pre></div>
+<pre><code>        EP         EL         CL 
+ 0.5338119 15.1101283 28.9191384 </code></pre>
+</div>
+<div id="generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="section level1">
+<h1 class="hasAnchor">
+<a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="anchor"></a>Generate pairwise combinations of variables by applying one function to each pair</h1>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb28-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb28-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb28-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb28-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb28-6" title="6">c1 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a>
+<a class="sourceLine" id="cb28-7" title="7"><span class="kw">print_table</span>(c1)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -12001,162 +11573,360 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-111.735
+13.307
 </td>
 <td style="text-align:right;">
-451.780
+54.405
 </td>
 <td style="text-align:right;">
-850.831
+11.015
 </td>
 <td style="text-align:right;">
-118.697
+12.502
 </td>
 <td style="text-align:right;">
-285.082
+55.068
 </td>
 <td style="text-align:right;">
-536.890
+11.678
 </td>
 <td style="text-align:right;">
-74.900
+13.165
 </td>
 <td style="text-align:right;">
-2170.815
+52.776
 </td>
 <td style="text-align:right;">
-302.845
+54.263
 </td>
 <td style="text-align:right;">
-570.344
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-69.915
-</td>
-<td style="text-align:right;">
-759.467
-</td>
-<td style="text-align:right;">
-938.714
-</td>
-<td style="text-align:right;">
-183.572
-</td>
-<td style="text-align:right;">
-93.972
-</td>
-<td style="text-align:right;">
-116.151
-</td>
-<td style="text-align:right;">
-22.714
-</td>
-<td style="text-align:right;">
-1261.724
-</td>
-<td style="text-align:right;">
-246.739
-</td>
-<td style="text-align:right;">
-304.973
+10.873
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-8.265
+11.264
 </td>
 <td style="text-align:right;">
-257.873
+81.467
 </td>
 <td style="text-align:right;">
-252.926
+39.410
 </td>
 <td style="text-align:right;">
-39.294
+13.016
 </td>
 <td style="text-align:right;">
-122.098
+85.366
 </td>
 <td style="text-align:right;">
-119.756
+43.309
 </td>
 <td style="text-align:right;">
-18.605
+16.915
 </td>
 <td style="text-align:right;">
-3736.283
+113.511
 </td>
 <td style="text-align:right;">
-580.465
+87.118
 </td>
 <td style="text-align:right;">
-569.331
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-88.047
-</td>
-<td style="text-align:right;">
-178.272
-</td>
-<td style="text-align:right;">
-1044.624
-</td>
-<td style="text-align:right;">
-82.334
-</td>
-<td style="text-align:right;">
-73.829
-</td>
-<td style="text-align:right;">
-432.618
-</td>
-<td style="text-align:right;">
-34.098
-</td>
-<td style="text-align:right;">
-875.933
-</td>
-<td style="text-align:right;">
-69.038
-</td>
-<td style="text-align:right;">
-404.545
+45.061
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-8.090
+24.822
 </td>
 <td style="text-align:right;">
-184.807
+51.165
 </td>
 <td style="text-align:right;">
-15.675
+65.969
 </td>
 <td style="text-align:right;">
-44.404
+31.970
 </td>
 <td style="text-align:right;">
-61.072
+31.892
 </td>
 <td style="text-align:right;">
-5.180
+46.696
 </td>
 <td style="text-align:right;">
-14.674
+12.698
 </td>
 <td style="text-align:right;">
-118.338
+73.040
 </td>
 <td style="text-align:right;">
-335.217
+39.041
 </td>
 <td style="text-align:right;">
-28.433
+53.845
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16.705
+</td>
+<td style="text-align:right;">
+36.204
+</td>
+<td style="text-align:right;">
+8.372
+</td>
+<td style="text-align:right;">
+16.860
+</td>
+<td style="text-align:right;">
+39.078
+</td>
+<td style="text-align:right;">
+11.247
+</td>
+<td style="text-align:right;">
+19.734
+</td>
+<td style="text-align:right;">
+30.746
+</td>
+<td style="text-align:right;">
+39.233
+</td>
+<td style="text-align:right;">
+11.401
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30.499
+</td>
+<td style="text-align:right;">
+45.034
+</td>
+<td style="text-align:right;">
+40.264
+</td>
+<td style="text-align:right;">
+30.290
+</td>
+<td style="text-align:right;">
+32.079
+</td>
+<td style="text-align:right;">
+27.310
+</td>
+<td style="text-align:right;">
+17.335
+</td>
+<td style="text-align:right;">
+41.845
+</td>
+<td style="text-align:right;">
+31.871
+</td>
+<td style="text-align:right;">
+27.101
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">c2 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="kw">print_table</span>(c2)</a></code></pre></div>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:right;">
+AxB
+</th>
+<th style="text-align:right;">
+AxC
+</th>
+<th style="text-align:right;">
+AxD
+</th>
+<th style="text-align:right;">
+AxE
+</th>
+<th style="text-align:right;">
+BxC
+</th>
+<th style="text-align:right;">
+BxD
+</th>
+<th style="text-align:right;">
+BxE
+</th>
+<th style="text-align:right;">
+CxD
+</th>
+<th style="text-align:right;">
+CxE
+</th>
+<th style="text-align:right;">
+DxE
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+44.159
+</td>
+<td style="text-align:right;">
+303.987
+</td>
+<td style="text-align:right;">
+29.669
+</td>
+<td style="text-align:right;">
+39.070
+</td>
+<td style="text-align:right;">
+335.851
+</td>
+<td style="text-align:right;">
+32.779
+</td>
+<td style="text-align:right;">
+43.165
+</td>
+<td style="text-align:right;">
+225.649
+</td>
+<td style="text-align:right;">
+297.147
+</td>
+<td style="text-align:right;">
+29.002
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27.920
+</td>
+<td style="text-align:right;">
+286.444
+</td>
+<td style="text-align:right;">
+131.567
+</td>
+<td style="text-align:right;">
+34.372
+</td>
+<td style="text-align:right;">
+589.745
+</td>
+<td style="text-align:right;">
+270.877
+</td>
+<td style="text-align:right;">
+70.766
+</td>
+<td style="text-align:right;">
+2779.013
+</td>
+<td style="text-align:right;">
+726.012
+</td>
+<td style="text-align:right;">
+333.466
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+61.171
+</td>
+<td style="text-align:right;">
+641.960
+</td>
+<td style="text-align:right;">
+968.349
+</td>
+<td style="text-align:right;">
+218.775
+</td>
+<td style="text-align:right;">
+80.788
+</td>
+<td style="text-align:right;">
+121.863
+</td>
+<td style="text-align:right;">
+27.532
+</td>
+<td style="text-align:right;">
+1278.905
+</td>
+<td style="text-align:right;">
+288.937
+</td>
+<td style="text-align:right;">
+435.841
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67.699
+</td>
+<td style="text-align:right;">
+202.543
+</td>
+<td style="text-align:right;">
+10.076
+</td>
+<td style="text-align:right;">
+68.768
+</td>
+<td style="text-align:right;">
+286.725
+</td>
+<td style="text-align:right;">
+14.263
+</td>
+<td style="text-align:right;">
+97.349
+</td>
+<td style="text-align:right;">
+42.673
+</td>
+<td style="text-align:right;">
+291.249
+</td>
+<td style="text-align:right;">
+14.489
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+190.583
+</td>
+<td style="text-align:right;">
+506.391
+</td>
+<td style="text-align:right;">
+402.763
+</td>
+<td style="text-align:right;">
+186.059
+</td>
+<td style="text-align:right;">
+204.448
+</td>
+<td style="text-align:right;">
+162.610
+</td>
+<td style="text-align:right;">
+75.118
+</td>
+<td style="text-align:right;">
+432.064
+</td>
+<td style="text-align:right;">
+199.595
+</td>
+<td style="text-align:right;">
+158.750
 </td>
 </tr>
 </tbody>
@@ -12165,15 +11935,15 @@ DxE
 <div id="combining-data-frames-by-row-filling-missing-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-data-frames-by-row-filling-missing-values" class="anchor"></a>Combining data.frames by row, filling missing values</h1>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb17-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb30-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
 <pre><code>  v1 v2 v3
 1  1  2  .
 2  2  3  .
 3  .  .  4
 4  .  .  5</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
 <pre><code>  v1 v2 v3
 1  1  2 NA
 2  2  3 NA
@@ -12186,16 +11956,16 @@ DxE
 <div id="rescale-a-numeric-vector" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-a-numeric-vector" class="anchor"></a>Rescale a numeric vector</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
 <pre><code>[1]   0  25  50  75 100</code></pre>
 </div>
 <div id="rescale-using-a-data-frame-and-select-rescaled-variables-only" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-using-a-data-frame-and-select-rescaled-variables-only" class="anchor"></a>Rescale using a data frame and select rescaled variables only</h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">data_ge <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-2" title="2"><span class="kw"><a href="../reference/resca.html">resca</a></span>(GY, HM, <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">1</span>,  <span class="dt">keep =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-4" title="4"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">data_ge <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="kw"><a href="../reference/resca.html">resca</a></span>(GY, HM, <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">1</span>,  <span class="dt">keep =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -12260,14 +12030,14 @@ HM_res
 <div id="rescale-within-factors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-within-factors" class="anchor"></a>Rescale within factors</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">  data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="st">    </span><span class="kw">select</span>(ENV, GEN, <span class="kw">starts_with</span>(<span class="st">"N"</span>), <span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(ENV, GEN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-4" title="4"><span class="st">    </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-6" title="6"><span class="st">    </span><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-7" title="7"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">13</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-8" title="8"><span class="st">    </span><span class="kw">print_table</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">  data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="st">    </span><span class="kw">select</span>(ENV, GEN, <span class="kw">starts_with</span>(<span class="st">"N"</span>), <span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(ENV, GEN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="st">    </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-6" title="6"><span class="st">    </span><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw">ends_with</span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-7" title="7"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">13</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-8" title="8"><span class="st">    </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -12698,7 +12468,10 @@ H9
       </ul>
 </li>
       <li><a href="#make-a-two-way-table-based-on-categorical-and-numerical-arguments">Make a two-way table based on categorical and numerical arguments</a></li>
+      <li><a href="#make-upper-and-lower-triangular-matrices">Make upper and lower triangular matrices</a></li>
       <li><a href="#make-a-symmetric-matrix">Make a symmetric matrix</a></li>
+      <li><a href="#reorder-a-correlation-matrix">Reorder a correlation matrix</a></li>
+      <li><a href="#compute-harmonic-and-geometric-means">Compute harmonic and geometric means</a></li>
       <li><a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair">Generate pairwise combinations of variables by applying one function to each pair</a></li>
       <li><a href="#combining-data-frames-by-row-filling-missing-values">Combining data.frames by row, filling missing values</a></li>
       <li>

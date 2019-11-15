@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@
       <h1>Cross-validation procedures for AMMI and BLUP</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-08</h4>
+            <h4 class="date">2019-11-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_cross-validation.Rmd"><code>vignettes/vignettes_cross-validation.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_cross-validation.Rmd</code></div>
@@ -159,7 +159,7 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<p>The dataset <code>data_ge</code> is used to reproduce the examples of this vignette. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
+<p>The dataset <code>data_ge</code> is used to reproduce the examples of this vignette. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package <a href="http://haozhu233.github.io/kableExtra/awesome_table_in_html.html"><code>kableExtra</code></a> was used to produce the tables of this vignette.</p>
 <style>
   .col2 {
     columns: 2 200px;         /* number of columns and width in pixels*/
@@ -239,7 +239,6 @@
 <div id="printing-the-means-of-rmspd-estimates" class="section level2">
 <h2 class="hasAnchor">
 <a href="#printing-the-means-of-rmspd-estimates" class="anchor"></a>Printing the means of RMSPD estimates</h2>
-<p>All outputs shown in tables were laid out using the R package kableExtra. The pdf file of this package can be found <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">here</a>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">bind_mod =<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP_g, <span class="dt">bind =</span> <span class="st">"means"</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(bind_mod<span class="op">$</span>RMSPD)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -269,19 +268,19 @@ Q97.5
 BLUP_g_RCBD
 </td>
 <td style="text-align:right;">
-0.408
+0.406
 </td>
 <td style="text-align:right;">
-0.026
+0.025
 </td>
 <td style="text-align:right;">
 0.002
 </td>
 <td style="text-align:right;">
-0.359
+0.365
 </td>
 <td style="text-align:right;">
-0.458
+0.450
 </td>
 </tr>
 <tr>
@@ -289,27 +288,7 @@ BLUP_g_RCBD
 AMMI2
 </td>
 <td style="text-align:right;">
-0.411
-</td>
-<td style="text-align:right;">
-0.026
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.359
-</td>
-<td style="text-align:right;">
-0.464
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI3
-</td>
-<td style="text-align:right;">
-0.414
+0.409
 </td>
 <td style="text-align:right;">
 0.024
@@ -318,10 +297,10 @@ AMMI3
 0.002
 </td>
 <td style="text-align:right;">
-0.364
+0.368
 </td>
 <td style="text-align:right;">
-0.459
+0.455
 </td>
 </tr>
 <tr>
@@ -329,7 +308,7 @@ AMMI3
 AMMI4
 </td>
 <td style="text-align:right;">
-0.418
+0.419
 </td>
 <td style="text-align:right;">
 0.023
@@ -341,18 +320,18 @@ AMMI4
 0.370
 </td>
 <td style="text-align:right;">
-0.459
+0.463
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-AMMI5
+AMMI3
 </td>
 <td style="text-align:right;">
-0.421
+0.419
 </td>
 <td style="text-align:right;">
-0.023
+0.022
 </td>
 <td style="text-align:right;">
 0.002
@@ -361,55 +340,15 @@ AMMI5
 0.374
 </td>
 <td style="text-align:right;">
-0.462
+0.458
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-AMMI7
+AMMI5
 </td>
 <td style="text-align:right;">
-0.424
-</td>
-<td style="text-align:right;">
-0.023
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.377
-</td>
-<td style="text-align:right;">
-0.467
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI8
-</td>
-<td style="text-align:right;">
-0.426
-</td>
-<td style="text-align:right;">
-0.023
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.380
-</td>
-<td style="text-align:right;">
-0.467
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI6
-</td>
-<td style="text-align:right;">
-0.426
+0.421
 </td>
 <td style="text-align:right;">
 0.022
@@ -421,15 +360,15 @@ AMMI6
 0.381
 </td>
 <td style="text-align:right;">
-0.467
+0.461
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-AMMIF
+AMMI6
 </td>
 <td style="text-align:right;">
-0.428
+0.423
 </td>
 <td style="text-align:right;">
 0.022
@@ -438,10 +377,70 @@ AMMIF
 0.002
 </td>
 <td style="text-align:right;">
-0.385
+0.375
 </td>
 <td style="text-align:right;">
-0.467
+0.455
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMIF
+</td>
+<td style="text-align:right;">
+0.424
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+0.380
+</td>
+<td style="text-align:right;">
+0.471
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI8
+</td>
+<td style="text-align:right;">
+0.426
+</td>
+<td style="text-align:right;">
+0.021
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+<td style="text-align:right;">
+0.386
+</td>
+<td style="text-align:right;">
+0.464
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMMI7
+</td>
+<td style="text-align:right;">
+0.427
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+0.379
+</td>
+<td style="text-align:right;">
+0.464
 </td>
 </tr>
 <tr>
@@ -458,10 +457,10 @@ AMMI1
 0.002
 </td>
 <td style="text-align:right;">
-0.386
+0.379
 </td>
 <td style="text-align:right;">
-0.483
+0.476
 </td>
 </tr>
 <tr>
@@ -469,16 +468,16 @@ AMMI1
 AMMI0
 </td>
 <td style="text-align:right;">
-0.436
+0.440
 </td>
 <td style="text-align:right;">
-0.029
+0.028
 </td>
 <td style="text-align:right;">
 0.002
 </td>
 <td style="text-align:right;">
-0.381
+0.386
 </td>
 <td style="text-align:right;">
 0.494
