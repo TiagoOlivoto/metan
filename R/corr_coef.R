@@ -98,8 +98,6 @@ print.corr_coef <- function(x, export = FALSE, file.name = NULL, digits = 3, ...
   if (!class(x) == "corr_coef") {
     stop("The object must be of class 'corr_coef'")
   }
-  backup_options <- options()
-  options(pillar.sigfig = digits, ...)
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "corr_coef print", file.name)
     sink(paste0(file.name, ".txt"))
@@ -107,17 +105,15 @@ print.corr_coef <- function(x, export = FALSE, file.name = NULL, digits = 3, ...
     cat("---------------------------------------------------------------------------\n")
     cat("Pearson's correlation coefficient\n")
     cat("---------------------------------------------------------------------------\n")
-    print(x$cor)
+    print(x$cor, digits = digits)
     cat("---------------------------------------------------------------------------\n")
     cat("p-values for the correlation coefficients\n")
     cat("---------------------------------------------------------------------------\n")
-    print(x$pval)
-
+    print(x$pval, digits = digits)
   cat("\n\n\n")
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }
 NULL
 
