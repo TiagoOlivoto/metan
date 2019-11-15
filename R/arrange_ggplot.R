@@ -11,6 +11,7 @@
 #' @param labels List of labels to be added to the plots.
 #' @param hjust,vjust Adjusts the horizontal and vertical position of each label.
 #' @return None.
+#' @importFrom GGally ggmatrix_gtable
 #' @export
 #'
 #' @examples
@@ -32,7 +33,26 @@ arrange_ggplot <- function(...,
                            labels = NULL,
                            hjust = -0.5,
                            vjust = 1.5) {
-plot_grid(plotlist = ..., plotlist = plotlist, nrow = nrow,
-          ncol = ncol, rel_widths = rel_widths, rel_heights = rel_heights,
-          labels = labels, hjust = hjust, vjust = vjust)
+
+if(any(sapply(plots, function (x) class(x)== "ggmatrix") == TRUE)){
+  plotlist <-  lapply(plots, function (x) ggmatrix_gtable(x))
+  plot_grid(plotlist = plotlist,
+            nrow = nrow,
+            ncol = ncol,
+            rel_widths = rel_widths,
+            rel_heights = rel_heights,
+            labels = labels,
+            hjust = hjust,
+            vjust = vjust)
+} else{
+plot_grid(plotlist = ...,
+          plotlist = plotlist,
+          nrow = nrow,
+          ncol = ncol,
+          rel_widths = rel_widths,
+          rel_heights = rel_heights,
+          labels = labels,
+          hjust = hjust,
+          vjust = vjust)
+}
 }
