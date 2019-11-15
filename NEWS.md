@@ -1,3 +1,17 @@
+# metan 1.1.0
+I'm very pleased to announce the release of `metan` 1.1.0, This is a minor release with bug fixes and new functions. The most important changes are described below.
+
+* New function `corr_stab_ind()` for computing Spearman's rank correlation between stability indexes;
+* New function `corr_coef()` for computing correlation coefficients and p-values;
+* New S3 method `plot.corr_coef()` for creating correlation heat maps;
+* New S3 method `print.corr_coef()` for printing correlation and p-values;
+* New helper functions `make_lower_tri()` and `make_upper_tri()` for creating lower and upper triangular matrices, respectively.
+* New helper function `reorder_cormat()` for reordering a correlation matrix according to the correlation coefficients;
+* Improve usability of `get_model_data()` by supporting new classes of models. Now, `get_model_data()` can be used to get all statistics or ranks computed with the wrapper function `ge_stats()`.
+* `arrange_ggplot()` now support objects of class `ggmatrix`.
+* Update function's documentation;
+* Update vignettes;
+
 # metan 1.0.2
 * New function `arrange_ggplot()` for arranging ggplot2 graphics;
 * New function `ge_effects()` for computing genotype-environment effects;
