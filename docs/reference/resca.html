@@ -43,8 +43,8 @@
 
 
 <meta property="og:title" content="Rescale a variable to have specified minimum and maximum values — resca" />
-<meta property="og:description" content="Helper function used in the WAASB package. It rescales a continuous variable
-to have specified minimum and maximum values." />
+<meta property="og:description" content="Helper function that rescales a continuous variable to have specified minimum
+and maximum values." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -88,7 +88,7 @@ to have specified minimum and maximum values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -194,8 +194,8 @@ to have specified minimum and maximum values." />
     </div>
 
     <div class="ref-description">
-    <p>Helper function used in the WAASB package. It rescales a continuous variable
-to have specified minimum and maximum values.</p>
+    <p>Helper function that rescales a continuous variable to have specified minimum
+and maximum values.</p>
     </div>
 
     <pre class="usage"><span class='fu'>resca</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>new_min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>new_max</span> <span class='kw'>=</span> <span class='fl'>100</span>,
@@ -244,7 +244,7 @@ value of the ith position of the variable/ vector; \(Nmax\) and \(Nmin\)
 are the new maximum and minimum values; \(Omax and Omin\) are the maximum
 and minimum values of the original data, and \(O_i\) is the ith value of
 the original data.</p>
-<p>There are basically two options to use <code>resca</code> to Rescale a variable.
+<p>There are basically two options to use <code>resca</code> to rescale a variable.
 The first is passing a data frame to <code>.data</code> argument and selecting one
 or more variables to be scaled using <code>...</code>. The function will return the
 original variables in <code>.data</code> plus the rescaled variable(s) with the

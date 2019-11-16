@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -190,6 +190,24 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="metan-110" class="section level1">
+<h1 class="page-header">
+<a href="#metan-110" class="anchor"></a>metan 1.1.0</h1>
+<p>I’m very pleased to announce the release of <code>metan</code> 1.1.0, This is a minor release with bug fixes and new functions. The most important changes are described below.</p>
+<ul>
+<li>New function <code><a href="../reference/corr_stab_ind.html">corr_stab_ind()</a></code> for computing Spearman’s rank correlation between stability indexes;</li>
+<li>New function <code><a href="../reference/corr_coef.html">corr_coef()</a></code> for computing correlation coefficients and p-values;</li>
+<li>New S3 method <code><a href="../reference/plot.corr_coef.html">plot.corr_coef()</a></code> for creating correlation heat maps;</li>
+<li>New S3 method <code><a href="../reference/print.corr_coef.html">print.corr_coef()</a></code> for printing correlation and p-values;</li>
+<li>New helper functions <code><a href="../reference/make_lower_tri.html">make_lower_tri()</a></code> and <code><a href="../reference/make_upper_tri.html">make_upper_tri()</a></code> for creating lower and upper triangular matrices, respectively.</li>
+<li>New helper function <code><a href="../reference/reorder_cormat.html">reorder_cormat()</a></code> for reordering a correlation matrix according to the correlation coefficients;</li>
+<li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> by supporting new classes of models. Now, <code><a href="../reference/get_model_data.html">get_model_data()</a></code> can be used to get all statistics or ranks computed with the wrapper function <code><a href="../reference/ge_stats.html">ge_stats()</a></code>.</li>
+<li>
+<code><a href="../reference/arrange_ggplot.html">arrange_ggplot()</a></code> now support objects of class <code>ggmatrix</code>.</li>
+<li>Update function’s documentation;</li>
+<li>Update vignettes;</li>
+</ul>
+</div>
     <div id="metan-102" class="section level1">
 <h1 class="page-header">
 <a href="#metan-102" class="anchor"></a>metan 1.0.2</h1>
@@ -418,6 +436,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#metan-110">1.1.0</a></li>
         <li><a href="#metan-102">1.0.2</a></li>
         <li><a href="#metan-101">1.0.1</a></li>
         <li><a href="#metan-100">1.0.0</a></li>

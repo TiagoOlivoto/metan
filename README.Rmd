@@ -44,7 +44,7 @@ devtools::install_github("TiagoOlivoto/metan")
 
 # Getting started
 
-Here, we will use the example dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details see `?data_ge`
+Here, we will use the example dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details see `?data_ge`. The tables of this vignette were produced with the package [`KableExtra`](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
 
 ```{r, message=FALSE, warning=FALSE}
 library(metan)
@@ -52,30 +52,28 @@ library(ggplot2) # used to create the plots
 library(kableExtra) # Used to produce HTML tables
 print_table = function(table){
   kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                  font_size = 12)
+    kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
 }
 str(data_ge)
 
 ```
 
-
 ## AMMI model
 ### Fitting the model
-The AMMI model is fitted with the function `waas()`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html).
+The AMMI model is fitted with the function `performs_ammi()`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html).
 
 ```{r}
-model <- waas(data_ge,
-              resp = GY,
-              gen = GEN,
-              env = ENV,
-              rep = REP,
-              verbose = FALSE)
+model <- performs_ammi(data_ge,
+                       resp = GY,
+                       gen = GEN,
+                       env = ENV,
+                       rep = REP,
+                       verbose = FALSE)
 ```
 
 
 ### Predicting the response variable
-The S3 method `predict()` is implemented for objects of class `waas` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object. Note that `$GY` was used because using the `predict()` function to a model of class `waas` return a list, with one `tbl_df` for each variable.
+The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object. Note that `$GY` was used because using the `predict()` function to a model of class `waas` return a list, with one `tbl_df` for each variable.
 
 ```{r message=FALSE,warning=FALSE }
 predict(model, naxis = 4)$GY %>% 
@@ -90,15 +88,14 @@ predict(model, naxis = 4)$GY %>%
 ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `waas()` function allows analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list, in this case with one element, GY.
 
 ```{r eval=FALSE}
-p1 = plot_scores(model$GY, axis.expand = 1.5)
-p2 = plot_scores(model$GY,
-                 type = 1,
+a <- plot_scores(model$GY, axis.expand = 1.5)
+b <- plot_scores(model$GY,
+                 type = 2,
                  polygon = TRUE,
-                 # col.gen = "black",
                  col.env = "gray70",
                  col.segm.env = "gray70",
                  axis.expand = 1.5)
-arrange_ggplot(p1, p2, labels = c("p1","p2"))
+arrange_ggplot(a, b, labels = letters[1:2])
 ```
 
  <img src="man/figures/AMMI.png"/>
@@ -111,13 +108,13 @@ The GGE model is fitted with the function `gge()`. For more details, see the [co
 ```{r, eval=FALSE}
 model <- gge(data_ge, ENV, GEN, GY)
 model2 <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
-p1 <- plot(model)
-p2 <- plot(model2,
-           type = 2,
-           col.gen = "black",
-           col.env = "gray70",
-           axis.expand = 1.5)
-arrange_ggplot(p1, p2, labels = c("p1","p2"))
+c <- plot(model)
+d <- plot(model2,
+          type = 2,
+          col.gen = "black",
+          col.env = "gray70",
+          axis.expand = 1.5)
+arrange_ggplot(c, d, labels = letters[3:4])
 ```
 
 <img src="man/figures/GGE.png"/>
@@ -130,8 +127,11 @@ model2 <- waasb(data_ge, ENV, GEN, REP,
                 resp = c(GY, HM),
                 verbose = FALSE)
 
+get_model_data(model2, what = "genpar") %>% 
+print_table()
+
 get_model_data(model2, what = "blupg") %>% 
-  print_table()
+print_table()
 ```
 
 
@@ -140,11 +140,11 @@ get_model_data(model2, what = "blupg") %>%
 To produce a plot with the predicted means, use the function `plot_blup()`.
 
 ```{r, eval=FALSE}
-p1 = plot_blup(model2$GY)
-p2 = plot_blup(model2$GY,
+e <- plot_blup(model2$GY)
+f <- plot_blup(model2$GY,
                prob = 0.1,
                col.shape  =  c("gray20", "gray80")) + coord_flip()
-arrange_ggplot(p1, p2, labels = c("p1","p2"))
+arrange_ggplot(e, f, labels = letters[5:6])
 ```
 
 <img src="man/figures/BLUP.png" height=340/>
@@ -166,6 +166,18 @@ get_model_data(model2, what = "blupge") %>%
   print_table()
 
 ```
+
+
+# Computing parametric and non-parametric stability indexes
+
+```{r}
+stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
+get_model_data(stats, "stats") %>% 
+  print_table()
+get_model_data(stats, "ranks") %>% 
+  print_table()
+```
+
 
 
 # Getting help

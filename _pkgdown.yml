@@ -176,6 +176,7 @@ reference:
       - plot_lines
       - resp_surf
       - print.can_cor
+      - print.corr_coef
       - print.path_coeff
   - title: "Helper"
     desc: "Helper functions for metan package"
