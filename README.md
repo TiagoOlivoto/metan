@@ -45,7 +45,7 @@ library(metan)
 library(ggplot2) # used to create the plots
 library(kableExtra) # Used to produce HTML tables
 print_table = function(table){
-  kable(table, "html", digits = 3) %>%
+  kable(table, "html", digits = 3, escape = TRUE) %>%
     kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
 }
 str(data_ge)
