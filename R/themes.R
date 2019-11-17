@@ -15,7 +15,7 @@
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'
-theme_metan = function (grid = "both", col.grid = "white", color.background = "gray90") {
+theme_metan = function (grid = "none", col.grid = "white", color.background = "gray90") {
   if(grid == "x"){
     grid_x <- element_line(color = col.grid)
     grid_y <- element_blank()

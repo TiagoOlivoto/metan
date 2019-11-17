@@ -50,8 +50,6 @@
 #' @param axis_expand multiplication factor to expand the axis limits by to
 #'   enable fitting of labels. Defaults to 1.2
 #' @param title Logical values (Defaults to \code{TRUE}) to include
-#'   automatically generated titles
-#' @param annotation Logical values (Defaults to \code{TRUE}) to include
 #'   automatically generated informations in the plot such as singular value
 #'   partitioning, scaling and centering.
 #' @param plot_theme The graphical theme of the plot. Default is
@@ -106,7 +104,6 @@ plot.gge <- function(x,
                      large_label = 4.5,
                      axis_expand = 1.2,
                      title = TRUE,
-                     annotation = TRUE,
                      plot_theme = theme_metan(),
                      ...) {
   model <- x
@@ -669,7 +666,7 @@ plot.gge <- function(x,
       ggt <- ggtitle("Relationship Among Environments")
     }
   }
-  if (annotation == T) {
+  if (title == T) {
     scal_text <- ifelse(scaling == 1 | scaling == "sd", "Scaling = 1", "Scaling = 0")
     cent_text <-
       case_when(

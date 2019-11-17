@@ -156,10 +156,12 @@ plot.waas <- function(x, var = 1, conf = 0.95, labels = FALSE, plot_theme = them
                    size = size.shape,
                    alpha = point.alpha) +
         geom_hline(yintercept = 0, linetype = 2, col = "gray") +
-        labs(x = "Fitted values", y = "Standardized residuals") +
+        labs(x = "Factor levels", y = "Standardized residuals") +
         ggtitle("Residuals vs factor-levels") +
         plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+              panel.grid.major.x = element_blank(),
+              axis.text.x = element_text(color = "white"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
     if (labels != FALSE) {
@@ -216,7 +218,8 @@ plot.waas <- function(x, var = 1, conf = 0.95, labels = FALSE, plot_theme = them
         plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
-              panel.grid = element_blank(),
+              panel.grid.major.x = element_blank(),
+              panel.grid.major.y = element_blank(),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
               panel.spacing = unit(0, "cm"))
     plots <- list(p1, p2, p3, p4, p5, p6, p7)

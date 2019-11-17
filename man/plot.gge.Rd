@@ -11,7 +11,7 @@
   col.circle = "gray", col.alpha.circle = 0.4, leg.lab = c("Gen",
   "Env"), size.text = 4, size.text.gen = 4, size.text.env = 4,
   size.line = 0.8, large_label = 4.5, axis_expand = 1.2,
-  title = TRUE, annotation = TRUE, plot_theme = theme_metan(), ...)
+  title = TRUE, plot_theme = theme_metan(), ...)
 }
 \arguments{
 \item{x}{An object of class \code{gge}}
@@ -75,9 +75,6 @@ the two selected genotypes. Defaults to 4.5}
 enable fitting of labels. Defaults to 1.2}
 
 \item{title}{Logical values (Defaults to \code{TRUE}) to include
-automatically generated titles}
-
-\item{annotation}{Logical values (Defaults to \code{TRUE}) to include
 automatically generated informations in the plot such as singular value
 partitioning, scaling and centering.}
 
