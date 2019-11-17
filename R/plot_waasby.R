@@ -4,6 +4,8 @@
 #'
 #'
 #' @param x The \code{WAASBY object}
+#' @param var The variable to plot. Defaults to \code{var = 1} the first
+#'   variable of \code{x}.
 #' @param export Export (or not) the plot. Default is \code{T}.
 #' @param file.type The type of file to be exported. Default is \code{pdf},
 #'   Graphic can also be exported in \code{*.tiff} format by declaring
@@ -47,8 +49,8 @@
 #'                gen = GEN,
 #'                env = ENV,
 #'                rep = REP)
-#' plot_waasby(waasby$GY)
-#' plot_waasby(waasby2$GY) +
+#' plot_waasby(waasby)
+#' plot_waasby(waasby2) +
 #'             theme_gray() +
 #'             theme(legend.position = "bottom",
 #'                   legend.background = element_blank(),
@@ -56,10 +58,11 @@
 #'                   legend.direction = "horizontal")
 #'
 #'
-plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, plot_theme = theme_metan(),
+plot_waasby <- function(x, var = 1, export = F, file.type = "pdf", file.name = NULL, plot_theme = theme_metan(),
     width = 6, height = 6, size.shape = 3.5, size.tex.lab = 12, col.shape = c("blue",
         "red"), x.lab = "WAASBY", y.lab = "Genotypes", x.breaks = waiver(), resolution = 300,
     ...) {
+  x <- x[[var]]
     class <- class(x)
     if (!class %in% c("waas", "waasb")) {
         stop("The object 'x' must be of class 'waas' or 'waasb'.")

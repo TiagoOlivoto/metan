@@ -65,7 +65,7 @@ BLUP = waasb(data_ge,
              gen = GEN,
              env = ENV,
              rep = REP)
-plot_eigen(BLUP$GY)
+plot_eigen(BLUP)
 
 
 

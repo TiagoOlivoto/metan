@@ -4,14 +4,17 @@
 \alias{plot_waasby}
 \title{Plot WAASBY values for genotype ranking}
 \usage{
-plot_waasby(x, export = F, file.type = "pdf", file.name = NULL,
-  plot_theme = theme_metan(), width = 6, height = 6,
-  size.shape = 3.5, size.tex.lab = 12, col.shape = c("blue", "red"),
-  x.lab = "WAASBY", y.lab = "Genotypes", x.breaks = waiver(),
-  resolution = 300, ...)
+plot_waasby(x, var = 1, export = F, file.type = "pdf",
+  file.name = NULL, plot_theme = theme_metan(), width = 6,
+  height = 6, size.shape = 3.5, size.tex.lab = 12,
+  col.shape = c("blue", "red"), x.lab = "WAASBY",
+  y.lab = "Genotypes", x.breaks = waiver(), resolution = 300, ...)
 }
 \arguments{
 \item{x}{The \code{WAASBY object}}
+
+\item{var}{The variable to plot. Defaults to \code{var = 1} the first
+variable of \code{x}.}
 
 \item{export}{Export (or not) the plot. Default is \code{T}.}
 
@@ -72,8 +75,8 @@ waasby2 = waas(data_ge,
                gen = GEN,
                env = ENV,
                rep = REP)
-plot_waasby(waasby$GY)
-plot_waasby(waasby2$GY) +
+plot_waasby(waasby)
+plot_waasby(waasby2) +
             theme_gray() +
             theme(legend.position = "bottom",
                   legend.background = element_blank(),

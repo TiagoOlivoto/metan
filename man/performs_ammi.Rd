@@ -46,18 +46,18 @@ ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
                            resp = c(GY, HM))
 
 # GY x PC1 (variable GY)
-plot_scores(ammi_model$GY,
+plot_scores(ammi_model,
             col.env = 'olivedrab',
             col.gen = 'orange2',
             x.lab = 'My own x label')
 
 # PC1 x PC2 (variable HM)
-plot_scores(ammi_model$HM,
+plot_scores(ammi_model,
             type = 2)
 
 # PC1 x PC2 (variable HM)
 # Draw a convex hull polygon
-plot_scores(ammi_model$HM,
+plot_scores(ammi_model,
             type = 2,
             polygon = TRUE)
 
