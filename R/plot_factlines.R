@@ -23,14 +23,16 @@
 #' @param size.line The size for the line in the plot
 #' @param size.text The size of the text
 #' @param fontfam The family of the font text
-#' @param theme The default theme for the plot.
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @seealso \code{\link{plot_lines}}, \code{\link{plot_factbars}}
 plot_factlines <- function(.data, x, y, group, fit, level = 0.95,
                            confidence = TRUE, xlab = NULL, ylab = NULL, legend.position = "bottom",
                            grid = FALSE, scales = "free", col = TRUE, alpha = 0.2, size.shape = 1.5,
-                           size.line = 1, size.text = 12, fontfam = "sans", theme = theme_waasb()) {
+                           size.line = 1, size.text = 12, fontfam = "sans", plot_theme = theme_metan()) {
   if (length(fit) == 1 & grid == TRUE) {
     stop("When grid is TRUE the argument fit must have the same length of the grouping variable.")
   }
@@ -123,7 +125,7 @@ if (is.null(ylab) == TRUE) {
         ggplot2::geom_point(aes(colour = factors), size = size.shape)
     }
   }
-  p <- p + p_smooth + theme %+replace% theme(axis.ticks.length = unit(0.2,
+  p <- p + p_smooth + plot_theme %+replace% theme(axis.ticks.length = unit(0.2,
                                                                       "cm"), axis.text = element_text(size = size.text, family = fontfam,
                                                                                                       colour = "black"), axis.title = element_text(size = size.text,
                                                                                                                                                    family = fontfam, colour = "black"), axis.ticks = element_line(colour = "black"),

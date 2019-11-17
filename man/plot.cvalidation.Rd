@@ -6,7 +6,7 @@
 \usage{
 \method{plot}{cvalidation}(x, violin = FALSE, export = FALSE,
   order_box = FALSE, x.lab = NULL, y.lab = NULL, size.tex.lab = 12,
-  file.type = "pdf", file.name = NULL, theme = theme_waasb(),
+  file.type = "pdf", file.name = NULL, plot_theme = theme_metan(),
   width = 6, height = 6, resolution = 300, col.violin = "gray90",
   col.boxplot = "gray70", col.boxplot.win = "cyan",
   width.boxplot = 0.6, x.lim = NULL, x.breaks = waiver(), ...)
@@ -38,10 +38,9 @@ Graphic can also be exported in \code{*.tiff} format by declaring
 \item{file.name}{The name of the file for exportation, default is
 \code{NULL}, i.e. the files are automatically named.}
 
-\item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme_waasb() + theme(some stuff
-here)`. For more details, please, see `?ggplot2::theme`}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details,see
+\code{\link[ggplot2]{theme}}.}
 
 \item{width}{The width 'inch' of the plot. Default is \code{6}.}
 

@@ -8,10 +8,9 @@
 #'   produce a plot with the scores of the variables in the first group,
 #'   \code{type = 3} to produce a plot with the scores of the variables in the
 #'   second group, or \code{type = 4} to produce a circle of correlations.
-#' @param theme The graphical theme of the plot. Default is \code{theme =
-#'   theme_waasb()}. Please, see `?WAASB::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#'   here)`. For more details, please, see ` ?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details,see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param size.tex.pa The size of the text of the plot area. Default is
 #'   \code{3.5}.
 #' @param size.tex.lab The size of the text in axis text and labels.
@@ -70,7 +69,7 @@
 #'
 #'
 #'
-plot.can_cor <- function(x, type = 1, theme = theme_waasb(), size.tex.lab = 12, size.tex.pa = 3.5,
+plot.can_cor <- function(x, type = 1, plot_theme = theme_metan(), size.tex.lab = 12, size.tex.pa = 3.5,
                          x.lab = NULL, x.lim = NULL, x.breaks = waiver(), y.lab = NULL, y.lim = NULL,
                          y.breaks = waiver(), axis.expand = 1.1, shape = 21, col.shape = "orange", col.alpha = 0.9,
                          size.shape = 3.5, size.bor.tick = 0.3, labels = FALSE, main = NULL, ...) {
@@ -102,7 +101,7 @@ plot.can_cor <- function(x, type = 1, theme = theme_waasb(), size.tex.lab = 12, 
             labs(x = x.lab, y = y.lab)+
             scale_y_continuous(limits = y.lim, breaks = y.breaks) +
             ggtitle(main)+
-            theme
+            plot_theme
     }
     if(type == 2){
         data = x$Score_FG
@@ -133,7 +132,7 @@ plot.can_cor <- function(x, type = 1, theme = theme_waasb(), size.tex.lab = 12, 
             scale_x_continuous(limits = x.lim, breaks = x.breaks) +
             ggtitle(main)+
             labs(x = x.lab, y = y.lab)+
-            theme %+replace% theme(aspect.ratio = 1,
+            plot_theme %+replace% theme(aspect.ratio = 1,
                                    axis.text = element_text(size = size.tex.lab, colour = "black"),
                                    axis.title = element_text(size = size.tex.lab, colour = "black"))
         if(labels == TRUE){
@@ -168,7 +167,7 @@ plot.can_cor <- function(x, type = 1, theme = theme_waasb(), size.tex.lab = 12, 
             scale_x_continuous(limits = x.lim, breaks = x.breaks) +
             ggtitle(main)+
             labs(x = x.lab, y = y.lab)+
-            theme %+replace% theme(aspect.ratio = 1,
+            plot_theme %+replace% theme(aspect.ratio = 1,
                                    axis.text = element_text(size = size.tex.lab, colour = "black"),
                                    axis.title = element_text(size = size.tex.lab, colour = "black"))
         if(labels == TRUE){
@@ -207,12 +206,12 @@ plot.can_cor <- function(x, type = 1, theme = theme_waasb(), size.tex.lab = 12, 
                          arrow = arrow(length = unit(0.3, "cm")))+
             ggtitle(main)+
             labs(x = x.lab, y = y.lab)+
-            theme %+replace% theme(aspect.ratio = 1,
-                                   legend.position = c(0.85, 0.06),
-                                   legend.key.size = unit(1, "lines"),
-                                   legend.title = element_blank(),
-                                   axis.text = element_text(size = size.tex.lab, colour = "black"),
-                                   axis.title = element_text(size = size.tex.lab, colour = "black"))
+        plot_theme %+replace% theme(aspect.ratio = 1,
+                                    legend.position = c(0.85, 0.06),
+                                    legend.key.size = unit(1, "lines"),
+                                    legend.title = element_blank(),
+                                    axis.text = element_text(size = size.tex.lab, colour = "black"),
+                                    axis.title = element_text(size = size.tex.lab, colour = "black"))
     }
     return(p)
 }

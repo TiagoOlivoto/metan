@@ -4,7 +4,7 @@
 \alias{ge_plot}
 \title{Graphical analysis of genotype-vs-environment interaction}
 \usage{
-ge_plot(.data, env, gen, resp, type = 1, theme = theme_waasb(),
+ge_plot(.data, env, gen, resp, type = 1, plot_theme = theme_metan(),
   colour = TRUE)
 }
 \arguments{
@@ -21,10 +21,9 @@ environments}
 \item{type}{The type of plot \code{type = 1} for a heatmap or \code{type = 2}
 for a line plot.}
 
-\item{theme}{The graphical theme of the plot. Default is \code{theme =
-theme_waasb()}. See \code{\link{theme_waasb}} for more details. An own
-theme can be applied using the arguments: \code{theme = theme(some stuff
-here)}. For more details, please, see \code{\link[ggplot2]{theme}}.}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details,see
+\code{\link[ggplot2]{theme}}.}
 
 \item{colour}{Logical argument. If \code{FALSE} then the plot will not be
 colored.}

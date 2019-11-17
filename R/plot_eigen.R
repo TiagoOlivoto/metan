@@ -6,10 +6,9 @@
 #'
 #' @param x The \code{waasb object}
 #' @param export Export (or not) the plot. Default is \code{TRUE}.
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#'   here)`. For more details, please, see `?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param file.type If \code{export = TRUE}, define the type of file to be
 #'   exported. Default is \code{pdf}, Graphic can also be exported in
 #'   \code{*.tiff} format by declaring \code{file.type = "tiff"}.
@@ -45,7 +44,7 @@
 #'
 #'
 #'
-plot_eigen <- function(x, export = FALSE, theme = theme_waasb(), file.type = "pdf",
+plot_eigen <- function(x, export = FALSE, plot_theme = theme_metan(), file.type = "pdf",
     file.name = NULL, width = 6, height = 6, size.shape = 3.5, size.line = 1, size.tex.lab = 12,
     y.lab = "Eigenvalue", y2.lab = "Accumulated variance", x.lab = "Number of multiplicative terms",
     resolution = 300, ...) {
@@ -62,7 +61,9 @@ plot_eigen <- function(x, export = FALSE, theme = theme_waasb(), file.type = "pd
         size = size.shape) + geom_line(aes(y = Accumulated/scaleFactor, col = "Percentage"),
         size = size.line) + geom_point(aes(y = Accumulated/scaleFactor, col = "Percentage"),
         size = size.shape) + scale_y_continuous(sec.axis = sec_axis(~. * scaleFactor,
-        name = y2.lab)) + labs(x = x.lab, y = y.lab) + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+        name = y2.lab)) + labs(x = x.lab, y = y.lab) +
+        plot_theme %+replace%
+        theme(axis.text = element_text(size = size.tex.lab,
         colour = "black"), axis.title = element_text(size = size.tex.lab, colour = "black"),
         legend.position = c(0.15, 0.1))
 

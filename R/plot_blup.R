@@ -11,10 +11,9 @@
 #'   \code{*.tiff} format by declaring \code{file.type = "tiff"}.
 #' @param file.name The name of the file for exportation, default is
 #'   \code{NULL}, i.e. the files are automatically named.
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#'   here)`. For more details, please, see ` ?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param width The width "inch" of the plot. Default is \code{6}.
 #' @param height The height "inch" of the plot. Default is \code{6}.
 #' @param size.err.bar The size of the error bar for the plot. Default is
@@ -56,7 +55,7 @@
 #'
 #'
 plot_blup <- function(x, prob = 0.05, export = FALSE, file.type = "pdf", file.name = NULL,
-                      theme = theme_waasb(), width = 6, height = 6, size.err.bar = 0.5, size.shape = 3.5,
+                      plot_theme = theme_metan(), width = 6, height = 6, size.err.bar = 0.5, size.shape = 3.5,
                       size.tex.lab = 12, height.err.bar = 0.3, x.lim = NULL, x.breaks = waiver(),
                       col.shape = c("blue", "red"), y.lab = "Genotypes", x.lab = "Predicted Grain Yield",
                       resolution = 300, ...) {
@@ -94,7 +93,7 @@ plot_blup <- function(x, prob = 0.05, export = FALSE, file.type = "pdf", file.na
         scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
         labs(x = x.lab, y = y.lab) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
-        theme %+replace% theme(axis.text = element_text(size = size.tex.lab,colour = "black"),
+        plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,colour = "black"),
                                axis.title = element_text(size = size.tex.lab, colour = "black"))
 
 

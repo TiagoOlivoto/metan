@@ -29,10 +29,9 @@
 #'   \code{type = 2}.
 #' @param title Logical values (Defaults to \code{TRUE}) to include
 #'   automatically generated titles
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#'   here)`. For more details, please, see `?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param axis.expand Multiplication factor to expand the axis limits by to
 #'   enable fitting of labels. Default is \code{1.1}.
 #' @param x.lim,y.lim The range of x and y axes, respectively. Default is
@@ -147,7 +146,7 @@ plot_scores <- function(x,
                         type = 1,
                         polygon = FALSE,
                         title = TRUE,
-                        theme = theme_waasb(),
+                        plot_theme = theme_metan(),
                         axis.expand = 1.1,
                         x.lim = NULL,
                         y.lim = NULL,
@@ -250,7 +249,7 @@ plot_scores <- function(x,
                       col = c(rep(col.gen, ngen), rep(col.env, nenv)),
                       force = repulsion,
                       alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv))) +
-      theme %+replace%
+      plot_theme %+replace%
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
@@ -346,7 +345,7 @@ plot_scores <- function(x,
                       col = c(rep(col.gen, ngen), rep(col.env, nenv)),
                       force = repulsion,
                       alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv))) +
-      theme %+replace%
+      plot_theme %+replace%
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
@@ -519,7 +518,7 @@ plot_scores <- function(x,
       p3 <- p3 +
         scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
         scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen)) +
-        theme %+replace%
+        plot_theme %+replace%
         theme(aspect.ratio = 1,
               axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
@@ -606,7 +605,7 @@ plot_scores <- function(x,
                  aes(x = envPC1, y = minim),
                  shape = 17,
                  size = 2.8) +
-      theme %+replace%
+      plot_theme %+replace%
       theme(legend.position = "none",
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),

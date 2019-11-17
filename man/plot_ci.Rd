@@ -7,7 +7,7 @@
 plot_ci(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
   y.breaks = waiver(), shape = 21, col.shape = "black",
   fill.shape = "orange", size.shape = 2.5, width.errbar = 0.5,
-  main = TRUE, invert.axis = TRUE, theme = theme_waasb())
+  main = TRUE, invert.axis = TRUE, plot_theme = theme_metan())
 }
 \arguments{
 \item{object}{An object generate by the function \code{corr_ci()}}
@@ -44,10 +44,9 @@ plot title.}
 \item{invert.axis}{Should the names of the pairwise correlation appear in the
 y-axis?}
 
-\item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme_waasb() + theme(some stuff
-here)`. For more details, please, see `?ggplot2::theme`}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 }
 \value{
 An object of class \code{gg, ggplot}.

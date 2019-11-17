@@ -11,7 +11,7 @@
   col.circle = "gray", col.alpha.circle = 0.4, leg.lab = c("Gen",
   "Env"), size.text = 4, size.text.gen = 4, size.text.env = 4,
   size.line = 0.8, large_label = 4.5, axis_expand = 1.2,
-  title = TRUE, annotation = TRUE, plot_theme = theme_waasb(), ...)
+  title = TRUE, annotation = TRUE, plot_theme = theme_metan(), ...)
 }
 \arguments{
 \item{x}{An object of class \code{gge}}
@@ -81,10 +81,9 @@ automatically generated titles}
 automatically generated informations in the plot such as singular value
 partitioning, scaling and centering.}
 
-\item{plot_theme}{The default theme of the plot, set to \code{theme_waasb}.
-Please, see `?metan::theme_waasb`. An own theme can be applied using the
-arguments: \code{theme = theme_waasb() + theme(some stuff here)}. For more
-details, please, see \code{?ggplot2::theme}}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 
 \item{...}{Other arguments of the function.}
 }

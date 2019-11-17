@@ -4,10 +4,9 @@
 #' to interpret the stability
 #'
 #' @param x An object of class \code{ge_factanal}
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme(some stuff here)`. For more
-#'   details, please, see `?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
 #'   values of the data set). New arguments can be inserted as \code{x.lim =
 #'   c(x.min, x.max)}.
@@ -82,7 +81,7 @@
 #'                                             fill =  NA),
 #'                 panel.grid = element_blank()))
 #'
-plot.ge_factanal <- function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = waiver(),
+plot.ge_factanal <- function(x, plot_theme = theme_metan(), x.lim = NULL, x.breaks = waiver(),
                              x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
                              shape = 21, col.shape = "gray30", col.alpha = 1, size.shape = 2.2,
                              size.bor.tick = 0.3, size.tex.lab = 12, size.tex.pa = 3.5,
@@ -112,9 +111,10 @@ plot.ge_factanal <- function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = 
         geom_text_repel(aes(label = Gen), size = size.tex.pa, force = force.repel)+
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-        theme %+replace% theme(aspect.ratio = 1,
-                               axis.text = element_text(size = size.tex.lab, color = "black"),
-                               axis.title = element_text(size = size.tex.lab, color = "black"),
-                               axis.ticks = element_line(color = "black"))
+        plot_theme %+replace%
+        theme(aspect.ratio = 1,
+              axis.text = element_text(size = size.tex.lab, color = "black"),
+              axis.title = element_text(size = size.tex.lab, color = "black"),
+              axis.ticks = element_line(color = "black"))
     return(p)
 }

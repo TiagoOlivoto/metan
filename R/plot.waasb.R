@@ -18,8 +18,9 @@
 #' or 'return'.
 #' @param labels Logical argument. If \code{TRUE} labels the points outside
 #' confidence interval limits.
-#' @param theme The theme to use in the graphics. Default is \code{theme =
-#' theme_waasb()}.
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param alpha The transparency of confidence band in the Q-Q plot. Must be a
 #' number between 0 (opaque) and 1 (full transparency).
 #' @param fill.hist The color to fill the histogram. Default is 'gray'.
@@ -54,7 +55,7 @@
 #'
 #'
 plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
-                       labels = FALSE, theme = theme_waasb(), alpha = 0.2, fill.hist = "gray",
+                       labels = FALSE, plot_theme = theme_metan(), alpha = 0.2, fill.hist = "gray",
                        col.hist = "black", col.point = "black", col.line = "red",
                        col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
                        size.shape = 1.5, bins = 30, which = c(1:4), ncol = NULL,
@@ -86,7 +87,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
                                                             size = size.shape) + geom_smooth(se = F, method = "loess",
                                                                                              col = col.line) + geom_hline(yintercept = 0, linetype = 2,
                                                                                                                           col = "gray") + labs(x = "Fitted values", y = "Residual") +
-            ggtitle("Residual vs fitted") + theme %+replace%
+            ggtitle("Residual vs fitted") + plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab,
                                            colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                         colour = "black"), plot.title = element_text(size = size.tex.lab,
@@ -104,7 +105,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
                                                                                          slope = coef[2], size = 1, col = col.line) + geom_ribbon(aes_(ymin = ~lower,
                                                                                                                                                        ymax = ~upper), alpha = 0.2) + labs(x = "Theoretical quantiles",
                                                                                                                                                                                            y = "Sample quantiles") + ggtitle("Normal Q-Q") +
-            theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+            plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
                                                             colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                                          colour = "black"), plot.title = element_text(size = size.tex.lab,
                                                                                                                                                       hjust = 0, vjust = 1))
@@ -118,7 +119,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
         p3 <- ggplot(df, aes(.fitted, sqrt(abs(.resid)))) + geom_point(col = col.point,
                                                                        size = size.shape) + geom_smooth(se = F, method = "loess",
                                                                                                         col = col.line) + labs(x = "Fitted Values", y = expression(sqrt("|Standardized residuals|"))) +
-            ggtitle("Scale-location") + theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+            ggtitle("Scale-location") + plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
                                                                                         colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                                                                      colour = "black"), plot.title = element_text(size = size.tex.lab,
                                                                                                                                                                                   hjust = 0, vjust = 1))
@@ -133,7 +134,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
         p4 <- ggplot(df, aes(factors, .scresid)) + geom_point(col = col.point,
                                                               size = size.shape) + geom_hline(yintercept = 0, linetype = 2,
                                                                                               col = "gray") + labs(x = "Fitted values", y = "Standardized residuals") +
-            ggtitle("Residuals vs factor-levels") + theme %+replace%
+            ggtitle("Residuals vs factor-levels") + plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab,
                                            colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                         colour = "black"), plot.title = element_text(size = size.tex.lab,
@@ -151,7 +152,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
             stat_function(fun = dnorm, color = col.line, size = 1,
                           args = list(mean = mean(df$.resid), sd = sd(df$.resid))) +
             labs(x = "Raw residuals", y = "Density") + ggtitle("Histogram of residuals") +
-            theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+            plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
                                                             colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                                          colour = "black"), plot.title = element_text(size = size.tex.lab,
                                                                                                                                                       hjust = 0, vjust = 1))
@@ -161,7 +162,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
             geom_line(col = col.line) + geom_hline(yintercept = 0,
                                                    linetype = 2, col = col.line) + labs(x = "Observation order",
                                                                                         y = "Standardized residuals") + ggtitle("Residuals vs observation order") +
-            theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+            plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
                                                             colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                                          colour = "black"), plot.title = element_text(size = size.tex.lab,
                                                                                                                                                       hjust = 0, vjust = 1))
@@ -169,7 +170,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
                                                        size = size.shape) + facet_wrap(~GEN) + geom_abline(intercept = 0,
                                                                                                            slope = 1, col = col.line) + labs(x = "Fitted values",
                                                                                                                                              y = "Observed values") + ggtitle("1:1 line plot") +
-            theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+            plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
                                                             colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                                          colour = "black"), plot.title = element_text(size = size.tex.lab,
                                                                                                                                                       hjust = 0, vjust = 1), panel.spacing = unit(0,
@@ -218,7 +219,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
                                                                                        slope = coef[2], size = 1, col = col.line) + geom_ribbon(aes_(ymin = ~lower,
                                                                                                                                                      ymax = ~upper), alpha = 0.2) + labs(x = "Theoretical quantiles",
                                                                                                                                                                                          y = "Sample quantiles") + ggtitle("Q-Q | GEI effects") +
-            theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+            plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
                                                             colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                                          colour = "black"), plot.title = element_text(size = size.tex.lab,
                                                                                                                                                       hjust = 0, vjust = 1))
@@ -234,7 +235,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
                                                                                          slope = coef2[2], size = 1, col = col.line) + geom_ribbon(aes_(ymin = ~lower,
                                                                                                                                                         ymax = ~upper), alpha = 0.2) + labs(x = "Theoretical quantiles",
                                                                                                                                                                                             y = "Sample quantiles") + ggtitle("Q-Q | genotype effects") +
-            theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+            plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
                                                             colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                                          colour = "black"), plot.title = element_text(size = size.tex.lab,
                                                                                                                                                       hjust = 0, vjust = 1))
@@ -248,7 +249,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
         p3 <- ggplot(df, aes(BLUPge, factors)) + geom_point(col = col.point,
                                                             size = size.shape) + geom_vline(xintercept = 0, linetype = 2,
                                                                                             col = "gray") + labs(x = "Random effects", y = "Factor-levels") +
-            ggtitle("Random effects vs factor-levels") + theme %+replace%
+            ggtitle("Random effects vs factor-levels") + plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab,
                                            colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                         colour = "black"), plot.title = element_text(size = size.tex.lab,
@@ -257,7 +258,7 @@ plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
         p4 <- ggplot(dfgen, aes(BLUPg, GEN)) + geom_point(col = col.point,
                                                           size = size.shape) + geom_vline(xintercept = 0, linetype = 2,
                                                                                           col = "gray") + labs(x = "Random effects ", y = "Genotypes") +
-            ggtitle("Random effects vs Genotypes") + theme %+replace%
+            ggtitle("Random effects vs Genotypes") + plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab,
                                            colour = "black"), axis.title = element_text(size = size.tex.lab,
                                                                                         colour = "black"), plot.title = element_text(size = size.tex.lab,

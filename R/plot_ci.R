@@ -25,10 +25,9 @@
 #'   plot title.
 #' @param invert.axis Should the names of the pairwise correlation appear in the
 #'   y-axis?
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#'   here)`. For more details, please, see `?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @examples
@@ -43,7 +42,7 @@
 plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
                     y.breaks = waiver(), shape = 21, col.shape = "black", fill.shape = "orange",
                     size.shape = 2.5, width.errbar = 0.5, main = TRUE, invert.axis = TRUE,
-                    theme = theme_waasb()) {
+                    plot_theme = theme_metan()) {
   if (!any(class(object) == "tbl_df")) {
     stop("The object must be a 'data.frame' or a 'tbl_df'.")
   }
@@ -63,7 +62,7 @@ plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
   } else {
     p <- p
   }
-  p <- p + theme %+replace% theme(axis.text = element_text(colour = "black")) +
+  p <- p + plot_theme %+replace% theme(axis.text = element_text(colour = "black")) +
     labs(x = x.lab, y = y.lab)
   if (main == TRUE) {
     p <- p + ggtitle("95% CI for Pearson's correlation coefficient",

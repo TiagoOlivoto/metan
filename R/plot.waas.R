@@ -12,8 +12,9 @@
 #' default).
 #' @param labels Logical argument. If \code{TRUE} labels the points outside
 #' confidence interval limits.
-#' @param theme The theme to use in the graphics. Default is \code{theme =
-#' theme_waasb()}.
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param band.alpha,point.alpha The transparency of confidence band in the Q-Q
 #'   plot and the points, respectively. Must be a number between 0 (opaque) and
 #'   1 (full transparency).
@@ -48,7 +49,7 @@
 #'      labels = TRUE,
 #'      size.lab.out = 4)
 #'
-plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
+plot.waas <- function(x, conf = 0.95, labels = FALSE, plot_theme = theme_metan(),
                       band.alpha = 0.2, point.alpha = 0.8, fill.hist = "gray",
                       col.hist = "black", col.point = "black", col.line = "red",
                       col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
@@ -85,7 +86,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
         labs(x = "Fitted values",
              y = "Residual") +
         ggtitle("Residuals vs fitted") +
-        theme %+replace%
+        plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
@@ -109,7 +110,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
         labs(x = "Theoretical quantiles",
              y = "Sample quantiles") +
         ggtitle("Normal Q-Q") +
-        theme %+replace%
+        plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
@@ -133,7 +134,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
         labs(x = "Fitted values",
              y = expression(sqrt("|Standardized residuals|"))) +
         ggtitle("Scale-location") +
-        theme %+replace%
+        plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
@@ -154,7 +155,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
         geom_hline(yintercept = 0, linetype = 2, col = "gray") +
         labs(x = "Fitted values", y = "Standardized residuals") +
         ggtitle("Residuals vs factor-levels") +
-        theme %+replace%
+        plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
@@ -178,7 +179,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
         labs(x = "Raw residuals", y = "Density") +
         scale_y_continuous(expand = expand_scale(mult = c(0, 0.1))) +
         ggtitle("Histogram of residuals") +
-        theme %+replace%
+        plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
@@ -193,7 +194,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
                    col = col.line) +
         labs(x = "Observation order", y = "Standardized Residuals") +
         ggtitle("Residuals vs observation order") +
-        theme %+replace%
+        plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
@@ -209,7 +210,7 @@ plot.waas <- function(x, conf = 0.95, labels = FALSE, theme = theme_waasb(),
         labs(x = "Fitted values",
              y = "Observed values") +
         ggtitle("1:1 line plot") +
-        theme %+replace%
+        plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
               strip.background = element_rect(fill = NA, color = "black"),

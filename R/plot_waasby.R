@@ -10,10 +10,9 @@
 #'   \code{file.type = "tiff"}.
 #' @param file.name The name of the file for exportation, default is
 #'   \code{NULL}, i.e. the files are automatically named.
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#'   here)`. For more details, please, see ` ?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param width The width "inch" of the plot. Default is \code{8}.
 #' @param height The height "inch" of the plot. Default is \code{7}.
 #' @param size.shape The size of the shape in the plot. Default is \code{3.5}.
@@ -57,7 +56,7 @@
 #'                   legend.direction = "horizontal")
 #'
 #'
-plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, theme = theme_waasb(),
+plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, plot_theme = theme_metan(),
     width = 6, height = 6, size.shape = 3.5, size.tex.lab = 12, col.shape = c("blue",
         "red"), x.lab = "WAASBY", y.lab = "Genotypes", x.breaks = waiver(), resolution = 300,
     ...) {
@@ -83,7 +82,7 @@ plot_waasby <- function(x, export = F, file.type = "pdf", file.name = NULL, them
       geom_point(stat = "identity", size = size.shape, col = "black", shape = 21) +
         coord_flip() +
         scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
-        theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
+        plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,
         colour = "black"), axis.title = element_text(size = size.tex.lab, colour = "black")) +
         labs(x = y.lab, y = x.lab)
 

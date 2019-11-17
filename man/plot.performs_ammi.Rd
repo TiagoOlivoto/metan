@@ -5,7 +5,7 @@
 \title{Several types of residual plots}
 \usage{
 \method{plot}{performs_ammi}(x, conf = 0.95, labels = FALSE,
-  theme = theme_waasb(), band.alpha = 0.2, point.alpha = 0.8,
+  plot_theme = theme_metan(), band.alpha = 0.2, point.alpha = 0.8,
   fill.hist = "gray", col.hist = "black", col.point = "black",
   col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
   size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
@@ -20,8 +20,9 @@ default).}
 \item{labels}{Logical argument. If \code{TRUE} labels the points outside
 confidence interval limits.}
 
-\item{theme}{The theme to use in the graphics. Default is \code{theme =
-theme_waasb()}.}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 
 \item{band.alpha, point.alpha}{The transparency of confidence band in the Q-Q
 plot and the points, respectively. Must be a number between 0 (opaque) and

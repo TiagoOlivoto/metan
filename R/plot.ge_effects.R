@@ -6,10 +6,11 @@
 #' @param x An object of class \code{ge_effects}
 #' @param var The variable to plot. Defaults to \code{var = 1} the first
 #'   variable of \code{x}.
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme(some stuff here)`. For more
-#'   details, please, see `?ggplot2::theme`
+#' @param file.name The name of the file for exportation, default is
+#'   \code{NULL}, i.e. the files are automatically named.
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param x.lab The label of x-axis. Each plot has a default value. New
 #'   arguments can be inserted as \code{x.lab = "my label"}.
 #' @param y.lab The label of y-axis. Each plot has a default value. New
@@ -28,7 +29,7 @@
 #' ge_eff <- ge_effects(data_ge2, ENV, GEN, REP, PH)
 #' plot(ge_eff)
 #'
-plot.ge_effects <- function(x, var = 1, theme = theme_waasb(), x.lab = NULL, y.lab = NULL,
+plot.ge_effects <- function(x, var = 1, plot_theme = theme_metan(), x.lab = NULL, y.lab = NULL,
                         leg.position = "right", size.text = 12, ...){
   data <- make_long(x[[var]])
   names <- names(data)
@@ -59,7 +60,7 @@ plot.ge_effects <- function(x, var = 1, theme = theme_waasb(), x.lab = NULL, y.l
                                   barheight = 10,
                                   direction = 'vertical'))+
     labs(x = x.lab, y = y.lab)+
-    theme %+replace%
+    plot_theme %+replace%
     theme(legend.position = leg.position,
           axis.title = element_text(size = size.text),
           axis.text = element_text(size = size.text),

@@ -4,10 +4,9 @@
 #'
 #'
 #' @param x An object of class \code{ge_factanal}
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme(some stuff here)`. For more
-#'   details, please, see `?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
 #'   values of the data set). New arguments can be inserted as \code{x.lim =
 #'   c(x.min, x.max)}.
@@ -37,7 +36,7 @@
 #' model = ge_reg(data_ge2, ENV, GEN, REP, PH)
 #' plot(model$PH)
 #'
-plot.ge_reg <- function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = waiver(),
+plot.ge_reg <- function(x, plot_theme = theme_metan(), x.lim = NULL, x.breaks = waiver(),
                        x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
                        leg.position = "right", size.tex.lab = 12, ...){
   if (!class(x) == "ge_reg") {
@@ -58,10 +57,11 @@ plot.ge_reg <- function(x, theme = theme_waasb(), x.lim = NULL, x.breaks = waive
     geom_smooth(aes(colour = GEN), method = "lm", se = FALSE)+
     ggplot2::theme_bw()+
     ggplot2::labs(x = x.lab, y = y.lab)+
-    theme %+replace% theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
-                           axis.title = element_text(size = size.tex.lab, colour = "black"),
-                           axis.ticks = element_line(color = "black"),
-                           axis.ticks.length = unit(.2, "cm"),
-                           legend.position = leg.position)
+    plot_theme %+replace%
+    theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
+          axis.title = element_text(size = size.tex.lab, colour = "black"),
+          axis.ticks = element_line(color = "black"),
+          axis.ticks.length = unit(.2, "cm"),
+          legend.position = leg.position)
   return(p)
 }

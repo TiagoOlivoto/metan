@@ -5,7 +5,7 @@
 \title{Plot scores in different graphical interpretations}
 \usage{
 plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
-  theme = theme_waasb(), axis.expand = 1.1, x.lim = NULL,
+  plot_theme = theme_metan(), axis.expand = 1.1, x.lim = NULL,
   y.lim = NULL, x.breaks = waiver(), y.breaks = waiver(),
   x.lab = NULL, y.lab = NULL, shape.gen = 21, shape.env = 23,
   size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
@@ -39,8 +39,9 @@ produces a biplot showing the GY x WAASB.
 \item{title}{Logical values (Defaults to \code{TRUE}) to include
 automatically generated titles}
 
-\item{theme}{The graphical theme of the plot. Default is \code{theme = theme_waasb()}. Please, see \code{?metan::theme_waasb}. An own theme can be
-applied using the arguments: \code{theme = theme_waasb() + theme(some stuff here)}. For more details, please, see \code{?ggplot2::theme}}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 
 \item{axis.expand}{Multiplication factor to expand the axis limits by to
 enable fitting of labels. Default is \code{1.1}.}

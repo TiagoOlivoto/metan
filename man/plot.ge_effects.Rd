@@ -4,7 +4,7 @@
 \alias{plot.ge_effects}
 \title{Plot an object of class ge_effects}
 \usage{
-\method{plot}{ge_effects}(x, var = 1, theme = theme_waasb(),
+\method{plot}{ge_effects}(x, var = 1, plot_theme = theme_metan(),
   x.lab = NULL, y.lab = NULL, leg.position = "right",
   size.text = 12, ...)
 }
@@ -14,10 +14,9 @@
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
 
-\item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme(some stuff here)`. For more
-details, please, see `?ggplot2::theme`}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 
 \item{x.lab}{The label of x-axis. Each plot has a default value. New
 arguments can be inserted as \code{x.lab = "my label"}.}
@@ -31,6 +30,9 @@ arguments can be inserted as \code{y.lab = "my label"}.}
 is \code{12}.}
 
 \item{...}{Current not used.}
+
+\item{file.name}{The name of the file for exportation, default is
+\code{NULL}, i.e. the files are automatically named.}
 }
 \value{
 An object of class \code{gg, ggplot}.

@@ -54,10 +54,9 @@
 #' @param annotation Logical values (Defaults to \code{TRUE}) to include
 #'   automatically generated informations in the plot such as singular value
 #'   partitioning, scaling and centering.
-#' @param plot_theme The default theme of the plot, set to \code{theme_waasb}.
-#'   Please, see `?metan::theme_waasb`. An own theme can be applied using the
-#'   arguments: \code{theme = theme_waasb() + theme(some stuff here)}. For more
-#'   details, please, see \code{?ggplot2::theme}
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param ... Other arguments of the function.
 #' @return A ggplot2-based biplot.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -108,7 +107,7 @@ plot.gge <- function(x,
                      axis_expand = 1.2,
                      title = TRUE,
                      annotation = TRUE,
-                     plot_theme = theme_waasb(),
+                     plot_theme = theme_metan(),
                      ...) {
   model <- x
   if (!class(model) == "gge") {
@@ -185,7 +184,7 @@ plot.gge <- function(x,
                       col = c(rep(col.gen, ngen), rep(col.env, nenv))) +
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle("GGE Biplot")
+      ggt <- ggtitle("GGE Biplot")
     }
   }
   # Mean vs. stability
@@ -229,7 +228,7 @@ plot.gge <- function(x,
                 show.legend = FALSE) +
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle("Mean vs. Stability")
+      ggt <- ggtitle("Mean vs. Stability")
     }
   }
   # Which-won-where
@@ -305,7 +304,7 @@ plot.gge <- function(x,
                         values = c(col.gen, col.env))+
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle("Which-won-where pattern")
+      ggt <- ggtitle("Which-won-where pattern")
     }
   }
   # Discrimination vs. representativeness
@@ -355,7 +354,7 @@ plot.gge <- function(x,
                       color = c(rep(col.gen, ngen), rep(col.env, nenv))) +
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle("Discriminativeness vs. representativeness")
+      ggt <- ggtitle("Discriminativeness vs. representativeness")
     }
   }
   # Examine an environment
@@ -415,7 +414,7 @@ plot.gge <- function(x,
                  size = 4) +
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle(paste("Environment:", sel_env))
+      ggt <- ggtitle(paste("Environment:", sel_env))
     }
   }
   # Ranking environments
@@ -469,7 +468,7 @@ plot.gge <- function(x,
       geom_point(aes(xcoord, ycoord), shape = 1, size = 4) +
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle("Ranking Environments")
+      ggt <- ggtitle("Ranking Environments")
     }
   }
   # Examine a genotype
@@ -531,7 +530,7 @@ plot.gge <- function(x,
                  size = 4) +
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle(paste("Genotype:", sel_gen))
+      ggt <- ggtitle(paste("Genotype:", sel_gen))
     }
   }
   # Ranking genotypes
@@ -592,7 +591,7 @@ plot.gge <- function(x,
       plot_theme + theme(legend.background = element_rect(fill = NA),
                          legend.key = element_rect(fill = NA))
     if (title == TRUE) {
-      P2 <- P2 + ggtitle("Ranking Genotypes")
+      ggt <- ggtitle("Ranking Genotypes")
     }
   }
   # Compare two genotypes
@@ -643,8 +642,7 @@ plot.gge <- function(x,
                  size = size.shape) +
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle(paste("Comparison of Genotype",
-                               sel_gen1, "with Genotype", sel_gen2))
+      ggt <- ggtitle(paste("Comparison of Genotype", sel_gen1, "with Genotype", sel_gen2))
     }
   }
   # Relationship among environments
@@ -668,7 +666,7 @@ plot.gge <- function(x,
                       size = size.text.env) +
       plot_theme
     if (title == TRUE) {
-      P2 <- P2 + ggtitle("Relationship Among Environments")
+      ggt <- ggtitle("Relationship Among Environments")
     }
   }
   if (annotation == T) {
@@ -687,14 +685,7 @@ plot.gge <- function(x,
         svp == 3 | svp == "symmetrical" ~ "SVP = 3"
       )
     annotationtxt <- paste(scal_text, ", ", cent_text, ", ", svp_text, sep = "")
-    P2 <- P2 +
-      annotate("text",
-               label = annotationtxt,
-               x = xlim1[1] - xlim1[1] * 0.05,
-               y = ylim1[2] - ylim1[2] * 0.05,
-               fontface = "italic",
-               size = 3,
-               hjust = 0)
+    P2 <- P2 + ggtitle(label = ggt, subtitle = annotationtxt)
   }
   return(P2)
 }

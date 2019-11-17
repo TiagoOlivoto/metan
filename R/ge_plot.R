@@ -13,10 +13,9 @@
 #' @param resp The response variable.
 #' @param type The type of plot \code{type = 1} for a heatmap or \code{type = 2}
 #'   for a line plot.
-#' @param theme The graphical theme of the plot. Default is \code{theme =
-#'   theme_waasb()}. See \code{\link{theme_waasb}} for more details. An own
-#'   theme can be applied using the arguments: \code{theme = theme(some stuff
-#'   here)}. For more details, please, see \code{\link[ggplot2]{theme}}.
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details,see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param colour Logical argument. If \code{FALSE} then the plot will not be
 #'   colored.
 #' @return An object of class \code{gg, ggplot}.
@@ -33,7 +32,7 @@ ge_plot <- function(.data,
                     gen,
                     resp,
                     type = 1,
-                    theme = theme_waasb(),
+                    plot_theme = theme_metan(),
                     colour = TRUE) {
   if(type == 1){
     p <-
@@ -52,7 +51,7 @@ ge_plot <- function(.data,
                                     barwidth = 1.3,
                                     barheight = 10,
                                     direction = 'vertical'))+
-      theme %+replace%
+      plot_theme %+replace%
       theme(legend.position = "right",
             legend.title = element_text())
 
@@ -76,7 +75,7 @@ ge_plot <- function(.data,
                       fun.y = mean,
                       size = 3,
                       shape = 18) +
-    theme %+replace%
+    plot_theme %+replace%
     theme(legend.position = "right")
   }
 

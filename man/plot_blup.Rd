@@ -5,11 +5,12 @@
 \title{Plot the BLUPs for genotypes}
 \usage{
 plot_blup(x, prob = 0.05, export = FALSE, file.type = "pdf",
-  file.name = NULL, theme = theme_waasb(), width = 6, height = 6,
-  size.err.bar = 0.5, size.shape = 3.5, size.tex.lab = 12,
-  height.err.bar = 0.3, x.lim = NULL, x.breaks = waiver(),
-  col.shape = c("blue", "red"), y.lab = "Genotypes",
-  x.lab = "Predicted Grain Yield", resolution = 300, ...)
+  file.name = NULL, plot_theme = theme_metan(), width = 6,
+  height = 6, size.err.bar = 0.5, size.shape = 3.5,
+  size.tex.lab = 12, height.err.bar = 0.3, x.lim = NULL,
+  x.breaks = waiver(), col.shape = c("blue", "red"),
+  y.lab = "Genotypes", x.lab = "Predicted Grain Yield",
+  resolution = 300, ...)
 }
 \arguments{
 \item{x}{The \code{waasb object}}
@@ -25,10 +26,9 @@ exported. Default is \code{pdf}, Graphic can also be exported in
 \item{file.name}{The name of the file for exportation, default is
 \code{NULL}, i.e. the files are automatically named.}
 
-\item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme_waasb() + theme(some stuff
-here)`. For more details, please, see ` ?ggplot2::theme`}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 
 \item{width}{The width "inch" of the plot. Default is \code{6}.}
 

@@ -27,10 +27,9 @@
 #'   \code{file.type = 'tiff'}.
 #' @param file.name The name of the file for exportation, default is
 #'   \code{NULL}, i.e. the files are automatically named.
-#' @param theme The graphical theme of the plot. Default is `theme =
-#'   theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-#'   applied using the arguments: `theme = theme_waasb() + theme(some stuff
-#'   here)`. For more details, please, see `?ggplot2::theme`
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details,see
+#'   \code{\link[ggplot2]{theme}}.
 #' @param width The width 'inch' of the plot. Default is \code{6}.
 #' @param height The height 'inch' of the plot. Default is \code{6}.
 #' @param resolution The resolution of the plot. Parameter valid if
@@ -67,7 +66,7 @@
 #'
 plot.cvalidation <- function(x, violin = FALSE, export = FALSE, order_box =  FALSE,
                           x.lab = NULL, y.lab = NULL, size.tex.lab = 12, file.type = "pdf",
-                          file.name = NULL, theme = theme_waasb(), width = 6, height = 6,
+                          file.name = NULL, plot_theme = theme_metan(), width = 6, height = 6,
                           resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
                           col.boxplot.win = "cyan", width.boxplot = 0.6, x.lim = NULL,
                           x.breaks = waiver(), ...) {
@@ -111,7 +110,7 @@ plot.cvalidation <- function(x, violin = FALSE, export = FALSE, order_box =  FAL
                          geom = "point",
                          shape = 23,
                          fill = "black") +
-            theme %+replace%
+            plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
                   axis.title = element_text(size = size.tex.lab, colour = "black")) +
             coord_flip() +
@@ -144,7 +143,7 @@ plot.cvalidation <- function(x, violin = FALSE, export = FALSE, order_box =  FAL
                          geom = "point",
                          shape = 23,
                          fill = "black") +
-            theme %+replace%
+            plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
                   axis.title = element_text(size = size.tex.lab, colour = "black")) +
             coord_flip() +

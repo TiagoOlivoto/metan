@@ -4,7 +4,7 @@
 \alias{plot_eigen}
 \title{Plot the eigenvalues}
 \usage{
-plot_eigen(x, export = FALSE, theme = theme_waasb(),
+plot_eigen(x, export = FALSE, plot_theme = theme_metan(),
   file.type = "pdf", file.name = NULL, width = 6, height = 6,
   size.shape = 3.5, size.line = 1, size.tex.lab = 12,
   y.lab = "Eigenvalue", y2.lab = "Accumulated variance",
@@ -15,10 +15,9 @@ plot_eigen(x, export = FALSE, theme = theme_waasb(),
 
 \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
 
-\item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?metan::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme_waasb() + theme(some stuff
-here)`. For more details, please, see `?ggplot2::theme`}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 
 \item{file.type}{If \code{export = TRUE}, define the type of file to be
 exported. Default is \code{pdf}, Graphic can also be exported in

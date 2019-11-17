@@ -8,7 +8,7 @@ plot_factlines(.data, x, y, group, fit, level = 0.95,
   confidence = TRUE, xlab = NULL, ylab = NULL,
   legend.position = "bottom", grid = FALSE, scales = "free",
   col = TRUE, alpha = 0.2, size.shape = 1.5, size.line = 1,
-  size.text = 12, fontfam = "sans", theme = theme_waasb())
+  size.text = 12, fontfam = "sans", plot_theme = theme_metan())
 }
 \arguments{
 \item{.data}{The data set}
@@ -51,7 +51,9 @@ plot. Possible values are 'free' (default), 'fixed', 'free_x' or 'free_y'.}
 
 \item{fontfam}{The family of the font text}
 
-\item{theme}{The default theme for the plot.}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 }
 \value{
 An object of class \code{gg, ggplot}.

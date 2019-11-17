@@ -4,7 +4,7 @@
 \alias{plot.ge_factanal}
 \title{Plot the ge_factanal model}
 \usage{
-\method{plot}{ge_factanal}(x, theme = theme_waasb(), x.lim = NULL,
+\method{plot}{ge_factanal}(x, plot_theme = theme_metan(), x.lim = NULL,
   x.breaks = waiver(), x.lab = NULL, y.lim = NULL,
   y.breaks = waiver(), y.lab = NULL, shape = 21,
   col.shape = "gray30", col.alpha = 1, size.shape = 2.2,
@@ -15,10 +15,9 @@
 \arguments{
 \item{x}{An object of class \code{ge_factanal}}
 
-\item{theme}{The graphical theme of the plot. Default is `theme =
-theme_waasb()`. Please, see `?WAASB::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme(some stuff here)`. For more
-details, please, see `?ggplot2::theme`}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 
 \item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
 values of the data set). New arguments can be inserted as \code{x.lim =

@@ -4,7 +4,7 @@
 \alias{plot.can_cor}
 \title{Plots an object of class can_cor}
 \usage{
-\method{plot}{can_cor}(x, type = 1, theme = theme_waasb(),
+\method{plot}{can_cor}(x, type = 1, plot_theme = theme_metan(),
   size.tex.lab = 12, size.tex.pa = 3.5, x.lab = NULL, x.lim = NULL,
   x.breaks = waiver(), y.lab = NULL, y.lim = NULL,
   y.breaks = waiver(), axis.expand = 1.1, shape = 21,
@@ -20,10 +20,9 @@ produce a plot with the scores of the variables in the first group,
 \code{type = 3} to produce a plot with the scores of the variables in the
 second group, or \code{type = 4} to produce a circle of correlations.}
 
-\item{theme}{The graphical theme of the plot. Default is \code{theme =
-theme_waasb()}. Please, see `?WAASB::theme_waasb`. An own theme can be
-applied using the arguments: `theme = theme_waasb() + theme(some stuff
-here)`. For more details, please, see ` ?ggplot2::theme`}
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details,see
+\code{\link[ggplot2]{theme}}.}
 
 \item{size.tex.lab}{The size of the text in axis text and labels.}
 
