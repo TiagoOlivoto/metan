@@ -5,9 +5,20 @@
 \alias{theme_metan_minimal}
 \title{Personalized theme for ggplot2-based graphics}
 \usage{
-theme_metan()
+theme_metan(grid = "both", col.grid = "white",
+  color.background = "gray90")
 
 theme_metan_minimal()
+}
+\arguments{
+\item{grid}{Control the grid lines in plot. Defaults to \code{"both"} (x and
+y major grids). Allows also \code{grid = "x"} for grids in x axis only,
+\code{grid = "y"} for grid in y axis only, or \code{grid = "none"} for no
+grids.}
+
+\item{col.grid}{The color for the grid lines}
+
+\item{color.background}{The color for the panel background.}
 }
 \description{
 Two themes that provide plots with a gray background and major

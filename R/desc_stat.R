@@ -40,6 +40,9 @@
 #'@param na.rm Logical. Should missing values be removed?
 #'@param verbose Logical argument. If \code{verbose = FALSE} the code is run
 #'  silently.
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #'@return A tibble with the statistics in the lines and variables in columns. If
 #'  \code{.data} is an object of class \code{split_factors}, then the statistics
 #'  will be shown for each level of the grouping variable in the function
@@ -79,8 +82,16 @@
 #' # To get a 'wide' format with the statistics of the variable EP above.
 #' desc_wider(stats, PH)
 #'
-desc_stat <- function(.data = NULL, ..., values = NULL, stats = "main", hist = FALSE,
-                      level = 0.95, digits = 4, na.rm = FALSE, verbose = TRUE) {
+desc_stat <- function(.data = NULL,
+                      ...,
+                      values = NULL,
+                      stats = "main",
+                      hist = FALSE,
+                      level = 0.95,
+                      digits = 4,
+                      na.rm = FALSE,
+                      verbose = TRUE,
+                      plot_theme = theme_metan()) {
   all_f = c("AV.dev", "CI.mean", "CV", "gm.mean", "hm.mean", "IQR", "Kurt", "mad", "max", "mean", "median", "min", "n", "norm.pval", "norm.stat", "Q2.5", "Q25", "Q75", "Q97.5", "range", "SD.amo", "SD.pop", "SE.mean", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
   main_f = c("CV", "max", "mean", "median", "min", "SE.mean", "var.amo")
   if(!stats %in% c("main", "all")){
@@ -98,9 +109,6 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = "main", hist = F
   if (!missing(.data) & !missing(values)) {
     stop("You can not inform a vector of values if a data frame is used as imput.")
   }
-  # if (!missing(.data) & missing(...)) {
-  #   stop("At least one variable must be informed when using a data frame as input.")
-  # }
   if (missing(.data) & missing(values)) {
     stop("Invalid input. Please, use argument 'values' to inform a numeric vector, or the argument '.data' to inform a dataset.")
   }
@@ -179,13 +187,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = "main", hist = F
           labs(x = "Observed value",
                y = "Count")+
           scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
-          theme(axis.text = element_text(size = 12, colour = "black"),
-                axis.title = element_text(size = 14, color = "black"),
-                axis.ticks.length = unit(0.25, "cm"),
-                axis.ticks = element_line(color = "black"),
-                panel.grid.minor = element_blank(),
-                strip.background = element_rect(color = "black", fill = NA),
-                panel.border = element_rect(color = "black", fill = NA))+
+          plot_theme +
           ggtitle(paste("Histogram for ", nam))
         print(plt)
       }
@@ -286,13 +288,7 @@ desc_stat <- function(.data = NULL, ..., values = NULL, stats = "main", hist = F
         labs(x = "Observed value",
              y = "Count")+
         scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
-        theme(axis.text = element_text(size = 12, colour = "black"),
-              axis.title = element_text(size = 14, color = "black"),
-              axis.ticks.length = unit(0.25, "cm"),
-              axis.ticks = element_line(color = "black"),
-              panel.grid.minor = element_blank(),
-              strip.background = element_rect(color = "black", fill = NA),
-              panel.border = element_rect(color = "black", fill = NA))
+        plot_theme
       print(plt)
     }
     data %<>%  summarise_all(funs(n = n(),

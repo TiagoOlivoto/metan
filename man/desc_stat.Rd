@@ -6,7 +6,7 @@
 \usage{
 desc_stat(.data = NULL, ..., values = NULL, stats = "main",
   hist = FALSE, level = 0.95, digits = 4, na.rm = FALSE,
-  verbose = TRUE)
+  verbose = TRUE, plot_theme = theme_metan())
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
@@ -54,6 +54,10 @@ Defaults to 0.95.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
 silently.}
+
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 }
 \value{
 A tibble with the statistics in the lines and variables in columns. If

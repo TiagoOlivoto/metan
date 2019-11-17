@@ -217,7 +217,7 @@ plot.performs_ammi <- function(x, var = 1, conf = 0.95, labels = FALSE, plot_the
         plot_theme %+replace%
         theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
-              strip.background = element_rect(fill = NA, color = "black"),
+              panel.grid = element_blank(),
               plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
               panel.spacing = unit(0, "cm"))
     plots <- list(p1, p2, p3, p4, p5, p6, p7)
