@@ -6,7 +6,7 @@
 \title{Personalized theme for ggplot2-based graphics}
 \usage{
 theme_metan(grid = "none", col.grid = "white",
-  color.background = "gray90")
+  color.background = "gray95")
 
 theme_metan_minimal()
 }

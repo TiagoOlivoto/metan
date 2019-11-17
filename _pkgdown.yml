@@ -200,7 +200,8 @@ reference:
       - resca
       - split_factors
       - solve_svd
-      - theme_waasb
+      - theme_metan
+      - theme_metan_minimal
       - to_factor
   - title: "Misc"
     desc: "Miscellaneous small functions"

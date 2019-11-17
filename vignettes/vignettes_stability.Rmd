@@ -44,9 +44,9 @@ str(data_ge)
 # Graphic visualization of the interaction
 The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean for each environment.
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
-p1 = ge_plot(data_ge, ENV, GEN, GY)
-p2 = ge_plot(data_ge, ENV, GEN, GY) + theme_grey() + coord_flip()
-arrange_ggplot(p1, p2)
+a <- ge_plot(data_ge, ENV, GEN, GY)
+b <- ge_plot(data_ge, ENV, GEN, GY) + theme_grey() + coord_flip()
+arrange_ggplot(a, b, labels = letters[1:2])
 ```
 
 
@@ -160,7 +160,7 @@ where ${\beta _{0i}}$ is the grand mean of the genotype *i* (*i* = 1, 2, ..., I)
 The model is fitted with the function `ge_reg()`. The S3 methods `plot()` and `summary()` may be used to explore the fitted model.
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-reg_model = ge_reg(data_ge, ENV, GEN, REP, GY)
+reg_model <- ge_reg(data_ge, ENV, GEN, REP, GY)
 print_table(reg_model$GY$anova)
 print_table(reg_model$GY$regression)
 
@@ -183,8 +183,8 @@ Where $\alpha$ is the quantile of the standard normal distribution at a given pr
 ## Computing the index
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-ann5 = Annicchiarico(data_ge, ENV, GEN, REP, GY)
-ann1 = Annicchiarico(data_ge, ENV, GEN, REP, GY, prob = 0.01)
+ann5 <- Annicchiarico(data_ge, ENV, GEN, REP, GY)
+ann1 <- Annicchiarico(data_ge, ENV, GEN, REP, GY, prob = 0.01)
 
 
 ```
@@ -233,7 +233,7 @@ where *n* is the number of environments
 Similar then the genotypic confidence index, the superiority index is calculated by all environments, favorable, and unfavorable environments.
 
 ```{r, eval=FALSE}
-super = superiority(data_ge, ENV, GEN, REP, GY)
+super <- superiority(data_ge, ENV, GEN, REP, GY)
 super$GY$index
 ```
 
@@ -252,8 +252,8 @@ kable(super$GY$index, "html", digits = 3) %>%
 A method that combines stability analysis and environmental stratification using factor analysis was proposed by @murakami2004. This method is implemented with the function `ge_factanal()`, as follows:
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-fact = ge_factanal(data_ge, ENV, GEN, REP, GY)
-plot(fact$GY)
+fact <- ge_factanal(data_ge, ENV, GEN, REP, GY)
+plot(fact)
 fact$GY$PCA
 fact$GY$FA
 fact$GY$env_strat
@@ -262,7 +262,7 @@ fact$GY$env_strat
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
 fact = ge_factanal(data_ge, ENV, GEN, REP, GY)
-plot(fact$GY)
+plot(fact)
 print_table(fact$GY$PCA)
 print_table(fact$GY$FA)
 print_table(fact$GY$env_strat)

@@ -40,12 +40,12 @@ str(data_ge)
 The cross-validation procedures implemented in the \bold{metan} are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/metan/articles/vignettes_cross-validation.html)
 
 ```{r, fig.height=3.5, fig.width=5}
-CVAL = cv_ammif(data_ge,
-                env = ENV,                
-                gen = GEN,
-                rep = REP,
-                resp = GY,
-                nboot = 50)
+CVAL <- cv_ammif(data_ge,
+                 env = ENV,                
+                 gen = GEN,
+                 rep = REP,
+                 resp = GY,
+                 nboot = 50)
 plot(CVAL)
 ```
 
@@ -63,15 +63,15 @@ waas_index <- waas(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
 The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `performs_ammi()` and , `waas()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `ammi_model` is a list that in this case has two elements, (GY and HM).
 
 ```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
-p1 <- plot_scores(ammi_model$GY, axis.expand = 1.2)
-p2 <- plot_scores(ammi_model$GY,
-                  type = 2,
-                  polygon = TRUE,
-                  col.gen = "black",
-                  col.env = "gray70",
-                  col.segm.env = "gray70",
-                  axis.expand = 1.5)
-arrange_ggplot(p1, p2, ncol = 1)
+a <- plot_scores(ammi_model, axis.expand = 1.2)
+b <- plot_scores(ammi_model,
+                 type = 2,
+                 polygon = TRUE,
+                 col.gen = "black",
+                 col.env = "gray70",
+                 col.segm.env = "gray70",
+                 axis.expand = 1.5)
+arrange_ggplot(a, b, labels = letters[1:2], ncol = 1)
 ```
 
 
@@ -95,8 +95,8 @@ The mixed-effect model fitted in `model2` has many outputs. For example, we can 
 ## Residual plots
 Several residual plots may be obtained applying the S3 generic function `plot()` to an object of class `waasb` (or `waas`). 
 
-```{r,fig.height=12, fig.width=4}
-plot(model2$GY, which = c(1, 2, 7), mfrow = c(3,1))
+```{r,fig.height=12, fig.width=4, message=FALSE, warning=FALSE}
+plot(model2, which = c(1, 2, 7), ncol = 1)
 ```
 
 ## Distribution of random effects
@@ -104,7 +104,7 @@ The distribution of the random effects may be obtained using the argument
 `type = "re"`.
 
 ```{r,fig.height=8, fig.width=4}
-plot(model2$GY, type = "re", which = c(1, 2), mfrow = c(2,1))
+plot(model2, type = "re", which = c(1, 2), ncol = 1)
 ```
 
 
@@ -126,12 +126,12 @@ An easy way to check the results in the R console is by using the function `prin
 
 ```{r, fig.height=8, fig.width=4}
 library(ggplot2)
-p1 <- plot_blup(model2$GY)
-p2 <- plot_blup(model2$GY,
-                prob = 0.1,
-                col.shape  =  c("gray20", "gray80")) +
+c <- plot_blup(model2)
+d <- plot_blup(model2,
+               prob = 0.1,
+               col.shape  =  c("gray20", "gray80")) +
       coord_flip()
-arrange_ggplot(p1, p2, ncol = 1)
+arrange_ggplot(c, d,labels = letters[3:4])
 ```
 
 
@@ -153,7 +153,7 @@ get_model_data(model2, what = "WAASB") %>%
 The function `Resende_indexes()` may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See @Alves2018 for more details.
 
 ```{r }
-index = model2 %>%
+index <- model2 %>%
   Resende_indexes()
   print_table(index$GY)
 ```
@@ -166,11 +166,11 @@ The GGE model is fitted with the function `gge()`. This function produces a GGE 
 
 ```{r echo = TRUE}
 # Using a data.frame
-gge_model = gge(data_ge, ENV, GEN, GY)
+gge_model <- gge(data_ge, ENV, GEN, GY)
 
 # Using a two-way table
-ge_table = make_mat(data_ge, GEN, ENV, GY)
-gge_model = gge(ge_table, table = TRUE)
+ge_table <- make_mat(data_ge, GEN, ENV, GY)
+gge_model <- gge(ge_table, table = TRUE)
 
 ```
 
@@ -189,9 +189,9 @@ The generic function `plot()` is used to generate a biplot using as input a fitt
 * `type =  10` Relationship among environments.
 
 ```{r echo = TRUE, fig.width = 4, fig.height=8, message=F, warning=F}
-p1 = plot(gge_model)
-p2 = plot(gge_model, type = 2)
-arrange_ggplot(p1, p2, ncol = 1)
+e <- plot(gge_model)
+f <- plot(gge_model, type = 2)
+arrange_ggplot(e, f, labels = letters[5:6], ncol = 1)
 ```
 
 

@@ -9,6 +9,7 @@ I'm very pleased to announce the release of `metan` 1.1.0, This is a minor relea
 * New helper function `reorder_cormat()` for reordering a correlation matrix according to the correlation coefficients;
 * Improve usability of `get_model_data()` by supporting new classes of models. Now, `get_model_data()` can be used to get all statistics or ranks computed with the wrapper function `ge_stats()`.
 * `arrange_ggplot()` now support objects of class `ggmatrix`.
+* Change the default plot theme to `theme_metan()`
 * Update function's documentation;
 * Update vignettes;
 

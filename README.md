@@ -67,10 +67,10 @@ vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html).
 
 ``` r
 model <- performs_ammi(data_ge,
-                       resp = GY,
-                       gen = GEN,
                        env = ENV,
+                       gen = GEN,
                        rep = REP,
+                       resp = GY,
                        verbose = FALSE)
 ```
 
@@ -476,17 +476,18 @@ the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a
 list, in this case with one element, GY.
 
 ``` r
-a <- plot_scores(model$GY, axis.expand = 1.5)
-b <- plot_scores(model$GY,
+a <- plot_scores(model)
+b <- plot_scores(model,
                  type = 2,
                  polygon = TRUE,
                  col.env = "gray70",
                  col.segm.env = "gray70",
                  axis.expand = 1.5)
-arrange_ggplot(a, b, labels = letters[1:2])
+c <- plot_scores(model, type = 4)
+arrange_ggplot(a, b, c, labels = letters[1:3], nrow = 1)
 ```
 
-<img src="man/figures/AMMI.png"/>
+![](man/figures/README-AMMI-1.png)<!-- -->
 
 ## GGE model
 
@@ -496,17 +497,19 @@ vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html).
 
 ``` r
 model <- gge(data_ge, ENV, GEN, GY)
-model2 <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
-c <- plot(model)
-d <- plot(model2,
+model2 <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
+model3 <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
+d <- plot(model)
+e <- plot(model2, type = 8)
+f <- plot(model2,
           type = 2,
           col.gen = "black",
           col.env = "gray70",
           axis.expand = 1.5)
-arrange_ggplot(c, d, labels = letters[3:4])
+arrange_ggplot(d, e, f, labels = letters[4:6], nrow = 1)
 ```
 
-<img src="man/figures/GGE.png"/>
+![](man/figures/README-GGE-1.png)<!-- -->
 
 ## BLUP model
 
@@ -1155,14 +1158,14 @@ To produce a plot with the predicted means, use the function
 `plot_blup()`.
 
 ``` r
-e <- plot_blup(model2$GY)
-f <- plot_blup(model2$GY,
+g <- plot_blup(model2)
+h <- plot_blup(model2,
                prob = 0.1,
                col.shape  =  c("gray20", "gray80")) + coord_flip()
-arrange_ggplot(e, f, labels = letters[5:6])
+arrange_ggplot(g, h, labels = letters[7:8])
 ```
 
-<img src="man/figures/BLUP.png" height=340/>
+![](man/figures/README-BLUP-1.png)<!-- -->
 
 ### BLUPS for genotype-vs-environment interaction
 

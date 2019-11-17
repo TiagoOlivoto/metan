@@ -123,13 +123,13 @@ where **G** and **R** are the variance-covariance matrices for random-effect vec
 The `waasb()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `data_ge`. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.  The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contains the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
 
 ```{r  echo = TRUE}
-WAASB_model = waasb(data_ge,
-                    env = ENV,
-                    gen = GEN,
-                    rep = REP,
-                    resp = GY,
-                    random = "gen", #Default
-                    verbose = TRUE) #Default
+WAASB_model <- waasb(data_ge,
+                     env = ENV,
+                     gen = GEN,
+                     rep = REP,
+                     resp = GY,
+                     random = "gen", #Default
+                     verbose = TRUE) #Default
 
     ```
 
@@ -138,8 +138,8 @@ WAASB_model = waasb(data_ge,
 The S3 generic function `plot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`.
 
 ```{r  echo = TRUE, fig.width=7, fig.height=7, fig.align="center"}
-plot(WAASB_model$GY)
-plot(WAASB_model$GY, type = "re")
+plot(WAASB_model)
+plot(WAASB_model, type = "re")
     ```
 
 
@@ -150,7 +150,7 @@ plot(WAASB_model$GY, type = "re")
 The output `LRT` contains the Likelihood Ratio Tests for genotype and genotype-vs-environment random effects.
 
 ```{r  warning=F, message=F}
-data = WAASB_model$GY$LRT
+data <- WAASB_model$GY$LRT
 print_table(data)
     ```
 
@@ -201,7 +201,7 @@ where $\mu$ is the grand mean.
 
 
 ```{r  }
-data = WAASB_model$GY$ESTIMATES
+data <- WAASB_model$GY$ESTIMATES
 print_table(data)
     ```
 
@@ -213,7 +213,7 @@ print_table(data)
 The following pieces of information are provided in `Details` output. **WgtResponse** is the weight for the response variable in estimating WAASB; **WgtWAAS** is the weight for stability; **Ngen** is the number of genotypes; **Nenv** is the number of environments; **OVmean** is the overall mean; **Min** is the minimum value observed (returning the genotype and environment); **Max** is the maximum observed; **MinENV** is the environment with the lower mean; **MaxENV** is the environment with the largest mean observed; **MinGEN** is the genotype with the lower mean; **MaxGEN** is the genotype with the largest mean.    
 
 ```{r  }
-data = WAASB_model$GY$Details
+data <- WAASB_model$GY$Details
 print_table(data)
     ```
 
@@ -232,7 +232,7 @@ where $WAASB_i$ is the weighted average of absolute scores of the *i*th genotype
 
 
 ```{r  }
-data = WAASB_model$GY$model[, c(1:3,13:17, 21:22)]
+data <- WAASB_model$GY$model[, c(1:3,13:17, 21:22)]
 print_table(data)
     ```
 
@@ -261,11 +261,11 @@ waasb(data_ge2, ENV, GEN, REP,
 ### Plotting the BLUP for genotypes
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
-# No file exported
-p1 = plot_blup(WAASB_model$GY)
-p2 = plot_blup(WAASB_model$GY, 
-               col.shape  =  c("gray20", "gray80")) + coord_flip()
-arrange_ggplot(p1, p2, labels = c("p1", "p2"))
+a <- plot_blup(WAASB_model)
+b <- plot_blup(WAASB_model, 
+               col.shape  =  c("gray20", "gray80")) +
+  coord_flip()
+arrange_ggplot(a, b, labels = letters[1:2])
 
 ```
 
@@ -307,14 +307,14 @@ $$
 ## Eigenvalues of the BLUP_GEI matrix
 
 ```{r  }
-data = WAASB_model$GY$PCA
+data <- WAASB_model$GY$PCA
 print_table(data)
     ```
 
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot_eigen(WAASB_model$GY, size.lab = 14, size.tex.lab = 14)
+plot_eigen(WAASB_model, size.lab = 14, size.tex.lab = 14)
 
 ```
 
@@ -323,7 +323,7 @@ The above output shows the eigenvalues and the proportion of variance explained 
 ### Phenotypic means
 
 ```{r  }
-data = WAASB_model$GY$MeansGxE[1:10,]
+data <- WAASB_model$GY$MeansGxE[1:10,]
 print_table(data)
     ```
 
@@ -337,14 +337,14 @@ Provided that an object of class `waasb` is available in the global environment,
 ### biplot type 1: PC1 x PC2
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
-p1 = plot_scores(WAASB_model$GY, type = 1)
-p2 = plot_scores(WAASB_model$GY,
+c <- plot_scores(WAASB_model, type = 1)
+d <- plot_scores(WAASB_model,
                  type = 1,
                  col.gen = "black",
                  col.env = "gray70",
                  col.segm.env = "gray70",
                  axis.expand = 1.5)
-arrange_ggplot(p1, p2, labels = c("p1", "p2"))
+arrange_ggplot(c, d, labels = letters[3:4])
 ```
 
 
@@ -352,16 +352,15 @@ arrange_ggplot(p1, p2, labels = c("p1", "p2"))
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 
-p3 = plot_scores(WAASB_model$GY, type = 2)
-p4 = plot_scores(WAASB_model$GY,
+e <- plot_scores(WAASB_model, type = 2)
+f <- plot_scores(WAASB_model,
                  type = 2,
                  polygon = TRUE,
                  col.segm.env = "transparent") +
                  theme_gray() +
                  theme(legend.position = c(0.1, 0.9),
                        legend.background = element_rect(fill = NA))
-
-arrange_ggplot(p3, p4, labels = c("p3","p4"))
+arrange_ggplot(e, f, labels = letters[5:6])
 ```
 
 ### biplot type 3: GY x WAASB
@@ -370,15 +369,15 @@ The quadrants proposed by @Olivoto2019 in the following biplot represent four cl
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message=F, warning=F}
 
-p5 = plot_scores(WAASB_model$GY, type = 3)
-p6 = plot_scores(WAASB_model$GY, type = 3,
+g <- plot_scores(WAASB_model, type = 3)
+h <- plot_scores(WAASB_model, type = 3,
                  x.lab = "My customized x label",
                  size.shape = 3,
                  size.tex.pa = 2,
                  x.lim = c(1.2, 4.7),
                  x.breaks = seq(1.5, 4.5, by = 0.5)) + 
                  theme(legend.position = c(0.1, 0.9))
-arrange_ggplot(p5, p6, labels = c("p5","p6"))
+arrange_ggplot(g, h, labels = letters[7:8])
 ```
 
 To obtain the WAASB index for a set of variables, the function `get_model_data()` is used, as shown bellow.
@@ -395,7 +394,7 @@ waas(data_ge2, ENV, GEN, REP,
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F}
 
-plot_scores(WAASB_model$GY,
+plot_scores(WAASB_model,
             type = 4, size.tex.pa = 1.5)
 
 
@@ -415,15 +414,15 @@ where $waasby_i$ is the superiority index for the *i*-th genotype; $rY_i$ and $r
 This index was also already computed and stored into AMMI_model>GY>model. An intuitively plot may be obtained by running
 
 ```{r  echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
-p1 = plot_waasby(WAASB_model$GY)
-p2 = plot_waasby(WAASB_model$GY, col.shape = c("gray20", "gray80"))
-arrange_ggplot(p1, p2, labels = c("p1", "p2"))
+i <- plot_waasby(WAASB_model)
+j <- plot_waasby(WAASB_model, col.shape = c("gray20", "gray80"))
+arrange_ggplot(i, j, labels = letters[9:10])
     ```
 
 In the following example, we will apply the function `wsmp()` to the previously fitted model **WAASB_model** aiming at planning different scenarios of **waasby** estimation by changing the weights assigned to the stability and the mean performance.vThe number of scenarios is defined by the arguments `increment`. By default, twenty-one different scenarios are computed. In this case, the the superiority index **waasby** is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
 
 ```{r  echo = TRUE}
-scenarios = wsmp(WAASB_model)
+scenarios <- wsmp(WAASB_model)
 
 ```
 
@@ -454,7 +453,7 @@ The first type of heatmap shows the genotype ranking depending on the number of 
 ### Ranks of genotypes depending on the number of PCA used to estimate the WAASB
 ```{r  echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot(scenarios$GY, type = 1)
+plot(scenarios, type = 1)
 
 
     ```
@@ -462,7 +461,7 @@ plot(scenarios$GY, type = 1)
 ### Ranks of genotypes depending on the WAASB/GY ratio
 ```{r  echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot(scenarios$GY, type = 2)
+plot(scenarios, type = 2)
 
 
 ```

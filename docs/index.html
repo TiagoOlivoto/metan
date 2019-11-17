@@ -201,10 +201,10 @@
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h3>
 <p>The AMMI model is fitted with the function <code><a href="reference/performs_ammi.html">performs_ammi()</a></code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html">complete vignette</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/performs_ammi.html">performs_ammi</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb3-2" title="2">                       <span class="dt">resp =</span> GY,</a>
+<a class="sourceLine" id="cb3-2" title="2">                       <span class="dt">env =</span> ENV,</a>
 <a class="sourceLine" id="cb3-3" title="3">                       <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb3-4" title="4">                       <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb3-5" title="5">                       <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb3-4" title="4">                       <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb3-5" title="5">                       <span class="dt">resp =</span> GY,</a>
 <a class="sourceLine" id="cb3-6" title="6">                       <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="predicting-the-response-variable" class="section level3">
@@ -573,15 +573,16 @@ G5
 <h3 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h3>
 <p>ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since <code><a href="reference/waas.html">waas()</a></code> function allows analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>model</code> is a list, in this case with one element, GY.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY, <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model<span class="op">$</span>GY,</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model)</a>
+<a class="sourceLine" id="cb5-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model,</a>
 <a class="sourceLine" id="cb5-3" title="3">                 <span class="dt">type =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb5-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb5-5" title="5">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb5-6" title="6">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
 <a class="sourceLine" id="cb5-7" title="7">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
-<p><img src="reference/figures/AMMI.png"></p>
+<a class="sourceLine" id="cb5-8" title="8">c &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_scores.html">plot_scores</a></span>(model, <span class="dt">type =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, c, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="reference/figures/README-AMMI-1.png"><!-- --></p>
 </div>
 </div>
 <div id="gge-model" class="section level2">
@@ -589,15 +590,17 @@ G5
 <a href="#gge-model" class="anchor"></a>GGE model</h2>
 <p>The GGE model is fitted with the function <code><a href="reference/gge.html">gge()</a></code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html">complete vignette</a>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
-<a class="sourceLine" id="cb6-2" title="2">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3">c &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model)</a>
-<a class="sourceLine" id="cb6-4" title="4">d &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2,</a>
-<a class="sourceLine" id="cb6-5" title="5">          <span class="dt">type =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-6" title="6">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb6-7" title="7">          <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb6-8" title="8">          <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(c, d, <span class="dt">labels =</span> letters[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>])</a></code></pre></div>
-<p><img src="reference/figures/GGE.png"></p>
+<a class="sourceLine" id="cb6-2" title="2">model2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3">model3 &lt;-<span class="st"> </span><span class="kw"><a href="reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
+<a class="sourceLine" id="cb6-4" title="4">d &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model)</a>
+<a class="sourceLine" id="cb6-5" title="5">e &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2, <span class="dt">type =</span> <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb6-6" title="6">f &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2,</a>
+<a class="sourceLine" id="cb6-7" title="7">          <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb6-8" title="8">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb6-9" title="9">          <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb6-10" title="10">          <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(d, e, f, <span class="dt">labels =</span> letters[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="reference/figures/README-GGE-1.png"><!-- --></p>
 </div>
 <div id="blup-model" class="section level2">
 <h2 class="hasAnchor">
@@ -1164,12 +1167,12 @@ G9
 <h3 class="hasAnchor">
 <a href="#plotting-the-blups-for-genotypes" class="anchor"></a>Plotting the BLUPs for genotypes</h3>
 <p>To produce a plot with the predicted means, use the function <code><a href="reference/plot_blup.html">plot_blup()</a></code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">e &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb9-2" title="2">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2<span class="op">$</span>GY,</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">g &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2)</a>
+<a class="sourceLine" id="cb9-2" title="2">h &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_blup.html">plot_blup</a></span>(model2,</a>
 <a class="sourceLine" id="cb9-3" title="3">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
 <a class="sourceLine" id="cb9-4" title="4">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(e, f, <span class="dt">labels =</span> letters[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>])</a></code></pre></div>
-<p><img src="reference/figures/BLUP.png" height="340/"></p>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span>(g, h, <span class="dt">labels =</span> letters[<span class="dv">7</span><span class="op">:</span><span class="dv">8</span>])</a></code></pre></div>
+<p><img src="reference/figures/README-BLUP-1.png"><!-- --></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level3">
 <h3 class="hasAnchor">

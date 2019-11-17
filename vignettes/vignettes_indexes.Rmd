@@ -55,10 +55,10 @@ The function `mtsi()` is used to compute the multi-trait stability index (*MTSI*
 In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function `waasb()` is passed to the function `mtsi()` by the forward-pipe operator `%>%`. Finally, the MTSI index is plotted using the function `plot()`.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" , message=FALSE, warning=FALSE}
-MTSI_index = data_ge2 %>%
-             waasb(ENV, GEN, REP,
-                   resp = c(KW, NKE, PH, EH, TKW)) %>%
-             mtsi()
+MTSI_index <- data_ge2 %>%
+              waasb(ENV, GEN, REP,
+                    resp = c(KW, NKE, PH, EH, TKW)) %>%
+              mtsi()
 plot(MTSI_index)
     ```
 
@@ -68,7 +68,7 @@ plot(MTSI_index)
 The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. By using `wresp = 65`, the simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
-MTSI_index2 = data_ge2 %>%
+MTSI_index2 <- data_ge2 %>%
              waasb(ENV, GEN, REP,
                    resp = c(KW, NKE, PH, EH, TKW),
                    mresp = c(100, 100, 0, 0, 100),
