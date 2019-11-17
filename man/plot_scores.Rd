@@ -4,14 +4,14 @@
 \alias{plot_scores}
 \title{Plot scores in different graphical interpretations}
 \usage{
-plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
+plot_scores(x, var = 1, type = 1, polygon = FALSE, title = TRUE,
   plot_theme = theme_metan(), axis.expand = 1.1, x.lim = NULL,
   y.lim = NULL, x.breaks = waiver(), y.breaks = waiver(),
   x.lab = NULL, y.lab = NULL, shape.gen = 21, shape.env = 23,
   size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
   size.tex.pa = 3.5, size.line = 0.5, size.segm.line = 0.5,
   col.bor.gen = "black", col.bor.env = "black", col.line = "black",
-  col.gen = "orange", col.env = "forestgreen", col.alpha.gen = 0.9,
+  col.gen = "blue", col.env = "forestgreen", col.alpha.gen = 0.9,
   col.alpha.env = 0.9, col.segm.gen = "transparent",
   col.segm.env = "forestgreen", repulsion = 1, leg.lab = c("Env",
   "Gen"), line.type = "solid", line.alpha = 0.9, resolution = 300,
@@ -21,6 +21,9 @@ plot_scores(x, type = 1, polygon = FALSE, title = TRUE,
 \arguments{
 \item{x}{An object fitted with the functions \code{\link{performs_ammi}},
 \code{\link{waas}} or \code{\link{waasb}}.}
+
+\item{var}{The variable to plot. Defaults to \code{var = 1} the first
+variable of \code{x}.}
 
 \item{type}{type of biplot to produce
 \itemize{
@@ -88,7 +91,7 @@ and environments, respectively.}
 Default is \code{'gray'}}
 
 \item{col.gen, col.env}{The shape color for genotypes (Defaults to
-\code{'orange'}) and environments (\code{'forestgreen'}). Must be length
+\code{'blue'}) and environments (\code{'forestgreen'}). Must be length
 one or a vector of colors with the same length of the number of
 genotypes/environments.}
 
@@ -162,19 +165,21 @@ ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
                            resp = c(GY, HM))
 
 # GY x PC1 (variable GY)
-plot_scores(ammi_model$GY,
+plot_scores(ammi_model,
             col.env = 'olivedrab',
             col.gen = 'orange2',
             x.lab = 'My own x label')
 
 # PC1 x PC2 (variable HM)
-plot_scores(ammi_model$HM,
+plot_scores(ammi_model,
+            var = "HM" # or var = 2
             type = 2,
             polygon = TRUE)
 
 # PC1 x PC2 (variable HM)
 # Draw a convex hull polygon
-plot_scores(ammi_model$HM,
+plot_scores(ammi_model,
+            var = "HM",
             type = 2,
             polygon = TRUE)
 
@@ -182,7 +187,7 @@ plot_scores(ammi_model$HM,
 waasb_model = waasb(data_ge, ENV, GEN, REP, GY)
 
 # GY x WAASB
-plot_scores(waasb_model$GY,
+plot_scores(waasb_model,
             type = 3,
             size.tex.pa = 2,
             size.tex.lab = 16)

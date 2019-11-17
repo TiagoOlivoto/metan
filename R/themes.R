@@ -1,8 +1,8 @@
 #' Personalized theme for ggplot2-based graphics
 #' @rdname themes
-#' @description Two themes that provide plots with a gray background and full
-#'   grids ([`theme_metan`]) or minimalistic theme with half-open frame, white
-#'   background, and no grid ([`theme_metan_minimal`]). For more details see
+#' @description Two themes that provide plots with a gray background and major
+#'   grids (\code{theme_metan}) or minimalistic theme with half-open frame, white
+#'   background, and no grid (\code{theme_metan_minimal}). For more details see
 #'   \code{\link[ggplot2]{theme}}.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -19,6 +19,7 @@ theme_metan = function () {
           plot.margin = margin(0.3, 0.1, 0.1, 0.1, "cm"),
           legend.title = element_blank(),
           axis.text = element_text(colour = "black"),
+          panel.grid.minor = element_blank(),
           panel.border = element_rect(colour = "black", fill = NA, size = 1))
 }
 

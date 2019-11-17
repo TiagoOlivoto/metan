@@ -7,7 +7,7 @@
 \method{plot}{gge}(x, type = 1, sel_env = NA, sel_gen = NA,
   sel_gen1 = NA, sel_gen2 = NA, shape.gen = 21, shape.env = 23,
   size.shape = 2.2, size.shape.win = 3.2, size.bor.tick = 0.3,
-  col.gen = "orange", col.env = "forestgreen", col.alpha = 1,
+  col.gen = "blue", col.env = "forestgreen", col.alpha = 1,
   col.circle = "gray", col.alpha.circle = 0.4, leg.lab = c("Gen",
   "Env"), size.text = 4, size.text.gen = 4, size.text.env = 4,
   size.line = 0.8, large_label = 4.5, axis_expand = 1.2,
@@ -52,7 +52,7 @@ environments). Defaults to \code{2.2}.}
 size of the shape will be \code{size.shape + size.bor.tick}}
 
 \item{col.gen, col.env}{Color for genotype and environment attributes in the
-biplot. Defaults to \code{col.gen = 'orange'} and \code{col.env =
+biplot. Defaults to \code{col.gen = 'blue'} and \code{col.env =
 'forestgreen'}}
 
 \item{col.alpha}{The alpha value for the color. Defaults to \code{1}. Values
@@ -101,7 +101,7 @@ ggplot2.
 \examples{
 library(metan)
 mod <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
-plot(mod, type = 8)
+plot(mod)
 plot(mod,
      type = 2,
      col.gen = 'blue',

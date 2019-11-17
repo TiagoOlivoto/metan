@@ -8,6 +8,8 @@
 #'
 #'
 #' @param x An object of class \code{waas}.
+#' @param var The variable to plot. Defaults to \code{var = 1} the first
+#'   variable of \code{x}.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
 #' default).
 #' @param labels Logical argument. If \code{TRUE} labels the points outside
@@ -40,21 +42,22 @@
 #' @examples
 #'
 #' library(metan)
-#' model = performs_ammi(data_ge, ENV, GEN, REP, GY)
-#' model2 = waas(data_ge, ENV, GEN, REP, GY)
-#' plot(model$GY)
-#' plot(model2$GY,
+#' model <- performs_ammi(data_ge, ENV, GEN, REP, GY)
+#' model2 <- waas(data_ge, ENV, GEN, REP, GY)
+#' plot(model)
+#' plot(model2,
 #'      which = c(3, 5),
 #'      ncol = 2,
 #'      labels = TRUE,
 #'      size.lab.out = 4)
 #'
-plot.waas <- function(x, conf = 0.95, labels = FALSE, plot_theme = theme_metan(),
+plot.waas <- function(x, var = 1, conf = 0.95, labels = FALSE, plot_theme = theme_metan(),
                       band.alpha = 0.2, point.alpha = 0.8, fill.hist = "gray",
                       col.hist = "black", col.point = "black", col.line = "red",
                       col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
                       size.shape = 1.5, bins = 30, which = c(1:4), ncol = NULL,
                       nrow = NULL, ...) {
+    x <- x[[var]]
     df <- x$residuals
     df$id <- rownames(df)
     df <- data.frame(df[order(df$stdres), ])

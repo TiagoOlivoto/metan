@@ -4,9 +4,9 @@
 \alias{plot_blup}
 \title{Plot the BLUPs for genotypes}
 \usage{
-plot_blup(x, prob = 0.05, export = FALSE, file.type = "pdf",
-  file.name = NULL, plot_theme = theme_metan(), width = 6,
-  height = 6, size.err.bar = 0.5, size.shape = 3.5,
+plot_blup(x, var = 1, prob = 0.05, export = FALSE,
+  file.type = "pdf", file.name = NULL, plot_theme = theme_metan(),
+  width = 6, height = 6, size.err.bar = 0.5, size.shape = 3.5,
   size.tex.lab = 12, height.err.bar = 0.3, x.lim = NULL,
   x.breaks = waiver(), col.shape = c("blue", "red"),
   y.lab = "Genotypes", x.lab = "Predicted Grain Yield",
@@ -14,6 +14,9 @@ plot_blup(x, prob = 0.05, export = FALSE, file.type = "pdf",
 }
 \arguments{
 \item{x}{The \code{waasb object}}
+
+\item{var}{The variable to plot. Defaults to \code{var = 1} the first
+variable of \code{x}.}
 
 \item{prob}{The probability error for constructing confidence interval.}
 
@@ -76,12 +79,12 @@ Plot the predicted BLUP of the genotypes.
 \examples{
 
 library(metan)
-BLUP = waasb(data_ge,
-             resp = c(GY, HM),
-             gen = GEN,
-             env = ENV,
-             rep = REP)
-plot_blup(BLUP$GY)
+BLUP <- waasb(data_ge,
+              resp = c(GY, HM),
+              gen = GEN,
+              env = ENV,
+              rep = REP)
+plot_blup(BLUP)
 
 
 

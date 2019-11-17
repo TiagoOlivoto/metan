@@ -16,6 +16,8 @@
 #'
 #' @param x An object fitted with the functions \code{\link{performs_ammi}},
 #'   \code{\link{waas}} or \code{\link{waasb}}.
+#' @param var The variable to plot. Defaults to \code{var = 1} the first
+#'   variable of \code{x}.
 #' @param type type of biplot to produce
 #' * \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences
 #' related to stability and productivity.
@@ -65,7 +67,7 @@
 #' @param col.line The color of the line that indicate the means in the biplot.
 #'   Default is \code{'gray'}
 #' @param col.gen,col.env The shape color for genotypes (Defaults to
-#'   \code{'orange'}) and environments (\code{'forestgreen'}). Must be length
+#'   \code{'blue'}) and environments (\code{'forestgreen'}). Must be length
 #'   one or a vector of colors with the same length of the number of
 #'   genotypes/environments.
 #' @param col.alpha.gen,col.alpha.env The alpha value for the color for
@@ -117,19 +119,21 @@
 #'                            resp = c(GY, HM))
 #'
 #' # GY x PC1 (variable GY)
-#' plot_scores(ammi_model$GY,
+#' plot_scores(ammi_model,
 #'             col.env = 'olivedrab',
 #'             col.gen = 'orange2',
 #'             x.lab = 'My own x label')
 #'
 #' # PC1 x PC2 (variable HM)
-#' plot_scores(ammi_model$HM,
+#' plot_scores(ammi_model,
+#'             var = "HM" # or var = 2
 #'             type = 2,
 #'             polygon = TRUE)
 #'
 #' # PC1 x PC2 (variable HM)
 #' # Draw a convex hull polygon
-#' plot_scores(ammi_model$HM,
+#' plot_scores(ammi_model,
+#'             var = "HM",
 #'             type = 2,
 #'             polygon = TRUE)
 #'
@@ -137,12 +141,13 @@
 #' waasb_model = waasb(data_ge, ENV, GEN, REP, GY)
 #'
 #' # GY x WAASB
-#' plot_scores(waasb_model$GY,
+#' plot_scores(waasb_model,
 #'             type = 3,
 #'             size.tex.pa = 2,
 #'             size.tex.lab = 16)
 #'
 plot_scores <- function(x,
+                        var = 1,
                         type = 1,
                         polygon = FALSE,
                         title = TRUE,
@@ -165,7 +170,7 @@ plot_scores <- function(x,
                         col.bor.gen = "black",
                         col.bor.env = "black",
                         col.line = "black",
-                        col.gen = "orange",
+                        col.gen = "blue",
                         col.env = "forestgreen",
                         col.alpha.gen = 0.9,
                         col.alpha.env = 0.9,
@@ -183,7 +188,7 @@ plot_scores <- function(x,
                         height = 7,
                         color = TRUE,
                         ...) {
-
+  x <- x[[var]]
   if (polygon == TRUE & type != 2) {
     stop("The polygon can be drawn with type 2 graphic only.", call. = FALSE)
   }
@@ -253,8 +258,7 @@ plot_scores <- function(x,
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
-            legend.text = element_text(size = size.tex.leg),
-            plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
+            legend.text = element_text(size = size.tex.leg)) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -349,8 +353,7 @@ plot_scores <- function(x,
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
-            legend.text = element_text(size = size.tex.leg),
-            plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
+            legend.text = element_text(size = size.tex.leg)) +
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -522,8 +525,7 @@ plot_scores <- function(x,
         theme(aspect.ratio = 1,
               axis.text = element_text(size = size.tex.lab, colour = "black"),
               axis.title = element_text(size = size.tex.lab, colour = "black"),
-              legend.text = element_text(size = size.tex.leg),
-              plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
+              legend.text = element_text(size = size.tex.leg)) +
         labs(x = paste(x.lab), y = paste(y.lab)) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
         scale_y_continuous(limits = y.lim, breaks = y.breaks) +
@@ -608,8 +610,7 @@ plot_scores <- function(x,
       plot_theme %+replace%
       theme(legend.position = "none",
             axis.text = element_text(size = size.tex.lab, colour = "black"),
-            axis.title = element_text(size = size.tex.lab, colour = "black"),
-            plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1)) +
+            axis.title = element_text(size = size.tex.lab, colour = "black")) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks,
                          expand = expand_scale(mult = c(0.003, 0.1))) +

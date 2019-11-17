@@ -4,8 +4,8 @@
 \alias{plot.ge_factanal}
 \title{Plot the ge_factanal model}
 \usage{
-\method{plot}{ge_factanal}(x, plot_theme = theme_metan(), x.lim = NULL,
-  x.breaks = waiver(), x.lab = NULL, y.lim = NULL,
+\method{plot}{ge_factanal}(x, var = 1, plot_theme = theme_metan(),
+  x.lim = NULL, x.breaks = waiver(), x.lab = NULL, y.lim = NULL,
   y.breaks = waiver(), y.lab = NULL, shape = 21,
   col.shape = "gray30", col.alpha = 1, size.shape = 2.2,
   size.bor.tick = 0.3, size.tex.lab = 12, size.tex.pa = 3.5,
@@ -14,6 +14,9 @@
 }
 \arguments{
 \item{x}{An object of class \code{ge_factanal}}
+
+\item{var}{The variable to plot. Defaults to \code{var = 1} the first
+variable of \code{x}.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
@@ -102,17 +105,13 @@ model = ge_factanal(data_ge2,
                     gen = GEN,
                     rep = REP,
                     resp = PH)
-plot(model$PH)
+plot(model)
 
-plot(model$PH,
-      size.shape = 3,
-      force.repel = 10,
-      col.shape = "orange",
-      col.line = "red",
-      theme = theme_gray() +
-          theme(panel.border = element_rect(color = "black",
-                                            fill =  NA),
-                panel.grid = element_blank()))
+plot(model,
+     size.shape = 3,
+     force.repel = 10,
+     col.shape = "orange",
+     col.line = "red")
 
 }
 \seealso{

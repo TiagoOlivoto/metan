@@ -10,9 +10,9 @@ theme_metan()
 theme_metan_minimal()
 }
 \description{
-Two themes that provide plots with a gray background and full
-  grids ([`theme_metan`]) or minimalistic theme with half-open frame, white
-  background, and no grid ([`theme_metan_minimal`]). For more details see
+Two themes that provide plots with a gray background and major
+  grids (\code{theme_metan}) or minimalistic theme with half-open frame, white
+  background, and no grid (\code{theme_metan_minimal}). For more details see
   \code{\link[ggplot2]{theme}}.
 }
 \author{

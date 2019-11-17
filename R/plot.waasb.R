@@ -10,6 +10,8 @@
 #'
 #'
 #' @param x An object of class \code{waasb}.
+#' @param var The variable to plot. Defaults to \code{var = 1} the first
+#'   variable of \code{x}.
 #' @param type If \code{type = 're'}, normal Q-Q plots for the random effects
 #' are obtained.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
@@ -51,15 +53,16 @@
 #'                gen = GEN,
 #'                env = ENV,
 #'                rep = REP)
-#' plot(model2$GY)
+#' plot(model2)
 #'
 #'
-plot.waasb <- function(x, type = "res", conf = 0.95, out = "print",
+plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
                        labels = FALSE, plot_theme = theme_metan(), alpha = 0.2, fill.hist = "gray",
                        col.hist = "black", col.point = "black", col.line = "red",
                        col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
                        size.shape = 1.5, bins = 30, which = c(1:4), ncol = NULL,
                        nrow = NULL, ...) {
+    x <- x[[var]]
     if (type == "re" & max(which) >= 5) {
         stop("When type =\"re\", 'which' must be a value between 1 and 4")
     }

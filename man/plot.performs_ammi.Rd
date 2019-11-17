@@ -4,7 +4,7 @@
 \alias{plot.performs_ammi}
 \title{Several types of residual plots}
 \usage{
-\method{plot}{performs_ammi}(x, conf = 0.95, labels = FALSE,
+\method{plot}{performs_ammi}(x, var = 1, conf = 0.95, labels = FALSE,
   plot_theme = theme_metan(), band.alpha = 0.2, point.alpha = 0.8,
   fill.hist = "gray", col.hist = "black", col.point = "black",
   col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
@@ -13,6 +13,9 @@
 }
 \arguments{
 \item{x}{An object of class \code{performs_ammi}.}
+
+\item{var}{The variable to plot. Defaults to \code{var = 1} the first
+variable of \code{x}.}
 
 \item{conf}{Level of confidence interval to use in the Q-Q plot (0.95 by
 default).}
@@ -66,10 +69,10 @@ and (6) standardized residuals vs observation order, and (7) 1:1 line plot
 \examples{
 
 library(metan)
-model = performs_ammi(data_ge, ENV, GEN, REP, GY)
-model2 = waas(data_ge, ENV, GEN, REP, GY)
-plot(model$GY)
-plot(model2$GY,
+model <- performs_ammi(data_ge, ENV, GEN, REP, GY)
+model2 <- waas(data_ge, ENV, GEN, REP, GY)
+plot(model)
+plot(model2,
      which = c(3, 5),
      ncol = 3,
      labels = TRUE,

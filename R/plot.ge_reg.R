@@ -4,6 +4,8 @@
 #'
 #'
 #' @param x An object of class \code{ge_factanal}
+#' @param var The variable to plot. Defaults to \code{var = 1} the first
+#'   variable of \code{x}.
 #' @param plot_theme The graphical theme of the plot. Default is
 #'   \code{plot_theme = theme_metan()}. For more details, see
 #'   \code{\link[ggplot2]{theme}}.
@@ -33,12 +35,13 @@
 #' @export
 #' @examples
 #' library(metan)
-#' model = ge_reg(data_ge2, ENV, GEN, REP, PH)
-#' plot(model$PH)
+#' model <- ge_reg(data_ge2, ENV, GEN, REP, PH)
+#' plot(model)
 #'
-plot.ge_reg <- function(x, plot_theme = theme_metan(), x.lim = NULL, x.breaks = waiver(),
+plot.ge_reg <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NULL, x.breaks = waiver(),
                        x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
                        leg.position = "right", size.tex.lab = 12, ...){
+  x <- x[[var]]
   if (!class(x) == "ge_reg") {
     stop("The object 'x' is not of class 'ge_reg'")
   }

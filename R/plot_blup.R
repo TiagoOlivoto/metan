@@ -4,6 +4,8 @@
 #'
 #'
 #' @param x The \code{waasb object}
+#' @param var The variable to plot. Defaults to \code{var = 1} the first
+#'   variable of \code{x}.
 #' @param prob The probability error for constructing confidence interval.
 #' @param export Export (or not) the plot. Default is \code{TRUE}.
 #' @param file.type If \code{export = TRUE}, define the type of file to be
@@ -45,20 +47,21 @@
 #' @examples
 #'
 #' library(metan)
-#' BLUP = waasb(data_ge,
-#'              resp = c(GY, HM),
-#'              gen = GEN,
-#'              env = ENV,
-#'              rep = REP)
-#' plot_blup(BLUP$GY)
+#' BLUP <- waasb(data_ge,
+#'               resp = c(GY, HM),
+#'               gen = GEN,
+#'               env = ENV,
+#'               rep = REP)
+#' plot_blup(BLUP)
 #'
 #'
 #'
-plot_blup <- function(x, prob = 0.05, export = FALSE, file.type = "pdf", file.name = NULL,
+plot_blup <- function(x, var = 1, prob = 0.05, export = FALSE, file.type = "pdf", file.name = NULL,
                       plot_theme = theme_metan(), width = 6, height = 6, size.err.bar = 0.5, size.shape = 3.5,
                       size.tex.lab = 12, height.err.bar = 0.3, x.lim = NULL, x.breaks = waiver(),
                       col.shape = c("blue", "red"), y.lab = "Genotypes", x.lab = "Predicted Grain Yield",
                       resolution = 300, ...) {
+    x <- x[[var]]
     if(!class(x)  %in% c("waasb", "gamem")){
         stop("The object 'x' must be of class 'waasb' or 'gamem'.")
     }

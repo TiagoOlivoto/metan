@@ -35,7 +35,7 @@
 #' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
 #'   size of the shape will be \code{size.shape + size.bor.tick}
 #' @param col.gen,col.env Color for genotype and environment attributes in the
-#'   biplot. Defaults to \code{col.gen = 'orange'} and \code{col.env =
+#'   biplot. Defaults to \code{col.gen = 'blue'} and \code{col.env =
 #'   'forestgreen'}
 #' @param col.alpha The alpha value for the color. Defaults to \code{1}. Values
 #'   must be between \code{0} (full transparency) to \code{1} (full color).
@@ -70,7 +70,7 @@
 #' @examples
 #' library(metan)
 #' mod <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
-#' plot(mod, type = 8)
+#' plot(mod)
 #' plot(mod,
 #'      type = 2,
 #'      col.gen = 'blue',
@@ -93,7 +93,7 @@ plot.gge <- function(x,
                      size.shape = 2.2,
                      size.shape.win = 3.2,
                      size.bor.tick = 0.3,
-                     col.gen = "orange",
+                     col.gen = "blue",
                      col.env = "forestgreen",
                      col.alpha = 1,
                      col.circle = "gray",

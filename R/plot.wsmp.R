@@ -13,10 +13,9 @@
 #' unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but
 #' unproductive genotypes; and (4), productive and stable genotypes.
 #'
-#' @param x The object returned by the function \code{wsmp}. Note that this
-#'   object is a list where each element is one variable. Thus, it is necessary
-#'   to assess the desired variable using \code{$}; for example,
-#'   \code{plot(model$GY)}
+#' @param x The object returned by the function \code{wsmp}.
+#' @param var The variable to plot. Defaults to \code{var = 1} the first
+#'   variable of \code{x}.
 #' @param type \code{1 = Heat map Ranks}: this graphic shows the genotype
 #'   ranking considering the WAAS estimated with different numbers of Principal
 #'   Components; \code{2 = Heat map WAASY-GY ratio}: this graphic shows the
@@ -53,11 +52,10 @@
 #'          wsmp()
 #'          plot(model$PH)
 #'
-plot.wsmp <- function(x, type = 2, export = FALSE, file.type = "pdf",
-                      file.name = NULL, width = 6, height = 5, size.lab = 1, margins = c(5,
-                                                                                         4), y.lab = NULL, x.lab = NULL, key.lab = "Genotype ranking",
+plot.wsmp <- function(x, var = 1, type = 2, export = FALSE, file.type = "pdf",
+                      file.name = NULL, width = 6, height = 5, size.lab = 1, margins = c(5, 4), y.lab = NULL, x.lab = NULL, key.lab = "Genotype ranking",
                       resolution = 300, ...) {
-    data <- x
+    data <- x[[var]]
     if (type == 1) {
         if (is.null(x.lab)) {
             x.lab <- "Number of axes"

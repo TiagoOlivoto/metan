@@ -4,16 +4,16 @@
 \alias{plot.wsmp}
 \title{Plot heat maps with genotype ranking}
 \usage{
-\method{plot}{wsmp}(x, type = 2, export = FALSE, file.type = "pdf",
-  file.name = NULL, width = 6, height = 5, size.lab = 1,
-  margins = c(5, 4), y.lab = NULL, x.lab = NULL,
+\method{plot}{wsmp}(x, var = 1, type = 2, export = FALSE,
+  file.type = "pdf", file.name = NULL, width = 6, height = 5,
+  size.lab = 1, margins = c(5, 4), y.lab = NULL, x.lab = NULL,
   key.lab = "Genotype ranking", resolution = 300, ...)
 }
 \arguments{
-\item{x}{The object returned by the function \code{wsmp}. Note that this
-object is a list where each element is one variable. Thus, it is necessary
-to assess the desired variable using \code{$}; for example,
-\code{plot(model$GY)}}
+\item{x}{The object returned by the function \code{wsmp}.}
+
+\item{var}{The variable to plot. Defaults to \code{var = 1} the first
+variable of \code{x}.}
 
 \item{type}{\code{1 = Heat map Ranks}: this graphic shows the genotype
 ranking considering the WAAS estimated with different numbers of Principal
