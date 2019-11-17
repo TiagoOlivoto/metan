@@ -6,8 +6,6 @@
 #' @param x An object of class \code{ge_effects}
 #' @param var The variable to plot. Defaults to \code{var = 1} the first
 #'   variable of \code{x}.
-#' @param file.name The name of the file for exportation, default is
-#'   \code{NULL}, i.e. the files are automatically named.
 #' @param plot_theme The graphical theme of the plot. Default is
 #'   \code{plot_theme = theme_metan()}. For more details, see
 #'   \code{\link[ggplot2]{theme}}.

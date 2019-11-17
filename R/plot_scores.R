@@ -126,7 +126,7 @@
 #'
 #' # PC1 x PC2 (variable HM)
 #' plot_scores(ammi_model,
-#'             var = "HM" # or var = 2
+#'             var = "HM", # or var = 2
 #'             type = 2,
 #'             polygon = TRUE)
 #'

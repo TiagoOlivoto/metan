@@ -5,7 +5,8 @@
 \title{Find possible outliers in a dataset}
 \usage{
 find_outliers(.data = NULL, var = NULL, values = NULL,
-  plots = FALSE, coef = 1.5, verbose = TRUE)
+  plots = FALSE, coef = 1.5, verbose = TRUE,
+  plot_theme = theme_metan())
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of
@@ -23,6 +24,10 @@ see \code{?boxplot.stat}.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
+
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
 }
 \description{
 Find possible outliers in the dataset.

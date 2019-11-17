@@ -13,6 +13,9 @@
 #'   see \code{?boxplot.stat}.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #'   console.
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
 #' @importFrom cowplot ggdraw draw_label
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -32,7 +35,8 @@ find_outliers <- function(.data =  NULL,
                           values = NULL,
                           plots = FALSE,
                           coef = 1.5,
-                          verbose = TRUE) {
+                          verbose = TRUE,
+                          plot_theme = theme_metan()) {
   if(!missing(.data)){
     if (!any(class(.data) %in% c("data.frame", "tbl_df", "split_factors"))) {
       stop("The object 'x' must be a data.frame or an object of class split_factors")
@@ -112,13 +116,10 @@ find_outliers <- function(.data =  NULL,
                        width = .5,
                        size = 0.2,
                        na.rm = TRUE)+
-          theme(panel.border = element_rect(fill = NA, color = "black"),
-                axis.text.x = element_text(color = "white"),
-                axis.ticks = element_line(color = "black"),
-                axis.ticks.x = element_blank(),
-                panel.grid = element_blank(),
-                axis.text = element_text(color = "black", size = 12),
-                axis.ticks.length = unit(0.2, "cm"))+
+          plot_theme %+replace%
+          theme(axis.text.x = element_text(color = "white"),
+                panel.grid.major.x = element_blank(),
+                axis.ticks.x = element_blank())+
           labs(y = "Observed value", x = "")
 
         without_box <-
@@ -135,13 +136,10 @@ find_outliers <- function(.data =  NULL,
                        width = .5,
                        size = 0.2,
                        na.rm = TRUE)+
-          theme(panel.border = element_rect(fill = NA, color = "black"),
-                axis.text.x = element_text(color = "white"),
-                axis.ticks = element_line(color = "black"),
-                axis.ticks.x = element_blank(),
-                panel.grid = element_blank(),
-                axis.text = element_text(color = "black", size = 12),
-                axis.ticks.length = unit(0.2, "cm"))+
+          plot_theme %+replace%
+          theme(axis.text.x = element_text(color = "white"),
+                panel.grid.major.x = element_blank(),
+                axis.ticks.x = element_blank())+
           labs(y = "Observed value", x = "")
 
         with_hist <-
@@ -153,12 +151,7 @@ find_outliers <- function(.data =  NULL,
                          size = 0.2,
                          bins = nbins)+
           scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
-          theme(legend.position = "bottom",
-                panel.border = element_rect(fill = NA, color = "black"),
-                panel.grid = element_blank(),
-                axis.text = element_text(color = "black", size = 12),
-                axis.ticks = element_line(color = "black"),
-                axis.ticks.length = unit(0.2, "cm"))+
+          plot_theme +
           labs(x = "Observed value",
                y = "Count")
 
@@ -171,12 +164,7 @@ find_outliers <- function(.data =  NULL,
                          size = 0.2,
                          bins = nbins)+
           scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
-          theme(legend.position = "bottom",
-                panel.border = element_rect(fill = NA, color = "black"),
-                panel.grid = element_blank(),
-                axis.text = element_text(color = "black", size = 12),
-                axis.ticks = element_line(color = "black"),
-                axis.ticks.length = unit(0.2, "cm"))+
+          plot_theme +
           labs(x = "Observed value",
                y = "Count")
 
@@ -270,13 +258,10 @@ find_outliers <- function(.data =  NULL,
                      width = .5,
                      size = 0.2,
                      na.rm = TRUE)+
-        theme(panel.border = element_rect(fill = NA, color = "black"),
-              axis.text.x = element_text(color = "white"),
-              axis.ticks.x = element_blank(),
-              panel.grid = element_blank(),
-              axis.text = element_text(color = "black", size = 12),
-              axis.ticks = element_line(color = "black"),
-              axis.ticks.length = unit(0.2, "cm"))+
+        plot_theme %+replace%
+        theme(axis.text.x = element_text(color = "white"),
+              panel.grid.major.x = element_blank(),
+              axis.ticks.x = element_blank())+
         labs(y = "Observed value", x = "")
 
       without_box <-
@@ -293,13 +278,10 @@ find_outliers <- function(.data =  NULL,
                      width = .5,
                      size = 0.2,
                      na.rm = TRUE)+
-        theme(panel.border = element_rect(fill = NA, color = "black"),
-              axis.text.x = element_text(color = "white"),
-              axis.ticks.x = element_blank(),
-              panel.grid = element_blank(),
-              axis.text = element_text(color = "black", size = 12),
-              axis.ticks = element_line(color = "black"),
-              axis.ticks.length = unit(0.2, "cm"))+
+        plot_theme %+replace%
+        theme(axis.text.x = element_text(color = "white"),
+              panel.grid.major.x = element_blank(),
+              axis.ticks.x = element_blank())+
         labs(y = "Observed value", x = "")
 
       with_hist <-
@@ -311,12 +293,7 @@ find_outliers <- function(.data =  NULL,
                        size = 0.2,
                        bins = nbins)+
         scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
-        theme(legend.position = "bottom",
-              panel.border = element_rect(fill = NA, color = "black"),
-              panel.grid = element_blank(),
-              axis.text = element_text(color = "black", size = 12),
-              axis.ticks = element_line(color = "black"),
-              axis.ticks.length = unit(0.2, "cm"))+
+        plot_theme +
         labs(x = "Observed value",
              y = "Count")
 
@@ -329,12 +306,7 @@ find_outliers <- function(.data =  NULL,
                        size = 0.2,
                        bins = nbins)+
         scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
-        theme(legend.position = "bottom",
-              panel.border = element_rect(fill = NA, color = "black"),
-              panel.grid = element_blank(),
-              axis.text = element_text(color = "black", size = 12),
-              axis.ticks = element_line(color = "black"),
-              axis.ticks.length = unit(0.2, "cm"))+
+        plot_theme +
         labs(x = "Observed value",
              y = "Count")
 

@@ -30,9 +30,6 @@ arguments can be inserted as \code{y.lab = "my label"}.}
 is \code{12}.}
 
 \item{...}{Current not used.}
-
-\item{file.name}{The name of the file for exportation, default is
-\code{NULL}, i.e. the files are automatically named.}
 }
 \value{
 An object of class \code{gg, ggplot}.

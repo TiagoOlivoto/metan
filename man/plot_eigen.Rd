@@ -4,7 +4,7 @@
 \alias{plot_eigen}
 \title{Plot the eigenvalues}
 \usage{
-plot_eigen(x, export = FALSE, plot_theme = theme_metan(),
+plot_eigen(x, var = 1, export = FALSE, plot_theme = theme_metan(),
   file.type = "pdf", file.name = NULL, width = 6, height = 6,
   size.shape = 3.5, size.line = 1, size.tex.lab = 12,
   y.lab = "Eigenvalue", y2.lab = "Accumulated variance",
@@ -12,6 +12,9 @@ plot_eigen(x, export = FALSE, plot_theme = theme_metan(),
 }
 \arguments{
 \item{x}{The \code{waasb object}}
+
+\item{var}{The variable to plot. Defaults to \code{var = 1} the first
+variable of \code{x}.}
 
 \item{export}{Export (or not) the plot. Default is \code{TRUE}.}
 

@@ -74,7 +74,7 @@ model = waas(data_ge2,
              rep = REP,
              resp = PH) \%>\%
          wsmp()
-         plot(model$PH)
+         plot(model)
 
 }
 \author{
