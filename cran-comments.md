@@ -1,5 +1,5 @@
 # Resubmission
-This is a resubmission for the new package 'metan'. Now in version 1.0.1. I have incorporated the feedback kindly provided by Martina Schmirl on Septempber 27th, 2019. See responses inline below. 
+This is a resubmission for the new package `metan`. Now in version 1.1.0, I have incorporated the feedback kindly provided by Martina Schmirl on Septempber 27th, 2019. See responses inline below. 
 
 - Please ensure that your functions do not write by default or in your examples/vignettes/tests in the user's home filespace. That is not allow by CRAN policies. Please only write/save files if the user has specified a directory. In your examples/vignettes/tests you can write to tempdir().
 
@@ -13,11 +13,10 @@ After committing the changes I ran:
    - 0 errors | 0 warnings | 0 notes
    
 - `devtools::check_rhub()`
-   - Windows Server 2008 R2 SP1, R-devel, 32/64 bit: CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
-   
-   - Ubuntu Linux 16.04 LTS, R-release, GCC: CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
-   
-   - Fedora Linux, R-devel, clang, gfortran (metan_1.0.1.tar.gz-a604f728e70540bd9623e027bcbb081d): Ok
+   - Windows Server 2008 R2 SP1, R-devel, 32/64 bit: CRAN incoming feasibility;
+   - Ubuntu Linux 16.04 LTS, R-release, GCC:
+   - Fedora Linux, R-devel, clang, gfortran
+   - One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
    
 - `devtools::check_win_devel()`
    - CRAN incoming feasibility: One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
@@ -38,10 +37,6 @@ After committing the changes I ran:
 # R CMD check results
 0 errors | 0 warnings | 0 notes
 
-
-# Other questions
-
-I have a vignette (vignettes/vignettes_metan.Rmd) that I would like to include when installing package but when I run `devtools::check()` the files in inst/doc are deleted. How should I proceed in this case?
 
 Thank for your time in helping me with this submission.
 
