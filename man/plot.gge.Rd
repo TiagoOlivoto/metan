@@ -8,7 +8,7 @@
   sel_gen1 = NA, sel_gen2 = NA, shape.gen = 21, shape.env = 23,
   size.shape = 2.2, size.shape.win = 3.2, size.bor.tick = 0.3,
   col.gen = "blue", col.env = "forestgreen", col.alpha = 1,
-  col.circle = "gray", col.alpha.circle = 0.4, leg.lab = c("Gen",
+  col.circle = "gray", col.alpha.circle = 0.5, leg.lab = c("Gen",
   "Env"), size.text = 4, size.text.gen = 4, size.text.env = 4,
   size.line = 0.8, large_label = 4.5, axis_expand = 1.2,
   title = TRUE, plot_theme = theme_metan(), ...)

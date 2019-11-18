@@ -261,13 +261,16 @@ waasb(data_ge2, ENV, GEN, REP,
 ### Plotting the BLUP for genotypes
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
+library(ggplot2)
 a <- plot_blup(WAASB_model)
 b <- plot_blup(WAASB_model, 
-               col.shape  =  c("gray20", "gray80")) +
+               col.shape  =  c("gray20", "gray80"),
+               plot_theme = theme_metan(grid = "y")) +
   coord_flip()
 arrange_ggplot(a, b, labels = letters[1:2])
 
 ```
+
 
 This output shows the predicted means for genotypes. **BLUPg** is the genotypic effect $(\hat{g}_{i})$, which considering balanced data and genotype as random effect is estimated by
 
@@ -341,8 +344,8 @@ c <- plot_scores(WAASB_model, type = 1)
 d <- plot_scores(WAASB_model,
                  type = 1,
                  col.gen = "black",
-                 col.env = "gray70",
-                 col.segm.env = "gray70",
+                 col.env = "red",
+                 col.segm.env = "red",
                  axis.expand = 1.5)
 arrange_ggplot(c, d, labels = letters[3:4])
 ```
@@ -356,10 +359,8 @@ e <- plot_scores(WAASB_model, type = 2)
 f <- plot_scores(WAASB_model,
                  type = 2,
                  polygon = TRUE,
-                 col.segm.env = "transparent") +
-                 theme_gray() +
-                 theme(legend.position = c(0.1, 0.9),
-                       legend.background = element_rect(fill = NA))
+                 col.segm.env = "transparent",
+                 plot_theme = theme_metan_minimal())
 arrange_ggplot(e, f, labels = letters[5:6])
 ```
 
@@ -375,8 +376,8 @@ h <- plot_scores(WAASB_model, type = 3,
                  size.shape = 3,
                  size.tex.pa = 2,
                  x.lim = c(1.2, 4.7),
-                 x.breaks = seq(1.5, 4.5, by = 0.5)) + 
-                 theme(legend.position = c(0.1, 0.9))
+                 x.breaks = seq(1.5, 4.5, by = 0.5),
+                 plot_theme = theme_metan(color.background = "white"))
 arrange_ggplot(g, h, labels = letters[7:8])
 ```
 
@@ -392,12 +393,16 @@ waas(data_ge2, ENV, GEN, REP,
 
 ### biplot type 4 : nominal yield and environment IPCA1
 
-```{r  echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=F}
-
-plot_scores(WAASB_model,
-            type = 4, size.tex.pa = 1.5)
-
-
+```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message=F, warning=F}
+i <- plot_scores(WAASB_model, type = 4)
+j <- plot_scores(WAASB_model,
+                 type = 4,
+                 size.tex.pa = 1.5,
+                 color = FALSE,
+                 col.alpha.gen = 0,
+                 col.alpha.env = 0,
+                 plot_theme = theme_metan(color.background = "white"))
+arrange_ggplot(i, j, labels = letters[9:10])
 ```
 
 
@@ -417,7 +422,8 @@ This index was also already computed and stored into AMMI_model>GY>model. An int
 i <- plot_waasby(WAASB_model)
 j <- plot_waasby(WAASB_model, col.shape = c("gray20", "gray80"))
 arrange_ggplot(i, j, labels = letters[9:10])
-    ```
+
+```
 
 In the following example, we will apply the function `wsmp()` to the previously fitted model **WAASB_model** aiming at planning different scenarios of **waasby** estimation by changing the weights assigned to the stability and the mean performance.vThe number of scenarios is defined by the arguments `increment`. By default, twenty-one different scenarios are computed. In this case, the the superiority index **waasby** is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
 

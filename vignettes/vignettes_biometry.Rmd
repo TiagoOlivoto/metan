@@ -156,16 +156,30 @@ as.lpcor(cor(data_ge2[1:30, 5:ncol(data_ge2)]),
 
 ## Graphical and numerical visualization of a correlation matrix
 
+The function `corr_coef()` can be used to compute Pearson producto-moment correlation coefficients with p-values.  A correlation heat map can be created with the function `plot()`
+
+```{r fig.width=7, fig.height=7, message=FALSE, warning=FALSE, fig.align="center"}
+# All numeric variables
+ccoef <- corr_coef(data_ge2)
+
+# Or select variables
+
+ccoef2 <- corr_coef(data_ge2, PH, EH, EP, EL, ED, CL, NR, PERK)
+print(ccoef2, digits = 2)
+
+plot(ccoef)
+```
+
 The function `corr_plot()` may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the `pairs()`base R function.
 
-```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-corr_plot(data_ge2, CD, EL, PERK, NKR)
+```{r, fig.height = 12, fig.width = 12, fig.align = "center" }
+a <- corr_plot(data_ge2, CD, EL, PERK, NKR)
 
-
+b <- 
 corr_plot(data_ge2, CD, EL, PERK, NKR,
           lower = NULL,
           upper = "corr")
-
+c <- 
 corr_plot(data_ge2, CD, EL, PERK, NKR,
           shape.point = 19,
           size.point = 2,
@@ -177,7 +191,7 @@ corr_plot(data_ge2, CD, EL, PERK, NKR,
           alpha.sign = 0.3,
           axis.labels = TRUE)
 
-
+d <- 
 corr_plot(data_ge2, CD, EL, PERK, NKR, CW, NKE,
           prob = 0.01,
           shape.point = 21,
@@ -196,8 +210,11 @@ corr_plot(data_ge2, CD, EL, PERK, NKR, CW, NKE,
           col.dia.panel = "black",
           pan.spacing = 0,
           lab.position = "tl")
-
+arrange_ggplot(a, b, c, d, labels = letters[1:4])
 ```
+
+
+The function `corr_coef()` can be used to compute Pearson producto-moment correlation coefficients with p-values.  A correlation heat map can be created with the function `plot()`
 
 
 ## (co)variance and correlations for designed experiments
@@ -214,24 +231,17 @@ $$
 
 Using Mean Squares (*MS*) from the ANOVA method, the variances (*var*) and covariances (*cov*) are computed as follows:
 
-\begin{gather*}
+$$
 cov^p_{xy} = [(MST_{x+y} - MST_x - MST_y)/2]/r \\
 var^p_x = MST_x / r \\
-var^p_y = MST_y / r
-\end{gather}
-
-
-\begin{gather*}
+var^p_y = MST_y / r \\
 cov^r_{xy} = (MSR_{x+y} - MSR_x - MSR_y)/2 \\
 var^r_x = MSR_x \\
-var^r_y = MSR_y 
-\end{gather}
-
-\begin{gather*}
+var^r_y = MSR_y \\
 cov^g_{xy} = [(cov^p_{xy} \times r) - cov^r_{xy}]/r \\
 var^g_x = (MST_x - MSE_x)/r \\
-var^g_y = (MST_x - MSE_y)/r 
-\end{gather}
+var^g_y = (MST_x - MSE_y)/r \\
+$$
 
 where *MST* is the mean square for treatment, *MSR* is the mean square for residuals, and *r* is the number of replications.
 

@@ -115,8 +115,9 @@ This is the default setting in the function plot, thus, this biplot is produced 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
 a <- plot(gge_model)
 b <- plot(gge_model,
-           col.gen = "blue",
-           size.text.env = 2)
+          col.gen = "orange",
+          size.text.env = 2,
+          plot_theme = theme_metan(grid =  "both"))
 arrange_ggplot(a, b, labels = letters[1:2])
 
 ```
@@ -136,9 +137,10 @@ c <- plot(gge_model, type = 2)
 d <- plot(gge_model,
           type = 2,
           col.gen = "black",
-          col.env = "gray",
-          axis_expand = 1.5)
-arrange_ggplot(c, d, labels = letters3:4)
+          col.env = "red",
+          axis_expand = 1.5,
+          plot_theme = theme_metan_minimal())
+arrange_ggplot(c, d, labels = letters[3:4])
 
 ```
 
@@ -158,7 +160,6 @@ f <- plot(gge_model,
           large_label = 6,
           col.gen = "black",
           col.env = "gray",
-          annotation = FALSE,
           title = FALSE)
 arrange_ggplot(e, f, labels = letters[5:6])
 
@@ -172,9 +173,8 @@ arrange_ggplot(e, f, labels = letters[5:6])
 g <- plot(gge_model, type = 4)
 h <- plot(gge_model,
           type = 4,
-          plot_theme = theme_gray())+
-  theme(legend.position = "bottom")
-arrange_ggplot(f, g, labels = letters[7:8])
+          plot_theme = theme_metan_minimal())
+arrange_ggplot(g, h, labels = letters[7:8])
 
 ```
 
@@ -204,14 +204,18 @@ arrange_ggplot(i, j, labels = letters[9:10])
 In this biplot the "ideal" environment is used as the center of a set of concentric lines that serve as a ruler to measure the distance between an environment and the ideal environment. since the main focus in this biplot is environments, then, the singular value partition used is "environment" (default). It can be seen that E13 is the closest to the ideal environment, and, therefore, is most desirable of all 14 environments. E4 and E9 were the least desirable test environments.
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
+
 gge_model <- gge(ge_table, table = TRUE)
 k <- plot(gge_model, type = 6)
 l <- plot(gge_model,
           type = 6,
           col.gen = "black",
           col.env = "black",
+          col.circle = "red",
+          col.alpha.circle = 0.5,
           size.text.env = 10,
-          axis_expand = 1.5)
+          axis_expand = 1.5,
+          plot_theme = theme_metan(color.background = "white"))
 arrange_ggplot(k, l, labels = letters[11:12])
 
 ```
@@ -231,7 +235,8 @@ n <- plot(gge_model,
           col.gen = "black",
           col.env = "black",
           size.text.env = 10,
-          axis_expand = 1.5)
+          axis_expand = 1.5,
+          plot_theme = theme_metan(grid = "both"))
 arrange_ggplot(m, n, labels = letters[13:14])
 
 ```
@@ -241,13 +246,15 @@ arrange_ggplot(m, n, labels = letters[13:14])
 This biplot compares all genotypes with the "ideal" genotype The ideal genotype, represented by the small circle with an arrow pointing to it, is defined as having the highest yield in all environments. That is, it has the highest mean yield and is absolutely stable. The genotypes are ranked based on their distance from the ideal genotype [@Yan2007]. In our example, G3 and G8 were found to outperform the other genotypes.
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
+
 gge_model <- gge(ge_table, table = TRUE, svp = "genotype")
 o <- plot(gge_model, type = 8)
 p <- plot(gge_model,
           type = 8,
           col.gen = "black",
           col.env = "gray",
-          size.text.gen = 6)
+          size.text.gen = 6,
+          plot_theme = theme_metan_minimal())
 arrange_ggplot(o, p, labels = letters[15:16])
 
 ```
@@ -265,9 +272,8 @@ r <- plot(gge_model,
           sel_gen1 = "G8",
           sel_gen2 = "G10",
           col.gen = "black",
-          title = FALSE,
-          annotation = FALSE)
-arrange_ggplot(r, s, labels = letters[17:18])
+          title = FALSE)
+arrange_ggplot(q, r, labels = letters[17:18])
 
 ```
 
@@ -279,9 +285,8 @@ s <- plot(gge_model, type = 10)
 t <- plot(gge_model,
           type = 10,
           col.gen = "black",
-          title = FALSE,
-          annotation = FALSE)
-arrange_ggplot(s, t, letters[19:20])
+          title = FALSE)
+arrange_ggplot(s, t, labels = letters[19:20])
 
 ```
 

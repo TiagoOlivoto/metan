@@ -122,9 +122,9 @@ bind1 <- bind_cv(AMMI0, AMMI2, AMMI9)
 bind2 <- bind_cv(AMMIF, BLUP_g, BLUP_e, BLUP_ge)
 a <- plot(bind1, violin = TRUE)
 b <- plot(bind2,
-           width.boxplot = 0.6,
-           col.boxplot = "transparent",
-           order_box = TRUE)
+          width.boxplot = 0.6,
+          order_box = TRUE,
+          plot_theme = theme_metan_minimal())
 arrange_ggplot(a, b, labels = letters[1:2])
 
 ```
