@@ -95,7 +95,7 @@ plot.gge <- function(x,
                      col.env = "forestgreen",
                      col.alpha = 1,
                      col.circle = "gray",
-                     col.alpha.circle = 0.4,
+                     col.alpha.circle = 0.5,
                      leg.lab = c("Gen", "Env"),
                      size.text = 4,
                      size.text.gen = 4,
@@ -585,8 +585,7 @@ plot.gge <- function(x,
                       show.legend = FALSE,
                       color = c(rep(col.gen, ngen), rep(col.env, nenv))) +
       geom_point(aes(coordx, coordy), shape = 1, size = 3) +
-      plot_theme + theme(legend.background = element_rect(fill = NA),
-                         legend.key = element_rect(fill = NA))
+      plot_theme
     if (title == TRUE) {
       ggt <- ggtitle("Ranking Genotypes")
     }

@@ -55,7 +55,7 @@ theme_metan = function (grid = "none", col.grid = "white", color.background = "g
 #' @export
 #'
 theme_metan_minimal = function () {
-  theme_gray() %+replace% # allows the entered values to be overwritten
+  theme_bw() %+replace% # allows the entered values to be overwritten
     theme(axis.ticks.length = unit(.2, "cm"),
           plot.title = element_text(face = "bold", hjust = 0, vjust = 3),
           plot.subtitle = element_text(face = "italic", hjust = 0, vjust = 2, size = 8),
@@ -67,9 +67,9 @@ theme_metan_minimal = function () {
           legend.title = element_blank(),
           axis.text = element_text(colour = "black"),
           panel.grid = element_blank(),
+          panel.border = element_blank(),
           panel.background = element_blank(),
           axis.line.x.bottom = element_line(),
           axis.line.y.left = element_line(),
-          panel.border = element_blank(),
           strip.background = element_blank())
 }
