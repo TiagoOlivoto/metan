@@ -42,7 +42,8 @@
 #' @param col.circle,col.alpha.circle The color and alpha values for the circle
 #'   lines. Defaults to \code{'gray'} and \code{0.4}, respectively.
 #' @param leg.lab The labs of legend. Default is \code{c('Gen', 'Env')}.
-#' @param size.text,size.text.gen,size.text.env The size of the text of the plot area. Defaults to 4.
+#' @param size.text.gen,size.text.env,size.text.lab The size of the text for
+#'   genotypes, environments and labels, respectively.
 #' @param size.line The size of the line in biplots (Both for segments and circles).
 #' @param large_label The text size to use for larger labels where \code{type =
 #'   3}, used for the outermost genotypes and where \code{type = 9}, used for
@@ -97,9 +98,9 @@ plot.gge <- function(x,
                      col.circle = "gray",
                      col.alpha.circle = 0.5,
                      leg.lab = c("Gen", "Env"),
-                     size.text = 4,
                      size.text.gen = 4,
                      size.text.env = 4,
+                     size.text.lab = 12,
                      size.line = 0.8,
                      large_label = 4.5,
                      axis_expand = 1.2,
@@ -148,7 +149,6 @@ plot.gge <- function(x,
   }
   # Base plot
   P1 <- ggplot(data = plotdata, aes(x = d1, y = d2, group = "type")) +
-    theme(panel.grid = element_blank()) +
     scale_color_manual(values = c(col.gen, col.env)) +
     scale_size_manual(values = c(size.text.gen, size.text.env)) +
     xlab(paste(labelaxes[1], " (", round(varexpl[1], 2), "%)", sep = "")) +
@@ -157,7 +157,10 @@ plot.gge <- function(x,
     geom_vline(xintercept = 0) +
     scale_x_continuous(limits = xlim1, expand = c(0, 0)) +
     scale_y_continuous(limits = ylim1, expand = c(0, 0)) +
-    coord_fixed()
+    coord_fixed() +
+    plot_theme %+replace%
+    theme(axis.text = element_text(size = size.text.lab, colour = "black"),
+          axis.title = element_text(size = size.text.lab, colour = "black"))
   # Basic plot
   if (type == 1) {
     P2 <- P1 +
@@ -179,7 +182,9 @@ plot.gge <- function(x,
                           size = type),
                       show.legend = FALSE,
                       col = c(rep(col.gen, ngen), rep(col.env, nenv))) +
-      plot_theme
+      plot_theme %+replace%
+      theme(axis.text = element_text(size = size.text.lab, colour = "black"),
+            axis.title = element_text(size = size.text.lab, colour = "black"))
     if (title == TRUE) {
       ggt <- ggtitle("GGE Biplot")
     }
@@ -222,8 +227,7 @@ plot.gge <- function(x,
       geom_text(aes(color = type,
                     label = label,
                     size = type),
-                show.legend = FALSE) +
-      plot_theme
+                show.legend = FALSE)
     if (title == TRUE) {
       ggt <- ggtitle("Mean vs. Stability")
     }
@@ -298,8 +302,7 @@ plot.gge <- function(x,
       scale_shape_manual(labels = leg.lab,
                          values = c(shape.gen, shape.env)) +
       scale_fill_manual(labels = leg.lab,
-                        values = c(col.gen, col.env))+
-      plot_theme
+                        values = c(col.gen, col.env))
     if (title == TRUE) {
       ggt <- ggtitle("Which-won-where pattern")
     }
@@ -348,8 +351,7 @@ plot.gge <- function(x,
                    size = size.line) +
       geom_text_repel(aes(col = type, label = label, size = type),
                       show.legend = FALSE,
-                      color = c(rep(col.gen, ngen), rep(col.env, nenv))) +
-      plot_theme
+                      color = c(rep(col.gen, ngen), rep(col.env, nenv)))
     if (title == TRUE) {
       ggt <- ggtitle("Discriminativeness vs. representativeness")
     }
@@ -408,8 +410,7 @@ plot.gge <- function(x,
       geom_point(data = subset(plotdata, type == "environment" & label == sel_env),
                  aes(d1, d2),
                  shape = 1,
-                 size = 4) +
-      plot_theme
+                 size = 4)
     if (title == TRUE) {
       ggt <- ggtitle(paste("Environment:", sel_env))
     }
@@ -459,11 +460,10 @@ plot.gge <- function(x,
                  data = subset(plotdata, type == "environment")) +
       geom_text_repel(data = subset(plotdata, type == "environment"),
                       aes(label = label),
-                      size = size.text,
+                      size = size.text.env,
                       show.legend = FALSE,
                       col = col.env) +
-      geom_point(aes(xcoord, ycoord), shape = 1, size = 4) +
-      plot_theme
+      geom_point(aes(xcoord, ycoord), shape = 1, size = 4)
     if (title == TRUE) {
       ggt <- ggtitle("Ranking Environments")
     }
@@ -524,8 +524,7 @@ plot.gge <- function(x,
       geom_point(data = subset(plotdata, type == "genotype" & label == sel_gen),
                  aes(d1, d2),
                  shape = 1,
-                 size = 4) +
-      plot_theme
+                 size = 4)
     if (title == TRUE) {
       ggt <- ggtitle(paste("Genotype:", sel_gen))
     }
@@ -584,8 +583,7 @@ plot.gge <- function(x,
       geom_text_repel(aes(col = type, label = label, size = type),
                       show.legend = FALSE,
                       color = c(rep(col.gen, ngen), rep(col.env, nenv))) +
-      geom_point(aes(coordx, coordy), shape = 1, size = 3) +
-      plot_theme
+      geom_point(aes(coordx, coordy), shape = 1, size = 3)
     if (title == TRUE) {
       ggt <- ggtitle("Ranking Genotypes")
     }
@@ -659,8 +657,7 @@ plot.gge <- function(x,
                       aes(label = label),
                       show.legend = FALSE,
                       col = col.env,
-                      size = size.text.env) +
-      plot_theme
+                      size = size.text.env)
     if (title == TRUE) {
       ggt <- ggtitle("Relationship Among Environments")
     }

@@ -34,7 +34,8 @@ theme_metan = function (grid = "none", col.grid = "white", color.background = "g
   }
   theme_gray() %+replace% # allows the entered values to be overwritten
     theme(axis.ticks.length = unit(.2, "cm"),
-          axis.text = element_text(colour = "black"),
+          axis.text = element_text(size = 12, colour = "black"),
+          axis.title = element_text(size = 12, colour = "black"),
           axis.ticks = element_line(colour = "black"),
           plot.title = element_text(face = "bold", hjust = 0, vjust = 3),
           plot.subtitle = element_text(face = "italic", hjust = 0, vjust = 2, size = 8),

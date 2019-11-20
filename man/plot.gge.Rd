@@ -9,7 +9,7 @@
   size.shape = 2.2, size.shape.win = 3.2, size.bor.tick = 0.3,
   col.gen = "blue", col.env = "forestgreen", col.alpha = 1,
   col.circle = "gray", col.alpha.circle = 0.5, leg.lab = c("Gen",
-  "Env"), size.text = 4, size.text.gen = 4, size.text.env = 4,
+  "Env"), size.text.gen = 4, size.text.env = 4, size.text.lab = 12,
   size.line = 0.8, large_label = 4.5, axis_expand = 1.2,
   title = TRUE, plot_theme = theme_metan(), ...)
 }
@@ -63,7 +63,8 @@ lines. Defaults to \code{'gray'} and \code{0.4}, respectively.}
 
 \item{leg.lab}{The labs of legend. Default is \code{c('Gen', 'Env')}.}
 
-\item{size.text, size.text.gen, size.text.env}{The size of the text of the plot area. Defaults to 4.}
+\item{size.text.gen, size.text.env, size.text.lab}{The size of the text for
+genotypes, environments and labels, respectively.}
 
 \item{size.line}{The size of the line in biplots (Both for segments and circles).}
 
