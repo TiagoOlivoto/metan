@@ -57,12 +57,12 @@ ranking for WAASY or WAASBY matches perfectly with the ranks of the response var
 }
 \examples{
 library(metan)
-model = waas(data_ge2,
+model <- waas(data_ge2,
              env = ENV,
              gen = GEN,
              rep = REP,
              resp = PH)
-scenarios = wsmp(model)
+scenarios <- wsmp(model)
 
 }
 \references{
