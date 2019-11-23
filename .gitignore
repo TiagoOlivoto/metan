@@ -13,6 +13,8 @@ vignettes/vignettes_gge_cache/
 vignettes/vignettes_indexes_cache/
 vignettes/vignettes_metan_cache/
 vignettes/vignettes_stability_cache/
+vignettes/*.RData
+vignettes/*.bib
 doc
 package_release.R
 CODE_OF_CONDUCT.md

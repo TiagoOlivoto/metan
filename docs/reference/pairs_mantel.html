@@ -340,14 +340,14 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></td>
     <p>An object of class <code>gg, ggmatrix</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='co'># iris dataset</span>
-<span class='no'>lpc</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='kw'>%&gt;%</span>
-      <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns Species in the grouped data. </span></div><div class='output co'>#&gt; 
+<span class='no'>lpc</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='kw'>%&gt;%</span>
+       <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns Species in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
 #&gt; Level: setosa 
 #&gt; ----------------------------------------------------------------------------
@@ -382,12 +382,13 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></td>
 #&gt; 6  Petal.Length x Petal.Width 0.3221082  0.17966044  1.2386712 2.217511e-01</div><div class='input'>
 
 <span class='co'># mtcars dataset</span>
-<span class='no'>mt_num</span> <span class='kw'>=</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select_all.html'>select_if</a></span>(<span class='no'>.</span>, <span class='no'>is.numeric</span>)
-<span class='no'>lpdata</span> <span class='kw'>=</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
-                  <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
-                  <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>2</span>:<span class='fl'>6</span>]),
-                  <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>4</span>:<span class='fl'>8</span>])) <span class='kw'>%&gt;%</span>
-         <span class='fu'>pairs_mantel</span>()</div></pre>
+<span class='no'>mt_num</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select_all.html'>select_if</a></span>(<span class='no'>.</span>, <span class='no'>is.numeric</span>)
+<span class='no'>lpdata</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>2</span>:<span class='fl'>6</span>]),
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>4</span>:<span class='fl'>8</span>])) <span class='kw'>%&gt;%</span>
+          <span class='fu'>pairs_mantel</span>()
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

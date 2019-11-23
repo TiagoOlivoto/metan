@@ -13,15 +13,6 @@
 ^vignettes/vignettes_helper\.Rmd$
 ^vignettes/vignettes_stability\.Rmd$
 ^vignettes/vignettes_gge\.Rmd$
-^vignettes/vignettes_helper_cache$
-^vignettes/vignettes_cross-validation_cache$
-^vignettes/vignettes_ammi_cache$
-^vignettes/vignettes_biometry_cache$
-^vignettes/vignettes_blup_cache$
-^vignettes/vignettes_gge_cache$
-^vignettes/vignettes_indexes_cache$
-^vignettes/vignettes_metan_cache$
-^vignettes/vignettes_stability_cache$
 ^README_file$
 ^Meta$
 ^README_files$

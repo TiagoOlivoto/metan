@@ -24,9 +24,10 @@ knitr::opts_chunk$set(comment = "")
 
 In this section, we will use the data in `data_ge` and `data_ge2`. For more information see `?data_ge` and `?data_ge2`, respectively. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s). The R package [`kableExtra`](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html) was used to produce the tables of this vignette.
 
-```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE, message=FALSE, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(metan)
 ```
+
 
 ```{r, echo=FALSE}
 library(kableExtra) # Used to make the tables
@@ -37,6 +38,7 @@ print_table = function(table){
     kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
 }
 str(data_ge)
+
 ```
 
 

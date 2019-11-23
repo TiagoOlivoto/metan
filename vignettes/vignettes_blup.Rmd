@@ -16,7 +16,7 @@ vignette: >
 
 
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(comment = "", cache = TRUE)
+knitr::opts_chunk$set(comment = "")
 
 ```
 

@@ -36,24 +36,6 @@ str(data_ge)
 
 
 # AMMI model
-## Cross-validation procedures
-The cross-validation procedures implemented in the \bold{metan} are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/metan/articles/vignettes_cross-validation.html)
-
-```{r, eval=FALSE}
-CVAL <- cv_ammif(data_ge,
-                 env = ENV,                
-                 gen = GEN,
-                 rep = REP,
-                 resp = GY,
-                 nboot = 50)
-```
-
-```{r, fig.height=3.5, fig.width=5}
-plot(CVAL)
-```
-
-
-
 ### Fitting the model
 The AMMI model may be fitted with with both functions `performs_ammi()` and `waas()`, which is the acronym for the weighted average of absolute scores [@Olivoto2019].
 
@@ -61,6 +43,10 @@ The AMMI model may be fitted with with both functions `performs_ammi()` and `waa
 ammi_model <- performs_ammi(data_ge, ENV, GEN, REP, resp = c(GY, HM))
 waas_index <- waas(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
 ```
+
+## Cross-validation procedures
+The cross-validation procedures implemented in the \bold{metan} are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/metan/articles/vignettes_cross-validation.html)
+
 
 ### Biplots
 
