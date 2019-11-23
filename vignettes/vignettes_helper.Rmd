@@ -13,8 +13,8 @@ vignette: >
 
 
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(comment = "", cache = TRUE)
-
+knitr::opts_chunk$set(comment = "")
+load("cvali.RData")
 ```
 
 
@@ -37,12 +37,19 @@ print_table = function(table){
 
 # Bind cross-validation objects
 
-```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
+```{r, eval=FALSE }
+
+
 AMMI0 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0)
 AMMI2 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2)
 AMMI9 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9)
 AMMIF <- cv_ammif(data_ge, ENV, GEN, REP, GY)
-BLUP <- cv_blup(data_ge, ENV, GEN, REP, GY)
+BLUP_g <- cv_blup(data_ge, ENV, GEN, REP, GY)
+
+```
+
+
+```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
 bind1 <- bind_cv(AMMI0, AMMI2, AMMI9)
 bind2 <- bind_cv(AMMI0, AMMI2, AMMI9, bind = "means")
     ```

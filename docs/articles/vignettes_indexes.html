@@ -147,7 +147,7 @@
       <h1>Indexes for simultaneous selection</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-17</h4>
+            <h4 class="date">2019-11-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_indexes.Rmd"><code>vignettes/vignettes_indexes.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_indexes.Rmd</code></div>
@@ -160,11 +160,6 @@
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p>In this section we will use the data examples <code>data_ge</code> and <code>data_ge2</code> provided in the <strong>metan</strong> package. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code> and <code><a href="../reference/data_ge2.html">?data_ge2</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
-</div>
-<div id="fai-blup-index" class="section level1">
-<h1 class="hasAnchor">
-<a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
-<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/waasb.html">waasb()</a></code> and then the function <code><a href="../reference/fai_blup.html">fai_blup()</a></code> is used to compute the FAI-BLUP index.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
@@ -173,64 +168,19 @@
 <a class="sourceLine" id="cb1-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
 <a class="sourceLine" id="cb1-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11">FAI =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="st">      </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="st">      </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"max, max, max, min"</span>),</a>
-<a class="sourceLine" id="cb1-14" title="14">               <span class="dt">UI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"min, min, min, max"</span>),</a>
-<a class="sourceLine" id="cb1-15" title="15">               <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
-<pre><code>Evaluating variable KW 25 % 
-Evaluating variable NKE 50 % 
-Evaluating variable PH 75 % 
-Evaluating variable EH 100 % 
-All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-Done!
-
------------------------------------------------------------------------------------
-Principal Component Analysis
------------------------------------------------------------------------------------
-    eigen.values cumulative.var
-PC1   3.14414174       78.60354
-PC2   0.66041176       95.11384
-PC3   0.13857767       98.57828
-PC4   0.05686883      100.00000
-
------------------------------------------------------------------------------------
-Factor Analysis
------------------------------------------------------------------------------------
-           FA1 comunalits
-KW  -0.9474560  0.8976729
-NKE -0.7429934  0.5520392
-PH  -0.9429971  0.8892436
-EH  -0.8973216  0.8051861
-
------------------------------------------------------------------------------------
-Comunalit Mean: 0.7860354 
-
------------------------------------------------------------------------------------
-FAI-BLUP index
------------------------------------------------------------------------------------
-   H13     H6     H2     H5     H1     H4     H3     H8     H9    H10     H7 
-0.9807 0.8843 0.8413 0.8409 0.8023 0.7972 0.6222 0.2623 0.2354 0.1810 0.1163 
-   H12    H11 
-0.1014 0.0780 
-
------------------------------------------------------------------------------------
-Selection differential
------------------------------------------------------------------------------------
-    Factor         Xo         Xs           SD       SDperc
-KW       1 172.938867 175.182040 2.243173e+00 1.297090e+00
-NKE      1 511.643590 511.643590 2.819513e-07 5.510697e-08
-PH       1   2.484813   2.487051 2.238030e-03 9.006835e-02
-EH       1   1.343326   1.343326 3.234146e-10 2.407567e-08
-
------------------------------------------------------------------------------------
-Selected genotypes
-H13 H6
------------------------------------------------------------------------------------</code></pre>
+<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
+</div>
+<div id="fai-blup-index" class="section level1">
+<h1 class="hasAnchor">
+<a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
+<p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. The BLUPs from genotypes are obtained with the function <code><a href="../reference/waasb.html">waasb()</a></code> and then the function <code><a href="../reference/fai_blup.html">fai_blup()</a></code> is used to compute the FAI-BLUP index.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">FAI &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="st">       </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="st">       </span><span class="kw"><a href="../reference/fai_blup.html">fai_blup</a></span>(<span class="dt">DI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"max, max, max, min"</span>),</a>
+<a class="sourceLine" id="cb2-4" title="4">                <span class="dt">UI =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"min, min, min, max"</span>),</a>
+<a class="sourceLine" id="cb2-5" title="5">                <span class="dt">SI =</span> <span class="dv">15</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(FAI)</a></code></pre></div>
-<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="multi-trait-stability-index" class="section level1">
 <h1 class="hasAnchor">
@@ -244,163 +194,201 @@ H13 H6
 <a class="sourceLine" id="cb4-2" title="2"><span class="st">              </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
 <a class="sourceLine" id="cb4-3" title="3">                    <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="st">              </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>()</a></code></pre></div>
-<pre><code>Evaluating variable KW 20 % 
-Evaluating variable NKE 40 % 
-Evaluating variable PH 60 % 
-Evaluating variable EH 80 % 
-Evaluating variable TKW 100 % 
-All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-Done!
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(MTSI_index)</a></code></pre></div>
+<pre><code>-------------------- Correlation matrix used used in factor analysis -----------------
+            KW          NKE           PH         EH         TKW
+KW   1.0000000  0.488572452  0.121921797 -0.0717055  0.49242422
+NKE  0.4885725  1.000000000 -0.008208269 -0.1649726 -0.07429822
+PH   0.1219218 -0.008208269  1.000000000  0.9218091  0.45649959
+EH  -0.0717055 -0.164972578  0.921809098  1.0000000  0.27095409
+TKW  0.4924242 -0.074298223  0.456499590  0.2709541  1.00000000
 
--------------------------------------------------------------------------------
-Principal Component Analysis
--------------------------------------------------------------------------------
+---------------------------- Principal component analysis -----------------------------
 # A tibble: 5 x 4
   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
   &lt;chr&gt;       &lt;dbl&gt;          &lt;dbl&gt;               &lt;dbl&gt;
-1 PC1        2.21           44.1                  44.1
-2 PC2        1.62           32.4                  76.5
-3 PC3        0.880          17.6                  94.1
-4 PC4        0.251           5.03                 99.1
-5 PC5        0.0425          0.850               100  
--------------------------------------------------------------------------------
-Factor Analysis - factorial loadings after rotation-
--------------------------------------------------------------------------------
-# A tibble: 5 x 5
-  VAR      FA1     FA2 Communality Uniquenesses
-  &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-1 KW    -0.147  0.919        0.865       0.135 
-2 NKE    0.174  0.737        0.573       0.427 
-3 PH    -0.960  0.0205       0.923       0.0775
-4 EH    -0.917 -0.218        0.889       0.111 
-5 TKW   -0.611  0.450        0.576       0.424 
--------------------------------------------------------------------------------
-Comunalit Mean: 0.7651404 
--------------------------------------------------------------------------------
-Multitrait stability index
--------------------------------------------------------------------------------
-   H11     H5     H7    H10     H4    H13    H12     H6     H1     H3     H2 
-0.9548 1.1634 2.0294 2.1097 2.1989 2.3558 2.7298 2.9740 3.0933 3.2558 3.6918 
-    H9     H8 
-3.8566 4.0825 
--------------------------------------------------------------------------------
-Selection differential for the  waasb index
--------------------------------------------------------------------------------
+1 PC1       2.207          44.14                 44.14
+2 PC2       1.619          32.37                 76.51
+3 PC3       0.8803         17.61                 94.12
+4 PC4       0.2515          5.029                99.15
+5 PC5       0.04252         0.8503              100   
+
+--------------------------------- Initial loadings -----------------------------------
+# A tibble: 5 x 3
+  VAR        PC1     PC2
+  &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1 KW    -0.3044   0.8790
+2 NKE    0.04341  0.7556
+3 PH    -0.9492  -0.1468
+4 EH    -0.8654  -0.3747
+5 TKW   -0.6801   0.3365
+
+-------------------------- Loadings after varimax rotation ---------------------------
+# A tibble: 5 x 3
+  VAR       FA1      FA2
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 KW    -0.1469  0.9185 
+2 NKE    0.1741  0.7365 
+3 PH    -0.9603  0.02052
+4 EH    -0.9174 -0.2185 
+5 TKW   -0.6112  0.4496 
+
+--------------------------- Scores for genotypes-ideotype -----------------------------
+# A tibble: 14 x 3
+   GEN      FA1    FA2
+   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 H1    -4.557 1.527 
+ 2 H10   -3.748 0.9115
+ 3 H11   -2.714 0.2621
+ 4 H12   -4.096 1.616 
+ 5 H13   -2.757 2.337 
+ 6 H2    -4.591 2.574 
+ 7 H3    -4.605 1.787 
+ 8 H4    -3.806 1.011 
+ 9 H5    -1.783 1.366 
+10 H6    -2.548 3.070 
+11 H7    -2.823 1.932 
+12 H8    -4.874 2.844 
+13 H9    -2.731 3.935 
+14 ID1   -1.761 0.2023
+
+---------------------------- Multitrait stability index ------------------------------
+      H11        H5        H7       H10        H4       H13       H12        H6 
+0.9547527 1.1634372 2.0294043 2.1097181 2.1988634 2.3557556 2.7298239 2.9740342 
+       H1        H3        H2        H9        H8 
+3.0933493 3.2557853 3.6917741 3.8565582 4.0824809 
+
+--------------------------- Selection differential (index) ----------------------------
 # A tibble: 5 x 6
-  VAR   Factor    Xo    Xs      SD SDperc
-  &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-1 PH    FA 1   0.265 0.191 -0.0744  -28.1
-2 EH    FA 1   0.236 0.155 -0.0802  -34.0
-3 TKW   FA 1   2.44  0.638 -1.80    -73.8
-4 KW    FA 2   1.99  0.803 -1.19    -59.8
-5 NKE   FA 2   2.13  1.46  -0.670   -31.4
-------------------------------------------------------------------------------
-Mean of selection differential
--------------------------------------------------------------------------------
+  VAR   Factor     Xo     Xs       SD SDperc
+  &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+1 PH    FA 1   0.2649 0.1906 -0.07438 -28.07
+2 EH    FA 1   0.2356 0.1554 -0.08023 -34.05
+3 TKW   FA 1   2.440  0.6383 -1.802   -73.84
+4 KW    FA 2   1.995  0.8026 -1.192   -59.76
+5 NKE   FA 2   2.133  1.463  -0.6702  -31.42
+
+-------------------------- Mean of Selection differential -----------------------------
          Xo          Xs          SD      SDperc 
   1.4135837   0.6499192  -0.7636645 -45.4284979 
--------------------------------------------------------------------------------
-Selection differential for the mean of the variables
--------------------------------------------------------------------------------
+
+------------------------- Selection differential (variables) --------------------------
 # A tibble: 5 x 6
-  VAR   Factor     xo     Xs       SD SDperc
-  &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-1 PH    FA 1     2.48   2.48 -0.00581 -0.234
-2 EH    FA 1     1.34   1.32 -0.0247  -1.84 
-3 TKW   FA 1   339.   337.   -1.75    -0.517
-4 KW    FA 2   173.   175.    2.50     1.44 
-5 NKE   FA 2   512.   521.    9.53     1.86 
-------------------------------------------------------------------------------
-Selected genotypes
--------------------------------------------------------------------------------
-H11 H5
--------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(MTSI_index)</a></code></pre></div>
-<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-2-1.png" width="528" style="display: block; margin: auto;"></p>
+  VAR   Factor      xo      Xs        SD  SDperc
+  &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 PH    FA 1     2.485   2.479 -0.005813 -0.2339
+2 EH    FA 1     1.343   1.319 -0.02466  -1.836 
+3 TKW   FA 1   338.7   336.9   -1.749    -0.5165
+4 KW    FA 2   172.9   175.4    2.498     1.445 
+5 NKE   FA 2   511.6   521.2    9.531     1.863 
+
+-------------------------------- Selected genotypes -----------------------------------
+H11 H5</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(MTSI_index)</a></code></pre></div>
+<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-5-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="based-on-mean-performance-and-stability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#based-on-mean-performance-and-stability" class="anchor"></a>Based on mean performance and stability</h2>
 <p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. By using <code>wresp = 65</code>, the simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">MTSI_index2 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb7-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW),</a>
-<a class="sourceLine" id="cb7-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb7-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
-<pre><code>Evaluating variable KW 20 % 
-Evaluating variable NKE 40 % 
-Evaluating variable PH 60 % 
-Evaluating variable EH 80 % 
-Evaluating variable TKW 100 % 
-All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-Done!
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">MTSI_index2 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="st">             </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb8-3" title="3">                   <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(KW, NKE, PH, EH, TKW),</a>
+<a class="sourceLine" id="cb8-4" title="4">                   <span class="dt">mresp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb8-5" title="5">                   <span class="dt">wresp =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">65</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Default is 50</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="st">             </span><span class="kw"><a href="../reference/mtsi.html">mtsi</a></span>(<span class="dt">index =</span> <span class="st">"waasby"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(MTSI_index2)</a></code></pre></div>
+<pre><code>-------------------- Correlation matrix used used in factor analysis -----------------
+            KW        NKE         PH         EH        TKW
+KW   1.0000000  0.7142147 -0.5886031 -0.6133102  0.8785741
+NKE  0.7142147  1.0000000 -0.2673719 -0.1973526  0.4408535
+PH  -0.5886031 -0.2673719  1.0000000  0.9395685 -0.5847858
+EH  -0.6133102 -0.1973526  0.9395685  1.0000000 -0.5999807
+TKW  0.8785741  0.4408535 -0.5847858 -0.5999807  1.0000000
 
--------------------------------------------------------------------------------
-Principal Component Analysis
--------------------------------------------------------------------------------
+---------------------------- Principal component analysis -----------------------------
 # A tibble: 5 x 4
   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
   &lt;chr&gt;       &lt;dbl&gt;          &lt;dbl&gt;               &lt;dbl&gt;
-1 PC1        3.38           67.6                  67.6
-2 PC2        1.07           21.4                  89.1
-3 PC3        0.438           8.76                 97.9
-4 PC4        0.0781          1.56                 99.4
-5 PC5        0.0292          0.584               100. 
--------------------------------------------------------------------------------
-Factor Analysis - factorial loadings after rotation-
--------------------------------------------------------------------------------
-# A tibble: 5 x 5
-  VAR         FA1    FA2 Communality Uniquenesses
-  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-1 KW    -0.500    -0.838       0.952       0.0484
-2 NKE   -0.000693 -0.924       0.854       0.146 
-3 PH     0.940     0.194       0.922       0.0783
-4 EH     0.964     0.163       0.957       0.0435
-5 TKW   -0.583    -0.656       0.770       0.230 
--------------------------------------------------------------------------------
-Comunalit Mean: 0.8908915 
--------------------------------------------------------------------------------
-Multitrait stability index
--------------------------------------------------------------------------------
-    H5    H11     H4    H10    H13     H7     H6     H2    H12     H8     H9 
-2.4087 3.2668 3.2993 3.5526 3.5550 3.7337 4.2782 4.3503 4.8461 4.8971 5.0170 
-    H1     H3 
-5.6371 5.9593 
--------------------------------------------------------------------------------
-Selection differential for the  waasby index
--------------------------------------------------------------------------------
+1 PC1       3.382          67.65                 67.65
+2 PC2       1.072          21.44                 89.09
+3 PC3       0.4382          8.764                97.85
+4 PC4       0.07814         1.563                99.42
+5 PC5       0.02920         0.5841              100.  
+
+--------------------------------- Initial loadings -----------------------------------
+# A tibble: 5 x 3
+  VAR       PC1     PC2
+  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 KW    -0.9246 -0.3110
+2 NKE   -0.6019 -0.7014
+3 PH     0.8401 -0.4646
+4 EH     0.8383 -0.5037
+5 TKW   -0.8697 -0.1183
+
+-------------------------- Loadings after varimax rotation ---------------------------
+# A tibble: 5 x 3
+  VAR          FA1     FA2
+  &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;
+1 KW    -0.4998    -0.8378
+2 NKE   -0.0006927 -0.9242
+3 PH     0.9402     0.1939
+4 EH     0.9643     0.1630
+5 TKW   -0.5835    -0.6557
+
+--------------------------- Scores for genotypes-ideotype -----------------------------
+# A tibble: 14 x 3
+   GEN       FA1    FA2
+   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+ 1 H1    0.08259 -2.925
+ 2 H10   3.073   -3.205
+ 3 H11   2.914   -3.599
+ 4 H12   2.098   -2.244
+ 5 H13   2.014   -3.897
+ 6 H2    1.206   -3.589
+ 7 H3    0.5258  -2.000
+ 8 H4    1.803   -4.521
+ 9 H5    2.671   -4.864
+10 H6    1.431   -3.456
+11 H7    2.710   -3.178
+12 H8    2.639   -1.930
+13 H9    3.349   -1.584
+14 ID1   4.461   -6.476
+
+---------------------------- Multitrait stability index ------------------------------
+      H5      H11       H4      H10      H13       H7       H6       H2 
+2.408739 3.266755 3.299334 3.552567 3.554986 3.733703 4.278164 4.350293 
+     H12       H8       H9       H1       H3 
+4.846138 4.897080 5.017014 5.637130 5.959275 
+
+--------------------------- Selection differential (index) ----------------------------
 # A tibble: 5 x 6
   VAR   Factor    Xo    Xs    SD SDperc
   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-1 PH    FA 1    44.4  61.1  16.6   37.4
-2 EH    FA 1    49.2  64.7  15.4   31.4
-3 KW    FA 2    53.3  72.2  19.0   35.6
-4 NKE   FA 2    45.0  62.6  17.6   39.2
-5 TKW   FA 2    53.8  65.1  11.3   21.0
-------------------------------------------------------------------------------
-Mean of selection differential
--------------------------------------------------------------------------------
+1 PH    FA 1   44.43 61.06 16.63  37.44
+2 EH    FA 1   49.24 64.68 15.44  31.36
+3 KW    FA 2   53.25 72.23 18.98  35.64
+4 NKE   FA 2   44.98 62.62 17.64  39.22
+5 TKW   FA 2   53.78 65.08 11.30  21.01
+
+-------------------------- Mean of Selection differential -----------------------------
       Xo       Xs       SD   SDperc 
 49.13563 65.13472 15.99909 32.93445 
--------------------------------------------------------------------------------
-Selection differential for the mean of the variables
--------------------------------------------------------------------------------
+
+------------------------- Selection differential (variables) --------------------------
 # A tibble: 5 x 6
-  VAR   Factor     xo     Xs       SD SDperc
-  &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-1 PH    FA 1     2.48   2.48 -0.00581 -0.234
-2 EH    FA 1     1.34   1.32 -0.0247  -1.84 
-3 KW    FA 2   173.   175.    2.50     1.44 
-4 NKE   FA 2   512.   521.    9.53     1.86 
-5 TKW   FA 2   339.   337.   -1.75    -0.517
-------------------------------------------------------------------------------
-Selected genotypes
--------------------------------------------------------------------------------
-H5 H11
--------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(MTSI_index2)</a></code></pre></div>
-<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-3-1.png" width="528" style="display: block; margin: auto;"></p>
+  VAR   Factor      xo      Xs        SD  SDperc
+  &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 PH    FA 1     2.485   2.479 -0.005813 -0.2339
+2 EH    FA 1     1.343   1.319 -0.02466  -1.836 
+3 KW    FA 2   172.9   175.4    2.498     1.445 
+4 NKE   FA 2   511.6   521.2    9.531     1.863 
+5 TKW   FA 2   338.7   336.9   -1.749    -0.5165
+
+-------------------------------- Selected genotypes -----------------------------------
+H5 H11</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(MTSI_index2)</a></code></pre></div>
+<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-7-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">

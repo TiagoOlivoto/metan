@@ -14,7 +14,7 @@ vignette: >
 ---
 
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(comment = "", cache = TRUE)
+knitr::opts_chunk$set(comment = "")
 
 ```
 
@@ -81,7 +81,7 @@ AMMI_model <- performs_ammi(data_ge,
 
 Note that using the arguments in the correct order, the model above may be fitted cleanly with:
 
-```{r echo = TRUE}
+```{r eval = FALSE}
 AMMI_model <- performs_ammi(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
     ```
 

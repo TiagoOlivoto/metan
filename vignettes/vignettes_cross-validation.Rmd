@@ -13,7 +13,9 @@ vignette: >
 
 
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(comment = "", cache = TRUE)
+knitr::opts_chunk$set(comment = "")
+
+load("cvali.RData")
 
 ```
 
@@ -71,7 +73,7 @@ The following code computes the cross-validation of the oat data using the AMMI 
 ## Declaring the number of axes
 The function `cv_ammi()` is used to compute a cross-validation procedure for the AMMI0, AMMI2 and AMMIF (9 axes) models.
 
-```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+```{r eval = F, fig.height = 5, fig.width = 10, fig.align = "center" }
 AMMI0 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0) # AMMI0
 AMMI2 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2) # AMMI2
 AMMI9 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9) # AMMIF
@@ -80,7 +82,7 @@ AMMI9 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9) # AMMIF
 ## AMMI0 to AMMIF
 The function `cv_ammif()` is used to compute a cross-validation procedure for all members of the AMMI-family model. In this case, AMMI0-AMMI9.
 
-```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+```{r eval = F, fig.height = 5, fig.width = 10, fig.align = "center" }
 AMMIF <- cv_ammif(data_ge, ENV, GEN, REP, GY)
 ```
 
@@ -88,17 +90,17 @@ AMMIF <- cv_ammif(data_ge, ENV, GEN, REP, GY)
 The function  `cv_blup()` provides a cross-validation of replicate-based data using mixed models. By default, complete blocks are randomly selected for each environment. Using the argument `random` it is possible to chose the random effects of the model, as shown bellow.
 
 ## Genotype and genotype-vs-environment as random effects
-```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+```{r eval = F, fig.height = 5, fig.width = 10, fig.align = "center" }
 BLUP_g <- cv_blup(data_ge, ENV, GEN, REP, GY, random = "gen")
 ```
 
 ## Environment, replication-within-environment and interaction as random effects
-```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+```{r eval = F, fig.height = 5, fig.width = 10, fig.align = "center" }
 BLUP_e <- cv_blup(data_ge, ENV, GEN, REP, GY, random = "env")
 ```
 
 ## A random model (all terms as random effects)
-```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align = "center" }
+```{r eval = F, fig.height = 5, fig.width = 10, fig.align = "center" }
 BLUP_ge <- cv_blup(data_ge, ENV, GEN, REP, GY, random = "all")
 ```
 
