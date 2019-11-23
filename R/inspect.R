@@ -26,6 +26,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'
 #' @examples
+#' \donttest{
 #' library(metan)
 #' inspect(data_ge)
 #'
@@ -35,6 +36,7 @@
 #' df[40, 5] <- df[40, 5] * 2
 #'
 #' inspect(df, plot = TRUE)
+#' }
 inspect <- function (.data,
                      ...,
                      plot = FALSE,

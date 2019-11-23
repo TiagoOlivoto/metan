@@ -35,16 +35,16 @@
 #' @seealso \code{\link{plot_scores}}, \code{\link{plot_waasby}}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
-#' BLUP = waasb(data_ge,
+#' BLUP <- waasb(data_ge,
 #'              resp = c(GY, HM),
 #'              gen = GEN,
 #'              env = ENV,
 #'              rep = REP)
 #' plot_eigen(BLUP)
 #'
-#'
+#'}
 #'
 plot_eigen <- function(x, var = 1, export = FALSE, plot_theme = theme_metan(), file.type = "pdf",
     file.name = NULL, width = 6, height = 6, size.shape = 3.5, size.line = 1, size.tex.lab = 12,

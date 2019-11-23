@@ -99,6 +99,7 @@
 #' @seealso \code{\link{waas}}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
 #' # Genotypes as random effects
@@ -133,6 +134,7 @@
 #'                 random = "env",
 #'                 mresp = c(100, 0),
 #'                 wresp = c(60, 40))
+#' }
 #'
 waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random = "gen",
                   prob = 0.05, ind_anova = TRUE, verbose = TRUE) {

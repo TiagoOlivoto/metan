@@ -158,7 +158,7 @@ genotypes targeted for specific environments, thus allowing the exploitation
 of narrow adaptations.
 }
 \examples{
-
+\donttest{
 library(metan)
 # AMMI model
 ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
@@ -191,7 +191,7 @@ plot_scores(waasb_model,
             type = 3,
             size.tex.pa = 2,
             size.tex.lab = 16)
-
+}
 }
 \references{
 Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,

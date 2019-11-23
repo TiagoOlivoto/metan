@@ -46,15 +46,15 @@
 #' @method plot waasb
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
-#' model2 = waasb(data_ge,
-#'                resp = GY,
-#'                gen = GEN,
-#'                env = ENV,
-#'                rep = REP)
+#' model2 <- waasb(data_ge,
+#'                 resp = GY,
+#'                 gen = GEN,
+#'                 env = ENV,
+#'                 rep = REP)
 #' plot(model2)
-#'
+#'}
 #'
 plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
                        labels = FALSE, plot_theme = theme_metan(), alpha = 0.2, fill.hist = "gray",

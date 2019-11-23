@@ -26,25 +26,25 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
-#' partial1 = lpcor(iris)
+#' partial1 <- pcor(iris)
 #'
 #' # Alternatively using the pipe operator %>%
-#' partial2 = iris %>% lpcor()
+#' partial2 <- iris %>% lpcor()
 #'
 #' # Using a correlation matrix
-#' partial3 = cor(iris[1:4]) %>%
-#'            lpcor(n = nrow(iris),
-#'                  verbose = FALSE)
+#' partial3 <- cor(iris[1:4]) %>%
+#'             lpcor(n = nrow(iris),
+#'                   verbose = FALSE)
 #'
 #' # Select variables and compute the partial correlation
 #' # For each level of \code{Species}
 #'
-#' partial4 = iris %>%
-#'            split_factors(Species) %>%
+#' partial4 <- iris %>%
+#'             split_factors(Species) %>%
 #'            lpcor(Sepal.Length, Sepal.Width, Petal.Width)
-#'
+#'}
 lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
   if (!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)) {
     stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")

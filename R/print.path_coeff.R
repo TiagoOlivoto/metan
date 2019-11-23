@@ -16,6 +16,7 @@
 #' @method print path_coeff
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
 #' # KW as dependent trait and all others as predictors
@@ -30,6 +31,7 @@
 #'   maxvif = 5
 #' )
 #' print(pcoeff2)
+#' }
 print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "path_coeff print", file.name)

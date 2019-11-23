@@ -79,7 +79,7 @@
 #'
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'
 #' # Using KW as the response variable and all other ones as predictors
@@ -113,7 +113,7 @@
 #'            split_factors(ENV) %>%
 #'            path_coeff(resp = KW,
 #'                       pred = c(PH, EH, NKE, TKW))
-#'
+#'}
 #'
 #'
 path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,

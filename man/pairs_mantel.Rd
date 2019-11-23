@@ -91,24 +91,24 @@ plots and in the lower diagonal the result of Mantel test based on
 permutations.
 }
 \examples{
-
+\donttest{
 library(metan)
 library(dplyr)
 # iris dataset
-lpc = iris \%>\%
-      split_factors(Species) \%>\%
-      lpcor() \%>\%
-      pairs_mantel(names = c('setosa', 'versicolor', 'virginica'))
+lpc <- iris \%>\%
+       split_factors(Species) \%>\%
+       lpcor() \%>\%
+       pairs_mantel(names = c('setosa', 'versicolor', 'virginica'))
 
 
 # mtcars dataset
-mt_num = mtcars \%>\% select_if(., is.numeric)
-lpdata = as.lpcor(cor(mt_num[1:5]),
-                  cor(mt_num[1:5]),
-                  cor(mt_num[2:6]),
-                  cor(mt_num[4:8])) \%>\%
-         pairs_mantel()
-
+mt_num <- mtcars \%>\% select_if(., is.numeric)
+lpdata <- as.lpcor(cor(mt_num[1:5]),
+                   cor(mt_num[1:5]),
+                   cor(mt_num[2:6]),
+                   cor(mt_num[4:8])) \%>\%
+          pairs_mantel()
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

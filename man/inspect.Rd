@@ -36,6 +36,7 @@ outliers. The function will return a warning if the data looks like
 unbalanced, has missing values or possible outliers.
 }
 \examples{
+\donttest{
 library(metan)
 inspect(data_ge)
 
@@ -45,6 +46,7 @@ df[c(1, 20, 50), c(4, 5)] <- NA
 df[40, 5] <- df[40, 5] * 2
 
 inspect(df, plot = TRUE)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

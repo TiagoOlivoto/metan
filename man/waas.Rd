@@ -95,7 +95,7 @@ number of axis can be also informed by declaring \code{naxis = x}. This will
 override the number of significant axes according to the argument code{prob}.
 }
 \examples{
-
+\donttest{
 library(metan)
 
 # Considering p-value <= 0.05 to compute the WAAS
@@ -131,7 +131,7 @@ model3 <- waas(data_ge,
                resp = c(GY, HM),
                mresp = c(100, 0),
                wresp = c(60, 40))
-
+}
 
 }
 \references{

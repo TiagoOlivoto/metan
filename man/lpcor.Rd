@@ -39,25 +39,25 @@ Estimates the linear and partial correlation coefficients using as input a
 data frame or a correlation matrix.
 }
 \examples{
-
+\donttest{
 library(metan)
-partial1 = lpcor(iris)
+partial1 <- pcor(iris)
 
 # Alternatively using the pipe operator \%>\%
-partial2 = iris \%>\% lpcor()
+partial2 <- iris \%>\% lpcor()
 
 # Using a correlation matrix
-partial3 = cor(iris[1:4]) \%>\%
-           lpcor(n = nrow(iris),
-                 verbose = FALSE)
+partial3 <- cor(iris[1:4]) \%>\%
+            lpcor(n = nrow(iris),
+                  verbose = FALSE)
 
 # Select variables and compute the partial correlation
 # For each level of \\code{Species}
 
-partial4 = iris \%>\%
-           split_factors(Species) \%>\%
+partial4 <- iris \%>\%
+            split_factors(Species) \%>\%
            lpcor(Sepal.Length, Sepal.Width, Petal.Width)
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

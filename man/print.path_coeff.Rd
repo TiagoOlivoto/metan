@@ -26,6 +26,7 @@ results are shown in the R console. The results can also be exported to the
 directory.
 }
 \examples{
+\donttest{
 library(metan)
 
 # KW as dependent trait and all others as predictors
@@ -40,6 +41,7 @@ pcoeff2 <- path_coeff(data_ge2,
   maxvif = 5
 )
 print(pcoeff2)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

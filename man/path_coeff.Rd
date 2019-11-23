@@ -95,7 +95,7 @@ containing the aforementioned values for all the adjusted models; and
 iterative process.
 }
 \examples{
-
+\donttest{
 library(metan)
 
 # Using KW as the response variable and all other ones as predictors
@@ -129,7 +129,7 @@ pcoeff5 <- data_ge2 \%>\%
            split_factors(ENV) \%>\%
            path_coeff(resp = KW,
                       pred = c(PH, EH, NKE, TKW))
-
+}
 
 
 }

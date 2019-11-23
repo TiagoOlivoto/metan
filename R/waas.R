@@ -85,7 +85,7 @@
 #' @seealso \code{\link{waasb}}
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #'
 #' # Considering p-value <= 0.05 to compute the WAAS
@@ -121,7 +121,7 @@
 #'                resp = c(GY, HM),
 #'                mresp = c(100, 0),
 #'                wresp = c(60, 40))
-#'
+#'}
 #'
 waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
     naxis = NULL, ind_anova = TRUE, verbose = TRUE) {

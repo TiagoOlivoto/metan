@@ -40,7 +40,7 @@
 #' @method plot waas
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #' model <- performs_ammi(data_ge, ENV, GEN, REP, GY)
 #' model2 <- waas(data_ge, ENV, GEN, REP, GY)
@@ -50,7 +50,7 @@
 #'      ncol = 2,
 #'      labels = TRUE,
 #'      size.lab.out = 4)
-#'
+#'}
 plot.waas <- function(x, var = 1, conf = 0.95, labels = FALSE, plot_theme = theme_metan(),
                       band.alpha = 0.2, point.alpha = 0.8, fill.hist = "gray",
                       col.hist = "black", col.point = "black", col.line = "red",

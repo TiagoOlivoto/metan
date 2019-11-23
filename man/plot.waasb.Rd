@@ -74,15 +74,15 @@ object, normal Q-Q plot for random effects may also be obtained declaring
 \code{type = 're'}
 }
 \examples{
-
+\donttest{
 library(metan)
-model2 = waasb(data_ge,
-               resp = GY,
-               gen = GEN,
-               env = ENV,
-               rep = REP)
+model2 <- waasb(data_ge,
+                resp = GY,
+                gen = GEN,
+                env = ENV,
+                rep = REP)
 plot(model2)
-
+}
 
 }
 \author{

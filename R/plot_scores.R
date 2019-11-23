@@ -112,7 +112,7 @@
 #' @seealso \code{\link{plot_eigen}}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' # AMMI model
 #' ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
@@ -145,7 +145,7 @@
 #'             type = 3,
 #'             size.tex.pa = 2,
 #'             size.tex.lab = 16)
-#'
+#' }
 plot_scores <- function(x,
                         var = 1,
                         type = 1,

@@ -67,7 +67,7 @@ residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
 and (6) standardized residuals vs observation order, and (7) 1:1 line plot
 }
 \examples{
-
+\donttest{
 library(metan)
 model <- performs_ammi(data_ge, ENV, GEN, REP, GY)
 model2 <- waas(data_ge, ENV, GEN, REP, GY)
@@ -77,7 +77,7 @@ plot(model2,
      ncol = 2,
      labels = TRUE,
      size.lab.out = 4)
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

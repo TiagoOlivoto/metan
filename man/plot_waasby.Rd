@@ -62,19 +62,19 @@ An object of class \code{gg, ggplot}.
 Plot heat maps with genotype ranking in two ways.
 }
 \examples{
-
+\donttest{
 library(metan)
 library(ggplot2)
-waasby = waasb(data_ge,
-               resp = GY,
-               gen = GEN,
-               env = ENV,
-               rep = REP)
-waasby2 = waas(data_ge,
-               resp = GY,
-               gen = GEN,
-               env = ENV,
-               rep = REP)
+waasby <- waasb(data_ge,
+                resp = GY,
+                gen = GEN,
+                env = ENV,
+                rep = REP)
+waasby2 <- waas(data_ge,
+                resp = GY,
+                gen = GEN,
+                env = ENV,
+                rep = REP)
 plot_waasby(waasby)
 plot_waasby(waasby2) +
             theme_gray() +
@@ -82,7 +82,7 @@ plot_waasby(waasby2) +
                   legend.background = element_blank(),
                   legend.title = element_blank(),
                   legend.direction = "horizontal")
-
+}
 
 }
 \seealso{

@@ -61,16 +61,16 @@ Plot the eigenvalues for from singular value decomposition of BLUP
 interaction effects matrix.
 }
 \examples{
-
+\donttest{
 library(metan)
-BLUP = waasb(data_ge,
+BLUP <- waasb(data_ge,
              resp = c(GY, HM),
              gen = GEN,
              env = ENV,
              rep = REP)
 plot_eigen(BLUP)
 
-
+}
 
 }
 \seealso{

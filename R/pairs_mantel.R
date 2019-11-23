@@ -51,24 +51,24 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #' library(dplyr)
 #' # iris dataset
-#' lpc = iris %>%
-#'       split_factors(Species) %>%
-#'       lpcor() %>%
-#'       pairs_mantel(names = c('setosa', 'versicolor', 'virginica'))
+#' lpc <- iris %>%
+#'        split_factors(Species) %>%
+#'        lpcor() %>%
+#'        pairs_mantel(names = c('setosa', 'versicolor', 'virginica'))
 #'
 #'
 #' # mtcars dataset
-#' mt_num = mtcars %>% select_if(., is.numeric)
-#' lpdata = as.lpcor(cor(mt_num[1:5]),
-#'                   cor(mt_num[1:5]),
-#'                   cor(mt_num[2:6]),
-#'                   cor(mt_num[4:8])) %>%
-#'          pairs_mantel()
-#'
+#' mt_num <- mtcars %>% select_if(., is.numeric)
+#' lpdata <- as.lpcor(cor(mt_num[1:5]),
+#'                    cor(mt_num[1:5]),
+#'                    cor(mt_num[2:6]),
+#'                    cor(mt_num[4:8])) %>%
+#'           pairs_mantel()
+#'}
 pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
                          prob = 0.05, diag = FALSE, export = FALSE, main = "auto",
                          file.type = "pdf", file.name = NULL, width = 8, height = 7,

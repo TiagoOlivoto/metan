@@ -36,19 +36,19 @@
 #' @seealso \code{\link{plot_scores}}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' library(ggplot2)
-#' waasby = waasb(data_ge,
-#'                resp = GY,
-#'                gen = GEN,
-#'                env = ENV,
-#'                rep = REP)
-#' waasby2 = waas(data_ge,
-#'                resp = GY,
-#'                gen = GEN,
-#'                env = ENV,
-#'                rep = REP)
+#' waasby <- waasb(data_ge,
+#'                 resp = GY,
+#'                 gen = GEN,
+#'                 env = ENV,
+#'                 rep = REP)
+#' waasby2 <- waas(data_ge,
+#'                 resp = GY,
+#'                 gen = GEN,
+#'                 env = ENV,
+#'                 rep = REP)
 #' plot_waasby(waasby)
 #' plot_waasby(waasby2) +
 #'             theme_gray() +
@@ -56,7 +56,7 @@
 #'                   legend.background = element_blank(),
 #'                   legend.title = element_blank(),
 #'                   legend.direction = "horizontal")
-#'
+#'}
 #'
 plot_waasby <- function(x, var = 1, export = F, file.type = "pdf", file.name = NULL, plot_theme = theme_metan(),
     width = 6, height = 6, size.shape = 3.5, size.tex.lab = 12, col.shape = c("blue",
