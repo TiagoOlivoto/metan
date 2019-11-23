@@ -172,7 +172,7 @@ objects of class \code{waasb}).
 }
 }
 \examples{
-
+\donttest{
 library(metan)
 #################### joint-regression analysis #####################
 ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
@@ -238,6 +238,7 @@ get_model_data(blup, what = "genpar")
 blup \%>\%
 Resende_indexes() \%>\%
 get_model_data("HMRPGV")
+}
 
 }
 \references{

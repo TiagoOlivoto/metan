@@ -23,11 +23,11 @@
 #' @examples
 #'
 #' library(metan)
-#' out = ecovalence(data_ge2,
-#'                  env = ENV,
-#'                  gen = GEN,
-#'                  rep = REP,
-#'                  resp = PH)
+#' out <- ecovalence(data_ge2,
+#'                   env = ENV,
+#'                   gen = GEN,
+#'                   rep = REP,
+#'                   resp = PH)
 #'
 ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   datain <- .data

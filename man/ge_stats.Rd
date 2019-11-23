@@ -71,11 +71,12 @@ The function computes the statistics and ranks for the
   (Thennarasu"s statistics, calling \code{\link{Thennarasu}} internally ).
 }
 \examples{
-
+\donttest{
 library(metan)
 
 model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 get_model_data(model, "stats")
+}
 
 
 }

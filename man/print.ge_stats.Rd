@@ -30,10 +30,11 @@ shown in the R console. The results can also be exported to the directory
 into a *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 print(model)
+}
 
 }
 \author{

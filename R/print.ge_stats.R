@@ -19,10 +19,11 @@
 #' @method print ge_stats
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 #' print(model)
+#' }
 #'
 print.ge_stats <- function(x,
                            what = "all",

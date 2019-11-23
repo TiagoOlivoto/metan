@@ -46,12 +46,12 @@
 #' @export
 #' @examples
 #' library(metan)
-#' model = waas(data_ge2,
+#' model <- waas(data_ge2,
 #'              env = ENV,
 #'              gen = GEN,
 #'              rep = REP,
 #'              resp = PH)
-#' scenarios = wsmp(model)
+#' scenarios <- wsmp(model)
 #'
 wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
                  prob = 0.05, progbar = TRUE) {

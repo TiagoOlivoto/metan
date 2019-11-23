@@ -19,7 +19,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' # Two examples with only 5 resampling procedures
 #' AMMI = cv_ammif(data_ge,
@@ -38,6 +38,7 @@
 #' plot(bind_data)
 #'
 #' print(bind_cv(AMMI, BLUP, bind = 'means'))
+#' }
 #'
 bind_cv <- function(..., bind = "boot", sort = TRUE) {
   class <- list(...)

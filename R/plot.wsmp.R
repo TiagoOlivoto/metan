@@ -42,15 +42,12 @@
 #' @method plot wsmp
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
-#' model = waas(data_ge2,
-#'              env = ENV,
-#'              gen = GEN,
-#'              rep = REP,
-#'              resp = PH) %>%
+#' model <- waas(data_ge2, ENV, GEN, REP, PH) %>%
 #'          wsmp()
-#'          plot(model)
+#' plot(model)
+#' }
 #'
 plot.wsmp <- function(x, var = 1, type = 2, export = FALSE, file.type = "pdf",
                       file.name = NULL, width = 6, height = 5, size.lab = 1, margins = c(5, 4), y.lab = NULL, x.lab = NULL, key.lab = "Genotype ranking",

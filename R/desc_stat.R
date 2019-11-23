@@ -57,6 +57,7 @@
 #'@importFrom tidyr spread gather separate pivot_wider pivot_longer
 #'@importFrom rlang quo as_label
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
 #' desc_stat(data_ge2, TKW)
@@ -81,7 +82,7 @@
 #'
 #' # To get a 'wide' format with the statistics of the variable EP above.
 #' desc_wider(stats, PH)
-#'
+#'}
 desc_stat <- function(.data = NULL,
                       ...,
                       values = NULL,

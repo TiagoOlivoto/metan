@@ -66,15 +66,12 @@ unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but
 unproductive genotypes; and (4), productive and stable genotypes.
 }
 \examples{
-
+\donttest{
 library(metan)
-model = waas(data_ge2,
-             env = ENV,
-             gen = GEN,
-             rep = REP,
-             resp = PH) \%>\%
+model <- waas(data_ge2, ENV, GEN, REP, PH) \%>\%
          wsmp()
-         plot(model)
+plot(model)
+}
 
 }
 \author{

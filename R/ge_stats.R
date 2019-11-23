@@ -101,11 +101,12 @@
 #'
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'
 #' model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 #' get_model_data(model, "stats")
+#' }
 #'
 #'
 ge_stats = function(.data,

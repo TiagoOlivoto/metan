@@ -154,7 +154,7 @@
 #' Selection based on multiple traits. Agron. J.
 #' \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0221}{doi:10.2134/agronj2019.03.0221}
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' #################### joint-regression analysis #####################
 #' ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
@@ -220,6 +220,7 @@
 #' blup %>%
 #' Resende_indexes() %>%
 #' get_model_data("HMRPGV")
+#'}
 #'
 get_model_data <- function(x, what = "Y", type = "GEN") {
   if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",

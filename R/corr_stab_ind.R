@@ -41,11 +41,13 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'
 #' @examples
+#' \donttest{
 #' library(metan)
 #' model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 #' a <- corr_stab_ind(model)
 #' b <- corr_stab_ind(model, stats = "ammi")
 #' c <- corr_stab_ind(model, stats = c("ASV, Sij, R2, WAAS, N1"))
+#' }
 #'
 corr_stab_ind <- function(x, stats = "all", plot = TRUE, ...){
   all_s <- c("Y", "Var", "Shukla", "Wi_g", "Wi_f", "Wi_u", "Ecoval", "Sij", "R2", "ASV", "SIPC", "EV", "ZA", "WAAS", "HMGV", "RPGV", "HMRPGV", "Pi_a", "Pi_f", "Pi_u", "Gai", "S1", "S2", "S3", "S6", "N1", "N2", "N3", "N4")

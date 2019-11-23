@@ -29,7 +29,7 @@ Helper function that combines objects of class \code{cv_ammi},
 containing the RMSPD values of those cross-validation procedures.
 }
 \examples{
-
+\donttest{
 library(metan)
 # Two examples with only 5 resampling procedures
 AMMI = cv_ammif(data_ge,
@@ -48,6 +48,7 @@ bind_data = bind_cv(AMMI, BLUP)
 plot(bind_data)
 
 print(bind_cv(AMMI, BLUP, bind = 'means'))
+}
 
 }
 \author{

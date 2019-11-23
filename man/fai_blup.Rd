@@ -41,28 +41,28 @@ Multitrait index based on factor analysis and ideotype-design proposed by
 Rocha et al. (2018).
 }
 \examples{
-
+\donttest{
 library(metan)
 
-mod = waasb(data_ge,
-            env = ENV,
-            gen = GEN,
-            rep = REP,
-            resp = c(GY, HM))
+mod <- waasb(data_ge,
+             env = ENV,
+             gen = GEN,
+             rep = REP,
+             resp = c(GY, HM))
 
-FAI = fai_blup(mod,
-               SI = 15,
-               DI = c('max, max'),
-               UI = c('min, min'))
+FAI <- fai_blup(mod,
+                SI = 15,
+                DI = c('max, max'),
+                UI = c('min, min'))
 
 # Or using the pipe operator \%>\%
 
-FAI = data_ge2 \%>\%
-      waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
-      fai_blup(DI = c('max, max, max, min'),
-               UI = c('min, min, min, max'),
-               SI = 15)
-
+FAI <- data_ge2 \%>\%
+       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
+       fai_blup(DI = c('max, max, max, min'),
+                UI = c('min, min, min, max'),
+                SI = 15)
+}
 }
 \references{
 Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.

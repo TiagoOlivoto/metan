@@ -76,6 +76,7 @@ In cases when the statistics are computed for more than two variables
  the factors in the rows and statistics in the columns).
 }
 \examples{
+\donttest{
 library(metan)
 
 desc_stat(data_ge2, TKW)
@@ -100,7 +101,7 @@ data_ge2 \%>\%
 
 # To get a 'wide' format with the statistics of the variable EP above.
 desc_wider(stats, PH)
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
