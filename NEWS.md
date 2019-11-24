@@ -1,3 +1,8 @@
+# metan 1.1.1
+
+* Now `on.exit()` is used in S3 generic functions `print()` to ensure that the settings are reset when a function is excited.
+* Computationally intensive parts in vignettes uses pre-computed results.
+
 # metan 1.1.0
 I'm very pleased to announce the release of `metan` 1.1.0, This is a minor release with bug fixes and new functions. The most important changes are described below.
 
