@@ -147,7 +147,7 @@
       <h1>Parametric and non-parametric stability statistics</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-23</h4>
+            <h4 class="date">2019-11-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_stability.Rmd"><code>vignettes/vignettes_stability.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_stability.Rmd</code></div>
@@ -160,16 +160,6 @@
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p>In this section, we will use the data in <code>data_ge</code> and <code>data_ge2</code>. For more information see <code><a href="../reference/data_ge.html">?data_ge</a></code> and <code><a href="../reference/data_ge2.html">?data_ge2</a></code>, respectively. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s). The R package <a href="http://haozhu233.github.io/kableExtra/awesome_table_in_html.html"><code>kableExtra</code></a> was used to produce the tables of this vignette.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a></code></pre></div>
-<pre><code>-- Attaching packages ------------------------------------------------- tidyverse 1.2.1 --</code></pre>
-<pre><code>v ggplot2 3.2.1     v purrr   0.3.3
-v tibble  2.1.3     v dplyr   0.8.3
-v tidyr   1.0.0     v stringr 1.4.0
-v readr   1.3.1     v forcats 0.4.0</code></pre>
-<pre><code>-- Conflicts ---------------------------------------------------- tidyverse_conflicts() --
-x dplyr::filter()     masks stats::filter()
-x dplyr::group_rows() masks kableExtra::group_rows()
-x dplyr::lag()        masks stats::lag()</code></pre>
 <pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   420 obs. of  5 variables:
  $ ENV: Factor w/ 14 levels "E1","E10","E11",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ GEN: Factor w/ 10 levels "G1","G10","G2",..: 1 1 1 3 3 3 4 4 4 5 ...
@@ -181,17 +171,17 @@ x dplyr::lag()        masks stats::lag()</code></pre>
 <h1 class="hasAnchor">
 <a href="#graphic-visualization-of-the-interaction" class="anchor"></a>Graphic visualization of the interaction</h1>
 <p>The function <code><a href="../reference/ge_plot.html">ge_plot()</a></code> may be used to visualize the genotype’s performance across the environments. The black diamond shows the mean for each environment.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, ENV, GEN, GY)</a>
-<a class="sourceLine" id="cb6-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, ENV, GEN, GY) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
-<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-3-1.png" width="960"></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, ENV, GEN, GY)</a>
+<a class="sourceLine" id="cb2-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, ENV, GEN, GY) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
+<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-2-1.png" width="960"></p>
 </div>
 <div id="within-environment-analysis-of-variance" class="section level1">
 <h1 class="hasAnchor">
 <a href="#within-environment-analysis-of-variance" class="anchor"></a>Within-environment analysis of variance</h1>
 <p>The function <code><a href="../reference/anova_ind.html">anova_ind()</a></code> can be used to compute an within-environment analysis of variance. Environment with values in blue had a significant (p &lt; 0.05) genotype effect.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">ind &lt;-<span class="st"> </span><span class="kw"><a href="../reference/anova_ind.html">anova_ind</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb7-2" title="2">ind</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">ind &lt;-<span class="st"> </span><span class="kw"><a href="../reference/anova_ind.html">anova_ind</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb3-2" title="2">ind</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -771,8 +761,8 @@ E9
 <h1 class="hasAnchor">
 <a href="#genotype-by-environment-means" class="anchor"></a>Genotype-by-environment means</h1>
 <p>The function <code><a href="../reference/make_mat.html">make_mat()</a></code> can be used to produce a two-way table for the genotype-environment means.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, GEN, ENV, GY) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="dv">3</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, GEN, ENV, GY) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="dv">3</span>) </a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1299,8 +1289,8 @@ G9
 <h1 class="hasAnchor">
 <a href="#genotype-by-environment-interaction-effects" class="anchor"></a>Genotype-by-environment interaction effects</h1>
 <p>The function <code><a href="../reference/ge_effects.html">ge_effects()</a></code> is used to compute the genotype-environment effects. Herem we highlight with a red background the genotypes with negative interaction effects within each environment</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">ge_ef &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_effects.html">ge_effects</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(ge_ef<span class="op">$</span>GY, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">ge_ef &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_effects.html">ge_effects</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(ge_ef<span class="op">$</span>GY, <span class="dv">2</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -1826,8 +1816,8 @@ G9
 <div id="genotype-plus-genotype-by-environment-effects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#genotype-plus-genotype-by-environment-effects" class="anchor"></a>Genotype plus Genotype-by-environment effects</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">gge_ef &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_effects.html">ge_effects</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">type =</span> <span class="st">"gge"</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(gge_ef<span class="op">$</span>GY, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">gge_ef &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_effects.html">ge_effects</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">type =</span> <span class="st">"gge"</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(gge_ef<span class="op">$</span>GY, <span class="dv">2</span>)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2354,9 +2344,9 @@ G9
 <h1 class="hasAnchor">
 <a href="#clustering-tester-locations" class="anchor"></a>Clustering tester locations</h1>
 <p>The function <code><a href="../reference/ge_cluster.html">ge_cluster()</a></code> computes a cluster analysis for grouping environments based on its similarities using an Euclidean distance based on standardized data. Line means are divided by the phenotypic standard error of the relevant environment after its mean has been subtracted. By standardizing the data each environment will have a mean of zero and unit variance, and the effect of variability in phenotypic variance (as well as the mean) should be reduced <span class="citation">(Fox and Rosielle <a href="#ref-Fox1982" role="doc-biblioref">1982</a>)</span>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">d1 =<span class="st"> </span><span class="kw"><a href="../reference/ge_cluster.html">ge_cluster</a></span>(data_ge, ENV, GEN, GY, <span class="dt">nclust =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d1, <span class="dt">nclust =</span> <span class="dv">4</span>)</a></code></pre></div>
-<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">d1 =<span class="st"> </span><span class="kw"><a href="../reference/ge_cluster.html">ge_cluster</a></span>(data_ge, ENV, GEN, GY, <span class="dt">nclust =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d1, <span class="dt">nclust =</span> <span class="dv">4</span>)</a></code></pre></div>
+<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="joint-regression-analysis" class="section level1">
 <h1 class="hasAnchor">
@@ -2365,8 +2355,8 @@ G9
 <p><span class="math display">\[
 \mathop Y\nolimits_{ij}  = {\beta _{0i}} + {\beta _{1i}}{I_j} + {\delta _{ij}} + {\bar \varepsilon _{ij}}
 \]</span> where <span class="math inline">\({\beta _{0i}}\)</span> is the grand mean of the genotype <em>i</em> (<em>i</em> = 1, 2, …, I); <span class="math inline">\({\beta _{1i}}\)</span> is the linear response (slope) of the genotype <em>i</em> to the environmental index; <em>Ij</em> is the environmental index (<em>j</em> = 1, 2, …, <em>e</em>), where <span class="math inline">\({I_j} = [(y_{.j}/g)- (y_{..}/ge)]\)</span>, <span class="math inline">\({\delta _{ij}}\)</span> is the deviation from the regression, and <span class="math inline">\({\bar \varepsilon _{ij}}\)</span> is the experimental error. The model is fitted with the function <code><a href="../reference/ge_reg.html">ge_reg()</a></code>. The S3 methods <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> may be used to explore the fitted model.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">reg_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_reg.html">ge_reg</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="kw">print_table</span>(reg_model<span class="op">$</span>GY<span class="op">$</span>anova)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">reg_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_reg.html">ge_reg</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">print_table</span>(reg_model<span class="op">$</span>GY<span class="op">$</span>anova)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2731,7 +2721,7 @@ NA
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">print_table</span>(reg_model<span class="op">$</span>GY<span class="op">$</span>regression)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">print_table</span>(reg_model<span class="op">$</span>GY<span class="op">$</span>regression)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -2970,13 +2960,13 @@ W_i = Z_{i.}/e - \alpha \times sd(Z_{i.})
 <div id="computing-the-index" class="section level2">
 <h2 class="hasAnchor">
 <a href="#computing-the-index" class="anchor"></a>Computing the index</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">ann5 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Annicchiarico.html">Annicchiarico</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb14-2" title="2">ann1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Annicchiarico.html">Annicchiarico</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">prob =</span> <span class="fl">0.01</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">ann5 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Annicchiarico.html">Annicchiarico</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb10-2" title="2">ann1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Annicchiarico.html">Annicchiarico</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">prob =</span> <span class="fl">0.01</span>)</a></code></pre></div>
 </div>
 <div id="environment-classification" class="section level2">
 <h2 class="hasAnchor">
 <a href="#environment-classification" class="anchor"></a>Environment classification</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">ann5<span class="op">$</span>GY<span class="op">$</span>environments</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">ann5<span class="op">$</span>GY<span class="op">$</span>environments</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -3195,7 +3185,7 @@ favorable
 <div id="index-computed-with-all-environments" class="section level2">
 <h2 class="hasAnchor">
 <a href="#index-computed-with-all-environments" class="anchor"></a>Index computed with all environments</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">ann5<span class="op">$</span>GY<span class="op">$</span>general</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">ann5<span class="op">$</span>GY<span class="op">$</span>general</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -3430,8 +3420,8 @@ G9
 P_i = \sum\limits_{j = 1}^n{(y_{ij} - y_{.j})^2/(2n)}
 \]</span> where <em>n</em> is the number of environments</p>
 <p>Similar then the genotypic confidence index, the superiority index is calculated by all environments, favorable, and unfavorable environments.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">super &lt;-<span class="st"> </span><span class="kw"><a href="../reference/superiority.html">superiority</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb17-2" title="2">super<span class="op">$</span>GY<span class="op">$</span>index</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">super &lt;-<span class="st"> </span><span class="kw"><a href="../reference/superiority.html">superiority</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb13-2" title="2">super<span class="op">$</span>GY<span class="op">$</span>index</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -3727,10 +3717,10 @@ G9
 <h1 class="hasAnchor">
 <a href="#environmental-stratification" class="anchor"></a>Environmental stratification</h1>
 <p>A method that combines stability analysis and environmental stratification using factor analysis was proposed by <span class="citation">Murakami and Cruz (<a href="#ref-murakami2004" role="doc-biblioref">2004</a>)</span>. This method is implemented with the function <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code>, as follows:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">fact &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(fact)</a></code></pre></div>
-<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-21-1.png" width="480"></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">fact<span class="op">$</span>GY<span class="op">$</span>PCA</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">fact &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(fact)</a></code></pre></div>
+<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-20-1.png" width="480"></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">fact<span class="op">$</span>GY<span class="op">$</span>PCA</a></code></pre></div>
 <pre><code># A tibble: 14 x 4
    PCA   Eigenvalues  Variance Cumul_var
    &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -3748,7 +3738,7 @@ G9
 12 PC12    -1.74e-16 -1.25e-15     100  
 13 PC13    -2.67e-16 -1.91e-15     100  
 14 PC14    -3.01e-16 -2.15e-15     100  </code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">fact<span class="op">$</span>GY<span class="op">$</span>FA</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">fact<span class="op">$</span>GY<span class="op">$</span>FA</a></code></pre></div>
 <pre><code># A tibble: 14 x 8
    Env        FA1     FA2      FA3     FA4     FA5 Communality Uniquenesses
    &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -3766,7 +3756,7 @@ G9
 12 E7    -0.244    0.342  -0.520    0.297   0.619        0.918      0.0820 
 13 E8     0.00161 -0.0589 -0.914   -0.226  -0.143        0.911      0.0891 
 14 E9    -0.0794  -0.291  -0.0183  -0.0539  0.927        0.954      0.0463 </code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">fact<span class="op">$</span>GY<span class="op">$</span>env_strat</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">fact<span class="op">$</span>GY<span class="op">$</span>env_strat</a></code></pre></div>
 <pre><code># A tibble: 14 x 6
    Env   Factor  Mean   Min   Max    CV
    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -3784,10 +3774,10 @@ G9
 12 E4    FA4     3.68 3.02   4.27 11.5 
 13 E7    FA5     1.99 1.39   2.55 16.8 
 14 E9    FA5     3.06 1.94   3.72 15.6 </code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">fact =<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb25-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(fact)</a></code></pre></div>
-<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-22-1.png" width="480"></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>PCA)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">fact =<span class="st"> </span><span class="kw"><a href="../reference/ge_factanal.html">ge_factanal</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(fact)</a></code></pre></div>
+<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-21-1.png" width="480"></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>PCA)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -4002,7 +3992,7 @@ PC14
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>FA)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>FA)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -4397,7 +4387,7 @@ E9
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>env_strat)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">print_table</span>(fact<span class="op">$</span>GY<span class="op">$</span>env_strat)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -4707,10 +4697,10 @@ FA5
 <div id="wrapper-function" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wrapper-function" class="anchor"></a>Wrapper function</h1>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">stat_ge &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(EH, EP))</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">stat_ge &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(ENV, GEN, REP, <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(EH, EP))</a></code></pre></div>
 <pre><code>Evaluating variable EH 50 % 
 Evaluating variable EP 100 % </code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(stat_ge, <span class="st">"stats"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(stat_ge, <span class="st">"stats"</span>)</a></code></pre></div>
 <pre><code># A tibble: 26 x 32
    var   gen       Y   Var  Shukla  Wi_g  Wi_f  Wi_u Ecoval   bij     Sij    R2
    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -4728,7 +4718,7 @@ Evaluating variable EP 100 % </code></pre>
 #   EV &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;,
 #   Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;, S1 &lt;dbl&gt;, S2 &lt;dbl&gt;,
 #   S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(stat_ge, <span class="st">"ranks"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(stat_ge, <span class="st">"ranks"</span>)</a></code></pre></div>
 <pre><code># A tibble: 26 x 31
    var   gen     Y_R Var_R Shukla_R Wi_g_R Wi_f_R Wi_u_R Ecoval_R Sij_R  R2_R
    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -4748,8 +4738,8 @@ Evaluating variable EP 100 % </code></pre>
 #   S1_R &lt;dbl&gt;, S2_R &lt;dbl&gt;, S3_R &lt;dbl&gt;, S6_R &lt;dbl&gt;, N1_R &lt;dbl&gt;, N2_R &lt;dbl&gt;,
 #   N3_R &lt;dbl&gt;, N4_R &lt;dbl&gt;</code></pre>
 <p>It is also possible to obtain the Spearman’s rank correlation between the stability indexes by using <code><a href="../reference/corr_stab_ind.html">corr_stab_ind()</a></code>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw"><a href="../reference/corr_stab_ind.html">corr_stab_ind</a></span>(stat_ge)</a></code></pre></div>
-<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-24-1.png" width="960"></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw"><a href="../reference/corr_stab_ind.html">corr_stab_ind</a></span>(stat_ge)</a></code></pre></div>
+<p><img src="vignettes_stability_files/figure-html/unnamed-chunk-23-1.png" width="960"></p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">

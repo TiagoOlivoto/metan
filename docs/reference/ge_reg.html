@@ -248,12 +248,16 @@ Crop Sci. 6:36-40. <a href='https://www.crops.org/publications/cs/abstracts/6/1/
     <div class='dont-index'><p><code><a href='superiority.html'>superiority</a>, <a href='ecovalence.html'>ecovalence</a>, <a href='ge_stats.html'>ge_stats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>reg</span> <span class='kw'>=</span> <span class='fu'>ge_reg</span>(<span class='no'>data_ge2</span>,
-            <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-            <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-            <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-            <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='no'>reg</span> <span class='kw'>&lt;-</span> <span class='fu'>ge_reg</span>(<span class='no'>data_ge2</span>,
+             <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+             <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+             <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>reg</span>)</div><div class='img'><img src='ge_reg-1.png' alt='' width='700' height='433' /></div><div class='input'>
+# }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

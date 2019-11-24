@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-23</h4>
+            <h4 class="date">2019-11-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -2693,7 +2693,7 @@ WAASY{_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} \
 <h1 class="hasAnchor">
 <a href="#weighting-the-stability-and-mean-performance" class="anchor"></a>Weighting the stability and mean performance</h1>
 <p>After fitting a model with the functions <code><a href="../reference/waas.html">waas()</a></code> or <code><a href="../reference/waasb.html">waasb()</a></code> it is possible to compute the superiority indexes WAASY or WAASBY in different scenarios of weights for stability and mean performance. The number of scenarios is defined by the arguments <code>increment</code>. By default, twenty-one different scenarios are computed. In this case, the the superiority index is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">WAASratio &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wsmp.html">wsmp</a></span>(waas_index, <span class="dt">increment =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">WAASratio &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wsmp.html">wsmp</a></span>(waas_index)</a></code></pre></div>
 <div id="printing-the-model-outputs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#printing-the-model-outputs" class="anchor"></a>Printing the model outputs</h2>
