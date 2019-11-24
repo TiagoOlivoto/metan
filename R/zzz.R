@@ -160,7 +160,7 @@ NULL
   packageStartupMessage("\n********************************************************")
   packageStartupMessage("metan has been successfully loaded in R ", paste0(R.Version()[c("major","minor")], collapse = "."))
   packageStartupMessage("Please, see the complete vignette at:\nhttps://tiagoolivoto.github.io/metan/")
-  packageStartupMessage("To suppress this message use:  suppressPackageStartupMessages(library(metan))")
+  packageStartupMessage("Suppress this message with: suppressPackageStartupMessages(library(metan))")
   packageStartupMessage("********************************************************\n")
 
 }

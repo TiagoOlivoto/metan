@@ -23,7 +23,7 @@ print.ge_reg <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "ge_reg") {
     stop("The object must be of class 'ge_reg'")
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "ge_reg print", file.name)
@@ -46,5 +46,4 @@ print.ge_reg <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

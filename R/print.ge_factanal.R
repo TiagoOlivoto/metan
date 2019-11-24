@@ -27,7 +27,7 @@ print.ge_factanal <- function(x, export = FALSE, file.name = NULL, digits = 4, .
   if (!class(x) == "ge_factanal") {
     stop("The object must be of class 'ge_factanal'")
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "ge_factanal print", file.name)
@@ -65,5 +65,4 @@ print.ge_factanal <- function(x, export = FALSE, file.name = NULL, digits = 4, .
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

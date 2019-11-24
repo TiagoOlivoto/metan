@@ -33,7 +33,7 @@ print.waasb <- function(x, export = FALSE, blup = FALSE, file.name = NULL, digit
     file.name <- ifelse(is.null(file.name) == TRUE, "waasb print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   for (i in 1:length(x)) {
     var <- x[[i]]
@@ -80,5 +80,4 @@ print.waasb <- function(x, export = FALSE, blup = FALSE, file.name = NULL, digit
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

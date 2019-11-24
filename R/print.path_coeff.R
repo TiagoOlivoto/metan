@@ -40,7 +40,7 @@ print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ..
   if (!class(x) %in% c("path_coeff", "group_path")) {
     stop("The object 'x' must be of class 'path_coeff' or 'group_path'.")
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   if (class(x) == "path_coeff") {
     cat("----------------------------------------------------------------------------------------------\n")
@@ -123,5 +123,4 @@ print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ..
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

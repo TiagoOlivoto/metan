@@ -29,7 +29,7 @@ print.Annicchiarico <- function(x, export = FALSE, file.name = NULL, digits = 3,
   if (!class(x) == "Annicchiarico") {
     stop("The object must be of class 'Annicchiarico'")
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "Annicchiarico print", file.name)
@@ -59,5 +59,4 @@ print.Annicchiarico <- function(x, export = FALSE, file.name = NULL, digits = 3,
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

@@ -24,7 +24,7 @@ print.AMMI_indexes <- function(x, export = FALSE, file.name = NULL, digits = 3, 
   if (!class(x) == "AMMI_indexes") {
     stop("The object must be of class 'AMMI_indexes'")
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "AMMI_indexes print", file.name)
@@ -50,5 +50,4 @@ print.AMMI_indexes <- function(x, export = FALSE, file.name = NULL, digits = 3, 
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

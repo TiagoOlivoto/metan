@@ -27,7 +27,7 @@ print.Fox <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "Fox") {
     stop("The object must be of class 'Fox'")
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "Fox print", file.name)
@@ -45,5 +45,4 @@ print.Fox <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

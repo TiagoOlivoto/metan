@@ -38,7 +38,7 @@ print.ge_stats <- function(x,
       file.name <- ifelse(is.null(file.name) == TRUE, "ge_stats print", file.name)
       sink(paste0(file.name, ".txt"))
     }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
     for (i in 1:length(x)) {
       var <- x[[i]]
@@ -67,5 +67,4 @@ print.ge_stats <- function(x,
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

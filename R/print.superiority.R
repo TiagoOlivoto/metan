@@ -27,7 +27,7 @@ print.superiority <- function(x, export = FALSE, file.name = NULL, digits = 3, .
     file.name <- ifelse(is.null(file.name) == TRUE, "superiority summary", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   for (i in 1:length(x)) {
     var <- x[[i]]
@@ -42,5 +42,4 @@ print.superiority <- function(x, export = FALSE, file.name = NULL, digits = 3, .
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

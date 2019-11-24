@@ -28,7 +28,7 @@ print.ecovalence <- function(x, export = FALSE, file.name = NULL, digits = 3, ..
   if (!class(x) == "ecovalence") {
     stop("The object must be of class 'ecovalence'")
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "ecovalence print", file.name)
@@ -46,5 +46,4 @@ print.ecovalence <- function(x, export = FALSE, file.name = NULL, digits = 3, ..
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }

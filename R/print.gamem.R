@@ -33,8 +33,7 @@ print.gamem <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
     file.name <- ifelse(is.null(file.name) == TRUE, "gamem print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  backup_options <- options()
-  on.exit(options(backup_options))
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   for (i in 1:length(x)) {
     var <- x[[i]]

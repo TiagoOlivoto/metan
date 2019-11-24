@@ -32,7 +32,7 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
     file.name <- ifelse(is.null(file.name) == TRUE, "waas print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  backup_options <- options()
+  on.exit(options(options()))
   options(pillar.sigfig = digits, ...)
   for (i in 1:length(x)) {
     var <- x[[i]]
@@ -58,5 +58,4 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   if (export == TRUE) {
     sink()
   }
-  options(backup_options)
 }
