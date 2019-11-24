@@ -11,7 +11,7 @@ I'm very pleased to announce the release of `metan` 1.1.0, This is a minor relea
 * `arrange_ggplot()` now support objects of class `ggmatrix`.
 * Change the default plot theme to `theme_metan()`
 * Update function's documentation;
-* Update vignettes;
+* Update vignettes.
 
 # metan 1.0.2
 * New function `arrange_ggplot()` for arranging ggplot2 graphics;
