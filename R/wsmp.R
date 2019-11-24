@@ -45,6 +45,7 @@
 #' @importFrom progress progress_bar
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' model <- waas(data_ge2,
 #'              env = ENV,
@@ -52,7 +53,7 @@
 #'              rep = REP,
 #'              resp = PH)
 #' scenarios <- wsmp(model)
-#'
+#'}
 wsmp <- function(model, mresp = 100, increment = 5, saveWAASY = 50,
                  prob = 0.05, progbar = TRUE) {
   if(!class(model) %in% c("waas", "waasb")){

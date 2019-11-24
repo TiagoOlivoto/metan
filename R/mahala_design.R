@@ -24,7 +24,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #' maha_group = mahala_design(data_ge,
 #'                            gen = GEN,
@@ -42,7 +42,7 @@
 #'                            rep = REP,
 #'                            resp = c(GY, HM),
 #'                            return = 'covmat')
-#'
+#'}
 mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
                           return = "distance") {
   if (!design %in% c("RCBD", "CRD")) {

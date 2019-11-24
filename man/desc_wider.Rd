@@ -22,6 +22,7 @@ when the descriptive statistics were computed for each level of a factor using
 the function \code{\link{split_factors}}.
 }
 \examples{
+\donttest{
 library(metan)
 
 df <-
@@ -33,7 +34,7 @@ df <-
 
 print(df, n = 15)
 desc_wider(df, PH)
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

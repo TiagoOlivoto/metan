@@ -67,7 +67,7 @@ yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, ssiZa,
 and ssiWAAS, respectively.
 }
 \examples{
-
+\donttest{
 library(metan)
 model <- waas(data_ge,
               env = ENV,
@@ -82,7 +82,7 @@ model_indexes <- AMMI_indexes(model)
 res_ind <- data_ge \%>\%
            waas(ENV, GEN, REP, c(GY, HM)) \%>\%
            AMMI_indexes()
-
+}
 
 }
 \references{

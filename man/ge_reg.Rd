@@ -34,13 +34,16 @@ environment index}
 Regression-based stability analysis using the Eberhart and Russell (1966) model.
 }
 \examples{
+\donttest{
 library(metan)
-reg = ge_reg(data_ge2,
-            env = ENV,
-            gen = GEN,
-            rep = REP,
-            resp = PH)
+reg <- ge_reg(data_ge2,
+             env = ENV,
+             gen = GEN,
+             rep = REP,
+             resp = PH)
+plot(reg)
 
+}
 }
 \references{
 Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for comparing Varieties.

@@ -33,7 +33,7 @@ console.}
 Find possible outliers in the dataset.
 }
 \examples{
-
+\donttest{
 library(metan)
 
 find_outliers(data_ge2, var = PH, plots = TRUE)
@@ -41,7 +41,7 @@ find_outliers(data_ge2, var = PH, plots = TRUE)
 data_ge2 \%>\%
 split_factors(ENV) \%>\%
 find_outliers(var = PH)
-
+}
 
 }
 \author{

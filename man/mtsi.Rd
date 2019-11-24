@@ -53,7 +53,7 @@ factor are.
 Computes the multi-trait stability index proposed by Olivoto et al. (2019)
 }
 \examples{
-
+\donttest{
 library(metan)
 
 # Based on stability only, for both GY and HM, higher is better
@@ -71,7 +71,7 @@ mtsi_index = mtsi(mtsi_model)
 mtsi_index2 = data_ge \%>\%
               waasb(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) \%>\%
               mtsi(index = 'waasby')
-
+}
 }
 \references{
 Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J. (in press).

@@ -57,7 +57,7 @@
 #'   melhoramento genetico. Embrapa Florestas, Colombo
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' res_ind <- waasb(data_ge,
 #'                  env = ENV,
@@ -70,7 +70,7 @@
 #' res_ind <- data_ge %>%
 #'            waasb(ENV, GEN, REP, c(GY, HM)) %>%
 #'            Resende_indexes()
-#'
+#'}
 #'
 Resende_indexes <- function(.data) {
     if (!is(.data, "waasb")) {

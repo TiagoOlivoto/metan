@@ -32,6 +32,7 @@ function.
 }
 \examples{
 library(ggplot2)
+library(metan)
 p1 <- ggplot(mtcars, aes(wt, mpg)) +
       geom_point()
 

@@ -20,7 +20,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #'
 #' find_outliers(data_ge2, var = PH, plots = TRUE)
@@ -28,7 +28,7 @@
 #' data_ge2 %>%
 #' split_factors(ENV) %>%
 #' find_outliers(var = PH)
-#'
+#'}
 #'
 find_outliers <- function(.data =  NULL,
                           var = NULL,

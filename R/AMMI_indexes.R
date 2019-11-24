@@ -79,7 +79,7 @@
 #' Agron. J.
 #' \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #' model <- waas(data_ge,
 #'               env = ENV,
@@ -94,7 +94,7 @@
 #' res_ind <- data_ge %>%
 #'            waas(ENV, GEN, REP, c(GY, HM)) %>%
 #'            AMMI_indexes()
-#'
+#'}
 #'
 AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
     if(!missing(order.y)){

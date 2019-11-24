@@ -69,8 +69,9 @@ trial dataset containing at least the columns for genotypes, environments and on
 response variable or a two-way table.
 }
 \examples{
+\donttest{
 library(metan)
-mod = gge(data_ge, ENV, GEN, GY)
+mod <- gge(data_ge, ENV, GEN, GY)
 plot(mod)
 
 # Using the \%>\% operator and a two-way table as input
@@ -79,7 +80,7 @@ data_ge2 \%>\%
   make_mat(GEN, ENV, NKE) \%>\%
   gge(table = TRUE) \%>\%
   plot()
-
+}
 }
 \references{
 Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,

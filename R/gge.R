@@ -69,8 +69,9 @@
 #'
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
-#' mod = gge(data_ge, ENV, GEN, GY)
+#' mod <- gge(data_ge, ENV, GEN, GY)
 #' plot(mod)
 #'
 #' # Using the %>% operator and a two-way table as input
@@ -79,7 +80,7 @@
 #'   make_mat(GEN, ENV, NKE) %>%
 #'   gge(table = TRUE) %>%
 #'   plot()
-#'
+#'}
 gge <- function(.data, env = NULL, gen = NULL, resp = NULL, centering = "environment",
                 scaling = "none", svp = "environment", table = FALSE) {
 

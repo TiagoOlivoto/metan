@@ -56,6 +56,7 @@ next iteration, the weights becomes 95/5 (since increment = 5). In the third sce
 ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
 }
 \examples{
+\donttest{
 library(metan)
 model <- waas(data_ge2,
              env = ENV,
@@ -63,7 +64,7 @@ model <- waas(data_ge2,
              rep = REP,
              resp = PH)
 scenarios <- wsmp(model)
-
+}
 }
 \references{
 Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,

@@ -12,6 +12,7 @@
 #'@author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@export
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
 #'df <-
@@ -23,7 +24,7 @@
 #'
 #'print(df, n = 15)
 #'desc_wider(df, PH)
-#'
+#'}
 desc_wider <- function(.data, var) {
   factors = .data %>% select_if(funs(!is.numeric(.)))
   numeric = .data %>% select({{var}})

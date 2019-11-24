@@ -35,11 +35,11 @@
 #' @examples
 #'
 #' library(metan)
-#' Ann = Annicchiarico(data_ge2,
-#'                    env = ENV,
-#'                    gen = GEN,
-#'                    rep = REP,
-#'                    resp = PH)
+#' Ann <- Annicchiarico(data_ge2,
+#'                      env = ENV,
+#'                      gen = GEN,
+#'                      rep = REP,
+#'                      resp = PH)
 #' print(Ann)
 #'
 #'

@@ -16,6 +16,7 @@
 #'
 #' @examples
 #' library(ggplot2)
+#' library(metan)
 #' p1 <- ggplot(mtcars, aes(wt, mpg)) +
 #'       geom_point()
 #'
@@ -34,7 +35,7 @@ arrange_ggplot <- function(...,
                            hjust = -0.5,
                            vjust = 1.5) {
 if(any(sapply(list(...), function (x) class(x)== "ggmatrix") == TRUE)){
-  plotlist <-  lapply(list(...), function (x) ggmatrix_gtable(x))
+  plotlist <-  lapply(list(...), function(x) ggmatrix_gtable(x))
   plot_grid(plotlist = plotlist,
             nrow = nrow,
             ncol = ncol,

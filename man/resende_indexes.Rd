@@ -36,7 +36,7 @@ The HMRPGV index is computed as \deqn{HMRPGV_i = \frac{1}{E}\sum\limits_{j =
 1}^E {\frac{1}{{G{v_{ij}}/{\mu _j}}}}}
 }
 \examples{
-
+\donttest{
 library(metan)
 res_ind <- waasb(data_ge,
                  env = ENV,
@@ -49,7 +49,7 @@ model_indexes <- Resende_indexes(res_ind)
 res_ind <- data_ge \%>\%
            waasb(ENV, GEN, REP, c(GY, HM)) \%>\%
            Resende_indexes()
-
+}
 
 }
 \references{

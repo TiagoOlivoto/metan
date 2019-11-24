@@ -72,7 +72,7 @@
 #' @seealso \code{\link{get_model_data}} \code{\link{waasb}}
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #'
 #' # fitting the model considering an RCBD
@@ -110,6 +110,7 @@
 #'                resp = YIELD)
 #' # Use the function  get_model_data() to easely extract the model values.
 #' get_model_data(alpha, "genpar")
+#'}
 #'
 gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TRUE) {
   d <- match.call()

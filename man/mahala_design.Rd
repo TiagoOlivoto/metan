@@ -38,7 +38,7 @@ Compute the Mahalanobis distance using data from an experiment conducted in a
 randomized complete block design or completely randomized design.
 }
 \examples{
-
+\donttest{
 library(metan)
 maha_group = mahala_design(data_ge,
                            gen = GEN,
@@ -56,7 +56,7 @@ cov_mat = mahala_design(data_ge,
                            rep = REP,
                            resp = c(GY, HM),
                            return = 'covmat')
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

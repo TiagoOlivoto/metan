@@ -76,7 +76,7 @@ the \emph{j}th replicate, and \eqn{e_{ijk}} is the plot error effect
 corresponding to \eqn{y_{ijk}}.
 }
 \examples{
-
+\donttest{
 library(metan)
 
 # fitting the model considering an RCBD
@@ -114,6 +114,7 @@ alpha <- gamem(data_alpha,
                resp = YIELD)
 # Use the function  get_model_data() to easely extract the model values.
 get_model_data(alpha, "genpar")
+}
 
 }
 \references{
