@@ -22,7 +22,7 @@ Please fix and resubmit.
 
 
 
-* Done. I have reviewed the code and used `\donttest{}` to omitt lengthy tests and used precomputed results in the vignettes. The R CMD check results was now 3m 44.8s and the check time <https://win-builder.r-project.org/f3KqHP7fZDH8/00check.log> 541 seconds (~9 min)
+* Done. I have reviewed the code and used `\donttest{}` to omitt lengthy tests and used precomputed results in the vignettes. The R CMD check results was now 3m 44.8s and the check time <https://win-builder.r-project.org/2744135XttrV> 587 seconds (~9.8 min)
 
 * I've added `on.exit()` to ensure that the settings are reset when the function is exited.
 
