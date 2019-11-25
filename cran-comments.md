@@ -36,6 +36,7 @@ Please fix and resubmit.
    - Ubuntu Linux 16.04 LTS, R-release, GCC
    - Fedora Linux, R-devel, clang, gfortran
 - win-builder (devel and release)
+   - One note (Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>')
 
 # R CMD check results
 0 errors | 0 warnings | 0 notes
