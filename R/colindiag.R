@@ -88,9 +88,6 @@ colindiag <- function(.data, ..., n = NULL, verbose = TRUE) {
   if (is.matrix(.data) && is.null(n)) {
     stop("You have a matrix but the sample size used to compute the correlations (n) was not declared.")
   }
-  if (class(.data) == "covcor_design" && is.null(n)) {
-    stop("You have a list of matrices but the sample size used to compute the correlations (n) was not declared.")
-  }
   if (is.data.frame(.data) && !is.null(n)) {
     stop("You cannot informe the sample size because a data frame was used as input.")
   }
