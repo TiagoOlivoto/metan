@@ -60,7 +60,7 @@
 #'
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' # Using the correlation matrix
 #' library(metan)
 #'
@@ -79,7 +79,7 @@
 #' col_diag_gen <- data_ge2 %>%
 #'                 split_factors(GEN) %>%
 #'                 colindiag(EH, PH, CD, CL)
-#'
+#'}
 colindiag <- function(.data, ..., n = NULL, verbose = TRUE) {
   if (!any(class(.data) %in% c("matrix", "data.frame", "split_factors",
                            "covcor_design", "tbl_df"))) {

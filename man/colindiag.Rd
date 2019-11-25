@@ -48,7 +48,7 @@ Perform a (multi)collinearity diagnostic of a correlation matrix of predictor
 variables using several indicators, as shown by Olivoto et al. (2017).
 }
 \examples{
-
+\donttest{
 # Using the correlation matrix
 library(metan)
 
@@ -67,7 +67,7 @@ col_diag_gen <- data_ge2 \%>\%
 col_diag_gen <- data_ge2 \%>\%
                 split_factors(GEN) \%>\%
                 colindiag(EH, PH, CD, CL)
-
+}
 }
 \references{
 Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,
