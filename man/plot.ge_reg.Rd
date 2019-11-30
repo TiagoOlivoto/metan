@@ -4,16 +4,21 @@
 \alias{plot.ge_reg}
 \title{Plot an object of class ge_reg}
 \usage{
-\method{plot}{ge_reg}(x, var = 1, plot_theme = theme_metan(),
-  x.lim = NULL, x.breaks = waiver(), x.lab = NULL, y.lim = NULL,
-  y.breaks = waiver(), y.lab = NULL, leg.position = "right",
-  size.tex.lab = 12, ...)
+\method{plot}{ge_reg}(x, var = 1, type = 1,
+  plot_theme = theme_metan(), x.lim = NULL, x.breaks = waiver(),
+  x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
+  leg.position = "right", size.tex.lab = 12, ...)
 }
 \arguments{
 \item{x}{An object of class \code{ge_factanal}}
 
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
+
+\item{type}{The type of plot to show. \code{type = 1} produces a plot with
+the environmental index in the x axis and the genotype mean yield in the y
+axis. \code{type = 2} produces a plot with the response variable in the x
+axis and the slope of the regression in the y axis.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
