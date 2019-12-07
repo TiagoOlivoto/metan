@@ -301,12 +301,12 @@ plot(WAASratio, type = 2)
 
 ## Getting model data
 
-The function `get_model_data()` may be used to easily get the data from a model fitted with the function `waas()`, especially when more than one variables are used. See the example below.
+The function `get_model_data()` may be used to easily get the data from a model fitted with the function `waas()`, especially when more than one variables are used. Select helpers can be used in the argument `resp`. See the example below.
 
 ```{r}
 waas(data_ge2, ENV, GEN, REP,
-     resp = c(PH, ED, TKW, NKR)) %>%
- get_model_data(what = "WAASB") %>%
+     resp = contains("E")) %>%
+ get_model_data(what = "WAASB") %>% 
  print_table()
 ```
 

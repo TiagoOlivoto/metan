@@ -19,8 +19,6 @@ load("plots_corr.RData")
 ```
 
 
-
-
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 library(metan)
 library(kableExtra) # Used to make the tables
@@ -54,7 +52,7 @@ data_ge2 %>%
 
 
 # Descriptive statistics
-The function `desc_stat()` may be used to compute measures of central tendency, position, and dispersion. By default, seven statistics (coefficient of variation, maximum, mean, median, minimum,  standard error, and sample variance) are computed. To compute all the statistics, use the argument `stats = "all"`, or use a comma-separated vector with the statistic names, e.g., `stats = c("mean, CV")`. Use `hist = TRUE` to create a histogram for each variable.
+The function `desc_stat()` may be used to compute measures of central tendency, position, and dispersion. By default, seven statistics (coefficient of variation, maximum, mean, median, minimum,  standard error, and sample variance) are computed. To compute all the statistics, use the argument `stats = "all"`, or use a comma-separated vector with the statistic names, e.g., `stats = c("mean, CV")`. Use `hist = TRUE` to create a histogram for each variable. Note that select helpers can be used in the argument `...`.
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
 data_ge2 %>%
@@ -78,7 +76,7 @@ To compute the statistics for each level of a factor, use the function `split_fa
 stats <- 
   data_ge2 %>%
   split_factors(GEN) %>%
-  desc_stat(EP, EL, CL, CD, CW, NR,
+  desc_stat(contains("C"),
             stats = c("mean, SE.mean, CV, max, min, median"),
             verbose = F)
 print(stats)

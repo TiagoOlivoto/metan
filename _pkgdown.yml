@@ -144,6 +144,7 @@ reference:
       - print.superiority
       - Shukla
       - superiority
+      - Schmildt
       - Thennarasu
   - title: "Biometry"
     desc: "Useful functions for biometric models"
@@ -198,6 +199,7 @@ reference:
       - rbind_fill
       - reorder_cormat
       - resca
+      - sem
       - split_factors
       - solve_svd
       - theme_metan
