@@ -1,3 +1,11 @@
+* Reexport select_helpers `starts_with()`, `ends_with()`, `contains()`, `contains()`, `num_range()`, `one_of()`, `everything()`, and `last_col()` from tidyselect package.
+* When possible, argument `resp` (response variable(s) now support select helpers.
+* New helper function `sem()` for computing standard error of mean.
+* New function `Schmildt()` for stability analysis.
+* Plot regression slope and mean performance in function `ge_reg()`.
+* Update `get_model_data()` to support objects of class `Schmildt`and `Annicchiarico`.
+
+
 # metan 1.1.1
 
 * Now `on.exit()` is used in S3 generic functions `print()` to ensure that the settings are reset when a function is excited.
