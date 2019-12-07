@@ -33,6 +33,37 @@ print_table = function(table){
 
 ```
 
+# Select helpers
+The package `metan` reexports the  [tidy select helpers](https://tidyselect.r-lib.org/reference/select_helpers.html) and implements three own select helpers based on operations with prefixes and suffixes: `difference_var()`, `intersect_var()`, and `union_var()`.
+
+* Variables that starts with a prefix **and** ends with a suffix.
+
+Here, we will select the variables from `data_ge2` that starts with "C" and ends with "D".
+
+```{r}
+data_ge2 %>% 
+  select(intersect_var("C", "D"))
+```
+
+
+* Variables that starts with a prefix **OR** ends with a suffix.
+
+The following code select variables that starts with "C" or ends with "D".
+
+```{r}
+data_ge2 %>% 
+  select(union_var("C", "D"))
+```
+
+
+* Variables that starts with a prefix **AND NOT** ends with a suffix.
+
+The following code select variables that starts with "C" and not ends with "D".
+
+```{r}
+data_ge2 %>% 
+  select(difference_var("C", "D"))
+```
 
 
 # Bind cross-validation objects

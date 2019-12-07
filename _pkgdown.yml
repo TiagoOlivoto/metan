@@ -142,6 +142,7 @@ reference:
       - print.ge_stats
       - print.Shukla
       - print.superiority
+      - print.Schmildt
       - Shukla
       - superiority
       - Schmildt
@@ -186,10 +187,12 @@ reference:
       - as.split_factors
       - bind_cv
       - comb_vars
+      - difference_var
       - get_model_data
       - gm_mean
       - hm_mean
       - inspect
+      - intersect_var
       - is.split_factors
       - make_long
       - make_lower_tri
@@ -205,6 +208,7 @@ reference:
       - theme_metan
       - theme_metan_minimal
       - to_factor
+      - union_var
   - title: "Misc"
     desc: "Miscellaneous small functions"
     contents:
