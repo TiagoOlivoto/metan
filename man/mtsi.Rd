@@ -24,7 +24,7 @@ factor analysis.}
 shown in the console.}
 }
 \value{
-An object of class \code{ge_factanal} with the following items:
+An object of class \code{mtsi} with the following items:
 \itemize{
 \item \strong{data} The data used to compute the factor analysis.
 \item \strong{cormat} The correlation matrix among the environments.
@@ -57,20 +57,23 @@ Computes the multi-trait stability index proposed by Olivoto et al. (2019)
 library(metan)
 
 # Based on stability only, for both GY and HM, higher is better
-mtsi_model = waasb(data_ge,
-                   env = ENV,
-                   gen = GEN,
-                   rep = REP,
-                   resp = c(GY, HM))
-mtsi_index = mtsi(mtsi_model)
+mtsi_model <- waasb(data_ge,
+                    env = ENV,
+                    gen = GEN,
+                    rep = REP,
+                    resp = c(GY, HM))
+mtsi_index <- mtsi(mtsi_model)
 
 
 # Based on mean performance and stability (using pipe operator \%>\%)
 # GY: higher is better
 # HM: lower is better
-mtsi_index2 = data_ge \%>\%
-              waasb(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) \%>\%
-              mtsi(index = 'waasby')
+
+mtsi_index2 <- data_ge \%>\%
+ waasb(ENV, GEN, REP,
+       resp = c(GY, HM),
+       mresp = c(100, 0)) \%>\%
+ mtsi(index = 'waasby')
 }
 }
 \references{

@@ -55,7 +55,8 @@ corr_coef <- function(data, ...){
     x <- select_if(data, is.numeric)
   }
   if(!missing(...)){
-    x <- select(data, ...)
+    x <- select(data, ...) %>%
+      select_if(is.numeric)
   }
   apply_r <- function(A, FUN, ...) {
     mapply(function(a, B)

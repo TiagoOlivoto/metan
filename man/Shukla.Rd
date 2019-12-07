@@ -45,7 +45,7 @@ performance and stability into a single selection criteria.
 \examples{
 
 library(metan)
-out = Shukla(data_ge2,
+out <- Shukla(data_ge2,
              env = ENV,
              gen = GEN,
              rep = REP,

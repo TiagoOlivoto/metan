@@ -110,10 +110,10 @@ library(metan)
 # Equal weights for response variable and stability
 
 model <- waasb(data_ge,
-               env = ENV,
-               gen = GEN,
-               rep = REP,
-               resp = GY)
+              env = ENV,
+              gen = GEN,
+              rep = REP,
+              resp = GY)
 
 # Higher weight for response variable
 

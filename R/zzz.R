@@ -183,5 +183,5 @@ if (getRversion() >= "2.15.1") {
       "val", "Statistic", "Cluster", "CCP", "U1", "U2", "V1", "V2", "Var", "LEVEL",
       "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)", "dat",
       "BLOCK", "rowid", "grank", "rMean", "rShukaVar", "value", "DF", "without", "RPGV_Y",
-      "HMRPGV_Y", "Pairs", "name", "v1", "v2"))
+      "HMRPGV_Y", "Pairs", "name", "v1", "v2", "slope"))
 }

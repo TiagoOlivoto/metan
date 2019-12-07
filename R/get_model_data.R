@@ -21,7 +21,7 @@
 #' Bellow are listed the options allowed in the argument \code{what} depending
 #' on the class of the object
 #'
-#'  \strong{Object is of class \code{AMMI_indexes}.}
+#'  \strong{Objects of class \code{AMMI_indexes}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"ASV"} AMMI stability value
 #' * \code{"SIPC"} Sums of the absolute value of the IPCA scores
@@ -30,13 +30,19 @@
 #' interaction
 #' * \code{"WAAS"} P-value for for each IPCA.
 #'
-#'  \strong{Object is of class \code{ecovalence}.}
+#'  \strong{Objects of class \code{Annicchiarico} and \code{Schmildt}.}
+#' * \code{"Mean_rp"} The relative performance of the mean.
+#' * \code{"Sem_rp"} The standard error of the relative mean performance (Schmildt).
+#' * \code{"Sd_rp"} The standard deviation of the relative performance (Annicchiarico).
+#' * \code{"Wi"} The genotypic confidence index.
+#' * \code{"rank"} The rank for genotypic confidence index.
+#'
+#'  \strong{Objects of class \code{ecovalence}.}
 #' * \code{"Ecoval"} Ecovalence value.
 #' * \code{"Ecov_perc"} Ecovalence in percentage value.
 #' * \code{"rank"} Rank for ecovalence
 #'
-#'
-#'  \strong{Object is of class \code{ge_reg}.}
+#'  \strong{Objects of class \code{ge_reg}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"slope"} The sloop of the regression
 #' * \code{"deviations"} The deviations from regression
@@ -44,27 +50,27 @@
 #' * \code{"R2"} The r-square of the regression
 #'
 #'
-#'  \strong{Object is of class \code{ge_effects}.}
+#'  \strong{Objects of class \code{ge_effects}.}
 #' * For objects of class \code{ge_effects} no argument \code{what} is required
 #'
 #'
-#'  \strong{Object is of class \code{Shukla}.}
+#'  \strong{Objects of class \code{Shukla}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"rMean"} Rank for the mean.
 #' * \code{"ShuklaVar"} Shukla's stablity variance.
 #' * \code{"rShukaVar"} Rank for Shukla's stablity variance.
 #' * \code{"ssiShukaVar"} Simultaneous selection index.
 #'
-#'  \strong{Object is of class \code{Fox}.}
+#'  \strong{Objects of class \code{Fox}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"TOP"} The proportion of locations at which the genotype occurred in
 #' the top third
 #'
-#'  \strong{Object is of class \code{gai}.}
+#'  \strong{Objects of class \code{gai}.}
 #' * \code{"GAI"} The geometric adaptability index.
 #' * \code{"GAI_R"} The rank for the GAI values.
 #'
-#'  \strong{Object is of class \code{superiority}.}
+#'  \strong{Objects of class \code{superiority}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"Pi_a"} The superiority measure for all environments.
 #' * \code{"R_a"} The rank for Pi_a.
@@ -73,7 +79,7 @@
 #' * \code{"Pi_u"} The superiority measure for unfavorable environments.
 #' * \code{"R_u"} The rank for Pi_u.
 #'
-#'  \strong{Object is of class \code{Huehn}.}
+#'  \strong{Objects of class \code{Huehn}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"S1"} Mean of the absolute rank differences of a genotype over the n environments.
 #' * \code{"S1_R"} The rank for S1.
@@ -84,7 +90,7 @@
 #' * \code{"S6"} Relative sum of squares of rank for each genotype.
 #' * \code{"S6_R"} The rank for S6.
 #'
-#'  \strong{Object is of class \code{Thennarasu}.}
+#'  \strong{Objects of class \code{Thennarasu}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"N1"} First statistic
 #' * \code{"N1_R"} The rank for S1.
@@ -96,7 +102,7 @@
 #' * \code{"N4_R"} The rank for S6.
 #'
 #'
-#'  \strong{Object is of class \code{performs_ammi}.}
+#'  \strong{Objects of class \code{performs_ammi}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"ipca_ss"} Sum of square for each IPCA.
 #' * \code{"ipca_ms"} Mean square for each IPCA.
@@ -106,7 +112,7 @@
 #' * \code{"ipca_accum"} Accumulated explained sum of square.
 #'
 #'
-#' \strong{Object is of class \code{waas} and \code{waasb}.}
+#' \strong{Objects of class \code{waas} and \code{waasb}.}
 #' * \code{"Y"} for raw means (Default).
 #' * \code{"PCn"} for the scores of the nth Interaction Principal Component Axis (IPCA).
 #'  where * \code{n} is the desired IPCA (e.g. \code{"PC3"}).
@@ -122,14 +128,14 @@
 #' * \code{"OrWAASBY"} The ranking regarding the superiority index.
 #'
 #'
-#'  \strong{Object is of class \code{waasb}
+#'  \strong{Objects of class \code{waasb}
 #'  or \code{gamem}.}
 #' * \code{"HMGV"} For harmonic mean of genotypic values.
 #' * \code{"RPGV or RPGV_Y"} For relative performance of genotypic values
 #' * \code{"HMRPGV"} For harmonic mean of relative performance of genotypic values
 #'
 #'
-#'  \strong{Object is of class \code{Res_ind}}
+#'  \strong{Objects of class \code{Res_ind}}
 #' * \code{"blupg"} For genotype's predicted mean.
 #' * \code{"blupge"} for genotype-vs-environment's predicted mean (only for
 #' objects of class \code{waasb}).
@@ -226,7 +232,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",
                        "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                        "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
-                       "ge_stats")) {
+                       "ge_stats", "Annicchiarico", "Schmildt")) {
     stop("Invalid class in object 'x'. See ?get_model_data for more information.")
   }
   if (substr(what, 1, 2) == "PC") {
@@ -257,10 +263,13 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   check14 <- c("S1","S1_R", "S2", "S2_R", "S3", "S3_R", "S6", "S6_R")
   check15 <- c("N1", "N1_R", "N2", "N2_R", "N3", "N3_R", "N4", "N4_R")
   check16 <- c("stats", "ranks")
+  check17 <- c("Mean_rp", "Sd_rp", "Wi", "rank")
+  check18 <- c("Mean_rp", "Sem_rp", "Wi", "rank")
 
 
   if (!what %in% c(check, check2, check5, check6, check7, check8, check9, check10,
-                   check11, check12, check13, check14, check15, check16)) {
+                   check11, check12, check13, check14, check15, check16, check17,
+                   check18)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (what %in% check3 && !class(x) %in% c("waasb", "gamem")) {
@@ -269,6 +278,36 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
+
+
+  if (class(x) == "Annicchiarico") {
+    if (!what %in% c("Y", check17)) {
+      stop("Invalid value in 'what' for object of class 'Annicchiarico'. Allowed are ", paste(check17, collapse = ", "), call. = FALSE)
+    }
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        x[["general"]][[what]]
+      })) %>%
+      as_tibble() %>%
+      mutate(gen = x[[1]][["general"]][["GEN"]]) %>%
+      select(gen, everything())
+  }
+
+  if (class(x) == "Schmildt") {
+    if (!what %in% c("Y", check18)) {
+      stop("Invalid value in 'what' for object of class 'Schmildt'. Allowed are ", paste(check18, collapse = ", "), call. = FALSE)
+    }
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        x[["general"]][[what]]
+      })) %>%
+      as_tibble() %>%
+      mutate(gen = x[[1]][["general"]][["GEN"]]) %>%
+      select(gen, everything())
+  }
+
 
   if (class(x) == "ge_stats") {
     if (!what  %in%  check16) {

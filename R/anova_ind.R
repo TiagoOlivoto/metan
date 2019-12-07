@@ -40,28 +40,23 @@
 #'
 #' # Using the pipe operator %>%
 #' # Two variables, one run.
-#' anova2 = data_ge %>% anova_ind(ENV, GEN, REP, c(GY, HM))
+#' anova2 <- data_ge %>% anova_ind(ENV, GEN, REP, GY)
 #'
 #'
 anova_ind <- function(.data, env, gen, rep, resp, verbose = TRUE) {
-  datain <- .data
+  factors  <- .data %>%
+    select(ENV = {{env}},
+           GEN = {{gen}},
+           REP = {{rep}}) %>%
+    mutate_all(as.factor)
+  vars <- .data %>%
+    select({{resp}}) %>%
+    select_if(is.numeric)
   listres <- list()
-  d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
-                              1, length(d$resp)))
-  for (var in 2:length(d$resp)) {
-    if (length(d$resp) > 1) {
-      Y <- eval(substitute(resp)[[var]], eval(datain))
-      varnam <- paste(d$resp[var])
-    } else {
-      Y <- eval(substitute(resp), eval(datain))
-      varnam <- paste(d$resp)
-    }
-    data <- datain %>%
-      select(ENV = {{env}},
-             GEN = {{gen}},
-             REP = {{rep}}) %>%
-      mutate(mean = Y)
+  nvar <- ncol(vars)
+  for (var in 1:nvar) {
+    data <- factors %>%
+      mutate(mean = vars[[var]])
     grouped <- data %>% split(dplyr::pull(., ENV))
     formula <- as.formula(paste0("mean ~ GEN + REP"))
     individual <- do.call(rbind, lapply(grouped, function(x) {
@@ -92,14 +87,14 @@ anova_ind <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     }))
     temp <- list(individual = as_tibble(rownames_to_column(individual, "ENV")),
                  MSRratio = max(individual$MSR)/min(individual$MSR))
-    if (length(d$resp) > 1) {
-      listres[[paste(d$resp[var])]] <- temp
+    if (nvar > 1) {
+      listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
-        cat("Evaluating variable", paste(d$resp[var]),
-            round((var - 1)/(length(d$resp) - 1) * 100, 1), "%", "\n")
+        cat("Evaluating variable", paste(names(vars[var])),
+            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
       }
     } else {
-      listres[[paste(d$resp)]] <- temp
+      listres[[paste(names(vars[var]))]] <- temp
     }
   }
   return(structure(listres, class = "anova_ind"))

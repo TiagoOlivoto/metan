@@ -43,7 +43,7 @@
 #' # List of matrices
 #' data <- subset(data_ge2, ENV == 'A1')
 #' matrices <- covcor_design(data, gen = GEN, rep = REP,
-#'                          resp = c(PH, EH, NKE, TKW))
+#'                           resp = c(PH, EH, NKE, TKW))
 #'
 #' # Genetic correlations
 #' gcor <- covcor_design(data, gen = GEN, rep = REP,
@@ -51,7 +51,7 @@
 #'                       type = 'gcor')
 #'
 #' # Residual (co)variance matrix for each environment
-#' rcov <- data_ge2 %>%
+#'rcov <- data_ge2 %>%
 #'         split_factors(ENV, keep_factors = TRUE) %>%
 #'         covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
 #'                       type = 'rcov')
@@ -70,27 +70,24 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
-    for (k in 1:length(.data)) {
+    for (k in 1:length(.data[[1]])) {
       datain <- .data[[1]][[k]]
-      nam <- names(.data[k])
+      nam <- names(.data[[1]][k])
       GEN <- factor(eval(substitute(gen), eval(datain)))
       REP <- factor(eval(substitute(rep), eval(datain)))
-      NREP <- length(unique(REP))
-      d <- match.call()
-      nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
-                                  1, length(d$resp)))
-      covdata <- data.frame(matrix(nrow = nrow(datain),
-                                   ncol = nvar))
+      NREP <- nlevels(REP)
+      vars <- datain %>%
+        select({{resp}}) %>%
+        select_if(is.numeric)
+      listres <- list()
+      nvar <- ncol(vars)
+      covdata <- data.frame(matrix(nrow = nrow(datain), ncol = nvar))
       vin <- 0
       mst <- NULL
       msr <- NULL
-      for (var in 2:length(d$resp)) {
+      for (var in 1:nvar) {
         vin <- vin + 1
-        if (length(d$resp) > 1) {
-          Y <- eval(substitute(resp)[[var]], eval(datain))
-        } else {
-          Y <- eval(substitute(resp), eval(datain))
-        }
+        Y <- vars[[var]]
         covdata[, vin] <- Y
         if (design == "RCBD") {
           model <- anova(aov(Y ~ GEN + REP))
@@ -101,15 +98,17 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
           mst[vin] <- model[1, 3]
           msr[vin] <- model[2, 3]
         }
-        colnames(covdata)[[vin]] <- paste(d$resp[var])
+        colnames(covdata)[[vin]] <- paste(names(vars[var]))
       }
-      ms <- data.frame(mst = mst, msr = msr) %>% dplyr::mutate(tr = mst -
-                                                                 msr)
+      ms <- data.frame(mst = mst, msr = msr) %>%
+        mutate(tr = mst - msr)
       vres <- diag(ms[, 2])
       vfen <- diag(ms[, 1]/3)
       vgen <- (diag(ms[, 1]) - diag(ms[, 2]))/3
-      means <- data.frame(cbind(GEN, covdata)) %>% dplyr::group_by(GEN) %>%
-        dplyr::summarise_all(mean) %>% dplyr::ungroup() %>%
+      means <- data.frame(cbind(GEN, covdata)) %>%
+        group_by(GEN) %>%
+        summarise_all(mean) %>%
+        ungroup() %>%
         column_to_rownames("GEN")
       covdata2 <- comb_vars(data.frame(covdata), order = "first")
       index <- data.frame(t(combn(nvar, 2)))
@@ -204,21 +203,19 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
     datain <- .data
     GEN <- factor(eval(substitute(gen), eval(datain)))
     REP <- factor(eval(substitute(rep), eval(datain)))
-    NREP <- length(unique(REP))
-    d <- match.call()
-    nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
-                                1, length(d$resp)))
-    covdata <- data.frame(matrix(nrow = nrow(.data), ncol = nvar))
+    NREP <- nlevels(REP)
+    vars <- datain %>%
+      select({{resp}}) %>%
+      select_if(is.numeric)
+    listres <- list()
+    nvar <- ncol(vars)
+    covdata <- data.frame(matrix(nrow = nrow(datain), ncol = nvar))
     vin <- 0
     mst <- NULL
     msr <- NULL
-    for (var in 2:length(d$resp)) {
+    for (var in 1:nvar) {
       vin <- vin + 1
-      if (length(d$resp) > 1) {
-        Y <- eval(substitute(resp)[[var]], eval(datain))
-      } else {
-        Y <- eval(substitute(resp), eval(datain))
-      }
+      Y <- vars[[var]]
       covdata[, vin] <- Y
       if (design == "RCBD") {
         model <- anova(aov(Y ~ GEN + REP))
@@ -229,15 +226,18 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
         mst[vin] <- model[1, 3]
         msr[vin] <- model[2, 3]
       }
-      colnames(covdata)[[vin]] <- paste(d$resp[var])
+      colnames(covdata)[[vin]] <- paste(names(vars[var]))
     }
-    ms <- data.frame(mst = mst, msr = msr) %>% dplyr::mutate(tr = mst -
-                                                               msr)
+
+    ms <- data.frame(mst = mst, msr = msr) %>%
+      dplyr::mutate(tr = mst - msr)
     vres <- diag(ms[, 2])
     vfen <- diag(ms[, 1]/3)
     vgen <- (diag(ms[, 1]) - diag(ms[, 2]))/3
-    means <- data.frame(cbind(GEN, covdata)) %>% dplyr::group_by(GEN) %>%
-      dplyr::summarise_all(mean) %>% dplyr::ungroup() %>%
+    means <- data.frame(cbind(GEN, covdata)) %>%
+      group_by(GEN) %>%
+      summarise_all(mean) %>%
+      ungroup() %>%
       column_to_rownames("GEN")
     covdata2 <- comb_vars(data.frame(covdata), order = "first")
     index <- data.frame(t(combn(nvar, 2)))

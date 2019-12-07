@@ -116,30 +116,26 @@ ge_stats = function(.data,
                     resp,
                     verbose = TRUE,
                     prob = 0.05){
-  datain <- .data
-  GEN <- factor(eval(substitute(gen), eval(datain)))
-  ENV <- factor(eval(substitute(env), eval(datain)))
-  REP <- factor(eval(substitute(rep), eval(datain)))
+  factors  <- .data %>%
+    select(ENV = {{env}},
+           GEN = {{gen}},
+           REP = {{rep}}) %>%
+    mutate_all(as.factor)
+  vars <- .data %>%
+    select({{resp}}) %>%
+    select_if(is.numeric)
   listres <- list()
-  d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-  for (var in 2:length(d$resp)) {
-    if (length(d$resp) > 1) {
-      Y <- eval(substitute(resp)[[var]], eval(datain))
-      varnam = paste(d$resp[var])
-    } else {
-      Y <- eval(substitute(resp), eval(datain))
-      varnam = paste(d$resp)
-    }
-    data <- data.frame(ENV, GEN, REP, Y)
-    names(data) = c("ENV", "GEN", "REP", "mean")
+  nvar <- ncol(vars)
+  for (var in 1:nvar) {
+    data <- factors %>%
+      mutate(mean = vars[[var]])
 individual <- data %>% anova_ind(ENV, GEN, REP, mean)
 ge_mean = make_mat(data, GEN, ENV, mean)
 ge_effect = ge_effects(data, ENV, GEN, REP, mean)[[1]]
 gge_effect = ge_effects(data, ENV, GEN, REP, mean, type = "gge")[[1]]
 Mean = apply(ge_mean, 1, mean)
 Variance = rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
-GENSS = (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/length(unique(ENV)))*length(unique(REP))
+GENSS = (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/nlevels(data$ENV))*nlevels(data$REP)
 mod = anova(lm(mean ~ REP/ENV + ENV * GEN, data = data))
 GENMS = GENSS / mod[2, 1]
 Fcal =  GENMS / mod[6, 3]
@@ -157,7 +153,7 @@ ammm_mod <- performs_ammi(data, ENV, GEN, REP, mean, verbose = FALSE)
 ammm_mod <- AMMI_indexes(ammm_mod)[[1]]
 blup_mod <- waasb(data, ENV, GEN, REP, mean, verbose = FALSE)
 blup_mod <- Resende_indexes(blup_mod)[[1]]
-temp <- tibble(GEN = an_mod[[1]]$general$Genotype,
+temp <- tibble(GEN = an_mod[[1]]$general$GEN,
                Y = Mean,
                Y_R = rank(-Mean),
                Var = Variance,
@@ -217,13 +213,14 @@ temp <- tibble(GEN = an_mod[[1]]$general$Genotype,
                N3_R = then_mod$N3_R,
                N4 = then_mod$N4,
                N4_R = then_mod$N4_R)
-if (length(d$resp) > 1) {
-  listres[[paste(d$resp[var])]] <- temp
+if (nvar > 1) {
+  listres[[paste(names(vars[var]))]] <- temp
   if (verbose == TRUE) {
-    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) - 1) * 100, 1), "%", "\n")
+    cat("Evaluating variable", paste(names(vars[var])),
+        round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
   }
 } else {
-  listres[[paste(d$resp)]] <- temp
+  listres[[paste(names(vars[var]))]] <- temp
 }
   }
   return(structure(listres, class = "ge_stats"))

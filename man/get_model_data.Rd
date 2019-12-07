@@ -33,7 +33,7 @@ statistics
 Bellow are listed the options allowed in the argument \code{what} depending
 on the class of the object
 
-\strong{Object is of class \code{AMMI_indexes}.}
+\strong{Objects of class \code{AMMI_indexes}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"ASV"} AMMI stability value
@@ -44,14 +44,23 @@ interaction
 \item \code{"WAAS"} P-value for for each IPCA.
 }
 
-\strong{Object is of class \code{ecovalence}.}
+\strong{Objects of class \code{Annicchiarico} and \code{Schmildt}.}
+\itemize{
+\item \code{"Mean_rp"} The relative performance of the mean.
+\item \code{"Sem_rp"} The standard error of the relative mean performance (Schmildt).
+\item \code{"Sd_rp"} The standard deviation of the relative performance (Annicchiarico).
+\item \code{"Wi"} The genotypic confidence index.
+\item \code{"rank"} The rank for genotypic confidence index.
+}
+
+\strong{Objects of class \code{ecovalence}.}
 \itemize{
 \item \code{"Ecoval"} Ecovalence value.
 \item \code{"Ecov_perc"} Ecovalence in percentage value.
 \item \code{"rank"} Rank for ecovalence
 }
 
-\strong{Object is of class \code{ge_reg}.}
+\strong{Objects of class \code{ge_reg}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"slope"} The sloop of the regression
@@ -60,12 +69,12 @@ interaction
 \item \code{"R2"} The r-square of the regression
 }
 
-\strong{Object is of class \code{ge_effects}.}
+\strong{Objects of class \code{ge_effects}.}
 \itemize{
 \item For objects of class \code{ge_effects} no argument \code{what} is required
 }
 
-\strong{Object is of class \code{Shukla}.}
+\strong{Objects of class \code{Shukla}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"rMean"} Rank for the mean.
@@ -74,20 +83,20 @@ interaction
 \item \code{"ssiShukaVar"} Simultaneous selection index.
 }
 
-\strong{Object is of class \code{Fox}.}
+\strong{Objects of class \code{Fox}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"TOP"} The proportion of locations at which the genotype occurred in
 the top third
 }
 
-\strong{Object is of class \code{gai}.}
+\strong{Objects of class \code{gai}.}
 \itemize{
 \item \code{"GAI"} The geometric adaptability index.
 \item \code{"GAI_R"} The rank for the GAI values.
 }
 
-\strong{Object is of class \code{superiority}.}
+\strong{Objects of class \code{superiority}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"Pi_a"} The superiority measure for all environments.
@@ -98,7 +107,7 @@ the top third
 \item \code{"R_u"} The rank for Pi_u.
 }
 
-\strong{Object is of class \code{Huehn}.}
+\strong{Objects of class \code{Huehn}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"S1"} Mean of the absolute rank differences of a genotype over the n environments.
@@ -111,7 +120,7 @@ the top third
 \item \code{"S6_R"} The rank for S6.
 }
 
-\strong{Object is of class \code{Thennarasu}.}
+\strong{Objects of class \code{Thennarasu}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"N1"} First statistic
@@ -124,7 +133,7 @@ the top third
 \item \code{"N4_R"} The rank for S6.
 }
 
-\strong{Object is of class \code{performs_ammi}.}
+\strong{Objects of class \code{performs_ammi}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"ipca_ss"} Sum of square for each IPCA.
@@ -135,7 +144,7 @@ the top third
 \item \code{"ipca_accum"} Accumulated explained sum of square.
 }
 
-\strong{Object is of class \code{waas} and \code{waasb}.}
+\strong{Objects of class \code{waas} and \code{waasb}.}
 \itemize{
 \item \code{"Y"} for raw means (Default).
 \item \code{"PCn"} for the scores of the nth Interaction Principal Component Axis (IPCA).
@@ -152,7 +161,7 @@ where * \code{n} is the desired IPCA (e.g. \code{"PC3"}).
 \item \code{"OrWAASBY"} The ranking regarding the superiority index.
 }
 
-\strong{Object is of class \code{waasb}
+\strong{Objects of class \code{waasb}
 or \code{gamem}.}
 \itemize{
 \item \code{"HMGV"} For harmonic mean of genotypic values.
@@ -160,7 +169,7 @@ or \code{gamem}.}
 \item \code{"HMRPGV"} For harmonic mean of relative performance of genotypic values
 }
 
-\strong{Object is of class \code{Res_ind}}
+\strong{Objects of class \code{Res_ind}}
 \itemize{
 \item \code{"blupg"} For genotype's predicted mean.
 \item \code{"blupge"} for genotype-vs-environment's predicted mean (only for

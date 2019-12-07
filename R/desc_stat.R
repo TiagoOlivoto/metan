@@ -168,7 +168,8 @@ desc_stat <- function(.data = NULL,
       if (missing(...)){
         data <- select_if(data, is.numeric)
       } else{
-        data <- dplyr::select(data, ...)
+        data <- select(data, ...) %>%
+          select_if(is.numeric)
       }
       if(verbose == TRUE){
         cat("---------------------------------------------------------------------------\n")
@@ -273,7 +274,8 @@ desc_stat <- function(.data = NULL,
       if (!missing(.data) & missing(...)){
         data <- select_if(.data, is.numeric)
       } else{
-        data <- dplyr::select(.data, ...)
+        data <- select(.data, ...) %>%
+          select_if(is.numeric)
       }
     }
     if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){

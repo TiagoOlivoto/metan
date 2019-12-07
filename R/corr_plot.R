@@ -167,7 +167,8 @@ corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
     }
   }
   if (!missing(...)) {
-    data <- dplyr::select(.data, ...)
+    data <- select(.data, ...) %>%
+      select_if(is.numeric)
   }
   w <- c(21:25)
   if (is.null(fill.point) == TRUE && any(w == shape.point)) {

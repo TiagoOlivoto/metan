@@ -77,14 +77,14 @@
 #'
 #' library(metan)
 #'
-#' cc1 = can_corr(data_ge2,
-#'                FG = c(PH, EH, EP),
-#'                SG = c(EL, ED, CL, CD, CW, KW, NR))
+#' cc1=can_corr(data_ge2,
+#'              FG = c(PH, EH, EP),
+#'              SG = c(EL, ED, CL, CD, CW, KW, NR))
 #'
-#' cc2 = can_corr(FG = data_ge2[, 4:6],
-#'                SG = data_ge2[, 7:13],
-#'                verbose = FALSE,
-#'                collinearity = FALSE)
+#' cc2 <- can_corr(FG = data_ge2[, 4:6],
+#'                 SG = data_ge2[, 7:13],
+#'                 verbose = FALSE,
+#'                 collinearity = FALSE)
 #'
 #' # Canonical correlations for each environment
 #' cc3 = data_ge2 %>%
@@ -129,8 +129,8 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
         .data <- datain[[k]]
       }
       nam <- names(datain[k])
-      FGV <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(FG))))
-      SGV <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(SG))))
+      FGV <- as.data.frame(select(.data, {{FG}}) %>% select_if(is.numeric))
+      SGV <- as.data.frame(select(.data, {{SG}}) %>% select_if(is.numeric))
       if (nrow(FGV) != nrow(SGV)) {
         stop("The number of observations of 'FG', should be equal to 'SG'.")
       }
@@ -349,8 +349,8 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
         as.data.frame())
       nam_fact = .data %>% select({{means_by}}) %>% pull()
     }
-    FG <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(FG))))
-    SG <- as.data.frame(dplyr::select(.data, !!!dplyr::quos(!!dplyr::enquo(SG))))
+    FG <- as.data.frame(select(.data, {{FG}}) %>% select_if(is.numeric))
+    SG <- as.data.frame(select(.data, {{SG}}) %>% select_if(is.numeric))
   }
   if (nrow(FG) != nrow(SG)) {
     stop("The number of observations of 'FG', should be equal to 'SG'.")

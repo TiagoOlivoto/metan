@@ -105,11 +105,11 @@
 #' # Genotypes as random effects
 #' # Equal weights for response variable and stability
 #'
-#' model <- waasb(data_ge,
-#'                env = ENV,
-#'                gen = GEN,
-#'                rep = REP,
-#'                resp = GY)
+#'model <- waasb(data_ge,
+#'               env = ENV,
+#'               gen = GEN,
+#'               rep = REP,
+#'               resp = GY)
 #'
 #' # Higher weight for response variable
 #'
@@ -141,8 +141,15 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
     if (!random %in% c("env", "gen", "all")) {
         stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.")
     }
-    d <- match.call()
-    nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
+    factors  <- .data %>%
+        select(ENV = {{env}},
+               GEN = {{gen}},
+               REP = {{rep}}) %>%
+        mutate_all(as.factor)
+    vars <- .data %>%
+        select({{resp}}) %>%
+        select_if(is.numeric)
+    nvar <- ncol(vars)
     if (is.null(mresp)) {
         mresp <- replicate(nvar, 100)
         minresp <- 100 - mresp
@@ -169,27 +176,18 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
         PesoResp <- wresp
         PesoWAASB <- 100 - PesoResp
     }
-    datain <- .data
-    GEN <- factor(eval(substitute(gen), eval(datain)))
-    ENV <- factor(eval(substitute(env), eval(datain)))
-    REP <- factor(eval(substitute(rep), eval(datain)))
     listres <- list()
     vin <- 0
     if (random == "env") {
-        for (var in 2:length(d$resp)) {
-            if (length(d$resp) > 1) {
-                Y <- eval(substitute(resp)[[var]], eval(datain))
-                data <- data.frame(ENV, GEN, REP, Y)
-            } else {
-                Y <- eval(substitute(resp), eval(datain))
-                data <- data.frame(ENV, GEN, REP, Y)
-            }
-            Nenv <- length(unique(ENV))
-            Ngen <- length(unique(GEN))
+        for (var in 1:nvar) {
+            data <- factors %>%
+                mutate(Y = vars[[var]])
+            Nenv <- nlevels(data$ENV)
+            Ngen <- nlevels(data$GEN)
+            Nbloc <- nlevels(data$REP)
             minimo <- min(Nenv, Ngen) - 1
             vin <- vin + 1
-            Nbloc <- length(unique(REP))
-            ovmean <- mean(Y)
+            ovmean <- mean(data$Y)
             if (minimo < 2) {
                 stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
             }
@@ -325,31 +323,26 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                                    Details = as_tibble(Details),
                                    ESTIMATES = ESTIMATES,
                                    residuals = as_tibble(residuals)), class = "waasb")
-            if (length(d$resp) > 1) {
+            if (nvar > 1) {
+                listres[[paste(names(vars[var]))]] <- temp
                 if (verbose == TRUE) {
-                    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                                                                                        1) * 100, 1), "%", "\n")
+                    cat("Evaluating variable", paste(names(vars[var])),
+                        round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
                 }
-                listres[[paste(d$resp[var])]] <- temp
             } else {
-                listres[[paste(d$resp)]] <- temp
+                listres[[paste(names(vars[var]))]] <- temp
             }
         }
     } else if(random == "gen") {
-        for (var in 2:length(d$resp)) {
-            if (length(d$resp) > 1) {
-                Y <- eval(substitute(resp)[[var]], eval(datain))
-                data <- data.frame(ENV, GEN, REP, Y)
-            } else {
-                Y <- eval(substitute(resp), eval(datain))
-                data <- data.frame(ENV, GEN, REP, Y)
-            }
-            Nenv <- length(unique(ENV))
-            Ngen <- length(unique(GEN))
+        for (var in 1:nvar) {
+            data <- factors %>%
+                mutate(Y = vars[[var]])
+            Nenv <- nlevels(data$ENV)
+            Ngen <- nlevels(data$GEN)
+            Nbloc <- nlevels(data$REP)
             minimo <- min(Nenv, Ngen) - 1
             vin <- vin + 1
-            Nbloc <- length(unique(REP))
-            ovmean <- mean(Y)
+            ovmean <- mean(data$Y)
 
             if (minimo < 2) {
                 cat("\nWarning. The analysis is not possible.")
@@ -507,31 +500,26 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                                    ESTIMATES = as_tibble(ESTIMATES),
                                    residuals = as_tibble(residuals)), class = "waasb")
 
-            if (length(d$resp) > 1) {
+            if (nvar > 1) {
+                listres[[paste(names(vars[var]))]] <- temp
                 if (verbose == TRUE) {
-                    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                                                                                        1) * 100, 1), "%", "\n")
+                    cat("Evaluating variable", paste(names(vars[var])),
+                        round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
                 }
-                listres[[paste(d$resp[var])]] <- temp
             } else {
-                listres[[paste(d$resp)]] <- temp
+                listres[[paste(names(vars[var]))]] <- temp
             }
         }
     } else {
-        for (var in 2:length(d$resp)) {
-            if (length(d$resp) > 1) {
-                Y <- eval(substitute(resp)[[var]], eval(datain))
-                data <- data.frame(ENV, GEN, REP, Y)
-            } else {
-                Y <- eval(substitute(resp), eval(datain))
-                data <- data.frame(ENV, GEN, REP, Y)
-            }
-            Nenv <- length(unique(ENV))
-            Ngen <- length(unique(GEN))
+        for (var in 1:nvar) {
+            data <- factors %>%
+                mutate(Y = vars[[var]])
+            Nenv <- nlevels(data$ENV)
+            Ngen <- nlevels(data$GEN)
+            Nbloc <- nlevels(data$REP)
             minimo <- min(Nenv, Ngen) - 1
             vin <- vin + 1
-            Nbloc <- length(unique(REP))
-            ovmean <- mean(Y)
+            ovmean <- mean(data$Y)
 
             if (minimo < 2) {
                 cat("\nWarning. The analysis is not possible.")
@@ -700,15 +688,14 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                                    ESTIMATES = as_tibble(ESTIMATES),
                                    residuals = as_tibble(residuals)), class = "waasb")
 
-
-            if (length(d$resp) > 1) {
+            if (nvar > 1) {
+                listres[[paste(names(vars[var]))]] <- temp
                 if (verbose == TRUE) {
-                    cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                                                                                        1) * 100, 1), "%", "\n")
+                    cat("Evaluating variable", paste(names(vars[var])),
+                        round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
                 }
-                listres[[paste(d$resp[var])]] <- temp
             } else {
-                listres[[paste(d$resp)]] <- temp
+                listres[[paste(names(vars[var]))]] <- temp
             }
         }
     }

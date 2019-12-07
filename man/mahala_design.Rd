@@ -47,15 +47,15 @@ maha_group = mahala_design(data_ge,
 
 # Compute one distance for each environment
 maha_group = data_ge \%>\%
-             split_factors(ENV, keep_factors = TRUE) \%>\%
-             mahala_design(GEN, REP, c(GY, HM))
+            split_factors(ENV, keep_factors = TRUE) \%>\%
+            mahala_design(GEN, REP, everything())
 
 # Return the variance-covariance matrix of residuals
 cov_mat = mahala_design(data_ge,
-                           gen = GEN,
-                           rep = REP,
-                           resp = c(GY, HM),
-                           return = 'covmat')
+                       gen = GEN,
+                       rep = REP,
+                       resp = c(GY, HM),
+                       return = 'covmat')
 }
 }
 \author{

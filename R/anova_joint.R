@@ -36,32 +36,26 @@
 #'
 #'
 anova_joint <- function(.data, env, gen, rep, resp, verbose = TRUE) {
-  datain <- .data
-  listres <- list()
-  d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-
-  data <- datain %>%
+  factors  <- .data %>%
     select(ENV = {{env}},
            GEN = {{gen}},
-           REP = {{rep}})
-  for (var in 2:length(d$resp)) {
-    if (length(d$resp) > 1) {
-      Y <- eval(substitute(resp)[[var]], eval(datain))
-      varnam <- paste(d$resp[var])
-    } else {
-      Y <- eval(substitute(resp), eval(datain))
-      varnam <- paste(d$resp)
-    }
-    data <- data %>%
-      mutate(mean = Y)
+           REP = {{rep}}) %>%
+    mutate_all(as.factor)
+  vars <- .data %>%
+    select({{resp}}) %>%
+    select_if(is.numeric)
+  listres <- list()
+  nvar <- ncol(vars)
+  for (var in 1:nvar) {
+    data <- factors %>%
+      mutate(mean = vars[[var]])
     msr <- data %>%
       split_factors(ENV, keep_factors = T)
     msr <- do.call(rbind,
                    lapply(msr[[1]], function(x){
                      lm = summary(aov(mean ~ GEN + REP, data = x))[[1]][3,3]
                    }))
-    anova <- aov(Y ~ ENV/REP + GEN + ENV:GEN, data = data)
+    anova <- aov(mean ~ ENV/REP + GEN + ENV:GEN, data = data)
     resume <- summary(anova)[[1]] %>%
       rownames_to_column("Source") %>%
       as_tibble()
@@ -73,15 +67,14 @@ anova_joint <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     ovmean <- tibble(Source = "OVmean",
                      Df = mean(data$mean))
     temp <- rbind_fill(resume, CV, msr, ovmean, fill = NA)
-    if (length(d$resp) > 1) {
-      listres[[paste(d$resp[var])]] <- temp
+    if (nvar > 1) {
+      listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
-        cat("Evaluating variable", paste(d$resp[var]),
-            round((var - 1)/(length(d$resp) - 1) * 100,
-                  1), "%", "\n")
+        cat("Evaluating variable", paste(names(vars[var])),
+            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
       }
     } else {
-      listres[[paste(d$resp)]] <- temp
+      listres[[paste(names(vars[var]))]] <- temp
     }
   }
   if (verbose == TRUE) {

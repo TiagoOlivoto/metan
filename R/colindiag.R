@@ -188,7 +188,8 @@ colindiag <- function(.data, ..., n = NULL, verbose = TRUE) {
   }
   if (is.data.frame(.data)) {
     if(!missing(...)){
-      dfs <-  dplyr::select(.data, ...)
+      dfs <-  dplyr::select(.data, ...) %>%
+        select_if(is.numeric)
     } else{
       if (verbose == TRUE) {
         if (sum(lapply(.data, is.factor) == TRUE) > 0) {

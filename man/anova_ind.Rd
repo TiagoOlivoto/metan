@@ -54,7 +54,7 @@ anova1 = anova_ind(data_ge,
 
 # Using the pipe operator \%>\%
 # Two variables, one run.
-anova2 = data_ge \%>\% anova_ind(ENV, GEN, REP, c(GY, HM))
+anova2 <- data_ge \%>\% anova_ind(ENV, GEN, REP, GY)
 
 
 }

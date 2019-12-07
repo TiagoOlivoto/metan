@@ -101,10 +101,10 @@ library(metan)
 # Considering p-value <= 0.05 to compute the WAAS
 
 model <- waas(data_ge,
-              env = ENV,
-              gen = GEN,
-              rep = REP,
-              resp = GY)
+             env = ENV,
+             gen = GEN,
+             rep = REP,
+             resp = GY)
 
 
 # Declaring the number of axis to be used for computing WAAS

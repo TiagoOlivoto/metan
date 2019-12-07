@@ -27,7 +27,8 @@ hm_mean <- function(x, ..., na.rm = TRUE) {
     if(missing(...)){
       df <- select_if(x, is.numeric)
     } else{
-      df <- dplyr::select(x, ...)
+      df <- select(x, ...) %>%
+        select_if(is.numeric)
     }
     1 / (apply( 1 / df, 2, mean, na.rm = na.rm))
   }

@@ -32,16 +32,16 @@
 #'                            resp = c(GY, HM))
 #'
 #' # Compute one distance for each environment
-#' maha_group = data_ge %>%
-#'              split_factors(ENV, keep_factors = TRUE) %>%
-#'              mahala_design(GEN, REP, c(GY, HM))
+#'maha_group = data_ge %>%
+#'             split_factors(ENV, keep_factors = TRUE) %>%
+#'             mahala_design(GEN, REP, everything())
 #'
 #' # Return the variance-covariance matrix of residuals
-#' cov_mat = mahala_design(data_ge,
-#'                            gen = GEN,
-#'                            rep = REP,
-#'                            resp = c(GY, HM),
-#'                            return = 'covmat')
+#'cov_mat = mahala_design(data_ge,
+#'                        gen = GEN,
+#'                        rep = REP,
+#'                        resp = c(GY, HM),
+#'                        return = 'covmat')
 #'}
 mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
                           return = "distance") {
@@ -52,23 +52,19 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
     dfs <- list()
     for (k in 1:length(.data[[1]])) {
       datain <- .data[[1]][[k]]
-      nam <- names(.data[k])
+      nam <- names(.data[[1]][k])
       GEN <- factor(eval(substitute(gen), eval(datain)))
       REP <- factor(eval(substitute(rep), eval(datain)))
-      d <- match.call()
-      nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
-                                  1, length(d$resp)))
+      vars <- datain %>%
+        select({{resp}}) %>%
+        select_if(is.numeric)
+      nvar <- ncol(vars)
       mat <- matrix(nrow = nvar, ncol = nvar)
-      covdata <- data.frame(matrix(nrow = nrow(datain),
-                                   ncol = nvar))
+      covdata <- data.frame(matrix(nrow = nrow(datain), ncol = nvar))
       vin <- 0
-      for (var in 2:length(d$resp)) {
+      for (var in 1:nvar) {
         vin <- vin + 1
-        if (length(d$resp) > 1) {
-          Y <- eval(substitute(resp)[[var]], eval(datain))
-        } else {
-          Y <- eval(substitute(resp), eval(datain))
-        }
+        Y <- vars[[var]]
         covdata[, vin] <- Y
         if (design == "RCBD") {
           model <- anova(aov(Y ~ GEN + REP))
@@ -77,7 +73,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
           model <- anova(aov(Y ~ GEN))
           diag(mat)[vin] <- model[2, 3]
         }
-        colnames(covdata)[[vin]] <- paste(d$resp[var])
+        colnames(covdata)[[vin]] <- paste(names(vars[var]))
       }
       means <- data.frame(cbind(GEN, covdata)) %>% dplyr::group_by(GEN) %>%
         dplyr::summarise_all(mean) %>% column_to_rownames("GEN")
@@ -108,25 +104,23 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
       if (return == "means") {
         dfs[[paste(nam)]] <- means
       }
+      print(nam)
     }
     return(structure(dfs, class = "mahala_group"))
   } else {
     datain <- .data
     GEN <- factor(eval(substitute(gen), eval(datain)))
     REP <- factor(eval(substitute(rep), eval(datain)))
-    d <- match.call()
-    nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
-                                1, length(d$resp)))
+    vars <- datain %>%
+      select({{resp}}) %>%
+      select_if(is.numeric)
+    nvar <- ncol(vars)
     mat <- matrix(nrow = nvar, ncol = nvar)
-    covdata <- data.frame(matrix(nrow = nrow(.data), ncol = nvar))
+    covdata <- data.frame(matrix(nrow = nrow(datain), ncol = nvar))
     vin <- 0
-    for (var in 2:length(d$resp)) {
+    for (var in 1:nvar) {
       vin <- vin + 1
-      if (length(d$resp) > 1) {
-        Y <- eval(substitute(resp)[[var]], eval(datain))
-      } else {
-        Y <- eval(substitute(resp), eval(datain))
-      }
+      Y <- vars[[var]]
       covdata[, vin] <- Y
       if (design == "RCBD") {
         model <- anova(aov(Y ~ GEN + REP))
@@ -135,7 +129,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
         model <- anova(aov(Y ~ GEN))
         diag(mat)[vin] <- model[2, 3]
       }
-      colnames(covdata)[[vin]] <- paste(d$resp[var])
+      colnames(covdata)[[vin]] <- paste(names(vars[var]))
     }
     means <- data.frame(cbind(GEN, covdata)) %>% dplyr::group_by(GEN) %>%
       dplyr::summarise_all(mean) %>% column_to_rownames("GEN")

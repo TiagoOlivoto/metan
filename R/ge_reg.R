@@ -40,23 +40,19 @@ ge_reg = function(.data,
                   rep,
                   resp,
                   verbose = TRUE){
-  datain <- .data
-  GEN <- factor(eval(substitute(gen), eval(datain)))
-  ENV <- factor(eval(substitute(env), eval(datain)))
-  REP <- factor(eval(substitute(rep), eval(datain)))
+  factors  <- .data %>%
+    select(ENV = {{env}},
+           GEN = {{gen}},
+           REP = {{rep}}) %>%
+    mutate_all(as.factor)
+  vars <- .data %>%
+    select({{resp}}) %>%
+    select_if(is.numeric)
   listres <- list()
-  d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-  for (var in 2:length(d$resp)) {
-    if (length(d$resp) > 1) {
-      Y <- eval(substitute(resp)[[var]], eval(datain))
-      varnam = paste(d$resp[var])
-    } else {
-      Y <- eval(substitute(resp), eval(datain))
-      varnam = paste(d$resp)
-    }
-    data <- data.frame(ENV, GEN, REP, Y)
-    names(data) = c("ENV", "GEN", "REP", "mean")
+  nvar <- ncol(vars)
+  for (var in 1:nvar) {
+    data <- factors %>%
+      mutate(mean = vars[[var]])
     data2 =  data  %>%
       dplyr::group_by(ENV, GEN) %>%
       dplyr::summarise(mean = mean(mean)) %>%
@@ -127,14 +123,14 @@ ge_reg = function(.data,
                                               RMSE = gof(pred, matx)$RMSE,
                                               R2 = gof(pred, matx)$R2)),
                      class = "ge_reg")
-    if (length(d$resp) > 1) {
-      listres[[paste(d$resp[var])]] <- temp
+    if (nvar > 1) {
+      listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
-        cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                                                                          1) * 100, 1), "%", "\n")
+        cat("Evaluating variable", paste(names(vars[var])),
+            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
       }
     } else {
-      listres[[paste(d$resp)]] <- temp
+      listres[[paste(names(vars[var]))]] <- temp
     }
   }
   return(structure(listres, class = "ge_reg"))

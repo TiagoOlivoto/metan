@@ -83,14 +83,14 @@ correlation pairs.
 
 library(metan)
 
-cc1 = can_corr(data_ge2,
-               FG = c(PH, EH, EP),
-               SG = c(EL, ED, CL, CD, CW, KW, NR))
+cc1=can_corr(data_ge2,
+             FG = c(PH, EH, EP),
+             SG = c(EL, ED, CL, CD, CW, KW, NR))
 
-cc2 = can_corr(FG = data_ge2[, 4:6],
-               SG = data_ge2[, 7:13],
-               verbose = FALSE,
-               collinearity = FALSE)
+cc2 <- can_corr(FG = data_ge2[, 4:6],
+                SG = data_ge2[, 7:13],
+                verbose = FALSE,
+                collinearity = FALSE)
 
 # Canonical correlations for each environment
 cc3 = data_ge2 \%>\%

@@ -57,7 +57,7 @@ library(metan)
 # List of matrices
 data <- subset(data_ge2, ENV == 'A1')
 matrices <- covcor_design(data, gen = GEN, rep = REP,
-                         resp = c(PH, EH, NKE, TKW))
+                          resp = c(PH, EH, NKE, TKW))
 
 # Genetic correlations
 gcor <- covcor_design(data, gen = GEN, rep = REP,

@@ -93,26 +93,25 @@
 #'
 #'
 #' # Selecting variables to be excluded from the analysis
-#' pcoeff3 <- path_coeff(data_ge2,
-#'                      resp = KW,
-#'                      pred = c(PH, EH, NKE, TKW),
-#'                      exclude = TRUE)
+#'pcoeff3 <- path_coeff(data_ge2,
+#'                     resp = KW,
+#'                     pred = c(NKR, PERK, KW, NKE),
+#'                     exclude = TRUE)
 #'
 #'
 #' # Selecting a set of predictors with minimal multicollinearity
 #' # Maximum variance Inflation factor of 5
-#' pcoeff4 <- path_coeff(data_ge2,
-#'                      resp = KW,
-#'                      brutstep = TRUE,
-#'                      maxvif = 5)
+#'pcoeff4 <- path_coeff(data_ge2,
+#'                     resp = KW,
+#'                     brutstep = TRUE,
+#'                     maxvif = 5)
 #'
 #'
 #' # When one analysis should be carried out for each environment
 #' # Using the forward-pipe operator %>%
-#' pcoeff5 <- data_ge2 %>%
-#'            split_factors(ENV) %>%
-#'            path_coeff(resp = KW,
-#'                       pred = c(PH, EH, NKE, TKW))
+#'pcoeff5 <- data_ge2 %>%
+#'          split_factors(ENV) %>%
+#'          path_coeff(resp = KW)
 #'}
 #'
 #'
@@ -128,26 +127,24 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
   kincrement <- 1/knumber
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
-    for (k in 1:length(.data)) {
-      data <- .data[[1]][[k]] %>% as.data.frame()
-      nam <- names(.data[k])
-      resp <- dplyr::enquo(resp)
-      if (!missing(pred)) {
-        prcod <- dplyr::quos(!!dplyr::enquo(pred))
-      }
+    for (k in 1:length(.data[[1]])) {
+      data <- .data[[1]][[k]] %>%
+        select_if(is.numeric) %>%
+        as.data.frame()
+      nam <- names(.data[[1]][k])
       if (brutstep == FALSE) {
         if (missing(pred)) {
-          pr <- data %>% dplyr::select(-!!resp)
+          pr <- data %>% dplyr::select(-{{resp}})
         } else {
           if (exclude == TRUE) {
-            pr <- data %>% dplyr::select(-c(!!!prcod),
-                                         -!!resp)
+            pr <- data %>% select(-{{pred}}, -{{resp}})
           } else {
-            pr <- data %>% dplyr::select(!!!prcod)
+            pr <- data %>% select({{pred}}, -{{resp}})
           }
         }
         names <- colnames(pr)
-        y <- data %>% select(!!resp)
+        y <- data %>% select({{resp}})
+        nam_resp <- names(y)
         cor.y <- cor(pr, y, use = missingval)
         cor.x <- cor(pr, use = missingval)
         if (is.null(correction) == FALSE) {
@@ -264,14 +261,15 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                                Det = Det,
                                R2 = R2,
                                Residual = Residual,
-                               Response = resp,
+                               Response = nam_resp,
                                weightvar = weightvarname),
                           class = "path_coeff")
         dfs[[paste(nam)]] <- temp
       }
       if (brutstep == TRUE) {
-        yyy <- data %>% dplyr::select(!!resp) %>% as.data.frame()
-        xxx <- data %>% dplyr::select(-c(!!resp)) %>% as.data.frame()
+        yyy <- data %>% dplyr::select({{resp}}) %>% as.data.frame()
+        nam_resp <- names(yyy)
+        xxx <- data %>% dplyr::select(-{{resp}}) %>% as.data.frame()
         cor.xx <- cor(xxx, use = missingval)
         VIF <- data.frame(VIF = diag(solve_svd(cor.xx))) %>%
           rownames_to_column("VAR") %>%
@@ -314,7 +312,8 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           predstw <- FDSel$Variable_names
           x <- data[, c(predstw)]
           names <- colnames(x)
-          y <- data %>% dplyr::select(!!resp)
+          y <- data %>% dplyr::select({{resp}})
+          nam_resp <- names(y)
           cor.y <- cor(x, y, use = missingval)
           cor.x <- cor(x, use = missingval)
           if (is.null(correction) == FALSE) {
@@ -402,10 +401,18 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
           weightvarname <- paste(rownames(last), collapse = " > ")
           cor.y <- data.frame(cor.y)
           Results <- list(Corr.x = data.frame(cor.x),
-                          Corr.y = data.frame(cor.y), Coefficients = data.frame(t(Coeff)),
-                          Eigen = AvAvet, VIF = VIF, plot = p1, Predictors = names,
-                          CN = NC, Det = Det, R2 = R2, Residual = Residual,
-                          Response = resp, weightvar = weightvarname)
+                          Corr.y = data.frame(cor.y),
+                          Coefficients = data.frame(t(Coeff)),
+                          Eigen = AvAvet,
+                          VIF = VIF,
+                          plot = p1,
+                          Predictors = names,
+                          CN = NC,
+                          Det = Det,
+                          R2 = R2,
+                          Residual = Residual,
+                          Response = nam_resp,
+                          weightvar = weightvarname)
           ModelEstimates[[paste("Model", modelcode)]] <- Results
           statistics[i, 1] <- paste("Model", modelcode, sep = "")
           statistics[i, 2] <- FDSel$Information_Criterion
@@ -450,25 +457,22 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                 " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
       }
     }
-    data <- .data[, unlist(lapply(.data, is.numeric))]
+    data <- select_if(.data, is.numeric)
     nam <- names(.data)
-    resp <- dplyr::enquo(resp)
-    if (!missing(pred)) {
-      prcod <- dplyr::quos(!!dplyr::enquo(pred))
-    }
     if (brutstep == FALSE) {
       if (missing(pred)) {
-        pr <- data %>% dplyr::select(-!!resp)
+        pr <- data %>% dplyr::select(-{{resp}})
       } else {
         if (exclude == TRUE) {
-          pr <- data %>% dplyr::select(-c(!!!prcod),
-                                       -!!resp)
+          pr <- data %>% select(-{{pred}}, -{{resp}})
         } else {
-          pr <- data %>% dplyr::select(!!!prcod)
+          pr <- data %>% select({{pred}}, -{{resp}})
         }
       }
       names <- colnames(pr)
-      y <- data %>% select(!!resp)
+      print(names)
+      y <- data %>% select({{resp}})
+      nam_resp <- names(y)
       cor.y <- cor(pr, y, use = missingval)
       cor.x <- cor(pr, use = missingval)
       if (is.null(correction) == FALSE) {
@@ -581,14 +585,15 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                              Det = Det,
                              R2 = R2,
                              Residual = Residual,
-                             Response = resp,
+                             Response = nam_resp,
                              weightvar = weightvarname),
                         class = "path_coeff")
       return(temp)
     }
     if (brutstep == TRUE) {
-      yyy <- data %>% dplyr::select(!!resp) %>% as.data.frame()
-      xxx <- data %>% dplyr::select(-c(!!resp)) %>% as.data.frame()
+      yyy <- data %>% dplyr::select({{resp}}) %>% as.data.frame()
+      nam_resp <- names(yyy)
+      xxx <- data %>% dplyr::select(-{{resp}}) %>% as.data.frame()
       cor.xx <- cor(xxx, use = missingval)
       VIF <- data.frame(VIF = diag(solve_svd(cor.xx))) %>%
         rownames_to_column("VAR") %>%
@@ -627,7 +632,8 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         predstw <- FDSel$Variable_names
         x <- data[, c(predstw)]
         names <- colnames(x)
-        y <- data %>% dplyr::select(!!resp)
+        y <- data %>% dplyr::select({{resp}})
+        nam_resp <- names(y)
         cor.y <- cor(x, y, use = missingval)
         cor.x <- cor(x, use = missingval)
         if (is.null(correction) == FALSE) {
@@ -714,11 +720,19 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                     , drop = FALSE]
         weightvarname <- paste(rownames(last), collapse = " > ")
         cor.y <- data.frame(cor.y)
-        Results <- list(Corr.x = data.frame(cor.x), Corr.y = data.frame(cor.y),
-                        Coefficients = data.frame(t(Coeff)), Eigen = AvAvet,
-                        VIF = VIF, plot = p1, Predictors = predstw,
-                        CN = NC, Det = Det, R2 = R2, Residual = Residual,
-                        Response = resp, weightvar = weightvarname)
+        Results <- list(Corr.x = data.frame(cor.x),
+                        Corr.y = data.frame(cor.y),
+                        Coefficients = data.frame(t(Coeff)),
+                        Eigen = AvAvet,
+                        VIF = VIF,
+                        plot = p1,
+                        Predictors = predstw,
+                        CN = NC,
+                        Det = Det,
+                        R2 = R2,
+                        Residual = Residual,
+                        Response = nam_resp,
+                        weightvar = weightvarname)
         ModelEstimates[[paste("Model", modelcode)]] <- Results
         statistics[i, 1] <- paste("Model", modelcode, sep = "")
         statistics[i, 2] <- FDSel$Information_Criterion

@@ -27,6 +27,7 @@
 #' * \strong{S3} Sum of the absolute deviations.
 #' * \strong{S6} Relative sum of squares of rank for each genotype.
 #' @md
+#' @importFrom dplyr mutate_all
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Huehn, V.M. 1979. Beitrage zur erfassung der phanotypischen
 #'   stabilitat. EDV Med. Biol. 10:112.
@@ -35,24 +36,23 @@
 #' @examples
 #'
 #' library(metan)
-#' out <- Huehn(data_ge, ENV, GEN, REP, GY)
+#' out <- Huehn(data_ge2, ENV, GEN, REP, PH)
 #'
 Huehn <- function(.data, env, gen, rep, resp, verbose = TRUE) {
-  datain <- .data
-  GEN <- factor(eval(substitute(gen), eval(datain)))
-  ENV <- factor(eval(substitute(env), eval(datain)))
-  REP <- factor(eval(substitute(rep), eval(datain)))
+  factors  <- .data %>%
+    select(ENV = {{env}},
+           GEN = {{gen}},
+           REP = {{rep}}) %>%
+    mutate_all(as.factor)
+  vars <- .data %>%
+    select({{resp}}) %>%
+    select_if(is.numeric)
   listres <- list()
-  d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-  for (var in 2:length(d$resp)) {
-    if (length(d$resp) > 1) {
-      Y <- eval(substitute(resp)[[var]], eval(datain))
-    } else {
-      Y <- eval(substitute(resp), eval(datain))
-    }
-    data <- data.frame(ENV, GEN, REP, Y) %>%
-            make_mat(GEN, ENV, Y)
+  nvar <- ncol(vars)
+  for (var in 1:nvar) {
+    data <- factors %>%
+      mutate(mean = vars[[var]]) %>%
+      make_mat(GEN, ENV, mean)
     nr <- nrow(data)
     nc <- ncol(data)
     data_m <- as.matrix(data)
@@ -85,15 +85,14 @@ Huehn <- function(.data, env, gen, rep, resp, verbose = TRUE) {
                    S3_R = rank(S3),
                    S6 = S6,
                    S6_R = rank(S6))
-    if (length(d$resp) > 1) {
-      listres[[paste(d$resp[var])]] <- temp
+    if (nvar > 1) {
+      listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
-        cat("Evaluating variable", paste(d$resp[var]),
-            round((var - 1)/(length(d$resp) - 1) * 100,
-                  1), "%", "\n")
+        cat("Evaluating variable", paste(names(vars[var])),
+            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
       }
     } else {
-      listres[[paste(d$resp)]] <- temp
+      listres[[paste(names(vars[var]))]] <- temp
     }
   }
   return(structure(listres, class = "Huehn"))

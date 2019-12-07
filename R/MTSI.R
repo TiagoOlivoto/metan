@@ -14,7 +14,7 @@
 #' factor analysis.
 #' @param verbose If \code{verbose = TRUE} (Default) then some results are
 #' shown in the console.
-#' @return An object of class \code{ge_factanal} with the following items:
+#' @return An object of class \code{mtsi} with the following items:
 #' * \strong{data} The data used to compute the factor analysis.
 #' * \strong{cormat} The correlation matrix among the environments.
 #' * \strong{PCA} The eigenvalues and explained variance.
@@ -45,28 +45,34 @@
 #' library(metan)
 #'
 #' # Based on stability only, for both GY and HM, higher is better
-#' mtsi_model = waasb(data_ge,
-#'                    env = ENV,
-#'                    gen = GEN,
-#'                    rep = REP,
-#'                    resp = c(GY, HM))
-#' mtsi_index = mtsi(mtsi_model)
+#' mtsi_model <- waasb(data_ge,
+#'                     env = ENV,
+#'                     gen = GEN,
+#'                     rep = REP,
+#'                     resp = c(GY, HM))
+#' mtsi_index <- mtsi(mtsi_model)
 #'
 #'
 #' # Based on mean performance and stability (using pipe operator %>%)
 #' # GY: higher is better
 #' # HM: lower is better
-#' mtsi_index2 = data_ge %>%
-#'               waasb(ENV, GEN, REP, c(GY, HM), mresp = c(100, 0)) %>%
-#'               mtsi(index = 'waasby')
+#'
+#'mtsi_index2 <- data_ge %>%
+#'  waasb(ENV, GEN, REP,
+#'        resp = c(GY, HM),
+#'        mresp = c(100, 0)) %>%
+#'  mtsi(index = 'waasby')
 #'}
-mtsi <- function(.data, index = "waasb", SI = 15, mineval = 1,
+mtsi <- function(.data,
+                 index = "waasb",
+                 SI = 15,
+                 mineval = 1,
                  verbose = TRUE) {
   if (!index %in% c("waasb", "waasby")) {
-    stop("The argument 'index' must be of of the 'waasb' or 'waasby'.")
+    stop("The argument 'index' must be of of the 'waasb' or 'waasby'.", call. = FALSE)
   }
   if (length(.data) == 1) {
-    stop("The multi-trait stability index cannot be computed with one single variable.")
+    stop("The multi-trait stability index cannot be computed with one single variable.", call. = FALSE)
   }
   if (index == "waasby") {
     ideotype.D <- rep(100, length(.data))

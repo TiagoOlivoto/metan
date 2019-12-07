@@ -27,7 +27,8 @@ gm_mean <- function(x, ..., na.rm = TRUE){
     if(missing(...)){
       df <- select_if(x, is.numeric)
     } else{
-      df <- select(x, ...)
+      df <- select(x, ...) %>%
+        select_if(is.numeric)
     }
     exp(apply(log(df), 2, mean, na.rm = na.rm))
   }

@@ -42,7 +42,8 @@ inspect <- function (.data,
                      plot = FALSE,
                      verbose = TRUE) {
   if(!missing(...)){
-    .data <- dplyr::select(.data, ...)
+    .data <- select(.data, ...) %>%
+      select_if(is.numeric)
   } else{
     .data <- .data
   }

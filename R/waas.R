@@ -90,11 +90,11 @@
 #'
 #' # Considering p-value <= 0.05 to compute the WAAS
 #'
-#' model <- waas(data_ge,
-#'               env = ENV,
-#'               gen = GEN,
-#'               rep = REP,
-#'               resp = GY)
+#'model <- waas(data_ge,
+#'              env = ENV,
+#'              gen = GEN,
+#'              rep = REP,
+#'              resp = GY)
 #'
 #'
 #' # Declaring the number of axis to be used for computing WAAS
@@ -124,18 +124,19 @@
 #'}
 #'
 waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
-    naxis = NULL, ind_anova = TRUE, verbose = TRUE) {
-    d <- match.call()
-    nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
+                 naxis = NULL, ind_anova = TRUE, verbose = TRUE) {
+    factors  <- .data %>%
+        select(ENV = {{env}},
+               GEN = {{gen}},
+               REP = {{rep}}) %>%
+        mutate_all(as.factor)
+    vars <- .data %>%
+        select({{resp}}) %>%
+        select_if(is.numeric)
+    nvar <- ncol(vars)
     if (!is.null(naxis)) {
-        if (length(d$resp) > 1) {
-            if (length(naxis) != length(d$resp) - 1) {
-                stop("The argument 'naxix' must length of ", nvar, ", the same number of variables in object 'resp'.")
-            }
-        } else {
-            if (length(naxis) != length(d$resp)) {
-                stop("The argument 'naxix' must length of ", nvar, ", the same number of variables in object 'resp'.")
-            }
+        if (length(naxis) != nvar) {
+            stop("The argument 'naxis' must have length ", nvar, ", the same number of variables in 'resp'.")
         }
     }
     if (is.null(mresp)) {
@@ -164,25 +165,17 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
         PesoResp <- wresp
         PesoWAASB <- 100 - PesoResp
     }
-    datain <- .data
-    GEN <- factor(eval(substitute(gen), eval(datain)))
-    ENV <- factor(eval(substitute(env), eval(datain)))
-    REP <- factor(eval(substitute(rep), eval(datain)))
     listres <- list()
     vin <- 0
-    for (var in 2:length(d$resp)) {
-        if (length(d$resp) > 1) {
-            Y <- eval(substitute(resp)[[var]], eval(datain))
-        } else {
-            Y <- eval(substitute(resp), eval(datain))
-        }
-        data <- data.frame(ENV, GEN, REP, Y)
-        Nenv <- length(unique(ENV))
-        Ngen <- length(unique(GEN))
+    for (var in 1:nvar) {
+        data <- factors %>%
+            mutate(Y = vars[[var]])
+        Nenv <- length(unique(data$ENV))
+        Ngen <- length(unique(data$GEN))
         minimo <- min(Nenv, Ngen) - 1
         vin <- vin + 1
         if(ind_anova == TRUE){
-        individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+            individual <- data %>% anova_ind(ENV, GEN, REP, Y)
         } else{
             individual = NULL
         }
@@ -201,7 +194,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
         }
         if (SigPC1 > minimo) {
             stop("The number of axis to be used must be lesser than or equal to ",
-                minimo, " [min(GEN-1;ENV-1)]")
+                 minimo, " [min(GEN-1;ENV-1)]")
         } else {
             Pesos <- slice(model$PCA[7], 1:SigPC1)
             WAAS <- Escores %>%
@@ -252,24 +245,24 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                                          paste0(min_group[2,2], " (", round(min_group[2,3], 3), ") "),
                                          paste0(max_group[2,2], " (", round(max_group[2,3], 3), ") "),
                                          SigPC1))
-    temp <- structure(list(individual = individual[[1]],
-                           model = WAASAbs,
-                           MeansGxE = MeansGxE,
-                           PCA = as_tibble(PC, rownames = NA),
-                           anova = model$ANOVA,
-                           Details = Details,
-                           residuals = as_tibble(model$residuals, rownames = NA),
-                           probint = model$probint),
-                      class = "waas")
+            temp <- structure(list(individual = individual[[1]],
+                                   model = WAASAbs,
+                                   MeansGxE = MeansGxE,
+                                   PCA = as_tibble(PC, rownames = NA),
+                                   anova = model$ANOVA,
+                                   Details = Details,
+                                   residuals = as_tibble(model$residuals, rownames = NA),
+                                   probint = model$probint),
+                              class = "waas")
 
-            if (length(d$resp) > 1) {
-                listres[[paste(d$resp[var])]] <- temp
+            if (nvar > 1) {
+                listres[[paste(names(vars[var]))]] <- temp
                 if (verbose == TRUE) {
-                  cat("Evaluating variable", paste(d$resp[var]), round((var - 1)/(length(d$resp) -
-                    1) * 100, 1), "%", "\n")
+                    cat("Evaluating variable", paste(names(vars[var])),
+                        round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
                 }
             } else {
-                listres[[paste(d$resp)]] <- temp
+                listres[[paste(names(vars[var]))]] <- temp
             }
         }
     }
