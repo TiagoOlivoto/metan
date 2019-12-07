@@ -2,16 +2,16 @@
 % Please edit documentation in R/select_helpers.R
 \name{Select_helper}
 \alias{Select_helper}
+\alias{difference_var}
 \alias{intersect_var}
 \alias{union_var}
-\alias{difference_var}
 \title{Select helper}
 \usage{
+difference_var(prefix, suffix)
+
 intersect_var(prefix, suffix)
 
 union_var(prefix, suffix)
-
-difference_var(prefix, suffix)
 }
 \arguments{
 \item{prefix}{A prefix that starts the variable name.}
@@ -19,29 +19,32 @@ difference_var(prefix, suffix)
 \item{suffix}{A suffix that ends the variable name.}
 }
 \description{
-These functions allow you to select variables based prefixes and suffixes.
+These functions allow you to select variables based operations
+with prefixes and suffixes.
 \itemize{
+\item \code{difference_var()}: Select variables that starts with a prefix \strong{AND
+NOT} ends wiht a suffix.
 \item \code{intersect_var()}: Select variables that starts with a prefix
 \strong{AND} ends wiht a suffix.
 \item \code{union_var()}: Select variables that starts with a prefix \strong{OR}
 ends wiht a suffix.
-\item \code{difference_var()}: Select variables that starts with a prefix \strong{AND
-NOT} ends wiht a suffix.
 }
 }
 \examples{
 library(metan)
+
+# Select variables that starts with "C" and not ends with "D".
+data_ge2 \%>\%
+select(difference_var("C", "D"))
+
 # Select variables that starts with "C" and ends with "D".
 data_ge2 \%>\%
 select(intersect_var("C", "D"))
 
-# Select variables that starts with "D" or ends with "D".
+
+# Select variables that starts with "C" or ends with "D".
 data_ge2 \%>\%
 select(union_var("C", "D"))
-
-# Select variables that starts with "D" and not ends with "D".
-data_ge2 \%>\%
-select(difference_var("C", "D"))
 
 }
 \keyword{internal}
