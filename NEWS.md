@@ -1,10 +1,10 @@
-# metan (development version)
-
 # metan 1.1.2
 
 * Reexport select_helpers `starts_with()`, `ends_with()`, `contains()`, `contains()`, `num_range()`, `one_of()`, `everything()`, and `last_col()`.
 * When possible, argument `resp` (response variable(s) now support select helpers.
 * New helper function `sem()` for computing standard error of mean.
+* New select helpers `difference_var()`, `intersect_var()`, and 
+`union_var()`
 * New function `Schmildt()` for stability analysis.
 * Plot regression slope and mean performance in objects of class `ge_reg`.
 * Update `get_model_data()` to support objects of class `Schmildt`and `Annicchiarico`.
