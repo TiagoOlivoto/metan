@@ -1,3 +1,5 @@
+# metan (development version)
+
 # metan 1.1.2
 
 * Reexport select_helpers `starts_with()`, `ends_with()`, `contains()`, `contains()`, `num_range()`, `one_of()`, `everything()`, and `last_col()`.
