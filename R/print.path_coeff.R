@@ -58,7 +58,7 @@ print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ..
     cat("Determinant:      ", round(x$Det, 8), "\n")
     cat("R-square:         ", round(x$R2, 4), "\n")
     cat("Residual:         ", round(x$Residual, 4), "\n")
-    cat("Response:         ", paste(x$Response)[[2]], "\n")
+    cat("Response:         ", paste(x$Response), "\n")
     cat("Predictors:       ", paste(x$Predictors), "\n")
     cat("----------------------------------------------------------------------------------------------\n")
     cat("Variance inflation factors\n")

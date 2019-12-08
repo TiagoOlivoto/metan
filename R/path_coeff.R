@@ -470,7 +470,6 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
         }
       }
       names <- colnames(pr)
-      print(names)
       y <- data %>% select({{resp}})
       nam_resp <- names(y)
       cor.y <- cor(pr, y, use = missingval)
