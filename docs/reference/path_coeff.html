@@ -89,7 +89,7 @@ is implemented." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -321,31 +321,36 @@ path analysis: a simple method to reduce its effects. Agron. J.
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='co'># Using KW as the response variable and all other ones as predictors</span>
-<span class='no'>pcoeff</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt; Severe multicollinearity. 
+<span class='no'>pcoeff</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt;  [1] "PH"   "EH"   "EP"   "EL"   "ED"   "CL"   "CD"   "CW"   "NR"   "NKR" 
+#&gt; [11] "CDED" "PERK" "TKW"  "NKE" 
+#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 7865.84
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'>
 
 <span class='co'># Declaring the predictors</span>
 <span class='no'>pcoeff2</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>,
                      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
-                     <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt; Weak multicollinearity. 
+                     <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt; [1] "PH"  "EH"  "NKE" "TKW"
+#&gt; Weak multicollinearity. 
 #&gt; Condition Number = 40.232
 #&gt; You will probably have path coefficients close to being unbiased. </div><div class='input'>
 
 <span class='co'># Selecting variables to be excluded from the analysis</span>
 <span class='no'>pcoeff3</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>,
-                     <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
-                     <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>),
-                     <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt; Severe multicollinearity. 
-#&gt; Condition Number = 3880.917
+                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
+                    <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>NKR</span>, <span class='no'>PERK</span>, <span class='no'>KW</span>, <span class='no'>NKE</span>),
+                    <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt;  [1] "PH"   "EH"   "EP"   "EL"   "ED"   "CL"   "CD"   "CW"   "NR"   "CDED"
+#&gt; [11] "TKW" 
+#&gt; Severe multicollinearity. 
+#&gt; Condition Number = 5827.719
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'>
 
 <span class='co'># Selecting a set of predictors with minimal multicollinearity</span>
 <span class='co'># Maximum variance Inflation factor of 5</span>
 <span class='no'>pcoeff4</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>,
-                     <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
-                     <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                     <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt; --------------------------------------------------------------------------
+                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
+                    <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+                    <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt; --------------------------------------------------------------------------
 #&gt; The algorithm has selected a set of 8 predictors with largest VIF = 3.346. 
 #&gt; Selected predictors: NR PERK EP CDED EL NKR TKW PH 
 #&gt; A forward stepwise-based selection procedure will fit 6 models.
@@ -372,22 +377,35 @@ path analysis: a simple method to reduce its effects. Agron. J.
 <span class='co'># When one analysis should be carried out for each environment</span>
 <span class='co'># Using the forward-pipe operator %&gt;%</span>
 <span class='no'>pcoeff5</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-           <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-           <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
-                      <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the grouped data. </span></div><div class='output co'>#&gt; 
+         <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
+         <span class='fu'>path_coeff</span>(<span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the grouped data. </span></div><div class='output co'>#&gt; 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Level dfs 
+#&gt; Level A1 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Weak multicollinearity. 
-#&gt; Condition Number = 5.183
-#&gt; You will probably have path coefficients close to being unbiased. 
+#&gt; Severe multicollinearity. 
+#&gt; Condition Number = 13958.438
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. 
 #&gt; 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Level names 
+#&gt; Level A2 
 #&gt; ----------------------------------------------------------------------------
-#&gt; Weak multicollinearity. 
-#&gt; Condition Number = 81.987
-#&gt; You will probably have path coefficients close to being unbiased. </div><div class='input'># }
+#&gt; Severe multicollinearity. 
+#&gt; Condition Number = 8139.667
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. 
+#&gt; 
+#&gt; ----------------------------------------------------------------------------
+#&gt; Level A3 
+#&gt; ----------------------------------------------------------------------------
+#&gt; Severe multicollinearity. 
+#&gt; Condition Number = 11334.047
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. 
+#&gt; 
+#&gt; ----------------------------------------------------------------------------
+#&gt; Level A4 
+#&gt; ----------------------------------------------------------------------------
+#&gt; Severe multicollinearity. 
+#&gt; Condition Number = 12981.917
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'># }
 
 
 </div></pre>

@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-11-24</h4>
+            <h4 class="date">2019-12-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -1794,7 +1794,7 @@ G9
 <a href="#number-of-axes-based-on-f-test" class="anchor"></a>Number of axes based on F-test</h2>
 <p>In this example only IPCAs with <em>P</em>-value &lt; 0.05 will be considered in the WAAS estimation. This is the default setting and the model was already fitted and stored into AMMI_model&gt;GY&gt;model</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">waas_index<span class="op">$</span>GY<span class="op">$</span>model <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">select</span>(type, Code, Y, <span class="kw">contains</span>(<span class="st">"Pct"</span>), <span class="kw">contains</span>(<span class="st">"Pes"</span>), <span class="kw">contains</span>(<span class="st">"WAAS"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(type, Code, Y, <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"Pct"</span>), <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"Pes"</span>), <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"WAAS"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-3" title="3"><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
@@ -3474,15 +3474,18 @@ G9
 <div id="getting-model-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-model-data" class="anchor"></a>Getting model data</h2>
-<p>The function <code><a href="../reference/get_model_data.html">get_model_data()</a></code> may be used to easily get the data from a model fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, especially when more than one variables are used. See the example below.</p>
+<p>The function <code><a href="../reference/get_model_data.html">get_model_data()</a></code> may be used to easily get the data from a model fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, especially when more than one variables are used. Select helpers can be used in the argument <code>resp</code>. See the example below.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge2, ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb22-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, ED, TKW, NKR)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="st"> </span><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="st"> </span><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb22-4" title="4"><span class="st"> </span><span class="kw">print_table</span>()</a></code></pre></div>
-<pre><code>Evaluating variable PH 25 % 
+<pre><code>Evaluating variable EH 0 % 
+Evaluating variable EP 16.7 % 
+Evaluating variable EL 33.3 % 
 Evaluating variable ED 50 % 
-Evaluating variable TKW 75 % 
-Evaluating variable NKR 100 % 
+Evaluating variable CDED 66.7 % 
+Evaluating variable PERK 83.3 % 
+Evaluating variable NKE 100 % 
 All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 Done!</code></pre>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -3491,16 +3494,25 @@ Done!</code></pre>
 gen
 </th>
 <th style="text-align:right;">
-PH
+EH
+</th>
+<th style="text-align:right;">
+EP
+</th>
+<th style="text-align:right;">
+EL
 </th>
 <th style="text-align:right;">
 ED
 </th>
 <th style="text-align:right;">
-TKW
+CDED
 </th>
 <th style="text-align:right;">
-NKR
+PERK
+</th>
+<th style="text-align:right;">
+NKE
 </th>
 </tr></thead>
 <tbody>
@@ -3509,16 +3521,25 @@ NKR
 H1
 </td>
 <td style="text-align:right;">
-0.318
+0.315
+</td>
+<td style="text-align:right;">
+0.131
+</td>
+<td style="text-align:right;">
+0.107
 </td>
 <td style="text-align:right;">
 0.667
 </td>
 <td style="text-align:right;">
-2.723
+0.068
 </td>
 <td style="text-align:right;">
-0.929
+0.570
+</td>
+<td style="text-align:right;">
+4.128
 </td>
 </tr>
 <tr>
@@ -3526,16 +3547,25 @@ H1
 H10
 </td>
 <td style="text-align:right;">
-0.230
+0.243
+</td>
+<td style="text-align:right;">
+0.092
+</td>
+<td style="text-align:right;">
+0.219
 </td>
 <td style="text-align:right;">
 0.973
 </td>
 <td style="text-align:right;">
-2.154
+0.054
 </td>
 <td style="text-align:right;">
-0.506
+0.907
+</td>
+<td style="text-align:right;">
+0.756
 </td>
 </tr>
 <tr>
@@ -3543,16 +3573,25 @@ H10
 H11
 </td>
 <td style="text-align:right;">
-0.201
+0.217
+</td>
+<td style="text-align:right;">
+0.121
+</td>
+<td style="text-align:right;">
+0.094
 </td>
 <td style="text-align:right;">
 0.649
 </td>
 <td style="text-align:right;">
-1.260
+0.042
 </td>
 <td style="text-align:right;">
-0.836
+0.515
+</td>
+<td style="text-align:right;">
+1.002
 </td>
 </tr>
 <tr>
@@ -3560,16 +3599,25 @@ H11
 H12
 </td>
 <td style="text-align:right;">
-0.364
+0.391
+</td>
+<td style="text-align:right;">
+0.208
+</td>
+<td style="text-align:right;">
+0.453
 </td>
 <td style="text-align:right;">
 0.315
 </td>
 <td style="text-align:right;">
-0.558
+0.084
 </td>
 <td style="text-align:right;">
-0.228
+0.529
+</td>
+<td style="text-align:right;">
+2.532
 </td>
 </tr>
 <tr>
@@ -3577,16 +3625,25 @@ H12
 H13
 </td>
 <td style="text-align:right;">
-0.363
+0.257
+</td>
+<td style="text-align:right;">
+0.066
+</td>
+<td style="text-align:right;">
+0.403
 </td>
 <td style="text-align:right;">
 0.838
 </td>
 <td style="text-align:right;">
-0.514
+0.150
 </td>
 <td style="text-align:right;">
-0.946
+1.095
+</td>
+<td style="text-align:right;">
+6.863
 </td>
 </tr>
 <tr>
@@ -3594,16 +3651,25 @@ H13
 H2
 </td>
 <td style="text-align:right;">
-0.342
+0.403
+</td>
+<td style="text-align:right;">
+0.180
+</td>
+<td style="text-align:right;">
+0.264
 </td>
 <td style="text-align:right;">
 1.080
 </td>
 <td style="text-align:right;">
-4.407
+0.126
 </td>
 <td style="text-align:right;">
-0.404
+0.865
+</td>
+<td style="text-align:right;">
+2.952
 </td>
 </tr>
 <tr>
@@ -3611,16 +3677,25 @@ H2
 H3
 </td>
 <td style="text-align:right;">
-0.374
+0.370
+</td>
+<td style="text-align:right;">
+0.172
+</td>
+<td style="text-align:right;">
+0.856
 </td>
 <td style="text-align:right;">
 0.486
 </td>
 <td style="text-align:right;">
-4.097
+0.074
 </td>
 <td style="text-align:right;">
-0.252
+0.153
+</td>
+<td style="text-align:right;">
+2.493
 </td>
 </tr>
 <tr>
@@ -3628,16 +3703,25 @@ H3
 H4
 </td>
 <td style="text-align:right;">
-0.294
+0.270
+</td>
+<td style="text-align:right;">
+0.108
+</td>
+<td style="text-align:right;">
+0.491
 </td>
 <td style="text-align:right;">
 0.378
 </td>
 <td style="text-align:right;">
-3.070
+0.071
 </td>
 <td style="text-align:right;">
-0.281
+0.033
+</td>
+<td style="text-align:right;">
+0.664
 </td>
 </tr>
 <tr>
@@ -3645,16 +3729,25 @@ H4
 H5
 </td>
 <td style="text-align:right;">
-0.168
+0.113
+</td>
+<td style="text-align:right;">
+0.029
+</td>
+<td style="text-align:right;">
+0.340
 </td>
 <td style="text-align:right;">
 0.567
 </td>
 <td style="text-align:right;">
-0.738
+0.039
 </td>
 <td style="text-align:right;">
-0.611
+0.720
+</td>
+<td style="text-align:right;">
+1.035
 </td>
 </tr>
 <tr>
@@ -3662,16 +3755,25 @@ H5
 H6
 </td>
 <td style="text-align:right;">
-0.270
+0.163
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+<td style="text-align:right;">
+0.585
 </td>
 <td style="text-align:right;">
 0.409
 </td>
 <td style="text-align:right;">
-1.636
+0.135
 </td>
 <td style="text-align:right;">
-1.598
+0.943
+</td>
+<td style="text-align:right;">
+6.084
 </td>
 </tr>
 <tr>
@@ -3679,16 +3781,25 @@ H6
 H7
 </td>
 <td style="text-align:right;">
-0.228
+0.179
+</td>
+<td style="text-align:right;">
+0.055
+</td>
+<td style="text-align:right;">
+0.817
 </td>
 <td style="text-align:right;">
 0.384
 </td>
 <td style="text-align:right;">
-3.442
+0.045
 </td>
 <td style="text-align:right;">
-0.518
+1.017
+</td>
+<td style="text-align:right;">
+1.054
 </td>
 </tr>
 <tr>
@@ -3696,16 +3807,25 @@ H7
 H8
 </td>
 <td style="text-align:right;">
-0.315
+0.326
+</td>
+<td style="text-align:right;">
+0.178
+</td>
+<td style="text-align:right;">
+0.999
 </td>
 <td style="text-align:right;">
 0.653
 </td>
 <td style="text-align:right;">
-4.909
+0.105
 </td>
 <td style="text-align:right;">
-0.941
+0.853
+</td>
+<td style="text-align:right;">
+3.416
 </td>
 </tr>
 <tr>
@@ -3713,16 +3833,25 @@ H8
 H9
 </td>
 <td style="text-align:right;">
-0.146
+0.034
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+0.878
 </td>
 <td style="text-align:right;">
 0.907
 </td>
 <td style="text-align:right;">
-5.499
+0.033
 </td>
 <td style="text-align:right;">
-0.888
+0.420
+</td>
+<td style="text-align:right;">
+4.915
 </td>
 </tr>
 </tbody>

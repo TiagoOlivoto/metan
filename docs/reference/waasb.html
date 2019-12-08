@@ -88,7 +88,7 @@ in multi-environment trials using mixed-effect models (Olivoto et al., 2019)." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -337,11 +337,10 @@ Agron. J.
 <span class='co'># Equal weights for response variable and stability</span>
 
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'>waasb</span>(<span class='no'>data_ge</span>,
-               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
+              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; <span class='error'>Error in fortify.merMod(Complete): could not find function "fortify.merMod"</span></div><div class='input'>
 <span class='co'># Higher weight for response variable</span>
 
 <span class='no'>model2</span> <span class='kw'>&lt;-</span> <span class='fu'>waasb</span>(<span class='no'>data_ge</span>,
@@ -349,8 +348,7 @@ Agron. J.
                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>65</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
+               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>65</span>)</div><div class='output co'>#&gt; <span class='error'>Error in fortify.merMod(Complete): could not find function "fortify.merMod"</span></div><div class='input'>
 <span class='co'># Environment as random effects analyzing more than one variable</span>
 <span class='co'># Smaller values of HM are better and higher</span>
 <span class='co'># Higher values of GY are better</span>
@@ -364,10 +362,7 @@ Agron. J.
                 <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
                 <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"env"</span>,
                 <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>),
-                <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'># }
+                <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))</div><div class='output co'>#&gt; <span class='error'>Error in fortify.merMod(Complete): could not find function "fortify.merMod"</span></div><div class='input'># }
 
 </div></pre>
   </div>

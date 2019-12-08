@@ -88,7 +88,7 @@ randomized complete block design or completely randomized design." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -254,15 +254,27 @@ residuals <code>return = 'covmat'</code>.</p></td>
 
 <span class='co'># Compute one distance for each environment</span>
 <span class='no'>maha_group</span> <span class='kw'>=</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-             <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-             <span class='fu'>mahala_design</span>(<span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))
-
+            <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+            <span class='fu'>mahala_design</span>(<span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/select_helpers.html'>everything</a></span>())</div><div class='output co'>#&gt; [1] "E1"
+#&gt; [1] "E10"
+#&gt; [1] "E11"
+#&gt; [1] "E12"
+#&gt; [1] "E13"
+#&gt; [1] "E14"
+#&gt; [1] "E2"
+#&gt; [1] "E3"
+#&gt; [1] "E4"
+#&gt; [1] "E5"
+#&gt; [1] "E6"
+#&gt; [1] "E7"
+#&gt; [1] "E8"
+#&gt; [1] "E9"</div><div class='input'>
 <span class='co'># Return the variance-covariance matrix of residuals</span>
 <span class='no'>cov_mat</span> <span class='kw'>=</span> <span class='fu'>mahala_design</span>(<span class='no'>data_ge</span>,
-                           <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                           <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-                           <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>'covmat'</span>)
+                       <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                       <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                       <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
+                       <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>'covmat'</span>)
 <span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

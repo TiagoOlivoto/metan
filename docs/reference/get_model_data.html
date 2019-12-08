@@ -90,7 +90,7 @@ statistics" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -235,7 +235,7 @@ statistics</p>
 
     <p>Bellow are listed the options allowed in the argument <code>what</code> depending
 on the class of the object</p>
-<p><strong>Object is of class <code>AMMI_indexes</code>.</strong></p><ul>
+<p><strong>Objects of class <code>AMMI_indexes</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"ASV"</code> AMMI stability value</p></li>
 <li><p><code>"SIPC"</code> Sums of the absolute value of the IPCA scores</p></li>
@@ -245,13 +245,21 @@ interaction</p></li>
 <li><p><code>"WAAS"</code> P-value for for each IPCA.</p></li>
 </ul>
 
-<p><strong>Object is of class <code>ecovalence</code>.</strong></p><ul>
+<p><strong>Objects of class <code>Annicchiarico</code> and <code>Schmildt</code>.</strong></p><ul>
+<li><p><code>"Mean_rp"</code> The relative performance of the mean.</p></li>
+<li><p><code>"Sem_rp"</code> The standard error of the relative mean performance (Schmildt).</p></li>
+<li><p><code>"Sd_rp"</code> The standard deviation of the relative performance (Annicchiarico).</p></li>
+<li><p><code>"Wi"</code> The genotypic confidence index.</p></li>
+<li><p><code>"rank"</code> The rank for genotypic confidence index.</p></li>
+</ul>
+
+<p><strong>Objects of class <code>ecovalence</code>.</strong></p><ul>
 <li><p><code>"Ecoval"</code> Ecovalence value.</p></li>
 <li><p><code>"Ecov_perc"</code> Ecovalence in percentage value.</p></li>
 <li><p><code>"rank"</code> Rank for ecovalence</p></li>
 </ul>
 
-<p><strong>Object is of class <code>ge_reg</code>.</strong></p><ul>
+<p><strong>Objects of class <code>ge_reg</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"slope"</code> The sloop of the regression</p></li>
 <li><p><code>"deviations"</code> The deviations from regression</p></li>
@@ -259,11 +267,11 @@ interaction</p></li>
 <li><p><code>"R2"</code> The r-square of the regression</p></li>
 </ul>
 
-<p><strong>Object is of class <code>ge_effects</code>.</strong></p><ul>
+<p><strong>Objects of class <code>ge_effects</code>.</strong></p><ul>
 <li><p>For objects of class <code>ge_effects</code> no argument <code>what</code> is required</p></li>
 </ul>
 
-<p><strong>Object is of class <code>Shukla</code>.</strong></p><ul>
+<p><strong>Objects of class <code>Shukla</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"rMean"</code> Rank for the mean.</p></li>
 <li><p><code>"ShuklaVar"</code> Shukla's stablity variance.</p></li>
@@ -271,18 +279,18 @@ interaction</p></li>
 <li><p><code>"ssiShukaVar"</code> Simultaneous selection index.</p></li>
 </ul>
 
-<p><strong>Object is of class <code>Fox</code>.</strong></p><ul>
+<p><strong>Objects of class <code>Fox</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"TOP"</code> The proportion of locations at which the genotype occurred in
 the top third</p></li>
 </ul>
 
-<p><strong>Object is of class <code>gai</code>.</strong></p><ul>
+<p><strong>Objects of class <code>gai</code>.</strong></p><ul>
 <li><p><code>"GAI"</code> The geometric adaptability index.</p></li>
 <li><p><code>"GAI_R"</code> The rank for the GAI values.</p></li>
 </ul>
 
-<p><strong>Object is of class <code>superiority</code>.</strong></p><ul>
+<p><strong>Objects of class <code>superiority</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"Pi_a"</code> The superiority measure for all environments.</p></li>
 <li><p><code>"R_a"</code> The rank for Pi_a.</p></li>
@@ -292,7 +300,7 @@ the top third</p></li>
 <li><p><code>"R_u"</code> The rank for Pi_u.</p></li>
 </ul>
 
-<p><strong>Object is of class <code>Huehn</code>.</strong></p><ul>
+<p><strong>Objects of class <code>Huehn</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"S1"</code> Mean of the absolute rank differences of a genotype over the n environments.</p></li>
 <li><p><code>"S1_R"</code> The rank for S1.</p></li>
@@ -304,7 +312,7 @@ the top third</p></li>
 <li><p><code>"S6_R"</code> The rank for S6.</p></li>
 </ul>
 
-<p><strong>Object is of class <code>Thennarasu</code>.</strong></p><ul>
+<p><strong>Objects of class <code>Thennarasu</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"N1"</code> First statistic</p></li>
 <li><p><code>"N1_R"</code> The rank for S1.</p></li>
@@ -316,7 +324,7 @@ the top third</p></li>
 <li><p><code>"N4_R"</code> The rank for S6.</p></li>
 </ul>
 
-<p><strong>Object is of class <code>performs_ammi</code>.</strong></p><ul>
+<p><strong>Objects of class <code>performs_ammi</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"ipca_ss"</code> Sum of square for each IPCA.</p></li>
 <li><p><code>"ipca_ms"</code> Mean square for each IPCA.</p></li>
@@ -326,7 +334,7 @@ the top third</p></li>
 <li><p><code>"ipca_accum"</code> Accumulated explained sum of square.</p></li>
 </ul>
 
-<p><strong>Object is of class <code>waas</code> and <code>waasb</code>.</strong></p><ul>
+<p><strong>Objects of class <code>waas</code> and <code>waasb</code>.</strong></p><ul>
 <li><p><code>"Y"</code> for raw means (Default).</p></li>
 <li><p><code>"PCn"</code> for the scores of the nth Interaction Principal Component Axis (IPCA).
 where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>).</p></li>
@@ -342,14 +350,14 @@ where * <code>n</code> is the desired IPCA (e.g. <code>"PC3"</code>).</p></li>
 <li><p><code>"OrWAASBY"</code> The ranking regarding the superiority index.</p></li>
 </ul>
 
-<p><strong>Object is of class <code>waasb</code>
+<p><strong>Objects of class <code>waasb</code>
 or <code>gamem</code>.</strong></p><ul>
 <li><p><code>"HMGV"</code> For harmonic mean of genotypic values.</p></li>
 <li><p><code>"RPGV or RPGV_Y"</code> For relative performance of genotypic values</p></li>
 <li><p><code>"HMRPGV"</code> For harmonic mean of relative performance of genotypic values</p></li>
 </ul>
 
-<p><strong>Object is of class <code>Res_ind</code></strong></p><ul>
+<p><strong>Objects of class <code>Res_ind</code></strong></p><ul>
 <li><p><code>"blupg"</code> For genotype's predicted mean.</p></li>
 <li><p><code>"blupge"</code> for genotype-vs-environment's predicted mean (only for
 objects of class <code>waasb</code>).</p></li>
@@ -376,215 +384,168 @@ Selection based on multiple traits. Agron. J.
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='co'>#################### joint-regression analysis #####################</span>
 <span class='no'>ge_r</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ge_reg.html'>ge_reg</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>ED</span>))</div><div class='output co'>#&gt; Evaluating variable PH 20 % 
-#&gt; Evaluating variable EH 40 % 
-#&gt; Evaluating variable CD 60 % 
-#&gt; Evaluating variable CL 80 % 
-#&gt; Evaluating variable ED 100 % </div><div class='input'><span class='fu'>get_model_data</span>(<span class='no'>ge_r</span>, <span class='st'>"slope"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 13 x 6</span><span>
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>ED</span>))</div><div class='output co'>#&gt; Evaluating variable PH 0 % 
+#&gt; Evaluating variable EH 25 % 
+#&gt; Evaluating variable CD 50 % 
+#&gt; Evaluating variable CL 75 % 
+#&gt; Evaluating variable ED 100 % </div><div class='input'><span class='fu'>get_model_data</span>(<span class='no'>ge_r</span>, <span class='st'>"slope"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 13 x 6</span><span>
 #&gt;    gen      PH    EH      CD     CL      ED
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    0.806 1.06  -</span><span style='color: #BB0000;'>0.059</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>2.19</span><span>   0.028</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10   1.22  1.30   2.31    4.63   2.47  
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11   1.08  1.00   2.74    2.37   0.707 
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12   0.465 0.590  1.73    2.94   0.808 
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13   0.306 0.575 -</span><span style='color: #BB0000;'>0.661</span><span>   0.129  0.636 
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2    0.963 0.525 -</span><span style='color: #BB0000;'>1.26</span><span>   -</span><span style='color: #BB0000;'>3.86</span><span>  -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3    1.35  1.15   1.40   -</span><span style='color: #BB0000;'>1.33</span><span>   0.987 
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4    1.27  1.41   0.555  -</span><span style='color: #BB0000;'>0.393</span><span>  1.20  
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5    1.17  1.30   0.356   0.486  0.197 
-#&gt; </span><span style='color: #555555;'>10</span><span> H6    0.936 0.780  3.00    1.60   0.940 
-#&gt; </span><span style='color: #555555;'>11</span><span> H7    0.992 0.950 -</span><span style='color: #BB0000;'>0.038</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  1.48   0.797 
-#&gt; </span><span style='color: #555555;'>12</span><span> H8    1.01  0.886  0.903   3.73   1.89  
-#&gt; </span><span style='color: #555555;'>13</span><span> H9    1.42  1.48   2.04    3.42   2.40  </div><div class='input'><span class='fu'>get_model_data</span>(<span class='no'>ge_r</span>, <span class='st'>"deviations"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    0.806 1.06  -</span><span style='color: #BB0000;'>0.059</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>2.19</span><span>   0.028</span><span style='text-decoration: underline;'>0</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10   1.22  1.30   2.31    4.63   2.47  
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11   1.08  1.00   2.74    2.37   0.707 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12   0.465 0.590  1.73    2.94   0.808 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13   0.306 0.575 -</span><span style='color: #BB0000;'>0.661</span><span>   0.129  0.636 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2    0.963 0.525 -</span><span style='color: #BB0000;'>1.26</span><span>   -</span><span style='color: #BB0000;'>3.86</span><span>  -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3    1.35  1.15   1.40   -</span><span style='color: #BB0000;'>1.33</span><span>   0.987 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4    1.27  1.41   0.555  -</span><span style='color: #BB0000;'>0.393</span><span>  1.20  
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5    1.17  1.30   0.356   0.486  0.197 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6    0.936 0.780  3.00    1.60   0.940 
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7    0.992 0.950 -</span><span style='color: #BB0000;'>0.038</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  1.48   0.797 
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8    1.01  0.886  0.903   3.73   1.89  
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9    1.42  1.48   2.04    3.42   2.40  </div><div class='input'><span class='fu'>get_model_data</span>(<span class='no'>ge_r</span>, <span class='st'>"deviations"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
 #&gt;    gen       PH       EH      CD     CL     ED
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    0.071</span><span style='text-decoration: underline;'>0</span><span>  0.063</span><span style='text-decoration: underline;'>7</span><span>  -</span><span style='color: #BB0000;'>0.268</span><span>  -</span><span style='color: #BB0000;'>0.176</span><span> -</span><span style='color: #BB0000;'>0.448</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10   0.031</span><span style='text-decoration: underline;'>8</span><span>  0.030</span><span style='text-decoration: underline;'>3</span><span>  -</span><span style='color: #BB0000;'>0.056</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.576 -</span><span style='color: #BB0000;'>0.506</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11   0.027</span><span style='text-decoration: underline;'>8</span><span>  0.025</span><span style='text-decoration: underline;'>6</span><span>  -</span><span style='color: #BB0000;'>0.275</span><span>   0.984  4.35 
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12   0.067</span><span style='text-decoration: underline;'>6</span><span>  0.086</span><span style='text-decoration: underline;'>1</span><span>   0.152   0.300  0.475
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13   0.060</span><span style='text-decoration: underline;'>9</span><span>  0.029</span><span style='text-decoration: underline;'>8</span><span>   0.450   9.10   5.48 
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2    0.081</span><span style='text-decoration: underline;'>5</span><span>  0.098</span><span style='text-decoration: underline;'>1</span><span>   0.237   1.18   6.78 
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3    0.089</span><span style='text-decoration: underline;'>8</span><span>  0.087</span><span style='text-decoration: underline;'>0</span><span>   1.13    0.327  1.65 
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4    0.051</span><span style='text-decoration: underline;'>5</span><span>  0.033</span><span style='text-decoration: underline;'>5</span><span>   0.317   1.50   2.16 
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5    0.015</span><span style='text-decoration: underline;'>9</span><span>  0.004</span><span style='text-decoration: underline;'>49</span><span> -</span><span style='color: #BB0000;'>0.117</span><span>   4.37   1.77 
-#&gt; </span><span style='color: #555555;'>10</span><span> H6    0.048</span><span style='text-decoration: underline;'>1</span><span>  0.010</span><span style='text-decoration: underline;'>6</span><span>   1.31    5.90   0.844
-#&gt; </span><span style='color: #555555;'>11</span><span> H7    0.032</span><span style='text-decoration: underline;'>8</span><span>  0.015</span><span style='text-decoration: underline;'>5</span><span>   1.41    1.79   1.12 
-#&gt; </span><span style='color: #555555;'>12</span><span> H8    0.076</span><span style='text-decoration: underline;'>7</span><span>  0.069</span><span style='text-decoration: underline;'>6</span><span>   1.72    6.05   1.03 
-#&gt; </span><span style='color: #555555;'>13</span><span> H9    0.021</span><span style='text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>0.002</span><span style='color: #BB0000;text-decoration: underline;'>12</span><span>  1.03    0.713 -</span><span style='color: #BB0000;'>0.779</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    0.071</span><span style='text-decoration: underline;'>0</span><span>  0.063</span><span style='text-decoration: underline;'>7</span><span>  -</span><span style='color: #BB0000;'>0.268</span><span>  -</span><span style='color: #BB0000;'>0.176</span><span> -</span><span style='color: #BB0000;'>0.448</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10   0.031</span><span style='text-decoration: underline;'>8</span><span>  0.030</span><span style='text-decoration: underline;'>3</span><span>  -</span><span style='color: #BB0000;'>0.056</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.576 -</span><span style='color: #BB0000;'>0.506</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11   0.027</span><span style='text-decoration: underline;'>8</span><span>  0.025</span><span style='text-decoration: underline;'>6</span><span>  -</span><span style='color: #BB0000;'>0.275</span><span>   0.984  4.35 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12   0.067</span><span style='text-decoration: underline;'>6</span><span>  0.086</span><span style='text-decoration: underline;'>1</span><span>   0.152   0.300  0.475
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13   0.060</span><span style='text-decoration: underline;'>9</span><span>  0.029</span><span style='text-decoration: underline;'>8</span><span>   0.450   9.10   5.48 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2    0.081</span><span style='text-decoration: underline;'>5</span><span>  0.098</span><span style='text-decoration: underline;'>1</span><span>   0.237   1.18   6.78 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3    0.089</span><span style='text-decoration: underline;'>8</span><span>  0.087</span><span style='text-decoration: underline;'>0</span><span>   1.13    0.327  1.65 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4    0.051</span><span style='text-decoration: underline;'>5</span><span>  0.033</span><span style='text-decoration: underline;'>5</span><span>   0.317   1.50   2.16 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5    0.015</span><span style='text-decoration: underline;'>9</span><span>  0.004</span><span style='text-decoration: underline;'>49</span><span> -</span><span style='color: #BB0000;'>0.117</span><span>   4.37   1.77 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6    0.048</span><span style='text-decoration: underline;'>1</span><span>  0.010</span><span style='text-decoration: underline;'>6</span><span>   1.31    5.90   0.844
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7    0.032</span><span style='text-decoration: underline;'>8</span><span>  0.015</span><span style='text-decoration: underline;'>5</span><span>   1.41    1.79   1.12 
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8    0.076</span><span style='text-decoration: underline;'>7</span><span>  0.069</span><span style='text-decoration: underline;'>6</span><span>   1.72    6.05   1.03 
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9    0.021</span><span style='text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>0.002</span><span style='color: #BB0000;text-decoration: underline;'>12</span><span>  1.03    0.713 -</span><span style='color: #BB0000;'>0.779</span><span></div><div class='input'>
 <span class='co'>#################### AMMI model #####################</span>
 <span class='co'># Fit an AMMI model for 7 variables.</span>
 <span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>CW</span>))</div><div class='output co'>#&gt; Evaluating variable PH 14.3 % 
-#&gt; Evaluating variable ED 28.6 % 
-#&gt; Evaluating variable TKW 42.9 % 
-#&gt; Evaluating variable NKR 57.1 % 
-#&gt; Evaluating variable CD 71.4 % 
-#&gt; Evaluating variable CL 85.7 % 
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>CW</span>))</div><div class='output co'>#&gt; Evaluating variable PH 0 % 
+#&gt; Evaluating variable ED 16.7 % 
+#&gt; Evaluating variable TKW 33.3 % 
+#&gt; Evaluating variable NKR 50 % 
+#&gt; Evaluating variable CD 66.7 % 
+#&gt; Evaluating variable CL 83.3 % 
 #&gt; Evaluating variable CW 100 % 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Sum of squares</span>
-<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_ss"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_ss"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF    PH    ED     TKW   NKR    CD    CL    CW
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14 4.47  212.  </span><span style='text-decoration: underline;'>104</span><span>276. 337.   48.2 321.  </span><span style='text-decoration: underline;'>2</span><span>224.
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.653 135.   </span><span style='text-decoration: underline;'>33</span><span>361. 192.   20.7 129.   503.
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.277  51.3  </span><span style='text-decoration: underline;'>26</span><span>935.  73.1  12.6  77.5  330.</div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> PC1      14 4.47  212.  </span><span style='text-decoration: underline;'>104</span><span>276. 337.   48.2 321.  </span><span style='text-decoration: underline;'>2</span><span>224.
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> PC2      12 0.653 135.   </span><span style='text-decoration: underline;'>33</span><span>361. 192.   20.7 129.   503.
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> PC3      10 0.277  51.3  </span><span style='text-decoration: underline;'>26</span><span>935.  73.1  12.6  77.5  330.</div><div class='input'>
 <span class='co'># Mean squares</span>
-<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_ms"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_ms"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF     PH    ED   TKW   NKR    CD    CL    CW
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14 0.319  15.2  </span><span style='text-decoration: underline;'>7</span><span>448. 24.1   3.45 22.9  159. 
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.054</span><span style='text-decoration: underline;'>5</span><span> 11.2  </span><span style='text-decoration: underline;'>2</span><span>780. 16.0   1.73 10.8   41.9
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.027</span><span style='text-decoration: underline;'>7</span><span>  5.13 </span><span style='text-decoration: underline;'>2</span><span>694.  7.31  1.26  7.75  33.0</div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> PC1      14 0.319  15.2  </span><span style='text-decoration: underline;'>7</span><span>448. 24.1   3.45 22.9  159. 
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> PC2      12 0.054</span><span style='text-decoration: underline;'>5</span><span> 11.2  </span><span style='text-decoration: underline;'>2</span><span>780. 16.0   1.73 10.8   41.9
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> PC3      10 0.027</span><span style='text-decoration: underline;'>7</span><span>  5.13 </span><span style='text-decoration: underline;'>2</span><span>694.  7.31  1.26  7.75  33.0</div><div class='input'>
 <span class='co'># Examine the significance (p-value) of the IPCAs</span>
-<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_pval"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_pval"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF     PH     ED     TKW      NKR     CD    CL       CW
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14 0      0      0       0.000</span><span style='text-decoration: underline;'>600</span><span> 0          0 0       
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.008</span><span style='text-decoration: underline;'>4</span><span> 0      0.001</span><span style='text-decoration: underline;'>20</span><span> 0.028</span><span style='text-decoration: underline;'>5</span><span>   0.042</span><span style='text-decoration: underline;'>3</span><span>     0 0.000</span><span style='text-decoration: underline;'>300</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.276  0.043</span><span style='text-decoration: underline;'>8</span><span> 0.003   0.509    0.192      0 0.005</span><span style='text-decoration: underline;'>2</span><span>  </div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> PC1      14 0      0      0       0.000</span><span style='text-decoration: underline;'>600</span><span> 0          0 0       
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> PC2      12 0.008</span><span style='text-decoration: underline;'>4</span><span> 0      0.001</span><span style='text-decoration: underline;'>20</span><span> 0.028</span><span style='text-decoration: underline;'>5</span><span>   0.042</span><span style='text-decoration: underline;'>3</span><span>     0 0.000</span><span style='text-decoration: underline;'>300</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> PC3      10 0.276  0.043</span><span style='text-decoration: underline;'>8</span><span> 0.003   0.509    0.192      0 0.005</span><span style='text-decoration: underline;'>2</span><span>  </div><div class='input'>
 <span class='co'># Explained sum of square for each IPCA</span>
-<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_expl"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_expl"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF    PH    ED   TKW   NKR    CD    CL    CW
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14  82.8  53.3  63.4  56    59.1  60.8  72.8
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12  12.1  33.8  20.3  31.9  25.4  24.5  16.4
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10   5.1  12.9  16.4  12.1  15.5  14.7  10.8</div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> PC1      14  82.8  53.3  63.4  56    59.1  60.8  72.8
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> PC2      12  12.1  33.8  20.3  31.9  25.4  24.5  16.4
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> PC3      10   5.1  12.9  16.4  12.1  15.5  14.7  10.8</div><div class='input'>
 <span class='co'># Accumulated sum of square</span>
-<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_accum"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='st'>"ipca_accum"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF    PH    ED   TKW   NKR    CD    CL    CW
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1      14  82.8  53.3  63.4  56    59.1  60.8  72.8
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2      12  94.9  87.1  83.6  87.9  84.5  85.3  89.2
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 100   100   100   100   100   100   100  </div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> PC1      14  82.8  53.3  63.4  56    59.1  60.8  72.8
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> PC2      12  94.9  87.1  83.6  87.9  84.5  85.3  89.2
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> PC3      10 100   100   100   100   100   100   100  </div><div class='input'>
 <span class='co'>### AMMI-based stability statistics ###</span>
 <span class='co'># Get the AMMI stability value</span>
 <span class='no'>AMMI</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='AMMI_indexes.html'>AMMI_indexes</a></span>() <span class='kw'>%&gt;%</span>
-<span class='fu'>get_model_data</span>(<span class='st'>"ASV"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 8</span><span>
+<span class='fu'>get_model_data</span>(<span class='st'>"ASV"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 13 x 8</span><span>
 #&gt;    gen      PH    ED    TKW   NKR    CD    CL     CW
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    2.27  1.41   7.76  2.01  0.314 2.75   6.24 
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10   1.61  2.11   6.58  1.00  0.725 2.67   4.63 
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11   1.48  1.31   3.55  2.05  0.505 0.918  3.16 
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12   2.62  0.610  0.981 0.547 1.08  1.36   0.881
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13   2.53  1.56   2.45  1.86  1.55  2.11   5.63 
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2    2.56  2.58  19.0   0.793 1.39  4.47  12.0  
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3    2.80  0.863 17.3   0.513 1.45  2.19   2.97 
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4    2.22  0.540 13.0   0.565 1.31  1.58   2.59 
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5    1.27  1.22   0.984 1.59  0.744 1.04   3.68 
-#&gt; </span><span style='color: #555555;'>10</span><span> H6    2.00  0.848  5.73  3.11  1.39  1.93   5.14 
-#&gt; </span><span style='color: #555555;'>11</span><span> H7    1.72  0.717  9.61  1.41  1.78  1.25   7.93 
-#&gt; </span><span style='color: #555555;'>12</span><span> H8    2.38  1.54  19.8   2.51  2.29  3.25  10.5  
-#&gt; </span><span style='color: #555555;'>13</span><span> H9    0.872 1.95  21.3   2.44  1.81  2.06   8.42 </div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    2.27  1.41   7.76  2.01  0.314 2.75   6.24 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10   1.61  2.11   6.58  1.00  0.725 2.67   4.63 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11   1.48  1.31   3.55  2.05  0.505 0.918  3.16 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12   2.62  0.610  0.981 0.547 1.08  1.36   0.881
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13   2.53  1.56   2.45  1.86  1.55  2.11   5.63 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2    2.56  2.58  19.0   0.793 1.39  4.47  12.0  
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3    2.80  0.863 17.3   0.513 1.45  2.19   2.97 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4    2.22  0.540 13.0   0.565 1.31  1.58   2.59 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5    1.27  1.22   0.984 1.59  0.744 1.04   3.68 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6    2.00  0.848  5.73  3.11  1.39  1.93   5.14 
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7    1.72  0.717  9.61  1.41  1.78  1.25   7.93 
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8    2.38  1.54  19.8   2.51  2.29  3.25  10.5  
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9    0.872 1.95  21.3   2.44  1.81  2.06   8.42 </div><div class='input'>
 
 <span class='co'>#################### WAASB model #####################</span>
 <span class='co'># Fitting the WAAS index</span>
 <span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
-#&gt; Evaluating variable ED 50 % 
-#&gt; Evaluating variable TKW 75 % 
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 0 % 
+#&gt; Evaluating variable ED 33.3 % 
+#&gt; Evaluating variable TKW 66.7 % 
 #&gt; Evaluating variable NKR 100 % 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Getting the weighted average of absolute scores</span>
-<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"WAASB"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"WAASB"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 13 x 5</span><span>
 #&gt;    gen      PH    ED   TKW   NKR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    0.318 0.667 2.72  0.929
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10   0.230 0.973 2.15  0.506
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11   0.201 0.649 1.26  0.836
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12   0.364 0.315 0.558 0.228
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13   0.363 0.838 0.514 0.946
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2    0.342 1.08  4.41  0.404
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3    0.374 0.486 4.10  0.252
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4    0.294 0.378 3.07  0.281
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5    0.168 0.567 0.738 0.611
-#&gt; </span><span style='color: #555555;'>10</span><span> H6    0.270 0.409 1.64  1.60 
-#&gt; </span><span style='color: #555555;'>11</span><span> H7    0.228 0.384 3.44  0.518
-#&gt; </span><span style='color: #555555;'>12</span><span> H8    0.315 0.653 4.91  0.941
-#&gt; </span><span style='color: #555555;'>13</span><span> H9    0.146 0.907 5.50  0.888</div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    0.318 0.667 2.72  0.929
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10   0.230 0.973 2.15  0.506
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11   0.201 0.649 1.26  0.836
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12   0.364 0.315 0.558 0.228
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13   0.363 0.838 0.514 0.946
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2    0.342 1.08  4.41  0.404
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3    0.374 0.486 4.10  0.252
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4    0.294 0.378 3.07  0.281
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5    0.168 0.567 0.738 0.611
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6    0.270 0.409 1.64  1.60 
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7    0.228 0.384 3.44  0.518
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8    0.315 0.653 4.91  0.941
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9    0.146 0.907 5.50  0.888</div><div class='input'>
 <span class='co'># And the rank for the WAASB inde.</span>
-<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"OrWAASB"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
+<span class='fu'>get_model_data</span>(<span class='no'>AMMI</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"OrWAASB"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 13 x 5</span><span>
 #&gt;    gen      PH    ED   TKW   NKR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1        9     9     7    10
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10       5    12     6     5
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11       3     7     4     8
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12      12     1     2     1
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13      11    10     1    12
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2       10    13    11     4
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3       13     5    10     2
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4        7     2     8     3
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5        2     6     3     7
-#&gt; </span><span style='color: #555555;'>10</span><span> H6        6     4     5    13
-#&gt; </span><span style='color: #555555;'>11</span><span> H7        4     3     9     6
-#&gt; </span><span style='color: #555555;'>12</span><span> H8        8     8    12    11
-#&gt; </span><span style='color: #555555;'>13</span><span> H9        1    11    13     9</div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        9     9     7    10
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       5    12     6     5
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       3     7     4     8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12      12     1     2     1
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13      11    10     1    12
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2       10    13    11     4
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3       13     5    10     2
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        7     2     8     3
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        2     6     3     7
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        6     4     5    13
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        4     3     9     6
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        8     8    12    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        1    11    13     9</div><div class='input'>
 
 <span class='co'>#################### BLUP model #####################</span>
 <span class='co'># Fitting a mixed-effect model</span>
 <span class='no'>blup</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 25 % 
-#&gt; Evaluating variable ED 50 % 
-#&gt; Evaluating variable TKW 75 % 
-#&gt; Evaluating variable NKR 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
+              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; <span class='error'>Error in fortify.merMod(Complete): could not find function "fortify.merMod"</span></div><div class='input'>
 <span class='co'># Getting p-values for likelihood-ratio test</span>
-<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"pval_lrt"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
-#&gt;   model           PH            ED       TKW      NKR
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Complete </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    </span><span style='color: #BB0000;'>NA</span><span>      
-#&gt; </span><span style='color: #555555;'>2</span><span> Genotype  9.39</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>  0.299         1.00</span><span style='color: #555555;'>e</span><span>+ 0  0.787  
-#&gt; </span><span style='color: #555555;'>3</span><span> Gen:Env   1.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-13</span><span>  0.000</span><span style='text-decoration: underline;'>000</span><span>016</span><span style='text-decoration: underline;'>9</span><span>  4.21</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span>  0.004</span><span style='text-decoration: underline;'>04</span><span></div><div class='input'>
+<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"pval_lrt"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",     "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",     "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",     "ge_stats", "Annicchiarico", "Schmildt"): object 'blup' not found</span></div><div class='input'>
 <span class='co'># Getting the variance components</span>
-<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"vcomp"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
-#&gt;   Group          PH    ED     TKW   NKR
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GEN      0.000</span><span style='text-decoration: underline;'>456</span><span> 0.556 8.27</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-7</span><span> 0.187
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV  0.042</span><span style='text-decoration: underline;'>5</span><span>   2.82  1.15</span><span style='color: #555555;'>e</span><span>+3 2.96 
-#&gt; </span><span style='color: #555555;'>3</span><span> Residual 0.022</span><span style='text-decoration: underline;'>4</span><span>   2.59  9.19</span><span style='color: #555555;'>e</span><span>+2 7.85 </div><div class='input'>
+<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"vcomp"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",     "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",     "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",     "ge_stats", "Annicchiarico", "Schmildt"): object 'blup' not found</span></div><div class='input'>
 <span class='co'># Getting the genetic parameters</span>
-<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"genpar"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 5</span><span>
-#&gt;    Parameters                   PH      ED      TKW     NKR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> GEI variance           0.042</span><span style='text-decoration: underline;'>5</span><span>    2.82   1.15</span><span style='color: #555555;'>e</span><span>+ 3  2.96  
-#&gt; </span><span style='color: #555555;'> 2</span><span> GEI (%)               65.0      47.2    5.55</span><span style='color: #555555;'>e</span><span>+ 1 26.9   
-#&gt; </span><span style='color: #555555;'> 3</span><span> Genotypic variance     0.000</span><span style='text-decoration: underline;'>456</span><span>  0.556  8.27</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 7</span><span>  0.187 
-#&gt; </span><span style='color: #555555;'> 4</span><span> Gen (%)                0.698     9.32   4.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>  1.70  
-#&gt; </span><span style='color: #555555;'> 5</span><span> Residual variance      0.022</span><span style='text-decoration: underline;'>4</span><span>    2.59   9.19</span><span style='color: #555555;'>e</span><span>+ 2  7.85  
-#&gt; </span><span style='color: #555555;'> 6</span><span> Res (%)               34.3      43.4    4.45</span><span style='color: #555555;'>e</span><span>+ 1 71.4   
-#&gt; </span><span style='color: #555555;'> 7</span><span> Phenotypic variance    0.065</span><span style='text-decoration: underline;'>4</span><span>    5.97   2.06</span><span style='color: #555555;'>e</span><span>+ 3 11.0   
-#&gt; </span><span style='color: #555555;'> 8</span><span> Heritability           0.006</span><span style='text-decoration: underline;'>98</span><span>   0.093</span><span style='text-decoration: underline;'>2</span><span> 4.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span>  0.017</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> GEIr2                  0.650     0.472  5.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>  0.269 
-#&gt; </span><span style='color: #555555;'>10</span><span> Heribatility of means  0.035</span><span style='text-decoration: underline;'>2</span><span>    0.376  2.28</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 9</span><span>  0.118 
-#&gt; </span><span style='color: #555555;'>11</span><span> Accuracy               0.188     0.614  4.77</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>  0.344 
-#&gt; </span><span style='color: #555555;'>12</span><span> rge                    0.655     0.521  5.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>  0.274 
-#&gt; </span><span style='color: #555555;'>13</span><span> CVg                    0.860     1.51   2.68</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>  1.34  
-#&gt; </span><span style='color: #555555;'>14</span><span> CVr                    6.03      3.25   8.95</span><span style='color: #555555;'>e</span><span>+ 0  8.69  
-#&gt; </span><span style='color: #555555;'>15</span><span> CV ratio               0.143     0.463  3.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>  0.154 </div><div class='input'>
+<span class='fu'>get_model_data</span>(<span class='no'>blup</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"genpar"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",     "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",     "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",     "ge_stats", "Annicchiarico", "Schmildt"): object 'blup' not found</span></div><div class='input'>
 <span class='co'>### BLUP-based stability indexes ###</span>
 <span class='no'>blup</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='Resende_indexes.html'>Resende_indexes</a></span>() <span class='kw'>%&gt;%</span>
-<span class='fu'>get_model_data</span>(<span class='st'>"HMRPGV"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
-#&gt;    gen      PH    ED   TKW   NKR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    1.04  1.03  1.06  0.998
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10   0.937 0.979 0.946 1.00 
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11   0.964 0.986 0.984 1.01 
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12   0.981 0.984 0.946 0.966
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13   1.02  1.02  1.00  0.976
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2    1.04  1.02  1.03  0.993
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3    1.03  0.998 1.01  0.984
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4    1.03  0.994 1.01  1.05 
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5    1.03  1.01  1.00  1.03 
-#&gt; </span><span style='color: #555555;'>10</span><span> H6    1.02  1.03  1.05  1.01 
-#&gt; </span><span style='color: #555555;'>11</span><span> H7    0.970 0.999 1.01  0.985
-#&gt; </span><span style='color: #555555;'>12</span><span> H8    0.939 0.978 0.945 0.980
-#&gt; </span><span style='color: #555555;'>13</span><span> H9    0.953 0.965 0.916 1.00 </div><div class='input'># }
+<span class='fu'>get_model_data</span>(<span class='st'>"HMRPGV"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): object 'blup' not found</span></div><div class='input'># }
 
 </div></span></pre>
   </div>

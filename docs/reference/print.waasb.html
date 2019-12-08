@@ -88,7 +88,7 @@ the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -242,210 +242,1068 @@ to the working directory</p></td>
   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>
-)</div><div class='output co'>#&gt; Evaluating variable GY 50 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable GY 
+)</div><div class='output co'>#&gt; <span class='error'>Error in fortify.merMod(Complete): could not find function "fortify.merMod"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
-#&gt; Individual fixed-model analysis of variance
+#&gt; Environmental index
 #&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #555555;'># A tibble: 14 x 12</span><span>
-#&gt;    ENV    MEAN     MSB    MSG     MSR     FCB     PRFB    FCG     PRFG     CV
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    2.521 0.065</span><span style='text-decoration: underline;'>22</span><span> 0.337</span><span style='text-decoration: underline;'>4</span><span> 0.144</span><span style='text-decoration: underline;'>0</span><span>   0.452</span><span style='text-decoration: underline;'>9</span><span> 6.428</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  2.343 5.936</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 15.05 
-#&gt; </span><span style='color: #555555;'> 2</span><span> E10   2.175 0.653</span><span style='text-decoration: underline;'>7</span><span>  0.295</span><span style='text-decoration: underline;'>8</span><span> 0.026</span><span style='text-decoration: underline;'>67</span><span> 24.51   7.275</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span> 11.09  1.097</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>  7.508
-#&gt; </span><span style='color: #555555;'> 3</span><span> E11   1.368 0.377</span><span style='text-decoration: underline;'>3</span><span>  0.150</span><span style='text-decoration: underline;'>9</span><span> 0.105</span><span style='text-decoration: underline;'>0</span><span>   3.594  4.860</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  1.438 2.443</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 23.68 
-#&gt; </span><span style='color: #555555;'> 4</span><span> E12   1.609 0.091</span><span style='text-decoration: underline;'>90</span><span> 0.320</span><span style='text-decoration: underline;'>2</span><span> 0.053</span><span style='text-decoration: underline;'>52</span><span>  1.717  2.077</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  5.982 6.474</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 14.38 
-#&gt; </span><span style='color: #555555;'> 5</span><span> E13   2.910 0.076</span><span style='text-decoration: underline;'>74</span><span> 0.713</span><span style='text-decoration: underline;'>4</span><span> 0.099</span><span style='text-decoration: underline;'>37</span><span>  0.772</span><span style='text-decoration: underline;'>2</span><span> 4.767</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  7.179 2.095</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 10.83 
-#&gt; </span><span style='color: #555555;'> 6</span><span> E14   1.782 0.103</span><span style='text-decoration: underline;'>5</span><span>  0.130</span><span style='text-decoration: underline;'>5</span><span> 0.075</span><span style='text-decoration: underline;'>33</span><span>  1.374  2.784</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.732 1.535</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 15.40 
-#&gt; </span><span style='color: #555555;'> 7</span><span> E2    3.180 0.698</span><span style='text-decoration: underline;'>3</span><span>  0.206</span><span style='text-decoration: underline;'>6</span><span> 0.178</span><span style='text-decoration: underline;'>5</span><span>   3.912  3.885</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  1.157 3.763</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 13.29 
-#&gt; </span><span style='color: #555555;'> 8</span><span> E3    4.064 0.488</span><span style='text-decoration: underline;'>6</span><span>  0.335</span><span style='text-decoration: underline;'>1</span><span> 0.178</span><span style='text-decoration: underline;'>9</span><span>   2.731  9.209</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  1.872 1.230</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 10.41 
-#&gt; </span><span style='color: #555555;'> 9</span><span> E4    3.675 0.116</span><span style='text-decoration: underline;'>5</span><span>  0.531</span><span style='text-decoration: underline;'>3</span><span> 0.137</span><span style='text-decoration: underline;'>7</span><span>   0.845</span><span style='text-decoration: underline;'>8</span><span> 4.456</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  3.859 7.123</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 10.10 
-#&gt; </span><span style='color: #555555;'>10</span><span> E5    3.910 0.218</span><span style='text-decoration: underline;'>8</span><span>  0.526</span><span style='text-decoration: underline;'>1</span><span> 0.066</span><span style='text-decoration: underline;'>36</span><span>  3.297  6.024</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  7.929 1.101</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>  6.587
-#&gt; </span><span style='color: #555555;'>11</span><span> E6    2.663 0.159</span><span style='text-decoration: underline;'>9</span><span>  0.134</span><span style='text-decoration: underline;'>6</span><span> 0.058</span><span style='text-decoration: underline;'>57</span><span>  2.729  9.219</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  2.299 6.345</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  9.087
-#&gt; </span><span style='color: #555555;'>12</span><span> E7    1.989 0.381</span><span style='text-decoration: underline;'>0</span><span>  0.336</span><span style='text-decoration: underline;'>9</span><span> 0.091</span><span style='text-decoration: underline;'>03</span><span>  4.185  3.217</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  3.701 8.727</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 15.17 
-#&gt; </span><span style='color: #555555;'>13</span><span> E8    2.536 0.816</span><span style='text-decoration: underline;'>8</span><span>  0.214</span><span style='text-decoration: underline;'>6</span><span> 0.027</span><span style='text-decoration: underline;'>81</span><span> 29.37   2.149</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span>  7.717 1.314</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>  6.575
-#&gt; </span><span style='color: #555555;'>14</span><span> E9    3.057 0.582</span><span style='text-decoration: underline;'>6</span><span>  0.679</span><span style='text-decoration: underline;'>3</span><span> 0.110</span><span style='text-decoration: underline;'>9</span><span>   5.253  1.596</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  6.124 5.622</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 10.90 
-#&gt; </span><span style='color: #555555;'># ... with 2 more variables: h2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean   index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     2.79  0.308  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     2.46 -</span><span style='color: #BB0000;'>0.022</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     2.17 -</span><span style='color: #BB0000;'>0.318</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     2.52  0.032</span><span style='text-decoration: underline;'>9</span><span> favorable  
 #&gt; ---------------------------------------------------------------------------
-#&gt; Fixed effects
+#&gt; Analysis for all environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 7</span><span>
-#&gt;   SOURCE  `Sum Sq` `Mean Sq` NumDF DenDF `F value`  `Pr(&gt;F)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV       66.09     5.084     13 279.8    52.58  2.954</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-67</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> REP:ENV    9.662    0.345</span><span style='text-decoration: underline;'>1</span><span>    28 252.0     3.569 3.593</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        2.62   106.   9.38  99.3     2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       2.31    93.0  6.93  88.3    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       2.39    96.1  6.27  91.9     9
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       2.44    98.6 11.2   91.0    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       2.54   103.  12.4   94.4     7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        2.60   105.   9.91  98.1     3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        2.59   104.  11.2   96.6     6
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        2.58   104.   8.76  97.7     5
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        2.57   103.   5.55  99.5     1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        2.56   103.   7.83  97.7     4
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        2.40    96.8  6.67  92.3     8
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        2.33    93.6  9.61  87.1    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        2.36    94.8  6.85  90.2    11
 #&gt; ---------------------------------------------------------------------------
-#&gt; Random effects
+#&gt; Analysis for favorable environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 2</span><span>
-#&gt;   Group    Variance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GEN       0.028</span><span style='text-decoration: underline;'>03</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV   0.056</span><span style='text-decoration: underline;'>71</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> Residual  0.096</span><span style='text-decoration: underline;'>69</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        2.68   101.  5.09   97.6     9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       2.59    97.3 3.38   95.0    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       2.66   100.  2.41   98.5     7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       2.61    98.5 3.00   96.5    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       2.66   100.  1.63   99.3     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        2.66   100.  0.203 100.0     3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        2.70   101.  5.22   97.9     8
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        2.71   102.  0.839 102.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        2.74   103.  2.32  102.      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        2.63    98.9 0.292  98.7     6
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        2.65    99.9 0.812  99.3     4
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        2.62    98.9 3.60   96.5    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        2.62    98.1 9.33   91.8    13
 #&gt; ---------------------------------------------------------------------------
-#&gt; Likelihood ratio test
+#&gt; Analysis for unfavorable environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 7</span><span>
-#&gt;   model     npar logLik   AIC   LRT    Df `Pr(&gt;Chisq)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Complete    45 -</span><span style='color: #BB0000;'>214.7</span><span> 519.4 </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #555555;'> </span><span>   
-#&gt; </span><span style='color: #555555;'>2</span><span> Genotype    44 -</span><span style='color: #BB0000;'>224.4</span><span> 536.7 19.32     1    1.108</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> Gen:Env     44 -</span><span style='color: #BB0000;'>237.1</span><span> 562.3 44.83     1    2.147</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-11</span><span>
-#&gt; ---------------------------------------------------------------------------
-#&gt; Variance components and genetic parameters
-#&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 15 x 2</span><span>
-#&gt;    Parameters              Values
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> GEI variance           0.056</span><span style='text-decoration: underline;'>71</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> GEI (%)               31.26   
-#&gt; </span><span style='color: #555555;'> 3</span><span> Genotypic variance     0.028</span><span style='text-decoration: underline;'>03</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> Gen (%)               15.45   
-#&gt; </span><span style='color: #555555;'> 5</span><span> Residual variance      0.096</span><span style='text-decoration: underline;'>69</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> Res (%)               53.29   
-#&gt; </span><span style='color: #555555;'> 7</span><span> Phenotypic variance    0.181</span><span style='text-decoration: underline;'>4</span><span> 
-#&gt; </span><span style='color: #555555;'> 8</span><span> Heritability           0.154</span><span style='text-decoration: underline;'>5</span><span> 
-#&gt; </span><span style='color: #555555;'> 9</span><span> GEIr2                  0.312</span><span style='text-decoration: underline;'>6</span><span> 
-#&gt; </span><span style='color: #555555;'>10</span><span> Heribatility of means  0.815</span><span style='text-decoration: underline;'>2</span><span> 
-#&gt; </span><span style='color: #555555;'>11</span><span> Accuracy               0.902</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #555555;'>12</span><span> rge                    0.369</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #555555;'>13</span><span> CVg                    6.260  
-#&gt; </span><span style='color: #555555;'>14</span><span> CVr                   11.63   
-#&gt; </span><span style='color: #555555;'>15</span><span> CV ratio               0.538</span><span style='text-decoration: underline;'>4</span><span> 
-#&gt; ---------------------------------------------------------------------------
-#&gt;  Principal component analysis of the G x E interaction matrix
-#&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 9 x 4</span><span>
-#&gt;   PC    Eigenvalue Proportion Accumulated
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1      1.472      34.31         34.31
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2      1.347      31.38         65.69
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3      0.547</span><span style='text-decoration: underline;'>9</span><span>     12.77         78.46
-#&gt; </span><span style='color: #555555;'>4</span><span> PC4      0.416</span><span style='text-decoration: underline;'>7</span><span>      9.710        88.17
-#&gt; </span><span style='color: #555555;'>5</span><span> PC5      0.212</span><span style='text-decoration: underline;'>6</span><span>      4.955        93.12
-#&gt; </span><span style='color: #555555;'>6</span><span> PC6      0.139</span><span style='text-decoration: underline;'>7</span><span>      3.256        96.38
-#&gt; </span><span style='color: #555555;'>7</span><span> PC7      0.079</span><span style='text-decoration: underline;'>12</span><span>     1.844        98.22
-#&gt; </span><span style='color: #555555;'>8</span><span> PC8      0.056</span><span style='text-decoration: underline;'>73</span><span>     1.322        99.55
-#&gt; </span><span style='color: #555555;'>9</span><span> PC9      0.019</span><span style='text-decoration: underline;'>47</span><span>     0.453</span><span style='text-decoration: underline;'>7</span><span>      100   
-#&gt; ---------------------------------------------------------------------------
-#&gt; Some information regarding the analysis
-#&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
-#&gt;   Parameters Values             
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              
-#&gt; </span><span style='color: #555555;'>1</span><span> Ngen       10                 
-#&gt; </span><span style='color: #555555;'>2</span><span> Nenv       14                 
-#&gt; </span><span style='color: #555555;'>3</span><span> OVmean     2.6742             
-#&gt; </span><span style='color: #555555;'>4</span><span> Min        0.8991 (G10 in E11)
-#&gt; </span><span style='color: #555555;'>5</span><span> Max        4.8121 (G8 in E5)  
-#&gt; </span><span style='color: #555555;'>6</span><span> MinENV     E11 (1.368)        
-#&gt; </span><span style='color: #555555;'>7</span><span> MaxENV     E3 (4.064)         
-#&gt; </span><span style='color: #555555;'>8</span><span> MinGEN     </span><span style='color: #555555;'>"</span><span>G10 (2.471) </span><span style='color: #555555;'>"</span><span>     
-#&gt; </span><span style='color: #555555;'>9</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G8 (3.004) </span><span style='color: #555555;'>"</span><span>      
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        2.56   110.  12.4  102.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       2.04    88.7  7.65  83.5    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       2.12    92.1  6.93  87.4     9
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       2.26    98.6 19.2   85.7    11
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       2.41   105.  20.8   91.2     7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        2.55   110.  14.3   99.9     2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        2.49   107.  17.8   94.9     6
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        2.45   105.  14.9   95.1     5
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        2.40   103.   9.32  97.0     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        2.49   107.  10.9   99.7     3
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        2.16    93.6  9.69  87.1    10
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        2.03    88.3 12.3   80.0    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        2.11    91.5  3.02  89.4     8
 #&gt; 
 #&gt; 
 #&gt; 
-#&gt; Variable HM 
+#&gt; Variable EH 
 #&gt; ---------------------------------------------------------------------------
-#&gt; Individual fixed-model analysis of variance
+#&gt; Environmental index
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 14 x 12</span><span>
-#&gt;    ENV    MEAN     MSB    MSG   MSR     FCB     PRFB    FCG     PRFG    CV
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    47.42  3.106   5.221 1.852  1.677  2.148</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  2.819 2.928</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 2.870
-#&gt; </span><span style='color: #555555;'> 2</span><span> E10   44.3   9.1    28.77  2.174  4.186  3.216</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 13.24  3.024</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span> 3.328
-#&gt; </span><span style='color: #555555;'> 3</span><span> E11   54.20  2.810   6.057 3.087  0.910</span><span style='text-decoration: underline;'>3</span><span> 4.202</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.962 1.069</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 3.242
-#&gt; </span><span style='color: #555555;'> 4</span><span> E12   49.60  2.766  10.40  5.322  0.519</span><span style='text-decoration: underline;'>8</span><span> 6.033</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.955 1.081</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.651
-#&gt; </span><span style='color: #555555;'> 5</span><span> E13   46.56 25.45   13.88  1.342 18.96   3.705</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span> 10.34  1.798</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span> 2.488
-#&gt; </span><span style='color: #555555;'> 6</span><span> E14   41.03 10.02    5.278 1.217  8.230  2.894</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>  4.338 3.935</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 2.688
-#&gt; </span><span style='color: #555555;'> 7</span><span> E2    44.12  6.699  13.17  3.049  2.197  1.400</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  4.319 4.025</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 3.958
-#&gt; </span><span style='color: #555555;'> 8</span><span> E3    52.9   7.3     8.004 2.781  2.625  9.996</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  2.877 2.692</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 3.153
-#&gt; </span><span style='color: #555555;'> 9</span><span> E4    50     2.100   7.926 1.248  1.682  2.139</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  6.350 4.510</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 2.234
-#&gt; </span><span style='color: #555555;'>10</span><span> E5    52.23  6.860  11.83  6.371  1.077  3.616</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.858 1.260</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.833
-#&gt; </span><span style='color: #555555;'>11</span><span> E6    45.89 12.86   15.84  2.122  6.063  9.706</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>  7.463 1.633</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 3.174
-#&gt; </span><span style='color: #555555;'>12</span><span> E7    48.50  0.705</span><span style='text-decoration: underline;'>2</span><span>  4.997 4.738  0.148</span><span style='text-decoration: underline;'>8</span><span> 8.627</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.055 4.382</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.489
-#&gt; </span><span style='color: #555555;'>13</span><span> E8    45.16 11.95   11.57  2.168  5.514  1.356</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  5.335 1.266</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 3.260
-#&gt; </span><span style='color: #555555;'>14</span><span> E9    51.33  5.733   9.333 2.289  2.505  1.097</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  4.078 5.408</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 2.947
-#&gt; </span><span style='color: #555555;'># ... with 2 more variables: h2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean   index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     1.58  0.234  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     1.31 -</span><span style='color: #BB0000;'>0.030</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     1.08 -</span><span style='color: #BB0000;'>0.265</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     1.41  0.062</span><span style='text-decoration: underline;'>0</span><span> favorable  
 #&gt; ---------------------------------------------------------------------------
-#&gt; Fixed effects
+#&gt; Analysis for all environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 7</span><span>
-#&gt;   SOURCE  `Sum Sq` `Mean Sq` NumDF DenDF `F value`  `Pr(&gt;F)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV       </span><span style='text-decoration: underline;'>1</span><span>166.     89.69     13 257.4    31.58  5.684</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-46</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> REP:ENV    214.9     7.676    28 252.0     2.703 2.197</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        1.50   112.  16.7  101.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       1.26    93.3 12.7   84.7    11
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       1.27    94.3 11.3   86.6    10
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       1.28    96.4 21.3   82.0    12
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       1.35   102.  15.3   91.4     6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        1.38   103.  20.6   89.4     8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        1.41   105.  19.7   91.3     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        1.43   105.  14.9   95.2     4
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        1.37   101.   8.93  95.4     3
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        1.41   106.   8.93  99.7     2
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        1.32    98.4  9.61  91.9     5
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        1.21    89.9 17.4   78.1    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        1.27    93.6  9.03  87.6     9
 #&gt; ---------------------------------------------------------------------------
-#&gt; Random effects
+#&gt; Analysis for favorable environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 2</span><span>
-#&gt;   Group    Variance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GEN        0.489</span><span style='text-decoration: underline;'>9</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV    2.189 
-#&gt; </span><span style='color: #555555;'>3</span><span> Residual   2.840 
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        1.56   105.   2.82  103.      2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       1.52   102.   0.882 102.      3
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       1.47    98.6  2.15   97.1     9
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       1.47    98.7  1.40   97.7     8
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       1.50   100.   0.364 100.      6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        1.36    91.6  9.35   85.3    13
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        1.47    98.5  3.05   96.4    10
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        1.57   105.   1.92  104.      1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        1.55   104.   4.73  101.      4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        1.48    99.1  1.00   98.5     7
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        1.51   101.   0.442 101.      5
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        1.44    96.9  5.71   93.1    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        1.48    98.7 10.2    91.8    12
 #&gt; ---------------------------------------------------------------------------
-#&gt; Likelihood ratio test
+#&gt; Analysis for unfavorable environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 7</span><span>
-#&gt;   model     npar logLik   AIC    LRT    Df `Pr(&gt;Chisq)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Complete    45 -</span><span style='color: #BB0000;'>862.7</span><span> </span><span style='text-decoration: underline;'>1</span><span>815. </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #555555;'> </span><span>   
-#&gt; </span><span style='color: #555555;'>2</span><span> Genotype    44 -</span><span style='color: #BB0000;'>866.6</span><span> </span><span style='text-decoration: underline;'>1</span><span>821.  7.855     1    5.068</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> Gen:Env     44 -</span><span style='color: #BB0000;'>894.1</span><span> </span><span style='text-decoration: underline;'>1</span><span>876. 62.82      1    2.266</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1       1.45    119.  24.8  102.      2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10      0.999    84.5 13.2   75.6    11
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11      1.06     89.9 17.5   78.1    10
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12      1.09     94.1 36.7   69.3    12
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13      1.21    103.  26.4   85.2     7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2       1.40    115.  25.3   97.9     3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3       1.35    111.  31.7   89.4     5
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4       1.28    106.  25.8   88.3     6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5       1.19     98.6 13.5   89.4     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6       1.35    112.   7.91 107.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7       1.13     95.4 15.5   84.9     8
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8       0.969    82.8 26.0   65.3    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9       1.06     88.6  6.25  84.4     9
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable EP 
 #&gt; ---------------------------------------------------------------------------
-#&gt; Variance components and genetic parameters
+#&gt; Environmental index
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 15 x 2</span><span>
-#&gt;    Parameters              Values
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> GEI variance           2.189  
-#&gt; </span><span style='color: #555555;'> 2</span><span> GEI (%)               39.67   
-#&gt; </span><span style='color: #555555;'> 3</span><span> Genotypic variance     0.489</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #555555;'> 4</span><span> Gen (%)                8.876  
-#&gt; </span><span style='color: #555555;'> 5</span><span> Residual variance      2.840  
-#&gt; </span><span style='color: #555555;'> 6</span><span> Res (%)               51.46   
-#&gt; </span><span style='color: #555555;'> 7</span><span> Phenotypic variance    5.519  
-#&gt; </span><span style='color: #555555;'> 8</span><span> Heritability           0.088</span><span style='text-decoration: underline;'>76</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> GEIr2                  0.396</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #555555;'>10</span><span> Heribatility of means  0.686</span><span style='text-decoration: underline;'>2</span><span> 
-#&gt; </span><span style='color: #555555;'>11</span><span> Accuracy               0.828</span><span style='text-decoration: underline;'>4</span><span> 
-#&gt; </span><span style='color: #555555;'>12</span><span> rge                    0.435</span><span style='text-decoration: underline;'>3</span><span> 
-#&gt; </span><span style='color: #555555;'>13</span><span> CVg                    1.456  
-#&gt; </span><span style='color: #555555;'>14</span><span> CVr                    3.504  
-#&gt; </span><span style='color: #555555;'>15</span><span> CV ratio               0.415</span><span style='text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean    index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1    0.567  0.029</span><span style='text-decoration: underline;'>9</span><span>  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2    0.527 -</span><span style='color: #BB0000;'>0.009</span><span style='color: #BB0000;text-decoration: underline;'>96</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3    0.496 -</span><span style='color: #BB0000;'>0.041</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4    0.558  0.021</span><span style='text-decoration: underline;'>1</span><span>  favorable  
 #&gt; ---------------------------------------------------------------------------
-#&gt;  Principal component analysis of the G x E interaction matrix
+#&gt; Analysis for all environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 9 x 4</span><span>
-#&gt;   PC    Eigenvalue Proportion Accumulated
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1      61.96      33.83         33.83
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2      51.90      28.34         62.18
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3      19.82      10.82         73.00
-#&gt; </span><span style='color: #555555;'>4</span><span> PC4      13.90       7.588        80.59
-#&gt; </span><span style='color: #555555;'>5</span><span> PC5      11.50       6.282        86.87
-#&gt; </span><span style='color: #555555;'>6</span><span> PC6      10.37       5.665        92.53
-#&gt; </span><span style='color: #555555;'>7</span><span> PC7       8.391      4.582        97.11
-#&gt; </span><span style='color: #555555;'>8</span><span> PC8       4.583      2.502        99.62
-#&gt; </span><span style='color: #555555;'>9</span><span> PC9       0.701</span><span style='text-decoration: underline;'>5</span><span>     0.383</span><span style='text-decoration: underline;'>0</span><span>      100   
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1       0.570   106.   8.55 100.      2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10      0.545   101.   5.74  97.5     4
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11      0.527    98.2  6.87  93.6    10
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12      0.519    96.7 10.4   89.7    12
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13      0.532    99.1  3.33  96.8     6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2       0.525    98.1 11.2   90.5    11
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3       0.538   100.   8.67  94.4     9
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4       0.546   102.   6.60  97.0     5
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5       0.530    98.6  3.88  96.0     7
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6       0.553   103.   3.64 101.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7       0.547   102.   3.20  99.9     3
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8       0.514    95.9  9.34  89.6    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9       0.532    99.0  6.50  94.6     8
 #&gt; ---------------------------------------------------------------------------
-#&gt; Some information regarding the analysis
+#&gt; Analysis for favorable environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
-#&gt;   Parameters Values             
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              
-#&gt; </span><span style='color: #555555;'>1</span><span> Ngen       10                 
-#&gt; </span><span style='color: #555555;'>2</span><span> Nenv       14                 
-#&gt; </span><span style='color: #555555;'>3</span><span> OVmean     48.0883            
-#&gt; </span><span style='color: #555555;'>4</span><span> Min        39.35 (G2 in E14)  
-#&gt; </span><span style='color: #555555;'>5</span><span> Max        56.3333 (G6 in E11)
-#&gt; </span><span style='color: #555555;'>6</span><span> MinENV     E14 (41.032)       
-#&gt; </span><span style='color: #555555;'>7</span><span> MaxENV     E11 (54.198)       
-#&gt; </span><span style='color: #555555;'>8</span><span> MinGEN     </span><span style='color: #555555;'>"</span><span>G2 (46.66) </span><span style='color: #555555;'>"</span><span>      
-#&gt; </span><span style='color: #555555;'>9</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G5 (49.298) </span><span style='color: #555555;'>"</span><span>     
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1       0.586   104.  8.75   98.3     9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10      0.592   105.  3.16  103.      1
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11      0.553    98.4 4.19   95.5    12
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12      0.564   100.  1.76   99.1     8
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13      0.563   100.  0.146 100.      4
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2       0.512    91.1 8.95   85.1    13
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3       0.546    97.0 1.86   95.8    11
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4       0.576   102.  0.719 102.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5       0.567   101.  2.18   99.4     7
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6       0.564   100.  1.21   99.5     6
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7       0.572   102.  1.37  101.      3
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8       0.550    97.8 2.81   95.9    10
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9       0.565   100.  0.833  99.8     5
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1       0.555   108.  11.3  101.      2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10      0.498    97.6  5.47  93.9     7
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11      0.500    98.0 11.1   90.5    10
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12      0.474    93.1 16.5   82.0    13
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13      0.500    97.9  5.29  94.3     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2       0.538   105.  10.3   98.1     4
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3       0.530   103.  13.5   94.3     6
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4       0.515   101.  11.3   93.0     9
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5       0.494    96.4  4.60  93.3     8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6       0.541   106.   2.60 104.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7       0.522   102.   5.35  98.6     3
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8       0.479    93.9 15.4   83.5    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9       0.500    97.6 10.9   90.3    11
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable EL 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean   index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     15.6  0.458  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     15.2  0.070</span><span style='text-decoration: underline;'>3</span><span> favorable  
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     14.7 -</span><span style='color: #BB0000;'>0.495</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     15.1 -</span><span style='color: #BB0000;'>0.033</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> unfavorable
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        15.1    99.6  1.29  98.7     3
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       15.1    99.7  3.51  97.3     7
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       15.2   100.   4.22  97.4     6
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       14.3    94.2  4.40  91.2    12
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       15.0    99.2  5.58  95.5     9
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        15.3   101.   4.50  98.2     4
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        14.5    95.8  8.26  90.3    13
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        15.7   104.   4.33 101.      1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        15.6   103.   3.69 100.      2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        15.8   104.   8.75  97.9     5
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        15.4   101.   7.12  96.6     8
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        15.0    99.0  7.98  93.7    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        15.0    99.2  7.42  94.2    10
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        15.2    98.5 0.357  98.3     7
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       15.8   102.  0.807 102.      3
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       15.9   103.  5.11   99.4     5
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       14.3    92.4 6.70   87.9    13
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       15.2    98.9 5.97   94.9    10
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        15.5   100.  6.34   96.2     8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        15.4    99.7 1.10   99.0     6
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        16.2   105.  4.35  102.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        16.1   105.  5.16  101.      4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        17.0   110.  4.58  107.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        15.0    97.4 2.09   96.0     9
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        14.4    93.4 4.97   90.1    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        14.5    94.0 7.47   89.0    12
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        15.0   101.   0.687 100.      4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       14.4    96.9  2.15   95.4     9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       14.6    97.7  0.833  97.2     8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       14.3    95.9  1.07   95.2    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       14.8    99.6  7.56   94.5    11
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        15.2   102.   4.29   99.1     6
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        13.7    92.0 12.0    83.9    13
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        15.2   102.   5.25   98.7     7
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        15.0   101.   1.05  100.      3
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        14.6    97.7  7.73   92.5    12
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        15.7   106.   9.02   99.4     5
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        15.6   105.   6.25  100.      2
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        15.6   104.   1.67  103.      1
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable ED 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean  index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     51.6  2.07  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     48.7 -</span><span style='color: #BB0000;'>0.799</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     47.9 -</span><span style='color: #BB0000;'>1.66</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     49.9  0.394 favorable  
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        51.2   103.   3.40 101.      2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       48.4    97.7  4.97  94.3    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       48.8    98.5  3.81  95.9    10
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       48.6    98.1  2.00  96.7     9
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       50.6   102.   4.35  99.2     3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        50.9   103.   5.79  99.0     4
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        49.4    99.8  2.64  98.0     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        49.2    99.4  2.99  97.4     8
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        49.9   101.   3.75  98.3     5
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        51.5   104.   2.17 103.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        49.5    99.9  2.43  98.2     6
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        48.4    97.5  3.74  95.0    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        47.6    96.0  4.66  92.8    13
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        51.1   101.   2.45  99.1     4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       51.6   102.   2.11 100.      2
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       50.4    99.3  6.34  95.0    13
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       49.9    98.4  2.09  97.0     9
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       50.7    99.7  5.49  96.0    12
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        49.9    98.3  3.31  96.1    11
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        50.2    98.8  2.15  97.4     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        50.9   100.   2.84  98.4     6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        50.7    99.8  4.58  96.8    10
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        52.2   103.   2.80 101.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        50.9   100.   2.36  98.6     5
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        51.0   100.   1.10  99.7     3
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        50.5    99.5  3.69  97.0     8
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        51.2   106.  0.535 106.      2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       45.3    93.8 3.00   91.7    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       47.2    97.7 0.846  97.1     8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       47.2    97.8 2.71   96.0     9
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       50.5   104.  1.92  103.      4
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        51.9   107.  2.38  106.      1
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        48.7   101.  3.51   98.4     6
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        47.6    98.5 3.94   95.8    10
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        49.1   102.  4.18   98.9     5
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        50.8   105.  1.04  104.      3
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        48.1    99.5 3.42   97.2     7
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        45.7    94.6 2.45   92.9    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        44.6    92.4 1.13   91.6    13
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable CL 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean  index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     29.7  0.716 favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     28.5 -</span><span style='color: #BB0000;'>0.548</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     28.4 -</span><span style='color: #BB0000;'>0.562</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     29.4  0.394 favorable  
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        30.1   104.   7.44  98.7     3
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       28.4    97.8  8.78  91.9    13
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       28.3    97.4  4.69  94.2     8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       28.2    97.3  5.15  93.8    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       29.4   101.   9.02  95.3     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        29.3   101.  11.6   93.2    11
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        28.5    98.3  5.86  94.4     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        28.6    98.6  5.06  95.2     6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        29.4   101.   6.33  97.0     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        30.3   104.   7.39  99.3     1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        29.5   102.   4.51  98.7     2
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        28.7    98.9  9.54  92.4    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        28.6    98.4  6.26  94.1     9
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        28.9    97.8 4.88   94.5     9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       31.0   105.  0.791 104.      1
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       29.7   101.  4.41   97.6     7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       30.0   101.  1.44  100.      4
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       29.2    98.6 8.90   92.6    11
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        27.1    91.6 3.04   89.6    13
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        27.7    93.6 0.786  93.1    10
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        28.5    96.4 5.93   92.4    12
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        29.9   101.  8.32   95.5     8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        31.1   105.  2.02  104.      2
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        30.4   103.  0.587 102.      3
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        30.6   104.  7.84   98.3     5
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        30.3   102.  7.10   97.7     6
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        31.2   110.   1.49  109.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       25.8    90.6  4.98   87.3    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       26.8    94.1  2.17   92.7    10
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       26.5    93.2  3.45   90.9    11
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       29.6   104.  11.6    96.3     6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        31.4   110.   6.33  106.      2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        29.3   103.   3.72  101.      3
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        28.7   101.   4.84   97.5     4
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        28.9   101.   7.15   96.6     5
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        29.4   103.  12.5    94.9     8
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        28.7   101.   7.58   95.8     7
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        26.8    94.2 11.1    86.7    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        26.8    94.3  0.232  94.1     9
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable CD 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean   index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     16.4  0.426  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     15.9 -</span><span style='color: #BB0000;'>0.082</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     15.8 -</span><span style='color: #BB0000;'>0.2</span><span>    unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     15.8 -</span><span style='color: #BB0000;'>0.144</span><span>  unfavorable
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        15.7    98.4  2.08  97.0     6
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       15.9    99.5  3.46  97.2     5
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       16.0   100.   3.19  98.0     4
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       14.8    92.7  3.73  90.2    13
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       15.8    99.1  5.33  95.5     9
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        16.0   100.   5.52  96.7     7
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        15.7    98.3  6.22  94.1    12
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        16.5   103.   4.13 101.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        16.6   104.   2.51 102.      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        16.6   104.   7.45  98.7     3
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        16.2   101.   7.01  96.5     8
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        15.9    99.6  7.31  94.7    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        15.9    99.5  6.21  95.3    10
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        15.7    95.8    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       16.8   102.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     2
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       17.2   105.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     3
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       15.6    95.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     4
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       15.5    94.2    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        15.5    94.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     6
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        16.4    99.8    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        16.7   102.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     8
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        16.7   102.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     9
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        17.6   107.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    10
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        16.1    98.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    11
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        16.5   100.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        16.9   103.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    13
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        15.7    99.2  1.48  98.2     4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       15.6    98.6  3.52  96.2     9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       15.6    98.6  1.09  97.9     5
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       14.5    91.8  3.99  89.1    13
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       16.0   101.   5.16  97.3     6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        16.2   102.   4.66  99.3     3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        15.5    97.8  7.51  92.7    12
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        16.5   104.   4.88 101.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        16.6   105.   2.55 103.      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        16.2   102.   8.64  96.7     7
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        16.2   102.   8.27  96.6     8
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        15.7    99.3  8.93  93.3    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        15.5    98.2  6.92  93.5    10
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable CW 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     28.3  3.52 favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     23.8 -</span><span style='color: #BB0000;'>1.06</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     20.8 -</span><span style='color: #BB0000;'>4.03</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     26.4  1.58 favorable  
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        26.7   110.  22.3   94.7     4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       22.8    90.7 23.5   74.9    11
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       22.6    90.8 12.5   82.3    10
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       22.6    90.7  6.71  86.2     8
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       26.0   106.  26.5   87.7     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        25.7   105.  32.8   83.2     9
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        22.9    92.5  7.84  87.3     6
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        25.7   104.   9.57  97.1     3
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        27.7   112.  13.9  103.      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        27.3   109.  13.9   99.8     2
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        25.9   105.  26.4   87.0     7
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        23.4    93.2 29.5   73.4    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        23.2    91.7 25.1   74.8    12
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        24.9    91.4 12.0   83.3    11
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       26.3    96.5 13.7   87.2     8
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       25.1    91.9 12.0   83.7    10
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       26.1    95.4  6.91  90.7     7
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       25.1    91.1 27.3   72.7    12
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        22.6    82.8 16.3   71.9    13
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        24.3    88.9  4.15  86.1     9
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        28.2   103.   7.81  97.9     6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        30.8   113.   1.25 112.      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        32.0   117.  13.5  108.      2
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        30.0   110.   7.36 105.      4
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        29.7   108.  14.8   98.0     5
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        30.7   112.   8.70 106.      3
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        28.5   128.   1.44  127.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       19.3    85.0 36.6    60.3    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       20.2    89.7 17.8    77.6     9
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       19.2    86.0  0.590  85.6     8
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       27.0   120.  23.0   104.      3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        28.8   128.  30.6   107.      2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        21.5    96.2 10.7    89.0     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        23.3   104.  14.6    94.2     5
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        24.6   112.  24.0    95.5     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        22.5   102.  13.0    92.9     6
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        21.8   100.  44.2    70.3    10
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        17.1    78.5 39.0    52.2    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        15.7    71.3 12.4    62.9    11
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable KW 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean  index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     199.  26.5  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     168.  -</span><span style='color: #BB0000;'>4.50</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     147. -</span><span style='color: #BB0000;'>26.1</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     177.   4.13 favorable  
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        184.   106.   4.15 104.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       164.    94.2  8.80  88.2    10
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       167.    96.7  2.21  95.3     6
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       157.    91.3  9.92  84.6    11
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       180.   105.  16.3   93.6     7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        187.   109.  15.6   98.1     4
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        169.    98.0 12.0   89.9     9
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        184.   106.   8.77 101.      3
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        184.   107.   6.72 102.      2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        188.   108.  16.7   96.8     5
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        171.    99.3 13.5   90.2     8
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        160.    92.1 17.3   80.4    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        153.    87.4 16.0   76.6    13
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        195.   104.   2.93 102.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       188.    99.8  4.74  96.6     6
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       182.    97.0  3.69  94.5     8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       175.    93.2  3.81  90.6    11
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       184.    97.2 17.6   85.3    12
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        184.    97.7  6.38  93.4     9
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        174.    92.0 10.5   84.9    13
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        198.   105.   6.03 101.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        194.   103.   9.34  96.9     5
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        200.   106.  15.1   95.4     7
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        192.   103.  16.8   91.6    10
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        193.   103.   5.92  98.5     3
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        188.    99.8  3.69  97.3     4
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        173.   109.   3.48  107.      3
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       140.    88.5  9.06   82.4    10
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       152.    96.5  0.909  95.9     6
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       140.    89.5 16.3    78.5    11
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       175.   112.  16.5   101.      4
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        190.   120.  14.7   110.      2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        165.   104.  13.2    95.1     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        170.   107.  13.8    98.2     5
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        174.   110.   0.584 110.      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        176.   111.  24.3    94.2     8
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        150.    95.7 14.6    85.9     9
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        127.    81.7 20.7    67.7    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        117.    75.1 11.8    67.1    13
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable NR 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean  index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     16.9  0.769 favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     15.8 -</span><span style='color: #BB0000;'>0.328</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     15.8 -</span><span style='color: #BB0000;'>0.338</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     16.0 -</span><span style='color: #BB0000;'>0.103</span><span> unfavorable
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        16.6   103.   5.65  99.2     2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       15.6    96.7  5.81  92.8     9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       15.6    97.0 10.2   90.2    13
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       16.3   101.   4.59  98.2     3
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       17.4   108.   8.03 103.      1
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        16.7   103.  11.2   95.7     6
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        15.8    97.8  7.96  92.4    10
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        15.5    96.1  7.03  91.3    11
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        16.1   100.  10.3   93.3     8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        16.3   101.   5.70  97.3     5
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        16.2   100.   3.59  98.0     4
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        15.9    98.8  5.22  95.3     7
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        15.5    96.0  7.25  91.2    12
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        16.3    96.3    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       16.7    98.7    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     2
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       15.2    90.0    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     3
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       17.3   103.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     4
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       18.7   111.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        19.2   114.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     6
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        18.5   110.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        16.4    97.1    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     8
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        14.5    86.0    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     9
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        16.8    99.5    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    10
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        17.9   106.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    11
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        17.2   102.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        14.9    88.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    13
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        16.7   105.   4.16  103.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       15.2    96.0  6.93   91.4    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       15.8    99.4 11.1    91.9    11
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       16     101.   5.51   97.1     5
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       17.0   107.   9.64  101.      3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        15.8    99.8 10.8    92.5    10
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        14.9    93.8  0.669  93.4     9
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        15.2    95.8  8.57   90.0    13
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        16.7   105.   4.95  102.      2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        16.1   102.   6.85   97.1     6
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        15.6    98.6  0.343  98.4     4
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        15.5    97.8  5.89   93.8     8
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        15.6    98.6  6.31   94.3     7
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable NKR 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean   index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     33.9  1.62   favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     32.3  0.032</span><span style='text-decoration: underline;'>1</span><span> favorable  
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     30.4 -</span><span style='color: #BB0000;'>1.85</span><span>   unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     32.5  0.201  favorable  
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        32.2    99.8  7.21  94.9     8
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       32.4   101.   7.60  95.6     5
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       33     102.   7.14  97.6     3
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       30.4    94.2  3.33  92.0    11
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       31.0    96.2  7.63  91.1    13
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        31.9    98.8  3.35  96.5     4
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        31.4    97.3  2.91  95.3     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        35     109.   3.81 106.      1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        33.9   105.   5.76 101.      2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        32.8   102.  13.6   92.4    10
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        31.4    97.6  4.98  94.2     9
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        31.3    96.9  8.60  91.1    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        32.5   101.   8.20  95.4     6
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        33.5   102.   7.16  97.0     5
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       32.1    97.7  5.78  93.8     9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       33.2   101.   8.05  95.6     6
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       30.6    93.2  3.17  91.0    12
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       30.6    93.1  5.48  89.4    13
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        32.9   100.   2.17  98.8     3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        31.9    96.9  3.43  94.6     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        35.5   108.   4.42 105.      1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        34.5   105.   6.99 100.      2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        35.0   106.  11.6   98.7     4
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        32.1    97.6  6.10  93.5    10
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        32.2    98.0 10.2   91.1    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        33.2   101.  10.0   94.5     8
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        28.4    93.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       33.3   110.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     2
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       32.4   107.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     3
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       29.6    97.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     4
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       32.1   105.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        28.7    94.5    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     6
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        29.9    98.5    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        33.5   110.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     8
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        32.3   106.     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     9
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        26.4    86.8    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    10
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        29.6    97.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    11
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        28.5    93.6    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        30.4   100      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    13
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable CDED 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean    index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1    0.576 -</span><span style='color: #BB0000;'>0.009</span><span style='color: #BB0000;text-decoration: underline;'>61</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2    0.584 -</span><span style='color: #BB0000;'>0.002</span><span style='color: #BB0000;text-decoration: underline;'>02</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3    0.595  0.008</span><span style='text-decoration: underline;'>55</span><span> favorable  
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4    0.589  0.003</span><span style='text-decoration: underline;'>08</span><span> favorable  
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1       0.588   100.   3.91  97.6     4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10      0.586   100.0  4.15  97.2     5
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11      0.580    98.9  3.61  96.5     7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12      0.582    99.3  5.86  95.3    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13      0.582    99.4  8.04  94.0    12
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2       0.574    98.0  6.86  93.4    13
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3       0.578    98.6  4.32  95.7     9
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4       0.581    99.1  4.06  96.4     8
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5       0.588   100.   2.85  98.5     3
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6       0.588   100.   7.70  95.1    11
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7       0.597   102.   3.05  99.9     2
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8       0.594   101.   6.75  96.7     6
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9       0.601   103.   2.20 101.      1
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1       0.597   101.   2.83  98.9     5
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10      0.590    99.7  6.53  95.3    10
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11      0.575    97.1  4.11  94.3    11
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12      0.573    96.8  8.41  91.1    12
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13      0.553    93.5  4.22  90.7    13
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2       0.585    98.9  1.74  97.7     8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3       0.585    98.9  4.69  95.7     9
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4       0.592   100.   2.48  98.4     7
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5       0.608   103.   1.45 102.      2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6       0.622   105.   3.37 103.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7       0.606   102.   2.73 100.      4
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8       0.605   102.   5.10  98.7     6
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9       0.603   102.   1.78 101.      3
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1       0.579    99.7  6.04   95.6     8
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10      0.582   100.   2.93   98.3     6
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11      0.584   101.   3.00   98.7     4
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12      0.590   102.   2.80   99.9     3
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13      0.611   105.   6.10  101.      1
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2       0.564    97.1 11.6    89.2    13
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3       0.570    98.2  5.81   94.3     9
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4       0.570    98.2  6.33   94.0    10
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5       0.569    98.1  0.581  97.7     7
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6       0.554    95.5  8.59   89.7    12
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7       0.589   102.   4.46   98.6     5
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8       0.583   100.  10.4    93.4    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9       0.598   103.   3.14  101.      2
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable PERK 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean   index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     87.4 -</span><span style='color: #BB0000;'>0.016</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     87.6  0.214  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     87.6  0.211  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     87.0 -</span><span style='color: #BB0000;'>0.409</span><span>  unfavorable
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        87.2    99.8 2.31   98.2     9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       87.9   100.  2.42   98.8     6
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       88.2   101.  1.39   99.9     2
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       87.4   100.0 1.46   99.0     4
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       87.3    99.8 3.04   97.8    12
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        87.9   101.  2.44   98.9     5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        87.8   100.  1.10   99.7     3
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        87.8   100.  0.117 100.      1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        86.8    99.3 2.01   97.9    11
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        87.2    99.7 2.54   98.0    10
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        86.7    99.2 2.87   97.2    13
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        87.6   100.  2.30   98.7     7
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        86.9    99.4 1.31   98.5     8
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        85.8    97.9 0.579  97.5    11
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       88.1   101.  3.94   97.9     9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       88.4   101.  2.09   99.5     4
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       87.8   100.  2.46   98.5     6
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       86.5    98.7 4.60   95.6    13
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        87.0    99.3 1.55   98.2     7
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        88.4   101.  0.291 101.      1
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        88.0   100.  0.107 100.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        87.5    99.8 2.80   98.0     8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        88.1   101.  4.04   97.8    10
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        87.1    99.4 3.86   96.8    12
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        88.4   101.  2.80   99.0     5
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        88.0   100.  0.365 100.      3
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        88.7   102.  1.18  101.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       87.6   100.  1.44   99.4     7
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       87.9   101.  1.16  100.0     4
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       87.0    99.7 0.340  99.5     6
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       88.1   101.  1.30  100.      3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        88.8   102.  3.00   99.8     5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        87.3   100.  1.70   98.9     8
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        87.5   100.  0.131 100.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        86.1    98.7 1.69   97.5    12
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        86.2    98.9 0.254  98.7     9
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        86.3    98.9 3.10   96.9    13
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        86.8    99.5 2.45   97.9    10
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        85.7    98.3 0.685  97.8    11
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable TKW 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean  index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     360.  21.7  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     334.  -</span><span style='color: #BB0000;'>4.85</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     318. -</span><span style='color: #BB0000;'>20.9</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     343.   4.13 favorable  
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        365.   108.  11.0  100.      2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       320.    94.1 11.4   86.4    11
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       333.    98.2  5.27  94.6     7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       316.    93.2  3.33  90.9    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       340.   100.   1.80  99.2     3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        356.   106.  14.6   95.7     5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        346.   102.  13.4   93.4     8
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        346.   102.  10.1   95.5     6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        341.   101.   4.91  97.3     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        363.   107.   5.15 104.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        345.   102.  13.4   93.0     9
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        322.    95.0 16.8   83.6    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        311.    91.3 17.7   79.3    13
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        350.    99.5  9.13   93.4     9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       358.   102.   1.76  101.      3
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       351.    99.7  2.51   98.1     6
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       333.    94.8  3.49   92.5    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       357.   102.   0.790 101.      2
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        332.    94.4  4.41   91.4    11
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        323.    92.0  2.60   90.3    12
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        345.    98.1  6.25   93.9     8
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        363.   103.   6.13   99.1     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        389.   111.   5.31  107.      1
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        365.   104.  14.5    94.3     7
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        351.    99.8  2.38   98.2     5
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        353.   100.  20.5    86.3    13
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        379.   116.   0.314 116.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       282.    86.2 11.9    78.2    11
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       315.    96.6  8.20   91.1     8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       298.    91.5  3.21   89.4     9
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       323.    99.3  1.90   98.0     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        381.   117.  11.1   109.      2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        368.   113.   9.95  106.      3
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        348.   106.  14.1    97.0     6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        319.    97.9  2.51   96.2     7
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        337.   103.   0.291 103.      4
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        325.   100.  17.8    88.1    10
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        292.    90.1 27.3    71.7    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        268.    82.4 14.4    72.7    12
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Variable NKE 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Environmental index
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 4</span><span>
+#&gt;   ENV    Mean  index class      
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     558.  46.2  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     505.  -</span><span style='color: #BB0000;'>6.99</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     468. -</span><span style='color: #BB0000;'>43.7</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     516.   4.51 favorable  
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for all environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        507.    98.9 10.5   91.8     8
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       504.    98.7  5.25  95.2     5
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       501.    98.0  4.44  95.0     6
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       502.    98.3 10.9   90.9     9
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       538.   105.  16.1   94.5     7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        527.   103.   7.38  97.7     3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        491.    95.6  9.41  89.2    12
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        535.   104.   3.73 102.      1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        542.   106.   8.13 101.      2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        516.   101.  16.2   89.8    11
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        498.    97.3  2.78  95.4     4
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        496.    96.7  8.78  90.8    10
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        496.    96.9 12.8   88.3    13
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for favorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        558.   104.  14.0    94.9     7
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       508.    94.6  3.13   92.5     9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       518.    96.6  2.38   95.0     6
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       533.    99.3  0.116  99.2     2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       524.    97.2 17.5    85.4    13
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        554.   103.  12.1    94.7     8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        535.    99.2 14.3    89.5    10
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        578.   108.   0.528 107.      1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        535.    99.7  4.47   96.7     5
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        512.    95.0  9.72   88.5    11
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        532.    99.2  2.39   97.6     3
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        550.   103.   7.86   97.4     4
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        543.   102.  19.9    88.2    12
+#&gt; ---------------------------------------------------------------------------
+#&gt; Analysis for unfavorable environments
+#&gt; ---------------------------------------------------------------------------
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
+#&gt;    Genotype  Mean Mean_rp  Sd_rp    Wi  rank
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1        455.    93.4  3.63   91.0     8
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10       500.   103.   2.33  101.      3
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11       483.    99.5  6.73   94.9     6
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12       470.    97.2 18.7    84.6    13
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13       551.   114.  14.2   104.      2
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2        499.   102.   3.98   99.8     5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3        448.    92.0  2.87   90.1    10
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4        492.   101.   0.138 101.      4
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5        548.   113.   2.55  111.      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6        521.   106.  23.7    90.4     9
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7        464.    95.3  1.65   94.2     7
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8        442.    90.8  5.24   87.2    12
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9        449     92.2  3.58   89.8    11
 #&gt; 
 #&gt; 
 #&gt; </div></span></pre>

@@ -88,7 +88,7 @@ proposed by Rocha et al. (2018)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -270,54 +270,7 @@ genotypes is large, say, more than 30.</p></td>
       <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>KW</span>, <span class='no'>NKE</span>, <span class='no'>PH</span>, <span class='no'>EH</span>)) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='fai_blup.html'>fai_blup</a></span>(<span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'max, max, max, min'</span>),
                <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min, min, max'</span>),
-               <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Model failed to converge with max|grad| = 0.00577455 (tol = 0.002, component 1)</span></div><div class='output co'>#&gt; Evaluating variable KW 25 % </div><div class='output co'>#&gt; <span class='message'>boundary (singular) fit: see ?isSingular</span></div><div class='output co'>#&gt; Evaluating variable NKE 50 % 
-#&gt; Evaluating variable PH 75 % 
-#&gt; Evaluating variable EH 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Principal Component Analysis
-#&gt; -----------------------------------------------------------------------------------
-#&gt;     eigen.values cumulative.var
-#&gt; PC1   3.14414174       78.60354
-#&gt; PC2   0.66041176       95.11384
-#&gt; PC3   0.13857767       98.57828
-#&gt; PC4   0.05686883      100.00000
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Factor Analysis
-#&gt; -----------------------------------------------------------------------------------
-#&gt;            FA1 comunalits
-#&gt; KW  -0.9474560  0.8976729
-#&gt; NKE -0.7429934  0.5520392
-#&gt; PH  -0.9429971  0.8892436
-#&gt; EH  -0.8973216  0.8051861
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.7860354 
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; FAI-BLUP index
-#&gt; -----------------------------------------------------------------------------------
-#&gt;    H13     H6     H2     H5     H1     H4     H3     H8     H9    H10     H7 
-#&gt; 0.9807 0.8843 0.8413 0.8409 0.8023 0.7972 0.6222 0.2623 0.2354 0.1810 0.1163 
-#&gt;    H12    H11 
-#&gt; 0.1014 0.0780 
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Selection differential
-#&gt; -----------------------------------------------------------------------------------
-#&gt;     Factor         Xo         Xs           SD       SDperc
-#&gt; KW       1 172.938867 175.182040 2.243173e+00 1.297090e+00
-#&gt; NKE      1 511.643590 511.643590 2.819513e-07 5.510697e-08
-#&gt; PH       1   2.484813   2.487051 2.238030e-03 9.006835e-02
-#&gt; EH       1   1.343326   1.343326 3.234146e-10 2.407567e-08
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Selected genotypes
-#&gt; H13 H6
-#&gt; -----------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>FAI</span>)</div><div class='img'><img src='plot.fai_blup-1.png' alt='' width='700' height='433' /></div><div class='input'>
+               <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Model failed to converge with max|grad| = 0.00577455 (tol = 0.002, component 1)</span></div><div class='output co'>#&gt; <span class='error'>Error in fortify.merMod(Complete): could not find function "fortify.merMod"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>FAI</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(FAI): object 'FAI' not found</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

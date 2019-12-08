@@ -89,7 +89,7 @@ correlation pairs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -308,9 +308,9 @@ path analysis: a simple method to reduce its effects. Agron. J.
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
-<span class='no'>cc1</span> <span class='kw'>=</span> <span class='fu'>can_corr</span>(<span class='no'>data_ge2</span>,
-               <span class='kw'>FG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>EP</span>),
-               <span class='kw'>SG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>EL</span>, <span class='no'>ED</span>, <span class='no'>CL</span>, <span class='no'>CD</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>))</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='no'>cc1</span><span class='kw'>=</span><span class='fu'>can_corr</span>(<span class='no'>data_ge2</span>,
+             <span class='kw'>FG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>EP</span>),
+             <span class='kw'>SG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>EL</span>, <span class='no'>ED</span>, <span class='no'>CL</span>, <span class='no'>CD</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>))</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; Matrix (correlation/covariance) between variables of first group (FG)
 #&gt; ---------------------------------------------------------------------------
 #&gt;           PH        EH        EP
@@ -403,10 +403,10 @@ path analysis: a simple method to reduce its effects. Agron. J.
 #&gt; CW 0.6243739 -0.37712156 -0.14762207
 #&gt; KW 0.9566482 -0.05042023 -0.09910729
 #&gt; NR 0.4351188  0.29047403  0.18639351</div><div class='input'>
-<span class='no'>cc2</span> <span class='kw'>=</span> <span class='fu'>can_corr</span>(<span class='kw'>FG</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>[, <span class='fl'>4</span>:<span class='fl'>6</span>],
-               <span class='kw'>SG</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>[, <span class='fl'>7</span>:<span class='fl'>13</span>],
-               <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-               <span class='kw'>collinearity</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='no'>cc2</span> <span class='kw'>&lt;-</span> <span class='fu'>can_corr</span>(<span class='kw'>FG</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>[, <span class='fl'>4</span>:<span class='fl'>6</span>],
+                <span class='kw'>SG</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>[, <span class='fl'>7</span>:<span class='fl'>13</span>],
+                <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+                <span class='kw'>collinearity</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># Canonical correlations for each environment</span>
 <span class='no'>cc3</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>

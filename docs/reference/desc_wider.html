@@ -90,7 +90,7 @@ the function split_factors." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -232,40 +232,40 @@ the function <code><a href='split_factors.html'>split_factors</a></code>.</p>
  <span class='fu'><a href='desc_stat.html'>desc_stat</a></span>(<span class='no'>EP</span>, <span class='no'>EL</span>, <span class='no'>PH</span>, <span class='no'>CL</span>,
            <span class='kw'>stats</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mean, CI.mean, SE.mean, var.amo, CV'</span>),
            <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the grouped data. </span></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>df</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 65 x 6</span><span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>df</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 65 x 6</span><span>
 #&gt;    GEN   Statistic     CL     EL       EP      PH
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    CI.mean    1.02   0.602  0.035</span><span style='text-decoration: underline;'>9</span><span>   0.195 
-#&gt; </span><span style='color: #555555;'> 2</span><span> H1    CV         5.33   6.27   9.91    11.7   
-#&gt; </span><span style='color: #555555;'> 3</span><span> H1    mean      30.1   15.1    0.570    2.62  
-#&gt; </span><span style='color: #555555;'> 4</span><span> H1    SE.mean    0.462  0.273  0.016</span><span style='text-decoration: underline;'>3</span><span>   0.088</span><span style='text-decoration: underline;'>5</span><span>
-#&gt; </span><span style='color: #555555;'> 5</span><span> H1    var.amo    2.56   0.897  0.003</span><span style='text-decoration: underline;'>20</span><span>  0.094</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> H10   CI.mean    1.89   0.656  0.039</span><span style='text-decoration: underline;'>5</span><span>   0.217 
-#&gt; </span><span style='color: #555555;'> 7</span><span> H10   CV        10.5    6.83  11.4     14.8   
-#&gt; </span><span style='color: #555555;'> 8</span><span> H10   mean      28.4   15.1    0.545    2.31  
-#&gt; </span><span style='color: #555555;'> 9</span><span> H10   SE.mean    0.860  0.298  0.018</span><span style='text-decoration: underline;'>0</span><span>   0.098</span><span style='text-decoration: underline;'>7</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> H10   var.amo    8.88   1.07   0.003</span><span style='text-decoration: underline;'>87</span><span>  0.117 
-#&gt; </span><span style='color: #555555;'>11</span><span> H11   CI.mean    1.27   0.818  0.030</span><span style='text-decoration: underline;'>7</span><span>   0.218 
-#&gt; </span><span style='color: #555555;'>12</span><span> H11   CV         7.08   8.46   9.18    14.4   
-#&gt; </span><span style='color: #555555;'>13</span><span> H11   mean      28.3   15.2    0.527    2.39  
-#&gt; </span><span style='color: #555555;'>14</span><span> H11   SE.mean    0.577  0.372  0.014</span><span style='text-decoration: underline;'>0</span><span>   0.099</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #555555;'>15</span><span> H11   var.amo    4.00   1.66   0.002</span><span style='text-decoration: underline;'>34</span><span>  0.118 
-#&gt; </span><span style='color: #555555;'># ... with 50 more rows</span><span></div><div class='input'><span class='fu'>desc_wider</span>(<span class='no'>df</span>, <span class='no'>PH</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    CI.mean    1.02   0.602  0.035</span><span style='text-decoration: underline;'>9</span><span>   0.195 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H1    CV         5.33   6.27   9.91    11.7   
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H1    mean      30.1   15.1    0.570    2.62  
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H1    SE.mean    0.462  0.273  0.016</span><span style='text-decoration: underline;'>3</span><span>   0.088</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H1    var.amo    2.56   0.897  0.003</span><span style='text-decoration: underline;'>20</span><span>  0.094</span><span style='text-decoration: underline;'>0</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H10   CI.mean    1.89   0.656  0.039</span><span style='text-decoration: underline;'>5</span><span>   0.217 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H10   CV        10.5    6.83  11.4     14.8   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H10   mean      28.4   15.1    0.545    2.31  
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H10   SE.mean    0.860  0.298  0.018</span><span style='text-decoration: underline;'>0</span><span>   0.098</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H10   var.amo    8.88   1.07   0.003</span><span style='text-decoration: underline;'>87</span><span>  0.117 
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H11   CI.mean    1.27   0.818  0.030</span><span style='text-decoration: underline;'>7</span><span>   0.218 
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H11   CV         7.08   8.46   9.18    14.4   
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H11   mean      28.3   15.2    0.527    2.39  
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> H11   SE.mean    0.577  0.372  0.014</span><span style='text-decoration: underline;'>0</span><span>   0.099</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> H11   var.amo    4.00   1.66   0.002</span><span style='text-decoration: underline;'>34</span><span>  0.118 
+#&gt; </span><span style='color: #949494;'># ... with 50 more rows</span><span></div><div class='input'><span class='fu'>desc_wider</span>(<span class='no'>df</span>, <span class='no'>PH</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
 #&gt;    GEN   CI.mean    CV  mean SE.mean var.amo
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1      0.195 11.7   2.62  0.088</span><span style='text-decoration: underline;'>5</span><span>  0.094</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10     0.217 14.8   2.31  0.098</span><span style='text-decoration: underline;'>7</span><span>  0.117 
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11     0.218 14.4   2.39  0.099</span><span style='text-decoration: underline;'>1</span><span>  0.118 
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12     0.191 12.4   2.44  0.087</span><span style='text-decoration: underline;'>0</span><span>  0.090</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13     0.151  9.39  2.54  0.068</span><span style='text-decoration: underline;'>8</span><span>  0.056</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2      0.217 13.1   2.60  0.098</span><span style='text-decoration: underline;'>8</span><span>  0.117 
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3      0.254 15.4   2.59  0.115   0.160 
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4      0.226 13.8   2.58  0.103   0.127 
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5      0.200 12.3   2.57  0.091</span><span style='text-decoration: underline;'>0</span><span>  0.099</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> H6      0.190 11.7   2.56  0.086</span><span style='text-decoration: underline;'>3</span><span>  0.089</span><span style='text-decoration: underline;'>4</span><span>
-#&gt; </span><span style='color: #555555;'>11</span><span> H7      0.191 12.5   2.40  0.086</span><span style='text-decoration: underline;'>8</span><span>  0.090</span><span style='text-decoration: underline;'>5</span><span>
-#&gt; </span><span style='color: #555555;'>12</span><span> H8      0.210 14.2   2.33  0.095</span><span style='text-decoration: underline;'>3</span><span>  0.109 
-#&gt; </span><span style='color: #555555;'>13</span><span> H9      0.233 15.5   2.36  0.106   0.135 </div><div class='input'># }
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1      0.195 11.7   2.62  0.088</span><span style='text-decoration: underline;'>5</span><span>  0.094</span><span style='text-decoration: underline;'>0</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10     0.217 14.8   2.31  0.098</span><span style='text-decoration: underline;'>7</span><span>  0.117 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11     0.218 14.4   2.39  0.099</span><span style='text-decoration: underline;'>1</span><span>  0.118 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12     0.191 12.4   2.44  0.087</span><span style='text-decoration: underline;'>0</span><span>  0.090</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13     0.151  9.39  2.54  0.068</span><span style='text-decoration: underline;'>8</span><span>  0.056</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2      0.217 13.1   2.60  0.098</span><span style='text-decoration: underline;'>8</span><span>  0.117 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3      0.254 15.4   2.59  0.115   0.160 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4      0.226 13.8   2.58  0.103   0.127 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5      0.200 12.3   2.57  0.091</span><span style='text-decoration: underline;'>0</span><span>  0.099</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6      0.190 11.7   2.56  0.086</span><span style='text-decoration: underline;'>3</span><span>  0.089</span><span style='text-decoration: underline;'>4</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7      0.191 12.5   2.40  0.086</span><span style='text-decoration: underline;'>8</span><span>  0.090</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8      0.210 14.2   2.33  0.095</span><span style='text-decoration: underline;'>3</span><span>  0.109 
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9      0.233 15.5   2.36  0.106   0.135 </div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
