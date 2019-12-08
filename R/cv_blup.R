@@ -110,9 +110,10 @@ cv_blup <- function(.data, env, gen, rep, resp, block = NULL, nboot = 200, rando
             dplyr::select(ENV = {{env}},
                           GEN = {{gen}},
                           REP = {{rep}},
-                          Y = {{resp}})
+                          Y = {{resp}}) %>%
+            mutate_at(1:3, as.factor)
         data <- tibble::rowid_to_column(data)
-        Nbloc <- base::nlevels(data$REP)
+        Nbloc <- nlevels(data$REP)
         nrepval <- Nbloc - 1
         if (verbose == TRUE) {
             pb <- progress_bar$new(
