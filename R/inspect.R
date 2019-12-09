@@ -7,9 +7,11 @@
 #' unbalanced, has missing values or possible outliers.
 #'
 #' @param .data The data to be analyzed
-#' @param ... The variables in \code{.data} to check. Set to
-#'   \code{NULL}, i.e., all the variables in \code{.data} are used.
+#' @param ... The variables in \code{.data} to check. If no variable is
+#'   informed, all the variables in \code{.data} are used.
 #' @param plot Create a plot to show the check? Defaults to \code{FALSE}.
+#' @param threshold Maximum number of levels allowed in a character / factor
+#'   column to produce a plot. Defaults to 15.
 #' @param verbose Logical argument. If \code{TRUE} (default) then the results
 #'   for checks are shown in the console.
 #'
@@ -40,10 +42,10 @@
 inspect <- function (.data,
                      ...,
                      plot = FALSE,
+                     threshold = 15,
                      verbose = TRUE) {
   if(!missing(...)){
-    .data <- select(.data, ...) %>%
-      select_if(is.numeric)
+    .data <- select(.data, ...)
   } else{
     .data <- .data
   }
@@ -65,22 +67,42 @@ inspect <- function (.data,
     print(df)
     nfactors <- sum(lapply(.data, is.factor) == TRUE)
     if(esp_nrows != nrow(.data)){
-      warning("Considering the levels of factors, .data should have ", esp_nrows, " rows, but it has ", nrow(.data), call. = F)
+      warning("Considering the levels of factors, .data should have ",
+              esp_nrows, " rows, but it has ", nrow(.data),
+              ". Use 'to_factor()' for coercing a variable to a factor.", call. = F)
     }
     if (nfactors < 3){
-      warning("Expected three or more factor variables. The data has only ", nfactors, ": ", paste(collapse = " ", names(.data[, unlist(lapply(.data, is.factor))])), call. = F)
+      warning("Expected three or more factor variables. The data has only ", nfactors, ".", call. = F)
     }
     if(any(df$Missing == "Yes")){
-      warning("Missing values in variable(s) ", paste(df$Variable[c(which(df$Missing == "Yes"))], collapse = " "), call. = F)
+      warning("Missing values in variable(s) ",
+              paste(df$Variable[c(which(df$Missing == "Yes"))], collapse = ", "),
+              ".",
+              call. = F)
     }
     if(any(df$Outlier[!is.na(df$Outlier)] != 0)){
-      warning("Possible outliers in variable(s) ", paste(df$Variable[c(which(df$Outlier != 0))], collapse = " "),". Use the function find_outliers() for more details.", call. = F)
+      warning("Possible outliers in variable(s) ",
+              paste(df$Variable[c(which(df$Outlier != 0))], collapse = ", "),
+              ". Use 'find_outliers()' for more details.", call. = F)
     }
     if(nfactors >= 3 && esp_nrows == nrow(.data) && all(df$Missing == "No") && all(df$Outlier[!is.na(df$Outlier)] == 0) == TRUE){
       message("No issues detected while inspecting data.")
     }
   }
   if(plot == TRUE){
+    for (col in names(.data)) {
+      data_col <- .data[[col]]
+      if (!is.numeric(data_col)) {
+        level_length <- length(levels(data_col))
+        if (level_length > threshold) {
+          stop(
+            "Column '", col, "' has more levels (", level_length, ")",
+            " than the threshold (", threshold, ") allowed.\n",
+            "Please remove the column or increase the 'threshold' argument. Increasing the threshold may produce long processing times",
+            call. = FALSE)
+        }
+      }
+    }
     my_smooth <- function(data, mapping, method = "lm", ...){
       ggplot(data = data, mapping = mapping) +
         geom_point(alpha = 0.65) +
@@ -92,6 +114,7 @@ inspect <- function (.data,
     ggpair <-
       .data %>%
       ggpairs(lower = NULL,
+              cardinality_threshold = threshold,
               diag = list(continuous = wrap("densityDiag",
                                            size = 0.2),
                           discrete = wrap("barDiag",

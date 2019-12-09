@@ -4,15 +4,18 @@
 \alias{inspect}
 \title{Check for common erros in multi-environment trial data}
 \usage{
-inspect(.data, ..., plot = FALSE, verbose = TRUE)
+inspect(.data, ..., plot = FALSE, threshold = 15, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data to be analyzed}
 
-\item{...}{The variables in \code{.data} to check. Set to
-\code{NULL}, i.e., all the variables in \code{.data} are used.}
+\item{...}{The variables in \code{.data} to check. If no variable is
+informed, all the variables in \code{.data} are used.}
 
 \item{plot}{Create a plot to show the check? Defaults to \code{FALSE}.}
+
+\item{threshold}{Maximum number of levels allowed in a character / factor
+column to produce a plot. Defaults to 15.}
 
 \item{verbose}{Logical argument. If \code{TRUE} (default) then the results
 for checks are shown in the console.}
