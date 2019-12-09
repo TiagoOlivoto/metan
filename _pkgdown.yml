@@ -203,6 +203,8 @@ reference:
       - make_upper_tri
       - rbind_fill
       - reorder_cormat
+      - remove_cols_na
+      - remove_rows_na
       - resca
       - sem
       - split_factors

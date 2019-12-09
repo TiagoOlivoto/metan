@@ -66,6 +66,18 @@ data_ge2 %>%
 ```
 
 
+# Remove rows or colums wih NA values
+The functions `remove_rows_na()` and `remove_rows_na()` are used to remove rows and columns with NA values, respectively.
+
+```{r}
+data_with_na <- data_g
+data_with_na[c(1, 5, 10), c(3:5, 10:15)] <- NA
+data_with_na
+remove_cols_na(data_with_na)
+remove_rows_na(data_with_na)
+```
+
+
 # Bind cross-validation objects
 
 ```{r, eval=FALSE }

@@ -147,7 +147,7 @@
       <h1>Helper functions for metan</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-12-07</h4>
+            <h4 class="date">2019-12-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_helper.Rmd"><code>vignettes/vignettes_helper.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_helper.Rmd</code></div>
@@ -234,16 +234,72 @@
 10  28.2  20.1
 # ... with 146 more rows</code></pre>
 </div>
+<div id="remove-rows-or-colums-wih-na-values" class="section level1">
+<h1 class="hasAnchor">
+<a href="#remove-rows-or-colums-wih-na-values" class="anchor"></a>Remove rows or colums wih NA values</h1>
+<p>The functions <code><a href="../reference/remove_na_values.html">remove_rows_na()</a></code> and <code><a href="../reference/remove_na_values.html">remove_rows_na()</a></code> are used to remove rows and columns with NA values, respectively.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">data_with_na &lt;-<span class="st"> </span>data_g</a>
+<a class="sourceLine" id="cb8-2" title="2">data_with_na[<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>), <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">15</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb8-3" title="3">data_with_na</a></code></pre></div>
+<pre><code># A tibble: 39 x 17
+   GEN   REP      PH     EH     EP    EL    ED    CL    CD    CW    KW    NR
+   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 H1    1     NA    NA     NA      15.7  49.9  30.5  16.6  NA     NA   NA  
+ 2 H1    2      2.20  1.09   0.492  13.7  49.2  30.5  14.7  22.3  130.  16.4
+ 3 H1    3      2.29  1.15   0.502  15.1  52.6  31.7  16.2  29.6  176.  15.6
+ 4 H10   1      1.79  0.888  0.514  13.9  44.1  26.2  15.0  12.9  116.  14.8
+ 5 H10   2     NA    NA     NA      13.6  43.9  23.5  14.4  NA     NA   NA  
+ 6 H10   3      2.27  1.11   0.491  14.5  43.7  24.6  16.1  12.5  128.  15.2
+ 7 H11   1      1.71  0.808  0.489  15.5  45.2  25.0  16.7  15.2  140.  15.6
+ 8 H11   2      2.09  1.06   0.509  12.2  46.9  26.5  14.3  13.5  114.  16.8
+ 9 H11   3      2.5   1.44   0.577  15.0  49.0  27.5  15.2  19.4  168.  16.4
+10 H12   1     NA    NA     NA      14.4  49.2  28.4  15    NA     NA   NA  
+# ... with 29 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,
+#   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="../reference/remove_na_values.html">remove_cols_na</a></span>(data_with_na)</a></code></pre></div>
+<pre><code>Warning: Column(s) PH, EH, EP, CW, KW, NR, NKR, CDED, PERK deleted.</code></pre>
+<pre><code># A tibble: 39 x 8
+   GEN   REP      EL    ED    CL    CD   TKW   NKE
+   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 H1    1      15.7  49.9  30.5  16.6  347.  458.
+ 2 H1    2      13.7  49.2  30.5  14.7  337.  386.
+ 3 H1    3      15.1  52.6  31.7  16.2  422.  431.
+ 4 H10   1      13.9  44.1  26.2  15.0  258.  446.
+ 5 H10   2      13.6  43.9  23.5  14.4  233.  496.
+ 6 H10   3      14.5  43.7  24.6  16.1  251.  524.
+ 7 H11   1      15.5  45.2  25.0  16.7  264.  535.
+ 8 H11   2      12.2  46.9  26.5  14.3  288.  397 
+ 9 H11   3      15.0  49.0  27.5  15.2  315.  532.
+10 H12   1      14.4  49.2  28.4  15    291.  525.
+# ... with 29 more rows</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="../reference/remove_na_values.html">remove_rows_na</a></span>(data_with_na)</a></code></pre></div>
+<pre><code>Warning: Row(s) 1, 5, 10 deleted.</code></pre>
+<pre><code># A tibble: 36 x 17
+   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
+   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 H1    2      2.20 1.09  0.492  13.7  49.2  30.5  14.7  22.3  130.  16.4  24.8
+ 2 H1    3      2.29 1.15  0.502  15.1  52.6  31.7  16.2  29.6  176.  15.6  29.2
+ 3 H10   1      1.79 0.888 0.514  13.9  44.1  26.2  15.0  12.9  116.  14.8  33  
+ 4 H10   3      2.27 1.11  0.491  14.5  43.7  24.6  16.1  12.5  128.  15.2  34.6
+ 5 H11   1      1.71 0.808 0.489  15.5  45.2  25.0  16.7  15.2  140.  15.6  36  
+ 6 H11   2      2.09 1.06  0.509  12.2  46.9  26.5  14.3  13.5  114.  16.8  26.2
+ 7 H11   3      2.5  1.44  0.577  15.0  49.0  27.5  15.2  19.4  168.  16.4  35  
+ 8 H12   2      2.77 1.58  0.572  13.8  46.5  23.8  14.6  16.3  153.  17.6  31.4
+ 9 H12   3      2.00 0.782 0.386  13.7  47.5  25.3  14.3  18.9  139.  14.8  25.4
+10 H13   1      2.52 1.09  0.434  16.1  51.7  28.2  16.6  23.9  199.  18    30.8
+# ... with 26 more rows, and 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;,
+#   TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
+</div>
 <div id="bind-cross-validation-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bind-cross-validation-objects" class="anchor"></a>Bind cross-validation objects</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">AMMI0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2">AMMI2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb8-3" title="3">AMMI9 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb8-4" title="4">AMMIF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb8-5" title="5">BLUP_g &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY)</a></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">bind1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
-<a class="sourceLine" id="cb9-2" title="2">bind2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9, <span class="dt">bind =</span> <span class="st">"means"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">AMMI0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb16-2" title="2">AMMI2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3">AMMI9 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammi.html">cv_ammi</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">naxis =</span> <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb16-4" title="4">AMMIF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_ammif.html">cv_ammif</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb16-5" title="5">BLUP_g &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cv_blup.html">cv_blup</a></span>(data_ge, ENV, GEN, REP, GY)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">bind1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9)</a>
+<a class="sourceLine" id="cb17-2" title="2">bind2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMI0, AMMI2, AMMI9, <span class="dt">bind =</span> <span class="st">"means"</span>)</a></code></pre></div>
 </div>
 <div id="split-a-dataframe-into-subsets-grouped-by-one-or-more-factors" class="section level1">
 <h1 class="hasAnchor">
@@ -251,17 +307,17 @@
 <div id="group-data-and-exclude-all-non-numeric-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-data-and-exclude-all-non-numeric-variables" class="anchor"></a>Group data and exclude all non-numeric variables</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">g1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">g1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV)</a></code></pre></div>
 <pre><code>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the
 grouped data.</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/is.split_factors.html">is.split_factors</a></span>(g1)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/is.split_factors.html">is.split_factors</a></span>(g1)</a></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 </div>
 <div id="group-data-and-keep-all-original-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-data-and-keep-all-original-variables" class="anchor"></a>Group data and keep all original variables</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">g2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV, GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw">print_table</span>(g2[[<span class="dv">1</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">g2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(data_ge, ENV, GEN, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="kw">print_table</span>(g2[[<span class="dv">1</span>]])</a></code></pre></div>
 <table class="table kable_wrapper table table-striped table-hover table-condensed table-responsive"><tbody><tr>
 <td>
 <table class="table">
@@ -10628,15 +10684,15 @@ G9
 <div id="group-a-data-frame-using-all-factor-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-a-data-frame-using-all-factor-variables" class="anchor"></a>Group a data frame using all factor variables</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">g3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(g3)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">g3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/as.split_factors.html">as.split_factors</a></span>(CO2)</a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(g3)</a></code></pre></div>
 <pre><code>[1] "dfs"   "names"</code></pre>
 </div>
 </div>
 <div id="make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-two-way-table-based-on-categorical-and-numerical-arguments" class="anchor"></a>Make a two-way table based on categorical and numerical arguments</h1>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_ge)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_ge)</a></code></pre></div>
 <pre><code># A tibble: 6 x 5
   ENV   GEN   REP      GY    HM
   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -10646,8 +10702,8 @@ G9
 4 E1    G2    1      3.21  45.2
 5 E1    G2    2      2.93  45.3
 6 E1    G2    3      2.56  45.5</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">matrix &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
-<a class="sourceLine" id="cb19-2" title="2"><span class="kw">print_table</span>(matrix)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">matrix &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, <span class="dt">row =</span> GEN, <span class="dt">col =</span> ENV, <span class="dt">val =</span> GY)</a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="kw">print_table</span>(matrix)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -11172,11 +11228,11 @@ G9
 <div id="make-upper-and-lower-triangular-matrices" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-upper-and-lower-triangular-matrices" class="anchor"></a>Make upper and lower triangular matrices</h1>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">cor_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_coef.html">corr_coef</a></span>(data_ge2, EP, EL, ED, EL, CD, CL)<span class="op">$</span>cor</a>
-<a class="sourceLine" id="cb20-2" title="2"></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="co"># Upper triangular</span></a>
-<a class="sourceLine" id="cb20-4" title="4">upp_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_upper_tri.html">make_upper_tri</a></span>(cor_mat)</a>
-<a class="sourceLine" id="cb20-5" title="5"><span class="kw">print_table</span>(upp_mat)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">cor_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_coef.html">corr_coef</a></span>(data_ge2, EP, EL, ED, EL, CD, CL)<span class="op">$</span>cor</a>
+<a class="sourceLine" id="cb28-2" title="2"></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="co"># Upper triangular</span></a>
+<a class="sourceLine" id="cb28-4" title="4">upp_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_upper_tri.html">make_upper_tri</a></span>(cor_mat)</a>
+<a class="sourceLine" id="cb28-5" title="5"><span class="kw">print_table</span>(upp_mat)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -11300,9 +11356,9 @@ NA
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Lower triangular</span></a>
-<a class="sourceLine" id="cb21-2" title="2">low_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_lower_tri.html">make_lower_tri</a></span>(cor_mat)</a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="kw">print_table</span>(low_mat)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Lower triangular</span></a>
+<a class="sourceLine" id="cb29-2" title="2">low_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_lower_tri.html">make_lower_tri</a></span>(cor_mat)</a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="kw">print_table</span>(low_mat)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -11430,8 +11486,8 @@ CL
 <div id="make-a-symmetric-matrix" class="section level1">
 <h1 class="hasAnchor">
 <a href="#make-a-symmetric-matrix" class="anchor"></a>Make a symmetric matrix</h1>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">sym &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(low_mat)</a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="kw">print_table</span>(sym)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">sym &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(low_mat)</a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="kw">print_table</span>(sym)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -11560,14 +11616,14 @@ CL
 <h1 class="hasAnchor">
 <a href="#reorder-a-correlation-matrix" class="anchor"></a>Reorder a correlation matrix</h1>
 <p>Reorder the correlation matrix according to the correlation coefficient by using hclust for hierarchical clustering order. This is useful to identify the hidden pattern in the matrix.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">cor_mat</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">cor_mat</a></code></pre></div>
 <pre><code>          EP        EL        ED        CD        CL
 EP 1.0000000 0.2634237 0.4580196 0.1750448 0.3908239
 EL 0.2634237 1.0000000 0.3851451 0.9118653 0.2554068
 ED 0.4580196 0.3851451 1.0000000 0.3897128 0.6974629
 CD 0.1750448 0.9118653 0.3897128 1.0000000 0.3003636
 CL 0.3908239 0.2554068 0.6974629 0.3003636 1.0000000</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="../reference/reorder_cormat.html">reorder_cormat</a></span>(cor_mat)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="../reference/reorder_cormat.html">reorder_cormat</a></span>(cor_mat)</a></code></pre></div>
 <pre><code>          EL        CD        EP        ED        CL
 EL 1.0000000 0.9118653 0.2634237 0.3851451 0.2554068
 CD 0.9118653 1.0000000 0.1750448 0.3897128 0.3003636
@@ -11578,30 +11634,30 @@ CL 0.2554068 0.3003636 0.3908239 0.6974629 1.0000000</code></pre>
 <div id="compute-harmonic-and-geometric-means" class="section level1">
 <h1 class="hasAnchor">
 <a href="#compute-harmonic-and-geometric-means" class="anchor"></a>Compute harmonic and geometric means</h1>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">num &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="kw"><a href="../reference/hm_mean.html">hm_mean</a></span>(num)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">num &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb35-2" title="2"><span class="kw"><a href="../reference/hm_mean.html">hm_mean</a></span>(num)</a></code></pre></div>
 <pre><code>[1] 6.025626</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="../reference/gm_mean.html">gm_mean</a></span>(num)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw"><a href="../reference/gm_mean.html">gm_mean</a></span>(num)</a></code></pre></div>
 <pre><code>[1] 9.552141</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw"><a href="../reference/hm_mean.html">hm_mean</a></span>(data_ge2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw"><a href="../reference/hm_mean.html">hm_mean</a></span>(data_ge2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>    PH     EH     EP     EL     ED     CL     CD     CW     KW     NR    NKR 
   2.44   1.28   0.53  15.06  49.38  28.83  15.88  23.05 166.32  15.96  31.88 
   CDED   PERK    TKW    NKE 
   0.58  87.39 331.66 501.45 </code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="../reference/gm_mean.html">gm_mean</a></span>(data_ge2, EP, EL, CL)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw"><a href="../reference/gm_mean.html">gm_mean</a></span>(data_ge2, EP, EL, CL)</a></code></pre></div>
 <pre><code>        EP         EL         CL 
  0.5338119 15.1101283 28.9191384 </code></pre>
 </div>
 <div id="generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="section level1">
 <h1 class="hasAnchor">
 <a href="#generate-pairwise-combinations-of-variables-by-applying-one-function-to-each-pair" class="anchor"></a>Generate pairwise combinations of variables by applying one function to each pair</h1>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
-<a class="sourceLine" id="cb35-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb35-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
-<a class="sourceLine" id="cb35-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
-<a class="sourceLine" id="cb35-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb35-6" title="6">c1 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a>
-<a class="sourceLine" id="cb35-7" title="7"><span class="kw">print_table</span>(c1)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">data =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">A =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb43-2" title="2">                  <span class="dt">B =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb43-3" title="3">                  <span class="dt">C =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">9</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb43-4" title="4">                  <span class="dt">D =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb43-5" title="5">                  <span class="dt">E =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb43-6" title="6">c1 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data)</a>
+<a class="sourceLine" id="cb43-7" title="7"><span class="kw">print_table</span>(c1)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -11638,168 +11694,168 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-25.538
+17.221
 </td>
 <td style="text-align:right;">
-88.108
+39.019
 </td>
 <td style="text-align:right;">
-39.245
+94.109
 </td>
 <td style="text-align:right;">
-25.209
+19.128
 </td>
 <td style="text-align:right;">
-75.288
+30.139
 </td>
 <td style="text-align:right;">
-26.425
+85.229
 </td>
 <td style="text-align:right;">
-12.389
+10.249
 </td>
 <td style="text-align:right;">
-88.995
+107.027
 </td>
 <td style="text-align:right;">
-74.959
+32.046
 </td>
 <td style="text-align:right;">
-26.096
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-6.272
-</td>
-<td style="text-align:right;">
-82.653
-</td>
-<td style="text-align:right;">
-72.180
-</td>
-<td style="text-align:right;">
-11.917
-</td>
-<td style="text-align:right;">
-80.553
-</td>
-<td style="text-align:right;">
-70.080
-</td>
-<td style="text-align:right;">
-9.818
-</td>
-<td style="text-align:right;">
-146.461
-</td>
-<td style="text-align:right;">
-86.199
-</td>
-<td style="text-align:right;">
-75.726
+87.136
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-19.925
+30.906
 </td>
 <td style="text-align:right;">
-99.862
+57.792
 </td>
 <td style="text-align:right;">
-26.654
+90.594
 </td>
 <td style="text-align:right;">
-26.542
+35.996
 </td>
 <td style="text-align:right;">
-83.248
+30.792
 </td>
 <td style="text-align:right;">
-10.040
+63.594
 </td>
 <td style="text-align:right;">
-9.929
+8.996
 </td>
 <td style="text-align:right;">
-89.976
+90.480
 </td>
 <td style="text-align:right;">
-89.865
+35.882
 </td>
 <td style="text-align:right;">
-16.657
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-22.047
-</td>
-<td style="text-align:right;">
-55.924
-</td>
-<td style="text-align:right;">
-62.160
-</td>
-<td style="text-align:right;">
-28.842
-</td>
-<td style="text-align:right;">
-40.232
-</td>
-<td style="text-align:right;">
-46.468
-</td>
-<td style="text-align:right;">
-13.150
-</td>
-<td style="text-align:right;">
-80.345
-</td>
-<td style="text-align:right;">
-47.027
-</td>
-<td style="text-align:right;">
-53.263
+68.684
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-15.096
+12.370
 </td>
 <td style="text-align:right;">
-20.906
+42.056
 </td>
 <td style="text-align:right;">
-37.851
+86.654
 </td>
 <td style="text-align:right;">
-19.322
+16.857
 </td>
 <td style="text-align:right;">
-12.508
+33.760
 </td>
 <td style="text-align:right;">
-29.454
+78.358
 </td>
 <td style="text-align:right;">
-10.924
+8.561
 </td>
 <td style="text-align:right;">
-35.264
+108.044
 </td>
 <td style="text-align:right;">
-16.734
+38.247
 </td>
 <td style="text-align:right;">
-33.679
+82.844
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11.579
+</td>
+<td style="text-align:right;">
+20.791
+</td>
+<td style="text-align:right;">
+47.587
+</td>
+<td style="text-align:right;">
+9.530
+</td>
+<td style="text-align:right;">
+25.551
+</td>
+<td style="text-align:right;">
+52.348
+</td>
+<td style="text-align:right;">
+14.290
+</td>
+<td style="text-align:right;">
+61.560
+</td>
+<td style="text-align:right;">
+23.502
+</td>
+<td style="text-align:right;">
+50.298
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16.899
+</td>
+<td style="text-align:right;">
+69.910
+</td>
+<td style="text-align:right;">
+78.695
+</td>
+<td style="text-align:right;">
+24.519
+</td>
+<td style="text-align:right;">
+56.447
+</td>
+<td style="text-align:right;">
+65.232
+</td>
+<td style="text-align:right;">
+11.056
+</td>
+<td style="text-align:right;">
+118.243
+</td>
+<td style="text-align:right;">
+64.067
+</td>
+<td style="text-align:right;">
+72.852
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">c2 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a>
-<a class="sourceLine" id="cb36-2" title="2"><span class="kw">print_table</span>(c2)</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">c2 =<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(data, <span class="dt">FUN =</span> <span class="st">"*"</span>, <span class="dt">order =</span> <span class="st">"first"</span>)</a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="kw">print_table</span>(c2)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -11836,162 +11892,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-121.955
+54.430
 </td>
 <td style="text-align:right;">
-1321.977
+338.895
 </td>
 <td style="text-align:right;">
-384.843
+1057.832
 </td>
 <td style="text-align:right;">
-115.647
+79.315
 </td>
 <td style="text-align:right;">
-438.312
+108.310
 </td>
 <td style="text-align:right;">
-127.598
+338.080
 </td>
 <td style="text-align:right;">
-38.344
+25.349
 </td>
 <td style="text-align:right;">
-1383.142
+2104.973
 </td>
 <td style="text-align:right;">
-415.640
+157.829
 </td>
 <td style="text-align:right;">
-120.998
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-8.732
-</td>
-<td style="text-align:right;">
-328.433
-</td>
-<td style="text-align:right;">
-284.596
-</td>
-<td style="text-align:right;">
-32.362
-</td>
-<td style="text-align:right;">
-163.695
-</td>
-<td style="text-align:right;">
-141.846
-</td>
-<td style="text-align:right;">
-16.130
-</td>
-<td style="text-align:right;">
-5335.308
-</td>
-<td style="text-align:right;">
-606.696
-</td>
-<td style="text-align:right;">
-525.719
+492.651
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-30.254
+56.546
 </td>
 <td style="text-align:right;">
-1490.645
+834.966
 </td>
 <td style="text-align:right;">
-153.172
+1784.682
 </td>
 <td style="text-align:right;">
-151.137
+203.908
 </td>
 <td style="text-align:right;">
-135.114
+56.323
 </td>
 <td style="text-align:right;">
-13.884
+120.387
 </td>
 <td style="text-align:right;">
-13.699
+13.755
 </td>
 <td style="text-align:right;">
-684.069
+1777.662
 </td>
 <td style="text-align:right;">
-674.980
+203.106
 </td>
 <td style="text-align:right;">
-69.358
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-59.960
-</td>
-<td style="text-align:right;">
-699.196
-</td>
-<td style="text-align:right;">
-816.862
-</td>
-<td style="text-align:right;">
-188.179
-</td>
-<td style="text-align:right;">
-117.745
-</td>
-<td style="text-align:right;">
-137.560
-</td>
-<td style="text-align:right;">
-31.689
-</td>
-<td style="text-align:right;">
-1604.106
-</td>
-<td style="text-align:right;">
-369.535
-</td>
-<td style="text-align:right;">
-431.724
+434.125
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-39.341
+21.049
 </td>
 <td style="text-align:right;">
-107.595
+327.798
 </td>
 <td style="text-align:right;">
-306.648
+788.626
 </td>
 <td style="text-align:right;">
-88.980
+67.410
 </td>
 <td style="text-align:right;">
-30.675
+64.623
 </td>
 <td style="text-align:right;">
-87.424
+155.473
 </td>
 <td style="text-align:right;">
-25.368
+13.289
 </td>
 <td style="text-align:right;">
-239.102
+2421.138
 </td>
 <td style="text-align:right;">
-69.380
+206.953
 </td>
 <td style="text-align:right;">
-197.735
+497.894
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27.855
+</td>
+<td style="text-align:right;">
+59.264
+</td>
+<td style="text-align:right;">
+150.628
+</td>
+<td style="text-align:right;">
+20.867
+</td>
+<td style="text-align:right;">
+142.002
+</td>
+<td style="text-align:right;">
+360.917
+</td>
+<td style="text-align:right;">
+49.998
+</td>
+<td style="text-align:right;">
+767.888
+</td>
+<td style="text-align:right;">
+106.376
+</td>
+<td style="text-align:right;">
+270.370
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26.082
+</td>
+<td style="text-align:right;">
+830.857
+</td>
+<td style="text-align:right;">
+964.215
+</td>
+<td style="text-align:right;">
+141.763
+</td>
+<td style="text-align:right;">
+94.028
+</td>
+<td style="text-align:right;">
+109.120
+</td>
+<td style="text-align:right;">
+16.043
+</td>
+<td style="text-align:right;">
+3476.052
+</td>
+<td style="text-align:right;">
+511.064
+</td>
+<td style="text-align:right;">
+593.093
 </td>
 </tr>
 </tbody>
@@ -12000,15 +12056,15 @@ DxE
 <div id="combining-data-frames-by-row-filling-missing-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-data-frames-by-row-filling-missing-values" class="anchor"></a>Combining data.frames by row, filling missing values</h1>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb37-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb37-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">df1 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb45-2" title="2">df2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">v3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2)</a></code></pre></div>
 <pre><code>  v1 v2 v3
 1  1  2  .
 2  2  3  .
 3  .  .  4
 4  .  .  5</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw"><a href="../reference/rbind_fill.html">rbind_fill</a></span>(df1, df2, <span class="dt">fill =</span> <span class="st">"NA"</span>)</a></code></pre></div>
 <pre><code>  v1 v2 v3
 1  1  2 NA
 2  2  3 NA
@@ -12021,16 +12077,16 @@ DxE
 <div id="rescale-a-numeric-vector" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-a-numeric-vector" class="anchor"></a>Rescale a numeric vector</h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a></code></pre></div>
 <pre><code>[1]   0  25  50  75 100</code></pre>
 </div>
 <div id="rescale-using-a-data-frame-and-select-rescaled-variables-only" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-using-a-data-frame-and-select-rescaled-variables-only" class="anchor"></a>Rescale using a data frame and select rescaled variables only</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">data_ge <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-2" title="2"><span class="kw"><a href="../reference/resca.html">resca</a></span>(GY, HM, <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">1</span>,  <span class="dt">keep =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-4" title="4"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">data_ge <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="kw"><a href="../reference/resca.html">resca</a></span>(GY, HM, <span class="dt">new_min =</span> <span class="dv">0</span>, <span class="dt">new_max =</span> <span class="dv">1</span>,  <span class="dt">keep =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb51-4" title="4"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:right;">
@@ -12095,14 +12151,14 @@ HM_res
 <div id="rescale-within-factors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rescale-within-factors" class="anchor"></a>Rescale within factors</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">  data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb44-2" title="2"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(ENV, GEN, <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">starts_with</a></span>(<span class="st">"N"</span>), <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">ends_with</a></span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(ENV, GEN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-4" title="4"><span class="st">    </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-6" title="6"><span class="st">    </span><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">ends_with</a></span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-7" title="7"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">13</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-8" title="8"><span class="st">    </span><span class="kw">print_table</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">  data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb52-2" title="2"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(ENV, GEN, <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">starts_with</a></span>(<span class="st">"N"</span>), <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">ends_with</a></span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(ENV, GEN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-4" title="4"><span class="st">    </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-6" title="6"><span class="st">    </span><span class="kw"><a href="../reference/resca.html">resca</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">ends_with</a></span>(<span class="st">"L"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-7" title="7"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">13</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-8" title="8"><span class="st">    </span><span class="kw">print_table</span>()</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
@@ -12525,6 +12581,7 @@ H9
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#getting-started">Getting started</a></li>
       <li><a href="#select-helpers">Select helpers</a></li>
+      <li><a href="#remove-rows-or-colums-wih-na-values">Remove rows or colums wih NA values</a></li>
       <li><a href="#bind-cross-validation-objects">Bind cross-validation objects</a></li>
       <li>
 <a href="#split-a-dataframe-into-subsets-grouped-by-one-or-more-factors">Split a dataframe into subsets grouped by one or more factors</a><ul class="nav nav-pills nav-stacked">

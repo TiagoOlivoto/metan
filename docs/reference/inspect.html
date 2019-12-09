@@ -204,7 +204,7 @@ outliers. The function will return a warning if the data looks like
 unbalanced, has missing values or possible outliers.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>inspect</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>inspect</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -215,12 +215,17 @@ unbalanced, has missing values or possible outliers.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>The variables in <code>.data</code> to check. Set to
-<code>NULL</code>, i.e., all the variables in <code>.data</code> are used.</p></td>
+      <td><p>The variables in <code>.data</code> to check. If no variable is
+informed, all the variables in <code>.data</code> are used.</p></td>
     </tr>
     <tr>
       <th>plot</th>
       <td><p>Create a plot to show the check? Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>threshold</th>
+      <td><p>Maximum number of levels allowed in a character / factor
+column to produce a plot. Defaults to 15.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -264,7 +269,7 @@ for checks are shown in the console.</p></td>
 #&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      13         152 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>         </span><span style='color: #BB0000;'>NA</span><span>
 #&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      3          152 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>         </span><span style='color: #BB0000;'>NA</span><span>
 #&gt; </span><span style='color: #555555;'>4</span><span> PH       numeric Yes     -          149  1.71   2.52  3.04       0
-#&gt; </span><span style='color: #555555;'>5</span><span> EH       numeric Yes     -          149  0.75   1.41  3.35       1</div><div class='output co'>#&gt; <span class='warning'>Warning: Considering the levels of factors, .data should have 156 rows, but it has 152</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Missing values in variable(s) PH EH</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Possible outliers in variable(s) EH. Use the function find_outliers() for more details.</span></div><div class='img'><img src='inspect-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'>5</span><span> EH       numeric Yes     -          149  0.75   1.41  3.35       1</div><div class='output co'>#&gt; <span class='warning'>Warning: Considering the levels of factors, .data should have 156 rows, but it has 152. Use 'to_factor()' for coercing a variable to a factor.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Missing values in variable(s) PH, EH.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Possible outliers in variable(s) EH. Use 'find_outliers()' for more details.</span></div><div class='img'><img src='inspect-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
