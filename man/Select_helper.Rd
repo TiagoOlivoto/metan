@@ -14,35 +14,35 @@ intersect_var(prefix, suffix)
 union_var(prefix, suffix)
 }
 \arguments{
-\item{prefix}{A prefix that starts the variable name.}
+\item{prefix}{A prefix that start the variable name.}
 
-\item{suffix}{A suffix that ends the variable name.}
+\item{suffix}{A suffix that end the variable name.}
 }
 \description{
 These functions allow you to select variables based operations
 with prefixes and suffixes.
 \itemize{
-\item \code{difference_var()}: Select variables that starts with a prefix \strong{AND
-NOT} ends wiht a suffix.
-\item \code{intersect_var()}: Select variables that starts with a prefix
-\strong{AND} ends wiht a suffix.
-\item \code{union_var()}: Select variables that starts with a prefix \strong{OR}
-ends wiht a suffix.
+\item \code{difference_var()}: Select variables that start with a prefix \strong{AND
+NOT} end wiht a suffix.
+\item \code{intersect_var()}: Select variables that start with a prefix
+\strong{AND} end wiht a suffix.
+\item \code{union_var()}: Select variables that start with a prefix \strong{OR}
+end wiht a suffix.
 }
 }
 \examples{
 library(metan)
 
-# Select variables that starts with "C" and not ends with "D".
+# Select variables that start with "C" and not end with "D".
 data_ge2 \%>\%
 select(difference_var("C", "D"))
 
-# Select variables that starts with "C" and ends with "D".
+# Select variables that start with "C" and end with "D".
 data_ge2 \%>\%
 select(intersect_var("C", "D"))
 
 
-# Select variables that starts with "C" or ends with "D".
+# Select variables that start with "C" or end with "D".
 data_ge2 \%>\%
 select(union_var("C", "D"))
 

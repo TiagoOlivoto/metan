@@ -30,35 +30,35 @@ NULL
 
 #' @title Select helper
 #' @name Select_helper
-#' @param prefix A prefix that starts the variable name.
-#' @param suffix A suffix that ends the variable name.
+#' @param prefix A prefix that start the variable name.
+#' @param suffix A suffix that end the variable name.
 #' @importFrom dplyr intersect
 #' @export
 #' @description These functions allow you to select variables based operations
 #'   with prefixes and suffixes.
-#' * \code{difference_var()}: Select variables that starts with a prefix \strong{AND
-#' NOT} ends wiht a suffix.
+#' * \code{difference_var()}: Select variables that start with a prefix \strong{AND
+#' NOT} end wiht a suffix.
 #'
-#' * \code{intersect_var()}: Select variables that starts with a prefix
-#' \strong{AND} ends wiht a suffix.
+#' * \code{intersect_var()}: Select variables that start with a prefix
+#' \strong{AND} end wiht a suffix.
 #'
-#' * \code{union_var()}: Select variables that starts with a prefix \strong{OR}
-#' ends wiht a suffix.
+#' * \code{union_var()}: Select variables that start with a prefix \strong{OR}
+#' end wiht a suffix.
 
 #' @md
 #' @examples
 #' library(metan)
 #'
-#' # Select variables that starts with "C" and not ends with "D".
+#' # Select variables that start with "C" and not end with "D".
 #' data_ge2 %>%
 #' select(difference_var("C", "D"))
 #'
-#' # Select variables that starts with "C" and ends with "D".
+#' # Select variables that start with "C" and end with "D".
 #' data_ge2 %>%
 #' select(intersect_var("C", "D"))
 #'
 #'
-#' # Select variables that starts with "C" or ends with "D".
+#' # Select variables that start with "C" or end with "D".
 #' data_ge2 %>%
 #' select(union_var("C", "D"))
 #'
@@ -85,3 +85,4 @@ intersect_var <- function(prefix, suffix) {
 union_var <- function(prefix, suffix) {
   union(starts_with(prefix), ends_with(suffix))
 }
+
