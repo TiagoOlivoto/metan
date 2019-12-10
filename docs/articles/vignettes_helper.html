@@ -147,7 +147,7 @@
       <h1>Helper functions for metan</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-12-09</h4>
+            <h4 class="date">2019-12-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_helper.Rmd"><code>vignettes/vignettes_helper.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_helper.Rmd</code></div>
@@ -174,9 +174,9 @@
 <a href="#select-helpers" class="anchor"></a>Select helpers</h1>
 <p>The package <code>metan</code> reexports the <a href="https://tidyselect.r-lib.org/reference/select_helpers.html">tidy select helpers</a> and implements three own select helpers based on operations with prefixes and suffixes: <code><a href="../reference/Select_helper.html">difference_var()</a></code>, <code><a href="../reference/Select_helper.html">intersect_var()</a></code>, and <code><a href="../reference/Select_helper.html">union_var()</a></code>.</p>
 <ul>
-<li>Variables that starts with a prefix <strong>and</strong> ends with a suffix.</li>
+<li>Variables that start with a prefix <strong>and</strong> ends with a suffix.</li>
 </ul>
-<p>Here, we will select the variables from <code>data_ge2</code> that starts with “C” and ends with “D”.</p>
+<p>Here, we will select the variables from <code>data_ge2</code> that start with “C” and ends with “D”.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="../reference/Select_helper.html">intersect_var</a></span>(<span class="st">"C"</span>, <span class="st">"D"</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 2
@@ -194,9 +194,9 @@
 10  15.5 0.597
 # ... with 146 more rows</code></pre>
 <ul>
-<li>Variables that starts with a prefix <strong>OR</strong> ends with a suffix.</li>
+<li>Variables that start with a prefix <strong>OR</strong> ends with a suffix.</li>
 </ul>
-<p>The following code select variables that starts with “C” or ends with “D”.</p>
+<p>The following code select variables that start with “C” or ends with “D”.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="../reference/Select_helper.html">union_var</a></span>(<span class="st">"C"</span>, <span class="st">"D"</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 5
@@ -214,9 +214,9 @@
 10  28.2  15.5  20.1 0.597  47.5
 # ... with 146 more rows</code></pre>
 <ul>
-<li>Variables that starts with a prefix <strong>AND NOT</strong> ends with a suffix.</li>
+<li>Variables that start with a prefix <strong>AND NOT</strong> ends with a suffix.</li>
 </ul>
-<p>The following code select variables that starts with “C” and not ends with “D”.</p>
+<p>The following code select variables that start with “C” and not ends with “D”.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="../reference/Select_helper.html">difference_var</a></span>(<span class="st">"C"</span>, <span class="st">"D"</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 2
@@ -11694,162 +11694,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-17.221
+27.741
 </td>
 <td style="text-align:right;">
-39.019
+63.524
 </td>
 <td style="text-align:right;">
-94.109
+100.419
 </td>
 <td style="text-align:right;">
-19.128
+32.665
 </td>
 <td style="text-align:right;">
-30.139
+45.023
 </td>
 <td style="text-align:right;">
-85.229
+81.919
 </td>
 <td style="text-align:right;">
-10.249
+14.165
 </td>
 <td style="text-align:right;">
-107.027
+117.701
 </td>
 <td style="text-align:right;">
-32.046
+49.947
 </td>
 <td style="text-align:right;">
-87.136
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-30.906
-</td>
-<td style="text-align:right;">
-57.792
-</td>
-<td style="text-align:right;">
-90.594
-</td>
-<td style="text-align:right;">
-35.996
-</td>
-<td style="text-align:right;">
-30.792
-</td>
-<td style="text-align:right;">
-63.594
-</td>
-<td style="text-align:right;">
-8.996
-</td>
-<td style="text-align:right;">
-90.480
-</td>
-<td style="text-align:right;">
-35.882
-</td>
-<td style="text-align:right;">
-68.684
+86.843
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-12.370
+24.609
 </td>
 <td style="text-align:right;">
-42.056
+87.182
 </td>
 <td style="text-align:right;">
-86.654
+27.073
 </td>
 <td style="text-align:right;">
-16.857
+27.333
 </td>
 <td style="text-align:right;">
-33.760
+71.141
 </td>
 <td style="text-align:right;">
-78.358
+11.032
 </td>
 <td style="text-align:right;">
-8.561
+11.292
 </td>
 <td style="text-align:right;">
-108.044
+73.605
 </td>
 <td style="text-align:right;">
-38.247
+73.865
 </td>
 <td style="text-align:right;">
-82.844
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-11.579
-</td>
-<td style="text-align:right;">
-20.791
-</td>
-<td style="text-align:right;">
-47.587
-</td>
-<td style="text-align:right;">
-9.530
-</td>
-<td style="text-align:right;">
-25.551
-</td>
-<td style="text-align:right;">
-52.348
-</td>
-<td style="text-align:right;">
-14.290
-</td>
-<td style="text-align:right;">
-61.560
-</td>
-<td style="text-align:right;">
-23.502
-</td>
-<td style="text-align:right;">
-50.298
+13.756
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-16.899
+29.876
 </td>
 <td style="text-align:right;">
-69.910
+57.064
 </td>
 <td style="text-align:right;">
-78.695
+107.551
 </td>
 <td style="text-align:right;">
-24.519
+30.501
 </td>
 <td style="text-align:right;">
-56.447
+37.646
 </td>
 <td style="text-align:right;">
-65.232
+88.134
 </td>
 <td style="text-align:right;">
-11.056
+11.083
 </td>
 <td style="text-align:right;">
-118.243
+115.322
 </td>
 <td style="text-align:right;">
-64.067
+38.271
 </td>
 <td style="text-align:right;">
-72.852
+88.759
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11.609
+</td>
+<td style="text-align:right;">
+61.095
+</td>
+<td style="text-align:right;">
+31.000
+</td>
+<td style="text-align:right;">
+14.491
+</td>
+<td style="text-align:right;">
+54.353
+</td>
+<td style="text-align:right;">
+24.257
+</td>
+<td style="text-align:right;">
+7.748
+</td>
+<td style="text-align:right;">
+73.743
+</td>
+<td style="text-align:right;">
+57.234
+</td>
+<td style="text-align:right;">
+27.139
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28.035
+</td>
+<td style="text-align:right;">
+87.119
+</td>
+<td style="text-align:right;">
+106.456
+</td>
+<td style="text-align:right;">
+27.894
+</td>
+<td style="text-align:right;">
+77.311
+</td>
+<td style="text-align:right;">
+96.648
+</td>
+<td style="text-align:right;">
+18.086
+</td>
+<td style="text-align:right;">
+155.732
+</td>
+<td style="text-align:right;">
+77.170
+</td>
+<td style="text-align:right;">
+96.507
 </td>
 </tr>
 </tbody>
@@ -11892,162 +11892,162 @@ DxE
 <tbody>
 <tr>
 <td style="text-align:right;">
-54.430
+106.827
 </td>
 <td style="text-align:right;">
-338.895
+934.153
 </td>
 <td style="text-align:right;">
-1057.832
+1787.221
 </td>
 <td style="text-align:right;">
-79.315
+220.674
 </td>
 <td style="text-align:right;">
-108.310
+186.674
 </td>
 <td style="text-align:right;">
-338.080
+357.144
 </td>
 <td style="text-align:right;">
-25.349
+44.098
 </td>
 <td style="text-align:right;">
-2104.973
+3123.060
 </td>
 <td style="text-align:right;">
-157.829
+385.615
 </td>
 <td style="text-align:right;">
-492.651
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-56.546
-</td>
-<td style="text-align:right;">
-834.966
-</td>
-<td style="text-align:right;">
-1784.682
-</td>
-<td style="text-align:right;">
-203.908
-</td>
-<td style="text-align:right;">
-56.323
-</td>
-<td style="text-align:right;">
-120.387
-</td>
-<td style="text-align:right;">
-13.755
-</td>
-<td style="text-align:right;">
-1777.662
-</td>
-<td style="text-align:right;">
-203.106
-</td>
-<td style="text-align:right;">
-434.125
+737.758
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-21.049
+87.065
 </td>
 <td style="text-align:right;">
-327.798
+1358.876
 </td>
 <td style="text-align:right;">
-788.626
+137.153
 </td>
 <td style="text-align:right;">
-67.410
+142.437
 </td>
 <td style="text-align:right;">
-64.623
+286.395
 </td>
 <td style="text-align:right;">
-155.473
+28.906
 </td>
 <td style="text-align:right;">
-13.289
+30.020
 </td>
 <td style="text-align:right;">
-2421.138
+451.153
 </td>
 <td style="text-align:right;">
-206.953
+468.534
 </td>
 <td style="text-align:right;">
-497.894
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-27.855
-</td>
-<td style="text-align:right;">
-59.264
-</td>
-<td style="text-align:right;">
-150.628
-</td>
-<td style="text-align:right;">
-20.867
-</td>
-<td style="text-align:right;">
-142.002
-</td>
-<td style="text-align:right;">
-360.917
-</td>
-<td style="text-align:right;">
-49.998
-</td>
-<td style="text-align:right;">
-767.888
-</td>
-<td style="text-align:right;">
-106.376
-</td>
-<td style="text-align:right;">
-270.370
+47.290
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-26.082
+128.875
 </td>
 <td style="text-align:right;">
-830.857
+798.982
 </td>
 <td style="text-align:right;">
-964.215
+2043.328
 </td>
 <td style="text-align:right;">
-141.763
+144.282
 </td>
 <td style="text-align:right;">
-94.028
+169.508
 </td>
 <td style="text-align:right;">
-109.120
+433.501
 </td>
 <td style="text-align:right;">
-16.043
+30.610
 </td>
 <td style="text-align:right;">
-3476.052
+2687.556
 </td>
 <td style="text-align:right;">
-511.064
+189.771
 </td>
 <td style="text-align:right;">
-593.093
+485.324
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22.329
+</td>
+<td style="text-align:right;">
+476.401
+</td>
+<td style="text-align:right;">
+200.252
+</td>
+<td style="text-align:right;">
+48.767
+</td>
+<td style="text-align:right;">
+126.344
+</td>
+<td style="text-align:right;">
+53.108
+</td>
+<td style="text-align:right;">
+12.933
+</td>
+<td style="text-align:right;">
+1133.073
+</td>
+<td style="text-align:right;">
+275.938
+</td>
+<td style="text-align:right;">
+115.988
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+172.444
+</td>
+<td style="text-align:right;">
+1290.402
+</td>
+<td style="text-align:right;">
+1656.293
+</td>
+<td style="text-align:right;">
+169.771
+</td>
+<td style="text-align:right;">
+621.525
+</td>
+<td style="text-align:right;">
+797.758
+</td>
+<td style="text-align:right;">
+81.770
+</td>
+<td style="text-align:right;">
+5969.647
+</td>
+<td style="text-align:right;">
+611.891
+</td>
+<td style="text-align:right;">
+785.392
 </td>
 </tr>
 </tbody>

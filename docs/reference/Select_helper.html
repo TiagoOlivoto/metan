@@ -45,12 +45,12 @@
 <meta property="og:title" content="Select helper — Select_helper" />
 <meta property="og:description" content="These functions allow you to select variables based operations
 with prefixes and suffixes.
-difference_var(): Select variables that starts with a prefix AND
-NOT ends wiht a suffix.
-intersect_var(): Select variables that starts with a prefix
-AND ends wiht a suffix.
-union_var(): Select variables that starts with a prefix OR
-ends wiht a suffix.
+difference_var(): Select variables that start with a prefix AND
+NOT end wiht a suffix.
+intersect_var(): Select variables that start with a prefix
+AND end wiht a suffix.
+union_var(): Select variables that start with a prefix OR
+end wiht a suffix.
 
 " />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -204,12 +204,12 @@ ends wiht a suffix.
     <div class="ref-description">
     <p>These functions allow you to select variables based operations
 with prefixes and suffixes.</p><ul>
-<li><p><code>difference_var()</code>: Select variables that starts with a prefix <strong>AND
-NOT</strong> ends wiht a suffix.</p></li>
-<li><p><code>intersect_var()</code>: Select variables that starts with a prefix
-<strong>AND</strong> ends wiht a suffix.</p></li>
-<li><p><code>union_var()</code>: Select variables that starts with a prefix <strong>OR</strong>
-ends wiht a suffix.</p></li>
+<li><p><code>difference_var()</code>: Select variables that start with a prefix <strong>AND
+NOT</strong> end wiht a suffix.</p></li>
+<li><p><code>intersect_var()</code>: Select variables that start with a prefix
+<strong>AND</strong> end wiht a suffix.</p></li>
+<li><p><code>union_var()</code>: Select variables that start with a prefix <strong>OR</strong>
+end wiht a suffix.</p></li>
 </ul>
 
     </div>
@@ -225,11 +225,11 @@ ends wiht a suffix.</p></li>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>prefix</th>
-      <td><p>A prefix that starts the variable name.</p></td>
+      <td><p>A prefix that start the variable name.</p></td>
     </tr>
     <tr>
       <th>suffix</th>
-      <td><p>A suffix that ends the variable name.</p></td>
+      <td><p>A suffix that end the variable name.</p></td>
     </tr>
     </table>
 
@@ -237,7 +237,7 @@ ends wiht a suffix.</p></li>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
-<span class='co'># Select variables that starts with "C" and not ends with "D".</span>
+<span class='co'># Select variables that start with "C" and not end with "D".</span>
 <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='fu'>difference_var</span>(<span class='st'>"C"</span>, <span class='st'>"D"</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 156 x 2</span><span>
 #&gt;       CL    CW
@@ -253,7 +253,7 @@ ends wiht a suffix.</p></li>
 #&gt; </span><span style='color: #555555;'> 9</span><span>  27.6  20.5
 #&gt; </span><span style='color: #555555;'>10</span><span>  28.2  20.1
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'>
-<span class='co'># Select variables that starts with "C" and ends with "D".</span>
+<span class='co'># Select variables that start with "C" and end with "D".</span>
 <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='fu'>intersect_var</span>(<span class='st'>"C"</span>, <span class='st'>"D"</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 2</span><span>
 #&gt;       CD  CDED
@@ -270,7 +270,7 @@ ends wiht a suffix.</p></li>
 #&gt; </span><span style='color: #555555;'>10</span><span>  15.5 0.597
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'>
 
-<span class='co'># Select variables that starts with "C" or ends with "D".</span>
+<span class='co'># Select variables that start with "C" or end with "D".</span>
 <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='fu'>union_var</span>(<span class='st'>"C"</span>, <span class='st'>"D"</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 5</span><span>
 #&gt;       CL    CD    CW  CDED    ED

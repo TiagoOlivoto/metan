@@ -36,9 +36,9 @@ print_table = function(table){
 # Select helpers
 The package `metan` reexports the  [tidy select helpers](https://tidyselect.r-lib.org/reference/select_helpers.html) and implements three own select helpers based on operations with prefixes and suffixes: `difference_var()`, `intersect_var()`, and `union_var()`.
 
-* Variables that starts with a prefix **and** ends with a suffix.
+* Variables that start with a prefix **and** ends with a suffix.
 
-Here, we will select the variables from `data_ge2` that starts with "C" and ends with "D".
+Here, we will select the variables from `data_ge2` that start with "C" and ends with "D".
 
 ```{r}
 data_ge2 %>% 
@@ -46,9 +46,9 @@ data_ge2 %>%
 ```
 
 
-* Variables that starts with a prefix **OR** ends with a suffix.
+* Variables that start with a prefix **OR** ends with a suffix.
 
-The following code select variables that starts with "C" or ends with "D".
+The following code select variables that start with "C" or ends with "D".
 
 ```{r}
 data_ge2 %>% 
@@ -56,9 +56,9 @@ data_ge2 %>%
 ```
 
 
-* Variables that starts with a prefix **AND NOT** ends with a suffix.
+* Variables that start with a prefix **AND NOT** ends with a suffix.
 
-The following code select variables that starts with "C" and not ends with "D".
+The following code select variables that start with "C" and not ends with "D".
 
 ```{r}
 data_ge2 %>% 
