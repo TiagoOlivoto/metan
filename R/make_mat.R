@@ -15,8 +15,9 @@
 #' will show the mean values for each genotype-environment combination. Other R base functions
 #' such as \code{max}, \code{min}, \code{sd}, \code{var}, or an own function that return
 #'  a single numeric value can be used.
-#'  @return A two-way table with the argument \code{row} in the rows, \code{col} in the columns,
-#'  filled by the argument \code{value}.
+#'
+#' @return A two-way table with the argument \code{row} in the rows, \code{col}
+#'   in the columns, filled by the argument \code{value}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
