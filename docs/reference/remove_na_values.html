@@ -45,6 +45,7 @@
 <meta property="og:title" content="Remove NA values — remove_na_values" />
 <meta property="og:description" content="These functions allow you to remove rows or columns with
 NA values quickly.
+has_na(): Check for NA values in the data and return a logical value.
 remove_rows_na(): Remove rows with NA values.
 remove_cols_na(): Remove columns with NA values.
 
@@ -200,6 +201,7 @@ remove_cols_na(): Remove columns with NA values.
     <div class="ref-description">
     <p>These functions allow you to remove rows or columns with
 <code>NA</code> values quickly.</p><ul>
+<li><p><code>has_na()</code>: Check for <code>NA</code> values in the data and return a logical value.</p></li>
 <li><p><code>remove_rows_na()</code>: Remove rows with <code>NA</code> values.</p></li>
 <li><p><code>remove_cols_na()</code>: Remove columns with <code>NA</code> values.</p></li>
 </ul>
@@ -208,7 +210,9 @@ remove_cols_na(): Remove columns with NA values.
 
     <pre class="usage"><span class='fu'>remove_rows_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>remove_cols_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>remove_cols_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='fu'>has_na</span>(<span class='no'>.data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -246,7 +250,7 @@ the rows or columns deleted.</p></td>
 #&gt; </span><span style='color: #555555;'> 9</span><span> H11   3      2.5    1.44   0.577</span><span style='text-decoration: underline;'>3</span><span> 15.02 49.03 27.52 15.16 19.36 167.8  16.4
 #&gt; </span><span style='color: #555555;'>10</span><span> H12   1     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      14.36 49.17 28.41 15    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  
 #&gt; </span><span style='color: #555555;'># ... with 29 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_cols_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) PH, EH, EP, CW, KW, NR, NKR, CDED, PERK deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 8</span><span>
+#&gt; #   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>has_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>remove_cols_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) PH, EH, EP, CW, KW, NR, NKR, CDED, PERK with NA values deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 8</span><span>
 #&gt;    GEN   REP      EL    ED    CL    CD   TKW   NKE
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1     15.74 49.93 30.53 16.6  347.2 458.4
@@ -259,7 +263,7 @@ the rows or columns deleted.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> H11   2     12.24 46.91 26.53 14.3  287.6 397  
 #&gt; </span><span style='color: #555555;'> 9</span><span> H11   3     15.02 49.03 27.52 15.16 314.6 531.6
 #&gt; </span><span style='color: #555555;'>10</span><span> H12   1     14.36 49.17 28.41 15    291.2 524.8
-#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>remove_rows_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 1, 5, 10 deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 36 x 17</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>remove_rows_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 1, 5, 10 with NA values deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 36 x 17</span><span>
 #&gt;    GEN   REP      PH    EH     EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    2     2.198 1.086 0.492</span><span style='text-decoration: underline;'>1</span><span> 13.7  49.20 30.46 14.66 22.34 130.2  16.4

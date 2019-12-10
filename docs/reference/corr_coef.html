@@ -196,7 +196,7 @@
     <p>Computes Pearson's correlation matrix with p-values</p>
     </div>
 
-    <pre class="usage"><span class='fu'>corr_coef</span>(<span class='no'>data</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>corr_coef</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,6 +209,11 @@
       <th>...</th>
       <td><p>Variables to use in the correlation. If no variable is informed
 all the numeric variables from <code>data</code> are used.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical argument. If <code>verbose = FALSE</code> the code is run
+silently.</p></td>
     </tr>
     </table>
 
