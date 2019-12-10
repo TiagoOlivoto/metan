@@ -36,6 +36,8 @@ NULL
 #' @param data The data set.
 #' @param ... Variables to use in the correlation. If no variable is informed
 #'   all the numeric variables from \code{data} are used.
+#' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
+#'  silently.
 #' @return A list with the correlation coefficients and p-values
 #' @importFrom dplyr between
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -50,13 +52,16 @@ NULL
 #' sel <- corr_coef(data_ge2, EP, EL, CD, CL)
 #' print(sel)
 #'
-corr_coef <- function(data, ...){
+corr_coef <- function(data, ..., verbose = TRUE){
   if(missing(...)){
     x <- select_if(data, is.numeric)
   }
   if(!missing(...)){
     x <- select(data, ...) %>%
       select_if(is.numeric)
+  }
+  if(has_na(data) ==  TRUE){
+    x <- remove_rows_na(x, verbose = verbose)
   }
   apply_r <- function(A, FUN, ...) {
     mapply(function(a, B)

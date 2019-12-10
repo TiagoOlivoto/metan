@@ -4,13 +4,16 @@
 \alias{corr_coef}
 \title{Computes Pearson's correlation matrix with p-values}
 \usage{
-corr_coef(data, ...)
+corr_coef(data, ..., verbose = TRUE)
 }
 \arguments{
 \item{data}{The data set.}
 
 \item{...}{Variables to use in the correlation. If no variable is informed
 all the numeric variables from \code{data} are used.}
+
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
+silently.}
 }
 \value{
 A list with the correlation coefficients and p-values

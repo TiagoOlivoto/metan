@@ -192,6 +192,7 @@ reference:
       - difference_var
       - get_model_data
       - gm_mean
+      - has_na
       - hm_mean
       - inspect
       - intersect_var
