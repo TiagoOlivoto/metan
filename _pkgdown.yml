@@ -5,6 +5,9 @@ template:
   params:
     bootswatch: spacelab
     ganalytics: UA-140429633-1
+    docsearch:
+      api_key: ef40e3bab94bb0e1d687fd3844052701
+      index_name: metan
 
 development:
   mode: auto
