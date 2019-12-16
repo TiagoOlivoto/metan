@@ -77,7 +77,7 @@ An object of class \code{gg, ggplot}.
 Plot the predicted BLUP of the genotypes.
 }
 \examples{
-
+\donttest{
 library(metan)
 BLUP <- waasb(data_ge,
               resp = c(GY, HM),
@@ -86,6 +86,7 @@ BLUP <- waasb(data_ge,
               rep = REP)
 plot_blup(BLUP)
 
+}
 
 
 }

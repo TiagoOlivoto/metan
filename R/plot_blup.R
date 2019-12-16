@@ -45,7 +45,7 @@
 #' @seealso \code{\link{plot_scores}}, \code{\link{plot_waasby}}
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #' BLUP <- waasb(data_ge,
 #'               resp = c(GY, HM),
@@ -54,6 +54,7 @@
 #'               rep = REP)
 #' plot_blup(BLUP)
 #'
+#'}
 #'
 #'
 plot_blup <- function(x, var = 1, prob = 0.05, export = FALSE, file.type = "pdf", file.name = NULL,

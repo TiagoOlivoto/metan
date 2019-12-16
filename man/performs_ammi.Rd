@@ -40,7 +40,7 @@ function also serves as a helper function for other procedures performed in
 the \pkg{metan} package such as \code{\link{waas}} and \code{\link{wsmp}}
 }
 \examples{
-
+\donttest{
 library(metan)
 ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
                            resp = c(GY, HM))
@@ -61,7 +61,7 @@ plot_scores(ammi_model,
             type = 2,
             polygon = TRUE)
 
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

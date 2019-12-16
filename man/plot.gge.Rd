@@ -97,6 +97,7 @@ of the output can be customized using the power of plot customization provided b
 ggplot2.
 }
 \examples{
+\donttest{
 library(metan)
 mod <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
 plot(mod)
@@ -111,6 +112,7 @@ plot(mod,
 data_ge2 \%>\%
 gge(ENV, GEN, NKE) \%>\%
 plot(type = 3)
+}
 }
 \references{
 Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical

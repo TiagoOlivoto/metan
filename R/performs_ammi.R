@@ -29,7 +29,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #' ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
 #'                            resp = c(GY, HM))
@@ -50,7 +50,7 @@
 #'             type = 2,
 #'             polygon = TRUE)
 #'
-#'
+#'}
 performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     factors  <- .data %>%
         select(ENV = {{env}},

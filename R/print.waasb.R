@@ -16,7 +16,7 @@
 #' @method print waasb
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #' model <- waasb(data_ge,
 #'   resp = c(GY, HM),
@@ -25,6 +25,7 @@
 #'   rep = REP
 #' )
 #' print(model)
+#' }
 print.waasb <- function(x, export = FALSE, blup = FALSE, file.name = NULL, digits = 4, ...) {
   if (!class(x) == "waasb") {
     stop("The object must be of class 'waasb'")

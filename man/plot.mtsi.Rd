@@ -39,11 +39,12 @@ Makes a radar plot showing the multitrait stability index proposed by Olivoto
 et al. (2019)
 }
 \examples{
+\donttest{
 library(metan)
 mtsi_model <- waasb(data_ge, ENV, GEN, REP, resp = c(GY, HM))
 mtsi_index <- mtsi(mtsi_model)
 plot(mtsi_index)
-
+}
 
 
 }

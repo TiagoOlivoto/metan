@@ -15,7 +15,7 @@
 #' @method print waas
 #' @export
 #' @examples
-#'
+#'\donttest{
 #' library(metan)
 #' model <- waas(data_ge,
 #'   resp = c(GY, HM),
@@ -24,6 +24,7 @@
 #'   rep = REP
 #' )
 #' print(model)
+#' }
 print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   if (!class(x) == "waas") {
     stop("The object must be of class 'waas'")

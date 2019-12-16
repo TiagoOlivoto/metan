@@ -29,6 +29,7 @@
 #' @export
 #' @return An object of class \code{gg, ggplot}.
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
 #' FAI = data_ge2 %>%
@@ -37,6 +38,7 @@
 #'                UI = c('min, min, min, max'),
 #'                SI = 15)
 #' plot(FAI)
+#' }
 #'
 plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, arrange.label = FALSE,
                           size.point = 2, col.sel = "red", col.nonsel = "black", size.text = 10,

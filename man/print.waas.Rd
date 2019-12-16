@@ -25,7 +25,7 @@ Print the \code{waas} object in two ways. By default, the results are shown
 in the R console. The results can also be exported to the directory.
 }
 \examples{
-
+\donttest{
 library(metan)
 model <- waas(data_ge,
   resp = c(GY, HM),
@@ -34,6 +34,7 @@ model <- waas(data_ge,
   rep = REP
 )
 print(model)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

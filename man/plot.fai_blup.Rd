@@ -41,6 +41,7 @@ Plot the multitrait index based on factor analysis and ideotype-design
 proposed by Rocha et al. (2018).
 }
 \examples{
+\donttest{
 library(metan)
 
 FAI = data_ge2 \%>\%
@@ -49,6 +50,7 @@ FAI = data_ge2 \%>\%
                UI = c('min, min, min, max'),
                SI = 15)
 plot(FAI)
+}
 
 }
 \references{

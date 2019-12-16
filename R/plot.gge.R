@@ -67,6 +67,7 @@
 #' @export
 #' @return An object of class \code{gg, ggplot}.
 #' @examples
+#' \donttest{
 #' library(metan)
 #' mod <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
 #' plot(mod)
@@ -81,6 +82,7 @@
 #' data_ge2 %>%
 #' gge(ENV, GEN, NKE) %>%
 #' plot(type = 3)
+#' }
 plot.gge <- function(x,
                      type = 1,
                      sel_env = NA,
