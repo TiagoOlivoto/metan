@@ -19,15 +19,13 @@
 #'  \code{'Kurt'} (kurtosis), \code{'mad'} (median absolute deviation),
 #'  \code{'max'} (maximum value), \code{'mean'} (arithmetic mean),
 #'  \code{'median'} (median), \code{'min'} (minimum value), \code{'n'} (the
-#'  length of the data), \code{'norm.pval'} (the p-value for the Shapiro-Wilk
-#'  test), \code{'norm.stat'} (the statistic for the Shapiro-Wilk test),
-#'  \code{'Q2.5'} (the percentile 2.5%), \code{'Q25'} (the first quartile, Q1),
-#'  \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'} (the percentile
-#'  97.5%), \code{range} (The range of data), \code{'SD.amo'} (the sample
-#'  standard deviation), \code{'SD.pop'} (the population standard deviation),
-#'  \code{'SE.mean'} (the standard error of the mean), \code{'skew'} (the
-#'  skewness), \code{sum} (the sum of the values), \code{sum.dev} (the sum of
-#'  the absolute deviations), \code{sum.sq.dev} (the sum of the squared
+#'  length of the data), \code{'Q2.5'} (the percentile 2.5%), \code{'Q25'} (the
+#'  first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'}
+#'  (the percentile 97.5%), \code{range} (The range of data), \code{'SD.amo'}
+#'  (the sample standard deviation), \code{'SD.pop'} (the population standard
+#'  deviation), \code{'SE.mean'} (the standard error of the mean), \code{'skew'}
+#'  (the skewness), \code{sum} (the sum of the values), \code{sum.dev} (the sum
+#'  of the absolute deviations), \code{sum.sq.dev} (the sum of the squared
 #'  deviations), \code{valid.n} (The size of sample with valid number (not NA),
 #'  \code{'var.amo'} (the sample variance), \code{'var.pop'} (the population
 #'  variance). Use a comma-separated vector of names to select the statistics.
@@ -93,7 +91,7 @@ desc_stat <- function(.data = NULL,
                       na.rm = FALSE,
                       verbose = TRUE,
                       plot_theme = theme_metan()) {
-  all_f = c("AV.dev", "CI.mean", "CV", "gm.mean", "hm.mean", "IQR", "Kurt", "mad", "max", "mean", "median", "min", "n", "norm.pval", "norm.stat", "Q2.5", "Q25", "Q75", "Q97.5", "range", "SD.amo", "SD.pop", "SE.mean", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
+  all_f = c("AV.dev", "CI.mean", "CV", "gm.mean", "hm.mean", "IQR", "Kurt", "mad", "max", "mean", "median", "min", "n", "Q2.5", "Q25", "Q75", "Q97.5", "range", "SD.amo", "SD.pop", "SE.mean", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
   main_f = c("CV", "max", "mean", "median", "min", "SE.mean", "var.amo")
   if(!stats %in% c("main", "all")){
     stats = unlist(strsplit(stats, split=", "))
@@ -105,7 +103,7 @@ desc_stat <- function(.data = NULL,
     }
   }
   if (any(!stats %in% c(all_f, main_f)) == TRUE) {
-    stop("Invalid value for the argument 'stat'. Allowed values are one of the AV.dev, CI.mean, CV, IQR, Kurt, mad, max, mean, median, min, n, norm.pval, norm.stat, Q2.5, Q25, Q75, Q97.5, range, SD.amo, SD.pop, SE.mean, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop. Did you accidentally omit the space between the comma and the following word?")
+    stop("Invalid value for the argument 'stat'. Allowed values are one of the AV.dev, CI.mean, CV, IQR, Kurt, mad, max, mean, median, min, n, Q2.5, Q25, Q75, Q97.5, range, SD.amo, SD.pop, SE.mean, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop. Did you accidentally omit the space between the comma and the following word?")
   }
   if (!missing(.data) & !missing(values)) {
     stop("You can not inform a vector of values if a data frame is used as imput.")
@@ -149,12 +147,6 @@ desc_stat <- function(.data = NULL,
   }
   Kurt <- function(x) {
     sum((x - mean(x, na.rm = na.rm))^4, na.rm = na.rm)/(length(which(!is.na(x))) * var_a(x)^2) - 3
-  }
-  norm_st <- function(x) {
-    shapiro.test(x)[[1]]
-  }
-  norm_pv <- function(x) {
-    shapiro.test(x)[[2]]
   }
   valid_n <- function(x){
     length(which(!is.na(x)))
@@ -217,13 +209,11 @@ desc_stat <- function(.data = NULL,
                                     CI.mean = CI_mean,
                                     skew = skew,
                                     Kurt = Kurt,
-                                    norm.stat = norm_st,
-                                    norm.pval = norm_pv,
                                     CV = CV,
                                     sum = sum(., na.rm = na.rm),
                                     sum.dev = sum_dev,
                                     sum.sq.dev = sum_sq_dev))
-      if (ncol(data) > 30) {
+      if (ncol(data) > 28) {
         statistics <- suppressWarnings(data %>% gather(stat, val) %>%
                                          separate(stat,
                                                   into = c("var", "stat"),
@@ -237,7 +227,7 @@ desc_stat <- function(.data = NULL,
           print(statistics, digits = digits, row.names = FALSE)
         }
       }
-      if (ncol(data) == 30) {
+      if (ncol(data) == 28) {
         statistics <- t(data) %>%
           as_tibble(rownames = NA) %>%
           rownames_to_column("Statistic") %>%
@@ -318,14 +308,12 @@ desc_stat <- function(.data = NULL,
                                   CI.mean = CI_mean,
                                   skew = skew,
                                   Kurt = Kurt,
-                                  norm.stat = norm_st,
-                                  norm.pval = norm_pv,
                                   CV = CV,
                                   sum = sum(., na.rm = na.rm),
                                   sum.dev = sum_dev,
                                   sum.sq.dev = sum_sq_dev))
 
-    if (ncol(data) > 30) {
+    if (ncol(data) > 28) {
       statistics <- suppressWarnings(data %>% gather(stat, val) %>%
                                        separate(stat,
                                                 into = c("var", "stat"),
@@ -335,7 +323,7 @@ desc_stat <- function(.data = NULL,
                                        rownames_to_column("Statistic") %>%
                                        dplyr::filter(Statistic %in% stats))
     }
-    if (ncol(data) == 30) {
+    if (ncol(data) == 28) {
       statistics <- t(data) %>%
         as_tibble(rownames = NA) %>%
         rownames_to_column("Statistic") %>%
