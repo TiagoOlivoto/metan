@@ -268,7 +268,8 @@ genotypes is large, say, more than 30.</p></td>
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J. (in press).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>mtsi_model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 0 % 
 #&gt; Evaluating variable HM 100 % 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
@@ -321,7 +322,7 @@ genotypes is large, say, more than 30.</p></td>
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
 #&gt; G3 G1
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mtsi_index</span>)</div><div class='img'><img src='plot.mtsi-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mtsi_index</span>)</div><div class='img'><img src='plot.mtsi-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 
 </div></span></pre>

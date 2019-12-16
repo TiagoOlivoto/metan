@@ -15,7 +15,7 @@ vignette: >
 
 ```{r global_options, include = FALSE}
 knitr::opts_chunk$set(comment = "")
-load("wratio.RData")
+load("ammi.RData")
 ```
 
 
@@ -154,7 +154,7 @@ In this example, the scores of the nine PCA were not shown. The output generated
 ## Number of axes declared manually
 The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument `naxis` in the function `waas` is then used to overwrite the default chose of significant terms. 
 
-```{r echo = TRUE}
+```{r eval = FALSE}
 waas_index2 <- data_ge %>%
   waas(ENV, GEN, REP, GY,
        naxis = 7, # Use 7 IPCA for computing WAAS
@@ -258,7 +258,7 @@ The values of WAASY in the plot above were computed considering equal weights fo
 
 After fitting a model with the functions `waas()` or `waasb()` it is possible to compute the superiority indexes WAASY or WAASBY in different scenarios of weights for stability and mean performance. The number of scenarios is defined by the arguments  `increment`. By default, twenty-one different scenarios are computed. In this case, the the superiority index is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
 
-```{r echo = TRUE}
+```{r eval=FALSE}
 WAASratio <- wsmp(waas_index)
 
 ```
@@ -303,13 +303,17 @@ plot(WAASratio, type = 2)
 
 The function `get_model_data()` may be used to easily get the data from a model fitted with the function `waas()`, especially when more than one variables are used. Select helpers can be used in the argument `resp`. See the example below.
 
-```{r}
+```{r eval=FALSE}
+waas_index_all <- 
 waas(data_ge2, ENV, GEN, REP,
-     resp = contains("E")) %>%
- get_model_data(what = "WAASB") %>% 
- print_table()
+     resp = everything()) %>%
+ get_model_data(what = "WAASB")
 ```
 
+
+```{r}
+print_table(waas_index_all)
+```
 
 
 # Other AMMI-based stability indexes

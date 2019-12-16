@@ -155,7 +155,7 @@
       <h1>Analyzing multienvironment trials using AMMI</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-12-11</h4>
+            <h4 class="date">2019-12-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_ammi.Rmd"><code>vignettes/vignettes_ammi.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_ammi.Rmd</code></div>
@@ -3483,23 +3483,18 @@ G9
 <h2 class="hasAnchor">
 <a href="#getting-model-data" class="anchor"></a>Getting model data</h2>
 <p>The function <code><a href="../reference/get_model_data.html">get_model_data()</a></code> may be used to easily get the data from a model fitted with the function <code><a href="../reference/waas.html">waas()</a></code>, especially when more than one variables are used. Select helpers can be used in the argument <code>resp</code>. See the example below.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge2, ENV, GEN, REP,</a>
-<a class="sourceLine" id="cb22-2" title="2">     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="st"> </span><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-4" title="4"><span class="st"> </span><span class="kw">print_table</span>()</a></code></pre></div>
-<pre><code>Evaluating variable EH 0 % 
-Evaluating variable EP 16.7 % 
-Evaluating variable EL 33.3 % 
-Evaluating variable ED 50 % 
-Evaluating variable CDED 66.7 % 
-Evaluating variable PERK 83.3 % 
-Evaluating variable NKE 100 % 
-All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-Done!</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">waas_index_all &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge2, ENV, GEN, REP,</a>
+<a class="sourceLine" id="cb22-3" title="3">     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">everything</a></span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-4" title="4"><span class="st"> </span><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="dt">what =</span> <span class="st">"WAASB"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">print_table</span>(waas_index_all)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:left;">
 gen
+</th>
+<th style="text-align:right;">
+PH
 </th>
 <th style="text-align:right;">
 EH
@@ -3514,10 +3509,31 @@ EL
 ED
 </th>
 <th style="text-align:right;">
+CL
+</th>
+<th style="text-align:right;">
+CD
+</th>
+<th style="text-align:right;">
+CW
+</th>
+<th style="text-align:right;">
+KW
+</th>
+<th style="text-align:right;">
+NR
+</th>
+<th style="text-align:right;">
+NKR
+</th>
+<th style="text-align:right;">
 CDED
 </th>
 <th style="text-align:right;">
 PERK
+</th>
+<th style="text-align:right;">
+TKW
 </th>
 <th style="text-align:right;">
 NKE
@@ -3527,6 +3543,9 @@ NKE
 <tr>
 <td style="text-align:left;">
 H1
+</td>
+<td style="text-align:right;">
+0.318
 </td>
 <td style="text-align:right;">
 0.315
@@ -3541,10 +3560,31 @@ H1
 0.667
 </td>
 <td style="text-align:right;">
+0.799
+</td>
+<td style="text-align:right;">
+0.130
+</td>
+<td style="text-align:right;">
+1.340
+</td>
+<td style="text-align:right;">
+0.782
+</td>
+<td style="text-align:right;">
+0.427
+</td>
+<td style="text-align:right;">
+0.929
+</td>
+<td style="text-align:right;">
 0.068
 </td>
 <td style="text-align:right;">
 0.570
+</td>
+<td style="text-align:right;">
+2.723
 </td>
 <td style="text-align:right;">
 4.128
@@ -3553,6 +3593,9 @@ H1
 <tr>
 <td style="text-align:left;">
 H10
+</td>
+<td style="text-align:right;">
+0.230
 </td>
 <td style="text-align:right;">
 0.243
@@ -3567,10 +3610,31 @@ H10
 0.973
 </td>
 <td style="text-align:right;">
+0.948
+</td>
+<td style="text-align:right;">
+0.306
+</td>
+<td style="text-align:right;">
+1.041
+</td>
+<td style="text-align:right;">
+0.895
+</td>
+<td style="text-align:right;">
+0.372
+</td>
+<td style="text-align:right;">
+0.506
+</td>
+<td style="text-align:right;">
 0.054
 </td>
 <td style="text-align:right;">
 0.907
+</td>
+<td style="text-align:right;">
+2.154
 </td>
 <td style="text-align:right;">
 0.756
@@ -3579,6 +3643,9 @@ H10
 <tr>
 <td style="text-align:left;">
 H11
+</td>
+<td style="text-align:right;">
+0.201
 </td>
 <td style="text-align:right;">
 0.217
@@ -3593,10 +3660,31 @@ H11
 0.649
 </td>
 <td style="text-align:right;">
+0.407
+</td>
+<td style="text-align:right;">
+0.214
+</td>
+<td style="text-align:right;">
+0.692
+</td>
+<td style="text-align:right;">
+0.321
+</td>
+<td style="text-align:right;">
+0.794
+</td>
+<td style="text-align:right;">
+0.836
+</td>
+<td style="text-align:right;">
 0.042
 </td>
 <td style="text-align:right;">
 0.515
+</td>
+<td style="text-align:right;">
+1.260
 </td>
 <td style="text-align:right;">
 1.002
@@ -3605,6 +3693,9 @@ H11
 <tr>
 <td style="text-align:left;">
 H12
+</td>
+<td style="text-align:right;">
+0.364
 </td>
 <td style="text-align:right;">
 0.391
@@ -3619,10 +3710,31 @@ H12
 0.315
 </td>
 <td style="text-align:right;">
+0.530
+</td>
+<td style="text-align:right;">
+0.351
+</td>
+<td style="text-align:right;">
+0.257
+</td>
+<td style="text-align:right;">
+2.150
+</td>
+<td style="text-align:right;">
+0.309
+</td>
+<td style="text-align:right;">
+0.228
+</td>
+<td style="text-align:right;">
 0.084
 </td>
 <td style="text-align:right;">
 0.529
+</td>
+<td style="text-align:right;">
+0.558
 </td>
 <td style="text-align:right;">
 2.532
@@ -3631,6 +3743,9 @@ H12
 <tr>
 <td style="text-align:left;">
 H13
+</td>
+<td style="text-align:right;">
+0.363
 </td>
 <td style="text-align:right;">
 0.257
@@ -3645,10 +3760,31 @@ H13
 0.838
 </td>
 <td style="text-align:right;">
+0.866
+</td>
+<td style="text-align:right;">
+0.520
+</td>
+<td style="text-align:right;">
+1.390
+</td>
+<td style="text-align:right;">
+1.952
+</td>
+<td style="text-align:right;">
+0.498
+</td>
+<td style="text-align:right;">
+0.946
+</td>
+<td style="text-align:right;">
 0.150
 </td>
 <td style="text-align:right;">
 1.095
+</td>
+<td style="text-align:right;">
+0.514
 </td>
 <td style="text-align:right;">
 6.863
@@ -3657,6 +3793,9 @@ H13
 <tr>
 <td style="text-align:left;">
 H2
+</td>
+<td style="text-align:right;">
+0.342
 </td>
 <td style="text-align:right;">
 0.403
@@ -3671,10 +3810,31 @@ H2
 1.080
 </td>
 <td style="text-align:right;">
+1.164
+</td>
+<td style="text-align:right;">
+0.550
+</td>
+<td style="text-align:right;">
+2.106
+</td>
+<td style="text-align:right;">
+3.366
+</td>
+<td style="text-align:right;">
+0.796
+</td>
+<td style="text-align:right;">
+0.404
+</td>
+<td style="text-align:right;">
 0.126
 </td>
 <td style="text-align:right;">
 0.865
+</td>
+<td style="text-align:right;">
+4.407
 </td>
 <td style="text-align:right;">
 2.952
@@ -3683,6 +3843,9 @@ H2
 <tr>
 <td style="text-align:left;">
 H3
+</td>
+<td style="text-align:right;">
+0.374
 </td>
 <td style="text-align:right;">
 0.370
@@ -3697,10 +3860,31 @@ H3
 0.486
 </td>
 <td style="text-align:right;">
+0.603
+</td>
+<td style="text-align:right;">
+0.552
+</td>
+<td style="text-align:right;">
+0.507
+</td>
+<td style="text-align:right;">
+2.813
+</td>
+<td style="text-align:right;">
+0.611
+</td>
+<td style="text-align:right;">
+0.252
+</td>
+<td style="text-align:right;">
 0.074
 </td>
 <td style="text-align:right;">
 0.153
+</td>
+<td style="text-align:right;">
+4.097
 </td>
 <td style="text-align:right;">
 2.493
@@ -3709,6 +3893,9 @@ H3
 <tr>
 <td style="text-align:left;">
 H4
+</td>
+<td style="text-align:right;">
+0.294
 </td>
 <td style="text-align:right;">
 0.270
@@ -3723,10 +3910,31 @@ H4
 0.378
 </td>
 <td style="text-align:right;">
+0.511
+</td>
+<td style="text-align:right;">
+0.415
+</td>
+<td style="text-align:right;">
+0.537
+</td>
+<td style="text-align:right;">
+1.694
+</td>
+<td style="text-align:right;">
+0.436
+</td>
+<td style="text-align:right;">
+0.281
+</td>
+<td style="text-align:right;">
 0.071
 </td>
 <td style="text-align:right;">
 0.033
+</td>
+<td style="text-align:right;">
+3.070
 </td>
 <td style="text-align:right;">
 0.664
@@ -3735,6 +3943,9 @@ H4
 <tr>
 <td style="text-align:left;">
 H5
+</td>
+<td style="text-align:right;">
+0.168
 </td>
 <td style="text-align:right;">
 0.113
@@ -3749,10 +3960,31 @@ H5
 0.567
 </td>
 <td style="text-align:right;">
+0.411
+</td>
+<td style="text-align:right;">
+0.237
+</td>
+<td style="text-align:right;">
+0.766
+</td>
+<td style="text-align:right;">
+0.519
+</td>
+<td style="text-align:right;">
+0.837
+</td>
+<td style="text-align:right;">
+0.611
+</td>
+<td style="text-align:right;">
 0.039
 </td>
 <td style="text-align:right;">
 0.720
+</td>
+<td style="text-align:right;">
+0.738
 </td>
 <td style="text-align:right;">
 1.035
@@ -3761,6 +3993,9 @@ H5
 <tr>
 <td style="text-align:left;">
 H6
+</td>
+<td style="text-align:right;">
+0.270
 </td>
 <td style="text-align:right;">
 0.163
@@ -3775,10 +4010,31 @@ H6
 0.409
 </td>
 <td style="text-align:right;">
+0.733
+</td>
+<td style="text-align:right;">
+0.569
+</td>
+<td style="text-align:right;">
+0.935
+</td>
+<td style="text-align:right;">
+3.218
+</td>
+<td style="text-align:right;">
+0.369
+</td>
+<td style="text-align:right;">
+1.598
+</td>
+<td style="text-align:right;">
 0.135
 </td>
 <td style="text-align:right;">
 0.943
+</td>
+<td style="text-align:right;">
+1.636
 </td>
 <td style="text-align:right;">
 6.084
@@ -3787,6 +4043,9 @@ H6
 <tr>
 <td style="text-align:left;">
 H7
+</td>
+<td style="text-align:right;">
+0.228
 </td>
 <td style="text-align:right;">
 0.179
@@ -3801,10 +4060,31 @@ H7
 0.384
 </td>
 <td style="text-align:right;">
+0.453
+</td>
+<td style="text-align:right;">
+0.595
+</td>
+<td style="text-align:right;">
+1.572
+</td>
+<td style="text-align:right;">
+3.027
+</td>
+<td style="text-align:right;">
+0.284
+</td>
+<td style="text-align:right;">
+0.518
+</td>
+<td style="text-align:right;">
 0.045
 </td>
 <td style="text-align:right;">
 1.017
+</td>
+<td style="text-align:right;">
+3.442
 </td>
 <td style="text-align:right;">
 1.054
@@ -3813,6 +4093,9 @@ H7
 <tr>
 <td style="text-align:left;">
 H8
+</td>
+<td style="text-align:right;">
+0.315
 </td>
 <td style="text-align:right;">
 0.326
@@ -3827,10 +4110,31 @@ H8
 0.653
 </td>
 <td style="text-align:right;">
+1.033
+</td>
+<td style="text-align:right;">
+0.770
+</td>
+<td style="text-align:right;">
+1.809
+</td>
+<td style="text-align:right;">
+3.887
+</td>
+<td style="text-align:right;">
+0.352
+</td>
+<td style="text-align:right;">
+0.941
+</td>
+<td style="text-align:right;">
 0.105
 </td>
 <td style="text-align:right;">
 0.853
+</td>
+<td style="text-align:right;">
+4.909
 </td>
 <td style="text-align:right;">
 3.416
@@ -3839,6 +4143,9 @@ H8
 <tr>
 <td style="text-align:left;">
 H9
+</td>
+<td style="text-align:right;">
+0.146
 </td>
 <td style="text-align:right;">
 0.034
@@ -3853,10 +4160,31 @@ H9
 0.907
 </td>
 <td style="text-align:right;">
+0.699
+</td>
+<td style="text-align:right;">
+0.608
+</td>
+<td style="text-align:right;">
+1.610
+</td>
+<td style="text-align:right;">
+3.106
+</td>
+<td style="text-align:right;">
+0.502
+</td>
+<td style="text-align:right;">
+0.888
+</td>
+<td style="text-align:right;">
 0.033
 </td>
 <td style="text-align:right;">
 0.420
+</td>
+<td style="text-align:right;">
+5.499
 </td>
 <td style="text-align:right;">
 4.915
