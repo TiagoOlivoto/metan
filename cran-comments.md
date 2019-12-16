@@ -1,5 +1,5 @@
 # Resubmission
-This is a resubmission for the new package `metan`. Now in version 1.1.1, I have incorporated the feedback kindly provided by Martina Schmirl on November 22th, 2019. See responses inline below. 
+This is a resubmission for the new package `metan`. Now in version 1.1.2, I have incorporated the feedback kindly provided by Martina Schmirl on November 22, 2019 and Uwe Ligges on December 15, 2019. See responses inline below. 
 
 > 
 A CRAN package check should not take longer than 10 minutes. Please considerably reduce the check time of your package to stay below the threshold of 10 minutes. This can for example be achieved by:
@@ -21,8 +21,7 @@ If you're not familiar with the function, please check ?on.exit. This function m
 Please fix and resubmit.
 
 
-
-* Done. I have reviewed the code and used `\donttest{}` to omitt lengthy tests and used precomputed results in the vignettes. The R CMD check results was now 3m 44.8s and the check time <https://win-builder.r-project.org/2744135XttrV> 587 seconds (~9.8 min)
+* Done. I have reviewed the code and used `\donttest{}` to omitt lengthy tests and used precomputed results in the vignettes. The R CMD check and the check time <https://win-builder.r-project.org/aQRqMHn5H6VW> now take less than 10 min.
 
 * I've added `on.exit()` to ensure that the settings are reset when the function is exited.
 
