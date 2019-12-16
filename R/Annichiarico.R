@@ -49,7 +49,7 @@ Annicchiarico <- function(.data,
                           rep,
                           resp,
                           prob = 0.25,
-                          verbose = TRUE){
+                          verbose = TRUE) {
   factors  <- .data %>%
     select(ENV = {{env}},
            GEN = {{gen}},
@@ -64,7 +64,6 @@ Annicchiarico <- function(.data,
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(mean = vars[[var]])
-    ge_mean <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(mean = mean(mean))
     environments <- data %>% dplyr::group_by(ENV) %>% dplyr::summarise(Mean = mean(mean))
     environments <- mutate(environments,
                            index = Mean - mean(environments$Mean),

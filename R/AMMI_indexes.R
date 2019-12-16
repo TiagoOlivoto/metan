@@ -98,7 +98,7 @@
 #'
 AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
     if(!missing(order.y)){
-        order.y = unlist(strsplit(order.y, split = ", "))
+        order.y <- unlist(strsplit(order.y, split = ", "))
     } else {
         order.y <- rep("h", length(.data))
     }

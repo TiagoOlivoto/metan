@@ -53,15 +53,15 @@ anova_joint <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       split_factors(ENV, keep_factors = T)
     msr <- do.call(rbind,
                    lapply(msr[[1]], function(x){
-                     lm = summary(aov(mean ~ GEN + REP, data = x))[[1]][3,3]
+                     summary(aov(mean ~ GEN + REP, data = x))[[1]][3,3]
                    }))
-    anova <- aov(mean ~ ENV/REP + GEN + ENV:GEN, data = data)
+    anova <- aov(mean ~ ENV / REP + GEN + ENV:GEN, data = data)
     resume <- summary(anova)[[1]] %>%
       rownames_to_column("Source") %>%
       as_tibble()
     resume$Source <- c("ENV", "GEN", "REP(ENV)", "ENV:GEN", "Residuals")
     CV <- tibble(Source = "CV(%)",
-                 Df = as.numeric(sqrt(resume[5,4]) / mean(data$mean) * 100))
+                 Df = as.numeric(sqrt(resume[5, 4]) / mean(data$mean) * 100))
     msr <- tibble(Source = "MSR+/MSR-",
                   Df = max(msr) / min(msr))
     ovmean <- tibble(Source = "OVmean",
@@ -71,7 +71,7 @@ anova_joint <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
         cat("Evaluating variable", paste(names(vars[var])),
-            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
+            round((var - 1) / (length(vars) - 1) * 100, 1), "%", "\n")
       }
     } else {
       listres[[paste(names(vars[var]))]] <- temp

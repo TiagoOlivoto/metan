@@ -67,7 +67,7 @@ anova_ind <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       MSB <- anova[2, 3]
       MSG <- anova[1, 3]
       MSE <- anova[3, 3]
-      h2 <- (MSG - MSE)/MSG
+      h2 <- (MSG - MSE) / MSG
       if (h2 < 0) {
         AS <- 0
       } else {
@@ -81,17 +81,17 @@ anova_ind <- function(.data, env, gen, rep, resp, verbose = TRUE) {
                      PRFB = anova[2, 5],
                      FCG = anova[1, 4],
                      PRFG = anova[1, 5],
-                     CV = sqrt(MSE)/mean(x$mean) * 100,
+                     CV = sqrt(MSE) / mean(x$mean) * 100,
                      h2 = h2,
                      AS = AS)
     }))
     temp <- list(individual = as_tibble(rownames_to_column(individual, "ENV")),
-                 MSRratio = max(individual$MSR)/min(individual$MSR))
+                 MSRratio = max(individual$MSR) / min(individual$MSR))
     if (nvar > 1) {
       listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
         cat("Evaluating variable", paste(names(vars[var])),
-            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
+            round((var - 1) / (length(vars) - 1) * 100, 1), "%", "\n")
       }
     } else {
       listres[[paste(names(vars[var]))]] <- temp

@@ -34,7 +34,7 @@ arrange_ggplot <- function(...,
                            labels = NULL,
                            hjust = -0.5,
                            vjust = 1.5) {
-if(any(sapply(list(...), function (x) class(x)== "ggmatrix") == TRUE)){
+if(any(sapply(list(...), function(x) class(x) == "ggmatrix") == TRUE)) {
   plotlist <-  lapply(list(...), function(x) ggmatrix_gtable(x))
   plot_grid(plotlist = plotlist,
             nrow = nrow,
