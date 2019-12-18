@@ -100,7 +100,8 @@ corr_ci <- function(.data = NA, ..., r = NULL, n = NULL, verbose = TRUE) {
         data <- select_if(.data, is.numeric)
       }
       if (!missing(...)) {
-        data <- dplyr::select(.data, ...)
+        data <- dplyr::select(.data, ...) %>%
+          select_if(is.numeric)
       }
       out <- internal(data)
       if (verbose == TRUE) {
