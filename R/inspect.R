@@ -62,7 +62,7 @@ inspect <- function (.data,
     ) %>%
     rownames_to_column("Variable") %>%
     as_tibble()
-  esp_nrows <- prod(as.numeric(levels(droplevels(df[which(df$Levels != "-"),][4])$Levels)))
+  esp_nrows <- prod(as.numeric(as.character(df[which(df[4] != "-"),][4]$Levels)))
   if(verbose == TRUE){
     print(df)
     nfactors <- sum(lapply(.data, is.factor) == TRUE)
