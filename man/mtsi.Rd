@@ -4,14 +4,14 @@
 \alias{mtsi}
 \title{Multi-trait stability index}
 \usage{
-mtsi(.data, index = "waasb", SI = 15, mineval = 1, verbose = TRUE)
+mtsi(.data, index = "waasby", SI = 15, mineval = 1, verbose = TRUE)
 }
 \arguments{
 \item{.data}{An object of class \code{waasb} or \code{waas}.}
 
-\item{index}{If \code{index = 'waasb'} (Default) the multi-trait index will
-be computed considering the stability of genotypes only. If \code{index =
-'waasby'} both stability and mean performance are considered. More details
+\item{index}{If \code{index = 'waasby'} (default) both stability and mean
+performance are considered. If \code{index = 'waasb'} the multi-trait index
+will be computed considering the stability of genotypes only.  More details
 can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.}
 
 \item{SI}{An integer (0-100). The selection intensity in percentage of the
@@ -62,7 +62,7 @@ mtsi_model <- waasb(data_ge,
                     gen = GEN,
                     rep = REP,
                     resp = c(GY, HM))
-mtsi_index <- mtsi(mtsi_model)
+mtsi_index <- mtsi(mtsi_model, index = 'waasb')
 
 
 # Based on mean performance and stability (using pipe operator \%>\%)
@@ -73,7 +73,7 @@ mtsi_index2 <- data_ge \%>\%
  waasb(ENV, GEN, REP,
        resp = c(GY, HM),
        mresp = c(100, 0)) \%>\%
- mtsi(index = 'waasby')
+ mtsi()
 }
 }
 \references{

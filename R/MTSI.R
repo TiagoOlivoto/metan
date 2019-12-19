@@ -4,10 +4,10 @@
 #'
 #'
 #' @param .data An object of class \code{waasb} or \code{waas}.
-#' @param index If \code{index = 'waasb'} (Default) the multi-trait index will
-#' be computed considering the stability of genotypes only. If \code{index =
-#' 'waasby'} both stability and mean performance are considered. More details
-#' can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.
+#' @param index If \code{index = 'waasby'} (default) both stability and mean
+#'   performance are considered. If \code{index = 'waasb'} the multi-trait index
+#'   will be computed considering the stability of genotypes only.  More details
+#'   can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.
 #' @param SI An integer (0-100). The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
@@ -50,7 +50,7 @@
 #'                     gen = GEN,
 #'                     rep = REP,
 #'                     resp = c(GY, HM))
-#' mtsi_index <- mtsi(mtsi_model)
+#' mtsi_index <- mtsi(mtsi_model, index = 'waasb')
 #'
 #'
 #' # Based on mean performance and stability (using pipe operator %>%)
@@ -61,10 +61,10 @@
 #'  waasb(ENV, GEN, REP,
 #'        resp = c(GY, HM),
 #'        mresp = c(100, 0)) %>%
-#'  mtsi(index = 'waasby')
+#'  mtsi()
 #'}
 mtsi <- function(.data,
-                 index = "waasb",
+                 index = "waasby",
                  SI = 15,
                  mineval = 1,
                  verbose = TRUE) {
