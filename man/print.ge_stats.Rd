@@ -4,8 +4,7 @@
 \alias{print.ge_stats}
 \title{Print an object of class ge_stats}
 \usage{
-\method{print}{ge_stats}(x, what = "all", export = FALSE,
-  file.name = NULL, digits = 3, ...)
+\method{print}{ge_stats}(x, what = "all", export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{ge_stats}.}
