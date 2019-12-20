@@ -4,8 +4,7 @@
 \alias{print.anova_joint}
 \title{Print an object of class anova_joint}
 \usage{
-\method{print}{anova_joint}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{anova_joint}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{anova_joint}.}

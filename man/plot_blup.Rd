@@ -4,13 +4,28 @@
 \alias{plot_blup}
 \title{Plot the BLUPs for genotypes}
 \usage{
-plot_blup(x, var = 1, prob = 0.05, export = FALSE,
-  file.type = "pdf", file.name = NULL, plot_theme = theme_metan(),
-  width = 6, height = 6, size.err.bar = 0.5, size.shape = 3.5,
-  size.tex.lab = 12, height.err.bar = 0.3, x.lim = NULL,
-  x.breaks = waiver(), col.shape = c("blue", "red"),
-  y.lab = "Genotypes", x.lab = "Predicted Grain Yield",
-  resolution = 300, ...)
+plot_blup(
+  x,
+  var = 1,
+  prob = 0.05,
+  export = FALSE,
+  file.type = "pdf",
+  file.name = NULL,
+  plot_theme = theme_metan(),
+  width = 6,
+  height = 6,
+  size.err.bar = 0.5,
+  size.shape = 3.5,
+  size.tex.lab = 12,
+  height.err.bar = 0.3,
+  x.lim = NULL,
+  x.breaks = waiver(),
+  col.shape = c("blue", "red"),
+  y.lab = "Genotypes",
+  x.lab = "Predicted Grain Yield",
+  resolution = 300,
+  ...
+)
 }
 \arguments{
 \item{x}{The \code{waasb object}}

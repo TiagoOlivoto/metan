@@ -4,8 +4,7 @@
 \alias{print.performs_ammi}
 \title{Print an object of class performs_ammi}
 \usage{
-\method{print}{performs_ammi}(x, export = FALSE, file.name = NULL,
-  digits = 4, ...)
+\method{print}{performs_ammi}(x, export = FALSE, file.name = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{An object of class \code{performs_ammi}.}

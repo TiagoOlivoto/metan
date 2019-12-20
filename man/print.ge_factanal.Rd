@@ -4,8 +4,7 @@
 \alias{print.ge_factanal}
 \title{Print an object of class ge_factanal}
 \usage{
-\method{print}{ge_factanal}(x, export = FALSE, file.name = NULL,
-  digits = 4, ...)
+\method{print}{ge_factanal}(x, export = FALSE, file.name = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{An object of class \code{ge_factanal}.}

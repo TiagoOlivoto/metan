@@ -4,8 +4,17 @@
 \alias{cv_blup}
 \title{Cross-validation procedure}
 \usage{
-cv_blup(.data, env, gen, rep, resp, block = NULL, nboot = 200,
-  random = "gen", verbose = TRUE)
+cv_blup(
+  .data,
+  env,
+  gen,
+  rep,
+  resp,
+  block = NULL,
+  nboot = 200,
+  random = "gen",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -104,7 +113,7 @@ model <- data_ge \%>\%
 
 }
 \references{
-Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J.

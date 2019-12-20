@@ -4,9 +4,17 @@
 \alias{clustering}
 \title{Clustering analysis}
 \usage{
-clustering(.data, ... = NULL, means_by = NULL, scale = FALSE,
-  selvar = FALSE, verbose = TRUE, distmethod = "euclidean",
-  clustmethod = "average", nclust = NULL)
+clustering(
+  .data,
+  ... = NULL,
+  means_by = NULL,
+  scale = FALSE,
+  selvar = FALSE,
+  verbose = TRUE,
+  distmethod = "euclidean",
+  clustmethod = "average",
+  nclust = NULL
+)
 }
 \arguments{
 \item{.data}{The data to be analyzed. It may be a data frame containing the

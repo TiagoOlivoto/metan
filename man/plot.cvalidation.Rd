@@ -4,12 +4,28 @@
 \alias{plot.cvalidation}
 \title{Plot the RMSPD of a cross-validation procedure}
 \usage{
-\method{plot}{cvalidation}(x, violin = FALSE, export = FALSE,
-  order_box = FALSE, x.lab = NULL, y.lab = NULL, size.tex.lab = 12,
-  file.type = "pdf", file.name = NULL, plot_theme = theme_metan(),
-  width = 6, height = 6, resolution = 300, col.violin = "gray90",
-  col.boxplot = "gray70", col.boxplot.win = "cyan",
-  width.boxplot = 0.6, x.lim = NULL, x.breaks = waiver(), ...)
+\method{plot}{cvalidation}(
+  x,
+  violin = FALSE,
+  export = FALSE,
+  order_box = FALSE,
+  x.lab = NULL,
+  y.lab = NULL,
+  size.tex.lab = 12,
+  file.type = "pdf",
+  file.name = NULL,
+  plot_theme = theme_metan(),
+  width = 6,
+  height = 6,
+  resolution = 300,
+  col.violin = "gray90",
+  col.boxplot = "gray70",
+  col.boxplot.win = "cyan",
+  width.boxplot = 0.6,
+  x.lim = NULL,
+  x.breaks = waiver(),
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{cvalidation} fitted with the functions

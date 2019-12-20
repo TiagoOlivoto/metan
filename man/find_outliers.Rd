@@ -4,9 +4,15 @@
 \alias{find_outliers}
 \title{Find possible outliers in a dataset}
 \usage{
-find_outliers(.data = NULL, var = NULL, values = NULL,
-  plots = FALSE, coef = 1.5, verbose = TRUE,
-  plot_theme = theme_metan())
+find_outliers(
+  .data = NULL,
+  var = NULL,
+  values = NULL,
+  plots = FALSE,
+  coef = 1.5,
+  verbose = TRUE,
+  plot_theme = theme_metan()
+)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of

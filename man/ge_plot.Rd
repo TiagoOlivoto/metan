@@ -4,8 +4,15 @@
 \alias{ge_plot}
 \title{Graphical analysis of genotype-vs-environment interaction}
 \usage{
-ge_plot(.data, env, gen, resp, type = 1, plot_theme = theme_metan(),
-  colour = TRUE)
+ge_plot(
+  .data,
+  env,
+  gen,
+  resp,
+  type = 1,
+  plot_theme = theme_metan(),
+  colour = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,

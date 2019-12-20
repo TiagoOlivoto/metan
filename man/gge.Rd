@@ -4,9 +4,16 @@
 \alias{gge}
 \title{Genotype plus genotype-by-environment model}
 \usage{
-gge(.data, env = NULL, gen = NULL, resp = NULL,
-  centering = "environment", scaling = "none", svp = "environment",
-  table = FALSE)
+gge(
+  .data,
+  env = NULL,
+  gen = NULL,
+  resp = NULL,
+  centering = "environment",
+  scaling = "none",
+  svp = "environment",
+  table = FALSE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments, Genotypes

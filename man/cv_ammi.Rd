@@ -4,8 +4,18 @@
 \alias{cv_ammi}
 \title{Cross-validation procedure}
 \usage{
-cv_ammi(.data, env, gen, rep, resp, block = NULL, naxis = 2,
-  nboot = 200, design = "RCBD", verbose = TRUE)
+cv_ammi(
+  .data,
+  env,
+  gen,
+  rep,
+  resp,
+  block = NULL,
+  naxis = 2,
+  nboot = 200,
+  design = "RCBD",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -88,7 +98,7 @@ model <- data_ge \%>\%
 
 }
 \references{
-Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J.

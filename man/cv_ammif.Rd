@@ -4,8 +4,17 @@
 \alias{cv_ammif}
 \title{Cross-validation procedure}
 \usage{
-cv_ammif(.data, env, gen, rep, resp, nboot = 200, block,
-  design = "RCBD", verbose = TRUE)
+cv_ammif(
+  .data,
+  env,
+  gen,
+  rep,
+  resp,
+  nboot = 200,
+  block,
+  design = "RCBD",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,

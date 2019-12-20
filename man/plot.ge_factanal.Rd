@@ -4,13 +4,30 @@
 \alias{plot.ge_factanal}
 \title{Plot the ge_factanal model}
 \usage{
-\method{plot}{ge_factanal}(x, var = 1, plot_theme = theme_metan(),
-  x.lim = NULL, x.breaks = waiver(), x.lab = NULL, y.lim = NULL,
-  y.breaks = waiver(), y.lab = NULL, shape = 21,
-  col.shape = "gray30", col.alpha = 1, size.shape = 2.2,
-  size.bor.tick = 0.3, size.tex.lab = 12, size.tex.pa = 3.5,
-  force.repel = 1, line.type = "dashed", line.alpha = 1,
-  col.line = "black", size.line = 0.5, ...)
+\method{plot}{ge_factanal}(
+  x,
+  var = 1,
+  plot_theme = theme_metan(),
+  x.lim = NULL,
+  x.breaks = waiver(),
+  x.lab = NULL,
+  y.lim = NULL,
+  y.breaks = waiver(),
+  y.lab = NULL,
+  shape = 21,
+  col.shape = "gray30",
+  col.alpha = 1,
+  size.shape = 2.2,
+  size.bor.tick = 0.3,
+  size.tex.lab = 12,
+  size.tex.pa = 3.5,
+  force.repel = 1,
+  line.type = "dashed",
+  line.alpha = 1,
+  col.line = "black",
+  size.line = 0.5,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{ge_factanal}}

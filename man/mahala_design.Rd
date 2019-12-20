@@ -4,8 +4,7 @@
 \alias{mahala_design}
 \title{Mahalanobis distance from designed experiments}
 \usage{
-mahala_design(.data, gen, rep, resp, design = "RCBD",
-  return = "distance")
+mahala_design(.data, gen, rep, resp, design = "RCBD", return = "distance")
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Genotypes,

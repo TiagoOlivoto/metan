@@ -4,10 +4,21 @@
 \alias{plot_ci}
 \title{Plot the confidence interval for correlation}
 \usage{
-plot_ci(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
-  y.breaks = waiver(), shape = 21, col.shape = "black",
-  fill.shape = "orange", size.shape = 2.5, width.errbar = 0.5,
-  main = TRUE, invert.axis = TRUE, plot_theme = theme_metan())
+plot_ci(
+  object,
+  x.lab = NULL,
+  y.lab = NULL,
+  y.lim = NULL,
+  y.breaks = waiver(),
+  shape = 21,
+  col.shape = "black",
+  fill.shape = "orange",
+  size.shape = 2.5,
+  width.errbar = 0.5,
+  main = TRUE,
+  invert.axis = TRUE,
+  plot_theme = theme_metan()
+)
 }
 \arguments{
 \item{object}{An object generate by the function \code{corr_ci()}}

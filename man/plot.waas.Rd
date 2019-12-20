@@ -4,12 +4,28 @@
 \alias{plot.waas}
 \title{Several types of residual plots}
 \usage{
-\method{plot}{waas}(x, var = 1, conf = 0.95, labels = FALSE,
-  plot_theme = theme_metan(), band.alpha = 0.2, point.alpha = 0.8,
-  fill.hist = "gray", col.hist = "black", col.point = "black",
-  col.line = "red", col.lab.out = "red", size.lab.out = 2.5,
-  size.tex.lab = 10, size.shape = 1.5, bins = 30, which = c(1:4),
-  ncol = NULL, nrow = NULL, ...)
+\method{plot}{waas}(
+  x,
+  var = 1,
+  conf = 0.95,
+  labels = FALSE,
+  plot_theme = theme_metan(),
+  band.alpha = 0.2,
+  point.alpha = 0.8,
+  fill.hist = "gray",
+  col.hist = "black",
+  col.point = "black",
+  col.line = "red",
+  col.lab.out = "red",
+  size.lab.out = 2.5,
+  size.tex.lab = 10,
+  size.shape = 1.5,
+  bins = 30,
+  which = c(1:4),
+  ncol = NULL,
+  nrow = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{waas}.}

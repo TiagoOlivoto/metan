@@ -4,10 +4,23 @@
 \alias{plot.wsmp}
 \title{Plot heat maps with genotype ranking}
 \usage{
-\method{plot}{wsmp}(x, var = 1, type = 2, export = FALSE,
-  file.type = "pdf", file.name = NULL, width = 6, height = 5,
-  size.lab = 1, margins = c(5, 4), y.lab = NULL, x.lab = NULL,
-  key.lab = "Genotype ranking", resolution = 300, ...)
+\method{plot}{wsmp}(
+  x,
+  var = 1,
+  type = 2,
+  export = FALSE,
+  file.type = "pdf",
+  file.name = NULL,
+  width = 6,
+  height = 5,
+  size.lab = 1,
+  margins = c(5, 4),
+  y.lab = NULL,
+  x.lab = NULL,
+  key.lab = "Genotype ranking",
+  resolution = 300,
+  ...
+)
 }
 \arguments{
 \item{x}{The object returned by the function \code{wsmp}.}

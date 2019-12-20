@@ -4,14 +4,36 @@
 \alias{plot_factbars}
 \title{Fast way to create a bar plot}
 \usage{
-plot_factbars(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
-  xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.hjust = 0.5,
-  lab.bar.vjust = -0.5, lab.bar.angle = 0, size.text.bar = 5,
-  lab.x.hjust = 0.5, lab.x.vjust = 1, lab.x.angle = 0,
-  errorbar = TRUE, stat.erbar = "se", width.erbar = 0.3,
-  level = 0.95, invert = FALSE, col = TRUE, palette = "Spectral",
-  width.bar = 0.9, legend.position = "bottom", size.text = 12,
-  fontfam = "sans", na.rm = TRUE, verbose = FALSE)
+plot_factbars(
+  .data,
+  ...,
+  resp,
+  y.expand = 1,
+  y.breaks = waiver(),
+  xlab = NULL,
+  ylab = NULL,
+  lab.bar = NULL,
+  lab.bar.hjust = 0.5,
+  lab.bar.vjust = -0.5,
+  lab.bar.angle = 0,
+  size.text.bar = 5,
+  lab.x.hjust = 0.5,
+  lab.x.vjust = 1,
+  lab.x.angle = 0,
+  errorbar = TRUE,
+  stat.erbar = "se",
+  width.erbar = 0.3,
+  level = 0.95,
+  invert = FALSE,
+  col = TRUE,
+  palette = "Spectral",
+  width.bar = 0.9,
+  legend.position = "bottom",
+  size.text = 12,
+  fontfam = "sans",
+  na.rm = TRUE,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{.data}{The data set}

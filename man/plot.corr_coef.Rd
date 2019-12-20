@@ -4,11 +4,23 @@
 \alias{plot.corr_coef}
 \title{Create a correlation heat map}
 \usage{
-\method{plot}{corr_coef}(x, type = "lower", diag = FALSE,
-  reorder = TRUE, digits = 2, col.low = "blue", col.mid = "white",
-  col.high = "red", lab.x.position = NULL, lab.y.position = NULL,
-  legend.position = NULL, legend.title = "Pearson's\\nCorrelation",
-  size.text.plot = 3, size.text.lab = 10, ...)
+\method{plot}{corr_coef}(
+  x,
+  type = "lower",
+  diag = FALSE,
+  reorder = TRUE,
+  digits = 2,
+  col.low = "blue",
+  col.mid = "white",
+  col.high = "red",
+  lab.x.position = NULL,
+  lab.y.position = NULL,
+  legend.position = NULL,
+  legend.title = "Pearson's\\nCorrelation",
+  size.text.plot = 3,
+  size.text.lab = 10,
+  ...
+)
 }
 \arguments{
 \item{x}{The data set.}

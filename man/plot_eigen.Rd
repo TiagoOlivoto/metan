@@ -4,11 +4,24 @@
 \alias{plot_eigen}
 \title{Plot the eigenvalues}
 \usage{
-plot_eigen(x, var = 1, export = FALSE, plot_theme = theme_metan(),
-  file.type = "pdf", file.name = NULL, width = 6, height = 6,
-  size.shape = 3.5, size.line = 1, size.tex.lab = 12,
-  y.lab = "Eigenvalue", y2.lab = "Accumulated variance",
-  x.lab = "Number of multiplicative terms", resolution = 300, ...)
+plot_eigen(
+  x,
+  var = 1,
+  export = FALSE,
+  plot_theme = theme_metan(),
+  file.type = "pdf",
+  file.name = NULL,
+  width = 6,
+  height = 6,
+  size.shape = 3.5,
+  size.line = 1,
+  size.tex.lab = 12,
+  y.lab = "Eigenvalue",
+  y2.lab = "Accumulated variance",
+  x.lab = "Number of multiplicative terms",
+  resolution = 300,
+  ...
+)
 }
 \arguments{
 \item{x}{The \code{waasb object}}

@@ -52,7 +52,7 @@ partial3 <- cor(iris[1:4]) \%>\%
                   verbose = FALSE)
 
 # Select variables and compute the partial correlation
-# For each level of \\code{Species}
+# For each level of \code{Species}
 
 partial4 <- iris \%>\%
             split_factors(Species) \%>\%

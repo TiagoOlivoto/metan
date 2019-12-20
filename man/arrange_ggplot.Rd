@@ -4,9 +4,17 @@
 \alias{arrange_ggplot}
 \title{Arrange multiple ggplot2 graphics in a single image window}
 \usage{
-arrange_ggplot(..., plotlist = NULL, nrow = NULL, ncol = NULL,
-  rel_widths = 1, rel_heights = 1, labels = NULL, hjust = -0.5,
-  vjust = 1.5)
+arrange_ggplot(
+  ...,
+  plotlist = NULL,
+  nrow = NULL,
+  ncol = NULL,
+  rel_widths = 1,
+  rel_heights = 1,
+  labels = NULL,
+  hjust = -0.5,
+  vjust = 1.5
+)
 }
 \arguments{
 \item{...}{An object of class \code{gg}}

@@ -4,12 +4,29 @@
 \alias{plot.waasb}
 \title{Several types of residual plots}
 \usage{
-\method{plot}{waasb}(x, var = 1, type = "res", conf = 0.95,
-  out = "print", labels = FALSE, plot_theme = theme_metan(),
-  alpha = 0.2, fill.hist = "gray", col.hist = "black",
-  col.point = "black", col.line = "red", col.lab.out = "red",
-  size.lab.out = 2.5, size.tex.lab = 10, size.shape = 1.5,
-  bins = 30, which = c(1:4), ncol = NULL, nrow = NULL, ...)
+\method{plot}{waasb}(
+  x,
+  var = 1,
+  type = "res",
+  conf = 0.95,
+  out = "print",
+  labels = FALSE,
+  plot_theme = theme_metan(),
+  alpha = 0.2,
+  fill.hist = "gray",
+  col.hist = "black",
+  col.point = "black",
+  col.line = "red",
+  col.lab.out = "red",
+  size.lab.out = 2.5,
+  size.tex.lab = 10,
+  size.shape = 1.5,
+  bins = 30,
+  which = c(1:4),
+  ncol = NULL,
+  nrow = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{waasb}.}

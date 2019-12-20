@@ -4,8 +4,7 @@
 \alias{gamem}
 \title{Genotype analysis by mixed-effect models}
 \usage{
-gamem(.data, gen, rep, resp, block = NULL, prob = 0.05,
-  verbose = TRUE)
+gamem(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to, Genotypes,

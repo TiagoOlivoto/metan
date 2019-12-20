@@ -4,10 +4,21 @@
 \alias{plot.ge_reg}
 \title{Plot an object of class ge_reg}
 \usage{
-\method{plot}{ge_reg}(x, var = 1, type = 1,
-  plot_theme = theme_metan(), x.lim = NULL, x.breaks = waiver(),
-  x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
-  leg.position = "right", size.tex.lab = 12, ...)
+\method{plot}{ge_reg}(
+  x,
+  var = 1,
+  type = 1,
+  plot_theme = theme_metan(),
+  x.lim = NULL,
+  x.breaks = waiver(),
+  x.lab = NULL,
+  y.lim = NULL,
+  y.breaks = waiver(),
+  y.lab = NULL,
+  leg.position = "right",
+  size.tex.lab = 12,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{ge_factanal}}

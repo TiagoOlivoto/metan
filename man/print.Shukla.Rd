@@ -7,8 +7,7 @@ Print the \code{Shukla} object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the directory
 into a *.txt file.}
 \usage{
-\method{print}{Shukla}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{Shukla}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{The \code{Shukla} x}

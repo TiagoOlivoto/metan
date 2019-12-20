@@ -7,8 +7,7 @@ Print the \code{corr_coef} object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the directory
 into a *.txt file.}
 \usage{
-\method{print}{corr_coef}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{corr_coef}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{corr_coef}}

@@ -4,9 +4,18 @@
 \alias{desc_stat}
 \title{Descriptive statistics}
 \usage{
-desc_stat(.data = NULL, ..., values = NULL, stats = "main",
-  hist = FALSE, level = 0.95, digits = 4, na.rm = FALSE,
-  verbose = TRUE, plot_theme = theme_metan())
+desc_stat(
+  .data = NULL,
+  ...,
+  values = NULL,
+  stats = "main",
+  hist = FALSE,
+  level = 0.95,
+  digits = 4,
+  na.rm = FALSE,
+  verbose = TRUE,
+  plot_theme = theme_metan()
+)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe or an object of

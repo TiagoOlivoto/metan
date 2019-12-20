@@ -4,11 +4,27 @@
 \alias{plot_factlines}
 \title{Fast way to create a line plot}
 \usage{
-plot_factlines(.data, x, y, group, fit, level = 0.95,
-  confidence = TRUE, xlab = NULL, ylab = NULL,
-  legend.position = "bottom", grid = FALSE, scales = "free",
-  col = TRUE, alpha = 0.2, size.shape = 1.5, size.line = 1,
-  size.text = 12, fontfam = "sans", plot_theme = theme_metan())
+plot_factlines(
+  .data,
+  x,
+  y,
+  group,
+  fit,
+  level = 0.95,
+  confidence = TRUE,
+  xlab = NULL,
+  ylab = NULL,
+  legend.position = "bottom",
+  grid = FALSE,
+  scales = "free",
+  col = TRUE,
+  alpha = 0.2,
+  size.shape = 1.5,
+  size.line = 1,
+  size.text = 12,
+  fontfam = "sans",
+  plot_theme = theme_metan()
+)
 }
 \arguments{
 \item{.data}{The data set}

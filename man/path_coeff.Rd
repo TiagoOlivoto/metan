@@ -4,9 +4,18 @@
 \alias{path_coeff}
 \title{Path coefficients with minimal multicollinearity}
 \usage{
-path_coeff(.data, resp, pred = NULL, exclude = FALSE,
-  correction = NULL, knumber = 50, brutstep = FALSE, maxvif = 10,
-  missingval = "pairwise.complete.obs", verbose = TRUE)
+path_coeff(
+  .data,
+  resp,
+  pred = NULL,
+  exclude = FALSE,
+  correction = NULL,
+  knumber = 50,
+  brutstep = FALSE,
+  maxvif = 10,
+  missingval = "pairwise.complete.obs",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The data. Must be a dataframe or an object of class

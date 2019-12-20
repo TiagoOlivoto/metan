@@ -4,8 +4,7 @@
 \alias{print.path_coeff}
 \title{Print an object of class path_coeff}
 \usage{
-\method{print}{path_coeff}(x, export = FALSE, file.name = NULL,
-  digits = 4, ...)
+\method{print}{path_coeff}(x, export = FALSE, file.name = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{An object of class \code{path_coeff} or \code{group_path}.}

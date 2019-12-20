@@ -4,8 +4,14 @@
 \alias{resca}
 \title{Rescale a variable to have specified minimum and maximum values}
 \usage{
-resca(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100,
-  keep = TRUE)
+resca(
+  .data = NULL,
+  ...,
+  values = NULL,
+  new_min = 0,
+  new_max = 100,
+  keep = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset. Grouped data is allowed.}

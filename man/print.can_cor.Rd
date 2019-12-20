@@ -4,8 +4,7 @@
 \alias{print.can_cor}
 \title{Print an object of class can_cor}
 \usage{
-\method{print}{can_cor}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{can_cor}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{can_cor}.}

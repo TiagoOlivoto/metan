@@ -4,8 +4,7 @@
 \alias{print.ge_reg}
 \title{Print an object of class ge_reg}
 \usage{
-\method{print}{ge_reg}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{ge_reg}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{ge_reg}.}

@@ -4,8 +4,7 @@
 \alias{print.superiority}
 \title{Print an object ofclass \code{superiority}}
 \usage{
-\method{print}{superiority}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{superiority}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{superiority}.}

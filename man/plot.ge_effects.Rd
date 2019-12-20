@@ -4,9 +4,16 @@
 \alias{plot.ge_effects}
 \title{Plot an object of class ge_effects}
 \usage{
-\method{plot}{ge_effects}(x, var = 1, plot_theme = theme_metan(),
-  x.lab = NULL, y.lab = NULL, leg.position = "right",
-  size.text = 12, ...)
+\method{plot}{ge_effects}(
+  x,
+  var = 1,
+  plot_theme = theme_metan(),
+  x.lab = NULL,
+  y.lab = NULL,
+  leg.position = "right",
+  size.text = 12,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{ge_effects}}

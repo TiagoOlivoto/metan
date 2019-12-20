@@ -4,8 +4,7 @@
 \alias{print.waas}
 \title{Print an object of class waas}
 \usage{
-\method{print}{waas}(x, export = FALSE, file.name = NULL, digits = 4,
-  ...)
+\method{print}{waas}(x, export = FALSE, file.name = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{An object of class \code{waas}.}

@@ -4,8 +4,19 @@
 \alias{waas}
 \title{Weighted Average of Absolute Scores}
 \usage{
-waas(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL,
-  prob = 0.05, naxis = NULL, ind_anova = TRUE, verbose = TRUE)
+waas(
+  .data,
+  env,
+  gen,
+  rep,
+  resp,
+  mresp = NULL,
+  wresp = NULL,
+  prob = 0.05,
+  naxis = NULL,
+  ind_anova = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -135,7 +146,7 @@ model3 <- waas(data_ge,
 
 }
 \references{
-Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J.

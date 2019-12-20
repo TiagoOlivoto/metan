@@ -4,8 +4,7 @@
 \alias{plot.resp_surf}
 \title{Plot the response surface model}
 \usage{
-\method{plot}{resp_surf}(x, xlab = NULL, ylab = NULL, region = TRUE,
-  resolution = 100, ...)
+\method{plot}{resp_surf}(x, xlab = NULL, ylab = NULL, region = TRUE, resolution = 100, ...)
 }
 \arguments{
 \item{x}{An object of class \code{resp_surf}}

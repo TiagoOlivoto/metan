@@ -4,11 +4,24 @@
 \alias{plot_waasby}
 \title{Plot WAASBY values for genotype ranking}
 \usage{
-plot_waasby(x, var = 1, export = F, file.type = "pdf",
-  file.name = NULL, plot_theme = theme_metan(), width = 6,
-  height = 6, size.shape = 3.5, size.tex.lab = 12,
-  col.shape = c("blue", "red"), x.lab = "WAASBY",
-  y.lab = "Genotypes", x.breaks = waiver(), resolution = 300, ...)
+plot_waasby(
+  x,
+  var = 1,
+  export = F,
+  file.type = "pdf",
+  file.name = NULL,
+  plot_theme = theme_metan(),
+  width = 6,
+  height = 6,
+  size.shape = 3.5,
+  size.tex.lab = 12,
+  col.shape = c("blue", "red"),
+  x.lab = "WAASBY",
+  y.lab = "Genotypes",
+  x.breaks = waiver(),
+  resolution = 300,
+  ...
+)
 }
 \arguments{
 \item{x}{The \code{WAASBY object}}

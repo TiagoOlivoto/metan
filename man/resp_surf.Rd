@@ -4,8 +4,15 @@
 \alias{resp_surf}
 \title{Response surface model}
 \usage{
-resp_surf(.data, factor1, factor2, rep = NULL, resp, prob = 0.05,
-  verbose = TRUE)
+resp_surf(
+  .data,
+  factor1,
+  factor2,
+  rep = NULL,
+  resp,
+  prob = 0.05,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,

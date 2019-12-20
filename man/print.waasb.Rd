@@ -4,8 +4,7 @@
 \alias{print.waasb}
 \title{Print an object of class waasb}
 \usage{
-\method{print}{waasb}(x, export = FALSE, blup = FALSE,
-  file.name = NULL, digits = 4, ...)
+\method{print}{waasb}(x, export = FALSE, blup = FALSE, file.name = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{An object of class \code{waasb}.}

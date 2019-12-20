@@ -4,8 +4,7 @@
 \alias{print.anova_ind}
 \title{Print an object of class anova_ind}
 \usage{
-\method{print}{anova_ind}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{anova_ind}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{anova_ind}.}

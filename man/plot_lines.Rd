@@ -4,9 +4,21 @@
 \alias{plot_lines}
 \title{Fast way to create a line plot}
 \usage{
-plot_lines(.data, x, y, fit, level = 0.95, xlab = NULL, ylab = NULL,
-  col = "red", alpha = 0.2, size.shape = 1.5, size.line = 1,
-  size.text = 12, fontfam = "sans")
+plot_lines(
+  .data,
+  x,
+  y,
+  fit,
+  level = 0.95,
+  xlab = NULL,
+  ylab = NULL,
+  col = "red",
+  alpha = 0.2,
+  size.shape = 1.5,
+  size.line = 1,
+  size.text = 12,
+  fontfam = "sans"
+)
 }
 \arguments{
 \item{.data}{The data set}

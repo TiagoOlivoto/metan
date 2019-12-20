@@ -4,12 +4,28 @@
 \alias{plot.can_cor}
 \title{Plots an object of class can_cor}
 \usage{
-\method{plot}{can_cor}(x, type = 1, plot_theme = theme_metan(),
-  size.tex.lab = 12, size.tex.pa = 3.5, x.lab = NULL, x.lim = NULL,
-  x.breaks = waiver(), y.lab = NULL, y.lim = NULL,
-  y.breaks = waiver(), axis.expand = 1.1, shape = 21,
-  col.shape = "orange", col.alpha = 0.9, size.shape = 3.5,
-  size.bor.tick = 0.3, labels = FALSE, main = NULL, ...)
+\method{plot}{can_cor}(
+  x,
+  type = 1,
+  plot_theme = theme_metan(),
+  size.tex.lab = 12,
+  size.tex.pa = 3.5,
+  x.lab = NULL,
+  x.lim = NULL,
+  x.breaks = waiver(),
+  y.lab = NULL,
+  y.lim = NULL,
+  y.breaks = waiver(),
+  axis.expand = 1.1,
+  shape = 21,
+  col.shape = "orange",
+  col.alpha = 0.9,
+  size.shape = 3.5,
+  size.bor.tick = 0.3,
+  labels = FALSE,
+  main = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{The \code{waasb object}}

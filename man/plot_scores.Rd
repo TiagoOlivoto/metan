@@ -4,19 +4,50 @@
 \alias{plot_scores}
 \title{Plot scores in different graphical interpretations}
 \usage{
-plot_scores(x, var = 1, type = 1, polygon = FALSE, title = TRUE,
-  plot_theme = theme_metan(), axis.expand = 1.1, x.lim = NULL,
-  y.lim = NULL, x.breaks = waiver(), y.breaks = waiver(),
-  x.lab = NULL, y.lab = NULL, shape.gen = 21, shape.env = 23,
-  size.shape = 2.2, size.bor.tick = 0.3, size.tex.lab = 12,
-  size.tex.pa = 3.5, size.line = 0.5, size.segm.line = 0.5,
-  col.bor.gen = "black", col.bor.env = "black", col.line = "black",
-  col.gen = "blue", col.env = "forestgreen", col.alpha.gen = 0.9,
-  col.alpha.env = 0.9, col.segm.gen = "transparent",
-  col.segm.env = "forestgreen", repulsion = 1, leg.lab = c("Env",
-  "Gen"), line.type = "solid", line.alpha = 0.9, resolution = 300,
-  file.type = "pdf", export = FALSE, file.name = NULL, width = 8,
-  height = 7, color = TRUE, ...)
+plot_scores(
+  x,
+  var = 1,
+  type = 1,
+  polygon = FALSE,
+  title = TRUE,
+  plot_theme = theme_metan(),
+  axis.expand = 1.1,
+  x.lim = NULL,
+  y.lim = NULL,
+  x.breaks = waiver(),
+  y.breaks = waiver(),
+  x.lab = NULL,
+  y.lab = NULL,
+  shape.gen = 21,
+  shape.env = 23,
+  size.shape = 2.2,
+  size.bor.tick = 0.3,
+  size.tex.lab = 12,
+  size.tex.pa = 3.5,
+  size.line = 0.5,
+  size.segm.line = 0.5,
+  col.bor.gen = "black",
+  col.bor.env = "black",
+  col.line = "black",
+  col.gen = "blue",
+  col.env = "forestgreen",
+  col.alpha.gen = 0.9,
+  col.alpha.env = 0.9,
+  col.segm.gen = "transparent",
+  col.segm.env = "forestgreen",
+  repulsion = 1,
+  leg.lab = c("Env", "Gen"),
+  line.type = "solid",
+  line.alpha = 0.9,
+  resolution = 300,
+  file.type = "pdf",
+  export = FALSE,
+  file.name = NULL,
+  width = 8,
+  height = 7,
+  color = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{An object fitted with the functions \code{\link{performs_ammi}},
@@ -194,7 +225,7 @@ plot_scores(waasb_model,
 }
 }
 \references{
-Olivoto, T., A.D.C. L{'{u}}cio, J.A.G. da silva, V.S. Marchioro,
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J.

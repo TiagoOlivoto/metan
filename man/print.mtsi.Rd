@@ -4,8 +4,7 @@
 \alias{print.mtsi}
 \title{Print an object of class mtsi}
 \usage{
-\method{print}{mtsi}(x, export = FALSE, file.name = NULL, digits = 4,
-  ...)
+\method{print}{mtsi}(x, export = FALSE, file.name = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{An object of class \code{mtsi}.}

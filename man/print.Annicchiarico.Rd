@@ -4,8 +4,7 @@
 \alias{print.Annicchiarico}
 \title{Print an object of class Annicchiarico}
 \usage{
-\method{print}{Annicchiarico}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{Annicchiarico}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{The \code{Annicchiarico} x}

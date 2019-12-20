@@ -4,8 +4,7 @@
 \alias{print.Schmildt}
 \title{Print an object of class Schmildt}
 \usage{
-\method{print}{Schmildt}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{Schmildt}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{The \code{Schmildt} x}

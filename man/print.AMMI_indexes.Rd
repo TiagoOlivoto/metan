@@ -4,8 +4,7 @@
 \alias{print.AMMI_indexes}
 \title{Print an object of class AMMI_indexes}
 \usage{
-\method{print}{AMMI_indexes}(x, export = FALSE, file.name = NULL,
-  digits = 3, ...)
+\method{print}{AMMI_indexes}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{AMMI_indexes}.}

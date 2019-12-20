@@ -4,9 +4,18 @@
 \alias{ge_cluster}
 \title{Cluster genotypes or environments}
 \usage{
-ge_cluster(.data, env = NULL, gen = NULL, resp = NULL,
-  table = FALSE, distmethod = "euclidean", clustmethod = "ward.D",
-  scale = TRUE, cluster = "env", nclust = NULL)
+ge_cluster(
+  .data,
+  env = NULL,
+  gen = NULL,
+  resp = NULL,
+  table = FALSE,
+  distmethod = "euclidean",
+  clustmethod = "ward.D",
+  scale = TRUE,
+  cluster = "env",
+  nclust = NULL
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments, Genotypes
