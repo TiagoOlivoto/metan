@@ -49,3 +49,23 @@ column_exists <-function(.data, cols){
     message("Variable ", paste(cols, collapse = ", "), " is in the data.")
   }
 }
+
+
+#' @title means by a factor
+#' @description Computes the mean values for all numeric variables by a factor
+#' @param .data A data frame
+#' @param ... One or more categorical variables for grouping the data.
+#' @export
+#' @examples
+#' library(metan)
+#' data_ge2 %>%
+#' means_by(ENV)
+means_by <- function(.data, ...){
+  .data %>%
+    group_by(...) %>%
+    summarise_if(is.numeric, mean)
+}
+
+
+
+
