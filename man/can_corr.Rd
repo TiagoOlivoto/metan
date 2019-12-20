@@ -4,9 +4,19 @@
 \alias{can_corr}
 \title{Canonical correlation analysis}
 \usage{
-can_corr(.data = NULL, FG = NULL, SG = NULL, means_by = NULL,
-  use = "cor", test = "Bartlett", prob = 0.05, center = TRUE,
-  stdscores = FALSE, verbose = TRUE, collinearity = TRUE)
+can_corr(
+  .data = NULL,
+  FG = NULL,
+  SG = NULL,
+  means_by = NULL,
+  use = "cor",
+  test = "Bartlett",
+  prob = 0.05,
+  center = TRUE,
+  stdscores = FALSE,
+  verbose = TRUE,
+  collinearity = TRUE
+)
 }
 \arguments{
 \item{.data}{The data to be analyzed. Must be a dataframe containing the
