@@ -51,8 +51,8 @@ column_exists <-function(.data, cols){
 }
 
 
-#' @title means by a factor
-#' @description Computes the mean values for all numeric variables by a factor
+#' @title Means by one or more factors
+#' @description Computes the mean values for all numeric variables of a data by a factor
 #' @param .data A data frame
 #' @param ... One or more categorical variables for grouping the data.
 #' @export
@@ -65,7 +65,3 @@ means_by <- function(.data, ...){
     group_by(...) %>%
     summarise_if(is.numeric, mean)
 }
-
-
-
-

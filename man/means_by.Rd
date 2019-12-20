@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{means_by}
 \alias{means_by}
-\title{means by a factor}
+\title{Means by one or more factors}
 \usage{
 means_by(.data, ...)
 }
@@ -12,7 +12,7 @@ means_by(.data, ...)
 \item{...}{One or more categorical variables for grouping the data.}
 }
 \description{
-Computes the mean values for all numeric variables by a factor
+Computes the mean values for all numeric variables of a data by a factor
 }
 \examples{
 library(metan)

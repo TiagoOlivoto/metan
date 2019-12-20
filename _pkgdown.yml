@@ -191,6 +191,7 @@ reference:
       - arrange_ggplot
       - as.split_factors
       - bind_cv
+      - column_exists
       - comb_vars
       - difference_var
       - get_model_data
@@ -210,6 +211,8 @@ reference:
       - remove_cols_na
       - remove_rows_na
       - resca
+      - round_column
+      - round_value
       - sem
       - split_factors
       - solve_svd
