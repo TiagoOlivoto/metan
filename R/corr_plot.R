@@ -160,11 +160,7 @@ corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
     }
   }
   if (missing(...)) {
-    data <- .data[, unlist(lapply(.data, is.numeric))]
-    if (sum(lapply(.data, is.factor) == TRUE) > 0) {
-      message("The factors ", paste0(collapse = " ", names(.data[,
-                                                                 unlist(lapply(.data, is.factor))])), " where excluded to perform the analysis. Only numeric variables were used. ")
-    }
+    data <- select_if(.data, is.numeric)
   }
   if (!missing(...)) {
     data <- select(.data, ...) %>%
