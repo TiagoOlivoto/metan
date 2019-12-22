@@ -12,6 +12,8 @@
 #' @param pattern A string to be matched. Regular Expression Syntax is also
 #'   allowed.
 #' @param replacement A string for replacement.
+#' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
+#'   assumption that's the column you've created most recently), as a vector.
 #' @description
 #' * \code{round_column()}: Round a selected column or a whole data frame to
 #' significant figures.
@@ -50,7 +52,8 @@
 #' replace_number(data_ge,
 #'                var = GEN,
 #'                pattern = "1",
-#'                replacement = "_one")
+#'                replacement = "_one",
+#'                pull = TRUE)
 #'
 #' ########## Extract or replace strings ##########
 #' # Extract strings
@@ -91,16 +94,26 @@ round_column <- function(.data, ...,  digits = 2){
 extract_number <- function(.data,
                            var,
                            new_var = new_var,
-                           drop = FALSE){
+                           drop = FALSE,
+                           pull = FALSE){
   if (drop == FALSE){
+    results <-
     mutate(.data,
            {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
     )
+    if(pull == TRUE){
+      results <- pull(repl_str)
+    }
   } else{
+    results <-
     transmute(.data,
               {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
     )
+    if(pull == TRUE){
+      results <- pull(repl_str)
+    }
   }
+  return(results)
 }
 #' @name utils-num-str
 #' @export
@@ -109,37 +122,57 @@ replace_number <- function(.data,
                            new_var = new_var,
                            pattern = NULL,
                            replacement = "",
-                           drop = FALSE){
+                           drop = FALSE,
+                           pull = FALSE){
   if(missing(pattern)){
     pattern <- "[0-9]"
   } else{
     pattern <- pattern
   }
   if (drop == FALSE){
+    results <-
     mutate(.data,
            {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
     )
+    if(pull == TRUE){
+      results <- pull(results)
+    }
   } else{
+    results <-
     transmute(.data,
               {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
     )
+    if(pull == TRUE){
+      results <- pull(results)
+    }
   }
+  return(results)
 }
 #' @name utils-num-str
 #' @export
 extract_string <- function(.data,
                            var,
                            new_var = new_var,
-                           drop = FALSE){
+                           drop = FALSE,
+                           pull = FALSE){
   if (drop == FALSE){
+    results <-
     mutate(.data,
            {{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}})))
     )
+    if(pull == TRUE){
+      results <- pull(results)
+    }
   } else{
+    results <-
     transmute(.data,
               {{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}})))
     )
+    if(pull == TRUE){
+      results <- pull(results)
+    }
   }
+  return(results)
 }
 #' @name utils-num-str
 #' @export
@@ -148,21 +181,31 @@ replace_string <- function(.data,
                            new_var = new_var,
                            pattern = NULL,
                            replacement = "",
-                           drop = FALSE){
+                           drop = FALSE,
+                           pull = FALSE){
   if(missing(pattern)){
     pattern <- "[A-z]"
   } else{
     pattern <- pattern
   }
   if (drop == FALSE){
-    mutate(.data,
-           {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-    )
+    results <-
+      mutate(.data,
+             {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
+      )
+    if(pull == TRUE){
+      results <- pull(results)
+    }
   } else{
-    transmute(.data,
-              {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-    )
+    results <-
+      transmute(.data,
+                {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
+      )
+    if(pull == TRUE){
+      results <- pull(results)
+    }
   }
+  return(results)
 }
 #' @name utils-num-str
 #' @export
@@ -339,6 +382,7 @@ column_exists <-function(.data, cols){
 #' @export
 get_levels <- function(.data, group){
   .data %>%
+    mutate_if(~!is.numeric(.x), as.factor) %>%
     pull({{group}}) %>%
     levels()
 }

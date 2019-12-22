@@ -13,7 +13,7 @@
 \usage{
 round_column(.data, ..., digits = 2)
 
-extract_number(.data, var, new_var = new_var, drop = FALSE)
+extract_number(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
 
 replace_number(
   .data,
@@ -21,10 +21,11 @@ replace_number(
   new_var = new_var,
   pattern = NULL,
   replacement = "",
-  drop = FALSE
+  drop = FALSE,
+  pull = FALSE
 )
 
-extract_string(.data, var, new_var = new_var, drop = FALSE)
+extract_string(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
 
 replace_string(
   .data,
@@ -32,7 +33,8 @@ replace_string(
   new_var = new_var,
   pattern = NULL,
   replacement = "",
-  drop = FALSE
+  drop = FALSE,
+  pull = FALSE
 )
 
 all_upper_case(.data)
@@ -54,6 +56,9 @@ strings extracted or replaced. Defaults to \code{new_var}.}
 
 \item{drop}{Logical argument. If \code{TRUE} keeps the new variable
 \code{new_var} and drops the existing ones. Defaults to \code{FALSE}.}
+
+\item{pull}{Logical argument. If \code{TRUE}, returns the last column (on the
+assumption that's the column you've created most recently), as a vector.}
 
 \item{pattern}{A string to be matched. Regular Expression Syntax is also
 allowed.}
@@ -100,7 +105,8 @@ replace_number(data_ge, GEN)
 replace_number(data_ge,
                var = GEN,
                pattern = "1",
-               replacement = "_one")
+               replacement = "_one",
+               pull = TRUE)
 
 ########## Extract or replace strings ##########
 # Extract strings
