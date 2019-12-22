@@ -106,7 +106,7 @@ desc_stat <- function(.data = NULL,
     stop("Invalid value for the argument 'stat'. Allowed values are one of the AV.dev, CI.mean, CV, IQR, Kurt, mad, max, mean, median, min, n, Q2.5, Q25, Q75, Q97.5, range, SD.amo, SD.pop, SE.mean, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop. Did you accidentally omit the space between the comma and the following word?")
   }
   if (!missing(.data) & !missing(values)) {
-    stop("You can not inform a vector of values if a data frame is used as imput.")
+    stop("You can not inform a vector of values if a data frame is used as input.")
   }
   if (missing(.data) & missing(values)) {
     stop("Invalid input. Please, use argument 'values' to inform a numeric vector, or the argument '.data' to inform a dataset.")

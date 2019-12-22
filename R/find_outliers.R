@@ -43,7 +43,7 @@ find_outliers <- function(.data =  NULL,
     }
   }
   if (!missing(.data) & !missing(values)) {
-    stop("You can not inform a vector of values if a data frame is used as imput.")
+    stop("You can not inform a vector of values if a data frame is used as input.")
   }
   if (!missing(.data) & missing(var)) {
     stop("At least one variable must be informed when using a data frame as input.")

@@ -98,10 +98,10 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
                      test = "Bartlett", prob = 0.05, center = TRUE, stdscores = FALSE,
                      verbose = TRUE, collinearity = TRUE) {
   if (missing(.data) & missing(FG) || missing(SG)) {
-    stop("No valid data imput for analysis.")
+    stop("No valid data input for analysis.")
   }
   if (!missing(.data) & missing(FG) || missing(SG)) {
-    stop("If a dataset is used as impute then 'FG' and 'SG' must be declared.")
+    stop("If a dataset is used as input then 'FG' and 'SG' must be declared.")
   }
   if (!use %in% c("cov", "cor")) {
     stop("The argument  'use' is incorrect, it should be 'cov' or 'cor'.")
