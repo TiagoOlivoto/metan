@@ -1,4 +1,5 @@
 #' Print an object of class Shukla
+#'
 #' Print the \code{Shukla} object in two ways. By default, the results
 #' are shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.

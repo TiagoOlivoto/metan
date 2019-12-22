@@ -1,4 +1,5 @@
 #' Print an object of class Fox
+#'
 #' Print the \code{Fox} object in two ways. By default, the results
 #' are shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
