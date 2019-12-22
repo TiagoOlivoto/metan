@@ -11,11 +11,18 @@ means_by(.data, ...)
 
 \item{...}{One or more categorical variables for grouping the data.}
 }
+\value{
+An object of class tbl_df with the computed means by each level of
+  the factor(s) declared in \code{...}.
+}
 \description{
-Computes the mean values for all numeric variables of a data by a factor
+Computes the mean for all numeric variables of a data frame,
+  grouping by one or more factors.
 }
 \examples{
+\donttest{
 library(metan)
-data_ge2 \%>\%
-means_by(ENV)
+means_by(data_ge2, ENV)
+means_by(data_ge2, GEN, ENV)
+}
 }
