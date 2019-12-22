@@ -94,9 +94,6 @@ extract_number(data_ge,
                drop = TRUE,
                new_var = g_number)
 
-mutate(data_ge,
-       GEN_NUMERIC = extract_number(GEN))
-
 # Replace numbers
 
 replace_number(data_ge, GEN)
