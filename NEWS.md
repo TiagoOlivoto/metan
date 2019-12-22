@@ -8,7 +8,7 @@
 * `add_columns()`, and `add_rows()` for adding columns and rows, respectively.
 * `all_lower_case()`, and `all_upper_case()` for handling with cases.
 * `extract_numbers()`, `extract_string()`, `replace_number()`, and  `replace_string()`, for handling with numbers and strings.
-* `get_leve_size()`, and `get_levels()` for getting size of levels and levels of a factor.
+* `get_level_size()`, and `get_levels()` for getting size of levels and levels of a factor.
 * `select_numeric_cols()`, and `select_non_numeric_cols()` for selecting numeric and non-numeric variables quickly.
 * `means_by()` for computing means by one or more factors quickly.
 * `round_column()` for rounding significant figures.
