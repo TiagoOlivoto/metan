@@ -41,7 +41,8 @@ Imports:
     progress,
     rlang,
     tibble,
-    tidyr
+    tidyr,
+    tidyselect
 Suggests:
     kableExtra,
     knitr,

@@ -1,31 +1,34 @@
 #' @aliases select_helpers
-#' @importFrom dplyr contains
+#' @importFrom tidyselect contains
 #' @export
-dplyr::contains
-#' @importFrom dplyr ends_with
+tidyselect::contains
+#' @importFrom tidyselect ends_with
 #' @export
-dplyr::ends_with
-#' @importFrom dplyr everything
+tidyselect::ends_with
+#' @importFrom tidyselect everything
 #' @export
-dplyr::everything
-#' @importFrom dplyr matches
+tidyselect::everything
+#' @importFrom tidyselect matches
 #' @export
-dplyr::matches
-#' @importFrom dplyr num_range
+tidyselect::matches
+#' @importFrom tidyselect num_range
 #' @export
-dplyr::num_range
-#' @importFrom dplyr one_of
+tidyselect::num_range
+#' @importFrom tidyselect one_of
 #' @export
-dplyr::one_of
-#' @importFrom dplyr starts_with
+tidyselect::one_of
+#' @importFrom tidyselect starts_with
 #' @export
-dplyr::starts_with
-#' @importFrom dplyr last_col
+tidyselect::starts_with
+#' @importFrom tidyselect last_col
 #' @export
-dplyr::last_col
+tidyselect::last_col
 #' @importFrom dplyr select
 #' @export
 dplyr::select
+#' @importFrom dplyr mutate
+#' @export
+dplyr::mutate
 NULL
 
 #' @title Select helper

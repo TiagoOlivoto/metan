@@ -1,8 +1,3 @@
-#' @importFrom dplyr mutate
-#' @export
-dplyr::mutate
-NULL
-
 #' @title Utilities for handling with numbers and strings
 #' @name utils-num-str
 #' @param .data A data frame
