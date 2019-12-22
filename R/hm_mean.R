@@ -25,10 +25,10 @@ hm_mean <- function(x, ..., na.rm = TRUE) {
     1 / mean(1 / x, na.rm = na.rm)
   } else{
     if(missing(...)){
-      df <- select_if(x, is.numeric)
+      df <- select_numeric_cols(x)
     } else{
       df <- select(x, ...) %>%
-        select_if(is.numeric)
+        select_numeric_cols()
     }
     1 / (apply( 1 / df, 2, mean, na.rm = na.rm))
   }

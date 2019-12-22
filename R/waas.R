@@ -132,7 +132,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
         mutate_all(as.factor)
     vars <- .data %>%
         select({{resp}}) %>%
-        select_if(is.numeric)
+        select_numeric_cols()
     nvar <- ncol(vars)
     if (!is.null(naxis)) {
         if (length(naxis) != nvar) {

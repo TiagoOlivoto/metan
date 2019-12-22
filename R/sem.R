@@ -25,10 +25,10 @@ sem <- function(x, ..., na.rm = TRUE) {
     sd(x, na.rm = na.rm) / sqrt(length(x))
   } else{
     if(missing(...)){
-      df <- select_if(x, is.numeric)
+      df <- select_numeric_cols(x)
     } else{
-      df <- dplyr::select(x, ...) %>%
-        select_if(is.numeric)
+      df <- select(x, ...) %>%
+        select_numeric_cols()
     }
     apply(x, 2, function(x) {
       sd(x, na.rm = na.rm) / sqrt(length(x))

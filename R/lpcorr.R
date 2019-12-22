@@ -127,7 +127,7 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
   if (is.data.frame(.data)) {
     if(!missing(...)){
       dfs <-  select(.data, ...) %>%
-        select_if(is.numeric)
+        select_numeric_cols()
     } else{
       if (verbose == TRUE) {
         if (sum(lapply(.data, is.factor) == TRUE) > 0) {

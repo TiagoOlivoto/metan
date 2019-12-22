@@ -50,7 +50,7 @@ superiority <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     mutate_all(as.factor)
   vars <- .data %>%
     select({{resp}}) %>%
-    select_if(is.numeric)
+    select_numeric_cols()
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {

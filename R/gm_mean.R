@@ -25,10 +25,10 @@ gm_mean <- function(x, ..., na.rm = TRUE){
     exp(sum(log(x[x > 0]), na.rm = na.rm) / length(x))
   } else{
     if(missing(...)){
-      df <- select_if(x, is.numeric)
+      df <- select_numeric_cols(x)
     } else{
       df <- select(x, ...) %>%
-        select_if(is.numeric)
+        select_numeric_cols()
     }
     exp(apply(log(df), 2, mean, na.rm = na.rm))
   }

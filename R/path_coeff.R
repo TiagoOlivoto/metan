@@ -129,7 +129,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
     dfs <- list()
     for (k in 1:length(.data[[1]])) {
       data <- .data[[1]][[k]] %>%
-        select_if(is.numeric) %>%
+        select_numeric_cols() %>%
         as.data.frame()
       nam <- names(.data[[1]][k])
       if (brutstep == FALSE) {

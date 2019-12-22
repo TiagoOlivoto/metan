@@ -161,7 +161,7 @@ desc_stat <- function(.data = NULL,
         data <- select_if(data, is.numeric)
       } else{
         data <- select(data, ...) %>%
-          select_if(is.numeric)
+          select_numeric_cols()
       }
       if(verbose == TRUE){
         cat("---------------------------------------------------------------------------\n")
@@ -265,7 +265,7 @@ desc_stat <- function(.data = NULL,
         data <- select_if(.data, is.numeric)
       } else{
         data <- select(.data, ...) %>%
-          select_if(is.numeric)
+          select_numeric_cols()
       }
     }
     if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){

@@ -78,7 +78,7 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
       NREP <- nlevels(REP)
       vars <- datain %>%
         select({{resp}}) %>%
-        select_if(is.numeric)
+        select_numeric_cols()
       listres <- list()
       nvar <- ncol(vars)
       covdata <- data.frame(matrix(nrow = nrow(datain), ncol = nvar))
@@ -206,7 +206,7 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
     NREP <- nlevels(REP)
     vars <- datain %>%
       select({{resp}}) %>%
-      select_if(is.numeric)
+      select_numeric_cols()
     listres <- list()
     nvar <- ncol(vars)
     covdata <- data.frame(matrix(nrow = nrow(datain), ncol = nvar))

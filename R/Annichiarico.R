@@ -57,7 +57,7 @@ Annicchiarico <- function(.data,
     mutate_all(as.factor)
   vars <- .data %>%
     select({{resp}}) %>%
-    select_if(is.numeric)
+    select_numeric_cols()
 
   nvar <- ncol(vars)
   listres <- list()

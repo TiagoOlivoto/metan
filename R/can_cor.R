@@ -129,8 +129,8 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
         .data <- datain[[k]]
       }
       nam <- names(datain[k])
-      FGV <- as.data.frame(select(.data, {{FG}}) %>% select_if(is.numeric))
-      SGV <- as.data.frame(select(.data, {{SG}}) %>% select_if(is.numeric))
+      FGV <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
+      SGV <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
       if (nrow(FGV) != nrow(SGV)) {
         stop("The number of observations of 'FG', should be equal to 'SG'.")
       }
@@ -349,8 +349,8 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
         as.data.frame())
       nam_fact = .data %>% select({{means_by}}) %>% pull()
     }
-    FG <- as.data.frame(select(.data, {{FG}}) %>% select_if(is.numeric))
-    SG <- as.data.frame(select(.data, {{SG}}) %>% select_if(is.numeric))
+    FG <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
+    SG <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
   }
   if (nrow(FG) != nrow(SG)) {
     stop("The number of observations of 'FG', should be equal to 'SG'.")

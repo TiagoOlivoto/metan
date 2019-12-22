@@ -57,7 +57,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
       REP <- factor(eval(substitute(rep), eval(datain)))
       vars <- datain %>%
         select({{resp}}) %>%
-        select_if(is.numeric)
+        select_numeric_cols()
       nvar <- ncol(vars)
       mat <- matrix(nrow = nvar, ncol = nvar)
       covdata <- data.frame(matrix(nrow = nrow(datain), ncol = nvar))
@@ -113,7 +113,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
     REP <- factor(eval(substitute(rep), eval(datain)))
     vars <- datain %>%
       select({{resp}}) %>%
-      select_if(is.numeric)
+      select_numeric_cols()
     nvar <- ncol(vars)
     mat <- matrix(nrow = nvar, ncol = nvar)
     covdata <- data.frame(matrix(nrow = nrow(datain), ncol = nvar))
