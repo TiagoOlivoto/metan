@@ -80,6 +80,7 @@ NULL
 
 
 #' Print an object of class corr_coef
+#'
 #' Print the \code{corr_coef} object in two ways. By default, the results
 #' are shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.

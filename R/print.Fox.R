@@ -10,7 +10,7 @@
 #' @param file.name The name of the file if \code{export = TRUE}
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble]{trunc_mat}} for more details.
+#'   \code{\link[tibble]{formatting}} for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print Fox
 #' @export
