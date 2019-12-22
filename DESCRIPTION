@@ -9,12 +9,12 @@ Authors@R:
            email = "tiagoolivoto@gmail.com",
            comment = c(ORCID = "0000-0002-0241-9636"))
 Maintainer: Tiago Olivoto <tiagoolivoto@gmail.com>
-Description: Provides functions for performing the most used
-    analyses in the evaluation of multi-environment trials. This includes
-    stability analysis using widely-known parametric and nonparametric
-    methods, functions for biometrical analysis such as path analysis,
-    canonical correlation, partial correlation, clustering analysis, as
-    well as tools for summarizing and plotting data.
+Description: Performs the most used analyses in the evaluation of
+    multi-environment trials. This includes stability analysis using
+    widely-known parametric and nonparametric methods, functions for
+    biometrical analysis such as path analysis, canonical correlation,
+    partial correlation, clustering analysis, as well as tools for
+    summarizing and plotting data.
 License: GPL-3
 URL: https://github.com/TiagoOlivoto/metan
 BugReports: https://github.com/TiagoOlivoto/metan/issues
