@@ -1,6 +1,8 @@
 # metan 1.1.3
 * New functions `round_value()` and `round_column()` for rounding significant figures.
-* New functions `
+* New functions `means_by()` for computing means by one or more factor.
+* New function `
+
 # metan 1.1.2
 
 * Reexport select_helpers `starts_with()`, `ends_with()`, `contains()`, `contains()`, `num_range()`, `one_of()`, `everything()`, and `last_col()`.
