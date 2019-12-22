@@ -13,13 +13,27 @@
 \usage{
 round_column(.data, ..., digits = 2)
 
-extract_number(x)
+extract_number(.data, var, new_var = new_var, drop = FALSE)
 
-replace_number(x, pattern = NULL, replacement = "")
+replace_number(
+  .data,
+  var,
+  new_var = new_var,
+  pattern = NULL,
+  replacement = "",
+  drop = FALSE
+)
 
-extract_string(x)
+extract_string(.data, var, new_var = new_var, drop = FALSE)
 
-replace_string(x, pattern = NULL, replacement = "")
+replace_string(
+  .data,
+  var,
+  new_var = new_var,
+  pattern = NULL,
+  replacement = "",
+  drop = FALSE
+)
 
 all_upper_case(.data)
 
@@ -33,7 +47,13 @@ variables from \code{data} are used.}
 
 \item{digits}{The number of significant figures.}
 
-\item{x}{A numeric value or a string. Vectors are also allowed.}
+\item{var}{The variable to extract or replace numbers or strings.}
+
+\item{new_var}{The name of the new variable containing the numbers or
+strings extracted or replaced. Defaults to \code{new_var}.}
+
+\item{drop}{Logical argument. If \code{TRUE} keeps the new variable
+\code{new_var} and drops the existing ones. Defaults to \code{FALSE}.}
 
 \item{pattern}{A string to be matched. Regular Expression Syntax is also
 allowed.}
@@ -68,40 +88,38 @@ round_column(data_ge2, EP, digits = 1)
 
 ########### Extract or replace numbers ##########
 # Extract numbers
-extract_number("GEN_10")
-extract_number(data_ge2$GEN)
+extract_number(data_ge, GEN)
+extract_number(data_ge,
+               var = GEN,
+               drop = TRUE,
+               new_var = g_number)
 
 mutate(data_ge,
        GEN_NUMERIC = extract_number(GEN))
 
 # Replace numbers
-mutate(data_ge,
-       GEN_NUMERIC = replace_number(GEN))
 
-mutate(data_ge,
-       GEN_NUMERIC =
-         replace_number(GEN,
-                        pattern = "2",
-                        with = "_two"))
+replace_number(data_ge, GEN)
+replace_number(data_ge,
+               var = GEN,
+               pattern = "1",
+               replacement = "_one")
 
 ########## Extract or replace strings ##########
 # Extract strings
-extract_string("GEN_10")
-extract_string(data_ge2$GEN)
-
-mutate(data_ge,
-       GEN_STRING = extract_string(GEN))
+extract_string(data_ge, GEN)
+extract_string(data_ge,
+               var = GEN,
+               drop = TRUE,
+               new_var = g_name)
 
 # Replace strings
-mutate(data_ge,
-       GEN_STRING = replace_string(GEN))
-genotype <-
-mutate(data_ge,
-       GEN_CODE =
-         replace_string(GEN,
-                        pattern = "G",
-                        with = "GENOTYPE_"))
-genotype
+replace_string(data_ge, GEN)
+replace_string(data_ge,
+               var = GEN,
+               new_var = GENOTYPE,
+               pattern = "G",
+               replacement = "GENOTYPE_")
 ############# upper and lower cases ############
 all_lower_case("GENOTYPE")
 lc <- all_lower_case(data_ge)

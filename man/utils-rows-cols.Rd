@@ -17,7 +17,7 @@ add_columns(.data, ..., before = NULL, after = NULL)
 
 add_rows(.data, ..., before = NULL, after = NULL)
 
-concatenate(.data, col_1, col_2, var_name = new_var, sep = "_")
+concatenate(.data, col_1, col_2, new_var = new_var, sep = "_")
 
 column_exists(.data, cols)
 
@@ -50,7 +50,7 @@ the values of those columns will be concatenated. Else, \code{col_1} or
 \code{col_2} must be a numeric or a character vector of length equals to
 the number of rows in \code{.data}. Vectors of length 1 will be recycled.}
 
-\item{var_name}{The name of the new variable containing the concatenated
+\item{new_var}{The name of the new variable containing the concatenated
 values from \code{col_1} and \code{col_2}. Defaults to \code{new_var}.}
 
 \item{sep}{The separator to be between values of \code{col_1} and
@@ -115,7 +115,7 @@ concatenate(data_ge, ENV, 1)
 concatenate(data_ge,
             col_1 = rep("ENV", 420),
             col_2 = rep(1:14, each=30),
-            var_name = ENVIRONMENT,
+            new_var = ENVIRONMENT,
             sep = "-")
 
 ################### Adding rows ##################
