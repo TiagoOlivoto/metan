@@ -188,12 +188,22 @@ reference:
   - title: "Helper"
     desc: "Helper functions for metan package"
     contents:
+      - add_columns
+      - add_rows
+      - all_lower_case
+      - all_pairs
+      - all_upper_case
       - arrange_ggplot
       - as.split_factors
       - bind_cv
       - column_exists
       - comb_vars
+      - concatenate
       - difference_var
+      - extract_number
+      - extract_string
+      - get_level_size
+      - get_levels
       - get_model_data
       - gm_mean
       - has_na
@@ -206,14 +216,19 @@ reference:
       - make_mat
       - make_sym
       - make_upper_tri
+      - means_by
       - rbind_fill
       - reorder_cormat
       - remove_cols_na
       - remove_rows_na
+      - replace_number
+      - replace_string
       - resca
       - round_column
       - round_value
       - sem
+      - select_non_numeric_cols
+      - select_numeric_cols
       - split_factors
       - solve_svd
       - theme_metan
