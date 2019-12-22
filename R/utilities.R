@@ -1,12 +1,6 @@
 #' @importFrom dplyr mutate
 #' @export
 dplyr::mutate
-#' @importFrom dplyr mutate_if
-#' @export
-dplyr::mutate_if
-#' @importFrom dplyr filter
-#' @export
-dplyr::filter
 NULL
 
 #' @title Utilities for handling with numbers and strings

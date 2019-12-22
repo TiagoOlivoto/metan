@@ -14,8 +14,6 @@
 \alias{last_col}
 \alias{select}
 \alias{mutate}
-\alias{mutate_if}
-\alias{filter}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -23,6 +21,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{contains}}, \code{\link[dplyr]{ends_with}}, \code{\link[dplyr]{everything}}, \code{\link[dplyr]{filter}}, \code{\link[dplyr]{last_col}}, \code{\link[dplyr]{matches}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr]{mutate_if}}, \code{\link[dplyr]{num_range}}, \code{\link[dplyr]{one_of}}, \code{\link[dplyr]{select}}, \code{\link[dplyr]{starts_with}}}
+  \item{dplyr}{\code{\link[dplyr]{contains}}, \code{\link[dplyr]{ends_with}}, \code{\link[dplyr]{everything}}, \code{\link[dplyr]{last_col}}, \code{\link[dplyr]{matches}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr]{num_range}}, \code{\link[dplyr]{one_of}}, \code{\link[dplyr]{select}}, \code{\link[dplyr]{starts_with}}}
 }}
 
