@@ -1,5 +1,5 @@
 # Resubmission
-This is a resubmission for the new package `metan`. Now in version 1.1.3, I have incorporated the feedback kindly provided by Jelena Saf on December 20, 2019. See responses inline below. 
+This is a resubmission for the new package `metan`. Now in version 1.2.0, I have incorporated the feedback kindly provided by Jelena Saf on December 20, 2019. See responses inline below. 
 
 > 
 * Please omit the redundant 'Provides functions for' from your description.
@@ -11,6 +11,7 @@ This is a resubmission for the new package `metan`. Now in version 1.1.3, I have
 In this version I have made the following changes:
 * Omitted *"Provides functions for"* from description file.
 * In the function `corr_plot()` the message *"The factors ... where excluded to perform the analysis. Only numeric variables were used."* was deleted.
+* Note that some new 'utilities' functions were included. Please, see "News" for more details.
 
 
 # Test environments

@@ -1,7 +1,17 @@
-# metan 1.1.3
-* New functions `round_value()` and `round_column()` for rounding significant figures.
-* New functions `means_by()` for computing means by one or more factor.
-* New function `
+# metan 1.2.0
+## Minor changes
+* `corr_plot()` now don't write a warning message to the console by default.
+* `select_numeric_cols()` now is used as a helper function in `metan`.
+* `metan` now reexports `mutate()` from `dplyr` package.
+
+## New functions
+* `add_columns()`, and `add_rows()` for adding columns and rows, respectively.
+* `all_lower_case()`, and `all_upper_case()` for handling with cases.
+* `extract_numbers()`, `extract_string()`, `replace_number()`, and  `replace_string()`, for handling with numbers and strings.
+* `get_leve_size()`, and `get_levels()` for getting size of levels and levels of a factor.
+* `select_numeric_cols()`, and `select_non_numeric_cols()` for selecting numeric and non-numeric variables quickly.
+* `means_by()` for computing means by one or more factors quickly.
+* `round_column()` for rounding significant figures.
 
 # metan 1.1.2
 
