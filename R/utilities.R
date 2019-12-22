@@ -83,6 +83,7 @@ NULL
 #' all_upper_case(lc)
 #' }
 #' @export
+#' @importFrom dplyr mutate_if
 round_column <- function(.data, ...,  digits = 2){
   if (missing(...)){
     .data %<>% dplyr::mutate_if(is.numeric, round, digits = digits)
@@ -254,7 +255,7 @@ add_columns <- function(.data, ..., before = NULL, after = NULL){
     }
   }
   if(is.character(after)){
-    if(!(.after %in% colnames(.data))){
+    if(!(after %in% colnames(.data))){
       after <- NULL
     }
   }
@@ -269,7 +270,7 @@ add_rows <- function(.data, ..., before = NULL, after = NULL){
     }
   }
   if(is.character(after)){
-    if(!(.after %in% rownames(.data))){
+    if(!(after %in% rownames(.data))){
       after <- NULL
     }
   }
