@@ -7,7 +7,7 @@ dplyr::mutate_if
 #' @importFrom dplyr filter
 #' @export
 dplyr::filter
-
+NULL
 
 #' @title Utilities for handling with numbers and strings
 #' @name utils-num-str
@@ -16,17 +16,26 @@ dplyr::filter
 #'   variables from \code{data} are used.
 #' @param digits The number of significant figures.
 #' @param x A numeric value or a string. Vectors are also allowed.
-#' @param pattern A string to be matched. Regular Expression Syntax is also allowed.
+#' @param pattern A string to be matched. Regular Expression Syntax is also
+#'   allowed.
 #' @param replacement A string for replacement.
 #' @description
-#' * \code{round_column()}: Round a selected column or a whole data frame to significant figures.
+#' * \code{round_column()}: Round a selected column or a whole data frame to
+#' significant figures.
 #' * \code{extract_number()}: Extract the number(s) of a string.
 #' * \code{replace_number()}: Replace numbers with a replacement.
 #' * \code{extract_string()}: Extract all strings, ignoring case.
-#' * \code{replace_string()}: Replace all strings with a replacement, ignoring case.
+#' * \code{replace_string()}: Replace all strings with a replacement, ignoring
+#' case.
+#' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
+#' to lower case. A character vector is also allowed as im
+#' * \code{all_upper_case()}: Translate all non-numeric strings of a data frame
+#' to upper case.
 #' @md
 #' @examples
+#' \donttest{
 #' library(metan)
+#'
 #' ################ Rounding numbers ###############
 #' # All numeric columns
 #' round_column(data_ge2, digits = 1)
@@ -34,7 +43,7 @@ dplyr::filter
 #' # Round specific columns
 #' round_column(data_ge2, EP, digits = 1)
 #'
-#' ######## Extract or replace numbers ########
+#' ########### Extract or replace numbers ##########
 #' # Extract numbers
 #' extract_number("GEN_10")
 #' extract_number(data_ge2$GEN)
@@ -52,8 +61,7 @@ dplyr::filter
 #'                         pattern = "2",
 #'                         with = "_two"))
 #'
-#' ######## Extract or replace strings ########
-#'
+#' ########## Extract or replace strings ##########
 #' # Extract strings
 #' extract_string("GEN_10")
 #' extract_string(data_ge2$GEN)
@@ -64,12 +72,22 @@ dplyr::filter
 #' # Replace strings
 #' mutate(data_ge,
 #'        GEN_STRING = replace_string(GEN))
-#'
+#' genotype <-
 #' mutate(data_ge,
 #'        GEN_CODE =
 #'          replace_string(GEN,
 #'                         pattern = "G",
 #'                         with = "GENOTYPE_"))
+#' genotype
+#' ############# upper and lower cases ############
+#' all_lower_case("GENOTYPE")
+#' lc <- all_lower_case(data_ge)
+#' lc
+#' all_lower_case(genotype)
+#'
+#' all_upper_case("Genotype")
+#' all_upper_case(lc)
+#' }
 #' @export
 round_column <- function(.data, ...,  digits = 2){
   if (missing(...)){
@@ -79,14 +97,11 @@ round_column <- function(.data, ...,  digits = 2){
   }
   return(.data)
 }
-
 #' @name utils-num-str
 #' @export
 extract_number <- function(x){
   as.numeric(gsub("[^0-9.-]+", "", as.character(x)))
 }
-
-
 #' @name utils-num-str
 #' @export
 replace_number <- function(x, pattern = NULL, replacement = ""){
@@ -97,15 +112,11 @@ replace_number <- function(x, pattern = NULL, replacement = ""){
   }
   gsub(pattern, replacement, as.character(x))
 }
-
-
 #' @name utils-num-str
 #' @export
 extract_string <- function(x){
   as.character(gsub("[^A-z.-]+", "", as.character(x)))
 }
-
-
 #' @name utils-num-str
 #' @export
 replace_string <- function(x, pattern = NULL, replacement = ""){
@@ -116,24 +127,51 @@ replace_string <- function(x, pattern = NULL, replacement = ""){
   }
   gsub(pattern, replacement, as.character(x))
 }
+#' @name utils-num-str
+#' @export
+all_upper_case <- function(.data){
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+    .data <- as.data.frame(.data)
+    mutate_if(.data, ~!is.numeric(.x), toupper) %>%
+      as_tibble(rownames = NA)
+  } else{
+    toupper(.data)
+  }
+}
+#' @name utils-num-str
+#' @export
+all_lower_case <- function(.data){
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+    .data <- as.data.frame(.data)
+    mutate_if(.data, ~!is.numeric(.x), tolower) %>%
+      as_tibble(rownames = NA)
+  } else{
+    tolower(.data)
+  }
+}
+NULL
 
-
-
-
-#' @title Utilities for handling with columns and rows
+#' @title Utilities for handling with rows and columns
 #' @name utils-rows-cols
 #' @description
 #' * \code{add_cols()}: Add one or more columns to an existing data frame. If
-#' specified .before or .after columns does not exist, columns are appended at
-#' the end of the data. Return a data frame with all the original columns in
-#' \code{.data} plus the columns declared in \code{...}.
-#'
+#' specified \code{before} or \code{after} columns does not exist, columns are
+#' appended at the end of the data. Return a data frame with all the original
+#' columns in \code{.data} plus the columns declared in \code{...}.
 #' * \code{concatenate()}: Concatenate either two columns of a data frame or a
 #' column and specified values. Return a data frame with all the original
 #' columns in \code{.data} plus the concatenated variable, after the last
 #' column.
-#'
-#' * \code{column_exists()}: Checks if a column exists in a data frame. Return a logical value.
+#' * \code{column_exists()}: Checks if a column exists in a data frame. Return a
+#' logical value.
+#' * \code{get_levels()}: Get the levels of a factor variable.
+#' * \code{get_level_size()}: Get the size of each level of a factor variable.
+#' * \code{get_all_pairs()}: Get all the possible pairs between the levels of a
+#' factor.
+#' * \code{select_numeric_cols()}: Select all the numeric columns of a data
+#' frame.
+#' * \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
+#' data frame.
 #'
 #' @param .data A data frame
 #' @param ... Name-value pairs. All values must have one element for each row in
@@ -154,23 +192,25 @@ replace_string <- function(x, pattern = NULL, replacement = ""){
 #' @param sep The separator to be between values of \code{col_1} and
 #'   \code{col_2}. Defaults to "_".
 #' @param cols A quoted variable name to check if it exists in \code{.data}
+#' @param group A factor variable to get the levels.
+#' @param levels The levels of a factor or a numeric vector.
 #' @md
 #' @importFrom  tibble add_column add_row
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
 #' ################# Adding columns #################
 #' # Variables x and y after last column
-#' data_ge2 %>%
+#' data_ge %>%
 #'   add_columns(x = 10,
 #'               y = 30)
 #' # Variables x and y before the variable GEN
-#' data_ge2 %>%
+#' data_ge %>%
 #'   add_columns(x = 10,
 #'               y = 30,
 #'               before = "GEN")
-#'
 #'
 #' ########### Concatenating columns ################
 #' # Both variables in data
@@ -190,16 +230,29 @@ replace_string <- function(x, pattern = NULL, replacement = ""){
 #'             col_2 = rep(1:14, each=30),
 #'             var_name = ENVIRONMENT,
 #'             sep = "-")
+#'
 #' ################### Adding rows ##################
 #' data_ge %>%
-#'   add_rows(ENV = "TEST",
+#'   add_rows(ENV = "E_TEST",
 #'            GEN = "G_TEST",
 #'            REP = 3,
 #'            GY = 10.3,
 #'            HM = 100.11,
 #'            after = 1)
 #' ########## checking if a column exists ###########
+#' column_exists(data_g, "GEN")
 #'
+#' ####### get the levels and size of levels ########
+#' get_levels(data_g, GEN)
+#' get_level_size(data_g, GEN)
+#'
+#' ############## all possible pairs ################
+#' all_pairs(data_g, GEN)
+#'
+#' ########## select numeric variables only #########
+#' select_numeric_cols(data_g)
+#' select_non_numeric_cols(data_g)
+#' }
 add_columns <- function(.data, ..., before = NULL, after = NULL){
   if(is.character(before)){
     if(!(before %in% colnames(.data))){
@@ -213,7 +266,6 @@ add_columns <- function(.data, ..., before = NULL, after = NULL){
   }
   add_column(.data, ..., .before = before, .after = after)
 }
-
 #' @name utils-rows-cols
 #' @export
 add_rows <- function(.data, ..., before = NULL, after = NULL){
@@ -229,7 +281,6 @@ add_rows <- function(.data, ..., before = NULL, after = NULL){
   }
   add_row(.data, ..., .before = before, .after = after)
 }
-
 #' @name utils-rows-cols
 #' @export
 concatenate <- function(.data, col_1, col_2, var_name = new_var,  sep = "_"){
@@ -238,8 +289,6 @@ concatenate <- function(.data, col_1, col_2, var_name = new_var,  sep = "_"){
       {{var_name}} := paste({{col_1}}, sep, {{col_2}}, sep = "")
     )
 }
-
-
 #' @name utils-rows-cols
 #' @export
 column_exists <-function(.data, cols){
@@ -248,6 +297,49 @@ column_exists <-function(.data, cols){
   } else{
     TRUE
   }
+}
+#' @name utils-rows-cols
+#' @export
+get_levels <- function(.data, group){
+  .data %>%
+    pull({{group}}) %>%
+    levels()
+}
+#' @name utils-rows-cols
+#' @importFrom dplyr count
+#' @export
+get_level_size <- function(.data, group){
+  result <- .data %>%
+    group_by({{group}}) %>%
+    count()
+  n <- result$n
+  names(n) <- result %>% pull(1)
+  return(n)
+}
+#' @name utils-rows-cols
+#' @export
+all_pairs <- function(.data, levels){
+  levels <-
+    get_levels(.data, {{levels}})
+  combn(levels, 2) %>%
+    as.data.frame() %>%
+    t()
+}
+#' @name utils-rows-cols
+#' @export
+select_numeric_cols <- function(.data){
+  if(is_grouped_df(.data)){
+    .data <- ungroup(.data)
+  }
+  select_if(.data, is.numeric)
+}
+#' @name utils-rows-cols
+#' @export
+select_non_numeric_cols <- function(.data){
+  if(is_grouped_df(.data)){
+    .data <- ungroup(.data)
+  }
+  select_if(.data, ~!is.numeric(.x))
 }
 
 
@@ -260,9 +352,11 @@ column_exists <-function(.data, cols){
 #'   the factor(s) declared in \code{...}.
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' means_by(data_ge2, ENV)
 #' means_by(data_ge2, GEN, ENV)
+#'}
 means_by <- function(.data, ...){
   .data %>%
     group_by(...) %>%
