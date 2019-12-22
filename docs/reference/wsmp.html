@@ -94,7 +94,7 @@ scenarios of weights for stability and mean performance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -210,8 +210,14 @@ scenarios of weights for stability and mean performance." />
 scenarios of weights for stability and mean performance.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wsmp</span>(<span class='no'>model</span>, <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>increment</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>saveWAASY</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>progbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>wsmp</span>(
+  <span class='no'>model</span>,
+  <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>increment</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>saveWAASY</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>progbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -275,7 +281,7 @@ next iteration, the weights becomes 95/5 (since increment = 5). In the third sce
 ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
+    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
 trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>

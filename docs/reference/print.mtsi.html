@@ -94,7 +94,7 @@ the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -211,8 +211,7 @@ the R console. The results can also be exported to the directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mtsi</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -261,116 +260,116 @@ to the working directory</p></td>
 #&gt; <span style='color: #555555;'># A tibble: 2 x 4</span><span>
 #&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.66            82.8                82.8
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2         0.343           17.2               100  
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.37            68.5                68.5
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2         0.631           31.5               100  
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
 #&gt;   VAR     FA1 Communality Uniquenesses
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.910       0.828        0.172
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.910       0.828        0.172
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.827       0.685        0.315
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.827       0.685        0.315
 #&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.8283139 
+#&gt; Comunalit Mean: 0.6846661 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Multitrait stability index
 #&gt; -------------------------------------------------------------------------------
-#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
-#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
+#&gt;     G8     G3     G6     G1     G4     G5     G7     G9     G2    G10 
+#&gt; 0.7679 1.0076 1.6058 2.1733 2.3693 2.4252 2.5870 3.0165 3.2076 4.0461 
 #&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for the  waasb index
+#&gt; Selection differential for the  waasby index
 #&gt; -------------------------------------------------------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor    Xo    Xs     SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1   0.250 0.117 -</span><span style='color: #BB0000;'>0.134</span><span>  -</span><span style='color: #BB0000;'>53.5</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   0.614 0.373 -</span><span style='color: #BB0000;'>0.241</span><span>  -</span><span style='color: #BB0000;'>39.2</span><span>
+#&gt;   VAR   Factor    Xo    Xs    SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    48.3  86.4  38.0   78.7
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1    58.3  79.2  21.0   36.0
 #&gt; ------------------------------------------------------------------------------
 #&gt; Mean of selection differential
 #&gt; -------------------------------------------------------------------------------
-#&gt;          Xo          Xs          SD      SDperc 
-#&gt;   0.4323192   0.2448716  -0.1874476 -46.3574863 
+#&gt;       Xo       Xs       SD   SDperc 
+#&gt; 53.30529 82.80822 29.50294 57.33633 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor    xo    Xs     SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.78  0.105   3.94
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  47.3  -</span><span style='color: #BB0000;'>0.747</span><span>  -</span><span style='color: #BB0000;'>1.55</span><span>
+#&gt;   VAR   Factor    xo    Xs    SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4  
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
-#&gt; G3 G1
+#&gt; G8 G3
 #&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>MTSI_index</span>)</div><div class='output co'>#&gt; -------------------- Correlation matrix used used in factor analysis -----------------
 #&gt;           GY        HM
-#&gt; GY 1.0000000 0.6566277
-#&gt; HM 0.6566277 1.0000000
+#&gt; GY 1.0000000 0.3693321
+#&gt; HM 0.3693321 1.0000000
 #&gt; 
 #&gt; ---------------------------- Principal component analysis -----------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
 #&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1        1.657           82.83               82.83
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2        0.343</span><span style='text-decoration: underline;'>4</span><span>          17.17              100   
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1        1.369           68.47               68.47
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2        0.630</span><span style='text-decoration: underline;'>7</span><span>          31.53              100   
 #&gt; 
 #&gt; --------------------------------- Initial loadings -----------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 2</span><span>
 #&gt;   VAR   initial.loadings
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY              0.910</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> HM              0.910</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY              0.827</span><span style='text-decoration: underline;'>4</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> HM              0.827</span><span style='text-decoration: underline;'>4</span><span>
 #&gt; 
 #&gt; -------------------------- Loadings after varimax rotation ---------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 2</span><span>
 #&gt;   VAR      FA1
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.910</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.910</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.827</span><span style='text-decoration: underline;'>4</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.827</span><span style='text-decoration: underline;'>4</span><span>
 #&gt; 
 #&gt; --------------------------- Scores for genotypes-ideotype -----------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 11 x 2</span><span>
-#&gt;    GEN     FA1
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> G1    1.585
-#&gt; </span><span style='color: #555555;'> 2</span><span> G10   4.772
-#&gt; </span><span style='color: #555555;'> 3</span><span> G2    2.957
-#&gt; </span><span style='color: #555555;'> 4</span><span> G3    1.355
-#&gt; </span><span style='color: #555555;'> 5</span><span> G4    2.650
-#&gt; </span><span style='color: #555555;'> 6</span><span> G5    3.192
-#&gt; </span><span style='color: #555555;'> 7</span><span> G6    1.839
-#&gt; </span><span style='color: #555555;'> 8</span><span> G7    3.200
-#&gt; </span><span style='color: #555555;'> 9</span><span> G8    2.361
-#&gt; </span><span style='color: #555555;'>10</span><span> G9    3.186
-#&gt; </span><span style='color: #555555;'>11</span><span> ID1   1.355
+#&gt;    GEN      FA1
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> G1    2.862 
+#&gt; </span><span style='color: #555555;'> 2</span><span> G10   0.989</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> G2    1.828 
+#&gt; </span><span style='color: #555555;'> 4</span><span> G3    4.028 
+#&gt; </span><span style='color: #555555;'> 5</span><span> G4    2.666 
+#&gt; </span><span style='color: #555555;'> 6</span><span> G5    2.610 
+#&gt; </span><span style='color: #555555;'> 7</span><span> G6    3.430 
+#&gt; </span><span style='color: #555555;'> 8</span><span> G7    2.448 
+#&gt; </span><span style='color: #555555;'> 9</span><span> G8    4.268 
+#&gt; </span><span style='color: #555555;'>10</span><span> G9    2.019 
+#&gt; </span><span style='color: #555555;'>11</span><span> ID1   5.035 
 #&gt; 
 #&gt; ---------------------------- Multitrait stability index ------------------------------
-#&gt;        G3        G1        G6        G8        G4        G2        G9        G5 
-#&gt; 0.0000000 0.2302629 0.4845581 1.0066251 1.2954053 1.6021844 1.8318275 1.8374089 
-#&gt;        G7       G10 
-#&gt; 1.8450285 3.4177760 
+#&gt;        G8        G3        G6        G1        G4        G5        G7        G9 
+#&gt; 0.7678794 1.0076292 1.6057895 2.1733429 2.3693140 2.4251602 2.5869535 3.0164534 
+#&gt;        G2       G10 
+#&gt; 3.2076163 4.0460761 
 #&gt; 
 #&gt; --------------------------- Selection differential (index) ----------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor     Xo     Xs      SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1   0.250</span><span style='text-decoration: underline;'>5</span><span> 0.116</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.134</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>53.49</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   0.614</span><span style='text-decoration: underline;'>2</span><span> 0.373</span><span style='text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>0.240</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>39.23</span><span>
+#&gt;   VAR   Factor    Xo    Xs    SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1   48.34 86.38 38.04  78.70
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   58.27 79.23 20.96  35.98
 #&gt; 
 #&gt; -------------------------- Mean of Selection differential -----------------------------
-#&gt;          Xo          Xs          SD      SDperc 
-#&gt;   0.4323192   0.2448716  -0.1874476 -46.3574863 
+#&gt;       Xo       Xs       SD   SDperc 
+#&gt; 53.30529 82.80822 29.50294 57.33633 
 #&gt; 
 #&gt; ------------------------- Selection differential (variables) --------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor     xo     Xs      SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.674  2.780  0.105</span><span style='text-decoration: underline;'>3</span><span>  3.936
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.09  47.34  -</span><span style='color: #BB0000;'>0.746</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>1.552</span><span>
+#&gt;   VAR   Factor     xo     Xs     SD  SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.674  2.979 0.305</span><span style='text-decoration: underline;'>2</span><span> 11.41  
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.09  48.35  0.264</span><span style='text-decoration: underline;'>8</span><span>  0.550</span><span style='text-decoration: underline;'>7</span><span>
 #&gt; 
 #&gt; -------------------------------- Selected genotypes -----------------------------------
-#&gt; G3 G1</div></span></pre>
+#&gt; G8 G3</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

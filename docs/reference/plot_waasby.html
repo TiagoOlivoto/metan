@@ -93,7 +93,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -208,11 +208,24 @@
     <p>Plot heat maps with genotype ranking in two ways.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_waasby</span>(<span class='no'>x</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
-  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(), <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>), <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>"WAASBY"</span>,
-  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='st'>"Genotypes"</span>, <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_waasby</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>export</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
+  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>3.5</span>,
+  <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>),
+  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>"WAASBY"</span>,
+  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='st'>"Genotypes"</span>,
+  <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

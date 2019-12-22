@@ -94,7 +94,7 @@ estimation of genetic parameters." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -210,8 +210,7 @@ estimation of genetic parameters." />
 estimation of genetic parameters.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gamem</span>(<span class='no'>.data</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>gamem</span>(<span class='no'>.data</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -337,9 +336,9 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"pval_lrt"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 10</span><span>
 #&gt;   model      PH       ED     EL       CL       CW      KW       NR      TKW
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Comp~ </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>      
-#&gt; </span><span style='color: #555555;'>2</span><span> Geno~  0.051</span><span style='text-decoration: underline;'>0</span><span>  2.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>  0.786  2.25</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span>  1.24</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>  0.025</span><span style='text-decoration: underline;'>3</span><span>  0.005</span><span style='text-decoration: underline;'>60</span><span>  0.009</span><span style='text-decoration: underline;'>55</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'>1</span><span> Comp… </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>      
+#&gt; </span><span style='color: #555555;'>2</span><span> Geno…  0.051</span><span style='text-decoration: underline;'>0</span><span>  2.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>  0.786  2.25</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span>  1.24</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>  0.025</span><span style='text-decoration: underline;'>3</span><span>  0.005</span><span style='text-decoration: underline;'>60</span><span>  0.009</span><span style='text-decoration: underline;'>55</span><span>
+#&gt; </span><span style='color: #555555;'># … with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Variance components</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"vcomp"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 10</span><span>
 #&gt;   Group        PH    ED     EL    CL    CW    KW    NR   TKW   NKE
@@ -361,7 +360,7 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; </span><span style='color: #555555;'> 9</span><span> CVg         6.03    4.84   1.48    7.26  20.7     9.16   6.88  9.13</span><span style='color: #555555;'>e</span><span>+0
 #&gt; </span><span style='color: #555555;'>10</span><span> CVr         8.35    3.26   6.76    4.18  13.2    11.4    7.14  1.00</span><span style='color: #555555;'>e</span><span>+1
 #&gt; </span><span style='color: #555555;'>11</span><span> CV ratio    0.722   1.49   0.219   1.74   1.56    0.803  0.964 9.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'># … with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># BLUPs for genotypes</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>)</div><div class='output co'>#&gt; <span class='message'>setting the argument 'what' to 'blupg'.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 10</span><span>
 #&gt;    gen      PH    ED    EL    CL    CW    KW    NR   TKW   NKE

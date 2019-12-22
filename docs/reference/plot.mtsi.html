@@ -94,7 +94,7 @@ et al. (2019)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -201,7 +201,7 @@ et al. (2019)" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot the multi-trait stability index</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.mtsi.R'><code>R/plot.mtsi.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.MTSI.R'><code>R/plot.MTSI.R</code></a></small>
     <div class="hidden name"><code>plot.mtsi.Rd</code></div>
     </div>
 
@@ -211,9 +211,17 @@ et al. (2019)</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mtsi</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(
+  <span class='no'>x</span>,
+  <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
+  <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+  <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -280,48 +288,48 @@ genotypes is large, say, more than 30.</p></td>
 #&gt; <span style='color: #555555;'># A tibble: 2 x 4</span><span>
 #&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.66            82.8                82.8
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2         0.343           17.2               100  
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.37            68.5                68.5
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2         0.631           31.5               100  
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
 #&gt;   VAR     FA1 Communality Uniquenesses
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.910       0.828        0.172
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.910       0.828        0.172
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.827       0.685        0.315
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.827       0.685        0.315
 #&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.8283139 
+#&gt; Comunalit Mean: 0.6846661 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Multitrait stability index
 #&gt; -------------------------------------------------------------------------------
-#&gt;     G3     G1     G6     G8     G4     G2     G9     G5     G7    G10 
-#&gt; 0.0000 0.2303 0.4846 1.0066 1.2954 1.6022 1.8318 1.8374 1.8450 3.4178 
+#&gt;     G8     G3     G6     G1     G4     G5     G7     G9     G2    G10 
+#&gt; 0.7679 1.0076 1.6058 2.1733 2.3693 2.4252 2.5870 3.0165 3.2076 4.0461 
 #&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for the  waasb index
+#&gt; Selection differential for the  waasby index
 #&gt; -------------------------------------------------------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor    Xo    Xs     SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1   0.250 0.117 -</span><span style='color: #BB0000;'>0.134</span><span>  -</span><span style='color: #BB0000;'>53.5</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   0.614 0.373 -</span><span style='color: #BB0000;'>0.241</span><span>  -</span><span style='color: #BB0000;'>39.2</span><span>
+#&gt;   VAR   Factor    Xo    Xs    SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    48.3  86.4  38.0   78.7
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1    58.3  79.2  21.0   36.0
 #&gt; ------------------------------------------------------------------------------
 #&gt; Mean of selection differential
 #&gt; -------------------------------------------------------------------------------
-#&gt;          Xo          Xs          SD      SDperc 
-#&gt;   0.4323192   0.2448716  -0.1874476 -46.3574863 
+#&gt;       Xo       Xs       SD   SDperc 
+#&gt; 53.30529 82.80822 29.50294 57.33633 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor    xo    Xs     SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.78  0.105   3.94
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  47.3  -</span><span style='color: #BB0000;'>0.747</span><span>  -</span><span style='color: #BB0000;'>1.55</span><span>
+#&gt;   VAR   Factor    xo    Xs    SD SDperc
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4  
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
-#&gt; G3 G1
+#&gt; G8 G3
 #&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mtsi_index</span>)</div><div class='img'><img src='plot.mtsi-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 

@@ -95,7 +95,7 @@ in the R console. The results can also be exported to the directory into a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -213,8 +213,7 @@ in the R console. The results can also be exported to the directory into a
     </div>
 
     <pre class="usage"><span class='co'># S3 method for ge_reg</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -255,26 +254,26 @@ the working directory.</p></td>
 #&gt; <span style='color: #555555;'># A tibble: 20 x 6</span><span>
 #&gt;    SV                       Df `Sum Sq` `Mean Sq` `F value`    `Pr(&gt;F)`
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Total                    51   15.0      0.294     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'> 2</span><span> GEN                      12    1.86     0.155      0.870  0.585     
-#&gt; </span><span style='color: #555555;'> 3</span><span> ENV + (GEN x ENV)        39   13.1      0.336     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'> 4</span><span> ENV (linear)              1    7.72     7.72      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 1</span><span> </span><span style='color: #555555;'>"</span><span>Total</span><span style='color: #555555;'>"</span><span>                  51   15.0      0.294     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 2</span><span> </span><span style='color: #555555;'>"</span><span>GEN</span><span style='color: #555555;'>"</span><span>                    12    1.86     0.155      0.870  0.585     
+#&gt; </span><span style='color: #555555;'> 3</span><span> </span><span style='color: #555555;'>"</span><span>ENV + (GEN x ENV)</span><span style='color: #555555;'>"</span><span>      39   13.1      0.336     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 4</span><span> </span><span style='color: #555555;'>"</span><span>ENV (linear)</span><span style='color: #555555;'>"</span><span>            1    7.72     7.72      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
 #&gt; </span><span style='color: #555555;'> 5</span><span> </span><span style='color: #555555;'>"</span><span> GEN x ENV (linear)</span><span style='color: #555555;'>"</span><span>    12    0.755    0.062</span><span style='text-decoration: underline;'>9</span><span>     0.352  0.969     
-#&gt; </span><span style='color: #555555;'> 6</span><span> Pooled deviation         26    4.64     0.179     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'> 7</span><span> H1                        2    0.471    0.235     11.4    0.000</span><span style='text-decoration: underline;'>034</span><span>3 
-#&gt; </span><span style='color: #555555;'> 8</span><span> H10                       2    0.236    0.118      5.69   0.004</span><span style='text-decoration: underline;'>52</span><span>   
-#&gt; </span><span style='color: #555555;'> 9</span><span> H11                       2    0.211    0.106      5.11   0.007</span><span style='text-decoration: underline;'>67</span><span>   
-#&gt; </span><span style='color: #555555;'>10</span><span> H12                       2    0.450    0.225     10.9    0.000</span><span style='text-decoration: underline;'>051</span><span>5 
-#&gt; </span><span style='color: #555555;'>11</span><span> H13                       2    0.410    0.205      9.91   0.000</span><span style='text-decoration: underline;'>115</span><span>  
-#&gt; </span><span style='color: #555555;'>12</span><span> H2                        2    0.534    0.267     12.9    0.000</span><span style='text-decoration: underline;'>009</span><span>94
-#&gt; </span><span style='color: #555555;'>13</span><span> H3                        2    0.584    0.292     14.1    0.000</span><span style='text-decoration: underline;'>003</span><span>81
-#&gt; </span><span style='color: #555555;'>14</span><span> H4                        2    0.354    0.177      8.55   0.000</span><span style='text-decoration: underline;'>365</span><span>  
-#&gt; </span><span style='color: #555555;'>15</span><span> H5                        2    0.140    0.070</span><span style='text-decoration: underline;'>1</span><span>     3.39   0.037</span><span style='text-decoration: underline;'>6</span><span>    
-#&gt; </span><span style='color: #555555;'>16</span><span> H6                        2    0.334    0.167      8.06   0.000</span><span style='text-decoration: underline;'>559</span><span>  
-#&gt; </span><span style='color: #555555;'>17</span><span> H7                        2    0.241    0.121      5.83   0.003</span><span style='text-decoration: underline;'>98</span><span>   
-#&gt; </span><span style='color: #555555;'>18</span><span> H8                        2    0.505    0.253     12.2    0.000</span><span style='text-decoration: underline;'>017</span><span>4 
-#&gt; </span><span style='color: #555555;'>19</span><span> H9                        2    0.172    0.086</span><span style='text-decoration: underline;'>1</span><span>     4.16   0.018</span><span style='text-decoration: underline;'>3</span><span>    
-#&gt; </span><span style='color: #555555;'>20</span><span> Pooled error            104    2.15     0.020</span><span style='text-decoration: underline;'>7</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 6</span><span> </span><span style='color: #555555;'>"</span><span>Pooled deviation</span><span style='color: #555555;'>"</span><span>       26    4.64     0.179     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
+#&gt; </span><span style='color: #555555;'> 7</span><span> </span><span style='color: #555555;'>"</span><span>H1</span><span style='color: #555555;'>"</span><span>                      2    0.471    0.235     11.4    0.000</span><span style='text-decoration: underline;'>034</span><span>3 
+#&gt; </span><span style='color: #555555;'> 8</span><span> </span><span style='color: #555555;'>"</span><span>H10</span><span style='color: #555555;'>"</span><span>                     2    0.236    0.118      5.69   0.004</span><span style='text-decoration: underline;'>52</span><span>   
+#&gt; </span><span style='color: #555555;'> 9</span><span> </span><span style='color: #555555;'>"</span><span>H11</span><span style='color: #555555;'>"</span><span>                     2    0.211    0.106      5.11   0.007</span><span style='text-decoration: underline;'>67</span><span>   
+#&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #555555;'>"</span><span>H12</span><span style='color: #555555;'>"</span><span>                     2    0.450    0.225     10.9    0.000</span><span style='text-decoration: underline;'>051</span><span>5 
+#&gt; </span><span style='color: #555555;'>11</span><span> </span><span style='color: #555555;'>"</span><span>H13</span><span style='color: #555555;'>"</span><span>                     2    0.410    0.205      9.91   0.000</span><span style='text-decoration: underline;'>115</span><span>  
+#&gt; </span><span style='color: #555555;'>12</span><span> </span><span style='color: #555555;'>"</span><span>H2</span><span style='color: #555555;'>"</span><span>                      2    0.534    0.267     12.9    0.000</span><span style='text-decoration: underline;'>009</span><span>94
+#&gt; </span><span style='color: #555555;'>13</span><span> </span><span style='color: #555555;'>"</span><span>H3</span><span style='color: #555555;'>"</span><span>                      2    0.584    0.292     14.1    0.000</span><span style='text-decoration: underline;'>003</span><span>81
+#&gt; </span><span style='color: #555555;'>14</span><span> </span><span style='color: #555555;'>"</span><span>H4</span><span style='color: #555555;'>"</span><span>                      2    0.354    0.177      8.55   0.000</span><span style='text-decoration: underline;'>365</span><span>  
+#&gt; </span><span style='color: #555555;'>15</span><span> </span><span style='color: #555555;'>"</span><span>H5</span><span style='color: #555555;'>"</span><span>                      2    0.140    0.070</span><span style='text-decoration: underline;'>1</span><span>     3.39   0.037</span><span style='text-decoration: underline;'>6</span><span>    
+#&gt; </span><span style='color: #555555;'>16</span><span> </span><span style='color: #555555;'>"</span><span>H6</span><span style='color: #555555;'>"</span><span>                      2    0.334    0.167      8.06   0.000</span><span style='text-decoration: underline;'>559</span><span>  
+#&gt; </span><span style='color: #555555;'>17</span><span> </span><span style='color: #555555;'>"</span><span>H7</span><span style='color: #555555;'>"</span><span>                      2    0.241    0.121      5.83   0.003</span><span style='text-decoration: underline;'>98</span><span>   
+#&gt; </span><span style='color: #555555;'>18</span><span> </span><span style='color: #555555;'>"</span><span>H8</span><span style='color: #555555;'>"</span><span>                      2    0.505    0.253     12.2    0.000</span><span style='text-decoration: underline;'>017</span><span>4 
+#&gt; </span><span style='color: #555555;'>19</span><span> </span><span style='color: #555555;'>"</span><span>H9</span><span style='color: #555555;'>"</span><span>                      2    0.172    0.086</span><span style='text-decoration: underline;'>1</span><span>     4.16   0.018</span><span style='text-decoration: underline;'>3</span><span>    
+#&gt; </span><span style='color: #555555;'>20</span><span> </span><span style='color: #555555;'>"</span><span>Pooled error</span><span style='color: #555555;'>"</span><span>          104    2.15     0.020</span><span style='text-decoration: underline;'>7</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>         
 #&gt; ---------------------------------------------------------------------------
 #&gt; Regression parameters
 #&gt; ---------------------------------------------------------------------------

@@ -93,7 +93,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -208,9 +208,18 @@
     <p>Compute the most used measures of central tendency, position, and dispersion.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>desc_stat</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"main"</span>,
-  <span class='kw'>hist</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>())</pre>
+    <pre class="usage"><span class='fu'>desc_stat</span>(
+  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"main"</span>,
+  <span class='kw'>hist</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -329,7 +338,7 @@ silently.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> Q2.5       233.
 #&gt; </span><span style='color: #555555;'> 9</span><span> Q25        310.
 #&gt; </span><span style='color: #555555;'>10</span><span> median     342.
-#&gt; </span><span style='color: #555555;'># ... with 18 more rows</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'># … with 18 more rows</span><span></div><div class='input'>
 <span class='co'># Select specific statistics</span>
 <span class='fu'>desc_stat</span>(<span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>13</span>, <span class='fl'>19</span>, <span class='fl'>21</span>, <span class='fl'>8</span>, <span class='fl'>NA</span>, <span class='fl'>23</span>, <span class='fl'>NA</span>),
           <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,

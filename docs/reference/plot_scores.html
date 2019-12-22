@@ -94,7 +94,7 @@ interpretations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -210,19 +210,50 @@ interpretations." />
 interpretations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_scores</span>(<span class='no'>x</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(), <span class='kw'>axis.expand</span> <span class='kw'>=</span> <span class='fl'>1.1</span>, <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(), <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
-  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>shape.gen</span> <span class='kw'>=</span> <span class='fl'>21</span>, <span class='kw'>shape.env</span> <span class='kw'>=</span> <span class='fl'>23</span>,
-  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>size.bor.tick</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>size.tex.pa</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>size.segm.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>col.bor.gen</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.bor.env</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>, <span class='kw'>col.alpha.gen</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>col.alpha.env</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>col.segm.gen</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>,
-  <span class='kw'>col.segm.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>, <span class='kw'>repulsion</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Env"</span>,
-  <span class='st'>"Gen"</span>), <span class='kw'>line.type</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>line.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
-  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_scores</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
+  <span class='kw'>axis.expand</span> <span class='kw'>=</span> <span class='fl'>1.1</span>,
+  <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>y.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
+  <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
+  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>shape.gen</span> <span class='kw'>=</span> <span class='fl'>21</span>,
+  <span class='kw'>shape.env</span> <span class='kw'>=</span> <span class='fl'>23</span>,
+  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>2.2</span>,
+  <span class='kw'>size.bor.tick</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
+  <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>size.tex.pa</span> <span class='kw'>=</span> <span class='fl'>3.5</span>,
+  <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>size.segm.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>col.bor.gen</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>col.bor.env</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>,
+  <span class='kw'>col.alpha.gen</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>col.alpha.env</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>col.segm.gen</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>,
+  <span class='kw'>col.segm.env</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>,
+  <span class='kw'>repulsion</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Env"</span>, <span class='st'>"Gen"</span>),
+  <span class='kw'>line.type</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
+  <span class='kw'>line.alpha</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
+  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -430,7 +461,7 @@ genotypes targeted for specific environments, thus allowing the exploitation
 of narrow adaptations.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. L'ucio, J.A.G. da silva, V.S. Marchioro,
+    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J.

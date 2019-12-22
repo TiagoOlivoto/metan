@@ -93,7 +93,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -208,9 +208,18 @@
     <p>Performs clustering for genotypes or tester environments based on a dissimilarity matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ge_cluster</span>(<span class='no'>.data</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gen</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distmethod</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>clustmethod</span> <span class='kw'>=</span> <span class='st'>"ward.D"</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='st'>"env"</span>, <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>ge_cluster</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>env</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>distmethod</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>,
+  <span class='kw'>clustmethod</span> <span class='kw'>=</span> <span class='st'>"ward.D"</span>,
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='st'>"env"</span>,
+  <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

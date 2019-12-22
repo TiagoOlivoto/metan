@@ -96,7 +96,7 @@ permutations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -214,14 +214,36 @@ plots and in the lower diagonal the result of Mantel test based on
 permutations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pairs_mantel</span>(<span class='no'>...</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>nrepet</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
-  <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>signcol</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
-  <span class='kw'>diagcol</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+    <pre class="usage"><span class='fu'>pairs_mantel</span>(
+  <span class='no'>...</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>nrepet</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+  <span class='kw'>names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
+  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
+  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
+  <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>signcol</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
+  <span class='kw'>diagcol</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

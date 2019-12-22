@@ -225,7 +225,6 @@ reference:
       - replace_string
       - resca
       - round_column
-      - round_value
       - sem
       - select_non_numeric_cols
       - select_numeric_cols
