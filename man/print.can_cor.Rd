@@ -17,7 +17,7 @@ to the working directory}
 \item{digits}{The significant digits to be shown.}
 
 \item{...}{Options used by the tibble package to format the output. See
-\code{\link[tibble]{formatting}} for more details.}
+\code{\link[tibble:formatting]{tibble::print()}} for more details.}
 }
 \description{
 Print an object of class \code{can_cor} object in two ways. By default, the
