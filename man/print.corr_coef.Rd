@@ -2,10 +2,7 @@
 % Please edit documentation in R/corr_coef.R
 \name{print.corr_coef}
 \alias{print.corr_coef}
-\title{Print an object of class corr_coef
-Print the \code{corr_coef} object in two ways. By default, the results
-are shown in the R console. The results can also be exported to the directory
-into a *.txt file.}
+\title{Print an object of class corr_coef}
 \usage{
 \method{print}{corr_coef}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
@@ -23,7 +20,6 @@ the working directory.}
 \code{\link[tibble]{formatting}} for more details.}
 }
 \description{
-Print an object of class corr_coef
 Print the \code{corr_coef} object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the directory
 into a *.txt file.

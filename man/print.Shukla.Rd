@@ -2,10 +2,7 @@
 % Please edit documentation in R/print.Shukla.R
 \name{print.Shukla}
 \alias{print.Shukla}
-\title{Print an object of class Shukla
-Print the \code{Shukla} object in two ways. By default, the results
-are shown in the R console. The results can also be exported to the directory
-into a *.txt file.}
+\title{Print an object of class Shukla}
 \usage{
 \method{print}{Shukla}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
@@ -20,10 +17,9 @@ the working directory.}
 \item{digits}{The significant digits to be shown.}
 
 \item{...}{Options used by the tibble package to format the output. See
-\code{\link[tibble]{trunc_mat}} for more details.}
+\code{\link[tibble]{formatting}} for more details.}
 }
 \description{
-Print an object of class Shukla
 Print the \code{Shukla} object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the directory
 into a *.txt file.

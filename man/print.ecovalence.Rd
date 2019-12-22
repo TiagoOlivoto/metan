@@ -2,10 +2,7 @@
 % Please edit documentation in R/print.ecovalence.R
 \name{print.ecovalence}
 \alias{print.ecovalence}
-\title{Print an object of class ecovalence
-Print the \code{ecovalence} object in two ways. By default, the results
-are shown in the R console. The results can also be exported to the directory
-into a *.txt file.}
+\title{Print an object of class ecovalence}
 \usage{
 \method{print}{ecovalence}(x, export = FALSE, file.name = NULL, digits = 3, ...)
 }
@@ -20,10 +17,9 @@ the working directory.}
 \item{digits}{The significant digits to be shown.}
 
 \item{...}{Options used by the tibble package to format the output. See
-\code{\link[tibble]{trunc_mat}} for more details.}
+\code{\link[tibble]{formatting}} for more details.}
 }
 \description{
-Print an object of class ecovalence
 Print the \code{ecovalence} object in two ways. By default, the results
 are shown in the R console. The results can also be exported to the directory
 into a *.txt file.
