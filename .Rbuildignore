@@ -13,6 +13,7 @@
 ^vignettes/vignettes_helper\.Rmd$
 ^vignettes/vignettes_stability\.Rmd$
 ^vignettes/vignettes_gge\.Rmd$
+^vignettes/vignettes_utilities\.Rmd$
 ^README_file$
 ^Meta$
 ^README_files$

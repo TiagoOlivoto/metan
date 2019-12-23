@@ -74,7 +74,7 @@
 #' all_lower_case("GENOTYPE")
 #' lc <- all_lower_case(data_ge)
 #' lc
-#' all_lower_case(genotype)
+#' all_lower_case("GENOTYPE")
 #'
 #' all_upper_case("Genotype")
 #' all_upper_case(lc)

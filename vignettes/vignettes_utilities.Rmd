@@ -1,0 +1,147 @@
+---
+title: "Utilities for data manipulation"
+author: "Tiago Olivoto"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+link-citations: true
+bibliography: metanref.bib 
+vignette: >
+  %\VignetteIndexEntry{Utilities for data manipulation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(comment = "")
+```
+
+
+# Utilities for rows and columns
+## Add columns and rows
+The functions `add_cols()` and `add_rows()` can be used to add columns and rows, respectively to a data frame.
+
+```{r message=FALSE, warning=FALSE}
+library(metan)
+add_columns(data_ge,
+            ROW_ID = 1:420)
+add_columns(data_ge,
+            ROW_ID = 1:420,
+            before = "GEN")
+```
+
+
+## Concatenating columns
+The function `concatetate()` can be used to concatenate either two columns of a data frame or a column and specified values. Return a data frame with all the original columns in .data plus the concatenated variable, after the last column.
+
+
+```{r}
+concatenate(data_ge, ENV, GEN)
+```
+
+If only one column is in the data, `col_1` or `col_2` must be a numeric or a character vector of length equals to the number of rows in data. Vectors of length 1 will be recycled.
+
+```{r}
+concatenate(data_ge, ENV, rep(1:14, each=30))
+
+```
+
+Other functions can be used to provide such vector. Here, we will replace the string "G" in the variable `GEN` with "GEN" and concatenate this column with the column `ENV`. Note that the argument `pull` into the function `replace_string()` is used to pull out the result to a vector. 
+
+```{r}
+conc_data <- 
+concatenate(data_ge,
+            col_1 = ENV,
+            col_2 = replace_string(data_ge,
+                                   GEN,
+                                   replacement = "GEN_",
+                                   pull = TRUE),
+            new_var = ENV_GEN)
+conc_data
+```
+
+To check if a column exists in a data frame, use `column_exists()`
+
+```{r}
+column_exists(conc_data, "ENV_GEN")
+```
+
+## Getting levels
+To get the levels and the size of the levels of a factor, the functions `get_levels()` and `get_level_size()` can be used.
+
+```{r}
+get_levels(conc_data, ENV)
+get_level_size(conc_data, ENV)
+```
+
+## Selecting numeric and non-numeric columns
+Numeric columns can be selected quickly by using the function `select_numeric_cols()`. Non-numeric columns are selected with `select_non_numeric_cols()`
+
+```{r}
+select_numeric_cols(data_ge2)
+select_non_numeric_cols(data_ge2)
+```
+
+
+# Utilities for numbers and strings
+## Rounding whole data frames
+The function `round_column()`round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are infomed, then all numeric variables are rounded.
+
+```{r}
+head(data_ge2)
+round_column(data_ge2)
+```
+
+Alternatively, select variables to round.
+```{r}
+round_column(data_ge2, PH, EP, digits = 1)
+```
+
+## Extracting and replacing numbers
+
+The functions `extract_number()`, and `replace_number()` can be used to extract or replace numbers. As an example, we will extract the number of each genotype in `data_g`. By default, the extracted numbers are put as a new variable called `new_var` after the last column of the data.
+
+```{r}
+extract_number(data_ge, GEN)
+```
+
+If the argument `drop` is set to `TRUE` then, only the new variable is keept and all others are dropped.
+
+```{r}
+extract_number(data_ge, GEN, drop = TRUE)
+```
+
+To pull out the results into a vector, use the argument `pull = TRUE`. This is particularly useful when `extract_*` or `replace_*` are used within a function like `mutate()`.
+
+
+```{r}
+extract_number(data_ge, GEN, pull = TRUE)
+```
+
+To replace numbers of a given column with a specified replacement, use `replace_number()`. By default, numbers are replaced with "". The argument `drop` and `pull` can also be used, as shown above.
+
+```{r}
+replace_number(data_ge, GEN)
+replace_number(data_ge,
+               var = REP,
+               pattern = "1",
+               replacement = "Rep_1",
+               new_var = R_ONE)
+```
+
+## Extracting and replacing strings
+The functions `extract_string()`, and `replace_string()` are used in the same context of `extract_number()`, and `replace_number()`, but for handling with strings.
+
+```{r}
+extract_string(data_ge, GEN)
+```
+
+To replace strings, we can use the function `replace_strings()`.
+```{r}
+replace_string(data_ge,
+               var = GEN,
+               new_var = GENOTYPE,
+               replacement = "GENOTYPE_")
+```
+
+

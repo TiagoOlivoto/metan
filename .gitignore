@@ -4,15 +4,6 @@ Meta
 .RData
 .Ruserdata
 .bib
-vignettes/vignettes_helper_cache/
-vignettes/vignettes_cross-validation_cache/
-vignettes/vignettes_ammi_cache/
-vignettes/vignettes_biometry_cache/
-vignettes/vignettes_blup_cache/
-vignettes/vignettes_gge_cache/
-vignettes/vignettes_indexes_cache/
-vignettes/vignettes_metan_cache/
-vignettes/vignettes_stability_cache/
 vignettes/*.RData
 vignettes/*.bib
 doc

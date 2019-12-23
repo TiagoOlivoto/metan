@@ -44,6 +44,8 @@ navbar:
         href: articles/vignettes_biometry.html
       - text: "Helper"
         href: articles/vignettes_helper.html
+      - text: "Utilities"
+        href: articles/vignettes_utilities.html
     - text: "Functions"
       href: reference/index.html
     - text: News
