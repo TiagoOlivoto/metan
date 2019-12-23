@@ -391,8 +391,7 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
       .data %>%
       mutate(...) %>%
       select(-!!colnames(bfr), -!!colnames(aft))
-    results <- cbind(bfr, df2, aft) %>%
-      as_tibble()
+    results <- cbind(bfr, df2, aft)
   } else if (!is.null(.after)) {
     if(is.character(.after)){
       if(!(.after %in% colnames(.data))){
@@ -407,8 +406,7 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
       .data %>%
       mutate(...) %>%
       select(-!!colnames(bfr), -!!colnames(aft))
-    results <- cbind(bfr, df2, aft) %>%
-      as_tibble()
+    results <- cbind(bfr, df2, aft)
   } else{
     results <- mutate(.data, ...)
   }
