@@ -173,10 +173,10 @@
 <div id="add-columns-and-rows" class="section level2">
 <h2 class="hasAnchor">
 <a href="#add-columns-and-rows" class="anchor"></a>Add columns and rows</h2>
-<p>The functions <code>add_cols()</code> and <code><a href="../reference/utils-rows-cols.html">add_rows()</a></code> can be used to add columns and rows, respectively to a data frame.</p>
+<p>The functions <code><a href="../reference/utils-rows-cols.html">add_cols()</a></code> and <code><a href="../reference/utils-rows-cols.html">add_rows()</a></code> can be used to add columns and rows, respectively to a data frame.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="../reference/utils-rows-cols.html">add_columns</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb1-3" title="3">            <span class="dt">ROW_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">420</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="../reference/utils-rows-cols.html">add_cols</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb1-3" title="3">         <span class="dt">ROW_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">420</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP      GY    HM ROW_ID
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;
@@ -191,22 +191,23 @@
  9 E1    G3    3      2.28  47.8      9
 10 E1    G4    1      2.36  47.9     10
 # … with 410 more rows</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">add_columns</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb3-2" title="2">            <span class="dt">ROW_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">420</span>,</a>
-<a class="sourceLine" id="cb3-3" title="3">            <span class="dt">before =</span> <span class="st">"GEN"</span>)</a></code></pre></div>
+<p>It is also possible to add a column based on existing data.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">add_cols</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb3-2" title="2">         <span class="dt">GY2 =</span> GY<span class="op">^</span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb3-3" title="3">         <span class="dt">after =</span> <span class="st">"GY"</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
-   ENV   ROW_ID GEN   REP      GY    HM
-   &lt;fct&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 E1         1 G1    1      2.17  44.9
- 2 E1         2 G1    2      2.50  46.9
- 3 E1         3 G1    3      2.43  47.8
- 4 E1         4 G2    1      3.21  45.2
- 5 E1         5 G2    2      2.93  45.3
- 6 E1         6 G2    3      2.56  45.5
- 7 E1         7 G3    1      2.77  46.7
- 8 E1         8 G3    2      3.62  43.2
- 9 E1         9 G3    3      2.28  47.8
-10 E1        10 G4    1      2.36  47.9
+   ENV   GEN   REP      GY   GY2    HM
+   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 E1    G1    1      2.17  4.70  44.9
+ 2 E1    G1    2      2.50  6.27  46.9
+ 3 E1    G1    3      2.43  5.89  47.8
+ 4 E1    G2    1      3.21 10.3   45.2
+ 5 E1    G2    2      2.93  8.60  45.3
+ 6 E1    G2    3      2.56  6.58  45.5
+ 7 E1    G3    1      2.77  7.67  46.7
+ 8 E1    G3    2      3.62 13.1   43.2
+ 9 E1    G3    3      2.28  5.18  47.8
+10 E1    G4    1      2.36  5.57  47.9
 # … with 410 more rows</code></pre>
 </div>
 <div id="select-or-remove-columns-and-rows" class="section level2">

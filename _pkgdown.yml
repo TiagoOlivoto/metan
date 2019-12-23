@@ -190,7 +190,7 @@ reference:
   - title: "Helper"
     desc: "Helper functions for metan package"
     contents:
-      - add_columns
+      - add_cols
       - add_rows
       - all_lower_case
       - all_pairs
