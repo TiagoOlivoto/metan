@@ -102,7 +102,7 @@ extract_number <- function(.data,
            {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
     )
     if(pull == TRUE){
-      results <- pull(repl_str)
+      results <- pull(results)
     }
   } else{
     results <-
@@ -110,7 +110,7 @@ extract_number <- function(.data,
               {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
     )
     if(pull == TRUE){
-      results <- pull(repl_str)
+      results <- pull(results)
     }
   }
   return(results)
