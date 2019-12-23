@@ -377,7 +377,7 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
     message("Putting variables after the last column is the default setting. Setting '.after' to NULL.", call. = FALSE)
     .after = NULL
   }
-   if (!missing(.before)){
+  if (!missing(.before)){
     if(is.character(.before)){
       if(!(.before %in% colnames(.data))){
         stop("Column '.before' not in .data")
@@ -387,9 +387,7 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
     }
     bfr <- .data[,1:which(colnames(.data) ==  .before)-1]
     aft <- select(.data, -!!colnames(bfr))
-    df2 <-
-      .data %>%
-      mutate(...) %>%
+    df2 <- mutate(.data, ...) %>%
       select(-!!colnames(bfr), -!!colnames(aft))
     results <- cbind(bfr, df2, aft)
   } else if (!is.null(.after)) {
@@ -402,16 +400,14 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
     }
     aft <- .data[,(which(colnames(.data) ==  .after)+1):ncol(.data)]
     bfr <- select(.data, -!!colnames(aft))
-    df2 <-
-      .data %>%
-      mutate(...) %>%
+    df2 <-  mutate(.data, ...) %>%
       select(-!!colnames(bfr), -!!colnames(aft))
     results <- cbind(bfr, df2, aft)
   } else{
     results <- mutate(.data, ...)
   }
   return(results)
-  }
+}
 #' @name utils-rows-cols
 #' @export
 add_rows <- function(.data, ..., .before = NULL, .after = NULL){
