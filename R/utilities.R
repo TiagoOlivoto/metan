@@ -374,7 +374,7 @@ NULL
 #' }
 add_cols <- function(.data, ..., .before = NULL, .after = NULL){
   if (!missing(.after) && .after == names(.data[ncol(.data)])){
-    message("Putting variables .after the last column. Setting '.after' to NULL.", call. = FALSE)
+    message("Putting variables after the last column is the default setting. Setting '.after' to NULL.", call. = FALSE)
     .after = NULL
   }
    if (!missing(.before)){
