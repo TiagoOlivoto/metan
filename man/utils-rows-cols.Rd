@@ -31,8 +31,7 @@ select_rows(.data, ...)
 
 concatenate(
   .data,
-  col_1,
-  col_2,
+  ...,
   new_var = new_var,
   sep = "_",
   drop = FALSE,
@@ -54,30 +53,30 @@ select_non_numeric_cols(.data)
 \arguments{
 \item{.data}{A data frame}
 
-\item{...}{Name-value pairs. All values must have one element for each row in
-\code{.data} when using \code{add_cols} or one element for each column in
-\code{.data} when using \code{add_rows}. Values of length 1 will be
-recycled when using \code{add_cols}. For \code{remove_cols()} and
-\code{select_cols()},  \code{...} is the column name or column index of the
-variable(s) to be dropped. For \code{remove_rows()} and
-\code{select_rows()}, \code{...} are the integer row values.}
+\item{...}{The argument depends on the function used.
+\itemize{
+\item For \code{add_cols()} and \code{add_rows()} is name-value pairs. All values
+must have one element for each row in \code{.data} when using
+\code{add_cols()} or one element for each column in \code{.data} when using
+\code{add_rows()}. Values of length 1 will be recycled when using
+\code{add_cols()}.
+\item For \code{remove_cols()} and \code{select_cols()},  \code{...} is the
+column name or column index of the variable(s) to be dropped.
+\item For \code{remove_rows()} and \code{select_rows()}, \code{...} is an integer
+row value.
+\item For \code{concatenate()}, \code{...} is the unquoted variable names to be
+concatenated.
+}}
 
-\item{.before, .after}{For \code{add_cols}, one-based column index or column
+\item{.before, .after}{For \code{add_cols()}, one-based column index or column
 name where to add the new columns, default: .after last column. For
-\code{add_rows}, one-based row index where to add the new rows, default:
+\code{add_rows()}, one-based row index where to add the new rows, default:
 .after last row.}
 
-\item{col_1, col_2}{An unquoted variable name for the first and second
-columns to concatenate, respectively. If both columns are in \code{.data},
-the values of those columns will be concatenated. Else, \code{col_1} or
-\code{col_2} must be a numeric or a character vector of length equals to
-the number of rows in \code{.data}. Vectors of length 1 will be recycled.}
-
 \item{new_var}{The name of the new variable containing the concatenated
-values from \code{col_1} and \code{col_2}. Defaults to \code{new_var}.}
+values. Defaults to \code{new_var}.}
 
-\item{sep}{The separator to be between values of \code{col_1} and
-\code{col_2}. Defaults to "_".}
+\item{sep}{The separator to appear between concatenated variables. Defaults to "_".}
 
 \item{drop}{Logical argument. If \code{TRUE} keeps the new variable
 \code{new_var} and drops the existing ones. Defaults to \code{FALSE}.}
@@ -85,7 +84,7 @@ values from \code{col_1} and \code{col_2}. Defaults to \code{new_var}.}
 \item{pull}{Logical argument. If \code{TRUE}, returns the last column (on the
 assumption that's the column you've created most recently), as a vector.}
 
-\item{cols}{A quoted variable name to check if it exists in \code{.data}}
+\item{cols}{A quoted variable name to check if it exists in \code{.data}.}
 
 \item{group}{A factor variable to get the levels.}
 
@@ -157,28 +156,14 @@ remove_rows(data_ge2, GEN, REP)
 remove_rows(data_ge2, 2:3)
 
 ########### Concatenating columns ################
-# Both variables in data
-concatenate(data_ge, ENV, GEN)
+concatenate(data_ge, ENV, GEN, REP)
+concatenate(data_ge, ENV, GEN, REP, drop = TRUE)
 
 # Combine with add_cols()
 data_ge2 \%>\%
   add_cols(ENV_GEN = concatenate(., ENV, GEN, pull = TRUE),
            .after = "GEN")
 
-# One variable in data
-concatenate(data_ge, ENV, rep(1:14, each=30))
-
-# One variable in data, recycling the second one.
-concatenate(data_ge, ENV, 1)
-
-# None variables in data
-# Set name of the concatenate variable
-# Set the separator symbol
-concatenate(data_ge,
-            col_1 = rep("ENV", 420),
-            col_2 = rep(1:14, each=30),
-            new_var = ENVIRONMENT,
-            sep = "-")
 
 ################### Adding rows ##################
 data_ge \%>\%
