@@ -406,7 +406,7 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
   } else{
     results <- mutate(.data, ...)
   }
-  return(results)
+  return(as_tibble(results))
 }
 #' @name utils-rows-cols
 #' @export
