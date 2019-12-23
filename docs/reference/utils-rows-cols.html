@@ -55,6 +55,14 @@ add_cols(): Add one or more columns to an existing data frame. If
 specified before or after columns does not exist, columns are
 appended at the end of the data. Return a data frame with all the original
 columns in .data plus the columns declared in ....
+add_rows(): Add one or more rows to an existing data frame. If
+specified before or after rows does not exist, rows are
+appended at the end of the data. Return a data frame with all the original
+rows in .data plus the rows declared in ....
+remove_cols(): Remove one or more columns from a data frame.
+remove_rows(): Remove one or more rows from a data frame.
+select_cols(): Select one or more columns from a data frame.
+select_rows(): Select one or more rows from a data frame.
 concatenate(): Concatenate either two columns of a data frame or a
 column and specified values. Return a data frame with all the original
 columns in .data plus the concatenated variable, after the last
@@ -235,6 +243,14 @@ data frame.
 specified <code>before</code> or <code>after</code> columns does not exist, columns are
 appended at the end of the data. Return a data frame with all the original
 columns in <code>.data</code> plus the columns declared in <code>...</code>.</p></li>
+<li><p><code>add_rows()</code>: Add one or more rows to an existing data frame. If
+specified <code>before</code> or <code>after</code> rows does not exist, rows are
+appended at the end of the data. Return a data frame with all the original
+rows in <code>.data</code> plus the rows declared in <code>...</code>.</p></li>
+<li><p><code>remove_cols()</code>: Remove one or more columns from a data frame.</p></li>
+<li><p><code>remove_rows()</code>: Remove one or more rows from a data frame.</p></li>
+<li><p><code>select_cols()</code>: Select one or more columns from a data frame.</p></li>
+<li><p><code>select_rows()</code>: Select one or more rows from a data frame.</p></li>
 <li><p><code>concatenate()</code>: Concatenate either two columns of a data frame or a
 column and specified values. Return a data frame with all the original
 columns in <code>.data</code> plus the concatenated variable, after the last
@@ -256,6 +272,14 @@ data frame.</p></li>
     <pre class="usage"><span class='fu'>add_columns</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>before</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>add_rows</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>before</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>remove_cols</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+
+<span class='fu'>remove_rows</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+
+<span class='fu'>select_cols</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+
+<span class='fu'>select_rows</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
 <span class='fu'>concatenate</span>(<span class='no'>.data</span>, <span class='no'>col_1</span>, <span class='no'>col_2</span>, <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>)
 
@@ -283,7 +307,10 @@ data frame.</p></li>
       <td><p>Name-value pairs. All values must have one element for each row in
 <code>.data</code> when using <code>add_cols</code> or one element for each column in
 <code>.data</code> when using <code>add_rows</code>. Values of length 1 will be
-recycled when using <code>add_cols</code>.</p></td>
+recycled when using <code>add_cols</code>. For <code>remove_cols()</code> and
+<code>select_cols()</code>,  <code>...</code> is the column name or column index of the
+variable(s) to be dropped. For <code>remove_rows()</code> and
+<code>select_rows()</code>, <code>...</code> are the integer row values.</p></td>
     </tr>
     <tr>
       <th>before, after</th>
@@ -364,6 +391,110 @@ values from <code>col_1</code> and <code>col_2</code>. Defaults to <code>new_var
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1       10    30 G3    3      2.28  47.8
 #&gt; </span><span style='color: #555555;'>10</span><span> E1       10    30 G4    1      2.36  47.9
 #&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'>
+<span class='co'>####### Selecting and removing columns ##########</span>
+<span class='fu'>select_cols</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 2</span><span>
+#&gt;    GEN   REP  
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1    1    
+#&gt; </span><span style='color: #555555;'> 2</span><span> H1    2    
+#&gt; </span><span style='color: #555555;'> 3</span><span> H1    3    
+#&gt; </span><span style='color: #555555;'> 4</span><span> H10   1    
+#&gt; </span><span style='color: #555555;'> 5</span><span> H10   2    
+#&gt; </span><span style='color: #555555;'> 6</span><span> H10   3    
+#&gt; </span><span style='color: #555555;'> 7</span><span> H11   1    
+#&gt; </span><span style='color: #555555;'> 8</span><span> H11   2    
+#&gt; </span><span style='color: #555555;'> 9</span><span> H11   3    
+#&gt; </span><span style='color: #555555;'>10</span><span> H12   1    
+#&gt; </span><span style='color: #555555;'># … with 146 more rows</span><span></div><div class='input'><span class='fu'>select_cols</span>(<span class='no'>data_ge2</span>, <span class='fl'>2</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 2</span><span>
+#&gt;    GEN   REP  
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1    1    
+#&gt; </span><span style='color: #555555;'> 2</span><span> H1    2    
+#&gt; </span><span style='color: #555555;'> 3</span><span> H1    3    
+#&gt; </span><span style='color: #555555;'> 4</span><span> H10   1    
+#&gt; </span><span style='color: #555555;'> 5</span><span> H10   2    
+#&gt; </span><span style='color: #555555;'> 6</span><span> H10   3    
+#&gt; </span><span style='color: #555555;'> 7</span><span> H11   1    
+#&gt; </span><span style='color: #555555;'> 8</span><span> H11   2    
+#&gt; </span><span style='color: #555555;'> 9</span><span> H11   3    
+#&gt; </span><span style='color: #555555;'>10</span><span> H12   1    
+#&gt; </span><span style='color: #555555;'># … with 146 more rows</span><span></div><div class='input'><span class='fu'>remove_cols</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 16</span><span>
+#&gt;    ENV      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1     2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6  36.6 0.538
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1     2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16    31.4 0.551
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1     2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2  31.8 0.561
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1     2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6  32.8 0.586
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1     2.79  1.71 0.616  14.9  52.7  32.0  15.5  20.7  176.  17.6  28   0.607
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1     2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8  32.8 0.577
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1     2.75  1.51 0.549  17.4  51.7  30.6  18.0  26.2  217.  16.8  34.6 0.594
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1     2.72  1.56 0.573  16.7  47.2  28.7  17.2  24.1  181.  13.6  34.4 0.608
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1     2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2  34.8 0.576
+#&gt; </span><span style='color: #555555;'>10</span><span> A1     2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8  31.6 0.597
+#&gt; </span><span style='color: #555555;'># … with 146 more rows, and 3 more variables: PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_cols</span>(<span class='no'>data_ge2</span>, <span class='fl'>2</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 16</span><span>
+#&gt;    ENV      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1     2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6  36.6 0.538
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1     2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16    31.4 0.551
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1     2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2  31.8 0.561
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1     2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6  32.8 0.586
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1     2.79  1.71 0.616  14.9  52.7  32.0  15.5  20.7  176.  17.6  28   0.607
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1     2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8  32.8 0.577
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1     2.75  1.51 0.549  17.4  51.7  30.6  18.0  26.2  217.  16.8  34.6 0.594
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1     2.72  1.56 0.573  16.7  47.2  28.7  17.2  24.1  181.  13.6  34.4 0.608
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1     2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2  34.8 0.576
+#&gt; </span><span style='color: #555555;'>10</span><span> A1     2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8  31.6 0.597
+#&gt; </span><span style='color: #555555;'># … with 146 more rows, and 3 more variables: PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='co'>######## Selecting and removing rows ###########</span>
+<span class='fu'>select_rows</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 312 x 18</span><span>
+#&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    1      2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H1    1      2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H1    1      2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H1    2      2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H1    2      2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H1    2      2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H1    3      2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H1    3      2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H1    3      2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
+#&gt; </span><span style='color: #555555;'>10</span><span> A1    H10   1      2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6
+#&gt; </span><span style='color: #555555;'># … with 302 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>select_rows</span>(<span class='no'>data_ge2</span>, <span class='fl'>2</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 18</span><span>
+#&gt;   ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> A1    H1    2      2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #555555;'>2</span><span> A1    H1    3      2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
+#&gt; </span><span style='color: #555555;'># … with 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_rows</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 143 x 18</span><span>
+#&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H13   2      2.64  1.37 0.517  14.8  53.7  31.0  15.5  31.1  239.  20.4
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H13   3      2.93  1.77 0.602  14.9  52.7  30.1  15.8  31.3  212.  15.6
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H2    1      2.55  1.22 0.481  15.1  51.7  27.7  15.3  23.7  198.  16.4
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H2    2      2.90  1.41 0.484  15.1  51.5  26.0  16    19.1  212.  21.2
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H2    3      2.92  1.39 0.477  14.8  52.6  26.0  15.1  17.8  202.  20  
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H3    1      3.04  1.43 0.470  15.0  51.7  25.9  16.6  20.6  210.  19.6
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H3    2      2.94  1.66 0.564  14.9  51.5  31.3  15.5  26.4  193.  18  
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H3    3      2.82  1.67 0.593  16.5  52.2  26.7  17.1  26.0  192.  18  
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H4    1      3.02  1.82 0.601  16.5  50.4  27.3  17.3  27.4  193.  16.8
+#&gt; </span><span style='color: #555555;'>10</span><span> A1    H4    2      2.84  1.69 0.593  15.0  52.2  27.9  15.7  24.1  216.  18.4
+#&gt; </span><span style='color: #555555;'># … with 133 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_rows</span>(<span class='no'>data_ge2</span>, <span class='fl'>2</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 154 x 18</span><span>
+#&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    1      2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H10   1      2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H10   2      2.79  1.71 0.616  14.9  52.7  32.0  15.5  20.7  176.  17.6
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H10   3      2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H11   1      2.75  1.51 0.549  17.4  51.7  30.6  18.0  26.2  217.  16.8
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H11   2      2.72  1.56 0.573  16.7  47.2  28.7  17.2  24.1  181.  13.6
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H11   3      2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H12   1      2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H12   2      2.56  1.56 0.616  15.7  49.9  29.9  16.2  24.0  188.  17.2
+#&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   3      2.79  1.53 0.546  15.0  52.7  31.4  15.2  32.9  193.  20  
+#&gt; </span><span style='color: #555555;'># … with 144 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'>########### Concatenating columns ################</span>
 <span class='co'># Both variables in data</span>
 <span class='fu'>concatenate</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
