@@ -4,6 +4,10 @@
 \alias{utils-rows-cols}
 \alias{add_columns}
 \alias{add_rows}
+\alias{remove_cols}
+\alias{remove_rows}
+\alias{select_cols}
+\alias{select_rows}
 \alias{concatenate}
 \alias{column_exists}
 \alias{get_levels}
@@ -16,6 +20,14 @@
 add_columns(.data, ..., before = NULL, after = NULL)
 
 add_rows(.data, ..., before = NULL, after = NULL)
+
+remove_cols(.data, ...)
+
+remove_rows(.data, ...)
+
+select_cols(.data, ...)
+
+select_rows(.data, ...)
 
 concatenate(.data, col_1, col_2, new_var = new_var, sep = "_")
 
@@ -37,7 +49,10 @@ select_non_numeric_cols(.data)
 \item{...}{Name-value pairs. All values must have one element for each row in
 \code{.data} when using \code{add_cols} or one element for each column in
 \code{.data} when using \code{add_rows}. Values of length 1 will be
-recycled when using \code{add_cols}.}
+recycled when using \code{add_cols}. For \code{remove_cols()} and
+\code{select_cols()},  \code{...} is the column name or column index of the
+variable(s) to be dropped. For \code{remove_rows()} and
+\code{select_rows()}, \code{...} are the integer row values.}
 
 \item{before, after}{For \code{add_cols}, one-based column index or column
 name where to add the new columns, default: after last column. For
@@ -68,6 +83,14 @@ values from \code{col_1} and \code{col_2}. Defaults to \code{new_var}.}
 specified \code{before} or \code{after} columns does not exist, columns are
 appended at the end of the data. Return a data frame with all the original
 columns in \code{.data} plus the columns declared in \code{...}.
+\item \code{add_rows()}: Add one or more rows to an existing data frame. If
+specified \code{before} or \code{after} rows does not exist, rows are
+appended at the end of the data. Return a data frame with all the original
+rows in \code{.data} plus the rows declared in \code{...}.
+\item \code{remove_cols()}: Remove one or more columns from a data frame.
+\item \code{remove_rows()}: Remove one or more rows from a data frame.
+\item \code{select_cols()}: Select one or more columns from a data frame.
+\item \code{select_rows()}: Select one or more rows from a data frame.
 \item \code{concatenate()}: Concatenate either two columns of a data frame or a
 column and specified values. Return a data frame with all the original
 columns in \code{.data} plus the concatenated variable, after the last
@@ -98,6 +121,18 @@ data_ge \%>\%
   add_columns(x = 10,
               y = 30,
               before = "GEN")
+
+####### Selecting and removing columns ##########
+select_cols(data_ge2, GEN, REP)
+select_cols(data_ge2, 2:3)
+remove_cols(data_ge2, GEN, REP)
+remove_cols(data_ge2, 2:3)
+
+######## Selecting and removing rows ###########
+select_rows(data_ge2, GEN, REP)
+select_rows(data_ge2, 2:3)
+remove_rows(data_ge2, GEN, REP)
+remove_rows(data_ge2, 2:3)
 
 ########### Concatenating columns ################
 # Both variables in data

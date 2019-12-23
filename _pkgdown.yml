@@ -221,6 +221,8 @@ reference:
       - means_by
       - rbind_fill
       - reorder_cormat
+      - remove_cols
+      - remove_rows
       - remove_cols_na
       - remove_rows_na
       - replace_number
@@ -229,6 +231,8 @@ reference:
       - round_column
       - sem
       - select_non_numeric_cols
+      - select_cols
+      - select_rows
       - select_numeric_cols
       - split_factors
       - solve_svd

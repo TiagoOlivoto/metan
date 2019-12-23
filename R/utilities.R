@@ -238,6 +238,14 @@ NULL
 #' specified \code{before} or \code{after} columns does not exist, columns are
 #' appended at the end of the data. Return a data frame with all the original
 #' columns in \code{.data} plus the columns declared in \code{...}.
+#' * \code{add_rows()}: Add one or more rows to an existing data frame. If
+#' specified \code{before} or \code{after} rows does not exist, rows are
+#' appended at the end of the data. Return a data frame with all the original
+#' rows in \code{.data} plus the rows declared in \code{...}.
+#' * \code{remove_cols()}: Remove one or more columns from a data frame.
+#' * \code{remove_rows()}: Remove one or more rows from a data frame.
+#' * \code{select_cols()}: Select one or more columns from a data frame.
+#' * \code{select_rows()}: Select one or more rows from a data frame.
 #' * \code{concatenate()}: Concatenate either two columns of a data frame or a
 #' column and specified values. Return a data frame with all the original
 #' columns in \code{.data} plus the concatenated variable, after the last
@@ -257,7 +265,10 @@ NULL
 #' @param ... Name-value pairs. All values must have one element for each row in
 #'   \code{.data} when using \code{add_cols} or one element for each column in
 #'   \code{.data} when using \code{add_rows}. Values of length 1 will be
-#'   recycled when using \code{add_cols}.
+#'   recycled when using \code{add_cols}. For \code{remove_cols()} and
+#'   \code{select_cols()},  \code{...} is the column name or column index of the
+#'   variable(s) to be dropped. For \code{remove_rows()} and
+#'   \code{select_rows()}, \code{...} are the integer row values.
 #' @param before,after For \code{add_cols}, one-based column index or column
 #'   name where to add the new columns, default: after last column. For
 #'   \code{add_rows}, one-based row index where to add the new rows, default:
@@ -291,6 +302,18 @@ NULL
 #'   add_columns(x = 10,
 #'               y = 30,
 #'               before = "GEN")
+#'
+#' ####### Selecting and removing columns ##########
+#' select_cols(data_ge2, GEN, REP)
+#' select_cols(data_ge2, 2:3)
+#' remove_cols(data_ge2, GEN, REP)
+#' remove_cols(data_ge2, 2:3)
+#'
+#' ######## Selecting and removing rows ###########
+#' select_rows(data_ge2, GEN, REP)
+#' select_rows(data_ge2, 2:3)
+#' remove_rows(data_ge2, GEN, REP)
+#' remove_rows(data_ge2, 2:3)
 #'
 #' ########### Concatenating columns ################
 #' # Both variables in data
@@ -360,6 +383,27 @@ add_rows <- function(.data, ..., before = NULL, after = NULL){
     }
   }
   add_row(.data, ..., .before = before, .after = after)
+}
+#' @name utils-rows-cols
+#' @importFrom rlang quos
+#' @export
+remove_cols <- function(.data, ...){
+  select(.data, -c(!!!quos(...)))
+}
+#' @name utils-rows-cols
+#' @export
+remove_rows <- function(.data, ...){
+  slice(.data, -c(!!!quos(...)))
+}
+#' @name utils-rows-cols
+#' @export
+select_cols <- function(.data, ...){
+  select(.data, ...)
+}
+#' @name utils-rows-cols
+#' @export
+select_rows <- function(.data, ...){
+  slice(.data, ...)
 }
 #' @name utils-rows-cols
 #' @export
