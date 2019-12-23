@@ -237,7 +237,9 @@ NULL
 #' * \code{add_cols()}: Add one or more columns to an existing data frame. If
 #' specified \code{before} or \code{after} columns does not exist, columns are
 #' appended at the end of the data. Return a data frame with all the original
-#' columns in \code{.data} plus the columns declared in \code{...}.
+#' columns in \code{.data} plus the columns declared in \code{...}. In
+#' \code{add_cols()} columns in \code{.data} are available for the expressions.
+#' So, it is possible to add a column based on existing data.
 #' * \code{add_rows()}: Add one or more rows to an existing data frame. If
 #' specified \code{before} or \code{after} rows does not exist, rows are
 #' appended at the end of the data. Return a data frame with all the original
@@ -260,7 +262,6 @@ NULL
 #' frame.
 #' * \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
 #' data frame.
-#'
 #' @param .data A data frame
 #' @param ... Name-value pairs. All values must have one element for each row in
 #'   \code{.data} when using \code{add_cols} or one element for each column in
@@ -282,6 +283,10 @@ NULL
 #'   values from \code{col_1} and \code{col_2}. Defaults to \code{new_var}.
 #' @param sep The separator to be between values of \code{col_1} and
 #'   \code{col_2}. Defaults to "_".
+#' @param drop Logical argument. If \code{TRUE} keeps the new variable
+#'   \code{new_var} and drops the existing ones. Defaults to \code{FALSE}.
+#' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
+#'   assumption that's the column you've created most recently), as a vector.
 #' @param cols A quoted variable name to check if it exists in \code{.data}
 #' @param group A factor variable to get the levels.
 #' @param levels The levels of a factor or a numeric vector.
@@ -295,13 +300,19 @@ NULL
 #' ################# Adding columns #################
 #' # Variables x and y after last column
 #' data_ge %>%
-#'   add_columns(x = 10,
-#'               y = 30)
+#'   add_cols(x = 10,
+#'            y = 30)
 #' # Variables x and y before the variable GEN
 #' data_ge %>%
-#'   add_columns(x = 10,
-#'               y = 30,
-#'               before = "GEN")
+#'   add_cols(x = 10,
+#'            y = 30,
+#'            before = "GEN")
+#'
+#' # Creating a new variable based on the existing ones.
+#' data_ge %>%
+#'   add_cols(GY2 = GY^2,
+#'            GY2_HM = GY2 + HM,
+#'            after = "GY")
 #'
 #' ####### Selecting and removing columns ##########
 #' select_cols(data_ge2, GEN, REP)
@@ -318,6 +329,11 @@ NULL
 #' ########### Concatenating columns ################
 #' # Both variables in data
 #' concatenate(data_ge, ENV, GEN)
+#'
+#' # Combine with add_cols()
+#' data_ge2 %>%
+#'   add_cols(ENV_GEN = concatenate(., ENV, GEN, pull = TRUE),
+#'            after = "GEN")
 #'
 #' # One variable in data
 #' concatenate(data_ge, ENV, rep(1:14, each=30))
@@ -356,19 +372,48 @@ NULL
 #' select_numeric_cols(data_g)
 #' select_non_numeric_cols(data_g)
 #' }
-add_columns <- function(.data, ..., before = NULL, after = NULL){
-  if(is.character(before)){
-    if(!(before %in% colnames(.data))){
-      before <- NULL
-    }
+add_cols <- function(.data, ..., before = NULL, after = NULL){
+  if (!missing(after) && after == names(.data[ncol(.data)])){
+    message("Putting variables after the last column. Setting 'after' to NULL.", call. = FALSE)
+    after = NULL
   }
-  if(is.character(after)){
-    if(!(after %in% colnames(.data))){
-      after <- NULL
+   if (!missing(before)){
+    if(is.character(before)){
+      if(!(before %in% colnames(.data))){
+        stop("Column 'before' not in .data")
+      }
+    } else{
+      before <- colnames(data_ge[before])
     }
+    bfr <- .data[,1:which(colnames(.data) ==  before)-1]
+    aft <- select(.data, -!!colnames(bfr))
+    df2 <-
+      .data %>%
+      mutate(...) %>%
+      select(-!!colnames(bfr), -!!colnames(aft))
+    results <- cbind(bfr, df2, aft) %>%
+      as_tibble()
+  } else if (!is.null(after)) {
+    if(is.character(after)){
+      if(!(after %in% colnames(.data))){
+        stop("Column 'after' not in .data")
+      }
+    } else{
+      after <- colnames(data_ge[after])
+    }
+    aft <- .data[,(which(colnames(.data) ==  after)+1):ncol(.data)]
+    bfr <- select(.data, -!!colnames(aft))
+    df2 <-
+      .data %>%
+      mutate(...) %>%
+      select(-!!colnames(bfr), -!!colnames(aft))
+    results <- cbind(bfr, df2, aft) %>%
+      as_tibble()
+  } else{
+    results <- mutate(.data, ...)
   }
-  add_column(.data, ..., .before = before, .after = after)
-}
+  return(results)
+  }
 #' @name utils-rows-cols
 #' @export
 add_rows <- function(.data, ..., before = NULL, after = NULL){
@@ -407,11 +452,29 @@ select_rows <- function(.data, ...){
 }
 #' @name utils-rows-cols
 #' @export
-concatenate <- function(.data, col_1, col_2, new_var = new_var,  sep = "_"){
-  .data %>%
-    mutate(
-      {{new_var}} := paste({{col_1}}, sep, {{col_2}}, sep = "")
-    )
+concatenate <- function(.data,
+                        col_1,
+                        col_2,
+                        new_var = new_var,
+                        sep = "_",
+                        drop = FALSE,
+                        pull = FALSE){
+  if (drop == FALSE){
+    results <-
+      .data %>%
+      mutate({{new_var}} := paste({{col_1}}, sep, {{col_2}}, sep = ""))
+    if (pull == TRUE){
+      results <- pull(results)
+    }
+  } else{
+    results <-
+      .data %>%
+      transmute({{new_var}} := paste({{col_1}}, sep, {{col_2}}, sep = ""))
+    if (pull == TRUE){
+      results <- pull(results)
+    }
+  }
+  return(results)
 }
 #' @name utils-rows-cols
 #' @export
@@ -466,8 +529,6 @@ select_non_numeric_cols <- function(.data){
   }
   select_if(.data, ~!is.numeric(.x))
 }
-
-
 #' @title Means by one or more factors
 #' @description Computes the mean for all numeric variables of a data frame,
 #'   grouping by one or more factors.

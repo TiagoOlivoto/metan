@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{utils-rows-cols}
 \alias{utils-rows-cols}
-\alias{add_columns}
+\alias{add_cols}
 \alias{add_rows}
 \alias{remove_cols}
 \alias{remove_rows}
@@ -17,7 +17,7 @@
 \alias{select_non_numeric_cols}
 \title{Utilities for handling with rows and columns}
 \usage{
-add_columns(.data, ..., before = NULL, after = NULL)
+add_cols(.data, ..., before = NULL, after = NULL)
 
 add_rows(.data, ..., before = NULL, after = NULL)
 
@@ -29,7 +29,15 @@ select_cols(.data, ...)
 
 select_rows(.data, ...)
 
-concatenate(.data, col_1, col_2, new_var = new_var, sep = "_")
+concatenate(
+  .data,
+  col_1,
+  col_2,
+  new_var = new_var,
+  sep = "_",
+  drop = FALSE,
+  pull = FALSE
+)
 
 column_exists(.data, cols)
 
@@ -71,6 +79,12 @@ values from \code{col_1} and \code{col_2}. Defaults to \code{new_var}.}
 \item{sep}{The separator to be between values of \code{col_1} and
 \code{col_2}. Defaults to "_".}
 
+\item{drop}{Logical argument. If \code{TRUE} keeps the new variable
+\code{new_var} and drops the existing ones. Defaults to \code{FALSE}.}
+
+\item{pull}{Logical argument. If \code{TRUE}, returns the last column (on the
+assumption that's the column you've created most recently), as a vector.}
+
 \item{cols}{A quoted variable name to check if it exists in \code{.data}}
 
 \item{group}{A factor variable to get the levels.}
@@ -82,7 +96,9 @@ values from \code{col_1} and \code{col_2}. Defaults to \code{new_var}.}
 \item \code{add_cols()}: Add one or more columns to an existing data frame. If
 specified \code{before} or \code{after} columns does not exist, columns are
 appended at the end of the data. Return a data frame with all the original
-columns in \code{.data} plus the columns declared in \code{...}.
+columns in \code{.data} plus the columns declared in \code{...}. In
+\code{add_cols()} columns in \code{.data} are available for the expressions.
+So, it is possible to add a column based on existing data.
 \item \code{add_rows()}: Add one or more rows to an existing data frame. If
 specified \code{before} or \code{after} rows does not exist, rows are
 appended at the end of the data. Return a data frame with all the original
@@ -114,13 +130,19 @@ library(metan)
 ################# Adding columns #################
 # Variables x and y after last column
 data_ge \%>\%
-  add_columns(x = 10,
-              y = 30)
+  add_cols(x = 10,
+           y = 30)
 # Variables x and y before the variable GEN
 data_ge \%>\%
-  add_columns(x = 10,
-              y = 30,
-              before = "GEN")
+  add_cols(x = 10,
+           y = 30,
+           before = "GEN")
+
+# Creating a new variable based on the existing ones.
+data_ge \%>\%
+  add_cols(GY2 = GY^2,
+           GY2_HM = GY2 + HM,
+           after = "GY")
 
 ####### Selecting and removing columns ##########
 select_cols(data_ge2, GEN, REP)
@@ -137,6 +159,11 @@ remove_rows(data_ge2, 2:3)
 ########### Concatenating columns ################
 # Both variables in data
 concatenate(data_ge, ENV, GEN)
+
+# Combine with add_cols()
+data_ge2 \%>\%
+  add_cols(ENV_GEN = concatenate(., ENV, GEN, pull = TRUE),
+           after = "GEN")
 
 # One variable in data
 concatenate(data_ge, ENV, rep(1:14, each=30))
