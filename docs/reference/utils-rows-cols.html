@@ -254,7 +254,7 @@ data frame.</p></li>
 
 <span class='fu'>add_rows</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>before</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>concatenate</span>(<span class='no'>.data</span>, <span class='no'>col_1</span>, <span class='no'>col_2</span>, <span class='kw'>var_name</span> <span class='kw'>=</span> <span class='no'>new_var</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>)
+<span class='fu'>concatenate</span>(<span class='no'>.data</span>, <span class='no'>col_1</span>, <span class='no'>col_2</span>, <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>)
 
 <span class='fu'>column_exists</span>(<span class='no'>.data</span>, <span class='no'>cols</span>)
 
@@ -298,7 +298,7 @@ the values of those columns will be concatenated. Else, <code>col_1</code> or
 the number of rows in <code>.data</code>. Vectors of length 1 will be recycled.</p></td>
     </tr>
     <tr>
-      <th>var_name</th>
+      <th>new_var</th>
       <td><p>The name of the new variable containing the concatenated
 values from <code>col_1</code> and <code>col_2</code>. Defaults to <code>new_var</code>.</p></td>
     </tr>
@@ -413,7 +413,7 @@ values from <code>col_1</code> and <code>col_2</code>. Defaults to <code>new_var
 <span class='fu'>concatenate</span>(<span class='no'>data_ge</span>,
             <span class='kw'>col_1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"ENV"</span>, <span class='fl'>420</span>),
             <span class='kw'>col_2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>14</span>, <span class='kw'>each</span><span class='kw'>=</span><span class='fl'>30</span>),
-            <span class='kw'>var_name</span> <span class='kw'>=</span> <span class='no'>ENVIRONMENT</span>,
+            <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>ENVIRONMENT</span>,
             <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM ENVIRONMENT
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      

@@ -11,6 +11,7 @@ articles:
   vignettes_indexes: vignettes_indexes.html
   vignettes_metan: vignettes_metan.html
   vignettes_stability: vignettes_stability.html
+  vignettes_utilities: vignettes_utilities.html
 urls:
   reference: https://tiagoolivoto.github.io/metan//reference
   article: https://tiagoolivoto.github.io/metan//articles
