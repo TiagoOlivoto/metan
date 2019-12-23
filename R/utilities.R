@@ -235,13 +235,13 @@ NULL
 #' @name utils-rows-cols
 #' @description
 #' * \code{add_cols()}: Add one or more columns to an existing data frame. If
-#' specified \code{before} or \code{after} columns does not exist, columns are
+#' specified \code{.before} or \code{.after} columns does not exist, columns are
 #' appended at the end of the data. Return a data frame with all the original
 #' columns in \code{.data} plus the columns declared in \code{...}. In
 #' \code{add_cols()} columns in \code{.data} are available for the expressions.
 #' So, it is possible to add a column based on existing data.
 #' * \code{add_rows()}: Add one or more rows to an existing data frame. If
-#' specified \code{before} or \code{after} rows does not exist, rows are
+#' specified \code{.before} or \code{.after} rows does not exist, rows are
 #' appended at the end of the data. Return a data frame with all the original
 #' rows in \code{.data} plus the rows declared in \code{...}.
 #' * \code{remove_cols()}: Remove one or more columns from a data frame.
@@ -250,7 +250,7 @@ NULL
 #' * \code{select_rows()}: Select one or more rows from a data frame.
 #' * \code{concatenate()}: Concatenate either two columns of a data frame or a
 #' column and specified values. Return a data frame with all the original
-#' columns in \code{.data} plus the concatenated variable, after the last
+#' columns in \code{.data} plus the concatenated variable, .after the last
 #' column.
 #' * \code{column_exists()}: Checks if a column exists in a data frame. Return a
 #' logical value.
@@ -270,10 +270,10 @@ NULL
 #'   \code{select_cols()},  \code{...} is the column name or column index of the
 #'   variable(s) to be dropped. For \code{remove_rows()} and
 #'   \code{select_rows()}, \code{...} are the integer row values.
-#' @param before,after For \code{add_cols}, one-based column index or column
-#'   name where to add the new columns, default: after last column. For
+#' @param .before,.after For \code{add_cols}, one-based column index or column
+#'   name where to add the new columns, default: .after last column. For
 #'   \code{add_rows}, one-based row index where to add the new rows, default:
-#'   after last row.
+#'   .after last row.
 #' @param col_1,col_2 An unquoted variable name for the first and second
 #'   columns to concatenate, respectively. If both columns are in \code{.data},
 #'   the values of those columns will be concatenated. Else, \code{col_1} or
@@ -298,21 +298,21 @@ NULL
 #' library(metan)
 #'
 #' ################# Adding columns #################
-#' # Variables x and y after last column
+#' # Variables x and y .after last column
 #' data_ge %>%
 #'   add_cols(x = 10,
 #'            y = 30)
-#' # Variables x and y before the variable GEN
+#' # Variables x and y .before the variable GEN
 #' data_ge %>%
 #'   add_cols(x = 10,
 #'            y = 30,
-#'            before = "GEN")
+#'            .before = "GEN")
 #'
 #' # Creating a new variable based on the existing ones.
 #' data_ge %>%
 #'   add_cols(GY2 = GY^2,
 #'            GY2_HM = GY2 + HM,
-#'            after = "GY")
+#'            .after = "GY")
 #'
 #' ####### Selecting and removing columns ##########
 #' select_cols(data_ge2, GEN, REP)
@@ -333,7 +333,7 @@ NULL
 #' # Combine with add_cols()
 #' data_ge2 %>%
 #'   add_cols(ENV_GEN = concatenate(., ENV, GEN, pull = TRUE),
-#'            after = "GEN")
+#'            .after = "GEN")
 #'
 #' # One variable in data
 #' concatenate(data_ge, ENV, rep(1:14, each=30))
@@ -357,7 +357,7 @@ NULL
 #'            REP = 3,
 #'            GY = 10.3,
 #'            HM = 100.11,
-#'            after = 1)
+#'            .after = 1)
 #' ########## checking if a column exists ###########
 #' column_exists(data_g, "GEN")
 #'
@@ -372,20 +372,20 @@ NULL
 #' select_numeric_cols(data_g)
 #' select_non_numeric_cols(data_g)
 #' }
-add_cols <- function(.data, ..., before = NULL, after = NULL){
-  if (!missing(after) && after == names(.data[ncol(.data)])){
-    message("Putting variables after the last column. Setting 'after' to NULL.", call. = FALSE)
-    after = NULL
+add_cols <- function(.data, ..., .before = NULL, .after = NULL){
+  if (!missing(.after) && .after == names(.data[ncol(.data)])){
+    message("Putting variables .after the last column. Setting '.after' to NULL.", call. = FALSE)
+    .after = NULL
   }
-   if (!missing(before)){
-    if(is.character(before)){
-      if(!(before %in% colnames(.data))){
-        stop("Column 'before' not in .data")
+   if (!missing(.before)){
+    if(is.character(.before)){
+      if(!(.before %in% colnames(.data))){
+        stop("Column '.before' not in .data")
       }
     } else{
-      before <- colnames(data_ge[before])
+      .before <- colnames(data_ge[.before])
     }
-    bfr <- .data[,1:which(colnames(.data) ==  before)-1]
+    bfr <- .data[,1:which(colnames(.data) ==  .before)-1]
     aft <- select(.data, -!!colnames(bfr))
     df2 <-
       .data %>%
@@ -393,15 +393,15 @@ add_cols <- function(.data, ..., before = NULL, after = NULL){
       select(-!!colnames(bfr), -!!colnames(aft))
     results <- cbind(bfr, df2, aft) %>%
       as_tibble()
-  } else if (!is.null(after)) {
-    if(is.character(after)){
-      if(!(after %in% colnames(.data))){
-        stop("Column 'after' not in .data")
+  } else if (!is.null(.after)) {
+    if(is.character(.after)){
+      if(!(.after %in% colnames(.data))){
+        stop("Column '.after' not in .data")
       }
     } else{
-      after <- colnames(data_ge[after])
+      .after <- colnames(data_ge[.after])
     }
-    aft <- .data[,(which(colnames(.data) ==  after)+1):ncol(.data)]
+    aft <- .data[,(which(colnames(.data) ==  .after)+1):ncol(.data)]
     bfr <- select(.data, -!!colnames(aft))
     df2 <-
       .data %>%
@@ -416,18 +416,18 @@ add_cols <- function(.data, ..., before = NULL, after = NULL){
   }
 #' @name utils-rows-cols
 #' @export
-add_rows <- function(.data, ..., before = NULL, after = NULL){
-  if(is.character(before)){
-    if(!(before %in% rownames(.data))){
-      before <- NULL
+add_rows <- function(.data, ..., .before = NULL, .after = NULL){
+  if(is.character(.before)){
+    if(!(.before %in% rownames(.data))){
+      .before <- NULL
     }
   }
-  if(is.character(after)){
-    if(!(after %in% rownames(.data))){
-      after <- NULL
+  if(is.character(.after)){
+    if(!(.after %in% rownames(.data))){
+      .after <- NULL
     }
   }
-  add_row(.data, ..., .before = before, .after = after)
+  add_row(.data, ..., .before = .before, .after = .after)
 }
 #' @name utils-rows-cols
 #' @importFrom rlang quos
