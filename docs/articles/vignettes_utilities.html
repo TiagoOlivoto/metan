@@ -325,7 +325,7 @@
 <div id="rounding-whole-data-frames" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rounding-whole-data-frames" class="anchor"></a>Rounding whole data frames</h2>
-<p>The function <code><a href="../reference/utils-num-str.html">round_column()</a></code>round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are infomed, then all numeric variables are rounded.</p>
+<p>The function <code><a href="../reference/utils-num-str.html">round_column()</a></code>round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are informed, then all numeric variables are rounded.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 6 x 18
   ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
@@ -391,7 +391,7 @@
  9 E1    G3    3      2.28  47.8       3
 10 E1    G4    1      2.36  47.9       4
 # … with 410 more rows</code></pre>
-<p>If the argument <code>drop</code> is set to <code>TRUE</code> then, only the new variable is keept and all others are dropped.</p>
+<p>If the argument <code>drop</code> is set to <code>TRUE</code> then, only the new variable is kept and all others are dropped.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_number</a></span>(data_ge, GEN, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 1
    new_var

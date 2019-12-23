@@ -85,7 +85,7 @@ select_non_numeric_cols(data_ge2)
 
 # Utilities for numbers and strings
 ## Rounding whole data frames
-The function `round_column()`round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are infomed, then all numeric variables are rounded.
+The function `round_column()`round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are informed, then all numeric variables are rounded.
 
 ```{r}
 head(data_ge2)
@@ -105,7 +105,7 @@ The functions `extract_number()`, and `replace_number()` can be used to extract 
 extract_number(data_ge, GEN)
 ```
 
-If the argument `drop` is set to `TRUE` then, only the new variable is keept and all others are dropped.
+If the argument `drop` is set to `TRUE` then, only the new variable is kept and all others are dropped.
 
 ```{r}
 extract_number(data_ge, GEN, drop = TRUE)
