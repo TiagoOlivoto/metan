@@ -28,12 +28,12 @@ add_cols(data_ge,
 
 ```
 
-It is also possible to add a column based on existing data.
+It is also possible to add a column based on existing data. Note that the arguments `.after` and `.before` are used to select the position of the new column(s). This is particularly useful to put variables of the same category together.
 
 ```{r}
 add_cols(data_ge,
          GY2 = GY^2,
-         after = "GY")
+         .after = "GY")
 ```
 
 ## Select or remove columns and rows
@@ -46,6 +46,14 @@ select_cols(data_ge2, 1:2) %>% head(3)
 select_rows(data_ge2, 1, 2, 3)
 select_rows(data_ge2, 1:3)
 ```
+
+Numeric columns can be selected quickly by using the function `select_numeric_cols()`. Non-numeric columns are selected with `select_non_numeric_cols()`
+
+```{r}
+select_numeric_cols(data_ge2)
+select_non_numeric_cols(data_ge2)
+```
+
 
 To remove columns or rows, use `remove_cols()` and `remove_rows()`.
 ```{r}
@@ -67,6 +75,13 @@ concatenate(data_ge, ENV, GEN, REP)
 conc_data
 ```
 
+To drop the existing variables and keep only the concatenated column, use the argument `drop = TRUE`. To use `concatenate()` within a given function like `add_cols()` use the argument `pull = TRUE` to pull out the results to a vector.
+```{r}
+concatenate(data_ge, ENV, GEN, REP, drop = TRUE) %>% head(3)
+concatenate(data_ge, ENV, GEN, REP, pull = TRUE) %>% head(3)
+```
+
+
 To check if a column exists in a data frame, use `column_exists()`
 
 ```{r}
@@ -81,27 +96,19 @@ get_levels(conc_data, ENV)
 get_level_size(conc_data, ENV)
 ```
 
-## Selecting numeric and non-numeric columns
-Numeric columns can be selected quickly by using the function `select_numeric_cols()`. Non-numeric columns are selected with `select_non_numeric_cols()`
-
-```{r}
-select_numeric_cols(data_ge2)
-select_non_numeric_cols(data_ge2)
-```
-
 
 # Utilities for numbers and strings
 ## Rounding whole data frames
-The function `round_column()`round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are informed, then all numeric variables are rounded.
+The function `round_cols()`round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are informed, then all numeric variables are rounded.
 
 ```{r}
 head(data_ge2)
-round_column(data_ge2)
+round_cols(data_ge2)
 ```
 
 Alternatively, select variables to round.
 ```{r}
-round_column(data_ge2, PH, EP, digits = 1)
+round_cols(data_ge2, PH, EP, digits = 1)
 ```
 
 ## Extracting and replacing numbers

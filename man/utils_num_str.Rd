@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{utils_num_str}
 \alias{utils_num_str}
-\alias{round_column}
+\alias{round_cols}
 \alias{extract_number}
 \alias{replace_number}
 \alias{extract_string}
@@ -11,7 +11,7 @@
 \alias{all_lower_case}
 \title{Utilities for handling with numbers and strings}
 \usage{
-round_column(.data, ..., digits = 2)
+round_cols(.data, ..., digits = 2)
 
 extract_number(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
 
@@ -67,7 +67,7 @@ allowed.}
 }
 \description{
 \itemize{
-\item \code{round_column()}: Round a selected column or a whole data frame to
+\item \code{round_cols()}: Round a selected column or a whole data frame to
 significant figures.
 \item \code{extract_number()}: Extract the number(s) of a string.
 \item \code{replace_number()}: Replace numbers with a replacement.
@@ -86,10 +86,10 @@ library(metan)
 
 ################ Rounding numbers ###############
 # All numeric columns
-round_column(data_ge2, digits = 1)
+round_cols(data_ge2, digits = 1)
 
 # Round specific columns
-round_column(data_ge2, EP, digits = 1)
+round_cols(data_ge2, EP, digits = 1)
 
 ########### Extract or replace numbers ##########
 # Extract numbers

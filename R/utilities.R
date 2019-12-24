@@ -15,7 +15,7 @@
 #' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
 #'   assumption that's the column you've created most recently), as a vector.
 #' @description
-#' * \code{round_column()}: Round a selected column or a whole data frame to
+#' * \code{round_cols()}: Round a selected column or a whole data frame to
 #' significant figures.
 #' * \code{extract_number()}: Extract the number(s) of a string.
 #' * \code{replace_number()}: Replace numbers with a replacement.
@@ -33,10 +33,10 @@
 #'
 #' ################ Rounding numbers ###############
 #' # All numeric columns
-#' round_column(data_ge2, digits = 1)
+#' round_cols(data_ge2, digits = 1)
 #'
 #' # Round specific columns
-#' round_column(data_ge2, EP, digits = 1)
+#' round_cols(data_ge2, EP, digits = 1)
 #'
 #' ########### Extract or replace numbers ##########
 #' # Extract numbers
@@ -81,7 +81,7 @@
 #' }
 #' @export
 #' @importFrom dplyr mutate_if transmute
-round_column <- function(.data, ...,  digits = 2){
+round_cols <- function(.data, ...,  digits = 2){
   if (missing(...)){
     .data %<>% dplyr::mutate_if(is.numeric, round, digits = digits)
   } else{
