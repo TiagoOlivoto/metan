@@ -284,7 +284,8 @@ NULL
 #'   .after last row.
 #' @param new_var The name of the new variable containing the concatenated
 #'   values. Defaults to \code{new_var}.
-#' @param sep The separator to appear between concatenated variables. Defaults to "_".
+#' @param sep The separator to appear between concatenated variables. Defaults
+#'   to "_".
 #' @param drop Logical argument. If \code{TRUE} keeps the new variable
 #'   \code{new_var} and drops the existing ones. Defaults to \code{FALSE}.
 #' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
@@ -442,17 +443,15 @@ concatenate <- function(.data,
                         pull = FALSE){
   if (drop == FALSE){
     conc <- select(.data, ...)
-    results <-
-      .data %>%
-      mutate({{new_var}} := apply(conc , 1 , paste , collapse = sep ))
+    results <- mutate(.data,
+                      {{new_var}} := apply(conc, 1, paste, collapse = sep))
     if (pull == TRUE){
       results <- pull(results)
     }
   } else{
     conc <- select(.data, ...)
-    results <-
-      .data %>%
-      transmute({{new_var}} := apply(conc , 1 , paste , collapse = sep ))
+    results <- transmute(.data,
+                         {{new_var}} := apply(conc, 1, paste, collapse = sep))
     if (pull == TRUE){
       results <- pull(results)
     }
