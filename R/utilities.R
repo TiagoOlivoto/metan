@@ -372,7 +372,7 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
         stop("Column '.before' not in .data")
       }
     } else{
-      .before <- colnames(data_ge[.before])
+      .before <- colnames(.data[.before])
     }
     bfr <- .data[,1:which(colnames(.data) ==  .before)-1]
     aft <- select(.data, -!!colnames(bfr))
@@ -385,7 +385,7 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
         stop("Column '.after' not in .data")
       }
     } else{
-      .after <- colnames(data_ge[.after])
+      .after <- colnames(.data[.after])
     }
     aft <- .data[,(which(colnames(.data) ==  .after)+1):ncol(.data)]
     bfr <- select(.data, -!!colnames(aft))

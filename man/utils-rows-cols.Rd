@@ -76,7 +76,8 @@ name where to add the new columns, default: .after last column. For
 \item{new_var}{The name of the new variable containing the concatenated
 values. Defaults to \code{new_var}.}
 
-\item{sep}{The separator to appear between concatenated variables. Defaults to "_".}
+\item{sep}{The separator to appear between concatenated variables. Defaults
+to "_".}
 
 \item{drop}{Logical argument. If \code{TRUE} keeps the new variable
 \code{new_var} and drops the existing ones. Defaults to \code{FALSE}.}
