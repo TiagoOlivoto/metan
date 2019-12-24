@@ -195,19 +195,19 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">add_cols</a></span>(data_ge,</a>
 <a class="sourceLine" id="cb3-2" title="2">         <span class="dt">GY2 =</span> GY<span class="op">^</span><span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb3-3" title="3">         <span class="dt">after =</span> <span class="st">"GY"</span>)</a></code></pre></div>
-<pre><code># A tibble: 420 x 6
-   ENV   GEN   REP      GY   GY2    HM
-   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 E1    G1    1      2.17  4.70  44.9
- 2 E1    G1    2      2.50  6.27  46.9
- 3 E1    G1    3      2.43  5.89  47.8
- 4 E1    G2    1      3.21 10.3   45.2
- 5 E1    G2    2      2.93  8.60  45.3
- 6 E1    G2    3      2.56  6.58  45.5
- 7 E1    G3    1      2.77  7.67  46.7
- 8 E1    G3    2      3.62 13.1   43.2
- 9 E1    G3    3      2.28  5.18  47.8
-10 E1    G4    1      2.36  5.57  47.9
+<pre><code># A tibble: 420 x 7
+   ENV   GEN   REP      GY    HM   GY2 after
+   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+ 1 E1    G1    1      2.17  44.9  4.70 GY   
+ 2 E1    G1    2      2.50  46.9  6.27 GY   
+ 3 E1    G1    3      2.43  47.8  5.89 GY   
+ 4 E1    G2    1      3.21  45.2 10.3  GY   
+ 5 E1    G2    2      2.93  45.3  8.60 GY   
+ 6 E1    G2    3      2.56  45.5  6.58 GY   
+ 7 E1    G3    1      2.77  46.7  7.67 GY   
+ 8 E1    G3    2      3.62  43.2 13.1  GY   
+ 9 E1    G3    3      2.28  47.8  5.18 GY   
+10 E1    G4    1      2.36  47.9  5.57 GY   
 # … with 410 more rows</code></pre>
 </div>
 <div id="select-or-remove-columns-and-rows" class="section level2">
@@ -314,74 +314,36 @@
 <div id="concatenating-columns" class="section level2">
 <h2 class="hasAnchor">
 <a href="#concatenating-columns" class="anchor"></a>Concatenating columns</h2>
-<p>The function <code>concatetate()</code> can be used to concatenate either two columns of a data frame or a column and specified values. Return a data frame with all the original columns in .data plus the concatenated variable, after the last column.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">concatenate</a></span>(data_ge, ENV, GEN)</a></code></pre></div>
+<p>The function <code>concatetate()</code> can be used to concatenate multiple columns of a data frame. It return a data frame with all the original columns in <code>.data</code> plus the concatenated variable, after the last column.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">conc_data &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="kw"><a href="../reference/utils-rows-cols.html">concatenate</a></span>(data_ge, ENV, GEN, REP)</a>
+<a class="sourceLine" id="cb25-3" title="3">conc_data</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP      GY    HM new_var
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
- 1 E1    G1    1      2.17  44.9 E1_G1  
- 2 E1    G1    2      2.50  46.9 E1_G1  
- 3 E1    G1    3      2.43  47.8 E1_G1  
- 4 E1    G2    1      3.21  45.2 E1_G2  
- 5 E1    G2    2      2.93  45.3 E1_G2  
- 6 E1    G2    3      2.56  45.5 E1_G2  
- 7 E1    G3    1      2.77  46.7 E1_G3  
- 8 E1    G3    2      3.62  43.2 E1_G3  
- 9 E1    G3    3      2.28  47.8 E1_G3  
-10 E1    G4    1      2.36  47.9 E1_G4  
-# … with 410 more rows</code></pre>
-<p>If only one column is in the data, <code>col_1</code> or <code>col_2</code> must be a numeric or a character vector of length equals to the number of rows in data. Vectors of length 1 will be recycled.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">concatenate</a></span>(data_ge, ENV, <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">14</span>, <span class="dt">each=</span><span class="dv">30</span>))</a></code></pre></div>
-<pre><code># A tibble: 420 x 6
-   ENV   GEN   REP      GY    HM new_var
-   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
- 1 E1    G1    1      2.17  44.9 E1_1   
- 2 E1    G1    2      2.50  46.9 E1_1   
- 3 E1    G1    3      2.43  47.8 E1_1   
- 4 E1    G2    1      3.21  45.2 E1_1   
- 5 E1    G2    2      2.93  45.3 E1_1   
- 6 E1    G2    3      2.56  45.5 E1_1   
- 7 E1    G3    1      2.77  46.7 E1_1   
- 8 E1    G3    2      3.62  43.2 E1_1   
- 9 E1    G3    3      2.28  47.8 E1_1   
-10 E1    G4    1      2.36  47.9 E1_1   
-# … with 410 more rows</code></pre>
-<p>Other functions can be used to provide such vector. Here, we will replace the string “G” in the variable <code>GEN</code> with “GEN” and concatenate this column with the column <code>ENV</code>. Note that the argument <code>pull</code> into the function <code><a href="../reference/utils-num-str.html">replace_string()</a></code> is used to pull out the result to a vector.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">conc_data &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="kw"><a href="../reference/utils-rows-cols.html">concatenate</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb29-3" title="3">            <span class="dt">col_1 =</span> ENV,</a>
-<a class="sourceLine" id="cb29-4" title="4">            <span class="dt">col_2 =</span> <span class="kw"><a href="../reference/utils-num-str.html">replace_string</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb29-5" title="5">                                   GEN,</a>
-<a class="sourceLine" id="cb29-6" title="6">                                   <span class="dt">replacement =</span> <span class="st">"GEN_"</span>,</a>
-<a class="sourceLine" id="cb29-7" title="7">                                   <span class="dt">pull =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb29-8" title="8">            <span class="dt">new_var =</span> ENV_GEN)</a>
-<a class="sourceLine" id="cb29-9" title="9">conc_data</a></code></pre></div>
-<pre><code># A tibble: 420 x 6
-   ENV   GEN   REP      GY    HM ENV_GEN 
-   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   
- 1 E1    G1    1      2.17  44.9 E1_GEN_1
- 2 E1    G1    2      2.50  46.9 E1_GEN_1
- 3 E1    G1    3      2.43  47.8 E1_GEN_1
- 4 E1    G2    1      3.21  45.2 E1_GEN_2
- 5 E1    G2    2      2.93  45.3 E1_GEN_2
- 6 E1    G2    3      2.56  45.5 E1_GEN_2
- 7 E1    G3    1      2.77  46.7 E1_GEN_3
- 8 E1    G3    2      3.62  43.2 E1_GEN_3
- 9 E1    G3    3      2.28  47.8 E1_GEN_3
-10 E1    G4    1      2.36  47.9 E1_GEN_4
+ 1 E1    G1    1      2.17  44.9 E1_G1_1
+ 2 E1    G1    2      2.50  46.9 E1_G1_2
+ 3 E1    G1    3      2.43  47.8 E1_G1_3
+ 4 E1    G2    1      3.21  45.2 E1_G2_1
+ 5 E1    G2    2      2.93  45.3 E1_G2_2
+ 6 E1    G2    3      2.56  45.5 E1_G2_3
+ 7 E1    G3    1      2.77  46.7 E1_G3_1
+ 8 E1    G3    2      3.62  43.2 E1_G3_2
+ 9 E1    G3    3      2.28  47.8 E1_G3_3
+10 E1    G4    1      2.36  47.9 E1_G4_1
 # … with 410 more rows</code></pre>
 <p>To check if a column exists in a data frame, use <code><a href="../reference/utils-rows-cols.html">column_exists()</a></code></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">column_exists</a></span>(conc_data, <span class="st">"ENV_GEN"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">column_exists</a></span>(conc_data, <span class="st">"new_var"</span>)</a></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 </div>
 <div id="getting-levels" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-levels" class="anchor"></a>Getting levels</h2>
 <p>To get the levels and the size of the levels of a factor, the functions <code><a href="../reference/utils-rows-cols.html">get_levels()</a></code> and <code><a href="../reference/utils-rows-cols.html">get_level_size()</a></code> can be used.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">get_levels</a></span>(conc_data, ENV)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">get_levels</a></span>(conc_data, ENV)</a></code></pre></div>
 <pre><code> [1] "E1"  "E10" "E11" "E12" "E13" "E14" "E2"  "E3"  "E4"  "E5"  "E6"  "E7" 
 [13] "E8"  "E9" </code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">get_level_size</a></span>(conc_data, ENV)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">get_level_size</a></span>(conc_data, ENV)</a></code></pre></div>
 <pre><code> E1 E10 E11 E12 E13 E14  E2  E3  E4  E5  E6  E7  E8  E9 
  30  30  30  30  30  30  30  30  30  30  30  30  30  30 </code></pre>
 </div>
@@ -389,7 +351,7 @@
 <h2 class="hasAnchor">
 <a href="#selecting-numeric-and-non-numeric-columns" class="anchor"></a>Selecting numeric and non-numeric columns</h2>
 <p>Numeric columns can be selected quickly by using the function <code><a href="../reference/utils-rows-cols.html">select_numeric_cols()</a></code>. Non-numeric columns are selected with <code><a href="../reference/utils-rows-cols.html">select_non_numeric_cols()</a></code></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">select_numeric_cols</a></span>(data_ge2)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">select_numeric_cols</a></span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 156 x 15
       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED  PERK
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -404,7 +366,7 @@
  9  2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2  34.8 0.576  89.0
 10  2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8  31.6 0.597  88.7
 # … with 146 more rows, and 2 more variables: TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">select_non_numeric_cols</a></span>(data_ge2)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw"><a href="../reference/utils-rows-cols.html">select_non_numeric_cols</a></span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 156 x 3
    ENV   GEN   REP  
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
@@ -428,7 +390,7 @@
 <h2 class="hasAnchor">
 <a href="#rounding-whole-data-frames" class="anchor"></a>Rounding whole data frames</h2>
 <p>The function <code><a href="../reference/utils-num-str.html">round_column()</a></code>round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are informed, then all numeric variables are rounded.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_ge2)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 6 x 18
   ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -440,7 +402,7 @@
 6 A1    H10   3      2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8
 # … with 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;,
 #   NKE &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">round_column</a></span>(data_ge2)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">round_column</a></span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 156 x 18
    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -457,7 +419,7 @@
 # … with 146 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,
 #   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
 <p>Alternatively, select variables to round.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">round_column</a></span>(data_ge2, PH, EP, <span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">round_column</a></span>(data_ge2, PH, EP, <span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code># A tibble: 156 x 18
    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -478,7 +440,7 @@
 <h2 class="hasAnchor">
 <a href="#extracting-and-replacing-numbers" class="anchor"></a>Extracting and replacing numbers</h2>
 <p>The functions <code><a href="../reference/utils-num-str.html">extract_number()</a></code>, and <code><a href="../reference/utils-num-str.html">replace_number()</a></code> can be used to extract or replace numbers. As an example, we will extract the number of each genotype in <code>data_g</code>. By default, the extracted numbers are put as a new variable called <code>new_var</code> after the last column of the data.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_number</a></span>(data_ge, GEN)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_number</a></span>(data_ge, GEN)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP      GY    HM new_var
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
@@ -494,7 +456,7 @@
 10 E1    G4    1      2.36  47.9       4
 # … with 410 more rows</code></pre>
 <p>If the argument <code>drop</code> is set to <code>TRUE</code> then, only the new variable is kept and all others are dropped.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_number</a></span>(data_ge, GEN, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_number</a></span>(data_ge, GEN, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 1
    new_var
      &lt;dbl&gt;
@@ -510,7 +472,7 @@
 10       4
 # … with 410 more rows</code></pre>
 <p>To pull out the results into a vector, use the argument <code>pull = TRUE</code>. This is particularly useful when <code>extract_*</code> or <code>replace_*</code> are used within a function like <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_number</a></span>(data_ge, GEN, <span class="dt">pull =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_number</a></span>(data_ge, GEN, <span class="dt">pull =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>  [1]  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5  6  6  6  7  7  7  8  8  8  9
  [26]  9  9 10 10 10  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5  6  6  6  7  7
  [51]  7  8  8  8  9  9  9 10 10 10  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5
@@ -529,7 +491,7 @@
 [376]  6  6  6  7  7  7  8  8  8  9  9  9 10 10 10  1  1  1  2  2  2  3  3  3  4
 [401]  4  4  5  5  5  6  6  6  7  7  7  8  8  8  9  9  9 10 10 10</code></pre>
 <p>To replace numbers of a given column with a specified replacement, use <code><a href="../reference/utils-num-str.html">replace_number()</a></code>. By default, numbers are replaced with "". The argument <code>drop</code> and <code>pull</code> can also be used, as shown above.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">replace_number</a></span>(data_ge, GEN)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">replace_number</a></span>(data_ge, GEN)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP      GY    HM new_var
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
@@ -544,11 +506,11 @@
  9 E1    G3    3      2.28  47.8 G      
 10 E1    G4    1      2.36  47.9 G      
 # … with 410 more rows</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">replace_number</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb55-2" title="2">               <span class="dt">var =</span> REP,</a>
-<a class="sourceLine" id="cb55-3" title="3">               <span class="dt">pattern =</span> <span class="st">"1"</span>,</a>
-<a class="sourceLine" id="cb55-4" title="4">               <span class="dt">replacement =</span> <span class="st">"Rep_1"</span>,</a>
-<a class="sourceLine" id="cb55-5" title="5">               <span class="dt">new_var =</span> R_ONE)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">replace_number</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb51-2" title="2">               <span class="dt">var =</span> REP,</a>
+<a class="sourceLine" id="cb51-3" title="3">               <span class="dt">pattern =</span> <span class="st">"1"</span>,</a>
+<a class="sourceLine" id="cb51-4" title="4">               <span class="dt">replacement =</span> <span class="st">"Rep_1"</span>,</a>
+<a class="sourceLine" id="cb51-5" title="5">               <span class="dt">new_var =</span> R_ONE)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP      GY    HM R_ONE
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -568,7 +530,7 @@
 <h2 class="hasAnchor">
 <a href="#extracting-and-replacing-strings" class="anchor"></a>Extracting and replacing strings</h2>
 <p>The functions <code><a href="../reference/utils-num-str.html">extract_string()</a></code>, and <code><a href="../reference/utils-num-str.html">replace_string()</a></code> are used in the same context of <code><a href="../reference/utils-num-str.html">extract_number()</a></code>, and <code><a href="../reference/utils-num-str.html">replace_number()</a></code>, but for handling with strings.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_string</a></span>(data_ge, GEN)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">extract_string</a></span>(data_ge, GEN)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP      GY    HM new_var
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
@@ -584,10 +546,10 @@
 10 E1    G4    1      2.36  47.9 G      
 # … with 410 more rows</code></pre>
 <p>To replace strings, we can use the function <code>replace_strings()</code>.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">replace_string</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb59-2" title="2">               <span class="dt">var =</span> GEN,</a>
-<a class="sourceLine" id="cb59-3" title="3">               <span class="dt">new_var =</span> GENOTYPE,</a>
-<a class="sourceLine" id="cb59-4" title="4">               <span class="dt">replacement =</span> <span class="st">"GENOTYPE_"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw"><a href="../reference/utils-num-str.html">replace_string</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb55-2" title="2">               <span class="dt">var =</span> GEN,</a>
+<a class="sourceLine" id="cb55-3" title="3">               <span class="dt">new_var =</span> GENOTYPE,</a>
+<a class="sourceLine" id="cb55-4" title="4">               <span class="dt">replacement =</span> <span class="st">"GENOTYPE_"</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP      GY    HM GENOTYPE  
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     

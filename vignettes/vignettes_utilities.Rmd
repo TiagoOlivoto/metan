@@ -23,11 +23,17 @@ The functions `add_cols()` and `add_rows()` can be used to add columns and rows,
 
 ```{r message=FALSE, warning=FALSE}
 library(metan)
-add_columns(data_ge,
-            ROW_ID = 1:420)
-add_columns(data_ge,
-            ROW_ID = 1:420,
-            before = "GEN")
+add_cols(data_ge,
+         ROW_ID = 1:420)
+
+```
+
+It is also possible to add a column based on existing data.
+
+```{r}
+add_cols(data_ge,
+         GY2 = GY^2,
+         after = "GY")
 ```
 
 ## Select or remove columns and rows
@@ -52,38 +58,19 @@ remove_rows(data_ge2, 1:2, 5:8)
 
 
 ## Concatenating columns
-The function `concatetate()` can be used to concatenate either two columns of a data frame or a column and specified values. Return a data frame with all the original columns in .data plus the concatenated variable, after the last column.
+The function `concatetate()` can be used to concatenate multiple columns of a data frame. It return a data frame with all the original columns in `.data` plus the concatenated variable, after the last column.
 
-
-```{r}
-concatenate(data_ge, ENV, GEN)
-```
-
-If only one column is in the data, `col_1` or `col_2` must be a numeric or a character vector of length equals to the number of rows in data. Vectors of length 1 will be recycled.
-
-```{r}
-concatenate(data_ge, ENV, rep(1:14, each=30))
-
-```
-
-Other functions can be used to provide such vector. Here, we will replace the string "G" in the variable `GEN` with "GEN" and concatenate this column with the column `ENV`. Note that the argument `pull` into the function `replace_string()` is used to pull out the result to a vector. 
 
 ```{r}
 conc_data <- 
-concatenate(data_ge,
-            col_1 = ENV,
-            col_2 = replace_string(data_ge,
-                                   GEN,
-                                   replacement = "GEN_",
-                                   pull = TRUE),
-            new_var = ENV_GEN)
+concatenate(data_ge, ENV, GEN, REP)
 conc_data
 ```
 
 To check if a column exists in a data frame, use `column_exists()`
 
 ```{r}
-column_exists(conc_data, "ENV_GEN")
+column_exists(conc_data, "new_var")
 ```
 
 ## Getting levels
