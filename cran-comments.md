@@ -1,5 +1,5 @@
 # Resubmission `metan`
-This is a resubmission for the new package `metan`. Now in version 1.2.0, I have incorporated the feedback kindly provided by Jelena Saf on December 20, 2019. See responses inline below. 
+This is a **resubmission** for the new package `metan`. Now in version 1.2.0, I have incorporated the feedback kindly provided by Jelena Saf on December 20, 2019. See responses inline below. 
 
 > 
 * Please omit the redundant 'Provides functions for' from your description.
@@ -10,7 +10,7 @@ This is a resubmission for the new package `metan`. Now in version 1.2.0, I have
 In this version I have made the following changes:
 * Omitted *"Provides functions for"* from description file.
 * In the function `corr_plot()` the message *"The factors ... where excluded to perform the analysis. Only numeric variables were used."* was deleted. Note that the progress bar can be supressed with the argument `progress`.
-* Some new functions were also included in this version. Please, see "News" for more details.
+* Some 'utilities' functions were also included in this version. Please, see the section "News" for more details.
 
 
 # Test environments
@@ -27,8 +27,7 @@ In this version I have made the following changes:
 # R CMD check results
 0 errors | 0 warnings | 0 notes
 
-
-Thank for your time in helping me with this submission.
+I hope these changes make this version suitable for publication in CRAN. Thank for your time in helping me with this submission.
 
 Best Regards
 
