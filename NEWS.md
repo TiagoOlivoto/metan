@@ -5,13 +5,15 @@
    * `metan` now reexports `mutate()` from `dplyr` package.
 
 * New functions
-   * `add_columns()`, and `add_rows()` for adding columns and rows, respectively.
+   * `add_cols()`, and `add_rows()` for adding columns and rows, respectively.
+   * `remove_cols()`, and `remove_rows()` for removing columns and rows, respectively.
+   * `select_cols()` and `select_rows()` for selecting columns and rows, respectively.
+   * `select_numeric_cols()`, and `select_non_numeric_cols()` for selecting numeric and non-numeric variables quickly.
    * `all_lower_case()`, and `all_upper_case()` for handling with cases.
    * `extract_number()`, `extract_string()`, `replace_number()`, and  `replace_string()`, for handling with numbers and strings.
    * `get_level_size()`, and `get_levels()` for getting size of levels and levels of a factor.
-   * `select_numeric_cols()`, and `select_non_numeric_cols()` for selecting numeric and non-numeric variables quickly.
    * `means_by()` for computing means by one or more factors quickly.
-   * `round_column()` for rounding significant figures.
+   * `round_cols()` for rounding a whole data frame to significant figures.
 
 # metan 1.1.2
 
