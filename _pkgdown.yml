@@ -228,7 +228,7 @@ reference:
       - replace_number
       - replace_string
       - resca
-      - round_column
+      - round_cols
       - sem
       - select_non_numeric_cols
       - select_cols
