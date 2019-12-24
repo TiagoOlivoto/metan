@@ -1,5 +1,5 @@
 #' @title Utilities for handling with numbers and strings
-#' @name utils-num-str
+#' @name utils_num_str
 #' @param .data A data frame
 #' @param ... Variables to round. If no variable is informed, all the numeric
 #'   variables from \code{data} are used.
@@ -89,7 +89,7 @@ round_column <- function(.data, ...,  digits = 2){
   }
   return(.data)
 }
-#' @name utils-num-str
+#' @name utils_num_str
 #' @export
 extract_number <- function(.data,
                            var,
@@ -115,7 +115,7 @@ extract_number <- function(.data,
   }
   return(results)
 }
-#' @name utils-num-str
+#' @name utils_num_str
 #' @export
 replace_number <- function(.data,
                            var,
@@ -148,7 +148,7 @@ replace_number <- function(.data,
   }
   return(results)
 }
-#' @name utils-num-str
+#' @name utils_num_str
 #' @export
 extract_string <- function(.data,
                            var,
@@ -174,7 +174,7 @@ extract_string <- function(.data,
   }
   return(results)
 }
-#' @name utils-num-str
+#' @name utils_num_str
 #' @export
 replace_string <- function(.data,
                            var,
@@ -207,7 +207,7 @@ replace_string <- function(.data,
   }
   return(results)
 }
-#' @name utils-num-str
+#' @name utils_num_str
 #' @export
 all_upper_case <- function(.data){
   if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
@@ -218,7 +218,7 @@ all_upper_case <- function(.data){
     toupper(.data)
   }
 }
-#' @name utils-num-str
+#' @name utils_num_str
 #' @export
 all_lower_case <- function(.data){
   if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
@@ -232,7 +232,7 @@ all_lower_case <- function(.data){
 NULL
 
 #' @title Utilities for handling with rows and columns
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @description
 #' * \code{add_cols()}: Add one or more columns to an existing data frame. If
 #' specified \code{.before} or \code{.after} columns does not exist, columns are
@@ -397,7 +397,7 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
   }
   return(as_tibble(results))
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 add_rows <- function(.data, ..., .before = NULL, .after = NULL){
   if(is.character(.before)){
@@ -412,28 +412,28 @@ add_rows <- function(.data, ..., .before = NULL, .after = NULL){
   }
   add_row(.data, ..., .before = .before, .after = .after)
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @importFrom rlang quos
 #' @export
 remove_cols <- function(.data, ...){
   select(.data, -c(!!!quos(...)))
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 remove_rows <- function(.data, ...){
   slice(.data, -c(!!!quos(...)))
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 select_cols <- function(.data, ...){
   select(.data, ...)
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 select_rows <- function(.data, ...){
   slice(.data, ...)
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 concatenate <- function(.data,
                         ...,
@@ -458,7 +458,7 @@ concatenate <- function(.data,
   }
   return(results)
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 column_exists <-function(.data, cols){
   if(length(setdiff(cols, colnames(.data))) != 0){
@@ -467,7 +467,7 @@ column_exists <-function(.data, cols){
     TRUE
   }
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 get_levels <- function(.data, group){
   .data %>%
@@ -475,7 +475,7 @@ get_levels <- function(.data, group){
     pull({{group}}) %>%
     levels()
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @importFrom dplyr count
 #' @export
 get_level_size <- function(.data, group){
@@ -486,7 +486,7 @@ get_level_size <- function(.data, group){
   names(n) <- result %>% pull(1)
   return(n)
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 all_pairs <- function(.data, levels){
   levels <-
@@ -495,7 +495,7 @@ all_pairs <- function(.data, levels){
     as.data.frame() %>%
     t()
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 select_numeric_cols <- function(.data){
   if(is_grouped_df(.data)){
@@ -503,7 +503,7 @@ select_numeric_cols <- function(.data){
   }
   select_if(.data, is.numeric)
 }
-#' @name utils-rows-cols
+#' @name utils_rows_cols
 #' @export
 select_non_numeric_cols <- function(.data){
   if(is_grouped_df(.data)){
