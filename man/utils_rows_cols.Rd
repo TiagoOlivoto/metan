@@ -3,6 +3,7 @@
 \name{utils_rows_cols}
 \alias{utils_rows_cols}
 \alias{add_cols}
+\alias{reorder_cols}
 \alias{add_rows}
 \alias{remove_cols}
 \alias{remove_rows}
@@ -18,6 +19,8 @@
 \title{Utilities for handling with rows and columns}
 \usage{
 add_cols(.data, ..., .before = NULL, .after = NULL)
+
+reorder_cols(.data, ..., .before = NULL, .after = NULL)
 
 add_rows(.data, ..., .before = NULL, .after = NULL)
 
@@ -67,11 +70,6 @@ row value.
 \item For \code{concatenate()}, \code{...} is the unquoted variable names to be
 concatenated.
 }}
-
-\item{.before, .after}{For \code{add_cols()}, one-based column index or column
-name where to add the new columns, default: .after last column. For
-\code{add_rows()}, one-based row index where to add the new rows, default:
-.after last row.}
 
 \item{new_var}{The name of the new variable containing the concatenated
 values. Defaults to \code{new_var}.}
@@ -144,13 +142,17 @@ data_ge \%>\%
            GY2_HM = GY2 + HM,
            .after = "GY")
 
-####### Selecting and removing columns ##########
+############### Reordering columns ###############
+reorder_cols(data_ge2, NKR, .before = "ENV")
+reorder_cols(data_ge2, ENV, GEN, .after = "ED")
+
+######## Selecting and removing columns ##########
 select_cols(data_ge2, GEN, REP)
 select_cols(data_ge2, 2:3)
 remove_cols(data_ge2, GEN, REP)
 remove_cols(data_ge2, 2:3)
 
-######## Selecting and removing rows ###########
+########## Selecting and removing rows ###########
 select_rows(data_ge2, GEN, REP)
 select_rows(data_ge2, 2:3)
 remove_rows(data_ge2, GEN, REP)

@@ -278,10 +278,10 @@ NULL
 #'
 #' * For \code{concatenate()}, \code{...} is the unquoted variable names to be
 #' concatenated.
-#' @param .before,.after For \code{add_cols()}, one-based column index or column
-#'   name where to add the new columns, default: .after last column. For
-#'   \code{add_rows()}, one-based row index where to add the new rows, default:
-#'   .after last row.
+#' @param .before,.after For \code{add_cols() and \code{reorder_cols()},
+#'   one-based column index or column name where to add the new columns,
+#'   default: .after last column. For \code{add_rows()}, one-based row index
+#'   where to add the new rows, default: .after last row.
 #' @param new_var The name of the new variable containing the concatenated
 #'   values. Defaults to \code{new_var}.
 #' @param sep The separator to appear between concatenated variables. Defaults
@@ -317,13 +317,17 @@ NULL
 #'            GY2_HM = GY2 + HM,
 #'            .after = "GY")
 #'
-#' ####### Selecting and removing columns ##########
+#' ############### Reordering columns ###############
+#' reorder_cols(data_ge2, NKR, .before = "ENV")
+#' reorder_cols(data_ge2, ENV, GEN, .after = "ED")
+#'
+#' ######## Selecting and removing columns ##########
 #' select_cols(data_ge2, GEN, REP)
 #' select_cols(data_ge2, 2:3)
 #' remove_cols(data_ge2, GEN, REP)
 #' remove_cols(data_ge2, 2:3)
 #'
-#' ######## Selecting and removing rows ###########
+#' ########## Selecting and removing rows ###########
 #' select_rows(data_ge2, GEN, REP)
 #' select_rows(data_ge2, 2:3)
 #' remove_rows(data_ge2, GEN, REP)
@@ -394,6 +398,54 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
     results <- cbind(bfr, df2, aft)
   } else{
     results <- mutate(.data, ...)
+  }
+  return(as_tibble(results))
+}
+#' @name utils_rows_cols
+#' @export
+reorder_cols <- function(.data, ..., .before = NULL, .after = NULL){
+  args <- match.call()
+  if (missing(.after) && missing(.before)){
+    stop("At least '.before' or '.after' must be informed", call. = FALSE)
+  }
+  if (!missing(.after) && !missing(.before)){
+    stop("'.before' and '.after' cannot be evaluated together.", call. = FALSE)
+  }
+  if (!missing(.before)){
+    if(is.character(.before)){
+      if(!(.before %in% colnames(.data))){
+        stop(paste("Column", args[[4]], "not present in .data"), call. = FALSE)
+      }
+    } else{
+      .before <- colnames(.data[.before])
+    }
+    sel <- select(.data, ...)
+    bfr <- .data[,1:which(colnames(.data) ==  .before)-1]
+    if(any(colnames(sel) %in% colnames(bfr))){
+      bfr <- bfr[, -which(names(bfr)  %in% names(sel))]
+    }
+    aft <- select(.data, -!!colnames(bfr), -!!colnames(sel))
+    results <- cbind(bfr, sel, aft)
+  }
+  if(!missing(.after)) {
+    if(is.character(.after)){
+      if(!(.after %in% colnames(.data))){
+        stop(paste("Column", args[[5]], "not present in .data"), call. = FALSE)
+      }
+    } else{
+      .after <- colnames(.data[.after])
+    }
+    if(which(colnames(.data) ==  .after)+1 > ncol(.data)){
+      results <- select(.data, -c(!!!quos(...)), everything())
+    } else{
+      sel <- select(.data, ...)
+      aft <- .data[,(which(colnames(.data) ==  .after)+1):ncol(.data)]
+      if(any(colnames(sel) %in% colnames(aft))){
+        aft <- aft[, -which(names(aft)  %in% names(sel))]
+      }
+      bfr <- select(.data, -!!colnames(aft), -!!colnames(sel))
+      results <- cbind(bfr, sel, aft)
+    }
   }
   return(as_tibble(results))
 }
