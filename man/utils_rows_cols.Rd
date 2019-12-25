@@ -3,34 +3,28 @@
 \name{utils_rows_cols}
 \alias{utils_rows_cols}
 \alias{add_cols}
-\alias{reorder_cols}
 \alias{add_rows}
-\alias{remove_cols}
-\alias{remove_rows}
-\alias{select_cols}
-\alias{select_rows}
-\alias{concatenate}
+\alias{all_pairs}
 \alias{column_exists}
+\alias{concatenate}
 \alias{get_levels}
 \alias{get_level_size}
-\alias{all_pairs}
+\alias{reorder_cols}
+\alias{remove_cols}
+\alias{remove_rows}
 \alias{select_numeric_cols}
 \alias{select_non_numeric_cols}
+\alias{select_cols}
+\alias{select_rows}
 \title{Utilities for handling with rows and columns}
 \usage{
 add_cols(.data, ..., .before = NULL, .after = NULL)
 
-reorder_cols(.data, ..., .before = NULL, .after = NULL)
-
 add_rows(.data, ..., .before = NULL, .after = NULL)
 
-remove_cols(.data, ...)
+all_pairs(.data, levels)
 
-remove_rows(.data, ...)
-
-select_cols(.data, ...)
-
-select_rows(.data, ...)
+column_exists(.data, cols)
 
 concatenate(
   .data,
@@ -41,17 +35,23 @@ concatenate(
   pull = FALSE
 )
 
-column_exists(.data, cols)
-
 get_levels(.data, group)
 
 get_level_size(.data, group)
 
-all_pairs(.data, levels)
+reorder_cols(.data, ..., .before = NULL, .after = NULL)
+
+remove_cols(.data, ...)
+
+remove_rows(.data, ...)
 
 select_numeric_cols(.data)
 
 select_non_numeric_cols(.data)
+
+select_cols(.data, ...)
+
+select_rows(.data, ...)
 }
 \arguments{
 \item{.data}{A data frame}
@@ -71,6 +71,15 @@ row value.
 concatenated.
 }}
 
+\item{.before, .after}{For \code{add_cols()} and \code{reorder_cols()},
+one-based column index or column name where to add the new columns,
+default: .after last column. For \code{add_rows()}, one-based row index
+where to add the new rows, default: .after last row.}
+
+\item{levels}{The levels of a factor or a numeric vector.}
+
+\item{cols}{A quoted variable name to check if it exists in \code{.data}.}
+
 \item{new_var}{The name of the new variable containing the concatenated
 values. Defaults to \code{new_var}.}
 
@@ -83,11 +92,7 @@ to "_".}
 \item{pull}{Logical argument. If \code{TRUE}, returns the last column (on the
 assumption that's the column you've created most recently), as a vector.}
 
-\item{cols}{A quoted variable name to check if it exists in \code{.data}.}
-
 \item{group}{A factor variable to get the levels.}
-
-\item{levels}{The levels of a factor or a numeric vector.}
 }
 \description{
 \itemize{
@@ -101,24 +106,23 @@ So, it is possible to add a column based on existing data.
 specified \code{.before} or \code{.after} rows does not exist, rows are
 appended at the end of the data. Return a data frame with all the original
 rows in \code{.data} plus the rows declared in \code{...}.
-\item \code{remove_cols()}: Remove one or more columns from a data frame.
-\item \code{remove_rows()}: Remove one or more rows from a data frame.
-\item \code{select_cols()}: Select one or more columns from a data frame.
-\item \code{select_rows()}: Select one or more rows from a data frame.
-\item \code{concatenate()}: Concatenate either two columns of a data frame or a
-column and specified values. Return a data frame with all the original
-columns in \code{.data} plus the concatenated variable, .after the last
-column.
+\item \code{all_pairs()}: Get all the possible pairs between the levels of a
+factor.
 \item \code{column_exists()}: Checks if a column exists in a data frame. Return a
 logical value.
+\item \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
+TRUE} then the existing variables are dropped.
 \item \code{get_levels()}: Get the levels of a factor variable.
 \item \code{get_level_size()}: Get the size of each level of a factor variable.
-\item \code{get_all_pairs()}: Get all the possible pairs between the levels of a
-factor.
+\item \code{remove_cols()}: Remove one or more columns from a data frame.
+\item \code{remove_rows()}: Remove one or more rows from a data frame.
+\item \code{reorder_cols()}: Reorder columns in a data frame.
+\item \code{select_cols()}: Select one or more columns from a data frame.
 \item \code{select_numeric_cols()}: Select all the numeric columns of a data
 frame.
 \item \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
 data frame.
+\item \code{select_rows()}: Select one or more rows from a data frame.
 }
 }
 \examples{

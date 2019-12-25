@@ -15,17 +15,17 @@
 #' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
 #'   assumption that's the column you've created most recently), as a vector.
 #' @description
-#' * \code{round_cols()}: Round a selected column or a whole data frame to
-#' significant figures.
-#' * \code{extract_number()}: Extract the number(s) of a string.
-#' * \code{replace_number()}: Replace numbers with a replacement.
-#' * \code{extract_string()}: Extract all strings, ignoring case.
-#' * \code{replace_string()}: Replace all strings with a replacement, ignoring
-#' case.
 #' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
 #' to lower case. A character vector is also allowed as im
 #' * \code{all_upper_case()}: Translate all non-numeric strings of a data frame
 #' to upper case.
+#' * \code{extract_number()}: Extract the number(s) of a string.
+#' * \code{extract_string()}: Extract all strings, ignoring case.
+#' * \code{replace_number()}: Replace numbers with a replacement.
+#' * \code{replace_string()}: Replace all strings with a replacement, ignoring
+#' case.
+#' * \code{round_cols()}: Round a selected column or a whole data frame to
+#' significant figures.
 #' @md
 #' @examples
 #' \donttest{
@@ -80,14 +80,25 @@
 #' all_upper_case(lc)
 #' }
 #' @export
-#' @importFrom dplyr mutate_if transmute
-round_cols <- function(.data, ...,  digits = 2){
-  if (missing(...)){
-    .data %<>% dplyr::mutate_if(is.numeric, round, digits = digits)
+all_upper_case <- function(.data){
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+    .data <- as.data.frame(.data)
+    mutate_if(.data, ~!is.numeric(.x), toupper) %>%
+      as_tibble(rownames = NA)
   } else{
-    .data %<>% dplyr::mutate_at(vars(...), round, digits = digits)
+    toupper(.data)
   }
-  return(.data)
+}
+#' @name utils_num_str
+#' @export
+all_lower_case <- function(.data){
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+    .data <- as.data.frame(.data)
+    mutate_if(.data, ~!is.numeric(.x), tolower) %>%
+      as_tibble(rownames = NA)
+  } else{
+    tolower(.data)
+  }
 }
 #' @name utils_num_str
 #' @export
@@ -109,6 +120,32 @@ extract_number <- function(.data,
     transmute(.data,
               {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
     )
+    if(pull == TRUE){
+      results <- pull(results)
+    }
+  }
+  return(results)
+}
+#' @name utils_num_str
+#' @export
+extract_string <- function(.data,
+                           var,
+                           new_var = new_var,
+                           drop = FALSE,
+                           pull = FALSE){
+  if (drop == FALSE){
+    results <-
+      mutate(.data,
+             {{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}})))
+      )
+    if(pull == TRUE){
+      results <- pull(results)
+    }
+  } else{
+    results <-
+      transmute(.data,
+                {{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}})))
+      )
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -141,32 +178,6 @@ replace_number <- function(.data,
     results <-
     transmute(.data,
               {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-    )
-    if(pull == TRUE){
-      results <- pull(results)
-    }
-  }
-  return(results)
-}
-#' @name utils_num_str
-#' @export
-extract_string <- function(.data,
-                           var,
-                           new_var = new_var,
-                           drop = FALSE,
-                           pull = FALSE){
-  if (drop == FALSE){
-    results <-
-    mutate(.data,
-           {{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}})))
-    )
-    if(pull == TRUE){
-      results <- pull(results)
-    }
-  } else{
-    results <-
-    transmute(.data,
-              {{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}})))
     )
     if(pull == TRUE){
       results <- pull(results)
@@ -209,27 +220,16 @@ replace_string <- function(.data,
 }
 #' @name utils_num_str
 #' @export
-all_upper_case <- function(.data){
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
-    .data <- as.data.frame(.data)
-    mutate_if(.data, ~!is.numeric(.x), toupper) %>%
-      as_tibble(rownames = NA)
+#' @importFrom dplyr mutate_if transmute
+round_cols <- function(.data, ...,  digits = 2){
+  if (missing(...)){
+    .data %<>% dplyr::mutate_if(is.numeric, round, digits = digits)
   } else{
-    toupper(.data)
+    .data %<>% dplyr::mutate_at(vars(...), round, digits = digits)
   }
+  return(.data)
 }
-#' @name utils_num_str
-#' @export
-all_lower_case <- function(.data){
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
-    .data <- as.data.frame(.data)
-    mutate_if(.data, ~!is.numeric(.x), tolower) %>%
-      as_tibble(rownames = NA)
-  } else{
-    tolower(.data)
-  }
-}
-NULL
+
 
 #' @title Utilities for handling with rows and columns
 #' @name utils_rows_cols
@@ -244,24 +244,24 @@ NULL
 #' specified \code{.before} or \code{.after} rows does not exist, rows are
 #' appended at the end of the data. Return a data frame with all the original
 #' rows in \code{.data} plus the rows declared in \code{...}.
-#' * \code{remove_cols()}: Remove one or more columns from a data frame.
-#' * \code{remove_rows()}: Remove one or more rows from a data frame.
-#' * \code{select_cols()}: Select one or more columns from a data frame.
-#' * \code{select_rows()}: Select one or more rows from a data frame.
-#' * \code{concatenate()}: Concatenate either two columns of a data frame or a
-#' column and specified values. Return a data frame with all the original
-#' columns in \code{.data} plus the concatenated variable, .after the last
-#' column.
+#' * \code{all_pairs()}: Get all the possible pairs between the levels of a
+#' factor.
 #' * \code{column_exists()}: Checks if a column exists in a data frame. Return a
 #' logical value.
+#' * \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
+#' TRUE} then the existing variables are dropped.
 #' * \code{get_levels()}: Get the levels of a factor variable.
 #' * \code{get_level_size()}: Get the size of each level of a factor variable.
-#' * \code{get_all_pairs()}: Get all the possible pairs between the levels of a
-#' factor.
+#' * \code{remove_cols()}: Remove one or more columns from a data frame.
+#' * \code{remove_rows()}: Remove one or more rows from a data frame.
+#' * \code{reorder_cols()}: Reorder columns in a data frame.
+#' * \code{select_cols()}: Select one or more columns from a data frame.
 #' * \code{select_numeric_cols()}: Select all the numeric columns of a data
 #' frame.
 #' * \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
 #' data frame.
+#' * \code{select_rows()}: Select one or more rows from a data frame.
+#'
 #' @param .data A data frame
 #' @param ... The argument depends on the function used.
 #' * For \code{add_cols()} and \code{add_rows()} is name-value pairs. All values
@@ -278,7 +278,7 @@ NULL
 #'
 #' * For \code{concatenate()}, \code{...} is the unquoted variable names to be
 #' concatenated.
-#' @param .before,.after For \code{add_cols() and \code{reorder_cols()},
+#' @param .before,.after For \code{add_cols()} and \code{reorder_cols()},
 #'   one-based column index or column name where to add the new columns,
 #'   default: .after last column. For \code{add_rows()}, one-based row index
 #'   where to add the new rows, default: .after last row.
@@ -403,6 +403,84 @@ add_cols <- function(.data, ..., .before = NULL, .after = NULL){
 }
 #' @name utils_rows_cols
 #' @export
+add_rows <- function(.data, ..., .before = NULL, .after = NULL){
+  if(is.character(.before)){
+    if(!(.before %in% rownames(.data))){
+      .before <- NULL
+    }
+  }
+  if(is.character(.after)){
+    if(!(.after %in% rownames(.data))){
+      .after <- NULL
+    }
+  }
+  add_row(.data, ..., .before = .before, .after = .after)
+}
+#' @name utils_rows_cols
+#' @export
+all_pairs <- function(.data, levels){
+  levels <-
+    get_levels(.data, {{levels}})
+  combn(levels, 2) %>%
+    as.data.frame() %>%
+    t()
+}
+#' @name utils_rows_cols
+#' @export
+column_exists <-function(.data, cols){
+  if(length(setdiff(cols, colnames(.data))) != 0){
+    FALSE
+  } else{
+    TRUE
+  }
+}
+#' @name utils_rows_cols
+#' @export
+concatenate <- function(.data,
+                        ...,
+                        new_var = new_var,
+                        sep = "_",
+                        drop = FALSE,
+                        pull = FALSE){
+  if (drop == FALSE){
+    conc <- select(.data, ...)
+    results <- mutate(.data,
+                      {{new_var}} := apply(conc, 1, paste, collapse = sep))
+    if (pull == TRUE){
+      results <- pull(results)
+    }
+  } else{
+    conc <- select(.data, ...)
+    results <- transmute(.data,
+                         {{new_var}} := apply(conc, 1, paste, collapse = sep))
+    if (pull == TRUE){
+      results <- pull(results)
+    }
+  }
+  return(results)
+}
+#' @name utils_rows_cols
+#' @export
+get_levels <- function(.data, group){
+  .data %>%
+    mutate_if(~!is.numeric(.x), as.factor) %>%
+    pull({{group}}) %>%
+    levels()
+}
+#' @name utils_rows_cols
+#' @importFrom dplyr count
+#' @export
+get_level_size <- function(.data, group){
+  result <- .data %>%
+    group_by({{group}}) %>%
+    count()
+  n <- result$n
+  names(n) <- result %>% pull(1)
+  return(n)
+}
+#' @name utils_rows_cols
+#' @importFrom rlang quos
+#' @export
 reorder_cols <- function(.data, ..., .before = NULL, .after = NULL){
   args <- match.call()
   if (missing(.after) && missing(.before)){
@@ -451,22 +529,6 @@ reorder_cols <- function(.data, ..., .before = NULL, .after = NULL){
 }
 #' @name utils_rows_cols
 #' @export
-add_rows <- function(.data, ..., .before = NULL, .after = NULL){
-  if(is.character(.before)){
-    if(!(.before %in% rownames(.data))){
-      .before <- NULL
-    }
-  }
-  if(is.character(.after)){
-    if(!(.after %in% rownames(.data))){
-      .after <- NULL
-    }
-  }
-  add_row(.data, ..., .before = .before, .after = .after)
-}
-#' @name utils_rows_cols
-#' @importFrom rlang quos
-#' @export
 remove_cols <- function(.data, ...){
   select(.data, -c(!!!quos(...)))
 }
@@ -474,78 +536,6 @@ remove_cols <- function(.data, ...){
 #' @export
 remove_rows <- function(.data, ...){
   slice(.data, -c(!!!quos(...)))
-}
-#' @name utils_rows_cols
-#' @export
-select_cols <- function(.data, ...){
-  select(.data, ...)
-}
-#' @name utils_rows_cols
-#' @export
-select_rows <- function(.data, ...){
-  slice(.data, ...)
-}
-#' @name utils_rows_cols
-#' @export
-concatenate <- function(.data,
-                        ...,
-                        new_var = new_var,
-                        sep = "_",
-                        drop = FALSE,
-                        pull = FALSE){
-  if (drop == FALSE){
-    conc <- select(.data, ...)
-    results <- mutate(.data,
-                      {{new_var}} := apply(conc, 1, paste, collapse = sep))
-    if (pull == TRUE){
-      results <- pull(results)
-    }
-  } else{
-    conc <- select(.data, ...)
-    results <- transmute(.data,
-                         {{new_var}} := apply(conc, 1, paste, collapse = sep))
-    if (pull == TRUE){
-      results <- pull(results)
-    }
-  }
-  return(results)
-}
-#' @name utils_rows_cols
-#' @export
-column_exists <-function(.data, cols){
-  if(length(setdiff(cols, colnames(.data))) != 0){
-    FALSE
-  } else{
-    TRUE
-  }
-}
-#' @name utils_rows_cols
-#' @export
-get_levels <- function(.data, group){
-  .data %>%
-    mutate_if(~!is.numeric(.x), as.factor) %>%
-    pull({{group}}) %>%
-    levels()
-}
-#' @name utils_rows_cols
-#' @importFrom dplyr count
-#' @export
-get_level_size <- function(.data, group){
-  result <- .data %>%
-    group_by({{group}}) %>%
-    count()
-  n <- result$n
-  names(n) <- result %>% pull(1)
-  return(n)
-}
-#' @name utils_rows_cols
-#' @export
-all_pairs <- function(.data, levels){
-  levels <-
-    get_levels(.data, {{levels}})
-  combn(levels, 2) %>%
-    as.data.frame() %>%
-    t()
 }
 #' @name utils_rows_cols
 #' @export
@@ -563,6 +553,19 @@ select_non_numeric_cols <- function(.data){
   }
   select_if(.data, ~!is.numeric(.x))
 }
+#' @name utils_rows_cols
+#' @export
+select_cols <- function(.data, ...){
+  select(.data, ...)
+}
+#' @name utils_rows_cols
+#' @export
+select_rows <- function(.data, ...){
+  slice(.data, ...)
+}
+
+
+
 #' @title Means by one or more factors
 #' @description Computes the mean for all numeric variables of a data frame,
 #'   grouping by one or more factors.

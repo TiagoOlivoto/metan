@@ -2,18 +2,22 @@
 % Please edit documentation in R/utilities.R
 \name{utils_num_str}
 \alias{utils_num_str}
-\alias{round_cols}
-\alias{extract_number}
-\alias{replace_number}
-\alias{extract_string}
-\alias{replace_string}
 \alias{all_upper_case}
 \alias{all_lower_case}
+\alias{extract_number}
+\alias{extract_string}
+\alias{replace_number}
+\alias{replace_string}
+\alias{round_cols}
 \title{Utilities for handling with numbers and strings}
 \usage{
-round_cols(.data, ..., digits = 2)
+all_upper_case(.data)
+
+all_lower_case(.data)
 
 extract_number(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
+
+extract_string(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
 
 replace_number(
   .data,
@@ -25,8 +29,6 @@ replace_number(
   pull = FALSE
 )
 
-extract_string(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
-
 replace_string(
   .data,
   var,
@@ -37,17 +39,10 @@ replace_string(
   pull = FALSE
 )
 
-all_upper_case(.data)
-
-all_lower_case(.data)
+round_cols(.data, ..., digits = 2)
 }
 \arguments{
 \item{.data}{A data frame}
-
-\item{...}{Variables to round. If no variable is informed, all the numeric
-variables from \code{data} are used.}
-
-\item{digits}{The number of significant figures.}
 
 \item{var}{The variable to extract or replace numbers or strings.}
 
@@ -64,20 +59,25 @@ assumption that's the column you've created most recently), as a vector.}
 allowed.}
 
 \item{replacement}{A string for replacement.}
+
+\item{...}{Variables to round. If no variable is informed, all the numeric
+variables from \code{data} are used.}
+
+\item{digits}{The number of significant figures.}
 }
 \description{
 \itemize{
-\item \code{round_cols()}: Round a selected column or a whole data frame to
-significant figures.
-\item \code{extract_number()}: Extract the number(s) of a string.
-\item \code{replace_number()}: Replace numbers with a replacement.
-\item \code{extract_string()}: Extract all strings, ignoring case.
-\item \code{replace_string()}: Replace all strings with a replacement, ignoring
-case.
 \item \code{all_lower_case()}: Translate all non-numeric strings of a data frame
 to lower case. A character vector is also allowed as im
 \item \code{all_upper_case()}: Translate all non-numeric strings of a data frame
 to upper case.
+\item \code{extract_number()}: Extract the number(s) of a string.
+\item \code{extract_string()}: Extract all strings, ignoring case.
+\item \code{replace_number()}: Replace numbers with a replacement.
+\item \code{replace_string()}: Replace all strings with a replacement, ignoring
+case.
+\item \code{round_cols()}: Round a selected column or a whole data frame to
+significant figures.
 }
 }
 \examples{
