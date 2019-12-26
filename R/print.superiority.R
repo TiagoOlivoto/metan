@@ -10,7 +10,8 @@
 #'   the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
 #' @param digits The significant digits to be shown.
-#' @param ... Other arguments of the function
+#' @param ... Options used by the tibble package to format the output. See
+#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print superiority
 #' @export

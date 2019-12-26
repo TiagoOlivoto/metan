@@ -37,7 +37,7 @@
 #' @param key.lab The label of color key. Default is 'Genotype ranking'.
 #' @param resolution Valid parameter if \code{file.type = 'tiff'}. Define the
 #'   resolution of the plot. Default is '300'.
-#' @param ... Other arguments of the function
+#' @param ... Currently not used.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot wsmp
 #' @export

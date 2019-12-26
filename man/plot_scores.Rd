@@ -168,7 +168,7 @@ exported in \code{*.tiff} format by declaring \code{file.type = 'tiff'}.}
 
 \item{color}{Should type 4 plot have colors? Default to \code{TRUE}.}
 
-\item{...}{Other arguments of the function}
+\item{...}{Currently not used.}
 }
 \value{
 An object of class \code{gg, ggplot}.

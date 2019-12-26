@@ -93,7 +93,7 @@ will have labels.}
 plot will have a default title. Use a string text to create an own title or
 set to \code{main = FALSE} to omit the plot title.}
 
-\item{...}{Other arguments of the function}
+\item{...}{Currently not used.}
 }
 \value{
 An object of class \code{gg, ggplot}.

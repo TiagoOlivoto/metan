@@ -31,7 +31,7 @@
 #' @param leg.position The position of the legend.
 #' @param size.tex.lab The size of the text in the axes text and labels. Default
 #'   is \code{12}.
-#' @param ... Other arguments of the function.
+#' @param ... Currently not used..
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{ge_factanal}}
 #' @method plot ge_reg

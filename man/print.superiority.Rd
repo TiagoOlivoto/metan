@@ -16,7 +16,8 @@ the working directory.}
 
 \item{digits}{The significant digits to be shown.}
 
-\item{...}{Other arguments of the function}
+\item{...}{Options used by the tibble package to format the output. See
+\code{\link[tibble:formatting]{tibble::print()}} for more details.}
 }
 \description{
 Print the \code{superiority} object in two ways. By default, the results are

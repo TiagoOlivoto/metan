@@ -99,7 +99,7 @@
 #' @param width The width 'inch' of the plot. Default is \code{8}.
 #' @param height The height 'inch' of the plot. Default is \code{7}.
 #' @param color Should type 4 plot have colors? Default to \code{TRUE}.
-#' @param ... Other arguments of the function
+#' @param ... Currently not used.
 #' @md
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'   V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in

@@ -20,7 +20,7 @@ lines should be colored.}
 values produce high-resolution plots but may increase the computation time.}
 
 \item{...}{Other arguments passed from \code{contourplot} function. See
-\code{?lattice::contourplot} for more details.}
+\code{\link[lattice]{contourplot()}} for more details.}
 }
 \value{
 An object of class \code{trellis}.

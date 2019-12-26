@@ -30,7 +30,7 @@
 #'   c(breaks)}
 #' @param resolution The resolution of the plot. Parameter valid if
 #'   \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
-#' @param ... Other arguments of the function
+#' @param ... Currently not used.
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{plot_scores}}

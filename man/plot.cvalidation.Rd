@@ -83,7 +83,7 @@ c(x.min, x.max)}.}
 \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
 c(breaks)}}
 
-\item{...}{Other arguments of the function}
+\item{...}{Currently not used.}
 }
 \value{
 An object of class \code{gg, ggplot}.

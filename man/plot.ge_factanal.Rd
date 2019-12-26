@@ -105,7 +105,7 @@ Default is \code{"gray"}}
 \item{size.line}{The size of the line that indicate the means in the biplot.
 Default is \code{0.5}.}
 
-\item{...}{Other arguments of the function.}
+\item{...}{Currently not used..}
 }
 \value{
 An object of class \code{gg, ggplot}.

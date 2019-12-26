@@ -61,7 +61,7 @@ arguments can be inserted as \code{y.lab = "my label"}.}
 \item{size.tex.lab}{The size of the text in the axes text and labels. Default
 is \code{12}.}
 
-\item{...}{Other arguments of the function.}
+\item{...}{Currently not used..}
 }
 \value{
 An object of class \code{gg, ggplot}.

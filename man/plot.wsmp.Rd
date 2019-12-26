@@ -61,7 +61,7 @@ and row names, respectively. Default is \code{c(5, 4)}.}
 \item{resolution}{Valid parameter if \code{file.type = 'tiff'}. Define the
 resolution of the plot. Default is '300'.}
 
-\item{...}{Other arguments of the function}
+\item{...}{Currently not used.}
 }
 \description{
 Plot heat maps with genotype ranking in two ways.

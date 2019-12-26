@@ -57,7 +57,7 @@
 #'   Default is \code{"gray"}
 #' @param size.line The size of the line that indicate the means in the biplot.
 #'   Default is \code{0.5}.
-#' @param ... Other arguments of the function.
+#' @param ... Currently not used..
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{ge_factanal}}
 #' @method plot ge_factanal
