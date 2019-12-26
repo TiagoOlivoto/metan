@@ -41,15 +41,15 @@ Russell., 1966), Shukla's stability variance parameter (1972); and
 statistics (Huehn, 1979), and Thennarasu (1995) statistics.
 }
 \details{
-The function computes the statistics and ranks for the
-  following stability indexes. \code{"Y"} (Response variable), \code{"Var"}
-  (Genotype's variance), \code{"Shukla"} (Shukla's variance, calling
-  \code{\link{Shukla}} internally), \code{"Wi_g", "Wi_f", "Wi_u"}
-  (Annichiarrico's genotypic confidence index for all, favorable and
-  unfavorable environments, respectively, calling \code{\link{Annicchiarico}}
-  internally ), \code{"Ecoval"} (Wricke's ecovalence,
-  \code{\link{ecovalence}} internally), \code{"Sij"} (Deviations from the
-  joint-regression analysis) and \code{"R2"} (R-squared from the
+The function computes the statistics and ranks for the following
+  stability indexes. \code{"Y"} (Response variable), \code{"CV"} (coefficient
+  of variation), \code{"Var"} (Genotype's variance), \code{"Shukla"}
+  (Shukla's variance, calling \code{\link{Shukla}} internally), \code{"Wi_g",
+  "Wi_f", "Wi_u"} (Annichiarrico's genotypic confidence index for all,
+  favorable and unfavorable environments, respectively, calling
+  \code{\link{Annicchiarico}} internally ), \code{"Ecoval"} (Wricke's
+  ecovalence, \code{\link{ecovalence}} internally), \code{"Sij"} (Deviations
+  from the joint-regression analysis) and \code{"R2"} (R-squared from the
   joint-regression analysis, calling \code{\link{ge_reg}} internally),
   \code{"ASV"} (AMMI-stability value), \code{"SIPC"} (sum of the absolute
   values of the IPCA scores), \code{"EV"} (Average of the squared eigenvector

@@ -307,8 +307,6 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
       mutate(gen = x[[1]][["general"]][["GEN"]]) %>%
       select(gen, everything())
   }
-
-
   if (class(x) == "ge_stats") {
     if (!what  %in%  check16) {
       stop("Invalid value in 'what' for object of class 'ge_stats'. Allowed are ", paste(check16, collapse = ", "), call. = FALSE)
@@ -317,7 +315,7 @@ get_model_data <- function(x, what = "Y", type = "GEN") {
       cbind,
       lapply(x, function(x) {
         if(what == "stats"){
-          x %>% select(-contains("_R")) %>% select(-contains("GEN"))
+          x %>% select(-contains("_R"), -contains("GEN"))
         } else{
           x %>% select(contains("_R"))
         }

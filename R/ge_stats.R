@@ -21,15 +21,15 @@
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
 #' @param prob The probability error assumed.
-#' @details The function computes the statistics and ranks for the
-#'   following stability indexes. \code{"Y"} (Response variable), \code{"Var"}
-#'   (Genotype's variance), \code{"Shukla"} (Shukla's variance, calling
-#'   \code{\link{Shukla}} internally), \code{"Wi_g", "Wi_f", "Wi_u"}
-#'   (Annichiarrico's genotypic confidence index for all, favorable and
-#'   unfavorable environments, respectively, calling \code{\link{Annicchiarico}}
-#'   internally ), \code{"Ecoval"} (Wricke's ecovalence,
-#'   \code{\link{ecovalence}} internally), \code{"Sij"} (Deviations from the
-#'   joint-regression analysis) and \code{"R2"} (R-squared from the
+#' @details The function computes the statistics and ranks for the following
+#'   stability indexes. \code{"Y"} (Response variable), \code{"CV"} (coefficient
+#'   of variation), \code{"Var"} (Genotype's variance), \code{"Shukla"}
+#'   (Shukla's variance, calling \code{\link{Shukla}} internally), \code{"Wi_g",
+#'   "Wi_f", "Wi_u"} (Annichiarrico's genotypic confidence index for all,
+#'   favorable and unfavorable environments, respectively, calling
+#'   \code{\link{Annicchiarico}} internally ), \code{"Ecoval"} (Wricke's
+#'   ecovalence, \code{\link{ecovalence}} internally), \code{"Sij"} (Deviations
+#'   from the joint-regression analysis) and \code{"R2"} (R-squared from the
 #'   joint-regression analysis, calling \code{\link{ge_reg}} internally),
 #'   \code{"ASV"} (AMMI-stability value), \code{"SIPC"} (sum of the absolute
 #'   values of the IPCA scores), \code{"EV"} (Average of the squared eigenvector
@@ -135,6 +135,7 @@ ge_effect = ge_effects(data, ENV, GEN, REP, mean)[[1]]
 gge_effect = ge_effects(data, ENV, GEN, REP, mean, type = "gge")[[1]]
 Mean = apply(ge_mean, 1, mean)
 Variance = rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
+CV <- apply(ge_mean, 1, function(x) (sd(x) / mean(x) * 100))
 GENSS = (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/nlevels(data$ENV))*nlevels(data$REP)
 mod = anova(lm(mean ~ REP/ENV + ENV * GEN, data = data))
 GENMS = GENSS / mod[2, 1]
@@ -156,6 +157,8 @@ blup_mod <- Resende_indexes(blup_mod)[[1]]
 temp <- tibble(GEN = an_mod[[1]]$general$GEN,
                Y = Mean,
                Y_R = rank(-Mean),
+               CV = CV,
+               CV_R = rank(CV),
                Var = Variance,
                Var_R = rank(Variance),
                Shukla = shu_mod$ShuklaVar,
