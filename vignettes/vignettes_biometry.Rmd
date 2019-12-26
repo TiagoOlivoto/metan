@@ -28,9 +28,9 @@ print_table <- function(table, rownames = FALSE, ...){
 datatable(table,
           rownames = rownames,
           extensions = 'Buttons',
-          options = list(scrollX = TRUE, dom = 'Bfrtip',
+          options = list(dom = 'Bfrtip',
                          buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
-    formatRound(columns = c(1:ncol(table)), digits = 3)
+    formatSignif(columns = c(1:ncol(table)), digits = 3)
 }
 
 ```
@@ -61,7 +61,7 @@ The function `desc_stat()` may be used to compute measures of central tendency, 
 data_ge2 %>%
   desc_stat(EP, EL, CL, CD, CW, NR,
             hist = TRUE) %>% 
-  print()
+  print_table()
 ```
 
 To compute the statistics for each level of a factor, use the function `split_factor()` before calling `desc_stat()`. In addition, it is possible to select the statistics to compute using the argument `stats`, that is a comma-separated vector of names with `"` at the beginning and end of vector only.
@@ -80,7 +80,7 @@ stats <-
   data_ge2 %>%
   split_factors(GEN) %>%
   desc_stat(contains("C"),
-            stats = c("mean, SE.mean, CV, max, min, median"),
+            stats = "all",
             verbose = F)
 print_table(stats)
 ```
@@ -263,7 +263,7 @@ The function `covcor_design()` returns a list with the matrices of (co)variances
 # environment A1
 data <- subset(data_ge2, ENV == "A1")
 gcor <- covcor_design(data, gen = GEN, rep = REP,
-                      resp = c(PH, EH, NKE, TKW),
+                      resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
                       type = "gcor") %>% 
   as.data.frame()
 print_table(gcor, rownames = TRUE)
@@ -274,7 +274,7 @@ print_table(gcor, rownames = TRUE)
 ## Phenotypic correlations
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 pcor <- covcor_design(data, gen = GEN, rep = REP,
-                      resp = c(PH, EH, NKE, TKW),
+                      resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
                       type = "pcor") %>% 
   as.data.frame()
 print_table(pcor, rownames = TRUE)
@@ -283,7 +283,7 @@ print_table(pcor, rownames = TRUE)
 ## Residual correlations
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 rcor <- covcor_design(data, gen = GEN, rep = REP,
-                     resp = c(PH, EH, NKE, TKW),
+                    resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
                      type = "rcor") %>% 
   as.data.frame()
 print_table(rcor, rownames = TRUE)
@@ -295,15 +295,20 @@ Using the function `split_factors()` it is possible to pass the data grouped and
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
 cov <- data_ge2 %>%
        split_factors(ENV, keep_factors = TRUE) %>%
-       covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
+       covcor_design(GEN, REP,
+                     resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
                      type = "rcov")
     ```
 
 The residual (co)variance matrix and the means (obtained using `type = "means"`) may be used into the function `mahala()` to compute the Mahalanobis distance 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
 
-res <- covcor_design(data, GEN, REP, c(PH, EH, NKE, TKW), type = "rcov")
-means <- covcor_design(data, GEN, REP, c(PH, EH, NKE, TKW), type = "means")
+res <- covcor_design(data, GEN, REP,
+                     resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
+                     type = "rcov")
+means <- covcor_design(data, GEN, REP,
+                       resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
+                       type = "means")
 
 D2 <- mahala(.means = means, covar = res, inverted = FALSE) %>% 
   as.data.frame()
@@ -550,7 +555,7 @@ data_E1 <- subset(data_ge2, ENV == "A1")
 D2_des <- mahala_design(data_E1,
                        gen = GEN,
                        rep = REP,
-                       resp = c(ED, CW, KW, NKR, TKW, NKE)) %>% 
+                       resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW)) %>% 
   as.data.frame()
 print_table(D2_des, rownames = TRUE)
 ```
@@ -562,7 +567,7 @@ data_ge2 %>%
 split_factors(ENV, keep_factors = TRUE) %>%
 mahala_design(gen = GEN,
               rep = REP,
-              resp = c(ED, CW, KW, NKR, TKW, NKE)) %>%
+              resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW)) %>%
 pairs_mantel()
 
     ```

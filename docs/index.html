@@ -193,9 +193,16 @@
 <p>Here, we will use the example dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details see <code><a href="reference/data_ge.html">?data_ge</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a></code></pre></div>
 <p>The first step is to inspect the data with the function <code><a href="reference/inspect.html">inspect()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="reference/inspect.html">inspect</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb3-2" title="2">        <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-3" title="3">        <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="reference/inspect.html">inspect</a></span>(data_ge, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; # A tibble: 5 x 9</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt;   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt;   &lt;chr&gt;    &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; 1 ENV      factor  No      14         420 NA     NA    NA         NA</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; 2 GEN      factor  No      10         420 NA     NA    NA         NA</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; 3 REP      factor  No      3          420 NA     NA    NA         NA</span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; 4 GY       numeric No      -          420  0.67   2.61  5.09       0</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; 5 HM       numeric No      -          420 38     48    58          0</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; No issues detected while inspecting data.</span></a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;"></p>
 <p>No issues while inspecting the data. Let’s continue with the analyzes!</p>
 <div id="ammi-model" class="section level2">

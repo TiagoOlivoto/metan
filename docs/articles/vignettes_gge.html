@@ -220,7 +220,7 @@
 <div id="fitting-the-gge-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-the-gge-model" class="anchor"></a>Fitting the GGE model</h2>
-<p>To fit the GGE model we will use the data in <code>data_ge</code>, which contains data for grain yield evaluated in 10 genotypes conducted in 14 environments. First of all, let’s create a two-way table for that data using the function <code><a href="../reference/make_mat.html">make_mat()</a></code>.</p>
+<p>To fit the GGE model we will use the data in <code>data_ge</code>, which contains data for grain yield evaluated in 10 genotypes conducted in 14 environments. First of all, let’s inspect this data for possible problems.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/inspect.html">inspect</a></span>(data_ge)</a></code></pre></div>
 <pre><code># A tibble: 5 x 9
   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
@@ -231,28 +231,8 @@
 4 GY       numeric No      -          420  0.67   2.61  5.09       0
 5 HM       numeric No      -          420 38     48    58          0</code></pre>
 <pre><code>No issues detected while inspecting data.</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">ge_table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(data_ge, GEN, ENV, GY)</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/print.dataframe.html">print.data.frame</a></span>(ge_table, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
-<pre><code>      E1  E10   E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9
-G1  2.37 2.31 1.356 1.34 3.00 1.53 3.04 4.08 3.49 4.17 2.81 1.90 2.27 2.78
-G10 1.97 1.54 0.899 1.02 1.83 1.86 3.15 4.11 4.27 3.37 2.48 2.24 2.70 3.15
-G2  2.90 2.30 1.491 1.99 3.03 1.43 3.23 4.57 3.72 3.83 2.54 1.99 2.05 3.36
-G3  2.89 2.34 1.568 1.76 3.47 2.06 3.61 4.13 4.13 4.13 2.98 2.16 2.85 3.29
-G4  2.59 2.17 1.370 1.53 2.64 1.86 3.19 3.85 3.30 3.78 2.70 1.98 2.30 3.72
-G5  2.19 2.14 1.326 1.69 2.57 1.78 3.14 3.74 3.38 3.47 2.43 1.66 2.71 3.30
-G6  2.30 2.21 1.501 1.39 2.91 1.80 3.29 3.43 3.40 3.57 2.34 1.76 2.54 3.04
-G7  2.77 2.44 1.364 1.95 3.18 1.94 2.61 4.10 3.02 4.05 2.67 2.55 2.58 3.14
-G8  2.90 2.57 1.683 2.00 3.52 1.99 3.44 4.11 4.14 4.81 2.91 2.26 2.88 2.83
-G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code></pre>
 <p>The GGE model is fitted with the function <code><a href="../reference/gge.html">gge()</a></code>. This function produces a GGE model based on both a two-way table (in our case the object <code>table</code>) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Using a data.frame</span></a>
-<a class="sourceLine" id="cb7-2" title="2">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb7-3" title="3">                 <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb7-4" title="4">                 <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb7-5" title="5">                 <span class="dt">resp =</span> GY)</a>
-<a class="sourceLine" id="cb7-6" title="6"></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co"># Using a two-way table</span></a>
-<a class="sourceLine" id="cb7-8" title="8">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a></code></pre></div>
 <p>The model above was fitted considering (i) column metric preserving (where the singular value is entirely partitioned into the environment eigenvectors); (ii) environment centered (the biplot will contain a mixed information of G + GEI); and no scaling method. To change these default settings, use the arguments <code>svp</code>, <code>centering</code>, and <code>scaling</code>, respectively. Please, note that in the second example the argument <code>table</code> was set to <code>TRUE</code> to indicate that the input data is a two-way table.</p>
 </div>
 <div id="visualizing-the-biplot" class="section level2">
@@ -287,12 +267,12 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <h2 class="hasAnchor">
 <a href="#biplot-type-1-a-basic-biplot-" class="anchor"></a>Biplot type 1: A basic biplot.</h2>
 <p>This is the default setting in the function plot, thus, this biplot is produced by just calling <code><a href="https://rdrr.io/r/graphics/plot.html">plot(model)</a></code>, as shown below.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model)</a>
-<a class="sourceLine" id="cb8-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb8-3" title="3">          <span class="dt">col.gen =</span> <span class="st">"orange"</span>,</a>
-<a class="sourceLine" id="cb8-4" title="4">          <span class="dt">size.text.env =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb8-5" title="5">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan</a></span>(<span class="dt">grid =</span>  <span class="st">"both"</span>))</a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model)</a>
+<a class="sourceLine" id="cb6-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb6-3" title="3">          <span class="dt">col.gen =</span> <span class="st">"orange"</span>,</a>
+<a class="sourceLine" id="cb6-4" title="4">          <span class="dt">size.text.env =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb6-5" title="5">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan</a></span>(<span class="dt">grid =</span>  <span class="st">"both"</span>))</a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-mean-performance-vs--stability-" class="section level2">
@@ -300,15 +280,15 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a href="#biplot-type-2-mean-performance-vs--stability-" class="anchor"></a>Biplot type 2: Mean performance vs. stability.</h2>
 <p>In this biplot, the visualization of the mean and stability of genotypes is achieved by drawing an average environment coordinate (AEC) on the genotype-focused biplot. First, an average environment, represented by the small circle, is defined by the mean PC1 and PC2 scores of the environments. The line that passes through the biplot origin and the AEC may be called the average. The projections of genotype markers onto this axis should, therefore, approximate the mean yield of the genotypes. Thus, the G8 was clearly the highest-yielding genotype, on average.</p>
 <p>The AEC ordinate is the line that passes through the biplot origin and is perpendicular to the AEC abscissa. Therefore, if the AEC abscissa represents the G, the AEC ordinate must approximate the GEI associated with each genotype, which is a measure of variability or instability of the genotypes <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. A greater projection onto the AEC ordinate, regardless of the direction, means greater instability. In our example, G3 was found to be the most stable and the second most productive genotype, while G9 had great instability.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
-<a class="sourceLine" id="cb9-2" title="2">c &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb9-3" title="3">d &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb9-4" title="4">          <span class="dt">type =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb9-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb9-6" title="6">          <span class="dt">col.env =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb9-7" title="7">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>,</a>
-<a class="sourceLine" id="cb9-8" title="8">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan_minimal</a></span>())</a>
-<a class="sourceLine" id="cb9-9" title="9"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(c, d, <span class="dt">labels =</span> letters[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2">c &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb7-3" title="3">d &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb7-4" title="4">          <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb7-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb7-6" title="6">          <span class="dt">col.env =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb7-7" title="7">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>,</a>
+<a class="sourceLine" id="cb7-8" title="8">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan_minimal</a></span>())</a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(c, d, <span class="dt">labels =</span> letters[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-3-which-won-where-" class="section level2">
@@ -316,119 +296,118 @@ G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code
 <a href="#biplot-type-3-which-won-where-" class="anchor"></a>Biplot type 3: Which-won-where.</h2>
 <p>In this biplot a polygon is drawn joining the genotypes (G7, G8, G9, G10, and G4) that are located farthest from the biplot origin so that all other genotypes are contained in the polygon. The vertex genotypes have the longest vectors, in their respective directions, which is a measure of responsiveness to environments. The vertex genotypes are, therefore, among the most responsive genotypes; all other genotypes are less responsive in their respective directions. A genotype located at the origin would rank the same in all environments and is not at all responsive to the environments.</p>
 <p>The perpendicular lines to the sides of the polygon divide the biplot into sectors. Each sector has a vertex genotype. For example, the sector with the vertex genotype G4 may be referred to as the G4 sector; and one environment (E9), fell in this sector. As a rule, the vertex genotype is the highest-yielding genotype in all environments that share the sector with it <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. In this case, G4 was the highest-yielding in E9, as shown in the two-way table above.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2">e &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb10-3" title="3">f &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb10-4" title="4">          <span class="dt">type =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb10-5" title="5">          <span class="dt">size.shape.win =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb10-6" title="6">          <span class="dt">large_label =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb10-7" title="7">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb10-8" title="8">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
-<a class="sourceLine" id="cb10-9" title="9">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb10-10" title="10"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(e, f, <span class="dt">labels =</span> letters[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">gge_model =<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2">e &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3">f &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb8-4" title="4">          <span class="dt">type =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb8-5" title="5">          <span class="dt">size.shape.win =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb8-6" title="6">          <span class="dt">large_label =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb8-7" title="7">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb8-8" title="8">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
+<a class="sourceLine" id="cb8-9" title="9">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(e, f, <span class="dt">labels =</span> letters[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-4-discriminativeness-vs--representativeness-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-4-discriminativeness-vs--representativeness-" class="anchor"></a>Biplot type 4: Discriminativeness vs. representativeness.</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">g &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2">h &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb11-3" title="3">          <span class="dt">type =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb11-4" title="4">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan_minimal</a></span>())</a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(g, h, <span class="dt">labels =</span> letters[<span class="dv">7</span><span class="op">:</span><span class="dv">8</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">g &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2">h &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb9-3" title="3">          <span class="dt">type =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb9-4" title="4">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan_minimal</a></span>())</a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(g, h, <span class="dt">labels =</span> letters[<span class="dv">7</span><span class="op">:</span><span class="dv">8</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-5-examine-an-environment-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-5-examine-an-environment-" class="anchor"></a>Biplot type 5: Examine an environment.</h2>
 <p>Identifying genotypes most adapted to an environment can be easily achieved via a GGE biplot. For example, to visualize the performance of different genotypes in a given environment, e.g., E10, simply draw a line that passes through the biplot origin and the marker of E10. The genotypes can be ranked according to their projections onto the E10 axis based on their performance in E10, in the direction pointed by the arrow. In our example, at E10, the highest-yielding genotype G8, and the lowest-yielding genotype was G10, and the order of the genotypes were G8 &gt; G7 &gt; G3 &gt; G2 &gt; G4 &gt; G1 &gt; G6 &gt; G5 &gt; G9 &gt; G10.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb12-2" title="2">i &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">5</span>, <span class="dt">sel_env =</span> <span class="st">"E10"</span>)</a>
-<a class="sourceLine" id="cb12-3" title="3">j &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb12-4" title="4">          <span class="dt">type =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb12-5" title="5">          <span class="dt">sel_env =</span> <span class="st">"E10"</span>,</a>
-<a class="sourceLine" id="cb12-6" title="6">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb12-7" title="7">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb12-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb12-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(i, j, <span class="dt">labels =</span> letters[<span class="dv">9</span><span class="op">:</span><span class="dv">10</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
+<a class="sourceLine" id="cb10-2" title="2">i &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">5</span>, <span class="dt">sel_env =</span> <span class="st">"E10"</span>)</a>
+<a class="sourceLine" id="cb10-3" title="3">j &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb10-4" title="4">          <span class="dt">type =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-5" title="5">          <span class="dt">sel_env =</span> <span class="st">"E10"</span>,</a>
+<a class="sourceLine" id="cb10-6" title="6">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb10-7" title="7">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb10-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb10-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(i, j, <span class="dt">labels =</span> letters[<span class="dv">9</span><span class="op">:</span><span class="dv">10</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-6-ranking-environments-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-6-ranking-environments-" class="anchor"></a>Biplot type 6: Ranking environments.</h2>
 <p>In this biplot the “ideal” environment is used as the center of a set of concentric lines that serve as a ruler to measure the distance between an environment and the ideal environment. since the main focus in this biplot is environments, then, the singular value partition used is “environment” (default). It can be seen that E13 is the closest to the ideal environment, and, therefore, is most desirable of all 14 environments. E4 and E9 were the least desirable test environments.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb13-2" title="2">k &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb13-3" title="3">l &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb13-4" title="4">          <span class="dt">type =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb13-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb13-6" title="6">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb13-7" title="7">          <span class="dt">col.circle =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb13-8" title="8">          <span class="dt">col.alpha.circle =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb13-9" title="9">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb13-10" title="10">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>,</a>
-<a class="sourceLine" id="cb13-11" title="11">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan</a></span>(<span class="dt">color.background =</span> <span class="st">"white"</span>))</a>
-<a class="sourceLine" id="cb13-12" title="12"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(k, l, <span class="dt">labels =</span> letters[<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
+<a class="sourceLine" id="cb11-2" title="2">k &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb11-3" title="3">l &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb11-4" title="4">          <span class="dt">type =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb11-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb11-6" title="6">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb11-7" title="7">          <span class="dt">col.circle =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb11-8" title="8">          <span class="dt">col.alpha.circle =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb11-9" title="9">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb11-10" title="10">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>,</a>
+<a class="sourceLine" id="cb11-11" title="11">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan</a></span>(<span class="dt">color.background =</span> <span class="st">"white"</span>))</a>
+<a class="sourceLine" id="cb11-12" title="12"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(k, l, <span class="dt">labels =</span> letters[<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-7-examine-a-genotype" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-7-examine-a-genotype" class="anchor"></a>Biplot type 7: Examine a genotype</h2>
 <p>Analogous to visualizing genotype performances in a given environment (biplot 5) visualization of the mean and stability of genotypes is achieved by drawing an average environment coordinate (AEC) on the genotype-focused biplot <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
-<a class="sourceLine" id="cb14-2" title="2">m &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">7</span>, <span class="dt">sel_gen =</span> <span class="st">"G8"</span>)</a>
-<a class="sourceLine" id="cb14-3" title="3">n &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb14-4" title="4">          <span class="dt">type =</span> <span class="dv">7</span>,</a>
-<a class="sourceLine" id="cb14-5" title="5">          <span class="dt">sel_gen =</span> <span class="st">"G8"</span>,</a>
-<a class="sourceLine" id="cb14-6" title="6">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb14-7" title="7">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb14-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb14-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>,</a>
-<a class="sourceLine" id="cb14-10" title="10">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan</a></span>(<span class="dt">grid =</span> <span class="st">"both"</span>))</a>
-<a class="sourceLine" id="cb14-11" title="11"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(m, n, <span class="dt">labels =</span> letters[<span class="dv">13</span><span class="op">:</span><span class="dv">14</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2">m &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">7</span>, <span class="dt">sel_gen =</span> <span class="st">"G8"</span>)</a>
+<a class="sourceLine" id="cb12-3" title="3">n &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb12-4" title="4">          <span class="dt">type =</span> <span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb12-5" title="5">          <span class="dt">sel_gen =</span> <span class="st">"G8"</span>,</a>
+<a class="sourceLine" id="cb12-6" title="6">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb12-7" title="7">          <span class="dt">col.env =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb12-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb12-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>,</a>
+<a class="sourceLine" id="cb12-10" title="10">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan</a></span>(<span class="dt">grid =</span> <span class="st">"both"</span>))</a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(m, n, <span class="dt">labels =</span> letters[<span class="dv">13</span><span class="op">:</span><span class="dv">14</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-8-ranking-genotypes-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-8-ranking-genotypes-" class="anchor"></a>Biplot type 8: Ranking genotypes.</h2>
 <p>This biplot compares all genotypes with the “ideal” genotype The ideal genotype, represented by the small circle with an arrow pointing to it, is defined as having the highest yield in all environments. That is, it has the highest mean yield and is absolutely stable. The genotypes are ranked based on their distance from the ideal genotype <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. In our example, G3 and G8 were found to outperform the other genotypes.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</a>
-<a class="sourceLine" id="cb15-2" title="2">o &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">8</span>)</a>
-<a class="sourceLine" id="cb15-3" title="3">p &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb15-4" title="4">          <span class="dt">type =</span> <span class="dv">8</span>,</a>
-<a class="sourceLine" id="cb15-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb15-6" title="6">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
-<a class="sourceLine" id="cb15-7" title="7">          <span class="dt">size.text.gen =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb15-8" title="8">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan_minimal</a></span>())</a>
-<a class="sourceLine" id="cb15-9" title="9"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(o, p, <span class="dt">labels =</span> letters[<span class="dv">15</span><span class="op">:</span><span class="dv">16</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">o &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2">p &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb13-3" title="3">          <span class="dt">type =</span> <span class="dv">8</span>,</a>
+<a class="sourceLine" id="cb13-4" title="4">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb13-5" title="5">          <span class="dt">col.env =</span> <span class="st">"gray"</span>,</a>
+<a class="sourceLine" id="cb13-6" title="6">          <span class="dt">size.text.gen =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb13-7" title="7">          <span class="dt">plot_theme =</span> <span class="kw"><a href="../reference/themes.html">theme_metan_minimal</a></span>())</a>
+<a class="sourceLine" id="cb13-8" title="8"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(o, p, <span class="dt">labels =</span> letters[<span class="dv">15</span><span class="op">:</span><span class="dv">16</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-9-compare-two-genotypes-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-9-compare-two-genotypes-" class="anchor"></a>Biplot type 9: Compare two genotypes.</h2>
 <p>To compare two genotypes, for example, G10 and G8, draw a connector line to connect them and draw a perpendicular line that passes through the biplot origin and is perpendicular to the connector line. We see one environment, E9, is on the same side of the perpendicular line as G10, and the other 13 environments are on the other side of the perpendicular line, together with G8. This indicates that G10 yielded more than G8 in E9, but G8. yielded more than G10 in the other 13 environments <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
-<a class="sourceLine" id="cb16-2" title="2">q &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">9</span>, <span class="dt">sel_gen1 =</span> <span class="st">"G8"</span>, <span class="dt">sel_gen2 =</span> <span class="st">"G10"</span>)</a>
-<a class="sourceLine" id="cb16-3" title="3">r &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb16-4" title="4">          <span class="dt">type =</span> <span class="dv">9</span>,</a>
-<a class="sourceLine" id="cb16-5" title="5">          <span class="dt">sel_gen1 =</span> <span class="st">"G8"</span>,</a>
-<a class="sourceLine" id="cb16-6" title="6">          <span class="dt">sel_gen2 =</span> <span class="st">"G10"</span>,</a>
-<a class="sourceLine" id="cb16-7" title="7">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb16-8" title="8">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb16-9" title="9"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(q, r, <span class="dt">labels =</span> letters[<span class="dv">17</span><span class="op">:</span><span class="dv">18</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</a>
+<a class="sourceLine" id="cb14-2" title="2">q &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">9</span>, <span class="dt">sel_gen1 =</span> <span class="st">"G8"</span>, <span class="dt">sel_gen2 =</span> <span class="st">"G10"</span>)</a>
+<a class="sourceLine" id="cb14-3" title="3">r &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb14-4" title="4">          <span class="dt">type =</span> <span class="dv">9</span>,</a>
+<a class="sourceLine" id="cb14-5" title="5">          <span class="dt">sel_gen1 =</span> <span class="st">"G8"</span>,</a>
+<a class="sourceLine" id="cb14-6" title="6">          <span class="dt">sel_gen2 =</span> <span class="st">"G10"</span>,</a>
+<a class="sourceLine" id="cb14-7" title="7">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb14-8" title="8">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb14-9" title="9"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(q, r, <span class="dt">labels =</span> letters[<span class="dv">17</span><span class="op">:</span><span class="dv">18</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-10-relationship-among-environments-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-10-relationship-among-environments-" class="anchor"></a>Biplot type 10: Relationship among environments.</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb17-2" title="2">s &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb17-3" title="3">t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
-<a class="sourceLine" id="cb17-4" title="4">          <span class="dt">type =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb17-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb17-6" title="6">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb17-7" title="7"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(s, t, <span class="dt">labels =</span> letters[<span class="dv">19</span><span class="op">:</span><span class="dv">20</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a>
+<a class="sourceLine" id="cb15-2" title="2">s &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb15-3" title="3">t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model,</a>
+<a class="sourceLine" id="cb15-4" title="4">          <span class="dt">type =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb15-5" title="5">          <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb15-6" title="6">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb15-7" title="7"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(s, t, <span class="dt">labels =</span> letters[<span class="dv">19</span><span class="op">:</span><span class="dv">20</span>])</a></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 </div>

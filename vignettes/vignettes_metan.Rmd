@@ -30,10 +30,10 @@ print_table <- function(table, rownames = FALSE, ...){
 datatable(table,
           rownames = rownames,
           extensions = 'Buttons',
-          options = list(scrollX = TRUE, dom = 'Bfrtip',
+          options = list(dom = 'Bfrtip',
                          buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
-    formatRound(columns = c(1:ncol(table)), digits = 3)
-  }
+    formatSignif(columns = c(1:ncol(table)), digits = 3)
+}
 
 ```
 
@@ -161,9 +161,6 @@ The GGE model is fitted with the function `gge()`. This function produces a GGE 
 # Using a data.frame
 gge_model <- gge(data_ge, ENV, GEN, GY)
 
-# Using a two-way table
-ge_table <- make_mat(data_ge, GEN, ENV, GY)
-gge_model <- gge(ge_table, table = TRUE)
 
 ```
 

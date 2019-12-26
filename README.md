@@ -45,9 +45,16 @@ library(metan)
 The first step is to inspect the data with the function `inspect()`.
 
 ``` r
-inspect(data_ge,
-        verbose = FALSE,
-        plot = TRUE)
+inspect(data_ge, plot = TRUE)
+#> # A tibble: 5 x 9
+#>   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
+#>   <chr>    <fct>   <fct>   <fct>    <int> <dbl>  <dbl> <dbl>   <dbl>
+#> 1 ENV      factor  No      14         420 NA     NA    NA         NA
+#> 2 GEN      factor  No      10         420 NA     NA    NA         NA
+#> 3 REP      factor  No      3          420 NA     NA    NA         NA
+#> 4 GY       numeric No      -          420  0.67   2.61  5.09       0
+#> 5 HM       numeric No      -          420 38     48    58          0
+#> No issues detected while inspecting data.
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />

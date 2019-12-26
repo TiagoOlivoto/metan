@@ -54,9 +54,7 @@ library(metan)
 The first step is to inspect the data with the function `inspect()`.
 
 ```{r, fig.width=7, fig.height=7, fig.align="center"}
-inspect(data_ge,
-        verbose = FALSE,
-        plot = TRUE)
+inspect(data_ge, plot = TRUE)
 ```
 
 No issues while inspecting the data. Let's continue with the analyzes!

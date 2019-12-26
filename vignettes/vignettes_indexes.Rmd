@@ -30,9 +30,9 @@ print_table <- function(table, rownames = FALSE, ...){
 datatable(table,
           rownames = rownames,
           extensions = 'Buttons',
-          options = list(scrollX = TRUE, dom = 'Bfrtip',
+          options = list(dom = 'Bfrtip',
                          buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
-    formatRound(columns = c(1:ncol(table)), digits = 3)
+    formatSignif(columns = c(1:ncol(table)), digits = 3)
 }
 
 ```
@@ -116,7 +116,7 @@ print_table(MTSI_index2$FA)
 print_table(MTSI_index2$finish.loadings)
 # Scores for genotypes
 print_table(MTSI_index2$scores.gen)
-# Selection differential for the 'waasb' index
+# Selection differential for the 'waasby' index
 print_table(MTSI_index2$sel.dif)
 # Selection differential for the variables
 print_table(MTSI_index2$sel.dif.var)

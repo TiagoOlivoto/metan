@@ -66,26 +66,18 @@ The function `gge()` is used to produce a GGE model. According to @Yan2003, the 
 # A numerical example
 ## Fitting the GGE model
 
-To fit the GGE model we will use the data in `data_ge`, which contains data for grain yield evaluated in 10 genotypes conducted in 14 environments. First of all, let's create a two-way table for that data using the function `make_mat()`.
+To fit the GGE model we will use the data in `data_ge`, which contains data for grain yield evaluated in 10 genotypes conducted in 14 environments. First of all, let's inspect this data for possible problems.
 
 ```{r echo = TRUE}
 inspect(data_ge)
-ge_table <- make_mat(data_ge, GEN, ENV, GY)
-print.data.frame(ge_table, digits = 3)
 
 ```
 
 The GGE model is fitted with the function `gge()`. This function produces a GGE model based on both a two-way table (in our case the object `table`) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).
 
 ```{r echo = TRUE}
-# Using a data.frame
-gge_model <- gge(data_ge,
-                 gen = GEN,
-                 env = ENV,
-                 resp = GY)
+gge_model <- gge(data_ge, ENV, GEN, GY)
 
-# Using a two-way table
-gge_model <- gge(ge_table, table = TRUE)
 
 ```
 
@@ -131,7 +123,7 @@ should, therefore, approximate the mean yield of the genotypes. Thus, the G8 was
 The AEC ordinate is the line that passes through the biplot origin and is perpendicular to the AEC abscissa. Therefore, if the AEC abscissa represents the G, the AEC ordinate must approximate the GEI associated with each genotype, which is a measure of variability or instability of the genotypes [@Yan2007]. A greater projection onto the AEC ordinate, regardless of the direction, means greater instability. In our example, G3 was found to be the most stable and the second most productive genotype, while G9 had great instability. 
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model <- gge(ge_table, table = TRUE, svp = "genotype")
+gge_model <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
 c <- plot(gge_model, type = 2)
 d <- plot(gge_model,
           type = 2,
@@ -151,7 +143,7 @@ In this biplot a polygon is drawn joining the genotypes (G7, G8, G9, G10, and G4
 The perpendicular lines to the sides of the polygon divide the biplot into sectors. Each sector has a vertex genotype. For example, the sector with the vertex genotype G4 may be referred to as the G4 sector; and one environment (E9), fell in this sector. As a rule, the vertex genotype is the highest-yielding genotype in all environments that share the sector with it [@Yan2007]. In this case, G4 was the highest-yielding in E9, as shown in the two-way table above.
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(ge_table, table = TRUE, svp = "symmetrical")
+gge_model = gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
 e <- plot(gge_model, type = 3)
 f <- plot(gge_model,
           type = 3,
@@ -185,7 +177,7 @@ genotype G8, and the lowest-yielding genotype was G10, and the order of the geno
 
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model <- gge(ge_table, table = TRUE, svp = "symmetrical")
+gge_model <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
 i <- plot(gge_model, type = 5, sel_env = "E10")
 j <- plot(gge_model,
           type = 5,
@@ -204,7 +196,7 @@ In this biplot the "ideal" environment is used as the center of a set of concent
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
 
-gge_model <- gge(ge_table, table = TRUE)
+gge_model <- gge(data_ge, ENV, GEN, GY)
 k <- plot(gge_model, type = 6)
 l <- plot(gge_model,
           type = 6,
@@ -226,7 +218,7 @@ Analogous to visualizing genotype performances in a given environment (biplot 5)
 
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model <- gge(ge_table, table = TRUE, svp = "genotype")
+gge_model <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
 m <- plot(gge_model, type = 7, sel_gen = "G8")
 n <- plot(gge_model,
           type = 7,
@@ -245,8 +237,6 @@ arrange_ggplot(m, n, labels = letters[13:14])
 This biplot compares all genotypes with the "ideal" genotype The ideal genotype, represented by the small circle with an arrow pointing to it, is defined as having the highest yield in all environments. That is, it has the highest mean yield and is absolutely stable. The genotypes are ranked based on their distance from the ideal genotype [@Yan2007]. In our example, G3 and G8 were found to outperform the other genotypes.
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-
-gge_model <- gge(ge_table, table = TRUE, svp = "genotype")
 o <- plot(gge_model, type = 8)
 p <- plot(gge_model,
           type = 8,
@@ -264,7 +254,7 @@ arrange_ggplot(o, p, labels = letters[15:16])
 To compare two genotypes, for example, G10 and G8, draw a connector line to connect them and draw a perpendicular line that passes through the biplot origin and is perpendicular to the connector line. We see one environment, E9, is on the same side of the perpendicular line as G10, and the other 13 environments are on the other side of the perpendicular line, together with G8. This indicates that G10 yielded more than G8 in E9, but G8. yielded more than G10 in the other 13 environments [@Yan2007].
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model <- gge(ge_table, table = TRUE, svp = "symmetrical")
+gge_model <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
 q <- plot(gge_model, type = 9, sel_gen1 = "G8", sel_gen2 = "G10")
 r <- plot(gge_model,
           type = 9,
@@ -279,7 +269,7 @@ arrange_ggplot(q, r, labels = letters[17:18])
 ## Biplot type 10: Relationship among environments.
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model <- gge(ge_table, table = TRUE)
+gge_model <- gge(data_ge, ENV, GEN, GY)
 s <- plot(gge_model, type = 10)
 t <- plot(gge_model,
           type = 10,
