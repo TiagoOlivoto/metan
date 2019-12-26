@@ -25,10 +25,9 @@ library(DT) # Used to make the tables
 print_table <- function(table, rownames = FALSE, n = 5, ...){
 datatable(table,
           rownames = rownames,
-          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
-          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
-                         pageLength = n, buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')),
-          ...) %>%
+          extensions = 'Buttons',
+          options = list(scrollX = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
     formatRound(columns = c(1:ncol(table)), digits = 3)
 }
 
