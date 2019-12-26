@@ -20,13 +20,13 @@ gge(
 and the response variable(s). It is also possible to use a two-way table with genotypes
 in lines and environments in columns as input. In this case you must use \code{table = TRUE}.}
 
-\item{env}{The name of the column that contains the levels of the environments. Defaults to \code{NULL},
-in case of the input data is a two-way table.}
+\item{env}{The name of the column that contains the levels of the environments.}
 
-\item{gen}{The name of the column that contains the levels of the genotypes. Defaults to \code{NULL},
-in case of the input data is a two-way table.}
+\item{gen}{The name of the column that contains the levels of the genotypes.}
 
-\item{resp}{The response variable(s). Defaults to \code{NULL}, in case of the input data is a two-way table.}
+\item{resp}{The response variable(s). To analyze multiple variables in a
+single procedure a vector of variables may be used. For example \code{resp
+  = c(var1, var2, var3)}. Select helpers are also supported.}
 
 \item{centering}{The centering method. Must be one of the \code{'none | 0'}, for no
 centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),
@@ -44,9 +44,6 @@ environment eigenvectors, also called column metric preserving); or \code{'symme
 (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 visualizing either the relationship among genotypes or that among the environments).}
-
-\item{table}{Logical values indicating if the input data is a two-way table with genotypes
-in the rows and environments in the columns. Defaults to \code{FALSE}.}
 }
 \value{
 The function returns a list of class \code{gge} containing the following objects
