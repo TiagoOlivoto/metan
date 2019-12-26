@@ -6,6 +6,8 @@
 #' ggplot2.
 #'
 #'@param x An object of class \code{gge}
+#'@param var The variable to plot. Defaults to \code{var = 1} the first variable
+#'  of \code{x}.
 #'@param type The type of biplot to produce.
 #' \enumerate{
 #' \item Basic biplot.
@@ -56,7 +58,7 @@
 #' @param plot_theme The graphical theme of the plot. Default is
 #'   \code{plot_theme = theme_metan()}. For more details, see
 #'   \code{\link[ggplot2]{theme}}.
-#' @param ... Other arguments of the function.
+#' @param ... Currently not used.
 #' @return A ggplot2-based biplot.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
@@ -69,21 +71,16 @@
 #' @examples
 #' \donttest{
 #' library(metan)
-#' mod <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
+#' mod <- gge(data_ge, ENV, GEN, GY)
 #' plot(mod)
 #' plot(mod,
 #'      type = 2,
 #'      col.gen = 'blue',
 #'      col.env = 'red',
 #'      size.text.gen = 2)
-#'
-#' # Using the %>% operator
-#'
-#' data_ge2 %>%
-#' gge(ENV, GEN, NKE) %>%
-#' plot(type = 3)
 #' }
 plot.gge <- function(x,
+                     var = 1,
                      type = 1,
                      sel_env = NA,
                      sel_gen = NA,
@@ -109,7 +106,7 @@ plot.gge <- function(x,
                      title = TRUE,
                      plot_theme = theme_metan(),
                      ...) {
-  model <- x
+  model <- x[[var]]
   if (!class(model) == "gge") {
     stop("The model must be of class 'gge'")
   }

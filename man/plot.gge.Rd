@@ -6,6 +6,7 @@
 \usage{
 \method{plot}{gge}(
   x,
+  var = 1,
   type = 1,
   sel_env = NA,
   sel_gen = NA,
@@ -35,6 +36,9 @@
 }
 \arguments{
 \item{x}{An object of class \code{gge}}
+
+\item{var}{The variable to plot. Defaults to \code{var = 1} the first variable
+of \code{x}.}
 
 \item{type}{The type of biplot to produce.
 \enumerate{
@@ -103,7 +107,7 @@ partitioning, scaling and centering.}
 \code{plot_theme = theme_metan()}. For more details, see
 \code{\link[ggplot2]{theme}}.}
 
-\item{...}{Other arguments of the function.}
+\item{...}{Currently not used.}
 }
 \value{
 A ggplot2-based biplot.
@@ -119,19 +123,13 @@ ggplot2.
 \examples{
 \donttest{
 library(metan)
-mod <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
+mod <- gge(data_ge, ENV, GEN, GY)
 plot(mod)
 plot(mod,
      type = 2,
      col.gen = 'blue',
      col.env = 'red',
      size.text.gen = 2)
-
-# Using the \%>\% operator
-
-data_ge2 \%>\%
-gge(ENV, GEN, NKE) \%>\%
-plot(type = 3)
 }
 }
 \references{

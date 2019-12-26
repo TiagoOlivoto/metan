@@ -6,13 +6,13 @@
 \usage{
 gge(
   .data,
-  env = NULL,
-  gen = NULL,
-  resp = NULL,
+  env,
+  gen,
+  resp,
   centering = "environment",
   scaling = "none",
   svp = "environment",
-  table = FALSE
+  verbose = TRUE
 )
 }
 \arguments{
@@ -81,12 +81,18 @@ library(metan)
 mod <- gge(data_ge, ENV, GEN, GY)
 plot(mod)
 
-# Using the \%>\% operator and a two-way table as input
+# GGE model for all numeric variables
+mod2 <- gge(data_ge2, ENV, GEN, resp = everything())
+plot(mod2)
 
-data_ge2 \%>\%
-  make_mat(GEN, ENV, NKE) \%>\%
-  gge(table = TRUE) \%>\%
-  plot()
+# If we have a two-way table with the mean values for
+# genotypes and environments
+
+table <- make_mat(data_ge, GEN, ENV, GY)
+table
+make_long(table) \%>\%
+gge(ENV, GEN, Y) \%>\%
+plot()
 }
 }
 \references{
