@@ -22,18 +22,21 @@ knitr::opts_chunk$set(comment = "")
 
 # Getting started
 
-In this section, we will use the data in `data_ge` and `data_ge2`. For more information see `?data_ge` and `?data_ge2`, respectively. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s). The R package [`kableExtra`](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html) was used to produce the tables of this vignette.
+In this section, we will use the data in `data_ge` and `data_ge2`. For more information see `?data_ge` and `?data_ge2`, respectively. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s). The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r warning = FALSE, message = FALSE}
 library(metan)
-library(kableExtra) # Used to make the tables
-library(tidyverse) # for data manipulation and pipe %>%
+library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table = function(table){
-  kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+print_table <- function(table, rownames = FALSE, digits = 3, ...){
+datatable(table,
+          rownames = rownames,
+          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
+          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')),
+          ...) %>%
+    formatRound(columns = c(1:ncol(table)), digits = digits)
 }
-str(data_ge)
 
 ```
 
@@ -43,7 +46,7 @@ str(data_ge)
 The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean for each environment.
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
 a <- ge_plot(data_ge, ENV, GEN, GY)
-b <- ge_plot(data_ge, ENV, GEN, GY) + coord_flip()
+b <- ge_plot(data_ge, ENV, GEN, GY) + ggplot2::coord_flip()
 arrange_ggplot(a, b, labels = letters[1:2])
 ```
 
@@ -53,88 +56,34 @@ The function `anova_ind()` can be used to compute an within-environment analysis
 
 ```{r eval=FALSE}
 ind <- anova_ind(data_ge, ENV, GEN, REP, GY)
-ind
-
-```
-
-
-```{r echo=FALSE }
-ind <- anova_ind(data_ge, ENV, GEN, REP, GY)
-kable(ind$GY$individual, "html", digits = 3) %>% 
-  row_spec(which(ind$GY$individual$PRFG < 0.05), bold = T, color = "blue") %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+print_table(ind$GY$individual)
 
 ```
 
 # Genotype-by-environment means
 The function `make_mat()` can be used to produce a two-way table for the genotype-environment means.
 
-```{r eval = FALSE }
+```{r }
 make_mat(data_ge, GEN, ENV, GY) %>% 
-round(3) 
-```
-
-
-```{r echo=FALSE}
-make_mat(data_ge, GEN, ENV, GY) %>% 
-  round(3) %>% 
-rownames_to_column('gen') %>% 
-mutate_if(is.numeric, function(x){
-  cell_spec(x, "html",
-            color = case_when(x == max(x) ~ "white",
-                              x == min(x) ~ "white",
-                              TRUE ~ "black"),
-            background  = case_when(x == max(x) ~ "green",
-                                    x == min(x) ~ "red",
-                                    TRUE ~ "transparent"))
-}) %>%
-kable("html", digits = 3, escape = F) %>%
-kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+print_table()
 ```
 
 
 # Genotype-by-environment interaction effects
-The function `ge_effects()` is used to compute the genotype-environment effects. Herem we highlight with a red background the genotypes with negative interaction effects within each environment
+The function `ge_effects()` is used to compute the genotype-environment effects. 
 ```{r eval=FALSE}
 ge_ef <- ge_effects(data_ge, ENV, GEN, REP, GY)
-round(ge_ef$GY, 2)
-
-```
-
-```{r echo= FALSE}
-
-ge_ef <- ge_effects(data_ge, ENV, GEN, REP, GY)
-  round(ge_ef$GY, 2) %>% 
-  rownames_to_column('gen') %>%
-  mutate_if(is.numeric, function(x){
-    cell_spec(x, "html",
-              color = ifelse(x < 0, "white", "black"),
-              background  = ifelse(x < 0, "red", "transparent"))
-  }) %>%
-  kable("html", digits = 3, escape = F) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+print_table(ge_ef$GY)
 
 ```
 
 
 
 # Genotype plus Genotype-by-environment effects
+To obtain the genotype plus genotype-environment effects, we can use the argument `type =  "gge"` in the function `ge_effects()`.
 ```{r eval=FALSE }
 gge_ef <- ge_effects(data_ge, ENV, GEN, REP, GY, type = "gge")
-round(gge_ef$GY, 2)
-```
-
-```{r echo = FALSE}
-gge_ef <- ge_effects(data_ge, ENV, GEN, REP, GY, type = "gge")
-  round(gge_ef$GY, 2) %>% 
-  rownames_to_column('gen') %>% 
-  mutate_if(is.numeric, function(x){
-    cell_spec(x, "html",
-              color = ifelse(x < 0, "white", "black"),
-              background  = ifelse(x < 0, "red", "transparent"))
-  }) %>%
-  kable("html", digits = 3, escape = F) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+print_table(gge_ef$GY)
 ```
 
 
@@ -192,16 +141,7 @@ ann1 <- Annicchiarico(data_ge, ENV, GEN, REP, GY, prob = 0.01)
 ## Environment classification
 
 ```{r, eval=FALSE}
-ann5$GY$environments
-
-```
-
-```{r, echo = FALSE}
-df = ann5$GY$environments
-kable(df, "html", digits = 3) %>% 
-row_spec(which(df$index <0), bold = T, color = "white", background = "red") %>%
-row_spec(which(df$index >0), bold = T, color = "white", background = "green") %>%
-kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+print_table(ann5$GY$environments)
 
 ```
 
@@ -209,15 +149,7 @@ kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive
 ## Index computed with all environments
 
 ```{r, eval = FALSE}
-ann5$GY$general
-
-```
-
-```{r, echo=FALSE}
-kable(ann5$GY$general, "html", digits = 3) %>% 
-row_spec(2, bold = T, color = "white", background = "red") %>%
-row_spec(4, bold = T, color = "white", background = "green") %>%
-kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+print_table(ann5$GY$general)
 
 ```
 
@@ -234,18 +166,9 @@ Similar then the genotypic confidence index, the superiority index is calculated
 
 ```{r, eval=FALSE}
 super <- superiority(data_ge, ENV, GEN, REP, GY)
-super$GY$index
+print_table(super$GY$index)
 ```
 
-
-```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE, echo=FALSE}
-super = superiority(data_ge, ENV, GEN, REP, GY)
-
-kable(super$GY$index, "html", digits = 3) %>% 
-  row_spec(2, bold = T, color = "white", background = "red") %>%
-  row_spec(4, bold = T, color = "white", background = "green") %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
-```
 
 
 # Environmental stratification
@@ -254,15 +177,6 @@ A method that combines stability analysis and environmental stratification using
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
 fact <- ge_factanal(data_ge, ENV, GEN, REP, GY)
 plot(fact)
-fact$GY$PCA
-fact$GY$FA
-fact$GY$env_strat
-
-```
-
-```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-fact = ge_factanal(data_ge, ENV, GEN, REP, GY)
-plot(fact)
 print_table(fact$GY$PCA)
 print_table(fact$GY$FA)
 print_table(fact$GY$env_strat)
@@ -270,16 +184,15 @@ print_table(fact$GY$env_strat)
 ```
 
 
-The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. It is a wrapper function that computes all the stability indexes at once. To get the results into a *"ready-to-read"* file, use `get_model_data()`.
-
-
 
 # Wrapper function
 
+The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. It is a wrapper function that computes all the stability indexes at once. To get the results into a *"ready-to-read"* file, use `get_model_data()`.
+
 ```{r }
 stat_ge <- data_ge2 %>% ge_stats(ENV, GEN, REP, resp = c(EH, EP))
-get_model_data(stat_ge, "stats")
-get_model_data(stat_ge, "ranks")
+get_model_data(stat_ge, "stats") %>% print_table()
+get_model_data(stat_ge, "ranks") %>% print_table(digits = 0)
 
 ```
 

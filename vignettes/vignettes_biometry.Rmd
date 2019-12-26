@@ -18,16 +18,19 @@ load("plots_corr.RData")
 
 ```
 
+The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
 
-```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+```{r warning = FALSE, message = FALSE}
 library(metan)
-library(kableExtra) # Used to make the tables
-library(tidyverse) # used for the forward-pipe operator %>%
+library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table = function(table){
-  kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                  font_size = 12)
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table,
+          rownames = rownames,
+          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
+          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
+    formatRound(columns = c(1:ncol(table)), digits = 3)
 }
 
 ```
@@ -79,13 +82,14 @@ stats <-
   desc_stat(contains("C"),
             stats = c("mean, SE.mean, CV, max, min, median"),
             verbose = F)
-print(stats)
+print_table(stats)
 ```
 
 We may convert the results above into a *wider* format by using the function `desc_wider()`
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-desc_wider(stats, CD)
+desc_wider(stats, CD) %>% 
+  print_table()
 ```
 
 
@@ -260,8 +264,10 @@ The function `covcor_design()` returns a list with the matrices of (co)variances
 data <- subset(data_ge2, ENV == "A1")
 gcor <- covcor_design(data, gen = GEN, rep = REP,
                       resp = c(PH, EH, NKE, TKW),
-                      type = "gcor")
-print_table(gcor)
+                      type = "gcor") %>% 
+  as.data.frame()
+print_table(gcor, rownames = TRUE)
+
 ```
 
 
@@ -269,16 +275,18 @@ print_table(gcor)
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 pcor <- covcor_design(data, gen = GEN, rep = REP,
                       resp = c(PH, EH, NKE, TKW),
-                      type = "pcor")
-print_table(pcor)
+                      type = "pcor") %>% 
+  as.data.frame()
+print_table(pcor, rownames = TRUE)
     ```
 
 ## Residual correlations
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 rcor <- covcor_design(data, gen = GEN, rep = REP,
                      resp = c(PH, EH, NKE, TKW),
-                     type = "rcor")
-print_table(rcor)
+                     type = "rcor") %>% 
+  as.data.frame()
+print_table(rcor, rownames = TRUE)
 ```
 
 ## Residual (co)variance matrix
@@ -297,8 +305,9 @@ The residual (co)variance matrix and the means (obtained using `type = "means"`)
 res <- covcor_design(data, GEN, REP, c(PH, EH, NKE, TKW), type = "rcov")
 means <- covcor_design(data, GEN, REP, c(PH, EH, NKE, TKW), type = "means")
 
-D2 <- mahala(.means = means, covar = res, inverted = FALSE)
-print_table(D2)
+D2 <- mahala(.means = means, covar = res, inverted = FALSE) %>% 
+  as.data.frame()
+print_table(D2, rownames = TRUE)
     ```
 
 
@@ -541,8 +550,9 @@ data_E1 <- subset(data_ge2, ENV == "A1")
 D2_des <- mahala_design(data_E1,
                        gen = GEN,
                        rep = REP,
-                       resp = c(ED, CW, KW, NKR, TKW, NKE))
-print_table(D2_des)
+                       resp = c(ED, CW, KW, NKR, TKW, NKE)) %>% 
+  as.data.frame()
+print_table(D2_des, rownames = TRUE)
 ```
 
 ### Compute one distance for each environment
@@ -560,7 +570,8 @@ pairs_mantel()
 ### If I have the matrices of means and covariances
 Lets suppose we want compute the Mahalanobis' distance for each pairwise genotype comparision based on cob-related traits. Note that the function `select(contains("C"))` is used to select the cob-relate traits, after computing the mean for each genotype.
 
-```{r }
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
 means <- data_ge2 %>%
   select(-c(ENV, REP)) %>%
   group_by(GEN) %>%

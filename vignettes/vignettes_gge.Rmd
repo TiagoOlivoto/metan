@@ -27,7 +27,6 @@ In this section, we will use the data in `data_ge`. For more information, please
 
 ```{r warning = FALSE, message = FALSE}
 library(metan)
-library(tidyverse) # used for the forward-pipe operator %>%
 ```
 
 # The GGE model
@@ -70,7 +69,7 @@ The function `gge()` is used to produce a GGE model. According to @Yan2003, the 
 To fit the GGE model we will use the data in `data_ge`, which contains data for grain yield evaluated in 10 genotypes conducted in 14 environments. First of all, let's create a two-way table for that data using the function `make_mat()`.
 
 ```{r echo = TRUE}
-str(data_ge)
+inspect(data_ge)
 ge_table <- make_mat(data_ge, GEN, ENV, GY)
 print.data.frame(ge_table, digits = 3)
 

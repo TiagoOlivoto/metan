@@ -51,17 +51,17 @@
 <meta property="og:title" content="Utilities for handling with numbers and strings — utils_num_str" />
 <meta property="og:description" content="
 
-round_cols(): Round a selected column or a whole data frame to
-significant figures.
-extract_number(): Extract the number(s) of a string.
-replace_number(): Replace numbers with a replacement.
-extract_string(): Extract all strings, ignoring case.
-replace_string(): Replace all strings with a replacement, ignoring
-case.
 all_lower_case(): Translate all non-numeric strings of a data frame
 to lower case. A character vector is also allowed as im
 all_upper_case(): Translate all non-numeric strings of a data frame
 to upper case.
+extract_number(): Extract the number(s) of a string.
+extract_string(): Extract all strings, ignoring case.
+replace_number(): Replace numbers with a replacement.
+replace_string(): Replace all strings with a replacement, ignoring
+case.
+round_cols(): Round a selected column or a whole data frame to
+significant figures.
 
 " />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -224,24 +224,28 @@ to upper case.
     <div class="ref-description">
     
 <ul>
-<li><p><code>round_cols()</code>: Round a selected column or a whole data frame to
-significant figures.</p></li>
-<li><p><code>extract_number()</code>: Extract the number(s) of a string.</p></li>
-<li><p><code>replace_number()</code>: Replace numbers with a replacement.</p></li>
-<li><p><code>extract_string()</code>: Extract all strings, ignoring case.</p></li>
-<li><p><code>replace_string()</code>: Replace all strings with a replacement, ignoring
-case.</p></li>
 <li><p><code>all_lower_case()</code>: Translate all non-numeric strings of a data frame
 to lower case. A character vector is also allowed as im</p></li>
 <li><p><code>all_upper_case()</code>: Translate all non-numeric strings of a data frame
 to upper case.</p></li>
+<li><p><code>extract_number()</code>: Extract the number(s) of a string.</p></li>
+<li><p><code>extract_string()</code>: Extract all strings, ignoring case.</p></li>
+<li><p><code>replace_number()</code>: Replace numbers with a replacement.</p></li>
+<li><p><code>replace_string()</code>: Replace all strings with a replacement, ignoring
+case.</p></li>
+<li><p><code>round_cols()</code>: Round a selected column or a whole data frame to
+significant figures.</p></li>
 </ul>
 
     </div>
 
-    <pre class="usage"><span class='fu'>round_cols</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+    <pre class="usage"><span class='fu'>all_upper_case</span>(<span class='no'>.data</span>)
+
+<span class='fu'>all_lower_case</span>(<span class='no'>.data</span>)
 
 <span class='fu'>extract_number</span>(<span class='no'>.data</span>, <span class='no'>var</span>, <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>extract_string</span>(<span class='no'>.data</span>, <span class='no'>var</span>, <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>replace_number</span>(
   <span class='no'>.data</span>,
@@ -253,8 +257,6 @@ to upper case.</p></li>
   <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 
-<span class='fu'>extract_string</span>(<span class='no'>.data</span>, <span class='no'>var</span>, <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
 <span class='fu'>replace_string</span>(
   <span class='no'>.data</span>,
   <span class='no'>var</span>,
@@ -265,9 +267,7 @@ to upper case.</p></li>
   <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 
-<span class='fu'>all_upper_case</span>(<span class='no'>.data</span>)
-
-<span class='fu'>all_lower_case</span>(<span class='no'>.data</span>)</pre>
+<span class='fu'>round_cols</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -275,15 +275,6 @@ to upper case.</p></li>
     <tr>
       <th>.data</th>
       <td><p>A data frame</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Variables to round. If no variable is informed, all the numeric
-variables from <code>data</code> are used.</p></td>
-    </tr>
-    <tr>
-      <th>digits</th>
-      <td><p>The number of significant figures.</p></td>
     </tr>
     <tr>
       <th>var</th>
@@ -312,6 +303,15 @@ allowed.</p></td>
     <tr>
       <th>replacement</th>
       <td><p>A string for replacement.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Variables to round. If no variable is informed, all the numeric
+variables from <code>data</code> are used.</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>The number of significant figures.</p></td>
     </tr>
     </table>
 

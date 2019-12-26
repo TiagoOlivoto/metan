@@ -20,18 +20,23 @@ load("cvali.RData")
 
 # Getting started
 
-```{r, message=FALSE, warning=FALSE}
+The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
+
+```{r warning = FALSE, message = FALSE}
 library(metan)
-library(kableExtra) # Used to make the tables
-library(tidyverse)
+library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table = function(table){
-  kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                  font_size = 12)
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table,
+          rownames = rownames,
+          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
+          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
+    formatRound(columns = c(1:ncol(table)), digits = 3)
 }
 
 ```
+
 
 # Select helpers
 The package `metan` reexports the  [tidy select helpers](https://tidyselect.r-lib.org/reference/select_helpers.html) and implements three own select helpers based on operations with prefixes and suffixes: `difference_var()`, `intersect_var()`, and `union_var()`.
@@ -42,7 +47,8 @@ Here, we will select the variables from `data_ge2` that start with "C" and ends 
 
 ```{r}
 data_ge2 %>% 
-  select(intersect_var("C", "D"))
+  select(intersect_var("C", "D")) %>% 
+  print_table()
 ```
 
 
@@ -52,7 +58,8 @@ The following code select variables that start with "C" or ends with "D".
 
 ```{r}
 data_ge2 %>% 
-  select(union_var("C", "D"))
+  select(union_var("C", "D")) %>% 
+  print_table()
 ```
 
 
@@ -62,7 +69,8 @@ The following code select variables that start with "C" and not ends with "D".
 
 ```{r}
 data_ge2 %>% 
-  select(difference_var("C", "D"))
+  select(difference_var("C", "D")) %>% 
+  print_table()
 ```
 
 
@@ -72,9 +80,9 @@ The functions `remove_rows_na()` and `remove_rows_na()` are used to remove rows 
 ```{r}
 data_with_na <- data_g
 data_with_na[c(1, 5, 10), c(3:5, 10:15)] <- NA
-data_with_na
-remove_cols_na(data_with_na)
-remove_rows_na(data_with_na)
+print_table(data_with_na)
+remove_cols_na(data_with_na) %>% print_table()
+remove_rows_na(data_with_na) %>% print_table()
 ```
 
 
@@ -109,7 +117,7 @@ is.split_factors(g1)
 ## Group data and keep all original variables
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 g2 <- split_factors(data_ge, ENV, GEN, keep_factors = TRUE)
-print_table(g2[[1]])
+print_table(g2[[1]][[1]])
 ```
 
 
@@ -125,7 +133,7 @@ names(g3)
 ```{r, message=FALSE }
 head(data_ge)
 matrix <- make_mat(data_ge, row = GEN, col = ENV, val = GY)
-print_table(matrix)
+print_table(matrix, rownames = TRUE)
 
 ```
 
@@ -135,11 +143,11 @@ cor_mat <- corr_coef(data_ge2, EP, EL, ED, EL, CD, CL)$cor
 
 # Upper triangular
 upp_mat <- make_upper_tri(cor_mat)
-print_table(upp_mat)
+print_table(upp_mat, rownames = TRUE)
 
 # Lower triangular
 low_mat <- make_lower_tri(cor_mat)
-print_table(low_mat)
+print_table(low_mat, rownames = TRUE)
 
 ```
 
@@ -147,7 +155,7 @@ print_table(low_mat)
 
 ```{r, message=FALSE }
 sym <- make_sym(low_mat)
-print_table(sym)
+print_table(sym, rownames = TRUE)
 
 ```
 
@@ -157,8 +165,8 @@ print_table(sym)
 Reorder the correlation matrix according to the correlation coefficient by using  hclust for hierarchical clustering order. This is useful to identify the hidden pattern in the matrix.
 
 ```{r}
-cor_mat
-reorder_cormat(cor_mat)
+print_table(cor_mat, rownames = TRUE)
+reorder_cormat(cor_mat) %>% print_table(rownames = TRUE)
 ```
 
 
@@ -176,15 +184,15 @@ gm_mean(data_ge2, EP, EL, CL)
 
 # Generate pairwise combinations of variables by applying one function to each pair
 ```{r, message=FALSE}
-data = data.frame(A = runif(n = 5, min = 3, max = 30),
-                  B = runif(n = 5, min = 1, max = 10),
-                  C = runif(n = 5, min = 9, max = 90),
-                  D = runif(n = 5, min = 1, max = 90),
-                  E = runif(n = 5, min = 5, max = 10))
-c1 = comb_vars(data)
+data <- data.frame(A = runif(n = 5, min = 3, max = 30),
+                   B = runif(n = 5, min = 1, max = 10),
+                   C = runif(n = 5, min = 9, max = 90),
+                   D = runif(n = 5, min = 1, max = 90),
+                   E = runif(n = 5, min = 5, max = 10))
+c1 <- comb_vars(data)
 print_table(c1)
 
-c2 = comb_vars(data, FUN = "*", order = "first")
+c2 <- comb_vars(data, FUN = "*", order = "first")
 print_table(c2)
     ```
 
@@ -194,10 +202,10 @@ print_table(c2)
 # Combining data.frames by row, filling missing values
 
 ```{r, message=FALSE }
-df1 = data.frame(v1 = c(1, 2), v2 = c(2, 3))
-df2 = data.frame(v3 = c(4, 5))
-rbind_fill(df1, df2)
-rbind_fill(df1, df2, fill = "NA")
+df1 <- data.frame(v1 = c(1, 2), v2 = c(2, 3))
+df2 <- data.frame(v3 = c(4, 5))
+rbind_fill(df1, df2) %>% print_table()
+rbind_fill(df1, df2, fill = "NA") %>% print_table()
     ```
 
 # Rescale a continuous vector to have specified minimum and maximum values
@@ -217,7 +225,8 @@ resca(GY, HM, new_min = 0, new_max = 1,  keep = FALSE) %>%
 ```
 
 ## Rescale within factors
-```{r, message=FALSE }
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
   data_ge2 %>% 
     select(ENV, GEN, starts_with("N"), ends_with("L")) %>%
     group_by(ENV, GEN) %>%

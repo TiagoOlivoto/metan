@@ -152,13 +152,20 @@
 
       
 
-      </header><script src="vignettes_cross-validation_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
+      </header><script src="vignettes_cross-validation_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="vignettes_cross-validation_files/jquery-1.12.4/jquery.min.js"></script><link href="vignettes_cross-validation_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="vignettes_cross-validation_files/datatables-binding-0.11/datatables.js"></script><link href="vignettes_cross-validation_files/dt-core-1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="vignettes_cross-validation_files/dt-core-1.10.19/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="vignettes_cross-validation_files/dt-core-1.10.19/js/jquery.dataTables.min.js"></script><link href="vignettes_cross-validation_files/dt-ext-fixedcolumns-1.10.19/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="vignettes_cross-validation_files/dt-ext-fixedcolumns-1.10.19/js/dataTables.fixedColumns.min.js"></script><script src="vignettes_cross-validation_files/jszip-1.10.19/jszip.min.js"></script><script src="vignettes_cross-validation_files/pdfmake-1.10.19/pdfmake.min.js"></script><script src="vignettes_cross-validation_files/pdfmake-1.10.19/vfs_fonts.js"></script><link href="vignettes_cross-validation_files/dt-ext-buttons-1.10.19/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="vignettes_cross-validation_files/dt-ext-buttons-1.10.19/js/dataTables.buttons.min.js"></script><script src="vignettes_cross-validation_files/dt-ext-buttons-1.10.19/js/buttons.flash.min.js"></script><script src="vignettes_cross-validation_files/dt-ext-buttons-1.10.19/js/buttons.html5.min.js"></script><script src="vignettes_cross-validation_files/dt-ext-buttons-1.10.19/js/buttons.colVis.min.js"></script><script src="vignettes_cross-validation_files/dt-ext-buttons-1.10.19/js/buttons.print.min.js"></script><link href="vignettes_cross-validation_files/dt-ext-colreorder-1.10.19/css/colReorder.dataTables.min.css" rel="stylesheet">
+<script src="vignettes_cross-validation_files/dt-ext-colreorder-1.10.19/js/dataTables.colReorder.min.js"></script><link href="vignettes_cross-validation_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+<script src="vignettes_cross-validation_files/crosstalk-1.0.0/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Cross-validation procedures for AMMI and BLUP</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-12-24</h4>
+            <h4 class="date">2019-12-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_cross-validation.Rmd"><code>vignettes/vignettes_cross-validation.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_cross-validation.Rmd</code></div>
@@ -170,7 +177,7 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<p>The dataset <code>data_ge</code> is used to reproduce the examples of this vignette. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package <a href="http://haozhu233.github.io/kableExtra/awesome_table_in_html.html"><code>kableExtra</code></a> was used to produce the tables of this vignette.</p>
+<p>In this section, we will use the data in <code>data_ge</code>. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package <a href="https://rstudio.github.io/DT/"><code>DT</code></a> was used to produce the tables of this vignette.</p>
 <style>
   .col2 {
     columns: 2 200px;         /* number of columns and width in pixels*/
@@ -183,15 +190,17 @@
     -moz-columns: 3 100px;
   }
 </style>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Importing data</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Function to make HTML tables</span></a>
-<a class="sourceLine" id="cb1-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
-<a class="sourceLine" id="cb1-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DT) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4">print_table &lt;-<span class="st"> </span><span class="cf">function</span>(table, <span class="dt">rownames =</span> <span class="ot">FALSE</span>, ...){</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">datatable</span>(table,</a>
+<a class="sourceLine" id="cb1-6" title="6">          <span class="dt">rownames =</span> rownames,</a>
+<a class="sourceLine" id="cb1-7" title="7">          <span class="dt">extensions =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'FixedColumns'</span>, <span class="st">'Buttons'</span>, <span class="st">'ColReorder'</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8">          <span class="dt">options =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">scrollX =</span> <span class="ot">TRUE</span>, <span class="dt">fixedColumns =</span> <span class="ot">TRUE</span>, <span class="dt">colReorder =</span> <span class="ot">TRUE</span>, <span class="dt">dom =</span> <span class="st">'Bfrtip'</span>,</a>
+<a class="sourceLine" id="cb1-9" title="9">                         <span class="dt">buttons =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'copy'</span>, <span class="st">'excel'</span>, <span class="st">'pdf'</span>, <span class="st">'print'</span>, <span class="st">'colvis'</span>)), ...) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="st">    </span><span class="kw">formatRound</span>(<span class="dt">columns =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(table)), <span class="dt">digits =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
 </div>
 <div id="predictive-accuracy" class="section level1">
 <h1 class="hasAnchor">
@@ -252,251 +261,8 @@
 <a href="#printing-the-means-of-rmspd-estimates" class="anchor"></a>Printing the means of RMSPD estimates</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">bind_mod &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_cv.html">bind_cv</a></span>(AMMIF, BLUP_g, <span class="dt">bind =</span> <span class="st">"means"</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw">print_table</span>(bind_mod<span class="op">$</span>RMSPD)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
-<thead><tr>
-<th style="text-align:left;">
-MODEL
-</th>
-<th style="text-align:right;">
-mean
-</th>
-<th style="text-align:right;">
-sd
-</th>
-<th style="text-align:right;">
-se
-</th>
-<th style="text-align:right;">
-Q2.5
-</th>
-<th style="text-align:right;">
-Q97.5
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-BLUP_g_RCBD
-</td>
-<td style="text-align:right;">
-0.405
-</td>
-<td style="text-align:right;">
-0.025
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.357
-</td>
-<td style="text-align:right;">
-0.453
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI2
-</td>
-<td style="text-align:right;">
-0.411
-</td>
-<td style="text-align:right;">
-0.024
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.369
-</td>
-<td style="text-align:right;">
-0.460
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI4
-</td>
-<td style="text-align:right;">
-0.416
-</td>
-<td style="text-align:right;">
-0.023
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.373
-</td>
-<td style="text-align:right;">
-0.462
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI3
-</td>
-<td style="text-align:right;">
-0.416
-</td>
-<td style="text-align:right;">
-0.022
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.377
-</td>
-<td style="text-align:right;">
-0.457
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI5
-</td>
-<td style="text-align:right;">
-0.422
-</td>
-<td style="text-align:right;">
-0.023
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.377
-</td>
-<td style="text-align:right;">
-0.464
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI6
-</td>
-<td style="text-align:right;">
-0.422
-</td>
-<td style="text-align:right;">
-0.022
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.381
-</td>
-<td style="text-align:right;">
-0.462
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI7
-</td>
-<td style="text-align:right;">
-0.425
-</td>
-<td style="text-align:right;">
-0.020
-</td>
-<td style="text-align:right;">
-0.001
-</td>
-<td style="text-align:right;">
-0.381
-</td>
-<td style="text-align:right;">
-0.458
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI8
-</td>
-<td style="text-align:right;">
-0.427
-</td>
-<td style="text-align:right;">
-0.020
-</td>
-<td style="text-align:right;">
-0.001
-</td>
-<td style="text-align:right;">
-0.387
-</td>
-<td style="text-align:right;">
-0.462
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMIF
-</td>
-<td style="text-align:right;">
-0.429
-</td>
-<td style="text-align:right;">
-0.021
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.390
-</td>
-<td style="text-align:right;">
-0.469
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI1
-</td>
-<td style="text-align:right;">
-0.430
-</td>
-<td style="text-align:right;">
-0.025
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.384
-</td>
-<td style="text-align:right;">
-0.479
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AMMI0
-</td>
-<td style="text-align:right;">
-0.430
-</td>
-<td style="text-align:right;">
-0.028
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.370
-</td>
-<td style="text-align:right;">
-0.485
-</td>
-</tr>
-</tbody>
-</table>
-<p>The table above showns the descriptive statistics (mean, standard deviation, standar error of the mean, and quantiles 2.5% and 97.5%) of the 100 RMSPD estimates for each model, and are presented from the most accurate model (smallest RMSPD mean) to the least accurate model (highest RMSPD mean).</p>
+<div id="htmlwidget-c4c5a369362214182867" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c4c5a369362214182867">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["BLUP_g_RCBD","AMMI2","AMMI4","AMMI3","AMMI5","AMMI6","AMMI7","AMMI8","AMMIF","AMMI1","AMMI0"],[0.404681668056524,0.411040845900402,0.416071568146498,0.416255851959942,0.422031346727222,0.422274307596015,0.424590464312707,0.426862037304913,0.428805502634446,0.4296313888519,0.430402664844616],[0.0248897101801363,0.0241510688204166,0.0234418133642197,0.0215284525461124,0.0231680057804939,0.0219187989313897,0.0199459668856834,0.0204452219334058,0.0212757803158497,0.0251248133408539,0.0283365505988242],[0.00175996828501422,0.00170773845358196,0.00165758651931492,0.00152229147838088,0.00163822539939564,0.00154989313598501,0.0014103928442189,0.00144569550719752,0.00150442485363726,0.0017765925889364,0.00200369670838643],[0.357358506764501,0.368823454351105,0.373238739150609,0.376828922924084,0.376804980505544,0.380589108887797,0.380801772964028,0.387499582505626,0.389570350448628,0.383501079409614,0.370266825058589],[0.452853066597751,0.459999161654668,0.462038278972195,0.456584798471462,0.464424759046059,0.461875295681503,0.458260708085074,0.462121320835647,0.468906306149461,0.478683805107634,0.484730005962345]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>MODEL<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>se<\/th>\n      <th>Q2.5<\/th>\n      <th>Q97.5<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 0, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 5, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script><p>The table above showns the descriptive statistics (mean, standard deviation, standar error of the mean, and quantiles 2.5% and 97.5%) of the 100 RMSPD estimates for each model, and are presented from the most accurate model (smallest RMSPD mean) to the least accurate model (highest RMSPD mean).</p>
 </div>
 <div id="plotting-the-rmspd-values" class="section level2">
 <h2 class="hasAnchor">

@@ -20,21 +20,38 @@ knitr::opts_chunk$set(comment = "")
 
 ```
 
-
 # Getting started
-In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s). The R package [`kableExtra`](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html) was used to produce the tables of this vignette.
 
-```{r  warning = FALSE, message = FALSE}
+In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
+
+```{r warning = FALSE, message = FALSE}
 library(metan)
-library(kableExtra) # Used to make the tables
+library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table <- function(table){
-  kable(table, "html", digits = 3) %>%
-kable_styling(latex_options = c("striped", "scale_down", "HOLD_position"))
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table,
+          rownames = rownames,
+          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
+          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')),
+          ...) %>%
+    formatRound(columns = c(1:ncol(table)), digits = 3)
 }
 
-str(data_ge)
 ```
+
+The first step is to inspect the data with the function `inspect()`.
+
+```{r, fig.width=7, fig.height=7, fig.align="center"}
+inspect <- 
+inspect(data_ge,
+        verbose = FALSE,
+        plot = TRUE)
+
+print_table(inspect)
+```
+
+
 
 # Analysis of single experiments using mixed-models
 The function `gamem()` may be used to analyze single experiments (one-way experiments) using a mixed-effect model according to the following model:
@@ -54,23 +71,23 @@ The easiest way of obtaining the results of the model above is by using the func
 
 * Details of the analysis
 ```{r}
-get_model_data(gen_mod, "details")
+get_model_data(gen_mod, "details") %>% print_table()
 ```
 
 * Likelihood ratio test for genotype effect
 ```{r}
-get_model_data(gen_mod, "pval_lrt")
+get_model_data(gen_mod, "pval_lrt") %>% print_table()
 ```
 
 * Variance components and genetic parameters
 ```{r}
-get_model_data(gen_mod, "genpar")
+get_model_data(gen_mod, "genpar") %>% print_table()
 ```
 
 
 * Predicted means
 ```{r}
-get_model_data(gen_mod, "blupg")
+get_model_data(gen_mod, "blupg") %>% print_table()
 
 ```
 
@@ -87,9 +104,9 @@ where $y_{ijk}$ is the observed value of the *i*th genotype in the *k*th block o
 
 ```{r}
 gen_alpha <- gamem(data_alpha, GEN, REP, YIELD, block = BLOCK)
-get_model_data(gen_alpha, "pval_lrt")
-get_model_data(gen_alpha, "details")
-get_model_data(gen_alpha, "genpar")
+get_model_data(gen_alpha, "pval_lrt") %>% print_table()
+get_model_data(gen_alpha, "details") %>% print_table()
+get_model_data(gen_alpha, "genpar") %>% print_table()
 
 
 ```
@@ -232,7 +249,7 @@ where $WAASB_i$ is the weighted average of absolute scores of the *i*th genotype
 
 
 ```{r  }
-data <- WAASB_model$GY$model[, c(1:3,13:17, 21:22)]
+data <- WAASB_model$GY$model
 print_table(data)
     ```
 
@@ -297,7 +314,7 @@ where $t$ is the Student's *t* value for a two-tailed *t* test at a given probab
 ### BLUP for genotypes X environment combination
 
 ```{r  }
-print_table(WAASB_model$GY$BLUPgge[1:10,])
+print_table(WAASB_model$GY$BLUPgge)
     ```
 
 This output shows the predicted means for each genotype and environment combination. **BLUPg** is the genotypic effect described above. **BLUPge** is the genotypic effect of the *i*th genotype in the *j*th environment $(\hat{g}_{ij})$, which considering balanced data and genotype as random effect is estimated by
@@ -326,7 +343,7 @@ The above output shows the eigenvalues and the proportion of variance explained 
 ### Phenotypic means
 
 ```{r  }
-data <- WAASB_model$GY$MeansGxE[1:10,]
+data <- WAASB_model$GY$MeansGxE
 print_table(data)
     ```
 

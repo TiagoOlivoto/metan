@@ -21,7 +21,7 @@ load("cvali.RData")
 
 
 # Getting started
-The dataset `data_ge` is used to reproduce the examples of this vignette. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`kableExtra`](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html) was used to produce the tables of this vignette.
+In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
 
 <style>
   .col2 {
@@ -37,15 +37,18 @@ The dataset `data_ge` is used to reproduce the examples of this vignette. For mo
 </style>
 
 ```{r warning = FALSE, message = FALSE}
-# Importing data
 library(metan)
-library(kableExtra) # Used to make the tables
+library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table = function(table){
-  kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                  font_size = 12)
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table,
+          rownames = rownames,
+          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
+          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
+    formatRound(columns = c(1:ncol(table)), digits = 3)
 }
+
 ```
 
 

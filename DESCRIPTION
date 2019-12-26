@@ -44,7 +44,7 @@ Imports:
     tidyr,
     tidyselect
 Suggests:
-    kableExtra,
+    DT,
     knitr,
     readxl,
     rmarkdown,

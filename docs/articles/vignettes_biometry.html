@@ -152,13 +152,20 @@
 
       
 
-      </header><script src="vignettes_biometry_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
+      </header><script src="vignettes_biometry_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="vignettes_biometry_files/jquery-1.12.4/jquery.min.js"></script><link href="vignettes_biometry_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="vignettes_biometry_files/datatables-binding-0.11/datatables.js"></script><link href="vignettes_biometry_files/dt-core-1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="vignettes_biometry_files/dt-core-1.10.19/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="vignettes_biometry_files/dt-core-1.10.19/js/jquery.dataTables.min.js"></script><link href="vignettes_biometry_files/dt-ext-fixedcolumns-1.10.19/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="vignettes_biometry_files/dt-ext-fixedcolumns-1.10.19/js/dataTables.fixedColumns.min.js"></script><script src="vignettes_biometry_files/jszip-1.10.19/jszip.min.js"></script><script src="vignettes_biometry_files/pdfmake-1.10.19/pdfmake.min.js"></script><script src="vignettes_biometry_files/pdfmake-1.10.19/vfs_fonts.js"></script><link href="vignettes_biometry_files/dt-ext-buttons-1.10.19/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="vignettes_biometry_files/dt-ext-buttons-1.10.19/js/dataTables.buttons.min.js"></script><script src="vignettes_biometry_files/dt-ext-buttons-1.10.19/js/buttons.flash.min.js"></script><script src="vignettes_biometry_files/dt-ext-buttons-1.10.19/js/buttons.html5.min.js"></script><script src="vignettes_biometry_files/dt-ext-buttons-1.10.19/js/buttons.colVis.min.js"></script><script src="vignettes_biometry_files/dt-ext-buttons-1.10.19/js/buttons.print.min.js"></script><link href="vignettes_biometry_files/dt-ext-colreorder-1.10.19/css/colReorder.dataTables.min.css" rel="stylesheet">
+<script src="vignettes_biometry_files/dt-ext-colreorder-1.10.19/js/dataTables.colReorder.min.js"></script><link href="vignettes_biometry_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+<script src="vignettes_biometry_files/crosstalk-1.0.0/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Useful functions for biometrical models</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2019-12-24</h4>
+            <h4 class="date">2019-12-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_biometry.Rmd"><code>vignettes/vignettes_biometry.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_biometry.Rmd</code></div>
@@ -167,15 +174,18 @@
 
     
     
+<p>The R package <a href="https://rstudio.github.io/DT/"><code>DT</code></a> was used to produce the tables of this vignette.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kableExtra) <span class="co"># Used to make the tables</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse) <span class="co"># used for the forward-pipe operator %&gt;%</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Function to make HTML tables</span></a>
-<a class="sourceLine" id="cb1-5" title="5">print_table =<span class="st"> </span><span class="cf">function</span>(table){</a>
-<a class="sourceLine" id="cb1-6" title="6">  <span class="kw">kable</span>(table, <span class="st">"html"</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</a>
-<a class="sourceLine" id="cb1-8" title="8">                  <span class="dt">font_size =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DT) <span class="co"># Used to make the tables</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co"># Function to make HTML tables</span></a>
+<a class="sourceLine" id="cb1-4" title="4">print_table &lt;-<span class="st"> </span><span class="cf">function</span>(table, <span class="dt">rownames =</span> <span class="ot">FALSE</span>, ...){</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">datatable</span>(table,</a>
+<a class="sourceLine" id="cb1-6" title="6">          <span class="dt">rownames =</span> rownames,</a>
+<a class="sourceLine" id="cb1-7" title="7">          <span class="dt">extensions =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'FixedColumns'</span>, <span class="st">'Buttons'</span>, <span class="st">'ColReorder'</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8">          <span class="dt">options =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">scrollX =</span> <span class="ot">TRUE</span>, <span class="dt">fixedColumns =</span> <span class="ot">TRUE</span>, <span class="dt">colReorder =</span> <span class="ot">TRUE</span>, <span class="dt">dom =</span> <span class="st">'Bfrtip'</span>,</a>
+<a class="sourceLine" id="cb1-9" title="9">                         <span class="dt">buttons =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'copy'</span>, <span class="st">'excel'</span>, <span class="st">'pdf'</span>, <span class="st">'print'</span>, <span class="st">'colvis'</span>)), ...) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="st">    </span><span class="kw">formatRound</span>(<span class="dt">columns =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(table)), <span class="dt">digits =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
 <div id="find-possible-outliers-in-a-data-frame" class="section level1">
 <h1 class="hasAnchor">
 <a href="#find-possible-outliers-in-a-data-frame" class="anchor"></a>Find possible outliers in a data frame</h1>
@@ -270,39 +280,13 @@ No outlier identified. </code></pre>
 <a class="sourceLine" id="cb10-6" title="6">            <span class="dt">verbose =</span> F)</a></code></pre></div>
 <pre><code>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the
 grouped data.</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(stats)</a></code></pre></div>
-<pre><code># A tibble: 78 x 6
-   GEN   Statistic     CD    CDED     CL    CW
-   &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
- 1 H1    CV         6.44  4.57     5.33  14.2 
- 2 H1    max       17.9   0.619   32.2   32.2 
- 3 H1    mean      15.7   0.588   30.1   26.7 
- 4 H1    median    15.7   0.596   30.5   26.8 
- 5 H1    min       14.5   0.538   27.6   21.4 
- 6 H1    SE.mean    0.292 0.00775  0.462  1.10
- 7 H10   CV         6.32  4.29    10.5   29.5 
- 8 H10   max       17.5   0.621   32.1   29.1 
- 9 H10   mean      15.9   0.586   28.4   22.8 
-10 H10   median    15.7   0.584   28.5   26.3 
-# … with 68 more rows</code></pre>
-<p>We may convert the results above into a <em>wider</em> format by using the function <code><a href="../reference/desc_wider.html">desc_wider()</a></code></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="../reference/desc_wider.html">desc_wider</a></span>(stats, CD)</a></code></pre></div>
-<pre><code># A tibble: 13 x 7
-   GEN      CV   max  mean median   min SE.mean
-   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
- 1 H1     6.44  17.9  15.7   15.7  14.5   0.292
- 2 H10    6.32  17.5  15.9   15.7  14.4   0.290
- 3 H11    6.58  18.0  16.0   16.2  14.3   0.304
- 4 H12    5.65  16.2  14.8   14.9  13.3   0.242
- 5 H13    5.66  17.8  15.8   15.8  14.3   0.258
- 6 H2     5.11  17.0  16.0   16.3  14.4   0.236
- 7 H3     9.83  18.0  15.7   16.2  12.9   0.445
- 8 H4     5.22  17.7  16.5   16.9  15.1   0.249
- 9 H5     3.11  17.4  16.6   16.6  15.9   0.149
-10 H6     7.99  18.3  16.6   16.8  14     0.382
-11 H7     7.66  18.6  16.2   15.9  14.3   0.358
-12 H8     9.76  18.4  15.9   16.0  13.5   0.448
-13 H9     9.15  18.1  15.9   15.3  13.6   0.420</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">print_table</span>(stats)</a></code></pre></div>
+<div id="htmlwidget-021e22bd7b2a50027236" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-021e22bd7b2a50027236">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["H1","H1","H1","H1","H1","H1","H10","H10","H10","H10","H10","H10","H11","H11","H11","H11","H11","H11","H12","H12","H12","H12","H12","H12","H13","H13","H13","H13","H13","H13","H2","H2","H2","H2","H2","H2","H3","H3","H3","H3","H3","H3","H4","H4","H4","H4","H4","H4","H5","H5","H5","H5","H5","H5","H6","H6","H6","H6","H6","H6","H7","H7","H7","H7","H7","H7","H8","H8","H8","H8","H8","H8","H9","H9","H9","H9","H9","H9"],["CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean","CV","max","mean","median","min","SE.mean"],[6.44434851499312,17.86,15.7066666666667,15.67,14.46,0.292194760010815,6.31682033281575,17.5,15.8988333333333,15.683,14.44,0.289916650334909,6.58224291895803,17.98,16.0053333333333,16.17,14.3,0.304122117949785,5.65358239420802,16.16,14.8083333333333,14.9,13.28,0.241679205526331,5.65635756765915,17.8,15.8266666666667,15.83,14.34,0.258425692189918,5.10845337338479,16.98,16.0283333333333,16.32,14.38,0.236367181403097,9.82912513957602,18.04,15.7,16.23,12.9,0.44547557155077,5.22458975284377,17.68,16.52,16.89,15.08,0.249156151597322,3.11253791182484,17.36,16.5941666666667,16.56,15.88,0.149100628686627,7.9901135002563,18.28,16.5666666666667,16.79,14,0.382117967928939,7.66475290655669,18.56,16.1616666666667,15.87,14.26,0.357596847092511,9.76016153194015,18.42,15.9033333333333,15.99,13.5,0.44807895227822,9.14994353998266,18.12,15.8933333333333,15.26,13.64,0.419800337341841],[4.56541456564565,0.619407326282837,0.58777596827339,0.596368150111556,0.538379062442412,0.00774642682294727,4.2858161144893,0.620742624901862,0.585786461675185,0.584244085914064,0.534509236013586,0.00724740015167638,3.64131969019012,0.618638478528588,0.579547793331647,0.576283245762574,0.552420174633124,0.00609196561106317,5.67180614199767,0.631151003618296,0.581527520148543,0.592406434437109,0.511398700791461,0.00952140475933475,7.70473653602975,0.693507645988673,0.582275576334959,0.576823432813763,0.531522683909901,0.0129507745599066,7.3538658301652,0.622300972143274,0.574437188735033,0.590696929091526,0.494779968189244,0.0121946019001141,6.79368537994004,0.625850485560918,0.577774824141881,0.588805640368686,0.504051511541595,0.0113311352026088,5.48819453678078,0.634176581147955,0.58118326076978,0.576434057754246,0.535512941431204,0.00920771718325678,4.08677337564416,0.627291140713761,0.588490443739326,0.576762608258717,0.553325667161706,0.00694271515242275,8.31627259866763,0.680693965312671,0.587829273184086,0.586297915095497,0.507122156363144,0.0141120238965078,4.45666118040531,0.639883013775816,0.597401742403203,0.59907705046857,0.547005243105793,0.00768573630415566,7.00331898347357,0.663655612560889,0.593608475260576,0.596465282558627,0.527330229226879,0.0120008878647686,3.05104436275395,0.628677651347465,0.600650198108199,0.602600647822499,0.571057542187927,0.00529029054146897],[5.3260215652068,32.212,30.0618333333333,30.497,27.616,0.462197678969123,10.4913054705002,32.056,28.4093333333333,28.515,23.492,0.860399108706318,7.07568194557492,31.63,28.2671666666667,27.809,24.986,0.577377638005393,8.30189543204245,31.378,28.2425,28.529,23.78,0.676845854390836,8.51431860398934,32.756,29.3886666666667,29.411,26.282,0.722335829448499,9.0104026983883,33.018,29.255,29.586,25.758,0.760945723385968,6.26026458572389,31.326,28.5055,27.977,25.934,0.515146470786354,5.1052295225543,31.006,28.5836666666667,27.904,27.014,0.421252593433854,6.1541212143858,32.298,29.3691666666667,29.346,26.356,0.521755513297719,8.43808191616955,33.16,30.251,31.369,26.488,0.7368733495882,6.87408236947795,32.494,29.5301666666667,29.697,25.716,0.585989732991728,11.3415231042176,34.66,28.7141666666667,28.434,23.852,0.940106327266047,7.86536758658837,32.506,28.5636666666667,27.57,26.2,0.648548347924779],[14.2287429439621,32.1622618,26.7223652583333,26.810371,21.4308531,1.09761695342291,29.5313157411041,29.0701416,22.80458005,26.3104175,11.482977,1.94408053983443,21.7473289954253,29.4276354,22.6011486916667,24.2977765,13.4927186,1.41888048007696,25.0272188434036,32.8537392,22.6087453,20.46950785,16.2902214,1.63342210841979,24.8590698443204,34.5768831,26.0374191583333,27.498551,15.3313114,1.86849605852892,25.6862726819917,35.684619,25.6649455833333,23.58370205,17.832567,1.90305269262652,18.2082663043385,29.768411,22.9138421416667,21.468038,17.8208036,1.20441426414233,18.4509830279956,33.7811042,25.746711475,26.4528679,18.2598954,1.37135739429813,15.5991749677814,33.6336576,27.6968627,27.99073015,18.652128,1.24721574398371,24.5826366092992,36.9401226,27.2655050166667,25.9255475,20.2791142,1.93486818881059,25.737636540672,36.7895106,25.9246007,27.4586051,15.2039898,1.92615005103457,38.4366415232801,38.5222777,23.3596425,23.3875893,11.057368,2.59191647543161,36.9661769508139,37.5047292,23.2373576833333,21.2709178,13.1014092,2.47970865588277]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>GEN<\/th>\n      <th>Statistic<\/th>\n      <th>CD<\/th>\n      <th>CDED<\/th>\n      <th>CL<\/th>\n      <th>CW<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 0, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 5, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script><p>We may convert the results above into a <em>wider</em> format by using the function <code><a href="../reference/desc_wider.html">desc_wider()</a></code></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="../reference/desc_wider.html">desc_wider</a></span>(stats, CD) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span><span class="kw">print_table</span>()</a></code></pre></div>
+<div id="htmlwidget-1a42d5f1ced2b9db3a21" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1a42d5f1ced2b9db3a21">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["H1","H10","H11","H12","H13","H2","H3","H4","H5","H6","H7","H8","H9"],[6.44434851499312,6.31682033281575,6.58224291895803,5.65358239420802,5.65635756765915,5.10845337338479,9.82912513957602,5.22458975284377,3.11253791182484,7.9901135002563,7.66475290655669,9.76016153194015,9.14994353998266],[17.86,17.5,17.98,16.16,17.8,16.98,18.04,17.68,17.36,18.28,18.56,18.42,18.12],[15.7066666666667,15.8988333333333,16.0053333333333,14.8083333333333,15.8266666666667,16.0283333333333,15.7,16.52,16.5941666666667,16.5666666666667,16.1616666666667,15.9033333333333,15.8933333333333],[15.67,15.683,16.17,14.9,15.83,16.32,16.23,16.89,16.56,16.79,15.87,15.99,15.26],[14.46,14.44,14.3,13.28,14.34,14.38,12.9,15.08,15.88,14,14.26,13.5,13.64],[0.292194760010815,0.289916650334909,0.304122117949785,0.241679205526331,0.258425692189918,0.236367181403097,0.44547557155077,0.249156151597322,0.149100628686627,0.382117967928939,0.357596847092511,0.44807895227822,0.419800337341841]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>GEN<\/th>\n      <th>CV<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>median<\/th>\n      <th>min<\/th>\n      <th>SE.mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 0, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 5, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 6, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <div id="correlations" class="section level1">
 <h1 class="hasAnchor">
@@ -319,119 +303,48 @@ grouped data.</code></pre>
 t_{calc} = r_{xy.m} \sqrt \frac{n-v}{1-r_{xy.m}^2} 
 \]</span></p>
 <p>Where <span class="math inline">\(t_{calc}\)</span> is the calculated Student * t * statistic; $ r_{xy.m} $ is the partial correlation coefficient for the traits x and y excluding the effect of the other * m * traits; * n * is the number of observations; and * v * is the number of traits. Both the linear and partial correlation coefficients may be obtained using the function <code><a href="../reference/lpcor.html">lpcor()</a></code>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">lpc1 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">starts_with</a></span>(<span class="st">"N"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="kw">print_table</span>(lpc1<span class="op">$</span>results)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
-<thead><tr>
-<th style="text-align:left;">
-Pairs
-</th>
-<th style="text-align:right;">
-linear
-</th>
-<th style="text-align:right;">
-partial
-</th>
-<th style="text-align:right;">
-t
-</th>
-<th style="text-align:right;">
-prob
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-NR x NKR
-</td>
-<td style="text-align:right;">
-0.021
-</td>
-<td style="text-align:right;">
--0.767
-</td>
-<td style="text-align:right;">
--14.798
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NR x NKE
-</td>
-<td style="text-align:right;">
-0.626
-</td>
-<td style="text-align:right;">
-0.866
-</td>
-<td style="text-align:right;">
-21.414
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NKR x NKE
-</td>
-<td style="text-align:right;">
-0.708
-</td>
-<td style="text-align:right;">
-0.891
-</td>
-<td style="text-align:right;">
-24.335
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Compute the correlations for each level of the factor ENV</span></a>
-<a class="sourceLine" id="cb17-2" title="2">lpc2 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="st">        </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="st">        </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="co"># Don't show the result in the console</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">lpc1 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">starts_with</a></span>(<span class="st">"N"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="kw">print_table</span>(lpc1<span class="op">$</span>results)</a></code></pre></div>
+<div id="htmlwidget-2a1a289a520eb6998acb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a1a289a520eb6998acb">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["NR x NKR","NR x NKE","NKR x NKE"],[0.0205509700953081,0.626085437741913,0.707833179139456],[-0.767267653168677,0.865919582253503,0.891451541776985],[-14.7983422099024,21.4138195194109,24.3351493828447],[0,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Pairs<\/th>\n      <th>linear<\/th>\n      <th>partial<\/th>\n      <th>t<\/th>\n      <th>prob<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 0, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script><div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Compute the correlations for each level of the factor ENV</span></a>
+<a class="sourceLine" id="cb15-2" title="2">lpc2 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="st">        </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="st">        </span><span class="kw"><a href="../reference/lpcor.html">lpcor</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="co"># Don't show the result in the console</span></a></code></pre></div>
 <pre><code>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the
 grouped data.</code></pre>
 <p>Using the <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> function, it is possible to compute a Mantel’s test <span class="citation">(Mantel <a href="#ref-Mantel1967" role="doc-biblioref">1967</a>)</span> for all pairwise correlation matrices of the above example.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">lpc2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">names =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"H"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">""</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">lpc2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">names =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"H"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">""</span>))</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-8-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>This same plot may be obtained by passing correlation matrices with the same dimension to an object of class <code>lpcor</code> and then applying the function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/as.lpcor.html">as.lpcor</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
-<a class="sourceLine" id="cb20-2" title="2">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
-<a class="sourceLine" id="cb20-3" title="3">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">61</span><span class="op">:</span><span class="dv">90</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
-<a class="sourceLine" id="cb20-4" title="4">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">91</span><span class="op">:</span><span class="dv">120</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
-<a class="sourceLine" id="cb20-5" title="5">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">121</span><span class="op">:</span><span class="dv">150</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)])) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-6" title="6"><span class="st">  </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">diag =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb20-7" title="7">               <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb20-8" title="8">               <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
-<a class="sourceLine" id="cb20-9" title="9">               <span class="dt">col.point =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb20-10" title="10">               <span class="dt">fill.point =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb20-11" title="11">               <span class="dt">size.point =</span> <span class="fl">1.5</span>,</a>
-<a class="sourceLine" id="cb20-12" title="12">               <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</a>
-<a class="sourceLine" id="cb20-13" title="13">               <span class="dt">main =</span> <span class="st">"My own plot"</span>,</a>
-<a class="sourceLine" id="cb20-14" title="14">               <span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="../reference/as.lpcor.html">as.lpcor</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
+<a class="sourceLine" id="cb18-2" title="2">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
+<a class="sourceLine" id="cb18-3" title="3">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">61</span><span class="op">:</span><span class="dv">90</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
+<a class="sourceLine" id="cb18-4" title="4">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">91</span><span class="op">:</span><span class="dv">120</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)]),</a>
+<a class="sourceLine" id="cb18-5" title="5">         <span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(data_ge2[<span class="dv">121</span><span class="op">:</span><span class="dv">150</span>, <span class="dv">5</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(data_ge2)])) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-6" title="6"><span class="st">  </span><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(<span class="dt">diag =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb18-7" title="7">               <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb18-8" title="8">               <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
+<a class="sourceLine" id="cb18-9" title="9">               <span class="dt">col.point =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb18-10" title="10">               <span class="dt">fill.point =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb18-11" title="11">               <span class="dt">size.point =</span> <span class="fl">1.5</span>,</a>
+<a class="sourceLine" id="cb18-12" title="12">               <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</a>
+<a class="sourceLine" id="cb18-13" title="13">               <span class="dt">main =</span> <span class="st">"My own plot"</span>,</a>
+<a class="sourceLine" id="cb18-14" title="14">               <span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-9-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="graphical-and-numerical-visualization-of-a-correlation-matrix" class="section level2">
 <h2 class="hasAnchor">
 <a href="#graphical-and-numerical-visualization-of-a-correlation-matrix" class="anchor"></a>Graphical and numerical visualization of a correlation matrix</h2>
 <p>The function <code><a href="../reference/corr_coef.html">corr_coef()</a></code> can be used to compute Pearson producto-moment correlation coefficients with p-values. A correlation heat map can be created with the function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># All numeric variables</span></a>
-<a class="sourceLine" id="cb21-2" title="2">ccoef &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_coef.html">corr_coef</a></span>(data_ge2)</a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(ccoef)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># All numeric variables</span></a>
+<a class="sourceLine" id="cb19-2" title="2">ccoef &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_coef.html">corr_coef</a></span>(data_ge2)</a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(ccoef)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>We can use a select helper function to select variables. Here, we will select variables that starts with “C” <strong>OR</strong> ends with “D” using <code><a href="../reference/Select_helper.html">union_var()</a></code>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">ccoef2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_coef.html">corr_coef</a></span>(data_ge2, <span class="kw"><a href="../reference/Select_helper.html">union_var</a></span>(<span class="st">"C"</span>, <span class="st">"D"</span>))</a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(ccoef2, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">ccoef2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_coef.html">corr_coef</a></span>(data_ge2, <span class="kw"><a href="../reference/Select_helper.html">union_var</a></span>(<span class="st">"C"</span>, <span class="st">"D"</span>))</a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(ccoef2, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>---------------------------------------------------------------------------
 Pearson's correlation coefficient
 ---------------------------------------------------------------------------
@@ -451,45 +364,45 @@ CW   3.9e-28 1.5e-10 0.0e+00 1.4e-04 5.3e-28
 CDED 4.9e-25 5.7e-01 1.4e-04 0.0e+00 9.0e-01
 ED   4.7e-24 4.9e-07 5.3e-28 9.0e-01 0.0e+00</code></pre>
 <p>The function <code><a href="../reference/corr_plot.html">corr_plot()</a></code> may be used to visualize (both graphically and numerically) a correlation matrix. Pairwise of scatterplots are produced and may be shown in the upper or lower diagonal, which may be seen as a nicer and customizable ggplot2-based version of the <code><a href="https://rdrr.io/r/graphics/pairs.html">pairs()</a></code>base R function.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR)</a>
-<a class="sourceLine" id="cb24-2" title="2"></a>
-<a class="sourceLine" id="cb24-3" title="3">b &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb24-4" title="4"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR,</a>
-<a class="sourceLine" id="cb24-5" title="5">          <span class="dt">lower =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb24-6" title="6">          <span class="dt">upper =</span> <span class="st">"corr"</span>)</a>
-<a class="sourceLine" id="cb24-7" title="7">c &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb24-8" title="8"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR,</a>
-<a class="sourceLine" id="cb24-9" title="9">          <span class="dt">shape.point =</span> <span class="dv">19</span>,</a>
-<a class="sourceLine" id="cb24-10" title="10">          <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb24-11" title="11">          <span class="dt">alpha.point =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb24-12" title="12">          <span class="dt">alpha.diag =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb24-13" title="13">          <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb24-14" title="14">          <span class="dt">diag.type =</span> <span class="st">"boxplot"</span>,</a>
-<a class="sourceLine" id="cb24-15" title="15">          <span class="dt">col.sign =</span> <span class="st">"gray"</span>,</a>
-<a class="sourceLine" id="cb24-16" title="16">          <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</a>
-<a class="sourceLine" id="cb24-17" title="17">          <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb24-18" title="18"></a>
-<a class="sourceLine" id="cb24-19" title="19">d &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb24-20" title="20"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR, CW, NKE,</a>
-<a class="sourceLine" id="cb24-21" title="21">          <span class="dt">prob =</span> <span class="fl">0.01</span>,</a>
-<a class="sourceLine" id="cb24-22" title="22">          <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
-<a class="sourceLine" id="cb24-23" title="23">          <span class="dt">col.point =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb24-24" title="24">          <span class="dt">fill.point =</span> <span class="st">"orange"</span>,</a>
-<a class="sourceLine" id="cb24-25" title="25">          <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb24-26" title="26">          <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</a>
-<a class="sourceLine" id="cb24-27" title="27">          <span class="dt">maxsize =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb24-28" title="28">          <span class="dt">minsize =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb24-29" title="29">          <span class="dt">smooth =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb24-30" title="30">          <span class="dt">size.smooth =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb24-31" title="31">          <span class="dt">col.smooth =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb24-32" title="32">          <span class="dt">col.sign =</span> <span class="st">"cyan"</span>,</a>
-<a class="sourceLine" id="cb24-33" title="33">          <span class="dt">col.up.panel =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb24-34" title="34">          <span class="dt">col.lw.panel =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb24-35" title="35">          <span class="dt">col.dia.panel =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb24-36" title="36">          <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb24-37" title="37">          <span class="dt">lab.position =</span> <span class="st">"tl"</span>)</a>
-<a class="sourceLine" id="cb24-38" title="38">plots &lt;-<span class="st"> </span><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, c, d, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">plots</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR)</a>
+<a class="sourceLine" id="cb22-2" title="2"></a>
+<a class="sourceLine" id="cb22-3" title="3">b &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb22-4" title="4"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR,</a>
+<a class="sourceLine" id="cb22-5" title="5">          <span class="dt">lower =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb22-6" title="6">          <span class="dt">upper =</span> <span class="st">"corr"</span>)</a>
+<a class="sourceLine" id="cb22-7" title="7">c &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb22-8" title="8"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR,</a>
+<a class="sourceLine" id="cb22-9" title="9">          <span class="dt">shape.point =</span> <span class="dv">19</span>,</a>
+<a class="sourceLine" id="cb22-10" title="10">          <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb22-11" title="11">          <span class="dt">alpha.point =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb22-12" title="12">          <span class="dt">alpha.diag =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb22-13" title="13">          <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb22-14" title="14">          <span class="dt">diag.type =</span> <span class="st">"boxplot"</span>,</a>
+<a class="sourceLine" id="cb22-15" title="15">          <span class="dt">col.sign =</span> <span class="st">"gray"</span>,</a>
+<a class="sourceLine" id="cb22-16" title="16">          <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</a>
+<a class="sourceLine" id="cb22-17" title="17">          <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb22-18" title="18"></a>
+<a class="sourceLine" id="cb22-19" title="19">d &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb22-20" title="20"><span class="kw"><a href="../reference/corr_plot.html">corr_plot</a></span>(data_ge2, CD, EL, PERK, NKR, CW, NKE,</a>
+<a class="sourceLine" id="cb22-21" title="21">          <span class="dt">prob =</span> <span class="fl">0.01</span>,</a>
+<a class="sourceLine" id="cb22-22" title="22">          <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
+<a class="sourceLine" id="cb22-23" title="23">          <span class="dt">col.point =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb22-24" title="24">          <span class="dt">fill.point =</span> <span class="st">"orange"</span>,</a>
+<a class="sourceLine" id="cb22-25" title="25">          <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb22-26" title="26">          <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</a>
+<a class="sourceLine" id="cb22-27" title="27">          <span class="dt">maxsize =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb22-28" title="28">          <span class="dt">minsize =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb22-29" title="29">          <span class="dt">smooth =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb22-30" title="30">          <span class="dt">size.smooth =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb22-31" title="31">          <span class="dt">col.smooth =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb22-32" title="32">          <span class="dt">col.sign =</span> <span class="st">"cyan"</span>,</a>
+<a class="sourceLine" id="cb22-33" title="33">          <span class="dt">col.up.panel =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb22-34" title="34">          <span class="dt">col.lw.panel =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb22-35" title="35">          <span class="dt">col.dia.panel =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb22-36" title="36">          <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb22-37" title="37">          <span class="dt">lab.position =</span> <span class="st">"tl"</span>)</a>
+<a class="sourceLine" id="cb22-38" title="38">plots &lt;-<span class="st"> </span><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, c, d, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">plots</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-13-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p>The function <code><a href="../reference/corr_coef.html">corr_coef()</a></code> can be used to compute Pearson producto-moment correlation coefficients with p-values. A correlation heat map can be created with the function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code></p>
 </div>
@@ -521,940 +434,69 @@ var^g_y = (MST_x - MSE_y)/r \\
 <div id="genetic-correlations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#genetic-correlations" class="anchor"></a>Genetic correlations</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># environment A1</span></a>
-<a class="sourceLine" id="cb26-2" title="2">data &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(data_ge2, ENV <span class="op">==</span><span class="st"> "A1"</span>)</a>
-<a class="sourceLine" id="cb26-3" title="3">gcor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, <span class="dt">gen =</span> GEN, <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb26-4" title="4">                      <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
-<a class="sourceLine" id="cb26-5" title="5">                      <span class="dt">type =</span> <span class="st">"gcor"</span>)</a>
-<a class="sourceLine" id="cb26-6" title="6"><span class="kw">print_table</span>(gcor)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-PH
-</th>
-<th style="text-align:right;">
-EH
-</th>
-<th style="text-align:right;">
-NKE
-</th>
-<th style="text-align:right;">
-TKW
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-PH
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
--0.007
-</td>
-<td style="text-align:right;">
-0.280
-</td>
-<td style="text-align:right;">
-0.246
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-EH
-</td>
-<td style="text-align:right;">
--0.007
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
--0.775
-</td>
-<td style="text-align:right;">
-0.725
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NKE
-</td>
-<td style="text-align:right;">
-0.280
-</td>
-<td style="text-align:right;">
--0.775
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
--0.512
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TKW
-</td>
-<td style="text-align:right;">
-0.246
-</td>
-<td style="text-align:right;">
-0.725
-</td>
-<td style="text-align:right;">
--0.512
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># environment A1</span></a>
+<a class="sourceLine" id="cb24-2" title="2">data &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(data_ge2, ENV <span class="op">==</span><span class="st"> "A1"</span>)</a>
+<a class="sourceLine" id="cb24-3" title="3">gcor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, <span class="dt">gen =</span> GEN, <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb24-4" title="4">                      <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb24-5" title="5">                      <span class="dt">type =</span> <span class="st">"gcor"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>()</a>
+<a class="sourceLine" id="cb24-7" title="7"><span class="kw">print_table</span>(gcor, <span class="dt">rownames =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div id="htmlwidget-24a2b97563930307e318" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-24a2b97563930307e318">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["PH","EH","NKE","TKW"],[1,-0.00654462344724665,0.280180560155481,0.245937656585194],[-0.00654462344724665,1,-0.775249740788132,0.724768429534756],[0.280180560155481,-0.775249740788132,1,-0.511764544677595],[0.245937656585194,0.724768429534756,-0.511764544677595,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>PH<\/th>\n      <th>EH<\/th>\n      <th>NKE<\/th>\n      <th>TKW<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <div id="phenotypic-correlations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#phenotypic-correlations" class="anchor"></a>Phenotypic correlations</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">pcor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, <span class="dt">gen =</span> GEN, <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb27-2" title="2">                      <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
-<a class="sourceLine" id="cb27-3" title="3">                      <span class="dt">type =</span> <span class="st">"pcor"</span>)</a>
-<a class="sourceLine" id="cb27-4" title="4"><span class="kw">print_table</span>(pcor)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-PH
-</th>
-<th style="text-align:right;">
-EH
-</th>
-<th style="text-align:right;">
-NKE
-</th>
-<th style="text-align:right;">
-TKW
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-PH
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
-0.331
-</td>
-<td style="text-align:right;">
-0.142
-</td>
-<td style="text-align:right;">
-0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-EH
-</td>
-<td style="text-align:right;">
-0.331
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
--0.439
-</td>
-<td style="text-align:right;">
-0.383
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NKE
-</td>
-<td style="text-align:right;">
-0.142
-</td>
-<td style="text-align:right;">
--0.439
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
--0.552
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TKW
-</td>
-<td style="text-align:right;">
-0.001
-</td>
-<td style="text-align:right;">
-0.383
-</td>
-<td style="text-align:right;">
--0.552
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">pcor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, <span class="dt">gen =</span> GEN, <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb25-2" title="2">                      <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb25-3" title="3">                      <span class="dt">type =</span> <span class="st">"pcor"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>()</a>
+<a class="sourceLine" id="cb25-5" title="5"><span class="kw">print_table</span>(pcor, <span class="dt">rownames =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div id="htmlwidget-86c0cf1d274a686ce500" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-86c0cf1d274a686ce500">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["PH","EH","NKE","TKW"],[1,0.330733644403648,0.141711381924066,0.000885691556497057],[0.330733644403648,1,-0.438829966421562,0.382862462380339],[0.141711381924066,-0.438829966421562,1,-0.552262565229692],[0.000885691556497057,0.382862462380339,-0.552262565229692,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>PH<\/th>\n      <th>EH<\/th>\n      <th>NKE<\/th>\n      <th>TKW<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <div id="residual-correlations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#residual-correlations" class="anchor"></a>Residual correlations</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">rcor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, <span class="dt">gen =</span> GEN, <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb28-2" title="2">                     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
-<a class="sourceLine" id="cb28-3" title="3">                     <span class="dt">type =</span> <span class="st">"rcor"</span>)</a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="kw">print_table</span>(rcor)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-PH
-</th>
-<th style="text-align:right;">
-EH
-</th>
-<th style="text-align:right;">
-NKE
-</th>
-<th style="text-align:right;">
-TKW
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-PH
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
-0.534
-</td>
-<td style="text-align:right;">
-0.096
-</td>
-<td style="text-align:right;">
--0.155
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-EH
-</td>
-<td style="text-align:right;">
-0.534
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
--0.232
-</td>
-<td style="text-align:right;">
--0.041
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NKE
-</td>
-<td style="text-align:right;">
-0.096
-</td>
-<td style="text-align:right;">
--0.232
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-<td style="text-align:right;">
--0.634
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TKW
-</td>
-<td style="text-align:right;">
--0.155
-</td>
-<td style="text-align:right;">
--0.041
-</td>
-<td style="text-align:right;">
--0.634
-</td>
-<td style="text-align:right;">
-1.000
-</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">rcor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, <span class="dt">gen =</span> GEN, <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb26-2" title="2">                     <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb26-3" title="3">                     <span class="dt">type =</span> <span class="st">"rcor"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>()</a>
+<a class="sourceLine" id="cb26-5" title="5"><span class="kw">print_table</span>(rcor, <span class="dt">rownames =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div id="htmlwidget-3b7390960f7b58bec796" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3b7390960f7b58bec796">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["PH","EH","NKE","TKW"],[1,0.534367762822845,0.0956852912566896,-0.155336459961785],[0.534367762822845,1,-0.231779056369724,-0.0408413353293733],[0.0956852912566896,-0.231779056369724,1,-0.634431880216501],[-0.155336459961785,-0.0408413353293733,-0.634431880216501,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>PH<\/th>\n      <th>EH<\/th>\n      <th>NKE<\/th>\n      <th>TKW<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <div id="residual-covariance-matrix" class="section level2">
 <h2 class="hasAnchor">
 <a href="#residual-covariance-matrix" class="anchor"></a>Residual (co)variance matrix</h2>
 <p>Using the function <code><a href="../reference/split_factors.html">split_factors()</a></code> it is possible to pass the data grouped and compute the matrices for each level of the grouping factor. In this example we will obtain the residual (co)variance for each environment.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">cov &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="st">       </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="st">       </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
-<a class="sourceLine" id="cb29-4" title="4">                     <span class="dt">type =</span> <span class="st">"rcov"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">cov &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="st">       </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="st">       </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb27-4" title="4">                     <span class="dt">type =</span> <span class="st">"rcov"</span>)</a></code></pre></div>
 <p>The residual (co)variance matrix and the means (obtained using <code>type = "means"</code>) may be used into the function <code><a href="../reference/mahala.html">mahala()</a></code> to compute the Mahalanobis distance</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW), <span class="dt">type =</span> <span class="st">"rcov"</span>)</a>
-<a class="sourceLine" id="cb30-2" title="2">means &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW), <span class="dt">type =</span> <span class="st">"means"</span>)</a>
-<a class="sourceLine" id="cb30-3" title="3"></a>
-<a class="sourceLine" id="cb30-4" title="4">D2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mahala.html">mahala</a></span>(<span class="dt">.means =</span> means, <span class="dt">covar =</span> res, <span class="dt">inverted =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb30-5" title="5"><span class="kw">print_table</span>(D2)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-H1
-</th>
-<th style="text-align:right;">
-H10
-</th>
-<th style="text-align:right;">
-H11
-</th>
-<th style="text-align:right;">
-H12
-</th>
-<th style="text-align:right;">
-H13
-</th>
-<th style="text-align:right;">
-H2
-</th>
-<th style="text-align:right;">
-H3
-</th>
-<th style="text-align:right;">
-H4
-</th>
-<th style="text-align:right;">
-H5
-</th>
-<th style="text-align:right;">
-H6
-</th>
-<th style="text-align:right;">
-H7
-</th>
-<th style="text-align:right;">
-H8
-</th>
-<th style="text-align:right;">
-H9
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-H1
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-2.178
-</td>
-<td style="text-align:right;">
-3.832
-</td>
-<td style="text-align:right;">
-5.907
-</td>
-<td style="text-align:right;">
-3.110
-</td>
-<td style="text-align:right;">
-19.019
-</td>
-<td style="text-align:right;">
-9.964
-</td>
-<td style="text-align:right;">
-3.589
-</td>
-<td style="text-align:right;">
-4.734
-</td>
-<td style="text-align:right;">
-4.707
-</td>
-<td style="text-align:right;">
-4.967
-</td>
-<td style="text-align:right;">
-5.880
-</td>
-<td style="text-align:right;">
-6.310
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H10
-</td>
-<td style="text-align:right;">
-2.178
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.625
-</td>
-<td style="text-align:right;">
-2.592
-</td>
-<td style="text-align:right;">
-4.021
-</td>
-<td style="text-align:right;">
-10.459
-</td>
-<td style="text-align:right;">
-4.607
-</td>
-<td style="text-align:right;">
-2.819
-</td>
-<td style="text-align:right;">
-0.660
-</td>
-<td style="text-align:right;">
-6.538
-</td>
-<td style="text-align:right;">
-1.322
-</td>
-<td style="text-align:right;">
-1.995
-</td>
-<td style="text-align:right;">
-3.904
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H11
-</td>
-<td style="text-align:right;">
-3.832
-</td>
-<td style="text-align:right;">
-0.625
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.733
-</td>
-<td style="text-align:right;">
-5.403
-</td>
-<td style="text-align:right;">
-8.074
-</td>
-<td style="text-align:right;">
-4.072
-</td>
-<td style="text-align:right;">
-3.377
-</td>
-<td style="text-align:right;">
-0.689
-</td>
-<td style="text-align:right;">
-9.751
-</td>
-<td style="text-align:right;">
-0.245
-</td>
-<td style="text-align:right;">
-1.240
-</td>
-<td style="text-align:right;">
-7.221
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H12
-</td>
-<td style="text-align:right;">
-5.907
-</td>
-<td style="text-align:right;">
-2.592
-</td>
-<td style="text-align:right;">
-0.733
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-7.226
-</td>
-<td style="text-align:right;">
-7.765
-</td>
-<td style="text-align:right;">
-5.258
-</td>
-<td style="text-align:right;">
-4.744
-</td>
-<td style="text-align:right;">
-2.372
-</td>
-<td style="text-align:right;">
-13.545
-</td>
-<td style="text-align:right;">
-0.543
-</td>
-<td style="text-align:right;">
-1.898
-</td>
-<td style="text-align:right;">
-12.422
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H13
-</td>
-<td style="text-align:right;">
-3.110
-</td>
-<td style="text-align:right;">
-4.021
-</td>
-<td style="text-align:right;">
-5.403
-</td>
-<td style="text-align:right;">
-7.226
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-11.864
-</td>
-<td style="text-align:right;">
-6.036
-</td>
-<td style="text-align:right;">
-2.317
-</td>
-<td style="text-align:right;">
-4.681
-</td>
-<td style="text-align:right;">
-1.992
-</td>
-<td style="text-align:right;">
-6.301
-</td>
-<td style="text-align:right;">
-5.111
-</td>
-<td style="text-align:right;">
-6.671
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H2
-</td>
-<td style="text-align:right;">
-19.019
-</td>
-<td style="text-align:right;">
-10.459
-</td>
-<td style="text-align:right;">
-8.074
-</td>
-<td style="text-align:right;">
-7.765
-</td>
-<td style="text-align:right;">
-11.864
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-4.997
-</td>
-<td style="text-align:right;">
-11.609
-</td>
-<td style="text-align:right;">
-6.750
-</td>
-<td style="text-align:right;">
-17.573
-</td>
-<td style="text-align:right;">
-7.866
-</td>
-<td style="text-align:right;">
-4.969
-</td>
-<td style="text-align:right;">
-16.466
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H3
-</td>
-<td style="text-align:right;">
-9.964
-</td>
-<td style="text-align:right;">
-4.607
-</td>
-<td style="text-align:right;">
-4.072
-</td>
-<td style="text-align:right;">
-5.258
-</td>
-<td style="text-align:right;">
-6.036
-</td>
-<td style="text-align:right;">
-4.997
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-2.567
-</td>
-<td style="text-align:right;">
-2.041
-</td>
-<td style="text-align:right;">
-11.816
-</td>
-<td style="text-align:right;">
-3.276
-</td>
-<td style="text-align:right;">
-5.248
-</td>
-<td style="text-align:right;">
-8.394
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H4
-</td>
-<td style="text-align:right;">
-3.589
-</td>
-<td style="text-align:right;">
-2.819
-</td>
-<td style="text-align:right;">
-3.377
-</td>
-<td style="text-align:right;">
-4.744
-</td>
-<td style="text-align:right;">
-2.317
-</td>
-<td style="text-align:right;">
-11.609
-</td>
-<td style="text-align:right;">
-2.567
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-2.533
-</td>
-<td style="text-align:right;">
-7.140
-</td>
-<td style="text-align:right;">
-3.038
-</td>
-<td style="text-align:right;">
-5.824
-</td>
-<td style="text-align:right;">
-7.126
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H5
-</td>
-<td style="text-align:right;">
-4.734
-</td>
-<td style="text-align:right;">
-0.660
-</td>
-<td style="text-align:right;">
-0.689
-</td>
-<td style="text-align:right;">
-2.372
-</td>
-<td style="text-align:right;">
-4.681
-</td>
-<td style="text-align:right;">
-6.750
-</td>
-<td style="text-align:right;">
-2.041
-</td>
-<td style="text-align:right;">
-2.533
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-8.317
-</td>
-<td style="text-align:right;">
-0.888
-</td>
-<td style="text-align:right;">
-1.782
-</td>
-<td style="text-align:right;">
-4.574
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H6
-</td>
-<td style="text-align:right;">
-4.707
-</td>
-<td style="text-align:right;">
-6.538
-</td>
-<td style="text-align:right;">
-9.751
-</td>
-<td style="text-align:right;">
-13.545
-</td>
-<td style="text-align:right;">
-1.992
-</td>
-<td style="text-align:right;">
-17.573
-</td>
-<td style="text-align:right;">
-11.816
-</td>
-<td style="text-align:right;">
-7.140
-</td>
-<td style="text-align:right;">
-8.317
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-11.926
-</td>
-<td style="text-align:right;">
-8.240
-</td>
-<td style="text-align:right;">
-4.840
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H7
-</td>
-<td style="text-align:right;">
-4.967
-</td>
-<td style="text-align:right;">
-1.322
-</td>
-<td style="text-align:right;">
-0.245
-</td>
-<td style="text-align:right;">
-0.543
-</td>
-<td style="text-align:right;">
-6.301
-</td>
-<td style="text-align:right;">
-7.866
-</td>
-<td style="text-align:right;">
-3.276
-</td>
-<td style="text-align:right;">
-3.038
-</td>
-<td style="text-align:right;">
-0.888
-</td>
-<td style="text-align:right;">
-11.926
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-2.100
-</td>
-<td style="text-align:right;">
-8.837
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H8
-</td>
-<td style="text-align:right;">
-5.880
-</td>
-<td style="text-align:right;">
-1.995
-</td>
-<td style="text-align:right;">
-1.240
-</td>
-<td style="text-align:right;">
-1.898
-</td>
-<td style="text-align:right;">
-5.111
-</td>
-<td style="text-align:right;">
-4.969
-</td>
-<td style="text-align:right;">
-5.248
-</td>
-<td style="text-align:right;">
-5.824
-</td>
-<td style="text-align:right;">
-1.782
-</td>
-<td style="text-align:right;">
-8.240
-</td>
-<td style="text-align:right;">
-2.100
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-7.949
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H9
-</td>
-<td style="text-align:right;">
-6.310
-</td>
-<td style="text-align:right;">
-3.904
-</td>
-<td style="text-align:right;">
-7.221
-</td>
-<td style="text-align:right;">
-12.422
-</td>
-<td style="text-align:right;">
-6.671
-</td>
-<td style="text-align:right;">
-16.466
-</td>
-<td style="text-align:right;">
-8.394
-</td>
-<td style="text-align:right;">
-7.126
-</td>
-<td style="text-align:right;">
-4.574
-</td>
-<td style="text-align:right;">
-4.840
-</td>
-<td style="text-align:right;">
-8.837
-</td>
-<td style="text-align:right;">
-7.949
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW), <span class="dt">type =</span> <span class="st">"rcov"</span>)</a>
+<a class="sourceLine" id="cb28-2" title="2">means &lt;-<span class="st"> </span><span class="kw"><a href="../reference/covcor_design.html">covcor_design</a></span>(data, GEN, REP, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW), <span class="dt">type =</span> <span class="st">"means"</span>)</a>
+<a class="sourceLine" id="cb28-3" title="3"></a>
+<a class="sourceLine" id="cb28-4" title="4">D2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mahala.html">mahala</a></span>(<span class="dt">.means =</span> means, <span class="dt">covar =</span> res, <span class="dt">inverted =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>()</a>
+<a class="sourceLine" id="cb28-6" title="6"><span class="kw">print_table</span>(D2, <span class="dt">rownames =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div id="htmlwidget-7cfb5a5f15b21aa5f2dd" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7cfb5a5f15b21aa5f2dd">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["H1","H10","H11","H12","H13","H2","H3","H4","H5","H6","H7","H8","H9"],[0,2.17809202717122,3.83170815302921,5.9074486421202,3.10969727457107,19.0192256394845,9.96444308183536,3.58942371117603,4.73438762516553,4.70717953951371,4.96664194661824,5.8800800033234,6.30968052442882],[2.17809202717122,0,0.624661929974425,2.59205261817957,4.02084036215555,10.4592457335174,4.60669223255571,2.81901972166013,0.660336869296246,6.53756172419095,1.32237282337841,1.99507245576457,3.90448542893756],[3.83170815302921,0.624661929974425,0,0.732967912391834,5.40319068547907,8.07407537110388,4.07201653066804,3.3766598218117,0.688659435694932,9.75146037203218,0.245352519098712,1.23969066729931,7.22087966075845],[5.9074486421202,2.59205261817957,0.732967912391834,0,7.22634457103038,7.76548108569588,5.25756561506968,4.74438584673519,2.37158365400936,13.5448835719298,0.542598161980116,1.89842778487672,12.422340151266],[3.10969727457107,4.02084036215555,5.40319068547907,7.22634457103038,0,11.8636493896798,6.03569403997674,2.31718437555194,4.68107946911914,1.99236838558877,6.30058316132685,5.11052281623341,6.6714537310206],[19.0192256394845,10.4592457335174,8.07407537110388,7.76548108569588,11.8636493896798,0,4.99699181271765,11.6085680982787,6.75016298705489,17.5731206248072,7.86612718828834,4.96909924647939,16.4659788104664],[9.96444308183536,4.60669223255571,4.07201653066804,5.25756561506968,6.03569403997674,4.99699181271765,0,2.56663595497385,2.04113940933212,11.815836785632,3.27627878850364,5.24765135443796,8.39443910417026],[3.58942371117603,2.81901972166013,3.3766598218117,4.74438584673519,2.31718437555194,11.6085680982787,2.56663595497385,0,2.53267755110045,7.14019155058428,3.03829637345688,5.82413546956319,7.12629906283595],[4.73438762516553,0.660336869296246,0.688659435694932,2.37158365400936,4.68107946911914,6.75016298705489,2.04113940933212,2.53267755110045,0,8.3168188940576,0.887602030062294,1.78240491741758,4.57400017712094],[4.70717953951371,6.53756172419095,9.75146037203218,13.5448835719298,1.99236838558877,17.5731206248072,11.815836785632,7.14019155058428,8.3168188940576,0,11.9263844356594,8.23995045785561,4.83991539151925],[4.96664194661824,1.32237282337841,0.245352519098712,0.542598161980116,6.30058316132685,7.86612718828834,3.27627878850364,3.03829637345688,0.887602030062294,11.9263844356594,0,2.09967406257188,8.83688220793191],[5.8800800033234,1.99507245576457,1.23969066729931,1.89842778487672,5.11052281623341,4.96909924647939,5.24765135443796,5.82413546956319,1.78240491741758,8.23995045785561,2.09967406257188,0,7.94948855756547],[6.30968052442882,3.90448542893756,7.22087966075845,12.422340151266,6.6714537310206,16.4659788104664,8.39443910417026,7.12629906283595,4.57400017712094,4.83991539151925,8.83688220793191,7.94948855756547,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>H1<\/th>\n      <th>H10<\/th>\n      <th>H11<\/th>\n      <th>H12<\/th>\n      <th>H13<\/th>\n      <th>H2<\/th>\n      <th>H3<\/th>\n      <th>H4<\/th>\n      <th>H5<\/th>\n      <th>H6<\/th>\n      <th>H7<\/th>\n      <th>H8<\/th>\n      <th>H9<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 5, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 6, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 7, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 8, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 9, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 10, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 11, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 12, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 13, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <div id="nonparametric-confidence-interval-for-pearsons-correlation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nonparametric-confidence-interval-for-pearsons-correlation" class="anchor"></a>Nonparametric confidence interval for Pearson’s correlation</h2>
 <p>Recently, a Gaussian-independent estimator for the confidence interval of Pearson’s correlation coefficient was proposed by <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018" role="doc-biblioref">2018</a>)</span>. This estimator is based on the sample size and strength of associations and may be estimated using the function <code><a href="../reference/corr_ci.html">corr_ci()</a></code>. It is possible to estimate the confidence interval by declaring the sample size (n) and the correlation coefficient (r), or using a dataframe. The following code computes the confidence interval and make a plot to show the results.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Use a data frame</span></a>
-<a class="sourceLine" id="cb31-2" title="2">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb31-3" title="3"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-4" title="4"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-5" title="5"><span class="kw"><a href="../reference/plot_ci.html">plot_ci</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Use a data frame</span></a>
+<a class="sourceLine" id="cb29-2" title="2">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-4" title="4"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-5" title="5"><span class="kw"><a href="../reference/plot_ci.html">plot_ci</a></span>()</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>In the following examples, the confidence interval is calculated by declaring the sample size (n) and the correlation coefficient (r). If the function <code><a href="../reference/split_factors.html">split_factors()</a></code> is used before <code><a href="../reference/corr_ci.html">corr_ci()</a></code> then the confidence interval will be calculated within each level of the splitting factor.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Inform n and r</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">n =</span> <span class="dv">145</span>, <span class="dt">r =</span> <span class="fl">0.34</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Inform n and r</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>(<span class="dt">n =</span> <span class="dv">145</span>, <span class="dt">r =</span> <span class="fl">0.34</span>)</a></code></pre></div>
 <pre><code>------------------------------------------------- 
 Nonparametric 95% half-width confidence interval 
 ------------------------------------------------- 
@@ -1464,16 +506,16 @@ Sample size: 145
 Confidence interval: 0.1422
 True parameter range from: 0.1978 to 0.4822 
 ------------------------------------------------- </code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Compute the confidence for each level of ENV</span></a>
-<a class="sourceLine" id="cb34-2" title="2">CI2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb34-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Compute the confidence for each level of ENV</span></a>
+<a class="sourceLine" id="cb32-2" title="2">CI2 =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-3" title="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"E"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/corr_ci.html">corr_ci</a></span>()</a></code></pre></div>
 </div>
 <div id="sample-size-planning" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sample-size-planning" class="anchor"></a>Sample size planning</h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw"><a href="../reference/corr_ss.html">corr_ss</a></span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="../reference/corr_ss.html">corr_ss</a></span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</a></code></pre></div>
 <pre><code>------------------------------------------------- 
 Sample size planning for correlation coefficient 
 ------------------------------------------------- 
@@ -1491,9 +533,9 @@ Required sample size: 194
 <div id="using-a-correlation-matrix-which-was-estimated-earlier" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-a-correlation-matrix-which-was-estimated-earlier" class="anchor"></a>Using a correlation matrix, which was estimated earlier</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">cor_data &lt;-<span class="st"> </span>lpc1<span class="op">$</span>linear.mat</a>
-<a class="sourceLine" id="cb37-2" title="2">n &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(data_ge2)</a>
-<a class="sourceLine" id="cb37-3" title="3">cold1 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(cor_data, <span class="dt">n =</span> n)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">cor_data &lt;-<span class="st"> </span>lpc1<span class="op">$</span>linear.mat</a>
+<a class="sourceLine" id="cb35-2" title="2">n &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(data_ge2)</a>
+<a class="sourceLine" id="cb35-3" title="3">cold1 =<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(cor_data, <span class="dt">n =</span> n)</a></code></pre></div>
 <pre><code>Weak multicollinearity in the matrix
 NC = 30.013
 Matrix determinant: 0.1247818 
@@ -1507,7 +549,7 @@ NKE &gt; NKR &gt; NR </code></pre>
 <div id="using-a-dataframe" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-a-dataframe" class="anchor"></a>Using a dataframe</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">cold2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(data_ge2)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">cold2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>(data_ge2)</a></code></pre></div>
 <pre><code>Warning in colindiag(data_ge2): The factors ENV GEN REP where ignored. Use
 'split_factors()' to perform an analysis for each level of a factor.</code></pre>
 <pre><code>Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
@@ -1523,9 +565,9 @@ CL &gt; ED &gt; CDED &gt; CW &gt; EH &gt; KW &gt; PERK &gt; PH &gt; EP &gt; NKE 
 <div id="perform-the-diagnostic-for-each-level-of-the-factor-env" class="section level2">
 <h2 class="hasAnchor">
 <a href="#perform-the-diagnostic-for-each-level-of-the-factor-env" class="anchor"></a>Perform the diagnostic for each level of the factor ENV</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">cold3 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-3" title="3"><span class="st">         </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">cold3 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="st">         </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="st">         </span><span class="kw"><a href="../reference/colindiag.html">colindiag</a></span>()</a></code></pre></div>
 <pre><code>
 ----------------------------------------------------------------------------
 Level: A1 
@@ -1586,7 +628,7 @@ CL &gt; ED &gt; CDED &gt; CW &gt; KW &gt; EH &gt; PH &gt; EP &gt; PERK &gt; EL &
 <div id="using-kw-as-response-trait-and-all-other-ones-as-predictors-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-kw-as-response-trait-and-all-other-ones-as-predictors-" class="anchor"></a>Using KW as response trait and all other ones as predictors.</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">pcoeff &lt;-<span class="st"> </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(data_ge2, <span class="dt">resp =</span> KW)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">pcoeff &lt;-<span class="st"> </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(data_ge2, <span class="dt">resp =</span> KW)</a></code></pre></div>
 <pre><code>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </code></pre>
 <pre><code>Severe multicollinearity. 
 Condition Number = 7865.84
@@ -1595,12 +637,12 @@ Please, consider using a correction factor, or use 'brutstep = TRUE'. </code></p
 <div id="declaring-the-predictor-traits" class="section level2">
 <h2 class="hasAnchor">
 <a href="#declaring-the-predictor-traits" class="anchor"></a>Declaring the predictor traits</h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">pcoeff2 &lt;-</a>
-<a class="sourceLine" id="cb47-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(data_ge2,</a>
-<a class="sourceLine" id="cb47-3" title="3">             <span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb47-4" title="4">             <span class="dt">pred =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, NKE, TKW),</a>
-<a class="sourceLine" id="cb47-5" title="5">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb47-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(pcoeff2)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">pcoeff2 &lt;-</a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(data_ge2,</a>
+<a class="sourceLine" id="cb45-3" title="3">             <span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb45-4" title="4">             <span class="dt">pred =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, NKE, TKW),</a>
+<a class="sourceLine" id="cb45-5" title="5">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb45-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(pcoeff2)</a></code></pre></div>
 <pre><code>----------------------------------------------------------------------------------------------
 Correlation matrix between the predictor traits
 ----------------------------------------------------------------------------------------------
@@ -1660,21 +702,21 @@ Direct (diagonal) and indirect (off-diagonal) effects
 <div id="selecting-traits-to-be-excluded-from-the-analysis-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#selecting-traits-to-be-excluded-from-the-analysis-" class="anchor"></a>Selecting traits to be excluded from the analysis.</h2>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">pcoeff2 &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb49-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(data_ge2, </a>
-<a class="sourceLine" id="cb49-3" title="3">             <span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb49-4" title="4">             <span class="dt">pred =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
-<a class="sourceLine" id="cb49-5" title="5">             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb49-6" title="6">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">pcoeff2 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(data_ge2, </a>
+<a class="sourceLine" id="cb47-3" title="3">             <span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb47-4" title="4">             <span class="dt">pred =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb47-5" title="5">             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb47-6" title="6">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="selecting-a-set-of-predictors-with-minimal-multicollinearity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#selecting-a-set-of-predictors-with-minimal-multicollinearity" class="anchor"></a>Selecting a set of predictors with minimal multicollinearity</h2>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">pcoeff3 &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb50-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(data_ge2,</a>
-<a class="sourceLine" id="cb50-3" title="3">             <span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb50-4" title="4">             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb50-5" title="5">             <span class="dt">maxvif =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">pcoeff3 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(data_ge2,</a>
+<a class="sourceLine" id="cb48-3" title="3">             <span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb48-4" title="4">             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb48-5" title="5">             <span class="dt">maxvif =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </code></pre>
 <pre><code>--------------------------------------------------------------------------
 The algorithm has selected a set of 8 predictors with largest VIF = 3.346. 
@@ -1703,11 +745,11 @@ Summary of the adjusted models
 <div id="compute-the-analysis-for-each-level-of-environment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#compute-the-analysis-for-each-level-of-environment" class="anchor"></a>Compute the analysis for each level of environment</h2>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">pcoeff4 &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb53-2" title="2"><span class="st">  </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb53-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb53-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb53-5" title="5">             <span class="dt">pred =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW))</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">pcoeff4 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="st">  </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb51-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/path_coeff.html">path_coeff</a></span>(<span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb51-5" title="5">             <span class="dt">pred =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, NKE, TKW))</a></code></pre></div>
 <pre><code>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the
 grouped data.</code></pre>
 <pre><code>
@@ -1743,9 +785,9 @@ You will probably have path coefficients close to being unbiased. </code></pre>
 <div id="canonical-correlation-analysis" class="section level1">
 <h1 class="hasAnchor">
 <a href="#canonical-correlation-analysis" class="anchor"></a>Canonical correlation analysis</h1>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">cc1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(data_ge2,</a>
-<a class="sourceLine" id="cb56-2" title="2">                <span class="dt">FG =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, EP),</a>
-<a class="sourceLine" id="cb56-3" title="3">                <span class="dt">SG =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(EL, ED, CL, CD, CW, KW, NR))</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">cc1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(data_ge2,</a>
+<a class="sourceLine" id="cb54-2" title="2">                <span class="dt">FG =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(PH, EH, EP),</a>
+<a class="sourceLine" id="cb54-3" title="3">                <span class="dt">SG =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(EL, ED, CL, CD, CW, KW, NR))</a></code></pre></div>
 <pre><code>---------------------------------------------------------------------------
 Matrix (correlation/covariance) between variables of first group (FG)
 ---------------------------------------------------------------------------
@@ -1839,10 +881,10 @@ CD 0.3948013  0.03075542 -0.46981539
 CW 0.6243739 -0.37712156 -0.14762207
 KW 0.9566482 -0.05042023 -0.09910729
 NR 0.4351188  0.29047403  0.18639351</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">cc2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(<span class="dt">FG =</span> data_ge2[, <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],</a>
-<a class="sourceLine" id="cb58-2" title="2">                <span class="dt">SG =</span> data_ge2[, <span class="dv">7</span><span class="op">:</span><span class="dv">13</span>],</a>
-<a class="sourceLine" id="cb58-3" title="3">                <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb58-4" title="4">                <span class="dt">collinearity =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">cc2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/can_corr.html">can_corr</a></span>(<span class="dt">FG =</span> data_ge2[, <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],</a>
+<a class="sourceLine" id="cb56-2" title="2">                <span class="dt">SG =</span> data_ge2[, <span class="dv">7</span><span class="op">:</span><span class="dv">13</span>],</a>
+<a class="sourceLine" id="cb56-3" title="3">                <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb56-4" title="4">                <span class="dt">collinearity =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="clustering-analysis" class="section level1">
 <h1 class="hasAnchor">
@@ -1853,21 +895,21 @@ NR 0.4351188  0.29047403  0.18639351</code></pre>
 <div id="all-rows-and-all-numeric-variables-from-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#all-rows-and-all-numeric-variables-from-data" class="anchor"></a>All rows and all numeric variables from data</h3>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">d1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">d1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2)</a></code></pre></div>
 <pre><code>The columns ENV GEN REP where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.' </code></pre>
 </div>
 <div id="based-on-the-mean-for-each-genotype" class="section level3">
 <h3 class="hasAnchor">
 <a href="#based-on-the-mean-for-each-genotype" class="anchor"></a>Based on the mean for each genotype</h3>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">nclust =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">nclust =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p>The S3 generic function plot() may be used to plot the dendrogram generated by the function <code><a href="../reference/clustering.html">clustering()</a></code>. A dashed line is draw at the cutpoint suggested according to <span class="citation">Mojena (<a href="#ref-Mojena1977" role="doc-biblioref">1977</a>)</span>.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d2, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(d2, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-33-1.png" width="528" style="display: block; margin: auto;"> According to the suggested cutpoint, two clusters are formed. The number of clusters may also be found using intensive computation. I suggest the package <a href="http://stat.sys.i.kyoto-u.ac.jp/prog/pvclust/">pcvlust</a>, an R package for assessing the uncertainty in hierarchical cluster analysis. The implementation may be see below.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(pvclust)</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(pvclust)</a></code></pre></div>
 <pre><code>Registered S3 method overwritten by 'pvclust':
   method       from      
   text.pvclust dendextend</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">pv_clust &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/pvclust/man/pvclust.html">pvclust</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/t.html">t</a></span>(d2<span class="op">$</span>data), <span class="dt">nboot =</span> <span class="dv">100</span>, <span class="dt">method.dist =</span> <span class="st">"euclidean"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">pv_clust &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/pvclust/man/pvclust.html">pvclust</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/t.html">t</a></span>(d2<span class="op">$</span>data), <span class="dt">nboot =</span> <span class="dv">100</span>, <span class="dt">method.dist =</span> <span class="st">"euclidean"</span>)</a></code></pre></div>
 <pre><code>Bootstrap (r = 0.47)... Done.
 Bootstrap (r = 0.6)... Done.
 Bootstrap (r = 0.67)... Done.
@@ -1878,21 +920,21 @@ Bootstrap (r = 1.07)... Done.
 Bootstrap (r = 1.2)... Done.
 Bootstrap (r = 1.27)... Done.
 Bootstrap (r = 1.4)... Done.</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(pv_clust, <span class="dt">hang =</span> <span class="dv">-1</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb67-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/pvclust/man/pvpick.html">pvrect</a></span>(pv_clust, <span class="dt">alpha =</span> <span class="fl">0.95</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(pv_clust, <span class="dt">hang =</span> <span class="dv">-1</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb65-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/pvclust/man/pvpick.html">pvrect</a></span>(pv_clust, <span class="dt">alpha =</span> <span class="fl">0.95</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-34-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="indicating-the-variables-to-compute-the-distances" class="section level3">
 <h3 class="hasAnchor">
 <a href="#indicating-the-variables-to-compute-the-distances" class="anchor"></a>Indicating the variables to compute the distances</h3>
 <p>It is possible to indicate the variables from the data_ge2 to compute the distances. To do that is easy. You should only provide a comma-separated list of unquoted variable names after the .data argument. For example, to compute the distances between the genotypes based on the variables NKR, TKW, and NKE, the following arguments should be used.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">d3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, NKR, TKW, NKE, <span class="dt">means_by =</span> GEN)</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">d3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, NKR, TKW, NKE, <span class="dt">means_by =</span> GEN)</a></code></pre></div>
 </div>
 <div id="select-variables-for-compute-the-distances" class="section level3">
 <h3 class="hasAnchor">
 <a href="#select-variables-for-compute-the-distances" class="anchor"></a>Select variables for compute the distances</h3>
 <p>When <code>selvar = TRUE</code> is used, an algorithm for variable selection is implemented. See <code><a href="../reference/clustering.html">?clustering</a></code> for more details.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">d4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">selvar =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">d4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2, <span class="dt">means_by =</span> GEN, <span class="dt">selvar =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
 Calculating model 2 with 14 variables. EP excluded in this step (14.3%).
 Calculating model 3 with 13 variables. CDED excluded in this step (21.4%).
@@ -1940,20 +982,20 @@ The variables included in this model were...
 <h3 class="hasAnchor">
 <a href="#extending-the-dendrogram-functionality" class="anchor"></a>Extending the dendrogram Functionality</h3>
 <p>The package <a href="https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html">dendextend</a> offers a set of functions for extending ‘dendrogram’ objects in R. A simple example is given bellow.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dendextend)</a>
-<a class="sourceLine" id="cb71-2" title="2">d4<span class="op">$</span>hc <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-3" title="3"><span class="st">  </span><span class="kw">color_labels</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-4" title="4"><span class="st">  </span><span class="kw">branches_color</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-5" title="5"><span class="st">  </span><span class="kw">highlight_branches_lwd</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-6" title="6"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">"Euclidean distance"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dendextend)</a>
+<a class="sourceLine" id="cb69-2" title="2">d4<span class="op">$</span>hc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-3" title="3"><span class="st">  </span><span class="kw">color_labels</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-4" title="4"><span class="st">  </span><span class="kw">branches_color</span>(<span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-5" title="5"><span class="st">  </span><span class="kw">highlight_branches_lwd</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-6" title="6"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">"Euclidean distance"</span>)</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-37-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="compute-the-distances-with-standardized-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#compute-the-distances-with-standardized-data" class="anchor"></a>Compute the distances with standardized data</h3>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">d5 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2,</a>
-<a class="sourceLine" id="cb72-2" title="2">                <span class="dt">means_by =</span> GEN,</a>
-<a class="sourceLine" id="cb72-3" title="3">                <span class="dt">scale =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">d5 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(data_ge2,</a>
+<a class="sourceLine" id="cb70-2" title="2">                <span class="dt">means_by =</span> GEN,</a>
+<a class="sourceLine" id="cb70-3" title="3">                <span class="dt">scale =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="compute-the-distances-for-each-environment" class="section level3">
 <h3 class="hasAnchor">
@@ -1961,25 +1003,25 @@ The variables included in this model were...
 <ul>
 <li>All rows of each environment and all numeric variables used</li>
 </ul>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">d6 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb73-2" title="2"><span class="st">      </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb73-3" title="3"><span class="st">      </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">d6 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="st">      </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-3" title="3"><span class="st">      </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>()</a></code></pre></div>
 <pre><code>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the
 grouped data.</code></pre>
 <ul>
 <li>Select the variables NKR, TKW, and NKE</li>
 <li>Use the mean for each genotype</li>
 </ul>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1">d7 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb75-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb75-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(NKR, TKW, NKE,</a>
-<a class="sourceLine" id="cb75-4" title="4">             <span class="dt">means_by =</span> GEN)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">d7 &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/clustering.html">clustering</a></span>(NKR, TKW, NKE,</a>
+<a class="sourceLine" id="cb73-4" title="4">             <span class="dt">means_by =</span> GEN)</a></code></pre></div>
 </div>
 <div id="check-the-correlation-between-distance-matrices" class="section level3">
 <h3 class="hasAnchor">
 <a href="#check-the-correlation-between-distance-matrices" class="anchor"></a>Check the correlation between distance matrices</h3>
 <p>The function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> may be used to check the relationships between the distance matrices when the clustering is performed for each level of a grouping factor. In this example, we have four distance matrices corresponding to four environments.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(d7, <span class="dt">names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"A3"</span>, <span class="st">"A4"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>(d7, <span class="dt">names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"A3"</span>, <span class="st">"A4"</span>))</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-41-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>The highest degree of association (0.36) was observed between <strong>A1</strong> and <strong>A4</strong>. The low values of correlation between the distance matrices suggest that the genotype clustering should vary significantly among environments.</p>
 </div>
@@ -1990,643 +1032,27 @@ grouped data.</code></pre>
 <div id="based-on-designed-experiments" class="section level3">
 <h3 class="hasAnchor">
 <a href="#based-on-designed-experiments" class="anchor"></a>Based on designed experiments</h3>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co"># Environment E1</span></a>
-<a class="sourceLine" id="cb77-2" title="2">data_E1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(data_ge2, ENV <span class="op">==</span><span class="st"> "A1"</span>)</a>
-<a class="sourceLine" id="cb77-3" title="3">D2_des &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(data_E1,</a>
-<a class="sourceLine" id="cb77-4" title="4">                       <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb77-5" title="5">                       <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb77-6" title="6">                       <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(ED, CW, KW, NKR, TKW, NKE))</a>
-<a class="sourceLine" id="cb77-7" title="7"><span class="kw">print_table</span>(D2_des)</a></code></pre></div>
-<table class="table table table-striped table-hover table-condensed table-responsive">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-H1
-</th>
-<th style="text-align:right;">
-H10
-</th>
-<th style="text-align:right;">
-H11
-</th>
-<th style="text-align:right;">
-H12
-</th>
-<th style="text-align:right;">
-H13
-</th>
-<th style="text-align:right;">
-H2
-</th>
-<th style="text-align:right;">
-H3
-</th>
-<th style="text-align:right;">
-H4
-</th>
-<th style="text-align:right;">
-H5
-</th>
-<th style="text-align:right;">
-H6
-</th>
-<th style="text-align:right;">
-H7
-</th>
-<th style="text-align:right;">
-H8
-</th>
-<th style="text-align:right;">
-H9
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-H1
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-5.601
-</td>
-<td style="text-align:right;">
-4.859
-</td>
-<td style="text-align:right;">
-10.074
-</td>
-<td style="text-align:right;">
-12.668
-</td>
-<td style="text-align:right;">
-5.537
-</td>
-<td style="text-align:right;">
-5.358
-</td>
-<td style="text-align:right;">
-9.137
-</td>
-<td style="text-align:right;">
-16.063
-</td>
-<td style="text-align:right;">
-12.701
-</td>
-<td style="text-align:right;">
-24.699
-</td>
-<td style="text-align:right;">
-14.588
-</td>
-<td style="text-align:right;">
-9.186
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H10
-</td>
-<td style="text-align:right;">
-5.601
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-15.985
-</td>
-<td style="text-align:right;">
-17.100
-</td>
-<td style="text-align:right;">
-16.370
-</td>
-<td style="text-align:right;">
-7.435
-</td>
-<td style="text-align:right;">
-7.255
-</td>
-<td style="text-align:right;">
-15.601
-</td>
-<td style="text-align:right;">
-25.252
-</td>
-<td style="text-align:right;">
-15.450
-</td>
-<td style="text-align:right;">
-30.920
-</td>
-<td style="text-align:right;">
-17.463
-</td>
-<td style="text-align:right;">
-11.816
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H11
-</td>
-<td style="text-align:right;">
-4.859
-</td>
-<td style="text-align:right;">
-15.985
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-4.477
-</td>
-<td style="text-align:right;">
-15.644
-</td>
-<td style="text-align:right;">
-11.674
-</td>
-<td style="text-align:right;">
-6.963
-</td>
-<td style="text-align:right;">
-5.984
-</td>
-<td style="text-align:right;">
-7.285
-</td>
-<td style="text-align:right;">
-18.599
-</td>
-<td style="text-align:right;">
-15.376
-</td>
-<td style="text-align:right;">
-11.938
-</td>
-<td style="text-align:right;">
-12.245
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H12
-</td>
-<td style="text-align:right;">
-10.074
-</td>
-<td style="text-align:right;">
-17.100
-</td>
-<td style="text-align:right;">
-4.477
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-8.352
-</td>
-<td style="text-align:right;">
-11.264
-</td>
-<td style="text-align:right;">
-4.704
-</td>
-<td style="text-align:right;">
-6.681
-</td>
-<td style="text-align:right;">
-8.669
-</td>
-<td style="text-align:right;">
-18.248
-</td>
-<td style="text-align:right;">
-6.412
-</td>
-<td style="text-align:right;">
-6.108
-</td>
-<td style="text-align:right;">
-11.355
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H13
-</td>
-<td style="text-align:right;">
-12.668
-</td>
-<td style="text-align:right;">
-16.370
-</td>
-<td style="text-align:right;">
-15.644
-</td>
-<td style="text-align:right;">
-8.352
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-12.755
-</td>
-<td style="text-align:right;">
-7.437
-</td>
-<td style="text-align:right;">
-12.005
-</td>
-<td style="text-align:right;">
-16.755
-</td>
-<td style="text-align:right;">
-6.679
-</td>
-<td style="text-align:right;">
-11.199
-</td>
-<td style="text-align:right;">
-5.158
-</td>
-<td style="text-align:right;">
-7.053
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H2
-</td>
-<td style="text-align:right;">
-5.537
-</td>
-<td style="text-align:right;">
-7.435
-</td>
-<td style="text-align:right;">
-11.674
-</td>
-<td style="text-align:right;">
-11.264
-</td>
-<td style="text-align:right;">
-12.755
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-2.681
-</td>
-<td style="text-align:right;">
-10.690
-</td>
-<td style="text-align:right;">
-25.959
-</td>
-<td style="text-align:right;">
-21.091
-</td>
-<td style="text-align:right;">
-29.962
-</td>
-<td style="text-align:right;">
-20.685
-</td>
-<td style="text-align:right;">
-19.877
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H3
-</td>
-<td style="text-align:right;">
-5.358
-</td>
-<td style="text-align:right;">
-7.255
-</td>
-<td style="text-align:right;">
-6.963
-</td>
-<td style="text-align:right;">
-4.704
-</td>
-<td style="text-align:right;">
-7.437
-</td>
-<td style="text-align:right;">
-2.681
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-4.501
-</td>
-<td style="text-align:right;">
-13.516
-</td>
-<td style="text-align:right;">
-13.836
-</td>
-<td style="text-align:right;">
-16.410
-</td>
-<td style="text-align:right;">
-9.687
-</td>
-<td style="text-align:right;">
-11.845
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H4
-</td>
-<td style="text-align:right;">
-9.137
-</td>
-<td style="text-align:right;">
-15.601
-</td>
-<td style="text-align:right;">
-5.984
-</td>
-<td style="text-align:right;">
-6.681
-</td>
-<td style="text-align:right;">
-12.005
-</td>
-<td style="text-align:right;">
-10.690
-</td>
-<td style="text-align:right;">
-4.501
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-5.487
-</td>
-<td style="text-align:right;">
-12.788
-</td>
-<td style="text-align:right;">
-17.338
-</td>
-<td style="text-align:right;">
-10.228
-</td>
-<td style="text-align:right;">
-12.686
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H5
-</td>
-<td style="text-align:right;">
-16.063
-</td>
-<td style="text-align:right;">
-25.252
-</td>
-<td style="text-align:right;">
-7.285
-</td>
-<td style="text-align:right;">
-8.669
-</td>
-<td style="text-align:right;">
-16.755
-</td>
-<td style="text-align:right;">
-25.959
-</td>
-<td style="text-align:right;">
-13.516
-</td>
-<td style="text-align:right;">
-5.487
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-13.763
-</td>
-<td style="text-align:right;">
-9.940
-</td>
-<td style="text-align:right;">
-6.652
-</td>
-<td style="text-align:right;">
-10.176
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H6
-</td>
-<td style="text-align:right;">
-12.701
-</td>
-<td style="text-align:right;">
-15.450
-</td>
-<td style="text-align:right;">
-18.599
-</td>
-<td style="text-align:right;">
-18.248
-</td>
-<td style="text-align:right;">
-6.679
-</td>
-<td style="text-align:right;">
-21.091
-</td>
-<td style="text-align:right;">
-13.836
-</td>
-<td style="text-align:right;">
-12.788
-</td>
-<td style="text-align:right;">
-13.763
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-19.845
-</td>
-<td style="text-align:right;">
-7.360
-</td>
-<td style="text-align:right;">
-3.289
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H7
-</td>
-<td style="text-align:right;">
-24.699
-</td>
-<td style="text-align:right;">
-30.920
-</td>
-<td style="text-align:right;">
-15.376
-</td>
-<td style="text-align:right;">
-6.412
-</td>
-<td style="text-align:right;">
-11.199
-</td>
-<td style="text-align:right;">
-29.962
-</td>
-<td style="text-align:right;">
-16.410
-</td>
-<td style="text-align:right;">
-17.338
-</td>
-<td style="text-align:right;">
-9.940
-</td>
-<td style="text-align:right;">
-19.845
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-3.457
-</td>
-<td style="text-align:right;">
-12.188
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H8
-</td>
-<td style="text-align:right;">
-14.588
-</td>
-<td style="text-align:right;">
-17.463
-</td>
-<td style="text-align:right;">
-11.938
-</td>
-<td style="text-align:right;">
-6.108
-</td>
-<td style="text-align:right;">
-5.158
-</td>
-<td style="text-align:right;">
-20.685
-</td>
-<td style="text-align:right;">
-9.687
-</td>
-<td style="text-align:right;">
-10.228
-</td>
-<td style="text-align:right;">
-6.652
-</td>
-<td style="text-align:right;">
-7.360
-</td>
-<td style="text-align:right;">
-3.457
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-3.462
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H9
-</td>
-<td style="text-align:right;">
-9.186
-</td>
-<td style="text-align:right;">
-11.816
-</td>
-<td style="text-align:right;">
-12.245
-</td>
-<td style="text-align:right;">
-11.355
-</td>
-<td style="text-align:right;">
-7.053
-</td>
-<td style="text-align:right;">
-19.877
-</td>
-<td style="text-align:right;">
-11.845
-</td>
-<td style="text-align:right;">
-12.686
-</td>
-<td style="text-align:right;">
-10.176
-</td>
-<td style="text-align:right;">
-3.289
-</td>
-<td style="text-align:right;">
-12.188
-</td>
-<td style="text-align:right;">
-3.462
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Environment E1</span></a>
+<a class="sourceLine" id="cb75-2" title="2">data_E1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(data_ge2, ENV <span class="op">==</span><span class="st"> "A1"</span>)</a>
+<a class="sourceLine" id="cb75-3" title="3">D2_des &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(data_E1,</a>
+<a class="sourceLine" id="cb75-4" title="4">                       <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb75-5" title="5">                       <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb75-6" title="6">                       <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(ED, CW, KW, NKR, TKW, NKE)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb75-7" title="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>()</a>
+<a class="sourceLine" id="cb75-8" title="8"><span class="kw">print_table</span>(D2_des, <span class="dt">rownames =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div id="htmlwidget-00bfa5bacbe8648dfe6a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-00bfa5bacbe8648dfe6a">{"x":{"filter":"none","extensions":["FixedColumns","Buttons","ColReorder"],"data":[["H1","H10","H11","H12","H13","H2","H3","H4","H5","H6","H7","H8","H9"],[0,5.60085281034957,4.85891136602946,10.0741224772958,12.6675274541363,5.53675836412501,5.35827051368143,9.13711500333033,16.0634239506574,12.7010599508557,24.6992650122407,14.587536355114,9.18609034057557],[5.60085281034957,0,15.9848634719859,17.1002939139187,16.369674030848,7.43457557137768,7.25508954762535,15.6013737786436,25.2523852060276,15.4498914960068,30.919797772024,17.4634477707487,11.8157187359624],[4.85891136602946,15.9848634719859,0,4.47701444018609,15.6444449005906,11.6741724559095,6.96264804235171,5.98427239685867,7.28460425206061,18.599086448763,15.3759979450001,11.9379954970944,12.2454406321104],[10.0741224772958,17.1002939139187,4.47701444018609,0,8.35197771911941,11.2635795696912,4.70398374195358,6.68081823142626,8.66944126949837,18.2480993159999,6.41185783652915,6.10751333534662,11.3550452946387],[12.6675274541363,16.369674030848,15.6444449005906,8.35197771911941,0,12.7546115340201,7.43710243383441,12.004965955316,16.7553483625193,6.67924873618409,11.1993095881829,5.15787270190294,7.05307049945269],[5.53675836412501,7.43457557137768,11.6741724559095,11.2635795696912,12.7546115340201,0,2.68111489990009,10.6902539291072,25.9585672140464,21.0913492517706,29.9621277812407,20.6845060348379,19.8768228861031],[5.35827051368143,7.25508954762535,6.96264804235171,4.70398374195358,7.43710243383441,2.68111489990009,0,4.5012669382936,13.5161156951305,13.8355366786607,16.4096815676304,9.68725273687091,11.8447283930437],[9.13711500333033,15.6013737786436,5.98427239685867,6.68081823142626,12.004965955316,10.6902539291072,4.5012669382936,0,5.48739344309916,12.7878608901164,17.3376033294159,10.2277412368523,12.6856199016965],[16.0634239506574,25.2523852060276,7.28460425206061,8.66944126949837,16.7553483625193,25.9585672140464,13.5161156951305,5.48739344309916,0,13.7625158799124,9.93969413542398,6.65179843275923,10.1759563670341],[12.7010599508557,15.4498914960068,18.599086448763,18.2480993159999,6.67924873618409,21.0913492517706,13.8355366786607,12.7878608901164,13.7625158799124,0,19.8446337256755,7.36033480616247,3.28882689345566],[24.6992650122407,30.919797772024,15.3759979450001,6.41185783652915,11.1993095881829,29.9621277812407,16.4096815676304,17.3376033294159,9.93969413542398,19.8446337256755,0,3.45748082016001,12.1876016055488],[14.587536355114,17.4634477707487,11.9379954970944,6.10751333534662,5.15787270190294,20.6845060348379,9.68725273687091,10.2277412368523,6.65179843275923,7.36033480616247,3.45748082016001,0,3.46190340600376],[9.18609034057557,11.8157187359624,12.2454406321104,11.3550452946387,7.05307049945269,19.8768228861031,11.8447283930437,12.6856199016965,10.1759563670341,3.28882689345566,12.1876016055488,3.46190340600376,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>H1<\/th>\n      <th>H10<\/th>\n      <th>H11<\/th>\n      <th>H12<\/th>\n      <th>H13<\/th>\n      <th>H2<\/th>\n      <th>H3<\/th>\n      <th>H4<\/th>\n      <th>H5<\/th>\n      <th>H6<\/th>\n      <th>H7<\/th>\n      <th>H8<\/th>\n      <th>H9<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"fixedColumns":true,"colReorder":true,"dom":"Bfrtip","buttons":["copy","excel","pdf","print","colvis"],"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 2, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 3, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 4, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 5, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 6, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 7, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 8, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 9, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 10, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 11, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 12, 3, 3, \",\", \".\");\nDTWidget.formatRound(this, row, data, 13, 3, 3, \",\", \".\");\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <div id="compute-one-distance-for-each-environment" class="section level3">
 <h3 class="hasAnchor">
 <a href="#compute-one-distance-for-each-environment" class="anchor"></a>Compute one distance for each environment</h3>
 <p>Using the function <code><a href="../reference/split_factors.html">split_factors()</a></code> it is possible to compute the Mahalanobis distance for each environment (or any grouping variable) and compare the distance matrices using the function <code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code>. Let’s do it.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb78-2" title="2"><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb78-3" title="3"><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(<span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb78-4" title="4">              <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb78-5" title="5">              <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(ED, CW, KW, NKR, TKW, NKE)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb78-6" title="6"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-2" title="2"><span class="kw"><a href="../reference/split_factors.html">split_factors</a></span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-3" title="3"><span class="kw"><a href="../reference/mahala_design.html">mahala_design</a></span>(<span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb76-4" title="4">              <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb76-5" title="5">              <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(ED, CW, KW, NKR, TKW, NKE)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-6" title="6"><span class="kw"><a href="../reference/pairs_mantel.html">pairs_mantel</a></span>()</a></code></pre></div>
 <pre><code>[1] "A1"
 [1] "A2"
 [1] "A3"
@@ -2637,29 +1063,30 @@ H9
 <h3 class="hasAnchor">
 <a href="#if-i-have-the-matrices-of-means-and-covariances" class="anchor"></a>If I have the matrices of means and covariances</h3>
 <p>Lets suppose we want compute the Mahalanobis’ distance for each pairwise genotype comparision based on cob-related traits. Note that the function <code><a href="https://dplyr.tidyverse.org/reference/select.html">select(contains("C"))</a></code> is used to select the cob-relate traits, after computing the mean for each genotype.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">means &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb80-2" title="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(ENV, REP)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb80-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(GEN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb80-4" title="4"><span class="st">  </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb80-5" title="5"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">"GEN"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb80-6" title="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"C"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb78-2" title="2">means &lt;-<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb78-3" title="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(ENV, REP)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb78-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(GEN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb78-5" title="5"><span class="st">  </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb78-6" title="6"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">"GEN"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb78-7" title="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">contains</a></span>(<span class="st">"C"</span>))</a></code></pre></div>
 <p>The next step is to compute the variance-covariance matrix for the means. The first approach combines R base functions with some functions from <strong>metan</strong> package to compute the covariance matrix. Of course, the simplest way is by using <code><a href="https://rdrr.io/r/stats/cor.html">cov()</a></code>.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Compute the covariance matrix (by hand)</span></a>
-<a class="sourceLine" id="cb81-2" title="2">cov_mat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb81-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/cor.html">var</a></span>(means))</a>
-<a class="sourceLine" id="cb81-4" title="4">dev_scores &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sweep.html">sweep</a></span>(means, <span class="dv">2</span>, <span class="kw"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(means), <span class="dt">FUN =</span> <span class="st">"-"</span>)</a>
-<a class="sourceLine" id="cb81-5" title="5">comb_v &lt;-<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(dev_scores, <span class="dt">FUN =</span> <span class="st">"*"</span>)</a>
-<a class="sourceLine" id="cb81-6" title="6">cov_mat[<span class="kw"><a href="https://rdrr.io/r/base/lower.tri.html">lower.tri</a></span>(cov_mat, <span class="dt">diag =</span> F)] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span>(comb_v<span class="op">/</span>(<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(means)<span class="op">-</span><span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb81-7" title="7"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(means)</a>
-<a class="sourceLine" id="cb81-8" title="8">cov_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(cov_mat)</a>
-<a class="sourceLine" id="cb81-9" title="9"></a>
-<a class="sourceLine" id="cb81-10" title="10"><span class="co"># Compute the covariance using cov()</span></a>
-<a class="sourceLine" id="cb81-11" title="11">covmat2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span>(means)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="co"># Compute the covariance matrix (by hand)</span></a>
+<a class="sourceLine" id="cb79-2" title="2">cov_mat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb79-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/cor.html">var</a></span>(means))</a>
+<a class="sourceLine" id="cb79-4" title="4">dev_scores &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sweep.html">sweep</a></span>(means, <span class="dv">2</span>, <span class="kw"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(means), <span class="dt">FUN =</span> <span class="st">"-"</span>)</a>
+<a class="sourceLine" id="cb79-5" title="5">comb_v &lt;-<span class="st"> </span><span class="kw"><a href="../reference/comb_vars.html">comb_vars</a></span>(dev_scores, <span class="dt">FUN =</span> <span class="st">"*"</span>)</a>
+<a class="sourceLine" id="cb79-6" title="6">cov_mat[<span class="kw"><a href="https://rdrr.io/r/base/lower.tri.html">lower.tri</a></span>(cov_mat, <span class="dt">diag =</span> F)] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span>(comb_v<span class="op">/</span>(<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(means)<span class="op">-</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb79-7" title="7"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(cov_mat) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(means)</a>
+<a class="sourceLine" id="cb79-8" title="8">cov_mat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_sym.html">make_sym</a></span>(cov_mat)</a>
+<a class="sourceLine" id="cb79-9" title="9"></a>
+<a class="sourceLine" id="cb79-10" title="10"><span class="co"># Compute the covariance using cov()</span></a>
+<a class="sourceLine" id="cb79-11" title="11">covmat2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span>(means)</a></code></pre></div>
 <p>After computing the means and covariance matrices we are able to compute the Mahalanobis distance using the function <code><a href="../reference/mahala.html">mahala()</a></code>.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1">D2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mahala.html">mahala</a></span>(means, <span class="dt">covar =</span> cov_mat)</a>
-<a class="sourceLine" id="cb82-2" title="2"></a>
-<a class="sourceLine" id="cb82-3" title="3"><span class="co"># Dendrogram</span></a>
-<a class="sourceLine" id="cb82-4" title="4">D2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">as.dist</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">D2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mahala.html">mahala</a></span>(means, <span class="dt">covar =</span> cov_mat)</a>
+<a class="sourceLine" id="cb80-2" title="2"></a>
+<a class="sourceLine" id="cb80-3" title="3"><span class="co"># Dendrogram</span></a>
+<a class="sourceLine" id="cb80-4" title="4">D2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">as.dist</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>()</a></code></pre></div>
 <p><img src="vignettes_biometry_files/figure-html/unnamed-chunk-46-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>#References</p>
 <div id="refs" class="references">

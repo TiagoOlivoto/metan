@@ -20,18 +20,21 @@ load("metan.RData")
 
 # Brief examples
 
-Brief examples will be shown using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see `?data_ge`.
+Brief examples will be shown using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see `?data_ge`. The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
 
-```{r, message=FALSE, warning=FALSE}
+```{r warning = FALSE, message = FALSE}
 library(metan)
-library(kableExtra) # Used to make the tables
-
+library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table = function(table){
-  kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed",        "responsive"), font_size = 12)
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table,
+          rownames = rownames,
+          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
+          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
+    formatRound(columns = c(1:ncol(table)), digits = 3)
 }
-str(data_ge)
+
 ```
 
 
@@ -70,7 +73,7 @@ The S3 method `predict()` is implemented for objects of class `performs_ammi` an
 
 ```{r }
 predicted <- predict(ammi_model, naxis = c(4, 6))
-print_table(head(predicted$GY))
+print_table(predicted$GY)
 ```
 
 # BLUP model
@@ -128,7 +131,7 @@ arrange_ggplot(c, d,labels = letters[3:4], ncol = 1)
 ## BLUPS for genotype-vs-environment interaction
 
 ```{r }
-print_table(head(model2$GY$BLUPgge))
+print_table(model2$GY$BLUPgge)
 ```
 
 ## BLUP-based stability index
@@ -204,7 +207,7 @@ stat_ge <- ge_stats(data_ge, ENV, GEN, REP, GY)
 ```
 
 ```{r}
-get_model_data(stat_ge, "stats")
+get_model_data(stat_ge, "stats") %>% print_table()
 ```
 
 

@@ -21,20 +21,34 @@ load("ammi.RData")
 
 # Getting started
 
-In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`kableExtra`](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html) was used to produce the tables of this vignette.
+In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
 
 ```{r warning = FALSE, message = FALSE}
 library(metan)
-library(kableExtra) # Used to make the tables
-library(tidyverse) # used to set plot themes
+library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table = function(table){
-kable(table, "html", digits = 3) %>%
-kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size = 12)
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table,
+          rownames = rownames,
+          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
+          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
+    formatRound(columns = c(1:ncol(table)), digits = 3)
 }
 
-str(data_ge)
 ```
+
+The first step is to inspect the data with the function `inspect()`.
+
+```{r, fig.width=7, fig.height=7, fig.align="center"}
+inspect <- 
+inspect(data_ge,
+        verbose = FALSE,
+        plot = TRUE)
+
+print_table(inspect)
+```
+
 
 # Individual and joint ANOVA
 It is suggested to check if genotype-vs-environment interaction is significant before proceeding with the AMMI analysis. A within-environment ANOVA considering a fixed-effect model is computed with the function `anova_ind()`. For each environment the Mean Squares for block, genotypes and error are shown. Estimated F-value and the probability error are also shown for block and genotype effects. Some measures of experimental precision are calculated, namely, coefficient of variation, $CV = (\sqrt{MS_{res}}/Mean) \times 100$; the heritability, $h2 = (MS_{gen} - MS_{res})/MS_{gen}$, and the accuracy of selection, $As = \sqrt{h2}$.
@@ -50,9 +64,7 @@ The joint ANOVA is performed with the function `joint_anova()`.
 
 ```{r echo = TRUE}
 joint <- anova_joint(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
-print_table(joint$GY) %>%
-row_spec(4, bold = T) %>%
-add_indent(4)
+print_table(joint$GY)
 ```
 
 The genotype-vs-environment interaction was highly significant. So we'll proceed with the AMMI analysis.
@@ -66,8 +78,8 @@ $$
 $$
 
 where ${\lambda_k}$ is the singular value for the *k*-th interaction principal component axis (IPCA); $a_{ik}$ is the *i*-th element of the *k*-th eigenvector; $t_{jk}$ is the *j*th element of the *k*th eigenvector. A residual $\rho _{ij}$ remains, if not all *p* IPCA are used, where $p \le min(g - 1; e - 1)$.
- 
-The AMMI model is fitted with the `performs_ammi()` function. The first argument is the data, in our example `data_ge`. The second argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contains the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code will run silently. 
+
+The AMMI model is fitted with the `performs_ammi()` function. The first argument is the data, in our example `data_ge`. The second argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contains the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code will run silently.
 
 ```{r echo = TRUE}
 AMMI_model <- performs_ammi(data_ge,
@@ -86,11 +98,9 @@ AMMI_model <- performs_ammi(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
     ```
 
 ## The AMMI table
-The following comand creates the well-known ANOVA table for the AMMI model. Note that since 
+The following comand creates the well-known ANOVA table for the AMMI model. Note that since
 ```{r echo = TRUE}
-print_table(AMMI_model$GY$ANOVA) %>%
-row_spec(5:8, bold = T) %>%
-add_indent(c(5:13))
+print_table(AMMI_model$GY$ANOVA)
     ```
 
 Nine interaction principal component axis (IPCA) were fitted and four were significant at 5% probability error. Based on this result, the AMMI4 model would be the best model to predict the yielding of the genotypes in the studied environments.
@@ -106,7 +116,7 @@ The response variable of a two-way table (for example, the yield of *m* genotype
 | AMMI1            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}$ |
 | AMMI2            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}$ |
 | ...              |                                                                               |
-| AMMIF            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}$ 
+| AMMIF            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}$
 
 
 Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] or predictive success, such as cross-validation [@Piepho:1994] should be used to define the number of IPCA used for estimating the response variable in AMMI analysis. This package provides both. The `waas()` function compute traditional AMMI analysis showing the number of significant axes according to Gollobs's test. On the other hand, `cv_ammif()` function provides cross-validation of AMMI-model family, considering a completely randomized design (CRD) or a randomized complete block design (RCBD).
@@ -114,7 +124,7 @@ Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] o
 
 ```{r echo = TRUE}
 predicted <- predict(AMMI_model, naxis = 4)
-rbind(head(predicted$GY), tail(predicted$GY)) %>% 
+rbind(head(predicted$GY), tail(predicted$GY)) %>%
 print_table()
     ```
 
@@ -126,7 +136,7 @@ The following values are presented: **ENV** is the environment; **GEN** is the g
 The `waas()` function computes the Weighted Average of Absolute Scores [@Olivoto2019] considering (i) all principal component axes that were significant ($p < 0.05$ by default); or (ii) declaring a specific number of axes to be used, according to the following equation:
 
 $$
-        WAAS_i  = 
+        WAAS_i  =
         \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
 $$
 
@@ -141,7 +151,7 @@ In this example only IPCAs with *P*-value < 0.05 will be considered in the WAAS 
 
 
 ```{r }
-waas_index$GY$model %>% 
+waas_index$GY$model %>%
 select(type, Code, Y, contains("Pct"), contains("Pes"), contains("WAAS")) %>%
 print_table()
 
@@ -152,7 +162,7 @@ In this example, the scores of the nine PCA were not shown. The output generated
 
 
 ## Number of axes declared manually
-The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument `naxis` in the function `waas` is then used to overwrite the default chose of significant terms. 
+The second option to compute the WAAS is by manually declaring a specific number of multiplicative terms. In this case, the number of terms declared is used independently of its significance. Let us, for the moment, assume that after a cross-validation procedure the AMMI7 was the most predictively accurate AMMI model and the researcher will use this model. The additional argument `naxis` in the function `waas` is then used to overwrite the default chose of significant terms.
 
 ```{r eval = FALSE}
 waas_index2 <- data_ge %>%
@@ -169,7 +179,7 @@ The only difference in this output is that here we declared that seven IPCA axes
 
 Provided that an object of class `waas` or `performs_ammi` is available in the global environment, the graphics may be obtained using the function `plot_scores()`. To do that, we will revisit the previusly fitted model `AMMI_model` . Please, refer to `plot_scores()` for more details.
 
-### biplot type 1: GY x PC1 
+### biplot type 1: GY x PC1
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 a <- plot_scores(AMMI_model)
@@ -213,7 +223,7 @@ f <- plot_scores(waas_index,
                  x.lim = c(2.4, 3.1), # Limits of x axis
                  x.breaks = seq(2.4, 3.1, by = 0.1), # Markers of x axis
                  y.lim = c(0, 0.7))+
-  ggtitle("WAASB vs GY plot", subtitle = "Zoom in genotypes' scores")
+  ggplot2::ggtitle("WAASB vs GY plot", subtitle = "Zoom in genotypes' scores")
 arrange_ggplot(e, f, labels = letters[5:6])
 
 ```
@@ -275,7 +285,7 @@ print_table(WAASratio$GY$hetcomb)
 In addition, the genotype ranking depending on the number of multiplicative terms used to estimate the WAAS index is also computed.
 
 ```{r }
-print_table(WAASratio$hetdata)
+print_table(WAASratio$GY$hetdata)
 ```
 
 
@@ -304,7 +314,7 @@ plot(WAASratio, type = 2)
 The function `get_model_data()` may be used to easily get the data from a model fitted with the function `waas()`, especially when more than one variables are used. Select helpers can be used in the argument `resp`. See the example below.
 
 ```{r eval=FALSE}
-waas_index_all <- 
+waas_index_all <-
 waas(data_ge2, ENV, GEN, REP,
      resp = everything()) %>%
  get_model_data(what = "WAASB")
@@ -318,7 +328,7 @@ print_table(waas_index_all)
 
 # Other AMMI-based stability indexes
 The following AMMI-based stability indexes may be computed using the function `AMMI_indexes()`:
- 
+
  * **AMMI stability value, ASV, [@Purchase2000].**
 
 $$

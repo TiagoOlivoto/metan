@@ -19,22 +19,23 @@ load("indexes.RData")
 
 
 # Getting started
-In this section we will use the data examples `data_ge` and `data_ge2`  provided in the **metan** package. For more information, please, see `?data_ge` and `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+In this section we will use the data examples `data_ge` and `data_ge2`  provided in the **metan** package. For more information, please, see `?data_ge` and `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).  The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
 
 
-```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=FALSE}
+```{r warning = FALSE, message = FALSE}
 library(metan)
-library(kableExtra) # Used to make the tables
-library(dplyr)
+library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table = function(table){
-  kable(table, "html", digits = 3) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                  font_size = 12)
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table,
+          rownames = rownames,
+          extensions = c('FixedColumns', 'Buttons', 'ColReorder'),
+          options = list(scrollX = TRUE, fixedColumns = TRUE, colReorder = TRUE, dom = 'Bfrtip',
+                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
+    formatRound(columns = c(1:ncol(table)), digits = 3)
 }
 
 ```
-
 
 # FAI-BLUP index
 The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018]. The BLUPs from genotypes are obtained with the function `waasb()` and then the function `fai_blup()` is used to compute the FAI-BLUP index.
@@ -67,12 +68,26 @@ In the following example, the selection of stable genotypes will consider five t
 MTSI_index <- data_ge2 %>%
               waasb(ENV, GEN, REP,
                     resp = c(KW, NKE, PH, EH, TKW)) %>%
-              mtsi()
+              mtsi(verbose = FALSE, index = "waasb")
 ```
 
 
 ```{r , fig.height = 5, fig.width = 5.5, fig.align = "center" , message=FALSE, warning=FALSE}
-print(MTSI_index)
+# Correlation matrix
+print_table(MTSI_index$cormat, rownames = TRUE)
+# Principal compoment analysis
+print_table(MTSI_index$PCA)
+# Factor analysis
+print_table(MTSI_index$FA)
+# Loadings after varimax rotation
+print_table(MTSI_index$finish.loadings)
+# Scores for genotypes
+print_table(MTSI_index$scores.gen)
+# Selection differential for the 'waasb' index
+print_table(MTSI_index$sel.dif)
+# Selection differential for the variables
+print_table(MTSI_index$sel.dif.var)
+
 plot(MTSI_index)
 ```
 
@@ -86,12 +101,26 @@ MTSI_index2 <- data_ge2 %>%
                    resp = c(KW, NKE, PH, EH, TKW),
                    mresp = c(100, 100, 0, 0, 100),
                    wresp = rep(65, 5)) %>% # Default is 50
-             mtsi(index = "waasby")
+             mtsi()
 ```
 
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
-print(MTSI_index2)
+# Correlation matrix
+print_table(MTSI_index2$cormat, rownames = TRUE)
+# Principal compoment analysis
+print_table(MTSI_index2$PCA)
+# Factor analysis
+print_table(MTSI_index2$FA)
+# Loadings after varimax rotation
+print_table(MTSI_index2$finish.loadings)
+# Scores for genotypes
+print_table(MTSI_index2$scores.gen)
+# Selection differential for the 'waasb' index
+print_table(MTSI_index2$sel.dif)
+# Selection differential for the variables
+print_table(MTSI_index2$sel.dif.var)
+
 plot(MTSI_index2)
     ```
 

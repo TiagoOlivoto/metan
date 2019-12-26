@@ -44,19 +44,22 @@ devtools::install_github("TiagoOlivoto/metan")
 
 # Getting started
 
-Here, we will use the example dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details see `?data_ge`. The tables of this vignette were produced with the package [`KableExtra`](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
+Here, we will use the example dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details see `?data_ge`.
 
 ```{r, message=FALSE, warning=FALSE}
 library(metan)
-library(ggplot2) # used to create the plots
-library(kableExtra) # Used to produce HTML tables
-print_table = function(table){
-  kable(table, "html", digits = 3, escape = TRUE) %>%
-    kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
-}
-str(data_ge)
 
 ```
+
+The first step is to inspect the data with the function `inspect()`.
+
+```{r, fig.width=7, fig.height=7, fig.align="center"}
+inspect(data_ge,
+        verbose = FALSE,
+        plot = TRUE)
+```
+
+No issues while inspecting the data. Let's continue with the analyzes!
 
 ## AMMI model
 ### Fitting the model
@@ -76,9 +79,7 @@ model <- performs_ammi(data_ge,
 The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). For example, we will use four IPCA (number of significant IPCAs) to estimate the variable GY using the `model` object. Note that `$GY` was used because using the `predict()` function to a model of class `waas` return a list, with one `tbl_df` for each variable.
 
 ```{r message=FALSE,warning=FALSE }
-predict(model, naxis = 4)$GY %>% 
-  head() %>% 
-  print_table()
+predict(model, naxis = 4)$GY
 
 ```
 
@@ -131,11 +132,8 @@ model2 <- waasb(data_ge, ENV, GEN, REP,
                 resp = c(GY, HM),
                 verbose = FALSE)
 
-get_model_data(model2, what = "genpar") %>% 
-print_table()
-
-get_model_data(model2, what = "blupg") %>% 
-print_table()
+get_model_data(model2, what = "genpar")
+get_model_data(model2, what = "blupg")
 
 ```
 
@@ -148,7 +146,7 @@ To produce a plot with the predicted means, use the function `plot_blup()`.
 g <- plot_blup(model2)
 h <- plot_blup(model2,
                prob = 0.1,
-               col.shape  =  c("gray20", "gray80")) + coord_flip()
+               col.shape  =  c("gray20", "gray80")) + ggplot2::coord_flip()
 arrange_ggplot(g, h, labels = letters[7:8])
 
 ```
@@ -158,17 +156,13 @@ arrange_ggplot(g, h, labels = letters[7:8])
 
 The object `BLUPgge` contains the blups for the genotype-vs-environment interaction. In the following example, the values for `GY` are shown.
 ```{r }
-model2$GY$BLUPgge[1:5,] %>% 
-  head() %>% 
-  print_table()
+model2$GY$BLUPgge
 ```
 
 When more than one variable is fitted, the predicted means for genotype-vs-environment combination may be obtained for all variables in the model using `get_model_data()`.
 
 ```{r }
-get_model_data(model2, what = "blupge") %>% 
-  head() %>% 
-  print_table()
+get_model_data(model2, what = "blupge")
 
 ```
 
@@ -177,10 +171,8 @@ get_model_data(model2, what = "blupge") %>%
 
 ```{r}
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-get_model_data(stats, "stats") %>% 
-  print_table()
-get_model_data(stats, "ranks") %>% 
-  print_table()
+get_model_data(stats, "stats")
+get_model_data(stats, "ranks")
 ```
 
 
