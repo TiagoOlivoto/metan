@@ -126,15 +126,18 @@ reference:
       - anova_joint
       - corr_stab_ind
       - ecovalence
+      - env_dissimilarity
       - ge_cluster
       - ge_effects
       - ge_factanal
       - ge_plot
       - ge_reg
       - ge_stats
+      - ge_winners
       - Fox
       - gai
       - Huehn
+      - plot.env_dissimilarity
       - plot.ge_cluster
       - plot.ge_effects
       - plot.ge_factanal
@@ -143,6 +146,7 @@ reference:
       - print.anova_ind
       - print.anova_joint
       - print.ecovalence
+      - print.env_dissimilarity
       - print.Fox
       - print.ge_factanal
       - print.ge_reg
@@ -225,6 +229,7 @@ reference:
       - remove_rows
       - remove_cols_na
       - remove_rows_na
+      - remove_strings
       - replace_number
       - replace_string
       - resca

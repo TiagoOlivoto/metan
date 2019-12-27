@@ -41,12 +41,24 @@ datatable(table,
 
 
 
-# Graphic visualization of the interaction
+# Genotype-environment performance
 The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean for each environment.
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
 a <- ge_plot(data_ge, ENV, GEN, GY)
 b <- ge_plot(data_ge, ENV, GEN, GY) + ggplot2::coord_flip()
 arrange_ggplot(a, b, labels = letters[1:2])
+```
+
+To identify the winner genotype within each environment, we can use the function `ge_winners()`.
+```{r}
+ge_winners(data_ge2, ENV, GEN, resp = everything()) %>% 
+  print_table()
+```
+
+Or get the genotype ranking within each environment.
+```{r}
+ge_winners(data_ge2, ENV, GEN, resp = everything(), type = "ranks") %>% 
+  print_table()
 ```
 
 
@@ -96,6 +108,7 @@ d1 = ge_cluster(data_ge, ENV, GEN, GY, nclust = 4)
 plot(d1, nclust = 4)
 
 ```
+
 
 
 # Joint regression analysis

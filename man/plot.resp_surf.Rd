@@ -29,10 +29,11 @@ An object of class \code{trellis}.
 Plot the response surface model using a contour plot
 }
 \examples{
+\donttest{
 library(metan)
 # A small toy example
 
-df = data.frame(
+df <- data.frame(
  expand.grid(x = seq(0, 4, by = 1),
              y = seq(0, 4, by = 1)),
  z = c(10, 11, 12, 11, 10,
@@ -41,8 +42,9 @@ df = data.frame(
        14, 15, 16, 15, 14,
        10, 11, 12, 11, 10)
 )
-mod = resp_surf(df, x, y, resp = z)
+mod <- resp_surf(df, x, y, resp = z)
 plot(mod)
+}
 
 }
 \author{
