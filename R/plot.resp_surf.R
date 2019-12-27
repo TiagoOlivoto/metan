@@ -11,7 +11,7 @@
 #' @param resolution The resolution of the contour plot. Defaults to 100. higher
 #'   values produce high-resolution plots but may increase the computation time.
 #' @param ... Other arguments passed from \code{contourplot} function. See
-#'   \code{\link[lattice:B_06_levelplot]{contourplot}} for more details.
+#'   \code{\link[lattice]{contourplot}} for more details.
 #' @importFrom lattice contourplot
 #' @return An object of class \code{trellis}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
