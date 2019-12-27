@@ -29,59 +29,66 @@
 #' @examples
 #'
 #' library(metan)
-#' mod <- gge(data_ge, GEN, ENV, GY)
+#' mod <- gge(data_ge, GEN, ENV, c(GY, HM))
 #' predict(mod)
 #'
 predict.gge <- function(object, naxis = 2, output = "wide", ...) {
   if (!class(object) == "gge") {
     stop("The object must be of class 'gge'.")
   }
-  if (naxis > min(dim(object$coordenv))) {
+  listres <- list()
+  varin <- 1
+  for (var in 1:length(object)) {
+    objectin <- object[[var]]
+  if (naxis > min(dim(objectin$coordenv))) {
     stop("The number of principal components cannot be greater than min(g, e), in this case ",
-         min(dim(object$coordenv)))
+         min(dim(objectin$coordenv)))
   }
   # SVP
-  if (object$svp == "environment" | object$svp == 2) {
-    pred <- (object$coordgen[, 1:naxis] * (object$d)) %*%
-      t(object$coordenv[, 1:naxis])
+  if (objectin$svp == "environment" | objectin$svp == 2) {
+    pred <- (objectin$coordgen[, 1:naxis] * (objectin$d)) %*%
+      t(objectin$coordenv[, 1:naxis])
   }
-  if (object$svp == "genotype" | object$svp == 1) {
-    pred <- (object$coordgen[, 1:naxis] %*% t(object$coordenv[,
-                                                              1:naxis] * (object$d)))
+  if (objectin$svp == "genotype" | objectin$svp == 1) {
+    pred <- (objectin$coordgen[, 1:naxis] %*% t(objectin$coordenv[,
+                                                              1:naxis] * (objectin$d)))
   }
-  if (object$svp == "symmetrical" | object$svp == 3) {
-    pred <- (object$coordgen[, 1:naxis] %*% t(object$coordenv[,
+  if (objectin$svp == "symmetrical" | objectin$svp == 3) {
+    pred <- (objectin$coordgen[, 1:naxis] %*% t(objectin$coordenv[,
                                                               1:naxis]))
   }
   # Scaling
-  if (object$scaling == "sd" | object$scaling == 1) {
-    pred <- sweep(pred, 2, object$scale_val, FUN = "*")
+  if (objectin$scaling == "sd" | objectin$scaling == 1) {
+    pred <- sweep(pred, 2, objectin$scale_val, FUN = "*")
   }
   # Centering
-  if (object$centering == "global" | object$centering == 1) {
-    pred <- pred + object$grand_mean
+  if (objectin$centering == "global" | objectin$centering == 1) {
+    pred <- pred + objectin$grand_mean
   }
-  if (object$centering == "environment" | object$centering ==
+  if (objectin$centering == "environment" | objectin$centering ==
       2) {
-    pred <- sweep(pred, 2, object$mean_env, FUN = "+")
+    pred <- sweep(pred, 2, objectin$mean_env, FUN = "+")
   }
-  if (object$centering == "double" | object$centering == 3) {
+  if (objectin$centering == "double" | objectin$centering == 3) {
     for (i in 1:nrow(pred)) {
       for (j in 1:ncol(pred)) {
-        pred[i, j] <- pred[i, j] - object$grand_mean +
-          object$mean_env[j] + object$mean_gen[i]
+        pred[i, j] <- pred[i, j] - objectin$grand_mean +
+          objectin$mean_env[j] + objectin$mean_gen[i]
       }
     }
   }
-  rownames(pred) <- object$labelgen
-  colnames(pred) <- object$labelenv
+  rownames(pred) <- objectin$labelgen
+  colnames(pred) <- objectin$labelenv
   if (output == "wide") {
-      return(as_tibble(pred, rownames = NA))
+    temp <- as_tibble(pred, rownames = NA)
   }
   if (output == "long") {
+    temp <-
     pred %>%
       make_long() %>%
-      as_tibble() %>%
-      return()
+      as_tibble()
   }
+  listres[[paste(names(object[var]))]] <- temp
+  }
+  return(listres)
 }

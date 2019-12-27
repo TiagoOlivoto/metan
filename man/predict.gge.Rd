@@ -39,7 +39,7 @@ For more details see Yan and Kang (2007).
 \examples{
 
 library(metan)
-mod <- gge(data_ge, GEN, ENV, GY)
+mod <- gge(data_ge, GEN, ENV, c(GY, HM))
 predict(mod)
 
 }

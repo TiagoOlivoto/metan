@@ -91,8 +91,7 @@ gge <- function(.data,
                 resp,
                 centering = "environment",
                 scaling = "none",
-                svp = "environment",
-                verbose = TRUE) {
+                svp = "environment") {
   factors  <- .data %>%
     select(ENV = {{env}},
            GEN = {{gen}}) %>%
@@ -199,10 +198,6 @@ gge <- function(.data,
       class = "gge")
     if (nvar > 1) {
       listres[[paste(names(vars[var]))]] <-  tmp
-      if (verbose == TRUE) {
-        cat("Evaluating variable", paste(names(vars[var])),
-            round((var - 1) / (length(vars) - 1) * 100, 1), "%", "\n")
-      }
     } else {
       listres[[paste(names(vars[var]))]] <- tmp
     }

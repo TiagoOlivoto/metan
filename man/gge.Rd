@@ -11,8 +11,7 @@ gge(
   resp,
   centering = "environment",
   scaling = "none",
-  svp = "environment",
-  verbose = TRUE
+  svp = "environment"
 )
 }
 \arguments{
