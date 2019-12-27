@@ -4,10 +4,12 @@
 \alias{make_upper_tri}
 \title{Make an upper triangular matrix}
 \usage{
-make_upper_tri(x)
+make_upper_tri(x, diag = NA)
 }
 \arguments{
 \item{x}{A symmetric matrix}
+
+\item{diag}{What show in the diagonal of the matrix. Default to \code{NA}.}
 }
 \value{
 An upper triangular matrix

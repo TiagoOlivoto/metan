@@ -4,10 +4,12 @@
 \alias{make_lower_tri}
 \title{Make a lower triangular matrix}
 \usage{
-make_lower_tri(x)
+make_lower_tri(x, diag = NA)
 }
 \arguments{
 \item{x}{A symmetric matrix}
+
+\item{diag}{What show in the diagonal of the matrix. Default to \code{NA}.}
 }
 \value{
 A lower triangular matrix

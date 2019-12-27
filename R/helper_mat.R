@@ -5,6 +5,7 @@
 #'
 #'
 #' @param x A symmetric matrix
+#' @param diag What show in the diagonal of the matrix. Default to \code{NA}.
 #' @return An upper triangular matrix
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -13,11 +14,11 @@
 #' m <- cor(data_ge2[,5:10])
 #' make_upper_tri(m)
 #'
-make_upper_tri<-function(x){
+make_upper_tri<-function(x, diag = NA){
   x[lower.tri(x)] <- NA
+  diag(x) <- diag
   return(x)
 }
-NULL
 
 #' Make a lower triangular matrix
 #'
@@ -26,6 +27,7 @@ NULL
 #'
 #'
 #' @param x A symmetric matrix
+#' @param diag What show in the diagonal of the matrix. Default to \code{NA}.
 #' @return A lower triangular matrix
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -34,12 +36,11 @@ NULL
 #' m <- cor(data_ge2[,5:10])
 #' make_upper_tri(m)
 #'
-make_lower_tri<-function(x){
+make_lower_tri<-function(x, diag = NA){
   x[upper.tri(x)] <- NA
+  diag(x) <- diag
   return(x)
 }
-NULL
-
 
 #' Make a symmetric matrix on a triangular matrix
 #'
