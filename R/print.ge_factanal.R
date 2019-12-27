@@ -27,8 +27,8 @@ print.ge_factanal <- function(x, export = FALSE, file.name = NULL, digits = 4, .
   if (!class(x) == "ge_factanal") {
     stop("The object must be of class 'ge_factanal'")
   }
-  on.exit(options(options()))
-  options(pillar.sigfig = digits, ...)
+  opar <- options(pillar.sigfig = digits)
+  on.exit(options(opar))
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "ge_factanal print", file.name)
     sink(paste0(file.name, ".txt"))

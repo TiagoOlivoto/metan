@@ -40,8 +40,8 @@ print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ..
   if (!class(x) %in% c("path_coeff", "group_path")) {
     stop("The object 'x' must be of class 'path_coeff' or 'group_path'.")
   }
-  on.exit(options(options()))
-  options(pillar.sigfig = digits, ...)
+  opar <- options(pillar.sigfig = digits)
+  on.exit(options(opar))
   if (class(x) == "path_coeff") {
     cat("----------------------------------------------------------------------------------------------\n")
     cat("Correlation matrix between the predictor traits\n")

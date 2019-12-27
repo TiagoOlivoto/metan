@@ -29,8 +29,8 @@ print.Shukla <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "Shukla") {
     stop("The object must be of class 'Shukla'")
   }
-  on.exit(options(options()))
-  options(pillar.sigfig = digits, ...)
+  opar <- options(pillar.sigfig = digits)
+  on.exit(options(opar))
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "Shukla print", file.name)
     sink(paste0(file.name, ".txt"))

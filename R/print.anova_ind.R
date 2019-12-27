@@ -23,8 +23,8 @@ print.anova_ind <- function(x, export = FALSE, file.name = NULL, digits = 3, ...
   if (!class(x) == "anova_ind") {
     stop("The object must be of class 'anova_ind'")
   }
-  on.exit(options(options()))
-  options(pillar.sigfig = digits, ...)
+  opar <- options(pillar.sigfig = digits)
+  on.exit(options(opar))
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "anova_ind print", file.name)
     sink(paste0(file.name, ".txt"))

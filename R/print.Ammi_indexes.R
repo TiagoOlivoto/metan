@@ -24,8 +24,8 @@ print.AMMI_indexes <- function(x, export = FALSE, file.name = NULL, digits = 3, 
   if (!class(x) == "AMMI_indexes") {
     stop("The object must be of class 'AMMI_indexes'")
   }
-  on.exit(options(options()))
-  options(pillar.sigfig = digits, ...)
+  opar <- options(pillar.sigfig = digits)
+  on.exit(options(opar))
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "AMMI_indexes print", file.name)
     sink(paste0(file.name, ".txt"))

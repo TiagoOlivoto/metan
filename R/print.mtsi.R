@@ -33,8 +33,8 @@ print.mtsi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
     file.name <- ifelse(is.null(file.name) == TRUE, "mtsi print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  on.exit(options(options()))
-  options(pillar.sigfig = digits, ...)
+  opar <- options(pillar.sigfig = digits)
+  on.exit(options(opar))
   cat("-------------------- Correlation matrix used used in factor analysis -----------------\n")
   print(x$cormat)
   cat("\n")
