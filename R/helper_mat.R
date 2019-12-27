@@ -51,6 +51,7 @@ NULL
 #' @param make The triangular to built. Default is \code{"upper"}. In this case,
 #'   a symmetric matrix will be built based on the values of a lower triangular
 #'   matrix.
+#' @param diag What show in the diagonal of the matrix. Default to \code{NA}.
 #' @return A symmetric matrix.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -62,14 +63,16 @@ NULL
 #'
 #' upper_tri <- make_upper_tri(matrix(20, 4, 4))
 #' upper_tri
-#' make_sym(upper_tri, make = "lower")
+#' make_sym(upper_tri, make = "lower", diag = 1)
 #'
-make_sym <- function(.matrix, make = "upper") {
+make_sym <- function(.matrix, make = "upper", diag = NA) {
   if(make == "upper"){
     .matrix[upper.tri(.matrix)] <- t(.matrix)[upper.tri(.matrix)]
+    diag(.matrix) <- diag
   }
   if (make == "lower"){
     .matrix[lower.tri(.matrix)] <- t(.matrix)[lower.tri(.matrix)]
+    diag(.matrix) <- diag
   }
   return(.matrix)
 }

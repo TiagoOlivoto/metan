@@ -4,7 +4,7 @@
 \alias{make_sym}
 \title{Make a symmetric matrix on a triangular matrix}
 \usage{
-make_sym(.matrix, make = "upper")
+make_sym(.matrix, make = "upper", diag = NA)
 }
 \arguments{
 \item{.matrix}{The upper or lower triangular matrix.}
@@ -12,6 +12,8 @@ make_sym(.matrix, make = "upper")
 \item{make}{The triangular to built. Default is \code{"upper"}. In this case,
 a symmetric matrix will be built based on the values of a lower triangular
 matrix.}
+
+\item{diag}{What show in the diagonal of the matrix. Default to \code{NA}.}
 }
 \value{
 A symmetric matrix.
@@ -28,7 +30,7 @@ make_sym(lower_tri)
 
 upper_tri <- make_upper_tri(matrix(20, 4, 4))
 upper_tri
-make_sym(upper_tri, make = "lower")
+make_sym(upper_tri, make = "lower", diag = 1)
 
 }
 \author{
