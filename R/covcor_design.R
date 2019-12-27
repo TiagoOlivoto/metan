@@ -169,29 +169,31 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
       colnames(corrfen) <- rownames(corrfen) <- names(means)
       colnames(corrgen) <- rownames(corrgen) <- names(means)
       if (is.null(type)) {
-        tmp <- list(geno_cov = as.matrix(make_sym(vgen)),
-                    phen_cov = as.matrix(make_sym(vfen)), resi_cov = as.matrix(make_sym(vres)),
-                    geno_cor = as.matrix(make_sym(corrgen)), phen_cor = as.matrix(make_sym(corrfen)),
-                    resi_cor = as.matrix(make_sym(corres)))
+        tmp <- list(geno_cov = as.matrix(make_sym(vgen, diag = 0)),
+                    phen_cov = as.matrix(make_sym(vfen, diag = 0)),
+                    resi_cov = as.matrix(make_sym(vres, diag = 0)),
+                    geno_cor = as.matrix(make_sym(corrgen, diag = 1)),
+                    phen_cor = as.matrix(make_sym(corrfen, diag = 1)),
+                    resi_cor = as.matrix(make_sym(corres, diag = 1)))
         dfs[[paste(nam)]] <- tmp
       } else {
         if (type == "pcor") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(corrfen))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(corrfen, diag = 1))
         }
         if (type == "gcor") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(corrgen))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(corrgen, diag = 1))
         }
         if (type == "rcor") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(corres))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(corres, diag = 1))
         }
         if (type == "pcov") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(vfen))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(vfen, diag = 0))
         }
         if (type == "gcov") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(vgen))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(vgen, diag = 0))
         }
         if (type == "rcov") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(vres))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(vres, diag = 0))
         }
         if (type == "means") {
           return(as_tibble(means, rownames = NA))
@@ -298,29 +300,32 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
     colnames(corrfen) <- rownames(corrfen) <- names(means)
     colnames(corrgen) <- rownames(corrgen) <- names(means)
     if (is.null(type)) {
-      return(structure(list(geno_cov = as.matrix(make_sym(vgen)),
-                            phen_cov = as.matrix(make_sym(vfen)), resi_cov = as.matrix(make_sym(vres)),
-                            geno_cor = as.matrix(make_sym(corrgen)), phen_cor = as.matrix(make_sym(corrfen)),
-                            resi_cor = as.matrix(make_sym(corres)), means = means),
+      return(structure(list(geno_cov = as.matrix(make_sym(vgen, diag = 0)),
+                            phen_cov = as.matrix(make_sym(vfen, diag = 0)),
+                            resi_cov = as.matrix(make_sym(vres, diag = 0)),
+                            geno_cor = as.matrix(make_sym(corrgen, diag = 1)),
+                            phen_cor = as.matrix(make_sym(corrfen, diag = 1)),
+                            resi_cor = as.matrix(make_sym(corres, diag = 1)),
+                            means = means),
                        class = "covcor_design"))
     }
     if (type == "pcor") {
-      return(as.matrix(make_sym(corrfen)))
+      return(as.matrix(make_sym(corrfen, diag = 1)))
     }
     if (type == "gcor") {
-      return(as.matrix(make_sym(corrgen)))
+      return(as.matrix(make_sym(corrgen, diag = 1)))
     }
     if (type == "rcor") {
-      return(as.matrix(make_sym(corres)))
+      return(as.matrix(make_sym(corres, diag = 1)))
     }
     if (type == "pcov") {
-      return(as.matrix(make_sym(vfen)))
+      return(as.matrix(make_sym(vfen, diag = 0)))
     }
     if (type == "gcov") {
-      return(as.matrix(make_sym(vgen)))
+      return(as.matrix(make_sym(vgen, diag = 0)))
     }
     if (type == "rcov") {
-      return(as.matrix(make_sym(vres)))
+      return(as.matrix(make_sym(vres, diag = 0)))
     }
     if (type == "means") {
       return(as_tibble(means, rownames = NA))
