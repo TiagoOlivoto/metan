@@ -26,9 +26,8 @@ into a *.txt file.
 \examples{
 
 library(metan)
-mod <- env_dissimilarity(data_ge, ENV, GEN, REP, resp = everything())
+mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 print(mod)
-plot(mod)
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

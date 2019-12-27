@@ -39,7 +39,7 @@
 #'   (1-r)\sqrt{Q1-Q2}}, being \emph{r} the correlation between the genotype's
 #'   average in the two environments; and \emph{Q1} and \emph{Q2} the genotype
 #'   mean square in the environments 1 and 2, respectively. Cruz and Castoldi
-#'   (1991) proposed a new decomposition of the MS_GE, in which the complex par
+#'   (1991) proposed a new decomposition of the MS_GE, in which the complex part
 #'   is given by \eqn{C = \sqrt{(1-r)^3\times Q1\times Q2}}.
 #' @references
 #' Cruz, C.D., Castoldi, F. (1991). Decomposicao da interacao genotipos x
@@ -52,7 +52,8 @@
 #' @export
 #'
 #' @examples
-#' a <- env_dissimilarity(data_ge2, ENV, GEN, REP, PH)
+#' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
+#' print(mod)
 env_dissimilarity <- function(.data,
                               env,
                               gen,
@@ -160,9 +161,8 @@ env_dissimilarity <- function(.data,
 #' @examples
 #'
 #' library(metan)
-#' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, resp = everything())
+#' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 #' print(mod)
-#' plot(mod)
 print.env_dissimilarity <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "env_dissimilarity") {
     stop("The object must be of class 'env_dissimilarity'")
@@ -272,7 +272,11 @@ print.env_dissimilarity <- function(x, export = FALSE, file.name = NULL, digits 
 #' @method plot env_dissimilarity
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @examples
 #'
+#' library(metan)
+#' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
+#' plot(mod)
 plot.env_dissimilarity <- function(x, var = 1, nclust = NULL, ...){
   x <- x[[var]]
   opar <- par(mfrow = c(3, 2),
