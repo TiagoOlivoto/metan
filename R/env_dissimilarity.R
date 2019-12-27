@@ -35,7 +35,7 @@
 #' @md
 #' @details Roberteson (1959) proposed the partition of the mean square of the
 #'   genotype-environment interaction  (MS_GE) into single (S) and complex (C)
-#'   parts, where \eqn{S = \frac{1}{2}(\sqrt{Q1}-\sqrt{Q1})^2)} and \eqn{C =
+#'   parts, where \eqn{S = \frac{1}{2}(\sqrt{Q1}-\sqrt{Q2})^2)} and \eqn{C =
 #'   (1-r)\sqrt{Q1-Q2}}, being \emph{r} the correlation between the genotype's
 #'   average in the two environments; and \emph{Q1} and \emph{Q2} the genotype
 #'   mean square in the environments 1 and 2, respectively. Cruz and Castoldi
