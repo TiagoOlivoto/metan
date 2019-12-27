@@ -93,7 +93,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
       }
       mat[lower.tri(mat, diag = FALSE)] <- temp
       rownames(mat) <- colnames(mat) <- colnames(means)
-      dist <- mahala(.means = means, covar = make_sym(mat),
+      dist <- mahala(.means = means, covar = make_sym(mat, diag = 0),
                      inverted = FALSE)
       if (return == "distance") {
         dfs[[paste(nam)]] <- dist
@@ -149,7 +149,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
     }
     mat[lower.tri(mat, diag = FALSE)] <- temp
     rownames(mat) <- colnames(mat) <- colnames(means)
-    dist <- mahala(.means = means, covar = make_sym(mat),
+    dist <- mahala(.means = means, covar = make_sym(mat, diag = 0),
                    inverted = FALSE)
     if (return == "distance") {
       return(dist)
