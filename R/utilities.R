@@ -1,8 +1,13 @@
 #' @title Utilities for handling with numbers and strings
 #' @name utils_num_str
 #' @param .data A data frame
-#' @param ... Variables to round. If no variable is informed, all the numeric
-#'   variables from \code{data} are used.
+#' @param ... The argument depends on the function used.
+#' * For \code{round_cols()} \code{...} are the variables to round. If no
+#' variable is informed, all the numeric variables from \code{data} are used.
+#' * For \code{remove_strings()} \code{...} are the variables to remove the
+#' strings. If no variable is informed, the strings of all non-numeric variables
+#' will be removed, keeping the numbers. If variables contains only strings,
+#' they will be replaced with \code{NA}.
 #' @param digits The number of significant figures.
 #' @param var The variable to extract or replace numbers or strings.
 #' @param new_var The name of the new variable containing the numbers or
@@ -21,6 +26,7 @@
 #' to upper case.
 #' * \code{extract_number()}: Extract the number(s) of a string.
 #' * \code{extract_string()}: Extract all strings, ignoring case.
+#' * \code{remove_strings()}: Remove all strings of a variable.
 #' * \code{replace_number()}: Replace numbers with a replacement.
 #' * \code{replace_string()}: Replace all strings with a replacement, ignoring
 #' case.
@@ -55,7 +61,7 @@
 #'                replacement = "_one",
 #'                pull = TRUE)
 #'
-#' ########## Extract or replace strings ##########
+#' ########## Extract, replace or remove strings ##########
 #' # Extract strings
 #' extract_string(data_ge, GEN)
 #' extract_string(data_ge,
@@ -70,6 +76,9 @@
 #'                new_var = GENOTYPE,
 #'                pattern = "G",
 #'                replacement = "GENOTYPE_")
+#' # Remove strings
+#' remove_strings(data_ge)
+#' remove_strings(data_ge, ENV)
 #' ############# upper and lower cases ############
 #' all_lower_case("GENOTYPE")
 #' lc <- all_lower_case(data_ge)
@@ -150,6 +159,24 @@ extract_string <- function(.data,
       results <- pull(results)
     }
   }
+  return(results)
+}
+#' @name utils_num_str
+#' @export
+remove_strings <- function(.data, ...){
+  if(missing(...)){
+    vars <- vars(everything())
+  } else{
+    vars <- vars(...)
+  }
+  results <-
+    mutate_at(.data,
+              .vars = vars,
+              .funs = gsub,
+              pattern = "[A-z]",
+              replacement = "") %>%
+    mutate_at(.vars = vars,
+              .funs = as.numeric)
   return(results)
 }
 #' @name utils_num_str

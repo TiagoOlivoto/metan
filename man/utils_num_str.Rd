@@ -6,6 +6,7 @@
 \alias{all_lower_case}
 \alias{extract_number}
 \alias{extract_string}
+\alias{remove_strings}
 \alias{replace_number}
 \alias{replace_string}
 \alias{round_cols}
@@ -18,6 +19,8 @@ all_lower_case(.data)
 extract_number(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
 
 extract_string(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
+
+remove_strings(.data, ...)
 
 replace_number(
   .data,
@@ -55,13 +58,20 @@ strings extracted or replaced. Defaults to \code{new_var}.}
 \item{pull}{Logical argument. If \code{TRUE}, returns the last column (on the
 assumption that's the column you've created most recently), as a vector.}
 
+\item{...}{The argument depends on the function used.
+\itemize{
+\item For \code{round_cols()} \code{...} are the variables to round. If no
+variable is informed, all the numeric variables from \code{data} are used.
+\item For \code{remove_strings()} \code{...} are the variables to remove the
+strings. If no variable is informed, the strings of all non-numeric variables
+will be removed, keeping the numbers. If variables contains only strings,
+they will be replaced with \code{NA}.
+}}
+
 \item{pattern}{A string to be matched. Regular Expression Syntax is also
 allowed.}
 
 \item{replacement}{A string for replacement.}
-
-\item{...}{Variables to round. If no variable is informed, all the numeric
-variables from \code{data} are used.}
 
 \item{digits}{The number of significant figures.}
 }
@@ -73,6 +83,7 @@ to lower case. A character vector is also allowed as im
 to upper case.
 \item \code{extract_number()}: Extract the number(s) of a string.
 \item \code{extract_string()}: Extract all strings, ignoring case.
+\item \code{remove_strings()}: Remove all strings of a variable.
 \item \code{replace_number()}: Replace numbers with a replacement.
 \item \code{replace_string()}: Replace all strings with a replacement, ignoring
 case.
@@ -108,7 +119,7 @@ replace_number(data_ge,
                replacement = "_one",
                pull = TRUE)
 
-########## Extract or replace strings ##########
+########## Extract, replace or remove strings ##########
 # Extract strings
 extract_string(data_ge, GEN)
 extract_string(data_ge,
@@ -123,6 +134,9 @@ replace_string(data_ge,
                new_var = GENOTYPE,
                pattern = "G",
                replacement = "GENOTYPE_")
+# Remove strings
+remove_strings(data_ge)
+remove_strings(data_ge, ENV)
 ############# upper and lower cases ############
 all_lower_case("GENOTYPE")
 lc <- all_lower_case(data_ge)
