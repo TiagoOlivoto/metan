@@ -21,7 +21,7 @@
 #'   assumption that's the column you've created most recently), as a vector.
 #' @description
 #' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
-#' to lower case. A character vector is also allowed as im
+#' to lower case.
 #' * \code{all_upper_case()}: Translate all non-numeric strings of a data frame
 #' to upper case.
 #' * \code{extract_number()}: Extract the number(s) of a string.

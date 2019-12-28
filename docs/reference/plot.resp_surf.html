@@ -242,7 +242,7 @@ values produce high-resolution plots but may increase the computation time.</p><
     <tr>
       <th>...</th>
       <td><p>Other arguments passed from <code>contourplot</code> function. See
-<code>contourplot()</code> for more details.</p></td>
+<code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>contourplot</a></code> for more details.</p></td>
     </tr>
     </table>
 
@@ -251,10 +251,11 @@ values produce high-resolution plots but may increase the computation time.</p><
     <p>An object of class <code>trellis</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='co'># A small toy example</span>
 
-<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
  <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>1</span>),
              <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>1</span>)),
  <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>,
@@ -263,7 +264,7 @@ values produce high-resolution plots but may increase the computation time.</p><
        <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,
        <span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>)
 )
-<span class='no'>mod</span> <span class='kw'>=</span> <span class='fu'><a href='resp_surf.html'>resp_surf</a></span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>z</span>)</div><div class='output co'>#&gt; -----------------------------------------------------------------
+<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='resp_surf.html'>resp_surf</a></span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>z</span>)</div><div class='output co'>#&gt; -----------------------------------------------------------------
 #&gt; Anova table for the response surface model 
 #&gt; -----------------------------------------------------------------
 #&gt; Analysis of Variance Table
@@ -325,7 +326,8 @@ values produce high-resolution plots but may increase the computation time.</p><
 #&gt; Shapiro-Wilk normality test
 #&gt; p-value:  0.04213785 
 #&gt; WARNING: at 5% of significance, residuals can not be considered normal! 
-#&gt; ------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='plot.resp_surf-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; ------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='plot.resp_surf-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -88,6 +88,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/ecovalence.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/env_dissimilarity.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/fai_blup.html</loc>
   </url>
   <url>
@@ -122,6 +125,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/ge_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/ge_winners.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/gge.html</loc>
@@ -206,6 +212,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.cvalidation.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/plot.env_dissimilarity.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.fai_blup.html</loc>
@@ -296,6 +305,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.ecovalence.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/print.env_dissimilarity.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.Fox.html</loc>

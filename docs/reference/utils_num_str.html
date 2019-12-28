@@ -52,11 +52,12 @@
 <meta property="og:description" content="
 
 all_lower_case(): Translate all non-numeric strings of a data frame
-to lower case. A character vector is also allowed as im
+to lower case.
 all_upper_case(): Translate all non-numeric strings of a data frame
 to upper case.
 extract_number(): Extract the number(s) of a string.
 extract_string(): Extract all strings, ignoring case.
+remove_strings(): Remove all strings of a variable.
 replace_number(): Replace numbers with a replacement.
 replace_string(): Replace all strings with a replacement, ignoring
 case.
@@ -225,11 +226,12 @@ significant figures.
     
 <ul>
 <li><p><code>all_lower_case()</code>: Translate all non-numeric strings of a data frame
-to lower case. A character vector is also allowed as im</p></li>
+to lower case.</p></li>
 <li><p><code>all_upper_case()</code>: Translate all non-numeric strings of a data frame
 to upper case.</p></li>
 <li><p><code>extract_number()</code>: Extract the number(s) of a string.</p></li>
 <li><p><code>extract_string()</code>: Extract all strings, ignoring case.</p></li>
+<li><p><code>remove_strings()</code>: Remove all strings of a variable.</p></li>
 <li><p><code>replace_number()</code>: Replace numbers with a replacement.</p></li>
 <li><p><code>replace_string()</code>: Replace all strings with a replacement, ignoring
 case.</p></li>
@@ -246,6 +248,8 @@ significant figures.</p></li>
 <span class='fu'>extract_number</span>(<span class='no'>.data</span>, <span class='no'>var</span>, <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>extract_string</span>(<span class='no'>.data</span>, <span class='no'>var</span>, <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>remove_strings</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
 <span class='fu'>replace_number</span>(
   <span class='no'>.data</span>,
@@ -296,6 +300,17 @@ strings extracted or replaced. Defaults to <code>new_var</code>.</p></td>
 assumption that's the column you've created most recently), as a vector.</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>The argument depends on the function used.</p><ul>
+<li><p>For <code>round_cols()</code> <code>...</code> are the variables to round. If no
+variable is informed, all the numeric variables from <code>data</code> are used.</p></li>
+<li><p>For <code>remove_strings()</code> <code>...</code> are the variables to remove the
+strings. If no variable is informed, the strings of all non-numeric variables
+will be removed, keeping the numbers. If variables contains only strings,
+they will be replaced with <code>NA</code>.</p></li>
+</ul></td>
+    </tr>
+    <tr>
       <th>pattern</th>
       <td><p>A string to be matched. Regular Expression Syntax is also
 allowed.</p></td>
@@ -303,11 +318,6 @@ allowed.</p></td>
     <tr>
       <th>replacement</th>
       <td><p>A string for replacement.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Variables to round. If no variable is informed, all the numeric
-variables from <code>data</code> are used.</p></td>
     </tr>
     <tr>
       <th>digits</th>
@@ -457,7 +467,7 @@ variables from <code>data</code> are used.</p></td>
 #&gt; [401] "G4"     "G4"     "G5"     "G5"     "G5"     "G6"     "G6"     "G6"    
 #&gt; [409] "G7"     "G7"     "G7"     "G8"     "G8"     "G8"     "G9"     "G9"    
 #&gt; [417] "G9"     "G_one0" "G_one0" "G_one0"</div><div class='input'>
-<span class='co'>########## Extract or replace strings ##########</span>
+<span class='co'>########## Extract, replace or remove strings ##########</span>
 <span class='co'># Extract strings</span>
 <span class='fu'>extract_string</span>(<span class='no'>data_ge</span>, <span class='no'>GEN</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM new_var
@@ -520,6 +530,33 @@ variables from <code>data</code> are used.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 GENOTYPE_3
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 GENOTYPE_3
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 GENOTYPE_4
+#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='co'># Remove strings</span>
+<span class='fu'>remove_strings</span>(<span class='no'>data_ge</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;      ENV   GEN   REP    GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>     1     1     1  2.17  44.9
+#&gt; </span><span style='color: #555555;'> 2</span><span>     1     1     2  2.50  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span>     1     1     3  2.43  47.8
+#&gt; </span><span style='color: #555555;'> 4</span><span>     1     2     1  3.21  45.2
+#&gt; </span><span style='color: #555555;'> 5</span><span>     1     2     2  2.93  45.3
+#&gt; </span><span style='color: #555555;'> 6</span><span>     1     2     3  2.56  45.5
+#&gt; </span><span style='color: #555555;'> 7</span><span>     1     3     1  2.77  46.7
+#&gt; </span><span style='color: #555555;'> 8</span><span>     1     3     2  3.62  43.2
+#&gt; </span><span style='color: #555555;'> 9</span><span>     1     3     3  2.28  47.8
+#&gt; </span><span style='color: #555555;'>10</span><span>     1     4     1  2.36  47.9
+#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='fu'>remove_strings</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;      ENV GEN   REP      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>     1 G1    1      2.17  44.9
+#&gt; </span><span style='color: #555555;'> 2</span><span>     1 G1    2      2.50  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span>     1 G1    3      2.43  47.8
+#&gt; </span><span style='color: #555555;'> 4</span><span>     1 G2    1      3.21  45.2
+#&gt; </span><span style='color: #555555;'> 5</span><span>     1 G2    2      2.93  45.3
+#&gt; </span><span style='color: #555555;'> 6</span><span>     1 G2    3      2.56  45.5
+#&gt; </span><span style='color: #555555;'> 7</span><span>     1 G3    1      2.77  46.7
+#&gt; </span><span style='color: #555555;'> 8</span><span>     1 G3    2      3.62  43.2
+#&gt; </span><span style='color: #555555;'> 9</span><span>     1 G3    3      2.28  47.8
+#&gt; </span><span style='color: #555555;'>10</span><span>     1 G4    1      2.36  47.9
 #&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='co'>############# upper and lower cases ############</span>
 <span class='fu'>all_lower_case</span>(<span class='st'>"GENOTYPE"</span>)</div><div class='output co'>#&gt; [1] "genotype"</div><div class='input'><span class='no'>lc</span> <span class='kw'>&lt;-</span> <span class='fu'>all_lower_case</span>(<span class='no'>data_ge</span>)
 <span class='no'>lc</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>

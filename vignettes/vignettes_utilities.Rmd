@@ -114,19 +114,12 @@ get_level_size(data_ge, ENV)
 The function `round_cols()`round a selected column or a whole data frame to the specified number of decimal places (default 0). If no variables are informed, then all numeric variables are rounded.
 
 ```{r}
-datatable(data_ge2,
-          extensions = 'FixedColumns',
-          options = list(scrollX = TRUE, fixedColumns = TRUE))
-round_cols(data_ge2) %>% 
-  datatable(extensions = 'FixedColumns',
-          options = list(scrollX = TRUE, fixedColumns = TRUE))
+round_cols(data_ge2) %>% print_table()
 ```
 
 Alternatively, select variables to round.
 ```{r}
-round_cols(data_ge2, PH, EP, digits = 1)  %>% 
-  datatable(extensions = 'FixedColumns',
-          options = list(scrollX = TRUE, fixedColumns = TRUE))
+round_cols(data_ge2, PH, EP, digits = 1)  %>% print_table()
 ```
 
 ## Extracting and replacing numbers
@@ -162,7 +155,7 @@ replace_number(data_ge,
   print_table()
 ```
 
-## Extracting and replacing strings
+## Extracting, replacing, and removing strings
 The functions `extract_string()`, and `replace_string()` are used in the same context of `extract_number()`, and `replace_number()`, but for handling with strings.
 
 ```{r}
@@ -178,4 +171,8 @@ replace_string(data_ge,
   print_table()
 ```
 
+To remove all strings of a data frame, use `remove_strings()`
+```{r}
+remove_strings(data_ge) %>% print_table()
+```
 

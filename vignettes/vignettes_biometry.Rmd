@@ -560,6 +560,7 @@ D2_des <- mahala_design(data_E1,
 print_table(D2_des, rownames = TRUE)
 ```
 
+
 ### Compute one distance for each environment
 Using the function `split_factors()` it is possible to compute the Mahalanobis distance for each environment (or any grouping variable) and compare the distance matrices using the function `pairs_mantel()`. Let's do it.
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"  }
@@ -591,15 +592,17 @@ The next step is to compute the variance-covariance matrix for the means. The fi
 ```{r }
 # Compute the covariance matrix (by hand)
 cov_mat <- matrix(0, 4, 4)
-diag(cov_mat) <- diag(var(means))
 dev_scores <- sweep(means, 2, colMeans(means), FUN = "-")
 comb_v <- comb_vars(dev_scores, FUN = "*")
-cov_mat[lower.tri(cov_mat, diag = F)] <- colSums(comb_v/(nrow(means)-1))
+cov_mat[lower.tri(cov_mat, diag = F)] <- colSums(comb_v/(nrow(means) - 1))
 rownames(cov_mat) <- colnames(cov_mat) <- colnames(means)
-cov_mat <- make_sym(cov_mat)
+cov_mat <- make_sym(cov_mat, diag = diag(var(means)))
 
 # Compute the covariance using cov()
 covmat2 <- cov(means)
+
+# Check if the two matrices are equal
+all.equal(cov_mat, covmat2)
 
     ```
 

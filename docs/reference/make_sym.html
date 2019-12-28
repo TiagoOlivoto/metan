@@ -213,7 +213,7 @@ an upper triangular matrix." />
 an upper triangular matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_sym</span>(<span class='no'>.matrix</span>, <span class='kw'>make</span> <span class='kw'>=</span> <span class='st'>"upper"</span>)</pre>
+    <pre class="usage"><span class='fu'>make_sym</span>(<span class='no'>.matrix</span>, <span class='kw'>make</span> <span class='kw'>=</span> <span class='st'>"upper"</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,6 +228,10 @@ an upper triangular matrix.</p>
 a symmetric matrix will be built based on the values of a lower triangular
 matrix.</p></td>
     </tr>
+    <tr>
+      <th>diag</th>
+      <td><p>What show in the diagonal of the matrix. Default to <code>NA</code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -238,24 +242,24 @@ matrix.</p></td>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>lower_tri</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make_lower_tri.html'>make_lower_tri</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>20</span>, <span class='fl'>4</span>, <span class='fl'>4</span>))
 <span class='no'>lower_tri</span></div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4]
-#&gt; [1,]   20   NA   NA   NA
-#&gt; [2,]   20   20   NA   NA
-#&gt; [3,]   20   20   20   NA
-#&gt; [4,]   20   20   20   20</div><div class='input'><span class='fu'>make_sym</span>(<span class='no'>lower_tri</span>)</div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4]
-#&gt; [1,]   20   20   20   20
-#&gt; [2,]   20   20   20   20
-#&gt; [3,]   20   20   20   20
-#&gt; [4,]   20   20   20   20</div><div class='input'>
+#&gt; [1,]   NA   NA   NA   NA
+#&gt; [2,]   20   NA   NA   NA
+#&gt; [3,]   20   20   NA   NA
+#&gt; [4,]   20   20   20   NA</div><div class='input'><span class='fu'>make_sym</span>(<span class='no'>lower_tri</span>)</div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]   NA   20   20   20
+#&gt; [2,]   20   NA   20   20
+#&gt; [3,]   20   20   NA   20
+#&gt; [4,]   20   20   20   NA</div><div class='input'>
 <span class='no'>upper_tri</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make_upper_tri.html'>make_upper_tri</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>20</span>, <span class='fl'>4</span>, <span class='fl'>4</span>))
 <span class='no'>upper_tri</span></div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4]
-#&gt; [1,]   20   20   20   20
-#&gt; [2,]   NA   20   20   20
-#&gt; [3,]   NA   NA   20   20
-#&gt; [4,]   NA   NA   NA   20</div><div class='input'><span class='fu'>make_sym</span>(<span class='no'>upper_tri</span>, <span class='kw'>make</span> <span class='kw'>=</span> <span class='st'>"lower"</span>)</div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4]
-#&gt; [1,]   20   20   20   20
-#&gt; [2,]   20   20   20   20
-#&gt; [3,]   20   20   20   20
-#&gt; [4,]   20   20   20   20</div><div class='input'>
+#&gt; [1,]   NA   20   20   20
+#&gt; [2,]   NA   NA   20   20
+#&gt; [3,]   NA   NA   NA   20
+#&gt; [4,]   NA   NA   NA   NA</div><div class='input'><span class='fu'>make_sym</span>(<span class='no'>upper_tri</span>, <span class='kw'>make</span> <span class='kw'>=</span> <span class='st'>"lower"</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]    1   20   20   20
+#&gt; [2,]   20    1   20   20
+#&gt; [3,]   20   20    1   20
+#&gt; [4,]   20   20   20    1</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

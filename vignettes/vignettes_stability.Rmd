@@ -104,11 +104,43 @@ print_table(gge_ef$GY)
 The function `ge_cluster()` computes a cluster analysis for grouping environments based on its similarities using an Euclidean distance based on standardized data. Line means are divided by the phenotypic standard error of the relevant environment after its mean has been subtracted. By standardizing the data each environment will have a mean of zero and unit variance, and the effect of variability in phenotypic variance (as well as the mean) should be reduced [@Fox1982].
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE, fig.align="center"}
-d1 = ge_cluster(data_ge, ENV, GEN, GY, nclust = 4)
+d1 <- ge_cluster(data_ge, ENV, GEN, GY, nclust = 4)
 plot(d1, nclust = 4)
 
 ```
 
+The function `env_dissimilarity()` computes the dissimilarity between test environment using:
+
+* The partition of the partition of the mean square of the genotype-environment interaction (MS_GE) into single (S) and complex (C) parts, according to @Robertson1959, where $S = \frac{1}{2}(\sqrt{Q_1}-\sqrt{Q_2})^2)$ and $C = (1-r)\sqrt{Q1-Q2}$, being $r$ the correlation between the genotype's average in the two environments; and $Q_1$ and $Q_2$ the genotype mean square in the environments 1 and 2, respectively 
+
+* The decomposition of the MS_GE, in which the complex part is given by $C = \sqrt{(1-r)^3\times Q1\times Q2}$ [@Cruz1991a].
+
+* The interaction mean square between genotypes and pairs of environments.
+
+* The correlation coefficients between genotypes's average in each pair of environment.
+
+```{r}
+mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
+# Pearson's correlation coefficient
+print_table(mod$GY$correlation, rownames = TRUE)
+# Mean square GxEjj'
+print_table(mod$GY$MSGE, rownames = TRUE)
+# % Of the single part of MS GxEjj' (Robertson, 1959)
+print_table(mod$GY$SPART_RO, rownames = TRUE)
+# % Of the complex part of MS GxEjj' (Robertson, 1959)
+print_table(mod$GY$CPART_RO, rownames = TRUE)
+# % Of the single part of MS GxEjj' (Cruz and Castoldi, 1991)
+print_table(mod$GY$SPART_CC, rownames = TRUE)
+# % Of the complex part of MS GxEjj' (Cruz and Castoldi, 1991)
+print_table(mod$GY$CPART_CC, rownames = TRUE)
+
+
+```
+
+To obtain dendrograms based on the above matrix we can use plot(). The dendrograms are based on the hierarchical clustering algorithm UPGMA (Unweighted Pair Group Method using Arithmetic averages).
+```{r, fig.width=10, fig.height=10}
+plot(mod)
+```
 
 
 # Joint regression analysis

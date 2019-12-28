@@ -78,7 +78,7 @@ allowed.}
 \description{
 \itemize{
 \item \code{all_lower_case()}: Translate all non-numeric strings of a data frame
-to lower case. A character vector is also allowed as im
+to lower case.
 \item \code{all_upper_case()}: Translate all non-numeric strings of a data frame
 to upper case.
 \item \code{extract_number()}: Extract the number(s) of a string.
