@@ -50,5 +50,5 @@ mahala <- function(.means, covar, inverted = FALSE) {
   dists <- diag(mmean %*% invmat %*% t(mmean))
   maha[lower.tri(maha, diag = F)] <- dists
   rownames(maha) <- colnames(maha) <- rownames(.means)
-  return(make_sym(maha))
+  return(make_sym(maha, diag = 0))
 }
