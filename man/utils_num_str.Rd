@@ -16,9 +16,25 @@ all_upper_case(.data)
 
 all_lower_case(.data)
 
-extract_number(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
+extract_number(
+  .data,
+  var,
+  new_var = new_var,
+  drop = FALSE,
+  pull = FALSE,
+  .before = NULL,
+  .after = NULL
+)
 
-extract_string(.data, var, new_var = new_var, drop = FALSE, pull = FALSE)
+extract_string(
+  .data,
+  var,
+  new_var = new_var,
+  drop = FALSE,
+  pull = FALSE,
+  .before = NULL,
+  .after = NULL
+)
 
 remove_strings(.data, ...)
 
@@ -29,7 +45,9 @@ replace_number(
   pattern = NULL,
   replacement = "",
   drop = FALSE,
-  pull = FALSE
+  pull = FALSE,
+  .before = NULL,
+  .after = NULL
 )
 
 replace_string(
@@ -39,7 +57,9 @@ replace_string(
   pattern = NULL,
   replacement = "",
   drop = FALSE,
-  pull = FALSE
+  pull = FALSE,
+  .before = NULL,
+  .after = NULL
 )
 
 round_cols(.data, ..., digits = 2)
@@ -57,6 +77,10 @@ strings extracted or replaced. Defaults to \code{new_var}.}
 
 \item{pull}{Logical argument. If \code{TRUE}, returns the last column (on the
 assumption that's the column you've created most recently), as a vector.}
+
+\item{.before, .after}{For \code{replace_sting()}, \code{replace_number()},
+\code{extract_string()}, ,and  \code{extract_number()} one-based column
+index or column name where to add the new columns.}
 
 \item{...}{The argument depends on the function used.
 \itemize{

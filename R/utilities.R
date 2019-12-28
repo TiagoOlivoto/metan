@@ -19,6 +19,9 @@
 #' @param replacement A string for replacement.
 #' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
 #'   assumption that's the column you've created most recently), as a vector.
+#' @param .before,.after For \code{replace_sting()}, \code{replace_number()},
+#'   \code{extract_string()}, ,and  \code{extract_number()} one-based column
+#'   index or column name where to add the new columns.
 #' @description
 #' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
 #' to lower case.
@@ -115,20 +118,25 @@ extract_number <- function(.data,
                            var,
                            new_var = new_var,
                            drop = FALSE,
-                           pull = FALSE){
+                           pull = FALSE,
+                           .before = NULL,
+                           .after  = NULL){
   if (drop == FALSE){
     results <-
-    mutate(.data,
-           {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
-    )
-    if(pull == TRUE){
+      mutate(.data,
+             {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
+      )
+    if (pull == TRUE){
       results <- pull(results)
+    }
+    if (!is.null(.before) | !is.null(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
     }
   } else{
     results <-
-    transmute(.data,
-              {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
-    )
+      transmute(.data,
+                {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
+      )
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -141,7 +149,9 @@ extract_string <- function(.data,
                            var,
                            new_var = new_var,
                            drop = FALSE,
-                           pull = FALSE){
+                           pull = FALSE,
+                           .before = NULL,
+                           .after  = NULL){
   if (drop == FALSE){
     results <-
       mutate(.data,
@@ -149,6 +159,9 @@ extract_string <- function(.data,
       )
     if(pull == TRUE){
       results <- pull(results)
+    }
+    if (!is.null(.before) | !is.null(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
     }
   } else{
     results <-
@@ -187,7 +200,9 @@ replace_number <- function(.data,
                            pattern = NULL,
                            replacement = "",
                            drop = FALSE,
-                           pull = FALSE){
+                           pull = FALSE,
+                           .before = NULL,
+                           .after  = NULL){
   if(missing(pattern)){
     pattern <- "[0-9]"
   } else{
@@ -195,17 +210,20 @@ replace_number <- function(.data,
   }
   if (drop == FALSE){
     results <-
-    mutate(.data,
-           {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-    )
+      mutate(.data,
+             {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
+      )
     if(pull == TRUE){
       results <- pull(results)
     }
+    if (!is.null(.before) | !is.null(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
+    }
   } else{
     results <-
-    transmute(.data,
-              {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-    )
+      transmute(.data,
+                {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
+      )
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -220,10 +238,12 @@ replace_string <- function(.data,
                            pattern = NULL,
                            replacement = "",
                            drop = FALSE,
-                           pull = FALSE){
+                           pull = FALSE,
+                           .before = NULL,
+                           .after  = NULL){
   if(missing(pattern)){
     pattern <- "[A-z]"
-  } else{
+  } else {
     pattern <- pattern
   }
   if (drop == FALSE){
@@ -233,6 +253,9 @@ replace_string <- function(.data,
       )
     if(pull == TRUE){
       results <- pull(results)
+    }
+    if (!is.null(.before) | !is.null(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
     }
   } else{
     results <-
@@ -305,10 +328,10 @@ round_cols <- function(.data, ...,  digits = 2){
 #'
 #' * For \code{concatenate()}, \code{...} is the unquoted variable names to be
 #' concatenated.
-#' @param .before,.after For \code{add_cols()} and \code{reorder_cols()},
-#'   one-based column index or column name where to add the new columns,
-#'   default: .after last column. For \code{add_rows()}, one-based row index
-#'   where to add the new rows, default: .after last row.
+#' @param .before,.after For \code{add_cols()}, \code{concatenate()}, and
+#'   \code{reorder_cols()}, one-based column index or column name where to add
+#'   the new columns, default: .after last column. For \code{add_rows()},
+#'   one-based row index where to add the new rows, default: .after last row.
 #' @param new_var The name of the new variable containing the concatenated
 #'   values. Defaults to \code{new_var}.
 #' @param sep The separator to appear between concatenated variables. Defaults
@@ -468,13 +491,18 @@ concatenate <- function(.data,
                         new_var = new_var,
                         sep = "_",
                         drop = FALSE,
-                        pull = FALSE){
+                        pull = FALSE,
+                        .before = NULL,
+                        .after  = NULL){
   if (drop == FALSE){
     conc <- select(.data, ...)
     results <- mutate(.data,
                       {{new_var}} := apply(conc, 1, paste, collapse = sep))
     if (pull == TRUE){
       results <- pull(results)
+    }
+    if (!is.null(.before) | !is.null(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
     }
   } else{
     conc <- select(.data, ...)
@@ -510,13 +538,13 @@ get_level_size <- function(.data, group){
 #' @export
 reorder_cols <- function(.data, ..., .before = NULL, .after = NULL){
   args <- match.call()
-  if (missing(.after) && missing(.before)){
+  if (is.null(.after) && is.null(.before)){
     stop("At least '.before' or '.after' must be informed", call. = FALSE)
   }
-  if (!missing(.after) && !missing(.before)){
+  if (!is.null(.after) && !is.null(.before)){
     stop("'.before' and '.after' cannot be evaluated together.", call. = FALSE)
   }
-  if (!missing(.before)){
+  if (!is.null(.before)){
     if(is.character(.before)){
       if(!(.before %in% colnames(.data))){
         stop(paste("Column", args[[4]], "not present in .data"), call. = FALSE)
@@ -532,7 +560,7 @@ reorder_cols <- function(.data, ..., .before = NULL, .after = NULL){
     aft <- select(.data, -!!colnames(bfr), -!!colnames(sel))
     results <- cbind(bfr, sel, aft)
   }
-  if(!missing(.after)) {
+  if(!is.null(.after)) {
     if(is.character(.after)){
       if(!(.after %in% colnames(.data))){
         stop(paste("Column", args[[5]], "not present in .data"), call. = FALSE)
@@ -592,7 +620,6 @@ select_rows <- function(.data, ...){
 }
 
 
-
 #' @title Means by one or more factors
 #' @description Computes the mean for all numeric variables of a data frame,
 #'   grouping by one or more factors.
@@ -608,9 +635,9 @@ select_rows <- function(.data, ...){
 #' means_by(data_ge2, GEN, ENV)
 #'}
 means_by <- function(.data, ...){
-  .data %>%
-    group_by(...) %>%
-    summarise_if(is.numeric, mean)
+  group_by(.data, ...) %>%
+    summarise_if(is.numeric, mean) %>%
+    ungroup()
 }
 
 

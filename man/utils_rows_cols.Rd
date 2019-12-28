@@ -32,7 +32,9 @@ concatenate(
   new_var = new_var,
   sep = "_",
   drop = FALSE,
-  pull = FALSE
+  pull = FALSE,
+  .before = NULL,
+  .after = NULL
 )
 
 get_levels(.data, group)
@@ -71,10 +73,10 @@ row value.
 concatenated.
 }}
 
-\item{.before, .after}{For \code{add_cols()} and \code{reorder_cols()},
-one-based column index or column name where to add the new columns,
-default: .after last column. For \code{add_rows()}, one-based row index
-where to add the new rows, default: .after last row.}
+\item{.before, .after}{For \code{add_cols()}, \code{concatenate()}, and
+\code{reorder_cols()}, one-based column index or column name where to add
+the new columns, default: .after last column. For \code{add_rows()},
+one-based row index where to add the new rows, default: .after last row.}
 
 \item{levels}{The levels of a factor or a numeric vector.}
 
