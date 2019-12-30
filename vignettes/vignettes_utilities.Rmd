@@ -23,13 +23,9 @@ library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
 print_table <- function(table, rownames = FALSE, ...){
-datatable(table,
-          rownames = rownames,
-          extensions = 'Buttons',
-          options = list(dom = 'Bfrtip',
-                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
-    formatSignif(columns = c(1:ncol(table)), digits = 3)
-}
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
 
 ```
 
@@ -78,19 +74,17 @@ remove_rows(data_ge2, 1:2, 5:8) %>% print_table()
 
 
 ## Concatenating columns
-The function `concatetate()` can be used to concatenate multiple columns of a data frame. It return a data frame with all the original columns in `.data` plus the concatenated variable, after the last column.
+The function `concatetate()` can be used to concatenate multiple columns of a data frame. It return a data frame with all the original columns in `.data` plus the concatenated variable, after the last column (by default), or at any position when using the arguments `.before` or `.after`.
 
 
 ```{r}
-concatenate(data_ge, ENV, GEN, REP) %>% print_table()
+concatenate(data_ge, ENV, GEN, REP, .after = "REP") %>% print_table()
 ```
 
 To drop the existing variables and keep only the concatenated column, use the argument `drop = TRUE`. To use `concatenate()` within a given function like `add_cols()` use the argument `pull = TRUE` to pull out the results to a vector.
 ```{r}
-concatenate(data_ge, ENV, GEN, REP, drop = TRUE) %>%
-  head(3) %>% 
-  print_table()
-concatenate(data_ge, ENV, GEN, REP, pull = TRUE) %>% head(3)
+concatenate(data_ge, ENV, GEN, REP, drop = TRUE) %>% head()
+concatenate(data_ge, ENV, GEN, REP, pull = TRUE) %>% head()
 ```
 
 
@@ -127,7 +121,7 @@ round_cols(data_ge2, PH, EP, digits = 1)  %>% print_table()
 The functions `extract_number()`, and `replace_number()` can be used to extract or replace numbers. As an example, we will extract the number of each genotype in `data_g`. By default, the extracted numbers are put as a new variable called `new_var` after the last column of the data.
 
 ```{r}
-extract_number(data_ge, GEN) %>% print_table()
+extract_number(data_ge, GEN, .after = "GEN") %>% print_table()
 ```
 
 If the argument `drop` is set to `TRUE` then, only the new variable is kept and all others are dropped.
@@ -151,7 +145,8 @@ replace_number(data_ge,
                var = REP,
                pattern = "1",
                replacement = "Rep_1",
-               new_var = R_ONE) %>% 
+               new_var = R_ONE,
+               .after = "REP") %>% 
   print_table()
 ```
 
@@ -167,7 +162,8 @@ To replace strings, we can use the function `replace_strings()`.
 replace_string(data_ge,
                var = GEN,
                new_var = GENOTYPE,
-               replacement = "GENOTYPE_") %>% 
+               replacement = "GENOTYPE_",
+               .after = "GEN") %>% 
   print_table()
 ```
 

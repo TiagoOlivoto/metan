@@ -41,13 +41,9 @@ library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
 print_table <- function(table, rownames = FALSE, ...){
-datatable(table,
-          rownames = rownames,
-          extensions = 'Buttons',
-          options = list(dom = 'Bfrtip',
-                         buttons = c('copy', 'excel', 'pdf', 'print', 'colvis')), ...) %>%
-    formatSignif(columns = c(1:ncol(table)), digits = 3)
-}
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
 
 ```
 

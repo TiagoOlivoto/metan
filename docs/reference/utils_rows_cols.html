@@ -285,7 +285,9 @@ data frame.</p></li>
   <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>,
   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
   <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>.before</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>.after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )
 
 <span class='fu'>get_levels</span>(<span class='no'>.data</span>, <span class='no'>group</span>)
@@ -331,10 +333,10 @@ concatenated.</p></li>
     </tr>
     <tr>
       <th>.before, .after</th>
-      <td><p>For <code>add_cols()</code> and <code>reorder_cols()</code>,
-one-based column index or column name where to add the new columns,
-default: .after last column. For <code>add_rows()</code>, one-based row index
-where to add the new rows, default: .after last row.</p></td>
+      <td><p>For <code>add_cols()</code>, <code>concatenate()</code>, and
+<code>reorder_cols()</code>, one-based column index or column name where to add
+the new columns, default: .after last column. For <code>add_rows()</code>,
+one-based row index where to add the new rows, default: .after last row.</p></td>
     </tr>
     <tr>
       <th>levels</th>
