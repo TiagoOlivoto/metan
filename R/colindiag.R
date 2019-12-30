@@ -197,7 +197,7 @@ colindiag <- function(.data, ..., n = NULL, verbose = TRUE) {
                   " where ignored.  Use 'split_factors()' to perform an analysis for each level of a factor.")
         }
       }
-      dfs <- select_if(.data, is.numeric)
+      dfs <- select_numeric_cols(.data)
     }
     out <- internal(dfs)
   }

@@ -457,7 +457,7 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
                 " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
       }
     }
-    data <- select_if(.data, is.numeric)
+    data <- select_numeric_cols(.data)
     nam <- names(.data)
     if (brutstep == FALSE) {
       if (missing(pred)) {

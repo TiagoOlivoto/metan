@@ -262,7 +262,7 @@ desc_stat <- function(.data = NULL,
       data <- data.frame(values)
     } else {
       if (!missing(.data) & missing(...)){
-        data <- select_if(.data, is.numeric)
+        data <- select_numeric_cols(.data)
       } else{
         data <- select(.data, ...) %>%
           select_numeric_cols()

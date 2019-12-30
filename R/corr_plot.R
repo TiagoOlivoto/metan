@@ -160,7 +160,7 @@ corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
     }
   }
   if (missing(...)) {
-    data <- select_if(.data, is.numeric)
+    data <- select_numeric_cols(.data)
   }
   if (!missing(...)) {
     data <- select(.data, ...) %>%

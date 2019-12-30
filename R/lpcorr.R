@@ -136,7 +136,7 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
                   " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
         }
       }
-      dfs <- select_if(.data, is.numeric)
+      dfs <- select_numeric_cols(.data)
     }
     out <- internal(dfs)
   }
