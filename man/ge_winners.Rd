@@ -29,7 +29,8 @@ the genotypes according to the response variable. Each element of the
 vector must be one of the \code{'h'} or \code{'l'}. If \code{'h'} is used
 (default), the genotypes are ranked from maximum to minimum. If \code{'l'}
 is used then the are ranked from minimum to maximum. Use a comma-separated
-vector of names. For example, \code{order.y = c("h, h, l, h, l")}.}
+vector of names. For example, \code{better = c("h, h, h, h, l")}, for
+ranking the fifth variable from minimum to maximum.}
 }
 \value{
 A tibble with two-way table with the winner genotype in each

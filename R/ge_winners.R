@@ -19,7 +19,8 @@
 #'   vector must be one of the \code{'h'} or \code{'l'}. If \code{'h'} is used
 #'   (default), the genotypes are ranked from maximum to minimum. If \code{'l'}
 #'   is used then the are ranked from minimum to maximum. Use a comma-separated
-#'   vector of names. For example, \code{order.y = c("h, h, l, h, l")}.
+#'   vector of names. For example, \code{better = c("h, h, h, h, l")}, for
+#'   ranking the fifth variable from minimum to maximum.
 #' @return A tibble with two-way table with the winner genotype in each
 #'   environment (default) or the genotype ranking for each environment (if
 #'   \code{type = "ranks"}).
@@ -45,11 +46,6 @@ ge_winners <- function(.data, env, gen, resp, type = "winners", better = NULL) {
   if(!type  %in% c("ranks", "winners")){
     stop("The argument 'type' must be one of the 'ranks' or 'winners'")
   }
-  if(!missing(better)){
-    better <- unlist(strsplit(better, split = ", "))
-  } else {
-    better <- rep("h", length(.data))
-  }
   factors  <- .data %>%
     select(ENV = {{env}},
            GEN = {{gen}}) %>%
@@ -59,6 +55,17 @@ ge_winners <- function(.data, env, gen, resp, type = "winners", better = NULL) {
     select_numeric_cols()
   listres <- list()
   nvar <- ncol(vars)
+  if(!missing(better)){
+    better <- unlist(strsplit(better, split = ", ")) %>% all_lower_case()
+  } else {
+    better <- rep("h", nvar)
+  }
+  if (length(better) != ncol(vars)){
+    stop("The vector 'better' should have length " , nvar, " (the number of variables in 'resp')", call. = FALSE)
+  }
+  if (any(!better %in% c("h", "l"))){
+    stop("Invalid values in argument 'better'. It must have 'h' or 'l' only.", call. = FALSE)
+  }
   for (var in 1:nvar) {
     if (length(better) == 1) {
       if (better == "h") {
