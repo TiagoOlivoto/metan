@@ -416,40 +416,15 @@ round_cols <- function(.data, ...,  digits = 2){
 #' select_non_numeric_cols(data_g)
 #' }
 add_cols <- function(.data, ..., .before = NULL, .after = NULL){
-  if (!missing(.after) && .after == names(.data[ncol(.data)])){
-    message("Putting variables after the last column is the default setting. Setting '.after' to NULL.", call. = FALSE)
-    .after = NULL
+  results <- mutate(.data, ...)
+  pos_dots <- (ncol(results)) - ((ncol(results) - ncol(.data)) - 1)
+  if (!is.null(.before) | !is.null(.after)){
+    results <- reorder_cols(results,
+                            pos_dots:ncol(results),
+                            .before = .before,
+                            .after = .after)
   }
-  if (!missing(.before)){
-    if(is.character(.before)){
-      if(!(.before %in% colnames(.data))){
-        stop("Column '.before' not in .data")
-      }
-    } else{
-      .before <- colnames(.data[.before])
-    }
-    bfr <- .data[,1:which(colnames(.data) ==  .before)-1]
-    aft <- select(.data, -!!colnames(bfr))
-    df2 <- mutate(.data, ...) %>%
-      select(-!!colnames(bfr), -!!colnames(aft))
-    results <- cbind(bfr, df2, aft)
-  } else if (!is.null(.after)) {
-    if(is.character(.after)){
-      if(!(.after %in% colnames(.data))){
-        stop("Column '.after' not in .data")
-      }
-    } else{
-      .after <- colnames(.data[.after])
-    }
-    aft <- .data[,(which(colnames(.data) ==  .after)+1):ncol(.data)]
-    bfr <- select(.data, -!!colnames(aft))
-    df2 <-  mutate(.data, ...) %>%
-      select(-!!colnames(bfr), -!!colnames(aft))
-    results <- cbind(bfr, df2, aft)
-  } else{
-    results <- mutate(.data, ...)
-  }
-  return(as_tibble(results))
+  return(as_tibble(results, rownames = NA))
 }
 #' @name utils_rows_cols
 #' @export
@@ -472,8 +447,8 @@ all_pairs <- function(.data, levels){
   levels <-
     get_levels(.data, {{levels}})
   combn(levels, 2) %>%
-    as.data.frame() %>%
-    t()
+    t() %>%
+    as.data.frame()
 }
 #' @name utils_rows_cols
 #' @export
@@ -547,7 +522,7 @@ reorder_cols <- function(.data, ..., .before = NULL, .after = NULL){
   if (!is.null(.before)){
     if(is.character(.before)){
       if(!(.before %in% colnames(.data))){
-        stop(paste("Column", args[[4]], "not present in .data"), call. = FALSE)
+        stop(paste("Column", args[[".before"]], "not present in .data"), call. = FALSE)
       }
     } else{
       .before <- colnames(.data[.before])
@@ -563,7 +538,7 @@ reorder_cols <- function(.data, ..., .before = NULL, .after = NULL){
   if(!is.null(.after)) {
     if(is.character(.after)){
       if(!(.after %in% colnames(.data))){
-        stop(paste("Column", args[[5]], "not present in .data"), call. = FALSE)
+        stop(paste("Column", args[[".after"]], "not present in .data"), call. = FALSE)
       }
     } else{
       .after <- colnames(.data[.after])
