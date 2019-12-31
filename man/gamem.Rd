@@ -18,7 +18,7 @@ be treated as random effect.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure a vector of variables may be used. For example \code{resp =
-c(var1, var2, var3)}.}
+c(var1, var2, var3)}. Select helpers are also allowed.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete block design is considered.
 If block is informed, then an alpha-lattice design is employed considering block as random to make use

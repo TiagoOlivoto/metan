@@ -12,7 +12,7 @@
 #' (assumed to be fixed).
 #' @param resp The response variable(s). To analyze multiple variables in a
 #' single procedure a vector of variables may be used. For example \code{resp =
-#' c(var1, var2, var3)}.
+#' c(var1, var2, var3)}. Select helpers are also allowed.
 #' @param block Defaults to \code{NULL}. In this case, a randomized complete block design is considered.
 #'  If block is informed, then an alpha-lattice design is employed considering block as random to make use
 #'  of inter-block information, whereas the complete replicate effect is always taken as fixed,
@@ -113,26 +113,22 @@
 #'}
 #'
 gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TRUE) {
-  d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-  datain <- .data
-  listres <- list()
-  vin <- 0
   # RCBD
   if (missing(block) == TRUE) {
-    GEN <- factor(eval(substitute(gen), eval(datain)))
-    REP <- factor(eval(substitute(rep), eval(datain)))
-    for (var in 2:length(d$resp)) {
-      if (length(d$resp) > 1) {
-        Y <- eval(substitute(resp)[[var]], eval(datain))
-        data <- data.frame(GEN, REP, Y)
-      } else {
-        Y <- eval(substitute(resp), eval(datain))
-        data <- data.frame(GEN, REP, Y)
-      }
+    factors  <- .data %>%
+      select(GEN = {{gen}},
+             REP = {{rep}}) %>%
+      mutate_all(as.factor)
+    vars <- .data %>%
+      select({{resp}}) %>%
+      select_numeric_cols()
+    listres <- list()
+    nvar <- ncol(vars)
+    for (var in 1:nvar) {
+      data <- factors %>%
+        mutate(Y = vars[[var]])
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
-      vin <- vin + 1
       ovmean <- mean(data$Y)
       Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ REP + (1 | GEN), data = data)))
       LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
@@ -215,34 +211,34 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       ),
       class = "gamem"
       )
-      if (length(d$resp) > 1) {
+      if (nvar > 1) {
+        listres[[paste(names(vars[var]))]] <- temp
         if (verbose == TRUE) {
-          cat("Evaluating variable", paste(d$resp[var]), round((var - 1) / (length(d$resp) -
-                                                                              1) * 100, 1), "%", "\n")
+          cat("Evaluating variable", paste(names(vars[var])),
+              round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
         }
-        listres[[paste(d$resp[var])]] <- temp
       } else {
-        listres[[paste(d$resp)]] <- temp
+        listres[[paste(names(vars[var]))]] <- temp
       }
     }
   }
-
   # ALPHA-LATTICE
   if (missing(block) == FALSE) {
-    GEN <- factor(eval(substitute(gen), eval(datain)))
-    REP <- factor(eval(substitute(rep), eval(datain)))
-    BLOCK <- factor(eval(substitute(block), eval(datain)))
-    for (var in 2:length(d$resp)) {
-      if (length(d$resp) > 1) {
-        Y <- eval(substitute(resp)[[var]], eval(datain))
-        data <- data.frame(GEN, REP, BLOCK, Y)
-      } else {
-        Y <- eval(substitute(resp), eval(datain))
-        data <- data.frame(GEN, REP, BLOCK, Y)
-      }
+    factors  <- .data %>%
+      select(GEN = {{gen}},
+             REP = {{rep}},
+             BLOCK = {{block}}) %>%
+      mutate_all(as.factor)
+    vars <- .data %>%
+      select({{resp}}) %>%
+      select_numeric_cols()
+    listres <- list()
+    nvar <- ncol(vars)
+    for (var in 1:nvar) {
+      data <- factors %>%
+        mutate(Y = vars[[var]])
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
-      vin <- vin + 1
       ovmean <- mean(data$Y)
       Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ (1 | GEN) + REP + (1 | REP:BLOCK), data = data)))
       LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
@@ -329,22 +325,17 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       ),
       class = "gamem"
       )
-      if (length(d$resp) > 1) {
+      if (nvar > 1) {
+        listres[[paste(names(vars[var]))]] <- temp
         if (verbose == TRUE) {
-          cat("Evaluating variable", paste(d$resp[var]), round((var - 1) / (length(d$resp) -
-                                                                              1) * 100, 1), "%", "\n")
+          cat("Evaluating variable", paste(names(vars[var])),
+              round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
         }
-        listres[[paste(d$resp[var])]] <- temp
       } else {
-        listres[[paste(d$resp)]] <- temp
+        listres[[paste(names(vars[var]))]] <- temp
       }
     }
   }
-
-
-
-
-
   if (verbose == TRUE) {
     if (length(which(unlist(lapply(listres, function(x) {
       x[["LRT"]] %>%
