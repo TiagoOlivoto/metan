@@ -37,9 +37,9 @@ deviation), \code{'CI.mean'} (confidence interval for the mean), \code{'CV'}
 \code{'Kurt'} (kurtosis), \code{'mad'} (median absolute deviation),
 \code{'max'} (maximum value), \code{'mean'} (arithmetic mean),
 \code{'median'} (median), \code{'min'} (minimum value), \code{'n'} (the
-length of the data), \code{'Q2.5'} (the percentile 2.5%), \code{'Q25'} (the
+length of the data), \code{'Q2.5'} (the percentile 2.5\%), \code{'Q25'} (the
 first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'}
-(the percentile 97.5%), \code{range} (The range of data), \code{'SD.amo'}
+(the percentile 97.5\%), \code{range} (The range of data), \code{'SD.amo'}
 (the sample standard deviation), \code{'SD.pop'} (the population standard
 deviation), \code{'SE.mean'} (the standard error of the mean), \code{'skew'}
 (the skewness), \code{sum} (the sum of the values), \code{sum.dev} (the sum
@@ -47,7 +47,7 @@ of the absolute deviations), \code{sum.sq.dev} (the sum of the squared
 deviations), \code{valid.n} (The size of sample with valid number (not NA),
 \code{'var.amo'} (the sample variance), \code{'var.pop'} (the population
 variance). Use a comma-separated vector of names to select the statistics.
-For example, \code{stats = c("median, mean, CV, n")}.}
+For example, \code{stats = c("median, mean, CV, n")}}
 
 \item{hist}{Logical argument defaults to \code{FALSE}. If \code{hist = TRUE}
 then a histogram is created for each selected variable.}
