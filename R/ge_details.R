@@ -87,5 +87,5 @@ ge_details <- function(.data, env, gen, resp){
     as_tibble() %>%
     mutate(Parameters = listres[[1]][["Parameters"]]) %>%
     select(Parameters, everything())
-  invisible(bind)
+  return(bind)
 }
