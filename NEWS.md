@@ -3,6 +3,7 @@
    * `corr_plot()` now don't write a warning message to the console by default.
    * `select_numeric_cols()` now is used as a helper function in `metan`.
    * `metan` now reexports `mutate()` from `dplyr` package.
+   * `get_model_data()` now set default values for each class of models.
 
 * New functions
    * `add_cols()`, and `add_rows()` for adding columns and rows, respectively.
