@@ -72,3 +72,6 @@ Robertson, A. (1959). Experimental design on the measurement of
 heritabilities and genetic correlations. biometrical genetics. New York:
 Pergamon Press.
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}
