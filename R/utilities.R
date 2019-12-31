@@ -298,6 +298,8 @@ round_cols <- function(.data, ...,  digits = 2){
 #' factor.
 #' * \code{column_exists()}: Checks if a column exists in a data frame. Return a
 #' logical value.
+#' * \code{columns_to_first()}: Move columns to first positions in \code{.data}.
+#' * \code{columns_to_last()}: Move columns to last positions in \code{.data}.
 #' * \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
 #' TRUE} then the existing variables are dropped.
 #' * \code{get_levels()}: Get the levels of a factor variable.
@@ -322,6 +324,10 @@ round_cols <- function(.data, ...,  digits = 2){
 #'
 #' * For \code{remove_cols()} and \code{select_cols()},  \code{...} is the
 #' column name or column index of the variable(s) to be dropped.
+#'
+#' * For \code{columns_to_first()} and \code{columns_to_last()},  \code{...} is
+#' the column name or column index of the variable(s) to be moved to first or
+#' last in \code{.data}.
 #'
 #' * For \code{remove_rows()} and \code{select_rows()}, \code{...} is an integer
 #' row value.
@@ -449,6 +455,16 @@ all_pairs <- function(.data, levels){
   combn(levels, 2) %>%
     t() %>%
     as.data.frame()
+}
+#' @name utils_rows_cols
+#' @export
+column_to_first <-function(.data, ...){
+select_cols(.data, ..., everything())
+}
+#' @name utils_rows_cols
+#' @export
+column_to_last <-function(.data, ...){
+  select_cols(.data, -c(!!!quos(...)), everything())
 }
 #' @name utils_rows_cols
 #' @export

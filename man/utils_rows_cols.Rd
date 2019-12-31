@@ -5,6 +5,8 @@
 \alias{add_cols}
 \alias{add_rows}
 \alias{all_pairs}
+\alias{column_to_first}
+\alias{column_to_last}
 \alias{column_exists}
 \alias{concatenate}
 \alias{get_levels}
@@ -23,6 +25,10 @@ add_cols(.data, ..., .before = NULL, .after = NULL)
 add_rows(.data, ..., .before = NULL, .after = NULL)
 
 all_pairs(.data, levels)
+
+column_to_first(.data, ...)
+
+column_to_last(.data, ...)
 
 column_exists(.data, cols)
 
@@ -67,6 +73,9 @@ must have one element for each row in \code{.data} when using
 \code{add_cols()}.
 \item For \code{remove_cols()} and \code{select_cols()},  \code{...} is the
 column name or column index of the variable(s) to be dropped.
+\item For \code{columns_to_first()} and \code{columns_to_last()},  \code{...} is
+the column name or column index of the variable(s) to be moved to first or
+last in \code{.data}.
 \item For \code{remove_rows()} and \code{select_rows()}, \code{...} is an integer
 row value.
 \item For \code{concatenate()}, \code{...} is the unquoted variable names to be
@@ -112,6 +121,8 @@ rows in \code{.data} plus the rows declared in \code{...}.
 factor.
 \item \code{column_exists()}: Checks if a column exists in a data frame. Return a
 logical value.
+\item \code{columns_to_first()}: Move columns to first positions in \code{.data}.
+\item \code{columns_to_last()}: Move columns to last positions in \code{.data}.
 \item \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
 TRUE} then the existing variables are dropped.
 \item \code{get_levels()}: Get the levels of a factor variable.
