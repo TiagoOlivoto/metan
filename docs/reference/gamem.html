@@ -237,7 +237,7 @@ be treated as random effect.</p></td>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables in a
 single procedure a vector of variables may be used. For example <code>resp =
-c(var1, var2, var3)</code>.</p></td>
+c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
     </tr>
     <tr>
       <th>block</th>
@@ -314,14 +314,14 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 <span class='no'>rcbd</span> <span class='kw'>&lt;-</span> <span class='fu'>gamem</span>(<span class='no'>data_g</span>,
              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>EL</span>, <span class='no'>CL</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>))</div><div class='output co'>#&gt; Evaluating variable PH 11.1 % 
-#&gt; Evaluating variable ED 22.2 % 
-#&gt; Evaluating variable EL 33.3 % 
-#&gt; Evaluating variable CL 44.4 % 
-#&gt; Evaluating variable CW 55.6 % 
-#&gt; Evaluating variable KW 66.7 % 
-#&gt; Evaluating variable NR 77.8 % 
-#&gt; Evaluating variable TKW 88.9 % 
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>EL</span>, <span class='no'>CL</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>))</div><div class='output co'>#&gt; Evaluating variable PH 0 % 
+#&gt; Evaluating variable ED 12.5 % 
+#&gt; Evaluating variable EL 25 % 
+#&gt; Evaluating variable CL 37.5 % 
+#&gt; Evaluating variable CW 50 % 
+#&gt; Evaluating variable KW 62.5 % 
+#&gt; Evaluating variable NR 75 % 
+#&gt; Evaluating variable TKW 87.5 % 
 #&gt; Evaluating variable NKE 100 % 
 #&gt; ------------------------------------------------------------
 #&gt; Variables with nonsignificant genotype effect
@@ -365,22 +365,21 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; </span><span style='color: #555555;'>11</span><span> CV ratio    0.722   1.49   0.219   1.74   1.56    0.803  0.964 9.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>
 #&gt; </span><span style='color: #555555;'># … with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># BLUPs for genotypes</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>)</div><div class='output co'>#&gt; <span class='message'>setting the argument 'what' to 'blupg'.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 10</span><span>
-#&gt;    gen      PH    ED    EL    CL    CW    KW    NR   TKW   NKE
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1     2.19  50.2  14.7  30.7  26.1  153.  15.8  354.  437.
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10    2.09  44.4  14.6  25.1  13.3  129.  15.5  268.  483.
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11    2.13  47.2  14.6  26.6  16.6  143.  16.1  297.  482.
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12    2.33  47.8  14.6  26.1  18.2  148.  16.1  293.  503.
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13    2.43  50.3  14.8  27.4  21.5  170.  17.8  319.  547.
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2     2.16  50.3  14.8  30.0  21.9  156.  15.7  338.  467.
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3     2.09  47.2  14.7  28.6  18.7  142.  15.1  331.  434.
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4     2.10  46.1  14.8  27.8  19.6  145.  14.4  310.  472.
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5     2.12  49.8  14.7  30.1  26.0  156.  17.0  309.  517.
-#&gt; </span><span style='color: #555555;'>10</span><span> H6     2.16  49.7  14.5  31.6  22.8  140.  16.2  325.  433.
-#&gt; </span><span style='color: #555555;'>11</span><span> H7     2.17  48.7  14.7  30.0  26.5  153.  15.6  346.  448.
-#&gt; </span><span style='color: #555555;'>12</span><span> H8     2.13  46.3  14.7  29.0  21.9  143.  14.9  339.  425.
-#&gt; </span><span style='color: #555555;'>13</span><span> H9     2.08  44.4  14.7  27.0  17.1  131.  14.9  301.  434.</div><div class='input'>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 11 x 10</span><span>
+#&gt;    Parameters      PH     ED      EL     CL     CW      KW     NR     TKW
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Gen_var     0.017</span><span style='text-decoration: underline;'>1</span><span>  5.37   0.047</span><span style='text-decoration: underline;'>2</span><span>  4.27  18.5   181.     1.18  8.41</span><span style='color: #555555;'>e</span><span>+2
+#&gt; </span><span style='color: #555555;'> 2</span><span> Gen (%)    34.3    68.8    4.58   75.1   71.0    39.2   48.2   4.52</span><span style='color: #555555;'>e</span><span>+1
+#&gt; </span><span style='color: #555555;'> 3</span><span> Res_var     0.032</span><span style='text-decoration: underline;'>8</span><span>  2.43   0.984   1.41   7.54  280.     1.27  1.02</span><span style='color: #555555;'>e</span><span>+3
+#&gt; </span><span style='color: #555555;'> 4</span><span> Res (%)    65.7    31.2   95.4    24.9   29.0    60.8   51.8   5.48</span><span style='color: #555555;'>e</span><span>+1
+#&gt; </span><span style='color: #555555;'> 5</span><span> Phen_var    0.049</span><span style='text-decoration: underline;'>8</span><span>  7.80   1.03    5.68  26.0   461.     2.45  1.86</span><span style='color: #555555;'>e</span><span>+3
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2          0.343   0.688  0.045</span><span style='text-decoration: underline;'>8</span><span>  0.751  0.710   0.392  0.482 4.52</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> H2mg        0.610   0.869  0.126   0.901  0.880   0.659  0.736 7.12</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> Accuracy    0.781   0.932  0.355   0.949  0.938   0.812  0.858 8.44</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> CVg         6.03    4.84   1.48    7.26  20.7     9.16   6.88  9.13</span><span style='color: #555555;'>e</span><span>+0
+#&gt; </span><span style='color: #555555;'>10</span><span> CVr         8.35    3.26   6.76    4.18  13.2    11.4    7.14  1.00</span><span style='color: #555555;'>e</span><span>+1
+#&gt; </span><span style='color: #555555;'>11</span><span> CV ratio    0.722   1.49   0.219   1.74   1.56    0.803  0.964 9.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>
+#&gt; </span><span style='color: #555555;'># … with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># fitting the model considering an alpha-lattice design</span>
 <span class='co'># Genotype and block-within-replicate as random effects</span>
 <span class='co'># Note that block effect was now informed.</span>

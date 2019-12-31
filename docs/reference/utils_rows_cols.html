@@ -65,6 +65,8 @@ all_pairs(): Get all the possible pairs between the levels of a
 factor.
 column_exists(): Checks if a column exists in a data frame. Return a
 logical value.
+columns_to_first(): Move columns to first positions in .data.
+columns_to_last(): Move columns to last positions in .data.
 concatenate(): Concatenate columns of a data frame. If drop =
 TRUE then the existing variables are dropped.
 get_levels(): Get the levels of a factor variable.
@@ -254,6 +256,8 @@ rows in <code>.data</code> plus the rows declared in <code>...</code>.</p></li>
 factor.</p></li>
 <li><p><code>column_exists()</code>: Checks if a column exists in a data frame. Return a
 logical value.</p></li>
+<li><p><code>columns_to_first()</code>: Move columns to first positions in <code>.data</code>.</p></li>
+<li><p><code>columns_to_last()</code>: Move columns to last positions in <code>.data</code>.</p></li>
 <li><p><code>concatenate()</code>: Concatenate columns of a data frame. If <code>drop =
 TRUE</code> then the existing variables are dropped.</p></li>
 <li><p><code>get_levels()</code>: Get the levels of a factor variable.</p></li>
@@ -276,6 +280,10 @@ data frame.</p></li>
 <span class='fu'>add_rows</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>.before</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>.after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>all_pairs</span>(<span class='no'>.data</span>, <span class='no'>levels</span>)
+
+<span class='fu'>column_to_first</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+
+<span class='fu'>column_to_last</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
 <span class='fu'>column_exists</span>(<span class='no'>.data</span>, <span class='no'>cols</span>)
 
@@ -325,6 +333,9 @@ must have one element for each row in <code>.data</code> when using
 <code>add_cols()</code>.</p></li>
 <li><p>For <code>remove_cols()</code> and <code>select_cols()</code>,  <code>...</code> is the
 column name or column index of the variable(s) to be dropped.</p></li>
+<li><p>For <code>columns_to_first()</code> and <code>columns_to_last()</code>,  <code>...</code> is
+the column name or column index of the variable(s) to be moved to first or
+last in <code>.data</code>.</p></li>
 <li><p>For <code>remove_rows()</code> and <code>select_rows()</code>, <code>...</code> is an integer
 row value.</p></li>
 <li><p>For <code>concatenate()</code>, <code>...</code> is the unquoted variable names to be
@@ -638,85 +649,85 @@ assumption that's the column you've created most recently), as a vector.</p></td
 #&gt; [13] "H9" </div><div class='input'><span class='fu'>get_level_size</span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>)</div><div class='output co'>#&gt;  H1 H10 H11 H12 H13  H2  H3  H4  H5  H6  H7  H8  H9 
 #&gt;   3   3   3   3   3   3   3   3   3   3   3   3   3 </div><div class='input'>
 <span class='co'>############## all possible pairs ################</span>
-<span class='fu'>all_pairs</span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>)</div><div class='output co'>#&gt;     [,1]  [,2] 
-#&gt; V1  "H1"  "H10"
-#&gt; V2  "H1"  "H11"
-#&gt; V3  "H1"  "H12"
-#&gt; V4  "H1"  "H13"
-#&gt; V5  "H1"  "H2" 
-#&gt; V6  "H1"  "H3" 
-#&gt; V7  "H1"  "H4" 
-#&gt; V8  "H1"  "H5" 
-#&gt; V9  "H1"  "H6" 
-#&gt; V10 "H1"  "H7" 
-#&gt; V11 "H1"  "H8" 
-#&gt; V12 "H1"  "H9" 
-#&gt; V13 "H10" "H11"
-#&gt; V14 "H10" "H12"
-#&gt; V15 "H10" "H13"
-#&gt; V16 "H10" "H2" 
-#&gt; V17 "H10" "H3" 
-#&gt; V18 "H10" "H4" 
-#&gt; V19 "H10" "H5" 
-#&gt; V20 "H10" "H6" 
-#&gt; V21 "H10" "H7" 
-#&gt; V22 "H10" "H8" 
-#&gt; V23 "H10" "H9" 
-#&gt; V24 "H11" "H12"
-#&gt; V25 "H11" "H13"
-#&gt; V26 "H11" "H2" 
-#&gt; V27 "H11" "H3" 
-#&gt; V28 "H11" "H4" 
-#&gt; V29 "H11" "H5" 
-#&gt; V30 "H11" "H6" 
-#&gt; V31 "H11" "H7" 
-#&gt; V32 "H11" "H8" 
-#&gt; V33 "H11" "H9" 
-#&gt; V34 "H12" "H13"
-#&gt; V35 "H12" "H2" 
-#&gt; V36 "H12" "H3" 
-#&gt; V37 "H12" "H4" 
-#&gt; V38 "H12" "H5" 
-#&gt; V39 "H12" "H6" 
-#&gt; V40 "H12" "H7" 
-#&gt; V41 "H12" "H8" 
-#&gt; V42 "H12" "H9" 
-#&gt; V43 "H13" "H2" 
-#&gt; V44 "H13" "H3" 
-#&gt; V45 "H13" "H4" 
-#&gt; V46 "H13" "H5" 
-#&gt; V47 "H13" "H6" 
-#&gt; V48 "H13" "H7" 
-#&gt; V49 "H13" "H8" 
-#&gt; V50 "H13" "H9" 
-#&gt; V51 "H2"  "H3" 
-#&gt; V52 "H2"  "H4" 
-#&gt; V53 "H2"  "H5" 
-#&gt; V54 "H2"  "H6" 
-#&gt; V55 "H2"  "H7" 
-#&gt; V56 "H2"  "H8" 
-#&gt; V57 "H2"  "H9" 
-#&gt; V58 "H3"  "H4" 
-#&gt; V59 "H3"  "H5" 
-#&gt; V60 "H3"  "H6" 
-#&gt; V61 "H3"  "H7" 
-#&gt; V62 "H3"  "H8" 
-#&gt; V63 "H3"  "H9" 
-#&gt; V64 "H4"  "H5" 
-#&gt; V65 "H4"  "H6" 
-#&gt; V66 "H4"  "H7" 
-#&gt; V67 "H4"  "H8" 
-#&gt; V68 "H4"  "H9" 
-#&gt; V69 "H5"  "H6" 
-#&gt; V70 "H5"  "H7" 
-#&gt; V71 "H5"  "H8" 
-#&gt; V72 "H5"  "H9" 
-#&gt; V73 "H6"  "H7" 
-#&gt; V74 "H6"  "H8" 
-#&gt; V75 "H6"  "H9" 
-#&gt; V76 "H7"  "H8" 
-#&gt; V77 "H7"  "H9" 
-#&gt; V78 "H8"  "H9" </div><div class='input'>
+<span class='fu'>all_pairs</span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>)</div><div class='output co'>#&gt;     V1  V2
+#&gt; 1   H1 H10
+#&gt; 2   H1 H11
+#&gt; 3   H1 H12
+#&gt; 4   H1 H13
+#&gt; 5   H1  H2
+#&gt; 6   H1  H3
+#&gt; 7   H1  H4
+#&gt; 8   H1  H5
+#&gt; 9   H1  H6
+#&gt; 10  H1  H7
+#&gt; 11  H1  H8
+#&gt; 12  H1  H9
+#&gt; 13 H10 H11
+#&gt; 14 H10 H12
+#&gt; 15 H10 H13
+#&gt; 16 H10  H2
+#&gt; 17 H10  H3
+#&gt; 18 H10  H4
+#&gt; 19 H10  H5
+#&gt; 20 H10  H6
+#&gt; 21 H10  H7
+#&gt; 22 H10  H8
+#&gt; 23 H10  H9
+#&gt; 24 H11 H12
+#&gt; 25 H11 H13
+#&gt; 26 H11  H2
+#&gt; 27 H11  H3
+#&gt; 28 H11  H4
+#&gt; 29 H11  H5
+#&gt; 30 H11  H6
+#&gt; 31 H11  H7
+#&gt; 32 H11  H8
+#&gt; 33 H11  H9
+#&gt; 34 H12 H13
+#&gt; 35 H12  H2
+#&gt; 36 H12  H3
+#&gt; 37 H12  H4
+#&gt; 38 H12  H5
+#&gt; 39 H12  H6
+#&gt; 40 H12  H7
+#&gt; 41 H12  H8
+#&gt; 42 H12  H9
+#&gt; 43 H13  H2
+#&gt; 44 H13  H3
+#&gt; 45 H13  H4
+#&gt; 46 H13  H5
+#&gt; 47 H13  H6
+#&gt; 48 H13  H7
+#&gt; 49 H13  H8
+#&gt; 50 H13  H9
+#&gt; 51  H2  H3
+#&gt; 52  H2  H4
+#&gt; 53  H2  H5
+#&gt; 54  H2  H6
+#&gt; 55  H2  H7
+#&gt; 56  H2  H8
+#&gt; 57  H2  H9
+#&gt; 58  H3  H4
+#&gt; 59  H3  H5
+#&gt; 60  H3  H6
+#&gt; 61  H3  H7
+#&gt; 62  H3  H8
+#&gt; 63  H3  H9
+#&gt; 64  H4  H5
+#&gt; 65  H4  H6
+#&gt; 66  H4  H7
+#&gt; 67  H4  H8
+#&gt; 68  H4  H9
+#&gt; 69  H5  H6
+#&gt; 70  H5  H7
+#&gt; 71  H5  H8
+#&gt; 72  H5  H9
+#&gt; 73  H6  H7
+#&gt; 74  H6  H8
+#&gt; 75  H6  H9
+#&gt; 76  H7  H8
+#&gt; 77  H7  H9
+#&gt; 78  H8  H9</div><div class='input'>
 <span class='co'>########## select numeric variables only #########</span>
 <span class='fu'>select_numeric_cols</span>(<span class='no'>data_g</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 15</span><span>
 #&gt;       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED  PERK

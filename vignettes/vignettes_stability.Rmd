@@ -57,6 +57,12 @@ ge_winners(data_ge2, ENV, GEN, resp = everything(), type = "ranks") %>%
   print_table()
 ```
 
+For more details about the trials, we can use `ge_details()`
+```{r}
+ge_details(data_ge2, ENV, GEN, resp = everything()) %>% 
+  print_table()
+```
+
 
 # Within-environment analysis of variance
 The function `anova_ind()` can be used to compute an within-environment analysis of variance. Environment with values in blue had a significant (p < 0.05) genotype effect.
