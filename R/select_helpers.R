@@ -29,6 +29,9 @@ dplyr::select
 #' @importFrom dplyr mutate
 #' @export
 dplyr::mutate
+#' @importFrom dplyr rename
+#' @export
+dplyr::rename
 NULL
 
 #' @title Select helper
