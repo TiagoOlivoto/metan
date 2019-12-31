@@ -75,6 +75,8 @@ remove_cols(): Remove one or more columns from a data frame.
 remove_rows(): Remove one or more rows from a data frame.
 reorder_cols(): Reorder columns in a data frame.
 select_cols(): Select one or more columns from a data frame.
+select_first_col(): Select first variable, possibly with an offset.
+select_last_col(): Select last variable, possibly with an offset.
 select_numeric_cols(): Select all the numeric columns of a data
 frame.
 select_non_numeric_cols(): Select all the non-numeric columns of a
@@ -266,6 +268,8 @@ TRUE</code> then the existing variables are dropped.</p></li>
 <li><p><code>remove_rows()</code>: Remove one or more rows from a data frame.</p></li>
 <li><p><code>reorder_cols()</code>: Reorder columns in a data frame.</p></li>
 <li><p><code>select_cols()</code>: Select one or more columns from a data frame.</p></li>
+<li><p><code>select_first_col()</code>: Select first variable, possibly with an offset.</p></li>
+<li><p><code>select_last_col()</code>: Select last variable, possibly with an offset.</p></li>
 <li><p><code>select_numeric_cols()</code>: Select all the numeric columns of a data
 frame.</p></li>
 <li><p><code>select_non_numeric_cols()</code>: Select all the non-numeric columns of a
@@ -307,6 +311,10 @@ data frame.</p></li>
 <span class='fu'>remove_cols</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
 <span class='fu'>remove_rows</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+
+<span class='fu'>select_first_col</span>(<span class='no'>.data</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>select_last_col</span>(<span class='no'>.data</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>select_numeric_cols</span>(<span class='no'>.data</span>)
 
@@ -380,6 +388,12 @@ assumption that's the column you've created most recently), as a vector.</p></td
     <tr>
       <th>group</th>
       <td><p>A factor variable to get the levels.</p></td>
+    </tr>
+    <tr>
+      <th>offset</th>
+      <td><p>Set it to <em>n</em> to select the <em>n</em>th variable from the
+end (for <code>select_last_col()</code>) of from the begin (for
+<code>select_first_col()</code>)</p></td>
     </tr>
     </table>
 

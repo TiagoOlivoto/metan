@@ -38,7 +38,7 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 
 
 # Genotype-environment performance
-The function `ge_plot()` may be used to visualize the genotype's performance across the environments. The black diamond shows the mean for each environment.
+The function `ge_plot()` may be used to visualize the genotype's performance across the environments.
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
 a <- ge_plot(data_ge, ENV, GEN, GY)
 b <- ge_plot(data_ge, ENV, GEN, GY) + ggplot2::coord_flip()
