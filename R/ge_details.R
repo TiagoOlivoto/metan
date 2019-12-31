@@ -68,16 +68,16 @@ ge_details <- function(.data, env, gen, resp){
     max <- data %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
     desc_st <- desc_stat(data, stats = c("mean, SE.mean, SD.pop, CV"), verbose = FALSE)
     temp <- tibble(Parameters = c("Mean", "Std_err", "Desv_pad", "CV", "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"),
-                   Values = c(round(desc_st[1, 2], 4),
-                              round(desc_st[2, 2], 4),
-                              round(desc_st[3, 2], 4),
-                              round(desc_st[4, 2], 4),
-                              paste0(round(min[3], 4), " (", min$GEN, " in ", min$ENV,")"),
-                              paste0(round(max$Y, 4), " (", max$GEN, " in ", max$ENV,")"),
-                              paste0(min_group[1,2], " (", round(min_group[1,3], 3),")"),
-                              paste0(max_group[1,2], " (", round(max_group[1,3], 3),")"),
-                              paste0(min_group[2,2], " (", round(min_group[2,3], 3), ") "),
-                              paste0(max_group[2,2], " (", round(max_group[2,3], 3), ") ")))
+                   Values = c(round(desc_st[1, 2], 2),
+                              round(desc_st[2, 2], 2),
+                              round(desc_st[3, 2], 2),
+                              round(desc_st[4, 2], 2),
+                              paste0(round(min[3], 2), " (", min$GEN, " in ", min$ENV,")"),
+                              paste0(round(max$Y, 2), " (", max$GEN, " in ", max$ENV,")"),
+                              paste0(min_group[1,2], " (", round(min_group[1,3], 2),")"),
+                              paste0(max_group[1,2], " (", round(max_group[1,3], 2),")"),
+                              paste0(min_group[2,2], " (", round(min_group[2,3], 2), ") "),
+                              paste0(max_group[2,2], " (", round(max_group[2,3], 2), ") ")))
     listres[[paste(names(vars[var]))]] <- temp
   }
   bind <-
