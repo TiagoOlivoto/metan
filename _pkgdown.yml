@@ -236,10 +236,12 @@ reference:
       - resca
       - round_cols
       - sem
-      - select_non_numeric_cols
       - select_cols
-      - select_rows
+      - select_first_col
+      - select_last_col
+      - select_non_numeric_cols
       - select_numeric_cols
+      - select_rows
       - split_factors
       - solve_svd
       - theme_metan

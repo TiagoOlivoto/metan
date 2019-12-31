@@ -308,6 +308,8 @@ round_cols <- function(.data, ...,  digits = 2){
 #' * \code{remove_rows()}: Remove one or more rows from a data frame.
 #' * \code{reorder_cols()}: Reorder columns in a data frame.
 #' * \code{select_cols()}: Select one or more columns from a data frame.
+#' * \code{select_first_col()}: Select first variable, possibly with an offset.
+#' * \code{select_last_col()}: Select last variable, possibly with an offset.
 #' * \code{select_numeric_cols()}: Select all the numeric columns of a data
 #' frame.
 #' * \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
@@ -349,6 +351,9 @@ round_cols <- function(.data, ...,  digits = 2){
 #' @param cols A quoted variable name to check if it exists in \code{.data}.
 #' @param group A factor variable to get the levels.
 #' @param levels The levels of a factor or a numeric vector.
+#' @param offset Set it to \emph{n} to select the \emph{n}th variable from the
+#'   end (for \code{select_last_col()}) of from the begin (for
+#'   \code{select_first_col()})
 #' @md
 #' @importFrom  tibble add_column add_row
 #' @export
@@ -582,6 +587,21 @@ remove_cols <- function(.data, ...){
 #' @export
 remove_rows <- function(.data, ...){
   slice(.data, -c(!!!quos(...)))
+}
+#' @name utils_rows_cols
+#' @export
+select_first_col <- function(.data, offset = NULL){
+  if(!missing(offset) && offset == 0){
+    stop("`offset` must be greater than the 0", call. = FALSE)
+  }
+  offset <- ifelse(missing(offset), ncol(.data) - 1, ncol(.data) - offset)
+  select(.data, last_col(offset = offset))
+}
+#' @name utils_rows_cols
+#' @export
+select_last_col <- function(.data, offset = NULL){
+  offset <- ifelse(missing(offset), 0, offset)
+  select(.data, last_col(offset = offset))
 }
 #' @name utils_rows_cols
 #' @export

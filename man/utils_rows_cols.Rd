@@ -14,6 +14,8 @@
 \alias{reorder_cols}
 \alias{remove_cols}
 \alias{remove_rows}
+\alias{select_first_col}
+\alias{select_last_col}
 \alias{select_numeric_cols}
 \alias{select_non_numeric_cols}
 \alias{select_cols}
@@ -52,6 +54,10 @@ reorder_cols(.data, ..., .before = NULL, .after = NULL)
 remove_cols(.data, ...)
 
 remove_rows(.data, ...)
+
+select_first_col(.data, offset = NULL)
+
+select_last_col(.data, offset = NULL)
 
 select_numeric_cols(.data)
 
@@ -104,6 +110,10 @@ to "_".}
 assumption that's the column you've created most recently), as a vector.}
 
 \item{group}{A factor variable to get the levels.}
+
+\item{offset}{Set it to \emph{n} to select the \emph{n}th variable from the
+end (for \code{select_last_col()}) of from the begin (for
+\code{select_first_col()})}
 }
 \description{
 \itemize{
@@ -131,6 +141,8 @@ TRUE} then the existing variables are dropped.
 \item \code{remove_rows()}: Remove one or more rows from a data frame.
 \item \code{reorder_cols()}: Reorder columns in a data frame.
 \item \code{select_cols()}: Select one or more columns from a data frame.
+\item \code{select_first_col()}: Select first variable, possibly with an offset.
+\item \code{select_last_col()}: Select last variable, possibly with an offset.
 \item \code{select_numeric_cols()}: Select all the numeric columns of a data
 frame.
 \item \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
