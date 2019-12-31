@@ -50,7 +50,7 @@
 #' heritabilities and genetic correlations. biometrical genetics. New York:
 #' Pergamon Press.
 #' @export
-#'
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 #' print(mod)
