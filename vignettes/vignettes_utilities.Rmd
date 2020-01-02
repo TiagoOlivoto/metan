@@ -65,6 +65,13 @@ select_numeric_cols(data_ge2) %>% print_table()
 select_non_numeric_cols(data_ge2) %>% print_table()
 ```
 
+We can select the first or last columns quickly with `select_first_col()` and ´select_last_col(), respectively.
+
+```{r}
+select_first_col(data_ge2) %>% print_table()
+select_last_col(data_ge2) %>% print_table()
+```
+
 
 To remove columns or rows, use `remove_cols()` and `remove_rows()`.
 ```{r}

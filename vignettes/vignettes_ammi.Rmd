@@ -37,12 +37,10 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 The first step is to inspect the data with the function `inspect()`.
 
 ```{r, fig.width=7, fig.height=7, fig.align="center"}
-inspect <- 
-inspect(data_ge,
-        verbose = FALSE,
-        plot = TRUE)
-
-print_table(inspect)
+insp <- inspect(data_ge,
+                verbose = FALSE,
+                plot = TRUE)
+print_table(insp)
 ```
 
 
@@ -120,8 +118,7 @@ Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] o
 
 ```{r echo = TRUE}
 predicted <- predict(AMMI_model, naxis = 4)
-rbind(head(predicted$GY), tail(predicted$GY)) %>%
-print_table()
+print_table(predicted$GY)
     ```
 
 
@@ -147,9 +144,7 @@ In this example only IPCAs with *P*-value < 0.05 will be considered in the WAAS 
 
 
 ```{r }
-waas_index$GY$model %>%
-select(type, Code, Y, contains("Pct"), contains("Pes"), contains("WAAS")) %>%
-print_table()
+print_table(waas_index$GY$model)
 
 ```
 
