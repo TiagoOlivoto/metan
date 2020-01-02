@@ -65,7 +65,7 @@ select_numeric_cols(data_ge2) %>% print_table()
 select_non_numeric_cols(data_ge2) %>% print_table()
 ```
 
-We can select the first or last columns quickly with `select_first_col()` and ´select_last_col(), respectively.
+We can select the first or last columns quickly with `select_first_col()` and `select_last_col()`, respectively.
 
 ```{r}
 select_first_col(data_ge2) %>% print_table()
@@ -137,7 +137,7 @@ If the argument `drop` is set to `TRUE` then, only the new variable is kept and 
 extract_number(data_ge, GEN, drop = TRUE) %>% print_table()
 ```
 
-To pull out the results into a vector, use the argument `pull = TRUE`. This is particularly useful when `extract_*` or `replace_*` are used within a function like `mutate()`.
+To pull out the results into a vector, use the argument `pull = TRUE`. This is particularly useful when `extract_*` or `replace_*` are used within a function like `add_cols()`.
 
 
 ```{r}
@@ -174,7 +174,7 @@ replace_string(data_ge,
   print_table()
 ```
 
-To remove all strings of a data frame, use `remove_strings()`
+To remove all strings of a data frame, use `remove_strings()`.
 ```{r}
 remove_strings(data_ge) %>% print_table()
 ```
