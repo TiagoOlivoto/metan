@@ -116,12 +116,12 @@ lpcor <- function(.data,
   if (any(class(.data) == "split_factors")) {
     if(!missing(...)){
       dfs <- lapply(.data[[1]], function(x){
-        select_numeric_cols(x)
+        select_cols(x, ...) %>%
+          select_numeric_cols()
       })
     } else{
       dfs <- lapply(.data[[1]], function(x){
-        select_cols(x, ...) %>%
-          select_numeric_cols()
+          select_numeric_cols(x)
       })
     }
     out <- lapply(seq_along(dfs), function(x) {
