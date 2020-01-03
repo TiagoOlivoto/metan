@@ -4,7 +4,7 @@
 \alias{corr_ci}
 \title{Confidence interval for correlation coefficient}
 \usage{
-corr_ci(.data = NA, ..., r = NULL, n = NULL, verbose = TRUE)
+corr_ci(.data = NA, ..., r = NULL, n = NULL, by = NULL, verbose = TRUE)
 }
 \arguments{
 \item{.data}{A dataset containing variables only or a symmetric correlation
@@ -18,6 +18,12 @@ coefficient.}
 
 \item{n}{The sample size if \code{data} is a correlation matrix or if r is
 informed.}
+
+\item{by}{One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in \code{by}. To split
+the data by more than one factor variable, use the function
+\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
@@ -40,11 +46,10 @@ where \eqn{n} is the sample size and \code{r} is the correlation coefficient.
 
 library(metan)
 
-CI1 <- corr_ci(data_ge)
+CI1 <- corr_ci(data_ge2)
 
-CI2 <- data_ge2 \%>\%
-split_factors(ENV) \%>\%
-corr_ci(CD, TKW, NKE)
+# By each level of the factor 'ENV'
+CI2 <- corr_ci(data_ge2, CD, TKW, NKE, by = ENV)
 
 }
 \references{

@@ -19,7 +19,7 @@ A tibble with the \strong{statistics in the columns} and
 \code{desc_wider} 'widens' an object of class \code{desc_stat} increasing the
 number of columns and decreasing the number of rows. This is speccialy useful
 when the descriptive statistics were computed for each level of a factor using
-the function \code{\link{split_factors}}.
+the function \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
 }
 \examples{
 \donttest{

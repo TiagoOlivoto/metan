@@ -29,6 +29,11 @@
 #'   distances are computed for each level of the grouping variable.
 #' @param ... The variables in \code{.data} to compute the distances. Set to
 #'   \code{NULL}, i.e., all the numeric variables in \code{.data} are used.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #' @param means_by If \code{.data} doesn't contain the mean for each
 #'   observation, then \code{means_by} is a grouping variable to compute the
 #'   means. For example, if \code{means_by = GEN}, then the means of the
@@ -92,40 +97,47 @@
 #' library(metan)
 #'
 #' # All rows and all numeric variables from data
-#' d1 = clustering(data_ge2)
+#' d1 <- clustering(data_ge2)
 #'
 #' # Based on the mean for each genotype
-#' d2 = clustering(data_ge2, means_by = GEN)
+#' d2 <- clustering(data_ge2, means_by = GEN)
 #'
 #' # Based on the mean of each genotype
 #' # Variables NKR, TKW, and NKE
-#' d3 = clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)
+#' d3 <- clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)
 #'
 #' # Select variables for compute the distances
-#' d4 = clustering(data_ge2, means_by = GEN, selvar = TRUE)
+#' d4 <- clustering(data_ge2, means_by = GEN, selvar = TRUE)
 #'
 #' # Compute the distances with standardized data
 #' # Define 4 clusters
-#' d5 = clustering(data_ge2,
-#'                 means_by = GEN,
-#'                 scale = TRUE,
-#'                 nclust = 4)
+#' d5 <- clustering(data_ge2,
+#'                  means_by = GEN,
+#'                  scale = TRUE,
+#'                  nclust = 4)
 #'
 #' # Compute the distances for each environment
 #' # Select the variables NKR, TKW, and NKE
 #' # Use the mean for each genotype
-#' d6 = data_ge2 %>%
-#'      split_factors(ENV, keep_factors = TRUE) %>%
-#'      clustering(NKR, TKW, NKE,
+#' d6 <- clustering(data_ge2,
+#'                 NKR, TKW, NKE,
+#'                 by = ENV,
 #'                 means_by = GEN)
 #'
 #' # Check the correlation between distance matrices
 #' pairs_mantel(d6)
 #'
 #'}
-clustering <- function(.data, ... = NULL, means_by = NULL, scale = FALSE,
-                       selvar = FALSE, verbose = TRUE, distmethod = "euclidean",
-                       clustmethod = "average", nclust = NULL) {
+clustering <- function(.data,
+                       ...,
+                       by = NULL,
+                       means_by = NULL,
+                       scale = FALSE,
+                       selvar = FALSE,
+                       verbose = TRUE,
+                       distmethod = "euclidean",
+                       clustmethod = "average",
+                       nclust = NULL) {
   if (scale == TRUE && selvar == TRUE) {
     stop("It is not possible to execute the algorithm for variable selection when 'scale = TRUE'. Please, verify.")
   }
@@ -137,6 +149,12 @@ clustering <- function(.data, ... = NULL, means_by = NULL, scale = FALSE,
   if (!clustmethod %in% c("complete", "ward.D", "ward.D2",
                           "single", "average", "mcquitty", "median", "centroid")) {
     stop("The argument 'distmethod' is incorrect. It should be one of the 'ward.D', 'ward.D2', 'single', 'average', 'mcquitty', 'median' or 'centroid'.")
+  }
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()

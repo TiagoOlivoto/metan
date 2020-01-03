@@ -7,6 +7,7 @@
 path_coeff(
   .data,
   resp,
+  by = NULL,
   pred = NULL,
   exclude = FALSE,
   correction = NULL,
@@ -22,6 +23,12 @@ path_coeff(
 \code{split_factors}.}
 
 \item{resp}{The dependent variable.}
+
+\item{by}{One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in \code{by}. To split
+the data by more than one factor variable, use the function
+\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
 
 \item{pred}{The predictor variables, set to \code{NULL}, i.e., the predictor
 variables are all the numeric variables in the data except that in
@@ -134,9 +141,7 @@ pcoeff4 <- path_coeff(data_ge2,
 
 # When one analysis should be carried out for each environment
 # Using the forward-pipe operator \%>\%
-pcoeff5 <- data_ge2 \%>\%
-         split_factors(ENV) \%>\%
-         path_coeff(resp = KW)
+pcoeff5 <- path_coeff(data_ge2, resp = KW, by = ENV)
 }
 
 

@@ -4,7 +4,15 @@
 \alias{mahala_design}
 \title{Mahalanobis distance from designed experiments}
 \usage{
-mahala_design(.data, gen, rep, resp, design = "RCBD", return = "distance")
+mahala_design(
+  .data,
+  gen,
+  rep,
+  resp,
+  design = "RCBD",
+  by = NULL,
+  return = "distance"
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Genotypes,
@@ -21,6 +29,12 @@ replications/blocks.}
 var3)}.}
 
 \item{design}{The experimental design. Must be RCBD or CRD.}
+
+\item{by}{One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in \code{by}. To split
+the data by more than one factor variable, use the function
+\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
 
 \item{return}{What the function return? Default is 'distance', i.e., the
 Mahalanobis distance. Alternatively, it is possible to return the matrix of
@@ -39,22 +53,20 @@ randomized complete block design or completely randomized design.
 \examples{
 \donttest{
 library(metan)
-maha_group = mahala_design(data_ge,
-                           gen = GEN,
-                           rep = REP,
-                           resp = c(GY, HM))
+maha_group <- mahala_design(data_ge,
+                            gen = GEN,
+                            rep = REP,
+                            resp = c(GY, HM))
 
 # Compute one distance for each environment
-maha_group = data_ge \%>\%
-            split_factors(ENV, keep_factors = TRUE) \%>\%
-            mahala_design(GEN, REP, everything())
+maha_group <- mahala_design(data_ge, GEN, REP, everything(), by = ENV)
 
 # Return the variance-covariance matrix of residuals
-cov_mat = mahala_design(data_ge,
-                       gen = GEN,
-                       rep = REP,
-                       resp = c(GY, HM),
-                       return = 'covmat')
+cov_mat <- mahala_design(data_ge,
+                        gen = GEN,
+                        rep = REP,
+                        resp = c(GY, HM),
+                        return = 'covmat')
 }
 }
 \author{

@@ -21,6 +21,11 @@
 #' @param .data The data. Must be a dataframe or an object of class
 #'   \code{split_factors}.
 #' @param resp The dependent variable.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #' @param pred The predictor variables, set to \code{NULL}, i.e., the predictor
 #'   variables are all the numeric variables in the data except that in
 #'   \code{resp}.
@@ -109,15 +114,21 @@
 #'
 #' # When one analysis should be carried out for each environment
 #' # Using the forward-pipe operator %>%
-#'pcoeff5 <- data_ge2 %>%
-#'          split_factors(ENV) %>%
-#'          path_coeff(resp = KW)
+#'pcoeff5 <- path_coeff(data_ge2, resp = KW, by = ENV)
 #'}
 #'
 #'
-path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
-                       correction = NULL, knumber = 50, brutstep = FALSE, maxvif = 10,
-                       missingval = "pairwise.complete.obs", verbose = TRUE) {
+path_coeff <- function(.data,
+                       resp,
+                       by = NULL,
+                       pred = NULL,
+                       exclude = FALSE,
+                       correction = NULL,
+                       knumber = 50,
+                       brutstep = FALSE,
+                       maxvif = 10,
+                       missingval = "pairwise.complete.obs",
+                       verbose = TRUE) {
   if (missing(resp) == TRUE) {
     stop("A response variable (dependent) must be declared.")
   }
@@ -125,6 +136,12 @@ path_coeff <- function(.data, resp, pred = NULL, exclude = FALSE,
     stop("Multiple arguments to select the predictors. Set 'pred' to NULL or 'brutstep' to FALSE.")
   }
   kincrement <- 1/knumber
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
+  }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
     for (k in 1:length(.data[[1]])) {

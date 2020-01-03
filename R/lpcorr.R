@@ -11,6 +11,11 @@
 #'   (Default) then all the numeric variables from \code{.data} are used. It
 #'   must be a single variable name or a comma-separated list of unquoted
 #'   variables names.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
 #'   objects used to compute the correlation coefficients.
 #' @param method a character string indicating which correlation coefficient is
@@ -38,14 +43,18 @@
 #'             lpcor(n = nrow(iris),
 #'                   verbose = FALSE)
 #'
-#' # Select variables and compute the partial correlation
+#' # Select all numeric variables and compute the partial correlation
 #' # For each level of \code{Species}
 #'
-#' partial4 <- iris %>%
-#'             split_factors(Species) %>%
-#'            lpcor(Sepal.Length, Sepal.Width, Petal.Width)
+#' partial4 <- lpcor(iris, everithig(), by = Species)
+#' print(partial4$summary)
 #'}
-lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
+lpcor <- function(.data,
+                  ...,
+                  by = NULL,
+                  n = NULL,
+                  method = "pearson",
+                  verbose = TRUE) {
   if (!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)) {
     stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
   }
@@ -98,10 +107,16 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
   if (is.matrix(.data)) {
     out <- internal(.data)
   }
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
+  }
   if (any(class(.data) == "split_factors")) {
     if(!missing(...)){
       dfs <- lapply(.data[[1]], function(x){
-        dplyr::select(x, ...)
+        select_numeric_cols(x)
       })
     } else{
       dfs <- .data[[1]]
@@ -126,8 +141,7 @@ lpcor <- function(.data, ..., n = NULL, method = "pearson", verbose = TRUE) {
   }
   if (is.data.frame(.data)) {
     if(!missing(...)){
-      dfs <-  select(.data, ...) %>%
-        select_numeric_cols()
+      dfs <-  select_numeric_cols(.data)
     } else{
       if (verbose == TRUE) {
         if (sum(lapply(.data, is.factor) == TRUE) > 0) {

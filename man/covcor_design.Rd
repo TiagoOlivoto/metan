@@ -4,7 +4,7 @@
 \alias{covcor_design}
 \title{Variance-covariance matrices for designed experiments}
 \usage{
-covcor_design(.data, gen, rep, resp, design = "RCBD", type = NULL)
+covcor_design(.data, gen, rep, resp, design = "RCBD", by = NULL, type = NULL)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Genotypes,
@@ -21,6 +21,12 @@ replications/blocks.}
 var3)}.}
 
 \item{design}{The experimental design. Must be RCBD or CRD.}
+
+\item{by}{One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in \code{by}. To split
+the data by more than one factor variable, use the function
+\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
 
 \item{type}{What the matrices should return? Set to \code{NULL}, i.e., a list
 of matrices is returned. The argument type allow the following values
@@ -45,7 +51,7 @@ items:
 
 If \code{.data} is an object of class \code{split_factors} then the output
 will be a list with the above values for each grouping variable in the
-function \code{\link{split_factors}}.
+function \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
 }
 \description{
 Compute variance-covariance and correlation matrices using data from a
@@ -57,19 +63,22 @@ library(metan)
 # List of matrices
 data <- subset(data_ge2, ENV == 'A1')
 matrices <- covcor_design(data, gen = GEN, rep = REP,
-                          resp = c(PH, EH, NKE, TKW))
+                           resp = c(PH, EH, NKE, TKW))
 
 # Genetic correlations
-gcor <- covcor_design(data, gen = GEN, rep = REP,
+gcor <- covcor_design(data,
+                      gen = GEN,
+                      rep = REP,
                       resp = c(PH, EH, NKE, TKW),
                       type = 'gcor')
 
 # Residual (co)variance matrix for each environment
-rcov <- data_ge2 \%>\%
-        split_factors(ENV, keep_factors = TRUE) \%>\%
-        covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
-                      type = 'rcov')
-
+rcov <- covcor_design(data_ge2,
+                      gen = GEN,
+                      by = ENV,
+                      rep = REP,
+                      resp = c(PH, EH, CD, CL),
+                      type = "rcov")
 
 }
 \author{

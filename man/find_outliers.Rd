@@ -7,6 +7,7 @@
 find_outliers(
   .data = NULL,
   var = NULL,
+  by = NULL,
   values = NULL,
   plots = FALSE,
   coef = 1.5,
@@ -19,6 +20,12 @@ find_outliers(
 class \code{split_factors}.}
 
 \item{var}{The variable to be analyzed.}
+
+\item{by}{One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in \code{by}. To split
+the data by more than one factor variable, use the function
+\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
 
 \item{values}{An alternative way to pass the data to the function. It must be
 a numeric vector.}
@@ -44,9 +51,8 @@ library(metan)
 
 find_outliers(data_ge2, var = PH, plots = TRUE)
 
-data_ge2 \%>\%
-split_factors(ENV) \%>\%
-find_outliers(var = PH)
+# Find outliers within each environment
+find_outliers(data_ge2, var = PH, by = ENV)
 }
 
 }

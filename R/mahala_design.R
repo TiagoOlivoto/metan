@@ -14,6 +14,11 @@
 #' @param resp The response variables. For example \code{resp = c(var1, var2,
 #'   var3)}.
 #' @param design The experimental design. Must be RCBD or CRD.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #' @param return What the function return? Default is 'distance', i.e., the
 #'   Mahalanobis distance. Alternatively, it is possible to return the matrix of
 #'   means \code{return = 'means'}, or the variance-covariance matrix of
@@ -26,27 +31,36 @@
 #' @examples
 #'\donttest{
 #' library(metan)
-#' maha_group = mahala_design(data_ge,
-#'                            gen = GEN,
-#'                            rep = REP,
-#'                            resp = c(GY, HM))
+#' maha_group <- mahala_design(data_ge,
+#'                             gen = GEN,
+#'                             rep = REP,
+#'                             resp = c(GY, HM))
 #'
 #' # Compute one distance for each environment
-#'maha_group = data_ge %>%
-#'             split_factors(ENV, keep_factors = TRUE) %>%
-#'             mahala_design(GEN, REP, everything())
+#'maha_group <- mahala_design(data_ge, GEN, REP, everything(), by = ENV)
 #'
 #' # Return the variance-covariance matrix of residuals
-#'cov_mat = mahala_design(data_ge,
-#'                        gen = GEN,
-#'                        rep = REP,
-#'                        resp = c(GY, HM),
-#'                        return = 'covmat')
+#'cov_mat <- mahala_design(data_ge,
+#'                         gen = GEN,
+#'                         rep = REP,
+#'                         resp = c(GY, HM),
+#'                         return = 'covmat')
 #'}
-mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
+mahala_design <- function(.data,
+                          gen,
+                          rep,
+                          resp,
+                          design = "RCBD",
+                          by = NULL,
                           return = "distance") {
   if (!design %in% c("RCBD", "CRD")) {
     stop("The experimental design must be RCBD or CRD.")
+  }
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
@@ -99,12 +113,11 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
         dfs[[paste(nam)]] <- dist
       }
       if (return == "covmat") {
-        dfs[[paste(nam)]] <- mat
+        dfs[[paste(nam)]] <- make_sym(mat, diag = diag(mat))
       }
       if (return == "means") {
         dfs[[paste(nam)]] <- means
       }
-      print(nam)
     }
     return(structure(dfs, class = "mahala_group"))
   } else {
@@ -155,7 +168,7 @@ mahala_design <- function(.data, gen, rep, resp, design = "RCBD",
       return(dist)
     }
     if (return == "covmat") {
-      return(mat)
+      return(make_sym(mat, diag = diag(mat)))
     }
     if (return == "means") {
       return(means)

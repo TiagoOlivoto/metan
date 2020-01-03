@@ -16,6 +16,11 @@
 #'   coefficient.
 #' @param n The sample size if \code{data} is a correlation matrix or if r is
 #'   informed.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #'   console.
 #' @return A tibble containing the values of the correlation, confidence
@@ -33,13 +38,17 @@
 #'
 #' library(metan)
 #'
-#' CI1 <- corr_ci(data_ge)
+#' CI1 <- corr_ci(data_ge2)
 #'
-#' CI2 <- data_ge2 %>%
-#' split_factors(ENV) %>%
-#' corr_ci(CD, TKW, NKE)
+#' # By each level of the factor 'ENV'
+#' CI2 <- corr_ci(data_ge2, CD, TKW, NKE, by = ENV)
 #'
-corr_ci <- function(.data = NA, ..., r = NULL, n = NULL, verbose = TRUE) {
+corr_ci <- function(.data = NA,
+                    ...,
+                    r = NULL,
+                    n = NULL,
+                    by = NULL,
+                    verbose = TRUE) {
   if (any(!is.na(.data))) {
     if (!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)) {
       stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
@@ -70,6 +79,12 @@ corr_ci <- function(.data = NA, ..., r = NULL, n = NULL, verbose = TRUE) {
     }
     if (is.matrix(.data)) {
       out <- internal(.data)
+    }
+    if (!missing(by)){
+      if(length(as.list(substitute(by))[-1L]) != 0){
+        stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+      }
+      .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
     }
     if (any(class(.data) == "split_factors")) {
       if (missing(...)) {

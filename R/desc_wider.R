@@ -3,7 +3,7 @@
 #'\code{desc_wider} 'widens' an object of class \code{desc_stat} increasing the
 #'number of columns and decreasing the number of rows. This is speccialy useful
 #'when the descriptive statistics were computed for each level of a factor using
-#'the function \code{\link{split_factors}}.
+#'the function \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
 #'
 #'@param .data An output of the function \code{\link{desc_stat}}.
 #'@param var The variable in \code{.data} to show the results.

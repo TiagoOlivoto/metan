@@ -8,6 +8,7 @@ can_corr(
   .data = NULL,
   FG = NULL,
   SG = NULL,
+  by = NULL,
   means_by = NULL,
   use = "cor",
   test = "Bartlett",
@@ -26,12 +27,16 @@ The data can also be passed directly by the arguments \code{FG} and
 \code{split_factors}. In such case, the canonical correlation will be
 estimated for each level of the grouping variable in that function.}
 
-\item{FG}{If a dataframe is informed in \code{.data}, then \code{FG} is a
-comma-separated list of unquoted variable names that will compose the first
-(smallest) group of the correlation analysis. FG can also be a coordinate
-for the variables; for example, \code{FG = data[,1:3]}.}
+\item{FG, SG}{If a dataframe is informed in \code{.data}, then \code{FG} and
+\code{SG} is a comma-separated list of unquoted variable names that will
+compose the first (smallest) and second (highest) group of the correlation
+analysis, respectively. Select helpers are also allowed.}
 
-\item{SG}{Similar than \code{FG} but for the second group of variables.}
+\item{by}{One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in \code{by}. To split
+the data by more than one factor variable, use the function
+\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
 
 \item{means_by}{The argument \code{means_by} is a grouping variable to
 compute the means by. For example, if \code{means_by = GEN}, then the means
@@ -93,9 +98,9 @@ correlation pairs.
 
 library(metan)
 
-cc1=can_corr(data_ge2,
-             FG = c(PH, EH, EP),
-             SG = c(EL, ED, CL, CD, CW, KW, NR))
+cc1 <- can_corr(data_ge2,
+               FG = c(PH, EH, EP),
+               SG = c(EL, ED, CL, CD, CW, KW, NR))
 
 cc2 <- can_corr(FG = data_ge2[, 4:6],
                 SG = data_ge2[, 7:13],
@@ -103,11 +108,11 @@ cc2 <- can_corr(FG = data_ge2[, 4:6],
                 collinearity = FALSE)
 
 # Canonical correlations for each environment
-cc3 = data_ge2 \%>\%
-      split_factors(ENV, REP) \%>\%
-      can_corr(FG = c(PH, EH, EP),
-               SG = c(EL, ED, CL, CD, CW, KW, NR),
-               verbose = FALSE)
+cc3 <- data_ge2 \%>\%
+       can_corr(FG = c(PH, EH, EP),
+                SG = c(EL, ED, CL, CD, CW, KW, NR),
+                by = ENV,
+                verbose = FALSE)
 
 
 }

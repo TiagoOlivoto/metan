@@ -11,11 +11,15 @@
 #'   \code{SG}. Alternatively, \code{.data} may be passed from the function
 #'   \code{split_factors}. In such case, the canonical correlation will be
 #'   estimated for each level of the grouping variable in that function.
-#' @param FG If a dataframe is informed in \code{.data}, then \code{FG} is a
-#'   comma-separated list of unquoted variable names that will compose the first
-#'   (smallest) group of the correlation analysis. FG can also be a coordinate
-#'   for the variables; for example, \code{FG = data[,1:3]}.
-#' @param SG Similar than \code{FG} but for the second group of variables.
+#' @param FG,SG If a dataframe is informed in \code{.data}, then \code{FG} and
+#'   \code{SG} is a comma-separated list of unquoted variable names that will
+#'   compose the first (smallest) and second (highest) group of the correlation
+#'   analysis, respectively. Select helpers are also allowed.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #' @param means_by The argument \code{means_by} is a grouping variable to
 #'   compute the means by. For example, if \code{means_by = GEN}, then the means
 #'   of the numerical variables will be computed for each level of the grouping
@@ -77,9 +81,9 @@
 #'
 #' library(metan)
 #'
-#' cc1=can_corr(data_ge2,
-#'              FG = c(PH, EH, EP),
-#'              SG = c(EL, ED, CL, CD, CW, KW, NR))
+#' cc1 <- can_corr(data_ge2,
+#'                FG = c(PH, EH, EP),
+#'                SG = c(EL, ED, CL, CD, CW, KW, NR))
 #'
 #' cc2 <- can_corr(FG = data_ge2[, 4:6],
 #'                 SG = data_ge2[, 7:13],
@@ -87,16 +91,25 @@
 #'                 collinearity = FALSE)
 #'
 #' # Canonical correlations for each environment
-#' cc3 = data_ge2 %>%
-#'       split_factors(ENV, REP) %>%
-#'       can_corr(FG = c(PH, EH, EP),
-#'                SG = c(EL, ED, CL, CD, CW, KW, NR),
-#'                verbose = FALSE)
+#' cc3 <- data_ge2 %>%
+#'        can_corr(FG = c(PH, EH, EP),
+#'                 SG = c(EL, ED, CL, CD, CW, KW, NR),
+#'                 by = ENV,
+#'                 verbose = FALSE)
 #'
 #'
-can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = "cor",
-                     test = "Bartlett", prob = 0.05, center = TRUE, stdscores = FALSE,
-                     verbose = TRUE, collinearity = TRUE) {
+can_corr <- function(.data = NULL,
+                     FG = NULL,
+                     SG = NULL,
+                     by = NULL,
+                     means_by = NULL,
+                     use = "cor",
+                     test = "Bartlett",
+                     prob = 0.05,
+                     center = TRUE,
+                     stdscores = FALSE,
+                     verbose = TRUE,
+                     collinearity = TRUE) {
   if (missing(.data) & missing(FG) || missing(SG)) {
     stop("No valid data input for analysis.")
   }
@@ -113,6 +126,12 @@ can_corr <- function(.data = NULL, FG = NULL, SG = NULL, means_by = NULL, use = 
     if (!is.data.frame(SG)) {
       stop("'SG' should be data frame.")
     }
+  }
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()

@@ -6,7 +6,8 @@
 \usage{
 clustering(
   .data,
-  ... = NULL,
+  ...,
+  by = NULL,
   means_by = NULL,
   scale = FALSE,
   selvar = FALSE,
@@ -26,6 +27,12 @@ distances are computed for each level of the grouping variable.}
 
 \item{...}{The variables in \code{.data} to compute the distances. Set to
 \code{NULL}, i.e., all the numeric variables in \code{.data} are used.}
+
+\item{by}{One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in \code{by}. To split
+the data by more than one factor variable, use the function
+\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
 
 \item{means_by}{If \code{.data} doesn't contain the mean for each
 observation, then \code{means_by} is a grouping variable to compute the
@@ -106,31 +113,31 @@ cophenetic correlation and high similarity with the original distances.
 library(metan)
 
 # All rows and all numeric variables from data
-d1 = clustering(data_ge2)
+d1 <- clustering(data_ge2)
 
 # Based on the mean for each genotype
-d2 = clustering(data_ge2, means_by = GEN)
+d2 <- clustering(data_ge2, means_by = GEN)
 
 # Based on the mean of each genotype
 # Variables NKR, TKW, and NKE
-d3 = clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)
+d3 <- clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)
 
 # Select variables for compute the distances
-d4 = clustering(data_ge2, means_by = GEN, selvar = TRUE)
+d4 <- clustering(data_ge2, means_by = GEN, selvar = TRUE)
 
 # Compute the distances with standardized data
 # Define 4 clusters
-d5 = clustering(data_ge2,
-                means_by = GEN,
-                scale = TRUE,
-                nclust = 4)
+d5 <- clustering(data_ge2,
+                 means_by = GEN,
+                 scale = TRUE,
+                 nclust = 4)
 
 # Compute the distances for each environment
 # Select the variables NKR, TKW, and NKE
 # Use the mean for each genotype
-d6 = data_ge2 \%>\%
-     split_factors(ENV, keep_factors = TRUE) \%>\%
-     clustering(NKR, TKW, NKE,
+d6 <- clustering(data_ge2,
+                NKR, TKW, NKE,
+                by = ENV,
                 means_by = GEN)
 
 # Check the correlation between distance matrices

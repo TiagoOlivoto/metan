@@ -14,6 +14,11 @@
 #' @param resp The response variables. For example \code{resp = c(var1, var2,
 #'   var3)}.
 #' @param design The experimental design. Must be RCBD or CRD.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #' @param type What the matrices should return? Set to \code{NULL}, i.e., a list
 #'   of matrices is returned. The argument type allow the following values
 #'   \code{'pcor', 'gcor', 'rcor'}, (which will return the phenotypic, genotypic
@@ -33,7 +38,7 @@
 #'
 #' If \code{.data} is an object of class \code{split_factors} then the output
 #' will be a list with the above values for each grouping variable in the
-#' function \code{\link{split_factors}}.
+#' function \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -43,22 +48,30 @@
 #' # List of matrices
 #' data <- subset(data_ge2, ENV == 'A1')
 #' matrices <- covcor_design(data, gen = GEN, rep = REP,
-#'                           resp = c(PH, EH, NKE, TKW))
+#'                            resp = c(PH, EH, NKE, TKW))
 #'
 #' # Genetic correlations
-#' gcor <- covcor_design(data, gen = GEN, rep = REP,
+#' gcor <- covcor_design(data,
+#'                       gen = GEN,
+#'                       rep = REP,
 #'                       resp = c(PH, EH, NKE, TKW),
 #'                       type = 'gcor')
 #'
 #' # Residual (co)variance matrix for each environment
-#'rcov <- data_ge2 %>%
-#'         split_factors(ENV, keep_factors = TRUE) %>%
-#'         covcor_design(GEN, REP, c(PH, EH, NKE, TKW),
-#'                       type = 'rcov')
+#' rcov <- covcor_design(data_ge2,
+#'                       gen = GEN,
+#'                       by = ENV,
+#'                       rep = REP,
+#'                       resp = c(PH, EH, CD, CL),
+#'                       type = "rcov")
 #'
-#'
-covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
-                          type = NULL) {
+covcor_design <- function(.data,
+                          gen,
+                          rep,
+                          resp,
+                          design = "RCBD",
+                          by = NULL,
+                          type = NULL){
   if (!design %in% c("RCBD", "CRD")) {
     stop("The experimental design must be RCBD or CRD.")
   }
@@ -67,6 +80,12 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
                        "rcov", "means"))) {
       stop("The type must be one of the 'pcor', 'gcor', 'rcor', 'pcov', 'gcov', 'rcov', or 'means'. ")
     }
+  }
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
   }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
@@ -121,20 +140,15 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
       for (i in 1:ncol(covdata2)) {
         if (design == "RCBD") {
           model <- anova(aov(covdata2[[i]] ~ GEN + REP))
-          tcovres <- (model[3, 3] - ms[index[i, 1], 2] -
-                        ms[index[i, 2], 2])/2
-          tcovfen <- ((model[1, 3] - ms[index[i, 1],
-                                        1] - ms[index[i, 2], 1])/2)/NREP
+          tcovres <- (model[3, 3] - ms[index[i, 1], 2] - ms[index[i, 2], 2])/2
+          tcovfen <- ((model[1, 3] - ms[index[i, 1], 1] - ms[index[i, 2], 1])/2)/NREP
           tcovgen <- (tcovfen * NREP - tcovres)/NREP
           covres[i] <- tcovres
           covfen[i] <- tcovfen
           covgen[i] <- tcovgen
-          corfen[i] <- tcovfen/sqrt((ms[index[i, 1],
-                                        1]/NREP) * (ms[index[i, 2], 1]/NREP))
-          corgen[i] <- tcovgen/sqrt((ms[index[i, 1],
-                                        3]/NREP) * (ms[index[i, 2], 3]/NREP))
-          cores[i] <- tcovres/sqrt((ms[index[i, 1], 2]) *
-                                     (ms[index[i, 2], 2]))
+          corfen[i] <- tcovfen/sqrt((ms[index[i, 1], 1]/NREP) * (ms[index[i, 2], 1]/NREP))
+          corgen[i] <- tcovgen/sqrt((ms[index[i, 1], 3]/NREP) * (ms[index[i, 2], 3]/NREP))
+          cores[i] <- tcovres/sqrt((ms[index[i, 1], 2]) * (ms[index[i, 2], 2]))
         } else {
           model <- anova(aov(covdata2[[i]] ~ GEN))
           tcovres <- (model[2, 3] - ms[index[i, 1], 2] -
@@ -145,12 +159,9 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
           covres[i] <- tcovres
           covfen[i] <- tcovfen
           covgen[i] <- tcovgen
-          corfen[i] <- tcovfen/sqrt((ms[index[i, 1],
-                                        1]/NREP) * (ms[index[i, 2], 1]/NREP))
-          corgen[i] <- tcovgen/sqrt((ms[index[i, 1],
-                                        3]/NREP) * (ms[index[i, 2], 3]/NREP))
-          cores[i] <- tcovres/sqrt((ms[index[i, 1], 2]) *
-                                     (ms[index[i, 2], 2]))
+          corfen[i] <- tcovfen/sqrt((ms[index[i, 1], 1]/NREP) * (ms[index[i, 2], 1]/NREP))
+          corgen[i] <- tcovgen/sqrt((ms[index[i, 1], 3]/NREP) * (ms[index[i, 2], 3]/NREP))
+          cores[i] <- tcovres/sqrt((ms[index[i, 1], 2]) * (ms[index[i, 2], 2]))
         }
       }
       corres <- matrix(1, nvar, nvar)
@@ -169,9 +180,9 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
       colnames(corrfen) <- rownames(corrfen) <- names(means)
       colnames(corrgen) <- rownames(corrgen) <- names(means)
       if (is.null(type)) {
-        tmp <- list(geno_cov = as.matrix(make_sym(vgen, diag = 0)),
-                    phen_cov = as.matrix(make_sym(vfen, diag = 0)),
-                    resi_cov = as.matrix(make_sym(vres, diag = 0)),
+        tmp <- list(geno_cov = as.matrix(make_sym(vgen, diag = diag(vgen))),
+                    phen_cov = as.matrix(make_sym(vfen, diag = diag(vfen))),
+                    resi_cov = as.matrix(make_sym(vres, diag = diag(vres))),
                     geno_cor = as.matrix(make_sym(corrgen, diag = 1)),
                     phen_cor = as.matrix(make_sym(corrfen, diag = 1)),
                     resi_cor = as.matrix(make_sym(corres, diag = 1)))
@@ -187,13 +198,13 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
           dfs[[paste(nam)]] <- as.matrix(make_sym(corres, diag = 1))
         }
         if (type == "pcov") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(vfen, diag = 0))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(vfen, diag = diag(vfen)))
         }
         if (type == "gcov") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(vgen, diag = 0))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(vgen, diag = diag(vgen)))
         }
         if (type == "rcov") {
-          dfs[[paste(nam)]] <- as.matrix(make_sym(vres, diag = 0))
+          dfs[[paste(nam)]] <- as.matrix(make_sym(vres, diag = diag(vres)))
         }
         if (type == "means") {
           return(as_tibble(means, rownames = NA))
@@ -230,7 +241,6 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
       }
       colnames(covdata)[[vin]] <- paste(names(vars[var]))
     }
-
     ms <- data.frame(mst = mst, msr = msr) %>%
       dplyr::mutate(tr = mst - msr)
     vres <- diag(ms[, 2])
@@ -252,36 +262,26 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
     for (i in 1:ncol(covdata2)) {
       if (design == "RCBD") {
         model <- anova(aov(covdata2[[i]] ~ GEN + REP))
-        tcovres <- (model[3, 3] - ms[index[i, 1], 2] -
-                      ms[index[i, 2], 2])/2
-        tcovfen <- ((model[1, 3] - ms[index[i, 1], 1] -
-                       ms[index[i, 2], 1])/2)/NREP
+        tcovres <- (model[3, 3] - ms[index[i, 1], 2] - ms[index[i, 2], 2])/2
+        tcovfen <- ((model[1, 3] - ms[index[i, 1], 1] - ms[index[i, 2], 1])/2)/NREP
         tcovgen <- (tcovfen * NREP - tcovres)/NREP
         covres[i] <- tcovres
         covfen[i] <- tcovfen
         covgen[i] <- tcovgen
-        corfen[i] <- tcovfen/sqrt((ms[index[i, 1], 1]/NREP) *
-                                    (ms[index[i, 2], 1]/NREP))
-        corgen[i] <- tcovgen/sqrt((ms[index[i, 1], 3]/NREP) *
-                                    (ms[index[i, 2], 3]/NREP))
-        cores[i] <- tcovres/sqrt((ms[index[i, 1], 2]) *
-                                   (ms[index[i, 2], 2]))
+        corfen[i] <- tcovfen/sqrt((ms[index[i, 1], 1]/NREP) * (ms[index[i, 2], 1]/NREP))
+        corgen[i] <- tcovgen/sqrt((ms[index[i, 1], 3]/NREP) * (ms[index[i, 2], 3]/NREP))
+        cores[i] <- tcovres/sqrt((ms[index[i, 1], 2]) * (ms[index[i, 2], 2]))
       } else {
         model <- anova(aov(covdata2[[i]] ~ GEN))
-        tcovres <- (model[2, 3] - ms[index[i, 1], 2] -
-                      ms[index[i, 2], 2])/2
-        tcovfen <- ((model[1, 3] - ms[index[i, 1], 1] -
-                       ms[index[i, 2], 1])/2)/NREP
+        tcovres <- (model[2, 3] - ms[index[i, 1], 2] - ms[index[i, 2], 2])/2
+        tcovfen <- ((model[1, 3] - ms[index[i, 1], 1] - ms[index[i, 2], 1])/2)/NREP
         tcovgen <- (tcovfen * NREP - tcovres)/NREP
         covres[i] <- tcovres
         covfen[i] <- tcovfen
         covgen[i] <- tcovgen
-        corfen[i] <- tcovfen/sqrt((ms[index[i, 1], 1]/NREP) *
-                                    (ms[index[i, 2], 1]/NREP))
-        corgen[i] <- tcovgen/sqrt((ms[index[i, 1], 3]/NREP) *
-                                    (ms[index[i, 2], 3]/NREP))
-        cores[i] <- tcovres/sqrt((ms[index[i, 1], 2]) *
-                                   (ms[index[i, 2], 2]))
+        corfen[i] <- tcovfen/sqrt((ms[index[i, 1], 1]/NREP) * (ms[index[i, 2], 1]/NREP))
+        corgen[i] <- tcovgen/sqrt((ms[index[i, 1], 3]/NREP) * (ms[index[i, 2], 3]/NREP))
+        cores[i] <- tcovres/sqrt((ms[index[i, 1], 2]) * (ms[index[i, 2], 2]))
       }
     }
     corres <- matrix(1, nvar, nvar)
@@ -300,9 +300,9 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
     colnames(corrfen) <- rownames(corrfen) <- names(means)
     colnames(corrgen) <- rownames(corrgen) <- names(means)
     if (is.null(type)) {
-      return(structure(list(geno_cov = as.matrix(make_sym(vgen, diag = 0)),
-                            phen_cov = as.matrix(make_sym(vfen, diag = 0)),
-                            resi_cov = as.matrix(make_sym(vres, diag = 0)),
+      return(structure(list(geno_cov = as.matrix(make_sym(vgen, diag = diag(vgen))),
+                            phen_cov = as.matrix(make_sym(vfen, diag = diag(vfen))),
+                            resi_cov = as.matrix(make_sym(vres, diag = diag(vres))),
                             geno_cor = as.matrix(make_sym(corrgen, diag = 1)),
                             phen_cor = as.matrix(make_sym(corrfen, diag = 1)),
                             resi_cor = as.matrix(make_sym(corres, diag = 1)),
@@ -319,13 +319,13 @@ covcor_design <- function(.data, gen, rep, resp, design = "RCBD",
       return(as.matrix(make_sym(corres, diag = 1)))
     }
     if (type == "pcov") {
-      return(as.matrix(make_sym(vfen, diag = 0)))
+      return(as.matrix(make_sym(vfen, diag = diag(vfen))))
     }
     if (type == "gcov") {
-      return(as.matrix(make_sym(vgen, diag = 0)))
+      return(as.matrix(make_sym(vgen, diag = diag(vgen))))
     }
     if (type == "rcov") {
-      return(as.matrix(make_sym(vres, diag = 0)))
+      return(as.matrix(make_sym(vres, diag = diag(vres))))
     }
     if (type == "means") {
       return(as_tibble(means, rownames = NA))

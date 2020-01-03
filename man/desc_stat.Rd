@@ -7,6 +7,7 @@
 desc_stat(
   .data = NULL,
   ...,
+  by = NULL,
   values = NULL,
   stats = "main",
   hist = FALSE,
@@ -24,6 +25,12 @@ class \code{split_factors}.}
 \item{...}{A single variable name or a comma-separated list of unquoted
 variables names. If no variable is informed, all the numeric from
 \code{.data} variables will be used.}
+
+\item{by}{One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in \code{by}. To split
+the data by more than one factor variable, use the function
+\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
 
 \item{values}{An alternative way to pass the data to the function. It must be
 a numeric vector.}
@@ -70,14 +77,14 @@ silently.}
 A tibble with the statistics in the lines and variables in columns. If
  \code{.data} is an object of class \code{split_factors}, then the statistics
  will be shown for each level of the grouping variable in the function
- \code{\link{split_factors}}.
+ \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
 }
 \description{
 Compute the most used measures of central tendency, position, and dispersion.
 }
 \details{
 In cases when the statistics are computed for more than two variables
- with data coming from the function \code{\link{split_factors}} the results
+ with data coming from the function \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.the results
  are returned in a \emph{long} format. Thus, use the function
  \code{\link{desc_wider}} to convert it into a \emph{wide} format (levels of
  the factors in the rows and statistics in the columns).
@@ -88,26 +95,34 @@ library(metan)
 
 desc_stat(data_ge2, TKW)
 
-# Compute all statistics
+# Compute the main statistics
 # Use a numeric vector as input data
 vect <- data_ge2$TKW
-desc_stat(values = vect, stats = "all")
+desc_stat(values = vect)
 
 # Select specific statistics
 desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
           na.rm = TRUE,
-          stats = c('mean, SE.mean, CV, n, valid.n'))
+          stats = c('mean, se.mean, cv, n, valid.n'))
 
-# Compute the statistics for each level of "ENV"
+# Compute the main statistics for each level of "ENV"
 stats <-
-data_ge2 \%>\%
-  split_factors(GEN) \%>\%
-  desc_stat(EP, EL, EH, ED, PH, CD,
-  stats = c('mean, min, max, median, SE.mean, CI.mean, n, CV'),
-  verbose = FALSE)
+  desc_stat(data_ge2,
+            EP, EL, EH, ED, PH, CD,
+            by = ENV,
+            verbose = FALSE)
 
 # To get a 'wide' format with the statistics of the variable EP above.
 desc_wider(stats, PH)
+
+# Compute all the statistics for each combination of "ENV" and "GEN"
+# All the numeric variables in .data
+
+stats_all <-
+  data_ge2 \%>\%
+  split_factors(ENV, GEN) \%>\%
+  desc_stat(stats = "all", verbose = FALSE)
+desc_wider(stats_all, PH)
 }
 }
 \author{

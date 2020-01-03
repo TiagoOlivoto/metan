@@ -8,6 +8,11 @@
 #'@param ... A single variable name or a comma-separated list of unquoted
 #'  variables names. If no variable is informed, all the numeric from
 #'  \code{.data} variables will be used.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #'@param values An alternative way to pass the data to the function. It must be
 #'  a numeric vector.
 #'@param stats The descriptive statistics to show. Defaults to \code{"main"}
@@ -44,9 +49,9 @@
 #'@return A tibble with the statistics in the lines and variables in columns. If
 #'  \code{.data} is an object of class \code{split_factors}, then the statistics
 #'  will be shown for each level of the grouping variable in the function
-#'  \code{\link{split_factors}}.
+#'  \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
 #'@details In cases when the statistics are computed for more than two variables
-#'  with data coming from the function \code{\link{split_factors}} the results
+#'  with data coming from the function \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.the results
 #'  are returned in a \emph{long} format. Thus, use the function
 #'  \code{\link{desc_wider}} to convert it into a \emph{wide} format (levels of
 #'  the factors in the rows and statistics in the columns).
@@ -60,29 +65,38 @@
 #'
 #' desc_stat(data_ge2, TKW)
 #'
-#' # Compute all statistics
+#' # Compute the main statistics
 #' # Use a numeric vector as input data
 #' vect <- data_ge2$TKW
-#' desc_stat(values = vect, stats = "all")
+#' desc_stat(values = vect)
 #'
 #' # Select specific statistics
 #' desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
 #'           na.rm = TRUE,
-#'           stats = c('mean, SE.mean, CV, n, valid.n'))
+#'           stats = c('mean, se.mean, cv, n, valid.n'))
 #'
-#' # Compute the statistics for each level of "ENV"
+#' # Compute the main statistics for each level of "ENV"
 #' stats <-
-#' data_ge2 %>%
-#'   split_factors(GEN) %>%
-#'   desc_stat(EP, EL, EH, ED, PH, CD,
-#'   stats = c('mean, min, max, median, SE.mean, CI.mean, n, CV'),
-#'   verbose = FALSE)
+#'   desc_stat(data_ge2,
+#'             EP, EL, EH, ED, PH, CD,
+#'             by = ENV,
+#'             verbose = FALSE)
 #'
 #' # To get a 'wide' format with the statistics of the variable EP above.
 #' desc_wider(stats, PH)
+#'
+#' # Compute all the statistics for each combination of "ENV" and "GEN"
+#' # All the numeric variables in .data
+#'
+#' stats_all <-
+#'   data_ge2 %>%
+#'   split_factors(ENV, GEN) %>%
+#'   desc_stat(stats = "all", verbose = FALSE)
+#' desc_wider(stats_all, PH)
 #'}
 desc_stat <- function(.data = NULL,
                       ...,
+                      by = NULL,
                       values = NULL,
                       stats = "main",
                       hist = FALSE,
@@ -91,19 +105,19 @@ desc_stat <- function(.data = NULL,
                       na.rm = FALSE,
                       verbose = TRUE,
                       plot_theme = theme_metan()) {
-  all_f = c("AV.dev", "CI.mean", "CV", "gm.mean", "hm.mean", "IQR", "Kurt", "mad", "max", "mean", "median", "min", "n", "Q2.5", "Q25", "Q75", "Q97.5", "range", "SD.amo", "SD.pop", "SE.mean", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
-  main_f = c("CV", "max", "mean", "median", "min", "SE.mean", "var.amo")
-  if(!stats %in% c("main", "all")){
-    stats = unlist(strsplit(stats, split=", "))
+  all_f <- c("av.dev", "ci.mean", "cv", "gm.mean", "hm.mean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se.mean", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
+  main_f = c("cv", "max", "mean", "median", "min", "se.mean", "var.amo")
+  if(!all_lower_case(stats) %in% c("main", "all")){
+    stats = unlist(strsplit(stats, split=", ")) %>% all_lower_case()
   } else {
-    if(stats == "main"){
+    if(all_lower_case(stats) == "main"){
     stats = main_f
     } else{
     stats = unlist(strsplit(all_f, split=", "))
     }
   }
   if (any(!stats %in% c(all_f, main_f)) == TRUE) {
-    stop("Invalid value for the argument 'stat'. Allowed values are one of the AV.dev, CI.mean, CV, IQR, Kurt, mad, max, mean, median, min, n, Q2.5, Q25, Q75, Q97.5, range, SD.amo, SD.pop, SE.mean, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop. Did you accidentally omit the space between the comma and the following word?")
+    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci.mean, cv, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se.mean, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop.\nDid you accidentally omit the space between the comma and the following word?\nGood: stats = c('mean, median, cv')\nBad:  stats = c('mean, median,cv')", call. = FALSE)
   }
   if (!missing(.data) & !missing(values)) {
     stop("You can not inform a vector of values if a data frame is used as input.")
@@ -151,6 +165,12 @@ desc_stat <- function(.data = NULL,
   valid_n <- function(x){
     length(which(!is.na(x)))
   }
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
+  }
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
     datain <- .data[[1]]
@@ -192,24 +212,24 @@ desc_stat <- function(.data = NULL,
                                     hm.mean = hm_mean(., na.rm = na.rm),
                                     range = range_data,
                                     min = min(., na.rm = na.rm),
-                                    Q2.5 = quantile(., 0.025, na.rm = na.rm),
-                                    Q25 = quantile(., 0.25, na.rm = na.rm),
+                                    q2.5 = quantile(., 0.025, na.rm = na.rm),
+                                    q25 = quantile(., 0.25, na.rm = na.rm),
                                     median = median(., na.rm = na.rm),
-                                    Q75 = quantile(., 0.75, na.rm = na.rm),
-                                    Q97.5 = quantile(., 0.975, na.rm = na.rm),
+                                    q75 = quantile(., 0.75, na.rm = na.rm),
+                                    q97.5 = quantile(., 0.975, na.rm = na.rm),
                                     max = max(., na.rm = na.rm),
-                                    IQR = IQR(., na.rm = na.rm),
-                                    AV.dev = AV_dev,
+                                    iqr = IQR(., na.rm = na.rm),
+                                    av.dev = AV_dev,
                                     mad = mad(., na.rm = na.rm),
                                     var.pop = var_p,
                                     var.amo = var_a,
-                                    SD.pop = sd_p,
-                                    SD.amo = sd(., na.rm = na.rm),
-                                    SE.mean = SE_mean,
-                                    CI.mean = CI_mean,
+                                    sd.pop = sd_p,
+                                    sd.amo = sd(., na.rm = na.rm),
+                                    se.mean = SE_mean,
+                                    ci.mean = CI_mean,
                                     skew = skew,
-                                    Kurt = Kurt,
-                                    CV = CV,
+                                    kurt = Kurt,
+                                    cv = CV,
                                     sum = sum(., na.rm = na.rm),
                                     sum.dev = sum_dev,
                                     sum.sq.dev = sum_sq_dev))
@@ -291,24 +311,24 @@ desc_stat <- function(.data = NULL,
                                   hm.mean = hm_mean(., na.rm = na.rm),
                                   range = range_data,
                                   min = min(., na.rm = na.rm),
-                                  Q2.5 = quantile(., 0.025, na.rm = na.rm),
-                                  Q25 = quantile(., 0.25, na.rm = na.rm),
+                                  q2.5 = quantile(., 0.025, na.rm = na.rm),
+                                  q25 = quantile(., 0.25, na.rm = na.rm),
                                   median = median(., na.rm = na.rm),
-                                  Q75 = quantile(., 0.75, na.rm = na.rm),
-                                  Q97.5 = quantile(., 0.975, na.rm = na.rm),
+                                  q75 = quantile(., 0.75, na.rm = na.rm),
+                                  q97.5 = quantile(., 0.975, na.rm = na.rm),
                                   max = max(., na.rm = na.rm),
-                                  IQR = IQR(., na.rm = na.rm),
-                                  AV.dev = AV_dev,
+                                  iqr = IQR(., na.rm = na.rm),
+                                  av.dev = AV_dev,
                                   mad = mad(., na.rm = na.rm),
                                   var.pop = var_p,
                                   var.amo = var_a,
-                                  SD.pop = sd_p,
-                                  SD.amo = sd(., na.rm = na.rm),
-                                  SE.mean = SE_mean,
-                                  CI.mean = CI_mean,
+                                  sd.pop = sd_p,
+                                  sd.amo = sd(., na.rm = na.rm),
+                                  se.mean = SE_mean,
+                                  ci.mean = CI_mean,
                                   skew = skew,
-                                  Kurt = Kurt,
-                                  CV = CV,
+                                  kurt = Kurt,
+                                  cv = CV,
                                   sum = sum(., na.rm = na.rm),
                                   sum.dev = sum_dev,
                                   sum.sq.dev = sum_sq_dev))
