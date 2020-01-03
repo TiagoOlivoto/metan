@@ -41,15 +41,23 @@ find_outliers(data_out, var = PH, plots = TRUE)
 ```
 
 
-To check the outliers in different levels of a factor, the function `split_factors()` is used. As an example, we will find possible outliers for each level of the factor `ENV`.
+To check the outliers in different levels of a factor, use the argument `by`. As an example, we will find possible outliers for each level of the factor `ENV`.
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+find_outliers(data_ge2, PH, by = ENV)
+```
+
+To group by more than one variable, use the function `split_factors()` is used. 
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 data_ge2 %>%
-  split_factors(ENV) %>%
+  split_factors(ENV, GEN) %>%
   find_outliers(PH)
 ```
 
 
+
+ 
 # Descriptive statistics
 The function `desc_stat()` may be used to compute measures of central tendency, position, and dispersion. By default, seven statistics (coefficient of variation, maximum, mean, median, minimum,  standard error, and sample variance) are computed. To compute all the statistics, use the argument `stats = "all"`, or use a comma-separated vector with the statistic names, e.g., `stats = c("mean, CV")`. Use `hist = TRUE` to create a histogram for each variable. Note that select helpers can be used in the argument `...`.
 
@@ -60,23 +68,24 @@ data_ge2 %>%
   print_table()
 ```
 
-To compute the statistics for each level of a factor, use the function `split_factor()` before calling `desc_stat()`. In addition, it is possible to select the statistics to compute using the argument `stats`, that is a comma-separated vector of names with `"` at the beginning and end of vector only.
+To compute the statistics for each level of a factor, use the argument `by`. In addition, it is possible to select the statistics to compute using the argument `stats`, that is a single statistic name, e.g., `"mean"`, or a a comma-separated vector of names with `"` at the beginning and end of vector only. Note that the statistic names ARE NOTE case sensitive, i.e., both `"mean"` and `"MEAN"` are recognized.
 
 * This will work: 
-   * `stats = c("mean, SE.mean, CV, max, min")`
-   * `stats = "mean"`
+   * `stats = c("mean, se.mean, cv, max, min")`
+   * `stats = "Mean"`
+   * `stats = "MEAN"`
    
 * This will NOT work: 
-   * `stats = c("mean, "SE.mean", "CV", "max", "min")`
+   * `stats = c("mean, "se.mean", "cv", "max", "min")`
    * `stats = c("mean,SE.mean, CV, max,min")`
    
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 stats <- 
-  data_ge2 %>%
-  split_factors(GEN) %>%
-  desc_stat(contains("C"),
+  desc_stat(data_ge2,
+            contains("C"),
             stats = "all",
+            by = ENV,
             verbose = F)
 print_table(stats)
 ```
@@ -109,16 +118,15 @@ Where $t_{calc}$ is the calculated Student * t * statistic; $ r_{xy.m} $ is the 
 
 
 ```{r, message=FALSE }
-
 lpc1 <- data_ge2 %>% 
   select(starts_with("N")) %>% 
   lpcor(verbose = FALSE)
 print_table(lpc1$results)
 
 # Compute the correlations for each level of the factor ENV
-lpc2 <- data_ge2 %>%
-        split_factors(ENV) %>%
-        lpcor(verbose = FALSE) # Don't show the result in the console
+lpc2 <- lpcor(data_ge2,
+              by = ENV,
+              verbose = FALSE) # Don't show the result in the console
 
     ```
 
@@ -278,23 +286,25 @@ print_table(pcor, rownames = TRUE)
 
 ## Residual correlations
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-rcor <- covcor_design(data, gen = GEN, rep = REP,
-                    resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
-                     type = "rcor") %>% 
+rcor <- covcor_design(data,
+                      gen = GEN,
+                      rep = REP,
+                      resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
+                      type = "rcor") %>% 
   as.data.frame()
 print_table(rcor, rownames = TRUE)
 ```
 
 ## Residual (co)variance matrix
-Using the function `split_factors()` it is possible to pass the data grouped and compute the matrices for each level of the grouping factor. In this example we will obtain the residual (co)variance for each environment.
+In this example we will obtain the residual (co)variance for each environment.
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
-cov <- data_ge2 %>%
-       split_factors(ENV, keep_factors = TRUE) %>%
-       covcor_design(GEN, REP,
+cov <- covcor_design(data_ge2,
+                     gen = GEN,
+                     rep = REP,
                      resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
                      type = "rcov")
-    ```
+```
 
 The residual (co)variance matrix and the means (obtained using `type = "means"`) may be used into the function `mahala()` to compute the Mahalanobis distance 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
@@ -320,25 +330,20 @@ Recently, a Gaussian-independent estimator for the confidence interval of Pearso
 ```{r fig.width=7, fig.height = 5, fig.align="center"}
 
 # Use a data frame
-data_ge2 %>% 
-select(contains("E")) %>%
-corr_ci(verbose = FALSE) %>%
+corr_ci(data_ge2, contains("E"), verbose = FALSE) %>%
 plot_ci()
 
 
 ```
 
-In the following examples, the confidence interval is calculated by declaring the sample size (n) and the correlation coefficient (r). If the function `split_factors()` is used before `corr_ci()` then the confidence interval will be calculated within each level of the splitting factor.
+In the following examples, the confidence interval is calculated by declaring the sample size (n) and the correlation coefficient (r). Using the argument `by = ENV` the confidence interval can be calculated within each level of the factor `ENV`.
 
 ```{r, fig.width=6, fig.height = 4, fig.align="center"}
 # Inform n and r
 corr_ci(n = 145, r = 0.34)
 
 # Compute the confidence for each level of ENV
-CI2 = data_ge2 %>% 
-  select(contains("E")) %>%
-  split_factors(ENV, verbose = FALSE) %>% 
-  corr_ci()
+CI2 <- corr_ci(data_ge2, contains("E"), by = ENV)
 ```
 
 
@@ -375,9 +380,8 @@ cold2 <- colindiag(data_ge2)
 ## Perform the diagnostic for each level of the factor ENV
 
 ```{r }
-cold3 <- data_ge2 %>% 
-         split_factors(ENV, verbose = FALSE) %>% 
-         colindiag()
+cold3 <- colindiag(data_ge2 , by = ENV)
+         
 ```
 
 
@@ -429,20 +433,33 @@ pcoeff3 <-
 ## Compute the analysis for each level of environment
 ```{r }
 pcoeff4 <- 
-  data_ge2 %>%
-  split_factors(ENV) %>%
-  path_coeff(resp = KW,
-             pred = c(PH, EH, NKE, TKW))
+  path_coeff(data_ge2,
+             resp = KW,
+             pred = c(PH, EH, NKE, TKW),
+             by = ENV)
 ```
 
 
 # Canonical correlation analysis
+First of all, we will rename the plant-related traits `PH, EH EP` with the suffix `_PLA` to show the usability of the select helper `contains()`.
 
 ```{r }
-cc1 <- can_corr(data_ge2,
-                FG = c(PH, EH, EP),
-                SG = c(EL, ED, CL, CD, CW, KW, NR))
+data_cc <- rename(data_ge2,
+                  PH_PLA = PH,
+                  EH_PLA = EH,
+                  EP_PLA = EP)
 
+# Type the variable names
+cc1 <- can_corr(data_cc,
+                FG = c(PH_PLA, EH_PLA, EP_PLA),
+                SG = c(EL, ED, CL, CD, CW, KW))
+
+# Use select helpers
+cc2 <- can_corr(data_cc,
+                FG = contains("_PLA"),
+                SG = c(EL, ED, CL, CD, CW, KW))
+
+# Pass variables as data frames
 cc2 <- can_corr(FG = data_ge2[, 4:6],
                 SG = data_ge2[, 7:13],
                 verbose = FALSE,
@@ -518,19 +535,14 @@ d5 <- clustering(data_ge2,
 * All rows of each environment and all numeric variables used
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
-d6 <- data_ge2 %>%
-      split_factors(ENV) %>%
-      clustering()
+d6 <- clustering(data_ge2, by = ENV)
 ```
 
 * Select the variables NKR, TKW, and NKE
 * Use the mean for each genotype
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
-d7 <- data_ge2 %>%
-  split_factors(ENV, keep_factors = TRUE) %>%
-  clustering(NKR, TKW, NKE,
-             means_by = GEN)
+d7 <- clustering(data_ge2, NKR, TKW, NKE, means_by = GEN, by = ENV)
 ```
 
 ### Check the correlation between distance matrices
@@ -558,26 +570,24 @@ print_table(D2_des, rownames = TRUE)
 
 
 ### Compute one distance for each environment
-Using the function `split_factors()` it is possible to compute the Mahalanobis distance for each environment (or any grouping variable) and compare the distance matrices using the function `pairs_mantel()`. Let's do it.
+To compute the Mahalanobis distance for each environment (or any grouping variable) we can use the argument `by`. Note that `pairs_mantel()` is used to compare compute the Mantel's test for each combination of distance matrices. Let's do it.
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"  }
 data_ge2 %>%
-split_factors(ENV, keep_factors = TRUE) %>%
 mahala_design(gen = GEN,
               rep = REP,
-              resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW)) %>%
+              resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
+              by = ENV) %>%
 pairs_mantel()
 
-    ```
+```
 
 ### If I have the matrices of means and covariances
 Lets suppose we want compute the Mahalanobis' distance for each pairwise genotype comparision based on cob-related traits. Note that the function `select(contains("C"))` is used to select the cob-relate traits, after computing the mean for each genotype.
 
 ```{r warning=FALSE, message=FALSE}
-library(tidyverse)
+library(tibble)
 means <- data_ge2 %>%
-  select(-c(ENV, REP)) %>%
-  group_by(GEN) %>%
-  summarise_all(mean) %>%
+ means_by(GEN) %>% 
   column_to_rownames("GEN") %>%
   select(contains("C"))
 

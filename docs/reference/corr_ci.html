@@ -213,7 +213,7 @@ the nonparametric method proposed by Olivoto et al. (2018)." />
 the nonparametric method proposed by Olivoto et al. (2018).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>corr_ci</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>, <span class='kw'>r</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>corr_ci</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>, <span class='kw'>r</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -237,6 +237,14 @@ coefficient.</p></td>
       <th>n</th>
       <td><p>The sample size if <code>data</code> is a correlation matrix or if r is
 informed.</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in <code>by</code>. To split
+the data by more than one factor variable, use the function
+<code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data to <code>.data</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -267,11 +275,9 @@ equation: $$CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}$$</p>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
-<span class='no'>CI1</span> <span class='kw'>&lt;-</span> <span class='fu'>corr_ci</span>(<span class='no'>data_ge</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='input'>
-<span class='no'>CI2</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'>corr_ci</span>(<span class='no'>CD</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the grouped data. </span></div><div class='input'>
-</div></pre>
+<span class='no'>CI1</span> <span class='kw'>&lt;-</span> <span class='fu'>corr_ci</span>(<span class='no'>data_ge2</span>)</div><div class='output co'>#&gt; <span class='message'>The factors ENV GEN REP where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='input'>
+<span class='co'># By each level of the factor 'ENV'</span>
+<span class='no'>CI2</span> <span class='kw'>&lt;-</span> <span class='fu'>corr_ci</span>(<span class='no'>data_ge2</span>, <span class='no'>CD</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

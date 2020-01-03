@@ -213,7 +213,8 @@
 
     <pre class="usage"><span class='fu'>clustering</span>(
   <span class='no'>.data</span>,
-  <span class='kw'>...</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -239,6 +240,14 @@ distances are computed for each level of the grouping variable.</p></td>
       <th>...</th>
       <td><p>The variables in <code>.data</code> to compute the distances. Set to
 <code>NULL</code>, i.e., all the numeric variables in <code>.data</code> are used.</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in <code>by</code>. To split
+the data by more than one factor variable, use the function
+<code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data to <code>.data</code>.</p></td>
     </tr>
     <tr>
       <th>means_by</th>
@@ -340,16 +349,16 @@ rules: an evaluation. Comput. J. 20:359-363.
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='co'># All rows and all numeric variables from data</span>
-<span class='no'>d1</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>)</div><div class='output co'>#&gt; <span class='message'>The columns ENV GEN REP where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.' </span></div><div class='input'>
+<span class='no'>d1</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>)</div><div class='output co'>#&gt; <span class='message'>The columns ENV GEN REP where excluded. Use 'means_by' to compute the distances using the means of a factor. If you want to compute the distances for each level of a factor, use the function 'split_factors() before.' </span></div><div class='input'>
 <span class='co'># Based on the mean for each genotype</span>
-<span class='no'>d2</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
+<span class='no'>d2</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
 
 <span class='co'># Based on the mean of each genotype</span>
 <span class='co'># Variables NKR, TKW, and NKE</span>
-<span class='no'>d3</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='no'>NKR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
+<span class='no'>d3</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='no'>NKR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
 
 <span class='co'># Select variables for compute the distances</span>
-<span class='no'>d4</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
+<span class='no'>d4</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>, <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
 #&gt; Calculating model 2 with 14 variables. EP excluded in this step (14.3%).
 #&gt; Calculating model 3 with 13 variables. CDED excluded in this step (21.4%).
 #&gt; Calculating model 4 with 12 variables. PH excluded in this step (28.6%).
@@ -392,17 +401,17 @@ rules: an evaluation. Comput. J. 20:359-363.
 #&gt; --------------------------------------------------------------------------</div><div class='input'>
 <span class='co'># Compute the distances with standardized data</span>
 <span class='co'># Define 4 clusters</span>
-<span class='no'>d5</span> <span class='kw'>=</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>,
-                <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='no'>d5</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>,
+                 <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                 <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+                 <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
 <span class='co'># Compute the distances for each environment</span>
 <span class='co'># Select the variables NKR, TKW, and NKE</span>
 <span class='co'># Use the mean for each genotype</span>
-<span class='no'>d6</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'>clustering</span>(<span class='no'>NKR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>,
+<span class='no'>d6</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>,
+                <span class='no'>NKR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>,
+                <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                 <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
 
 <span class='co'># Check the correlation between distance matrices</span>

@@ -213,7 +213,7 @@ designed (RCBD or CRD) experiment." />
 designed (RCBD or CRD) experiment.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>covcor_design</span>(<span class='no'>.data</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>covcor_design</span>(<span class='no'>.data</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -244,6 +244,14 @@ var3)</code>.</p></td>
       <td><p>The experimental design. Must be RCBD or CRD.</p></td>
     </tr>
     <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in <code>by</code>. To split
+the data by more than one factor variable, use the function
+<code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data to <code>.data</code>.</p></td>
+    </tr>
+    <tr>
       <th>type</th>
       <td><p>What the matrices should return? Set to <code>NULL</code>, i.e., a list
 of matrices is returned. The argument type allow the following values
@@ -270,7 +278,7 @@ items:</p><ul>
 
 <p>If <code>.data</code> is an object of class <code>split_factors</code> then the output
 will be a list with the above values for each grouping variable in the
-function <code><a href='split_factors.html'>split_factors</a></code>.</p>
+function <code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data.to pass subsetted data to code.data.to pass subsetted data to code.data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -278,19 +286,22 @@ function <code><a href='split_factors.html'>split_factors</a></code>.</p>
 <span class='co'># List of matrices</span>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span> <span class='kw'>==</span> <span class='st'>'A1'</span>)
 <span class='no'>matrices</span> <span class='kw'>&lt;-</span> <span class='fu'>covcor_design</span>(<span class='no'>data</span>, <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                          <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))
+                           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))
 
 <span class='co'># Genetic correlations</span>
-<span class='no'>gcor</span> <span class='kw'>&lt;-</span> <span class='fu'>covcor_design</span>(<span class='no'>data</span>, <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+<span class='no'>gcor</span> <span class='kw'>&lt;-</span> <span class='fu'>covcor_design</span>(<span class='no'>data</span>,
+                      <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                      <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                       <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>),
                       <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'gcor'</span>)
 
 <span class='co'># Residual (co)variance matrix for each environment</span>
-<span class='no'>rcov</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'>covcor_design</span>(<span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>),
-                      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'rcov'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='input'>
-
+<span class='no'>rcov</span> <span class='kw'>&lt;-</span> <span class='fu'>covcor_design</span>(<span class='no'>data_ge2</span>,
+                      <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                      <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                      <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>CD</span>, <span class='no'>CL</span>),
+                      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"rcov"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -214,6 +214,7 @@
     <pre class="usage"><span class='fu'>desc_stat</span>(
   <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>...</span>,
+  <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"main"</span>,
   <span class='kw'>hist</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -237,6 +238,14 @@ class <code>split_factors</code>.</p></td>
       <td><p>A single variable name or a comma-separated list of unquoted
 variables names. If no variable is informed, all the numeric from
 <code>.data</code> variables will be used.</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in <code>by</code>. To split
+the data by more than one factor variable, use the function
+<code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data to <code>.data</code>.</p></td>
     </tr>
     <tr>
       <th>values</th>
@@ -302,11 +311,11 @@ silently.</p></td>
     <p>A tibble with the statistics in the lines and variables in columns. If
  <code>.data</code> is an object of class <code>split_factors</code>, then the statistics
  will be shown for each level of the grouping variable in the function
- <code><a href='split_factors.html'>split_factors</a></code>.</p>
+ <code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data.to pass subsetted data to code.data.to pass subsetted data to code.data.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>In cases when the statistics are computed for more than two variables
- with data coming from the function <code><a href='split_factors.html'>split_factors</a></code> the results
+ with data coming from the function <code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data.to pass subsetted data to code.data.to pass subsetted data to code.data.the results
  are returned in a <em>long</em> format. Thus, use the function
  <code><a href='desc_wider.html'>desc_wider</a></code> to convert it into a <em>wide</em> format (levels of
  the factors in the rows and statistics in the columns).</p>
@@ -323,60 +332,71 @@ silently.</p></td>
 #&gt; </span><span style='color: #555555;'>3</span><span> median     342.  
 #&gt; </span><span style='color: #555555;'>4</span><span> max        452.  
 #&gt; </span><span style='color: #555555;'>5</span><span> var.amo   </span><span style='text-decoration: underline;'>2</span><span>215.  
-#&gt; </span><span style='color: #555555;'>6</span><span> SE.mean      3.77
-#&gt; </span><span style='color: #555555;'>7</span><span> CV          13.9 </div><div class='input'>
-<span class='co'># Compute all statistics</span>
+#&gt; </span><span style='color: #555555;'>6</span><span> se.mean      3.77
+#&gt; </span><span style='color: #555555;'>7</span><span> cv          13.9 </div><div class='input'>
+<span class='co'># Compute the main statistics</span>
 <span class='co'># Use a numeric vector as input data</span>
 <span class='no'>vect</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span>$<span class='no'>TKW</span>
-<span class='fu'>desc_stat</span>(<span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>vect</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"all"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 28 x 2</span><span>
-#&gt;    Statistic value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> n          156 
-#&gt; </span><span style='color: #555555;'> 2</span><span> valid.n    156 
-#&gt; </span><span style='color: #555555;'> 3</span><span> mean       339.
-#&gt; </span><span style='color: #555555;'> 4</span><span> gm.mean    335.
-#&gt; </span><span style='color: #555555;'> 5</span><span> hm.mean    332.
-#&gt; </span><span style='color: #555555;'> 6</span><span> range      233.
-#&gt; </span><span style='color: #555555;'> 7</span><span> min        218.
-#&gt; </span><span style='color: #555555;'> 8</span><span> Q2.5       233.
-#&gt; </span><span style='color: #555555;'> 9</span><span> Q25        310.
-#&gt; </span><span style='color: #555555;'>10</span><span> median     342.
-#&gt; </span><span style='color: #555555;'># … with 18 more rows</span><span></div><div class='input'>
+<span class='fu'>desc_stat</span>(<span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>vect</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 7 x 2</span><span>
+#&gt;   Statistic   value
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> mean       339.  
+#&gt; </span><span style='color: #555555;'>2</span><span> min        218.  
+#&gt; </span><span style='color: #555555;'>3</span><span> median     342.  
+#&gt; </span><span style='color: #555555;'>4</span><span> max        452.  
+#&gt; </span><span style='color: #555555;'>5</span><span> var.amo   </span><span style='text-decoration: underline;'>2</span><span>215.  
+#&gt; </span><span style='color: #555555;'>6</span><span> se.mean      3.77
+#&gt; </span><span style='color: #555555;'>7</span><span> cv          13.9 </div><div class='input'>
 <span class='co'># Select specific statistics</span>
 <span class='fu'>desc_stat</span>(<span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>13</span>, <span class='fl'>19</span>, <span class='fl'>21</span>, <span class='fl'>8</span>, <span class='fl'>NA</span>, <span class='fl'>23</span>, <span class='fl'>NA</span>),
           <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='kw'>stats</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mean, SE.mean, CV, n, valid.n'</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 2</span><span>
+          <span class='kw'>stats</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mean, se.mean, cv, n, valid.n'</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 2</span><span>
 #&gt;   Statistic value
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> n          8   
 #&gt; </span><span style='color: #555555;'>2</span><span> valid.n    6   
 #&gt; </span><span style='color: #555555;'>3</span><span> mean      16   
-#&gt; </span><span style='color: #555555;'>4</span><span> SE.mean    2.39
-#&gt; </span><span style='color: #555555;'>5</span><span> CV        36.7 </div><div class='input'>
-<span class='co'># Compute the statistics for each level of "ENV"</span>
+#&gt; </span><span style='color: #555555;'>4</span><span> se.mean    2.39
+#&gt; </span><span style='color: #555555;'>5</span><span> cv        36.7 </div><div class='input'>
+<span class='co'># Compute the main statistics for each level of "ENV"</span>
 <span class='no'>stats</span> <span class='kw'>&lt;-</span>
-<span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>desc_stat</span>(<span class='no'>EP</span>, <span class='no'>EL</span>, <span class='no'>EH</span>, <span class='no'>ED</span>, <span class='no'>PH</span>, <span class='no'>CD</span>,
-  <span class='kw'>stats</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mean, min, max, median, SE.mean, CI.mean, n, CV'</span>),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the grouped data. </span></div><div class='input'>
+  <span class='fu'>desc_stat</span>(<span class='no'>data_ge2</span>,
+            <span class='no'>EP</span>, <span class='no'>EL</span>, <span class='no'>EH</span>, <span class='no'>ED</span>, <span class='no'>PH</span>, <span class='no'>CD</span>,
+            <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+            <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
 <span class='co'># To get a 'wide' format with the statistics of the variable EP above.</span>
-<span class='fu'><a href='desc_wider.html'>desc_wider</a></span>(<span class='no'>stats</span>, <span class='no'>PH</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 9</span><span>
-#&gt;    GEN   CI.mean    CV   max  mean median   min     n SE.mean
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1      0.195 11.7   3.00  2.62   2.70  2.11    12  0.088</span><span style='text-decoration: underline;'>5</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10     0.217 14.8   2.83  2.31   2.27  1.79    12  0.098</span><span style='text-decoration: underline;'>7</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11     0.218 14.4   2.77  2.39   2.42  1.71    12  0.099</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12     0.191 12.4   2.79  2.44   2.52  1.95    12  0.087</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13     0.151  9.39  2.93  2.54   2.55  2.19    12  0.068</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2      0.217 13.1   3.03  2.60   2.62  2.05    12  0.098</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3      0.254 15.4   3.04  2.59   2.68  1.96    12  0.115 
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4      0.226 13.8   3.02  2.58   2.67  1.99    12  0.103 
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5      0.200 12.3   2.90  2.57   2.73  2.01    12  0.091</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> H6      0.190 11.7   2.94  2.56   2.60  2.09    12  0.086</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'>11</span><span> H7      0.191 12.5   2.87  2.40   2.21  2.07    12  0.086</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #555555;'>12</span><span> H8      0.210 14.2   2.76  2.33   2.31  1.81    12  0.095</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'>13</span><span> H9      0.233 15.5   3.00  2.36   2.25  1.98    12  0.106 </div><div class='input'># }
+<span class='fu'><a href='desc_wider.html'>desc_wider</a></span>(<span class='no'>stats</span>, <span class='no'>PH</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 8</span><span>
+#&gt;   ENV      cv   max  mean median   min se.mean var.amo
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> A1     4.42  3.04  2.79   2.78  2.55  0.019</span><span style='text-decoration: underline;'>8</span><span>  0.015</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> A2    16.2   3.04  2.46   2.27  1.81  0.063</span><span style='text-decoration: underline;'>9</span><span>  0.159 
+#&gt; </span><span style='color: #555555;'>3</span><span> A3    10.3   2.77  2.17   2.10  1.71  0.035</span><span style='text-decoration: underline;'>8</span><span>  0.049</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> A4     6.61  2.81  2.52   2.47  2.11  0.026</span><span style='text-decoration: underline;'>6</span><span>  0.027</span><span style='text-decoration: underline;'>7</span><span></div><div class='input'>
+<span class='co'># Compute all the statistics for each combination of "ENV" and "GEN"</span>
+<span class='co'># All the numeric variables in .data</span>
+
+<span class='no'>stats_all</span> <span class='kw'>&lt;-</span>
+  <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>desc_stat</span>(<span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns ENV GEN REP in the grouped data. </span></div><div class='input'><span class='fu'><a href='desc_wider.html'>desc_wider</a></span>(<span class='no'>stats_all</span>, <span class='no'>PH</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 52 x 30</span><span>
+#&gt;    ENV   GEN   av.dev ci.mean    cv gm.mean hm.mean    iqr  kurt    mad   max
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H1</span><span style='color: #555555;'>"</span><span> 0.099</span><span style='text-decoration: underline;'>6</span><span>  0.333  4.93     2.72    2.72 0.130  -</span><span style='color: #BB0000;'>2.33</span><span> 0.107   2.87
+#&gt; </span><span style='color: #555555;'> 2</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H1… 0.039</span><span style='text-decoration: underline;'>6</span><span>  0.136  1.97     2.78    2.78 0.054</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>2.33</span><span> 0.056</span><span style='text-decoration: underline;'>3</span><span>  2.83
+#&gt; </span><span style='color: #555555;'> 3</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H1… 0.019</span><span style='text-decoration: underline;'>1</span><span>  0.067</span><span style='text-decoration: underline;'>5</span><span> 0.988    2.75    2.75 0.027</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>2.33</span><span> 0.032</span><span style='text-decoration: underline;'>6</span><span>  2.77
+#&gt; </span><span style='color: #555555;'> 4</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H1… 0.089</span><span style='text-decoration: underline;'>8</span><span>  0.299  4.47     2.69    2.69 0.116  -</span><span style='color: #BB0000;'>2.33</span><span> 0.089</span><span style='text-decoration: underline;'>0</span><span>  2.79
+#&gt; </span><span style='color: #555555;'> 5</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H1… 0.107   0.366  5.31     2.77    2.77 0.145  -</span><span style='color: #BB0000;'>2.33</span><span> 0.148   2.93
+#&gt; </span><span style='color: #555555;'> 6</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H2</span><span style='color: #555555;'>"</span><span> 0.161   0.521  7.51     2.79    2.78 0.186  -</span><span style='color: #BB0000;'>2.33</span><span> 0.026</span><span style='text-decoration: underline;'>7</span><span>  2.92
+#&gt; </span><span style='color: #555555;'> 7</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H3</span><span style='color: #555555;'>"</span><span> 0.078</span><span style='text-decoration: underline;'>2</span><span>  0.281  3.86     2.93    2.93 0.113  -</span><span style='color: #BB0000;'>2.33</span><span> 0.148   3.04
+#&gt; </span><span style='color: #555555;'> 8</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H4</span><span style='color: #555555;'>"</span><span> 0.102   0.352  4.95     2.87    2.86 0.14   -</span><span style='color: #BB0000;'>2.33</span><span> 0.148   3.02
+#&gt; </span><span style='color: #555555;'> 9</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H5</span><span style='color: #555555;'>"</span><span> 0.046</span><span style='text-decoration: underline;'>2</span><span>  0.154  2.19     2.83    2.83 0.06   -</span><span style='color: #BB0000;'>2.33</span><span> 0.047</span><span style='text-decoration: underline;'>4</span><span>  2.90
+#&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #555555;'>"</span><span>A1 </span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span> H6</span><span style='color: #555555;'>"</span><span> 0.086</span><span style='text-decoration: underline;'>2</span><span>  0.291  4.23     2.77    2.77 0.114  -</span><span style='color: #BB0000;'>2.33</span><span> 0.101   2.90
+#&gt; </span><span style='color: #555555;'># … with 42 more rows, and 19 more variables: mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, median </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, q2.5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, q25 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, q75 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, q97.5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   range </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sd.amo </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sd.pop </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, se.mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, skew </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   sum </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sum.dev </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sum.sq.dev </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, valid.n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, var.amo </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   var.pop </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

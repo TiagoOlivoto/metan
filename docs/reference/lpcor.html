@@ -213,7 +213,7 @@ data frame or a correlation matrix." />
 data frame or a correlation matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lpcor</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>lpcor</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,6 +230,14 @@ or, a dataframe containing the predictor variables, or an object of class
 (Default) then all the numeric variables from <code>.data</code> are used. It
 must be a single variable name or a comma-separated list of unquoted
 variables names.</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to split the data into subsets. The function
+is then applied to each subset and returns a list where each element
+contains the results for one level of the variable in <code>by</code>. To split
+the data by more than one factor variable, use the function
+<code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data to <code>.data</code>.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -275,35 +283,10 @@ following values.</p><ul>
             <span class='fu'>lpcor</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>iris</span>),
                   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='co'># Select variables and compute the partial correlation</span>
+<span class='co'># Select all numeric variables and compute the partial correlation</span>
 <span class='co'># For each level of \code{Species}</span>
 
-<span class='no'>partial4</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-            <span class='fu'><a href='split_factors.html'>split_factors</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
-           <span class='fu'>lpcor</span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='no'>Petal.Width</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Use 'keep_factors = TRUE' to keep the columns Species in the grouped data. </span></div><div class='output co'>#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level: setosa 
-#&gt; ----------------------------------------------------------------------------
-#&gt;                        Pairs    linear    partial         t         prob
-#&gt; 1 Sepal.Length x Sepal.Width 0.7425467 0.72558229 7.2287250 3.680601e-09
-#&gt; 2 Sepal.Length x Petal.Width 0.2780984 0.16160463 1.1226622 2.672834e-01
-#&gt; 3  Sepal.Width x Petal.Width 0.2327520 0.04080217 0.2799587 7.807377e-01
-#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level: versicolor 
-#&gt; ----------------------------------------------------------------------------
-#&gt;                        Pairs    linear   partial        t         prob
-#&gt; 1 Sepal.Length x Sepal.Width 0.5259107 0.2603917 1.848938 7.076217e-02
-#&gt; 2 Sepal.Length x Petal.Width 0.5464611 0.3101636 2.236681 3.009043e-02
-#&gt; 3  Sepal.Width x Petal.Width 0.6639987 0.5287121 4.270338 9.413348e-05
-#&gt; 
-#&gt; ----------------------------------------------------------------------------
-#&gt; Level: virginica 
-#&gt; ----------------------------------------------------------------------------
-#&gt;                        Pairs    linear    partial         t         prob
-#&gt; 1 Sepal.Length x Sepal.Width 0.4572278 0.37827279 2.8014734 0.0073635897
-#&gt; 2 Sepal.Length x Petal.Width 0.2811077 0.04700217 0.3225872 0.7484385758
-#&gt; 3  Sepal.Width x Petal.Width 0.5377280 0.47944191 3.7454273 0.0004911884</div><div class='input'># }
+<span class='no'>partial4</span> <span class='kw'>&lt;-</span> <span class='fu'>lpcor</span>(<span class='no'>iris</span>, <span class='fu'>everithig</span>(), <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='error'>Error in everithig(): não foi possível encontrar a função "everithig"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>partial4</span>$<span class='no'>summary</span>)</div><div class='output co'>#&gt; <span class='error'>Error in print(partial4$summary): objeto 'partial4' não encontrado</span></div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
