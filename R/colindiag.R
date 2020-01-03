@@ -10,6 +10,11 @@
 #' @param ... Variables to use in the correlation. If \code{...} is null then
 #'   all the numeric variables from \code{.data} are used. It must be a single
 #'   variable name or a comma-separated list of unquoted variables names.
+#' @param by One variable (factor) to split the data into subsets. The function
+#'   is then applied to each subset and returns a list where each element
+#'   contains the results for one level of the variable in \code{by}. To split
+#'   the data by more than one factor variable, use the function
+#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
 #'   objects used to compute the correlation coefficients.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
@@ -80,9 +85,13 @@
 #'                 split_factors(GEN) %>%
 #'                 colindiag(EH, PH, CD, CL)
 #'}
-colindiag <- function(.data, ..., n = NULL, verbose = TRUE) {
+colindiag <- function(.data,
+                      ...,
+                      by = NULL,
+                      n = NULL,
+                      verbose = TRUE) {
   if (!any(class(.data) %in% c("matrix", "data.frame", "split_factors",
-                           "covcor_design", "tbl_df"))) {
+                               "covcor_design", "tbl_df"))) {
     stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
   }
   if (is.matrix(.data) && is.null(n)) {
@@ -167,14 +176,22 @@ colindiag <- function(.data, ..., n = NULL, verbose = TRUE) {
   if (is.matrix(.data)) {
     out <- internal(.data)
   }
-
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
+  }
   if (any(class(.data) %in% c("split_factors", "covcor_design"))) {
     if(!missing(...)){
       dfs <- lapply(.data[[1]], function(x){
-        dplyr::select(x, ...)
+        select_cols(x, ...) %>%
+          select_numeric_cols()
       })
     } else{
-      dfs <- .data[[1]]
+      dfs <- lapply(.data[[1]], function(x){
+        select_numeric_cols(x)
+      })
     }
     out <- lapply(seq_along(dfs), function(x) {
       if (verbose == TRUE) {
@@ -188,7 +205,7 @@ colindiag <- function(.data, ..., n = NULL, verbose = TRUE) {
   }
   if (is.data.frame(.data)) {
     if(!missing(...)){
-      dfs <-  dplyr::select(.data, ...) %>%
+      dfs <-  select_cols(.data, ...) %>%
         select_numeric_cols()
     } else{
       if (verbose == TRUE) {
