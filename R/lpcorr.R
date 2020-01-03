@@ -119,7 +119,10 @@ lpcor <- function(.data,
         select_numeric_cols(x)
       })
     } else{
-      dfs <- .data[[1]]
+      dfs <- lapply(.data[[1]], function(x){
+        select_cols(x, ...) %>%
+          select_numeric_cols()
+      })
     }
     out <- lapply(seq_along(dfs), function(x) {
       if (verbose == TRUE) {

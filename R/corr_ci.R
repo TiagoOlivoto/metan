@@ -94,7 +94,8 @@ corr_ci <- function(.data = NA,
       }
       if (!missing(...)) {
         data <- lapply(.data[[1]], function(x){
-          dplyr::select(x, ...)
+         select_cols(x, ...) %>%
+            select_numeric_cols()
         })
       }
       out <- lapply(seq_along(data), function(x) {
