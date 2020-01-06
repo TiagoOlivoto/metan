@@ -272,15 +272,20 @@ replace_string <- function(.data,
 #' @export
 #' @importFrom dplyr mutate_if transmute
 round_cols <- function(.data, ...,  digits = 2){
+  rn_test <- has_rownames(.data)
+  if(rn_test == TRUE){
+    rnames <- rownames(.data)
+  }
   if (missing(...)){
-    .data %<>% dplyr::mutate_if(is.numeric, round, digits = digits)
+    .data %<>% mutate_if(is.numeric, round, digits = digits)
   } else{
-    .data %<>% dplyr::mutate_at(vars(...), round, digits = digits)
+    .data %<>% mutate_at(vars(...), round, digits = digits)
+  }
+  if(rn_test == TRUE){
+    rownames(.data) <- rnames
   }
   return(.data)
 }
-
-
 #' @title Utilities for handling with rows and columns
 #' @name utils_rows_cols
 #' @description
