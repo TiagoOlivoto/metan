@@ -4,6 +4,7 @@
    * `select_numeric_cols()` now is used as a helper function in `metan`.
    * `metan` now reexports `mutate()` from `dplyr` package.
    * `get_model_data()` now set default values for each class of models.
+   * Argument `by` that calls internally `split_factors()` included to facilitate the application of the functions to each level of one grouping variable.
 
 * New functions
    * `add_cols()`, and `add_rows()` for adding columns and rows, respectively.

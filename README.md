@@ -25,12 +25,22 @@ vignette](https://tiagoolivoto.github.io/metan/).
 
 # Installation
 
-The latest development version can be download from GitHub by running
+To install the latest development version from Github, install the
+newest version of the devtools package; then run
 
 ``` r
-# install.packages("devtools")
 devtools::install_github("TiagoOlivoto/metan")
+
+# To build the HTML vignette use
+devtools::install_github("TiagoOlivoto/metan", build_vignettes = TRUE)
 ```
+
+*Note*: If you are a Windows user, you should also first download and
+install the latest version of
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+
+For the latest release notes on this development version, see the [NEWS
+file](https://tiagoolivoto.github.io/metan/news/index.html).
 
 # Getting started
 
@@ -264,41 +274,42 @@ get_model_data(model2, what = "blupge")
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
 get_model_data(stats, "stats")
-#> # A tibble: 10 x 32
-#>    var   gen       Y   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval   bij      Sij    R2
-#>    <chr> <chr> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl>    <dbl> <dbl>
-#>  1 GY    G1     2.60 10.9  0.0280  84.4  89.2  81.1  1.22  1.06  -0.00142 0.966
-#>  2 GY    G10    2.47 14.2  0.244   59.2  64.6  54.4  7.96  1.12   0.177   0.823
-#>  3 GY    G2     2.74 11.3  0.0861  82.8  95.3  75.6  3.03  1.05   0.0497  0.913
-#>  4 GY    G3     2.96 10.1  0.0121 104.   99.7 107.   0.725 1.03  -0.0128  0.977
-#>  5 GY    G4     2.64  8.93 0.0640  85.9  79.5  91.9  2.34  0.937  0.0298  0.917
-#>  6 GY    G5     2.54  7.82 0.0480  82.7  82.2  82.4  1.84  0.887  0.00902 0.937
-#>  7 GY    G6     2.53  7.34 0.0468  83.0  83.7  81.8  1.81  0.861  0.00304 0.942
-#>  8 GY    G7     2.74  7.33 0.122   83.9  77.6  93.4  4.16  0.819  0.0579  0.852
-#>  9 GY    G8     3.00 10.8  0.0712  98.8  90.5 107.   2.57  1.03   0.0382  0.922
-#> 10 GY    G9     2.51 14.7  0.167   68.8  68.9  70.3  5.56  1.19   0.0938  0.897
-#> # … with 20 more variables: ASV <dbl>, SIPC <dbl>, EV <dbl>, ZA <dbl>,
-#> #   WAAS <dbl>, HMGV <dbl>, RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>, Pi_f <dbl>,
-#> #   Pi_u <dbl>, Gai <dbl>, S1 <dbl>, S2 <dbl>, S3 <dbl>, S6 <dbl>, N1 <dbl>,
-#> #   N2 <dbl>, N3 <dbl>, N4 <dbl>
+#> # A tibble: 10 x 33
+#>    var   gen       Y    CV   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval   bij      Sij
+#>    <chr> <chr> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl>    <dbl>
+#>  1 GY    G1     2.60  35.2 10.9  0.0280  84.4  89.2  81.1  1.22  1.06  -0.00142
+#>  2 GY    G10    2.47  42.3 14.2  0.244   59.2  64.6  54.4  7.96  1.12   0.177  
+#>  3 GY    G2     2.74  34.0 11.3  0.0861  82.8  95.3  75.6  3.03  1.05   0.0497 
+#>  4 GY    G3     2.96  29.9 10.1  0.0121 104.   99.7 107.   0.725 1.03  -0.0128 
+#>  5 GY    G4     2.64  31.4  8.93 0.0640  85.9  79.5  91.9  2.34  0.937  0.0298 
+#>  6 GY    G5     2.54  30.6  7.82 0.0480  82.7  82.2  82.4  1.84  0.887  0.00902
+#>  7 GY    G6     2.53  29.7  7.34 0.0468  83.0  83.7  81.8  1.81  0.861  0.00304
+#>  8 GY    G7     2.74  27.4  7.33 0.122   83.9  77.6  93.4  4.16  0.819  0.0579 
+#>  9 GY    G8     3.00  30.4 10.8  0.0712  98.8  90.5 107.   2.57  1.03   0.0382 
+#> 10 GY    G9     2.51  42.4 14.7  0.167   68.8  68.9  70.3  5.56  1.19   0.0938 
+#> # … with 21 more variables: R2 <dbl>, ASV <dbl>, SIPC <dbl>, EV <dbl>,
+#> #   ZA <dbl>, WAAS <dbl>, HMGV <dbl>, RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>,
+#> #   Pi_f <dbl>, Pi_u <dbl>, Gai <dbl>, S1 <dbl>, S2 <dbl>, S3 <dbl>, S6 <dbl>,
+#> #   N1 <dbl>, N2 <dbl>, N3 <dbl>, N4 <dbl>
 get_model_data(stats, "ranks")
-#> # A tibble: 10 x 31
-#>    var   gen     Y_R Var_R Shukla_R Wi_g_R Wi_f_R Wi_u_R Ecoval_R Sij_R  R2_R
-#>    <chr> <chr> <dbl> <dbl>    <dbl>  <dbl>  <dbl>  <dbl>    <dbl> <dbl> <dbl>
-#>  1 GY    G1        6     7        2      4      4      7        2     1     2
-#>  2 GY    G10      10     9       10     10     10     10       10    10    10
-#>  3 GY    G2        3     8        7      7      2      8        7     7     7
-#>  4 GY    G3        2     5        1      1      1      2        1     4     1
-#>  5 GY    G4        5     4        5      3      7      4        5     5     6
-#>  6 GY    G5        7     3        4      8      6      5        4     3     4
-#>  7 GY    G6        8     2        3      6      5      6        3     2     3
-#>  8 GY    G7        4     1        8      5      8      3        8     8     9
-#>  9 GY    G8        1     6        6      2      3      1        6     6     5
-#> 10 GY    G9        9    10        9      9      9      9        9     9     8
-#> # … with 20 more variables: ASV_R <dbl>, SIPC_R <dbl>, EV_R <dbl>, ZA_R <dbl>,
-#> #   WAAS_R <dbl>, HMGV_R <dbl>, RPGV_R <dbl>, HMRPGV_R <dbl>, Pi_a_R <dbl>,
-#> #   Pi_f_R <dbl>, Pi_u_R <dbl>, Gai_R <dbl>, S1_R <dbl>, S2_R <dbl>,
-#> #   S3_R <dbl>, S6_R <dbl>, N1_R <dbl>, N2_R <dbl>, N3_R <dbl>, N4_R <dbl>
+#> # A tibble: 10 x 32
+#>    var   gen     Y_R  CV_R Var_R Shukla_R Wi_g_R Wi_f_R Wi_u_R Ecoval_R Sij_R
+#>    <chr> <chr> <dbl> <dbl> <dbl>    <dbl>  <dbl>  <dbl>  <dbl>    <dbl> <dbl>
+#>  1 GY    G1        6     8     7        2      4      4      7        2     1
+#>  2 GY    G10      10     9     9       10     10     10     10       10    10
+#>  3 GY    G2        3     7     8        7      7      2      8        7     7
+#>  4 GY    G3        2     3     5        1      1      1      2        1     4
+#>  5 GY    G4        5     6     4        5      3      7      4        5     5
+#>  6 GY    G5        7     5     3        4      8      6      5        4     3
+#>  7 GY    G6        8     2     2        3      6      5      6        3     2
+#>  8 GY    G7        4     1     1        8      5      8      3        8     8
+#>  9 GY    G8        1     4     6        6      2      3      1        6     6
+#> 10 GY    G9        9    10    10        9      9      9      9        9     9
+#> # … with 21 more variables: R2_R <dbl>, ASV_R <dbl>, SIPC_R <dbl>, EV_R <dbl>,
+#> #   ZA_R <dbl>, WAAS_R <dbl>, HMGV_R <dbl>, RPGV_R <dbl>, HMRPGV_R <dbl>,
+#> #   Pi_a_R <dbl>, Pi_f_R <dbl>, Pi_u_R <dbl>, Gai_R <dbl>, S1_R <dbl>,
+#> #   S2_R <dbl>, S3_R <dbl>, S6_R <dbl>, N1_R <dbl>, N2_R <dbl>, N3_R <dbl>,
+#> #   N4_R <dbl>
 ```
 
 # Getting help

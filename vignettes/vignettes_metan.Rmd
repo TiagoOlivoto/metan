@@ -20,43 +20,55 @@ knitr::opts_chunk$set(comment = "")
 The `metan` package provides tools for computing several world-known stability statistics. In the latest version (v 1.2.0), the following stability methods are implemented in their respective functions.
 
 * Parametric methods
-   * AMMI analysis with `performs_ammi()`.
-   * GGE biplot analysis with `gge()`.
-   * BLUP prediction for multi-environment trials with `waasb()`.
-   * AMMI-based stability statistics with `AMMI_indexes()`.
-   * BLUP-based stability indexes with `Resende_indexes()`.
-   * Joint regression analysis [@Eberhart1966] using `ge_reg()`.
-   * Genotypic confidence index [@Annicchiarico1992] using `Annicchiarico()`.
-   * Modified genotypic confidence index [@Schmildt2011] using `Schmildt()`.
-   * Ecovalence [@Wricke1965] using `ecovalence()`.
-   * Stability analysis and environmental stratification [@murakami2004] using `ge_factanal()`.
-   * Shukla's stability variance [@Shukla1972] using `Shukla()`.
-   * Weighted Average of Absolute Scores [@Olivoto2019] using `waas()` (fixed-effect model) and `waasb()` (mixed-effect model).
+   * AMMI analysis with [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html).
+   * GGE biplot analysis with [`gge()`](https://tiagoolivoto.github.io/metan/reference/gge.html).
+   * BLUP prediction for multi-environment trials with [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html).
+   * AMMI-based stability statistics with [`AMMI_indexes()`](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html).
+   * BLUP-based stability indexes with [`Resende_indexes()`](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html).
+   * Joint regression analysis [@Eberhart1966] using [`ge_reg()`](https://tiagoolivoto.github.io/metan/reference/ge_reg.html).
+   * Genotypic confidence index [@Annicchiarico1992] using [`Annicchiarico()`](https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html).
+   * Modified genotypic confidence index [@Schmildt2011] using [`Schmildt()`](https://tiagoolivoto.github.io/metan/reference/Schmildt.html).
+   * Ecovalence [@Wricke1965] using [`ecovalence()`](https://tiagoolivoto.github.io/metan/reference/ecovalence.html).
+   * Stability analysis and environmental stratification [@murakami2004] using [`ge_factanal()`](https://tiagoolivoto.github.io/metan/reference/ge_factanal.html).
+   * Shukla's stability variance [@Shukla1972] using [`Shukla()`](https://tiagoolivoto.github.io/metan/reference/Shukla.html).
+   * Weighted Average of Absolute Scores [@Olivoto2019] using [`waas()`](https://tiagoolivoto.github.io/metan/reference/waas.html) (fixed-effect model) and [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html) (mixed-effect model).
 
 * Non-parametric methods
-   * Superiority index [@Lin1988], using the function `superiority()`
-   * Fox's stability statistic [@Fox1990] with `Fox()`.
-   * Geometric adaptability index [@Shahbazi2019] with `gai()`.
-   * Huehn's stability statistic [@Huehn1979] with `Huehn()`.
-   * Thennarasu's stability statistics [@Thennarasu1995] with `Thennarasu()`
+   * Superiority index [@Lin1988], using the function [`superiority()`](https://tiagoolivoto.github.io/metan/reference/superiority.html).
+   * Fox's stability statistic [@Fox1990] with [`Fox()`](https://tiagoolivoto.github.io/metan/reference/Fox.html).
+   * Geometric adaptability index [@Shahbazi2019] with [`gai()`](https://tiagoolivoto.github.io/metan/reference/gai.html).
+   * Huehn's stability statistic [@Huehn1979] with [`Huehn()`](https://tiagoolivoto.github.io/metan/reference/Huehn.html).
+   * Thennarasu's stability statistics [@Thennarasu1995] with [`Thennarasu()`](https://tiagoolivoto.github.io/metan/reference/Thennarasu.html).
    
 
-The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like `plot()` and `print()`, I suggest computing that methods using their own function.
+The easiest way to compute the above-mentioned stability indexes is by using the function [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html). This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like `plot()` and `print()`, I suggest computing that methods using their own function.
 
+The complete functionality of the package is described at https://tiagoolivoto.github.io/metan/index.html. You're welcome to check it out!
 
 # Brief examples
 
-Brief examples will be shown using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 11 environments. For more details see `?data_ge`. The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
-
-```{r warning = FALSE, message = FALSE}
+Brief examples will be shown using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details type `?data_ge`.
+# Checking data
+First of all, we will check the data for possible problems with the function `inspect()`.
+```{r, message=FALSE, warning=FALSE}
 library(metan)
-library(DT) # Used to make the tables
-# Function to make HTML tables
-print_table <- function(table, rownames = FALSE, ...){
-datatable(table, rownames = rownames, extensions = 'Buttons',
-          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
-    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+inspect(data_ge)
+```
 
+
+Then, the details of the multi-environment trial can be obtained with the function `ge_details()`. Note that to apply the function to all numeric variables quickly, we can use the [select helper](https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers) `everything()` in the argument `resp`.
+
+```{r}
+ge_details(data_ge,
+           env = ENV,
+           gen = GEN,
+           resp = everything())
+```
+
+We can create a plot to show the performance of the genotypes across the environments with `ge_plot()`.
+
+```{r fig.height=4, fig.width=5}
+ge_plot(data_ge, GEN, ENV, GY)
 ```
 
 
@@ -91,25 +103,19 @@ arrange_ggplot(a, b, labels = letters[1:2], ncol = 1)
 
 
 ## Predict the response variable
-The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively). In addition, we will create a two way table with `make_mat()` to show the predicted values for the variable GY.
+The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively). In addition, we will create a two way table with `make_mat()` to show the predicted values for the variable GY. The function `round_cols()` provided by `metan` round all numeric columns of a data frame to two (default) significant figures.
 
 ```{r }
 predicted <- predict(ammi_model, naxis = c(4, 6))
 make_mat(predicted$GY, GEN, ENV, YpredAMMI) %>% 
-  print_table()
+  round_cols()
 ```
 
 # BLUP model
-The implementation of linear-mixed effect models to predict the response variable in MET is made with the function `waasb()`. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument `random` to change this default. In the following example the model is fitted to all numeric variables in `data_ge2` quickly using the [select helper](https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers) `everything()` in the argument `resp`.
+The implementation of linear-mixed effect models to predict the response variable in MET is made with the function `waasb()`. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument `random` to change this default. In the following example the model is fitted to all numeric variables in `data_ge2`.
 
 ```{r warning=FALSE, message=FALSE}
 model2 <- waasb(data_ge, ENV, GEN, REP, everything())
-```
-
-The mixed-effect model fitted in `model2` has many outputs. The easitest way  For example, we can easily obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
-
-```{r}
-get_model_data(model2) %>% print_table()
 ```
 
 ## Residual plots
@@ -125,6 +131,14 @@ The distribution of the random effects may be obtained using the argument
 
 ```{r,fig.height=8, fig.width=4}
 plot(model2, type = "re", which = c(1, 2), ncol = 1)
+```
+
+## Genetic parameters and variance components
+We can get easily the model results such as the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes with `get_model_data()`. By default for an object of class `waasb` the function returns the genetic parameters.
+
+```{r}
+get_model_data(model2) %>% round_cols(digits = 3)
+
 ```
 
 
@@ -145,15 +159,16 @@ arrange_ggplot(c, d,labels = letters[3:4], ncol = 1)
 
 ```{r }
 get_model_data(model2, what = "blupge") %>% 
-  print_table()
+  round_cols()
 ```
 
+
 ## BLUP-based stability index
-The WAASB index [@Olivoto2019] is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects and was already computed when we fitted the model with `waas()`. This statistic may be shown with `get_model_data()`.
+The WAASB index [@Olivoto2019] is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects. We can use the argument `what = "WAASB"` to get this statistic.
 
 ```{r }
 get_model_data(model2, what = "WAASB") %>% 
-  print_table()
+  round_cols()
 ```
 
 
@@ -161,8 +176,8 @@ The function `Resende_indexes()` may be used to compute the harmonic mean of gen
 
 ```{r }
 index <- Resende_indexes(model2)
-get_model_data(index) %>% 
-  print_table()
+get_model_data(index, "HMRPGV") %>% 
+  round_cols()
 ```
 
 
@@ -197,33 +212,20 @@ arrange_ggplot(e, f, labels = letters[5:6], ncol = 1)
 
 
 # Wrapper function `ge_stats()`
-To compute all the stability statistics at once, we can use the function `ge_stats()`. Get the results easely by using `get_model_data()`.
+To compute all the stability statistics at once, we can use the function `ge_stats()`. Again we get the results with `get_model_data()`.
 
 ```{r}
 stat_ge <- ge_stats(data_ge, ENV, GEN, REP, GY)
-get_model_data(stat_ge) %>% print_table()
+get_model_data(stat_ge) %>% 
+  round_cols()
 ```
 
 
 # Selection based on multiple traits
 
-The multi-trait stability index (MTSI) was proposed by @Olivoto2019a and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models.
-
-```{r, eval=FALSE, warning=FALSE}
-data_ge2 %>%
-  waasb(ENV, GEN, REP,
-        resp = c(KW, NKE, PH, EH, TKW),
-        verbose = FALSE) %>%
-  mtsi(verbose = FALSE) %>%
-  plot()
-
-```
-
-
+The multi-trait stability index (MTSI) was proposed by @Olivoto2019a and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. For more details see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_indexes.html).
 
 # Getting help
-
-* The complete functionality of the metan package, combining theory, programming, and examples with outputs is described [here](https://tiagoolivoto.github.io/metan/index.html).
 
 * If you encounter a clear bug, please file a minimal reproducible example on [github](https://github.com/TiagoOlivoto/metan/issues)
 
