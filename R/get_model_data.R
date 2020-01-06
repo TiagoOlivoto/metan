@@ -101,7 +101,7 @@
 #' * \code{"ipca_accum"} Accumulated explained sum of square.
 #'
 #'
-#' \strong{Objects of class \code{waas} and \code{waasb}:}
+#' \strong{Objects of class \code{waas}, \code{waas_means}, and \code{waasb}:}
 #' * \code{"PC1", "PC2", ..., "PCn"} The values for the nth interaction
 #' principal component axis.
 #' * \code{"WAASB"}  The weighted average of the absolute scores (default for
@@ -275,7 +275,7 @@
 #'
 get_model_data <- function(x, what = NULL, type = "GEN") {
   call_f <- match.call()
-  if (!class(x) %in% c("waasb", "waas", "gamem", "performs_ammi", "Res_ind",
+  if (!class(x) %in% c("waasb", "waas","waas_means", "gamem", "performs_ammi", "Res_ind",
                        "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                        "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                        "ge_stats", "Annicchiarico", "Schmildt")) {
@@ -590,7 +590,7 @@ get_model_data <- function(x, what = NULL, type = "GEN") {
         select(PC, DF, everything())
     }
   }
-  if (class(x) == "waas") {
+  if (any(class(x) %in% c("waas", "waas_means"))){
     if (is.null(what)){
       what <- "WAASB"
     }

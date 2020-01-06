@@ -134,7 +134,7 @@ principal component axis.
 \item \code{"ipca_accum"} Accumulated explained sum of square.
 }
 
-\strong{Objects of class \code{waas} and \code{waasb}:}
+\strong{Objects of class \code{waas}, \code{waas_means}, and \code{waasb}:}
 \itemize{
 \item \code{"PC1", "PC2", ..., "PCn"} The values for the nth interaction
 principal component axis.
