@@ -85,9 +85,11 @@ reference:
       - print.AMMI_indexes
       - print.performs_ammi
       - print.waas
+      - print.waas_means
       - cv_ammi
       - cv_ammif
       - waas
+      - waas_means
   - title: "BLUP"
     desc: "Functions for BLUP prediction in multi-environment trial analysis"
     contents:
