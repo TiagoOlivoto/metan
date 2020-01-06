@@ -14,8 +14,34 @@ vignette: >
 
 ```{r global_options, include = FALSE}
 knitr::opts_chunk$set(comment = "")
-load("metan.RData")
 ```
+
+
+The `metan` package provides tools for computing several world-known stability statistics. In the latest version (v 1.2.0), the following stability methods are implemented in their respective functions.
+
+* Parametric methods
+   * AMMI analysis with `performs_ammi()`.
+   * GGE biplot analysis with `gge()`.
+   * BLUP prediction for multi-environment trials with `waasb()`.
+   * AMMI-based stability statistics with `AMMI_indexes()`.
+   * BLUP-based stability indexes with `Resende_indexes()`.
+   * Joint regression analysis [@Eberhart1966] using `ge_reg()`.
+   * Genotypic confidence index [@Annicchiarico1992] using `Annicchiarico()`.
+   * Modified genotypic confidence index [@Schmildt2011] using `Schmildt()`.
+   * Ecovalence [@Wricke1965] using `ecovalence()`.
+   * Stability analysis and environmental stratification [@murakami2004] using `ge_factanal()`.
+   * Shukla's stability variance [@Shukla1972] using `Shukla()`.
+   * Weighted Average of Absolute Scores [@Olivoto2019] using `waas()` (fixed-effect model) and `waasb()` (mixed-effect model).
+
+* Non-parametric methods
+   * Superiority index [@Lin1988], using the function `superiority()`
+   * Fox's stability statistic [@Fox1990] with `Fox()`.
+   * Geometric adaptability index [@Shahbazi2019] with `gai()`.
+   * Huehn's stability statistic [@Huehn1979] with `Huehn()`.
+   * Thennarasu's stability statistics [@Thennarasu1995] with `Thennarasu()`
+   
+
+The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like `plot()` and `print()`, I suggest computing that methods using their own function.
 
 
 # Brief examples
@@ -35,7 +61,7 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 
 
 # AMMI model
-### Fitting the model
+## Fitting the model
 The AMMI model may be fitted with with both functions `performs_ammi()` and `waas()`, which is the acronym for the weighted average of absolute scores [@Olivoto2019].
 
 ```{r}
@@ -44,10 +70,10 @@ waas_index <- waas(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
 ```
 
 ## Cross-validation procedures
-The cross-validation procedures implemented in the \bold{metan} are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/metan/articles/vignettes_cross-validation.html)
+The cross-validation procedures implemented in the `metan` are based on the splitting of the original data into a training set and a validation set. The model is fitted using the training set and the predicted value is compared with the validation set. This process is iterated many times, say, 1000 times. The lesser the difference between predicted and validation data, the higher the predictive accuracy of the model. More information may be found [here.](https://tiagoolivoto.github.io/metan/articles/vignettes_cross-validation.html)
 
 
-### Biplots
+## Biplots
 
 The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `performs_ammi()` and , `waas()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `ammi_model` is a list that in this case has two elements, (GY and HM).
 
@@ -64,22 +90,27 @@ arrange_ggplot(a, b, labels = letters[1:2], ncol = 1)
 ```
 
 
-### S3 method predict()
-The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively).
+## Predict the response variable
+The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively). In addition, we will create a two way table with `make_mat()` to show the predicted values for the variable GY.
 
 ```{r }
 predicted <- predict(ammi_model, naxis = c(4, 6))
-print_table(predicted$GY)
+make_mat(predicted$GY, GEN, ENV, YpredAMMI) %>% 
+  print_table()
 ```
 
 # BLUP model
-The implementation of linear-mixed effect models to predict the response variable in MET is made with `waasb()` function. The *mixed-effect version* of the already fitted AMMI model, where genotype and genotype-vs-environment interaction are assumed to have random effects is then obtained as follows.
+The implementation of linear-mixed effect models to predict the response variable in MET is made with the function `waasb()`. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument `random` to change this default. In the following example the model is fitted to all numeric variables in `data_ge2` quickly using the [select helper](https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers) `everything()` in the argument `resp`.
 
-```{r }
-model2 <- waasb(data_ge, ENV, GEN, REP, GY)
+```{r warning=FALSE, message=FALSE}
+model2 <- waasb(data_ge, ENV, GEN, REP, everything())
 ```
 
-The mixed-effect model fitted in `model2` has many outputs. For example, we can easily obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
+The mixed-effect model fitted in `model2` has many outputs. The easitest way  For example, we can easily obtain the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes as follows:
+
+```{r}
+get_model_data(model2) %>% print_table()
+```
 
 ## Residual plots
 Several residual plots may be obtained applying the S3 generic function `plot()` to an object of class `waasb` (or `waas`). 
@@ -95,20 +126,6 @@ The distribution of the random effects may be obtained using the argument
 ```{r,fig.height=8, fig.width=4}
 plot(model2, type = "re", which = c(1, 2), ncol = 1)
 ```
-
-
-
-```{r }
-print_table(model2$GY$LRT)
-
-print_table(model2$GY$random)
-
-print_table(model2$GY$ESTIMATES)
-
-print_table(model2$GY$blupGEN)
-```
-
-An easy way to check the results in the R console is by using the function `print()`
 
 
 ## Plotting the BLUPs for genotypes
@@ -127,7 +144,8 @@ arrange_ggplot(c, d,labels = letters[3:4], ncol = 1)
 ## BLUPS for genotype-vs-environment interaction
 
 ```{r }
-print_table(model2$GY$BLUPgge)
+get_model_data(model2, what = "blupge") %>% 
+  print_table()
 ```
 
 ## BLUP-based stability index
@@ -139,14 +157,13 @@ get_model_data(model2, what = "WAASB") %>%
 ```
 
 
-The function `Resende_indexes()` may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See @Alves2018 for more details.
+The function `Resende_indexes()` may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See @Alves2018 for more details. We use the function `get_model_data()` to get the HMRPGV (default) for all analyzed variables.
 
 ```{r }
-index <- model2 %>%
-  Resende_indexes()
-  print_table(index$GY)
+index <- Resende_indexes(model2)
+get_model_data(index) %>% 
+  print_table()
 ```
-
 
 
 # GGE model
@@ -154,9 +171,7 @@ index <- model2 %>%
 The GGE model is fitted with the function `gge()`. This function produces a GGE model based on both a two-way table (in our case the object `table`) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).
 
 ```{r echo = TRUE}
-# Using a data.frame
 gge_model <- gge(data_ge, ENV, GEN, GY)
-
 
 ```
 
@@ -181,32 +196,18 @@ arrange_ggplot(e, f, labels = letters[5:6], ncol = 1)
 ```
 
 
-# Parametric and non-parametric statistics
-The metan package provides an easy way to compute several world-known stability methods.
-Up to the version 0.2.0, the following stability methods are implemented:
-
-* Joint regression analysis [@Eberhart1966], using the function `ge_reg()`
-* Genotypic confidence index [@Annicchiarico1992], using the function `Annicchiarico()`
-* Nonparametric superiority index [@Lin1988], using the function `superiority()`
-* Ecovalence [@Wricke1965], using the function `ecovalence()`
-* Stability analysis and environmental stratification [@murakami2004], using the function `ge_factanal()`
-
-The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. This function basically returns a summary of each method. If you are looking for more details from each method like `plot()` and `print()`, I suggest computing that methods using their own function.
-
-# Computing the indexes
-
-```{r eval=FALSE }
-stat_ge <- ge_stats(data_ge, ENV, GEN, REP, GY)
-```
+# Wrapper function `ge_stats()`
+To compute all the stability statistics at once, we can use the function `ge_stats()`. Get the results easely by using `get_model_data()`.
 
 ```{r}
-get_model_data(stat_ge, "stats") %>% print_table()
+stat_ge <- ge_stats(data_ge, ENV, GEN, REP, GY)
+get_model_data(stat_ge) %>% print_table()
 ```
 
 
 # Selection based on multiple traits
 
-The multi-trait stability index (MTSI) was proposed by @Olivoto2019a and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. Note that a model may be fitted easier and faster using the forward-pipe `%>%` and assigning the arguments in the correct order (environment, genotype, replication and response(s) variable(s). Using `%>%` make it the coding logical and clean especially when the output of a function is used as input in a second function.
+The multi-trait stability index (MTSI) was proposed by @Olivoto2019a and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models.
 
 ```{r, eval=FALSE, warning=FALSE}
 data_ge2 %>%
