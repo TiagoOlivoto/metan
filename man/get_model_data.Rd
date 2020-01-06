@@ -272,12 +272,12 @@ Med. Biol. 10:112.
 Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
 Souza, and E. Jost. 2019a. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
-Agron. J.
+Agron. J. 111:2949-2960.
 \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
 
 Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel.
 2019b. Mean performance and stability in multi-environment trials II:
-Selection based on multiple traits. Agron. J.
+Selection based on multiple traits. Agron. J. 111:2961-2969.
 \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0221}{doi:10.2134/agronj2019.03.0221}
 
 Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.

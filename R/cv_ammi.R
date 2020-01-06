@@ -39,7 +39,7 @@
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'   V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 #'   multi-environment trials I: Combining features of AMMI and BLUP techniques.
-#'   Agron. J.
+#'   Agron. J. 111:2949-2960.
 #'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 #'
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
