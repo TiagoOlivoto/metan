@@ -14,8 +14,8 @@ Description: Performs the most used analyses in the evaluation of
     widely-known parametric and nonparametric methods, functions for
     biometrical analysis such as path analysis, canonical correlation,
     partial correlation, clustering analysis, as well as tools for
-    manipulating, summarizing and plotting typical multi-environment
-    trial data.
+    inspecting, manipulating, summarizing and plotting typical multi-
+    environment trial data.
 License: GPL-3
 URL: https://github.com/TiagoOlivoto/metan
 BugReports: https://github.com/TiagoOlivoto/metan/issues
