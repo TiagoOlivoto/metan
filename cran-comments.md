@@ -1,16 +1,17 @@
-# Resubmission `metan`
+# Resubmission of package `metan`
 This is a **resubmission** for the new package `metan`. Now in version 1.2.0, I have incorporated the feedback kindly provided by Jelena Saf on December 20, 2019. See responses inline below. 
 
 > 
 * Please omit the redundant 'Provides functions for' from your description.
 
+   * Done! Omitted *"Provides functions for"* from description file.
+   
 > 
 * You write information messages to the console that cannot be easily suppressed. It is more R like to generate objects that can be used to extract the information a user is interested in, and then print() that object. Instead of print()/cat() rather use message()/warning()  or if(verbose)cat(..) if you really have to write text to the console. (except for print() and summary() functions) F.i.: corr_plot.R
 
-In this version I have made the following changes:
-* Omitted *"Provides functions for"* from description file.
-* In the function `corr_plot()` the message *"The factors ... where excluded to perform the analysis. Only numeric variables were used."* was deleted. Note that the progress bar can be supressed with the argument `progress`.
-* Some 'utilities' functions were also included in this version. Please, see the section "News" for more details.
+   * In the function `corr_plot()` the message *"The factors ... where excluded to perform the analysis. Only numeric variables were used."* was deleted. Note that the progress bar can be supressed with the argument `progress`.
+
+Please, note that new functions were also included in this version. See the [News file](https://tiagoolivoto.github.io/metan/news/index.html) for more details.
 
 
 # Test environments
