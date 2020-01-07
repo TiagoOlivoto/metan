@@ -1,16 +1,17 @@
-#' Easily get data from a model
+#' Get data from a model easily
 #'
 #' Easily get data from some objects generated in the \strong{metan} package
 #' such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
 #' variance components, details of AMMI models and AMMI-based stability
-#' statistics
+#' statistics.
 #'
 #'
 #' @param x An object created with the functions \code{\link{AMMI_indexes}},
-#'   \code{\link{ecovalence}},  \code{\link{Fox}}, \code{\link{gai}}, \code{\link{ge_reg}},
-#'   \code{\link{gamem}}, \code{\link{performs_ammi}},
-#'   \code{\link{Resende_indexes}}, \code{\link{Shukla}},
-#'   \code{\link{superiority}}, \code{\link{waas}} or \code{\link{waasb}}.
+#'   \code{\link{ecovalence}},  \code{\link{Fox}}, \code{\link{gai}},
+#'   \code{\link{gamem}}, \code{\link{ge_means}}, \code{\link{ge_reg}},
+#'   \code{\link{performs_ammi}}, \code{\link{Resende_indexes}},
+#'   \code{\link{Shukla}}, \code{\link{superiority}}, \code{\link{waas}} or
+#'   \code{\link{waasb}}.
 #' @param what What should be captured from the model. See more in section
 #'   \strong{Details}.
 #' @param type Chose if the statistics must be show by genotype (\code{type =

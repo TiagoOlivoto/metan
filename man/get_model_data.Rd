@@ -2,16 +2,17 @@
 % Please edit documentation in R/get_model_data.R
 \name{get_model_data}
 \alias{get_model_data}
-\title{Easily get data from a model}
+\title{Get data from a model easily}
 \usage{
 get_model_data(x, what = NULL, type = "GEN")
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{AMMI_indexes}},
-\code{\link{ecovalence}},  \code{\link{Fox}}, \code{\link{gai}}, \code{\link{ge_reg}},
-\code{\link{gamem}}, \code{\link{performs_ammi}},
-\code{\link{Resende_indexes}}, \code{\link{Shukla}},
-\code{\link{superiority}}, \code{\link{waas}} or \code{\link{waasb}}.}
+\code{\link{ecovalence}},  \code{\link{Fox}}, \code{\link{gai}},
+\code{\link{gamem}}, \code{\link{ge_means}}, \code{\link{ge_reg}},
+\code{\link{performs_ammi}}, \code{\link{Resende_indexes}},
+\code{\link{Shukla}}, \code{\link{superiority}}, \code{\link{waas}} or
+\code{\link{waasb}}.}
 
 \item{what}{What should be captured from the model. See more in section
 \strong{Details}.}
@@ -27,7 +28,7 @@ A tibble showing the values of the variable chosen in argument
 Easily get data from some objects generated in the \strong{metan} package
 such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
 variance components, details of AMMI models and AMMI-based stability
-statistics
+statistics.
 }
 \details{
 Bellow are listed the options allowed in the argument \code{what} depending
