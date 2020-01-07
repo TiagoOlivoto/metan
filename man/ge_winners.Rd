@@ -11,8 +11,7 @@ ge_winners(.data, env, gen, resp, type = "winners", better = NULL)
 Genotypes, and the response variable(s).}
 
 \item{env}{The name of the column that contains the levels of the
-environments. The analysis of variance is computed for each level of this
-factor.}
+environments.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 

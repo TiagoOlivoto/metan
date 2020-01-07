@@ -5,8 +5,7 @@
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, and the response variable(s).
 #' @param env The name of the column that contains the levels of the
-#'   environments. The analysis of variance is computed for each level of this
-#'   factor.
+#'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
 #'   single procedure a vector of variables may be used. For example \code{resp
