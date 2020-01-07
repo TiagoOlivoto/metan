@@ -82,8 +82,7 @@ plot(d1, nclust = 3)
 }
 \references{
 Mojena, R. 2015. Hierarchical grouping methods and stopping
-rules: an evaluation. Comput. J. 20:359-363.
-\href{https://academic.oup.com/comjnl/article/20/4/359/393930}{doi:10.1093/comjnl/20.4.359}
+rules: an evaluation. Comput. J. 20:359-363. doi:10.1093/comjnl/20.4.359
 
 Ouyang, Z., R.P. Mowers, A. Jensen, S. Wang, and S. Zheng. 1995.
 Cluster analysis for genotype x environment interaction with unbalanced data. Crop Sci. 35:1300-1305.
