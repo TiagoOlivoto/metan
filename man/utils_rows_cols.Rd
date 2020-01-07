@@ -191,10 +191,14 @@ remove_rows(data_ge2, 2:3)
 concatenate(data_ge, ENV, GEN, REP)
 concatenate(data_ge, ENV, GEN, REP, drop = TRUE)
 
-# Combine with add_cols()
+# Combine with add_cols() and replace_string()
 data_ge2 \%>\%
-  add_cols(ENV_GEN = concatenate(., ENV, GEN, pull = TRUE),
-           .after = "GEN")
+ add_cols(ENV_GEN = concatenate(., ENV, GEN, pull = TRUE),
+          .after = "GEN") \%>\%
+ replace_string(ENV_GEN,
+                pattern = "H",
+                replacement = "HYB_",
+                .after = "ENV_GEN")
 
 
 ################### Adding rows ##################
