@@ -133,6 +133,7 @@ reference:
       - ge_details
       - ge_effects
       - ge_factanal
+      - ge_means
       - ge_plot
       - ge_reg
       - ge_stats

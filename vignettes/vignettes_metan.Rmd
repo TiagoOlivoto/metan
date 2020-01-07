@@ -48,6 +48,7 @@ The complete functionality of the package is described at https://tiagoolivoto.g
 # Brief examples
 
 Brief examples will be shown using the dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details type `?data_ge`.
+
 # Checking data
 First of all, we will check the data for possible problems with the function `inspect()`.
 ```{r, message=FALSE, warning=FALSE}
@@ -69,6 +70,20 @@ We can create a plot to show the performance of the genotypes across the environ
 
 ```{r fig.height=4, fig.width=5}
 ge_plot(data_ge, GEN, ENV, GY)
+```
+
+Or obtain the means for genotypes, environments or genotype-environment interaction with `ge_means()`. Note that the function `round_cols()` provided by `metan` round all numeric columns of a data frame to two (default) significant figures.
+```{r}
+mge <- ge_means(data_ge,
+                env = ENV,
+                gen = GEN,
+                resp = everything())
+# Genotype-environment means
+get_model_data(mge) %>% round_cols()
+# Environment means
+get_model_data(mge, what = "env_means") %>% round_cols()
+# Genotype means
+get_model_data(mge, what = "gen_means") %>% round_cols()
 ```
 
 
@@ -103,7 +118,7 @@ arrange_ggplot(a, b, labels = letters[1:2], ncol = 1)
 
 
 ## Predict the response variable
-The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively). In addition, we will create a two way table with `make_mat()` to show the predicted values for the variable GY. The function `round_cols()` provided by `metan` round all numeric columns of a data frame to two (default) significant figures.
+The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively). In addition, we will create a two way table with `make_mat()` to show the predicted values for the variable GY.
 
 ```{r }
 predicted <- predict(ammi_model, naxis = c(4, 6))

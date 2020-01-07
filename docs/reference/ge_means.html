@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Genotype-environment winners — ge_winners • metan</title>
+<title>Genotype-environment means — ge_means • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
 
 
 
-<meta property="og:title" content="Genotype-environment winners — ge_winners" />
-<meta property="og:description" content="Computes the ranking for genotypes within environments and return the winners." />
+<meta property="og:title" content="Genotype-environment means — ge_means" />
+<meta property="og:description" content="Computes genotype-environment interaction means" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -202,16 +202,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Genotype-environment winners</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/ge_winners.R'><code>R/ge_winners.R</code></a></small>
-    <div class="hidden name"><code>ge_winners.Rd</code></div>
+    <h1>Genotype-environment means</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/ge_means.R'><code>R/ge_means.R</code></a></small>
+    <div class="hidden name"><code>ge_means.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Computes the ranking for genotypes within environments and return the winners.</p>
+    <p>Computes genotype-environment interaction means</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ge_winners</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>resp</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"winners"</span>, <span class='kw'>better</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>ge_means</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>resp</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -232,91 +232,75 @@ environments.</p></td>
     </tr>
     <tr>
       <th>resp</th>
-      <td><p>The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example <code>resp
-= c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>The type of results. Defaults to <code>"winners"</code> (default),
-i.e., a two-way table with the winner genotype in each environment. If
-<code>type = "ranks"</code> return the genotype ranking within each environment.</p></td>
-    </tr>
-    <tr>
-      <th>better</th>
-      <td><p>A vector of the same length of the number of variables to rank
-the genotypes according to the response variable. Each element of the
-vector must be one of the <code>'h'</code> or <code>'l'</code>. If <code>'h'</code> is used
-(default), the genotypes are ranked from maximum to minimum. If <code>'l'</code>
-is used then the are ranked from minimum to maximum. Use a comma-separated
-vector of names. For example, <code>better = c("h, h, h, h, l")</code>, for
-ranking the fifth variable from minimum to maximum.</p></td>
+      <td><p>The response variable(s). To analyze multiple variables at once,
+a vector of variables may be used. For example <code>resp = c(var1, var2,
+  var3)</code>. Select helpers are also allowed.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble with two-way table with the winner genotype in each
-  environment (default) or the genotype ranking for each environment (if
-  <code>type = "ranks"</code>).</p>
+    <p>A list where each element is the result for one variable containing:</p><ul>
+<li><p><strong>ge_means</strong>: A two-way table with the means for genotypes (rows) and
+environments (columns).</p></li>
+<li><p><strong>gen_means</strong>: A tibble with the means for genotypes.</p></li>
+<li><p><strong>env_means</strong>: A tibble with the means for environments.</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'>ge_winners</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/select_helpers.html'>everything</a></span>())</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 14 x 3</span><span>
-#&gt;    ENV   GY    HM   
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G2    G5   
-#&gt; </span><span style='color: #555555;'> 2</span><span> E10   G8    G5   
-#&gt; </span><span style='color: #555555;'> 3</span><span> E11   G8    G6   
-#&gt; </span><span style='color: #555555;'> 4</span><span> E12   G8    G6   
-#&gt; </span><span style='color: #555555;'> 5</span><span> E13   G8    G8   
-#&gt; </span><span style='color: #555555;'> 6</span><span> E14   G3    G7   
-#&gt; </span><span style='color: #555555;'> 7</span><span> E2    G3    G5   
-#&gt; </span><span style='color: #555555;'> 8</span><span> E3    G2    G10  
-#&gt; </span><span style='color: #555555;'> 9</span><span> E4    G10   G10  
-#&gt; </span><span style='color: #555555;'>10</span><span> E5    G8    G10  
-#&gt; </span><span style='color: #555555;'>11</span><span> E6    G3    G4   
-#&gt; </span><span style='color: #555555;'>12</span><span> E7    G7    G8   
-#&gt; </span><span style='color: #555555;'>13</span><span> E8    G8    G8   
-#&gt; </span><span style='color: #555555;'>14</span><span> E9    G4    G10  </div><div class='input'>
-<span class='co'># Assuming that for 'GY' lower values are better.</span>
-<span class='fu'>ge_winners</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>,
-           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/select_helpers.html'>everything</a></span>(),
-           <span class='kw'>better</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"l, h"</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
-#&gt;    ENV   GY    HM   
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G10   G5   
-#&gt; </span><span style='color: #555555;'> 2</span><span> E10   G10   G5   
-#&gt; </span><span style='color: #555555;'> 3</span><span> E11   G10   G6   
-#&gt; </span><span style='color: #555555;'> 4</span><span> E12   G10   G6   
-#&gt; </span><span style='color: #555555;'> 5</span><span> E13   G10   G8   
-#&gt; </span><span style='color: #555555;'> 6</span><span> E14   G2    G7   
-#&gt; </span><span style='color: #555555;'> 7</span><span> E2    G7    G5   
-#&gt; </span><span style='color: #555555;'> 8</span><span> E3    G6    G10  
-#&gt; </span><span style='color: #555555;'> 9</span><span> E4    G7    G10  
-#&gt; </span><span style='color: #555555;'>10</span><span> E5    G10   G10  
-#&gt; </span><span style='color: #555555;'>11</span><span> E6    G6    G4   
-#&gt; </span><span style='color: #555555;'>12</span><span> E7    G9    G8   
-#&gt; </span><span style='color: #555555;'>13</span><span> E8    G2    G8   
-#&gt; </span><span style='color: #555555;'>14</span><span> E9    G9    G10  </div><div class='input'>
-<span class='co'># Show the genotype ranking for each environment</span>
-<span class='fu'>ge_winners</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>,
-           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/select_helpers.html'>everything</a></span>(),
-           <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"ranks"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 140 x 3</span><span>
-#&gt;    ENV   GY    HM   
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G2    G5   
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G8    G4   
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G3    G6   
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G7    G8   
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G4    G9   
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G1    G7   
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G9    G10  
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G6    G1   
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G5    G3   
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G10   G2   
-#&gt; </span><span style='color: #555555;'># … with 130 more rows</span><span></div><div class='input'># }
+<span class='no'>means_ge</span> <span class='kw'>&lt;-</span> <span class='fu'>ge_means</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/select_helpers.html'>everything</a></span>())
+
+<span class='co'># Genotype-environment interaction means</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>means_ge</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 140 x 4</span><span>
+#&gt;    ENV   GEN      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1     2.37  46.5
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G10    1.97  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G2     2.90  45.3
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G3     2.89  45.9
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G4     2.59  48.3
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G5     2.19  49.9
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G6     2.30  48.2
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G7     2.77  47.4
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G8     2.90  48.0
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    G9     2.33  47.7
+#&gt; </span><span style='color: #555555;'># … with 130 more rows</span><span></div><div class='input'>
+<span class='co'># Environment means</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>means_ge</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"env_means"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
+#&gt;    ENV      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1     2.52  47.4
+#&gt; </span><span style='color: #555555;'> 2</span><span> E10    2.18  44.3
+#&gt; </span><span style='color: #555555;'> 3</span><span> E11    1.37  54.2
+#&gt; </span><span style='color: #555555;'> 4</span><span> E12    1.61  49.6
+#&gt; </span><span style='color: #555555;'> 5</span><span> E13    2.91  46.6
+#&gt; </span><span style='color: #555555;'> 6</span><span> E14    1.78  41.0
+#&gt; </span><span style='color: #555555;'> 7</span><span> E2     3.18  44.1
+#&gt; </span><span style='color: #555555;'> 8</span><span> E3     4.06  52.9
+#&gt; </span><span style='color: #555555;'> 9</span><span> E4     3.68  50  
+#&gt; </span><span style='color: #555555;'>10</span><span> E5     3.91  52.2
+#&gt; </span><span style='color: #555555;'>11</span><span> E6     2.66  45.9
+#&gt; </span><span style='color: #555555;'>12</span><span> E7     1.99  48.5
+#&gt; </span><span style='color: #555555;'>13</span><span> E8     2.54  45.2
+#&gt; </span><span style='color: #555555;'>14</span><span> E9     3.06  51.3</div><div class='input'>
+<span class='co'># Genotype means</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>means_ge</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"gen_means"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
+#&gt;    GEN      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> G1     2.60  47.1
+#&gt; </span><span style='color: #555555;'> 2</span><span> G10    2.47  48.5
+#&gt; </span><span style='color: #555555;'> 3</span><span> G2     2.74  46.7
+#&gt; </span><span style='color: #555555;'> 4</span><span> G3     2.96  47.6
+#&gt; </span><span style='color: #555555;'> 5</span><span> G4     2.64  48.0
+#&gt; </span><span style='color: #555555;'> 6</span><span> G5     2.54  49.3
+#&gt; </span><span style='color: #555555;'> 7</span><span> G6     2.53  48.7
+#&gt; </span><span style='color: #555555;'> 8</span><span> G7     2.74  48.0
+#&gt; </span><span style='color: #555555;'> 9</span><span> G8     3.00  49.1
+#&gt; </span><span style='color: #555555;'>10</span><span> G9     2.51  47.9</div><div class='input'>
+# }
 
 </div></span></pre>
   </div>
