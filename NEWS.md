@@ -11,11 +11,12 @@
    * `remove_cols()`, and `remove_rows()` for removing columns and rows, respectively.
    * `select_cols()` and `select_rows()` for selecting columns and rows, respectively.
    * `select_numeric_cols()`, and `select_non_numeric_cols()` for selecting numeric and non-numeric variables quickly.
+   * `round_cols()` for rounding a whole data frame to significant figures.
    * `all_lower_case()`, and `all_upper_case()` for handling with cases.
    * `extract_number()`, `extract_string()`, `remove_strings()`, `replace_number()`, and  `replace_string()`, for handling with numbers and strings.
    * `get_level_size()`, and `get_levels()` for getting size of levels and levels of a factor.
    * `means_by()` for computing means by one or more factors quickly.
-   * `round_cols()` for rounding a whole data frame to significant figures.
+   * `ge_means()` for computing genotype-environment means
    * `ge_winners()` for getting winner genotypes or ranking genotypes within environments.
    * `env_dissimilarity()` for computing dissimilarity between test environments.
 
