@@ -50,6 +50,11 @@
 #'  \strong{Objects of class \code{ge_effects}:}
 #' * For objects of class \code{ge_effects} no argument \code{what} is required.
 #'
+#'  \strong{Objects of class \code{ge_means}:}
+#' * \code{"ge_means"} Genotype-environment interaction means (default).
+#' * \code{"env_means"} Environment means.
+#' * \code{"gen_means"} Genotype means.
+#'
 #'  \strong{Objects of class \code{Shukla}:}
 #' * \code{"rMean"} Rank for the mean.
 #' * \code{"ShuklaVar"} Shukla's stablity variance (default).
@@ -203,11 +208,13 @@
 #' @examples
 #' \donttest{
 #' library(metan)
+#'
 #' #################### joint-regression analysis #####################
 #' ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
 #'                resp = c(PH, EH, CD, CL, ED))
 #' get_model_data(ge_r)
 #' get_model_data(ge_r, "deviations")
+#'
 #'
 #' #################### AMMI model #####################
 #' # Fit an AMMI model for 7 variables.
@@ -268,6 +275,7 @@
 #' Resende_indexes() %>%
 #' get_model_data()
 #'
+#'
 #' #################### Stability indexes #####################
 #' stats_ge <- ge_stats(data_ge, ENV, GEN, REP, everything())
 #' get_model_data(stats_ge)
@@ -278,7 +286,7 @@ get_model_data <- function(x, what = NULL, type = "GEN") {
   if (!class(x) %in% c("waasb", "waas","waas_means", "gamem", "performs_ammi", "Res_ind",
                        "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                        "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
-                       "ge_stats", "Annicchiarico", "Schmildt")) {
+                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means")) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
@@ -311,11 +319,10 @@ get_model_data <- function(x, what = NULL, type = "GEN") {
   check16 <- c("stats", "ranks")
   check17 <- c("Mean_rp", "Sd_rp", "Wi", "rank")
   check18 <- c("Mean_rp", "Sem_rp", "Wi", "rank")
-
-
+  check19 <- c("ge_means", "env_means", "gen_means")
   if (!is.null(what) && !what %in% c(check, check2, check5, check6, check7, check8, check9, check10,
                                      check11, check12, check13, check14, check15, check16, check17,
-                                     check18)) {
+                                     check18, check19)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (!is.null(what) && what %in% check3 && !class(x) %in% c("waasb", "gamem")) {
@@ -323,6 +330,45 @@ get_model_data <- function(x, what = NULL, type = "GEN") {
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
+  }
+  if(class(x) == "ge_means"){
+    if (is.null(what)){
+      what <- "ge_means"
+    }
+    if (!what %in% c(check19)) {
+      stop("Invalid value in 'what' for object of class 'ge_means'. Allowed are ", paste(check19, collapse = ", "), call. = FALSE)
+    }
+    if(what == "ge_means"){
+    bind <- do.call(
+      cbind,
+      lapply(x, function(x) {
+        x[["ge_means_long"]][["Mean"]]
+      })) %>%
+      as_tibble() %>%
+      add_cols(ENV = x[[1]][["ge_means_long"]][["ENV"]],
+               GEN = x[[1]][["ge_means_long"]][["GEN"]]) %>%
+      column_to_first(ENV, GEN)
+    }
+    if(what == "env_means"){
+      bind <- do.call(
+        cbind,
+        lapply(x, function(x) {
+          x[["env_means"]][["Mean"]]
+        })) %>%
+        as_tibble() %>%
+        add_cols(ENV = x[[1]][["env_means"]][["ENV"]]) %>%
+        column_to_first(ENV)
+    }
+    if(what == "gen_means"){
+      bind <- do.call(
+        cbind,
+        lapply(x, function(x) {
+          x[["gen_means"]][["Mean"]]
+        })) %>%
+        as_tibble() %>%
+        add_cols(GEN = x[[1]][["gen_means"]][["GEN"]]) %>%
+        column_to_first(GEN)
+    }
   }
   if (class(x) == "Annicchiarico") {
     if (is.null(what)){

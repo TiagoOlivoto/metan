@@ -71,6 +71,13 @@ interaction.
 \item For objects of class \code{ge_effects} no argument \code{what} is required.
 }
 
+\strong{Objects of class \code{ge_means}:}
+\itemize{
+\item \code{"ge_means"} Genotype-environment interaction means (default).
+\item \code{"env_means"} Environment means.
+\item \code{"gen_means"} Genotype means.
+}
+
 \strong{Objects of class \code{Shukla}:}
 \itemize{
 \item \code{"rMean"} Rank for the mean.
@@ -172,11 +179,13 @@ objects of class \code{waasb}).
 \examples{
 \donttest{
 library(metan)
+
 #################### joint-regression analysis #####################
 ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
                resp = c(PH, EH, CD, CL, ED))
 get_model_data(ge_r)
 get_model_data(ge_r, "deviations")
+
 
 #################### AMMI model #####################
 # Fit an AMMI model for 7 variables.
@@ -236,6 +245,7 @@ get_model_data(blup)
 blup \%>\%
 Resende_indexes() \%>\%
 get_model_data()
+
 
 #################### Stability indexes #####################
 stats_ge <- ge_stats(data_ge, ENV, GEN, REP, everything())
