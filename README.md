@@ -75,8 +75,11 @@ No issues while inspecting the data. Let’s continue with the analyzes\!
 
 ### Fitting the model
 
-The AMMI model is fitted with the function `performs_ammi()`. For more
-details, see the [complete
+The AMMI model is fitted with the function `performs_ammi()`. To analyze
+multiple variables at once we can pass a comma-separated vector of
+unquoted variable names, or use any select helpe. Here, using
+`everything()` we apply the function to all numeric variables in the
+data. For more details, see the [complete
 vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html).
 
 ``` r
@@ -84,7 +87,7 @@ model <- performs_ammi(data_ge,
                        env = ENV,
                        gen = GEN,
                        rep = REP,
-                       resp = GY,
+                       resp = everything(),
                        verbose = FALSE)
 ```
 
@@ -93,14 +96,13 @@ model <- performs_ammi(data_ge,
 The S3 method `predict()` is implemented for objects of class
 `performs_ammi` and may be used to estimate the response of each
 genotype in each environment considering different number of Interaction
-Principal Component Axis (IPCA). For example, we will use four IPCA
-(number of significant IPCAs) to estimate the variable GY using the
-`model` object. Note that `$GY` was used because using the `predict()`
-function to a model of class `waas` return a list, with one `tbl_df` for
-each variable.
+Principal Component Axis (IPCA). As a example, to predict the variables
+GY and HM we will use four and six IPCA (number of significant IPCAs,
+respectively).
 
 ``` r
-predict(model, naxis = 4)$GY
+pred <- predict(model, naxis = c(4, 6))
+pred$GY
 #> # A tibble: 140 x 8
 #>    ENV   GEN       Y  resOLS Ypred ResAMMI[,1] YpredAMMI[,1] AMMI0
 #>    <fct> <fct> <dbl>   <dbl> <dbl>       <dbl>         <dbl> <dbl>
@@ -170,8 +172,11 @@ see the [complete
 vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
 
 ``` r
-model2 <- waasb(data_ge, ENV, GEN, REP,
-                resp = c(GY, HM),
+model2 <- waasb(data_ge,
+                env = ENV,
+                gen = GEN,
+                rep = REP,
+                resp = everything(),
                 verbose = FALSE)
 
 get_model_data(model2, what = "genpar")
