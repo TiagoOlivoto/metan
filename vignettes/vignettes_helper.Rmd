@@ -127,7 +127,7 @@ names(g3)
 # Make a two-way table based on categorical and numerical arguments
 
 ```{r, message=FALSE }
-head(data_ge)
+print_table(data_ge)
 matrix <- make_mat(data_ge, row = GEN, col = ENV, val = GY)
 print_table(matrix, rownames = TRUE)
 

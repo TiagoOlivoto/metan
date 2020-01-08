@@ -186,7 +186,7 @@ ann1 <- Annicchiarico(data_ge, ENV, GEN, REP, GY, prob = 0.01)
 
 ## Environment classification
 
-```{r, eval=FALSE}
+```{r}
 print_table(ann5$GY$environments)
 
 ```
@@ -194,7 +194,7 @@ print_table(ann5$GY$environments)
 
 ## Index computed with all environments
 
-```{r, eval = FALSE}
+```{r}
 print_table(ann5$GY$general)
 
 ```
@@ -210,7 +210,7 @@ where *n* is the number of environments
 
 Similar then the genotypic confidence index, the superiority index is calculated by all environments, favorable, and unfavorable environments.
 
-```{r, eval=FALSE}
+```{r}
 super <- superiority(data_ge, ENV, GEN, REP, GY)
 print_table(super$GY$index)
 ```
