@@ -32,7 +32,7 @@ Description: Performs stability analysis of multi-environment
     <doi:10.1016/j.scienta.2019.04.047>. Functions for computing
     biometrical analysis such as path analysis, canonical correlation,
     partial correlation, clustering analysis, and tools for inspecting,
-    manipulating, summarizing and plotting typical multi- environment
+    manipulating, summarizing and plotting typical multi-environment
     trial data are also provided.
 License: GPL-3
 URL: https://github.com/TiagoOlivoto/metan
