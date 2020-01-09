@@ -177,14 +177,10 @@ reorder_cols(data_ge2, ENV, GEN, .after = "ED")
 
 ######## Selecting and removing columns ##########
 select_cols(data_ge2, GEN, REP)
-select_cols(data_ge2, 2:3)
 remove_cols(data_ge2, GEN, REP)
-remove_cols(data_ge2, 2:3)
 
 ########## Selecting and removing rows ###########
-select_rows(data_ge2, GEN, REP)
 select_rows(data_ge2, 2:3)
-remove_rows(data_ge2, GEN, REP)
 remove_rows(data_ge2, 2:3)
 
 ########### Concatenating columns ################

@@ -122,10 +122,8 @@ extract_number <- function(.data,
                            .before = NULL,
                            .after  = NULL){
   if (drop == FALSE){
-    results <-
-      mutate(.data,
-             {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
-      )
+    results <- .data %>%
+      mutate({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
     if (pull == TRUE){
       results <- pull(results)
     }
@@ -133,10 +131,8 @@ extract_number <- function(.data,
       results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
     }
   } else{
-    results <-
-      transmute(.data,
-                {{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}})))
-      )
+    results <- .data %>%
+      transmute({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -153,10 +149,8 @@ extract_string <- function(.data,
                            .before = NULL,
                            .after  = NULL){
   if (drop == FALSE){
-    results <-
-      mutate(.data,
-             {{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}})))
-      )
+    results <- .data %>%
+      mutate({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -164,10 +158,8 @@ extract_string <- function(.data,
       results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
     }
   } else{
-    results <-
-      transmute(.data,
-                {{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}})))
-      )
+    results <- .data %>%
+      transmute({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -209,10 +201,8 @@ replace_number <- function(.data,
     pattern <- pattern
   }
   if (drop == FALSE){
-    results <-
-      mutate(.data,
-             {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-      )
+    results <- .data %>%
+      mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -220,10 +210,8 @@ replace_number <- function(.data,
       results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
     }
   } else{
-    results <-
-      transmute(.data,
-                {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-      )
+    results <- .data %>%
+      transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -247,10 +235,8 @@ replace_string <- function(.data,
     pattern <- pattern
   }
   if (drop == FALSE){
-    results <-
-      mutate(.data,
-             {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-      )
+    results <- .data %>%
+      mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -258,10 +244,8 @@ replace_string <- function(.data,
       results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
     }
   } else{
-    results <-
-      transmute(.data,
-                {{new_var}} := gsub(pattern, replacement, as.character({{var}}))
-      )
+    results <- .data %>%
+      transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -389,14 +373,10 @@ round_cols <- function(.data, ...,  digits = 2){
 #'
 #' ######## Selecting and removing columns ##########
 #' select_cols(data_ge2, GEN, REP)
-#' select_cols(data_ge2, 2:3)
 #' remove_cols(data_ge2, GEN, REP)
-#' remove_cols(data_ge2, 2:3)
 #'
 #' ########## Selecting and removing rows ###########
-#' select_rows(data_ge2, GEN, REP)
 #' select_rows(data_ge2, 2:3)
-#' remove_rows(data_ge2, GEN, REP)
 #' remove_rows(data_ge2, 2:3)
 #'
 #' ########### Concatenating columns ################
@@ -473,7 +453,7 @@ all_pairs <- function(.data, levels){
 #' @name utils_rows_cols
 #' @export
 column_to_first <-function(.data, ...){
-select_cols(.data, ..., everything())
+  select_cols(.data, ..., everything())
 }
 #' @name utils_rows_cols
 #' @export
@@ -659,5 +639,3 @@ means_by <- function(.data, ...){
     summarise_if(is.numeric, mean) %>%
     ungroup()
 }
-
-
