@@ -245,24 +245,24 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                                          paste0(min_group[2,2], " (", round(min_group[2,3], 3), ") "),
                                          paste0(max_group[2,2], " (", round(max_group[2,3], 3), ") "),
                                          SigPC1))
-            temp <- structure(list(individual = individual[[1]],
-                                   model = WAASAbs,
-                                   MeansGxE = MeansGxE,
-                                   PCA = as_tibble(PC, rownames = NA),
-                                   anova = model$ANOVA,
-                                   Details = Details,
-                                   residuals = as_tibble(model$residuals, rownames = NA),
-                                   probint = model$probint),
-                              class = "waas")
+            listres[[paste(names(vars[var]))]] <-
+                structure(list(individual = individual[[1]],
+                               model = WAASAbs,
+                               MeansGxE = MeansGxE,
+                               PCA = as_tibble(PC, rownames = NA),
+                               anova = model$ANOVA,
+                               Details = Details,
+                               residuals = as_tibble(model$residuals, rownames = NA),
+                               probint = model$probint),
+                          class = "waas")
 
-            if (nvar > 1) {
-                listres[[paste(names(vars[var]))]] <- temp
-                if (verbose == TRUE) {
-                    cat("Evaluating variable", paste(names(vars[var])),
-                        round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
-                }
-            } else {
-                listres[[paste(names(vars[var]))]] <- temp
+            if (verbose == TRUE) {
+                cat("variable", paste(names(vars[var])),"\n")
+                cat("---------------------------------------------------------------------------\n")
+                cat("AMMI analysis table\n")
+                cat("---------------------------------------------------------------------------\n")
+                print(as.data.frame(model$ANOVA), digits = 3, row.names = FALSE)
+                cat("---------------------------------------------------------------------------\n\n")
             }
         }
     }
@@ -282,6 +282,5 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
         cat("Done!\n")
     }
     invisible(structure(listres, class = "waas"))
-
 }
 
