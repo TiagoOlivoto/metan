@@ -1,3 +1,6 @@
+# metan 1.2.1
+* References describing the methods implemented in the package were included in description field of DESCRIPTION file as suggested by the CRAN team.
+
 # metan 1.2.0
 * Minor changes
    * `corr_plot()` now don't write a warning message to the console by default.
