@@ -96,7 +96,7 @@ statistics." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -475,13 +475,118 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 <span class='co'># Fit an AMMI model for 7 variables.</span>
 <span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>CW</span>))</div><div class='output co'>#&gt; Evaluating variable PH 0 % 
-#&gt; Evaluating variable ED 16.7 % 
-#&gt; Evaluating variable TKW 33.3 % 
-#&gt; Evaluating variable NKR 50 % 
-#&gt; Evaluating variable CD 66.7 % 
-#&gt; Evaluating variable CL 83.3 % 
-#&gt; Evaluating variable CW 100 % 
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>CW</span>))</div><div class='output co'>#&gt; variable PH 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  7.719  2.5728 127.913 4.25e-07       .       .
+#&gt;   REP(ENV)   8  0.161  0.0201   0.897 5.22e-01       .       .
+#&gt;   GEN       12  1.865  0.1554   6.929 6.89e-09       .       .
+#&gt;    ENV:GEN  36  5.397  0.1499   6.686 5.01e-14       .       .
+#&gt;        PC1  14  4.466  0.3190  14.230 0.00e+00    82.8    82.8
+#&gt;        PC2  12  0.653  0.0545   2.430 8.40e-03    12.1    94.9
+#&gt;        PC3  10  0.277  0.0277   1.240 2.76e-01     5.1     100
+#&gt;  Residuals  96  2.153  0.0224      NA       NA       .       .
+#&gt;      Total 155 17.294  0.1116      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable ED 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  306.0  101.99  43.386 2.70e-05       .       .
+#&gt;   REP(ENV)   8   18.8    2.35   0.906 5.15e-01       .       .
+#&gt;   GEN       12  212.9   17.74   6.838 8.95e-09       .       .
+#&gt;    ENV:GEN  36  398.2   11.06   4.263 7.60e-09       .       .
+#&gt;        PC1  14  212.2   15.16   5.840 0.00e+00    53.3    53.3
+#&gt;        PC2  12  134.7   11.23   4.330 0.00e+00    33.8    87.1
+#&gt;        PC3  10   51.3    5.13   1.980 4.38e-02    12.9     100
+#&gt;  Residuals  96  249.1    2.59      NA       NA       .       .
+#&gt;      Total 155 1185.0    7.64      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable TKW 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  37013   12338   11.13 3.16e-03       .       .
+#&gt;   REP(ENV)   8   8869    1109    1.21 3.03e-01       .       .
+#&gt;   GEN       12  44633    3719    4.05 4.41e-05       .       .
+#&gt;    ENV:GEN  36 164572    4571    4.98 1.73e-10       .       .
+#&gt;        PC1  14 104276    7448    8.11 0.00e+00    63.4    63.4
+#&gt;        PC2  12  33361    2780    3.03 1.20e-03    20.3    83.6
+#&gt;        PC3  10  26935    2694    2.93 3.00e-03    16.4     100
+#&gt;  Residuals  96  88171     918      NA       NA       .       .
+#&gt;      Total 155 343257    2215      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable NKR 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  237.0   79.01  15.843 0.000997       .       .
+#&gt;   REP(ENV)   8   39.9    4.99   0.635 0.746348       .       .
+#&gt;   GEN       12  227.8   18.99   2.418 0.008726       .       .
+#&gt;    ENV:GEN  36  602.7   16.74   2.132 0.001839       .       .
+#&gt;        PC1  14  337.4   24.10   3.070 0.000600      56      56
+#&gt;        PC2  12  192.2   16.02   2.040 0.028500    31.9    87.9
+#&gt;        PC3  10   73.1    7.31   0.930 0.509500    12.1     100
+#&gt;  Residuals  96  753.7    7.85      NA       NA       .       .
+#&gt;      Total 155 1861.1   12.01      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable CD 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3   9.72   3.241   6.921 0.012981       .       .
+#&gt;   REP(ENV)   8   3.75   0.468   0.519 0.839734       .       .
+#&gt;   GEN       12  31.41   2.617   2.899 0.001851       .       .
+#&gt;    ENV:GEN  36  81.59   2.266   2.511 0.000194       .       .
+#&gt;        PC1  14  48.25   3.446   3.820 0.000000    59.1    59.1
+#&gt;        PC2  12  20.72   1.727   1.910 0.042300    25.4    84.5
+#&gt;        PC3  10  12.62   1.262   1.400 0.192000    15.5     100
+#&gt;  Residuals  96  86.66   0.903      NA       NA       .       .
+#&gt;      Total 155 213.12   1.375      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable CL 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3   50.1   16.70    5.73 2.16e-02       .       .
+#&gt;   REP(ENV)   8   23.3    2.91    1.76 9.41e-02       .       .
+#&gt;   GEN       12   65.7    5.47    3.31 4.81e-04       .       .
+#&gt;    ENV:GEN  36  527.3   14.65    8.86 7.16e-18       .       .
+#&gt;        PC1  14  320.6   22.90   13.86 0.00e+00    60.8    60.8
+#&gt;        PC2  12  129.1   10.76    6.51 0.00e+00    24.5    85.3
+#&gt;        PC3  10   77.5    7.75    4.69 0.00e+00    14.7     100
+#&gt;  Residuals  96  158.6    1.65      NA       NA       .       .
+#&gt;      Total 155  825.0    5.32      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable CW 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3 1258.2  419.41  45.225 2.31e-05       .       .
+#&gt;   REP(ENV)   8   74.2    9.27   0.772 6.28e-01       .       .
+#&gt;   GEN       12  531.6   44.30   3.686 1.43e-04       .       .
+#&gt;    ENV:GEN  36 3056.0   84.89   7.064 9.61e-15       .       .
+#&gt;        PC1  14 2223.8  158.84  13.220 0.00e+00    72.8    72.8
+#&gt;        PC2  12  502.5   41.88   3.480 3.00e-04    16.4    89.2
+#&gt;        PC3  10  329.7   32.97   2.740 5.20e-03    10.8     100
+#&gt;  Residuals  96 1153.7   12.02      NA       NA       .       .
+#&gt;      Total 155 6073.7   39.19      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Sum of squares</span>
@@ -543,10 +648,70 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 <span class='co'>#################### WAASB model #####################</span>
 <span class='co'># Fitting the WAAS index</span>
 <span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; Evaluating variable PH 0 % 
-#&gt; Evaluating variable ED 33.3 % 
-#&gt; Evaluating variable TKW 66.7 % 
-#&gt; Evaluating variable NKR 100 % 
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; variable PH 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  7.719  2.5728 127.913 4.25e-07       .       .
+#&gt;   REP(ENV)   8  0.161  0.0201   0.897 5.22e-01       .       .
+#&gt;   GEN       12  1.865  0.1554   6.929 6.89e-09       .       .
+#&gt;    ENV:GEN  36  5.397  0.1499   6.686 5.01e-14       .       .
+#&gt;        PC1  14  4.466  0.3190  14.230 0.00e+00    82.8    82.8
+#&gt;        PC2  12  0.653  0.0545   2.430 8.40e-03    12.1    94.9
+#&gt;        PC3  10  0.277  0.0277   1.240 2.76e-01     5.1     100
+#&gt;  Residuals  96  2.153  0.0224      NA       NA       .       .
+#&gt;      Total 155 17.294  0.1116      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable ED 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  306.0  101.99  43.386 2.70e-05       .       .
+#&gt;   REP(ENV)   8   18.8    2.35   0.906 5.15e-01       .       .
+#&gt;   GEN       12  212.9   17.74   6.838 8.95e-09       .       .
+#&gt;    ENV:GEN  36  398.2   11.06   4.263 7.60e-09       .       .
+#&gt;        PC1  14  212.2   15.16   5.840 0.00e+00    53.3    53.3
+#&gt;        PC2  12  134.7   11.23   4.330 0.00e+00    33.8    87.1
+#&gt;        PC3  10   51.3    5.13   1.980 4.38e-02    12.9     100
+#&gt;  Residuals  96  249.1    2.59      NA       NA       .       .
+#&gt;      Total 155 1185.0    7.64      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable TKW 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  37013   12338   11.13 3.16e-03       .       .
+#&gt;   REP(ENV)   8   8869    1109    1.21 3.03e-01       .       .
+#&gt;   GEN       12  44633    3719    4.05 4.41e-05       .       .
+#&gt;    ENV:GEN  36 164572    4571    4.98 1.73e-10       .       .
+#&gt;        PC1  14 104276    7448    8.11 0.00e+00    63.4    63.4
+#&gt;        PC2  12  33361    2780    3.03 1.20e-03    20.3    83.6
+#&gt;        PC3  10  26935    2694    2.93 3.00e-03    16.4     100
+#&gt;  Residuals  96  88171     918      NA       NA       .       .
+#&gt;      Total 155 343257    2215      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable NKR 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  237.0   79.01  15.843 0.000997       .       .
+#&gt;   REP(ENV)   8   39.9    4.99   0.635 0.746348       .       .
+#&gt;   GEN       12  227.8   18.99   2.418 0.008726       .       .
+#&gt;    ENV:GEN  36  602.7   16.74   2.132 0.001839       .       .
+#&gt;        PC1  14  337.4   24.10   3.070 0.000600      56      56
+#&gt;        PC2  12  192.2   16.02   2.040 0.028500    31.9    87.9
+#&gt;        PC3  10   73.1    7.31   0.930 0.509500    12.1     100
+#&gt;  Residuals  96  753.7    7.85      NA       NA       .       .
+#&gt;      Total 155 1861.1   12.01      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Getting the weighted average of absolute scores</span>
@@ -671,7 +836,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 #&gt; </span><span style='color: #555555;'>18</span><span> HM    G7    48.0   7.98 191.   2.89    93.9  95.3  92.8 102.    0.911
 #&gt; </span><span style='color: #555555;'>19</span><span> HM    G8    49.1   7.93 197.   2.06    97.2  97.5  97.2  76.5   0.951
 #&gt; </span><span style='color: #555555;'>20</span><span> HM    G9    47.9  10.1  306.   2.70    93.8  98.1  91.4  96.4   1.22 
-#&gt; </span><span style='color: #555555;'># … with 22 more variables: Sij </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, R2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ASV </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, SIPC </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; </span><span style='color: #555555;'># ... with 22 more variables: Sij </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, R2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ASV </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, SIPC </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
 #&gt; #   EV </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ZA </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, WAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, HMGV </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, RPGV </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, HMRPGV </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
 #&gt; #   Pi_a </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, Pi_f </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, Pi_u </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, Gai </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, S1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, S2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
 #&gt; #   S3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, S6 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, N1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, N2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, N3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, N4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }

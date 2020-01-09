@@ -108,7 +108,7 @@ significant figures.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -371,7 +371,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   2       2.7   1.6   0.6  16.7  47.2  28.7  17.2  24.1  181.  13.6
 #&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   3       2.8   1.7   0.6  15.8  47.9  27.6  16.4  20.5  166.  15.2
 #&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   1       2.7   1.5   0.6  14.9  47.5  28.2  15.5  20.1  161   14.8
-#&gt; </span><span style='color: #555555;'># … with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
 #&gt; #   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Round specific columns</span>
 <span class='fu'>round_cols</span>(<span class='no'>data_ge2</span>, <span class='no'>EP</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
@@ -387,7 +387,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   2      2.72  1.56   0.6  16.7  47.2  28.7  17.2  24.1  181.  13.6
 #&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   3      2.77  1.67   0.6  15.8  47.9  27.6  16.4  20.5  166.  15.2
 #&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   1      2.73  1.54   0.6  14.9  47.5  28.2  15.5  20.1  161.  14.8
-#&gt; </span><span style='color: #555555;'># … with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
 #&gt; #   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'>########### Extract or replace numbers ##########</span>
 <span class='co'># Extract numbers</span>
@@ -404,7 +404,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2       3
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8       3
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9       4
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_number</span>(<span class='no'>data_ge</span>,
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_number</span>(<span class='no'>data_ge</span>,
                <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>g_number</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 1</span><span>
@@ -420,7 +420,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span>        3
 #&gt; </span><span style='color: #555555;'> 9</span><span>        3
 #&gt; </span><span style='color: #555555;'>10</span><span>        4
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Replace numbers</span>
 
 <span class='fu'>replace_number</span>(<span class='no'>data_ge</span>, <span class='no'>GEN</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
@@ -436,7 +436,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 G      
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 G      
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 G      
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_number</span>(<span class='no'>data_ge</span>,
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_number</span>(<span class='no'>data_ge</span>,
                <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"1"</span>,
                <span class='kw'>replacement</span> <span class='kw'>=</span> <span class='st'>"_one"</span>,
@@ -508,7 +508,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 G      
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 G      
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 G      
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_string</span>(<span class='no'>data_ge</span>,
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_string</span>(<span class='no'>data_ge</span>,
                <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>g_name</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 1</span><span>
@@ -524,7 +524,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> G     
 #&gt; </span><span style='color: #555555;'> 9</span><span> G     
 #&gt; </span><span style='color: #555555;'>10</span><span> G     
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Replace strings</span>
 <span class='fu'>replace_string</span>(<span class='no'>data_ge</span>, <span class='no'>GEN</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM new_var
@@ -539,7 +539,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 3      
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 3      
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 4      
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_string</span>(<span class='no'>data_ge</span>,
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_string</span>(<span class='no'>data_ge</span>,
                <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>GENOTYPE</span>,
                <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"G"</span>,
@@ -556,7 +556,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 GENOTYPE_3
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 GENOTYPE_3
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 GENOTYPE_4
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='co'># Remove strings</span>
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'># Remove strings</span>
 <span class='fu'>remove_strings</span>(<span class='no'>data_ge</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
 #&gt;      ENV   GEN   REP    GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -570,7 +570,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span>     1     3     2  3.62  43.2
 #&gt; </span><span style='color: #555555;'> 9</span><span>     1     3     3  2.28  47.8
 #&gt; </span><span style='color: #555555;'>10</span><span>     1     4     1  2.36  47.9
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='fu'>remove_strings</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>remove_strings</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
 #&gt;      ENV GEN   REP      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span>     1 G1    1      2.17  44.9
@@ -583,7 +583,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span>     1 G3    2      3.62  43.2
 #&gt; </span><span style='color: #555555;'> 9</span><span>     1 G3    3      2.28  47.8
 #&gt; </span><span style='color: #555555;'>10</span><span>     1 G4    1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='co'>############# upper and lower cases ############</span>
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'>############# upper and lower cases ############</span>
 <span class='fu'>all_lower_case</span>(<span class='st'>"GENOTYPE"</span>)</div><div class='output co'>#&gt; [1] "genotype"</div><div class='input'><span class='no'>lc</span> <span class='kw'>&lt;-</span> <span class='fu'>all_lower_case</span>(<span class='no'>data_ge</span>)
 <span class='no'>lc</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
@@ -598,7 +598,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> e1    g3    2      3.62  43.2
 #&gt; </span><span style='color: #555555;'> 9</span><span> e1    g3    3      2.28  47.8
 #&gt; </span><span style='color: #555555;'>10</span><span> e1    g4    1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'><span class='fu'>all_lower_case</span>(<span class='st'>"GENOTYPE"</span>)</div><div class='output co'>#&gt; [1] "genotype"</div><div class='input'>
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>all_lower_case</span>(<span class='st'>"GENOTYPE"</span>)</div><div class='output co'>#&gt; [1] "genotype"</div><div class='input'>
 <span class='fu'>all_upper_case</span>(<span class='st'>"Genotype"</span>)</div><div class='output co'>#&gt; [1] "GENOTYPE"</div><div class='input'><span class='fu'>all_upper_case</span>(<span class='no'>lc</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -612,7 +612,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># … with 410 more rows</span><span></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -94,7 +94,7 @@ in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -252,8 +252,50 @@ the working directory</p></td>
   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>
-)</div><div class='output co'>#&gt; Evaluating variable GY 0 % 
-#&gt; Evaluating variable HM 100 % 
+)</div><div class='output co'>#&gt; variable GY 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .
+#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .
+#&gt;   GEN        9  12.995  1.4439   14.93 2.19e-19       .       .
+#&gt;    ENV:GEN 117  31.220  0.2668    2.76 1.01e-11       .       .
+#&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4
+#&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2
+#&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2
+#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03     9.8      89
+#&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01     4.6    93.6
+#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01       3    96.6
+#&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01     1.8    98.4
+#&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6
+#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100
+#&gt;  Residuals 252  24.367  0.0967      NA       NA       .       .
+#&gt;      Total 419 357.816  0.8540      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable HM 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16       .       .
+#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05       .       .
+#&gt;   GEN        9  269.81  29.979   10.56 7.41e-14       .       .
+#&gt;    ENV:GEN 117 1100.73   9.408    3.31 1.06e-15       .       .
+#&gt;        PC1  21  381.13  18.149    6.39 0.00e+00    34.6    34.6
+#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00      29    63.6
+#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03    10.4      74
+#&gt;        PC4  15   81.96   5.464    1.92 2.18e-02     7.4    81.5
+#&gt;        PC5  13   68.11   5.240    1.84 3.77e-02     6.2    87.7
+#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02     5.4      93
+#&gt;        PC7   9   46.69   5.188    1.83 6.33e-02     4.2    97.3
+#&gt;        PC8   7   26.65   3.808    1.34 2.32e-01     2.4    99.7
+#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01     0.3     100
+#&gt;  Residuals 252  715.69   2.840      NA       NA       .       .
+#&gt;      Total 419 8011.48  19.120      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable GY 
 #&gt; ---------------------------------------------------------------------------
@@ -276,7 +318,7 @@ the working directory</p></td>
 #&gt; </span><span style='color: #555555;'>12</span><span> E7    1.989 0.381</span><span style='text-decoration: underline;'>0</span><span>  0.336</span><span style='text-decoration: underline;'>9</span><span> 0.091</span><span style='text-decoration: underline;'>03</span><span>  4.185  3.217</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  3.701 8.727</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 15.17 
 #&gt; </span><span style='color: #555555;'>13</span><span> E8    2.536 0.816</span><span style='text-decoration: underline;'>8</span><span>  0.214</span><span style='text-decoration: underline;'>6</span><span> 0.027</span><span style='text-decoration: underline;'>81</span><span> 29.37   2.149</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span>  7.717 1.314</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>  6.575
 #&gt; </span><span style='color: #555555;'>14</span><span> E9    3.057 0.582</span><span style='text-decoration: underline;'>6</span><span>  0.679</span><span style='text-decoration: underline;'>3</span><span> 0.110</span><span style='text-decoration: underline;'>9</span><span>   5.253  1.596</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  6.124 5.622</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 10.90 
-#&gt; </span><span style='color: #555555;'># … with 2 more variables: h2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 2 more variables: h2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -314,9 +356,10 @@ the working directory</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> GEN   G7    2.741  0.284</span><span style='text-decoration: underline;'>9</span><span>   0.587</span><span style='text-decoration: underline;'>1</span><span>  -</span><span style='color: #BB0000;'>0.206</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>  -</span><span style='color: #BB0000;'>0.708</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>   0.231</span><span style='text-decoration: underline;'>5</span><span>  -</span><span style='color: #BB0000;'>0.084</span><span style='color: #BB0000;text-decoration: underline;'>06</span><span>
 #&gt; </span><span style='color: #555555;'> 9</span><span> GEN   G8    3.004  0.499</span><span style='text-decoration: underline;'>5</span><span>  -</span><span style='color: #BB0000;'>0.191</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>   0.319</span><span style='text-decoration: underline;'>1</span><span>  -</span><span style='color: #BB0000;'>0.167</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  -</span><span style='color: #BB0000;'>0.326</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>  -</span><span style='color: #BB0000;'>0.288</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span> 
 #&gt; </span><span style='color: #555555;'>10</span><span> GEN   G9    2.510  0.466</span><span style='text-decoration: underline;'>8</span><span>  -</span><span style='color: #BB0000;'>0.842</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>  -</span><span style='color: #BB0000;'>0.121</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>   0.063</span><span style='text-decoration: underline;'>85</span><span>  0.381</span><span style='text-decoration: underline;'>9</span><span>   0.188</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #555555;'># … with 14 more rows, and 13 more variables: PC7 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PC8 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PC9 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   WAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PctResp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PctWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, wRes </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, wWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   OrResp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrPC1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, WAASY </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrWAASY </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 14 more rows, and 13 more variables: PC7 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PC8 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   PC9 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, WAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PctResp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PctWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, wRes </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   wWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrResp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrPC1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, WAASY </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   OrWAASY </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Some information regarding the analysis
 #&gt; ---------------------------------------------------------------------------
@@ -357,7 +400,7 @@ the working directory</p></td>
 #&gt; </span><span style='color: #555555;'>12</span><span> E7    48.50  0.705</span><span style='text-decoration: underline;'>2</span><span>  4.997 4.738  0.148</span><span style='text-decoration: underline;'>8</span><span> 8.627</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.055 4.382</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.489
 #&gt; </span><span style='color: #555555;'>13</span><span> E8    45.16 11.95   11.57  2.168  5.514  1.356</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  5.335 1.266</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 3.260
 #&gt; </span><span style='color: #555555;'>14</span><span> E9    51.33  5.733   9.333 2.289  2.505  1.097</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  4.078 5.408</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 2.947
-#&gt; </span><span style='color: #555555;'># … with 2 more variables: h2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 2 more variables: h2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -395,9 +438,10 @@ the working directory</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> GEN   G7    47.97 -</span><span style='color: #BB0000;'>1.218</span><span>   -</span><span style='color: #BB0000;'>0.468</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>   1.254    -</span><span style='color: #BB0000;'>0.054</span><span style='color: #BB0000;text-decoration: underline;'>82</span><span>  -</span><span style='color: #BB0000;'>0.034</span><span style='color: #BB0000;text-decoration: underline;'>29</span><span>  0.336</span><span style='text-decoration: underline;'>6</span><span>  
 #&gt; </span><span style='color: #555555;'> 9</span><span> GEN   G8    49.10 -</span><span style='color: #BB0000;'>0.041</span><span style='color: #BB0000;text-decoration: underline;'>76</span><span> -</span><span style='color: #BB0000;'>1.241</span><span>   -</span><span style='color: #BB0000;'>0.410</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>    0.639</span><span style='text-decoration: underline;'>4</span><span>   -</span><span style='color: #BB0000;'>0.178</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>  -</span><span style='color: #BB0000;'>0.514</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>  
 #&gt; </span><span style='color: #555555;'>10</span><span> GEN   G9    47.90 -</span><span style='color: #BB0000;'>1.072</span><span>    0.085</span><span style='text-decoration: underline;'>63</span><span> -</span><span style='color: #BB0000;'>1.166</span><span>    -</span><span style='color: #BB0000;'>1.191</span><span>     0.635</span><span style='text-decoration: underline;'>1</span><span>   0.139</span><span style='text-decoration: underline;'>3</span><span>  
-#&gt; </span><span style='color: #555555;'># … with 14 more rows, and 13 more variables: PC7 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PC8 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PC9 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   WAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PctResp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PctWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, wRes </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, wWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   OrResp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrPC1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, WAASY </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrWAASY </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 14 more rows, and 13 more variables: PC7 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PC8 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   PC9 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, WAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PctResp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PctWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, wRes </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   wWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrResp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrWAAS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, OrPC1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, WAASY </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   OrWAASY </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Some information regarding the analysis
 #&gt; ---------------------------------------------------------------------------

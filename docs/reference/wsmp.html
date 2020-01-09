@@ -94,7 +94,7 @@ scenarios of weights for stability and mean performance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -299,7 +299,23 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div><div class='output co'>#&gt; variable PH 
+#&gt; ---------------------------------------------------------------------------
+#&gt; AMMI analysis table
+#&gt; ---------------------------------------------------------------------------
+#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
+#&gt;        ENV   3  7.719  2.5728 127.913 4.25e-07       .       .
+#&gt;   REP(ENV)   8  0.161  0.0201   0.897 5.22e-01       .       .
+#&gt;   GEN       12  1.865  0.1554   6.929 6.89e-09       .       .
+#&gt;    ENV:GEN  36  5.397  0.1499   6.686 5.01e-14       .       .
+#&gt;        PC1  14  4.466  0.3190  14.230 0.00e+00    82.8    82.8
+#&gt;        PC2  12  0.653  0.0545   2.430 8.40e-03    12.1    94.9
+#&gt;        PC3  10  0.277  0.0277   1.240 2.76e-01     5.1     100
+#&gt;  Residuals  96  2.153  0.0224      NA       NA       .       .
+#&gt;      Total 155 17.294  0.1116      NA       NA       .       .
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='no'>scenarios</span> <span class='kw'>&lt;-</span> <span class='fu'>wsmp</span>(<span class='no'>model</span>)
 <span class='co'># }</span></div></pre>
   </div>
