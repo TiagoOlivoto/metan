@@ -8,10 +8,12 @@
 #' @param color.background The color for the panel background.
 #'
 #' @rdname themes
-#' @description Two themes that provide plots with a gray background and major
-#'   grids (\code{theme_metan}) or minimalistic theme with half-open frame, white
-#'   background, and no grid (\code{theme_metan_minimal}). For more details see
-#'   \code{\link[ggplot2]{theme}}.
+#' @description
+#' * \code{theme_metan()}: Theme with a gray background and major grids.
+#' * \code{theme_metan_minimal()}: A minimalistic theme with half-open frame, white
+#'   background, and no grid. For more details see \code{\link[ggplot2]{theme}}.
+#' * \code{transparent_color()}: A helper function to return a transparent color with Hex value o\code{}\code{}\code{}\strong{}f "#000000FF"
+#' @md
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'
@@ -41,8 +43,8 @@ theme_metan = function (grid = "none", col.grid = "white", color.background = "g
           plot.subtitle = element_text(face = "italic", hjust = 0, vjust = 2, size = 8),
           legend.position = c(0.85, 0.1),
           legend.title = element_blank(),
-          legend.key = element_rect(fill = NA, colour = "transparent"),
-          legend.background = element_rect(fill = NA, colour = "transparent"),
+          legend.key = element_rect(fill = NA, colour = transparent_color()),
+          legend.background = element_rect(fill = NA, colour = transparent_color()),
           plot.margin = margin(0.3, 0.1, 0.1, 0.1, "cm"),
           panel.grid.major.x = grid_x,
           panel.grid.major.y = grid_y,
@@ -62,8 +64,8 @@ theme_metan_minimal = function () {
           plot.subtitle = element_text(face = "italic", hjust = 0, vjust = 2, size = 8),
           axis.ticks = element_line(colour = "black"),
           legend.position = c(0.85, 0.1),
-          legend.key = element_rect(fill = NA, colour = "transparent"),
-          legend.background = element_rect(fill = NA, colour = "transparent"),
+          legend.key = element_rect(fill = NA, colour = transparent_color()),
+          legend.background = element_rect(fill = NA, colour = transparent_color()),
           plot.margin = margin(0.3, 0.1, 0.1, 0.1, "cm"),
           legend.title = element_blank(),
           axis.text = element_text(colour = "black"),
@@ -73,4 +75,10 @@ theme_metan_minimal = function () {
           axis.line.x.bottom = element_line(),
           axis.line.y.left = element_line(),
           strip.background = element_blank())
+}
+
+#' @rdname themes
+#' @export
+transparent_color <- function() {
+  return("#000000FF")
 }

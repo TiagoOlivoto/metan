@@ -191,7 +191,7 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
           panel.border = element_rect(colour = "black",
                                       fill = NA,
                                       size = 1),
-          panel.grid = element_line(color = "transparent")) +
+          panel.grid = element_line(color = transparent_color())) +
     labs(y = ylab, x = xlab) +
     scale_y_continuous(limits = y.lim,
                        breaks = y.breaks,

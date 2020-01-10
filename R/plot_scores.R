@@ -74,7 +74,7 @@
 #'   genotypes and environments, respectively. Default is \code{0.9}. Values
 #'   must be between \code{0} (full transparency) to \code{1} (full color).
 #' @param col.segm.gen,col.segm.env The color of segment for genotypes (Defaults
-#'   to 'transparent') and environments (Defaults to 'forestgreen'),
+#'   to \code{transparent_color()}) and environments (Defaults to 'forestgreen'),
 #'   respectively. Valid arguments for plots with \code{type = 1} or \code{type
 #'   = 2} graphics.
 #' @param repulsion Force of repulsion between overlapping text labels. Defaults
@@ -174,7 +174,7 @@ plot_scores <- function(x,
                         col.env = "forestgreen",
                         col.alpha.gen = 0.9,
                         col.alpha.env = 0.9,
-                        col.segm.gen = "transparent",
+                        col.segm.gen = transparent_color(),
                         col.segm.env = "forestgreen",
                         repulsion = 1,
                         leg.lab = c("Env", "Gen"),

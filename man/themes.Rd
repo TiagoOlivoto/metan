@@ -3,11 +3,14 @@
 \name{theme_metan}
 \alias{theme_metan}
 \alias{theme_metan_minimal}
+\alias{transparent_color}
 \title{Personalized theme for ggplot2-based graphics}
 \usage{
 theme_metan(grid = "none", col.grid = "white", color.background = "gray95")
 
 theme_metan_minimal()
+
+transparent_color()
 }
 \arguments{
 \item{grid}{Control the grid lines in plot. Defaults to \code{"both"} (x and
@@ -20,10 +23,12 @@ grids.}
 \item{color.background}{The color for the panel background.}
 }
 \description{
-Two themes that provide plots with a gray background and major
-  grids (\code{theme_metan}) or minimalistic theme with half-open frame, white
-  background, and no grid (\code{theme_metan_minimal}). For more details see
-  \code{\link[ggplot2]{theme}}.
+\itemize{
+\item \code{theme_metan()}: Theme with a gray background and major grids.
+\item \code{theme_metan_minimal()}: A minimalistic theme with half-open frame, white
+background, and no grid. For more details see \code{\link[ggplot2]{theme}}.
+\item \code{transparent_color()}: A helper function to return a transparent color with Hex value o\code{}\code{}\code{}\strong{}f "#000000FF"
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

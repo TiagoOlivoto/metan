@@ -31,7 +31,7 @@
 #' @param col.shape The shape color for genotypes. Must be one value or a vector
 #'   of colors with the same length of the number of genotypes. Default is
 #'   \code{"gray30"}. Other values can be attributed. For example,
-#'   \code{"transparent"}, will make a plot with only an outline around the
+#'   \code{transparent_color()}, will make a plot with only an outline around the
 #'   shape area.
 #' @param col.alpha The alpha value for the color. Default is \code{1}. Values
 #'   must be between \code{0} (full transparency) to \code{1} (full color).

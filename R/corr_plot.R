@@ -231,7 +231,7 @@ corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
       x = mean(y)
       dia <- dia + stat_boxplot(aes(y = y, x = x, group = 1),
                                 geom ='errorbar',
-                                color = "transparent",
+                                color = transparent_color(),
                                 width = 0.9) +
         stat_boxplot(aes(y = y, x = x, group = 1),
                      geom ='errorbar',

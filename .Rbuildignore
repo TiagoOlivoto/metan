@@ -16,9 +16,11 @@
 ^vignettes/vignettes_utilities\.Rmd$
 ^README_file$
 ^Meta$
+^metan.Rcheck$
 ^README_files$
 ^LICENCE$
 ^.*\.Rproj$
+^.*\.gz$
 ^\.Rproj\.user$
 ^doc$
 ^pkgdown$

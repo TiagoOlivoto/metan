@@ -1,4 +1,6 @@
 Meta
+metan.Rcheck
+*.gz
 .Rproj.user
 .Rhistory
 .RData
