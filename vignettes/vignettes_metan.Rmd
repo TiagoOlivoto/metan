@@ -17,7 +17,7 @@ knitr::opts_chunk$set(comment = "")
 ```
 
 
-The `metan` package provides tools for computing several world-known stability statistics. In the latest version (v 1.2.0), the following stability methods are implemented in their respective functions.
+Provides tools for computing several world-known stability statistics. In the latest version (v 1.2.1), the following stability methods are implemented in their respective functions.
 
 * Parametric methods
    * AMMI analysis with [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html).
