@@ -27,4 +27,7 @@
 ^cran-comments\.md$
 ^package_release\.R$
 ^CRAN-RELEASE$
+^README\.Rmd$
+^README\.md$
+
 
