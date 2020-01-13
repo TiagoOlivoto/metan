@@ -9,11 +9,9 @@ template:
       api_key: ef40e3bab94bb0e1d687fd3844052701
       index_name: metan
 
-development:
-  mode: auto
 
 toc:
-  depth: 2
+  depth: 3
 
 authors:
   Tiago Olivoto:
@@ -203,6 +201,7 @@ reference:
       - all_lower_case
       - all_pairs
       - all_upper_case
+      - alpha_color
       - arrange_ggplot
       - as.split_factors
       - bind_cv
@@ -250,6 +249,7 @@ reference:
       - theme_metan
       - theme_metan_minimal
       - to_factor
+      - transparent_color
       - union_var
   - title: "Misc"
     desc: "Miscellaneous small functions"
