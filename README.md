@@ -3,6 +3,15 @@
 
 # metan <img src="man/figures/logo.png" align="right" height=140/>
 
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/metan)](https://CRAN.R-project.org/package=metan)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
+<!-- badges: end -->
+
 The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package
 provides useful functions for analyzing multi-environment trial data
 using parametric and nonparametric methods, including, but not limited
@@ -25,8 +34,13 @@ vignette](https://tiagoolivoto.github.io/metan/).
 
 # Installation
 
-To install the latest development version from Github, install the
-newest version of the devtools package; then run
+Install the released version of metan from CRAN with:
+
+``` r
+install.packages("metan")
+```
+
+Or install the development version from GitHub with:
 
 ``` r
 devtools::install_github("TiagoOlivoto/metan")
@@ -67,7 +81,7 @@ inspect(data_ge, plot = TRUE)
 #> No issues detected while inspecting data.
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 No issues while inspecting the data. Let’s continue with the analyzes\!
 
@@ -116,7 +130,7 @@ pred$GY
 #>  8 E1    G7     2.77  0.186   2.59     0.164            2.75  2.59
 #>  9 E1    G8     2.90  0.0493  2.85    -0.00536          2.84  2.85
 #> 10 E1    G9     2.33 -0.0307  2.36    -0.0170           2.34  2.36
-#> # … with 130 more rows
+#> # ... with 130 more rows
 ```
 
 ### Biplots
@@ -249,7 +263,7 @@ model2$GY$BLUPgge
 #>  8 E1    G7     0.127   0.0543     0.181       2.70  2.60  2.81
 #>  9 E1    G8     0.0702  0.269      0.339       2.86  2.76  2.96
 #> 10 E1    G9    -0.0389 -0.134     -0.173       2.35  2.24  2.45
-#> # … with 130 more rows
+#> # ... with 130 more rows
 ```
 
 When more than one variable is fitted, the predicted means for
@@ -271,7 +285,7 @@ get_model_data(model2, what = "blupge")
 #>  8 E1    G7     2.70  47.4
 #>  9 E1    G8     2.86  48.0
 #> 10 E1    G9     2.35  47.6
-#> # … with 130 more rows
+#> # ... with 130 more rows
 ```
 
 # Computing parametric and non-parametric stability indexes
@@ -292,7 +306,7 @@ get_model_data(stats, "stats")
 #>  8 GY    G7     2.74  27.4  7.33 0.122   83.9  77.6  93.4  4.16  0.819  0.0579 
 #>  9 GY    G8     3.00  30.4 10.8  0.0712  98.8  90.5 107.   2.57  1.03   0.0382 
 #> 10 GY    G9     2.51  42.4 14.7  0.167   68.8  68.9  70.3  5.56  1.19   0.0938 
-#> # … with 21 more variables: R2 <dbl>, ASV <dbl>, SIPC <dbl>, EV <dbl>,
+#> # ... with 21 more variables: R2 <dbl>, ASV <dbl>, SIPC <dbl>, EV <dbl>,
 #> #   ZA <dbl>, WAAS <dbl>, HMGV <dbl>, RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>,
 #> #   Pi_f <dbl>, Pi_u <dbl>, Gai <dbl>, S1 <dbl>, S2 <dbl>, S3 <dbl>, S6 <dbl>,
 #> #   N1 <dbl>, N2 <dbl>, N3 <dbl>, N4 <dbl>
@@ -310,11 +324,11 @@ get_model_data(stats, "ranks")
 #>  8 GY    G7        4     1     1        8      5      8      3        8     8
 #>  9 GY    G8        1     4     6        6      2      3      1        6     6
 #> 10 GY    G9        9    10    10        9      9      9      9        9     9
-#> # … with 21 more variables: R2_R <dbl>, ASV_R <dbl>, SIPC_R <dbl>, EV_R <dbl>,
-#> #   ZA_R <dbl>, WAAS_R <dbl>, HMGV_R <dbl>, RPGV_R <dbl>, HMRPGV_R <dbl>,
-#> #   Pi_a_R <dbl>, Pi_f_R <dbl>, Pi_u_R <dbl>, Gai_R <dbl>, S1_R <dbl>,
-#> #   S2_R <dbl>, S3_R <dbl>, S6_R <dbl>, N1_R <dbl>, N2_R <dbl>, N3_R <dbl>,
-#> #   N4_R <dbl>
+#> # ... with 21 more variables: R2_R <dbl>, ASV_R <dbl>, SIPC_R <dbl>,
+#> #   EV_R <dbl>, ZA_R <dbl>, WAAS_R <dbl>, HMGV_R <dbl>, RPGV_R <dbl>,
+#> #   HMRPGV_R <dbl>, Pi_a_R <dbl>, Pi_f_R <dbl>, Pi_u_R <dbl>, Gai_R <dbl>,
+#> #   S1_R <dbl>, S2_R <dbl>, S3_R <dbl>, S6_R <dbl>, N1_R <dbl>, N2_R <dbl>,
+#> #   N3_R <dbl>, N4_R <dbl>
 ```
 
 # Getting help

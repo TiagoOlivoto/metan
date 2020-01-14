@@ -16,6 +16,13 @@ knitr::opts_chunk$set(
 
 
 # metan <img src="man/figures/logo.png" align="right" height=140/>
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/metan)](https://CRAN.R-project.org/package=metan)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
+<!-- badges: end -->
+
+
 
 The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods, including, but not limited to:
 
@@ -34,7 +41,14 @@ For more details see the [complete vignette](https://tiagoolivoto.github.io/meta
 
 # Installation
 
-To install the latest development version from Github, install the newest version of the devtools package; then run
+Install the released version of metan from CRAN with:
+
+```{r, eval=FALSE}
+install.packages("metan")
+
+```
+
+Or install the development version from GitHub with:
 
 ```{r, eval=FALSE}
 devtools::install_github("TiagoOlivoto/metan")
