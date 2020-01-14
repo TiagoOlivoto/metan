@@ -82,5 +82,5 @@ theme_metan_minimal = function () {
 #' @rdname themes
 #' @export
 transparent_color <- function() {
-  return("#000000FF")
+  return("#FFFFFF00")
 }
