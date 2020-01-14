@@ -1,7 +1,3 @@
-# metan 1.2.1.9000
-* Change "#000000FF" with "#FFFFFF00" in `transparent_color()`.
-* Get a semi-transparent color with `alpha_color()`
-
 # metan 1.2.1
 * References describing the methods implemented in the package were included in description field of DESCRIPTION file as suggested by the CRAN team.
 
