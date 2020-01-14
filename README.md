@@ -10,6 +10,7 @@ status](https://www.r-pkg.org/badges/version/metan)](https://CRAN.R-project.org/
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3608180.svg)](https://doi.org/10.5281/zenodo.3608180)
 <!-- badges: end -->
 
 The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package
