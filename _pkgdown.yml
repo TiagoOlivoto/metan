@@ -201,7 +201,6 @@ reference:
       - all_lower_case
       - all_pairs
       - all_upper_case
-      - alpha_color
       - arrange_ggplot
       - as.split_factors
       - bind_cv

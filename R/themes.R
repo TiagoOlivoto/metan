@@ -6,20 +6,13 @@
 #'   grids.
 #' @param col.grid The color for the grid lines
 #' @param color.background The color for the panel background.
-#' @param color A color name. See \code{\link[grDevices]{colors}} for more
-#'   details.
-#' @param alpha The alpha value (0 \< alpha \< 1) for Semi-transparent colors.
-#'   Set \code{alpha = 0} for full transparency. Defaults to 50.
+#'
 #' @rdname themes
 #' @description
 #' * \code{theme_metan()}: Theme with a gray background and major grids.
 #' * \code{theme_metan_minimal()}: A minimalistic theme with half-open frame, white
 #'   background, and no grid. For more details see \code{\link[ggplot2]{theme}}.
-#' * \code{transparent_color()}: A helper function to return a transparent color
-#' with Hex value of "#FF000000".
-#' * \code{alpha_color()}: Return a semi-transparent color based on a color name
-#' and an alpha value. It returns A hexadecimal value. For more details see
-#' \code{\link[grDevices]{rgb}}.
+#' * \code{transparent_color()}: A helper function to return a transparent color with Hex value o\code{}\code{}\code{}\strong{}f "#000000FF"
 #' @md
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -89,18 +82,5 @@ theme_metan_minimal = function () {
 #' @rdname themes
 #' @export
 transparent_color <- function() {
-  return("#FF000000")
-}
-#' @rdname themes
-#' @importFrom grDevices col2rgb rgb
-#' @export
-alpha_color <- function(color, alpha = 50) {
-  rgb_v <- col2rgb(color)
-  return(
-  rgb(rgb_v[1],
-      rgb_v[2],
-      rgb_v[3],
-      maxColorValue = 255,
-      alpha = (100 - alpha) * 255 / 100)
-  )
+  return("#000000FF")
 }

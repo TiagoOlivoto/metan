@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -158,7 +158,7 @@
       <h1>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-01-12</h4>
+            <h4 class="date">2020-01-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_metan.Rmd"><code>vignettes/vignettes_metan.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_metan.Rmd</code></div>
@@ -216,11 +216,11 @@
 3 REP      factor  No      3          420 NA     NA    NA         NA
 4 GY       numeric No      -          420  0.67   2.61  5.09       0
 5 HM       numeric No      -          420 38     48    58          0</code></pre>
-<p>Then, the details of the multi-environment trial can be obtained with the function <code><a href="../reference/ge_details.html">ge_details()</a></code>. Note that to apply the function to all numeric variables quickly, we can use the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers">select helper</a> <code><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">everything()</a></code> in the argument <code>resp</code>.</p>
+<p>Then, the details of the multi-environment trial can be obtained with the function <code><a href="../reference/ge_details.html">ge_details()</a></code>. Note that to apply the function to all numeric variables quickly, we can use the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers">select helper</a> <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything()</a></code> in the argument <code>resp</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/ge_details.html">ge_details</a></span>(data_ge,</a>
 <a class="sourceLine" id="cb3-2" title="2">           <span class="dt">env =</span> ENV,</a>
 <a class="sourceLine" id="cb3-3" title="3">           <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb3-4" title="4">           <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">everything</a></span>())</a></code></pre></div>
+<a class="sourceLine" id="cb3-4" title="4">           <span class="dt">resp =</span> <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a></code></pre></div>
 <pre><code># A tibble: 10 x 3
    Parameters GY                  HM              
    &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;           
@@ -241,7 +241,7 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">mge &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_means.html">ge_means</a></span>(data_ge,</a>
 <a class="sourceLine" id="cb6-2" title="2">                <span class="dt">env =</span> ENV,</a>
 <a class="sourceLine" id="cb6-3" title="3">                <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb6-4" title="4">                <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">everything</a></span>())</a>
+<a class="sourceLine" id="cb6-4" title="4">                <span class="dt">resp =</span> <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a>
 <a class="sourceLine" id="cb6-5" title="5"><span class="co"># Genotype-environment means</span></a>
 <a class="sourceLine" id="cb6-6" title="6"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(mge) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
 <pre><code># A tibble: 140 x 4
@@ -393,7 +393,7 @@ G9  2.34 1.79 1.10 1.34 2.96 1.43 3.11 4.38 4.06 4.07 2.69 1.53 2.37 1.99</code>
 <h1 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h1>
 <p>The implementation of linear-mixed effect models to predict the response variable in MET is made with the function <code><a href="../reference/waasb.html">waasb()</a></code>. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument <code>random</code> to change this default. In the following example the model is fitted to all numeric variables in <code>data_ge2</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(data_ge, ENV, GEN, REP, <span class="kw"><a href="https://rdrr.io/pkg/tidyselect/man/select_helpers.html">everything</a></span>())</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(data_ge, ENV, GEN, REP, <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a></code></pre></div>
 <pre><code>Evaluating variable GY 0 % 
 Evaluating variable HM 100 % 
 All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
