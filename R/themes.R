@@ -92,6 +92,7 @@ transparent_color <- function() {
   return("#FF000000")
 }
 #' @rdname themes
+#' @importFrom grDevices col2rgb rgb
 #' @export
 alpha_color <- function(color, alpha = 50) {
   rgb_v <- col2rgb(color)
@@ -99,7 +100,7 @@ alpha_color <- function(color, alpha = 50) {
   rgb(rgb_v[1],
       rgb_v[2],
       rgb_v[3],
-      max = 255,
+      maxColorValue = 255,
       alpha = (100 - alpha) * 255 / 100)
   )
 }
