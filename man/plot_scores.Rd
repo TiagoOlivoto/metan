@@ -51,7 +51,7 @@ plot_scores(
 }
 \arguments{
 \item{x}{An object fitted with the functions \code{\link{performs_ammi}},
-\code{\link{waas}} or \code{\link{waasb}}.}
+\code{\link{waas}}, \code{\link{waas_means}}, or \code{\link{waasb}}.}
 
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}

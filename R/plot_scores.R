@@ -15,7 +15,7 @@
 #' of narrow adaptations.
 #'
 #' @param x An object fitted with the functions \code{\link{performs_ammi}},
-#'   \code{\link{waas}} or \code{\link{waasb}}.
+#'   \code{\link{waas}}, \code{\link{waas_means}}, or \code{\link{waasb}}.
 #' @param var The variable to plot. Defaults to \code{var = 1} the first
 #'   variable of \code{x}.
 #' @param type type of biplot to produce
@@ -189,6 +189,7 @@ plot_scores <- function(x,
                         color = TRUE,
                         ...) {
   x <- x[[var]]
+
   if (polygon == TRUE & type != 2) {
     stop("The polygon can be drawn with type 2 graphic only.", call. = FALSE)
   }
@@ -202,16 +203,21 @@ plot_scores <- function(x,
   ngen <- nrow(subset(x$model, type == "GEN"))
 
   if (type == 1) {
-    y.lab <- ifelse(!is.null(y.lab),
-                    y.lab,
-                    ifelse(
-                      class(x)  %in% c("waas", "performs_ammi"), paste0("PC1 (", round(x$PCA[1, 7], 2), "%)"),
-                      paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
-                    )
-    )
+    if(!is.null(y.lab)){
+      y.lab <- y.lab
+    } else{
+      if(class %in% c("waas", "performs_ammi")){
+        y.lab <- paste0("PC1 (", round(x$PCA[1, 7], 2), "%)")
+      }
+      if(class == "waasb"){
+        y.lab <- paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
+      }
+      if(class == "waas_means"){
+        y.lab <- paste0("PC1 (", round(x$proportion[1], 2), "%)")
+      }
+    }
+
     x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
-
-
     if (is.null(x.lim) == FALSE) {
       x.lim <- x.lim
     } else {
@@ -295,20 +301,46 @@ plot_scores <- function(x,
   }
 
   if (type == 2) {
-    y.lab <- ifelse(!is.null(y.lab),
-                    y.lab,
-                    ifelse(
-                      class(x) %in% c("waas", "performs_ammi"), paste0("PC2 (", round(x$PCA[2, 7], 2), "%)"),
-                      paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")
-                    )
-    )
-    x.lab = ifelse(!is.null(x.lab),
-                   x.lab,
-                   ifelse(
-                     class(x)  %in% c("waas", "performs_ammi"), paste0("PC1 (", round(x$PCA[1, 7], 2), "%)"),
-                     paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
-                   )
-    )
+    if(!is.null(y.lab)){
+      y.lab <- y.lab
+    } else{
+      if(class %in% c("waas", "performs_ammi")){
+        y.lab <- paste0("PC1 (", round(x$PCA[2, 7], 2), "%)")
+      }
+      if(class == "waasb"){
+        y.lab <- paste0("PC1 (", round(x$PCA[2, 3], 2), "%)")
+      }
+      if(class == "waas_means"){
+        y.lab <- paste0("PC1 (", round(x$proportion[2], 2), "%)")
+      }
+    }
+    if(!is.null(x.lab)){
+      x.lab <- x.lab
+    } else{
+      if(class %in% c("waas", "performs_ammi")){
+        x.lab <- paste0("PC1 (", round(x$PCA[1, 7], 2), "%)")
+      }
+      if(class == "waasb"){
+        x.lab <- paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
+      }
+      if(class == "waas_means"){
+        x.lab <- paste0("PC1 (", round(x$proportion[1], 2), "%)")
+      }
+    }
+    # y.lab <- ifelse(!is.null(y.lab),
+    #                 y.lab,
+    #                 ifelse(
+    #                   class(x) %in% c("waas", "performs_ammi"), paste0("PC2 (", round(x$PCA[2, 7], 2), "%)"),
+    #                   paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")
+    #                 )
+    # )
+    # x.lab = ifelse(!is.null(x.lab),
+    #                x.lab,
+    #                ifelse(
+    #                  class(x)  %in% c("waas", "performs_ammi"), paste0("PC1 (", round(x$PCA[1, 7], 2), "%)"),
+    #                  paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
+    #                )
+    # )
     if (is.null(x.lim) == FALSE) {
       x.lim <- x.lim
     } else {
@@ -481,7 +513,7 @@ plot_scores <- function(x,
                    color = c(rep(col.bor.gen, ngen), rep(col.bor.env, nenv)),
                    alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))
     }
-    if (class == "waas") {
+    if (class %in% c("waas", "waas_means")) {
       if (is.null(x.lim) == FALSE) {
         x.lim <- x.lim
       } else {
@@ -558,9 +590,27 @@ plot_scores <- function(x,
       dev.off()
     }
   }
-
   if (type == 4) {
-    data = as.data.frame(x[["MeansGxE"]])
+    if(class == "waas_means"){
+      EscENV <- subset(x$model, type ==  "ENV") %>%
+        select_cols(Code, Y, PC1) %>%
+        rename(ENV = Code)
+      EscGEN <- subset(x$model, type ==  "GEN") %>%
+        select_cols(Code, Y, PC1) %>%
+        rename(GEN = Code)
+      data <- x$ge_means
+      data <- suppressMessages(
+        suppressWarnings(
+          mutate(data,
+                 envPC1 = left_join(data, EscENV %>% select(ENV, PC1))$PC1,
+                 genPC1 = left_join(data, EscGEN %>% select(GEN, PC1))$PC1,
+                 nominal = left_join(data, EscGEN %>% select(GEN, Y))$Y + genPC1 * envPC1)
+        )
+      )%>%
+        as.data.frame()
+    } else{
+    data <- as.data.frame(x[["MeansGxE"]])
+    }
     minim <- min(data$nominal)
     y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Nominal Yield (Mg/ha)"))
     x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Environment PC1 [square root of  (Mg/ha)]"))
