@@ -4,6 +4,7 @@
 \alias{theme_metan}
 \alias{theme_metan_minimal}
 \alias{transparent_color}
+\alias{alpha_color}
 \title{Personalized theme for ggplot2-based graphics}
 \usage{
 theme_metan(grid = "none", col.grid = "white", color.background = "gray95")
@@ -11,6 +12,8 @@ theme_metan(grid = "none", col.grid = "white", color.background = "gray95")
 theme_metan_minimal()
 
 transparent_color()
+
+alpha_color(color, alpha = 50)
 }
 \arguments{
 \item{grid}{Control the grid lines in plot. Defaults to \code{"both"} (x and
@@ -21,13 +24,20 @@ grids.}
 \item{col.grid}{The color for the grid lines}
 
 \item{color.background}{The color for the panel background.}
+
+\item{color}{A color name.}
+
+\item{alpha}{An alpha value for transparency (0 < alpha < 1).}
 }
 \description{
 \itemize{
 \item \code{theme_metan()}: Theme with a gray background and major grids.
 \item \code{theme_metan_minimal()}: A minimalistic theme with half-open frame, white
 background, and no grid. For more details see \code{\link[ggplot2]{theme}}.
-\item \code{transparent_color()}: A helper function to return a transparent color with Hex value o\code{}\code{}\code{}\strong{}f "#000000FF"
+\item \code{transparent_color()}: A helper function to return a transparent color
+with Hex value of "#000000FF"
+\item \code{alpha_color()}: Return a semi-transparent color based on a color name
+and an alpha value. For more details see \code{\link[grDevices]{colors}}.
 }
 }
 \author{
