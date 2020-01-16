@@ -15,33 +15,39 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 
 The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package
 provides useful functions for analyzing multi-environment trial data
-using parametric and nonparametric methods, including, but not limited
+using parametric and nonparametric methods. The package will help you
 to:
 
-  - Within-environment analysis of variance;
-  - Estimation using AMMI considering different numbers of interaction
-    principal component axes;
-  - AMMI-based stability indexes;
-  - GGE biplot analysis;
-  - Prediction in mixed-effect models;
-  - BLUP-based stability indexes;
-  - Variance components and genetic parameters in mixed-effect models;
-  - Cross-validation procedures for AMMI-family and BLUP models;
-  - Graphics tools for generating biplots;
-  - Parametric and nonparametric stability statistics
+  - Inspect data for possible common errors;
+  - Manipulate rows and columns;
+  - Manipulate numbers and strings;
+  - Compute descriptive statistics;
+  - Compute within-environment analysis of variance;
+  - Compute AMMI analysis with prediction considering different numbers
+    of interaction principal component axes;
+  - Compute AMMI-based stability indexes;
+  - Compute GGE biplot analysis;
+  - Compute BLUP-based stability indexes;
+  - Compute variance components and genetic parameters in mixed-effect
+    models;
+  - Perform cross-validation procedures for AMMI-family and BLUP models;
+  - Compute parametric and nonparametric stability statistics
+  - Implement biometrical models
 
 For more details see the [complete
 vignette](https://tiagoolivoto.github.io/metan/).
 
 # Installation
 
-Install the released version of metan from CRAN with:
+Install the released version of metan from
+[CRAN](https://CRAN.R-project.org/package=metan) with:
 
 ``` r
 install.packages("metan")
 ```
 
-Or install the development version from GitHub with:
+Or install the development version from
+[GitHub](https://github.com/TiagoOlivoto/metan) with:
 
 ``` r
 devtools::install_github("TiagoOlivoto/metan")
