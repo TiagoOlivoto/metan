@@ -1,3 +1,32 @@
+# metan 1.2.1.9000
+
+* **New features**
+   - `cv_by()` For computing coefficient of variation by levels of a factor.
+   - `max_by()` For computing maximum values by levels of a factor.
+   - `means_by()` For computing arithmetic means by levels of a factor.
+   - `min_by()` For compuing minimum values by levels of a factor.
+   - `sem_by()` For computing standard error of the mean by levels of a factor.
+   - `av_dev()` computes the average absolute deviation.
+   - `ci_mean()` computes the confidence interval for the mean.
+   - `cv()` computes the coefficient of variation.
+   - `hm_mean()`, `gm_mean()` computes the harmonic and geometric means, respectively. The harmonic mean is the reciprocal of the arithmetic mean of the reciprocals. The geometric mean is the nth root of n products.
+   - `kurt()` computes the kurtosis like used in SAS and SPSS.
+   - `range_data()` Computes the range of the values.
+   - `sd_amo()`, `sd_pop()` Computes sample and populational standard deviation, respectively.
+   - `sem()` computes the standard error of the mean.
+   - `skew()` computes the skewness like used in SAS and SPSS.
+   - `sum_dev()` computes the sum of the absolute deviations.
+   - `sum_sq_dev()` computes the sum of the squared deviations.
+   - `var_amo()`, var_pop() computes sample and populational variance.
+   - `valid_n()` Return the valid (not NA) length of a data.
+   - `alpha_color()` To get a semi-transparent color
+
+* **Minor changes**
+
+   - Change "#000000FF" with "#FFFFFF00" in `transparent_color()`
+   - `plot_scores()` now support objects of class `waas_mean`.
+   - Include inst/CITATION to return a reference paper with `citation("metan")`.
+
 # metan 1.2.1
 * References describing the methods implemented in the package were included in description field of DESCRIPTION file as suggested by the CRAN team.
 

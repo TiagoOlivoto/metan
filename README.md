@@ -332,6 +332,12 @@ get_model_data(stats, "ranks")
 #> #   N3_R <dbl>, N4_R <dbl>
 ```
 
+# Citation
+
+Olivoto, T., and Lúcio, A. D. (2020). metan: an R package for
+multi-environment trial analysis. *bioRxiv*, 2020.01.14.906750.
+[doi:10.1101/2020.01.14.906750](https://www.biorxiv.org/content/10.1101/2020.01.14.906750v1)
+
 # Getting help
 
   - If you encounter a clear bug, please file a minimal reproducible

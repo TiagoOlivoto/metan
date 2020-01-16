@@ -172,8 +172,6 @@ reference:
       - corr_ci
       - corr_ss
       - covcor_design
-      - desc_stat
-      - desc_wider
       - find_outliers
       - is.lpcor
       - lpcor
@@ -193,6 +191,34 @@ reference:
       - print.can_cor
       - print.corr_coef
       - print.path_coeff
+  - title: "Descriptive"
+    desc: "Useful functions for computing descriptive statistics"
+    contents:
+      - av_dev
+      - ci_mean
+      - cv
+      - cv_by
+      - desc_stat
+      - desc_wider
+      - gm_mean
+      - has_na
+      - hm_mean
+      - kurt
+      - max_by
+      - means_by
+      - min_by
+      - range_data
+      - sd_amo
+      - sd_by
+      - sd_pop
+      - sem
+      - sem_by
+      - skew
+      - sum_dev
+      - sum_sq_dev
+      - valid_n
+      - var_amo
+      - var_pop
   - title: "Helper"
     desc: "Helper functions for metan package"
     contents:
@@ -201,6 +227,7 @@ reference:
       - all_lower_case
       - all_pairs
       - all_upper_case
+      - alpha_color
       - arrange_ggplot
       - as.split_factors
       - bind_cv
@@ -213,9 +240,6 @@ reference:
       - get_level_size
       - get_levels
       - get_model_data
-      - gm_mean
-      - has_na
-      - hm_mean
       - inspect
       - intersect_var
       - is.split_factors
@@ -224,7 +248,6 @@ reference:
       - make_mat
       - make_sym
       - make_upper_tri
-      - means_by
       - rbind_fill
       - reorder_cormat
       - remove_cols
@@ -236,7 +259,6 @@ reference:
       - replace_string
       - resca
       - round_cols
-      - sem
       - select_cols
       - select_first_col
       - select_last_col

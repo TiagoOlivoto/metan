@@ -200,7 +200,8 @@ get_model_data(stats, "stats")
 get_model_data(stats, "ranks")
 ```
 
-
+# Citation
+Olivoto, T., and Lúcio, A. D. (2020). metan: an R package for multi-environment trial analysis. *bioRxiv*, 2020.01.14.906750. [doi:10.1101/2020.01.14.906750](https://www.biorxiv.org/content/10.1101/2020.01.14.906750v1)
 
 # Getting help
 
