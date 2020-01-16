@@ -1,0 +1,12 @@
+citHeader("Please, support the project metan by citing it in your publications:")
+  citEntry(key         = "Olivoto2020",
+           entry       = "Article",
+           author      = personList(person("Tiago", "Olivoto"),
+ 	                                  person(c("Alessandro", "Dal'Col"), "L{\'{u}}cio")),
+	         title       = "metan: an R package for multi-environment trial analysis",
+	         pages       = "2020.01.14.906750",
+	         year        = "2020",
+	         doi         = "10.1101/2020.01.14.906750",
+	         URL         = "https://www.biorxiv.org/content/early/2020/01/14/2020.01.14.906750",
+	         journal     = "bioRxiv",
+	         textVersion = 'Olivoto, T., and L\u00FAcio, A.D. (2020). "Metan: an R package for multi-environment trial analysis." bioRxiv, 2020.01.14.906750. doi:10.1101/2020.01.14.906750.')
