@@ -620,22 +620,449 @@ select_rows <- function(.data, ...){
 }
 
 
-#' @title Means by one or more factors
-#' @description Computes the mean for all numeric variables of a data frame,
-#'   grouping by one or more factors.
-#' @param .data A data frame
-#' @param ... One or more categorical variables for grouping the data.
-#' @return An object of class tbl_df with the computed means by each level of
-#'   the factor(s) declared in \code{...}.
-#' @export
+
+
+
+#' @title Useful functions for computing descriptive statistics
+#' @name utils_stats
+#' @description
+#' * \strong{The following functions compute descriptive statistics by levels of
+#' a factor or combination of factors quickly.}
+#'    - \code{cv_by()} For computing coefficient of variation.
+#'    - \code{max_by()} For computing maximum values.
+#'    - \code{means_by()} For computing arithmetic means.
+#'    - \code{min_by()} For compuing minimum values.
+#'    - \code{sem_by()} For computing standard error of the mean.
+#'
+#' * \strong{Useful functions for descriptive statistics}
+#'    - \code{av_dev()} computes the average absolute deviation.
+#'    - \code{ci_mean()} computes the confidence interval for the mean.
+#'    - \code{cv()} computes the coefficient of variation.
+#'    - \code{hm_mean(), gm_mean()} computes the harmonic and geometric means,
+#' respectively. The harmonic mean is the reciprocal of the arithmetic mean of
+#' the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
+#' products.
+#'    - \code{kurt()} computes the kurtosis like used in SAS and SPSS.
+#'    - \code{range_data()} Computes the range of the values.
+#'    - \code{sd_amo(), sd_pop()} Computes sample and populational standard
+#' deviation, respectively.
+#'    - \code{sem()} computes the standard error of the mean.
+#'    - \code{skew()} computes the skewness like used in SAS and SPSS.
+#'    - \code{sum_dev()} computes the sum of the absolute deviations.
+#'    - \code{sum_sq_dev()} computes the sum of the squared deviations.
+#'    - \code{var_amo(), var_pop()} computes sample and populational variance.
+#'    - \code{valid_n()} Return the valid (not \code{NA}) length of a data.
+#'
+#' To compute all these functions at once, use the function
+#' \code{\link{desc_stat}}. By using this function you will be able to
+#' compute the statistics for each level of a factor of a combination of
+#' factors.
+#'
+#' @param .data A data frame or a numeric vector.
+#' @param ... The argument depends on the function used.
+#'  * For \code{*_by} functions, \code{...} is one or more categorical variables
+#'  for grouping the data. Then the statistic required will be computed for all
+#'  numeric variables in the data. If no variables are informed in \code{...},
+#'  the statistic will be computed ignoring all non-numeric variables in
+#'  \code{.data}.
+#'  * For the other statistics, \code{...} is a comma-separated of unquoted
+#'  variable names to compute the statistics. If no variables are informed in n
+#'  \code{...}, the statistic will be computed for all numeric variables in
+#'  \code{.data}.
+#'
+#' @param na.rm A logical value indicating whether \code{NA} values should be
+#'    stripped before the computation proceeds.
+#' @param level The confidence level for the confidence interval of the mean.
+#'   Defaults to 0.95.
+#' @return
+#'  * Functions \code{*_by()} returns a tbl_df with the computed statistics by
+#'  each level of the factor(s) declared in \code{...}.
+#'  * All other functions return a nammed integer if the input is a data frame
+#'  or a numeric value if the input is a numeric vector.
+#' @md
 #' @examples
 #' \donttest{
 #' library(metan)
-#' means_by(data_ge2, ENV)
+#' # means of all numeric variables by ENV
 #' means_by(data_ge2, GEN, ENV)
+#'
+#' # Coefficient of variation for all numeric variables
+#' # by GEN and ENV
+#' cv_by(data_ge2, GEN, ENV)
+#'
+#' # Confidence interval 0.95 for the mean
+#' # All numeric variables
+#' ci_mean(data_ge2)
+#'
+#' #' standard error of the mean
+#' # Variable PH and EH
+#' sem(data_ge2, PH, EH)
 #'}
+#'
+#' @export
+av_dev <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sum(abs(.data - mean(.data, na.rm = na.rm)), na.rm = na.rm) / length(which(!is.na(.data)))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sum(abs(df - mean(df, na.rm = na.rm)), na.rm = na.rm) / length(which(!is.na(df)))
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    qt((0.5 + level/2), (length(which(!is.na(.data))) - 1)) * sd(.data, na.rm = na.rm)/sqrt(length(which(!is.na(.data))))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      qt((0.5 + level/2), (length(which(!is.na(df))) - 1)) * sd(df, na.rm = na.rm)/sqrt(length(which(!is.na(df))))
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+cv <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sd(.data, na.rm = na.rm)/mean(.data, na.rm = na.rm) * 100
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>%
+        select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sd(df, na.rm = na.rm)/mean(df, na.rm = na.rm) * 100
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+hm_mean <- function(.data, ..., na.rm = TRUE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    1 / mean(1 / .data, na.rm = na.rm)
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    1 / (sapply( 1 / df, mean, na.rm = na.rm))
+  }
+}
+#' @name utils_stats
+#' @export
+gm_mean <- function(.data, ..., na.rm = TRUE){
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    exp(sum(log(.data[.data > 0]), na.rm = na.rm) / length(.data))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    exp(sapply(log(df), mean, na.rm = na.rm))
+  }
+}
+#' @name utils_stats
+#' @export
+kurt <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    n <- length(which(!is.na(.data)))
+    tmp <- sum((.data - mean(.data, na.rm = na.rm))^4, na.rm = na.rm)/(var(.data, na.rm = na.rm))^2
+    n * (n + 1) * tmp/((n - 1) * (n - 2) * (n - 3)) - 3 * (n - 1)^2/((n - 2) * (n - 3))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      n <- length(which(!is.na(df)))
+      tmp <- sum((df - mean(df, na.rm = na.rm))^4, na.rm = na.rm)/(var(df, na.rm = na.rm))^2
+      n * (n + 1) * tmp/((n - 1) * (n - 2) * (n - 3)) - 3 * (n - 1)^2/((n - 2) * (n - 3))
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+range_data <- function(.data, ..., na.rm = FALSE){
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    max(.data, na.rm = na.rm) - min(.data, na.rm = na.rm)
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      max(df, na.rm = na.rm) - min(df, na.rm = na.rm)
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+sd_amo <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sqrt(sum((.data - mean(.data, na.rm = na.rm))^2, na.rm = na.rm) / (length(which(!is.na(.data))) - 1))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sqrt(sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm) / (length(which(!is.na(df))) - 1))
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+sd_pop <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sqrt(sum((.data - mean(.data, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(.data))))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sqrt(sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(df))))
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+sem <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sd(.data, na.rm = na.rm) / sqrt(length(which(!is.na(.data))))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sd(df, na.rm = na.rm) / sqrt(length(which(!is.na(df))))
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+skew <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    n <- length(which(!is.na(.data)))
+    sum((.data - mean(.data, na.rm = na.rm))^3, na.rm = na.rm)/sd(.data, na.rm = na.rm)^3 * n / ((n - 1) * (n - 2))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>%
+        select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      n <- length(which(!is.na(df)))
+      sum((df - mean(df, na.rm = na.rm))^3, na.rm = na.rm)/sd(df, na.rm = na.rm)^3 * n / ((n - 1) * (n - 2))
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+sum_dev <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sum(abs(.data - mean(.data, na.rm = na.rm)), na.rm = na.rm)
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sum(abs(df - mean(df, na.rm = na.rm)), na.rm = na.rm)
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sum((.data - mean(.data, na.rm = na.rm))^2, na.rm = na.rm)
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm)
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+var_pop <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sd_pop(.data, na.rm = na.rm)^2
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sd_pop(df, na.rm = na.rm)^2
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+var_amo <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    sd_amo(.data, na.rm = na.rm)^2
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      sd_amo(df, na.rm = na.rm)^2
+    })
+  }
+}
+#' @name utils_stats
+#' @export
+valid_n <- function(.data, ..., na.rm = FALSE){
+  if(has_na(.data)){
+    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(is.null(nrow(.data))){
+    length(which(!is.na(.data)))
+  } else{
+    if(missing(...)){
+      df <- select_numeric_cols(.data)
+    } else{
+      df <- select(.data, ...) %>% select_numeric_cols()
+    }
+    sapply(df, function(df) {
+      length(which(!is.na(df)))
+    })
+  }
+}
+
+# main statistics, possible by one or more factors
+#' @name utils_stats
+#' @export
+cv_by <- function(.data, ...){
+  group_by(.data, ...) %>%
+    summarise_if(is.numeric, cv) %>%
+    ungroup()
+}
+#' @name utils_stats
+#' @export
+max_by <- function(.data, ...){
+  group_by(.data, ...) %>%
+    summarise_if(is.numeric, max) %>%
+    ungroup()
+}
+#' @name utils_stats
+#' @export
 means_by <- function(.data, ...){
   group_by(.data, ...) %>%
     summarise_if(is.numeric, mean) %>%
+    ungroup()
+}
+#' @name utils_stats
+#' @export
+min_by <- function(.data, ...){
+  group_by(.data, ...) %>%
+    summarise_if(is.numeric, min) %>%
+    ungroup()
+}
+#' @name utils_stats
+#' @export
+sd_by <- function(.data, ...){
+  group_by(.data, ...) %>%
+    summarise_if(is.numeric, sd) %>%
+    ungroup()
+}
+#' @name utils_stats
+#' @export
+sem_by <- function(.data, ...){
+  group_by(.data, ...) %>%
+    summarise_if(is.numeric, sem) %>%
     ungroup()
 }

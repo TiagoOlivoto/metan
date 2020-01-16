@@ -157,10 +157,13 @@ NULL
 NULL
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("\n******************************************************")
+  packageStartupMessage("\n================================================================")
   packageStartupMessage("metan has been successfully loaded in R ", paste0(R.Version()[c("major","minor")], collapse = "."))
   packageStartupMessage("Please, see the complete vignette at:\nhttps://tiagoolivoto.github.io/metan/")
-  packageStartupMessage("******************************************************\n")
+  packageStartupMessage("================================================================")
+  packageStartupMessage("To cite metan in publications, please, use:")
+  packageStartupMessage("Olivoto, T., and L\u00FAcio, A.D. (2020). Metan: an R package\nfor multi-environment trial analysis. bioRxiv, 2020.01.14.906750.\ndoi:10.1101/2020.01.14.906750.")
+  packageStartupMessage("================================================================\n")
 }
 
 if (getRversion() >= "2.15.1") {

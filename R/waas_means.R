@@ -51,6 +51,7 @@
 #' Principal Components, the estimates of Weighted Average of Absolute Scores,
 #' and WAASY (the index that consider the weights for stability and productivity
 #' in the genotype ranking.
+#' * \strong{ge_means} A tbl_df containing the genotype-environment means.
 #' * \strong{ge_eff} A \emph{gxe} matrix containing the genotype-environment effects.
 #' * \strong{eigenvalues} The eigenvalues from the singular value decomposition
 #' of the matrix withe the genotype-environment interaction effects.
@@ -204,6 +205,7 @@ waas_means <- function(.data,
         ungroup()
     }
     temp <- structure(list(model = WAASAbs,
+                           ge_means = data,
                            ge_eff = res_mat,
                            eigenvalues = SS,
                            proportion = weights,

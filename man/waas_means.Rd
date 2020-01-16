@@ -57,6 +57,7 @@ variable:
 Principal Components, the estimates of Weighted Average of Absolute Scores,
 and WAASY (the index that consider the weights for stability and productivity
 in the genotype ranking.
+\item \strong{ge_means} A tbl_df containing the genotype-environment means.
 \item \strong{ge_eff} A \emph{gxe} matrix containing the genotype-environment effects.
 \item \strong{eigenvalues} The eigenvalues from the singular value decomposition
 of the matrix withe the genotype-environment interaction effects.
