@@ -92,7 +92,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1.9000</span>
       </span>
     </div>
 
@@ -210,7 +210,58 @@
 <a href="#metan-1219000" class="anchor"></a>metan 1.2.1.9000<small> Unreleased </small>
 </h1>
 <ul>
+<li>
+<p><strong>New features</strong></p>
+<ul>
+<li>
+<code><a href="../reference/utils_stats.html">cv_by()</a></code> For computing coefficient of variation by levels of a factor.</li>
+<li>
+<code><a href="../reference/utils_stats.html">max_by()</a></code> For computing maximum values by levels of a factor.</li>
+<li>
+<code><a href="../reference/utils_stats.html">means_by()</a></code> For computing arithmetic means by levels of a factor.</li>
+<li>
+<code><a href="../reference/utils_stats.html">min_by()</a></code> For compuing minimum values by levels of a factor.</li>
+<li>
+<code><a href="../reference/utils_stats.html">sem_by()</a></code> For computing standard error of the mean by levels of a factor.</li>
+<li>
+<code><a href="../reference/utils_stats.html">av_dev()</a></code> computes the average absolute deviation.</li>
+<li>
+<code><a href="../reference/utils_stats.html">ci_mean()</a></code> computes the confidence interval for the mean.</li>
+<li>
+<code><a href="../reference/utils_stats.html">cv()</a></code> computes the coefficient of variation.</li>
+<li>
+<code><a href="../reference/utils_stats.html">hm_mean()</a></code>, <code><a href="../reference/utils_stats.html">gm_mean()</a></code> computes the harmonic and geometric means, respectively. The harmonic mean is the reciprocal of the arithmetic mean of the reciprocals. The geometric mean is the nth root of n products.</li>
+<li>
+<code><a href="../reference/utils_stats.html">kurt()</a></code> computes the kurtosis like used in SAS and SPSS.</li>
+<li>
+<code><a href="../reference/utils_stats.html">range_data()</a></code> Computes the range of the values.</li>
+<li>
+<code><a href="../reference/utils_stats.html">sd_amo()</a></code>, <code><a href="../reference/utils_stats.html">sd_pop()</a></code> Computes sample and populational standard deviation, respectively.</li>
+<li>
+<code><a href="../reference/utils_stats.html">sem()</a></code> computes the standard error of the mean.</li>
+<li>
+<code><a href="../reference/utils_stats.html">skew()</a></code> computes the skewness like used in SAS and SPSS.</li>
+<li>
+<code><a href="../reference/utils_stats.html">sum_dev()</a></code> computes the sum of the absolute deviations.</li>
+<li>
+<code><a href="../reference/utils_stats.html">sum_sq_dev()</a></code> computes the sum of the squared deviations.</li>
+<li>
+<code><a href="../reference/utils_stats.html">var_amo()</a></code>, var_pop() computes sample and populational variance.</li>
+<li>
+<code><a href="../reference/utils_stats.html">valid_n()</a></code> Return the valid (not NA) length of a data.</li>
+<li>
+<code><a href="../reference/themes.html">alpha_color()</a></code> To get a semi-transparent color</li>
+</ul>
+</li>
+<li>
+<p><strong>Minor changes</strong></p>
+<ul>
 <li>Change “<a href='https://github.com/TiagoOlivoto/metan/issues/000000'>#000000</a>FF” with “#FFFFFF00” in <code><a href="../reference/themes.html">transparent_color()</a></code>
+</li>
+<li>
+<code><a href="../reference/plot_scores.html">plot_scores()</a></code> now support objects of class <code>waas_mean</code>.</li>
+<li>Include inst/CITATION to return a reference paper with <code><a href="https://rdrr.io/r/utils/citation.html">citation("metan")</a></code>.</li>
+</ul>
 </li>
 </ul>
 </div>
@@ -259,7 +310,7 @@
 <li>
 <code><a href="../reference/utils_rows_cols.html">get_level_size()</a></code>, and <code><a href="../reference/utils_rows_cols.html">get_levels()</a></code> for getting size of levels and levels of a factor.</li>
 <li>
-<code><a href="../reference/means_by.html">means_by()</a></code> for computing means by one or more factors quickly.</li>
+<code><a href="../reference/utils_stats.html">means_by()</a></code> for computing means by one or more factors quickly.</li>
 <li>
 <code><a href="../reference/ge_means.html">ge_means()</a></code> for computing genotype-environment means</li>
 <li>
@@ -277,7 +328,7 @@
 <ul>
 <li>Reexport select_helpers <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">starts_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">ends_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">contains()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">contains()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">num_range()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/one_of.html">one_of()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything()</a></code>, and <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">last_col()</a></code>.</li>
 <li>When possible, argument <code>resp</code> (response variable(s) now support select helpers.</li>
-<li>New helper function <code><a href="../reference/sem.html">sem()</a></code> for computing standard error of mean.</li>
+<li>New helper function <code><a href="../reference/utils_stats.html">sem()</a></code> for computing standard error of mean.</li>
 <li>New helper functions <code><a href="../reference/remove_na_values.html">remove_rows_na()</a></code> and <code><a href="../reference/remove_na_values.html">remove_cols_na()</a></code> for removing rows or columns with <code>NA</code> values quickly.</li>
 <li>New select helpers <code><a href="../reference/Select_helper.html">difference_var()</a></code>, <code><a href="../reference/Select_helper.html">intersect_var()</a></code>, and <code><a href="../reference/Select_helper.html">union_var()</a></code> for selecting variables that match an expression.</li>
 <li>New function <code><a href="../reference/Schmildt.html">Schmildt()</a></code> for stability analysis.</li>
@@ -323,8 +374,8 @@
 <li>New function <code><a href="../reference/arrange_ggplot.html">arrange_ggplot()</a></code> for arranging ggplot2 graphics;</li>
 <li>New function <code><a href="../reference/ge_effects.html">ge_effects()</a></code> for computing genotype-environment effects;</li>
 <li>New function <code><a href="../reference/gai.html">gai()</a></code> for computing the geometric adaptability index;</li>
-<li>New helper function <code><a href="../reference/gm_mean.html">gm_mean()</a></code> for computing geometric mean;</li>
-<li>New helper function <code><a href="../reference/hm_mean.html">hm_mean()</a></code> for computing harmonic mean;</li>
+<li>New helper function <code><a href="../reference/utils_stats.html">gm_mean()</a></code> for computing geometric mean;</li>
+<li>New helper function <code><a href="../reference/utils_stats.html">hm_mean()</a></code> for computing harmonic mean;</li>
 <li>New helper function <code><a href="../reference/Huehn.html">Huehn()</a></code> for computing Huehn’s stability statistic;</li>
 <li>New helper function <code>Thennasaru()</code> for computing Thennasaru’s stability statistic;</li>
 <li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> by supporting new classes of models;</li>

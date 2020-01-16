@@ -41,6 +41,7 @@ insp <- inspect(data_ge,
                 verbose = FALSE,
                 plot = TRUE)
 print_table(insp)
+
 ```
 
 

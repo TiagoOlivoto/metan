@@ -139,12 +139,6 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/gge.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/gm_mean.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/hm_mean.html</loc>
-  </url>
-  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/Huehn.html</loc>
   </url>
   <url>
@@ -185,9 +179,6 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/meansGxE.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/means_by.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/metan-package.html</loc>
@@ -385,9 +376,6 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/Select_helper.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/sem.html</loc>
-  </url>
-  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/Shukla.html</loc>
   </url>
   <url>
@@ -416,6 +404,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_rows_cols.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_stats.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/waas.html</loc>

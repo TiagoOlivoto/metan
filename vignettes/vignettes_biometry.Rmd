@@ -55,11 +55,19 @@ data_ge2 %>%
   find_outliers(PH)
 ```
 
-
-
  
 # Descriptive statistics
-The function `desc_stat()` may be used to compute measures of central tendency, position, and dispersion. By default, seven statistics (coefficient of variation, maximum, mean, median, minimum,  standard error, and sample variance) are computed. To compute all the statistics, use the argument `stats = "all"`, or use a comma-separated vector with the statistic names, e.g., `stats = c("mean, CV")`. Use `hist = TRUE` to create a histogram for each variable. Note that select helpers can be used in the argument `...`.
+Descriptive statistics can be computed using [specific functions](https://tiagoolivoto.github.io/metan/reference/index.html#section-descriptive). A set of `*_by` functions can be used to compute the main descriptive statistics by levels of a factor.
+```{r}
+# Means by ENV
+means_by(data_ge2, ENV) %>% print_table()
+# Coefficient of variation by ENV and GEN
+cv_by(data_ge2, ENV, GEN) %>% print_table()
+# standard error of the mean by ENV and GEN
+sem_by(data_ge2, ENV, GEN) %>% print_table()
+```
+
+To compute all statistics at once we can use `desc_stat()`. This is a wrapper function and may be used to compute measures of central tendency, position, and dispersion. By default, seven statistics (coefficient of variation, maximum, mean, median, minimum,  standard error, and sample variance) are computed. To compute all the statistics, use the argument `stats = "all"`, or use a comma-separated vector with the statistic names, e.g., `stats = c("mean, CV")`. Use `hist = TRUE` to create a histogram for each variable. Note that select helpers can be used in the argument `...`.
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
 data_ge2 %>%
