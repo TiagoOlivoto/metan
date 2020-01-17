@@ -26,6 +26,7 @@
    - Change "#000000FF" with "#FFFFFF00" in `transparent_color()`
    - `plot_scores()` now support objects of class `waas_mean`.
    - Include inst/CITATION to return a reference paper with `citation("metan")`.
+   - Change 'PC2' with 'PC1' in y-axis of `plot_scores(type = 2)` ([#1](https://github.com/TiagoOlivoto/metan/issues/1))
 
 # metan 1.2.1
 * References describing the methods implemented in the package were included in description field of DESCRIPTION file as suggested by the CRAN team.

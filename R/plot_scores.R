@@ -305,13 +305,13 @@ plot_scores <- function(x,
       y.lab <- y.lab
     } else{
       if(class %in% c("waas", "performs_ammi")){
-        y.lab <- paste0("PC1 (", round(x$PCA[2, 7], 2), "%)")
+        y.lab <- paste0("PC2 (", round(x$PCA[2, 7], 2), "%)")
       }
       if(class == "waasb"){
-        y.lab <- paste0("PC1 (", round(x$PCA[2, 3], 2), "%)")
+        y.lab <- paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")
       }
       if(class == "waas_means"){
-        y.lab <- paste0("PC1 (", round(x$proportion[2], 2), "%)")
+        y.lab <- paste0("PC2 (", round(x$proportion[2], 2), "%)")
       }
     }
     if(!is.null(x.lab)){
@@ -327,20 +327,6 @@ plot_scores <- function(x,
         x.lab <- paste0("PC1 (", round(x$proportion[1], 2), "%)")
       }
     }
-    # y.lab <- ifelse(!is.null(y.lab),
-    #                 y.lab,
-    #                 ifelse(
-    #                   class(x) %in% c("waas", "performs_ammi"), paste0("PC2 (", round(x$PCA[2, 7], 2), "%)"),
-    #                   paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")
-    #                 )
-    # )
-    # x.lab = ifelse(!is.null(x.lab),
-    #                x.lab,
-    #                ifelse(
-    #                  class(x)  %in% c("waas", "performs_ammi"), paste0("PC1 (", round(x$PCA[1, 7], 2), "%)"),
-    #                  paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
-    #                )
-    # )
     if (is.null(x.lim) == FALSE) {
       x.lim <- x.lim
     } else {
