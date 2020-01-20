@@ -29,7 +29,7 @@
 #' @param block Defaults to \code{NULL}. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
-#'   \strong{All effects are assumed to be fixed.}
+#'   \strong{All effects, except the error, are assumed to be fixed.}
 #' @param nboot The number of resamples to be used in the cross-validation.
 #'   Defaults to 200.
 #' @param design The experimental design used in each environment. Defaults to
@@ -38,7 +38,9 @@
 #' @param verbose A logical argument to define if a progress bar is shown.
 #'   Default is \code{TRUE}.
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
-#'   resolvable incomplete block designs. Biometrika 63:83-92.
+#' resolvable incomplete block designs. Biometrika 63:83-92.
+#' \href{https://doi.org/10.1093/biomet/63.1.83}{doi:10.1093/biomet/63.1.83}
+#'
 #' @return
 #' An object of class \code{cv_ammif} with the following items:
 #' * \strong{RMSPD}: A vector with nboot-estimates of the Root Mean Squared

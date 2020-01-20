@@ -76,7 +76,9 @@
 #'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 #'
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
-#'   resolvable incomplete block designs. Biometrika 63:83-92.
+#' resolvable incomplete block designs. Biometrika 63:83-92.
+#' \href{https://doi.org/10.1093/biomet/63.1.83}{doi:10.1093/biomet/63.1.83}
+#'
 #' @references Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block
 #'   information: to recover or not to recover it? TAG. Theor. Appl. Genet.
 #'   128:1541-54.
