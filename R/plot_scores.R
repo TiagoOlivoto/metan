@@ -26,7 +26,8 @@
 #' * \code{type = 3} Valid for objects of class \code{waas} or \code{waasb},
 #' produces a biplot showing the GY x WAASB.
 #' * \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
-#'
+#' @param repel If \code{TRUE} (default), the text labels repel away from each
+#'   other and away from the data points.
 #' @param polygon Logical argument. If \code{TRUE}, a polygon is drawn when
 #'   \code{type = 2}.
 #' @param title Logical values (Defaults to \code{TRUE}) to include
@@ -149,6 +150,7 @@
 plot_scores <- function(x,
                         var = 1,
                         type = 1,
+                        repel = TRUE,
                         polygon = FALSE,
                         title = TRUE,
                         plot_theme = theme_metan(),
@@ -255,11 +257,6 @@ plot_scores <- function(x,
                  stroke = size.bor.tick,
                  color = c(rep(col.bor.gen, ngen), rep(col.bor.env, nenv)),
                  alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv))) +
-      geom_text_repel(aes(Y, PC1, label = (Code)),
-                      size = size.tex.pa,
-                      col = c(rep(col.gen, ngen), rep(col.env, nenv)),
-                      force = repulsion,
-                      alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv))) +
       plot_theme %+replace%
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
@@ -272,7 +269,20 @@ plot_scores <- function(x,
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line), theme(legend.position = "none"))+
       scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
       scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen))
-
+    if(repel == TRUE){
+      p1 <- p1 + geom_text_repel(aes(Y, PC1, label = (Code)),
+                                 size = size.tex.pa,
+                                 col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                                 force = repulsion,
+                                 alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))
+    } else{
+      p1 <- p1 + geom_text(aes(Y, PC1, label = (Code)),
+                           size = size.tex.pa,
+                           col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                           alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)),
+                           hjust = "outward",
+                           vjust = "outward")
+    }
     if(title == TRUE){
       p1 <- p1 + ggtitle("AMMI1 Biplot")
     }
@@ -362,11 +372,6 @@ plot_scores <- function(x,
                  stroke = size.bor.tick,
                  color = c(rep(col.bor.gen, ngen), rep(col.bor.env, nenv)),
                  alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv))) +
-      geom_text_repel(aes(PC1, PC2, label = (Code)),
-                      size = size.tex.pa,
-                      col = c(rep(col.gen, ngen), rep(col.env, nenv)),
-                      force = repulsion,
-                      alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv))) +
       plot_theme %+replace%
       theme(aspect.ratio = 1,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
@@ -379,7 +384,20 @@ plot_scores <- function(x,
       scale_size_manual(name = "", values = c(size.segm.line, size.segm.line), theme(legend.position = "none"))+
       scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
       scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen))
-
+    if(repel == TRUE){
+      p2 <- p2 + geom_text_repel(aes(PC1, PC2, label = (Code)),
+                                 size = size.tex.pa,
+                                 col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                                 force = repulsion,
+                                 alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))
+    } else{
+      p2 <- p2 + geom_text(aes(PC1, PC2, label = (Code)),
+                           size = size.tex.pa,
+                           col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                           alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)),
+                           hjust = "outward",
+                           vjust = "outward")
+    }
     if (polygon == TRUE) {
       gen <- data.frame(subset(x$model, type == "GEN"))
       coordgenotype <- data.frame(subset(x$model, type == "GEN"))[, 4:5]
@@ -392,7 +410,7 @@ plot_scores <- function(x,
       i <- 1
       while (is.na(indice[i + 1]) == FALSE) {
         m <- (coordgenotype[indice[i], 2] - coordgenotype[indice[i + 1], 2])/
-             (coordgenotype[indice[i], 1] - coordgenotype[indice[i + 1], 1])
+          (coordgenotype[indice[i], 1] - coordgenotype[indice[i + 1], 1])
         mperp <- -1/m
         c2 <- coordgenotype[indice[i + 1], 2] - m * coordgenotype[indice[i + 1], 1]
         xint <- -c2/(m - mperp)
@@ -488,16 +506,25 @@ plot_scores <- function(x,
                    color = col.line,
                    size = size.line,
                    alpha = line.alpha)+
-        geom_text_repel(aes(Y, WAASB, label = (Code)),
-                        size = size.tex.pa,
-                        col = c(rep(col.gen, ngen), rep(col.env, nenv)),
-                        force = repulsion,
-                        alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))+
         geom_point(aes(shape = type, fill = type),
                    size = size.shape,
                    stroke = size.bor.tick,
                    color = c(rep(col.bor.gen, ngen), rep(col.bor.env, nenv)),
                    alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))
+      if(repel == TRUE){
+        p3 <- p3 + geom_text_repel(aes(Y, WAASB, label = (Code)),
+                                   size = size.tex.pa,
+                                   col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                                   force = repulsion,
+                                   alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))
+      } else{
+        p3 <- p3 + geom_text(aes(Y, WAASB, label = (Code)),
+                             size = size.tex.pa,
+                             col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                             alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)),
+                             hjust = "outward",
+                             vjust = "outward")
+      }
     }
     if (class %in% c("waas", "waas_means")) {
       if (is.null(x.lim) == FALSE) {
@@ -525,32 +552,41 @@ plot_scores <- function(x,
                    color = col.line,
                    size = size.line,
                    alpha = line.alpha)+
-        geom_text_repel(aes(Y, WAAS, label = (Code)),
-                        size = size.tex.pa,
-                        col = c(rep(col.gen, ngen), rep(col.env, nenv)),
-                        force = repulsion,
-                        alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))+
         geom_point(aes(shape = type, fill = type),
                    size = size.shape,
                    stroke = size.bor.tick,
                    color = c(rep(col.bor.gen, ngen), rep(col.bor.env, nenv)),
                    alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))
+      if(repel == TRUE){
+        p3 <- p3 + geom_text_repel(aes(Y, WAAS, label = (Code)),
+                                   size = size.tex.pa,
+                                   col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                                   force = repulsion,
+                                   alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))
+      } else{
+        p3 <- p3 + geom_text(aes(Y, WAAS, label = (Code)),
+                             size = size.tex.pa,
+                             col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                             alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)),
+                             hjust = "outward",
+                             vjust = "outward")
+      }
     }
-      p3 <- p3 +
-        scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
-        scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen)) +
-        plot_theme %+replace%
-        theme(aspect.ratio = 1,
-              axis.text = element_text(size = size.tex.lab, colour = "black"),
-              axis.title = element_text(size = size.tex.lab, colour = "black"),
-              legend.text = element_text(size = size.tex.leg)) +
-        labs(x = paste(x.lab), y = paste(y.lab)) +
-        scale_x_continuous(limits = x.lim, breaks = x.breaks) +
-        scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-        annotation_custom(grobTree(textGrob("I", x = 0.02, y = 0.98, hjust = 0))) +
-        annotation_custom(grobTree(textGrob("II", x = 0.97, y = 0.97, hjust = 0))) +
-        annotation_custom(grobTree(textGrob("III", x = 0.01, y = 0.03, hjust = 0))) +
-        annotation_custom(grobTree(textGrob("IV", x = 0.96, y = 0.03, hjust = 0)))
+    p3 <- p3 +
+      scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
+      scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen)) +
+      plot_theme %+replace%
+      theme(aspect.ratio = 1,
+            axis.text = element_text(size = size.tex.lab, colour = "black"),
+            axis.title = element_text(size = size.tex.lab, colour = "black"),
+            legend.text = element_text(size = size.tex.leg)) +
+      labs(x = paste(x.lab), y = paste(y.lab)) +
+      scale_x_continuous(limits = x.lim, breaks = x.breaks) +
+      scale_y_continuous(limits = y.lim, breaks = y.breaks) +
+      annotation_custom(grobTree(textGrob("I", x = 0.02, y = 0.98, hjust = 0))) +
+      annotation_custom(grobTree(textGrob("II", x = 0.97, y = 0.97, hjust = 0))) +
+      annotation_custom(grobTree(textGrob("III", x = 0.01, y = 0.03, hjust = 0))) +
+      annotation_custom(grobTree(textGrob("IV", x = 0.96, y = 0.03, hjust = 0)))
     if(title == TRUE){
       p3 <- p3 + ggtitle("WAASB x Y biplot")
     }
@@ -595,7 +631,7 @@ plot_scores <- function(x,
       )%>%
         as.data.frame()
     } else{
-    data <- as.data.frame(x[["MeansGxE"]])
+      data <- as.data.frame(x[["MeansGxE"]])
     }
     minim <- min(data$nominal)
     y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Nominal Yield (Mg/ha)"))
@@ -611,34 +647,45 @@ plot_scores <- function(x,
       y.lim <- y.lim
     } else {
       y.lim <- c(min(data$nominal), max(data$nominal))
-
-    p4 <- ggplot2::ggplot(data, aes(x = envPC1, y = nominal, group = GEN))
-    if(color == TRUE){
-      p4 <- p4 +
-        geom_line(data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1))),
-                  aes(colour = GEN),
-                  size = 0.8) +
-        geom_label_repel(data = subset(data, envPC1 == min(envPC1)),
-                         aes(label = GEN, color = GEN),
-                         size = size.tex.pa,
-                         force = repulsion,
-                         alpha = rep(col.alpha.gen, ngen))
-    } else {
-      p4 <- p4 +
-        geom_line(data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1))),
-                  size = 0.8) +
-        geom_label_repel(data = subset(data, envPC1 == min(envPC1)),
-                         aes(label = GEN),
-                         size = size.tex.pa,
-                         force = repulsion,
-                         alpha = rep(col.alpha.gen, ngen))
     }
-    p4 <- p4 +
-    geom_text_repel(data = subset(data, GEN == data[1, 2]),
+      p4 <- ggplot2::ggplot(data, aes(x = envPC1, y = nominal, group = GEN))
+      if(color == TRUE){
+        p4 <- p4 +
+          geom_line(data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1))),
+                    aes(colour = GEN),
+                    size = 0.8)
+      } else {
+        p4 <- p4 +
+          geom_line(data = subset(data, envPC1 %in% c(max(envPC1), min(envPC1))),
+                    size = 0.8)
+      }
+      if(repel == TRUE){
+        p4 <- p4 +
+          geom_label_repel(data = subset(data, envPC1 == min(envPC1)),
+                           aes(label = GEN, color = GEN),
+                           size = size.tex.pa,
+                           force = repulsion,
+                           alpha = rep(col.alpha.gen, ngen))+
+          geom_text_repel(data = subset(data, GEN == data[1, 2]),
+                          aes(x = envPC1, y = minim, label = ENV),
+                          size = size.tex.pa,
+                          force = repulsion,
+                          alpha = rep(col.alpha.env, nenv))
+      } else{
+        p4 <- p4 +
+          geom_label(data = subset(data, envPC1 == min(envPC1)),
+                     aes(label = GEN, color = GEN),
+                     size = size.tex.pa,
+                     alpha = rep(col.alpha.gen, ngen),
+                     hjust = "center",
+                     vjust = "top")+
+          geom_text(data = subset(data, GEN == data[1, 2]),
                     aes(x = envPC1, y = minim, label = ENV),
                     size = size.tex.pa,
-                    force = repulsion,
-                    alpha = rep(col.alpha.env, nenv)) +
+                    alpha = rep(col.alpha.env, nenv),
+                    vjust = -1)
+      }
+    p4 <- p4 +
       geom_point(data = subset(data, GEN == data[1, 2]),
                  aes(x = envPC1, y = minim),
                  shape = 17,
@@ -678,6 +725,6 @@ plot_scores <- function(x,
       dev.off()
     }
   }
-  }
 }
+
 

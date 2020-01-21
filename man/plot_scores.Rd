@@ -8,6 +8,7 @@ plot_scores(
   x,
   var = 1,
   type = 1,
+  repel = TRUE,
   polygon = FALSE,
   title = TRUE,
   plot_theme = theme_metan(),
@@ -66,6 +67,9 @@ inferences related to the interaction effects.
 produces a biplot showing the GY x WAASB.
 \item \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
 }}
+
+\item{repel}{If \code{TRUE} (default), the text labels repel away from each
+other and away from the data points.}
 
 \item{polygon}{Logical argument. If \code{TRUE}, a polygon is drawn when
 \code{type = 2}.}
