@@ -192,7 +192,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
             }
             if(ind_anova == TRUE){
-                individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+                individual <- data %>% anova_ind(ENV, GEN, REP, Y, verbose = FALSE)
             } else{
                 individual = NULL
             }
@@ -349,7 +349,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 cat("\nThe number of environments and number of genotypes must be greater than 2\n")
             }
             if(ind_anova == TRUE){
-                individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+                individual <- data %>% anova_ind(ENV, GEN, REP, Y, verbose = FALSE)
             } else{
                 individual = NULL
             }
@@ -526,7 +526,7 @@ waasb <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, random
                 cat("\nThe number of environments and number of genotypes must be greater than 2\n")
             }
             if(ind_anova == TRUE){
-                individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+                individual <- data %>% anova_ind(ENV, GEN, REP, Y, verbose = FALSE)
             } else{
                 individual = NULL
             }
