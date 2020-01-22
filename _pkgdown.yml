@@ -173,6 +173,7 @@ reference:
       - corr_ss
       - covcor_design
       - find_outliers
+      - gafem
       - is.lpcor
       - lpcor
       - mahala
@@ -258,6 +259,7 @@ reference:
       - replace_number
       - replace_string
       - resca
+      - residual_plots
       - round_cols
       - select_cols
       - select_first_col
