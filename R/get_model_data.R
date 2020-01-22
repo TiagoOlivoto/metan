@@ -16,6 +16,8 @@
 #'   \strong{Details}.
 #' @param type Chose if the statistics must be show by genotype (\code{type =
 #'   "GEN"}, default) or environment (\code{type = "ENV"}), when possible.
+#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   silently.
 #' @return A tibble showing the values of the variable chosen in argument
 #'   \code{what}.
 #' @details
@@ -314,7 +316,10 @@
 #' get_model_data(stats_ge)
 #'}
 #'
-get_model_data <- function(x, what = NULL, type = "GEN") {
+get_model_data <- function(x,
+                           what = NULL,
+                           type = "GEN",
+                           verbose = TRUE) {
   call_f <- match.call()
   if (!class(x) %in% c("waasb", "waas","waas_means", "gamem", "performs_ammi", "Res_ind",
                        "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
@@ -803,6 +808,10 @@ get_model_data <- function(x, what = NULL, type = "GEN") {
           column_to_first(ENV, GEN)
       }
     }
+  }
+  if(verbose == TRUE){
+    message("Class of the model: ", class(x))
+    message("Variable extracted: ", what)
   }
   return(bind)
 }

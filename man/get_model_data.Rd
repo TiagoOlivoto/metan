@@ -4,7 +4,7 @@
 \alias{get_model_data}
 \title{Get data from a model easily}
 \usage{
-get_model_data(x, what = NULL, type = "GEN")
+get_model_data(x, what = NULL, type = "GEN", verbose = TRUE)
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{AMMI_indexes}},
@@ -20,6 +20,9 @@ get_model_data(x, what = NULL, type = "GEN")
 
 \item{type}{Chose if the statistics must be show by genotype (\code{type =
 "GEN"}, default) or environment (\code{type = "ENV"}), when possible.}
+
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
+silently.}
 }
 \value{
 A tibble showing the values of the variable chosen in argument
