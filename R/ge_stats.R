@@ -129,7 +129,6 @@ ge_stats = function(.data,
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(mean = vars[[var]])
-individual <- data %>% anova_ind(ENV, GEN, REP, mean)
 ge_mean = make_mat(data, GEN, ENV, mean)
 ge_effect = ge_effects(data, ENV, GEN, REP, mean)[[1]]
 gge_effect = ge_effects(data, ENV, GEN, REP, mean, type = "gge")[[1]]
