@@ -8,11 +8,12 @@ get_model_data(x, what = NULL, type = "GEN")
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{AMMI_indexes}},
+\code{\link{anova_ind}}, \code{\link{anova_joint}},
 \code{\link{ecovalence}},  \code{\link{Fox}}, \code{\link{gai}},
-\code{\link{gamem}}, \code{\link{ge_means}}, \code{\link{ge_reg}},
-\code{\link{performs_ammi}}, \code{\link{Resende_indexes}},
-\code{\link{Shukla}}, \code{\link{superiority}}, \code{\link{waas}} or
-\code{\link{waasb}}.}
+\code{\link{gamem}},\code{\link{gafem}}, \code{\link{ge_means}},
+\code{\link{ge_reg}}, \code{\link{performs_ammi}},
+\code{\link{Resende_indexes}}, \code{\link{Shukla}},
+\code{\link{superiority}}, \code{\link{waas}} or \code{\link{waasb}}.}
 
 \item{what}{What should be captured from the model. See more in section
 \strong{Details}.}
@@ -42,6 +43,36 @@ on the class of the object
 \item \code{"WAAS"} Weighted average of absolute scores (default).
 \item \code{"ZA"} Absolute value of the relative contribution of IPCAs to the
 interaction.
+}
+
+\strong{Objects of class \code{anova_ind}:}
+\itemize{
+\item \code{"MEAN"}The mean value of the variable
+\item \code{"MSG", "FCG", "PFG"} The mean square, F-calculated and P-values for
+genotype effect, respectively.
+\item \code{"MSB", "FCB", "PFB"} The mean square, F-calculated and P-values for
+block effect (in randomized complete block design) or complete replicate (in
+alpha lattice design), respectively.
+\item \code{"MSIB_R", "FCIB_R", "PFIB_R"} The mean square, F-calculated and
+P-values for incomplete blocks within complete replicates, respectively (for
+alpha lattice design only).
+\item \code{"MSE"} The mean square of error.
+\item \code{"CV"} The coefficient of variation.
+\item \code{"h2"} The broad-sence heritability
+\item \code{"MSE"} The accucary of selection (square root of h2).
+}
+
+\strong{Objects of class \code{anova_joint} or \code{gafem}:}
+\itemize{
+\item \code{"Sum Sq"} Sum of squares.
+\item \code{"Mean Sq"} Mean Squares.
+\item \code{"F value"} F-values.
+\item \code{"Pr(>F)"} P-values.
+\item \code{".fitted"} Fitted values (default).
+\item \code{".resid"} Residuals.
+\item \code{".stdresid"} Standardized residuals.
+\item \code{".se.fit"} Standard errors of the fitted values.
+\item \code{"details"} Details.
 }
 
 \strong{Objects of class \code{Annicchiarico} and \code{Schmildt}:}
@@ -316,6 +347,14 @@ Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
 Evaluation of genotype vs environment interaction in chickpea using measures
 of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 \href{http://eprints.icrisat.ac.in/id/eprint/7173}{http://eprints.icrisat.ac.in/id/eprint/7173}
+}
+\seealso{
+\code{\link{AMMI_indexes}}, \code{\link{anova_ind}},
+\code{\link{anova_joint}}, \code{\link{ecovalence}},  \code{\link{Fox}},
+\code{\link{gai}}, \code{\link{gamem}}, \code{\link{gafem}},
+\code{\link{ge_means}}, \code{\link{ge_reg}}, \code{\link{performs_ammi}},
+\code{\link{Resende_indexes}}, \code{\link{Shukla}},
+\code{\link{superiority}}, \code{\link{waas}}, \code{\link{waasb}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
