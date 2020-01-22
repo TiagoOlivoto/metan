@@ -139,6 +139,7 @@ reference:
       - Fox
       - gai
       - Huehn
+      - plot.anova_joint
       - plot.env_dissimilarity
       - plot.ge_cluster
       - plot.ge_effects
