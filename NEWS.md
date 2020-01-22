@@ -1,6 +1,6 @@
 # metan 1.2.1.9000
 
-* **New features**
+* **New functions**
    - `cv_by()` For computing coefficient of variation by levels of a factor.
    - `max_by()` For computing maximum values by levels of a factor.
    - `means_by()` For computing arithmetic means by levels of a factor.
@@ -20,6 +20,13 @@
    - `var_amo()`, var_pop() computes sample and populational variance.
    - `valid_n()` Return the valid (not NA) length of a data.
    - `alpha_color()` To get a semi-transparent color
+   - `gafem()` To analyze genotypes using fixed-effect models.
+   - `residual_plot()` A helper function to create residuals plots.
+   
+
+* **New arguments**
+   - `anova_ind()`, `anova_joint()`, `waas()`, and `performs_ammi()` now have the argument `block` to analyze data from trials conducted in an alpha-lattice design.
+   - argument `repel` included in `plot_scores()` to control wheater the labels are repelled or not to avoid overlapping.
 
 * **Minor changes**
 
@@ -27,6 +34,7 @@
    - `plot_scores()` now support objects of class `waas_mean`.
    - Include inst/CITATION to return a reference paper with `citation("metan")`.
    - Change 'PC2' with 'PC1' in y-axis of `plot_scores(type = 2)` ([#1](https://github.com/TiagoOlivoto/metan/issues/1))
+   - `get_model_data()` now support models of class `anova_joint` and `gafem`
 
 # metan 1.2.1
 * References describing the methods implemented in the package were included in description field of DESCRIPTION file as suggested by the CRAN team.
