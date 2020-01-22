@@ -202,7 +202,7 @@ waas <- function(.data,
         minimo <- min(Nenv, Ngen) - 1
         vin <- vin + 1
         if(ind_anova == TRUE){
-            individual <- data %>% anova_ind(ENV, GEN, REP, Y)
+            individual <- data %>% anova_ind(ENV, GEN, REP, Y, verbose = FALSE)
         } else{
             individual = NULL
         }
