@@ -185,5 +185,5 @@ if (getRversion() >= "2.15.1") {
       "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)", "dat",
       "BLOCK", "rowid", "grank", "rMean", "rShukaVar", "value", "DF", "without", "RPGV_Y",
       "HMRPGV_Y", "Pairs", "name", "v1", "v2", "slope", "new_var", "TYPE", "CODE",
-      "Sum.Sq", "Mean.Sq", "F.value", "Pr.F", "Sum Sq", "Df"))
+      "Sum.Sq", "Mean.Sq", "F.value", "Pr.F", "Sum Sq", "Df", "Source"))
 }
