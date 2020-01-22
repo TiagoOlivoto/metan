@@ -4,7 +4,7 @@
 \alias{anova_ind}
 \title{Within-environment analysis of variance}
 \usage{
-anova_ind(.data, env, gen, rep, resp, verbose = TRUE)
+anova_ind(.data, env, gen, rep, resp, block = NULL, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -23,40 +23,62 @@ replications/blocks.}
 single procedure a vector of variables may be used. For example \code{resp
   = c(var1, var2, var3)}.}
 
+\item{block}{Defaults to \code{NULL}. In this case, a randomized complete
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+\strong{All effects, except the error, are assumed to be fixed.}}
+
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
 }
 \value{
-A list where each element is the result for one variable and
-contains:
+A list where each element is the result for one variable containing:
+\enumerate{
+\item \strong{individual}: A tidy tbl_df with the results of the individual
+analysis of variance with the following colum names:
 \itemize{
-\item \strong{individual} A data frame with the results of the individual
-analysis of variance.
+\item \strong{For analysis in alpha-lattice designs}: \strong{ENV}: The
+environment code; \strong{MEAN}: The grand mean; \strong{MSG, MSCR, MSIB_R}:
+The mean squares for genotype, replicates and incomplete blocks within
+replicates, respectively. \strong{FCG, FCR, FCIB_R}: The F-calculated for
+genotype, replicates and incomplete blocks within replicates,
+respectively.\strong{PFG, PFCR, PFIB_R}: The P-values for genotype,
+replicates and incomplete blocks within replicates, respectively.
+\item \strong{For analysis in randomized complete block design}: \strong{MSG,
+MSB}: The mean squares for genotype and blocks, respectively. \strong{FCG,
+FCB}: The F-calculated for genotype and blocks, respectively. \strong{PFG,
+PFB}: The P-values for genotype and blocks, respectively.
+}
 \item \strong{MSRatio} The ratio between the higher and lower residual mean
 square.
 }
 }
 \description{
-This is a helper function that performs a within-environment analysis of
-variance and returns values such as Mean Squares, p-values, coefficient of
-variation, heritability, and accuracy of selection.
+Performs a within-environment analysis of variance in randomized complete
+block or alpha-lattice designs and returns values such as Mean Squares,
+p-values, coefficient of variation, heritability, and accuracy of selection.
 }
 \examples{
-
+\donttest{
 library(metan)
-# traditional usage approach
-data = data_ge
-anova1 = anova_ind(data_ge,
-                   env = ENV,
-                   gen = GEN,
-                   rep = REP,
-                   resp = GY)
+# ANOVA for all variables in data
+ind_an <- anova_ind(data_ge,
+                    env = ENV,
+                    gen = GEN,
+                    rep = REP,
+                    resp = everything())
+# mean for each environment
+get_model_data(ind_an)
 
-# Using the pipe operator \%>\%
-# Two variables, one run.
-anova2 <- data_ge \%>\% anova_ind(ENV, GEN, REP, GY)
+# P-value for genotype effect
+get_model_data(ind_an, "PFG")
 
-
+}
+}
+\references{
+Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.
+\href{https://doi.org/10.1093/biomet/63.1.83}{doi:10.1093/biomet/63.1.83}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -28,6 +28,10 @@
 #' @param resp The response variable(s). To analyze multiple variables in a
 #'   single procedure a vector of variables may be used. For example \code{resp
 #'   = c(var1, var2, var3)}.
+#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#'   block design is considered. If block is informed, then a resolvable
+#'   alpha-lattice design (Patterson and Williams, 1976) is employed.
+#'   \strong{All effects, except the error, are assumed to be fixed.}
 #' @param mresp A numeric vector of the same length of \code{resp}. The
 #'   \code{mresp} will be the new maximum value after rescaling. By default, all
 #'   variables in \code{resp} are rescaled so that de maximum value is 100 and
@@ -78,11 +82,15 @@
 #' observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
 #' the environment with the larger mean observed, \code{MinGEN} the genotype
 #' with the lower mean, \code{MaxGEN} the genotype with the larger.
-#' * \strong{residuals} The residuals of the model.
+#'  * \strong{augment:} Information about each observation in the dataset. This
+#'  includes predicted values in the \code{fitted} column, residuals in the
+#'  \code{resid} column, standardized residuals in the \code{stdres} column,
+#'  the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
+#'  the fitted values in the \code{se.fit} column.
 #' * \strong{probint} The p-value for the genotype-vs-environment interaction.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{waasb}}
+#' @seealso \code{\link{waas_means}} \code{\link{waasb}} \code{\link{get_model_data}}
 #' @export
 #' @examples
 #'\donttest{
@@ -123,13 +131,32 @@
 #'                wresp = c(60, 40))
 #'}
 #'
-waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 0.05,
-                 naxis = NULL, ind_anova = TRUE, verbose = TRUE) {
-    factors  <- .data %>%
-        select(ENV = {{env}},
-               GEN = {{gen}},
-               REP = {{rep}}) %>%
-        mutate_all(as.factor)
+waas <- function(.data,
+                 env,
+                 gen,
+                 rep,
+                 resp,
+                 block = NULL,
+                 mresp = NULL,
+                 wresp = NULL,
+                 prob = 0.05,
+                 naxis = NULL,
+                 ind_anova = TRUE,
+                 verbose = TRUE) {
+    if(!missing(block)){
+        factors  <- .data %>%
+            select(ENV = {{env}},
+                   GEN = {{gen}},
+                   REP = {{rep}},
+                   BLOCK = {{block}}) %>%
+            mutate_all(as.factor)
+    } else{
+        factors  <- .data %>%
+            select(ENV = {{env}},
+                   GEN = {{gen}},
+                   REP = {{rep}}) %>%
+            mutate_all(as.factor)
+    }
     vars <- .data %>%
         select({{resp}}) %>%
         select_numeric_cols()
@@ -179,7 +206,11 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
         } else{
             individual = NULL
         }
-        model <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+        if(missing(block)){
+            model <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+        } else{
+            model <- performs_ammi(data, ENV, GEN, REP, Y, block = BLOCK, verbose = FALSE)[[1]]
+        }
         PC <- model$PCA
         Escores <- model$model
         MeansGxE <- model$MeansGxE
@@ -252,7 +283,7 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
                                PCA = as_tibble(PC, rownames = NA),
                                anova = model$ANOVA,
                                Details = Details,
-                               residuals = as_tibble(model$residuals, rownames = NA),
+                               augment = as_tibble(model$augment, rownames = NA),
                                probint = model$probint),
                           class = "waas")
 
@@ -284,3 +315,36 @@ waas <- function(.data, env, gen, rep, resp, mresp = NULL, wresp = NULL, prob = 
     invisible(structure(listres, class = "waas"))
 }
 
+
+
+#' Several types of residual plots
+#'
+#' Residual plots for a output model of class \code{waas}. Seven types
+#' of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
+#' residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
+#' (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
+#' and (6) standardized residuals vs observation order, and (7) 1:1 line plot.
+#'
+#'
+#' @param x An object of class \code{waas}.
+#' @param ... Additional arguments passed on to the function
+#'   \code{\link{residual_plots}}
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method plot waas
+#' @export
+#' @examples
+#'\donttest{
+#' library(metan)
+#' model <- waas(data_ge, ENV, GEN, REP, GY)
+#' plot(model)
+#' plot(model,
+#'      which = c(3, 5),
+#'      nrow = 2,
+#'      labels = TRUE,
+#'      size.lab.out = 4,
+#'      align = "v")
+#' }
+#'
+plot.waas <- function(x, ...) {
+    residual_plots(x,  ...)
+}

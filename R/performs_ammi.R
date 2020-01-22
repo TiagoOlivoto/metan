@@ -14,49 +14,72 @@
 #' @param resp The response variable(s). To analyze multiple variables in a
 #'   single procedure a vector of variables may be used. For example \code{resp
 #'   = c(var1, var2, var3)}.
+#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#'   block design is considered. If block is informed, then a resolvable
+#'   alpha-lattice design (Patterson and Williams, 1976) is employed.
+#'   \strong{All effects, except the error, are assumed to be fixed.}
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
 #' @return
-#' * \strong{ANOVA} The analysis of variance for the AMMI model.
+#' * \strong{ANOVA}: The analysis of variance for the AMMI model.
 #'
-#' * \strong{PCA} The principal component analysis
+#' * \strong{PCA}: The principal component analysis
 #'
-#' * \strong{MeansGxE} The means of genotypes in the environments
+#' * \strong{MeansGxE}: The means of genotypes in the environments
 #'
-#' * \strong{model} scores for genotypes and environments in all the possible
+#' * \strong{model}: scores for genotypes and environments in all the possible
 #' axes.
+#'  * \strong{augment:} Information about each observation in the dataset. This
+#'  includes predicted values in the \code{fitted} column, residuals in the
+#'  \code{resid} column, standardized residuals in the \code{stdres} column,
+#'  the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
+#'  the fitted values in the \code{se.fit} column.
 #' @md
+#' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
+#' resolvable incomplete block designs. Biometrika 63:83-92.
+#' \href{https://doi.org/10.1093/biomet/63.1.83}{doi:10.1093/biomet/63.1.83}
+#' @seealso \code{\link{waas}} \code{\link{waas_means}} \code{\link{waasb}} \code{\link{get_model_data}}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
 #'\donttest{
 #' library(metan)
-#' ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
-#'                            resp = c(GY, HM))
+#' model <- performs_ammi(data_ge, ENV, GEN, REP, resp = c(GY, HM))
 #'
 #' # GY x PC1 (variable GY)
-#' plot_scores(ammi_model,
-#'             col.env = 'olivedrab',
-#'             col.gen = 'orange2',
-#'             x.lab = 'My own x label')
+#' plot_scores(model)
 #'
 #' # PC1 x PC2 (variable HM)
-#' plot_scores(ammi_model,
+#' plot_scores(model,
+#'             var = 2, # or "HM"
 #'             type = 2)
 #'
-#' # PC1 x PC2 (variable HM)
+#' # Nominal yield plot (variable GY)
 #' # Draw a convex hull polygon
-#' plot_scores(ammi_model,
-#'             type = 2,
-#'             polygon = TRUE)
+#' plot_scores(model, type = 4)
 #'
 #'}
-performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {
-    factors  <- .data %>%
-        select(ENV = {{env}},
-               GEN = {{gen}},
-               REP = {{rep}}) %>%
-        mutate_all(as.factor)
+performs_ammi <- function(.data,
+                          env,
+                          gen,
+                          rep,
+                          resp,
+                          block = NULL,
+                          verbose = TRUE) {
+    if(!missing(block)){
+        factors  <- .data %>%
+            select(ENV = {{env}},
+                   GEN = {{gen}},
+                   REP = {{rep}},
+                   BLOCK = {{block}}) %>%
+            mutate_all(as.factor)
+    } else{
+        factors  <- .data %>%
+            select(ENV = {{env}},
+                   GEN = {{gen}},
+                   REP = {{rep}}) %>%
+            mutate_all(as.factor)
+    }
     vars <- .data %>%
         select({{resp}}) %>%
         select_numeric_cols()
@@ -69,27 +92,52 @@ performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {
         ngen <- nlevels(data$GEN)
         nrep <- nlevels(data$REP)
         minimo <- min(ngen, nenv) - 1
-        model <- aov(mean ~ ENV + REP %in% ENV + GEN + ENV:GEN, data = data)
-        df <- fortify(model)
-        datares <- model$model
-        datares$factors <- paste(datares$ENV, datares$GEN)
-        residuals <- cbind(datares, df %>%
-                               select(fitted = .fitted,
-                                      resid = .resid,
-                                      stdres = .stdresid))
+        if(missing(block)){
+            model <- aov(mean ~ GEN + ENV + GEN:ENV + ENV/REP, data = data)
+            influence <- lm.influence(model)
+            augment <- model$model %>%
+                add_cols(hat = influence$hat,
+                         sigma = influence$sigma,
+                         fitted = predict(model),
+                         resid = residuals(model),
+                         stdres = rstandard(model),
+                         se.fit = predict(model, se.fit = TRUE)$se.fit) %>%
+                add_cols(factors = concatenate(., GEN, REP, pull = TRUE)) %>%
+                column_to_first(ENV, GEN, REP)
+        } else{
+            model <- aov(mean ~ GEN + ENV + GEN:ENV + ENV/REP/BLOCK, data = data)
+            influence <- lm.influence(model)
+            augment <- model$model %>%
+                add_cols(hat = influence$hat,
+                         sigma = influence$sigma,
+                         fitted = predict(model),
+                         resid = residuals(model),
+                         stdres = rstandard(model),
+                         se.fit = predict(model, se.fit = TRUE)$se.fit) %>%
+                add_cols(factors = concatenate(., GEN, REP, BLOCK, pull = TRUE)) %>%
+                column_to_first(ENV, GEN, REP, BLOCK)
+        }
         if (minimo < 2) {
             stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
         }
-        mm <- anova(model)
-        nn <- mm[2, ]
-        mm[2, ] <- mm[3, ]
-        mm[3, ] <- nn
-        row.names(mm)[2] <- "REP(ENV)"
-        row.names(mm)[3] <- "GEN     "
-        mm[1, 4] <- mm[1, 3]/mm[2, 3]
-        mm[1, 5] <- 1 - pf(mm[1, 4], mm[1, 1], mm[2, 1])
-        anova <- mm
-        probint <- anova[4, 5]
+        if(missing(block)){
+            anova <- anova(model) %>%
+                as.data.frame() %>%
+                rownames_to_column("Source") %>%
+                select_rows(2, 4, 1, 3, 5)
+            anova[2, 1] <- "REP(ENV)"
+            anova[1, 5] <- anova[1, 4] / anova[2, 4]
+            anova[1, 6] <- 1 - pf(anova[1, 5], anova[1, 2], anova[2, 2])
+            probint <- anova[4, 6]
+        } else{
+            anova <- anova(model) %>%
+                as.data.frame() %>%
+                rownames_to_column("Source") %>%
+                select_rows(2, 4, 5, 1, 3, 6)
+            anova[2, 1] <- "REP(ENV)"
+            anova[3, 1] <- "BLOCK(REP*ENV)"
+            probint <- anova[5, 6]
+        }
         DFE <- df.residual(model)
         MSE <- deviance(model)/DFE
         MEANS <- data %>%
@@ -113,8 +161,9 @@ performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {
         acumula <- 0
         for (i in 1:(minimo)) {
             DF <- (ngen - 1) + (nenv - 1) - (2 * i - 1)
-            if (DF <= 0)
+            if (DF <= 0){
                 break
+            }
             DFAMMI[i] <- DF
             acumula <- acumula + percent[i]
             acum[i] <- acum[i] + acumula
@@ -154,20 +203,26 @@ performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {
                       mutate(type = "ENV") %>%
                       rename(Code = ENV) %>%
                       cbind(., SCOREE)) %>%
-            select(type, Code, everything())
-        PC <- SSAMMI %>% select(-percent, -acum, everything())
-        resid <- as.data.frame(anova[nrow(anova), ])
-        rownames(resid) <- "Residuals"
-        sum <- as.data.frame(anova[nrow(anova), ])
-        sum$Df <- sum(anova$Df)
-        sum$`Sum Sq` <- sum(anova$`Sum Sq`)
-        sum$`Mean Sq` <- sum$`Sum Sq`/sum$Df
-        rownames(sum) <- "Total"
-        ERRO <- rbind(resid, sum)
-        names(PC) <- paste(c("Df", "Sum Sq", "Mean Sq", "F value",
-                             "Pr(>F)", "Percent", "Accumul"))
-        anova <- rbind_fill(mm[-nrow(mm), ], PC, ERRO) %>%
+            column_to_first(type, Code)
+        PC <- SSAMMI %>%
+            column_to_last(percent, acum) %>%
             rownames_to_column("Source") %>%
+            rename(`Sum Sq` = Sum.Sq,
+                   `Mean Sq` = Mean.Sq,
+                   `F value` = F.value,
+                   `Pr(>F)` = Pr.F,
+                   Percent = percent,
+                   Accumul = acum)
+        resid <- anova[nrow(anova), ]
+        anova <- rbind_fill(anova[-nrow(anova), ], PC, resid) %>%
+            add_rows(Source = "Total",
+                     Df = sum(anova$Df),
+                     `Sum Sq` = sum(anova$`Sum Sq`),
+                     `Mean Sq` = `Sum Sq` / Df,
+                     `F value` = NA,
+                     `Pr(>F)` = NA,
+                     Percent = NA,
+                     Accumul = NA) %>%
             as_tibble()
         MeansGxE <- MEANS[, 1:3]
         EscGEN <- subset(bplot, type == "GEN")
@@ -185,10 +240,10 @@ performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {
         )
         listres[[paste(names(vars[var]))]] <-
             structure(list(ANOVA = anova,
-                           PCA = PC %>% rownames_to_column("PC") %>% as_tibble(),
+                           PCA = PC %>% rename(PC = Source),
                            MeansGxE = MeansGxE,
                            model = bplot %>% as_tibble(),
-                           residuals = residuals %>% as_tibble(),
+                           augment = augment,
                            probint = probint),
                       class = "performs_ammi")
         if (verbose == TRUE) {
@@ -215,5 +270,38 @@ performs_ammi <- function(.data, env, gen, rep, resp, verbose = TRUE) {
         }
         cat("Done!\n")
     }
-    return(structure(listres, class = "performs_ammi"))
+    invisible(structure(listres, class = "performs_ammi"))
+}
+
+
+#' Several types of residual plots
+#'
+#' Residual plots for a output model of class \code{performs_ammi}. Seven types
+#' of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
+#' residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
+#' (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
+#' and (6) standardized residuals vs observation order, and (7) 1:1 line plot.
+#'
+#'
+#' @param x An object of class \code{performs_ammi}.
+#' @param ... Additional arguments passed on to the function
+#'   \code{\link{residual_plots}}
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method plot performs_ammi
+#' @export
+#' @examples
+#'\donttest{
+#' library(metan)
+#' model <- performs_ammi(data_ge, ENV, GEN, REP, GY)
+#' plot(model)
+#' plot(model,
+#'      which = c(3, 5),
+#'      nrow = 2,
+#'      labels = TRUE,
+#'      size.lab.out = 4,
+#'      align = "v")
+#'}
+#'
+plot.performs_ammi <- function(x, ...) {
+    residual_plots(x,  ...)
 }

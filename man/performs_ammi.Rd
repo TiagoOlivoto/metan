@@ -4,7 +4,7 @@
 \alias{performs_ammi}
 \title{Additive Main effects and Multiplicative Interaction}
 \usage{
-performs_ammi(.data, env, gen, rep, resp, verbose = TRUE)
+performs_ammi(.data, env, gen, rep, resp, block = NULL, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -22,16 +22,26 @@ replications/blocks}
 single procedure a vector of variables may be used. For example \code{resp
   = c(var1, var2, var3)}.}
 
+\item{block}{Defaults to \code{NULL}. In this case, a randomized complete
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+\strong{All effects, except the error, are assumed to be fixed.}}
+
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
 }
 \value{
 \itemize{
-\item \strong{ANOVA} The analysis of variance for the AMMI model.
-\item \strong{PCA} The principal component analysis
-\item \strong{MeansGxE} The means of genotypes in the environments
-\item \strong{model} scores for genotypes and environments in all the possible
+\item \strong{ANOVA}: The analysis of variance for the AMMI model.
+\item \strong{PCA}: The principal component analysis
+\item \strong{MeansGxE}: The means of genotypes in the environments
+\item \strong{model}: scores for genotypes and environments in all the possible
 axes.
+\item \strong{augment:} Information about each observation in the dataset. This
+includes predicted values in the \code{fitted} column, residuals in the
+\code{resid} column, standardized residuals in the \code{stdres} column,
+the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
+the fitted values in the \code{se.fit} column.
 }
 }
 \description{
@@ -42,26 +52,29 @@ the \pkg{metan} package such as \code{\link{waas}} and \code{\link{wsmp}}
 \examples{
 \donttest{
 library(metan)
-ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
-                           resp = c(GY, HM))
+model <- performs_ammi(data_ge, ENV, GEN, REP, resp = c(GY, HM))
 
 # GY x PC1 (variable GY)
-plot_scores(ammi_model,
-            col.env = 'olivedrab',
-            col.gen = 'orange2',
-            x.lab = 'My own x label')
+plot_scores(model)
 
 # PC1 x PC2 (variable HM)
-plot_scores(ammi_model,
+plot_scores(model,
+            var = 2, # or "HM"
             type = 2)
 
-# PC1 x PC2 (variable HM)
+# Nominal yield plot (variable GY)
 # Draw a convex hull polygon
-plot_scores(ammi_model,
-            type = 2,
-            polygon = TRUE)
+plot_scores(model, type = 4)
 
 }
+}
+\references{
+Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.
+\href{https://doi.org/10.1093/biomet/63.1.83}{doi:10.1093/biomet/63.1.83}
+}
+\seealso{
+\code{\link{waas}} \code{\link{waas_means}} \code{\link{waasb}} \code{\link{get_model_data}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

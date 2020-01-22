@@ -10,6 +10,7 @@ waas(
   gen,
   rep,
   resp,
+  block = NULL,
   mresp = NULL,
   wresp = NULL,
   prob = 0.05,
@@ -33,6 +34,11 @@ replications/blocks.}
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure a vector of variables may be used. For example \code{resp
   = c(var1, var2, var3)}.}
+
+\item{block}{Defaults to \code{NULL}. In this case, a randomized complete
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+\strong{All effects, except the error, are assumed to be fixed.}}
 
 \item{mresp}{A numeric vector of the same length of \code{resp}. The
 \code{mresp} will be the new maximum value after rescaling. By default, all
@@ -81,7 +87,11 @@ environment), \code{Max} the maximum observed, \code{Max} the maximum
 observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
 the environment with the larger mean observed, \code{MinGEN} the genotype
 with the lower mean, \code{MaxGEN} the genotype with the larger.
-\item \strong{residuals} The residuals of the model.
+\item \strong{augment:} Information about each observation in the dataset. This
+includes predicted values in the \code{fitted} column, residuals in the
+\code{resid} column, standardized residuals in the \code{stdres} column,
+the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
+the fitted values in the \code{se.fit} column.
 \item \strong{probint} The p-value for the genotype-vs-environment interaction.
 }
 }
@@ -153,7 +163,7 @@ Agron. J. 111:2949-2960.
 \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
 }
 \seealso{
-\code{\link{waasb}}
+\code{\link{waas_means}} \code{\link{waasb}} \code{\link{get_model_data}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

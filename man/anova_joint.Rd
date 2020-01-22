@@ -4,7 +4,7 @@
 \alias{anova_joint}
 \title{Joint analysis of variance}
 \usage{
-anova_joint(.data, env, gen, rep, resp, verbose = TRUE)
+anova_joint(.data, env, gen, rep, resp, block = NULL, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -21,34 +21,63 @@ replications/blocks.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure a vector of variables may be used. For example \code{resp
-= c(var1, var2, var3)}.}
+  = c(var1, var2, var3)}.}
+
+\item{block}{Defaults to \code{NULL}. In this case, a randomized complete
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+\strong{All effects, except the error, are assumed to be fixed.}}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
 }
 \value{
 A list where each element is the result for one variable containing
-  the ANOVA table.
+the following objects:
+\itemize{
+\item \strong{anova:} The two-way ANOVA table
+\item \strong{model:} The model of class \code{lm}.
+\item \strong{augment:} Information about each observation in the dataset. This
+includes predicted values in the \code{fitted} column, residuals in the
+\code{resid} column, standardized residuals in the \code{stdres} column,
+the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
+the fitted values in the \code{se.fit} column.
+\item \strong{details:} A tibble with the following data: \code{Ngen}, the
+number of genotypes; \code{OVmean}, the grand mean; \code{Min}, the minimum
+observed (returning the genotype and replication/block); \code{Max} the
+maximum observed, \code{MinGEN} the loser winner genotype, \code{MaxGEN},
+the winner genotype.
+}
 }
 \description{
 Performs a joint analysis of variance to check for the presence of
-genotype-vs-environment interactions.
+genotype-vs-environment interactions using both randomized complete block and
+alpha-lattice designs.
 }
 \examples{
-
+\donttest{
 library(metan)
 # traditional usage approach
-anova1 = anova_joint(data_ge,
-                     env = ENV,
-                     gen = GEN,
-                     rep = REP,
-                     resp = GY)
+j_an <- anova_joint(data_ge,
+                    env = ENV,
+                    gen = GEN,
+                    rep = REP,
+                    resp = everything())
+# Predicted values
+get_model_data(j_an)
 
-# Using the pipe operator \%>\%
-# Two variables, one run.
-anova2 = data_ge \%>\% anova_joint(ENV, GEN, REP, c(GY, HM))
+# Details
+get_model_data(j_an, "details")
+}
 
-
+}
+\references{
+Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.
+\href{https://doi.org/10.1093/biomet/63.1.83}{doi:10.1093/biomet/63.1.83}
+}
+\seealso{
+\code{\link{get_model_data}} \code{\link{anova_ind}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
