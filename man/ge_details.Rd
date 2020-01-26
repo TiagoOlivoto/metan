@@ -23,8 +23,8 @@ single procedure a vector of variables may be used. For example \code{resp
 A tibble with the following results for each variable:
 \itemize{
 \item \code{Mean}: The grand mean.
-\item \code{Std_err}: The standard error of the mean
-\item \code{Desv_pad}: The standard deviation.
+\item \code{SE}: The standard error of the mean.
+\item \code{SD}: The standard deviation.
 \item \code{CV}: The coefficient of variation.
 \item \code{Min,Max}: The minimum and maximum value, indicating the genotype and environment of occurence.
 \item \code{MinENV, MinGEN}: The environment and genotype with the lower mean.

@@ -13,8 +13,8 @@
 #'
 #' @return A tibble with the following results for each variable:
 #' * \code{Mean}: The grand mean.
-#' * \code{Std_err}: The standard error of the mean
-#' * \code{Desv_pad}: The standard deviation.
+#' * \code{SE}: The standard error of the mean.
+#' * \code{SD}: The standard deviation.
 #' * \code{CV}: The coefficient of variation.
 #' * \code{Min,Max}: The minimum and maximum value, indicating the genotype and environment of occurence.
 #' * \code{MinENV, MinGEN}: The environment and genotype with the lower mean.
@@ -67,7 +67,7 @@ ge_details <- function(.data, env, gen, resp){
     min <- data %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
     max <- data %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
     desc_st <- desc_stat(data, stats = c("mean, SE.mean, SD.pop, CV"), verbose = FALSE)
-    temp <- tibble(Parameters = c("Mean", "Std_err", "Desv_pad", "CV", "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"),
+    temp <- tibble(Parameters = c("Mean", "SE", "SD", "CV", "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"),
                    Values = c(round(desc_st[1, 2], 2),
                               round(desc_st[2, 2], 2),
                               round(desc_st[3, 2], 2),
