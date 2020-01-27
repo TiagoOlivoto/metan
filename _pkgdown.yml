@@ -188,6 +188,7 @@ reference:
       - plot_ci
       - plot_factbars
       - plot_factlines
+      - plot.gafem
       - plot_lines
       - resp_surf
       - print.can_cor
