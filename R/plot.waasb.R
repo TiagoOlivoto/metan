@@ -43,6 +43,7 @@
 #'   \code{\link[cowplot]{plot_grid}}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @importFrom cowplot plot_grid
+#' @importFrom dplyr distinct_all arrange_at
 #' @method plot waasb
 #' @export
 #' @examples
@@ -208,107 +209,67 @@ plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
         plots <- list(p1, p2, p3, p4, p5, p6, p7)
     }
     if (type == "re") {
-        df <- data.frame(x$BLUPgge)[, 1:4]
-        df$id <- rownames(df)
-        df <- data.frame(df[order(df$BLUPge), ])
-        P <- ppoints(nrow(df))
-        df$z <- qnorm(P)
-        n <- nrow(df)
-        Q.x <- quantile(df$BLUPge, c(0.25, 0.75))
-        Q.z <- qnorm(c(0.25, 0.75))
-        b <- diff(Q.x)/diff(Q.z)
-        coef <- c(Q.x[1] - b * Q.z[1], b)
-        zz <- qnorm(1 - (1 - conf)/2)
-        SE <- (coef[2]/dnorm(df$z)) * sqrt(P * (1 - P)/n)
-        fit.value <- coef[1] + coef[2] * df$z
-        df$upper <- fit.value + zz * SE
-        df$lower <- fit.value - zz * SE
-        df$label <- ifelse(df$BLUPg > df$BLUPg | df$BLUPg < df$lower,
-                           rownames(df), "")
-        df$factors <- paste(df$ENV, df$GEN)
-        dfgen <- data.frame(x$blupGEN)[, 2:3]
-        dfgen$id <- rownames(dfgen)
-        dfgen <- data.frame(dfgen[order(dfgen$BLUPg), ])
-        P2 <- ppoints(nrow(dfgen))
-        dfgen$z <- qnorm(P2)
-        n2 <- nrow(dfgen)
-        Qx <- quantile(dfgen$BLUPg, c(0.25, 0.75))
-        Qz <- qnorm(c(0.25, 0.75))
-        b2 <- diff(Qx)/diff(Qz)
-        coef2 <- c(Qx[1] - b2 * Qz[1], b2)
-        zz2 <- qnorm(1 - (1 - conf)/2)
-        SE2 <- (coef2[2]/dnorm(dfgen$z)) * sqrt(P2 * (1 - P2)/n2)
-        fit.value2 <- coef2[1] + coef2[2] * dfgen$z
-        dfgen$upper <- fit.value2 + zz2 * SE2
-        dfgen$lower <- fit.value2 - zz2 * SE2
-        dfgen$label <- ifelse(dfgen$BLUPg > dfgen$BLUPg | dfgen$BLUPg <
-                                  dfgen$lower, rownames(dfgen), "")
+        blups <-
+            x$blupINT %>%
+            select_cols(contains("BLUP"))
+        fact <-x$blupINT %>% select_non_numeric_cols()
+        qlist <- list()
+        for (i in 1:ncol(blups)) {
+            df <-
+                data.frame(blups[i]) %>%
+                distinct_all() %>%
+                rowid_to_column(var = "id") %>%
+                arrange_at(2)
+            P <- ppoints(nrow(df))
+            df$z <- qnorm(P)
+            n <- nrow(df)
+            Q.x <- quantile(df[[2]], c(0.25, 0.75))
+            Q.z <- qnorm(c(0.25, 0.75))
+            b <- diff(Q.x)/diff(Q.z)
+            coef <- c(Q.x[1] - b * Q.z[1], b)
+            zz <- qnorm(1 - (1 - conf)/2)
+            SE <- (coef[2]/dnorm(df$z)) * sqrt(P * (1 - P)/n)
+            fit.value <- coef[1] + coef[2] * df$z
+            df %<>% add_cols(upper = fit.value + zz * SE,
+                             lower = fit.value - zz * SE,
+                             label = ifelse(df[[2]] > upper | df[[2]] < lower, id, ""),
+                             intercept = coef[1],
+                             slope = coef[2],
+                             var = paste(names(blups[i]))
+            ) %>%
+                set_names("id",    "blup", "z",     "upper", "lower", "label", "intercept", "slope", "var")
+            qlist[[paste(names(blups[i]))]] <- df
+        }
+
+        df <- do.call(rbind, qlist)
         # normal qq GEI effects
-        p1 <- ggplot(df, aes(z, BLUPge)) +
+        p1 <- ggplot(df, aes(z, blup)) +
             geom_point(col = col.point, size = size.shape) +
-            geom_abline(intercept = coef[1],
-                        slope = coef[2],
+            geom_abline(aes(intercept = intercept,
+                        slope = slope),
                         size = 1, col = col.line) +
             geom_ribbon(aes_(ymin = ~lower, ymax = ~upper),
                         alpha = 0.2) +
-            labs(x = "Theoretical quantiles", y = "Sample quantiles") + ggtitle("Q-Q | GEI effects") +
+            labs(x = "Theoretical quantiles", y = "Sample quantiles")+
+            facet_wrap( ~var, scales = "free") +
             plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
                   axis.title = element_text(size = size.tex.lab, colour = "black"),
                   plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
         if (labels != FALSE) {
-            p1 <- p1 + ggrepel::geom_text_repel(aes(z, BLUPge, label = (label)),
+            p1 <- p1 + ggrepel::geom_text_repel(aes(z, blup, label = (label)),
                                                 color = col.lab.out,
                                                 size = size.lab.out)
         } else {
             p1 <- p1
         }
-        # normal qq Genotype effects
-        p2 <- ggplot(dfgen, aes(z, BLUPg)) +
-            geom_point(col = col.point, size = size.shape) +
-            geom_abline(intercept = coef2[1],
-                        slope = coef2[2],
-                        size = 1,
-                        col = col.line) +
-            geom_ribbon(aes_(ymin = ~lower, ymax = ~upper), alpha = 0.2) +
-            labs(x = "Theoretical quantiles", y = "Sample quantiles") +
-            ggtitle("Q-Q | genotype effects") +
-            plot_theme %+replace%
-            theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
-                  axis.title = element_text(size = size.tex.lab, colour = "black"),
-                  plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
-        if (labels != FALSE) {
-            p2 <- p2 + ggrepel::geom_text_repel(aes(z, BLUPg, label = (label)),
-                                                color = col.lab.out,
-                                                size = size.lab.out)
-        } else {
-            p2 <- p2
-        }
-        # random effects vs Factor-levels
-        p3 <- ggplot(df, aes(BLUPge, factors)) +
-            geom_point(col = col.point, size = size.shape) +
-            geom_vline(xintercept = 0, linetype = 2, col = "gray") +
-            labs(x = "Random effects", y = "Factor-levels") +
-            ggtitle("Random effects vs factor-levels") +
-            plot_theme %+replace%
-            theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
-                  axis.title = element_text(size = size.tex.lab, colour = "black"),
-                  plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
-                  axis.text.y = element_blank())
-        # random effects vs genotypes
-        p4 <- ggplot(dfgen, aes(BLUPg, GEN)) +
-            geom_point(col = col.point, size = size.shape) +
-            geom_vline(xintercept = 0, linetype = 2, col = "gray") +
-            labs(x = "Random effects ", y = "Genotypes") +
-            ggtitle("Random effects vs Genotypes") +
-            plot_theme %+replace%
-            theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
-                  axis.title = element_text(size = size.tex.lab, colour = "black"),
-                  plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
-        plots <- list(p1, p2, p3, p4)
     }
+    if(!type == "re"){
     plot_grid(plotlist = plots[c(which)],
               ncol = ncol,
               nrow = nrow,
               ...)
+    } else{
+        print(p1)
+    }
 }
