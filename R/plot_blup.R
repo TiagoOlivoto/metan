@@ -81,8 +81,8 @@ plot_blup <- function(x, var = 1, prob = 0.05, export = FALSE, file.type = "pdf"
     if(class(x) ==  "waasb"){
         PROB <- ((1 - (1 - prob))/2) + (1 - prob)
         t <- qt(PROB, nlevels(x$residuals$REP))
-        GV <- as.numeric(x$ESTIMATES[3, 2])
-        AccuGen <- as.numeric(x$ESTIMATES[11, 2])
+        GV <- as.numeric(x$random[which(x$random$Group == "GEN"), 2])
+        AccuGen <- as.numeric(x$ESTIMATES[which(x$ESTIMATES$Parameters == "Accuracy"), 2])
         Limits <- t * sqrt(((1 - AccuGen) * GV))
         blup <- x$blupGEN %>%
             mutate(LL = Predicted - Limits,
