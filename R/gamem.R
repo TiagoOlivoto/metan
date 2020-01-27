@@ -35,6 +35,8 @@
 #'
 #'  * \strong{BLUPgen:} The estimated BLUPS for genotypes
 #'
+#'  * \strong{ranef:} The random effects of the model
+#'
 #'  * \strong{Details:} A tibble with the following data: \code{Ngen}, the number of genotypes;
 #'    \code{OVmean}, the grand mean; \code{Min}, the minimum observed (returning the genotype and replication/block);
 #'    \code{Max} the maximum observed, \code{MinGEN} the winner genotype,
@@ -96,8 +98,11 @@
 #' # Genetic parameters
 #' get_model_data(rcbd, "genpar")
 #'
-#' # BLUPs for genotypes
-#' get_model_data(rcbd)
+#' # random effects
+#' get_model_data(rcbd, "ranef")
+#'
+#' # Predicted values
+#' predict(rcbd)
 #'
 #' # fitting the model considering an alpha-lattice design
 #' # Genotype and block-within-replicate as random effects
@@ -108,8 +113,11 @@
 #'                rep = REP,
 #'                block = BLOCK,
 #'                resp = YIELD)
-#' # Use the function  get_model_data() to easely extract the model values.
+#' # Genetic parameters
 #' get_model_data(alpha, "genpar")
+#'
+#' # Random effects
+#' get_model_data(alpha, "ranef")
 #'}
 #'
 gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TRUE) {
@@ -124,6 +132,11 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       select_numeric_cols()
     listres <- list()
     nvar <- ncol(vars)
+    if (verbose == TRUE) {
+      pb <- progress_bar$new(
+        format = "Evaluating the variable :what [:bar]:percent (:eta left )",
+        clear = FALSE, total = nvar, width = 90)
+    }
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
@@ -140,6 +153,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         select(1, 4) %>%
         arrange(grp) %>%
         rename(Group = grp, Variance = vcov)
+      regen <- ranef(Complete, condVar = TRUE)
       GV <- as.numeric(random[1, 2])
       RV <- as.numeric(random[2, 2])
       FV <- GV + RV
@@ -162,14 +176,20 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         ),
         Values = c(GV, GVper, RV, RVper, FV, h2g, h2mg, AccuGen, CVg, CVr, CVratio)
       )
-
-      blups <- tibble(
-        GEN = rownames(ranef(Complete)[[1]]),
-        BLUPg = ranef(Complete)[[1]]$`(Intercept)`,
-        Predicted = BLUPg + ovmean,
-        LL = Predicted - Limits,
-        UL = Predicted + Limits
-      )
+      data_factors <- data %>% select_non_numeric_cols()
+      BLUPgen <-
+        data.frame(GEN = data %>% get_levels(GEN),
+                   BLUPg = regen$GEN$`(Intercept)`) %>%
+        add_cols(Predicted = BLUPg + ovmean) %>%
+        arrange(-Predicted) %>%
+        add_cols(Rank = rank(-Predicted),
+                 LL = Predicted - Limits,
+                 UL = Predicted + Limits) %>%
+        column_to_first(Rank)
+      ranef <-
+        left_join(data_factors, BLUPgen, by = "GEN") %>%
+        select_cols(GEN, REP, BLUPg) %>%
+        add_cols(Predicted = BLUPg + left_join(data_factors, means_by(data, REP), by = "REP")$Y)
       min_gen <- data %>%
         group_by(GEN) %>%
         summarise(Y = mean(Y)) %>%
@@ -204,22 +224,18 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         fixed = fixed %>% rownames_to_column("SOURCE") %>% as_tibble(),
         random = as_tibble(random),
         LRT = as_tibble(LRT),
-        BLUPgen = as_tibble(blups),
+        BLUPgen = BLUPgen,
+        ranef = ranef,
         Details = as_tibble(Details),
         ESTIMATES = as_tibble(ESTIMATES),
         residuals = as_tibble(residuals)
       ),
       class = "gamem"
       )
-      if (nvar > 1) {
-        listres[[paste(names(vars[var]))]] <- temp
-        if (verbose == TRUE) {
-          cat("Evaluating variable", paste(names(vars[var])),
-              round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
-        }
-      } else {
-        listres[[paste(names(vars[var]))]] <- temp
+      if (verbose == TRUE) {
+        pb$tick(tokens = list(what = names(vars[var])))
       }
+      listres[[paste(names(vars[var]))]] <- temp
     }
   }
   # ALPHA-LATTICE
@@ -234,6 +250,11 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       select_numeric_cols()
     listres <- list()
     nvar <- ncol(vars)
+    if (verbose == TRUE) {
+      pb <- progress_bar$new(
+        format = "Evaluating the variable :what [:bar]:percent (:eta left )",
+        clear = FALSE, total = nvar, width = 90)
+    }
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
@@ -250,12 +271,12 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         select(1, 4) %>%
         arrange(grp) %>%
         rename(Group = grp, Variance = vcov)
+      regen <- ranef(Complete, condVar = TRUE)
       GV <- as.numeric(random[1, 2])
       BRV <- as.numeric(random[2, 2])
       RV <- as.numeric(random[3, 2])
       FV <- GV + RV + BRV
       h2g <- GV / FV
-      regen <- ranef(Complete, condVar = TRUE)
       vv <- attr(regen$GEN, "postVar")
       vblup <- 2 * mean(vv)
       sg2 <- c(lme4::VarCorr(Complete)[["GEN"]])
@@ -278,12 +299,26 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         ),
         Values = c(GV, GVper, BRV, BRper, RV, RVper, FV, h2g, h2mg, AccuGen, CVg, CVr, CVratio)
       )
-      blups <- fortify.merMod(Complete) %>%
-        group_by(GEN) %>%
-        summarise_at(vars(observed = Y, Predicted = .fitted, resid = .resid), funs(mean)) %>%
-        mutate(LL = Predicted - Limits,
-               UL = Predicted + Limits)
-
+      data_factors <- data %>% select_non_numeric_cols()
+      BLUPgen <-
+        data.frame(GEN = data %>% get_levels(GEN),
+                   BLUPg = regen$GEN$`(Intercept)`) %>%
+        add_cols(Predicted = BLUPg + ovmean) %>%
+        arrange(-Predicted) %>%
+        add_cols(Rank = rank(-Predicted),
+                 LL = Predicted - Limits,
+                 UL = Predicted + Limits) %>%
+        column_to_first(Rank)
+      blupBWR <- data.frame(Names = rownames(regen$`REP:BLOCK`)) %>%
+        separate(Names, into = c("REP", "BLOCK")) %>%
+        add_cols(BLUPbre = regen$`REP:BLOCK`[[1]]) %>%
+        to_factor(1:2)
+      ranef <-
+        left_join(data_factors, BLUPgen, by = "GEN") %>%
+        left_join(blupBWR, by = c("REP", "BLOCK")) %>%
+        select_cols(GEN, REP, BLOCK, BLUPg, BLUPbre) %>%
+        add_cols(`BLUPg+bre` =  BLUPg + BLUPbre,
+                 Predicted = `BLUPg+bre` + left_join(data_factors, means_by(data, REP), by = "REP")$Y)
       min_gen <- data %>%
         group_by(GEN) %>%
         summarise(Y = mean(Y)) %>%
@@ -318,40 +353,44 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         fixed = fixed %>% rownames_to_column("SOURCE") %>% as_tibble(),
         random = as_tibble(random),
         LRT = as_tibble(LRT),
-        BLUPgen = as_tibble(blups),
+        BLUPgen = BLUPgen,
+        ranef = ranef,
         Details = as_tibble(Details),
         ESTIMATES = as_tibble(ESTIMATES),
         residuals = as_tibble(residuals)
       ),
       class = "gamem"
       )
-      if (nvar > 1) {
-        listres[[paste(names(vars[var]))]] <- temp
-        if (verbose == TRUE) {
-          cat("Evaluating variable", paste(names(vars[var])),
-              round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
-        }
-      } else {
-        listres[[paste(names(vars[var]))]] <- temp
+      if (verbose == TRUE) {
+        pb$tick(tokens = list(what = names(vars[var])))
       }
+      listres[[paste(names(vars[var]))]] <- temp
+
     }
   }
   if (verbose == TRUE) {
+    cat("Model: ", "model_formula", "\n")
+    cat("---------------------------------------------------------------------------\n")
+    cat("P-values for Likelihood Ratio Test of the analyzed traits\n")
+    cat("---------------------------------------------------------------------------\n")
+    print.data.frame(sapply(listres, function(x){
+      x$LRT[["Pr(>Chisq)"]]
+    }) %>%
+      as.data.frame() %>%
+      add_cols(model = listres[[1]][["LRT"]][["model"]]) %>%
+      column_to_first(model), row.names = FALSE, digits = 3)
+    cat("---------------------------------------------------------------------------\n")
     if (length(which(unlist(lapply(listres, function(x) {
-      x[["LRT"]] %>%
-        dplyr::filter(model == "Genotype") %>%
-        pull(`Pr(>Chisq)`)
+      x[["LRT"]] %>% dplyr::filter(model == "Genotype") %>% pull(`Pr(>Chisq)`)
     })) > prob)) > 0) {
-      cat("------------------------------------------------------------\n")
-      cat("Variables with nonsignificant genotype effect\n")
+      cat("Variables with nonsignificant Genotype effect\n")
       cat(names(which(unlist(lapply(listres, function(x) {
-        x[["LRT"]] %>%
-          dplyr::filter(model == "Genotype") %>%
-          pull(`Pr(>Chisq)`)
+        x[["LRT"]][which(x[["LRT"]][[1]] == "Genotype"), 7] %>% pull()
       })) > prob)), "\n")
-      cat("------------------------------------------------------------\n")
+      cat("---------------------------------------------------------------------------\n")
+    } else {
+      cat("All variables with significant (p < 0.05) genotype effect\n")
     }
-    cat("Done!\n")
   }
   invisible(structure(listres, class = "gamem"))
 }
@@ -428,4 +467,37 @@ print.gamem <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   if (export == TRUE) {
     sink()
   }
+}
+
+
+
+
+
+#' Predict method for gamem fits
+#'
+#' Obtains predictions from an object fitted with \code{\link{gamem}}.
+#'
+#'
+#' @param object An object of class \code{gamem}
+#' @param ... Currently not used
+#' @return A tibble with the predicted values for each variable in the model
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method predict gamem
+#' @export
+#' @examples
+#'\donttest{
+#' library(metan)
+#'model <- gamem(data_g,
+#'               gen = GEN,
+#'               rep = REP,
+#'               resp = everything())
+#' predict(model)
+#' }
+#'
+predict.gamem <- function(object, ...) {
+  factors <- object[[1]][["ranef"]] %>% select_non_numeric_cols()
+  numeric <- sapply(object, function(x){
+    x[["ranef"]][["Predicted"]]
+  })
+  return(cbind(factors, numeric) %>% as_tibble())
 }

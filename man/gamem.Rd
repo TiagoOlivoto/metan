@@ -39,6 +39,7 @@ element (variable):
 \item \strong{random:} Variance components for random effects.
 \item \strong{LRT:} The Likelihood Ratio Test for the random effects.
 \item \strong{BLUPgen:} The estimated BLUPS for genotypes
+\item \strong{ranef:} The random effects of the model
 \item \strong{Details:} A tibble with the following data: \code{Ngen}, the number of genotypes;
 \code{OVmean}, the grand mean; \code{Min}, the minimum observed (returning the genotype and replication/block);
 \code{Max} the maximum observed, \code{MinGEN} the winner genotype,
@@ -99,8 +100,11 @@ get_model_data(rcbd, "vcomp")
 # Genetic parameters
 get_model_data(rcbd, "genpar")
 
-# BLUPs for genotypes
-get_model_data(rcbd)
+# random effects
+get_model_data(rcbd, "ranef")
+
+# Predicted values
+predict(rcbd)
 
 # fitting the model considering an alpha-lattice design
 # Genotype and block-within-replicate as random effects
@@ -111,8 +115,11 @@ alpha <- gamem(data_alpha,
                rep = REP,
                block = BLOCK,
                resp = YIELD)
-# Use the function  get_model_data() to easely extract the model values.
+# Genetic parameters
 get_model_data(alpha, "genpar")
+
+# Random effects
+get_model_data(alpha, "ranef")
 }
 
 }
