@@ -38,7 +38,7 @@ element (variable):
 \item \strong{fixed:} Test for fixed effects.
 \item \strong{random:} Variance components for random effects.
 \item \strong{LRT:} The Likelihood Ratio Test for the random effects.
-\item \strong{blupGEN:} The estimated BLUPS for genotypes
+\item \strong{BLUPgen:} The estimated BLUPS for genotypes
 \item \strong{Details:} A tibble with the following data: \code{Ngen}, the number of genotypes;
 \code{OVmean}, the grand mean; \code{Min}, the minimum observed (returning the genotype and replication/block);
 \code{Max} the maximum observed, \code{MinGEN} the winner genotype,

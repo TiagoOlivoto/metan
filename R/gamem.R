@@ -33,7 +33,7 @@
 #'
 #'  * \strong{LRT:} The Likelihood Ratio Test for the random effects.
 #'
-#'  * \strong{blupGEN:} The estimated BLUPS for genotypes
+#'  * \strong{BLUPgen:} The estimated BLUPS for genotypes
 #'
 #'  * \strong{Details:} A tibble with the following data: \code{Ngen}, the number of genotypes;
 #'    \code{OVmean}, the grand mean; \code{Min}, the minimum observed (returning the genotype and replication/block);
@@ -204,7 +204,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         fixed = fixed %>% rownames_to_column("SOURCE") %>% as_tibble(),
         random = as_tibble(random),
         LRT = as_tibble(LRT),
-        blupGEN = as_tibble(blups),
+        BLUPgen = as_tibble(blups),
         Details = as_tibble(Details),
         ESTIMATES = as_tibble(ESTIMATES),
         residuals = as_tibble(residuals)
@@ -318,7 +318,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         fixed = fixed %>% rownames_to_column("SOURCE") %>% as_tibble(),
         random = as_tibble(random),
         LRT = as_tibble(LRT),
-        blupGEN = as_tibble(blups),
+        BLUPgen = as_tibble(blups),
         Details = as_tibble(Details),
         ESTIMATES = as_tibble(ESTIMATES),
         residuals = as_tibble(residuals)

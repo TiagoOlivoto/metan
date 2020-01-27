@@ -210,9 +210,9 @@ plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
     }
     if (type == "re") {
         blups <-
-            x$blupINT %>%
+            x$BLUPint %>%
             select_cols(contains("BLUP"))
-        fact <-x$blupINT %>% select_non_numeric_cols()
+        fact <-x$BLUPint %>% select_non_numeric_cols()
         qlist <- list()
         for (i in 1:ncol(blups)) {
             df <-

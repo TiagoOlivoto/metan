@@ -72,7 +72,7 @@ plot_blup <- function(x, var = 1, prob = 0.05, export = FALSE, file.type = "pdf"
         GV <- as.numeric(x$ESTIMATES[1, 2])
         AccuGen <- as.numeric(x$ESTIMATES[8, 2])
         Limits <- t * sqrt(((1 - AccuGen) * GV))
-        blup <- x$blupGEN %>%
+        blup <- x$BLUPgen %>%
             mutate(LL = Predicted - Limits,
                    UL = Predicted + Limits,
                    Mean = ifelse(Predicted < mean(Predicted), "below", "above")) %>%
@@ -84,7 +84,7 @@ plot_blup <- function(x, var = 1, prob = 0.05, export = FALSE, file.type = "pdf"
         GV <- as.numeric(x$random[which(x$random$Group == "GEN"), 2])
         AccuGen <- as.numeric(x$ESTIMATES[which(x$ESTIMATES$Parameters == "Accuracy"), 2])
         Limits <- t * sqrt(((1 - AccuGen) * GV))
-        blup <- x$blupGEN %>%
+        blup <- x$BLUPgen %>%
             mutate(LL = Predicted - Limits,
                    UL = Predicted + Limits,
                    Mean = ifelse(Predicted < mean(Predicted), "below", "above")) %>%

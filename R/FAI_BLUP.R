@@ -76,9 +76,9 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     stop("The length of DI and UI must be the same length of data.")
   }
   if (class(.data) == "waasb") {
-    datt <- .data[[1]][["blupGEN"]]
+    datt <- .data[[1]][["BLUPgen"]]
     data <- data.frame(do.call(cbind, lapply(.data, function(x) {
-      val <- arrange(x[["blupGEN"]], GEN)$Predicted
+      val <- arrange(x[["BLUPgen"]], GEN)$Predicted
     }))) %>% mutate(gen = datt %>% arrange(GEN) %>% pull(GEN)) %>%
       select(gen, everything())
     means <- data[, 2:ncol(data)]

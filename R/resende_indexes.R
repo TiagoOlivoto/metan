@@ -78,31 +78,25 @@ Resende_indexes <- function(.data) {
     }
     listres <- list()
     for (var in 1:length(.data)) {
-        gge <- .data[[var]][["BLUPgge"]]
+        gge <- .data[[var]][["BLUPint"]]
         # Harmonic mean
         GEPRED <- make_mat(gge, GEN, ENV, Predicted)
-        HMGV <- data.frame(HMGV = apply(GEPRED, 1, FUN = hm_mean),
-                           HMGV_R = rank(-apply(GEPRED, 1, FUN = hm_mean)))
+        HMGV <- tibble(HMGV = apply(GEPRED, 1, FUN = hm_mean),
+                       HMGV_R = rank(-HMGV))
         ## Relative performance
         y <- .data[[var]][["MeansGxE"]]
         GEMEAN <- make_mat(y, GEN, ENV, Y)
         ovmean <- mean(y$Y)
         mean_env <- apply(GEMEAN, 2, FUN = mean)
-        RPGV <- data.frame(RPGV = apply(t(t(GEPRED)/mean_env), 1, mean))
-        RPGV_data <- RPGV %>%
-            mutate(RPGV_Y = RPGV * ovmean,
-                   RPGV_R = rank(-RPGV_Y))
+        RPGV_data <- data.frame(RPGV = apply(t(t(GEPRED)/mean_env), 1, mean)) %>%
+            add_cols(RPGV_Y = RPGV * ovmean,
+                     RPGV_R = rank(-RPGV_Y))
         ## Harmonic mean of Relative performance
-        HMRPGV <- data.frame(HMRPGV = apply(t(t(GEPRED)/mean_env), 1, hm_mean))
-        HMRPGV_data <- HMRPGV %>%
+        HMRPGV_data <- data.frame(HMRPGV = apply(t(t(GEPRED)/mean_env), 1, hm_mean)) %>%
             mutate(HMRPGV_Y = HMRPGV * ovmean,
                    HMRPGV_R = rank(-HMRPGV_Y))
-        Y <- .data[[var]][["model"]] %>%
-            dplyr::filter(type == "GEN") %>%
-            select(Y)
-        listres[[paste(names(.data[var]))]] <- cbind(Y, HMGV, RPGV_data, HMRPGV_data) %>%
-            rownames_to_column("GEN") %>%
-            as_tibble()
+        Y <- y %>% means_by(GEN) %>% select(GEN, Y)
+        listres[[paste(names(.data[var]))]] <- cbind(Y, HMGV, RPGV_data, HMRPGV_data) %>% as_tibble()
     }
     invisible(structure(listres, class = "Res_ind"))
 }
