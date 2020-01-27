@@ -211,6 +211,7 @@ objects of class \code{waas}).
 \item \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
 \item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
 \item \code{"vcomp"} The variance components for random effects.
+\item \code{"ranef"} Random effects.
 }
 
 \strong{Objects of class \code{Res_ind}}

@@ -166,6 +166,7 @@
 #' * \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
 #' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
 #' * \code{"vcomp"} The variance components for random effects.
+#' * \code{"ranef"} Random effects.
 #'
 #'  \strong{Objects of class \code{Res_ind}}
 #' * \code{"HMGV"} For harmonic mean of genotypic values.
@@ -349,7 +350,7 @@ get_model_data <- function(x,
     "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "pval_lrt", "ranef")
   check1 <- c("Y", "WAAS", "PctResp", "PctWAAS", "wRes", "wWAAS", "OrResp", "OrWAAS", "OrPC1", "WAASY", "OrWAASY")
   check2 <- paste("PC", 1:200, sep = "")
-  check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt", "details")
+  check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt", "details", "ranef")
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
   check5 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
@@ -471,7 +472,11 @@ get_model_data <- function(x,
     if (what == "ranef") {
       dfs<-
         lapply(x, function(x){
+          if(class(x) == "waasb"){
           int <- x[["BLUPint"]]
+          } else{
+            int <- x[["ranef"]]
+          }
           factors <- int %>% select_non_numeric_cols()
           numeric <- int %>% select_cols(contains("BLUP"))
           df_list2 <- list()
@@ -484,6 +489,7 @@ get_model_data <- function(x,
                                             names(temp[ncol(factors)+1])== "BLUPre" ~ c("ENV REP"),
                                             names(temp[ncol(factors)+1])== "BLUPg+ge" ~ c("ENV GEN"),
                                             names(temp[ncol(factors)+1])== "BLUPbre" ~ c("REP BLOCK"),
+                                            names(temp[ncol(factors)+1])== "BLUPg+bre" ~ c("GEN REP BLOCK"),
                                             names(temp[ncol(factors)+1])== "BLUPg+ge+bre" ~ c("ENV REP BLOCK GEN"),
                                             names(temp[ncol(factors)+1])== "BLUPe+ge+re+bre" ~ c("ENV REP BLOCK GEN"),
                                             names(temp[ncol(factors)+1])== "BLUPg+e+ge+re+bre" ~ c("ENV REP BLOCK GEN"),
