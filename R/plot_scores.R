@@ -116,30 +116,36 @@
 #' \donttest{
 #' library(metan)
 #' # AMMI model
-#' ammi_model = performs_ammi(data_ge, ENV, GEN, REP,
-#'                            resp = c(GY, HM))
+#'model <- waas(data_ge,
+#'              env = ENV,
+#'              gen = GEN,
+#'              rep = REP,
+#'              resp = everything())
 #'
-#' # GY x PC1 (variable GY)
-#' plot_scores(ammi_model,
-#'             col.env = 'olivedrab',
-#'             col.gen = 'orange2',
-#'             x.lab = 'My own x label')
-#'
-#' # PC1 x PC2 (variable HM)
-#' plot_scores(ammi_model,
-#'             var = "HM", # or var = 2
-#'             type = 2,
-#'             polygon = TRUE)
+#' # GY x PC1 for variable GY (default plot)
+#' plot_scores(model)
 #'
 #' # PC1 x PC2 (variable HM)
-#' # Draw a convex hull polygon
-#' plot_scores(ammi_model,
-#'             var = "HM",
-#'             type = 2,
-#'             polygon = TRUE)
+#' plot_scores(model,
+#'             polygon = TRUE, # Draw a convex hull polygon
+#'             var = "HM",     # or var = 2 to select variable
+#'             type = 2)       # type of biplot
+#'
+#' # PC1 x PC2 (variable HM)
+#' # Change size of plot fonts and colors
+#' # Minimal theme
+#'plot_scores(model,
+#'            var = "HM",
+#'            type = 2,
+#'            col.gen = "black",
+#'            col.env = "gray",
+#'            col.segm.env = "gray",
+#'            size.tex.pa = 2,
+#'            size.tex.lab = 16,
+#'            plot_theme = theme_metan_minimal())
 #'
 #' # WAASB index
-#' waasb_model = waasb(data_ge, ENV, GEN, REP, GY)
+#' waasb_model <- waasb(data_ge, ENV, GEN, REP, GY)
 #'
 #' # GY x WAASB
 #' plot_scores(waasb_model,
@@ -588,7 +594,7 @@ plot_scores <- function(x,
       annotation_custom(grobTree(textGrob("III", x = 0.01, y = 0.03, hjust = 0))) +
       annotation_custom(grobTree(textGrob("IV", x = 0.96, y = 0.03, hjust = 0)))
     if(title == TRUE){
-      p3 <- p3 + ggtitle("WAASB x Y biplot")
+      p3 <- p3 + ggtitle(ifelse(class == "waasb", "Y x WAASB biplot", "Y x WAAS biplot"))
     }
     if (export == FALSE) {
       return(p3)
