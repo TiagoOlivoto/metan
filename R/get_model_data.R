@@ -151,10 +151,17 @@
 #' * \code{"WAASBY"} The superiority index WAASBY.
 #' * \code{"OrWAASBY"} The ranking regarding the superiority index.
 #'
-#'  \strong{Objects of class \code{waasb} or \code{gamem}:}
+#'  \strong{Objects of class \code{waasb}:}
 #' * \code{"blupg"} For genotype's predicted mean.
-#' * \code{"blupge"} for genotype-vs-environment's predicted mean (only for
-#' objects of class \code{waasb}).
+#' * \code{"blupge"} for genotype-vs-environment's predicted mean.
+#' * \code{"genpar"} Genetic parameters (default).
+#' * \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
+#' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
+#' * \code{"vcomp"} The variance components for random effects.
+#' * \code{"ranef"} Random effects.
+#'
+#'  \strong{Objects of class \code{gamem}:}
+#' * \code{"blupg"} For genotype's predicted mean.
 #' * \code{"genpar"} Genetic parameters (default).
 #' * \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
 #' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
@@ -339,7 +346,8 @@ get_model_data <- function(x,
   }
   check <- c(
     "blupg", "blupge", "Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB", "OrResp", "OrWAASB",
-    "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "pval_lrt")
+    "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "pval_lrt", "ranef")
+  check1 <- c("Y", "WAAS", "PctResp", "PctWAAS", "wRes", "wWAAS", "OrResp", "OrWAAS", "OrPC1", "WAASY", "OrWAASY")
   check2 <- paste("PC", 1:200, sep = "")
   check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt", "details")
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
@@ -362,9 +370,9 @@ get_model_data <- function(x,
   check20 <- c("Sum Sq", "Mean Sq", "F value", "Pr(>F)", "fitted", "resid", "stdres", "se.fit", "details")
   check21 <- c("MEAN", "MSG", "FCG", "PFG", "MSB", "FCB", "PFB", "MSIB_R", "FCIB_R", "PFIB_R", "MSE", "CV", "h2", "AS")
 
-  if (!is.null(what) && !what %in% c(check, check2, check5, check6, check7, check8, check9, check10,
-                                     check11, check12, check13, check14, check15, check16, check17,
-                                     check18, check19, check20, check21)) {
+  if (!is.null(what) && !what %in% c(check, check1, check2, check5, check6, check7, check8, check9,
+                                     check10, check11, check12, check13, check14, check15, check16,
+                                     check17, check18, check19, check20, check21)) {
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (!is.null(what) && what %in% check3 && !class(x) %in% c("waasb", "gamem", "gafem", "anova_joint")) {
@@ -375,6 +383,138 @@ get_model_data <- function(x,
   }
 
 
+  if (class(x)  %in% c("waasb", "gamem")) {
+    if (is.null(what)){
+      what <- "genpar"
+    }
+    if(is.null(x[[1]][["ESTIMATES"]]) == TRUE && what == "genpar"){
+      warning("Using what = 'genpar' is only possible for models fitted with random = 'gen' or random = 'all'\nSetting what to 'vcomp'.", call. = FALSE)
+      what <- "vcomp"
+    }
+    if(class(x) == "gamem" & !what %in% check3){
+      stop("Invalid value in 'what' for an object of class 'gamem'")
+    }
+    if (class(x) == "waasb" & what %in% check4) {
+      bind <- sapply(x, function(x) {
+        x$model[[what]]
+      }) %>%
+        as_tibble() %>%
+        mutate(gen = x[[1]][["model"]][["Code"]],
+               type = x[[1]][["model"]][["type"]]) %>%
+        dplyr::filter(type == {{type}}) %>%
+        remove_cols(type) %>%
+        column_to_first(gen)
+    }
+    if (what == "vcomp") {
+      bind <- sapply(x, function(x) {
+        val <- x[["random"]][["Variance"]]
+      }) %>%
+        as_tibble() %>%
+        mutate(Group = x[[1]][["random"]][["Group"]]) %>%
+        column_to_first(Group)
+    }
+    if (what == "genpar") {
+      bind <- sapply(x, function(x) {
+        val <- x[["ESTIMATES"]][["Values"]]
+      }) %>%
+        as_tibble() %>%
+        mutate(Parameters = x[[1]][["ESTIMATES"]][["Parameters"]]) %>%
+        column_to_first(Parameters)
+    }
+    if (what == "details") {
+      bind <- sapply(x, function(x) {
+        val <- x[["Details"]][["Values"]] %>% as.character()
+      }) %>%
+        as_tibble() %>%
+        mutate(Parameters = x[[1]][["Details"]][["Parameters"]]) %>%
+        column_to_first(Parameters)
+    }
+    if (what == "pval_lrt") {
+      bind <- sapply(x, function(x) {
+        val <- x[["LRT"]][["Pr(>Chisq)"]]
+      }) %>%
+        as_tibble() %>%
+        mutate(model = x[[1]][["LRT"]][["model"]]) %>%
+        column_to_first(model)
+    }
+    if (what == "lrt") {
+      bind <- sapply(x, function(x) {
+        val <- x[["LRT"]][["LRT"]]
+      }) %>%
+        as_tibble() %>%
+        mutate(model = x[[1]][["LRT"]][["model"]]) %>%
+        column_to_first(model)
+    }
+    if (what %in% c("blupg", "blupge")) {
+      if (what == "blupg") {
+        datt <- x[[1]][["BLUPgen"]]
+        bind <- sapply(x, function(x) {
+          val <- arrange(x[["BLUPgen"]], GEN)$Predicted
+        }) %>%
+          as_tibble() %>%
+          mutate(gen = datt %>%
+                   arrange(GEN) %>%
+                   pull(GEN)) %>%
+          column_to_first(gen)
+      }
+      if (what == "blupge") {
+        bind <- sapply(x, function(x) {
+          val <- x[["BLUPint"]][["Predicted"]]
+        }) %>%
+          as_tibble() %>%
+          mutate(ENV = x[[1]][["BLUPint"]][["ENV"]],
+                 GEN = x[[1]][["BLUPint"]][["GEN"]]) %>%
+          column_to_first(ENV, GEN) %>%
+          means_by(ENV, GEN)
+      }
+    }
+    if (what == "ranef") {
+      dfs<-
+        lapply(x, function(x){
+          int <- x[["BLUPint"]]
+          factors <- int %>% select_non_numeric_cols()
+          numeric <- int %>% select_cols(contains("BLUP"))
+          df_list2 <- list()
+          for (i in 1:ncol(numeric)){
+            temp <-
+              cbind(factors, numeric[i])
+            var_names <- strsplit(case_when(names(temp[ncol(factors)+1])== "BLUPg" ~ "GEN",
+                                            names(temp[ncol(factors)+1])== "BLUPe" ~ "ENV",
+                                            names(temp[ncol(factors)+1])== "BLUPge" ~ c("ENV GEN"),
+                                            names(temp[ncol(factors)+1])== "BLUPre" ~ c("ENV REP"),
+                                            names(temp[ncol(factors)+1])== "BLUPg+ge" ~ c("ENV GEN"),
+                                            names(temp[ncol(factors)+1])== "BLUPbre" ~ c("REP BLOCK"),
+                                            names(temp[ncol(factors)+1])== "BLUPg+ge+bre" ~ c("ENV REP BLOCK GEN"),
+                                            names(temp[ncol(factors)+1])== "BLUPe+ge+re+bre" ~ c("ENV REP BLOCK GEN"),
+                                            names(temp[ncol(factors)+1])== "BLUPg+e+ge+re+bre" ~ c("ENV REP BLOCK GEN"),
+                                            names(temp[ncol(factors)+1])== "BLUPg+e+ge+re" ~ c("ENV GEN REP"),
+                                            names(temp[ncol(factors)+1])== "BLUPge+e+re" ~ c("ENV GEN REP")),
+                                  " ")[[1]]
+            temp <-
+              temp %>%
+              select(all_of(var_names), last_col()) %>%
+              distinct_all(.keep_all = TRUE)
+            fact_nam <- sapply(colnames(temp %>% select_non_numeric_cols()), paste) %>%
+              paste(., collapse = '_')
+            df_list2[[paste(fact_nam)]] <- temp
+          }
+          return(df_list2)
+        })
+      nvcomp <- length(dfs[[1]])
+      bind <- list()
+      for(i in 1:nvcomp){
+        index <- dfs[[1]][[i]] %>%  select_non_numeric_cols() %>% ncol()
+        num <-
+          do.call(cbind,
+                  lapply(dfs, function(x){
+                    x[[i]][[index + 1]]
+                  }))
+        facts <- dfs[[1]][[i]] %>%
+          select_non_numeric_cols()
+        bind[[names(dfs[[1]])[i]]] <- cbind(facts, num) %>% as_tibble()
+      }
+    }
+  }
 
   if (class(x)  == "anova_ind") {
     if (is.null(what)){
@@ -695,20 +835,9 @@ get_model_data <- function(x,
   }
   if (any(class(x) %in% c("waas", "waas_means"))){
     if (is.null(what)){
-      what <- "WAASB"
+      what <- "WAAS"
     }
-    if (what %in% c("WAASB", "PctWAASB", "wWAASB", "OrWAASB", "WAASBY", "OrWAASBY")) {
-      what <- case_when(
-        what == "WAASB" ~ "WAAS",
-        what == "PctWAASB" ~ "PctWAAS",
-        what == "wWAASB" ~ "wWAAS",
-        what == "OrWAASB" ~ "OrWAAS",
-        what == "WAASBY" ~ "WAASY",
-        what == "OrWAASBY" ~ "OrWAASY"
-      )
-    }
-    if (what %in% c("Y", "WAAS", "PctResp", "PctWAAS", "wRes", "wWAAS",
-                    "OrResp", "OrWAAS", "OrPC1", "WAASY", "OrWAASY") | what  %in% check2) {
+    if (what %in% check1 | what  %in% check2) {
       bind <- sapply(x, function(x) {
         x$model[[what]]
       }) %>%
@@ -728,87 +857,7 @@ get_model_data <- function(x,
         column_to_first(Parameters)
     }
   }
-  if (class(x)  %in% c("waasb", "gamem")) {
-    if (is.null(what)){
-      what <- "genpar"
-    }
-    if(class(x) == "gamem" & !what %in% check3){
-      stop("Invalid value in 'what' for an object of class 'gamem'")
-    }
-    if (class(x) == "waasb" & what %in% check4) {
-      bind <- sapply(x, function(x) {
-        x$model[[what]]
-      }) %>%
-        as_tibble() %>%
-        mutate(gen = x[[1]][["model"]][["Code"]],
-               type = x[[1]][["model"]][["type"]]) %>%
-        dplyr::filter(type == {{type}}) %>%
-        remove_cols(type) %>%
-        column_to_first(gen)
-    }
-    if (what == "vcomp") {
-      bind <- sapply(x, function(x) {
-        val <- x[["random"]][["Variance"]]
-      }) %>%
-        as_tibble() %>%
-        mutate(Group = x[[1]][["random"]][["Group"]]) %>%
-        column_to_first(Group)
-    }
-    if (what == "genpar") {
-      bind <- sapply(x, function(x) {
-        val <- x[["ESTIMATES"]][["Values"]]
-      }) %>%
-        as_tibble() %>%
-        mutate(Parameters = x[[1]][["ESTIMATES"]][["Parameters"]]) %>%
-        column_to_first(Parameters)
-    }
-    if (what == "details") {
-      bind <- sapply(x, function(x) {
-        val <- x[["Details"]][["Values"]] %>% as.character()
-      }) %>%
-        as_tibble() %>%
-        mutate(Parameters = x[[1]][["Details"]][["Parameters"]]) %>%
-        column_to_first(Parameters)
-    }
-    if (what == "pval_lrt") {
-      bind <- sapply(x, function(x) {
-        val <- x[["LRT"]][["Pr(>Chisq)"]]
-      }) %>%
-        as_tibble() %>%
-        mutate(model = x[[1]][["LRT"]][["model"]]) %>%
-        column_to_first(model)
-    }
-    if (what == "lrt") {
-      bind <- sapply(x, function(x) {
-        val <- x[["LRT"]][["LRT"]]
-      }) %>%
-        as_tibble() %>%
-        mutate(model = x[[1]][["LRT"]][["model"]]) %>%
-        column_to_first(model)
-    }
-    if (what %in% c("blupg", "blupge")) {
-      if (what == "blupg") {
-        datt <- x[[1]][["blupGEN"]]
-        bind <- sapply(x, function(x) {
-          val <- arrange(x[["blupGEN"]], GEN)$Predicted
-        }) %>%
-          as_tibble() %>%
-          mutate(gen = datt %>%
-                   arrange(GEN) %>%
-                   pull(GEN)) %>%
-          column_to_first(gen)
-      }
-      if (what == "blupge") {
-        bind <- sapply(x, function(x) {
-          val <- x[["BLUPgge"]][["Predicted"]]
-        }) %>%
-          as_tibble() %>%
-          mutate(ENV = x[[1]][["BLUPgge"]][["ENV"]],
-                 GEN = x[[1]][["BLUPgge"]][["GEN"]]) %>%
-          column_to_first(ENV, GEN)
-      }
-    }
-  }
+
   if(verbose == TRUE){
     message("Class of the model: ", class(x))
     message("Variable extracted: ", what)

@@ -193,11 +193,20 @@ objects of class \code{waas}).
 \item \code{"OrWAASBY"} The ranking regarding the superiority index.
 }
 
-\strong{Objects of class \code{waasb} or \code{gamem}:}
+\strong{Objects of class \code{waasb}:}
 \itemize{
 \item \code{"blupg"} For genotype's predicted mean.
-\item \code{"blupge"} for genotype-vs-environment's predicted mean (only for
-objects of class \code{waasb}).
+\item \code{"blupge"} for genotype-vs-environment's predicted mean.
+\item \code{"genpar"} Genetic parameters (default).
+\item \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
+\item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
+\item \code{"vcomp"} The variance components for random effects.
+\item \code{"ranef"} Random effects.
+}
+
+\strong{Objects of class \code{gamem}:}
+\itemize{
+\item \code{"blupg"} For genotype's predicted mean.
 \item \code{"genpar"} Genetic parameters (default).
 \item \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
 \item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
