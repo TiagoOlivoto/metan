@@ -157,13 +157,14 @@ NULL
 NULL
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("\n================================================================")
-  packageStartupMessage("metan has been successfully loaded in R ", paste0(R.Version()[c("major","minor")], collapse = "."))
-  packageStartupMessage("Please, see the complete vignette at:\nhttps://tiagoolivoto.github.io/metan/")
-  packageStartupMessage("================================================================")
-  packageStartupMessage("To cite metan in publications, please, use:")
-  packageStartupMessage("Olivoto, T., and L\u00FAcio, A.D. (2020). Metan: an R package\nfor multi-environment trial analysis. bioRxiv, 2020.01.14.906750.\ndoi:10.1101/2020.01.14.906750.")
-  packageStartupMessage("================================================================\n")
+  metan_version <-  "v1.2.1 (2019-01-14)"
+  packageStartupMessage("[]=====================================================================[]")
+  packageStartupMessage("[] Multi-Environment Trial Analysis (metan) ", metan_version, "        []")
+  packageStartupMessage("[] Author: Tiago Olivoto                                               []")
+  packageStartupMessage("[] Type 'vignette('metan_start')' for a short tutorial                 []")
+  packageStartupMessage("[] Type 'citation('metan')' to know how to cite metan                  []")
+  packageStartupMessage("[] For a complete tutorial visit https://tiagoolivoto.github.io/metan/ []")
+  packageStartupMessage("[]=====================================================================[]")
 }
 
 if (getRversion() >= "2.15.1") {
@@ -185,5 +186,8 @@ if (getRversion() >= "2.15.1") {
       "GROUP", "Group", "model", "Variance (%)", "Xs", "Xo", "Pr(>Chisq)", "dat",
       "BLOCK", "rowid", "grank", "rMean", "rShukaVar", "value", "DF", "without", "RPGV_Y",
       "HMRPGV_Y", "Pairs", "name", "v1", "v2", "slope", "new_var", "TYPE", "CODE",
-      "Sum.Sq", "Mean.Sq", "F.value", "Pr.F", "Sum Sq", "Df", "Source"))
-}
+      "Sum.Sq", "Mean.Sq", "F.value", "Pr.F", "Sum Sq", "Df", "Source", "BLUPbre",
+      "BLUPe+ge+re+bre", "BLUPg+e+ge+re", "BLUPg+e+ge+re+bre", "BLUPg+ge+bre", "BLUPge+e+re",
+      "BLUPre", "Estimate", "HMRPGV", "RPGV", "Variance", "blup", "intercept", "lower",
+      "upper"))
+  }
