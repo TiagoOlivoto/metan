@@ -10,6 +10,7 @@ waasb(
   gen,
   rep,
   resp,
+  block = NULL,
   mresp = NULL,
   wresp = NULL,
   random = "gen",
@@ -34,21 +35,35 @@ replications/blocks.}
 single procedure a vector of variables may be used. For example \code{resp
   = c(var1, var2, var3)}.}
 
-\item{mresp}{A numeric vector of the same length of \code{resp}. The
-\code{mresp} will be the new maximum value after rescaling. By default, all
-variables in \code{resp} are rescaled so that de maximum value is 100 and
-the minimum value is 0.}
+\item{block}{Defaults to \code{NULL}. In this case, a randomized complete
+block design is considered. If block is informed, then an alpha-lattice
+design is employed considering block as random to make use of inter-block
+information, whereas the complete replicate effect is always taken as
+fixed, as no inter-replicate information was to be recovered (Mohring et
+al., 2015).}
+
+\item{mresp}{The new maximum value after rescaling the response variable. By
+default, all variables in \code{resp} are rescaled so that de maximum value
+is 100 and the minimum value is 0 (i.e., \code{mresp = 100}). It must be a
+numeric vector of the same length of \code{resp} if rescaling is assumed to
+be different across variables, e.g., if for the first variable smaller
+values are better and for the second one, higher values are better, then
+\code{mresp = c(0, 100)} must be used. Numeric value of length 1 will be
+recycled with a warning message.}
 
 \item{wresp}{The weight for the response variable(s) for computing the WAASBY
-index. Must be a numeric vector of the same length of \code{resp}. Defaults
-to 50, i.e., equal weights for stability and mean performance.}
+index. By default, all variables in \code{resp} have equal weights for mean
+performance and stability (i.e., \code{wresp = 50}). It must be a numeric
+vector of the same length of \code{resp} to assign different weights across
+variables, e.g., if for the first variable equal weights for mean
+performance and stability are assumed and for the second one, a higher
+weight for mean performance (e.g. 65) is assumed, then \code{wresp = c(50,
+  65)} must be used. Numeric value of length 1 will be recycled with a
+warning message.}
 
-\item{random}{The effects of the model assumed to be random. Default is
-\code{random = "gen"} (genotype and genotype-vs-environment as random
-effects. Other values allowed are \code{random = "env"} (environment,
-genotype-vs-environment and block-within-environment random effects) or
-\code{random = "all"} all effects except the intercept are assumed to be
-random effects.}
+\item{random}{The effects of the model assumed to be random. Defaults to
+\code{random = "gen"}. See \strong{Details} to see the random effects
+assumed depending on the experimental design of the trials.}
 
 \item{prob}{The probability for estimating confidence interval for BLUP's
 prediction.}
@@ -56,111 +71,200 @@ prediction.}
 \item{ind_anova}{Logical argument set to \code{TRUE}. If \code{FALSE} the
 within-environment ANOVA is not performed.}
 
-\item{verbose}{Logical argument. If \code{verbose = FALSE} the code are run
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
 }
 \value{
 An object of class \code{waasb} with the following items for each
-variable: * \strong{individual} A within-environments ANOVA considering a
-fixed-effect model.
+variable:
 \itemize{
+\item \strong{individual} A within-environments ANOVA considering a
+fixed-effect model.
 \item \strong{fixed} Test for fixed effects.
 \item \strong{random} Variance components for random effects.
 \item \strong{LRT} The Likelihood Ratio Test for the random effects.
-\item \strong{model} A data frame with the response variable, the scores of all
-Principal Components, the estimates of Weighted Average of Absolute Scores,
-and WAASY (the index that consider the weights for stability and productivity
-in the genotype ranking.
-\item \strong{blupGEN} The estimated BLUPS for genotypes (If \code{random =
-"gen"} or \code{random = "all"})
-\item \strong{BLUPenv} The estimated BLUPS for environments, (If \code{random =
-"env"} or \code{random = "all"}).
-\item \strong{BLUPge} The estimated BLUPS of all genotypes in all environments
-"BLUPij".
-\item \strong{PCA} The results of Principal Component Analysis with eigenvalues
-and explained variance of BLUP-interaction matrix.
-\item \strong{MeansGxE} The phenotypic means of genotypes in the environments,
-with observed, predicted and OLS residual prediction.
+\item \strong{model} A tibble with the response variable, the scores of all
+IPCAs, the estimates of Weighted Average of Absolute Scores, and WAASBY (the
+index that considers the weights for stability and mean performance in the
+genotype ranking), and their respective ranks.
+\item \strong{BLUPgen} The random effects and estimated BLUPS for genotypes (If
+\code{random = "gen"} or \code{random = "all"})
+\item \strong{BLUPenv} The random effects and estimated BLUPS for environments,
+(If \code{random = "env"} or \code{random = "all"}).
+\item \strong{BLUPint} The random effects and estimated BLUPS of all genotypes in
+all environments.
+\item \strong{PCA} The results of Principal Component Analysis with the
+eigenvalues and explained variance of the matrix of genotype-environment
+effects estimated by the linear fixed-effect model.
+\item \strong{MeansGxE} The phenotypic means of genotypes in the environments.
 \item \strong{Details} A list summarizing the results. The following information
-are showed. \code{WgtResponse}, the weight for the response variable in
-estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the
-number of genotypes, \code{Nenv} the number of environments, \code{OVmean}
-the overall mean, \code{Min} the minimum observed (returning the genotype and
-environment), \code{Max} the maximum observed, \code{Max} the maximum
-observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
-the environment with the larger mean observed, \code{MinGEN} the genotype
-with the lower mean, \code{MaxGEN} the genotype with the larger.
-\item \strong{ESTIMATES} A list with the following values: \code{GEV} the
-genotype-by-environment variance (and percentage of phenotypic variance);
-\code{GV} the genotypic variance (and percentage of phenotypic variance);
-\code{EV} the environmental variance;\code{RV} the residual variance (and
-percentage of phenotypic variance); \code{FV} the phenotypic variance;
-\code{h2g} the heritability of the trait; \code{GEr2} the coefficient of
-determination of the interaction effects; \code{h2mg} the heritability of the
-mean; \code{AccuGen} the selective accuracy; \code{rge} the
-genotype-environment correlation; \code{CVg} the genotypic coefficient of
-variation; \code{CVr} the residual coefficient of variation; \code{CVratio}
-the ratio between genotypic and residual coefficient of variation *
-\strong{residuals} The residuals of the model.
+are shown: \code{Nenv}, the number of environments in the analysis;
+\code{Ngen} the number of genotypes in the analysis; \code{mresp} The value
+attributed to the highest value of the response variable after rescaling it;
+\code{wresp} The weight of the response variable for estimating the WAASBY
+index. \code{Mean} the grand mean; \code{SE} the standard error of the mean;
+\code{SD} the standard deviation. \code{CV} the coefficient of variation of
+the phenotypic means, estimating WAASB, \code{Min} the minimum value observed
+(returning the genotype and environment), \code{Max} the maximum value
+observed (returning the genotype and environment); \code{MinENV} the
+environment with the lower mean, \code{MaxENV} the environment with the
+larger mean observed, \code{MinGEN} the genotype with the lower mean,
+\code{MaxGEN} the genotype with the larger.
+\item \strong{ESTIMATES} A tibble with the genetic parameters (if \code{random =
+"gen"} or \code{random = "all"}) with the following columns: \code{Phenotypic
+variance} the phenotypic variance; \code{Heritability} the broad-sense
+heritability; \code{GEr2} the coefficient of determination of the interaction
+effects; \code{Heribatility of means} the heritability on the mean basis;
+\code{Accuracy} the selective accuracy; \code{rge} the genotype-environment
+correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr}
+the residual coefficient of variation; \code{CV ratio} the ratio between
+genotypic and residual coefficient of variation.
+\item \strong{residuals} The residuals of the model.
 }
 }
 \description{
-Compute the Weighted Average of Absolute Scores for quantifying the stability
-in multi-environment trials using mixed-effect models (Olivoto et al., 2019).
+Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) for
+quantifying the stability of \emph{g} genotypes conducted in \emph{e}
+environments using linear mixed-effect models.
 }
 \details{
-This function compute the weighted average of absolute scores considering all
-principal component axis from the Singular Value Decomposition (SVD) of the
-BLUP'S GxE effects matrix generated by a linear mixed-effect model.
+The weighted average of absolute scores is computed considering all
+Interaction Principal Component Axis (IPCA) from the Singular Value Decomposition (SVD) of the
+matrix of genotype-environment interaction (GEI) effects generated by a linear
+mixed-effect model, as follows:
+\deqn{WAASB_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k}
+
+where \eqn{WAASB_i} is the weighted average of absolute scores of the
+\emph{i}th genotype; \eqn{IPCA_{ik}} is the score of the \emph{i}th genotype
+in the \emph{k}th Interaction Principal Component Axis (IPCA); and \eqn{EP_k} is the explained variance of the \emph{k}th
+IPCA for \emph{k = 1,2,..,p}, considering \eqn{p = min(g - 1; e - 1)}.
+
+The nature of the effects in the model is
+chosen with the argument \code{random}. By default, the experimental design
+considered in each environment is a randomized complete block design. If
+\code{block} is informed, a resolvable alpha-lattice design (Patterson and
+Williams, 1976) is implemented. The following six models can be fitted
+depending on the values of \code{random} and \code{block} arguments.
+\itemize{
+\item \strong{Model 1:} \code{block = NULL} and \code{random = "gen"} (The
+default option). This model considers a Randomized Complete Block Design in
+each environment assuming genotype and genotype-environment interaction as
+random effects. Environments and blocks nested within environments are
+assumed to fixed factors.
+\item \strong{Model 2:} \code{block = NULL} and \code{random = "env"}. This
+model considers a Randomized Complete Block Design in each environment
+treating environment, genotype-environment interaction, and blocks nested
+within environments as random factors. Genotypes are assumed to be fixed
+factors.
+\item \strong{Model 3:} \code{block = NULL} and \code{random = "all"}. This
+model considers a Randomized Complete Block Design in each environment
+assuming a random-effect model, i.e., all effects (genotypes, environments,
+genotype-vs-environment interaction and blocks nested within environments)
+are assumed to be random factors.
+\item \strong{Model 4:} \code{block} is not \code{NULL} and \code{random =
+  "gen"}. This model considers an alpha-lattice design in each environment
+assuming genotype, genotype-environment interaction, and incomplete blocks
+nested within complete replicates as random to make use of inter-block
+information (Mohring et al., 2015). Complete replicates nested within
+environments and environments are assumed to be fixed factors.
+\item \strong{Model 5:} \code{block} is not \code{NULL} and \code{random =
+  "env"}. This model considers an alpha-lattice design in each environment
+assuming genotype as fixed. All other sources of variation (environment,
+genotype-environment interaction, complete replicates nested within
+environments, and incomplete blocks nested within replicates) are assumed
+to be random factors.
+\item \strong{Model 6:} \code{block} is not \code{NULL} and \code{random =
+  "all"}. This model considers an alpha-lattice design in each environment
+assuming all effects, except the intercept, as random factors.
+}
 }
 \examples{
 \donttest{
 library(metan)
-
-# Genotypes as random effects
-# Equal weights for response variable and stability
-
+#===============================================================#
+# Example 1: Analyzing all numeric variables assuming genotypes #
+# as random effects with equal weights for mean performance and #
+# stability                                                     #
+#===============================================================#
 model <- waasb(data_ge,
               env = ENV,
               gen = GEN,
               rep = REP,
-              resp = GY)
+              resp = everything())
+# Distribution of random effects (first variable)
+plot(model, type = "re")
 
-# Higher weight for response variable
+# Genetic parameters
+get_model_data(model, "genpar")
 
-model2 <- waasb(data_ge,
+
+
+#===============================================================#
+# Example 2: Analyzing variables that starts with "N"           #
+# assuming environment as random effects with higher weight for #
+# response variable (65) of the two traits.                     #
+#===============================================================#
+
+model2 <- waasb(data_ge2,
                env = ENV,
                gen = GEN,
                rep = REP,
-               resp = GY,
+               random = "env",
+               resp = starts_with("N"),
                wresp = 65)
 
-# Environment as random effects analyzing more than one variable
-# Smaller values of HM are better and higher
-# Higher values of GY are better
-# Larger weight for the GY (60\%)
-# Smaller weight for HM (40\%)
+
+# Get the index WAASBY
+get_model_data(model2, what = "WAASBY")
+
+# Plot the scores (response x WAASB)
+plot_scores(model2, type = 3)
+
+#===============================================================#
+# Example 3: Analyzing GY and HM assuming a random-effect model.#
+# Smaller values for HM and higher values for GY are better.    #
+# To estimate WAASBY, higher weight for the GY (60\%) and lower  #
+# weight for HM (40\%) are considered for mean performance.      #
+#===============================================================#
 
 model3 <- waasb(data_ge,
                 env = ENV,
                 gen = GEN,
                 rep = REP,
                 resp = c(GY, HM),
-                random = "env",
+                random = "all",
                 mresp = c(100, 0),
                 wresp = c(60, 40))
+
+# Get P-values for Likelihood-ratio test
+get_model_data(model3, "pval_lrt")
+
+# Get the random effects
+get_model_data(model3, what = "ranef")
+
+# Get the ranks for the WAASB index
+get_model_data(model3, what = "OrWAASB")
 }
 
 }
 \references{
-Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
-multi-environment trials I: Combining features of AMMI and BLUP techniques.
-Agron. J. 111:2949-2960.
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
+Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+111:2949-2960.
 \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
+
+Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information: to
+recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
+\href{http://www.ncbi.nlm.nih.gov/pubmed/25972114}{doi:10.1007/s00122-015-2530-0}
+
+Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable
+incomplete block designs. Biometrika 63:83-92.
+\href{https://doi.org/10.1093/biomet/63.1.83}{doi:10.1093/biomet/63.1.83}
 }
 \seealso{
-\code{\link{waas}}
+\code{\link{mtsi}} \code{\link{waas}}
+\code{\link{get_model_data}} \code{\link{plot_scores}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

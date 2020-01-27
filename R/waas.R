@@ -10,7 +10,7 @@
 #' 1}^{p}EP_k}
 #'
 #' where \eqn{WAAS_i} is the weighted average of absolute scores of the
-#' \emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype
+#' \emph{i}th genotype; \eqn{IPCA_{ik}} is the score of the \emph{i}th genotype
 #' in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the *k*th
 #' IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant
 #' PCAs, or a declared number of PCAs. For example if \code{prob = 0.05}, all
@@ -32,13 +32,23 @@
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
 #'   \strong{All effects, except the error, are assumed to be fixed.}
-#' @param mresp A numeric vector of the same length of \code{resp}. The
-#'   \code{mresp} will be the new maximum value after rescaling. By default, all
-#'   variables in \code{resp} are rescaled so that de maximum value is 100 and
-#'   the minimum value is 0.
+#' @param mresp  The new maximum value after rescaling the response variable. By
+#'   default, all variables in \code{resp} are rescaled so that de maximum value
+#'   is 100 and the minimum value is 0 (i.e., \code{mresp = 100}). It must be a
+#'   numeric vector of the same length of \code{resp} if rescaling is assumed to
+#'   be different across variables, e.g., if for the first variable smaller
+#'   values are better and for the second one, higher values are better, then
+#'   \code{mresp = c(0, 100)} must be used. Numeric value of length 1 will be
+#'   recycled with a warning message.
 #' @param wresp The weight for the response variable(s) for computing the WAASBY
-#'   index. Must be a numeric vector of the same length of \code{resp}. Defaults
-#'   to 50, i.e., equal weights for stability and mean performance.
+#'   index. By default, all variables in \code{resp} have equal weights for mean
+#'   performance and stability (i.e., \code{wresp = 50}). It must be a numeric
+#'   vector of the same length of \code{resp} to assign different weights across
+#'   variables, e.g., if for the first variable equal weights for mean
+#'   performance and stability are assumed and for the second one, a higher
+#'   weight for mean performance (e.g. 65) is assumed, then \code{wresp = c(50,
+#'   65)} must be used. Numeric value of length 1 will be recycled with a
+#'   warning message.
 #' @param prob The p-value for considering an interaction principal component
 #'   axis significant.
 #' @param naxis The number of IPCAs to be used for computing the WAAS index.
@@ -95,32 +105,51 @@
 #' @examples
 #'\donttest{
 #' library(metan)
-#'
-#' # Considering p-value <= 0.05 to compute the WAAS
-#'
+#' #===============================================================#
+#' # Example 1: Analyzing all numeric variables considering p-value#
+#' # <= 0.05 to compute the WAAS.                                  #
+#' #===============================================================#
 #'model <- waas(data_ge,
 #'              env = ENV,
 #'              gen = GEN,
 #'              rep = REP,
-#'              resp = GY)
+#'              resp = everything())
+#' # Residual plot (first variable)
+#' plot(model)
+#'
+#' # Get the WAAS index
+#' get_model_data(model, "WAASB")
+#'
+#' # Plot WAAS and response variable
+#' plot_scores(model, type = 3)
 #'
 #'
-#' # Declaring the number of axis to be used for computing WAAS
-#' # and assigning a larger weight for the response variable when
-#' # computing the WAASBY index.
+#' #===============================================================#
+#' # Example 2: Declaring the number of axis to be used for        #
+#' # computing WAAS and assigning a larger weight for the response #
+#' # variable when computing the WAASBY index.                     #
+#' #===============================================================#
 #'
 #' model2 <- waas(data_ge,
 #'                env = ENV,
 #'                gen = GEN,
 #'                rep = REP,
-#'                resp = GY,
-#'                naxis = 3,
+#'                resp = everything(),
+#'                naxis = 1, # Only to compare with PC1
 #'                wresp = 60)
+#' # Get the WAAS index (it will be |PC1|)
+#' get_model_data(model2)
 #'
-#' # Analyzing multiple variables (GY and HM) at the same time
-#' # considering that smaller values of HM are better and higher
-#' # values of GY are better, assigning a larger weight for the GY
-#' # and a smaller weight for HM when computing WAASBY index.
+#' # Get values for IPCA1
+#' get_model_data(model2, "PC1")
+#'
+#'
+#' #===============================================================#
+#' # Example 3: Analyzing GY and HM assuming a random-effect model.#
+#' # Smaller values for HM and higher values for GY are better.    #
+#' # To estimate WAASBY, higher weight for the GY (60%) and lower  #
+#' # weight for HM (40%) are considered for mean performance.      #
+#' #===============================================================#
 #'
 #' model3 <- waas(data_ge,
 #'                env = ENV,
@@ -129,6 +158,10 @@
 #'                resp = c(GY, HM),
 #'                mresp = c(100, 0),
 #'                wresp = c(60, 40))
+#'
+#'
+#' # Get the ranks for the WAASY index
+#' get_model_data(model3, what = "OrWAASY")
 #'}
 #'
 waas <- function(.data,
@@ -163,35 +196,48 @@ waas <- function(.data,
     nvar <- ncol(vars)
     if (!is.null(naxis)) {
         if (length(naxis) != nvar) {
-            stop("The argument 'naxis' must have length ", nvar, ", the same number of variables in 'resp'.")
+            warning("Invalid length in 'naxis'. Setting naxis = ", naxis[[1]],
+                    " to all the ", nvar, " variables.", call. = FALSE)
+            naxis <- replicate(nvar, naxis[[1]])
         }
     }
     if (is.null(mresp)) {
         mresp <- replicate(nvar, 100)
         minresp <- 100 - mresp
     } else {
+        mresp <- mresp
+        minresp <- 100 - mresp
         if (length(mresp) != nvar) {
-            stop("The length of the numeric vector 'mresp' must be equal the number of variables in argument 'resp'")
+            warning("Invalid length in 'mresp'. Setting mresp = ", mresp[[1]],
+                    " to all the ", nvar, " variables.", call. = FALSE)
+            mresp <- replicate(nvar, mresp[[1]])
+            minresp <- 100 - mresp
         }
         if (sum(mresp == 100) + sum(mresp == 0) != nvar) {
             stop("The values of the numeric vector 'mresp' must be 0 or 100.")
         }
-        mresp <- mresp
-        minresp <- 100 - mresp
     }
     if (is.null(wresp)) {
         PesoResp <- replicate(nvar, 50)
         PesoWAASB <- 100 - PesoResp
     } else {
+        PesoResp <- wresp
+        PesoWAASB <- 100 - PesoResp
         if (length(wresp) != nvar) {
-            stop("The length of the numeric vector 'wresp' must be equal the number of variables in argument 'resp'")
+
+            warning("Invalid length in 'wresp'. Setting wresp = ", wresp[[1]],
+                    " to all the ", nvar, " variables.", call. = FALSE)
+            PesoResp <- replicate(nvar, wresp[[1]])
+            PesoWAASB <- 100 - PesoResp
         }
         if (min(wresp) < 0 | max(wresp) > 100) {
             stop("The range of the numeric vector 'wresp' must be equal between 0 and 100.")
         }
-        PesoResp <- wresp
-        PesoWAASB <- 100 - PesoResp
     }
+
+
+
+
     listres <- list()
     vin <- 0
     for (var in 1:nvar) {
@@ -217,11 +263,7 @@ waas <- function(.data,
         if (is.null(naxis)) {
             SigPC1 <- nrow(PC[which(PC[, 6] < prob), ])
         } else {
-            if (nvar == 1) {
-                SigPC1 <- naxis
-            } else {
-                SigPC1 <- naxis[vin]
-            }
+            SigPC1 <- naxis[vin]
         }
         if (SigPC1 > minimo) {
             stop("The number of axis to be used must be lesser than or equal to ",
@@ -347,4 +389,167 @@ waas <- function(.data,
 #'
 plot.waas <- function(x, ...) {
     residual_plots(x,  ...)
+}
+
+
+#' Print an object of class waas
+#'
+#' Print the \code{waas} object in two ways. By default, the results are shown
+#' in the R console. The results can also be exported to the directory.
+#'
+#'
+#' @param x An object of class \code{waas}.
+#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#'   the working directory
+#' @param file.name The name of the file if \code{export = TRUE}
+#' @param digits The significant digits to be shown.
+#' @param ... Options used by the tibble package to format the output. See
+#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method print waas
+#' @export
+#' @examples
+#'\donttest{
+#' library(metan)
+#' model <- waas(data_ge,
+#'   resp = c(GY, HM),
+#'   gen = GEN,
+#'   env = ENV,
+#'   rep = REP
+#' )
+#' print(model)
+#' }
+print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
+    if (!class(x) == "waas") {
+        stop("The object must be of class 'waas'")
+    }
+    if (export == TRUE) {
+        file.name <- ifelse(is.null(file.name) == TRUE, "waas print", file.name)
+        sink(paste0(file.name, ".txt"))
+    }
+    opar <- options(pillar.sigfig = digits)
+    on.exit(options(opar))
+    for (i in 1:length(x)) {
+        var <- x[[i]]
+        cat("Variable", names(x)[i], "\n")
+        cat("---------------------------------------------------------------------------\n")
+        cat("Individual analysis of variance\n")
+        cat("---------------------------------------------------------------------------\n")
+        print(var$individual$individual, ...)
+        cat("---------------------------------------------------------------------------\n")
+        cat("AMMI analysis table\n")
+        cat("---------------------------------------------------------------------------\n")
+        print(var$anova, ...)
+        cat("---------------------------------------------------------------------------\n")
+        cat("Weighted average of the absolute scores\n")
+        cat("---------------------------------------------------------------------------\n")
+        print(var$model, ...)
+        cat("---------------------------------------------------------------------------\n")
+        cat("Some information regarding the analysis\n")
+        cat("---------------------------------------------------------------------------\n")
+        print(var$Details, ...)
+        cat("\n\n\n")
+    }
+    if (export == TRUE) {
+        sink()
+    }
+}
+
+
+
+
+
+
+
+#' Predict the means of a waas object
+#'
+#' Predict the means of a waas object considering a specific number of axis.
+#'
+#' This function is used to predict the response variable of a two-way table
+#' (for examples the yielding of the i-th genotype in the j-th environment)
+#' based on AMMI model. This prediction is based on the number of multiplicative
+#' terms used. If \code{naxis = 0}, only the main effects (AMMI0) are used. In
+#' this case, the predicted mean will be the predicted value from OLS
+#' estimation. If \code{naxis = 1} the AMMI1 (with one multiplicative term) is
+#' used for predicting the response variable. If \code{naxis =
+#' min(gen-1;env-1)}, the AMMIF is fitted and the predicted value will be the
+#' cell mean, i.e. the mean of R-replicates of the i-th genotype in the j-th
+#' environment. The number of axis to be used must be carefully chosen.
+#' Procedures based on Postdictive success (such as Gollobs's d.f.) or
+#' Predictive sucess (such as cross-validation) should be used to do this. This
+#' package provide both. \code{\link{waas}} function compute traditional AMMI
+#' analysis showing the number of significant axis. On the other hand,
+#' \code{\link{cv_ammif}} function provide a cross-validation, estimating the
+#' RMSPD of all AMMI-family models, based on resampling procedures.
+#'
+#' @param object An object of class waas
+#' @param naxis The the number of axis to be use in the prediction. If
+#'   \code{object} has more than one variable, then \code{naxis} must be a
+#'   vector.
+#' @param ... Additional parameter for the function
+#' @return A list where each element is the predicted values by the AMMI model
+#'   for each variable.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method predict waas
+#' @export
+#' @examples
+#'
+#' library(metan)
+#' model = waas(data_ge,
+#'              env = ENV,
+#'              gen = GEN,
+#'              rep = REP,
+#'              resp = c(GY, HM))
+#' # Predict GY with 3 IPCA and HM with 1 IPCA
+#' predict = predict(model, naxis = c(3, 1))
+#'
+predict.waas <- function(object, naxis = 2, ...) {
+    cal <- match.call()
+    if (class(object) != "waas") {
+        stop("The objectin must be an objectin of the class 'waas'")
+    }
+    if (length(object) != length(naxis)) {
+        stop("The argument 'naxix = ", cal[3], "' must length of ",
+             length(object), ", the same number of variables in object '",
+             cal[2], "'.")
+    }
+    listres <- list()
+    varin <- 1
+    for (var in 1:length(object)) {
+        objectin <- object[[var]]
+        MEDIAS <- objectin$MeansGxE %>% select(ENV, GEN, Y)
+        Nenv <- length(unique(MEDIAS$ENV))
+        Ngen <- length(unique(MEDIAS$GEN))
+        minimo <- min(Nenv, Ngen) - 1
+        if (naxis[var] > minimo) {
+            stop("The number of axis to be used must be lesser than or equal to min(GEN-1;ENV-1), in this case, ",
+                 minimo, ".")
+        } else {
+            if (naxis[var] == 0) {
+                stop("Invalid argument. The AMMI0 model is calculated automatically. Please, inform naxis > 0")
+            } else {
+                ovmean <- mean(MEDIAS$Y)
+                x1 <- model.matrix(~factor(MEDIAS$ENV) - 1)
+                z1 <- model.matrix(~factor(MEDIAS$GEN) - 1)
+                modelo1 <- lm(Y ~ ENV + GEN, data = MEDIAS)
+                MEDIAS <- mutate(MEDIAS, resOLS = residuals(modelo1))
+                intmatrix <- t(matrix(MEDIAS$resOLS, Nenv, byrow = T))
+                s <- svd(intmatrix)
+                if (length(object) > 1) {
+                    U <- s$u[, 1:naxis[var]]
+                    LL <- s$d[1:naxis[var]]
+                    V <- s$v[, 1:naxis[var]]
+                } else {
+                    U <- s$u[, 1:naxis]
+                    LL <- s$d[1:naxis]
+                    V <- s$v[, 1:naxis]
+                }
+                temp <- mutate(MEDIAS, Ypred = Y - resOLS, ResAMMI = ((z1 %*%
+                                                                           U) * (x1 %*% V)) %*% LL, YpredAMMI = Ypred +
+                                   ResAMMI, AMMI0 = Ypred) %>% as_tibble()
+                listres[[paste(names(object[var]))]] <- temp
+            }
+        }
+    }
+    invisible(listres)
 }

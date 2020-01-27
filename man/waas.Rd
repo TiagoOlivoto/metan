@@ -40,14 +40,24 @@ block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 \strong{All effects, except the error, are assumed to be fixed.}}
 
-\item{mresp}{A numeric vector of the same length of \code{resp}. The
-\code{mresp} will be the new maximum value after rescaling. By default, all
-variables in \code{resp} are rescaled so that de maximum value is 100 and
-the minimum value is 0.}
+\item{mresp}{The new maximum value after rescaling the response variable. By
+default, all variables in \code{resp} are rescaled so that de maximum value
+is 100 and the minimum value is 0 (i.e., \code{mresp = 100}). It must be a
+numeric vector of the same length of \code{resp} if rescaling is assumed to
+be different across variables, e.g., if for the first variable smaller
+values are better and for the second one, higher values are better, then
+\code{mresp = c(0, 100)} must be used. Numeric value of length 1 will be
+recycled with a warning message.}
 
 \item{wresp}{The weight for the response variable(s) for computing the WAASBY
-index. Must be a numeric vector of the same length of \code{resp}. Defaults
-to 50, i.e., equal weights for stability and mean performance.}
+index. By default, all variables in \code{resp} have equal weights for mean
+performance and stability (i.e., \code{wresp = 50}). It must be a numeric
+vector of the same length of \code{resp} to assign different weights across
+variables, e.g., if for the first variable equal weights for mean
+performance and stability are assumed and for the second one, a higher
+weight for mean performance (e.g. 65) is assumed, then \code{wresp = c(50,
+  65)} must be used. Numeric value of length 1 will be recycled with a
+warning message.}
 
 \item{prob}{The p-value for considering an interaction principal component
 axis significant.}
@@ -107,7 +117,7 @@ follows:
 1}^{p}EP_k}
 
 where \eqn{WAAS_i} is the weighted average of absolute scores of the
-\emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype
+\emph{i}th genotype; \eqn{IPCA_{ik}} is the score of the \emph{i}th genotype
 in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the \emph{k}th
 IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant
 PCAs, or a declared number of PCAs. For example if \code{prob = 0.05}, all
@@ -118,32 +128,51 @@ override the number of significant axes according to the argument code{prob}.
 \examples{
 \donttest{
 library(metan)
-
-# Considering p-value <= 0.05 to compute the WAAS
-
+#===============================================================#
+# Example 1: Analyzing all numeric variables considering p-value#
+# <= 0.05 to compute the WAAS.                                  #
+#===============================================================#
 model <- waas(data_ge,
              env = ENV,
              gen = GEN,
              rep = REP,
-             resp = GY)
+             resp = everything())
+# Residual plot (first variable)
+plot(model)
+
+# Get the WAAS index
+get_model_data(model, "WAASB")
+
+# Plot WAAS and response variable
+plot_scores(model, type = 3)
 
 
-# Declaring the number of axis to be used for computing WAAS
-# and assigning a larger weight for the response variable when
-# computing the WAASBY index.
+#===============================================================#
+# Example 2: Declaring the number of axis to be used for        #
+# computing WAAS and assigning a larger weight for the response #
+# variable when computing the WAASBY index.                     #
+#===============================================================#
 
 model2 <- waas(data_ge,
                env = ENV,
                gen = GEN,
                rep = REP,
-               resp = GY,
-               naxis = 3,
+               resp = everything(),
+               naxis = 1, # Only to compare with PC1
                wresp = 60)
+# Get the WAAS index (it will be |PC1|)
+get_model_data(model2)
 
-# Analyzing multiple variables (GY and HM) at the same time
-# considering that smaller values of HM are better and higher
-# values of GY are better, assigning a larger weight for the GY
-# and a smaller weight for HM when computing WAASBY index.
+# Get values for IPCA1
+get_model_data(model2, "PC1")
+
+
+#===============================================================#
+# Example 3: Analyzing GY and HM assuming a random-effect model.#
+# Smaller values for HM and higher values for GY are better.    #
+# To estimate WAASBY, higher weight for the GY (60\%) and lower  #
+# weight for HM (40\%) are considered for mean performance.      #
+#===============================================================#
 
 model3 <- waas(data_ge,
                env = ENV,
@@ -152,6 +181,10 @@ model3 <- waas(data_ge,
                resp = c(GY, HM),
                mresp = c(100, 0),
                wresp = c(60, 40))
+
+
+# Get the ranks for the WAASY index
+get_model_data(model3, what = "OrWAASY")
 }
 
 }
