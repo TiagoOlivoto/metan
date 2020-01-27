@@ -17,6 +17,9 @@ tidyselect::num_range
 #' @importFrom tidyselect one_of
 #' @export
 tidyselect::one_of
+#' @importFrom tidyselect all_of
+#' @export
+tidyselect::all_of
 #' @importFrom tidyselect starts_with
 #' @export
 tidyselect::starts_with
