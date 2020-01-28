@@ -495,7 +495,7 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
 #' @examples
 #'
 #' library(metan)
-#' model = waas(data_ge,
+#'model <- waas(data_ge,
 #'              env = ENV,
 #'              gen = GEN,
 #'              rep = REP,
@@ -509,10 +509,11 @@ predict.waas <- function(object, naxis = 2, ...) {
         stop("The objectin must be an objectin of the class 'waas'")
     }
     if (length(object) != length(naxis)) {
-        stop("The argument 'naxix = ", cal[3], "' must length of ",
-             length(object), ", the same number of variables in object '",
-             cal[2], "'.")
+        warning("Invalid length in 'naxis'. Setting mresp = ", naxis[[1]],
+                " to all the ", length(object), " variables.", call. = FALSE)
+        naxis <- replicate(length(object), naxis[[1]])
     }
+
     listres <- list()
     varin <- 1
     for (var in 1:length(object)) {
@@ -544,9 +545,11 @@ predict.waas <- function(object, naxis = 2, ...) {
                     LL <- s$d[1:naxis]
                     V <- s$v[, 1:naxis]
                 }
-                temp <- mutate(MEDIAS, Ypred = Y - resOLS, ResAMMI = ((z1 %*%
-                                                                           U) * (x1 %*% V)) %*% LL, YpredAMMI = Ypred +
-                                   ResAMMI, AMMI0 = Ypred) %>% as_tibble()
+                temp <- MEDIAS %>%
+                    add_cols(Ypred = Y - resOLS,
+                             ResAMMI = ((z1 %*% U) * (x1 %*% V)) %*% LL,
+                             YpredAMMI = Ypred + ResAMMI, AMMI0 = Ypred) %>%
+                    as_tibble()
                 listres[[paste(names(object[var]))]] <- temp
             }
         }

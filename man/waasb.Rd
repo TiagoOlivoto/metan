@@ -202,7 +202,7 @@ get_model_data(model, "genpar")
 #===============================================================#
 # Example 2: Analyzing variables that starts with "N"           #
 # assuming environment as random effects with higher weight for #
-# response variable (65) of the two traits.                     #
+# response variable (65) for the three traits.                  #
 #===============================================================#
 
 model2 <- waasb(data_ge2,

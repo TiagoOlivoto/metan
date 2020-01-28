@@ -43,7 +43,7 @@ RMSPD of all AMMI-family models, based on resampling procedures.
 \examples{
 
 library(metan)
-model = waas(data_ge,
+model <- waas(data_ge,
              env = ENV,
              gen = GEN,
              rep = REP,
