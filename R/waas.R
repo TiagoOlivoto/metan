@@ -501,7 +501,7 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
 #'              rep = REP,
 #'              resp = c(GY, HM))
 #' # Predict GY with 3 IPCA and HM with 1 IPCA
-#' predict = predict(model, naxis = c(3, 1))
+#' predict <- predict(model, naxis = C(3, 1))
 #'
 predict.waas <- function(object, naxis = 2, ...) {
     cal <- match.call()
@@ -509,8 +509,8 @@ predict.waas <- function(object, naxis = 2, ...) {
         stop("The objectin must be an objectin of the class 'waas'")
     }
     if (length(object) != length(naxis)) {
-        warning("Invalid length in 'naxis'. Setting mresp = ", naxis[[1]],
-                " to all the ", length(object), " variables.", call. = FALSE)
+        warning("Invalid length in 'naxis'. Setting 'mresp = ", naxis[[1]],
+                "' to all the ", length(object), " variables.", call. = FALSE)
         naxis <- replicate(length(object), naxis[[1]])
     }
 
@@ -524,34 +524,28 @@ predict.waas <- function(object, naxis = 2, ...) {
         minimo <- min(Nenv, Ngen) - 1
         if (naxis[var] > minimo) {
             stop("The number of axis to be used must be lesser than or equal to min(GEN-1;ENV-1), in this case, ",
-                 minimo, ".")
+                 minimo, ".", call. = FALSE)
         } else {
             if (naxis[var] == 0) {
-                stop("Invalid argument. The AMMI0 model is calculated automatically. Please, inform naxis > 0")
-            } else {
-                ovmean <- mean(MEDIAS$Y)
-                x1 <- model.matrix(~factor(MEDIAS$ENV) - 1)
-                z1 <- model.matrix(~factor(MEDIAS$GEN) - 1)
-                modelo1 <- lm(Y ~ ENV + GEN, data = MEDIAS)
-                MEDIAS <- mutate(MEDIAS, resOLS = residuals(modelo1))
-                intmatrix <- t(matrix(MEDIAS$resOLS, Nenv, byrow = T))
-                s <- svd(intmatrix)
-                if (length(object) > 1) {
-                    U <- s$u[, 1:naxis[var]]
-                    LL <- s$d[1:naxis[var]]
-                    V <- s$v[, 1:naxis[var]]
-                } else {
-                    U <- s$u[, 1:naxis]
-                    LL <- s$d[1:naxis]
-                    V <- s$v[, 1:naxis]
-                }
-                temp <- MEDIAS %>%
-                    add_cols(Ypred = Y - resOLS,
-                             ResAMMI = ((z1 %*% U) * (x1 %*% V)) %*% LL,
-                             YpredAMMI = Ypred + ResAMMI, AMMI0 = Ypred) %>%
-                    as_tibble()
-                listres[[paste(names(object[var]))]] <- temp
+                warning("Predicted values of AMMI0 model are in colum 'pred_ols'.", call. = FALSE)
             }
+            ovmean <- mean(MEDIAS$Y)
+            x1 <- model.matrix(~factor(MEDIAS$ENV) - 1)
+            z1 <- model.matrix(~factor(MEDIAS$GEN) - 1)
+            modelo1 <- lm(Y ~ ENV + GEN, data = MEDIAS)
+            MEDIAS <- mutate(MEDIAS, res_ols = residuals(modelo1))
+            intmatrix <- t(matrix(MEDIAS$res_ols, Nenv, byrow = T))
+            s <- svd(intmatrix)
+            U <- s$u[, 1:naxis[var]]
+            LL <- s$d[1:naxis[var]]
+            V <- s$v[, 1:naxis[var]]
+            temp <-
+                MEDIAS %>%
+                add_cols(pred_ols = Y - res_ols,
+                         res_ammi = ((z1 %*% U) * (x1 %*% V)) %*% LL,
+                         pred_ammi = pred_ols + res_ammi)
+            listres[[paste(names(object[var]))]] <- temp
+
         }
     }
     invisible(listres)
