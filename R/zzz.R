@@ -187,7 +187,7 @@ if (getRversion() >= "2.15.1") {
       "BLOCK", "rowid", "grank", "rMean", "rShukaVar", "value", "DF", "without", "RPGV_Y",
       "HMRPGV_Y", "Pairs", "name", "v1", "v2", "slope", "new_var", "TYPE", "CODE",
       "Sum.Sq", "Mean.Sq", "F.value", "Pr.F", "Sum Sq", "Df", "Source", "BLUPbre",
-      "BLUPe+ge+re+bre", "BLUPg+e+ge+re", "BLUPg+e+ge+re+bre", "BLUPg+ge+bre", "BLUPge+e+re",
-      "BLUPre", "Estimate", "HMRPGV", "RPGV", "Variance", "blup", "intercept", "lower",
-      "upper"))
+      "BLUPe+ge+re+bre", "BLUPg+e+ge+re", "BLUPg+e+ge+re+bre", "BLUPg+bre", "BLUPg+ge+bre",
+      "BLUPge+e+re", "BLUPre", "Estimate", "HMRPGV", "RPGV", "Variance", "blup",
+      "intercept", "lower", "upper"))
   }
