@@ -671,7 +671,7 @@ select_rows <- function(.data, ...){
 #'  \code{.data}.
 #'
 #' @param na.rm A logical value indicating whether \code{NA} values should be
-#'    stripped before the computation proceeds. Defaults to \code{TRUE}.
+#'    stripped before the computation proceeds. Defaults to \code{FALSE}.
 #' @param level The confidence level for the confidence interval of the mean.
 #'   Defaults to 0.95.
 #' @return
