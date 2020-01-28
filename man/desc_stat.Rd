@@ -64,7 +64,7 @@ Defaults to 0.95.}
 
 \item{digits}{The number of significant digits.}
 
-\item{na.rm}{Logical. Should missing values be removed?}
+\item{na.rm}{Logical. Should missing values be removed? Defaults to \code{FALSE}.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
 silently.}
@@ -80,7 +80,7 @@ A tibble with the statistics in the lines and variables in columns. If
  \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
 }
 \description{
-Compute the most used measures of central tendency, position, and dispersion.
+Computes the most used measures of central tendency, position, and dispersion.
 }
 \details{
 In cases when the statistics are computed for more than two variables
@@ -92,36 +92,51 @@ In cases when the statistics are computed for more than two variables
 \examples{
 \donttest{
 library(metan)
+#===============================================================#
+# Example 1: main statistics (mean, minimum, median, maximum,   #
+# sample variance, standard error and coefficient of variation) #
+# for all numeric variables in data                             #
+#===============================================================#
 
-desc_stat(data_ge2, TKW)
+desc_stat(data_ge2)
 
-# Compute the main statistics
-# Use a numeric vector as input data
+#===============================================================#
+#Example 2: main statistics using a numeric vector as input data#
+#===============================================================#
 vect <- data_ge2$TKW
 desc_stat(values = vect)
 
-# Select specific statistics
+#===============================================================#
+# Example 3: Select specific statistics. In this example, NAs   #
+# are removed before analysis with a warning message            #
+#===============================================================#
 desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
-          na.rm = TRUE,
-          stats = c('mean, se.mean, cv, n, valid.n'))
+          stats = c('mean, se.mean, cv, n, valid.n'),
+          na.rm = TRUE)
 
-# Compute the main statistics for each level of "ENV"
+#===============================================================#
+# Example 4: Select specific variables and compute statistics by#
+# levels of a factor variable (ENV)                             #
+#===============================================================#
 stats <-
   desc_stat(data_ge2,
             EP, EL, EH, ED, PH, CD,
-            by = ENV,
-            verbose = FALSE)
+            by = ENV)
 
 # To get a 'wide' format with the statistics of the variable EP above.
 desc_wider(stats, PH)
 
-# Compute all the statistics for each combination of "ENV" and "GEN"
-# All the numeric variables in .data
+#===============================================================#
+# Example 5: Compute all statistics for all numeric variables   #
+# by two or more factors. Note that split_factors() was used to #
+# split the data by the two factor variables ENV and GEN        #
+#===============================================================#
 
 stats_all <-
   data_ge2 \%>\%
   split_factors(ENV, GEN) \%>\%
-  desc_stat(stats = "all", verbose = FALSE)
+  desc_stat(stats = "all")
+
 desc_wider(stats_all, PH)
 }
 }

@@ -1,6 +1,6 @@
 #'Descriptive statistics
 #'
-#'Compute the most used measures of central tendency, position, and dispersion.
+#'Computes the most used measures of central tendency, position, and dispersion.
 #'
 #'
 #'@param .data The data to be analyzed. Must be a dataframe or an object of
@@ -40,7 +40,7 @@
 #'@param level The confidence level to compute the confidence interval of mean.
 #'  Defaults to 0.95.
 #'@param digits The number of significant digits.
-#'@param na.rm Logical. Should missing values be removed?
+#'@param na.rm Logical. Should missing values be removed? Defaults to \code{FALSE}.
 #'@param verbose Logical argument. If \code{verbose = FALSE} the code is run
 #'  silently.
 #' @param plot_theme The graphical theme of the plot. Default is
@@ -62,36 +62,51 @@
 #' @examples
 #' \donttest{
 #' library(metan)
+#' #===============================================================#
+#' # Example 1: main statistics (mean, minimum, median, maximum,   #
+#' # sample variance, standard error and coefficient of variation) #
+#' # for all numeric variables in data                             #
+#' #===============================================================#
 #'
-#' desc_stat(data_ge2, TKW)
+#' desc_stat(data_ge2)
 #'
-#' # Compute the main statistics
-#' # Use a numeric vector as input data
+#' #===============================================================#
+#' #Example 2: main statistics using a numeric vector as input data#
+#' #===============================================================#
 #' vect <- data_ge2$TKW
 #' desc_stat(values = vect)
 #'
-#' # Select specific statistics
+#' #===============================================================#
+#' # Example 3: Select specific statistics. In this example, NAs   #
+#' # are removed before analysis with a warning message            #
+#' #===============================================================#
 #' desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
-#'           na.rm = TRUE,
-#'           stats = c('mean, se.mean, cv, n, valid.n'))
+#'           stats = c('mean, se.mean, cv, n, valid.n'),
+#'           na.rm = TRUE)
 #'
-#' # Compute the main statistics for each level of "ENV"
+#' #===============================================================#
+#' # Example 4: Select specific variables and compute statistics by#
+#' # levels of a factor variable (ENV)                             #
+#' #===============================================================#
 #' stats <-
 #'   desc_stat(data_ge2,
 #'             EP, EL, EH, ED, PH, CD,
-#'             by = ENV,
-#'             verbose = FALSE)
+#'             by = ENV)
 #'
 #' # To get a 'wide' format with the statistics of the variable EP above.
 #' desc_wider(stats, PH)
 #'
-#' # Compute all the statistics for each combination of "ENV" and "GEN"
-#' # All the numeric variables in .data
+#' #===============================================================#
+#' # Example 5: Compute all statistics for all numeric variables   #
+#' # by two or more factors. Note that split_factors() was used to #
+#' # split the data by the two factor variables ENV and GEN        #
+#' #===============================================================#
 #'
 #' stats_all <-
 #'   data_ge2 %>%
 #'   split_factors(ENV, GEN) %>%
-#'   desc_stat(stats = "all", verbose = FALSE)
+#'   desc_stat(stats = "all")
+#'
 #' desc_wider(stats_all, PH)
 #'}
 desc_stat <- function(.data = NULL,
@@ -111,9 +126,9 @@ desc_stat <- function(.data = NULL,
     stats = unlist(strsplit(stats, split=", ")) %>% all_lower_case()
   } else {
     if(all_lower_case(stats) == "main"){
-    stats = main_f
+      stats = main_f
     } else{
-    stats = unlist(strsplit(all_f, split=", "))
+      stats = unlist(strsplit(all_f, split=", "))
     }
   }
   if (any(!stats %in% c(all_f, main_f)) == TRUE) {
@@ -125,52 +140,14 @@ desc_stat <- function(.data = NULL,
   if (missing(.data) & missing(values)) {
     stop("Invalid input. Please, use argument 'values' to inform a numeric vector, or the argument '.data' to inform a dataset.")
   }
-  # Helper functions
-  var_p <- function(x) {
-    sum((x - mean(x, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(x)))
-  }
-  range_data <- function(x){
-    max(x, na.rm = na.rm) - min(x, na.rm = na.rm)
-  }
-  var_a <- function(x) {
-    sum((x - mean(x, na.rm = na.rm))^2, na.rm = na.rm) / (length(which(!is.na(x))) - 1)
-  }
-  sd_p <- function(x) {
-    sqrt(sum((x - mean(x, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(x))))
-  }
-  AV_dev <- function(x) {
-    sum(abs(x - mean(x, na.rm = na.rm)), na.rm = na.rm) / length(which(!is.na(x)))
-  }
-  sum_dev <- function(x) {
-    sum(abs(x - mean(x, na.rm = na.rm)), na.rm = na.rm)
-  }
-  sum_sq_dev <- function(x) {
-    sum((x - mean(x, na.rm = na.rm))^2, na.rm = na.rm)
-  }
-  SE_mean <- function(x) {
-    sd(x, na.rm = na.rm) / sqrt(length(which(!is.na(x))))
-  }
-  CI_mean <- function(x, level = 0.95) {
-    qt((0.5 + level/2), (length(which(!is.na(x))) - 1)) * sd(x, na.rm = na.rm)/sqrt(length(which(!is.na(x))))
-  }
-  CV <- function(x) {
-    sd(x, na.rm = na.rm)/mean(x, na.rm = na.rm) * 100
-  }
-  skew <- function(x) {
-    sum((x - mean(x, na.rm = na.rm))^3, na.rm = na.rm)/(length(which(!is.na(x))) * sqrt(var_a(x))^3)
-  }
-  Kurt <- function(x) {
-    sum((x - mean(x, na.rm = na.rm))^4, na.rm = na.rm)/(length(which(!is.na(x))) * var_a(x)^2) - 3
-  }
-  valid_n <- function(x){
-    length(which(!is.na(x)))
-  }
   if (!missing(by)){
     if(length(as.list(substitute(by))[-1L]) != 0){
       stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
     }
     .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
   }
+  opar <- options(pillar.sigfig = digits)
+  on.exit(options(opar))
   if (any(class(.data) == "split_factors")) {
     dfs <- list()
     datain <- .data[[1]]
@@ -178,18 +155,13 @@ desc_stat <- function(.data = NULL,
       data <- datain[[k]]
       nam <- names(datain[k])
       if (missing(...)){
-        data <- select_if(data, is.numeric)
+        data <- select_numeric_cols(data)
       } else{
         data <- select(data, ...) %>%
           select_numeric_cols()
       }
-      if(verbose == TRUE){
-        cat("---------------------------------------------------------------------------\n")
-        cat(nam, "\n")
-        cat("---------------------------------------------------------------------------\n")
-      }
-      if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){
-        stop("NAs values in data. Set the argument 'na.rm' to TRUE to compute the statistics removing missing values.")
+      if(has_na(data) == TRUE && na.rm == FALSE){
+        stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
       }
       if(hist == TRUE){
         stats_facet <- data %>% pivot_longer(1:ncol(data))
@@ -205,34 +177,35 @@ desc_stat <- function(.data = NULL,
           ggtitle(paste("Histogram for ", nam))
         print(plt)
       }
-      data %<>%  summarise_all(funs(n = n(),
-                                    valid.n = valid_n,
-                                    mean = mean(., na.rm = na.rm),
-                                    gm.mean = gm_mean(., na.rm = na.rm),
-                                    hm.mean = hm_mean(., na.rm = na.rm),
-                                    range = range_data,
-                                    min = min(., na.rm = na.rm),
-                                    q2.5 = quantile(., 0.025, na.rm = na.rm),
-                                    q25 = quantile(., 0.25, na.rm = na.rm),
-                                    median = median(., na.rm = na.rm),
-                                    q75 = quantile(., 0.75, na.rm = na.rm),
-                                    q97.5 = quantile(., 0.975, na.rm = na.rm),
-                                    max = max(., na.rm = na.rm),
-                                    iqr = IQR(., na.rm = na.rm),
-                                    av.dev = AV_dev,
-                                    mad = mad(., na.rm = na.rm),
-                                    var.pop = var_p,
-                                    var.amo = var_a,
-                                    sd.pop = sd_p,
-                                    sd.amo = sd(., na.rm = na.rm),
-                                    se.mean = SE_mean,
-                                    ci.mean = CI_mean,
-                                    skew = skew,
-                                    kurt = Kurt,
-                                    cv = CV,
-                                    sum = sum(., na.rm = na.rm),
-                                    sum.dev = sum_dev,
-                                    sum.sq.dev = sum_sq_dev))
+      data %<>%
+        summarise_all(list(n = ~n(),
+                           valid.n = ~valid_n(., na.rm = na.rm),
+                           mean = ~mean(., na.rm = na.rm),
+                           gm.mean = ~gm_mean(., na.rm = na.rm),
+                           hm.mean = ~hm_mean(., na.rm = na.rm),
+                           range = ~range_data(., na.rm = na.rm),
+                           min = ~min(., na.rm = na.rm),
+                           q2.5 = ~quantile(., 0.025, na.rm = na.rm),
+                           q25 = ~quantile(., 0.25, na.rm = na.rm),
+                           median = ~median(., na.rm = na.rm),
+                           q75 = ~quantile(., 0.75, na.rm = na.rm),
+                           q97.5 = ~quantile(., 0.975, na.rm = na.rm),
+                           max = ~max(., na.rm = na.rm),
+                           iqr = ~IQR(., na.rm = na.rm),
+                           av.dev = ~av_dev(., na.rm = na.rm),
+                           mad = ~mad(., na.rm = na.rm),
+                           var.pop = ~var_pop(., na.rm = na.rm),
+                           var.amo = ~var_amo(., na.rm = na.rm),
+                           sd.pop = ~sd_pop(., na.rm = na.rm),
+                           sd.amo = ~sd_amo(., na.rm = na.rm),
+                           se.mean = ~sem(., na.rm = na.rm),
+                           ci.mean = ~ci_mean(., na.rm = na.rm),
+                           skew = ~skew(., na.rm = na.rm),
+                           kurt = ~kurt(., na.rm = na.rm),
+                           cv = ~cv(., na.rm = na.rm),
+                           sum = ~sum(., na.rm = na.rm),
+                           sum.dev = ~sum_dev(., na.rm = na.rm),
+                           sum.sq.dev = ~sum_sq_dev(., na.rm = na.rm)))
       if (ncol(data) > 28) {
         statistics <- suppressWarnings(data %>% gather(stat, val) %>%
                                          separate(stat,
@@ -243,9 +216,6 @@ desc_stat <- function(.data = NULL,
                                          rownames_to_column("Statistic") %>%
                                          dplyr::filter(Statistic %in% stats))
         dfs[[paste(nam)]] <- statistics
-        if(verbose == TRUE){
-          print(statistics, digits = digits, row.names = FALSE)
-        }
       }
       if (ncol(data) == 28) {
         statistics <- t(data) %>%
@@ -254,9 +224,6 @@ desc_stat <- function(.data = NULL,
           dplyr::filter(Statistic %in% stats)
         names(statistics)[ncol(statistics)] <- as_label(quo(...))
         dfs[[paste(nam)]] <- statistics
-        if(verbose == TRUE){
-          print(statistics, digits = digits, row.names = FALSE)
-        }
       }
     }
     df = do.call(rbind, lapply(dfs, function(x){
@@ -269,8 +236,14 @@ desc_stat <- function(.data = NULL,
       separate(LEVEL, into = .data[[2]], sep = "[/|]")
 
     if(ncol(df) - length(.data[[2]]) == 2){
+      if(verbose == TRUE){
+        print(df)
+      }
       invisible(df %>% pivot_wider(names_from = Statistic, values_from = as_label(quo(...))))
     } else{
+      if(verbose == TRUE){
+        print(df)
+      }
       invisible(df)
     }
 
@@ -288,8 +261,8 @@ desc_stat <- function(.data = NULL,
           select_numeric_cols()
       }
     }
-    if(any(sapply(data, is.na) == TRUE) & na.rm == FALSE){
-      stop("NAs values in data. Set the argument 'na.rm' to TRUE to compute the statistics removing missing values.")
+    if(has_na(data) == TRUE && na.rm == FALSE){
+      stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
     }
     if(hist == TRUE){
       stats_facet <- data %>% pivot_longer(1:ncol(data))
@@ -304,34 +277,35 @@ desc_stat <- function(.data = NULL,
         plot_theme
       print(plt)
     }
-    data %<>%  summarise_all(funs(n = n(),
-                                  valid.n = valid_n,
-                                  mean = mean(., na.rm = na.rm),
-                                  gm.mean = gm_mean(., na.rm = na.rm),
-                                  hm.mean = hm_mean(., na.rm = na.rm),
-                                  range = range_data,
-                                  min = min(., na.rm = na.rm),
-                                  q2.5 = quantile(., 0.025, na.rm = na.rm),
-                                  q25 = quantile(., 0.25, na.rm = na.rm),
-                                  median = median(., na.rm = na.rm),
-                                  q75 = quantile(., 0.75, na.rm = na.rm),
-                                  q97.5 = quantile(., 0.975, na.rm = na.rm),
-                                  max = max(., na.rm = na.rm),
-                                  iqr = IQR(., na.rm = na.rm),
-                                  av.dev = AV_dev,
-                                  mad = mad(., na.rm = na.rm),
-                                  var.pop = var_p,
-                                  var.amo = var_a,
-                                  sd.pop = sd_p,
-                                  sd.amo = sd(., na.rm = na.rm),
-                                  se.mean = SE_mean,
-                                  ci.mean = CI_mean,
-                                  skew = skew,
-                                  kurt = Kurt,
-                                  cv = CV,
-                                  sum = sum(., na.rm = na.rm),
-                                  sum.dev = sum_dev,
-                                  sum.sq.dev = sum_sq_dev))
+    data %<>%
+      summarise_all(list(n = ~n(),
+                         valid.n = ~valid_n(., na.rm = na.rm),
+                         mean = ~mean(., na.rm = na.rm),
+                         gm.mean = ~gm_mean(., na.rm = na.rm),
+                         hm.mean = ~hm_mean(., na.rm = na.rm),
+                         range = ~range_data(., na.rm = na.rm),
+                         min = ~min(., na.rm = na.rm),
+                         q2.5 = ~quantile(., 0.025, na.rm = na.rm),
+                         q25 = ~quantile(., 0.25, na.rm = na.rm),
+                         median = ~median(., na.rm = na.rm),
+                         q75 = ~quantile(., 0.75, na.rm = na.rm),
+                         q97.5 = ~quantile(., 0.975, na.rm = na.rm),
+                         max = ~max(., na.rm = na.rm),
+                         iqr = ~IQR(., na.rm = na.rm),
+                         av.dev = ~av_dev(., na.rm = na.rm),
+                         mad = ~mad(., na.rm = na.rm),
+                         var.pop = ~var_pop(., na.rm = na.rm),
+                         var.amo = ~var_amo(., na.rm = na.rm),
+                         sd.pop = ~sd_pop(., na.rm = na.rm),
+                         sd.amo = ~sd_amo(., na.rm = na.rm),
+                         se.mean = ~sem(., na.rm = na.rm),
+                         ci.mean = ~ci_mean(., na.rm = na.rm),
+                         skew = ~skew(., na.rm = na.rm),
+                         kurt = ~kurt(., na.rm = na.rm),
+                         cv = ~cv(., na.rm = na.rm),
+                         sum = ~sum(., na.rm = na.rm),
+                         sum.dev = ~sum_dev(., na.rm = na.rm),
+                         sum.sq.dev = ~sum_sq_dev(., na.rm = na.rm)))
 
     if (ncol(data) > 28) {
       statistics <- suppressWarnings(data %>% gather(stat, val) %>%
@@ -342,6 +316,7 @@ desc_stat <- function(.data = NULL,
                                        as_tibble(rownames = NA) %>%
                                        rownames_to_column("Statistic") %>%
                                        dplyr::filter(Statistic %in% stats))
+
     }
     if (ncol(data) == 28) {
       statistics <- t(data) %>%
@@ -349,9 +324,9 @@ desc_stat <- function(.data = NULL,
         rownames_to_column("Statistic") %>%
         dplyr::filter(Statistic %in% stats)
       names(statistics)[2] <- ifelse(missing(...), "value", as_label(quo(...)))
-      if(verbose == TRUE){
-        print(statistics, digits = digits, row.names = FALSE)
-      }
+    }
+    if(verbose == TRUE){
+      print(statistics)
     }
     invisible(statistics)
   }
