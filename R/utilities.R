@@ -671,7 +671,7 @@ select_rows <- function(.data, ...){
 #'  \code{.data}.
 #'
 #' @param na.rm A logical value indicating whether \code{NA} values should be
-#'    stripped before the computation proceeds.
+#'    stripped before the computation proceeds. Defaults to \code{TRUE}.
 #' @param level The confidence level for the confidence interval of the mean.
 #'   Defaults to 0.95.
 #' @return
@@ -701,9 +701,8 @@ select_rows <- function(.data, ...){
 #'
 #' @export
 av_dev <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sum(abs(.data - mean(.data, na.rm = na.rm)), na.rm = na.rm) / length(which(!is.na(.data)))
@@ -721,9 +720,8 @@ av_dev <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     qt((0.5 + level/2), (length(which(!is.na(.data))) - 1)) * sd(.data, na.rm = na.rm)/sqrt(length(which(!is.na(.data))))
@@ -741,9 +739,8 @@ ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
 #' @name utils_stats
 #' @export
 cv <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sd(.data, na.rm = na.rm)/mean(.data, na.rm = na.rm) * 100
@@ -761,10 +758,9 @@ cv <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
-hm_mean <- function(.data, ..., na.rm = TRUE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+hm_mean <- function(.data, ..., na.rm = FALSE) {
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     1 / mean(1 / .data, na.rm = na.rm)
@@ -779,10 +775,9 @@ hm_mean <- function(.data, ..., na.rm = TRUE) {
 }
 #' @name utils_stats
 #' @export
-gm_mean <- function(.data, ..., na.rm = TRUE){
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+gm_mean <- function(.data, ..., na.rm = FALSE){
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     exp(sum(log(.data[.data > 0]), na.rm = na.rm) / length(.data))
@@ -798,9 +793,8 @@ gm_mean <- function(.data, ..., na.rm = TRUE){
 #' @name utils_stats
 #' @export
 kurt <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     n <- length(which(!is.na(.data)))
@@ -822,9 +816,8 @@ kurt <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 range_data <- function(.data, ..., na.rm = FALSE){
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     max(.data, na.rm = na.rm) - min(.data, na.rm = na.rm)
@@ -842,9 +835,8 @@ range_data <- function(.data, ..., na.rm = FALSE){
 #' @name utils_stats
 #' @export
 sd_amo <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sqrt(sum((.data - mean(.data, na.rm = na.rm))^2, na.rm = na.rm) / (length(which(!is.na(.data))) - 1))
@@ -862,9 +854,8 @@ sd_amo <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 sd_pop <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sqrt(sum((.data - mean(.data, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(.data))))
@@ -882,9 +873,8 @@ sd_pop <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 sem <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sd(.data, na.rm = na.rm) / sqrt(length(which(!is.na(.data))))
@@ -902,9 +892,8 @@ sem <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 skew <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     n <- length(which(!is.na(.data)))
@@ -925,9 +914,8 @@ skew <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 sum_dev <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sum(abs(.data - mean(.data, na.rm = na.rm)), na.rm = na.rm)
@@ -945,9 +933,8 @@ sum_dev <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sum((.data - mean(.data, na.rm = na.rm))^2, na.rm = na.rm)
@@ -965,9 +952,8 @@ sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 var_pop <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sd_pop(.data, na.rm = na.rm)^2
@@ -985,9 +971,8 @@ var_pop <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 var_amo <- function(.data, ..., na.rm = FALSE) {
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     sd_amo(.data, na.rm = na.rm)^2
@@ -1005,9 +990,8 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 valid_n <- function(.data, ..., na.rm = FALSE){
-  if(has_na(.data)){
-    warning("Setting 'na.rm' to TRUE to compute the analysis. \nTo remove rows with NA values use `remove_rows_na()'. \nTo remove columns with NA values use `remove_cols_na()'.,", call. = FALSE)
-    na.rm <- TRUE
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     length(which(!is.na(.data)))

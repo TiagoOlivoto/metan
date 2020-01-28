@@ -32,9 +32,9 @@ ci_mean(.data, ..., na.rm = FALSE, level = 0.95)
 
 cv(.data, ..., na.rm = FALSE)
 
-hm_mean(.data, ..., na.rm = TRUE)
+hm_mean(.data, ..., na.rm = FALSE)
 
-gm_mean(.data, ..., na.rm = TRUE)
+gm_mean(.data, ..., na.rm = FALSE)
 
 kurt(.data, ..., na.rm = FALSE)
 
@@ -87,7 +87,7 @@ variable names to compute the statistics. If no variables are informed in n
 }}
 
 \item{na.rm}{A logical value indicating whether \code{NA} values should be
-stripped before the computation proceeds.}
+stripped before the computation proceeds. Defaults to \code{FALSE}.}
 
 \item{level}{The confidence level for the confidence interval of the mean.
 Defaults to 0.95.}
