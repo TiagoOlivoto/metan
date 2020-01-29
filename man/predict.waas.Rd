@@ -49,7 +49,8 @@ model <- waas(data_ge,
              rep = REP,
              resp = c(GY, HM))
 # Predict GY with 3 IPCA and HM with 1 IPCA
-predict <- predict(model, naxis = C(3, 1))
+predict <- predict(model, naxis = c(3, 1))
+predict
 
 }
 \author{
