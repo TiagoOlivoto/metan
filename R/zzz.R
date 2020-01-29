@@ -189,5 +189,5 @@ if (getRversion() >= "2.15.1") {
       "Sum.Sq", "Mean.Sq", "F.value", "Pr.F", "Sum Sq", "Df", "Source", "BLUPbre",
       "BLUPe+ge+re+bre", "BLUPg+e+ge+re", "BLUPg+e+ge+re+bre", "BLUPg+bre", "BLUPg+ge+bre",
       "BLUPge+e+re", "BLUPre", "Estimate", "HMRPGV", "RPGV", "Variance", "blup",
-      "intercept", "lower", "upper"))
+      "intercept", "lower", "upper", "pred_ols", "res_ammi", "res_ols"))
   }
