@@ -556,7 +556,7 @@ predict.gamem <- function(object, ...) {
 #' model <- gamem(data_g,
 #'                gen = GEN,
 #'                rep = REP,
-#'                resp = GY)
+#'                resp = PH)
 #' plot(model)
 #'}
 #'
