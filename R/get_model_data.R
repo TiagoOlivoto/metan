@@ -498,7 +498,7 @@ get_model_data <- function(x,
                                   " ")[[1]]
             temp <-
               temp %>%
-              select(all_of(var_names), last_col()) %>%
+              select(var_names, last_col()) %>%
               distinct_all(.keep_all = TRUE)
             fact_nam <- sapply(colnames(temp %>% select_non_numeric_cols()), paste) %>%
               paste(., collapse = '_')
