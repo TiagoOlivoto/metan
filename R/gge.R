@@ -278,7 +278,6 @@ gge <- function(.data,
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
 #'   tool for breeders, geneticists, and agronomists. CRC Press.
 #' @method plot gge
-#' @importFrom tidyr gather
 #' @importFrom ggforce geom_arc
 #' @export
 #' @return An object of class \code{gg, ggplot}.

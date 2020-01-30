@@ -42,7 +42,7 @@ make_mat <- function(.data, row, col, value, fun = mean) {
            {{value}}) %>%
     group_by({{row}}, {{col}}) %>%
     summarise_if(is.numeric, fun) %>%
-    spread({{col}}, {{value}}) %>%
+    pivot_wider(names_from = {{col}}, values_from = {{value}}) %>%
     ungroup()
   data %<>% column_to_rownames(var = names(data[1]))
   return(data)

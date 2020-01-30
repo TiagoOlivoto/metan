@@ -57,7 +57,7 @@
 #'  the factors in the rows and statistics in the columns).
 #'@author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@export
-#'@importFrom tidyr spread gather separate pivot_wider pivot_longer
+#'@importFrom tidyr separate pivot_wider pivot_longer
 #'@importFrom rlang quo as_label
 #' @examples
 #' \donttest{
@@ -207,7 +207,8 @@ desc_stat <- function(.data = NULL,
                            sum.dev = ~sum_dev(., na.rm = na.rm),
                            sum.sq.dev = ~sum_sq_dev(., na.rm = na.rm)))
       if (ncol(data) > 28) {
-        statistics <- suppressWarnings(data %>% gather(stat, val) %>%
+        statistics <- suppressWarnings(data %>%
+                                         pivot_longer(names_to = "stat", values_to = "val") %>%
                                          separate(stat,
                                                   into = c("var", "stat"),
                                                   sep = "_(?=[^_]*$)") %>%
@@ -308,7 +309,8 @@ desc_stat <- function(.data = NULL,
                          sum.sq.dev = ~sum_sq_dev(., na.rm = na.rm)))
 
     if (ncol(data) > 28) {
-      statistics <- suppressWarnings(data %>% gather(stat, val) %>%
+      statistics <- suppressWarnings(data %>%
+                                       pivot_longer(names_to = "stat", values_to = "val") %>%
                                        separate(stat,
                                                 into = c("var", "stat"),
                                                 sep = "_(?=[^_]*$)") %>%
