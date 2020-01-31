@@ -5,6 +5,8 @@
 \alias{add_cols}
 \alias{add_rows}
 \alias{all_pairs}
+\alias{colnames_to_lower}
+\alias{colnames_to_upper}
 \alias{column_to_first}
 \alias{column_to_last}
 \alias{column_exists}
@@ -27,6 +29,10 @@ add_cols(.data, ..., .before = NULL, .after = NULL)
 add_rows(.data, ..., .before = NULL, .after = NULL)
 
 all_pairs(.data, levels)
+
+colnames_to_lower(.data)
+
+colnames_to_upper(.data)
 
 column_to_first(.data, ...)
 
@@ -129,12 +135,17 @@ appended at the end of the data. Return a data frame with all the original
 rows in \code{.data} plus the rows declared in \code{...}.
 \item \code{all_pairs()}: Get all the possible pairs between the levels of a
 factor.
+\item \code{colnames_to_lower}: Translate all column names to lower case.
+\item \code{colnames_to_upper}: Translate all column names to upper case.
+\item \code{colnames_to_title}: Translate all column names to title case.
 \item \code{column_exists()}: Checks if a column exists in a data frame. Return a
 logical value.
 \item \code{columns_to_first()}: Move columns to first positions in \code{.data}.
 \item \code{columns_to_last()}: Move columns to last positions in \code{.data}.
 \item \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
-TRUE} then the existing variables are dropped.
+TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
+concatenated variable is pull out to a vector. This is speccialy useful when
+using \code{concatenate} to add columns to a data frame with \code{add_cols}.
 \item \code{get_levels()}: Get the levels of a factor variable.
 \item \code{get_level_size()}: Get the size of each level of a factor variable.
 \item \code{remove_cols()}: Remove one or more columns from a data frame.
@@ -196,6 +207,15 @@ data_ge2 \%>\%
                 replacement = "HYB_",
                 .after = "ENV_GEN")
 
+########### formating column names ###############
+# Creating data with messy column names
+df <- head(data_ge, 3)
+colnames(df) <- c("Env", "gen", "Rep", "GY", "hm")
+df
+colnames_to_lower(df)
+colnames_to_upper(df)
+colnames_to_title(df)
+
 
 ################### Adding rows ##################
 data_ge \%>\%
@@ -205,6 +225,7 @@ data_ge \%>\%
            GY = 10.3,
            HM = 100.11,
            .after = 1)
+
 ########## checking if a column exists ###########
 column_exists(data_g, "GEN")
 

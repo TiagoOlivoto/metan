@@ -4,10 +4,11 @@
 #' @param ... The argument depends on the function used.
 #' * For \code{round_cols()} \code{...} are the variables to round. If no
 #' variable is informed, all the numeric variables from \code{data} are used.
-#' * For \code{remove_strings()} \code{...} are the variables to remove the
-#' strings. If no variable is informed, the strings of all non-numeric variables
-#' will be removed, keeping the numbers. If variables contains only strings,
-#' they will be replaced with \code{NA}.
+#' * For \code{all_lower_case()}, \code{all_upper_case()},
+#' \code{all_title_case()}, \code{remove_strings()}, and \code{tidy_strings()}
+#' \code{...} are the variables to apply the function. If no variable is
+#' informed, the function will be applied to all non-numeric variables in
+#' \code{.data}.
 #' @param digits The number of significant figures.
 #' @param var The variable to extract or replace numbers or strings.
 #' @param new_var The name of the new variable containing the numbers or
@@ -22,11 +23,15 @@
 #' @param .before,.after For \code{replace_sting()}, \code{replace_number()},
 #'   \code{extract_string()}, ,and  \code{extract_number()} one-based column
 #'   index or column name where to add the new columns.
+#' @param sep A character string to separate the terms. Defaults to "_".
 #' @description
 #' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
-#' to lower case.
+#' to lower case (
+#'  \code{"Env"} to \code{"env"}).
 #' * \code{all_upper_case()}: Translate all non-numeric strings of a data frame
-#' to upper case.
+#' to upper case (e.g., \code{"Env"} to \code{"ENV"}).
+#' * \code{all_title_case()}: Translate all non-numeric strings of a data frame
+#' to title case (e.g., \code{"ENV"} to \code{"Env"}).
 #' * \code{extract_number()}: Extract the number(s) of a string.
 #' * \code{extract_string()}: Extract all strings, ignoring case.
 #' * \code{remove_strings()}: Remove all strings of a variable.
@@ -35,6 +40,14 @@
 #' case.
 #' * \code{round_cols()}: Round a selected column or a whole data frame to
 #' significant figures.
+#' * \code{tidy_strings()}: Tidy up characters strings, non-numeric columns, or
+#' any selected columns in a data frame by putting all word in upper case,
+#' replacing any space, tabulation, punctuation characters by \code{'_'}, and
+#' putting \code{'_'} between lower and upper case. Suppose that \code{str =
+#' c("Env1", "env 1", "env.1")} (which by definition should represent a unique
+#' level in plant breeding trials, e.g., environment 1) is subjected to
+#' \code{tidy_strings(str)}: the result will be then \code{c("ENV_1", "ENV_1",
+#' "ENV_1")}. See Examples section for more examples.
 #' @md
 #' @examples
 #' \donttest{
@@ -79,39 +92,93 @@
 #'                new_var = GENOTYPE,
 #'                pattern = "G",
 #'                replacement = "GENOTYPE_")
+#'
 #' # Remove strings
 #' remove_strings(data_ge)
 #' remove_strings(data_ge, ENV)
-#' ############# upper and lower cases ############
-#' all_lower_case("GENOTYPE")
-#' lc <- all_lower_case(data_ge)
-#' lc
-#' all_lower_case("GENOTYPE")
 #'
-#' all_upper_case("Genotype")
-#' all_upper_case(lc)
+#' ############# upper, lower and title cases ############
+#'gen_text <- c("GEN 1", "Gen 1", "gen 1")
+#'all_lower_case(gen_text)
+#'all_upper_case(gen_text)
+#'all_title_case(gen_text)
+#'
+#'# A whole data frame
+#'all_lower_case(data_ge)
+#'
+#'
+#' ############### Tidy up messy text string ##############
+#' messy_env <- c("ENV 1", "Env   1", "Env1", "env1", "Env.1", "Env_1")
+#' tidy_strings(messy_env)
+#'
+#' messy_gen <- c("GEN1", "gen 2", "Gen.3", "gen-4", "Gen_5", "GEN_6")
+#' tidy_strings(messy_gen)
+#'
+#' messy_int <- c("EnvGen", "Env_Gen", "env gen", "Env Gen", "ENV.GEN", "ENV_GEN")
+#' tidy_strings(messy_int)
+#'
+#' # Or a whole data frame
+#' library(tibble)
+#' df <- tibble(Env = messy_env,
+#'              gen = messy_gen,
+#'              Env_GEN = interaction(Env, gen),
+#'              y = rnorm(6, 300, 10))
+#' df
+#' tidy_strings(df)
 #' }
 #' @export
-all_upper_case <- function(.data){
+all_upper_case <- function(.data, ...){
   if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
     .data <- as.data.frame(.data)
-    mutate_if(.data, ~!is.numeric(.x), toupper) %>%
-      as_tibble(rownames = NA)
+    if(!missing(...)){
+      mutate_at(.data, vars(...), toupper) %>%
+        as_tibble(rownames = NA)
+    } else{
+      mutate_if(.data, ~!is.numeric(.x), toupper) %>%
+        as_tibble(rownames = NA)
+    }
   } else{
     toupper(.data)
   }
 }
 #' @name utils_num_str
 #' @export
-all_lower_case <- function(.data){
+all_lower_case <- function(.data, ...){
   if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
     .data <- as.data.frame(.data)
+    if(!missing(...)){
+      mutate_at(.data, vars(...), tolower) %>%
+        as_tibble(rownames = NA)
+    } else{
     mutate_if(.data, ~!is.numeric(.x), tolower) %>%
       as_tibble(rownames = NA)
+    }
   } else{
     tolower(.data)
   }
 }
+#' @name utils_num_str
+#' @export
+all_title_case <- function(.data, ...){
+  to_title <- function(x){
+    x <- tolower(x)
+    substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+    return(x)
+  }
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+    .data <- as.data.frame(.data)
+    if(!missing(...)){
+     mutate_at(.data, vars(...), to_title) %>%
+      as_tibble(rownames = NA)
+    } else{
+      mutate_if(.data, ~!is.numeric(.x), to_title) %>%
+        as_tibble(rownames = NA)
+    }
+  } else{
+    return(to_title(.data))
+  }
+}
+
 #' @name utils_num_str
 #' @export
 extract_number <- function(.data,
@@ -121,6 +188,7 @@ extract_number <- function(.data,
                            pull = FALSE,
                            .before = NULL,
                            .after  = NULL){
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
       mutate({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
@@ -138,6 +206,9 @@ extract_number <- function(.data,
     }
   }
   return(results)
+  } else{
+    as.numeric(gsub("[^0-9.-]+", "", .data))
+  }
 }
 #' @name utils_num_str
 #' @export
@@ -148,6 +219,7 @@ extract_string <- function(.data,
                            pull = FALSE,
                            .before = NULL,
                            .after  = NULL){
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
       mutate({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
@@ -165,10 +237,14 @@ extract_string <- function(.data,
     }
   }
   return(results)
+  } else{
+    as.character(gsub("[^A-z.-]+", "", .data))
+  }
 }
 #' @name utils_num_str
 #' @export
 remove_strings <- function(.data, ...){
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
   if(missing(...)){
     vars <- vars(everything())
   } else{
@@ -183,6 +259,9 @@ remove_strings <- function(.data, ...){
     mutate_at(.vars = vars,
               .funs = as.numeric)
   return(results)
+  } else{
+    return(gsub(pattern, replacement, .data))
+  }
 }
 #' @name utils_num_str
 #' @export
@@ -200,6 +279,7 @@ replace_number <- function(.data,
   } else{
     pattern <- pattern
   }
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
       mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
@@ -217,6 +297,9 @@ replace_number <- function(.data,
     }
   }
   return(results)
+  } else{
+    return(gsub(pattern, replacement, .data))
+  }
 }
 #' @name utils_num_str
 #' @export
@@ -234,6 +317,7 @@ replace_string <- function(.data,
   } else {
     pattern <- pattern
   }
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
       mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
@@ -251,6 +335,9 @@ replace_string <- function(.data,
     }
   }
   return(results)
+  } else{
+    return(gsub(pattern, replacement, .data))
+  }
 }
 #' @name utils_num_str
 #' @export
@@ -270,6 +357,30 @@ round_cols <- function(.data, ...,  digits = 2){
   }
   return(.data)
 }
+#' @name utils_num_str
+#' @export
+tidy_strings <- function(.data, ..., sep = "_"){
+  fstr <- function(x){
+    str <- toupper(gsub("(?<=[a-z0-9])(?=[A-Z])|[[:space:][:punct:]]+", sep, x, perl = TRUE))
+    str <- gsub("(?<=[A-Z])(?=[0-9])|(?<=[0-9])(?=[A-Z])", sep, str, perl = TRUE)
+    return(str)
+  }
+  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+    if(missing(...)){
+      results <-
+        mutate_if(.data, ~!is.numeric(.x),  fstr)
+    } else{
+      results <-
+        mutate_at(.data, vars(...), fstr)
+    }
+    return(results)
+  } else{
+    return(fstr(.data))
+  }
+}
+
+
+
 #' @title Utilities for handling with rows and columns
 #' @name utils_rows_cols
 #' @description
@@ -285,12 +396,17 @@ round_cols <- function(.data, ...,  digits = 2){
 #' rows in \code{.data} plus the rows declared in \code{...}.
 #' * \code{all_pairs()}: Get all the possible pairs between the levels of a
 #' factor.
+#' * \code{colnames_to_lower}: Translate all column names to lower case.
+#' * \code{colnames_to_upper}: Translate all column names to upper case.
+#' * \code{colnames_to_title}: Translate all column names to title case.
 #' * \code{column_exists()}: Checks if a column exists in a data frame. Return a
 #' logical value.
 #' * \code{columns_to_first()}: Move columns to first positions in \code{.data}.
 #' * \code{columns_to_last()}: Move columns to last positions in \code{.data}.
 #' * \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
-#' TRUE} then the existing variables are dropped.
+#' TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
+#' concatenated variable is pull out to a vector. This is speccialy useful when
+#' using \code{concatenate} to add columns to a data frame with \code{add_cols}.
 #' * \code{get_levels()}: Get the levels of a factor variable.
 #' * \code{get_level_size()}: Get the size of each level of a factor variable.
 #' * \code{remove_cols()}: Remove one or more columns from a data frame.
@@ -392,6 +508,15 @@ round_cols <- function(.data, ...,  digits = 2){
 #'                 replacement = "HYB_",
 #'                 .after = "ENV_GEN")
 #'
+#' ########### formating column names ###############
+#' # Creating data with messy column names
+#' df <- head(data_ge, 3)
+#' colnames(df) <- c("Env", "gen", "Rep", "GY", "hm")
+#' df
+#' colnames_to_lower(df)
+#' colnames_to_upper(df)
+#' colnames_to_title(df)
+#'
 #'
 #' ################### Adding rows ##################
 #' data_ge %>%
@@ -401,6 +526,7 @@ round_cols <- function(.data, ...,  digits = 2){
 #'            GY = 10.3,
 #'            HM = 100.11,
 #'            .after = 1)
+#'
 #' ########## checking if a column exists ###########
 #' column_exists(data_g, "GEN")
 #'
@@ -452,6 +578,23 @@ all_pairs <- function(.data, levels){
 }
 #' @name utils_rows_cols
 #' @export
+colnames_to_lower <- function(.data){
+  colnames(.data) <- all_lower_case(colnames(.data))
+  return(.data)
+}
+#' @name utils_rows_cols
+#' @export
+colnames_to_upper <- function(.data){
+  colnames(.data) <- all_upper_case(colnames(.data))
+  return(.data)
+}
+colnames_to_title <- function(.data){
+  colnames(.data) <- all_title_case(colnames(.data))
+  return(.data)
+}
+
+#' @name utils_rows_cols
+#' @export
 column_to_first <-function(.data, ...){
   select_cols(.data, ..., everything())
 }
@@ -481,8 +624,7 @@ concatenate <- function(.data,
                         .after  = NULL){
   if (drop == FALSE){
     conc <- select(.data, ...)
-    results <- mutate(.data,
-                      {{new_var}} := apply(conc, 1, paste, collapse = sep))
+    results <- mutate(.data, {{new_var}} := apply(conc, 1, paste, collapse = sep))
     if (pull == TRUE){
       results <- pull(results)
     }
@@ -491,8 +633,7 @@ concatenate <- function(.data,
     }
   } else{
     conc <- select(.data, ...)
-    results <- transmute(.data,
-                         {{new_var}} := apply(conc, 1, paste, collapse = sep))
+    results <- transmute(.data, {{new_var}} := apply(conc, 1, paste, collapse = sep))
     if (pull == TRUE){
       results <- pull(results)
     }
