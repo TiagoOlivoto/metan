@@ -5,6 +5,12 @@
 \alias{difference_var}
 \alias{intersect_var}
 \alias{union_var}
+\alias{width_of}
+\alias{width_greater_than}
+\alias{width_less_than}
+\alias{lower_case_only}
+\alias{upper_case_only}
+\alias{title_case_only}
 \title{Select helper}
 \usage{
 difference_var(prefix, suffix)
@@ -12,15 +18,37 @@ difference_var(prefix, suffix)
 intersect_var(prefix, suffix)
 
 union_var(prefix, suffix)
+
+width_of(n, vars = peek_vars(fn = "width_of"))
+
+width_greater_than(n, vars = peek_vars(fn = "width_greater_than"))
+
+width_less_than(n, vars = peek_vars(fn = "width_less_than"))
+
+lower_case_only(vars = peek_vars(fn = "lower_case_only"))
+
+upper_case_only(vars = peek_vars(fn = "upper_case_only"))
+
+title_case_only(vars = peek_vars(fn = "title_case_only"))
 }
 \arguments{
 \item{prefix}{A prefix that start the variable name.}
 
 \item{suffix}{A suffix that end the variable name.}
+
+\item{n}{The length of variable names to select. For \code{width_of()} the
+selected variables contains \code{n} characters. For
+\code{width_greater_than()} and \code{width_less_than()} the selected
+variables contains greater and less characteres than \code{n},
+respectively.}
+
+\item{vars}{A character vector of variable names. When called from inside
+selecting functions like \code{\link{select_cols}} these are automatically
+set to the names of the table.}
 }
 \description{
 These functions allow you to select variables based operations
-with prefixes and suffixes.
+with prefixes and suffixes and length of names.
 \itemize{
 \item \code{difference_var()}: Select variables that start with a prefix \strong{AND
 NOT} end wiht a suffix.
@@ -28,23 +56,50 @@ NOT} end wiht a suffix.
 \strong{AND} end wiht a suffix.
 \item \code{union_var()}: Select variables that start with a prefix \strong{OR}
 end wiht a suffix.
+\item \code{width_of()}: Select variables with width of \code{n}.
+\item \code{width_greater_than()}: Select variables with width greater than \code{n}.
+\item \code{width_less_than()}: Select variables with width less than \code{n}.
+\item \code{lower_case_only()}: Select variables that contains lower case only
+(e.g., "env").
+\item \code{upper_case_only()}: Select variables that contains upper case only
+(e.g., "ENV").
+\item \code{title_case_only()}: Select variables that contains upper case in the first
+character only (e.g., "Env").
 }
 }
 \examples{
 library(metan)
 
+
 # Select variables that start with "C" and not end with "D".
 data_ge2 \%>\%
-select(difference_var("C", "D"))
+select_cols(difference_var("C", "D"))
 
 # Select variables that start with "C" and end with "D".
 data_ge2 \%>\%
-select(intersect_var("C", "D"))
-
+select_cols(intersect_var("C", "D"))
 
 # Select variables that start with "C" or end with "D".
 data_ge2 \%>\%
-select(union_var("C", "D"))
+select_cols(union_var("C", "D"))
+
+# Select variables with width name of 4
+data_ge2 \%>\%
+select_cols(width_of(4))
+
+# Select variables with width name greater than 2
+data_ge2 \%>\%
+select_cols(width_greater_than(2))
+
+# Select variables with width name less than 3
+data_ge2 \%>\%
+select_cols(width_less_than(3))
+
+# Creating data with messy column names
+df <- head(data_ge, 3)
+colnames(df) <- c("Env", "gen", "Rep", "GY", "hm")
+select_cols(df, lower_case_only())
+select_cols(df, upper_case_only())
+select_cols(df, title_case_only())
 
 }
-\keyword{internal}
