@@ -24,7 +24,8 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#'   replications/blocks.
+#'   replications/blocks. \strong{AT LEAST THREE REPLICATES ARE REQUIRED TO
+#'   PERFORM THE CROSS-VALIDATION}.
 #' @param resp The response variable.
 #' @param block Defaults to \code{NULL}. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
@@ -91,6 +92,9 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
     Nenv <- length(unique(data$ENV))
     Ngen <- length(unique(data$GEN))
     Nbloc <- length(unique(data$REP))
+    if (Nbloc <= 2) {
+      stop("At least three replicates are required to perform the cross-validation.")
+    }
     nrepval <- Nbloc - 1
     minimo <- min(Nenv, Ngen) - 1
     naxisvalidation <- minimo + 1
@@ -197,6 +201,9 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
     Nenv <- length(unique(data$ENV))
     Ngen <- length(unique(data$GEN))
     Nbloc <- length(unique(data$REP))
+    if (Nbloc <= 2) {
+      stop("At least three replicates are required to perform the cross-validation.")
+    }
     nrepval <- Nbloc - 1
     minimo <- min(Nenv, Ngen) - 1
     naxisvalidation <- minimo + 1

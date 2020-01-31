@@ -18,7 +18,8 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#'   replications/blocks.
+#'   replications/blocks. \strong{AT LEAST THREE REPLICATES ARE REQUIRED TO
+#'   PERFORM THE CROSS-VALIDATION}.
 #' @param resp The response variable.
 #' @param block Defaults to \code{NULL}. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
@@ -110,7 +111,15 @@
 #'          cv_blup(ENV, GEN, REP, GY, nboot = 10)
 #' }
 #'
-cv_blup <- function(.data, env, gen, rep, resp, block = NULL, nboot = 200, random = "gen", verbose = TRUE) {
+cv_blup <- function(.data,
+                    env,
+                    gen,
+                    rep,
+                    resp,
+                    block = NULL,
+                    nboot = 200,
+                    random = "gen",
+                    verbose = TRUE) {
     if(missing(block)){
         data <- .data %>%
             dplyr::select(ENV = {{env}},
@@ -120,6 +129,9 @@ cv_blup <- function(.data, env, gen, rep, resp, block = NULL, nboot = 200, rando
             mutate_at(1:3, as.factor)
         data <- tibble::rowid_to_column(data)
         Nbloc <- nlevels(data$REP)
+        if (Nbloc <= 2) {
+            stop("At least three replicates are required to perform the cross-validation.")
+        }
         nrepval <- Nbloc - 1
         if (verbose == TRUE) {
             pb <- progress_bar$new(
@@ -179,11 +191,10 @@ cv_blup <- function(.data, env, gen, rep, resp, block = NULL, nboot = 200, rando
                                  Y = {{resp}})
         data <- rowid_to_column(data)
         Nbloc <- nlevels(data$REP)
-        nrepval <- Nbloc - 1
-        if (nrepval != Nbloc - 1) {
-            stop("The number replications used for validation must be equal to total number of replications -1 (In this case ",
-                 (Nbloc - 1), ").")
+        if (Nbloc <= 2) {
+            stop("At least three replicates are required to perform the cross-validation.")
         }
+        nrepval <- Nbloc - 1
         if (verbose == TRUE) {
             pb <- progress_bar$new(
                 format = "Validating :current of :total sets [:bar]:percent (:elapsedfull -:eta left)",

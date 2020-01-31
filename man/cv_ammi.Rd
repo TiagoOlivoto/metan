@@ -27,7 +27,8 @@ environments.}
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{rep}{The name of the column that contains the levels of the
-replications/blocks.}
+replications/blocks. \strong{AT LEAST THREE REPLICATES ARE REQUIRED TO
+PERFORM THE CROSS-VALIDATION}.}
 
 \item{resp}{The response variable.}
 
