@@ -208,7 +208,9 @@ desc_stat <- function(.data = NULL,
                            sum.sq.dev = ~sum_sq_dev(., na.rm = na.rm)))
       if (ncol(data) > 28) {
         statistics <- suppressWarnings(data %>%
-                                         pivot_longer(names_to = "stat", values_to = "val") %>%
+                                         pivot_longer(everything(),
+                                                      names_to = "stat",
+                                                      values_to = "val") %>%
                                          separate(stat,
                                                   into = c("var", "stat"),
                                                   sep = "_(?=[^_]*$)") %>%
@@ -310,7 +312,9 @@ desc_stat <- function(.data = NULL,
 
     if (ncol(data) > 28) {
       statistics <- suppressWarnings(data %>%
-                                       pivot_longer(names_to = "stat", values_to = "val") %>%
+                                       pivot_longer(everything(),
+                                                    names_to = "stat",
+                                                    values_to = "val") %>%
                                        separate(stat,
                                                 into = c("var", "stat"),
                                                 sep = "_(?=[^_]*$)") %>%
