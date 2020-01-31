@@ -588,11 +588,12 @@ colnames_to_upper <- function(.data){
   colnames(.data) <- all_upper_case(colnames(.data))
   return(.data)
 }
+#' @name utils_rows_cols
+#' @export
 colnames_to_title <- function(.data){
   colnames(.data) <- all_title_case(colnames(.data))
   return(.data)
 }
-
 #' @name utils_rows_cols
 #' @export
 column_to_first <-function(.data, ...){
