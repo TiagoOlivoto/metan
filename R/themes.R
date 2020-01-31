@@ -9,7 +9,7 @@
 #' @param alpha An alpha value for transparency (0 < alpha < 1).
 #' @param color A color name.
 #'
-#' @rdname themes
+#' @name themes
 #' @description
 #' * \code{theme_metan()}: Theme with a gray background and major grids.
 #' * \code{theme_metan_minimal()}: A minimalistic theme with half-open frame, white
@@ -60,7 +60,7 @@ theme_metan = function (grid = "none", col.grid = "white", color.background = "g
           strip.background = element_rect(color = "black", fill = NA))
 }
 
-#' @rdname themes
+#' @name themes
 #' @export
 #'
 theme_metan_minimal = function () {
@@ -84,13 +84,13 @@ theme_metan_minimal = function () {
           strip.background = element_blank())
 }
 
-#' @rdname themes
+#' @name themes
 #' @export
 transparent_color <- function() {
   return("#FFFFFF00")
 }
 
-#' @rdname themes
+#' @name themes
 #' @importFrom grDevices col2rgb rgb
 #' @export
 alpha_color <- function(color, alpha = 50) {
