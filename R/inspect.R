@@ -58,7 +58,7 @@ inspect <- function (.data,
       Min = sapply(.data, function(x) ifelse(is.numeric(x), round(min(x, na.rm = TRUE),2), NA)),
       Median = sapply(.data, function(x) ifelse(is.numeric(x), round(median(x, na.rm = TRUE),2), NA)),
       Max = sapply(.data, function(x) ifelse(is.numeric(x), round(max(x, na.rm = TRUE),2), NA)),
-      Outlier = sapply(.data, function(x) ifelse(is.numeric(x), find_outliers(values = x, verbose = F), NA))
+      Outlier = sapply(.data, function(x) ifelse(is.numeric(x), find_outliers(x, verbose = F), NA))
     ) %>%
     rownames_to_column("Variable") %>%
     as_tibble()
