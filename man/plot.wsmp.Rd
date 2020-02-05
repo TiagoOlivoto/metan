@@ -7,18 +7,18 @@
 \method{plot}{wsmp}(
   x,
   var = 1,
-  type = 2,
-  export = FALSE,
-  file.type = "pdf",
-  file.name = NULL,
-  width = 6,
-  height = 5,
-  size.lab = 1,
-  margins = c(5, 4),
+  type = 1,
   y.lab = NULL,
   x.lab = NULL,
-  key.lab = "Genotype ranking",
-  resolution = 300,
+  size.lab = 12,
+  export = "deprecated",
+  file.type = "deprecated",
+  file.name = "deprecated",
+  width = "deprecated",
+  height = "deprecated",
+  margins = "deprecated",
+  key.lab = "deprecated",
+  resolution = "deprecated",
   ...
 )
 }
@@ -29,61 +29,59 @@
 variable of \code{x}.}
 
 \item{type}{\code{1 = Heat map Ranks}: this graphic shows the genotype
-ranking considering the WAAS estimated with different numbers of Principal
-Components; \code{2 = Heat map WAASY-GY ratio}: this graphic shows the
-genotype ranking considering the different combinations in the WAAS/GY
-ratio.}
-
-\item{export}{Export (or not) the plot. Default is \code{FALSE}.}
-
-\item{file.type}{If \code{export = TRUE} define the type of file to be
-exported. Default is \code{pdf}, Graphic can also be exported in
-\code{*.tiff} format by declaring \code{file.type = 'tiff'}.}
-
-\item{file.name}{The name of the file for exportation, default is
-\code{NULL}, i.e. the files are automatically named.}
-
-\item{width}{The width 'inch' of the plot. Default is \code{8}.}
-
-\item{height}{The height 'inch' of the plot. Default is \code{7}.}
-
-\item{size.lab}{The label size of the plot. It is suggested attribute 1}
-
-\item{margins}{Numeric vector of length 2 containing the margins for column
-and row names, respectively. Default is \code{c(5, 4)}.}
+ranking considering the WAASB index estimated with different numbers of
+Principal Components; \code{2 = Heat map WAASY-GY ratio}: this graphic
+shows the genotype ranking considering the different combinations in the
+WAASB/GY ratio.}
 
 \item{y.lab}{The label of y axis. Default is 'Genotypes'.}
 
 \item{x.lab}{The label of x axis. Default is 'Number of axes'.}
 
-\item{key.lab}{The label of color key. Default is 'Genotype ranking'.}
+\item{size.lab}{This argument is deprecated as of metan 1.2.1.9000.}
 
-\item{resolution}{Valid parameter if \code{file.type = 'tiff'}. Define the
-resolution of the plot. Default is '300'.}
+\item{export}{This argument is deprecated as of metan 1.2.1.9000.}
+
+\item{file.type}{This argument is deprecated as of metan 1.2.1.9000.}
+
+\item{file.name}{This argument is deprecated as of metan 1.2.1.9000.}
+
+\item{width}{This argument is deprecated as of metan 1.2.1.9000.}
+
+\item{height}{This argument is deprecated as of metan 1.2.1.9000.}
+
+\item{margins}{This argument is deprecated as of metan 1.2.1.9000.}
+
+\item{key.lab}{This argument is deprecated as of metan 1.2.1.9000.}
+
+\item{resolution}{This argument is deprecated as of metan 1.2.1.9000.}
 
 \item{...}{Currently not used.}
+}
+\value{
+An object of class \code{gg}.
 }
 \description{
 Plot heat maps with genotype ranking in two ways.
 }
 \details{
 The first type of heatmap shows the genotype ranking depending on the number
-of principal component axis used for estimating the WAASB index. An euclidean
-distance-based dendrogram is used for grouping the genotype ranking for both
-genotypes and principal component axis. The second type of heatmap shows the
+of principal component axis used for estimating the WAASB index. The second type of heatmap shows the
 genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a
 ratio of 100/0 considers exclusively the stability for the genotype ranking.
 On the other hand, a ratio of 0/100 considers exclusively the productivity
-for the genotype ranking.  Four clusters are estimated (1) unproductive and
-unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but
-unproductive genotypes; and (4), productive and stable genotypes.
+for the genotype ranking.  Four clusters of genotypes are shown by label colors (red) unproductive and
+unstable genotypes; (blue) productive, but unstable genotypes; (black) stable, but
+unproductive genotypes; and (green), productive and stable genotypes.
 }
 \examples{
 \donttest{
 library(metan)
-model <- waas(data_ge2, ENV, GEN, REP, PH) \%>\%
+model <- waasb(data_ge, ENV, GEN, REP, GY) \%>\%
          wsmp()
-plot(model)
+p1 <- plot(model)
+p2 <- plot(model, type = 2)
+arrange_ggplot(p1, p2, ncol = 1)
 }
 
 }

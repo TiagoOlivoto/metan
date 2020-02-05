@@ -8,7 +8,7 @@ clustering(
   .data,
   ...,
   by = NULL,
-  means_by = NULL,
+  means_by = "deprecated",
   scale = FALSE,
   selvar = FALSE,
   verbose = TRUE,
@@ -18,27 +18,17 @@ clustering(
 )
 }
 \arguments{
-\item{.data}{The data to be analyzed. It may be a data frame containing the
-means of each observation in each variable or, alternatively, replicates
-for each factor. In this case, a grouping variable is required in the
-argument \code{means_by} to compute the means. In addition, .data may be an
-object passed from the function \code{split_factors}. In this case, the
-distances are computed for each level of the grouping variable.}
+\item{.data}{The data to be analyzed. It can be a data frame, possible with
+grouped data passed from \code{\link[dplyr]{group_by}()}.}
 
 \item{...}{The variables in \code{.data} to compute the distances. Set to
 \code{NULL}, i.e., all the numeric variables in \code{.data} are used.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
-\item{means_by}{If \code{.data} doesn't contain the mean for each
-observation, then \code{means_by} is a grouping variable to compute the
-means. For example, if \code{means_by = GEN}, then the means of the
-numerical variables will be computed for each level of the grouping
-variable \code{GEN}.}
+\item{means_by}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{scale}{Should the data be scaled before computing the distances? Set to
 FALSE. If TRUE, then, each observation will be divided by the standard
@@ -116,32 +106,23 @@ library(metan)
 d1 <- clustering(data_ge2)
 
 # Based on the mean for each genotype
-d2 <- clustering(data_ge2, means_by = GEN)
+mean_gen <-
+ data_ge2 \%>\%
+ means_by(GEN) \%>\%
+ column_to_rownames("GEN")
 
-# Based on the mean of each genotype
-# Variables NKR, TKW, and NKE
-d3 <- clustering(data_ge2, NKR, TKW, NKE, means_by = GEN)
+d2 <- clustering(mean_gen)
+
 
 # Select variables for compute the distances
-d4 <- clustering(data_ge2, means_by = GEN, selvar = TRUE)
+d3 <- clustering(mean_gen, selvar = TRUE)
 
 # Compute the distances with standardized data
 # Define 4 clusters
-d5 <- clustering(data_ge2,
-                 means_by = GEN,
+d4 <- clustering(data_ge,
+                 by = ENV,
                  scale = TRUE,
                  nclust = 4)
-
-# Compute the distances for each environment
-# Select the variables NKR, TKW, and NKE
-# Use the mean for each genotype
-d6 <- clustering(data_ge2,
-                NKR, TKW, NKE,
-                by = ENV,
-                means_by = GEN)
-
-# Check the correlation between distance matrices
-pairs_mantel(d6)
 
 }
 }

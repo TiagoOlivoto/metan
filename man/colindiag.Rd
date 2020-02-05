@@ -7,19 +7,17 @@
 colindiag(.data, ..., by = NULL, n = NULL, verbose = TRUE)
 }
 \arguments{
-\item{.data}{The data to be analyzed. Must be a symmetric correlation matrix
-or, a dataframe containing the predictor variables, or an object of class
-\code{split_factors}.}
+\item{.data}{The data to be analyzed. It must be a symmetric correlation
+matrix, or a data frame, possible with grouped data passed from
+\code{\link[dplyr]{group_by}()}.}
 
 \item{...}{Variables to use in the correlation. If \code{...} is null then
 all the numeric variables from \code{.data} are used. It must be a single
 variable name or a comma-separated list of unquoted variables names.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
@@ -28,8 +26,8 @@ objects used to compute the correlation coefficients.}
 console.}
 }
 \value{
-The following values are returned. Please, note that if a grouping variable
-is used, then the results are returned into a list.
+If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+then the results will be returned into a list-column of data frames.
 \itemize{
 \item \strong{cormat} A symmetric Pearson's coefficient correlation matrix
 between the variables
@@ -66,13 +64,14 @@ col_diag <- colindiag(cor_iris, n = n)
 
 # Using a data frame
 col_diag_gen <- data_ge2 \%>\%
-                split_factors(GEN) \%>\%
+                group_by(GEN) \%>\%
                 colindiag()
 
-# Diagnostic by levels of a factor selecting desired variables
+# Diagnostic by levels of a factor
+# For variables with "N" in variable name
 col_diag_gen <- data_ge2 \%>\%
-                split_factors(GEN) \%>\%
-                colindiag(EH, PH, CD, CL)
+                group_by(GEN) \%>\%
+                colindiag(contains("N"))
 }
 }
 \references{

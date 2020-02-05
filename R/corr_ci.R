@@ -8,7 +8,8 @@
 #'
 #' where \eqn{n} is the sample size and \code{r} is the correlation coefficient.
 #'
-#' @param .data A dataset containing variables only or a symmetric correlation
+#'@param .data The data to be analyzed. It can be a data frame (possible with
+#'  grouped data passed from \code{\link[dplyr]{group_by}()}) or a symmetric correlation
 #'   matrix.
 #' @param ... Variables to compute the confidence interval. If not informed, all
 #'   the numeric variables from \code{.data} are used.
@@ -16,11 +17,9 @@
 #'   coefficient.
 #' @param n The sample size if \code{data} is a correlation matrix or if r is
 #'   informed.
-#' @param by One variable (factor) to split the data into subsets. The function
-#'   is then applied to each subset and returns a list where each element
-#'   contains the results for one level of the variable in \code{by}. To split
-#'   the data by more than one factor variable, use the function
-#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
+#'@param by One variable (factor) to compute the function by. It is a shortcut
+#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  one grouping variable use that function.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #'   console.
 #' @return A tibble containing the values of the correlation, confidence
@@ -41,7 +40,10 @@
 #' CI1 <- corr_ci(data_ge2)
 #'
 #' # By each level of the factor 'ENV'
-#' CI2 <- corr_ci(data_ge2, CD, TKW, NKE, by = ENV)
+#' CI2 <- corr_ci(data_ge2, CD, TKW, NKE,
+#'                by = ENV,
+#'                verbose = FALSE)
+#' CI2
 #'
 corr_ci <- function(.data = NA,
                     ...,
@@ -49,17 +51,29 @@ corr_ci <- function(.data = NA,
                     n = NULL,
                     by = NULL,
                     verbose = TRUE) {
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- group_by(.data, {{by}})
+  }
+  if(is_grouped_df(.data)){
+    results <- .data %>%
+      doo(corr_ci,
+          ...,
+          r = r,
+          n = n,
+          verbose = verbose)
+    return(results)
+  }
   if (any(!is.na(.data))) {
-    if (!is.matrix(.data) && !is.data.frame(.data) && !is.split_factors(.data)) {
-      stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
+    if (!is.matrix(.data) && !is.data.frame(.data)) {
+      stop("The object 'x' must be a correlation matrix or data.frame.")
     }
     if (is.matrix(.data) && is.null(n)) {
       stop("You have a matrix but the sample size used to compute the correlations (n) was not declared.")
     }
     if (is.data.frame(.data) && !is.null(n)) {
-      stop("You cannot informe the sample size because a data frame was used as input.")
-    }
-    if (is.split_factors(.data) && !is.null(n)) {
       stop("You cannot informe the sample size because a data frame was used as input.")
     }
     internal <- function(x) {
@@ -80,37 +94,6 @@ corr_ci <- function(.data = NA,
     if (is.matrix(.data)) {
       out <- internal(.data)
     }
-    if (!missing(by)){
-      if(length(as.list(substitute(by))[-1L]) != 0){
-        stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
-      }
-      .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
-    }
-    if (any(class(.data) == "split_factors")) {
-      if (missing(...)) {
-        data <- lapply(.data[[1]], function(x){
-          select_numeric_cols(x)
-        })
-      }
-      if (!missing(...)) {
-        data <- lapply(.data[[1]], function(x){
-         select_cols(x, ...) %>%
-            select_numeric_cols()
-        })
-      }
-      out <- lapply(seq_along(data), function(x) {
-        internal(data[[x]])
-      })
-      names(out) = names(data)
-      df = do.call(rbind, lapply(out, function(x){
-        x
-      })) %>%
-        arrange(Pair) %>%
-        mutate(LEVEL = paste(rep(names(out), nrow(out[[1]])))) %>%
-        arrange(LEVEL) %>%
-        select(LEVEL, everything())
-      return(df)
-    }
     if (is.data.frame(.data)) {
       if (missing(...)) {
         data <- select_numeric_cols(.data)
@@ -121,9 +104,7 @@ corr_ci <- function(.data = NA,
       }
       out <- internal(data)
       if (verbose == TRUE) {
-        message("The factors ", paste0(collapse = " ",
-                                       names(.data[, unlist(lapply(.data, is.factor))])),
-                " where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' ")
+        print(out)
       }
       return(as_tibble(out))
     }

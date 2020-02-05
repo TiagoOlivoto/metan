@@ -2,13 +2,14 @@
 % Please edit documentation in R/desc_stat.R
 \name{desc_stat}
 \alias{desc_stat}
+\alias{desc_wider}
 \title{Descriptive statistics}
 \usage{
 desc_stat(
   .data = NULL,
   ...,
   by = NULL,
-  values = NULL,
+  values = "deprecated",
   stats = "main",
   hist = FALSE,
   level = 0.95,
@@ -17,44 +18,61 @@ desc_stat(
   verbose = TRUE,
   plot_theme = theme_metan()
 )
+
+desc_wider(.data, which, var = "deprecated")
 }
 \arguments{
-\item{.data}{The data to be analyzed. Must be a dataframe or an object of
-class \code{split_factors}.}
+\item{.data}{The data to be analyzed. It can be a data frame (possible with
+grouped data passed from \code{\link[dplyr]{group_by}()} or a numeric
+vector. For \code{desc_wider()} \code{.data} is an object of class
+\code{desc_stat}.}
 
 \item{...}{A single variable name or a comma-separated list of unquoted
-variables names. If no variable is informed, all the numeric from
-\code{.data} variables will be used.}
+variables names. If no variable is informed, all the numeric variables from
+\code{.data} will be used. Select helpers are allowed.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
-\item{values}{An alternative way to pass the data to the function. It must be
-a numeric vector.}
+\item{values}{Deprecated argument. It will be retired in the next release.}
 
-\item{stats}{The descriptive statistics to show. Defaults to \code{"main"}
-(main statistics). Set to \code{"all"} to compute all the statistics bellow
-or chose one (or more) of the following: \code{'AV.dev'} (average
-deviation), \code{'CI.mean'} (confidence interval for the mean), \code{'CV'}
-(coefficient of variation), \code{'IQR'} (interquartile range),
-\code{'gm.mean'} (geometric mean), \code{'hm.mean'} (harmonic mean),
-\code{'Kurt'} (kurtosis), \code{'mad'} (median absolute deviation),
-\code{'max'} (maximum value), \code{'mean'} (arithmetic mean),
-\code{'median'} (median), \code{'min'} (minimum value), \code{'n'} (the
-length of the data), \code{'Q2.5'} (the percentile 2.5\%), \code{'Q25'} (the
-first quartile, Q1), \code{'Q75'} (the third quartile, Q3), \code{'Q97.5'}
-(the percentile 97.5\%), \code{range} (The range of data), \code{'SD.amo'}
-(the sample standard deviation), \code{'SD.pop'} (the population standard
-deviation), \code{'SE.mean'} (the standard error of the mean), \code{'skew'}
-(the skewness), \code{sum} (the sum of the values), \code{sum.dev} (the sum
-of the absolute deviations), \code{sum.sq.dev} (the sum of the squared
-deviations), \code{valid.n} (The size of sample with valid number (not NA),
-\code{'var.amo'} (the sample variance), \code{'var.pop'} (the population
-variance). Use a comma-separated vector of names to select the statistics.
-For example, \code{stats = c("median, mean, CV, n")}}
+\item{stats}{The descriptive statistics to show. This is used to filter the
+output after computation. Defaults to \code{"main"} (cv, max, mean median,
+min, sd.amo, se.mean, ci.mean ). Other allowed values are \code{"all"} to
+show all the statistics, \code{"robust"} to show robust statistics,
+\code{"quantile"} to show quantile statistics, or chose one (or more) of the
+following:
+\itemize{
+\item \code{"av.dev"}: average deviation.
+\item \code{"ci.mean"}: 95 percent confidence interval of the mean.
+\item \code{"cv"}: coefficient of variation.
+\item \code{"iqr"}: interquartile range.
+\item \code{"gm.mean"}: geometric mean.
+\item \code{"hm.mean"}: harmonic mean.
+\item \code{"Kurt"}: kurtosis.
+\item \code{"mad"}: median absolute deviation.
+\item \code{"max"}: maximum value.
+\item \code{"mean"}: arithmetic mean.
+\item \code{"median"}: median.
+\item \code{"min"}: minimum value.
+\item \code{"n"}: the length of the data.
+\item \code{"q2.5", "q25", "q75", "q97.5"}: the percentile 2.5\\%, first
+quartile, third quartile, and percentile 97.5\\%, respectively.
+\item \code{range}: The range of data).
+\item \code{"sd.amo", "sd.pop"}: the sample and population standard deviation.
+\item \code{"se.mean"}: the standard error of the mean).
+\item \code{"skew"}: skewness.
+\item \code{"sum"}. the sum of the values.
+\item \code{"sum.dev"}: the sum of the absolute deviations.
+\item \code{"sum.sq.dev"}: the sum of the squared deviations.
+\item \code{"valid.n"}: The size of sample with valid number (not NA).
+\item \code{"var.amo", "var.pop"}: the sample and population variance.
+}
+
+Use a names to select the statistics. For example, \code{stats = c("median,
+ mean, cv, n")}. Note that the statistic names \strong{are not}
+case-sensitive. Both comma or space can be used as separator.}
 
 \item{hist}{Logical argument defaults to \code{FALSE}. If \code{hist = TRUE}
 then a histogram is created for each selected variable.}
@@ -72,72 +90,78 @@ silently.}
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
 \code{\link[ggplot2]{theme}}.}
+
+\item{which}{A statistic to fill the table.}
+
+\item{var}{Deprecated argument. It will be retired in the next release.}
 }
 \value{
-A tibble with the statistics in the lines and variables in columns. If
- \code{.data} is an object of class \code{split_factors}, then the statistics
- will be shown for each level of the grouping variable in the function
- \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
+\itemize{
+\item \code{desc_stats()} returns a tibble with the statistics in the columns and
+variables (with possible grouping factors) in rows.
+\item \code{desc_wider()} returns a tibble with variables in columns and grouping
+factors in rows.
+}
 }
 \description{
-Computes the most used measures of central tendency, position, and dispersion.
+\itemize{
+\item \code{desc_stat()} Computes the most used measures of central tendency,
+position, and dispersion.
+\item \code{desc_wider()} is useful to put the variables in columns and grouping
+variables in rows. The table is filled with a statistic chosen with the
+argument \code{stat}.
 }
-\details{
-In cases when the statistics are computed for more than two variables
- with data coming from the function \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.the results
- are returned in a \emph{long} format. Thus, use the function
- \code{\link{desc_wider}} to convert it into a \emph{wide} format (levels of
- the factors in the rows and statistics in the columns).
 }
 \examples{
 \donttest{
 library(metan)
 #===============================================================#
-# Example 1: main statistics (mean, minimum, median, maximum,   #
-# sample variance, standard error and coefficient of variation) #
-# for all numeric variables in data                             #
+# Example 1: main statistics (coefficient of variation, maximum,#
+# mean, median, minimum, sample standard deviation, standard    #
+# error and confidence interval of the mean) for all numeric    #
+# variables in data                                             #
 #===============================================================#
 
 desc_stat(data_ge2)
 
 #===============================================================#
-#Example 2: main statistics using a numeric vector as input data#
+#Example 2: robust statistics using a numeric vector as input   #
+# data
 #===============================================================#
 vect <- data_ge2$TKW
-desc_stat(values = vect)
+desc_stat(vect, stats = "robust")
 
 #===============================================================#
 # Example 3: Select specific statistics. In this example, NAs   #
 # are removed before analysis with a warning message            #
 #===============================================================#
-desc_stat(values = c(12, 13, 19, 21, 8, NA, 23, NA),
+desc_stat(c(12, 13, 19, 21, 8, NA, 23, NA),
           stats = c('mean, se.mean, cv, n, valid.n'),
           na.rm = TRUE)
 
 #===============================================================#
 # Example 4: Select specific variables and compute statistics by#
-# levels of a factor variable (ENV)                             #
+# levels of a factor variable (GEN)                             #
 #===============================================================#
 stats <-
   desc_stat(data_ge2,
             EP, EL, EH, ED, PH, CD,
-            by = ENV)
+            by = GEN)
+stats
 
-# To get a 'wide' format with the statistics of the variable EP above.
-desc_wider(stats, PH)
+# To get a 'wide' format with the maximum values for all variables
+desc_wider(stats, max)
 
 #===============================================================#
 # Example 5: Compute all statistics for all numeric variables   #
-# by two or more factors. Note that split_factors() was used to #
-# split the data by the two factor variables ENV and GEN        #
+# by two or more factors. Note that group_by() was used to pass #
+# grouped data to the function desc_stat()                      #
 #===============================================================#
 
-stats_all <-
-  data_ge2 \%>\%
-  split_factors(ENV, GEN) \%>\%
-  desc_stat(stats = "all")
+data_ge2 \%>\%
+  group_by(ENV, GEN) \%>\%
+  desc_stat()
 
-desc_wider(stats_all, PH)
 }
 }
 \author{

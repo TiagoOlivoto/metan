@@ -5,26 +5,15 @@
 #' correlation pairs.
 #'
 #'
-#' @param .data The data to be analyzed. Must be a dataframe containing the
-#'   numeric variables that will be used in the estimation of the correlations.
-#'   The data can also be passed directly by the arguments \code{FG} and
-#'   \code{SG}. Alternatively, \code{.data} may be passed from the function
-#'   \code{split_factors}. In such case, the canonical correlation will be
-#'   estimated for each level of the grouping variable in that function.
-#' @param FG,SG If a dataframe is informed in \code{.data}, then \code{FG} and
-#'   \code{SG} is a comma-separated list of unquoted variable names that will
+#'@param .data The data to be analyzed. It can be a data frame (possible with
+#'  grouped data passed from \code{\link[dplyr]{group_by}()}.
+#' @param FG,SG A comma-separated list of unquoted variable names that will
 #'   compose the first (smallest) and second (highest) group of the correlation
 #'   analysis, respectively. Select helpers are also allowed.
-#' @param by One variable (factor) to split the data into subsets. The function
-#'   is then applied to each subset and returns a list where each element
-#'   contains the results for one level of the variable in \code{by}. To split
-#'   the data by more than one factor variable, use the function
-#'   \code{\link{split_factors}} to pass subsetted data to \code{.data}.
-#' @param means_by The argument \code{means_by} is a grouping variable to
-#'   compute the means by. For example, if \code{means_by = GEN}, then the means
-#'   of the numerical variables will be computed for each level of the grouping
-#'   variable GEN, and the canonical correlation analysis will be computed using
-#'   these means.
+#'@param by One variable (factor) to compute the function by. It is a shortcut
+#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  one grouping variable use that function.
+#' @param means_by \strong{Deprecated argument. It will be retired in the next release.}
 #' @param use The matrix to be used. Must be one of 'cor' for analysis using the
 #'   correlation matrix (default) or 'cov' for analysis using the covariance
 #'   matrix.
@@ -38,9 +27,9 @@
 #' @param collinearity Logical argument. If \code{TRUE} (default) then a
 #'   collinearity diagnostic is performed for each group of variables according
 #'   to Olivoto et al.(2017).
-#' @return If \code{.data} is an object of class \code{split_factors} then the
-#' results will be returned into a list where each element has the following
-#' values.
+#' @return If \code{.data} is a grouped data passed from
+#'   \code{\link[dplyr]{group_by}()} then the results will be returned into a
+#'   list-column of data frames.
 #'
 #' * \strong{Matrix} The correlation (or covariance) matrix of the variables
 #'
@@ -85,10 +74,6 @@
 #'                FG = c(PH, EH, EP),
 #'                SG = c(EL, ED, CL, CD, CW, KW, NR))
 #'
-#' cc2 <- can_corr(FG = data_ge2[, 4:6],
-#'                 SG = data_ge2[, 7:13],
-#'                 verbose = FALSE,
-#'                 collinearity = FALSE)
 #'
 #' # Canonical correlations for each environment
 #' cc3 <- data_ge2 %>%
@@ -98,11 +83,11 @@
 #'                 verbose = FALSE)
 #'
 #'
-can_corr <- function(.data = NULL,
-                     FG = NULL,
-                     SG = NULL,
+can_corr <- function(.data,
+                     FG,
+                     SG,
                      by = NULL,
-                     means_by = NULL,
+                     means_by = "deprecated",
                      use = "cor",
                      test = "Bartlett",
                      prob = 0.05,
@@ -110,267 +95,54 @@ can_corr <- function(.data = NULL,
                      stdscores = FALSE,
                      verbose = TRUE,
                      collinearity = TRUE) {
-  if (missing(.data) & missing(FG) || missing(SG)) {
-    stop("No valid data input for analysis.")
-  }
-  if (!missing(.data) & missing(FG) || missing(SG)) {
-    stop("If a dataset is used as input then 'FG' and 'SG' must be declared.")
-  }
-  if (!use %in% c("cov", "cor")) {
-    stop("The argument  'use' is incorrect, it should be 'cov' or 'cor'.")
-  }
-  if (missing(.data) & !missing(FG) & !missing(SG)) {
-    if (!is.data.frame(FG)) {
-      stop("'FG' should be data frame.")
-    }
-    if (!is.data.frame(SG)) {
-      stop("'SG' should be data frame.")
-    }
-  }
   if (!missing(by)){
     if(length(as.list(substitute(by))[-1L]) != 0){
-      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'split_factors()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
     }
-    .data <- split_factors(.data, {{by}}, verbose = FALSE, keep_factors = TRUE)
+    .data <- group_by(.data, {{by}})
   }
-  if (any(class(.data) == "split_factors")) {
-    dfs <- list()
-    datain <- .data[[1]]
+  if(is_grouped_df(.data)){
+    results <- .data %>%
+      doo(can_corr,
+          FG = {{FG}},
+          SG = {{SG}},
+          use = use,
+          test = test,
+          prob = prob,
+          center = center,
+          stdscores = stdscores,
+          verbose = verbose,
+          collinearity = collinearity)
+    return(results)
+  }
+  # if (missing(.data) & missing(FG) || missing(SG)) {
+  #   stop("No valid data input for analysis.")
+  # }
+  # if (!missing(.data) & missing(FG) || missing(SG)) {
+  #   stop("If a dataset is used as input then 'FG' and 'SG' must be declared.")
+  # }
+  # if (!use %in% c("cov", "cor")) {
+  #   stop("The argument  'use' is incorrect, it should be 'cov' or 'cor'.")
+  # }
+  # if (missing(.data) & !missing(FG) & !missing(SG)) {
+  #   if (!is.data.frame(FG)) {
+  #     stop("'FG' should be data frame.")
+  #   }
+  #   if (!is.data.frame(SG)) {
+  #     stop("'SG' should be data frame.")
+  #   }
+  # }
 
-    for (k in 1:length(datain)) {
-      if(!missing(means_by)){
-        .data <- suppressWarnings(group_by(datain[[k]], {{means_by}}) %>%
-          summarise_all(mean) %>%
-          ungroup() %>%
-          as.data.frame())
-        nam_fact = .data %>% select({{means_by}}) %>% pull()
-      } else{
-        .data <- datain[[k]]
-      }
-      nam <- names(datain[k])
-      FGV <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
-      SGV <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
-      if (nrow(FGV) != nrow(SGV)) {
-        stop("The number of observations of 'FG', should be equal to 'SG'.")
-      }
-      if (ncol(FGV) > ncol(SGV)) {
-        stop("The number of variables in 'FG' should be lesser than or equal to the number of variables in 'SG'.")
-      }
-      if (!test %in% c("Bartlett", "Rao")) {
-        stop("The argument 'test' is incorrect, it should be 'Bartlett' or 'Rao'.")
-      }
-      if (!is.numeric(prob) | prob <= 0 || prob > 1) {
-        stop("The argument 'prob' is incorrect. It should be numeric with values between 0 and 1.")
-      }
-      if (use == "cov") {
-        MC <- cov(cbind(FGV, SGV))
-        S11 <- cov(FGV)
-        S22 <- cov(SGV)
-        S12 <- cov(FGV, SGV)
-        S21 <- cov(SGV, FGV)
-      }
-      if (use == "cor") {
-        MC <- cor(cbind(FGV, SGV))
-        S11 <- cor(FGV)
-        S22 <- cor(SGV)
-        S12 <- cor(FGV, SGV)
-        S21 <- cor(SGV, FGV)
-      }
-      M1 <- eigen(S11)
-      megval1 <- M1$values
-      megvec1 <- M1$vectors
-      S11_12 <- megvec1 %*% diag(1/sqrt(megval1)) %*% t(megvec1)
-      S22_Inv <- solve_svd(S22)
-      M2 <- eigen(S11_12 %*% S12 %*% S22_Inv %*% S21 %*%
-                    S11_12)
-      megval2 <- M2$values
-      megvec2 <- M2$vectors
-      mtr <- megval2
-      varuv <- as.data.frame(matrix(NA, length(mtr), 3))
-      rownames(varuv) <- paste("U", 1:length(mtr), "V",
-                               1:length(mtr), sep = "")
-      colnames(varuv) <- c("Variance", "Proportion", "Cum_proportion")
-      varuv[, "Variance"] <- mtr
-      varuv[, "Proportion"] <- (mtr/sum(mtr)) * 100
-      varuv[, "Cum_proportion"] <- cumsum(varuv[, "Proportion"])
-      coruv <- as.matrix(sqrt(mtr), ncol = length(coruv),
-                         nrow = 1)
-      rownames(coruv) <- paste("U", 1:length(coruv), "V",
-                               1:length(coruv), sep = "")
-      colnames(coruv) <- c("Correlation")
-      Coef_FG <- S11_12 %*% megvec2
-      rownames(Coef_FG) <- colnames(FGV)
-      colnames(Coef_FG) <- paste("U", 1:ncol(Coef_FG),
-                                 sep = "")
-      Coef_SG <- S22_Inv %*% S21 %*% Coef_FG %*% solve_svd(diag(sqrt(megval2)))
-      colnames(Coef_SG) <- paste("V", 1:ncol(Coef_SG),
-                                 sep = "")
-      M3 <- eigen(diag(diag(S11)))
-      megval3 <- M3$values
-      megvec3 <- M3$vectors
-      D11_12 <- megvec3 %*% diag(1/sqrt(megval3)) %*% t(megvec3)
-      M4 <- eigen(diag(diag(S22)))
-      megval4 <- M4$values
-      megvec4 <- M4$vectors
-      D22_12 <- megvec4 %*% diag(1/sqrt(megval4)) %*% t(megvec4)
-      Rux <- t(t(Coef_FG) %*% S11 %*% D11_12)
-      rownames(Rux) <- colnames(FGV)
-      Rvy <- t(t(Coef_SG) %*% S22 %*% D22_12)
-      rownames(Rvy) <- colnames(SGV)
-      if (center == TRUE) {
-        FG_A <- scale(FGV, center = TRUE, scale = FALSE)
-        SG_A <- scale(SGV, center = TRUE, scale = FALSE)
-      } else {
-        FG_A <- FGV
-        SG_A <- SGV
-      }
-      FG_A[is.na(FG_A)] <- 0
-      SG_A[is.na(SG_A)] <- 0
-      FG_SC <- FG_A %*% Coef_FG
-      SG_SC <- SG_A %*% Coef_SG
-      if (stdscores == TRUE) {
-        FG_SC <- sweep(FG_SC, 2, apply(FG_SC, 2, sd),
-                       "/")
-        SG_SC <- sweep(SG_SC, 2, apply(SG_SC, 2, sd),
-                       "/")
-      }
-      FG_CL <- cor(FG_A, SG_SC)
-      SG_CL <- cor(SG_A, FG_SC)
-      FG_SC = as.data.frame(FG_SC)
-      SG_SC = as.data.frame(SG_SC)
-      if (test == "Bartlett") {
-        n <- nrow(FGV)
-        p <- ncol(FGV)
-        q <- ncol(SGV)
-        QtdF <- length(coruv)
-        Bartlett <- as.data.frame(matrix(NA, QtdF, 5))
-        colnames(Bartlett) <- c("Canonical_pairs", "Lambda_Wilks",
-                                "Chi_square", "DF", "p_value")
-        Bartlett[, 1] <- paste("U", 1:QtdF, "V", 1:QtdF,
-                               sep = "")
-        i <- 1
-        for (i in 1:QtdF) {
-          Lambda <- prod(1 - coruv[i:QtdF]^2)
-          chisq <- -((n - 1) - (p + q + 1)/2) * log(Lambda)
-          gl <- (p - i + 1) * (q - i + 1)
-          pValor <- pchisq(chisq, gl, ncp = 0, lower.tail = F)
-          Bartlett[i, 2] <- round(Lambda, 5)
-          Bartlett[i, 3] <- round(chisq, 5)
-          Bartlett[i, 4] <- gl
-          Bartlett[i, 5] <- round(pValor, 5)
-        }
-        teste <- Bartlett
-      }
-      if (test == "Rao") {
-        n <- nrow(FGV)
-        p1 <- ncol(FGV)
-        q1 <- ncol(SGV)
-        QtdF <- length(coruv)
-        Rao <- as.data.frame(matrix(NA, QtdF, 6))
-        colnames(Rao) <- c("Canonical pairs", "Lambda_Wilks",
-                           "F_value", "DF1", "DF2", "p_value")
-        Rao[, 1] <- paste("U", 1:QtdF, "V", 1:QtdF, sep = "")
-        for (i in 1:QtdF) {
-          p <- p1 - i + 1
-          q <- q1 - i + 1
-          t <- (n - 1) - (p + q + 1)/2
-          s <- ifelse((p^2 + q^2) <= 5, 1, sqrt((p^2 *
-                                                   q^2 - 4)/(p^2 + q^2 - 5)))
-          Lambda <- prod(1 - coruv[i:QtdF]^2)
-          gl1 <- p * q
-          gl2 <- (1 + t * s - p * q/2)
-          FVAL <- ((1 - Lambda^(1/s))/Lambda^(1/s)) *
-            gl2/gl1
-          pValor <- pf(FVAL, gl1, gl2, ncp = 0, lower.tail = FALSE)
-          Rao[i, 2] <- round(Lambda, 5)
-          Rao[i, 3] <- round(FVAL, 5)
-          Rao[i, 4] <- gl1
-          Rao[i, 5] <- round(gl2, 5)
-          Rao[i, 6] <- round(pValor, 5)
-        }
-        teste <- Rao
-      }
-      results <- data.frame(cbind(cbind(varuv, coruv),
-                                  teste[-1]))
-      names(results) <- c("Var", "Percent", "Sum", "Corr",
-                          "Lambda", "Chisq", "DF", "p_val")
-      if (collinearity == TRUE) {
-        colin <- list(FGc = colindiag(FGV, verbose = FALSE),
-                      SGc = colindiag(SGV, verbose = FALSE))
-      } else {
-        colin <- NULL
-      }
-      if (verbose == TRUE) {
-        cat("\n\n\nLevel", nam, "\n")
-        cat("---------------------------------------------------------------------------\n")
-        cat("Matrix (correlation/covariance) between variables of first group (FG)\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(S11)
-        if (collinearity == TRUE) {
-          cat("---------------------------------------------------------------------------\n")
-          cat("Collinearity within first group \n")
-          cat("---------------------------------------------------------------------------\n")
-          colindiag(FGV)
-        }
-        cat("---------------------------------------------------------------------------\n")
-        cat("Matrix (correlation/covariance) between variables of second group (SG)\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(S22)
-        if (collinearity == TRUE) {
-          cat("---------------------------------------------------------------------------\n")
-          cat("Collinearity within second group \n")
-          cat("---------------------------------------------------------------------------\n")
-          colindiag(SGV)
-        }
-        cat("---------------------------------------------------------------------------\n")
-        cat("Matrix (correlation/covariance) between FG and SG\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(S12)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Correlation of the canonical pairs and hypothesis testing \n")
-        cat("---------------------------------------------------------------------------\n")
-        print(results)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Canonical coefficients of the first group \n")
-        cat("---------------------------------------------------------------------------\n")
-        print(Coef_FG)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Canonical coefficients of the second group \n")
-        cat("---------------------------------------------------------------------------\n")
-        print(Coef_SG)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Canonical loads of the first group \n")
-        cat("---------------------------------------------------------------------------\n")
-        print(Rux)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Canonical loads of the second group \n")
-        cat("---------------------------------------------------------------------------\n")
-        print(Rvy)
-      }
-      if(!missing(means_by)){
-        FG_SC = FG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
-        SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
-      }
-      tmp <- structure(list(Matrix = MC, MFG = S11, MSG = S22,
-                            MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG,
-                            Loads_FG = Rux, Loads_SG = Rvy, Score_FG = FG_SC,
-                            Score_SG = SG_SC, Crossload_FG = FG_CL, Crossload_SG = SG_CL,
-                            Sigtest = results, collinearity = colin), class = "can_cor")
-      dfs[[paste(nam)]] <- tmp
-    }
-    return(structure(dfs, class = "group_can_cor"))
-  }
-  if (!missing(.data)) {
-    if(!missing(means_by)){
-      .data <- suppressWarnings(group_by(.data, {{means_by}}) %>%
-        summarise_all(mean) %>%
-        ungroup() %>%
-        as.data.frame())
-      nam_fact = .data %>% select({{means_by}}) %>% pull()
-    }
+    # if(!missing(means_by)){
+    #   .data <- suppressWarnings(group_by(.data, {{means_by}}) %>%
+    #     summarise_all(mean) %>%
+    #     ungroup() %>%
+    #     as.data.frame())
+    #   nam_fact = .data %>% select({{means_by}}) %>% pull()
+    # }
     FG <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
     SG <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
-  }
+
   if (nrow(FG) != nrow(SG)) {
     stop("The number of observations of 'FG', should be equal to 'SG'.")
   }
@@ -558,10 +330,10 @@ can_corr <- function(.data = NULL,
     cat("---------------------------------------------------------------------------\n")
     print(Rvy)
   }
-if(!missing(means_by)){
-FG_SC = FG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
-SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
-}
+# if(!missing(means_by)){
+# FG_SC = FG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
+# SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
+# }
 
   invisible(structure(list(Matrix = MC, MFG = S11, MSG = S22,
                            MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
@@ -569,11 +341,6 @@ SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rowna
                            Crossload_SG = SG_CL, Sigtest = results, collinearity = colin),
                       class = "can_cor"))
 }
-
-
-
-
-
 
 
 
@@ -641,18 +408,35 @@ SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rowna
 #'                FG = c(PH, EH, EP),
 #'                SG = c(EL, ED, CL, CD, CW, KW, NR))
 #' plot(cc1, 2)
-#' cc2 = can_corr(data_ge2,
-#'                FG = c(PH, EH, EP),
-#'                SG = c(EL, ED, CL, CD, CW, KW, NR),
-#'                means_by = GEN)
+#'
+#' cc2 <-
+#' data_ge2 %>%
+#' means_by(GEN) %>%
+#' column_to_rownames("GEN") %>%
+#' can_corr(FG = c(PH, EH, EP),
+#'                SG = c(EL, ED, CL, CD, CW, KW, NR))
 #' plot(cc2, 2, labels = TRUE)
 #'
 #'
 #'
-plot.can_cor <- function(x, type = 1, plot_theme = theme_metan(), size.tex.lab = 12, size.tex.pa = 3.5,
-                         x.lab = NULL, x.lim = NULL, x.breaks = waiver(), y.lab = NULL, y.lim = NULL,
-                         y.breaks = waiver(), axis.expand = 1.1, shape = 21, col.shape = "orange", col.alpha = 0.9,
-                         size.shape = 3.5, size.bor.tick = 0.3, labels = FALSE, main = NULL, ...) {
+plot.can_cor <- function(x, type = 1,
+                         plot_theme = theme_metan(),
+                         size.tex.lab = 12,
+                         size.tex.pa = 3.5,
+                         x.lab = NULL,
+                         x.lim = NULL,
+                         x.breaks = waiver(),
+                         y.lab = NULL,
+                         y.lim = NULL,
+                         y.breaks = waiver(),
+                         axis.expand = 1.1,
+                         shape = 21,
+                         col.shape = "orange",
+                         col.alpha = 0.9,
+                         size.shape = 3.5,
+                         size.bor.tick = 0.3,
+                         labels = FALSE,
+                         main = NULL, ...) {
   if(!class(x) ==  "can_cor"){
     stop("The object 'x' must be of class 'can_cor'.")
   }

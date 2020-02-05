@@ -8,7 +8,7 @@ path_coeff(
   .data,
   resp,
   by = NULL,
-  pred = NULL,
+  pred = everything(),
   exclude = FALSE,
   correction = NULL,
   knumber = 50,
@@ -24,15 +24,13 @@ path_coeff(
 
 \item{resp}{The dependent variable.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
-\item{pred}{The predictor variables, set to \code{NULL}, i.e., the predictor
-variables are all the numeric variables in the data except that in
-\code{resp}.}
+\item{pred}{The predictor variables, set to \code{everything()}, i.e., the
+predictor variables are all the numeric variables in the data except that
+in \code{resp}.}
 
 \item{exclude}{Logical argument, set to false. If \code{exclude = TRUE}, then
 the variables in \code{pred} are deleted from the data, and the analysis
@@ -56,7 +54,7 @@ information.}
 that will be accepted. See the \bold{Details} section for more information.}
 
 \item{missingval}{How to deal with missing values. For more information,
-please see \code{?cor}.}
+please see \code{\link[stats]{cor}()}.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
@@ -86,9 +84,9 @@ lowest eigenvalue.
 (highest eigenvector) in the lowest eigenvalue.
 }
 
-If \code{.data} is an object of class \code{split_factors} then a list is
-returned with the above items for each level of the grouping variable in the
-function \code{split_factors}.
+If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+then the results will be returned into a list-column of data frames,
+containing:
 }
 \description{
 Computes direct and indirect effects in path analysis. An algorithm to select

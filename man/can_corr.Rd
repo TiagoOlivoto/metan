@@ -5,11 +5,11 @@
 \title{Canonical correlation analysis}
 \usage{
 can_corr(
-  .data = NULL,
-  FG = NULL,
-  SG = NULL,
+  .data,
+  FG,
+  SG,
   by = NULL,
-  means_by = NULL,
+  means_by = "deprecated",
   use = "cor",
   test = "Bartlett",
   prob = 0.05,
@@ -20,29 +20,18 @@ can_corr(
 )
 }
 \arguments{
-\item{.data}{The data to be analyzed. Must be a dataframe containing the
-numeric variables that will be used in the estimation of the correlations.
-The data can also be passed directly by the arguments \code{FG} and
-\code{SG}. Alternatively, \code{.data} may be passed from the function
-\code{split_factors}. In such case, the canonical correlation will be
-estimated for each level of the grouping variable in that function.}
+\item{.data}{The data to be analyzed. It can be a data frame (possible with
+grouped data passed from \code{\link[dplyr]{group_by}()}.}
 
-\item{FG, SG}{If a dataframe is informed in \code{.data}, then \code{FG} and
-\code{SG} is a comma-separated list of unquoted variable names that will
+\item{FG, SG}{A comma-separated list of unquoted variable names that will
 compose the first (smallest) and second (highest) group of the correlation
 analysis, respectively. Select helpers are also allowed.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
-\item{means_by}{The argument \code{means_by} is a grouping variable to
-compute the means by. For example, if \code{means_by = GEN}, then the means
-of the numerical variables will be computed for each level of the grouping
-variable GEN, and the canonical correlation analysis will be computed using
-these means.}
+\item{means_by}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{use}{The matrix to be used. Must be one of 'cor' for analysis using the
 correlation matrix (default) or 'cov' for analysis using the covariance
@@ -65,9 +54,9 @@ collinearity diagnostic is performed for each group of variables according
 to Olivoto et al.(2017).}
 }
 \value{
-If \code{.data} is an object of class \code{split_factors} then the
-results will be returned into a list where each element has the following
-values.
+If \code{.data} is a grouped data passed from
+\code{\link[dplyr]{group_by}()} then the results will be returned into a
+list-column of data frames.
 \itemize{
 \item \strong{Matrix} The correlation (or covariance) matrix of the variables
 \item \strong{MFG, MSG} The correlation (or covariance) matrix for the variables of
@@ -102,10 +91,6 @@ cc1 <- can_corr(data_ge2,
                FG = c(PH, EH, EP),
                SG = c(EL, ED, CL, CD, CW, KW, NR))
 
-cc2 <- can_corr(FG = data_ge2[, 4:6],
-                SG = data_ge2[, 7:13],
-                verbose = FALSE,
-                collinearity = FALSE)
 
 # Canonical correlations for each environment
 cc3 <- data_ge2 \%>\%

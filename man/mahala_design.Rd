@@ -16,9 +16,8 @@ mahala_design(
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Genotypes,
-replication/block and response variables. Alternatively, it is possible to
-use an object of class 'split_factors' to compute the distance for each
-level of the grouping factor. See \code{?split_factors}.}
+replication/block and response variables, possible with grouped data passed
+from \code{\link[dplyr]{group_by}()}.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
@@ -30,11 +29,9 @@ var3)}.}
 
 \item{design}{The experimental design. Must be RCBD or CRD.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
 \item{return}{What the function return? Default is 'distance', i.e., the
 Mahalanobis distance. Alternatively, it is possible to return the matrix of
@@ -42,9 +39,9 @@ means \code{return = 'means'}, or the variance-covariance matrix of
 residuals \code{return = 'covmat'}.}
 }
 \value{
-A symmetric matrix with the Mahalanobis' distance. If the
-  \code{.data} is an object of class \code{split_factors} then a list of
-  distances will be returned.
+A symmetric matrix with the Mahalanobis' distance. If \code{.data} is
+  a grouped data passed from \code{\link[dplyr]{group_by}()} then the results
+  will be returned into a list-column of data frames.
 }
 \description{
 Compute the Mahalanobis distance using data from an experiment conducted in a
@@ -53,13 +50,18 @@ randomized complete block design or completely randomized design.
 \examples{
 \donttest{
 library(metan)
-maha_group <- mahala_design(data_ge,
-                            gen = GEN,
-                            rep = REP,
-                            resp = c(GY, HM))
+maha <- mahala_design(data_g,
+                      gen = GEN,
+                      rep = REP,
+                      resp = everything(),
+                      return = "covmat")
 
-# Compute one distance for each environment
-maha_group <- mahala_design(data_ge, GEN, REP, everything(), by = ENV)
+# Compute one distance for each environment (all numeric variables)
+maha_group <- mahala_design(data_ge,
+                           gen = GEN,
+                           rep = REP,
+                           resp = everything(),
+                           by = ENV)
 
 # Return the variance-covariance matrix of residuals
 cov_mat <- mahala_design(data_ge,

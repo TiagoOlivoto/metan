@@ -7,20 +7,18 @@
 lpcor(.data, ..., by = NULL, n = NULL, method = "pearson", verbose = TRUE)
 }
 \arguments{
-\item{.data}{The data to be analyzed. Must be a symmetric correlation matrix
-or, a dataframe containing the predictor variables, or an object of class
-\code{split_factors}.}
+\item{.data}{The data to be analyzed. It must be a symmetric correlation
+matrix or a data frame, possible with grouped data passed from
+\code{\link[dplyr]{group_by}()}.}
 
 \item{...}{Variables to use in the correlation. If \code{...} is null
 (Default) then all the numeric variables from \code{.data} are used. It
 must be a single variable name or a comma-separated list of unquoted
 variables names.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
@@ -32,8 +30,9 @@ to be computed. One of 'pearson' (default), 'kendall', or 'spearman'.}
 console.}
 }
 \value{
-If a grouping factor is used then a list is returned with the
-following values.
+If \code{.data} is a grouped data passed from
+\code{\link[dplyr]{group_by}()} then the results will be returned into a
+list-column of data frames, containing:
 \itemize{
 \item \strong{linear.mat} The matrix of linear correlation.
 \item \strong{partial.mat} The matrix of partial correlations.
@@ -47,7 +46,7 @@ data frame or a correlation matrix.
 \examples{
 \donttest{
 library(metan)
-partial1 <- pcor(iris)
+partial1 <- lpcor(iris)
 
 # Alternatively using the pipe operator \%>\%
 partial2 <- iris \%>\% lpcor()
@@ -61,7 +60,6 @@ partial3 <- cor(iris[1:4]) \%>\%
 # For each level of \code{Species}
 
 partial4 <- lpcor(iris, everithig(), by = Species)
-print(partial4$summary)
 }
 }
 \author{

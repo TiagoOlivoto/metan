@@ -27,20 +27,20 @@ hierarchical clustering.
 library(metan)
 library(dplyr)
 # Compute the mean for genotypes
-means = data_ge \%>\%
-        select(-c(ENV, REP)) \%>\%
-        group_by(GEN) \%>\%
-        summarise_all(mean) \%>\%
-        select(-GEN)
+means <- means_by(data_ge, GEN) \%>\%
+         column_to_rownames("GEN")
 
 # Compute the covariance matrix
-covmat = cov(means)
+covmat <- cov(means)
 
 # Compute the distance
-dist = mahala(means, covmat)
+dist <- mahala(means, covmat)
 
 # Dendrogram
-dend = as.dendrogram(hclust(as.dist(dist)))
+dend <- dist \%>\%
+        as.dist() \%>\%
+        hclust() \%>\%
+        as.dendrogram()
 plot(dend)
 
 }

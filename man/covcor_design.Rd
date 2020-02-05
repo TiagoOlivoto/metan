@@ -7,10 +7,8 @@
 covcor_design(.data, gen, rep, resp, design = "RCBD", by = NULL, type = NULL)
 }
 \arguments{
-\item{.data}{The dataset containing the columns related to Genotypes,
-replication/block and response variables. Alternatively, it is possible to
-use an object of class 'split_factors' to compute the results for each
-level of the grouping factor. See \code{?split_factors}.}
+\item{.data}{The data to be analyzed. It can be a data frame, possible with
+grouped data passed from \code{\link[dplyr]{group_by}()}.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
@@ -22,11 +20,9 @@ var3)}.}
 
 \item{design}{The experimental design. Must be RCBD or CRD.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
 \item{type}{What the matrices should return? Set to \code{NULL}, i.e., a list
 of matrices is returned. The argument type allow the following values
@@ -49,9 +45,8 @@ items:
 \item \strong{resi_cor} The residual correlation.
 }
 
-If \code{.data} is an object of class \code{split_factors} then the output
-will be a list with the above values for each grouping variable in the
-function \code{\link{split_factors}} to pass subsetted data.to pass subsetted data to code{.data}.to pass subsetted data to code{.data}.
+If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+then the results will be returned into a list-column of data frames.
 }
 \description{
 Compute variance-covariance and correlation matrices using data from a
@@ -75,9 +70,9 @@ gcor <- covcor_design(data,
 # Residual (co)variance matrix for each environment
 rcov <- covcor_design(data_ge2,
                       gen = GEN,
-                      by = ENV,
                       rep = REP,
                       resp = c(PH, EH, CD, CL),
+                      by = ENV,
                       type = "rcov")
 
 }

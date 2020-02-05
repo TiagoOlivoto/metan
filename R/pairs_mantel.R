@@ -53,16 +53,15 @@
 #' @examples
 #'\donttest{
 #' library(metan)
-#' library(dplyr)
 #' # iris dataset
 #' lpc <- iris %>%
-#'        split_factors(Species) %>%
+#'        group_by(Species) %>%
 #'        lpcor() %>%
 #'        pairs_mantel(names = c('setosa', 'versicolor', 'virginica'))
 #'
 #'
 #' # mtcars dataset
-#' mt_num <- mtcars %>% select_if(., is.numeric)
+#' mt_num <- select_numeric_cols(mtcars)
 #' lpdata <- as.lpcor(cor(mt_num[1:5]),
 #'                    cor(mt_num[1:5]),
 #'                    cor(mt_num[2:6]),
@@ -81,23 +80,22 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
   if (!type %in% c(1:2)) {
     stop("The argument type must be 1 (linear correlation) or 2 (partial correlation).")
   }
-  if (sum(lapply(class, function(x) !class(x) %in% c("lpcor_group",
-                                                     "lpcor", "mahala_group", "covcor_design", "group_clustering") ==
-                 TRUE) > 0)) {
+  if (sum(lapply(class, function(x)
+    !any(class(x) %in% c("lpcor_group", "lpcor", "mahala_group",
+                         "covcor_design", "group_clustering") == TRUE)) > 0)) {
     stop("The object must be of the class lpcor. Please use 'as.lpcorr' to convert correlation matrices into the correct format.")
   }
-  if (class(...) == "lpcor_group") {
-    data <- ...[[1]]
-    data <- lapply(data, function(x) {
-      x[[1]]
+  if (any(class(...) == "lpcor_group")) {
+    data <- lapply(...[[2]], function(x) {
+      x[["linear.mat"]]
     })
   }
-  if (class(...) == "group_clustering") {
-    data <- lapply(..., function(x) {
+  if (any(class(...) == "group_clustering")) {
+    data <- lapply(...[[2]], function(x) {
       x$distance
     })
   }
-  if (!class(...) %in% c("lpcor_group", "group_clustering")) {
+  if (!any(class(...) %in% c("lpcor_group", "group_clustering"))) {
     data <- lapply(..., function(x) {
       x
     })

@@ -35,10 +35,9 @@ print(pcoeff)
 # Call the algorithm for selecting a set of predictors
 # With minimal multicollinearity (no VIF larger than 5)
 pcoeff2 <- path_coeff(data_ge2,
-  resp = KW,
-  brutstep = TRUE,
-  maxvif = 5
-)
+                      resp = KW,
+                      brutstep = TRUE,
+                      maxvif = 5)
 print(pcoeff2)
 }
 }

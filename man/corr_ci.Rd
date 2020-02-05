@@ -7,8 +7,9 @@
 corr_ci(.data = NA, ..., r = NULL, n = NULL, by = NULL, verbose = TRUE)
 }
 \arguments{
-\item{.data}{A dataset containing variables only or a symmetric correlation
-matrix.}
+\item{.data}{The data to be analyzed. It can be a data frame (possible with
+grouped data passed from \code{\link[dplyr]{group_by}()}) or a symmetric correlation
+ matrix.}
 
 \item{...}{Variables to compute the confidence interval. If not informed, all
 the numeric variables from \code{.data} are used.}
@@ -19,11 +20,9 @@ coefficient.}
 \item{n}{The sample size if \code{data} is a correlation matrix or if r is
 informed.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
@@ -49,7 +48,10 @@ library(metan)
 CI1 <- corr_ci(data_ge2)
 
 # By each level of the factor 'ENV'
-CI2 <- corr_ci(data_ge2, CD, TKW, NKE, by = ENV)
+CI2 <- corr_ci(data_ge2, CD, TKW, NKE,
+               by = ENV,
+               verbose = FALSE)
+CI2
 
 }
 \references{

@@ -8,7 +8,7 @@ find_outliers(
   .data = NULL,
   var = NULL,
   by = NULL,
-  values = NULL,
+  values = "deprecated",
   plots = FALSE,
   coef = 1.5,
   verbose = TRUE,
@@ -21,11 +21,9 @@ class \code{split_factors}.}
 
 \item{var}{The variable to be analyzed.}
 
-\item{by}{One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in \code{by}. To split
-the data by more than one factor variable, use the function
-\code{\link{split_factors}} to pass subsetted data to \code{.data}.}
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+one grouping variable use that function.}
 
 \item{values}{An alternative way to pass the data to the function. It must be
 a numeric vector.}

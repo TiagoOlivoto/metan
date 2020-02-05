@@ -108,10 +108,13 @@ cc1 = can_corr(data_ge2,
                FG = c(PH, EH, EP),
                SG = c(EL, ED, CL, CD, CW, KW, NR))
 plot(cc1, 2)
-cc2 = can_corr(data_ge2,
-               FG = c(PH, EH, EP),
-               SG = c(EL, ED, CL, CD, CW, KW, NR),
-               means_by = GEN)
+
+cc2 <-
+data_ge2 \%>\%
+means_by(GEN) \%>\%
+column_to_rownames("GEN") \%>\%
+can_corr(FG = c(PH, EH, EP),
+               SG = c(EL, ED, CL, CD, CW, KW, NR))
 plot(cc2, 2, labels = TRUE)
 
 
