@@ -43,6 +43,8 @@ includes predicted values in the \code{fitted} column, residuals in the
 \code{resid} column, standardized residuals in the \code{stdres} column,
 the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
 the fitted values in the \code{se.fit} column.
+\item \strong{hsd:} The Tukey's 'Honest Significant Difference' for genotype
+effect.
 \item \strong{details:} A tibble with the following data: \code{Ngen}, the
 number of genotypes; \code{OVmean}, the grand mean; \code{Min}, the minimum
 observed (returning the genotype and replication/block); \code{Max} the

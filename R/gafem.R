@@ -36,6 +36,8 @@
 #'  \code{resid} column, standardized residuals in the \code{stdres} column,
 #'  the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
 #'  the fitted values in the \code{se.fit} column.
+#'  * \strong{hsd:} The Tukey's 'Honest Significant Difference' for genotype
+#'  effect.
 #'  * \strong{details:} A tibble with the following data: \code{Ngen}, the
 #'  number of genotypes; \code{OVmean}, the grand mean; \code{Min}, the minimum
 #'  observed (returning the genotype and replication/block); \code{Max} the
@@ -162,11 +164,12 @@ gafem <- function(.data,
         anova = anova,
         model = model,
         augment = augment,
+        hsd = tukey_hsd(model, which = "GEN"),
         details = Details
       ),
       class = "gafem"
       )
-        listres[[paste(names(vars[var]))]] <- temp
+      listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
         cat("variable", paste(names(vars[var])),"\n")
         cat("---------------------------------------------------------------------------\n")
@@ -243,6 +246,7 @@ gafem <- function(.data,
         anova = anova,
         model = model,
         augment = augment,
+        hsd = tukey_hsd(model, which = "GEN"),
         details = Details
       ),
       class = "gafem"
