@@ -40,9 +40,9 @@ gai <- function(.data, env, gen, rep, resp, verbose = TRUE) {
            GEN = {{gen}},
            REP = {{rep}}) %>%
     mutate_all(as.factor)
-  vars <- .data %>%
-    select({{resp}}) %>%
-    select_numeric_cols()
+  vars <- .data %>% select({{resp}}, -names(factors))
+  has_text_in_num(vars)
+  vars %<>% select_numeric_cols()
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {
@@ -50,9 +50,10 @@ gai <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       mutate(Y = vars[[var]])
     temp <- make_mat(data, ENV, GEN, Y) %>%
       gm_mean() %>%
-      as_tibble(rownames = NA) %>%
+      t() %>%
+      as.data.frame() %>%
       rownames_to_column("GEN") %>%
-      mutate(rank = rank(-value)) %>%
+      mutate(rank = rank(-V1)) %>%
       set_names("GEN", "GAI", "GAI_R")
     if (nvar > 1) {
       listres[[paste(names(vars[var]))]] <- temp

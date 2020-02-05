@@ -55,10 +55,9 @@ Annicchiarico <- function(.data,
            GEN = {{gen}},
            REP = {{rep}}) %>%
     mutate_all(as.factor)
-  vars <- .data %>%
-    select({{resp}}) %>%
-    select_numeric_cols()
-
+  vars <- .data %>% select({{resp}}, -names(factors))
+  has_text_in_num(vars)
+  vars %<>% select_numeric_cols()
   nvar <- ncol(vars)
   listres <- list()
   for (var in 1:nvar) {

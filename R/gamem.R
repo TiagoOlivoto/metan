@@ -127,9 +127,9 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       select(GEN = {{gen}},
              REP = {{rep}}) %>%
       mutate_all(as.factor)
-    vars <- .data %>%
-      select({{resp}}) %>%
-      select_numeric_cols()
+    vars <- .data %>% select({{resp}}, -names(factors))
+    has_text_in_num(vars)
+    vars %<>% select_numeric_cols()
     listres <- list()
     nvar <- ncol(vars)
     if (verbose == TRUE) {
@@ -245,9 +245,9 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
              REP = {{rep}},
              BLOCK = {{block}}) %>%
       mutate_all(as.factor)
-    vars <- .data %>%
-      select({{resp}}) %>%
-      select_numeric_cols()
+    vars <- .data %>% select({{resp}}, -names(factors))
+    has_text_in_num(vars)
+    vars %<>% select_numeric_cols()
     listres <- list()
     nvar <- ncol(vars)
     if (verbose == TRUE) {

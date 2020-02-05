@@ -25,7 +25,7 @@
 #' @return A list where each element is the result for one variable containing:
 #'
 #' 1. \strong{individual}: A tidy tbl_df with the results of the individual
-#' analysis of variance with the following colum names:
+#' analysis of variance with the following column names:
 #'
 #'    * \strong{For analysis in alpha-lattice designs}: \strong{ENV}: The
 #' environment code; \strong{MEAN}: The grand mean; \strong{MSG, MSCR, MSIB_R}:
@@ -87,9 +87,9 @@ anova_ind <- function(.data,
              REP = {{rep}}) %>%
       mutate_all(as.factor)
   }
-  vars <- .data %>%
-    select({{resp}}) %>%
-    select_numeric_cols()
+  vars <- .data %>% select({{resp}}, -names(factors))
+  has_text_in_num(vars)
+  vars %<>% select_numeric_cols()
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {

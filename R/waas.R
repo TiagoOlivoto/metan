@@ -190,9 +190,9 @@ waas <- function(.data,
                    REP = {{rep}}) %>%
             mutate_all(as.factor)
     }
-    vars <- .data %>%
-        select({{resp}}) %>%
-        select_numeric_cols()
+    vars <- .data %>% select({{resp}}, -names(factors))
+    has_text_in_num(vars)
+    vars %<>% select_numeric_cols()
     nvar <- ncol(vars)
     if (!is.null(naxis)) {
         if (length(naxis) != nvar) {

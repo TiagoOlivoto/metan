@@ -53,9 +53,9 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     g <- nlevels(factors$GEN)
     e <- nlevels(factors$ENV)
     r <- nlevels(factors$REP)
-    vars <- .data %>%
-      select({{resp}}) %>%
-      select_numeric_cols()
+    vars <- .data %>% select({{resp}}, -names(factors))
+    has_text_in_num(vars)
+    vars %<>% select_numeric_cols()
     listres <- list()
     nvar <- ncol(vars)
     for (var in 1:nvar) {

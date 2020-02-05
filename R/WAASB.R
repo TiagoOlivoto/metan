@@ -275,9 +275,9 @@ waasb <- function(.data,
                    REP = {{rep}}) %>%
             mutate_all(as.factor)
     }
-    vars <- .data %>%
-        select({{resp}}) %>%
-        select_numeric_cols()
+    vars <- .data %>% select({{resp}}, -names(factors))
+    has_text_in_num(vars)
+    vars %<>% select_numeric_cols()
     model_formula <-
         case_when(
             random == "gen" & block_test ~ paste("Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV)"),
