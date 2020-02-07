@@ -4,6 +4,9 @@
     <loc>https://tiagoolivoto.github.io/metan//index.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/add_class.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/AMMI_indexes.html</loc>
   </url>
   <url>
@@ -82,7 +85,7 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/desc_stat.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/desc_wider.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan//reference/doo.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/ecovalence.html</loc>
@@ -98,6 +101,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/Fox.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/gafem.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/gai.html</loc>
@@ -199,6 +205,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/pipe.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/plot.anova_joint.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.can_cor.html</loc>
   </url>
   <url>
@@ -215,6 +224,12 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.fai_blup.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/plot.gafem.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/plot.gamem.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.ge_cluster.html</loc>
@@ -274,6 +289,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/plot_waasby.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/predict.gamem.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/predict.gge.html</loc>
   </url>
   <url>
@@ -281,6 +299,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/predict.waas.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/predict.waasb.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.AMMI_indexes.html</loc>
@@ -367,6 +388,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/Resende_indexes.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/residual_plots.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/resp_surf.html</loc>
   </url>
   <url>
@@ -385,6 +409,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/split_factors.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/stars_pval.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/superiority.html</loc>
   </url>
   <url>
@@ -398,6 +425,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/to_factor.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/tukey_hsd.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_num_str.html</loc>
@@ -421,6 +451,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/wsmp.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//articles/metan_start.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_ammi.html</loc>
   </url>
   <url>
@@ -433,6 +466,9 @@
     <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_cross-validation.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_descriptive.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_gge.html</loc>
   </url>
   <url>
@@ -440,9 +476,6 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_indexes.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_metan.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_stability.html</loc>

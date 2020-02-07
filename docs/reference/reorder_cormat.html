@@ -125,6 +125,9 @@ the hidden pattern in the matrix." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -231,7 +234,7 @@ the hidden pattern in the matrix.</p>
     <p>The ordered correlation matrix</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>cor_mat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='corr_coef.html'>corr_coef</a></span>(<span class='no'>data_ge2</span>, <span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>ED</span>, <span class='no'>NKR</span>)
 <span class='no'>cor_mat</span>$<span class='no'>cor</span></div><div class='output co'>#&gt;            PH        EH        CD         CL        ED        NKR
@@ -246,7 +249,8 @@ the hidden pattern in the matrix.</p>
 #&gt; PH  0.3153910  0.3530495 1.0000000 0.9318282  0.3251648 0.6613148
 #&gt; EH  0.2805118  0.3310529 0.9318282 1.0000000  0.3971935 0.6302561
 #&gt; CL  0.3003636 -0.1149405 0.3251648 0.3971935  1.0000000 0.6974629
-#&gt; ED  0.3897128  0.2220727 0.6613148 0.6302561  0.6974629 1.0000000</div><div class='input'>
+#&gt; ED  0.3897128  0.2220727 0.6613148 0.6302561  0.6974629 1.0000000</div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -124,6 +124,9 @@ the R console. The results can also be exported to the directory." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -204,7 +207,7 @@ the R console. The results can also be exported to the directory." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Print an object of class waasb</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.waasb.R'><code>R/print.waasb.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/WAASB.R'><code>R/WAASB.R</code></a></small>
     <div class="hidden name"><code>print.waasb.Rd</code></div>
     </div>
 
@@ -256,30 +259,36 @@ to the working directory</p></td>
   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>
-)</div><div class='output co'>#&gt; Evaluating variable GY 0 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable GY 
+)</div><div class='output co'>#&gt; Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       GY       HM
+#&gt;  COMPLETE       NA       NA
+#&gt;       GEN 1.11e-05 5.07e-03
+#&gt;   GEN:ENV 2.15e-11 2.27e-15
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Individual fixed-model analysis of variance
 #&gt; ---------------------------------------------------------------------------
 #&gt; <span style='color: #555555;'># A tibble: 14 x 12</span><span>
-#&gt;    ENV    MEAN     MSB    MSG     MSR     FCB     PRFB    FCG     PRFG     CV
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    2.521 0.065</span><span style='text-decoration: underline;'>22</span><span> 0.337</span><span style='text-decoration: underline;'>4</span><span> 0.144</span><span style='text-decoration: underline;'>0</span><span>   0.452</span><span style='text-decoration: underline;'>9</span><span> 6.428</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  2.343 5.936</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 15.05 
-#&gt; </span><span style='color: #555555;'> 2</span><span> E10   2.175 0.653</span><span style='text-decoration: underline;'>7</span><span>  0.295</span><span style='text-decoration: underline;'>8</span><span> 0.026</span><span style='text-decoration: underline;'>67</span><span> 24.51   7.275</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span> 11.09  1.097</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>  7.508
-#&gt; </span><span style='color: #555555;'> 3</span><span> E11   1.368 0.377</span><span style='text-decoration: underline;'>3</span><span>  0.150</span><span style='text-decoration: underline;'>9</span><span> 0.105</span><span style='text-decoration: underline;'>0</span><span>   3.594  4.860</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  1.438 2.443</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 23.68 
-#&gt; </span><span style='color: #555555;'> 4</span><span> E12   1.609 0.091</span><span style='text-decoration: underline;'>90</span><span> 0.320</span><span style='text-decoration: underline;'>2</span><span> 0.053</span><span style='text-decoration: underline;'>52</span><span>  1.717  2.077</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  5.982 6.474</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 14.38 
-#&gt; </span><span style='color: #555555;'> 5</span><span> E13   2.910 0.076</span><span style='text-decoration: underline;'>74</span><span> 0.713</span><span style='text-decoration: underline;'>4</span><span> 0.099</span><span style='text-decoration: underline;'>37</span><span>  0.772</span><span style='text-decoration: underline;'>2</span><span> 4.767</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  7.179 2.095</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 10.83 
-#&gt; </span><span style='color: #555555;'> 6</span><span> E14   1.782 0.103</span><span style='text-decoration: underline;'>5</span><span>  0.130</span><span style='text-decoration: underline;'>5</span><span> 0.075</span><span style='text-decoration: underline;'>33</span><span>  1.374  2.784</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.732 1.535</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 15.40 
-#&gt; </span><span style='color: #555555;'> 7</span><span> E2    3.180 0.698</span><span style='text-decoration: underline;'>3</span><span>  0.206</span><span style='text-decoration: underline;'>6</span><span> 0.178</span><span style='text-decoration: underline;'>5</span><span>   3.912  3.885</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  1.157 3.763</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 13.29 
-#&gt; </span><span style='color: #555555;'> 8</span><span> E3    4.064 0.488</span><span style='text-decoration: underline;'>6</span><span>  0.335</span><span style='text-decoration: underline;'>1</span><span> 0.178</span><span style='text-decoration: underline;'>9</span><span>   2.731  9.209</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  1.872 1.230</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 10.41 
-#&gt; </span><span style='color: #555555;'> 9</span><span> E4    3.675 0.116</span><span style='text-decoration: underline;'>5</span><span>  0.531</span><span style='text-decoration: underline;'>3</span><span> 0.137</span><span style='text-decoration: underline;'>7</span><span>   0.845</span><span style='text-decoration: underline;'>8</span><span> 4.456</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  3.859 7.123</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 10.10 
-#&gt; </span><span style='color: #555555;'>10</span><span> E5    3.910 0.218</span><span style='text-decoration: underline;'>8</span><span>  0.526</span><span style='text-decoration: underline;'>1</span><span> 0.066</span><span style='text-decoration: underline;'>36</span><span>  3.297  6.024</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  7.929 1.101</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>  6.587
-#&gt; </span><span style='color: #555555;'>11</span><span> E6    2.663 0.159</span><span style='text-decoration: underline;'>9</span><span>  0.134</span><span style='text-decoration: underline;'>6</span><span> 0.058</span><span style='text-decoration: underline;'>57</span><span>  2.729  9.219</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  2.299 6.345</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  9.087
-#&gt; </span><span style='color: #555555;'>12</span><span> E7    1.989 0.381</span><span style='text-decoration: underline;'>0</span><span>  0.336</span><span style='text-decoration: underline;'>9</span><span> 0.091</span><span style='text-decoration: underline;'>03</span><span>  4.185  3.217</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  3.701 8.727</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 15.17 
-#&gt; </span><span style='color: #555555;'>13</span><span> E8    2.536 0.816</span><span style='text-decoration: underline;'>8</span><span>  0.214</span><span style='text-decoration: underline;'>6</span><span> 0.027</span><span style='text-decoration: underline;'>81</span><span> 29.37   2.149</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span>  7.717 1.314</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>  6.575
-#&gt; </span><span style='color: #555555;'>14</span><span> E9    3.057 0.582</span><span style='text-decoration: underline;'>6</span><span>  0.679</span><span style='text-decoration: underline;'>3</span><span> 0.110</span><span style='text-decoration: underline;'>9</span><span>   5.253  1.596</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  6.124 5.622</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 10.90 
+#&gt;    ENV    MEAN    MSG    FCG      PFG     MSB     FCB      PFB     MSE     CV
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    2.521 0.337</span><span style='text-decoration: underline;'>4</span><span>  2.343 5.936</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.065</span><span style='text-decoration: underline;'>22</span><span>  0.452</span><span style='text-decoration: underline;'>9</span><span> 6.428</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.144</span><span style='text-decoration: underline;'>0</span><span>  15.05 
+#&gt; </span><span style='color: #555555;'> 2</span><span> E10   2.175 0.295</span><span style='text-decoration: underline;'>8</span><span> 11.09  1.097</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span> 0.653</span><span style='text-decoration: underline;'>7</span><span>  24.51   7.275</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span> 0.026</span><span style='text-decoration: underline;'>67</span><span>  7.508
+#&gt; </span><span style='color: #555555;'> 3</span><span> E11   1.368 0.150</span><span style='text-decoration: underline;'>9</span><span>  1.438 2.443</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.377</span><span style='text-decoration: underline;'>3</span><span>   3.594  4.860</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.105</span><span style='text-decoration: underline;'>0</span><span>  23.68 
+#&gt; </span><span style='color: #555555;'> 4</span><span> E12   1.609 0.320</span><span style='text-decoration: underline;'>2</span><span>  5.982 6.474</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 0.091</span><span style='text-decoration: underline;'>90</span><span>  1.717  2.077</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.053</span><span style='text-decoration: underline;'>52</span><span> 14.38 
+#&gt; </span><span style='color: #555555;'> 5</span><span> E13   2.910 0.713</span><span style='text-decoration: underline;'>4</span><span>  7.179 2.095</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 0.076</span><span style='text-decoration: underline;'>74</span><span>  0.772</span><span style='text-decoration: underline;'>2</span><span> 4.767</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.099</span><span style='text-decoration: underline;'>37</span><span> 10.83 
+#&gt; </span><span style='color: #555555;'> 6</span><span> E14   1.782 0.130</span><span style='text-decoration: underline;'>5</span><span>  1.732 1.535</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.103</span><span style='text-decoration: underline;'>5</span><span>   1.374  2.784</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.075</span><span style='text-decoration: underline;'>33</span><span> 15.40 
+#&gt; </span><span style='color: #555555;'> 7</span><span> E2    3.180 0.206</span><span style='text-decoration: underline;'>6</span><span>  1.157 3.763</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.698</span><span style='text-decoration: underline;'>3</span><span>   3.912  3.885</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.178</span><span style='text-decoration: underline;'>5</span><span>  13.29 
+#&gt; </span><span style='color: #555555;'> 8</span><span> E3    4.064 0.335</span><span style='text-decoration: underline;'>1</span><span>  1.872 1.230</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.488</span><span style='text-decoration: underline;'>6</span><span>   2.731  9.209</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.178</span><span style='text-decoration: underline;'>9</span><span>  10.41 
+#&gt; </span><span style='color: #555555;'> 9</span><span> E4    3.675 0.531</span><span style='text-decoration: underline;'>3</span><span>  3.859 7.123</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 0.116</span><span style='text-decoration: underline;'>5</span><span>   0.845</span><span style='text-decoration: underline;'>8</span><span> 4.456</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 0.137</span><span style='text-decoration: underline;'>7</span><span>  10.10 
+#&gt; </span><span style='color: #555555;'>10</span><span> E5    3.910 0.526</span><span style='text-decoration: underline;'>1</span><span>  7.929 1.101</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 0.218</span><span style='text-decoration: underline;'>8</span><span>   3.297  6.024</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.066</span><span style='text-decoration: underline;'>36</span><span>  6.587
+#&gt; </span><span style='color: #555555;'>11</span><span> E6    2.663 0.134</span><span style='text-decoration: underline;'>6</span><span>  2.299 6.345</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.159</span><span style='text-decoration: underline;'>9</span><span>   2.729  9.219</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.058</span><span style='text-decoration: underline;'>57</span><span>  9.087
+#&gt; </span><span style='color: #555555;'>12</span><span> E7    1.989 0.336</span><span style='text-decoration: underline;'>9</span><span>  3.701 8.727</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 0.381</span><span style='text-decoration: underline;'>0</span><span>   4.185  3.217</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.091</span><span style='text-decoration: underline;'>03</span><span> 15.17 
+#&gt; </span><span style='color: #555555;'>13</span><span> E8    2.536 0.214</span><span style='text-decoration: underline;'>6</span><span>  7.717 1.314</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 0.816</span><span style='text-decoration: underline;'>8</span><span>  29.37   2.149</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span> 0.027</span><span style='text-decoration: underline;'>81</span><span>  6.575
+#&gt; </span><span style='color: #555555;'>14</span><span> E9    3.057 0.679</span><span style='text-decoration: underline;'>3</span><span>  6.124 5.622</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 0.582</span><span style='text-decoration: underline;'>6</span><span>   5.253  1.596</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 0.110</span><span style='text-decoration: underline;'>9</span><span>  10.90 
 #&gt; </span><span style='color: #555555;'># ... with 2 more variables: h2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Fixed effects
@@ -288,46 +297,38 @@ to the working directory</p></td>
 #&gt;   SOURCE  `Sum Sq` `Mean Sq` NumDF DenDF `F value`  `Pr(&gt;F)`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> ENV       66.09     5.084     13 279.8    52.58  2.954</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-67</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> REP:ENV    9.662    0.345</span><span style='text-decoration: underline;'>1</span><span>    28 252.0     3.569 3.593</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> ENV:REP    9.662    0.345</span><span style='text-decoration: underline;'>1</span><span>    28 252.0     3.569 3.593</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Random effects
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 2</span><span>
-#&gt;   Group    Variance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GEN       0.028</span><span style='text-decoration: underline;'>03</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV   0.056</span><span style='text-decoration: underline;'>71</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> Residual  0.096</span><span style='text-decoration: underline;'>69</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 3 x 3</span><span>
+#&gt;   Group    Variance Percent
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GEN       0.028</span><span style='text-decoration: underline;'>03</span><span>   15.45
+#&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV   0.056</span><span style='text-decoration: underline;'>71</span><span>   31.26
+#&gt; </span><span style='color: #555555;'>3</span><span> Residual  0.096</span><span style='text-decoration: underline;'>69</span><span>   53.29
 #&gt; ---------------------------------------------------------------------------
 #&gt; Likelihood ratio test
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 7</span><span>
-#&gt;   model     npar logLik   AIC   LRT    Df `Pr(&gt;Chisq)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Complete    45 -</span><span style='color: #BB0000;'>214.7</span><span> 519.4 </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #555555;'> </span><span>   
-#&gt; </span><span style='color: #555555;'>2</span><span> Genotype    44 -</span><span style='color: #BB0000;'>224.4</span><span> 536.7 19.32     1    1.108</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> Gen:Env     44 -</span><span style='color: #BB0000;'>237.1</span><span> 562.3 44.83     1    2.147</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-11</span><span>
+#&gt;      model npar    logLik      AIC      LRT Df   Pr(&gt;Chisq)
+#&gt; 1 COMPLETE   45 -214.7173 519.4345       NA NA           NA
+#&gt; 2      GEN   44 -224.3750 536.7499 19.31544  1 1.108068e-05
+#&gt; 3  GEN:ENV   44 -237.1332 562.2665 44.83199  1 2.146863e-11
 #&gt; ---------------------------------------------------------------------------
 #&gt; Variance components and genetic parameters
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 15 x 2</span><span>
-#&gt;    Parameters              Values
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> GEI variance           0.056</span><span style='text-decoration: underline;'>71</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> GEI (%)               31.26   
-#&gt; </span><span style='color: #555555;'> 3</span><span> Genotypic variance     0.028</span><span style='text-decoration: underline;'>03</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> Gen (%)               15.45   
-#&gt; </span><span style='color: #555555;'> 5</span><span> Residual variance      0.096</span><span style='text-decoration: underline;'>69</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> Res (%)               53.29   
-#&gt; </span><span style='color: #555555;'> 7</span><span> Phenotypic variance    0.181</span><span style='text-decoration: underline;'>4</span><span> 
-#&gt; </span><span style='color: #555555;'> 8</span><span> Heritability           0.154</span><span style='text-decoration: underline;'>5</span><span> 
-#&gt; </span><span style='color: #555555;'> 9</span><span> GEIr2                  0.312</span><span style='text-decoration: underline;'>6</span><span> 
-#&gt; </span><span style='color: #555555;'>10</span><span> Heribatility of means  0.815</span><span style='text-decoration: underline;'>2</span><span> 
-#&gt; </span><span style='color: #555555;'>11</span><span> Accuracy               0.902</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #555555;'>12</span><span> rge                    0.369</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #555555;'>13</span><span> CVg                    6.260  
-#&gt; </span><span style='color: #555555;'>14</span><span> CVr                   11.63   
-#&gt; </span><span style='color: #555555;'>15</span><span> CV ratio               0.538</span><span style='text-decoration: underline;'>4</span><span> 
+#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
+#&gt;   Parameters             Values
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance    0.181</span><span style='text-decoration: underline;'>4</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> Heritability           0.154</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                  0.312</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> Heribatility of means  0.815</span><span style='text-decoration: underline;'>2</span><span>
+#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy               0.902</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'>6</span><span> rge                    0.369</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #555555;'>7</span><span> CVg                    6.260 
+#&gt; </span><span style='color: #555555;'>8</span><span> CVr                   11.63  
+#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio               0.538</span><span style='text-decoration: underline;'>4</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt;  Principal component analysis of the G x E interaction matrix
 #&gt; ---------------------------------------------------------------------------
@@ -342,22 +343,27 @@ to the working directory</p></td>
 #&gt; </span><span style='color: #555555;'>6</span><span> PC6      0.139</span><span style='text-decoration: underline;'>7</span><span>      3.256        96.38
 #&gt; </span><span style='color: #555555;'>7</span><span> PC7      0.079</span><span style='text-decoration: underline;'>12</span><span>     1.844        98.22
 #&gt; </span><span style='color: #555555;'>8</span><span> PC8      0.056</span><span style='text-decoration: underline;'>73</span><span>     1.322        99.55
-#&gt; </span><span style='color: #555555;'>9</span><span> PC9      0.019</span><span style='text-decoration: underline;'>47</span><span>     0.453</span><span style='text-decoration: underline;'>7</span><span>      100   
+#&gt; </span><span style='color: #555555;'>9</span><span> PC9      0.019</span><span style='text-decoration: underline;'>47</span><span>     0.453</span><span style='text-decoration: underline;'>7</span><span>      100.  
 #&gt; ---------------------------------------------------------------------------
 #&gt; Some information regarding the analysis
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
-#&gt;   Parameters Values               
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                
-#&gt; </span><span style='color: #555555;'>1</span><span> Ngen       </span><span style='color: #555555;'>"</span><span>10</span><span style='color: #555555;'>"</span><span>                 
-#&gt; </span><span style='color: #555555;'>2</span><span> Nenv       </span><span style='color: #555555;'>"</span><span>14</span><span style='color: #555555;'>"</span><span>                 
-#&gt; </span><span style='color: #555555;'>3</span><span> OVmean     </span><span style='color: #555555;'>"</span><span>2.6742</span><span style='color: #555555;'>"</span><span>             
-#&gt; </span><span style='color: #555555;'>4</span><span> Min        </span><span style='color: #555555;'>"</span><span>0.8991 (G10 in E11)</span><span style='color: #555555;'>"</span><span>
-#&gt; </span><span style='color: #555555;'>5</span><span> Max        </span><span style='color: #555555;'>"</span><span>4.8121 (G8 in E5)</span><span style='color: #555555;'>"</span><span>  
-#&gt; </span><span style='color: #555555;'>6</span><span> MinENV     </span><span style='color: #555555;'>"</span><span>E11 (1.368)</span><span style='color: #555555;'>"</span><span>        
-#&gt; </span><span style='color: #555555;'>7</span><span> MaxENV     </span><span style='color: #555555;'>"</span><span>E3 (4.064)</span><span style='color: #555555;'>"</span><span>         
-#&gt; </span><span style='color: #555555;'>8</span><span> MinGEN     </span><span style='color: #555555;'>"</span><span>G10 (2.471) </span><span style='color: #555555;'>"</span><span>       
-#&gt; </span><span style='color: #555555;'>9</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G8 (3.004) </span><span style='color: #555555;'>"</span><span>        
+#&gt; </span><span style='color: #555555;'># A tibble: 14 x 2</span><span>
+#&gt;    Parameters Values             
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              
+#&gt; </span><span style='color: #555555;'> 1</span><span> Nenv       </span><span style='color: #555555;'>"</span><span>14</span><span style='color: #555555;'>"</span><span>               
+#&gt; </span><span style='color: #555555;'> 2</span><span> Ngen       </span><span style='color: #555555;'>"</span><span>10</span><span style='color: #555555;'>"</span><span>               
+#&gt; </span><span style='color: #555555;'> 3</span><span> mresp      </span><span style='color: #555555;'>"</span><span>100</span><span style='color: #555555;'>"</span><span>              
+#&gt; </span><span style='color: #555555;'> 4</span><span> wresp      </span><span style='color: #555555;'>"</span><span>50</span><span style='color: #555555;'>"</span><span>               
+#&gt; </span><span style='color: #555555;'> 5</span><span> Mean       </span><span style='color: #555555;'>"</span><span>2.67</span><span style='color: #555555;'>"</span><span>             
+#&gt; </span><span style='color: #555555;'> 6</span><span> SE         </span><span style='color: #555555;'>"</span><span>NA</span><span style='color: #555555;'>"</span><span>               
+#&gt; </span><span style='color: #555555;'> 7</span><span> SD         </span><span style='color: #555555;'>"</span><span>NA</span><span style='color: #555555;'>"</span><span>               
+#&gt; </span><span style='color: #555555;'> 8</span><span> CV         </span><span style='color: #555555;'>"</span><span>NA</span><span style='color: #555555;'>"</span><span>               
+#&gt; </span><span style='color: #555555;'> 9</span><span> Min        </span><span style='color: #555555;'>"</span><span>0.67 (G10 in E11)</span><span style='color: #555555;'>"</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> Max        </span><span style='color: #555555;'>"</span><span>5.09 (G8 in E5)</span><span style='color: #555555;'>"</span><span>  
+#&gt; </span><span style='color: #555555;'>11</span><span> MinENV     </span><span style='color: #555555;'>"</span><span>E11 (1.37)</span><span style='color: #555555;'>"</span><span>       
+#&gt; </span><span style='color: #555555;'>12</span><span> MaxENV     </span><span style='color: #555555;'>"</span><span>E3 (4.06)</span><span style='color: #555555;'>"</span><span>        
+#&gt; </span><span style='color: #555555;'>13</span><span> MinGEN     </span><span style='color: #555555;'>"</span><span>G10 (2.47) </span><span style='color: #555555;'>"</span><span>      
+#&gt; </span><span style='color: #555555;'>14</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G8 (3) </span><span style='color: #555555;'>"</span><span>          
 #&gt; 
 #&gt; 
 #&gt; 
@@ -366,22 +372,22 @@ to the working directory</p></td>
 #&gt; Individual fixed-model analysis of variance
 #&gt; ---------------------------------------------------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 14 x 12</span><span>
-#&gt;    ENV    MEAN     MSB    MSG   MSR     FCB     PRFB    FCG     PRFG    CV
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    47.42  3.106   5.221 1.852  1.677  2.148</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  2.819 2.928</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 2.870
-#&gt; </span><span style='color: #555555;'> 2</span><span> E10   44.3   9.1    28.77  2.174  4.186  3.216</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 13.24  3.024</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span> 3.328
-#&gt; </span><span style='color: #555555;'> 3</span><span> E11   54.20  2.810   6.057 3.087  0.910</span><span style='text-decoration: underline;'>3</span><span> 4.202</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.962 1.069</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 3.242
-#&gt; </span><span style='color: #555555;'> 4</span><span> E12   49.60  2.766  10.40  5.322  0.519</span><span style='text-decoration: underline;'>8</span><span> 6.033</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.955 1.081</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.651
-#&gt; </span><span style='color: #555555;'> 5</span><span> E13   46.56 25.45   13.88  1.342 18.96   3.705</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span> 10.34  1.798</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span> 2.488
-#&gt; </span><span style='color: #555555;'> 6</span><span> E14   41.03 10.02    5.278 1.217  8.230  2.894</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>  4.338 3.935</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 2.688
-#&gt; </span><span style='color: #555555;'> 7</span><span> E2    44.12  6.699  13.17  3.049  2.197  1.400</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  4.319 4.025</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 3.958
-#&gt; </span><span style='color: #555555;'> 8</span><span> E3    52.9   7.3     8.004 2.781  2.625  9.996</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  2.877 2.692</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 3.153
-#&gt; </span><span style='color: #555555;'> 9</span><span> E4    50     2.100   7.926 1.248  1.682  2.139</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  6.350 4.510</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 2.234
-#&gt; </span><span style='color: #555555;'>10</span><span> E5    52.23  6.860  11.83  6.371  1.077  3.616</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.858 1.260</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.833
-#&gt; </span><span style='color: #555555;'>11</span><span> E6    45.89 12.86   15.84  2.122  6.063  9.706</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>  7.463 1.633</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 3.174
-#&gt; </span><span style='color: #555555;'>12</span><span> E7    48.50  0.705</span><span style='text-decoration: underline;'>2</span><span>  4.997 4.738  0.148</span><span style='text-decoration: underline;'>8</span><span> 8.627</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  1.055 4.382</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.489
-#&gt; </span><span style='color: #555555;'>13</span><span> E8    45.16 11.95   11.57  2.168  5.514  1.356</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  5.335 1.266</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 3.260
-#&gt; </span><span style='color: #555555;'>14</span><span> E9    51.33  5.733   9.333 2.289  2.505  1.097</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  4.078 5.408</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 2.947
+#&gt;    ENV    MEAN    MSG    FCG      PFG     MSB     FCB      PFB   MSE    CV
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    47.42  5.221  2.819 2.928</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  3.106   1.677  2.148</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 1.852 2.870
+#&gt; </span><span style='color: #555555;'> 2</span><span> E10   44.3  28.77  13.24  3.024</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span>  9.1     4.186  3.216</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 2.174 3.328
+#&gt; </span><span style='color: #555555;'> 3</span><span> E11   54.20  6.057  1.962 1.069</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  2.810   0.910</span><span style='text-decoration: underline;'>3</span><span> 4.202</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 3.087 3.242
+#&gt; </span><span style='color: #555555;'> 4</span><span> E12   49.60 10.40   1.955 1.081</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  2.766   0.519</span><span style='text-decoration: underline;'>8</span><span> 6.033</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 5.322 4.651
+#&gt; </span><span style='color: #555555;'> 5</span><span> E13   46.56 13.88  10.34  1.798</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span> 25.45   18.96   3.705</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span> 1.342 2.488
+#&gt; </span><span style='color: #555555;'> 6</span><span> E14   41.03  5.278  4.338 3.935</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 10.02    8.230  2.894</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 1.217 2.688
+#&gt; </span><span style='color: #555555;'> 7</span><span> E2    44.12 13.17   4.319 4.025</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>  6.699   2.197  1.400</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 3.049 3.958
+#&gt; </span><span style='color: #555555;'> 8</span><span> E3    52.9   8.004  2.877 2.692</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>  7.3     2.625  9.996</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 2.781 3.153
+#&gt; </span><span style='color: #555555;'> 9</span><span> E4    50     7.926  6.350 4.510</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>  2.100   1.682  2.139</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 1.248 2.234
+#&gt; </span><span style='color: #555555;'>10</span><span> E5    52.23 11.83   1.858 1.260</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  6.860   1.077  3.616</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 6.371 4.833
+#&gt; </span><span style='color: #555555;'>11</span><span> E6    45.89 15.84   7.463 1.633</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> 12.86    6.063  9.706</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 2.122 3.174
+#&gt; </span><span style='color: #555555;'>12</span><span> E7    48.50  4.997  1.055 4.382</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>  0.705</span><span style='text-decoration: underline;'>2</span><span>  0.148</span><span style='text-decoration: underline;'>8</span><span> 8.627</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.738 4.489
+#&gt; </span><span style='color: #555555;'>13</span><span> E8    45.16 11.57   5.335 1.266</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 11.95    5.514  1.356</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 2.168 3.260
+#&gt; </span><span style='color: #555555;'>14</span><span> E9    51.33  9.333  4.078 5.408</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>  5.733   2.505  1.097</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 2.289 2.947
 #&gt; </span><span style='color: #555555;'># ... with 2 more variables: h2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AS </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Fixed effects
@@ -390,46 +396,38 @@ to the working directory</p></td>
 #&gt;   SOURCE  `Sum Sq` `Mean Sq` NumDF DenDF `F value`  `Pr(&gt;F)`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> ENV       </span><span style='text-decoration: underline;'>1</span><span>166.     89.69     13 257.4    31.58  5.684</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-46</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> REP:ENV    214.9     7.676    28 252.0     2.703 2.197</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> ENV:REP    214.9     7.676    28 252.0     2.703 2.197</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Random effects
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 2</span><span>
-#&gt;   Group    Variance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GEN        0.489</span><span style='text-decoration: underline;'>9</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV    2.189 
-#&gt; </span><span style='color: #555555;'>3</span><span> Residual   2.840 
+#&gt; </span><span style='color: #555555;'># A tibble: 3 x 3</span><span>
+#&gt;   Group    Variance Percent
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GEN        0.489</span><span style='text-decoration: underline;'>9</span><span>   8.876
+#&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV    2.189   39.67 
+#&gt; </span><span style='color: #555555;'>3</span><span> Residual   2.840   51.46 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Likelihood ratio test
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 7</span><span>
-#&gt;   model     npar logLik   AIC    LRT    Df `Pr(&gt;Chisq)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Complete    45 -</span><span style='color: #BB0000;'>862.7</span><span> </span><span style='text-decoration: underline;'>1</span><span>815. </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #555555;'> </span><span>   
-#&gt; </span><span style='color: #555555;'>2</span><span> Genotype    44 -</span><span style='color: #BB0000;'>866.6</span><span> </span><span style='text-decoration: underline;'>1</span><span>821.  7.855     1    5.068</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> Gen:Env     44 -</span><span style='color: #BB0000;'>894.1</span><span> </span><span style='text-decoration: underline;'>1</span><span>876. 62.82      1    2.266</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span>
+#&gt;      model npar    logLik      AIC       LRT Df   Pr(&gt;Chisq)
+#&gt; 1 COMPLETE   45 -862.6667 1815.333        NA NA           NA
+#&gt; 2      GEN   44 -866.5943 1821.189  7.855093  1 5.067774e-03
+#&gt; 3  GEN:ENV   44 -894.0762 1876.152 62.818887  1 2.266152e-15
 #&gt; ---------------------------------------------------------------------------
 #&gt; Variance components and genetic parameters
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 15 x 2</span><span>
-#&gt;    Parameters              Values
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> GEI variance           2.189  
-#&gt; </span><span style='color: #555555;'> 2</span><span> GEI (%)               39.67   
-#&gt; </span><span style='color: #555555;'> 3</span><span> Genotypic variance     0.489</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #555555;'> 4</span><span> Gen (%)                8.876  
-#&gt; </span><span style='color: #555555;'> 5</span><span> Residual variance      2.840  
-#&gt; </span><span style='color: #555555;'> 6</span><span> Res (%)               51.46   
-#&gt; </span><span style='color: #555555;'> 7</span><span> Phenotypic variance    5.519  
-#&gt; </span><span style='color: #555555;'> 8</span><span> Heritability           0.088</span><span style='text-decoration: underline;'>76</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> GEIr2                  0.396</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #555555;'>10</span><span> Heribatility of means  0.686</span><span style='text-decoration: underline;'>2</span><span> 
-#&gt; </span><span style='color: #555555;'>11</span><span> Accuracy               0.828</span><span style='text-decoration: underline;'>4</span><span> 
-#&gt; </span><span style='color: #555555;'>12</span><span> rge                    0.435</span><span style='text-decoration: underline;'>3</span><span> 
-#&gt; </span><span style='color: #555555;'>13</span><span> CVg                    1.456  
-#&gt; </span><span style='color: #555555;'>14</span><span> CVr                    3.504  
-#&gt; </span><span style='color: #555555;'>15</span><span> CV ratio               0.415</span><span style='text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
+#&gt;   Parameters             Values
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance   5.519  
+#&gt; </span><span style='color: #555555;'>2</span><span> Heritability          0.088</span><span style='text-decoration: underline;'>76</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                 0.396</span><span style='text-decoration: underline;'>7</span><span> 
+#&gt; </span><span style='color: #555555;'>4</span><span> Heribatility of means 0.686</span><span style='text-decoration: underline;'>2</span><span> 
+#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy              0.828</span><span style='text-decoration: underline;'>4</span><span> 
+#&gt; </span><span style='color: #555555;'>6</span><span> rge                   0.435</span><span style='text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #555555;'>7</span><span> CVg                   1.456  
+#&gt; </span><span style='color: #555555;'>8</span><span> CVr                   3.504  
+#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio              0.415</span><span style='text-decoration: underline;'>3</span><span> 
 #&gt; ---------------------------------------------------------------------------
 #&gt;  Principal component analysis of the G x E interaction matrix
 #&gt; ---------------------------------------------------------------------------
@@ -448,18 +446,23 @@ to the working directory</p></td>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Some information regarding the analysis
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
-#&gt;   Parameters Values               
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                
-#&gt; </span><span style='color: #555555;'>1</span><span> Ngen       </span><span style='color: #555555;'>"</span><span>10</span><span style='color: #555555;'>"</span><span>                 
-#&gt; </span><span style='color: #555555;'>2</span><span> Nenv       </span><span style='color: #555555;'>"</span><span>14</span><span style='color: #555555;'>"</span><span>                 
-#&gt; </span><span style='color: #555555;'>3</span><span> OVmean     </span><span style='color: #555555;'>"</span><span>48.0883</span><span style='color: #555555;'>"</span><span>            
-#&gt; </span><span style='color: #555555;'>4</span><span> Min        </span><span style='color: #555555;'>"</span><span>39.35 (G2 in E14)</span><span style='color: #555555;'>"</span><span>  
-#&gt; </span><span style='color: #555555;'>5</span><span> Max        </span><span style='color: #555555;'>"</span><span>56.3333 (G6 in E11)</span><span style='color: #555555;'>"</span><span>
-#&gt; </span><span style='color: #555555;'>6</span><span> MinENV     </span><span style='color: #555555;'>"</span><span>E14 (41.032)</span><span style='color: #555555;'>"</span><span>       
-#&gt; </span><span style='color: #555555;'>7</span><span> MaxENV     </span><span style='color: #555555;'>"</span><span>E11 (54.198)</span><span style='color: #555555;'>"</span><span>       
-#&gt; </span><span style='color: #555555;'>8</span><span> MinGEN     </span><span style='color: #555555;'>"</span><span>G2 (46.66) </span><span style='color: #555555;'>"</span><span>        
-#&gt; </span><span style='color: #555555;'>9</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G5 (49.298) </span><span style='color: #555555;'>"</span><span>       
+#&gt; </span><span style='color: #555555;'># A tibble: 14 x 2</span><span>
+#&gt;    Parameters Values          
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'> 1</span><span> Nenv       </span><span style='color: #555555;'>"</span><span>14</span><span style='color: #555555;'>"</span><span>            
+#&gt; </span><span style='color: #555555;'> 2</span><span> Ngen       </span><span style='color: #555555;'>"</span><span>10</span><span style='color: #555555;'>"</span><span>            
+#&gt; </span><span style='color: #555555;'> 3</span><span> mresp      </span><span style='color: #555555;'>"</span><span>100</span><span style='color: #555555;'>"</span><span>           
+#&gt; </span><span style='color: #555555;'> 4</span><span> wresp      </span><span style='color: #555555;'>"</span><span>50</span><span style='color: #555555;'>"</span><span>            
+#&gt; </span><span style='color: #555555;'> 5</span><span> Mean       </span><span style='color: #555555;'>"</span><span>48.09</span><span style='color: #555555;'>"</span><span>         
+#&gt; </span><span style='color: #555555;'> 6</span><span> SE         </span><span style='color: #555555;'>"</span><span>NA</span><span style='color: #555555;'>"</span><span>            
+#&gt; </span><span style='color: #555555;'> 7</span><span> SD         </span><span style='color: #555555;'>"</span><span>NA</span><span style='color: #555555;'>"</span><span>            
+#&gt; </span><span style='color: #555555;'> 8</span><span> CV         </span><span style='color: #555555;'>"</span><span>NA</span><span style='color: #555555;'>"</span><span>            
+#&gt; </span><span style='color: #555555;'> 9</span><span> Min        </span><span style='color: #555555;'>"</span><span>38 (G2 in E14)</span><span style='color: #555555;'>"</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> Max        </span><span style='color: #555555;'>"</span><span>58 (G8 in E11)</span><span style='color: #555555;'>"</span><span>
+#&gt; </span><span style='color: #555555;'>11</span><span> MinENV     </span><span style='color: #555555;'>"</span><span>E14 (41.03)</span><span style='color: #555555;'>"</span><span>   
+#&gt; </span><span style='color: #555555;'>12</span><span> MaxENV     </span><span style='color: #555555;'>"</span><span>E11 (54.2)</span><span style='color: #555555;'>"</span><span>    
+#&gt; </span><span style='color: #555555;'>13</span><span> MinGEN     </span><span style='color: #555555;'>"</span><span>G2 (46.66) </span><span style='color: #555555;'>"</span><span>   
+#&gt; </span><span style='color: #555555;'>14</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G5 (49.3) </span><span style='color: #555555;'>"</span><span>    
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'># }

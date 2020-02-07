@@ -22,9 +22,9 @@ knitr::opts_chunk$set(comment = "")
 
 # Getting started
 
-In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
+In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
-```{r warning = FALSE, message = FALSE}
+```{r warning = FALSE, message = FALSE, echo=FALSE}
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
@@ -38,6 +38,7 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 The first step is to inspect the data with the function `inspect()`.
 
 ```{r, fig.width=7, fig.height=7, fig.align="center"}
+library(metan)
 inspect <- 
 inspect(data_ge,
         verbose = FALSE,
@@ -132,7 +133,7 @@ The vectors ${\boldsymbol{\beta }}$ and **u** are estimated using the well-known
 where **G** and **R** are the variance-covariance matrices for random-effect vector **u** and residual vector ${\bf{\varepsilon }}$, respectively.
 
 
-The `waasb()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `data_ge`. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.  The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`gen`, `env`, and `rep`) are the name of the columns that contains the levels for genotypes, environments, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
+The `waasb()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `data_ge`. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.  The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`env`, `gen`, and `rep`) are the name of the columns that contains the levels for environments, genotypes, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
 
 ```{r  echo = TRUE}
 WAASB_model <- waasb(data_ge,
@@ -147,10 +148,15 @@ WAASB_model <- waasb(data_ge,
 
 
 ## Diagnostic plot for residuals
-The S3 generic function `plot()` is used to generate diagnostic plots of residuals of the model. The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`.
+The S3 generic function `plot()` is used to generate diagnostic plots of residuals of the model. 
 
 ```{r  echo = TRUE, fig.width=7, fig.height=7, fig.align="center"}
 plot(WAASB_model)
+    ```
+
+
+The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`.
+```{r  echo = TRUE, fig.width=10, fig.height=3.33, fig.align="center"}
 plot(WAASB_model, type = "re")
     ```
 
@@ -222,7 +228,7 @@ print_table(data)
 ### Some useful information
 
 
-The following pieces of information are provided in `Details` output. **WgtResponse** is the weight for the response variable in estimating WAASB; **WgtWAAS** is the weight for stability; **Ngen** is the number of genotypes; **Nenv** is the number of environments; **OVmean** is the overall mean; **Min** is the minimum value observed (returning the genotype and environment); **Max** is the maximum observed; **MinENV** is the environment with the lower mean; **MaxENV** is the environment with the largest mean observed; **MinGEN** is the genotype with the lower mean; **MaxGEN** is the genotype with the largest mean.    
+The following pieces of information are provided in `Details` output.  **Nenv**, the number of environments in the analysis; **Ngen** the number of genotypes in the analysis; **mresp** The value attributed to the highest value of the response variable after rescaling it; **wresp** The weight of the response variable for estimating the WAASBY index. **Mean** the grand mean; **SE** the standard error of the mean; **SD** the standard deviation. **CV** the coefficient of variation of the phenotypic means, estimating WAASB, **Min** the minimum value observed (returning the genotype and environment), **Max** the maximum value observed (returning the genotype and environment); **MinENV** the environment with the lower mean, **MaxENV** the environment with the larger mean observed, **MinGEN** the genotype with the lower mean, **MaxGEN** the genotype with the larger. 
 
 ```{r  }
 data <- WAASB_model$GY$Details
@@ -254,7 +260,7 @@ The output generated by the `waasb()` function is very similar to those generate
 
 
 ```{r  }
-print_table(WAASB_model$GY$blupGEN)
+print_table(WAASB_model$GY$BLUPgen)
 
 ```
 
@@ -309,7 +315,7 @@ where $t$ is the Student's *t* value for a two-tailed *t* test at a given probab
 ### BLUP for genotypes X environment combination
 
 ```{r  }
-print_table(WAASB_model$GY$BLUPgge)
+print_table(WAASB_model$GY$BLUPint)
     ```
 
 This output shows the predicted means for each genotype and environment combination. **BLUPg** is the genotypic effect described above. **BLUPge** is the genotypic effect of the *i*th genotype in the *j*th environment $(\hat{g}_{ij})$, which considering balanced data and genotype as random effect is estimated by
@@ -396,7 +402,7 @@ arrange_ggplot(g, h, labels = letters[7:8])
 To obtain the WAASB index for a set of variables, the function `get_model_data()` is used, as shown bellow.
 
 ```{r}
-waas(data_ge2, ENV, GEN, REP,
+waasb(data_ge2, ENV, GEN, REP,
      resp = c(PH, ED, TKW, NKR)) %>%
  get_model_data(what = "WAASB") %>%
  print_table()
@@ -509,7 +515,7 @@ $$
 ```{r  }
 Res_ind <- 
 data_ge %>%
-waasb(GEN, ENV, REP, resp = GY, verbose = FALSE) %>% 
+waasb(ENV, GEN, REP, resp = GY, verbose = FALSE) %>% 
 Resende_indexes()
 
 print_table(Res_ind$GY)
@@ -531,6 +537,22 @@ data_ge2 %>%
   plot()
     ```
 
+
+
+_______________________________________________________________________________________________
+**Rendering engine**
+
+This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
+
+```{r warning = FALSE, message = FALSE, eval=FALSE}
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+
+```
 
 
 # References

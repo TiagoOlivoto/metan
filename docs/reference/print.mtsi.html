@@ -124,6 +124,9 @@ the R console. The results can also be exported to the directory." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -204,7 +207,7 @@ the R console. The results can also be exported to the directory." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Print an object of class mtsi</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.mtsi.R'><code>R/print.mtsi.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/MTSI.R'><code>R/MTSI.R</code></a></small>
     <div class="hidden name"><code>print.mtsi.Rd</code></div>
     </div>
 
@@ -245,17 +248,24 @@ to the working directory</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='co'># Based on stability only</span>
 <span class='no'>MTSI_MODEL</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>
-)</div><div class='output co'>#&gt; Evaluating variable GY 0 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
+)</div><div class='output co'>#&gt; Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       GY       HM
+#&gt;  COMPLETE       NA       NA
+#&gt;       GEN 1.11e-05 5.07e-03
+#&gt;   GEN:ENV 2.15e-11 2.27e-15
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
 <span class='no'>MTSI_index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>MTSI_MODEL</span>)</div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
@@ -372,7 +382,8 @@ to the working directory</p></td>
 #&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.09  48.35  0.264</span><span style='text-decoration: underline;'>8</span><span>  0.550</span><span style='text-decoration: underline;'>7</span><span>
 #&gt; 
 #&gt; -------------------------------- Selected genotypes -----------------------------------
-#&gt; G8 G3</div></span></pre>
+#&gt; G8 G3</div><div class='input'># }
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

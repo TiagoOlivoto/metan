@@ -124,6 +124,9 @@ an upper triangular matrix." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -239,7 +242,8 @@ matrix.</p></td>
     <p>A symmetric matrix.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>lower_tri</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make_lower_tri.html'>make_lower_tri</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>20</span>, <span class='fl'>4</span>, <span class='fl'>4</span>))
 <span class='no'>lower_tri</span></div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4]
 #&gt; [1,]   NA   NA   NA   NA
@@ -259,7 +263,7 @@ matrix.</p></td>
 #&gt; [1,]    1   20   20   20
 #&gt; [2,]   20    1   20   20
 #&gt; [3,]   20   20    1   20
-#&gt; [4,]   20   20   20    1</div><div class='input'>
+#&gt; [4,]   20   20   20    1</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

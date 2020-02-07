@@ -125,6 +125,9 @@ the metan package such as waas and wsmp" />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -215,7 +218,7 @@ function also serves as a helper function for other procedures performed in
 the <span class="pkg">metan</span> package such as <code><a href='waas.html'>waas</a></code> and <code><a href='wsmp.html'>wsmp</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>performs_ammi</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>performs_ammi</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -246,6 +249,13 @@ single procedure a vector of variables may be used. For example <code>resp
   = c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
+      <th>block</th>
+      <td><p>Defaults to <code>NULL</code>. In this case, a randomized complete
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+<strong>All effects, except the error, are assumed to be fixed.</strong></p></td>
+    </tr>
+    <tr>
       <th>verbose</th>
       <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run
 silently.</p></td>
@@ -256,27 +266,39 @@ silently.</p></td>
 
     
 <ul>
-<li><p><strong>ANOVA</strong> The analysis of variance for the AMMI model.</p></li>
-<li><p><strong>PCA</strong> The principal component analysis</p></li>
-<li><p><strong>MeansGxE</strong> The means of genotypes in the environments</p></li>
-<li><p><strong>model</strong> scores for genotypes and environments in all the possible
+<li><p><strong>ANOVA</strong>: The analysis of variance for the AMMI model.</p></li>
+<li><p><strong>PCA</strong>: The principal component analysis</p></li>
+<li><p><strong>MeansGxE</strong>: The means of genotypes in the environments</p></li>
+<li><p><strong>model</strong>: scores for genotypes and environments in all the possible
 axes.</p></li>
+<li><p><strong>augment:</strong> Information about each observation in the dataset. This
+includes predicted values in the <code>fitted</code> column, residuals in the
+<code>resid</code> column, standardized residuals in the <code>stdres</code> column,
+the diagonal of the 'hat' matrix in the <code>hat</code>, and standard errors for
+the fitted values in the <code>se.fit</code> column.</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.
+<a href='https://doi.org/10.1093/biomet/63.1.83'>doi:10.1093/biomet/63.1.83</a></p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='waas.html'>waas</a></code> <code><a href='waas_means.html'>waas_means</a></code> <code><a href='waasb.html'>waasb</a></code> <code><a href='get_model_data.html'>get_model_data</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>ammi_model</span> <span class='kw'>=</span> <span class='fu'>performs_ammi</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-                           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; variable GY 
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'>performs_ammi</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
 #&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .
 #&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .
-#&gt;   GEN        9  12.995  1.4439   14.93 2.19e-19       .       .
-#&gt;    ENV:GEN 117  31.220  0.2668    2.76 1.01e-11       .       .
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19       .       .
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11       .       .
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2
@@ -287,7 +309,7 @@ axes.</p></li>
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6
 #&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100
 #&gt;  Residuals 252  24.367  0.0967      NA       NA       .       .
-#&gt;      Total 419 357.816  0.8540      NA       NA       .       .
+#&gt;      Total 419 357.816  0.8540      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; variable HM 
@@ -297,8 +319,8 @@ axes.</p></li>
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
 #&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16       .       .
 #&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05       .       .
-#&gt;   GEN        9  269.81  29.979   10.56 7.41e-14       .       .
-#&gt;    ENV:GEN 117 1100.73   9.408    3.31 1.06e-15       .       .
+#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14       .       .
+#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15       .       .
 #&gt;        PC1  21  381.13  18.149    6.39 0.00e+00    34.6    34.6
 #&gt;        PC2  19  319.43  16.812    5.92 0.00e+00      29    63.6
 #&gt;        PC3  17  114.26   6.721    2.37 2.10e-03    10.4      74
@@ -309,24 +331,20 @@ axes.</p></li>
 #&gt;        PC8   7   26.65   3.808    1.34 2.32e-01     2.4    99.7
 #&gt;        PC9   5    3.41   0.682    0.24 9.45e-01     0.3     100
 #&gt;  Residuals 252  715.69   2.840      NA       NA       .       .
-#&gt;      Total 419 8011.48  19.120      NA       NA       .       .
+#&gt;      Total 419 8011.48  19.120      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># GY x PC1 (variable GY)</span>
-<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>ammi_model</span>,
-            <span class='kw'>col.env</span> <span class='kw'>=</span> <span class='st'>'olivedrab'</span>,
-            <span class='kw'>col.gen</span> <span class='kw'>=</span> <span class='st'>'orange2'</span>,
-            <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>'My own x label'</span>)</div><div class='img'><img src='performs_ammi-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>model</span>)</div><div class='img'><img src='performs_ammi-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># PC1 x PC2 (variable HM)</span>
-<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>ammi_model</span>,
+<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>model</span>,
+            <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='co'># or "HM"</span>
             <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='performs_ammi-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># PC1 x PC2 (variable HM)</span>
+<span class='co'># Nominal yield plot (variable GY)</span>
 <span class='co'># Draw a convex hull polygon</span>
-<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>ammi_model</span>,
-            <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-            <span class='kw'>polygon</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='performs_ammi-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>model</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='img'><img src='performs_ammi-3.png' alt='' width='700' height='433' /></div><div class='input'>
 # }
 </div></pre>
   </div>
@@ -335,6 +353,8 @@ axes.</p></li>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

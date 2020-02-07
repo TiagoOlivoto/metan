@@ -123,6 +123,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -350,10 +353,16 @@ Grain Yield"</code>.</p></td>
               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Evaluating variable GY 0 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'>plot_blup</span>(<span class='no'>BLUP</span>)</div><div class='img'><img src='plot_blup-1.png' alt='' width='700' height='433' /></div><div class='input'>
+              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       GY       HM
+#&gt;  COMPLETE       NA       NA
+#&gt;       GEN 1.11e-05 5.07e-03
+#&gt;   GEN:ENV 2.15e-11 2.27e-15
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'>plot_blup</span>(<span class='no'>BLUP</span>)</div><div class='img'><img src='plot_blup-1.png' alt='' width='700' height='433' /></div><div class='input'>
 # }
 
 

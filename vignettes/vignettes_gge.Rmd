@@ -73,7 +73,7 @@ inspect(data_ge)
 
 ```
 
-The GGE model is fitted with the function `gge()`. This function produces a GGE model based on both a two-way table (in our case the object `table`) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).
+The GGE model is fitted with the function `gge()`. This function produces a GGE model using a data frame containing at least the columns for genotypes, environments and the response variable(s).
 
 ```{r echo = TRUE}
 gge_model <- gge(data_ge, ENV, GEN, GY)

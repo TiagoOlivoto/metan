@@ -123,6 +123,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -243,7 +246,8 @@ environments.</p></td>
     <tr>
       <th>rep</th>
       <td><p>The name of the column that contains the levels of the
-replications/blocks.</p></td>
+replications/blocks. <strong>AT LEAST THREE REPLICATES ARE REQUIRED TO
+PERFORM THE CROSS-VALIDATION</strong>.</p></td>
     </tr>
     <tr>
       <th>resp</th>
@@ -291,33 +295,37 @@ compared with the 'validation' data and the Root Means Square Prediction
 Difference (Olivoto et al. 2019) is computed. At the end of boots, a list is
 returned.</p>
 <p>Six models may be fitted depending upon the values in <code>block</code>
-and <code>random</code> arguments. *  <strong>Model 1:</strong> <code>block = NULL</code> and
-<code>random = "gen"</code> (The default option). This model considers a
-Randomized Complete Block Design assuming genotype and
-genotype-vs-environment as random effects. Environment and blocks nested
-within environments are treated as fixed factors.</p><ul>
+and <code>random</code> arguments.</p><ul>
+<li><p><strong>Model 1:</strong> <code>block = NULL</code> and <code>random = "gen"</code> (The
+default option). This model considers a Randomized Complete Block Design in
+each environment assuming genotype and genotype-environment interaction as
+random effects. Environments and blocks nested within environments are
+assumed to fixed factors.</p></li>
 <li><p><strong>Model 2:</strong> <code>block = NULL</code> and <code>random = "env"</code>. This
-model considers a Randomized Complete Block Design treating environment,
-genotype-vs-environment, and blocks-within-environments as random factors.
-Genotypes are assumed to be fixed factors.</p></li>
+model considers a Randomized Complete Block Design in each environment
+treating environment, genotype-environment interaction, and blocks nested
+within environments as random factors. Genotypes are assumed to be fixed
+factors.</p></li>
 <li><p><strong>Model 3:</strong> <code>block = NULL</code> and <code>random = "all"</code>. This
-model considers a Randomized Complete Block Design assuming all effects
-(genotypes, environments, genotype-vs-environment interaction and blocks
-nested within environments) as random.</p></li>
-<li><p><strong>Model 4:</strong> <code>block != NULL</code> and <code>random = "gen"</code>. This
-model considers an alpha-lattice design assuming genotype,
-genotype-vs-environment interaction, and incomplete block nested within
-replicates as random to make use of inter-block information (Mohring et
-al., 2015). Complete replicates nested within environments and environments
-are treated as fixed factors.</p></li>
-<li><p><strong>Model 5:</strong> <code>block != NULL</code> and <code>random = "env"</code>. This
-model considers an alpha-lattice design assuming genotype as fixed. All
-other sources of variation (environment, complete replicates nested within
-environments, and incomplete blocks nested within replicates) as treated as
-random factors.</p></li>
-<li><p><strong>Model 6:</strong> <code>block != NULL</code> and <code>random = "all"</code>. This
-model considers an alpha-lattice design assuming all effects, except the
-intercept, as random factors.</p></li>
+model considers a Randomized Complete Block Design in each environment
+assuming a random-effect model, i.e., all effects (genotypes, environments,
+genotype-vs-environment interaction and blocks nested within environments)
+are assumed to be random factors.</p></li>
+<li><p><strong>Model 4:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
+  "gen"</code>. This model considers an alpha-lattice design in each environment
+assuming genotype, genotype-environment interaction, and incomplete blocks
+nested within complete replicates as random to make use of inter-block
+information (Mohring et al., 2015). Complete replicates nested within
+environments and environments are assumed to be fixed factors.</p></li>
+<li><p><strong>Model 5:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
+  "env"</code>. This model considers an alpha-lattice design in each environment
+assuming genotype as fixed. All other sources of variation (environment,
+genotype-environment interaction, complete replicates nested within
+environments, and incomplete blocks nested within replicates) are assumed
+to be random factors.</p></li>
+<li><p><strong>Model 6:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
+  "all"</code>. This model considers an alpha-lattice design in each environment
+assuming all effects, except the intercept, as random factors.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -328,7 +336,8 @@ multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J. 111:2949-2960.
 <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
 <p>Patterson, H.D., and E.R. Williams. 1976. A new class of
-resolvable incomplete block designs. Biometrika 63:83-92.</p>
+resolvable incomplete block designs. Biometrika 63:83-92.
+<a href='https://doi.org/10.1093/biomet/63.1.83'>doi:10.1093/biomet/63.1.83</a></p>
 <p>Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block
 information: to recover or not to recover it? TAG. Theor. Appl. Genet.
 128:1541-54.

@@ -18,11 +18,7 @@ load("cvali.RData")
 ```
 
 
-# Getting started
-
-The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
-
-```{r warning = FALSE, message = FALSE}
+```{r warning = FALSE, message = FALSE, echo=FALSE}
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
@@ -35,39 +31,81 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 
 
 # Select helpers
-The package `metan` reexports the  [tidy select helpers](https://tidyselect.r-lib.org/reference/select_helpers.html) and implements three own select helpers based on operations with prefixes and suffixes: `difference_var()`, `intersect_var()`, and `union_var()`.
+The package `metan` reexports the  [tidy select helpers](https://tidyselect.r-lib.org/reference/select_helpers.html) and implements own select helpers based on operations with prefixes and suffixes (`difference_var()`, `intersect_var()`, and `union_var()`), length of variable names (`width_of()`, `width_greater_than()`, and `width_less_than()`), and on case type (`lower_case_only()`, `upper_case_only()`, and `title_case_only()`).
 
-* Variables that start with a prefix **and** ends with a suffix.
+## Variables that start with a prefix **and** ends with a suffix.
 
-Here, we will select the variables from `data_ge2` that start with "C" and ends with "D".
+Here, we will select the variables from `data_ge2` that start with "C" and ends with "D". Just to reduce the length of outputs, only three rows are selected
 
-```{r}
-data_ge2 %>% 
-  select(intersect_var("C", "D")) %>% 
+```{r message=FALSE, warning=FALSE}
+library(metan)
+data_sel <- head(data_ge2, 3)
+data_sel %>% 
+  select_cols(intersect_var("C", "D")) %>% 
   print_table()
 ```
 
 
-* Variables that start with a prefix **OR** ends with a suffix.
+## Variables that start with a prefix **OR** ends with a suffix.
 
 The following code select variables that start with "C" or ends with "D".
 
 ```{r}
-data_ge2 %>% 
-  select(union_var("C", "D")) %>% 
+data_sel %>% 
+  select_cols(union_var("C", "D")) %>% 
   print_table()
 ```
 
 
-* Variables that start with a prefix **AND NOT** ends with a suffix.
+## Variables that start with a prefix **AND NOT** ends with a suffix.
 
 The following code select variables that start with "C" and not ends with "D".
 
 ```{r}
-data_ge2 %>% 
-  select(difference_var("C", "D")) %>% 
+data_sel %>% 
+  select_cols(difference_var("C", "D")) %>% 
   print_table()
 ```
+
+## Selection based on length of column names.
+
+* Select variables with an specific name length (four letters)
+  
+```{r}
+data_sel %>% 
+  select_cols(width_of(4)) %>% 
+  print_table()
+```
+
+* Select variables with width less than *n*.
+  
+```{r}
+data_sel %>% 
+  select_cols(width_less_than(3)) %>% 
+  print_table()
+```
+
+* Select variables with width greater than *n*.
+  
+```{r}
+data_sel %>% 
+  select_cols(width_greater_than(2)) %>% 
+  print_table()
+```
+
+
+## Select variables by case type
+
+Let's create data frame with 'messy' columnn names.
+
+```{r}
+df <- head(data_ge, 3)
+colnames(df) <- c("Env", "gen", "Rep", "GY", "hm")
+select_cols(df, lower_case_only()) %>% print_table()
+select_cols(df, upper_case_only()) %>% print_table()
+select_cols(df, title_case_only()) %>% print_table()
+```
+
 
 
 # Remove rows or colums wih NA values
@@ -234,3 +272,18 @@ library(tidyverse)
 
 ```
 
+
+_______________________________________________________________________________________________
+**Rendering engine**
+
+This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
+
+```{r warning = FALSE, message = FALSE, eval=FALSE}
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+
+```

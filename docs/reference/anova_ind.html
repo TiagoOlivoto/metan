@@ -49,9 +49,9 @@
 
 
 <meta property="og:title" content="Within-environment analysis of variance — anova_ind" />
-<meta property="og:description" content="This is a helper function that performs a within-environment analysis of
-variance and returns values such as Mean Squares, p-values, coefficient of
-variation, heritability, and accuracy of selection." />
+<meta property="og:description" content="Performs a within-environment analysis of variance in randomized complete
+block or alpha-lattice designs and returns values such as Mean Squares,
+p-values, coefficient of variation, heritability, and accuracy of selection." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -123,6 +123,9 @@ variation, heritability, and accuracy of selection." />
     </li>
     <li>
       <a href="../articles/vignettes_blup.html">BLUP</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
     </li>
     <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
@@ -210,12 +213,12 @@ variation, heritability, and accuracy of selection." />
     </div>
 
     <div class="ref-description">
-    <p>This is a helper function that performs a within-environment analysis of
-variance and returns values such as Mean Squares, p-values, coefficient of
-variation, heritability, and accuracy of selection.</p>
+    <p>Performs a within-environment analysis of variance in randomized complete
+block or alpha-lattice designs and returns values such as Mean Squares,
+p-values, coefficient of variation, heritability, and accuracy of selection.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>anova_ind</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>anova_ind</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -247,6 +250,13 @@ single procedure a vector of variables may be used. For example <code>resp
   = c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
+      <th>block</th>
+      <td><p>Defaults to <code>NULL</code>. In this case, a randomized complete
+block design is considered. If block is informed, then a resolvable
+alpha-lattice design (Patterson and Williams, 1976) is employed.
+<strong>All effects, except the error, are assumed to be fixed.</strong></p></td>
+    </tr>
+    <tr>
       <th>verbose</th>
       <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run
 silently.</p></td>
@@ -255,35 +265,125 @@ silently.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list where each element is the result for one variable and
-contains:</p><ul>
-<li><p><strong>individual</strong> A data frame with the results of the individual
-analysis of variance.</p></li>
+    <p>A list where each element is the result for one variable containing:</p><ol>
+<li><p><strong>individual</strong>: A tidy tbl_df with the results of the individual
+analysis of variance with the following column names:</p><ul>
+<li><p><strong>For analysis in alpha-lattice designs</strong>: <strong>ENV</strong>: The
+environment code; <strong>MEAN</strong>: The grand mean; <strong>MSG, MSCR, MSIB_R</strong>:
+The mean squares for genotype, replicates and incomplete blocks within
+replicates, respectively. <strong>FCG, FCR, FCIB_R</strong>: The F-calculated for
+genotype, replicates and incomplete blocks within replicates,
+respectively.<strong>PFG, PFCR, PFIB_R</strong>: The P-values for genotype,
+replicates and incomplete blocks within replicates, respectively.</p></li>
+<li><p><strong>For analysis in randomized complete block design</strong>: <strong>MSG,
+MSB</strong>: The mean squares for genotype and blocks, respectively. <strong>FCG,
+FCB</strong>: The F-calculated for genotype and blocks, respectively. <strong>PFG,
+PFB</strong>: The P-values for genotype and blocks, respectively.</p></li>
+</ul></li>
 <li><p><strong>MSRatio</strong> The ratio between the higher and lower residual mean
 square.</p></li>
-</ul>
+</ol>
 
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Patterson, H.D., and E.R. Williams. 1976. A new class of
+resolvable incomplete block designs. Biometrika 63:83-92.
+<a href='https://doi.org/10.1093/biomet/63.1.83'>doi:10.1093/biomet/63.1.83</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='co'># traditional usage approach</span>
-<span class='no'>data</span> <span class='kw'>=</span> <span class='no'>data_ge</span>
-<span class='no'>anova1</span> <span class='kw'>=</span> <span class='fu'>anova_ind</span>(<span class='no'>data_ge</span>,
-                   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)
-
-<span class='co'># Using the pipe operator %&gt;%</span>
-<span class='co'># Two variables, one run.</span>
-<span class='no'>anova2</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span> <span class='fu'>anova_ind</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)</div></pre>
+<span class='co'># ANOVA for all variables in data</span>
+<span class='no'>ind_an</span> <span class='kw'>&lt;-</span> <span class='fu'>anova_ind</span>(<span class='no'>data_ge</span>,
+                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></span>())</div><div class='output co'>#&gt; variable GY 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Within-environment ANOVA results
+#&gt; ---------------------------------------------------------------------------
+#&gt;  ENV MEAN   MSG   FCG      PFG    MSB    FCB      PFB    MSE    CV    h2    AS
+#&gt;   E1 2.52 0.337  2.34 0.059357 0.0652  0.453 6.43e-01 0.1440 15.05 0.573 0.757
+#&gt;  E10 2.18 0.296 11.09 0.000011 0.6537 24.508 7.28e-06 0.0267  7.51 0.910 0.954
+#&gt;  E11 1.37 0.151  1.44 0.244312 0.3773  3.594 4.86e-02 0.1050 23.68 0.304 0.552
+#&gt;  E12 1.61 0.320  5.98 0.000647 0.0919  1.717 2.08e-01 0.0535 14.38 0.833 0.913
+#&gt;  E13 2.91 0.713  7.18 0.000210 0.0767  0.772 4.77e-01 0.0994 10.83 0.861 0.928
+#&gt;  E14 1.78 0.131  1.73 0.153470 0.1035  1.374 2.78e-01 0.0753 15.40 0.423 0.650
+#&gt;   E2 3.18 0.207  1.16 0.376322 0.6983  3.912 3.88e-02 0.1785 13.29 0.136 0.369
+#&gt;   E3 4.06 0.335  1.87 0.123033 0.4886  2.731 9.21e-02 0.1789 10.41 0.466 0.683
+#&gt;   E4 3.68 0.531  3.86 0.007123 0.1165  0.846 4.46e-01 0.1377 10.10 0.741 0.861
+#&gt;   E5 3.91 0.526  7.93 0.000110 0.2188  3.297 6.02e-02 0.0664  6.59 0.874 0.935
+#&gt;   E6 2.66 0.135  2.30 0.063454 0.1599  2.729 9.22e-02 0.0586  9.09 0.565 0.752
+#&gt;   E7 1.99 0.337  3.70 0.008727 0.3810  4.185 3.22e-02 0.0910 15.17 0.730 0.854
+#&gt;   E8 2.54 0.215  7.72 0.000131 0.8168 29.369 2.15e-06 0.0278  6.57 0.870 0.933
+#&gt;   E9 3.06 0.679  6.12 0.000562 0.5826  5.253 1.60e-02 0.1109 10.90 0.837 0.915
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; variable HM 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Within-environment ANOVA results
+#&gt; ---------------------------------------------------------------------------
+#&gt;  ENV MEAN   MSG   FCG      PFG    MSB    FCB      PFB  MSE   CV     h2    AS
+#&gt;   E1 47.4  5.22  2.82 2.93e-02  3.106  1.677 2.15e-01 1.85 2.87 0.6453 0.803
+#&gt;  E10 44.3 28.77 13.24 3.02e-06  9.100  4.186 3.22e-02 2.17 3.33 0.9244 0.961
+#&gt;  E11 54.2  6.06  1.96 1.07e-01  2.810  0.910 4.20e-01 3.09 3.24 0.4903 0.700
+#&gt;  E12 49.6 10.40  1.96 1.08e-01  2.766  0.520 6.03e-01 5.32 4.65 0.4885 0.699
+#&gt;  E13 46.6 13.88 10.34 1.80e-05 25.452 18.964 3.71e-05 1.34 2.49 0.9033 0.950
+#&gt;  E14 41.0  5.28  4.34 3.93e-03 10.015  8.230 2.89e-03 1.22 2.69 0.7695 0.877
+#&gt;   E2 44.1 13.17  4.32 4.02e-03  6.699  2.197 1.40e-01 3.05 3.96 0.7685 0.877
+#&gt;   E3 52.9  8.00  2.88 2.69e-02  7.300  2.625 1.00e-01 2.78 3.15 0.6525 0.808
+#&gt;   E4 50.0  7.93  6.35 4.51e-04  2.100  1.682 2.14e-01 1.25 2.23 0.8425 0.918
+#&gt;   E5 52.2 11.83  1.86 1.26e-01  6.860  1.077 3.62e-01 6.37 4.83 0.4617 0.679
+#&gt;   E6 45.9 15.84  7.46 1.63e-04 12.864  6.063 9.71e-03 2.12 3.17 0.8660 0.931
+#&gt;   E7 48.5  5.00  1.05 4.38e-01  0.705  0.149 8.63e-01 4.74 4.49 0.0518 0.228
+#&gt;   E8 45.2 11.57  5.34 1.27e-03 11.954  5.514 1.36e-02 2.17 3.26 0.8126 0.901
+#&gt;   E9 51.3  9.33  4.08 5.41e-03  5.733  2.505 1.10e-01 2.29 2.95 0.7548 0.869
+#&gt; ---------------------------------------------------------------------------
+#&gt; </div><div class='input'><span class='co'># mean for each environment</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>ind_an</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: MEAN</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 14 x 3</span><span>
+#&gt;    ENV      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1     2.52  47.4
+#&gt; </span><span style='color: #555555;'> 2</span><span> E10    2.18  44.3
+#&gt; </span><span style='color: #555555;'> 3</span><span> E11    1.37  54.2
+#&gt; </span><span style='color: #555555;'> 4</span><span> E12    1.61  49.6
+#&gt; </span><span style='color: #555555;'> 5</span><span> E13    2.91  46.6
+#&gt; </span><span style='color: #555555;'> 6</span><span> E14    1.78  41.0
+#&gt; </span><span style='color: #555555;'> 7</span><span> E2     3.18  44.1
+#&gt; </span><span style='color: #555555;'> 8</span><span> E3     4.06  52.9
+#&gt; </span><span style='color: #555555;'> 9</span><span> E4     3.68  50  
+#&gt; </span><span style='color: #555555;'>10</span><span> E5     3.91  52.2
+#&gt; </span><span style='color: #555555;'>11</span><span> E6     2.66  45.9
+#&gt; </span><span style='color: #555555;'>12</span><span> E7     1.99  48.5
+#&gt; </span><span style='color: #555555;'>13</span><span> E8     2.54  45.2
+#&gt; </span><span style='color: #555555;'>14</span><span> E9     3.06  51.3</div><div class='input'>
+<span class='co'># P-value for genotype effect</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>ind_an</span>, <span class='st'>"PFG"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: PFG</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
+#&gt;    ENV          GY         HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    0.059</span><span style='text-decoration: underline;'>4</span><span>    0.029</span><span style='text-decoration: underline;'>3</span><span>    
+#&gt; </span><span style='color: #555555;'> 2</span><span> E10   0.000</span><span style='text-decoration: underline;'>011</span><span>0 0.000</span><span style='text-decoration: underline;'>003</span><span>02
+#&gt; </span><span style='color: #555555;'> 3</span><span> E11   0.244     0.107     
+#&gt; </span><span style='color: #555555;'> 4</span><span> E12   0.000</span><span style='text-decoration: underline;'>647</span><span>  0.108     
+#&gt; </span><span style='color: #555555;'> 5</span><span> E13   0.000</span><span style='text-decoration: underline;'>210</span><span>  0.000</span><span style='text-decoration: underline;'>018</span><span>0 
+#&gt; </span><span style='color: #555555;'> 6</span><span> E14   0.153     0.003</span><span style='text-decoration: underline;'>93</span><span>   
+#&gt; </span><span style='color: #555555;'> 7</span><span> E2    0.376     0.004</span><span style='text-decoration: underline;'>02</span><span>   
+#&gt; </span><span style='color: #555555;'> 8</span><span> E3    0.123     0.026</span><span style='text-decoration: underline;'>9</span><span>    
+#&gt; </span><span style='color: #555555;'> 9</span><span> E4    0.007</span><span style='text-decoration: underline;'>12</span><span>   0.000</span><span style='text-decoration: underline;'>451</span><span>  
+#&gt; </span><span style='color: #555555;'>10</span><span> E5    0.000</span><span style='text-decoration: underline;'>110</span><span>  0.126     
+#&gt; </span><span style='color: #555555;'>11</span><span> E6    0.063</span><span style='text-decoration: underline;'>5</span><span>    0.000</span><span style='text-decoration: underline;'>163</span><span>  
+#&gt; </span><span style='color: #555555;'>12</span><span> E7    0.008</span><span style='text-decoration: underline;'>73</span><span>   0.438     
+#&gt; </span><span style='color: #555555;'>13</span><span> E8    0.000</span><span style='text-decoration: underline;'>131</span><span>  0.001</span><span style='text-decoration: underline;'>27</span><span>   
+#&gt; </span><span style='color: #555555;'>14</span><span> E9    0.000</span><span style='text-decoration: underline;'>562</span><span>  0.005</span><span style='text-decoration: underline;'>41</span><span>   </div><div class='input'>
+# }
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

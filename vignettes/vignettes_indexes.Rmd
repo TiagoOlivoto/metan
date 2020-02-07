@@ -19,10 +19,10 @@ load("indexes.RData")
 
 
 # Getting started
-In this section we will use the data examples `data_ge` and `data_ge2`  provided in the **metan** package. For more information, please, see `?data_ge` and `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).  The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
+In this section we will use the data examples `data_ge` and `data_ge2`  provided in the **metan** package. For more information, please, see `?data_ge` and `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
 
-```{r warning = FALSE, message = FALSE}
+```{r warning = FALSE, message = FALSE, echo=FALSE}
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
@@ -38,12 +38,17 @@ The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design
 
 
 ```{r, eval=FALSE}
+library(metan)
 FAI <- data_ge2 %>%
        waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
        fai_blup(DI = c("max, max, max, min"),
                 UI = c("min, min, min, max"),
                 SI = 15)
 
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(metan)
 ```
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=FALSE}
@@ -119,6 +124,23 @@ print_table(MTSI_index2$sel.dif.var)
 
 plot(MTSI_index2)
     ```
+
+
+_______________________________________________________________________________________________
+**Rendering engine**
+
+This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
+
+```{r warning = FALSE, message = FALSE, eval=FALSE}
+
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+
+```
 
 
 # References

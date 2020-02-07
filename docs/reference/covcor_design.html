@@ -124,6 +124,9 @@ designed (RCBD or CRD) experiment." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -220,10 +223,8 @@ designed (RCBD or CRD) experiment.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The dataset containing the columns related to Genotypes,
-replication/block and response variables. Alternatively, it is possible to
-use an object of class 'split_factors' to compute the results for each
-level of the grouping factor. See <code><a href='split_factors.html'>?split_factors</a></code>.</p></td>
+      <td><p>The data to be analyzed. It can be a data frame, possible with
+grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.</p></td>
     </tr>
     <tr>
       <th>gen</th>
@@ -245,11 +246,9 @@ var3)</code>.</p></td>
     </tr>
     <tr>
       <th>by</th>
-      <td><p>One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in <code>by</code>. To split
-the data by more than one factor variable, use the function
-<code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data to <code>.data</code>.</p></td>
+      <td><p>One variable (factor) to compute the function by. It is a shortcut
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+one grouping variable use that function.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -276,12 +275,11 @@ items:</p><ul>
 <li><p><strong>resi_cor</strong> The residual correlation.</p></li>
 </ul>
 
-<p>If <code>.data</code> is an object of class <code>split_factors</code> then the output
-will be a list with the above values for each grouping variable in the
-function <code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data.to pass subsetted data to code.data.to pass subsetted data to code.data.</p>
+<p>If <code>.data</code> is a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>
+then the results will be returned into a list-column of data frames.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='co'># List of matrices</span>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span> <span class='kw'>==</span> <span class='st'>'A1'</span>)
@@ -298,10 +296,11 @@ function <code><a href='split_factors.html'>split_factors</a></code> to pass sub
 <span class='co'># Residual (co)variance matrix for each environment</span>
 <span class='no'>rcov</span> <span class='kw'>&lt;-</span> <span class='fu'>covcor_design</span>(<span class='no'>data_ge2</span>,
                       <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                      <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                       <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                       <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>CD</span>, <span class='no'>CL</span>),
-                      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"rcov"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='input'>
+                      <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+                      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"rcov"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

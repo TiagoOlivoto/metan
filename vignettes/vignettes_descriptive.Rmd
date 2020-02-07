@@ -1,0 +1,201 @@
+---
+title: "Descriptive analysis in R with the package metan"
+author: "Tiago Olivoto"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+link-citations: true
+bibliography: metanref.bib 
+vignette: >
+  %\VignetteIndexEntry{Descriptive analysis in R with the package metan}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r warning = FALSE, message = FALSE, echo=FALSE}
+library(metan)
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+
+```
+
+# Getting started
+`metan` provides a simple and intuitive pipe-friendly framework for performing descriptive statistics.  A [set of functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) can be used to compute the most used descriptive statistics quickly. In this tutorial, we will use the data example `data_ge2` as motivating examples.
+```{r}
+library(metan)
+inspect(data_ge2, verbose = FALSE) %>%
+  print_table()
+```
+
+Let's start with a very simple (but widely used) example: to compute the mean of a numeric variable (say, PH) from a data set (data_ge2). Using the R base functions `stats::mean()`, the solution would look like to:
+
+```{r}
+mean(data_ge2$PH)
+
+```
+
+Consider that now we want to compute the mean value of PH for each level of the factor GEN. In other words, to compute the mean value of PH for each genotype. The solution using `stats::aggregate()` is then:
+
+```{r}
+aggr <- 
+aggregate(data_ge2[, 4], list(data_ge2$GEN), mean)
+print_table(aggr)
+```
+
+# Statistics by levels of a factor
+Using the `metan`'s function `means_by()` the amount of code needed is dramatically reduced. To compute the grand mean for all numeric variables of `data_ge`, we simple use:
+```{r}
+ov_mean <- 
+means_by(data_ge2)
+print_table(ov_mean)
+
+```
+
+To compute the mean values for each level of the factor GEN, we then need to add the grouping variable `GEN` in the argument `...`.
+```{r}
+ov_mean2 <- 
+means_by(data_ge2, GEN)
+print_table(ov_mean2)
+
+```
+
+The following `_by()` functions are available for computing the main descriptive statistics by levels of a factor.
+
+ - `cv_by()` For computing coefficient of variation.
+ - `max_by()` For computing maximum values.
+ - `means_by()` For computing arithmetic means.
+ - `min_by()` For computing minimum values.
+ - `n_by()` For getting the length.
+ - `sd_by()` For computing sample standard deviation.
+ - `sem_by()` For computing standard error of the mean .
+
+# Useful functions
+Other useful functions are also implemented. All of them works naturally with `%>%`, handle grouped data with `dplyr::group_by()` and multiple variables (all numeric variables from `.data` by default).
+ 
+ - `av_dev()` computes the average absolute deviation.
+ - `ci_mean()` computes the confidence interval for the mean.
+ - `cv()` computes the coefficient of variation.
+ - `freq_table()` Computes frequency fable.
+ - `hm_mean()`, `gm_mean()` computes the harmonic and geometric means, respectively. The harmonic mean is the reciprocal of the arithmetic mean of the reciprocals. The geometric mean is the nth root of n products.
+ - `kurt()` computes the kurtosis like used in SAS and SPSS.
+ - `range_data()` Computes the range of the values.
+ - `sd_amo()`, `sd_pop()` Computes sample and populational standard deviation, respectively.
+ - `sem()` computes the standard error of the mean.
+ - `skew()` computes the skewness like used in SAS and SPSS.
+ - `sum_dev()` computes the sum of the absolute deviations.
+ - `sum_sq_dev()` computes the sum of the squared deviations.
+ - `var_amo()`, `var_pop()` computes sample and populational variance.
+ - `valid_n()` Return the valid (not NA) length of a data.
+
+Let's show some examples. Note that [select helpers](https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers) can be used to select variables based on their names.
+
+```{r}
+# Standard error of the mean for numeric variables that contains (ED)
+data_ge2 %>% 
+  sem(contains("ED")) %>% 
+  print_table()
+
+
+# Confidence interval 0.95 for the mean
+# Variables with name width greater than 3 characters
+# Grouped by levels of ENV
+data_ge2 %>%
+  group_by(ENV) %>%
+  ci_mean(width_greater_than(3)) %>% 
+  print_table()
+```
+
+
+# The wrapper function `desc_stat()`
+
+To compute all statistics at once we can use `desc_stat()`. This is a wrapper function around the above ones and may be used to compute measures of central tendency, position, and dispersion. By default (`stats = "main"`), seven statistics (coefficient of variation, maximum, mean, median, minimum, sample standard deviation, standard error and confidence interval of the mean) are computed. Other allowed values are `"all"` to show all the statistics, `"robust"` to show robust statistics, `"quantile"` to show quantile statistics, or chose one (or more) statistics using a comma-separated vector with the statistic names, e.g., `stats = c("mean, cv")`. We can also use `hist = TRUE` to create a histogram for each variable. Here, select helpers can also be used in the argument `...`.
+
+## All statistics for all numeric variables
+```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
+all <- desc_stat(data_ge2, stats = "all")
+print_table(all)
+```
+
+## Robust statistics using select helpers
+```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
+robust <- 
+data_ge2 %>%
+  desc_stat(contains("N"),
+            stats = "robust")
+print_table(robust)
+```
+
+## Quantile functions choosing variable names
+```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
+quantile <- 
+data_ge2 %>%
+  desc_stat(PH, EH, CD, ED,
+            stats = "quantile")
+print_table(quantile)
+```
+
+## Create a histogram for each variable
+```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
+stat_vars <- 
+data_ge2 %>%
+  desc_stat(EP, EL, CL, CD, CW, NR,
+            hist = TRUE)
+print_table(stat_vars)
+```
+
+## Statistics by levels of factors
+To compute the statistics for each level of a factor, use the argument `by`. In addition, it is possible to select the statistics to compute using the argument `stats`, that is a single statistic name, e.g., `"mean"`, or a a comma-separated vector of names with `"` at the beginning and end of vector only. Note that the statistic names **ARE NOTE** case sensitive, i.e., both `"mean"`, `"Mean"`, or  `"MEAN"` are recognized. Comma or spaces can be used to separate the statistics' names.
+
+* All options bellow will work:
+   * `stats = c("mean, se, cv, max, min")`
+   * `stats = c("mean se cv max min")`
+   * `stats = c("MEAN, Se, CV max Min")`
+
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+stats_c <- 
+  desc_stat(data_ge2,
+            contains("C"),
+            stats = ("mean, se, cv, max, min"),
+            by = ENV)
+print_table(stats_c)
+```
+
+We may convert the results above into a *wider* format by using the function `desc_wider()`
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+desc_wider(stats_c, mean) %>% 
+  print_table()
+```
+
+To compute the descriptive statistics by more than one grouping variable, we need to pass a grouped data to the argument `.data` with the function `group_by()`. Let's compute the mean, the standard error of the mean and the sample size for the variables `EP` and `EL` for all combinations of the factors `ENV` and `GEN`.
+
+```{r warning=FALSE}
+stats_grp <- 
+data_ge2 %>% 
+  group_by(ENV, GEN) %>% 
+  desc_stat(EP, EL,
+            stats = c("mean, se, n"))
+print_table(stats_grp)
+```
+
+_______________________________________________________________________________________________
+**Rendering engine**
+
+This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
+
+```{r warning = FALSE, message = FALSE}
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+
+```
+
+
+

@@ -76,6 +76,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -158,7 +161,7 @@
       <h1>Analyzing multienvironment trials using GGE</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-01-17</h4>
+            <h4 class="date">2020-02-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_gge.Rmd"><code>vignettes/vignettes_gge.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_gge.Rmd</code></div>
@@ -231,7 +234,7 @@
 4 GY       numeric No      -          420  0.67   2.61  5.09       0
 5 HM       numeric No      -          420 38     48    58          0</code></pre>
 <pre><code>No issues detected while inspecting data.</code></pre>
-<p>The GGE model is fitted with the function <code><a href="../reference/gge.html">gge()</a></code>. This function produces a GGE model based on both a two-way table (in our case the object <code>table</code>) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).</p>
+<p>The GGE model is fitted with the function <code><a href="../reference/gge.html">gge()</a></code>. This function produces a GGE model using a data frame containing at least the columns for genotypes, environments and the response variable(s).</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a></code></pre></div>
 <p>The model above was fitted considering (i) column metric preserving (where the singular value is entirely partitioned into the environment eigenvectors); (ii) environment centered (the biplot will contain a mixed information of G + GEI); and no scaling method. To change these default settings, use the arguments <code>svp</code>, <code>centering</code>, and <code>scaling</code>, respectively. Please, note that in the second example the argument <code>table</code> was set to <code>TRUE</code> to indicate that the input data is a two-way table.</p>
 </div>

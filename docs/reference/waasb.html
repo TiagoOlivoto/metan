@@ -49,8 +49,9 @@
 
 
 <meta property="og:title" content="Weighted Average of Absolute Scores — waasb" />
-<meta property="og:description" content="Compute the Weighted Average of Absolute Scores for quantifying the stability
-in multi-environment trials using mixed-effect models (Olivoto et al., 2019)." />
+<meta property="og:description" content="Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) for
+quantifying the stability of g genotypes conducted in e
+environments using linear mixed-effect models." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -122,6 +123,9 @@ in multi-environment trials using mixed-effect models (Olivoto et al., 2019)." /
     </li>
     <li>
       <a href="../articles/vignettes_blup.html">BLUP</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
     </li>
     <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
@@ -209,8 +213,9 @@ in multi-environment trials using mixed-effect models (Olivoto et al., 2019)." /
     </div>
 
     <div class="ref-description">
-    <p>Compute the Weighted Average of Absolute Scores for quantifying the stability
-in multi-environment trials using mixed-effect models (Olivoto et al., 2019).</p>
+    <p>Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) for
+quantifying the stability of <em>g</em> genotypes conducted in <em>e</em>
+environments using linear mixed-effect models.</p>
     </div>
 
     <pre class="usage"><span class='fu'>waasb</span>(
@@ -219,6 +224,7 @@ in multi-environment trials using mixed-effect models (Olivoto et al., 2019).</p
   <span class='no'>gen</span>,
   <span class='no'>rep</span>,
   <span class='no'>resp</span>,
+  <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"gen"</span>,
@@ -256,26 +262,42 @@ single procedure a vector of variables may be used. For example <code>resp
   = c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
+      <th>block</th>
+      <td><p>Defaults to <code>NULL</code>. In this case, a randomized complete
+block design is considered. If block is informed, then an alpha-lattice
+design is employed considering block as random to make use of inter-block
+information, whereas the complete replicate effect is always taken as
+fixed, as no inter-replicate information was to be recovered (Mohring et
+al., 2015).</p></td>
+    </tr>
+    <tr>
       <th>mresp</th>
-      <td><p>A numeric vector of the same length of <code>resp</code>. The
-<code>mresp</code> will be the new maximum value after rescaling. By default, all
-variables in <code>resp</code> are rescaled so that de maximum value is 100 and
-the minimum value is 0.</p></td>
+      <td><p>The new maximum value after rescaling the response variable. By
+default, all variables in <code>resp</code> are rescaled so that de maximum value
+is 100 and the minimum value is 0 (i.e., <code>mresp = 100</code>). It must be a
+numeric vector of the same length of <code>resp</code> if rescaling is assumed to
+be different across variables, e.g., if for the first variable smaller
+values are better and for the second one, higher values are better, then
+<code>mresp = c(0, 100)</code> must be used. Numeric value of length 1 will be
+recycled with a warning message.</p></td>
     </tr>
     <tr>
       <th>wresp</th>
       <td><p>The weight for the response variable(s) for computing the WAASBY
-index. Must be a numeric vector of the same length of <code>resp</code>. Defaults
-to 50, i.e., equal weights for stability and mean performance.</p></td>
+index. By default, all variables in <code>resp</code> have equal weights for mean
+performance and stability (i.e., <code>wresp = 50</code>). It must be a numeric
+vector of the same length of <code>resp</code> to assign different weights across
+variables, e.g., if for the first variable equal weights for mean
+performance and stability are assumed and for the second one, a higher
+weight for mean performance (e.g. 65) is assumed, then <code>wresp = c(50,
+  65)</code> must be used. Numeric value of length 1 will be recycled with a
+warning message.</p></td>
     </tr>
     <tr>
       <th>random</th>
-      <td><p>The effects of the model assumed to be random. Default is
-<code>random = "gen"</code> (genotype and genotype-vs-environment as random
-effects. Other values allowed are <code>random = "env"</code> (environment,
-genotype-vs-environment and block-within-environment random effects) or
-<code>random = "all"</code> all effects except the intercept are assumed to be
-random effects.</p></td>
+      <td><p>The effects of the model assumed to be random. Defaults to
+<code>random = "gen"</code>. See <strong>Details</strong> to see the random effects
+assumed depending on the experimental design of the trials.</p></td>
     </tr>
     <tr>
       <th>prob</th>
@@ -289,7 +311,7 @@ within-environment ANOVA is not performed.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Logical argument. If <code>verbose = FALSE</code> the code are run
+      <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run
 silently.</p></td>
     </tr>
     </table>
@@ -297,105 +319,333 @@ silently.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>waasb</code> with the following items for each
-variable: * <strong>individual</strong> A within-environments ANOVA considering a
-fixed-effect model.</p><ul>
+variable:</p><ul>
+<li><p><strong>individual</strong> A within-environments ANOVA considering a
+fixed-effect model.</p></li>
 <li><p><strong>fixed</strong> Test for fixed effects.</p></li>
 <li><p><strong>random</strong> Variance components for random effects.</p></li>
 <li><p><strong>LRT</strong> The Likelihood Ratio Test for the random effects.</p></li>
-<li><p><strong>model</strong> A data frame with the response variable, the scores of all
-Principal Components, the estimates of Weighted Average of Absolute Scores,
-and WAASY (the index that consider the weights for stability and productivity
-in the genotype ranking.</p></li>
-<li><p><strong>blupGEN</strong> The estimated BLUPS for genotypes (If <code>random =
-"gen"</code> or <code>random = "all"</code>)</p></li>
-<li><p><strong>BLUPenv</strong> The estimated BLUPS for environments, (If <code>random =
-"env"</code> or <code>random = "all"</code>).</p></li>
-<li><p><strong>BLUPge</strong> The estimated BLUPS of all genotypes in all environments
-"BLUPij".</p></li>
-<li><p><strong>PCA</strong> The results of Principal Component Analysis with eigenvalues
-and explained variance of BLUP-interaction matrix.</p></li>
-<li><p><strong>MeansGxE</strong> The phenotypic means of genotypes in the environments,
-with observed, predicted and OLS residual prediction.</p></li>
+<li><p><strong>model</strong> A tibble with the response variable, the scores of all
+IPCAs, the estimates of Weighted Average of Absolute Scores, and WAASBY (the
+index that considers the weights for stability and mean performance in the
+genotype ranking), and their respective ranks.</p></li>
+<li><p><strong>BLUPgen</strong> The random effects and estimated BLUPS for genotypes (If
+<code>random = "gen"</code> or <code>random = "all"</code>)</p></li>
+<li><p><strong>BLUPenv</strong> The random effects and estimated BLUPS for environments,
+(If <code>random = "env"</code> or <code>random = "all"</code>).</p></li>
+<li><p><strong>BLUPint</strong> The random effects and estimated BLUPS of all genotypes in
+all environments.</p></li>
+<li><p><strong>PCA</strong> The results of Principal Component Analysis with the
+eigenvalues and explained variance of the matrix of genotype-environment
+effects estimated by the linear fixed-effect model.</p></li>
+<li><p><strong>MeansGxE</strong> The phenotypic means of genotypes in the environments.</p></li>
 <li><p><strong>Details</strong> A list summarizing the results. The following information
-are showed. <code>WgtResponse</code>, the weight for the response variable in
-estimating WAASB, <code>WgtWAAS</code> the weight for stability, <code>Ngen</code> the
-number of genotypes, <code>Nenv</code> the number of environments, <code>OVmean</code>
-the overall mean, <code>Min</code> the minimum observed (returning the genotype and
-environment), <code>Max</code> the maximum observed, <code>Max</code> the maximum
-observed, <code>MinENV</code> the environment with the lower mean, <code>MaxENV</code>
-the environment with the larger mean observed, <code>MinGEN</code> the genotype
-with the lower mean, <code>MaxGEN</code> the genotype with the larger.</p></li>
-<li><p><strong>ESTIMATES</strong> A list with the following values: <code>GEV</code> the
-genotype-by-environment variance (and percentage of phenotypic variance);
-<code>GV</code> the genotypic variance (and percentage of phenotypic variance);
-<code>EV</code> the environmental variance;<code>RV</code> the residual variance (and
-percentage of phenotypic variance); <code>FV</code> the phenotypic variance;
-<code>h2g</code> the heritability of the trait; <code>GEr2</code> the coefficient of
-determination of the interaction effects; <code>h2mg</code> the heritability of the
-mean; <code>AccuGen</code> the selective accuracy; <code>rge</code> the
-genotype-environment correlation; <code>CVg</code> the genotypic coefficient of
-variation; <code>CVr</code> the residual coefficient of variation; <code>CVratio</code>
-the ratio between genotypic and residual coefficient of variation *
-<strong>residuals</strong> The residuals of the model.</p></li>
+are shown: <code>Nenv</code>, the number of environments in the analysis;
+<code>Ngen</code> the number of genotypes in the analysis; <code>mresp</code> The value
+attributed to the highest value of the response variable after rescaling it;
+<code>wresp</code> The weight of the response variable for estimating the WAASBY
+index. <code>Mean</code> the grand mean; <code>SE</code> the standard error of the mean;
+<code>SD</code> the standard deviation. <code>CV</code> the coefficient of variation of
+the phenotypic means, estimating WAASB, <code>Min</code> the minimum value observed
+(returning the genotype and environment), <code>Max</code> the maximum value
+observed (returning the genotype and environment); <code>MinENV</code> the
+environment with the lower mean, <code>MaxENV</code> the environment with the
+larger mean observed, <code>MinGEN</code> the genotype with the lower mean,
+<code>MaxGEN</code> the genotype with the larger.</p></li>
+<li><p><strong>ESTIMATES</strong> A tibble with the genetic parameters (if <code>random =
+"gen"</code> or <code>random = "all"</code>) with the following columns: <code>Phenotypic
+variance</code> the phenotypic variance; <code>Heritability</code> the broad-sense
+heritability; <code>GEr2</code> the coefficient of determination of the interaction
+effects; <code>Heribatility of means</code> the heritability on the mean basis;
+<code>Accuracy</code> the selective accuracy; <code>rge</code> the genotype-environment
+correlation; <code>CVg</code> the genotypic coefficient of variation; <code>CVr</code>
+the residual coefficient of variation; <code>CV ratio</code> the ratio between
+genotypic and residual coefficient of variation.</p></li>
+<li><p><strong>residuals</strong> The residuals of the model.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function compute the weighted average of absolute scores considering all
-principal component axis from the Singular Value Decomposition (SVD) of the
-BLUP'S GxE effects matrix generated by a linear mixed-effect model.</p>
+    <p>The weighted average of absolute scores is computed considering all
+Interaction Principal Component Axis (IPCA) from the Singular Value Decomposition (SVD) of the
+matrix of genotype-environment interaction (GEI) effects generated by a linear
+mixed-effect model, as follows:
+$$WAASB_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k$$</p>
+<p>where \(WAASB_i\) is the weighted average of absolute scores of the
+<em>i</em>th genotype; \(IPCA_{ik}\) is the score of the <em>i</em>th genotype
+in the <em>k</em>th Interaction Principal Component Axis (IPCA); and \(EP_k\) is the explained variance of the <em>k</em>th
+IPCA for <em>k = 1,2,..,p</em>, considering \(p = min(g - 1; e - 1)\).</p>
+<p>The nature of the effects in the model is
+chosen with the argument <code>random</code>. By default, the experimental design
+considered in each environment is a randomized complete block design. If
+<code>block</code> is informed, a resolvable alpha-lattice design (Patterson and
+Williams, 1976) is implemented. The following six models can be fitted
+depending on the values of <code>random</code> and <code>block</code> arguments.</p><ul>
+<li><p><strong>Model 1:</strong> <code>block = NULL</code> and <code>random = "gen"</code> (The
+default option). This model considers a Randomized Complete Block Design in
+each environment assuming genotype and genotype-environment interaction as
+random effects. Environments and blocks nested within environments are
+assumed to fixed factors.</p></li>
+<li><p><strong>Model 2:</strong> <code>block = NULL</code> and <code>random = "env"</code>. This
+model considers a Randomized Complete Block Design in each environment
+treating environment, genotype-environment interaction, and blocks nested
+within environments as random factors. Genotypes are assumed to be fixed
+factors.</p></li>
+<li><p><strong>Model 3:</strong> <code>block = NULL</code> and <code>random = "all"</code>. This
+model considers a Randomized Complete Block Design in each environment
+assuming a random-effect model, i.e., all effects (genotypes, environments,
+genotype-vs-environment interaction and blocks nested within environments)
+are assumed to be random factors.</p></li>
+<li><p><strong>Model 4:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
+  "gen"</code>. This model considers an alpha-lattice design in each environment
+assuming genotype, genotype-environment interaction, and incomplete blocks
+nested within complete replicates as random to make use of inter-block
+information (Mohring et al., 2015). Complete replicates nested within
+environments and environments are assumed to be fixed factors.</p></li>
+<li><p><strong>Model 5:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
+  "env"</code>. This model considers an alpha-lattice design in each environment
+assuming genotype as fixed. All other sources of variation (environment,
+genotype-environment interaction, complete replicates nested within
+environments, and incomplete blocks nested within replicates) are assumed
+to be random factors.</p></li>
+<li><p><strong>Model 6:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
+  "all"</code>. This model considers an alpha-lattice design in each environment
+assuming all effects, except the intercept, as random factors.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
-multi-environment trials I: Combining features of AMMI and BLUP techniques.
-Agron. J. 111:2949-2960.
+    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro, V.Q. de
+Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+111:2949-2960.
 <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&amp;view=pdf'>doi:10.2134/agronj2019.03.0220</a></p>
+<p>Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information: to
+recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
+<a href='http://www.ncbi.nlm.nih.gov/pubmed/25972114'>doi:10.1007/s00122-015-2530-0</a></p>
+<p>Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable
+incomplete block designs. Biometrika 63:83-92.
+<a href='https://doi.org/10.1093/biomet/63.1.83'>doi:10.1093/biomet/63.1.83</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='waas.html'>waas</a></code></p></div>
+    <div class='dont-index'><p><code><a href='mtsi.html'>mtsi</a></code> <code><a href='waas.html'>waas</a></code>
+<code><a href='get_model_data.html'>get_model_data</a></code> <code><a href='plot_scores.html'>plot_scores</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-
-<span class='co'># Genotypes as random effects</span>
-<span class='co'># Equal weights for response variable and stability</span>
-
+<span class='co'>#===============================================================#</span>
+<span class='co'># Example 1: Analyzing all numeric variables assuming genotypes #</span>
+<span class='co'># as random effects with equal weights for mean performance and #</span>
+<span class='co'># stability                                                     #</span>
+<span class='co'>#===============================================================#</span>
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'>waasb</span>(<span class='no'>data_ge</span>,
               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
-<span class='co'># Higher weight for response variable</span>
+              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></span>())</div><div class='output co'>#&gt; Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       GY       HM
+#&gt;  COMPLETE       NA       NA
+#&gt;       GEN 1.11e-05 5.07e-03
+#&gt;   GEN:ENV 2.15e-11 2.27e-15
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='co'># Distribution of random effects (first variable)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"re"</span>)</div><div class='img'><img src='waasb-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Genetic parameters</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model</span>, <span class='st'>"genpar"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 3</span><span>
+#&gt;   Parameters                GY     HM
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance    0.181 5.52  
+#&gt; </span><span style='color: #555555;'>2</span><span> Heritability           0.154 0.088</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                  0.313 0.397 
+#&gt; </span><span style='color: #555555;'>4</span><span> Heribatility of means  0.815 0.686 
+#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy               0.903 0.828 
+#&gt; </span><span style='color: #555555;'>6</span><span> rge                    0.370 0.435 
+#&gt; </span><span style='color: #555555;'>7</span><span> CVg                    6.26  1.46  
+#&gt; </span><span style='color: #555555;'>8</span><span> CVr                   11.6   3.50  
+#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio               0.538 0.415 </div><div class='input'>
 
-<span class='no'>model2</span> <span class='kw'>&lt;-</span> <span class='fu'>waasb</span>(<span class='no'>data_ge</span>,
+
+<span class='co'>#===============================================================#</span>
+<span class='co'># Example 2: Analyzing variables that starts with "N"           #</span>
+<span class='co'># assuming environment as random effects with higher weight for #</span>
+<span class='co'># response variable (65) for the three traits.                  #</span>
+<span class='co'>#===============================================================#</span>
+
+<span class='no'>model2</span> <span class='kw'>&lt;-</span> <span class='fu'>waasb</span>(<span class='no'>data_ge2</span>,
                <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>65</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
-<span class='co'># Environment as random effects analyzing more than one variable</span>
-<span class='co'># Smaller values of HM are better and higher</span>
-<span class='co'># Higher values of GY are better</span>
-<span class='co'># Larger weight for the GY (60%)</span>
-<span class='co'># Smaller weight for HM (40%)</span>
+               <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"env"</span>,
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>starts_with</a></span>(<span class='st'>"N"</span>),
+               <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fl'>65</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Invalid length in 'wresp'. Setting wresp = 65 to all the 3 variables.</span></div><div class='output co'>#&gt; Model:  Y ~ GEN + (1 | ENV/REP) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       NR     NKR      NKE
+#&gt;  COMPLETE       NA      NA       NA
+#&gt;  REP(ENV) 1.00e+00 1.00000 1.000000
+#&gt;       ENV 2.84e-01 0.02314 0.003903
+#&gt;   GEN:ENV 2.03e-05 0.00242 0.000165
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
+
+<span class='co'># Get the index WAASBY</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model2</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"WAASBY"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAASBY</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 4</span><span>
+#&gt;    gen      NR   NKR   NKE
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1    69.2   42.7  33.5
+#&gt; </span><span style='color: #555555;'> 2</span><span> H10   35.7   53.7  49.3
+#&gt; </span><span style='color: #555555;'> 3</span><span> H11    9.63  58.2  47.1
+#&gt; </span><span style='color: #555555;'> 4</span><span> H12   63.6   35    36.8
+#&gt; </span><span style='color: #555555;'> 5</span><span> H13   84.6   27.0  60.0
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2    39.7   50.8  62.8
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3    18.4   48.4  16.0
+#&gt; </span><span style='color: #555555;'> 8</span><span> H4    28.4   97.6  88.1
+#&gt; </span><span style='color: #555555;'> 9</span><span> H5    28.5   74.0  94.0
+#&gt; </span><span style='color: #555555;'>10</span><span> H6    55.8   34.5  32.2
+#&gt; </span><span style='color: #555555;'>11</span><span> H7    52.0   42.0  40.9
+#&gt; </span><span style='color: #555555;'>12</span><span> H8    42.1   27.3  21.9
+#&gt; </span><span style='color: #555555;'>13</span><span> H9    26.4   48.2  14.9</div><div class='input'>
+<span class='co'># Plot the scores (response x WAASB)</span>
+<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='no'>model2</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='img'><img src='waasb-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>#===============================================================#</span>
+<span class='co'># Example 3: Analyzing GY and HM assuming a random-effect model.#</span>
+<span class='co'># Smaller values for HM and higher values for GY are better.    #</span>
+<span class='co'># To estimate WAASBY, higher weight for the GY (60%) and lower  #</span>
+<span class='co'># weight for HM (40%) are considered for mean performance.      #</span>
+<span class='co'>#===============================================================#</span>
 
 <span class='no'>model3</span> <span class='kw'>&lt;-</span> <span class='fu'>waasb</span>(<span class='no'>data_ge</span>,
                 <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                 <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                 <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                 <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-                <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"env"</span>,
+                <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"all"</span>,
                 <span class='kw'>mresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>),
-                <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))</div><div class='output co'>#&gt; Evaluating variable GY 0 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'># }
+                <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))</div><div class='output co'>#&gt; Model:  Y ~ (1 | GEN) + (1 | ENV/REP) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       GY       HM
+#&gt;  COMPLETE       NA       NA
+#&gt;       GEN 1.11e-05 5.07e-03
+#&gt;  REP(ENV) 9.91e-08 5.73e-05
+#&gt;       ENV 8.26e-17 3.55e-16
+#&gt;   GEN:ENV 2.15e-11 2.27e-15
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
+<span class='co'># Get P-values for Likelihood-ratio test</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model3</span>, <span class='st'>"pval_lrt"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: pval_lrt</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 3</span><span>
+#&gt;   model           GY        HM
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> COMPLETE </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   
+#&gt; </span><span style='color: #555555;'>2</span><span> GEN       1.11</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>  5.07</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> REP(ENV)  9.91</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>  5.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> ENV       8.26</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-17</span><span>  3.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-16</span><span>
+#&gt; </span><span style='color: #555555;'>5</span><span> GEN:ENV   2.15</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-11</span><span>  2.27</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span></div><div class='input'>
+<span class='co'># Get the random effects</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model3</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"ranef"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $ENV
+#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
+#&gt;    ENV        GY     HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    -</span><span style='color: #BB0000;'>0.150</span><span>  -</span><span style='color: #BB0000;'>0.648</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> E2     0.494  -</span><span style='color: #BB0000;'>3.84</span><span> 
+#&gt; </span><span style='color: #555555;'> 3</span><span> E3     1.36    4.66 
+#&gt; </span><span style='color: #555555;'> 4</span><span> E4     0.977   1.85 
+#&gt; </span><span style='color: #555555;'> 5</span><span> E5     1.21    4.01 
+#&gt; </span><span style='color: #555555;'> 6</span><span> E6    -</span><span style='color: #BB0000;'>0.010</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span> -</span><span style='color: #BB0000;'>2.13</span><span> 
+#&gt; </span><span style='color: #555555;'> 7</span><span> E7    -</span><span style='color: #BB0000;'>0.669</span><span>   0.394
+#&gt; </span><span style='color: #555555;'> 8</span><span> E8    -</span><span style='color: #BB0000;'>0.135</span><span>  -</span><span style='color: #BB0000;'>2.83</span><span> 
+#&gt; </span><span style='color: #555555;'> 9</span><span> E9     0.373   3.14 
+#&gt; </span><span style='color: #555555;'>10</span><span> E10   -</span><span style='color: #BB0000;'>0.487</span><span>  -</span><span style='color: #BB0000;'>3.67</span><span> 
+#&gt; </span><span style='color: #555555;'>11</span><span> E11   -</span><span style='color: #BB0000;'>1.27</span><span>    5.91 
+#&gt; </span><span style='color: #555555;'>12</span><span> E12   -</span><span style='color: #BB0000;'>1.04</span><span>    1.46 
+#&gt; </span><span style='color: #555555;'>13</span><span> E13    0.230  -</span><span style='color: #BB0000;'>1.48</span><span> 
+#&gt; </span><span style='color: #555555;'>14</span><span> E14   -</span><span style='color: #BB0000;'>0.871</span><span>  -</span><span style='color: #BB0000;'>6.83</span><span> 
+#&gt; 
+#&gt; $GEN
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
+#&gt;    GEN        GY      HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> G1    -</span><span style='color: #BB0000;'>0.057</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.692</span><span> 
+#&gt; </span><span style='color: #555555;'> 2</span><span> G2     0.057</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.980</span><span> 
+#&gt; </span><span style='color: #555555;'> 3</span><span> G3     0.229  -</span><span style='color: #BB0000;'>0.332</span><span> 
+#&gt; </span><span style='color: #555555;'> 4</span><span> G4    -</span><span style='color: #BB0000;'>0.026</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.038</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> G5    -</span><span style='color: #BB0000;'>0.112</span><span>   0.830 
+#&gt; </span><span style='color: #555555;'> 6</span><span> G6    -</span><span style='color: #BB0000;'>0.114</span><span>   0.441 
+#&gt; </span><span style='color: #555555;'> 7</span><span> G7     0.054</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.083</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> G8     0.269   0.696 
+#&gt; </span><span style='color: #555555;'> 9</span><span> G9    -</span><span style='color: #BB0000;'>0.134</span><span>  -</span><span style='color: #BB0000;'>0.127</span><span> 
+#&gt; </span><span style='color: #555555;'>10</span><span> G10   -</span><span style='color: #BB0000;'>0.166</span><span>   0.287 
+#&gt; 
+#&gt; $ENV_GEN
+#&gt; </span><span style='color: #555555;'># A tibble: 140 x 4</span><span>
+#&gt;    ENV   GEN        GY      HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    -</span><span style='color: #BB0000;'>0.063</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.149</span><span> 
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G2     0.205  -</span><span style='color: #BB0000;'>0.784</span><span> 
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G3     0.087</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.847</span><span> 
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G4     0.058</span><span style='text-decoration: underline;'>9</span><span>  0.628 
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G5    -</span><span style='color: #BB0000;'>0.142</span><span>   1.13  
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G6    -</span><span style='color: #BB0000;'>0.068</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>  0.263 
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G7     0.125   0.070</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G8     0.069</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.113</span><span> 
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G9    -</span><span style='color: #BB0000;'>0.040</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>  0.264 
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    G10   -</span><span style='color: #BB0000;'>0.244</span><span>  -</span><span style='color: #BB0000;'>0.563</span><span> 
+#&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span>
+#&gt; 
+#&gt; $ENV_REP
+#&gt; </span><span style='color: #555555;'># A tibble: 42 x 4</span><span>
+#&gt;    ENV   REP        GY       HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    1      0.038</span><span style='text-decoration: underline;'>8</span><span>  0.006</span><span style='text-decoration: underline;'>90</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    2      0.024</span><span style='text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>0.366</span><span>  
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    3     -</span><span style='color: #BB0000;'>0.068</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>  0.336  
+#&gt; </span><span style='color: #555555;'> 4</span><span> E2    1     -</span><span style='color: #BB0000;'>0.213</span><span>  -</span><span style='color: #BB0000;'>0.549</span><span>  
+#&gt; </span><span style='color: #555555;'> 5</span><span> E2    2      0.129  -</span><span style='color: #BB0000;'>0.063</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> 
+#&gt; </span><span style='color: #555555;'> 6</span><span> E2    3      0.101   0.482  
+#&gt; </span><span style='color: #555555;'> 7</span><span> E3    1      0.197  -</span><span style='color: #BB0000;'>0.010</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span> 
+#&gt; </span><span style='color: #555555;'> 8</span><span> E3    2     -</span><span style='color: #BB0000;'>0.102</span><span>   0.620  
+#&gt; </span><span style='color: #555555;'> 9</span><span> E3    3     -</span><span style='color: #BB0000;'>0.046</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.451</span><span>  
+#&gt; </span><span style='color: #555555;'>10</span><span> E4    1      0.065</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.294</span><span>  
+#&gt; </span><span style='color: #555555;'># ... with 32 more rows</span><span>
+#&gt; 
+#&gt; $ENV_GEN_REP
+#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;    ENV   GEN   REP        GY      HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1     -</span><span style='color: #BB0000;'>0.232</span><span>  -</span><span style='color: #BB0000;'>1.48</span><span>  
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G1    2     -</span><span style='color: #BB0000;'>0.247</span><span>  -</span><span style='color: #BB0000;'>1.86</span><span>  
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G1    3     -</span><span style='color: #BB0000;'>0.339</span><span>  -</span><span style='color: #BB0000;'>1.15</span><span>  
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      0.151  -</span><span style='color: #BB0000;'>2.41</span><span>  
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      0.137  -</span><span style='color: #BB0000;'>2.78</span><span>  
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      0.044</span><span style='text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>2.08</span><span>  
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      0.205  -</span><span style='color: #BB0000;'>1.82</span><span>  
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      0.191  -</span><span style='color: #BB0000;'>2.19</span><span>  
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      0.098</span><span style='text-decoration: underline;'>2</span><span> -</span><span style='color: #BB0000;'>1.49</span><span>  
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1     -</span><span style='color: #BB0000;'>0.078</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.052</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span>
+#&gt; </div><div class='input'>
+<span class='co'># Get the ranks for the WAASB index</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model3</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"OrWAASB"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAASB</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
+#&gt;    gen      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> G1        2     2
+#&gt; </span><span style='color: #555555;'> 2</span><span> G10      10    10
+#&gt; </span><span style='color: #555555;'> 3</span><span> G2        4     8
+#&gt; </span><span style='color: #555555;'> 4</span><span> G3        1     1
+#&gt; </span><span style='color: #555555;'> 5</span><span> G4        6     6
+#&gt; </span><span style='color: #555555;'> 6</span><span> G5        5     9
+#&gt; </span><span style='color: #555555;'> 7</span><span> G6        3     3
+#&gt; </span><span style='color: #555555;'> 8</span><span> G7        8     7
+#&gt; </span><span style='color: #555555;'> 9</span><span> G8        7     4
+#&gt; </span><span style='color: #555555;'>10</span><span> G9        9     5</div><div class='input'># }
 
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

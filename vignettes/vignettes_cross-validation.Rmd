@@ -21,7 +21,7 @@ load("cvali.RData")
 
 
 # Getting started
-In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
+In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
 <style>
   .col2 {
@@ -36,7 +36,7 @@ In this section, we will use the data in `data_ge`. For more information, please
   }
 </style>
 
-```{r warning = FALSE, message = FALSE}
+```{r warning = FALSE, message = FALSE, echo=FALSE}
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
@@ -72,7 +72,12 @@ The following code computes the cross-validation of the oat data using the AMMI 
 ## Declaring the number of axes
 The function `cv_ammi()` is used to compute a cross-validation procedure for the AMMI0, AMMI2 and AMMIF (9 axes) models.
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(metan)
+```
+
 ```{r eval = F, fig.height = 5, fig.width = 10, fig.align = "center" }
+library(metan)
 AMMI0 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0) # AMMI0
 AMMI2 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2) # AMMI2
 AMMI9 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9) # AMMIF
@@ -131,6 +136,22 @@ arrange_ggplot(a, b, labels = letters[1:2])
 ```
 
 Six statistics are shown in this boxplot. The mean (black rhombus), the median (black line), the lower and upper hinges that correspond sto the first and third quartiles (the 25th and 75th percentiles, respectively). The upper whisker extends from the hinge to the largest value no further than $1.5\times{IQR}$ from the hinge (where IQR is the inter-quartile range). The lower whisker extends from the hinge to the smallest value at most $1.5\times{IQR}$ of the hinge. Data beyond the end of the whiskers are considered outlying points. If the condition `violin = TRUE`, a violin plot is added along with the boxplot. A violin plot is a compact display of a continuous distribution displayed in the same way as a boxplot.
+
+_______________________________________________________________________________________________
+**Rendering engine**
+
+This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
+
+```{r warning = FALSE, message = FALSE, eval=FALSE}
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+
+```
+
 
 # References
 

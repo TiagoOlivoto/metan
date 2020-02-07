@@ -125,6 +125,9 @@ correlation pairs." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -216,11 +219,11 @@ correlation pairs.</p>
     </div>
 
     <pre class="usage"><span class='fu'>can_corr</span>(
-  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>FG</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>SG</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>.data</span>,
+  <span class='no'>FG</span>,
+  <span class='no'>SG</span>,
   <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>means_by</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
   <span class='kw'>use</span> <span class='kw'>=</span> <span class='st'>"cor"</span>,
   <span class='kw'>test</span> <span class='kw'>=</span> <span class='st'>"Bartlett"</span>,
   <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
@@ -235,35 +238,24 @@ correlation pairs.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data to be analyzed. Must be a dataframe containing the
-numeric variables that will be used in the estimation of the correlations.
-The data can also be passed directly by the arguments <code>FG</code> and
-<code>SG</code>. Alternatively, <code>.data</code> may be passed from the function
-<code>split_factors</code>. In such case, the canonical correlation will be
-estimated for each level of the grouping variable in that function.</p></td>
+      <td><p>The data to be analyzed. It can be a data frame (possible with
+grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.</p></td>
     </tr>
     <tr>
       <th>FG, SG</th>
-      <td><p>If a dataframe is informed in <code>.data</code>, then <code>FG</code> and
-<code>SG</code> is a comma-separated list of unquoted variable names that will
+      <td><p>A comma-separated list of unquoted variable names that will
 compose the first (smallest) and second (highest) group of the correlation
 analysis, respectively. Select helpers are also allowed.</p></td>
     </tr>
     <tr>
       <th>by</th>
-      <td><p>One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in <code>by</code>. To split
-the data by more than one factor variable, use the function
-<code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data to <code>.data</code>.</p></td>
+      <td><p>One variable (factor) to compute the function by. It is a shortcut
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+one grouping variable use that function.</p></td>
     </tr>
     <tr>
       <th>means_by</th>
-      <td><p>The argument <code>means_by</code> is a grouping variable to
-compute the means by. For example, if <code>means_by = GEN</code>, then the means
-of the numerical variables will be computed for each level of the grouping
-variable GEN, and the canonical correlation analysis will be computed using
-these means.</p></td>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
     </tr>
     <tr>
       <th>use</th>
@@ -303,9 +295,9 @@ to Olivoto et al.(2017).</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>.data</code> is an object of class <code>split_factors</code> then the
-results will be returned into a list where each element has the following
-values.</p><ul>
+    <p>If <code>.data</code> is a grouped data passed from
+<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code> then the results will be returned into a
+list-column of data frames.</p><ul>
 <li><p><strong>Matrix</strong> The correlation (or covariance) matrix of the variables</p></li>
 <li><p><strong>MFG, MSG</strong> The correlation (or covariance) matrix for the variables of
 the first group or second group, respectively.</p></li>
@@ -335,7 +327,7 @@ path analysis: a simple method to reduce its effects. Agron. J.
 <a href='https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131'>10.2134/agronj2016.04.0196</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='no'>cc1</span> <span class='kw'>&lt;-</span> <span class='fu'>can_corr</span>(<span class='no'>data_ge2</span>,
@@ -360,6 +352,7 @@ path analysis: a simple method to reduce its effects. Agron. J.
 #&gt; Number of correlations with r &gt;= |0.8|: 2 
 #&gt; Variables with largest weight in the last eigenvalues: 
 #&gt; EH &gt; PH &gt; EP 
+#&gt; 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Matrix (correlation/covariance) between variables of second group (SG)
 #&gt; ---------------------------------------------------------------------------
@@ -383,6 +376,7 @@ path analysis: a simple method to reduce its effects. Agron. J.
 #&gt; Number of correlations with r &gt;= |0.8|: 2 
 #&gt; Variables with largest weight in the last eigenvalues: 
 #&gt; KW &gt; ED &gt; EL &gt; CD &gt; CL &gt; CW &gt; NR 
+#&gt; 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Matrix (correlation/covariance) between FG and SG
 #&gt; ---------------------------------------------------------------------------
@@ -433,17 +427,15 @@ path analysis: a simple method to reduce its effects. Agron. J.
 #&gt; CW 0.6243739 -0.37712156 -0.14762207
 #&gt; KW 0.9566482 -0.05042023 -0.09910729
 #&gt; NR 0.4351188  0.29047403  0.18639351</div><div class='input'>
-<span class='no'>cc2</span> <span class='kw'>&lt;-</span> <span class='fu'>can_corr</span>(<span class='kw'>FG</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>[, <span class='fl'>4</span>:<span class='fl'>6</span>],
-                <span class='kw'>SG</span> <span class='kw'>=</span> <span class='no'>data_ge2</span>[, <span class='fl'>7</span>:<span class='fl'>13</span>],
-                <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-                <span class='kw'>collinearity</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># Canonical correlations for each environment</span>
 <span class='no'>cc3</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
        <span class='fu'>can_corr</span>(<span class='kw'>FG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>EP</span>),
                 <span class='kw'>SG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>EL</span>, <span class='no'>ED</span>, <span class='no'>CL</span>, <span class='no'>CD</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>),
                 <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div></pre>
+                <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -16,9 +16,8 @@ vignette: >
 knitr::opts_chunk$set(comment = "")
 ```
 
-The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
 
-```{r warning = FALSE, message = FALSE}
+```{r warning = FALSE, message = FALSE, echo=FALSE}
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
@@ -35,6 +34,7 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 The functions `add_cols()` and `add_rows()` can be used to add columns and rows, respectively to a data frame.
 
 ```{r message=FALSE, warning=FALSE}
+library(metan)
 add_cols(data_ge,
          ROW_ID = 1:420) %>% 
   print_table()
@@ -177,5 +177,53 @@ replace_string(data_ge,
 To remove all strings of a data frame, use `remove_strings()`.
 ```{r}
 remove_strings(data_ge) %>% print_table()
+```
+
+## Tidy strings
+The function `tidy_strings()` tidy up characters strings, non-numeric columns, or any selected columns in a data frame by putting all word in upper case, replacing any space, tabulation, punctuation characters by `'_'`, and putting `'_'` between lower and upper cases. Consider the following character strings: `messy_env` by definition should represent a unique level of the factor environment (environment 1). `messy_gen` shows six genotypes, and `messy_int` represents the interaction of such genotypes with environment 1.
+
+```{r}
+messy_env <- c("ENV 1", "Env   1", "Env1", "env1", "Env.1", "Env_1")
+messy_gen <- c("GEN1", "gen 2", "Gen.3", "gen-4", "Gen_5", "GEN_6")
+messy_int <- c("Env1Gen1", "Env1_Gen2", "env1 gen3", "Env1 Gen4", "ENV_1GEN5", "ENV1GEN6")
+
+```
+
+These character vectors are visually messy. Let's tidy them.
+```{r}
+tidy_strings(messy_env)
+tidy_strings(messy_gen)
+tidy_strings(messy_int)
+```
+
+
+`tidy_strings()` woks also to tidy a whole data frame or specific columns. Let's create a 'messy' data frame in the context of plant breeding trials.
+
+```{r}
+library(tibble)
+df <- tibble(Env = messy_env,
+             gen = messy_gen,
+             Env_GEN = interaction(Env, gen),
+             y = rnorm(6, 300, 10))
+df %>% print_table()
+tidy_strings(df) %>% print_table()
+tidy_strings(df, gen) %>% print_table()
+```
+
+
+_______________________________________________________________________________________________
+**Rendering engine**
+
+This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
+
+```{r warning = FALSE, message = FALSE, eval=FALSE}
+library(metan)
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+
 ```
 

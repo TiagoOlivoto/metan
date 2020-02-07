@@ -128,6 +128,9 @@ WAAS, weighted average of absolute scores (Olivoto et al. 2019)." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -318,8 +321,8 @@ Agron. J. 111:2949-2960.
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
 #&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .
 #&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .
-#&gt;   GEN        9  12.995  1.4439   14.93 2.19e-19       .       .
-#&gt;    ENV:GEN 117  31.220  0.2668    2.76 1.01e-11       .       .
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19       .       .
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11       .       .
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2
@@ -330,7 +333,7 @@ Agron. J. 111:2949-2960.
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6
 #&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100
 #&gt;  Residuals 252  24.367  0.0967      NA       NA       .       .
-#&gt;      Total 419 357.816  0.8540      NA       NA       .       .
+#&gt;      Total 419 357.816  0.8540      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; variable HM 
@@ -340,8 +343,8 @@ Agron. J. 111:2949-2960.
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
 #&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16       .       .
 #&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05       .       .
-#&gt;   GEN        9  269.81  29.979   10.56 7.41e-14       .       .
-#&gt;    ENV:GEN 117 1100.73   9.408    3.31 1.06e-15       .       .
+#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14       .       .
+#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15       .       .
 #&gt;        PC1  21  381.13  18.149    6.39 0.00e+00    34.6    34.6
 #&gt;        PC2  19  319.43  16.812    5.92 0.00e+00      29    63.6
 #&gt;        PC3  17  114.26   6.721    2.37 2.10e-03    10.4      74
@@ -352,7 +355,7 @@ Agron. J. 111:2949-2960.
 #&gt;        PC8   7   26.65   3.808    1.34 2.32e-01     2.4    99.7
 #&gt;        PC9   5    3.41   0.682    0.24 9.45e-01     0.3     100
 #&gt;  Residuals 252  715.69   2.840      NA       NA       .       .
-#&gt;      Total 419 8011.48  19.120      NA       NA       .       .
+#&gt;      Total 419 8011.48  19.120      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction

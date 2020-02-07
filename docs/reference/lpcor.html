@@ -124,6 +124,9 @@ data frame or a correlation matrix." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -220,9 +223,9 @@ data frame or a correlation matrix.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data to be analyzed. Must be a symmetric correlation matrix
-or, a dataframe containing the predictor variables, or an object of class
-<code>split_factors</code>.</p></td>
+      <td><p>The data to be analyzed. It must be a symmetric correlation
+matrix or a data frame, possible with grouped data passed from
+<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -233,11 +236,9 @@ variables names.</p></td>
     </tr>
     <tr>
       <th>by</th>
-      <td><p>One variable (factor) to split the data into subsets. The function
-is then applied to each subset and returns a list where each element
-contains the results for one level of the variable in <code>by</code>. To split
-the data by more than one factor variable, use the function
-<code><a href='split_factors.html'>split_factors</a></code> to pass subsetted data to <code>.data</code>.</p></td>
+      <td><p>One variable (factor) to compute the function by. It is a shortcut
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+one grouping variable use that function.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -258,8 +259,9 @@ console.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If a grouping factor is used then a list is returned with the
-following values.</p><ul>
+    <p>If <code>.data</code> is a grouped data passed from
+<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code> then the results will be returned into a
+list-column of data frames, containing:</p><ul>
 <li><p><strong>linear.mat</strong> The matrix of linear correlation.</p></li>
 <li><p><strong>partial.mat</strong> The matrix of partial correlations.</p></li>
 <li><p><strong>results</strong> Hypothesis testing for each pairwise comparison.</p></li>
@@ -269,9 +271,15 @@ following values.</p><ul>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>partial1</span> <span class='kw'>&lt;-</span> <span class='fu'>pcor</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt; <span class='error'>Error in pcor(iris): não foi possível encontrar a função "pcor"</span></div><div class='input'>
+<span class='no'>partial1</span> <span class='kw'>&lt;-</span> <span class='fu'>lpcor</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_by() before.' </span></div><div class='output co'>#&gt;                         Pairs     linear    partial         t         prob
+#&gt; 1  Sepal.Length x Sepal.Width -0.1175698  0.6285707  9.765380 0.000000e+00
+#&gt; 2 Sepal.Length x Petal.Length  0.8717538  0.7190656 12.502483 0.000000e+00
+#&gt; 3  Sepal.Length x Petal.Width  0.8179411 -0.3396174 -4.362929 2.412876e-05
+#&gt; 4  Sepal.Width x Petal.Length -0.4284401 -0.6152919 -9.431189 0.000000e+00
+#&gt; 5   Sepal.Width x Petal.Width -0.3661259  0.3526260  4.553279 1.104958e-05
+#&gt; 6  Petal.Length x Petal.Width  0.9628654  0.8707698 21.398708 0.000000e+00</div><div class='input'>
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
-<span class='no'>partial2</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>lpcor</span>()</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'split_factors() before.' </span></div><div class='output co'>#&gt;                         Pairs     linear    partial         t         prob
+<span class='no'>partial2</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>lpcor</span>()</div><div class='output co'>#&gt; <span class='message'>The factors  where excluded to perform the analysis. If you want to perform an analysis for each level of a factor, use the function 'group_by() before.' </span></div><div class='output co'>#&gt;                         Pairs     linear    partial         t         prob
 #&gt; 1  Sepal.Length x Sepal.Width -0.1175698  0.6285707  9.765380 0.000000e+00
 #&gt; 2 Sepal.Length x Petal.Length  0.8717538  0.7190656 12.502483 0.000000e+00
 #&gt; 3  Sepal.Length x Petal.Width  0.8179411 -0.3396174 -4.362929 2.412876e-05
@@ -286,7 +294,27 @@ following values.</p><ul>
 <span class='co'># Select all numeric variables and compute the partial correlation</span>
 <span class='co'># For each level of \code{Species}</span>
 
-<span class='no'>partial4</span> <span class='kw'>&lt;-</span> <span class='fu'>lpcor</span>(<span class='no'>iris</span>, <span class='fu'>everithig</span>(), <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='error'>Error: não foi possível encontrar a função "everithig"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>partial4</span>$<span class='no'>summary</span>)</div><div class='output co'>#&gt; <span class='error'>Error in print(partial4$summary): objeto 'partial4' não encontrado</span></div><div class='input'># }
+<span class='no'>partial4</span> <span class='kw'>&lt;-</span> <span class='fu'>lpcor</span>(<span class='no'>iris</span>, <span class='fu'>everithig</span>(), <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt;                         Pairs    linear     partial          t         prob
+#&gt; 1  Sepal.Length x Sepal.Width 0.7425467  0.72228639  7.0833236 6.834434e-09
+#&gt; 2 Sepal.Length x Petal.Length 0.2671758  0.16604293  1.1420107 2.593594e-01
+#&gt; 3  Sepal.Length x Petal.Width 0.2780984  0.10656131  0.7268727 4.709870e-01
+#&gt; 4  Sepal.Width x Petal.Length 0.1777000 -0.04521791 -0.3069968 7.602313e-01
+#&gt; 5   Sepal.Width x Petal.Width 0.2327520  0.05178061  0.3516649 7.266954e-01
+#&gt; 6  Petal.Length x Petal.Width 0.3316300  0.27968723  1.9757822 5.419574e-02
+#&gt;                         Pairs    linear    partial          t         prob
+#&gt; 1  Sepal.Length x Sepal.Width 0.5259107  0.2686100  1.8913091 6.488965e-02
+#&gt; 2 Sepal.Length x Petal.Length 0.7540490  0.6292137  5.4906811 1.666695e-06
+#&gt; 3  Sepal.Length x Petal.Width 0.5464611 -0.2241652 -1.5600639 1.255990e-01
+#&gt; 4  Sepal.Width x Petal.Length 0.5605221 -0.1071007 -0.7305949 4.687316e-01
+#&gt; 5   Sepal.Width x Petal.Width 0.6639987  0.4697561  3.6090336 7.555314e-04
+#&gt; 6  Petal.Length x Petal.Width 0.7866681  0.6480512  5.7711604 6.371049e-07
+#&gt;                         Pairs    linear     partial          t         prob
+#&gt; 1  Sepal.Length x Sepal.Width 0.4572278  0.26908423  1.8949086 6.439972e-02
+#&gt; 2 Sepal.Length x Petal.Length 0.8642247  0.83815645 10.4223360 1.074696e-13
+#&gt; 3  Sepal.Length x Petal.Width 0.2811077 -0.12536431 -0.8570233 3.958750e-01
+#&gt; 4  Sepal.Width x Petal.Length 0.4010446 -0.07558634 -0.5141223 6.096277e-01
+#&gt; 5   Sepal.Width x Petal.Width 0.5377280  0.48387140  3.7500043 4.933633e-04
+#&gt; 6  Petal.Length x Petal.Width 0.3221082  0.17966044  1.2386712 2.217511e-01</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

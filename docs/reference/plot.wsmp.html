@@ -123,6 +123,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -203,7 +206,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot heat maps with genotype ranking</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.wsmp.R'><code>R/plot.wsmp.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/wsmp.R'><code>R/wsmp.R</code></a></small>
     <div class="hidden name"><code>plot.wsmp.Rd</code></div>
     </div>
 
@@ -215,18 +218,18 @@
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(
   <span class='no'>x</span>,
   <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
-  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>size.lab</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>4</span>),
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>key.lab</span> <span class='kw'>=</span> <span class='st'>"Genotype ranking"</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
+  <span class='kw'>size.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>export</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
+  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
+  <span class='kw'>margins</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
+  <span class='kw'>key.lab</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"deprecated"</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -245,42 +248,10 @@ variable of <code>x</code>.</p></td>
     <tr>
       <th>type</th>
       <td><p><code>1 = Heat map Ranks</code>: this graphic shows the genotype
-ranking considering the WAAS estimated with different numbers of Principal
-Components; <code>2 = Heat map WAASY-GY ratio</code>: this graphic shows the
-genotype ranking considering the different combinations in the WAAS/GY
-ratio.</p></td>
-    </tr>
-    <tr>
-      <th>export</th>
-      <td><p>Export (or not) the plot. Default is <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>file.type</th>
-      <td><p>If <code>export = TRUE</code> define the type of file to be
-exported. Default is <code>pdf</code>, Graphic can also be exported in
-<code>*.tiff</code> format by declaring <code>file.type = 'tiff'</code>.</p></td>
-    </tr>
-    <tr>
-      <th>file.name</th>
-      <td><p>The name of the file for exportation, default is
-<code>NULL</code>, i.e. the files are automatically named.</p></td>
-    </tr>
-    <tr>
-      <th>width</th>
-      <td><p>The width 'inch' of the plot. Default is <code>8</code>.</p></td>
-    </tr>
-    <tr>
-      <th>height</th>
-      <td><p>The height 'inch' of the plot. Default is <code>7</code>.</p></td>
-    </tr>
-    <tr>
-      <th>size.lab</th>
-      <td><p>The label size of the plot. It is suggested attribute 1</p></td>
-    </tr>
-    <tr>
-      <th>margins</th>
-      <td><p>Numeric vector of length 2 containing the margins for column
-and row names, respectively. Default is <code><a href='https://rdrr.io/r/base/c.html'>c(5, 4)</a></code>.</p></td>
+ranking considering the WAASB index estimated with different numbers of
+Principal Components; <code>2 = Heat map WAASY-GY ratio</code>: this graphic
+shows the genotype ranking considering the different combinations in the
+WAASB/GY ratio.</p></td>
     </tr>
     <tr>
       <th>y.lab</th>
@@ -291,13 +262,40 @@ and row names, respectively. Default is <code><a href='https://rdrr.io/r/base/c.
       <td><p>The label of x axis. Default is 'Number of axes'.</p></td>
     </tr>
     <tr>
+      <th>size.lab</th>
+      <td><p>The size of the</p></td>
+    </tr>
+    <tr>
+      <th>export</th>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
+    </tr>
+    <tr>
+      <th>file.type</th>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
+    </tr>
+    <tr>
+      <th>file.name</th>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
+    </tr>
+    <tr>
+      <th>height</th>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
+    </tr>
+    <tr>
+      <th>margins</th>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
+    </tr>
+    <tr>
       <th>key.lab</th>
-      <td><p>The label of color key. Default is 'Genotype ranking'.</p></td>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
     </tr>
     <tr>
       <th>resolution</th>
-      <td><p>Valid parameter if <code>file.type = 'tiff'</code>. Define the
-resolution of the plot. Default is '300'.</p></td>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -305,43 +303,36 @@ resolution of the plot. Default is '300'.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class <code>gg</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The first type of heatmap shows the genotype ranking depending on the number
-of principal component axis used for estimating the WAASB index. An euclidean
-distance-based dendrogram is used for grouping the genotype ranking for both
-genotypes and principal component axis. The second type of heatmap shows the
+of principal component axis used for estimating the WAASB index. The second type of heatmap shows the
 genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a
 ratio of 100/0 considers exclusively the stability for the genotype ranking.
 On the other hand, a ratio of 0/100 considers exclusively the productivity
-for the genotype ranking.  Four clusters are estimated (1) unproductive and
-unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but
-unproductive genotypes; and (4), productive and stable genotypes.</p>
+for the genotype ranking.  Four clusters of genotypes are shown by label colors (red) unproductive and
+unstable genotypes; (blue) productive, but unstable genotypes; (black) stable, but
+unproductive genotypes; and (green), productive and stable genotypes.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>PH</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'><a href='wsmp.html'>wsmp</a></span>()</div><div class='output co'>#&gt; variable PH 
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>) <span class='kw'>%&gt;%</span>
+         <span class='fu'><a href='wsmp.html'>wsmp</a></span>()</div><div class='output co'>#&gt; Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
 #&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
-#&gt;        ENV   3  7.719  2.5728 127.913 4.25e-07       .       .
-#&gt;   REP(ENV)   8  0.161  0.0201   0.897 5.22e-01       .       .
-#&gt;   GEN       12  1.865  0.1554   6.929 6.89e-09       .       .
-#&gt;    ENV:GEN  36  5.397  0.1499   6.686 5.01e-14       .       .
-#&gt;        PC1  14  4.466  0.3190  14.230 0.00e+00    82.8    82.8
-#&gt;        PC2  12  0.653  0.0545   2.430 8.40e-03    12.1    94.9
-#&gt;        PC3  10  0.277  0.0277   1.240 2.76e-01     5.1     100
-#&gt;  Residuals  96  2.153  0.0224      NA       NA       .       .
-#&gt;      Total 155 17.294  0.1116      NA       NA       .       .
+#&gt;     model       GY
+#&gt;  COMPLETE       NA
+#&gt;       GEN 1.11e-05
+#&gt;   GEN:ENV 2.15e-11
 #&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'seriation':</span>
-#&gt; <span class='message'>  method         from </span>
-#&gt; <span class='message'>  reorder.hclust gclus</span></div><div class='img'><img src='plot.wsmp-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>)
+<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='fu'><a href='arrange_ggplot.html'>arrange_ggplot</a></span>(<span class='no'>p1</span>, <span class='no'>p2</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='plot.wsmp-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>
@@ -349,6 +340,7 @@ unproductive genotypes; and (4), productive and stable genotypes.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

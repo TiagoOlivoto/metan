@@ -123,6 +123,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -203,7 +206,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Predict the means of a waas object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/predict.waas.R'><code>R/predict.waas.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/waas.R'><code>R/waas.R</code></a></small>
     <div class="hidden name"><code>predict.waas.Rd</code></div>
     </div>
 
@@ -257,9 +260,9 @@ analysis showing the number of significant axis. On the other hand,
 RMSPD of all AMMI-family models, based on resampling procedures.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge</span>,
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge</span>,
              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
@@ -270,8 +273,8 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
 #&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .
 #&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .
-#&gt;   GEN        9  12.995  1.4439   14.93 2.19e-19       .       .
-#&gt;    ENV:GEN 117  31.220  0.2668    2.76 1.01e-11       .       .
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19       .       .
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11       .       .
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2
@@ -282,7 +285,7 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6
 #&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100
 #&gt;  Residuals 252  24.367  0.0967      NA       NA       .       .
-#&gt;      Total 419 357.816  0.8540      NA       NA       .       .
+#&gt;      Total 419 357.816  0.8540      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; variable HM 
@@ -292,8 +295,8 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
 #&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16       .       .
 #&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05       .       .
-#&gt;   GEN        9  269.81  29.979   10.56 7.41e-14       .       .
-#&gt;    ENV:GEN 117 1100.73   9.408    3.31 1.06e-15       .       .
+#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14       .       .
+#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15       .       .
 #&gt;        PC1  21  381.13  18.149    6.39 0.00e+00    34.6    34.6
 #&gt;        PC2  19  319.43  16.812    5.92 0.00e+00      29    63.6
 #&gt;        PC3  17  114.26   6.721    2.37 2.10e-03    10.4      74
@@ -304,12 +307,46 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 #&gt;        PC8   7   26.65   3.808    1.34 2.32e-01     2.4    99.7
 #&gt;        PC9   5    3.41   0.682    0.24 9.45e-01     0.3     100
 #&gt;  Residuals 252  715.69   2.840      NA       NA       .       .
-#&gt;      Total 419 8011.48  19.120      NA       NA       .       .
+#&gt;      Total 419 8011.48  19.120      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='co'># Predict GY with 3 IPCA and HM with 1 IPCA</span>
-<span class='no'>predict</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>model</span>, <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>1</span>))</div></pre>
+<span class='no'>predict</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>model</span>, <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>1</span>))
+<span class='no'>predict</span></div><div class='output co'>#&gt; $GY
+#&gt; <span style='color: #555555;'># A tibble: 140 x 7</span><span>
+#&gt;    ENV   GEN       Y res_ols pred_ols res_ammi[,1] pred_ammi[,1]
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1     2.37 -</span><span style='color: #BB0000;'>0.084</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>     2.45       0.077</span><span style='text-decoration: underline;'>7</span><span>          2.53
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G10    1.97 -</span><span style='color: #BB0000;'>0.344</span><span>      2.32      -</span><span style='color: #BB0000;'>0.321</span><span>           2.00
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G2     2.90  0.311      2.59       0.244           2.83
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G3     2.89  0.086</span><span style='text-decoration: underline;'>8</span><span>     2.80      -</span><span style='color: #BB0000;'>0.062</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          2.74
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G4     2.59  0.100      2.49       0.035</span><span style='text-decoration: underline;'>4</span><span>          2.52
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G5     2.19 -</span><span style='color: #BB0000;'>0.196</span><span>      2.38      -</span><span style='color: #BB0000;'>0.088</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          2.30
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G6     2.30 -</span><span style='color: #BB0000;'>0.079</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     2.38      -</span><span style='color: #BB0000;'>0.106</span><span>           2.27
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G7     2.77  0.186      2.59       0.234           2.82
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G8     2.90  0.049</span><span style='text-decoration: underline;'>3</span><span>     2.85       0.011</span><span style='text-decoration: underline;'>2</span><span>          2.86
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    G9     2.33 -</span><span style='color: #BB0000;'>0.030</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     2.36      -</span><span style='color: #BB0000;'>0.023</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>          2.33
+#&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span>
+#&gt; 
+#&gt; $HM
+#&gt; </span><span style='color: #555555;'># A tibble: 140 x 7</span><span>
+#&gt;    ENV   GEN       Y res_ols pred_ols res_ammi[,1] pred_ammi[,1]
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1     46.5   0.117     46.4      0.038</span><span style='text-decoration: underline;'>1</span><span>           46.4
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G10    46.9  -</span><span style='color: #BB0000;'>0.923</span><span>     47.8     -</span><span style='color: #BB0000;'>0.242</span><span>            47.6
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G2     45.3  -</span><span style='color: #BB0000;'>0.660</span><span>     46.0      0.213            46.2
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G3     45.9  -</span><span style='color: #BB0000;'>1.05</span><span>      46.9      0.046</span><span style='text-decoration: underline;'>5</span><span>           47.0
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G4     48.3   0.931     47.4     -</span><span style='color: #BB0000;'>0.027</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>           47.3
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G5     49.9   1.26      48.6      0.215            48.8
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G6     48.2   0.189     48.1      0.074</span><span style='text-decoration: underline;'>5</span><span>           48.1
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G7     47.4   0.154     47.3     -</span><span style='color: #BB0000;'>0.166</span><span>            47.1
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G8     48.0  -</span><span style='color: #BB0000;'>0.466</span><span>     48.4     -</span><span style='color: #BB0000;'>0.005</span><span style='color: #BB0000;text-decoration: underline;'>68</span><span>          48.4
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    G9     47.7   0.450     47.2     -</span><span style='color: #BB0000;'>0.146</span><span>            47.1
+#&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span>
+#&gt; </div><div class='input'># }
+
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

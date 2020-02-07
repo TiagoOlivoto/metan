@@ -124,6 +124,9 @@ Rocha et al. (2018)." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -275,10 +278,16 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Evaluating variable GY 0 % 
-#&gt; Evaluating variable HM 100 % 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       GY       HM
+#&gt;  COMPLETE       NA       NA
+#&gt;       GEN 1.11e-05 5.07e-03
+#&gt;   GEN:ENV 2.15e-11 2.27e-15
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
 <span class='no'>FAI</span> <span class='kw'>&lt;-</span> <span class='fu'>fai_blup</span>(<span class='no'>mod</span>,
                 <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
                 <span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'max, max'</span>),
@@ -323,29 +332,34 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
        <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>KW</span>, <span class='no'>NKE</span>, <span class='no'>PH</span>, <span class='no'>EH</span>)) <span class='kw'>%&gt;%</span>
        <span class='fu'>fai_blup</span>(<span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'max, max, max, min'</span>),
                 <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min, min, max'</span>),
-                <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Model failed to converge with max|grad| = 0.00577455 (tol = 0.002, component 1)</span></div><div class='output co'>#&gt; Evaluating variable KW 0 % </div><div class='output co'>#&gt; <span class='message'>boundary (singular) fit: see ?isSingular</span></div><div class='output co'>#&gt; Evaluating variable NKE 33.3 % 
-#&gt; Evaluating variable PH 66.7 % 
-#&gt; Evaluating variable EH 100 % 
+                <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       KW     NKE       PH       EH
+#&gt;  COMPLETE       NA      NA       NA       NA
+#&gt;       GEN 6.21e-01 1.00000 9.39e-01 1.00e+00
+#&gt;   GEN:ENV 4.92e-07 0.00101 1.09e-13 8.12e-12
+#&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -----------------------------------------------------------------------------------
 #&gt;     eigen.values cumulative.var
-#&gt; PC1   3.14414174       78.60354
-#&gt; PC2   0.66041176       95.11384
-#&gt; PC3   0.13857767       98.57828
-#&gt; PC4   0.05686883      100.00000
+#&gt; PC1    3.1441417       78.60354
+#&gt; PC2    0.6604119       95.11384
+#&gt; PC3    0.1385777       98.57828
+#&gt; PC4    0.0568688      100.00000
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Factor Analysis
 #&gt; -----------------------------------------------------------------------------------
-#&gt;            FA1 comunalits
-#&gt; KW  -0.9474560  0.8976729
-#&gt; NKE -0.7429934  0.5520392
-#&gt; PH  -0.9429971  0.8892436
-#&gt; EH  -0.8973216  0.8051861
+#&gt;           FA1 comunalits
+#&gt; KW  0.9474560  0.8976729
+#&gt; NKE 0.7429933  0.5520391
+#&gt; PH  0.9429971  0.8892436
+#&gt; EH  0.8973216  0.8051860
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.7860354 
@@ -365,7 +379,7 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
 #&gt; KW       1 172.938867 175.182040 2.243173e+00 1.297090e+00
 #&gt; NKE      1 511.643590 511.643590 2.819513e-07 5.510697e-08
 #&gt; PH       1   2.484813   2.487051 2.238030e-03 9.006835e-02
-#&gt; EH       1   1.343326   1.343326 3.234146e-10 2.407567e-08
+#&gt; EH       1   1.343326   1.343326 3.234133e-10 2.407557e-08
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Selected genotypes

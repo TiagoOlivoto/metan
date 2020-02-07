@@ -129,6 +129,9 @@ type = 're'" />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -209,7 +212,7 @@ type = 're'" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Several types of residual plots</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.waasb.R'><code>R/plot.waasb.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/WAASB.R'><code>R/WAASB.R</code></a></small>
     <div class="hidden name"><code>plot.waasb.Rd</code></div>
     </div>
 
@@ -353,8 +356,16 @@ to <code>NULL</code></p></td>
                 <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
                 <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                 <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model2</span>)</div><div class='img'><img src='plot.waasb-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;     model       GY
+#&gt;  COMPLETE       NA
+#&gt;       GEN 1.11e-05
+#&gt;   GEN:ENV 2.15e-11
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model2</span>)</div><div class='img'><img src='plot.waasb-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

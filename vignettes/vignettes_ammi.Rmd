@@ -21,9 +21,9 @@ load("ammi.RData")
 
 # Getting started
 
-In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
+In this section, we will use the data in `data_ge`. For more information, please, see `?data_ge`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
 
-```{r warning = FALSE, message = FALSE}
+```{r warning = FALSE, message = FALSE, echo=FALSE}
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
@@ -37,6 +37,7 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 The first step is to inspect the data with the function `inspect()`.
 
 ```{r, fig.width=7, fig.height=7, fig.align="center"}
+library(metan)
 insp <- inspect(data_ge,
                 verbose = FALSE,
                 plot = TRUE)
@@ -55,11 +56,12 @@ print_table(indiv$GY$individual)
 
 ```
 
-The joint ANOVA is performed with the function `joint_anova()`.
+The joint ANOVA is performed with the function `anova_joint()`.
 
 ```{r echo = TRUE}
+library(metan)
 joint <- anova_joint(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
-print_table(joint$GY)
+print_table(joint$GY$anova)
 ```
 
 The genotype-vs-environment interaction was highly significant. So we'll proceed with the AMMI analysis.
@@ -354,6 +356,22 @@ The `AMMI_index()` function has two arguments. The first (x) is the model, which
 stab_indexes <- AMMI_indexes(AMMI_model)
 print_table(stab_indexes$GY)
     ```
+
+
+_______________________________________________________________________________________________
+**Rendering engine**
+
+This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
+
+```{r warning = FALSE, message = FALSE, eval=FALSE}
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+
+```
 
 
 # References

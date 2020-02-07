@@ -63,12 +63,17 @@ appended at the end of the data. Return a data frame with all the original
 rows in .data plus the rows declared in ....
 all_pairs(): Get all the possible pairs between the levels of a
 factor.
+colnames_to_lower: Translate all column names to lower case.
+colnames_to_upper: Translate all column names to upper case.
+colnames_to_title: Translate all column names to title case.
 column_exists(): Checks if a column exists in a data frame. Return a
 logical value.
 columns_to_first(): Move columns to first positions in .data.
 columns_to_last(): Move columns to last positions in .data.
 concatenate(): Concatenate columns of a data frame. If drop =
-TRUE then the existing variables are dropped.
+TRUE then the existing variables are dropped. If pull = TRUE then the
+concatenated variable is pull out to a vector. This is specially useful when
+using concatenate to add columns to a data frame with add_cols.
 get_levels(): Get the levels of a factor variable.
 get_level_size(): Get the size of each level of a factor variable.
 remove_cols(): Remove one or more columns from a data frame.
@@ -155,6 +160,9 @@ select_rows(): Select one or more rows from a data frame.
     </li>
     <li>
       <a href="../articles/vignettes_blup.html">BLUP</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
     </li>
     <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
@@ -256,12 +264,17 @@ appended at the end of the data. Return a data frame with all the original
 rows in <code>.data</code> plus the rows declared in <code>...</code>.</p></li>
 <li><p><code>all_pairs()</code>: Get all the possible pairs between the levels of a
 factor.</p></li>
+<li><p><code>colnames_to_lower</code>: Translate all column names to lower case.</p></li>
+<li><p><code>colnames_to_upper</code>: Translate all column names to upper case.</p></li>
+<li><p><code>colnames_to_title</code>: Translate all column names to title case.</p></li>
 <li><p><code>column_exists()</code>: Checks if a column exists in a data frame. Return a
 logical value.</p></li>
 <li><p><code>columns_to_first()</code>: Move columns to first positions in <code>.data</code>.</p></li>
 <li><p><code>columns_to_last()</code>: Move columns to last positions in <code>.data</code>.</p></li>
 <li><p><code>concatenate()</code>: Concatenate columns of a data frame. If <code>drop =
-TRUE</code> then the existing variables are dropped.</p></li>
+TRUE</code> then the existing variables are dropped. If <code>pull = TRUE</code> then the
+concatenated variable is pull out to a vector. This is specially useful when
+using <code>concatenate</code> to add columns to a data frame with <code>add_cols</code>.</p></li>
 <li><p><code>get_levels()</code>: Get the levels of a factor variable.</p></li>
 <li><p><code>get_level_size()</code>: Get the size of each level of a factor variable.</p></li>
 <li><p><code>remove_cols()</code>: Remove one or more columns from a data frame.</p></li>
@@ -284,6 +297,12 @@ data frame.</p></li>
 <span class='fu'>add_rows</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>.before</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>.after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>all_pairs</span>(<span class='no'>.data</span>, <span class='no'>levels</span>)
+
+<span class='fu'>colnames_to_lower</span>(<span class='no'>.data</span>)
+
+<span class='fu'>colnames_to_upper</span>(<span class='no'>.data</span>)
+
+<span class='fu'>colnames_to_title</span>(<span class='no'>.data</span>)
 
 <span class='fu'>column_to_first</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
@@ -586,6 +605,31 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   A1_H12  A1_HYB~ 1      2.73  1.54 0.563  14.9  47.5  28.2  15.5
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 8 more variables: CW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, KW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
 #&gt; #   NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='co'>########### formating column names ###############</span>
+<span class='co'># Creating data with messy column names</span>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>data_ge</span>, <span class='fl'>3</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>df</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Env"</span>, <span class='st'>"gen"</span>, <span class='st'>"Rep"</span>, <span class='st'>"GY"</span>, <span class='st'>"hm"</span>)
+<span class='no'>df</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
+#&gt;   Env   gen   Rep      GY    hm
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    1      2.17  44.9
+#&gt; </span><span style='color: #555555;'>2</span><span> E1    G1    2      2.50  46.9
+#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_lower</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
+#&gt;   env   gen   rep      gy    hm
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    1      2.17  44.9
+#&gt; </span><span style='color: #555555;'>2</span><span> E1    G1    2      2.50  46.9
+#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_upper</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
+#&gt;   ENV   GEN   REP      GY    HM
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    1      2.17  44.9
+#&gt; </span><span style='color: #555555;'>2</span><span> E1    G1    2      2.50  46.9
+#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_title</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
+#&gt;   Env   Gen   Rep      Gy    Hm
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    1      2.17  44.9
+#&gt; </span><span style='color: #555555;'>2</span><span> E1    G1    2      2.50  46.9
+#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'>
 
 <span class='co'>################### Adding rows ##################</span>
 <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
@@ -607,7 +651,8 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1     G3     1      2.77  46.7
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1     G3     2      3.62  43.2
 #&gt; </span><span style='color: #555555;'>10</span><span> E1     G3     3      2.28  47.8
-#&gt; </span><span style='color: #555555;'># ... with 411 more rows</span><span></div><div class='input'><span class='co'>########## checking if a column exists ###########</span>
+#&gt; </span><span style='color: #555555;'># ... with 411 more rows</span><span></div><div class='input'>
+<span class='co'>########## checking if a column exists ###########</span>
 <span class='fu'>column_exists</span>(<span class='no'>data_g</span>, <span class='st'>"GEN"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'>####### get the levels and size of levels ########</span>
 <span class='fu'>get_levels</span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>)</div><div class='output co'>#&gt;  [1] "H1"  "H10" "H11" "H12" "H13" "H2"  "H3"  "H4"  "H5"  "H6"  "H7"  "H8" 

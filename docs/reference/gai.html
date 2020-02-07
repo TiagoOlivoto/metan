@@ -124,6 +124,9 @@ $$GAI = \sqrt[E]{{{{\bar Y}_{1.}} \cdot {{\bar Y}_{2.}} \cdot ... \cdot {{\bar Y
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -267,14 +270,15 @@ statistics. Sci. Hortic. (Amsterdam). 253:172-179.
 <a href='https://www.sciencedirect.com/science/article/pii/S0304423819303012'>doi:10.1016/j.scienta.2019.04.047</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'>gai</span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>EH</span>, <span class='no'>PH</span>, <span class='no'>EL</span>, <span class='no'>CD</span>, <span class='no'>ED</span>, <span class='no'>NKE</span>))</div><div class='output co'>#&gt; Evaluating variable EH 0 % 
 #&gt; Evaluating variable PH 20 % 
 #&gt; Evaluating variable EL 40 % 
 #&gt; Evaluating variable CD 60 % 
 #&gt; Evaluating variable ED 80 % 
-#&gt; Evaluating variable NKE 100 % </div><div class='input'>
+#&gt; Evaluating variable NKE 100 % </div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

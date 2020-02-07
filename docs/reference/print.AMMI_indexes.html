@@ -125,6 +125,9 @@ in the R console. The results can also be exported to the directory into a
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -205,7 +208,7 @@ in the R console. The results can also be exported to the directory into a
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Print an object of class AMMI_indexes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.Ammi_indexes.R'><code>R/print.Ammi_indexes.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/AMMI_indexes.R'><code>R/AMMI_indexes.R</code></a></small>
     <div class="hidden name"><code>print.AMMI_indexes.Rd</code></div>
     </div>
 
@@ -247,7 +250,7 @@ the working directory.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>) <span class='kw'>%&gt;%</span>
          <span class='fu'><a href='AMMI_indexes.html'>AMMI_indexes</a></span>()</div><div class='output co'>#&gt; variable GY 
@@ -257,8 +260,8 @@ the working directory.</p></td>
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
 #&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .
 #&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .
-#&gt;   GEN        9  12.995  1.4439   14.93 2.19e-19       .       .
-#&gt;    ENV:GEN 117  31.220  0.2668    2.76 1.01e-11       .       .
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19       .       .
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11       .       .
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2
@@ -269,7 +272,7 @@ the working directory.</p></td>
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6
 #&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100
 #&gt;  Residuals 252  24.367  0.0967      NA       NA       .       .
-#&gt;      Total 419 357.816  0.8540      NA       NA       .       .
+#&gt;      Total 419 357.816  0.8540      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
@@ -285,7 +288,8 @@ the working directory.</p></td>
 #&gt; ---------------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown or uninitialised column: 'ssi'.</span></div><div class='output co'>#&gt; NULL
 #&gt; 
 #&gt; 
-#&gt; </div></pre>
+#&gt; </div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

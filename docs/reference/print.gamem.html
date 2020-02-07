@@ -124,6 +124,9 @@ in the R console. The results can also be exported to the directory." />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -204,7 +207,7 @@ in the R console. The results can also be exported to the directory." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Print an object of class gamem</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/print.gamem.R'><code>R/print.gamem.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/gamem.R'><code>R/gamem.R</code></a></small>
     <div class="hidden name"><code>print.gamem.Rd</code></div>
     </div>
 
@@ -245,14 +248,23 @@ the working directory</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>alpha</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='gamem.html'>gamem</a></span>(<span class='no'>data_alpha</span>,
   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
   <span class='kw'>block</span> <span class='kw'>=</span> <span class='no'>BLOCK</span>,
   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>YIELD</span>
-)</div><div class='output co'>#&gt; Done!</div><div class='input'>
+)</div><div class='output co'>#&gt; Model:  model_formula 
+#&gt; ---------------------------------------------------------------------------
+#&gt; P-values for Likelihood Ratio Test of the analyzed traits
+#&gt; ---------------------------------------------------------------------------
+#&gt;      model    YIELD
+#&gt;   Complete       NA
+#&gt;   Genotype 1.18e-06
+#&gt;  rep:block 3.35e-03
+#&gt; ---------------------------------------------------------------------------
+#&gt; All variables with significant (p &lt; 0.05) genotype effect</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>alpha</span>)</div><div class='output co'>#&gt; Variable YIELD 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Fixed-effect anova table
@@ -312,7 +324,8 @@ the working directory</p></td>
 #&gt; </span><span style='color: #555555;'>13</span><span> CV ratio       1.323  
 #&gt; 
 #&gt; 
-#&gt; </div></span></pre>
+#&gt; </div><div class='input'># }
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

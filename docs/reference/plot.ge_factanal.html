@@ -124,6 +124,9 @@ to interpret the stability" />
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -204,7 +207,7 @@ to interpret the stability" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot the ge_factanal model</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.ge_factanal.R'><code>R/plot.ge_factanal.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/ge_factanal.R'><code>R/ge_factanal.R</code></a></small>
     <div class="hidden name"><code>plot.ge_factanal.Rd</code></div>
     </div>
 
@@ -373,7 +376,8 @@ Default is <code>0.5</code>.</p></td>
     <div class='dont-index'><p><code><a href='ge_factanal.html'>ge_factanal</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='ge_factanal.html'>ge_factanal</a></span>(<span class='no'>data_ge2</span>,
                     <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
@@ -385,7 +389,7 @@ Default is <code>0.5</code>.</p></td>
      <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>3</span>,
      <span class='kw'>force.repel</span> <span class='kw'>=</span> <span class='fl'>10</span>,
      <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
-     <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='img'><img src='plot.ge_factanal-2.png' alt='' width='700' height='433' /></div><div class='input'>
+     <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='img'><img src='plot.ge_factanal-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -53,7 +53,7 @@
 of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
 residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
 (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
-and (6) standardized residuals vs observation order, and (7) 1:1 line plot" />
+and (6) standardized residuals vs observation order, and (7) 1:1 line plot." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -125,6 +125,9 @@ and (6) standardized residuals vs observation order, and (7) 1:1 line plot" />
     </li>
     <li>
       <a href="../articles/vignettes_blup.html">BLUP</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
     </li>
     <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
@@ -207,7 +210,7 @@ and (6) standardized residuals vs observation order, and (7) 1:1 line plot" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Several types of residual plots</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot.performs_ammi.R'><code>R/plot.performs_ammi.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/performs_ammi.R'><code>R/performs_ammi.R</code></a></small>
     <div class="hidden name"><code>plot.performs_ammi.Rd</code></div>
     </div>
 
@@ -216,32 +219,11 @@ and (6) standardized residuals vs observation order, and (7) 1:1 line plot" />
 of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
 residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
 (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
-and (6) standardized residuals vs observation order, and (7) 1:1 line plot</p>
+and (6) standardized residuals vs observation order, and (7) 1:1 line plot.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for performs_ammi</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(
-  <span class='no'>x</span>,
-  <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>conf</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  <span class='kw'>band.alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>fill.hist</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.hist</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>col.lab.out</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-  <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>),
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>
-)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -251,89 +233,15 @@ and (6) standardized residuals vs observation order, and (7) 1:1 line plot</p>
       <td><p>An object of class <code>performs_ammi</code>.</p></td>
     </tr>
     <tr>
-      <th>var</th>
-      <td><p>The variable to plot. Defaults to <code>var = 1</code> the first
-variable of <code>x</code>.</p></td>
-    </tr>
-    <tr>
-      <th>conf</th>
-      <td><p>Level of confidence interval to use in the Q-Q plot (0.95 by
-default).</p></td>
-    </tr>
-    <tr>
-      <th>labels</th>
-      <td><p>Logical argument. If <code>TRUE</code> labels the points outside
-confidence interval limits.</p></td>
-    </tr>
-    <tr>
-      <th>plot_theme</th>
-      <td><p>The graphical theme of the plot. Default is
-<code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>band.alpha, point.alpha</th>
-      <td><p>The transparency of confidence band in the Q-Q
-plot and the points, respectively. Must be a number between 0 (opaque) and
-1 (full transparency).</p></td>
-    </tr>
-    <tr>
-      <th>fill.hist</th>
-      <td><p>The color to fill the histogram. Default is 'gray'.</p></td>
-    </tr>
-    <tr>
-      <th>col.hist</th>
-      <td><p>The color of the border of the the histogram. Default is
-'black'.</p></td>
-    </tr>
-    <tr>
-      <th>col.point</th>
-      <td><p>The color of the points in the graphic. Default is 'black'.</p></td>
-    </tr>
-    <tr>
-      <th>col.line</th>
-      <td><p>The color of the lines in the graphic. Default is 'red'.</p></td>
-    </tr>
-    <tr>
-      <th>col.lab.out</th>
-      <td><p>The color of the labels for the 'outlying' points.</p></td>
-    </tr>
-    <tr>
-      <th>size.lab.out</th>
-      <td><p>The size of the labels for the 'outlying' points.</p></td>
-    </tr>
-    <tr>
-      <th>size.tex.lab</th>
-      <td><p>The size of the text in axis text and labels.</p></td>
-    </tr>
-    <tr>
-      <th>size.shape</th>
-      <td><p>The size of the shape in the plots.</p></td>
-    </tr>
-    <tr>
-      <th>bins</th>
-      <td><p>The number of bins to use in the histogram. Default is 30.</p></td>
-    </tr>
-    <tr>
-      <th>which</th>
-      <td><p>Which graphics should be plotted. Default is <code>which =
-c(1:4)</code> that means that the first four graphics will be plotted.</p></td>
-    </tr>
-    <tr>
-      <th>ncol, nrow</th>
-      <td><p>The number of columns and rows of the plot pannel. Defaults
-to <code>NULL</code></p></td>
-    </tr>
-    <tr>
       <th>...</th>
       <td><p>Additional arguments passed on to the function
-<code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>plot_grid</a></code></p></td>
+<code><a href='residual_plots.html'>residual_plots</a></code></p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)</div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
@@ -342,8 +250,8 @@ to <code>NULL</code></p></td>
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
 #&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .
 #&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .
-#&gt;   GEN        9  12.995  1.4439   14.93 2.19e-19       .       .
-#&gt;    ENV:GEN 117  31.220  0.2668    2.76 1.01e-11       .       .
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19       .       .
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11       .       .
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2
@@ -354,38 +262,17 @@ to <code>NULL</code></p></td>
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6
 #&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100
 #&gt;  Residuals 252  24.367  0.0967      NA       NA       .       .
-#&gt;      Total 419 357.816  0.8540      NA       NA       .       .
+#&gt;      Total 419 357.816  0.8540      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='no'>model2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)</div><div class='output co'>#&gt; variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .
-#&gt;   GEN        9  12.995  1.4439   14.93 2.19e-19       .       .
-#&gt;    ENV:GEN 117  31.220  0.2668    2.76 1.01e-11       .       .
-#&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4
-#&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2
-#&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03     9.8      89
-#&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01     4.6    93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01       3    96.6
-#&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01     1.8    98.4
-#&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100
-#&gt;  Residuals 252  24.367  0.0967      NA       NA       .       .
-#&gt;      Total 419 357.816  0.8540      NA       NA       .       .
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>)</div><div class='img'><img src='plot.performs_ammi-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model2</span>,
+#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>)</div><div class='img'><img src='plot.performs_ammi-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>,
      <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>5</span>),
-     <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+     <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>,
      <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='img'><img src='plot.performs_ammi-2.png' alt='' width='700' height='433' /></div><div class='input'>
+     <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+     <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"v"</span>)</div><div class='img'><img src='plot.performs_ammi-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -145,7 +145,7 @@ The distribution of the random effects may be obtained using the argument
 `type = "re"`.
 
 ```{r,fig.height=8, fig.width=4}
-plot(model2, type = "re", which = c(1, 2), ncol = 1)
+plot(model2, type = "re")
 ```
 
 ## Genetic parameters and variance components

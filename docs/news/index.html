@@ -122,6 +122,9 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
@@ -209,9 +212,24 @@
 <h1 class="page-header">
 <a href="#metan-1219000" class="anchor"></a>metan 1.2.1.9000<small> Unreleased </small>
 </h1>
+<div id="new-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h2>
 <ul>
 <li>
-<p><strong>New features</strong></p>
+<code><a href="../reference/themes.html">alpha_color()</a></code> To get a semi-transparent color</li>
+<li>
+<code><a href="../reference/gafem.html">gafem()</a></code> To analyze genotypes using fixed-effect models.</li>
+<li>
+<code><a href="../reference/residual_plots.html">residual_plots()</a></code> A helper function to create residuals plots.</li>
+<li>
+<code><a href="../reference/stars_pval.html">stars_pval()</a></code> To generate significance stars from p-values</li>
+<li>
+<code><a href="../reference/doo.html">doo()</a></code> An lternative to <code><a href="https://dplyr.tidyverse.org/reference/do.html">dplyr::do</a></code> for doing anything</li>
+</ul>
+<div id="utils_stats" class="section level3">
+<h3 class="hasAnchor">
+<a href="#utils_stats" class="anchor"></a>utils_stats</h3>
 <ul>
 <li>
 <code><a href="../reference/utils_stats.html">cv_by()</a></code> For computing coefficient of variation by levels of a factor.</li>
@@ -221,6 +239,10 @@
 <code><a href="../reference/utils_stats.html">means_by()</a></code> For computing arithmetic means by levels of a factor.</li>
 <li>
 <code><a href="../reference/utils_stats.html">min_by()</a></code> For compuing minimum values by levels of a factor.</li>
+<li>
+<code><a href="../reference/utils_stats.html">n_by()</a></code> For getting the length.</li>
+<li>
+<code><a href="../reference/utils_stats.html">sd_by()</a></code> For computing sample standard deviation.</li>
 <li>
 <code><a href="../reference/utils_stats.html">sem_by()</a></code> For computing standard error of the mean by levels of a factor.</li>
 <li>
@@ -246,25 +268,71 @@
 <li>
 <code><a href="../reference/utils_stats.html">sum_sq_dev()</a></code> computes the sum of the squared deviations.</li>
 <li>
-<code><a href="../reference/utils_stats.html">var_amo()</a></code>, var_pop() computes sample and populational variance.</li>
+<code><a href="../reference/utils_stats.html">var_amo()</a></code>, <code><a href="../reference/utils_stats.html">var_pop()</a></code> computes sample and populational variance.</li>
 <li>
 <code><a href="../reference/utils_stats.html">valid_n()</a></code> Return the valid (not NA) length of a data.</li>
-<li>
-<code><a href="../reference/themes.html">alpha_color()</a></code> To get a semi-transparent color</li>
 </ul>
-</li>
+</div>
+<div id="utils_rows_cols" class="section level3">
+<h3 class="hasAnchor">
+<a href="#utils_rows_cols" class="anchor"></a>utils_rows_cols</h3>
+<ul>
 <li>
-<p><strong>Minor changes</strong></p>
+<code><a href="../reference/utils_rows_cols.html">colnames_to_lower()</a></code>, <code><a href="../reference/utils_rows_cols.html">colnames_to_upper()</a></code>, and <code><a href="../reference/utils_rows_cols.html">colnames_to_title()</a></code> to translate column names to lower, upper and title cases quickly.</li>
+</ul>
+</div>
+<div id="utils_num_str" class="section level3">
+<h3 class="hasAnchor">
+<a href="#utils_num_str" class="anchor"></a>utils_num_str</h3>
+<ul>
+<li>
+<code><a href="../reference/utils_num_str.html">all_lower_case()</a></code>, <code><a href="../reference/utils_num_str.html">all_upper_case()</a></code>, and <code><a href="../reference/utils_num_str.html">all_title_case()</a></code> to translate strings vectors or character columns of a data frame to lower, upper and title cases, respectively.</li>
+<li>
+<code><a href="../reference/utils_num_str.html">tidy_strings()</a></code> Tidy up characters strings, non-numeric columns, or any selected columns in a data frame by putting all word in upper case, replacing any space, tabulation, punctuation characters by <code>'_'</code>, and putting <code>'_'</code> between lower and upper cases.</li>
+<li>
+<code><a href="../reference/utils_num_str.html">find_text_in_num()</a></code> Find text fragments in columns assumed to be numeric. This is especially useful when <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything()</a></code> is used in argument <code>resp</code> to select the response variables.</li>
+</ul>
+</div>
+</div>
+<div id="new-arguments" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-arguments" class="anchor"></a>New arguments</h2>
+<ul>
+<li>
+<code><a href="../reference/anova_ind.html">anova_ind()</a></code>, <code><a href="../reference/anova_joint.html">anova_joint()</a></code>, <code><a href="../reference/performs_ammi.html">performs_ammi()</a></code>, <code><a href="../reference/waas.html">waas()</a></code> and <code><a href="../reference/waasb.html">waasb()</a></code>, now have the argument <code>block</code> to analyze data from trials conducted in an alpha-lattice design. Thanks to <a href="https://twitter.com/myaseen208?lang=en">@myaseen208</a> for his suggestion regarding multi-environment trial analysis with alpha-lattice designs.</li>
+<li>argument <code>repel</code> included in <code><a href="../reference/plot_scores.html">plot_scores()</a></code> to control wheater the labels are repelled or not to avoid overlapping.</li>
+</ul>
+</div>
+<div id="deprecated-arguments" class="section level2">
+<h2 class="hasAnchor">
+<a href="#deprecated-arguments" class="anchor"></a>Deprecated arguments</h2>
+<p>Argument <code>means_by</code> was deprecated in functions <code>can_cor()</code> and <code>clustering</code>. Use <code><a href="../reference/utils_stats.html">means_by()</a></code> to pass data based on means of factor to these function.</p>
+</div>
+<div id="minor-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Change “<a href='https://github.com/TiagoOlivoto/metan/issues/000000'>#000000</a>FF” with “#FFFFFF00” in <code><a href="../reference/themes.html">transparent_color()</a></code>
+</li>
+<li>
+<code><a href="../reference/desc_stat.html">desc_stat()</a></code> now handles grouped data passed from <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by()</a></code>
 </li>
 <li>
 <code><a href="../reference/plot_scores.html">plot_scores()</a></code> now support objects of class <code>waas_mean</code>.</li>
 <li>Include inst/CITATION to return a reference paper with <code><a href="https://rdrr.io/r/utils/citation.html">citation("metan")</a></code>.</li>
 <li>Change ‘PC2’ with ‘PC1’ in y-axis of <code><a href="../reference/plot_scores.html">plot_scores(type = 2)</a></code> (<a href="https://github.com/TiagoOlivoto/metan/issues/1"><a href='https://github.com/TiagoOlivoto/metan/issues/1'>#1</a></a>)</li>
-</ul>
+<li>
+<code><a href="../reference/get_model_data.html">get_model_data()</a></code> now support models of class <code>anova_joint</code> and <code>gafem</code> and extract random effects of models fitted with <code><a href="../reference/waasb.html">waasb()</a></code> and <code><a href="../reference/gamem.html">gamem()</a></code>.</li>
+<li>Update <code><a href="../reference/plot.waasb.html">plot.waasb()</a></code> and <code><a href="../reference/plot.gamem.html">plot.gamem()</a></code> to show distribution of random effects.</li>
+<li>
+<code><a href="../reference/inspect.html">inspect()</a></code>, <code><a href="../reference/cv_blup.html">cv_blup()</a></code>, <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code>, and <code><a href="../reference/cv_ammi.html">cv_ammi()</a></code> now generate a warning message saying that is not possible to compute cross-validation procedures in experiments with two replicates only. Thanks to <a href="https://www.researchgate.net/profile/Vlatko_Galic2">@Vlatko</a> for his email.</li>
+<li>
+<code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code> now returns heatmaps created with ggplot2 instead gplots <code><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html">gplots::heatmap.2()</a></code>
 </li>
+<li>Remove dependency on <code>gplots</code>.</li>
+<li>Vignettes updated</li>
 </ul>
+</div>
 </div>
     <div id="metan-121" class="section level1">
 <h1 class="page-header">
@@ -390,7 +458,7 @@
 </h1>
 <ul>
 <li>New function <code><a href="../reference/gamem.html">gamem()</a></code> for analyzing genotypes in one-way trials using mixed-effect models;</li>
-<li>New function <code><a href="../reference/desc_wider.html">desc_wider()</a></code> to convert an output of the function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> to a ‘wide’ format;</li>
+<li>New function <code><a href="../reference/desc_stat.html">desc_wider()</a></code> to convert an output of the function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> to a ‘wide’ format;</li>
 <li>New function <code><a href="../reference/Fox.html">Fox()</a></code> for Stability analysis;</li>
 <li>New function <code><a href="../reference/Shukla.html">Shukla()</a></code> for stability analysis;</li>
 <li>New function <code><a href="../reference/to_factor.html">to_factor()</a></code> to quickly convert variables to factors;</li>
@@ -449,9 +517,9 @@
 <li><code><a href="../reference/waasb.html">waasb()</a></code></li>
 </ul>
 </div>
-<div id="minor-changes" class="section level2">
+<div id="minor-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
 <p>To allow automatic testing, the examples of the following functions were unwrapped by deleting \dontrun{}.</p>
 <ul>
 <li><code><a href="../reference/bind_cv.html">bind_cv()</a></code></li>

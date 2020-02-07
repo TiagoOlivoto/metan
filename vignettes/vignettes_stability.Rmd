@@ -22,9 +22,9 @@ knitr::opts_chunk$set(comment = "")
 
 # Getting started
 
-In this section, we will use the data in `data_ge` and `data_ge2`. For more information see `?data_ge` and `?data_ge2`, respectively. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s). The R package [`DT`](https://rstudio.github.io/DT/) was used to produce the tables of this vignette.
+In this section, we will use the data in `data_ge` and `data_ge2`. For more information see `?data_ge` and `?data_ge2`, respectively. Other data sets can be used provided that the following columns are in the data_ge: environment, genotype, block/replicate and response variable(s).
 
-```{r warning = FALSE, message = FALSE}
+```{r warning = FALSE, message = FALSE, echo=FALSE}
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
@@ -40,6 +40,7 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 # Genotype-environment performance
 The function `ge_plot()` may be used to visualize the genotype's performance across the environments.
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
+library(metan)
 a <- ge_plot(data_ge, ENV, GEN, GY)
 b <- ge_plot(data_ge, ENV, GEN, GY) + ggplot2::coord_flip()
 arrange_ggplot(a, b, labels = letters[1:2])
@@ -246,6 +247,22 @@ It is also possible to obtain the Spearman's rank correlation between the stabil
 
 ```{r fig.width=10, fig.height=10}
 corr_stab_ind(stat_ge)
+```
+
+
+_______________________________________________________________________________________________
+**Rendering engine**
+
+This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
+
+```{r warning = FALSE, message = FALSE, eval=FALSE}
+library(DT) # Used to make the tables
+# Function to make HTML tables
+print_table <- function(table, rownames = FALSE, digits = 3, ...){
+datatable(table, rownames = rownames, extensions = 'Buttons',
+          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(1:ncol(table)), digits = digits)}
+
 ```
 
 
