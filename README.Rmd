@@ -9,7 +9,7 @@ output: github_document
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
+  comment = "#",
   fig.path = "man/figures/README-"
 )
 ```
@@ -18,8 +18,9 @@ knitr::opts_chunk$set(
 # metan <img src="man/figures/logo.png" align="right" height=140/>
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/metan)](https://CRAN.R-project.org/package=metan)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
+[![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](https://cran.r-project.org/package=metan)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3608180.svg)](https://doi.org/10.5281/zenodo.3608180)
 <!-- badges: end -->
 
@@ -77,7 +78,7 @@ library(metan)
 
 ```
 
-The first step is to inspect the data with the function `inspect()`.
+The first step is to inspect the data with the function [`inspect()`](https://tiagoolivoto.github.io/metan/reference/inspect.html).
 
 ```{r, fig.width=7, fig.height=7, fig.align="center"}
 inspect(data_ge, plot = TRUE)
@@ -85,9 +86,16 @@ inspect(data_ge, plot = TRUE)
 
 No issues while inspecting the data. Let's continue with the analyzes!
 
-## AMMI model
-### Fitting the model
-The AMMI model is fitted with the function `performs_ammi()`. To analyze multiple variables at once we can pass a comma-separated vector of unquoted variable names, or use any select helpe. Here, using `everything()` we apply the function to all numeric variables in the data. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html).
+# Descriptive statistics
+`metan` provides [a set of functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) to compute descriptive statistics. The easiest way to do that is by using `desc_stat()`.
+
+```{r}
+desc_stat(data_ge2)
+```
+
+# AMMI model
+## Fitting the model
+The AMMI model is fitted with the function [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html). To analyze multiple variables at once we can use a comma-separated vector of unquoted variable names, or use any select helper in the argument `resp`. Here, using `everything()` we apply the function to all numeric variables in the data. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html).
 
 ```{r}
 model <- performs_ammi(data_ge,
@@ -99,8 +107,8 @@ model <- performs_ammi(data_ge,
 ```
 
 
-### Predicting the response variable
-The S3 method `predict()` is implemented for objects of class `performs_ammi` and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively).
+## Predicting the response variable
+The S3 method [`predict()`](https://tiagoolivoto.github.io/metan/reference/predict.performs_ammi.html) is implemented for objects of class [`performs_ammi`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively).
 
 ```{r message=FALSE,warning=FALSE }
 pred <- predict(model, naxis = c(4, 6))
@@ -109,9 +117,9 @@ pred$GY
 ```
 
 
-### Biplots
+## Biplots
 
-ggplot2-based graphics are easily obtained in metan package. For example, the well-known AMMI2 biplot may be obtained as follows. Please, note that since `waas()` function allows analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list, in this case with one element, GY.
+The well-known AMMI1 and AMMI2 biplots can be created with [`plot_scores()`](file:///D:/Desktop/metan/docs/reference/plot_scores.html). Note that since [`performs_ammi`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) allows analyzing multiple variables at once, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list, in this case with two elements (GY and HM). By default, the biplots are created for the first variable of the model. To choose another variable use the argument `var` (e.g., `var = "HM"`).
 
 ```{r AMMI, fig.width=15, fig.height=5, message=FALSE, warning=FALSE}
 a <- plot_scores(model)
@@ -128,8 +136,8 @@ arrange_ggplot(a, b, c, labels = letters[1:3], nrow = 1)
 
 
 
-## GGE model
-The GGE model is fitted with the function `gge()`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html).
+# GGE model
+The GGE model is fitted with the function [`gge()`](https://tiagoolivoto.github.io/metan/reference/gge.html). For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html).
 
 
 ```{r GGE, fig.width=15, fig.height=5, message=FALSE, warning=FALSE}
@@ -149,24 +157,25 @@ arrange_ggplot(d, e, f, labels = letters[4:6], nrow = 1)
 
 
 
-## BLUP model
-Linear-mixed effect models to predict the response variable in METs are fitted using the function `waasb()`. Here we will obtain the predicted means for genotypes in the variables `GY` and `HM`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
+# BLUP model
+Linear-mixed effect models to predict the response variable in METs are fitted using the function [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html). Here we will obtain the predicted means for genotypes in the variables `GY` and `HM`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
 
 ```{r }
 model2 <- waasb(data_ge,
                 env = ENV,
                 gen = GEN,
                 rep = REP,
-                resp = everything(),
-                verbose = FALSE)
+                resp = everything())
+# Get the variance components
+get_model_data(model2, what = "vcomp")
 
+# Get the genetic parameters
 get_model_data(model2, what = "genpar")
-get_model_data(model2, what = "blupg")
 
 ```
 
 
-### Plotting the BLUPs for genotypes
+## Plotting the BLUPs for genotypes
 
 To produce a plot with the predicted means, use the function `plot_blup()`.
 
@@ -180,17 +189,17 @@ arrange_ggplot(g, h, labels = letters[7:8])
 ```
 
 
-### BLUPS for genotype-vs-environment interaction
+## Random effects
 
-The object `BLUPgge` contains the blups for the genotype-vs-environment interaction. In the following example, the values for `GY` are shown.
+The object `BLUPint` contains the random effects of the model. We can get the values with:
 ```{r }
-model2$GY$BLUPgge
+get_model_data(model2, "ranef")
 ```
 
-When more than one variable is fitted, the predicted means for genotype-vs-environment combination may be obtained for all variables in the model using `get_model_data()`.
+When more than one variable is fitted, the predicted means for genotype-vs-environment combination may be obtained for all variables in the model using [`predict()`](https://tiagoolivoto.github.io/metan/reference/predict.waasb.html).
 
 ```{r }
-get_model_data(model2, what = "blupge")
+predict(model2)
 
 ```
 
@@ -204,8 +213,12 @@ get_model_data(stats, "ranks")
 ```
 
 # Citation
-Olivoto, T., and Lúcio, A. D. (2020). metan: an R package for multi-environment trial analysis. *bioRxiv*, 2020.01.14.906750. [doi:10.1101/2020.01.14.906750](https://www.biorxiv.org/content/10.1101/2020.01.14.906750v1)
 
+```{r, comment=""}
+citation("metan")
+```
+
+  
 # Getting help
 
 * If you encounter a clear bug, please file a minimal reproducible example on [github](https://github.com/TiagoOlivoto/metan/issues)
