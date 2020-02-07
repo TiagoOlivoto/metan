@@ -15,6 +15,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' library(ggplot2)
 #' library(metan)
 #' p1 <- ggplot(mtcars, aes(wt, mpg)) +
@@ -24,6 +25,7 @@
 #'              geom_boxplot()
 #'
 #' arrange_ggplot(p1, p2)
+#' }
 #'
 arrange_ggplot <- function(...,
                            plotlist = NULL,

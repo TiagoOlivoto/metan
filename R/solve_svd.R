@@ -9,10 +9,12 @@
 #' @return A matrix with the same dimension of \code{x}.
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
-#' mat = matrix(c(1, 4, 2, 8), ncol = 2)
+#' mat <- matrix(c(1, 4, 2, 8), ncol = 2)
 #' det(mat)
 #' solve_svd(mat)
+#' }
 
 solve_svd <- function(x, tolerance = 2.220446e-16) {
   if (dim(x)[1] - dim(x)[2] != 0) {

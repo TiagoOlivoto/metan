@@ -424,7 +424,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
 #' @method print gamem
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' alpha <- gamem(data_alpha,
 #'   gen = GEN,
@@ -434,6 +434,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
 #' )
 #'
 #' print(alpha)
+#' }
 print.gamem <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   if (!class(x) == "gamem") {
     stop("The object must be of class 'gamem'")

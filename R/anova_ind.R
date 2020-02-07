@@ -196,10 +196,11 @@ anova_ind <- function(.data,
 #' @method print anova_ind
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' model <- data_ge %>% anova_ind(ENV, GEN, REP, c(GY, HM))
 #' print(model)
+#' }
 print.anova_ind <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "anova_ind") {
     stop("The object must be of class 'anova_ind'")

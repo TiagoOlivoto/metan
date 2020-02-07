@@ -41,13 +41,14 @@ at each environment is done. The proportion of locations at which the
 genotype occurred in the top third are expressed in the output.
 }
 \examples{
-
+\donttest{
 library(metan)
 out = Fox(data_ge2,
           env = ENV,
           gen = GEN,
           rep = REP,
           resp = PH)
+}
 
 }
 \references{

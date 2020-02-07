@@ -36,13 +36,14 @@
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
-#' model = ge_factanal(data_ge2,
-#'                     env = ENV,
-#'                     gen = GEN,
-#'                     rep = REP,
-#'                     resp = PH)
-#'
+#' model <- ge_factanal(data_ge2,
+#'                      env = ENV,
+#'                      gen = GEN,
+#'                      rep = REP,
+#'                      resp = PH)
+#'}
 #' @seealso \code{\link{superiority}, \link{ecovalence}, \link{ge_stats}, \link{ge_reg}}
 #'
 #'
@@ -234,6 +235,7 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
 #' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' library(ggplot2)
 #' model = ge_factanal(data_ge2,
@@ -248,7 +250,7 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
 #'      force.repel = 10,
 #'      col.shape = "orange",
 #'      col.line = "red")
-#'
+#'}
 plot.ge_factanal <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NULL, x.breaks = waiver(),
                              x.lab = NULL, y.lim = NULL, y.breaks = waiver(), y.lab = NULL,
                              shape = 21, col.shape = "gray30", col.alpha = 1, size.shape = 2.2,
@@ -311,7 +313,7 @@ plot.ge_factanal <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NUL
 #' @method print ge_factanal
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' model <- ge_factanal(data_ge2,
 #'   env = ENV,
 #'   gen = GEN,
@@ -319,6 +321,7 @@ plot.ge_factanal <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NUL
 #'   resp = PH
 #' )
 #' print(model)
+#' }
 print.ge_factanal <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
     if (!class(x) == "ge_factanal") {
         stop("The object must be of class 'ge_factanal'")

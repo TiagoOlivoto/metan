@@ -21,7 +21,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' data <- data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
 #'                   B = rnorm(n = 5, mean = 120, sd = 30),
@@ -30,7 +30,7 @@
 #'                   E = rnorm(n = 5, mean = 2, sd = 1))
 #' comb1 <- comb_vars(data)
 #' comb2 <- comb_vars(data, FUN = '*', order = 'second')
-#'
+#'}
 comb_vars <- function(.data, order = "first", FUN = "+", verbose = TRUE) {
   FUN <- match.fun(FUN)
   if (!order %in% c("first", "second")) {

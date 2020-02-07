@@ -227,10 +227,11 @@ plot.anova_joint <- function(x, ...) {
 #' @method print anova_joint
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' model <- data_ge %>% anova_joint(ENV, GEN, REP, c(GY, HM))
 #' print(model)
+#' }
 print.anova_joint <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "anova_joint") {
     stop("The object must be of class 'anova_joint'")

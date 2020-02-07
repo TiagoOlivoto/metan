@@ -364,6 +364,7 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.poin
 #' @method print mtsi
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' # Based on stability only
 #' MTSI_MODEL <- waasb(data_ge,
@@ -375,6 +376,7 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.poin
 #'
 #' MTSI_index <- mtsi(MTSI_MODEL)
 #' print(MTSI_index)
+#' }
 print.mtsi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   if (!class(x) == "mtsi") {
     stop("The object must be of class 'mtsi'")

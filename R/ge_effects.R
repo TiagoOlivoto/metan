@@ -26,11 +26,12 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' ge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY)
 #' gge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY, type = "gge")
 #' plot(ge_eff)
+#' }
 #'
 ge_effects <- function(.data, env, gen, rep, resp, type = "ge", verbose = TRUE) {
   if(!type  %in% c("ge", "gge")){
@@ -111,9 +112,11 @@ ge_effects <- function(.data, env, gen, rep, resp, type = "ge", verbose = TRUE) 
 #' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' ge_eff <- ge_effects(data_ge2, ENV, GEN, REP, PH)
 #' plot(ge_eff)
+#' }
 #'
 plot.ge_effects <- function(x, var = 1, plot_theme = theme_metan(), x.lab = NULL, y.lab = NULL,
                             leg.position = "right", size.text = 12, ...){

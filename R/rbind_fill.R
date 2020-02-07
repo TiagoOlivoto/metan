@@ -10,11 +10,12 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
-#' df1 = data.frame(v1 = c(1, 2), v2 = c(2, 3))
-#' df2 = data.frame(v3 = c(4, 5))
+#' \donttest{
+#' df1 <- data.frame(v1 = c(1, 2), v2 = c(2, 3))
+#' df2 <- data.frame(v3 = c(4, 5))
 #' rbind_fill(df1, df2)
 #' rbind_fill(df1, df2, fill = "NA")
+#' }
 #'
 rbind_fill <- function(..., fill = ".") {
     df <- list(...)

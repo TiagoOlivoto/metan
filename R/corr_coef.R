@@ -10,11 +10,12 @@
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' cor_mat <- corr_coef(data_ge2, PH, EH, CD, CL, ED, NKR)
 #' cor_mat$cor
 #' reorder_cormat(cor_mat$cor)
+#' }
 #'
 reorder_cormat <- function(x){
   if(!is.matrix(x) | nrow(x) != ncol(x)){
@@ -43,6 +44,7 @@ NULL
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
 #' # All numeric variables
@@ -51,6 +53,7 @@ NULL
 #' # Select variables
 #' sel <- corr_coef(data_ge2, EP, EL, CD, CL)
 #' print(sel)
+#' }
 #'
 corr_coef <- function(data, ..., verbose = TRUE){
   if(missing(...)){
@@ -97,10 +100,11 @@ NULL
 #' @method print corr_coef
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' sel <- corr_coef(data_ge2, EP, EL, CD, CL)
 #' print(sel)
+#' }
 print.corr_coef <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "corr_coef") {
     stop("The object must be of class 'corr_coef'")
@@ -159,6 +163,7 @@ NULL
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' # All numeric variables
 #' all <- corr_coef(data_ge2)
@@ -172,6 +177,7 @@ NULL
 #'      reorder = FALSE,
 #'      size.text.lab = 14,
 #'      size.text.plot = 5)
+#' }
 
 plot.corr_coef <- function(x,
                            type = "lower",

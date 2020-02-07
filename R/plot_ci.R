@@ -31,6 +31,7 @@
 #' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' library(dplyr)
 #'
@@ -38,7 +39,7 @@
 #' select(contains('E')) %>%
 #' corr_ci() %>%
 #' plot_ci()
-#'
+#'}
 plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
                     y.breaks = waiver(), shape = 21, col.shape = "black", fill.shape = "orange",
                     size.shape = 2.5, width.errbar = 0.5, main = TRUE, invert.axis = TRUE,

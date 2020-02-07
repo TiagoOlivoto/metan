@@ -12,6 +12,7 @@
 #' * \code{remove_cols_na()}: Remove columns with \code{NA} values.
 #' @md
 #' @examples
+#' \donttest{
 #' library(metan)
 #' data_with_na <- data_g
 #' data_with_na[c(1, 5, 10), c(3:5, 10:15)] <- NA
@@ -19,6 +20,7 @@
 #' has_na(data_with_na)
 #' remove_cols_na(data_with_na)
 #' remove_rows_na(data_with_na)
+#' }
 remove_rows_na <- function(.data, verbose = TRUE){
 row_with_na <- which(complete.cases(.data) ==  FALSE)
 if(verbose == TRUE){

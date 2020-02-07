@@ -36,14 +36,14 @@
 #'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/83/1/AJ0830010161}{doi:10.2134/agronj1991.00021962008300010037x}.
 #'
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'out <- Shukla(data_ge2,
 #'              env = ENV,
 #'              gen = GEN,
 #'              rep = REP,
 #'              resp = PH)
-#'
+#'}
 Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     factors  <- .data %>%
       select(ENV = {{env}},
@@ -114,7 +114,7 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #' @method print Shukla
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' eco <- Shukla(data_ge2,
 #'   env = ENV,
@@ -123,6 +123,7 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #'   resp = PH
 #' )
 #' print(eco)
+#' }
 print.Shukla <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "Shukla") {
     stop("The object must be of class 'Shukla'")

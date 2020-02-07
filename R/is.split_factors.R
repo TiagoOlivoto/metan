@@ -14,10 +14,11 @@
 #' @return  A logical value \code{TRUE} or \code{FALSE}.
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' spdata = as.split_factors(iris)
 #' is.split_factors(spdata)
+#' }
 #'
 is.split_factors <- function(x){
   if(any(class(x) == "split_factors")){

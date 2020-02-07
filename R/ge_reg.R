@@ -183,9 +183,11 @@ ge_reg = function(.data,
 #' @return An object of class \code{gg, ggplot}.
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' model <- ge_reg(data_ge2, ENV, GEN, REP, PH)
 #' plot(model)
+#' }
 #'
 plot.ge_reg <- function(x,
                         var = 1,
@@ -266,10 +268,12 @@ plot.ge_reg <- function(x,
 #' @method print ge_reg
 #' @export
 #' @examples
+#' \donttest{
 #'
 #' library(metan)
 #' model <- ge_reg(data_ge2, ENV, GEN, REP, PH)
 #' print(model)
+#' }
 print.ge_reg <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "ge_reg") {
     stop("The object must be of class 'ge_reg'")

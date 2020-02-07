@@ -13,7 +13,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' library(dplyr)
 #' # Compute the mean for genotypes
@@ -32,7 +32,7 @@
 #'         hclust() %>%
 #'         as.dendrogram()
 #' plot(dend)
-#'
+#'}
 mahala <- function(.means, covar, inverted = FALSE) {
   cb <- data.frame(t(combn(nrow(.means), 2)))
   nvars <- data.frame(matrix(nrow = nrow(cb), ncol = ncol(.means)))

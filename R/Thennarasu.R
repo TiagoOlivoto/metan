@@ -23,9 +23,10 @@
 #'   thesis. P.J. School, IARI, New Delhi, India.
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' out <- Thennarasu(data_ge, ENV, GEN, REP, GY)
+#' }
 #'
 Thennarasu <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   factors  <- .data %>%

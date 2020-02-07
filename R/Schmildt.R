@@ -41,7 +41,7 @@
 #' @md
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' Sch <- Schmildt(data_ge2,
 #'                 env = ENV,
@@ -49,7 +49,7 @@
 #'                 rep = REP,
 #'                 resp = PH)
 #' print(Sch)
-#'
+#'}
 #'
 Schmildt <- function(.data, env, gen, rep, resp, prob = 0.05,
                      verbose = TRUE) {
@@ -140,7 +140,7 @@ NULL
 #' @method print Schmildt
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' Sch <- Schmildt(data_ge2,
 #'                 env = ENV,
@@ -148,6 +148,7 @@ NULL
 #'                 rep = REP,
 #'                 resp = PH)
 #' print(Sch)
+#' }
 print.Schmildt <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "Schmildt") {
     stop("The object must be of class 'Schmildt'")

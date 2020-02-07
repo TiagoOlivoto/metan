@@ -21,13 +21,14 @@
 #'   und hafer. Z. Pflanzenzuchtg 52:127-138.
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'out <- ecovalence(data_ge2,
 #'                  env = ENV,
 #'                  gen = GEN,
 #'                  rep = REP,
 #'                  resp = PH)
+#'}
 #'
 ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   factors  <- .data %>%
@@ -93,7 +94,7 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #' @method print ecovalence
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' eco <- ecovalence(data_ge2,
 #'                   env = ENV,
@@ -101,6 +102,7 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #'                   rep = REP,
 #'                   resp = PH)
 #' print(eco)
+#' }
 print.ecovalence <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "ecovalence") {
     stop("The object must be of class 'ecovalence'")

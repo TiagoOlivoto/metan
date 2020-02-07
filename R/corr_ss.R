@@ -25,8 +25,9 @@
 #' @export
 #' @examples
 #'
-#'
+#' \donttest{
 #' corr_ss(r = 0.60, CI = 0.1)
+#' }
 #'
 #'
 corr_ss <- function(r, CI, verbose = TRUE) {

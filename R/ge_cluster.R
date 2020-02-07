@@ -62,11 +62,12 @@
 #'  \href{https://dl.sciencesocieties.org/publications/cs/abstracts/35/5/CS0350051300?access=0&view=pdf}{doi:10.2135/cropsci1995.0011183X003500050008x}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'
-#' d1 = ge_cluster(data_ge, ENV, GEN, GY, nclust = 3)
+#' d1 <- ge_cluster(data_ge, ENV, GEN, GY, nclust = 3)
 #' plot(d1, nclust = 3)
+#' }
 #'
 ge_cluster <- function(.data, env = NULL, gen = NULL, resp = NULL,
                        table = FALSE, distmethod = "euclidean",

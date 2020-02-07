@@ -52,8 +52,10 @@
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
+#' \donttest{
 #' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 #' print(mod)
+#' }
 env_dissimilarity <- function(.data,
                               env,
                               gen,
@@ -159,10 +161,11 @@ env_dissimilarity <- function(.data,
 #' @method print env_dissimilarity
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 #' print(mod)
+#' }
 print.env_dissimilarity <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "env_dissimilarity") {
     stop("The object must be of class 'env_dissimilarity'")
@@ -273,10 +276,11 @@ print.env_dissimilarity <- function(x, export = FALSE, file.name = NULL, digits 
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 #' plot(mod)
+#' }
 plot.env_dissimilarity <- function(x, var = 1, nclust = NULL, ...){
   x <- x[[var]]
   opar <- par(mfrow = c(3, 2),

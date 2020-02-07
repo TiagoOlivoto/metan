@@ -18,7 +18,7 @@
 #' @importFrom tibble has_rownames
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'
 #' set.seed(1)
@@ -30,6 +30,7 @@
 #'
 #' gen_cols <- t(mat)
 #' make_long(gen_cols, gen_in = "cols")
+#' }
 #'
 make_long <- function(mat, gen_in = "rows") {
   if (!gen_in %in% c("rows", "cols")) {

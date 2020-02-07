@@ -67,7 +67,7 @@
 #'
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'
 #' cc1 <- can_corr(data_ge2,
@@ -82,7 +82,7 @@
 #'                 by = ENV,
 #'                 verbose = FALSE)
 #'
-#'
+#'}
 can_corr <- function(.data,
                      FG,
                      SG,
@@ -378,7 +378,7 @@ can_corr <- function(.data,
 #' @importFrom ggforce geom_circle
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' cc1 = can_corr(data_ge2,
 #'                FG = c(PH, EH, EP),
@@ -393,7 +393,7 @@ can_corr <- function(.data,
 #'                SG = c(EL, ED, CL, CD, CW, KW, NR))
 #' plot(cc2, 2, labels = TRUE)
 #'
-#'
+#'}
 #'
 plot.can_cor <- function(x, type = 1,
                          plot_theme = theme_metan(),
@@ -580,13 +580,14 @@ plot.can_cor <- function(x, type = 1,
 #' @method print can_cor
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' cc <- can_corr(data_ge2,
 #'                FG = c(PH, EH, EP),
 #'                SG = c(EL, CL, CD, CW, KW, NR, TKW),
 #'                verbose = FALSE)
 #' print(cc)
+#' }
 print.can_cor <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "can_cor") {
     stop("The object must be of class 'can_cor'")

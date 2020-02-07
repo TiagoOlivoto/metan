@@ -38,7 +38,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' # List of matrices
 #' data <- subset(data_ge2, ENV == 'A1')
@@ -59,6 +59,7 @@
 #'                       resp = c(PH, EH, CD, CL),
 #'                       by = ENV,
 #'                       type = "rcov")
+#'}
 #'
 covcor_design <- function(.data,
                           gen,

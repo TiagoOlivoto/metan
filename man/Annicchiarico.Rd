@@ -45,7 +45,7 @@ Stability analysis using the known genotypic confidence index (Annicchiarico,
 1992).
 }
 \examples{
-
+\donttest{
 library(metan)
 Ann <- Annicchiarico(data_ge2,
                     env = ENV,
@@ -53,7 +53,7 @@ Ann <- Annicchiarico(data_ge2,
                     rep = REP,
                     resp = PH)
 print(Ann)
-
+}
 
 }
 \references{

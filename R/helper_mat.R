@@ -10,9 +10,11 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' m <- cor(data_ge2[,5:10])
 #' make_upper_tri(m)
+#' }
 #'
 make_upper_tri<-function(x, diag = NA){
   x[lower.tri(x)] <- NA
@@ -32,9 +34,11 @@ make_upper_tri<-function(x, diag = NA){
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' m <- cor(data_ge2[,5:10])
 #' make_upper_tri(m)
+#' }
 #'
 make_lower_tri<-function(x, diag = NA){
   x[upper.tri(x)] <- NA
@@ -57,6 +61,7 @@ make_lower_tri<-function(x, diag = NA){
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' lower_tri <- make_lower_tri(matrix(20, 4, 4))
 #' lower_tri
@@ -65,7 +70,7 @@ make_lower_tri<-function(x, diag = NA){
 #' upper_tri <- make_upper_tri(matrix(20, 4, 4))
 #' upper_tri
 #' make_sym(upper_tri, make = "lower", diag = 1)
-#'
+#'}
 make_sym <- function(.matrix, make = "upper", diag = NA) {
   if(make == "upper"){
     .matrix[upper.tri(.matrix)] <- t(.matrix)[upper.tri(.matrix)]

@@ -34,7 +34,7 @@
 #'
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'
 #' CI1 <- corr_ci(data_ge2)
@@ -44,6 +44,7 @@
 #'                by = ENV,
 #'                verbose = FALSE)
 #' CI2
+#' }
 #'
 corr_ci <- function(.data = NA,
                     ...,

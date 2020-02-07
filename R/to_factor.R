@@ -10,10 +10,11 @@
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' PH_EH_to_factor <- to_factor(data_ge2, PH, EH)
 #' PH_EH_to_factor <- to_factor(data_ge2, 4:5)
+#' }
 #'
 to_factor <- function(.data, ...){
 return(mutate_at(.data, vars(...), as.factor))

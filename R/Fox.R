@@ -32,13 +32,14 @@
 #'
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' out = Fox(data_ge2,
 #'           env = ENV,
 #'           gen = GEN,
 #'           rep = REP,
 #'           resp = PH)
+#'}
 #'
 Fox <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   factors  <- .data %>%
@@ -99,7 +100,7 @@ Fox <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #' @method print Fox
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' fox <- Fox(data_ge2,
 #'            env = ENV,
@@ -107,6 +108,7 @@ Fox <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #'            rep = REP,
 #'            resp = PH)
 #' print(fox)
+#' }
 print.Fox <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "Fox") {
     stop("The object must be of class 'Fox'")

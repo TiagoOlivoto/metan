@@ -78,6 +78,7 @@ NULL
 #' character only (e.g., "Env").
 #' @md
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
 #'
@@ -111,6 +112,7 @@ NULL
 #' select_cols(df, lower_case_only())
 #' select_cols(df, upper_case_only())
 #' select_cols(df, title_case_only())
+#' }
 #'
 difference_var <- function(prefix, suffix) {
   setdiff(starts_with(prefix), ends_with(suffix))

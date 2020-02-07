@@ -33,7 +33,7 @@
 #' @md
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'Ann <- Annicchiarico(data_ge2,
 #'                     env = ENV,
@@ -41,7 +41,7 @@
 #'                     rep = REP,
 #'                     resp = PH)
 #' print(Ann)
-#'
+#'}
 #'
 Annicchiarico <- function(.data,
                           env,
@@ -141,7 +141,7 @@ Annicchiarico <- function(.data,
 #' @method print Annicchiarico
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' Ann <- Annicchiarico(data_ge2,
 #'   env = ENV,
@@ -150,6 +150,7 @@ Annicchiarico <- function(.data,
 #'   resp = PH
 #' )
 #' print(Ann)
+#' }
 print.Annicchiarico <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "Annicchiarico") {
     stop("The object must be of class 'Annicchiarico'")

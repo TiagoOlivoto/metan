@@ -34,9 +34,10 @@
 #'
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' out <- Huehn(data_ge2, ENV, GEN, REP, PH)
+#' }
 #'
 Huehn <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   factors  <- .data %>%

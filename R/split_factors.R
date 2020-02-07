@@ -23,10 +23,12 @@
 #' @export
 #' @importFrom rlang  eval_bare  expr set_names
 #' @examples
+#' \donttest{
 #' library(metan)
 #'
-#' g1 = split_factors(iris, Species)
-#' g2 = split_factors(data_ge, ENV, keep_factors = TRUE)
+#' g1 <- split_factors(iris, Species)
+#' g2 <- split_factors(data_ge, ENV, keep_factors = TRUE)
+#' }
 #'
 split_factors <- function(.data, ..., keep_factors = FALSE, verbose = TRUE) {
   grouped <- group_by(.data, ...)

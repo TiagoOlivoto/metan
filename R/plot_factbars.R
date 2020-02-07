@@ -51,12 +51,13 @@
 #' @seealso \code{\link{plot_lines}}, \code{\link{plot_factlines}}
 #'
 #' @examples
+#' \donttest{
 #' library(metan)
 #' plot_factbars(data_ge2,
 #'               GEN,
 #'               ENV,
 #'               resp = PH)
-#'
+#'}
 plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
                           xlab = NULL, ylab = NULL, lab.bar = NULL, lab.bar.hjust = 0.5,
                           lab.bar.vjust = -0.5, lab.bar.angle = 0, size.text.bar = 5,

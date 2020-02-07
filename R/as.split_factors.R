@@ -18,13 +18,14 @@
 #' @return An object of class \code{split_factors}.
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
-#' spdata = as.split_factors(iris)
+#' spdata <- as.split_factors(iris)
 #'
-#' spdata2 = as.split_factors(CO2)
+#' spdata2 <- as.split_factors(CO2)
 #'
 #' is.split_factors(spdata2)
+#' }
 #'
 as.split_factors <- function(x, verbose = TRUE) {
   grouped <- group_by_if(x, is.factor)

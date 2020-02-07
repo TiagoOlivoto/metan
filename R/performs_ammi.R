@@ -346,12 +346,13 @@ plot.performs_ammi <- function(x, ...) {
 #' @method predict performs_ammi
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' model <- performs_ammi(data_ge, ENV, GEN, REP,
 #'                        resp = c(GY, HM))
 #' # Predict GY with 3 IPCA and HM with 1 IPCA
 #' predict <- predict(model, naxis = c(3, 1))
+#' }
 #'
 predict.performs_ammi <- function(object, naxis = 2, ...) {
     cal <- match.call()
@@ -429,11 +430,12 @@ predict.performs_ammi <- function(object, naxis = 2, ...) {
 #' @method print performs_ammi
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
-#' model = performs_ammi(data_ge, ENV, GEN, REP,
-#'                       resp = c(GY, HM))
+#' model <- performs_ammi(data_ge, ENV, GEN, REP,
+#'                        resp = c(GY, HM))
 #' print(model)
+#' }
 print.performs_ammi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
     if (!class(x) == "performs_ammi") {
         stop("The object must be of class 'performs_ammi'")

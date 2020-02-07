@@ -33,6 +33,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
+#' \donttest{
 #' library(metan)
 #' library(dplyr)
 #' # Rescale a numeric vector
@@ -54,7 +55,7 @@
 #'   group_by(ENV) %>%
 #'   resca(ends_with("L")) %>%
 #'   head(n = 13)
-#'
+#'}
 #'
 resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, keep = TRUE) {
   if(!missing(.data) && !missing(values)){

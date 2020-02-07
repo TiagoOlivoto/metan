@@ -493,7 +493,7 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
 #' @method predict waas
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #'model <- waas(data_ge,
 #'              env = ENV,
@@ -503,6 +503,7 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
 #' # Predict GY with 3 IPCA and HM with 1 IPCA
 #' predict <- predict(model, naxis = c(3, 1))
 #' predict
+#' }
 #'
 predict.waas <- function(object, naxis = 2, ...) {
     cal <- match.call()

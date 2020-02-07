@@ -33,14 +33,14 @@
 #'
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' out <- superiority(data_ge2,
 #'                    env = ENV,
 #'                    gen = GEN,
 #'                    rep = REP,
 #'                    resp = PH)
-#'
+#'}
 #'
 superiority <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   factors  <- .data %>%
@@ -122,10 +122,11 @@ superiority <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #' @method print superiority
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' model <- superiority(data_ge2, ENV, GEN, REP, PH)
 #' print(model)
+#' }
 print.superiority <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "superiority") {
     stop("The object must be of class 'superiority'")

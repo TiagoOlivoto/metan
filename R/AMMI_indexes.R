@@ -235,11 +235,12 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
 #' @method print AMMI_indexes
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' model <- performs_ammi(data_ge, ENV, GEN, REP, GY) %>%
 #'          AMMI_indexes()
 #' print(model)
+#' }
 print.AMMI_indexes <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
     if (!class(x) == "AMMI_indexes") {
         stop("The object must be of class 'AMMI_indexes'")

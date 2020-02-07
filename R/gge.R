@@ -930,10 +930,11 @@ plot.gge <- function(x,
 #' @method predict gge
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' mod <- gge(data_ge, GEN, ENV, c(GY, HM))
 #' predict(mod)
+#' }
 #'
 predict.gge <- function(object, naxis = 2, output = "wide", ...) {
   if (!class(object) == "gge") {

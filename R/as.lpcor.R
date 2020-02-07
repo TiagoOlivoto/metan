@@ -9,7 +9,7 @@
 #' @return An object of class \code{lpcor}.
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' library(dplyr)
 #' mt_num = mtcars %>% select_if(., is.numeric)
@@ -18,7 +18,7 @@
 #'                   cor(mt_num[2:6]),
 #'                   cor(mt_num[4:8]))
 #' is.lpcor(lpdata)
-#'
+#'}
 #'
 as.lpcor <- function(...) {
   data <- list(...)

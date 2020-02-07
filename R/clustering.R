@@ -312,7 +312,7 @@ clustering <- function(.data,
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
-#'
+#' \donttest{
 #' mean_gen <-
 #'  data_ge2 %>%
 #'  means_by(GEN) %>%
@@ -320,7 +320,7 @@ clustering <- function(.data,
 #'
 #' d <- clustering(mean_gen)
 #' plot(d, xlab = "Euclidean Distance")
-#'
+#'}
 plot.clustering <- function(x, horiz = TRUE, type = "dendrogram", ...){
   if (type == "dendrogram"){
     plot(x$hc, horiz = horiz, ...)

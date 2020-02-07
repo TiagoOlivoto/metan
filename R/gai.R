@@ -30,9 +30,10 @@
 #'
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' library(metan)
 #' out <- gai(data_ge2, ENV, GEN, REP, c(EH, PH, EL, CD, ED, NKE))
+#' }
 #'
 gai <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   factors  <- .data %>%
