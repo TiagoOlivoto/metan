@@ -1340,8 +1340,8 @@ sem_by <- function(.data, ...){
 #'Alternative to dplyr::do for doing anything
 #'
 #'
-#' Provides an alternative to the \code{dplyr:do()} using \code{nest() +
-#' mutate() + map()} to apply a function to a grouped data frame.
+#' Provides an alternative to the \code{dplyr:do()} using \code{nest(),
+#' \code{mutate()} and \code{map()} to apply a function to a grouped data frame.
 #'
 #'  If the applied function returns a data frame, then the output will be
 #'  automatically unnested. Otherwise, the output includes the grouping
