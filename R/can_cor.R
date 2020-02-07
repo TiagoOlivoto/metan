@@ -115,33 +115,9 @@ can_corr <- function(.data,
           collinearity = collinearity)
     return(results)
   }
-  # if (missing(.data) & missing(FG) || missing(SG)) {
-  #   stop("No valid data input for analysis.")
-  # }
-  # if (!missing(.data) & missing(FG) || missing(SG)) {
-  #   stop("If a dataset is used as input then 'FG' and 'SG' must be declared.")
-  # }
-  # if (!use %in% c("cov", "cor")) {
-  #   stop("The argument  'use' is incorrect, it should be 'cov' or 'cor'.")
-  # }
-  # if (missing(.data) & !missing(FG) & !missing(SG)) {
-  #   if (!is.data.frame(FG)) {
-  #     stop("'FG' should be data frame.")
-  #   }
-  #   if (!is.data.frame(SG)) {
-  #     stop("'SG' should be data frame.")
-  #   }
-  # }
 
-    # if(!missing(means_by)){
-    #   .data <- suppressWarnings(group_by(.data, {{means_by}}) %>%
-    #     summarise_all(mean) %>%
-    #     ungroup() %>%
-    #     as.data.frame())
-    #   nam_fact = .data %>% select({{means_by}}) %>% pull()
-    # }
-    FG <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
-    SG <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
+  FG <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
+  SG <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
 
   if (nrow(FG) != nrow(SG)) {
     stop("The number of observations of 'FG', should be equal to 'SG'.")
@@ -330,10 +306,10 @@ can_corr <- function(.data,
     cat("---------------------------------------------------------------------------\n")
     print(Rvy)
   }
-# if(!missing(means_by)){
-# FG_SC = FG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
-# SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
-# }
+  # if(!missing(means_by)){
+  # FG_SC = FG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
+  # SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
+  # }
 
   invisible(structure(list(Matrix = MC, MFG = S11, MSG = S22,
                            MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,

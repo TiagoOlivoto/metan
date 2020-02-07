@@ -10,7 +10,7 @@
 #' variables (all numeric variables in dataset); \bold{2:} compute the
 #' eigenvalues and eigenvectors of the correlation matrix between the variables;
 #' \bold{3:} delete the variable with the largest weight (highest eigenvector in
-#' the lowest eigenvalue); \bold{4:} compute the distance matrix and co-phenetic
+#' the lowest eigenvalue); \bold{4:} compute the distance matrix and cophenetic
 #' correlation with the remaining variables; \bold{5:} compute the Mantel's
 #' correlation between the obtained distances matrix and the original distance
 #' matrix; \bold{6:} iterate steps 2 to 5 \emph{p} - 2 times, where \emph{p} is
