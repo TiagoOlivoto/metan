@@ -23,7 +23,7 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 ```
 
 # Getting started
-`metan` provides a simple and intuitive pipe-friendly framework for performing descriptive statistics.  A [set of functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) can be used to compute the most used descriptive statistics quickly. In this tutorial, we will use the data example `data_ge2` as motivating examples.
+`metan` provides a simple and intuitive pipe-friendly framework for performing descriptive statistics.  A [set of functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) can be used to compute the most used descriptive statistics quickly. In this tutorial, we will use the data example `data_ge2` as motivation examples.
 ```{r}
 library(metan)
 inspect(data_ge2, verbose = FALSE) %>%
