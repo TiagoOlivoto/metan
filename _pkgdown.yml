@@ -9,7 +9,6 @@ template:
       api_key: ef40e3bab94bb0e1d687fd3844052701
       index_name: metan
 
-
 toc:
   depth: 3
 
@@ -32,6 +31,8 @@ navbar:
         href: articles/vignettes_ammi.html
       - text: "BLUP"
         href: articles/vignettes_blup.html
+      - text: "Descriptive statistics"
+        href: articles/vignettes_descriptive.html
       - text: "GGE"
         href: articles/vignettes_gge.html
       - text: "Stability"
@@ -74,6 +75,8 @@ reference:
     desc: "Functions for AMMI analysis"
     contents:
       - AMMI_indexes
+      - cv_ammi
+      - cv_ammif
       - performs_ammi
       - plot.cvalidation
       - plot.performs_ammi
@@ -84,26 +87,27 @@ reference:
       - print.performs_ammi
       - print.waas
       - print.waas_means
-      - cv_ammi
-      - cv_ammif
       - waas
       - waas_means
   - title: "BLUP"
     desc: "Functions for BLUP prediction in multi-environment trial analysis"
     contents:
+      - cv_blup
       - gamem
-      - plot.waasb
       - plot_blup
       - plot_eigen
       - plot_scores
       - plot_waasby
-      - Resende_indexes
+      - plot.wsmp
+      - plot.waasb
+      - plot.gamem
+      - predict.gamem
+      - predict.waasb
       - print.waasb
-      - cv_blup
+      - print.gamem
+      - Resende_indexes
       - waasb
       - wsmp
-      - plot.wsmp
-      - print.gamem
   - title: "GGE"
     desc: "Functions for GGE analysis"
     contents:
@@ -181,71 +185,40 @@ reference:
       - mahala_design
       - pairs_mantel
       - path_coeff
+      - plot_ci
+      - plot_factbars
+      - plot_factlines
+      - plot_lines
       - plot.can_cor
       - plot.corr_coef
       - plot.clustering
       - plot.resp_surf
-      - plot_ci
-      - plot_factbars
-      - plot_factlines
       - plot.gafem
-      - plot_lines
-      - resp_surf
       - print.can_cor
       - print.corr_coef
       - print.path_coeff
+      - resp_surf
   - title: "Descriptive"
     desc: "Useful functions for computing descriptive statistics"
     contents:
-      - av_dev
-      - ci_mean
-      - cv
-      - cv_by
       - desc_stat
       - desc_wider
       - gm_mean
       - has_na
-      - hm_mean
-      - kurt
-      - max_by
-      - means_by
-      - min_by
-      - range_data
-      - sd_amo
-      - sd_by
-      - sd_pop
-      - sem
-      - sem_by
-      - skew
-      - sum_dev
-      - sum_sq_dev
-      - valid_n
-      - var_amo
-      - var_pop
+      - utils_stats
   - title: "Helper"
     desc: "Helper functions for metan package"
     contents:
-      - add_cols
-      - add_rows
-      - all_lower_case
-      - all_pairs
-      - all_upper_case
-      - alpha_color
+      - add_class
       - arrange_ggplot
       - as.split_factors
       - bind_cv
-      - column_exists
       - comb_vars
-      - concatenate
-      - difference_var
-      - extract_number
-      - extract_string
-      - get_level_size
-      - get_levels
+      - doo
       - get_model_data
       - inspect
-      - intersect_var
       - is.split_factors
+      - lower_case_only
       - make_long
       - make_lower_tri
       - make_mat
@@ -253,29 +226,18 @@ reference:
       - make_upper_tri
       - rbind_fill
       - reorder_cormat
-      - remove_cols
-      - remove_rows
-      - remove_cols_na
-      - remove_rows_na
-      - remove_strings
-      - replace_number
-      - replace_string
       - resca
       - residual_plots
-      - round_cols
-      - select_cols
-      - select_first_col
-      - select_last_col
-      - select_non_numeric_cols
-      - select_numeric_cols
-      - select_rows
       - split_factors
       - solve_svd
-      - theme_metan
-      - theme_metan_minimal
+      - stars_pval
       - to_factor
-      - transparent_color
-      - union_var
+      - themes
+      - tukey_hsd
+      - utils_num_str
+      - utils_rows_cols
+
+
   - title: "Misc"
     desc: "Miscellaneous small functions"
     contents:
