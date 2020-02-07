@@ -49,7 +49,6 @@ Imports:
     ggforce,
     ggplot2,
     ggrepel,
-    gplots,
     grid,
     lattice,
     lme4,
@@ -57,10 +56,11 @@ Imports:
     magrittr,
     methods,
     progress,
+    purrr,
     rlang,
     tibble,
     tidyr,
-    tidyselect
+    tidyselect (>= 1.0.0)
 Suggests:
     DT,
     knitr,
