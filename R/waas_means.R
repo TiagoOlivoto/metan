@@ -78,8 +78,8 @@
 #'                      gen = GEN,
 #'                      resp = everything())
 #' # The index WAAS
-#' get_model_data(model, what = "OrWAASB")
-#' get_model_data(model2, what = "OrWAASB")
+#' get_model_data(model, what = "OrWAAS")
+#' get_model_data(model2, what = "OrWAAS")
 #'
 #'}
 #'

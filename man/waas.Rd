@@ -141,7 +141,7 @@ model <- waas(data_ge,
 plot(model)
 
 # Get the WAAS index
-get_model_data(model, "WAASB")
+get_model_data(model, "WAAS")
 
 # Plot WAAS and response variable
 plot_scores(model, type = 3)
