@@ -115,16 +115,15 @@ permutations.
 \examples{
 \donttest{
 library(metan)
-library(dplyr)
 # iris dataset
 lpc <- iris \%>\%
-       split_factors(Species) \%>\%
+       group_by(Species) \%>\%
        lpcor() \%>\%
        pairs_mantel(names = c('setosa', 'versicolor', 'virginica'))
 
 
 # mtcars dataset
-mt_num <- mtcars \%>\% select_if(., is.numeric)
+mt_num <- select_numeric_cols(mtcars)
 lpdata <- as.lpcor(cor(mt_num[1:5]),
                    cor(mt_num[1:5]),
                    cor(mt_num[2:6]),

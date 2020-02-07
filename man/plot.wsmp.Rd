@@ -38,23 +38,23 @@ WAASB/GY ratio.}
 
 \item{x.lab}{The label of x axis. Default is 'Number of axes'.}
 
-\item{size.lab}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{size.lab}{The size of the}
 
-\item{export}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{export}{\strong{Deprecated argument. It will be retired in the next release.}}
 
-\item{file.type}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{file.type}{\strong{Deprecated argument. It will be retired in the next release.}}
 
-\item{file.name}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{file.name}{\strong{Deprecated argument. It will be retired in the next release.}}
 
-\item{width}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{width}{\strong{Deprecated argument. It will be retired in the next release.}}
 
-\item{height}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{height}{\strong{Deprecated argument. It will be retired in the next release.}}
 
-\item{margins}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{margins}{\strong{Deprecated argument. It will be retired in the next release.}}
 
-\item{key.lab}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{key.lab}{\strong{Deprecated argument. It will be retired in the next release.}}
 
-\item{resolution}{This argument is deprecated as of metan 1.2.1.9000.}
+\item{resolution}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{...}{Currently not used.}
 }

@@ -35,7 +35,7 @@ silently.}
 A list where each element is the result for one variable containing:
 \enumerate{
 \item \strong{individual}: A tidy tbl_df with the results of the individual
-analysis of variance with the following colum names:
+analysis of variance with the following column names:
 \itemize{
 \item \strong{For analysis in alpha-lattice designs}: \strong{ENV}: The
 environment code; \strong{MEAN}: The grand mean; \strong{MSG, MSCR, MSIB_R}:
