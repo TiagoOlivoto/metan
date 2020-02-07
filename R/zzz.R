@@ -13,13 +13,12 @@
 #' @importFrom dendextend  set  rotate_DendSer
 #' @importFrom lme4  ranef  VarCorr  fortify.merMod
 #' @importFrom lmerTest  ranova  lmer
-#' @importFrom gplots  heatmap.2
 #' @importFrom FWDselect  selection
 #' @importFrom grDevices  colorRampPalette  dev.off  pdf
 #'             chull  tiff  boxplot.stats
 #' @importFrom methods  is  as
 #' @importFrom graphics  plot  boxplot  hist  par  mtext abline
-#' @importFrom utils  head combn  stack
+#' @importFrom utils  head combn  stack data
 #' @importFrom methods setClass setGeneric setMethod setRefClass
 #'
 NULL
@@ -190,5 +189,6 @@ if (getRversion() >= "2.15.1") {
       "BLUPe+ge+re+bre", "BLUPg+e+ge+re", "BLUPg+e+ge+re+bre", "BLUPg+bre", "BLUPg+ge+bre",
       "BLUPge+e+re", "BLUPre", "Estimate", "HMRPGV", "RPGV", "Variance", "blup",
       "intercept", "lower", "upper", "pred_ols", "res_ammi", "res_ols", "pattern",
-      "replacement"))
+      "replacement", "comparison", "group1", "group2", "p.adj", "term", "rel_freq",
+      "variable"))
   }
