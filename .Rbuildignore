@@ -9,6 +9,7 @@
 ^vignettes/vignettes_indexes\.Rmd$
 ^vignettes/vignettes_blup\.Rmd$
 ^vignettes/vignettes_biometry\.Rmd$
+^vignettes/vignettes_descriptive\.Rmd$
 ^vignettes/vignettes_ammi\.Rmd$
 ^vignettes/vignettes_helper\.Rmd$
 ^vignettes/vignettes_stability\.Rmd$
@@ -29,5 +30,3 @@
 ^CRAN-RELEASE$
 ^README\.Rmd$
 ^README\.md$
-
-
