@@ -266,10 +266,10 @@ AMMI <- waas(data_ge2, ENV, GEN, REP,
              resp = c(PH, ED, TKW, NKR))
 
 # Getting the weighted average of absolute scores
-get_model_data(AMMI, what = "WAASB")
+get_model_data(AMMI, what = "WAAS")
 
 # And the rank for the WAASB index.
-get_model_data(AMMI, what = "OrWAASB")
+get_model_data(AMMI, what = "OrWAAS")
 
 
 #################### BLUP model #####################
