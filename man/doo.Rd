@@ -17,7 +17,8 @@ doo(.data, .fun, ...)
 a data frame
 }
 \description{
-
+Provides an alternative to the \code{dplyr:do()} using \code{nest()},
+\code{mutate()} and \code{map()} to apply a function to a grouped data frame.
 }
 \details{
 If the applied function returns a data frame, then the output will be

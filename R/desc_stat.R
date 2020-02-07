@@ -20,12 +20,12 @@
 #'@param values Deprecated argument. It will be retired in the next release.
 #'@param stats The descriptive statistics to show. This is used to filter the
 #'  output after computation. Defaults to \code{"main"} (cv, max, mean median,
-#'  min, sd.amo, se.mean, ci.mean ). Other allowed values are \code{"all"} to
+#'  min, sd.amo, se, ci ). Other allowed values are \code{"all"} to
 #'  show all the statistics, \code{"robust"} to show robust statistics,
 #'  \code{"quantile"} to show quantile statistics, or chose one (or more) of the
 #'  following:
 #'  * \code{"av.dev"}: average deviation.
-#'  * \code{"ci.mean"}: 95 percent confidence interval of the mean.
+#'  * \code{"ci"}: 95 percent confidence interval of the mean.
 #'  * \code{"cv"}: coefficient of variation.
 #'  * \code{"iqr"}: interquartile range.
 #'  * \code{"gm.mean"}: geometric mean.
@@ -41,7 +41,7 @@
 #'  quartile, third quartile, and percentile 97.5\%, respectively.
 #'  * \code{range}: The range of data).
 #'  * \code{"sd.amo", "sd.pop"}: the sample and population standard deviation.
-#'  * \code{"se.mean"}: the standard error of the mean).
+#'  * \code{"se"}: the standard error of the mean).
 #'  * \code{"skew"}: skewness.
 #'  * \code{"sum"}. the sum of the values.
 #'  * \code{"sum.dev"}: the sum of the absolute deviations.
@@ -100,7 +100,7 @@
 #' # are removed before analysis with a warning message            #
 #' #===============================================================#
 #' desc_stat(c(12, 13, 19, 21, 8, NA, 23, NA),
-#'           stats = c('mean, se.mean, cv, n, valid.n'),
+#'           stats = c('mean, se, cv, n, valid.n'),
 #'           na.rm = TRUE)
 #'
 #' #===============================================================#
@@ -156,18 +156,18 @@ desc_stat <- function(.data = NULL,
           plot_theme = plot_theme)
     return(results)
   }
-  all <- c("av.dev", "ci.mean", "cv", "gm.mean", "hm.mean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se.mean", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
+  all <- c("av.dev", "ci", "cv", "gm.mean", "hm.mean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
   stats <- strsplit(
     case_when(
-      all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se.mean, ci.mean"),
-      all_lower_case(stats) == "all" ~ c("av.dev, ci.mean, cv, gm.mean, hm.mean, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se.mean, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, var.pop"),
+      all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci"),
+      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gm.mean, hm.mean, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, var.pop"),
       all_lower_case(stats) == "robust" ~ c("n, median, iqr"),
       all_lower_case(stats) == "quantile" ~ c("n, min, q25, median, q75, max"),
       TRUE ~ all_lower_case(stats)
     ), "\\s*(\\s|,)\\s*")[[1]]
 
   if (!any(stats %in% c("all", "main", "robust", "quantile", all))) {
-    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci.mean, cv, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se.mean, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
+    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci, cv, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
   }
   if(any(class(.data) == "numeric")){
     .data <- data.frame(val = .data)
@@ -221,8 +221,8 @@ desc_stat <- function(.data = NULL,
                        var.amo = ~var_amo(., na.rm = na.rm),
                        sd.pop = ~sd_pop(., na.rm = na.rm),
                        sd.amo = ~sd_amo(., na.rm = na.rm),
-                       se.mean = ~sem(., na.rm = na.rm),
-                       ci.mean = ~ci_mean(., na.rm = na.rm),
+                       se = ~sem(., na.rm = na.rm),
+                       ci = ~ci_mean(., na.rm = na.rm),
                        skew = ~skew(., na.rm = na.rm),
                        kurt = ~kurt(., na.rm = na.rm),
                        cv = ~cv(., na.rm = na.rm),

@@ -39,13 +39,13 @@ one grouping variable use that function.}
 
 \item{stats}{The descriptive statistics to show. This is used to filter the
 output after computation. Defaults to \code{"main"} (cv, max, mean median,
-min, sd.amo, se.mean, ci.mean ). Other allowed values are \code{"all"} to
+min, sd.amo, se, ci ). Other allowed values are \code{"all"} to
 show all the statistics, \code{"robust"} to show robust statistics,
 \code{"quantile"} to show quantile statistics, or chose one (or more) of the
 following:
 \itemize{
 \item \code{"av.dev"}: average deviation.
-\item \code{"ci.mean"}: 95 percent confidence interval of the mean.
+\item \code{"ci"}: 95 percent confidence interval of the mean.
 \item \code{"cv"}: coefficient of variation.
 \item \code{"iqr"}: interquartile range.
 \item \code{"gm.mean"}: geometric mean.
@@ -61,7 +61,7 @@ following:
 quartile, third quartile, and percentile 97.5\\%, respectively.
 \item \code{range}: The range of data).
 \item \code{"sd.amo", "sd.pop"}: the sample and population standard deviation.
-\item \code{"se.mean"}: the standard error of the mean).
+\item \code{"se"}: the standard error of the mean).
 \item \code{"skew"}: skewness.
 \item \code{"sum"}. the sum of the values.
 \item \code{"sum.dev"}: the sum of the absolute deviations.
@@ -136,7 +136,7 @@ desc_stat(vect, stats = "robust")
 # are removed before analysis with a warning message            #
 #===============================================================#
 desc_stat(c(12, 13, 19, 21, 8, NA, 23, NA),
-          stats = c('mean, se.mean, cv, n, valid.n'),
+          stats = c('mean, se, cv, n, valid.n'),
           na.rm = TRUE)
 
 #===============================================================#
