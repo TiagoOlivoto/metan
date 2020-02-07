@@ -14,7 +14,10 @@
 \alias{last_col}
 \alias{select}
 \alias{mutate}
+\alias{group_by}
 \alias{rename}
+\alias{column_to_rownames}
+\alias{rownames_to_column}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -22,7 +25,9 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{mutate}}, \code{\link[dplyr]{rename}}, \code{\link[dplyr]{select}}}
+  \item{dplyr}{\code{\link[dplyr]{group_by}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr]{rename}}, \code{\link[dplyr]{select}}}
+
+  \item{tibble}{\code{\link[tibble]{column_to_rownames}}, \code{\link[tibble]{rownames_to_column}}}
 
   \item{tidyselect}{\code{\link[tidyselect]{contains}}, \code{\link[tidyselect]{ends_with}}, \code{\link[tidyselect]{everything}}, \code{\link[tidyselect]{last_col}}, \code{\link[tidyselect]{matches}}, \code{\link[tidyselect]{num_range}}, \code{\link[tidyselect]{one_of}}, \code{\link[tidyselect]{starts_with}}}
 }}
