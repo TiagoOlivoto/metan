@@ -7,6 +7,7 @@
 \alias{all_pairs}
 \alias{colnames_to_lower}
 \alias{colnames_to_upper}
+\alias{colnames_to_title}
 \alias{column_to_first}
 \alias{column_to_last}
 \alias{column_exists}
@@ -33,6 +34,8 @@ all_pairs(.data, levels)
 colnames_to_lower(.data)
 
 colnames_to_upper(.data)
+
+colnames_to_title(.data)
 
 column_to_first(.data, ...)
 
@@ -144,7 +147,7 @@ logical value.
 \item \code{columns_to_last()}: Move columns to last positions in \code{.data}.
 \item \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
 TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
-concatenated variable is pull out to a vector. This is speccialy useful when
+concatenated variable is pull out to a vector. This is specially useful when
 using \code{concatenate} to add columns to a data frame with \code{add_cols}.
 \item \code{get_levels()}: Get the levels of a factor variable.
 \item \code{get_level_size()}: Get the size of each level of a factor variable.

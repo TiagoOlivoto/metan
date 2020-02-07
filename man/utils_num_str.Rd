@@ -7,6 +7,8 @@
 \alias{all_title_case}
 \alias{extract_number}
 \alias{extract_string}
+\alias{find_text_in_num}
+\alias{has_text_in_num}
 \alias{remove_strings}
 \alias{replace_number}
 \alias{replace_string}
@@ -39,6 +41,10 @@ extract_string(
   .before = NULL,
   .after = NULL
 )
+
+find_text_in_num(.data, ...)
+
+has_text_in_num(.data)
 
 remove_strings(.data, ...)
 
@@ -119,6 +125,10 @@ to upper case (e.g., \code{"Env"} to \code{"ENV"}).
 to title case (e.g., \code{"ENV"} to \code{"Env"}).
 \item \code{extract_number()}: Extract the number(s) of a string.
 \item \code{extract_string()}: Extract all strings, ignoring case.
+\item \code{find_text_in_num()}: Find text characters in a numeric sequence and
+return the row index.
+\item \code{has_text_in_num()}: Inspect columns looking for text in numeric
+sequence and return a warning if text is found.
 \item \code{remove_strings()}: Remove all strings of a variable.
 \item \code{replace_number()}: Replace numbers with a replacement.
 \item \code{replace_string()}: Replace all strings with a replacement, ignoring
@@ -182,6 +192,13 @@ replace_string(data_ge,
 # Remove strings
 remove_strings(data_ge)
 remove_strings(data_ge, ENV)
+
+
+############ Find text in numeric sequences ###########
+mixed_text <- data_ge
+mixed_text[2, 4] <- "2..503"
+mixed_text[3, 4] <- "3.2o75"
+find_text_in_num(mixed_text, GY)
 
 ############# upper, lower and title cases ############
 gen_text <- c("GEN 1", "Gen 1", "gen 1")

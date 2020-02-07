@@ -5,6 +5,7 @@
 \alias{av_dev}
 \alias{ci_mean}
 \alias{cv}
+\alias{freq_table}
 \alias{hm_mean}
 \alias{gm_mean}
 \alias{kurt}
@@ -22,6 +23,7 @@
 \alias{max_by}
 \alias{means_by}
 \alias{min_by}
+\alias{n_by}
 \alias{sd_by}
 \alias{sem_by}
 \title{Useful functions for computing descriptive statistics}
@@ -31,6 +33,8 @@ av_dev(.data, ..., na.rm = FALSE)
 ci_mean(.data, ..., na.rm = FALSE, level = 0.95)
 
 cv(.data, ..., na.rm = FALSE)
+
+freq_table(.data, ...)
 
 hm_mean(.data, ..., na.rm = FALSE)
 
@@ -65,6 +69,8 @@ max_by(.data, ...)
 means_by(.data, ...)
 
 min_by(.data, ...)
+
+n_by(.data, ...)
 
 sd_by(.data, ...)
 
@@ -109,13 +115,18 @@ a factor or combination of factors quickly.}
 \item \code{max_by()} For computing maximum values.
 \item \code{means_by()} For computing arithmetic means.
 \item \code{min_by()} For compuing minimum values.
+\item \code{n_by()} For getting the length.
+\item \code{sd_by()} For computing sample standard deviation.
 \item \code{sem_by()} For computing standard error of the mean.
 }
-\item \strong{Useful functions for descriptive statistics}
+\item \strong{Useful functions for descriptive statistics. All of them work
+naturally with \code{\%>\%}, handle grouped data and multiple variables (all
+numeric variables from \code{.data} by default).}
 \itemize{
 \item \code{av_dev()} computes the average absolute deviation.
 \item \code{ci_mean()} computes the confidence interval for the mean.
 \item \code{cv()} computes the coefficient of variation.
+\item \code{freq_table()} Computes frequency fable. Handles grouped data.
 \item \code{hm_mean(), gm_mean()} computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
@@ -133,10 +144,8 @@ deviation, respectively.
 }
 }
 
-To compute all these functions at once, use the function
-\code{\link{desc_stat}}. By using this function you will be able to
-compute the statistics for each level of a factor of a combination of
-factors.
+\code{\link{desc_stat}} is wrapper function around the above ones and can be
+used to compute quickly all these statistics at once.
 }
 \examples{
 \donttest{
@@ -148,13 +157,25 @@ means_by(data_ge2, GEN, ENV)
 # by GEN and ENV
 cv_by(data_ge2, GEN, ENV)
 
+# Skewness of a numeric vector
+set.seed(1)
+nvec <- rnorm(200, 10, 1)
+skew(nvec)
+
 # Confidence interval 0.95 for the mean
 # All numeric variables
-ci_mean(data_ge2)
+# Grouped by levels of ENV
+data_ge2 \%>\%
+  group_by(ENV) \%>\%
+  ci_mean()
 
-#' standard error of the mean
+# standard error of the mean
 # Variable PH and EH
 sem(data_ge2, PH, EH)
+
+# Frequency table for variable NR
+data_ge2 \%>\%
+  freq_table(NR)
 }
 
 }
