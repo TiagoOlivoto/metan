@@ -24,10 +24,11 @@ are shown in the R console. The results can also be exported to the directory
 into a *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 print(mod)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

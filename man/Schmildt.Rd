@@ -45,7 +45,7 @@ Stability analysis using the known genotypic confidence index (Annicchiarico,
 1992) modified by Schmildt et al. 2011.
 }
 \examples{
-
+\donttest{
 library(metan)
 Sch <- Schmildt(data_ge2,
                 env = ENV,
@@ -53,7 +53,7 @@ Sch <- Schmildt(data_ge2,
                 rep = REP,
                 resp = PH)
 print(Sch)
-
+}
 
 }
 \references{

@@ -26,7 +26,7 @@ compose the second column and the third column will contain the data that
 fills the two-way table.
 }
 \examples{
-
+\donttest{
 library(metan)
 
 set.seed(1)
@@ -38,6 +38,7 @@ make_long(mat)
 
 gen_cols <- t(mat)
 make_long(gen_cols, gen_in = "cols")
+}
 
 }
 \author{

@@ -42,7 +42,7 @@ equation: \deqn{CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}}
 where \eqn{n} is the sample size and \code{r} is the correlation coefficient.
 }
 \examples{
-
+\donttest{
 library(metan)
 
 CI1 <- corr_ci(data_ge2)
@@ -52,6 +52,7 @@ CI2 <- corr_ci(data_ge2, CD, TKW, NKE,
                by = ENV,
                verbose = FALSE)
 CI2
+}
 
 }
 \references{

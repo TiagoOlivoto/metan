@@ -84,7 +84,7 @@ estimation of canonical loads, canonical scores, and hypothesis testing for
 correlation pairs.
 }
 \examples{
-
+\donttest{
 library(metan)
 
 cc1 <- can_corr(data_ge2,
@@ -99,7 +99,7 @@ cc3 <- data_ge2 \%>\%
                 by = ENV,
                 verbose = FALSE)
 
-
+}
 }
 \references{
 Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,

@@ -19,10 +19,11 @@ An object of the same class of \code{.data} with the variables in
 Function to quick mutate columns to factor.
 }
 \examples{
-
+\donttest{
 library(metan)
 PH_EH_to_factor <- to_factor(data_ge2, PH, EH)
 PH_EH_to_factor <- to_factor(data_ge2, 4:5)
+}
 
 }
 \author{

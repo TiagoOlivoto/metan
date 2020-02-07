@@ -32,13 +32,14 @@ An object of class \code{ecovalence} containing the results for each
 The function computes the ecovalence (Wricke, 1965) for stability analysis.
 }
 \examples{
-
+\donttest{
 library(metan)
 out <- ecovalence(data_ge2,
                  env = ENV,
                  gen = GEN,
                  rep = REP,
                  resp = PH)
+}
 
 }
 \references{

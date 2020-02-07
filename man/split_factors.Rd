@@ -35,10 +35,12 @@ combining the function \code{split_factors} with the forward-pipe operator
 element of the list.
 }
 \examples{
+\donttest{
 library(metan)
 
-g1 = split_factors(iris, Species)
-g2 = split_factors(data_ge, ENV, keep_factors = TRUE)
+g1 <- split_factors(iris, Species)
+g2 <- split_factors(data_ge, ENV, keep_factors = TRUE)
+}
 
 }
 \author{

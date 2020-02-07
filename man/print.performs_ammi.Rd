@@ -24,11 +24,12 @@ Print the \code{performs_ammi} object in two ways. By default, the results are s
 in the R console. The results can also be exported to the directory.
 }
 \examples{
-
+\donttest{
 library(metan)
-model = performs_ammi(data_ge, ENV, GEN, REP,
-                      resp = c(GY, HM))
+model <- performs_ammi(data_ge, ENV, GEN, REP,
+                       resp = c(GY, HM))
 print(model)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

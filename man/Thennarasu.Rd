@@ -33,9 +33,10 @@ tibble with the columns GEN, N1, N2, N3 and N4 is returned.
 Performs a stability analysis based on Thennarasu (1995) statistics.
 }
 \examples{
-
+\donttest{
 library(metan)
 out <- Thennarasu(data_ge, ENV, GEN, REP, GY)
+}
 
 }
 \references{

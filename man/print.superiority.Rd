@@ -25,10 +25,11 @@ shown in the R console. The results can also be exported to the directory
 into a *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 model <- superiority(data_ge2, ENV, GEN, REP, PH)
 print(model)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

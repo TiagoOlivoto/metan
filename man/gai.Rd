@@ -39,9 +39,10 @@ Performs a stability analysis based on the geometric mean (GAI), according to th
 \deqn{GAI = \sqrt[E]{{{{\bar Y}_{1.}} \cdot {{\bar Y}_{2.}} \cdot ... \cdot {{\bar Y}_{i.}}}}}
 }
 \examples{
-
+\donttest{
 library(metan)
 out <- gai(data_ge2, ENV, GEN, REP, c(EH, PH, EL, CD, ED, NKE))
+}
 
 }
 \references{

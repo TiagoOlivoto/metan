@@ -40,11 +40,12 @@ This is a helper function that computes the genotype-environment effects,
 i.e., the residual effect of the additive model
 }
 \examples{
-
+\donttest{
 library(metan)
 ge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY)
 gge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY, type = "gge")
 plot(ge_eff)
+}
 
 }
 \author{

@@ -25,10 +25,11 @@ are shown in the R console. The results can also be exported to the directory
 into a *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 sel <- corr_coef(data_ge2, EP, EL, CD, CL)
 print(sel)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

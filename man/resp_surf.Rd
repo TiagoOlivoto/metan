@@ -38,20 +38,22 @@ Compute a surface model and find the best combination of factor1 and factor2
 to obtain the stationary point.
 }
 \examples{
+\donttest{
 library(metan)
 # A small toy example
 
-df = data.frame(
+df <- data.frame(
  expand.grid(x = seq(0, 4, by = 1),
              y = seq(0, 4, by = 1)),
- z = c(10, 11, 12, 11, 10,
-       14, 15, 16, 15, 14,
-       16, 17, 18, 17, 16,
-       14, 15, 16, 15, 14,
-       10, 11, 12, 11, 10)
+ z <- c(10, 11, 12, 11, 10,
+        14, 15, 16, 15, 14,
+        16, 17, 18, 17, 16,
+        14, 15, 16, 15, 14,
+        10, 11, 12, 11, 10)
 )
-mod = resp_surf(df, x, y, resp = z)
+mod <- resp_surf(df, x, y, resp = z)
 plot(mod)
+}
 
 }
 \author{

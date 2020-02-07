@@ -37,10 +37,11 @@ model. This prediction is based on the number of principal components used.
 For more details see Yan and Kang (2007).
 }
 \examples{
-
+\donttest{
 library(metan)
 mod <- gge(data_ge, GEN, ENV, c(GY, HM))
 predict(mod)
+}
 
 }
 \references{

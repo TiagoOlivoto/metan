@@ -24,7 +24,7 @@ Print the \code{ge_factanal} object in two ways. By default, the results are
 shown in the R console. The results can also be exported to the directory.
 }
 \examples{
-
+\donttest{
 model <- ge_factanal(data_ge2,
   env = ENV,
   gen = GEN,
@@ -32,6 +32,7 @@ model <- ge_factanal(data_ge2,
   resp = PH
 )
 print(model)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

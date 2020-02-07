@@ -20,10 +20,11 @@ variable of \code{x}.}
 Create dendrograms to show the dissimilarity between environments.
 }
 \examples{
-
+\donttest{
 library(metan)
 mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 plot(mod)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

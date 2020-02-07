@@ -22,6 +22,7 @@ A list with the correlation coefficients and p-values
 Computes Pearson's correlation matrix with p-values
 }
 \examples{
+\donttest{
 library(metan)
 
 # All numeric variables
@@ -30,6 +31,7 @@ all <- corr_coef(data_ge2)
 # Select variables
 sel <- corr_coef(data_ge2, EP, EL, CD, CL)
 print(sel)
+}
 
 }
 \author{

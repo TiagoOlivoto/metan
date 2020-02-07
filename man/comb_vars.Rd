@@ -32,7 +32,7 @@ Pairwise combinations of variables that will be the result of a function
 applied to each combination.
 }
 \examples{
-
+\donttest{
 library(metan)
 data <- data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
                   B = rnorm(n = 5, mean = 120, sd = 30),
@@ -41,7 +41,7 @@ data <- data.frame(A = rnorm(n = 5, mean = 10, sd = 3),
                   E = rnorm(n = 5, mean = 2, sd = 1))
 comb1 <- comb_vars(data)
 comb2 <- comb_vars(data, FUN = '*', order = 'second')
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -45,11 +45,12 @@ axis whereas the genotypes are depicted by different lines. The y axis
 contains the value of the selected variable. A heatmap can also be created.
 }
 \examples{
+\donttest{
 library(metan)
 library(ggplot2)
 ge_plot(data_ge2, ENV, GEN, PH)
 ge_plot(data_ge, ENV, GEN, GY, type = 2)
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

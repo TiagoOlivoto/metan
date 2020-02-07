@@ -32,19 +32,19 @@ This function help users to easily make a two-way table from a "long format"
 data.
 }
 \examples{
-
+\donttest{
 library(metan)
-matrix = data_ge \%>\% make_mat(row = GEN, col = ENV, val = GY)
+matrix <- data_ge \%>\% make_mat(row = GEN, col = ENV, val = GY)
 matrix
 
 # An own function (sem, standart error of mean)
 
-sem = function(data){
+sem <- function(data){
 return(sd(data) / sqrt(length(data)))
 }
 
 data_ge \%>\% make_mat(GEN, ENV, GY, sem)
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -39,6 +39,7 @@ imports \code{\link[cowplot]{plot_grid}}. For a complete usability use that
 function.
 }
 \examples{
+\donttest{
 library(ggplot2)
 library(metan)
 p1 <- ggplot(mtcars, aes(wt, mpg)) +
@@ -48,5 +49,6 @@ p2 <- ggplot(mpg, aes(class, hwy)) +
              geom_boxplot()
 
 arrange_ggplot(p1, p2)
+}
 
 }

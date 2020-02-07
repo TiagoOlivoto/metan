@@ -62,6 +62,7 @@ An object of class \code{gg, ggplot}
 Create a correlation heat map for object of class \code{corr_coef}
 }
 \examples{
+\donttest{
 library(metan)
 # All numeric variables
 all <- corr_coef(data_ge2)
@@ -75,6 +76,7 @@ plot(sel,
      reorder = FALSE,
      size.text.lab = 14,
      size.text.plot = 5)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -18,11 +18,12 @@ using  hclust for hierarchical clustering order. This is useful to identify
 the hidden pattern in the matrix.
 }
 \examples{
-
+\donttest{
 library(metan)
 cor_mat <- corr_coef(data_ge2, PH, EH, CD, CL, ED, NKR)
 cor_mat$cor
 reorder_cormat(cor_mat$cor)
+}
 
 }
 \author{

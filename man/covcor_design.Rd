@@ -53,7 +53,7 @@ Compute variance-covariance and correlation matrices using data from a
 designed (RCBD or CRD) experiment.
 }
 \examples{
-
+\donttest{
 library(metan)
 # List of matrices
 data <- subset(data_ge2, ENV == 'A1')
@@ -74,6 +74,7 @@ rcov <- covcor_design(data_ge2,
                       resp = c(PH, EH, CD, CL),
                       by = ENV,
                       type = "rcov")
+}
 
 }
 \author{

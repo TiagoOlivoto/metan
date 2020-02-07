@@ -60,8 +60,10 @@ mean square in the environments 1 and 2, respectively. Cruz and Castoldi
 is given by \eqn{C = \sqrt{(1-r)^3\times Q1\times Q2}}.
 }
 \examples{
+\donttest{
 mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 print(mod)
+}
 }
 \references{
 Cruz, C.D., Castoldi, F. (1991). Decomposicao da interacao genotipos x

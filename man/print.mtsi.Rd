@@ -24,6 +24,7 @@ Print a \code{mtsi} object in two ways. By default, the results are shown in
 the R console. The results can also be exported to the directory.
 }
 \examples{
+\donttest{
 library(metan)
 # Based on stability only
 MTSI_MODEL <- waasb(data_ge,
@@ -35,6 +36,7 @@ MTSI_MODEL <- waasb(data_ge,
 
 MTSI_index <- mtsi(MTSI_MODEL)
 print(MTSI_index)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

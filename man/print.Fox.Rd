@@ -25,7 +25,7 @@ are shown in the R console. The results can also be exported to the directory
 into a *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 fox <- Fox(data_ge2,
            env = ENV,
@@ -33,6 +33,7 @@ fox <- Fox(data_ge2,
            rep = REP,
            resp = PH)
 print(fox)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

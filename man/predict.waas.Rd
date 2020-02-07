@@ -41,7 +41,7 @@ analysis showing the number of significant axis. On the other hand,
 RMSPD of all AMMI-family models, based on resampling procedures.
 }
 \examples{
-
+\donttest{
 library(metan)
 model <- waas(data_ge,
              env = ENV,
@@ -51,6 +51,7 @@ model <- waas(data_ge,
 # Predict GY with 3 IPCA and HM with 1 IPCA
 predict <- predict(model, naxis = c(3, 1))
 predict
+}
 
 }
 \author{

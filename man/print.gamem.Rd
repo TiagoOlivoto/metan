@@ -24,7 +24,7 @@ Print the \code{gamem} object in two ways. By default, the results are shown
 in the R console. The results can also be exported to the directory.
 }
 \examples{
-
+\donttest{
 library(metan)
 alpha <- gamem(data_alpha,
   gen = GEN,
@@ -34,6 +34,7 @@ alpha <- gamem(data_alpha,
 )
 
 print(alpha)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

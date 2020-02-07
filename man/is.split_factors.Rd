@@ -24,9 +24,10 @@ split the data into 40 10-columns subsets, corresponding to each combination
 of ENV x HIB.
 }
 \examples{
-
+\donttest{
 library(metan)
 spdata = as.split_factors(iris)
 is.split_factors(spdata)
+}
 
 }

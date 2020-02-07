@@ -23,7 +23,7 @@ result is a symmetric matrix containing the distances that may be used for
 hierarchical clustering.
 }
 \examples{
-
+\donttest{
 library(metan)
 library(dplyr)
 # Compute the mean for genotypes
@@ -42,7 +42,7 @@ dend <- dist \%>\%
         hclust() \%>\%
         as.dendrogram()
 plot(dend)
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

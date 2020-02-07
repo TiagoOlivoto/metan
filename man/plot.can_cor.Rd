@@ -102,7 +102,7 @@ An object of class \code{gg, ggplot}.
 Graphs of the Canonical Correlation Analysis
 }
 \examples{
-
+\donttest{
 library(metan)
 cc1 = can_corr(data_ge2,
                FG = c(PH, EH, EP),
@@ -117,7 +117,7 @@ can_corr(FG = c(PH, EH, EP),
                SG = c(EL, ED, CL, CD, CW, KW, NR))
 plot(cc2, 2, labels = TRUE)
 
-
+}
 
 }
 \author{

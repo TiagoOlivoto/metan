@@ -25,7 +25,7 @@ are shown in the R console. The results can also be exported to the directory
 into a *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 eco <- Shukla(data_ge2,
   env = ENV,
@@ -34,6 +34,7 @@ eco <- Shukla(data_ge2,
   resp = PH
 )
 print(eco)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

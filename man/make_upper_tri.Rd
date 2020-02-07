@@ -19,9 +19,11 @@ This function help users to easily make an upper triangular matrix using a
 symmetric matrix.
 }
 \examples{
+\donttest{
 library(metan)
 m <- cor(data_ge2[,5:10])
 make_upper_tri(m)
+}
 
 }
 \author{

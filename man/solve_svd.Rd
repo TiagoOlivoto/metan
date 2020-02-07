@@ -19,10 +19,12 @@ This function computes the Moore-Penrose pseudoinverse of a square matrix
 using singular value decomposition.
 }
 \examples{
+\donttest{
 library(metan)
-mat = matrix(c(1, 4, 2, 8), ncol = 2)
+mat <- matrix(c(1, 4, 2, 8), ncol = 2)
 det(mat)
 solve_svd(mat)
+}
 }
 \author{
 Tiago Olivoto, \email{tiagoolivoto@gmail.com}

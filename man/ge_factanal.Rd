@@ -47,13 +47,14 @@ This function computes the stability analysis and environmental stratification
 using factor analysis as proposed by Murakami and Cruz (2004).
 }
 \examples{
+\donttest{
 library(metan)
-model = ge_factanal(data_ge2,
-                    env = ENV,
-                    gen = GEN,
-                    rep = REP,
-                    resp = PH)
-
+model <- ge_factanal(data_ge2,
+                     env = ENV,
+                     gen = GEN,
+                     rep = REP,
+                     resp = PH)
+}
 }
 \references{
 Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of methodologies for

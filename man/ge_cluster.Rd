@@ -73,11 +73,12 @@ genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).
 Performs clustering for genotypes or tester environments based on a dissimilarity matrix.
 }
 \examples{
-
+\donttest{
 library(metan)
 
-d1 = ge_cluster(data_ge, ENV, GEN, GY, nclust = 3)
+d1 <- ge_cluster(data_ge, ENV, GEN, GY, nclust = 3)
 plot(d1, nclust = 3)
+}
 
 }
 \references{

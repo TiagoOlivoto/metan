@@ -28,8 +28,9 @@ correlation coefficient.
 }
 \examples{
 
-
+\donttest{
 corr_ss(r = 0.60, CI = 0.1)
+}
 
 
 }

@@ -25,11 +25,12 @@ in the R console. The results can also be exported to the directory into a
 *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 model <- performs_ammi(data_ge, ENV, GEN, REP, GY) \%>\%
          AMMI_indexes()
 print(model)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

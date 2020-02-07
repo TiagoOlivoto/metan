@@ -68,6 +68,7 @@ character only (e.g., "Env").
 }
 }
 \examples{
+\donttest{
 library(metan)
 
 
@@ -101,5 +102,6 @@ colnames(df) <- c("Env", "gen", "Rep", "GY", "hm")
 select_cols(df, lower_case_only())
 select_cols(df, upper_case_only())
 select_cols(df, title_case_only())
+}
 
 }

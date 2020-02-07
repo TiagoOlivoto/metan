@@ -45,9 +45,10 @@ the ranks over the k environments), S3 (sum of the absolute deviations), and
 S6 (relative sum of squares of rank for each genotype).
 }
 \examples{
-
+\donttest{
 library(metan)
 out <- Huehn(data_ge2, ENV, GEN, REP, PH)
+}
 
 }
 \references{

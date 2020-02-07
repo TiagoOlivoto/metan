@@ -43,14 +43,14 @@ uses the Kang's nonparametric stability (rank sum) to imcorporate the mean
 performance and stability into a single selection criteria.
 }
 \examples{
-
+\donttest{
 library(metan)
 out <- Shukla(data_ge2,
              env = ENV,
              gen = GEN,
              rep = REP,
              resp = PH)
-
+}
 }
 \references{
 Shukla, G.K. 1972. Some statistical aspects of partitioning

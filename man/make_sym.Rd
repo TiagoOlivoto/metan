@@ -23,6 +23,7 @@ This function help users to easily make a symmetric matrix using a lower or
 an upper triangular matrix.
 }
 \examples{
+\donttest{
 library(metan)
 lower_tri <- make_lower_tri(matrix(20, 4, 4))
 lower_tri
@@ -31,7 +32,7 @@ make_sym(lower_tri)
 upper_tri <- make_upper_tri(matrix(20, 4, 4))
 upper_tri
 make_sym(upper_tri, make = "lower", diag = 1)
-
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

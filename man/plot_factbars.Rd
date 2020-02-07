@@ -115,12 +115,13 @@ Create a bar plot based on categorical (one or two) variables
   and one numeric variable.
 }
 \examples{
+\donttest{
 library(metan)
 plot_factbars(data_ge2,
               GEN,
               ENV,
               resp = PH)
-
+}
 }
 \seealso{
 \code{\link{plot_lines}}, \code{\link{plot_factlines}}

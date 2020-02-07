@@ -25,13 +25,14 @@ results are shown in the R console. The results can also be exported to the
 directory.
 }
 \examples{
-
+\donttest{
 library(metan)
 cc <- can_corr(data_ge2,
                FG = c(PH, EH, EP),
                SG = c(EL, CL, CD, CW, KW, NR, TKW),
                verbose = FALSE)
 print(cc)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

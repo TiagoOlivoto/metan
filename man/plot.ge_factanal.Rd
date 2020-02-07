@@ -115,6 +115,7 @@ This function plot the scores for genotypes obtained in the factor analysis
 to interpret the stability
 }
 \examples{
+\donttest{
 library(metan)
 library(ggplot2)
 model = ge_factanal(data_ge2,
@@ -129,7 +130,7 @@ plot(model,
      force.repel = 10,
      col.shape = "orange",
      col.line = "red")
-
+}
 }
 \seealso{
 \code{\link{ge_factanal}}

@@ -25,10 +25,12 @@ in the R console. The results can also be exported to the directory into a
 *.txt file.
 }
 \examples{
+\donttest{
 
 library(metan)
 model <- ge_reg(data_ge2, ENV, GEN, REP, PH)
 print(model)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

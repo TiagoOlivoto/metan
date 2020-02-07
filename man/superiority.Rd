@@ -39,14 +39,14 @@ Nonparametric stability analysis using the superiority index proposed by Lin
 & Binns, (1992).
 }
 \examples{
-
+\donttest{
 library(metan)
 out <- superiority(data_ge2,
                    env = ENV,
                    gen = GEN,
                    rep = REP,
                    resp = PH)
-
+}
 
 }
 \references{

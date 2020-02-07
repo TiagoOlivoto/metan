@@ -25,10 +25,11 @@ in the R console. The results can also be exported to the directory into a
 *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 model <- data_ge \%>\% anova_ind(ENV, GEN, REP, c(GY, HM))
 print(model)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

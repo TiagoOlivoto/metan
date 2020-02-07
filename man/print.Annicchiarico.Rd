@@ -25,7 +25,7 @@ are shown in the R console. The results can also be exported to the directory
 into a *.txt file.
 }
 \examples{
-
+\donttest{
 library(metan)
 Ann <- Annicchiarico(data_ge2,
   env = ENV,
@@ -34,6 +34,7 @@ Ann <- Annicchiarico(data_ge2,
   resp = PH
 )
 print(Ann)
+}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

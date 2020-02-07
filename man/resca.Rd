@@ -55,6 +55,7 @@ grouping factor. The second option is pass a numeric vector in the argument
 values.
 }
 \examples{
+\donttest{
 library(metan)
 library(dplyr)
 # Rescale a numeric vector
@@ -76,7 +77,7 @@ data_ge2 \%>\%
   group_by(ENV) \%>\%
   resca(ends_with("L")) \%>\%
   head(n = 13)
-
+}
 
 }
 \author{
