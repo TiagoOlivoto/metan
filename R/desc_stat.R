@@ -41,7 +41,7 @@
 #'  quartile, third quartile, and percentile 97.5\%, respectively.
 #'  * \code{range}: The range of data).
 #'  * \code{"sd.amo", "sd.pop"}: the sample and population standard deviation.
-#'  * \code{"se"}: the standard error of the mean).
+#'  * \code{"se"}: the standard error of the mean.
 #'  * \code{"skew"}: skewness.
 #'  * \code{"sum"}. the sum of the values.
 #'  * \code{"sum.dev"}: the sum of the absolute deviations.
