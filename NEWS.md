@@ -1,10 +1,19 @@
 # metan 1.2.1.9000
 
-* **New functions**
+## New functions
+   - `alpha_color()` To get a semi-transparent color
+   - `gafem()` To analyze genotypes using fixed-effect models.
+   - `residual_plots()` A helper function to create residuals plots.
+   - `stars_pval()` To generate significance stars from p-values
+   - `doo()` An lternative to `dplyr::do` for doing anything
+   
+### utils_stats
    - `cv_by()` For computing coefficient of variation by levels of a factor.
    - `max_by()` For computing maximum values by levels of a factor.
    - `means_by()` For computing arithmetic means by levels of a factor.
    - `min_by()` For compuing minimum values by levels of a factor.
+   - `n_by()` For getting the length.
+   - `sd_by()` For computing sample standard deviation.
    - `sem_by()` For computing standard error of the mean by levels of a factor.
    - `av_dev()` computes the average absolute deviation.
    - `ci_mean()` computes the confidence interval for the mean.
@@ -17,24 +26,38 @@
    - `skew()` computes the skewness like used in SAS and SPSS.
    - `sum_dev()` computes the sum of the absolute deviations.
    - `sum_sq_dev()` computes the sum of the squared deviations.
-   - `var_amo()`, var_pop() computes sample and populational variance.
+   - `var_amo()`, `var_pop()` computes sample and populational variance.
    - `valid_n()` Return the valid (not NA) length of a data.
-   - `alpha_color()` To get a semi-transparent color
-   - `gafem()` To analyze genotypes using fixed-effect models.
-   - `residual_plot()` A helper function to create residuals plots.
-   
 
-* **New arguments**
-   - `anova_ind()`, `anova_joint()`, `waas()`, and `performs_ammi()` now have the argument `block` to analyze data from trials conducted in an alpha-lattice design.
+### utils_rows_cols
+   - `colnames_to_lower()`, `colnames_to_upper()`, and `colnames_to_title()` to translate column names to lower, upper and title cases quickly.
+
+### utils_num_str
+   - `all_lower_case()`, `all_upper_case()`, and `all_title_case()` to translate strings vectors or character columns of a data frame to lower, upper and title cases, respectively.
+   - `tidy_strings()` Tidy up characters strings, non-numeric columns, or any selected columns in a data frame by putting all word in upper case, replacing any space, tabulation, punctuation characters by `'_'`, and putting `'_'` between lower and upper cases.
+   - `find_text_in_num()` Find text fragments in columns assumed to be numeric. This is especially useful when `everything()` is used in argument `resp` to select the response variables.
+
+
+## New arguments
+   - `anova_ind()`, `anova_joint()`, `performs_ammi()`, `waas()` and `waasb()`,  now have the argument `block` to analyze data from trials conducted in an alpha-lattice design. Thanks to [@myaseen208](https://twitter.com/myaseen208?lang=en) for his suggestion regarding multi-environment trial analysis with alpha-lattice designs.
    - argument `repel` included in `plot_scores()` to control wheater the labels are repelled or not to avoid overlapping.
 
-* **Minor changes**
+## Deprecated arguments
+   Argument `means_by` was deprecated in functions `can_cor()` and `clustering`. Use `means_by()` to pass data based on means of factor to these function.
+   
+## Minor changes
 
    - Change "#000000FF" with "#FFFFFF00" in `transparent_color()`
+   - `desc_stat()` now handles grouped data passed from `dplyr::group_by()`
    - `plot_scores()` now support objects of class `waas_mean`.
    - Include inst/CITATION to return a reference paper with `citation("metan")`.
    - Change 'PC2' with 'PC1' in y-axis of `plot_scores(type = 2)` ([#1](https://github.com/TiagoOlivoto/metan/issues/1))
-   - `get_model_data()` now support models of class `anova_joint` and `gafem`
+   - `get_model_data()` now support models of class `anova_joint` and `gafem` and extract random effects of models fitted with `waasb()` and `gamem()`.
+   - Update `plot.waasb()` and `plot.gamem()` to show distribution of random effects.
+   - `inspect()`, `cv_blup()`, `cv_ammif()`, and `cv_ammi()` now generate a warning message saying that is not possible to compute cross-validation procedures in experiments with two replicates only. Thanks to [@Vlatko](https://www.researchgate.net/profile/Vlatko_Galic2) for his email.
+   - `plot.wsmp()` now returns heatmaps created with ggplot2 instead gplots `gplots::heatmap.2()`
+   - Remove dependency on `gplots`.
+   - Vignettes updated
 
 # metan 1.2.1
 * References describing the methods implemented in the package were included in description field of DESCRIPTION file as suggested by the CRAN team.
