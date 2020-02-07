@@ -6,19 +6,21 @@
 #'
 #' @param .data The dataset containing the columns related to, Genotypes,
 #' replication/block and response variable(s).
-#' @param gen The name of the column that contains the levels of the genotypes, that will
-#' be treated as random effect.
-#' @param rep The name of the column that contains the levels of the replications
-#' (assumed to be fixed).
+#' @param gen The name of the column that contains the levels of the genotypes,
+#'   that will be treated as random effect.
+#' @param rep The name of the column that contains the levels of the
+#'   replications (assumed to be fixed).
 #' @param resp The response variable(s). To analyze multiple variables in a
 #' single procedure a vector of variables may be used. For example \code{resp =
 #' c(var1, var2, var3)}. Select helpers are also allowed.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete block design is considered.
-#'  If block is informed, then an alpha-lattice design is employed considering block as random to make use
-#'  of inter-block information, whereas the complete replicate effect is always taken as fixed,
-#'  as no inter-replicate information was to be recovered (Mohring et al., 2015).
+#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#'   block design is considered. If block is informed, then an alpha-lattice
+#'   design is employed considering block as random to make use of inter-block
+#'   information, whereas the complete replicate effect is always taken as
+#'   fixed, as no inter-replicate information was to be recovered (Mohring et
+#'   al., 2015).
 #' @param prob The probability for estimating confidence interval for BLUP's
-#' prediction.
+#'   prediction.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code are run
 #' silently.
 #' @references Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information:
@@ -37,16 +39,19 @@
 #'
 #'  * \strong{ranef:} The random effects of the model
 #'
-#'  * \strong{Details:} A tibble with the following data: \code{Ngen}, the number of genotypes;
-#'    \code{OVmean}, the grand mean; \code{Min}, the minimum observed (returning the genotype and replication/block);
-#'    \code{Max} the maximum observed, \code{MinGEN} the winner genotype,
-#'    \code{MaxGEN}, the loser genotype.
+#'  * \strong{Details:} A tibble with the following data: \code{Ngen}, the
+#'  number of genotypes; \code{OVmean}, the grand mean; \code{Min}, the minimum
+#'  observed (returning the genotype and replication/block); \code{Max} the
+#'  maximum observed, \code{MinGEN} the winner genotype, \code{MaxGEN}, the
+#'  loser genotype.
 #'
-#'  * \strong{ESTIMATES:} A tibble with the values for the genotypic variance, block-within-replicate
-#' variance (if an alpha-lattice design is used by informing the block in \code{block}), the residual
-#' variance and their respective contribution to the phenotypic variance; broad-sence heritability,
-#' heritability on the entry-mean basis, genotypic coefficient of variation residual coefficient of variation
-#' and ratio between genotypic and residual coefficient of variation.
+#' * \strong{ESTIMATES:} A tibble with the values for the genotypic variance,
+#' block-within-replicate variance (if an alpha-lattice design is used by
+#' informing the block in \code{block}), the residual variance and their
+#' respective contribution to the phenotypic variance; broad-sence heritability,
+#' heritability on the entry-mean basis, genotypic coefficient of variation
+#' residual coefficient of variation and ratio between genotypic and residual
+#' coefficient of variation.
 #'
 #'  * \strong{residuals:} The residuals of the model.
 #'
