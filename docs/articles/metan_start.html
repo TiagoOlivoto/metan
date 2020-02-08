@@ -198,7 +198,7 @@
 </ul>
 </li>
 </ul>
-<p>The easiest way to compute the above-mentioned stability indexes is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="../reference/ge_stats.html">ge_stats()</a></code></a>. This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, I suggest computing that methods using their own function.</p>
+<p>The easiest way to compute the above-mentioned stability indexes is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="../reference/ge_stats.html">ge_stats()</a></code></a>. This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, I’d suggest computing the methods using their own function.</p>
 <p>The complete functionality of the package is described at <a href="https://tiagoolivoto.github.io/metan/index.html" class="uri">https://tiagoolivoto.github.io/metan/index.html</a>. You’re welcome to check it out!</p>
 <div id="brief-examples" class="section level1">
 <h1 class="hasAnchor">
@@ -210,97 +210,97 @@
 <a href="#checking-data" class="anchor"></a>Checking data</h1>
 <p>First of all, we will check the data for possible problems with the function <code><a href="../reference/inspect.html">inspect()</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(metan)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="../reference/inspect.html">inspect</a></span>(data_ge)</a></code></pre></div>
-<pre><code># A tibble: 5 x 9
-  Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
-  &lt;chr&gt;    &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1 ENV      factor  No      14         420 NA     NA    NA         NA
-2 GEN      factor  No      10         420 NA     NA    NA         NA
-3 REP      factor  No      3          420 NA     NA    NA         NA
-4 GY       numeric No      -          420  0.67   2.61  5.09       0
-5 HM       numeric No      -          420 38     48    58          0</code></pre>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="../reference/inspect.html">inspect</a></span>(data_ge)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co"># # A tibble: 5 x 9</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co">#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co">#   &lt;chr&gt;    &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co"># 1 ENV      factor  No      14         420 NA     NA    NA         NA</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co"># 2 GEN      factor  No      10         420 NA     NA    NA         NA</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co"># 3 REP      factor  No      3          420 NA     NA    NA         NA</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co"># 4 GY       numeric No      -          420  0.67   2.61  5.09       0</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co"># 5 HM       numeric No      -          420 38     48    58          0</span></a></code></pre></div>
 <p>Then, the details of the multi-environment trial can be obtained with the function <code><a href="../reference/ge_details.html">ge_details()</a></code>. Note that to apply the function to all numeric variables quickly, we can use the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers">select helper</a> <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything()</a></code> in the argument <code>resp</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/ge_details.html">ge_details</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb3-2" title="2">           <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb3-3" title="3">           <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb3-4" title="4">           <span class="dt">resp =</span> <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a></code></pre></div>
-<pre><code># A tibble: 10 x 3
-   Parameters GY                  HM              
-   &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;           
- 1 Mean       "2.67"              "48.09"         
- 2 SE         "NA"                "NA"            
- 3 SD         "NA"                "NA"            
- 4 CV         "NA"                "NA"            
- 5 Min        "0.67 (G10 in E11)" "38 (G2 in E14)"
- 6 Max        "5.09 (G8 in E5)"   "58 (G8 in E11)"
- 7 MinENV     "E11 (1.37)"        "E14 (41.03)"   
- 8 MaxENV     "E3 (4.06)"         "E11 (54.2)"    
- 9 MinGEN     "G10 (2.47) "       "G2 (46.66) "   
-10 MaxGEN     "G8 (3) "           "G5 (49.3) "    </code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/ge_details.html">ge_details</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb2-2" title="2">           <span class="dt">env =</span> ENV,</a>
+<a class="sourceLine" id="cb2-3" title="3">           <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb2-4" title="4">           <span class="dt">resp =</span> <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co"># # A tibble: 10 x 3</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">#    Parameters GY                  HM              </span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#    &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;           </span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">#  1 Mean       "2.67"              "48.09"         </span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#  2 SE         "NA"                "NA"            </span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#  3 SD         "NA"                "NA"            </span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#  4 CV         "NA"                "NA"            </span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#  5 Min        "0.67 (G10 in E11)" "38 (G2 in E14)"</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#  6 Max        "5.09 (G8 in E5)"   "58 (G8 in E11)"</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#  7 MinENV     "E11 (1.37)"        "E14 (41.03)"   </span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co">#  8 MaxENV     "E3 (4.06)"         "E11 (54.2)"    </span></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co">#  9 MinGEN     "G10 (2.47) "       "G2 (46.66) "   </span></a>
+<a class="sourceLine" id="cb2-17" title="17"><span class="co"># 10 MaxGEN     "G8 (3) "           "G5 (49.3) "</span></a></code></pre></div>
 <p>We can create a plot to show the performance of the genotypes across the environments with <code><a href="../reference/ge_plot.html">ge_plot()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, GEN, ENV, GY)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, GEN, ENV, GY)</a></code></pre></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-3-1.png" width="480"></p>
 <p>Or obtain the means for genotypes, environments or genotype-environment interaction with <code><a href="../reference/ge_means.html">ge_means()</a></code>. Note that the function <code><a href="../reference/utils_num_str.html">round_cols()</a></code> provided by <code>metan</code> round all numeric columns of a data frame to two (default) significant figures.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">mge &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_means.html">ge_means</a></span>(data_ge,</a>
-<a class="sourceLine" id="cb6-2" title="2">                <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb6-3" title="3">                <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb6-4" title="4">                <span class="dt">resp =</span> <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co"># Genotype-environment means</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(mge) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
-<pre><code>Class of the model: ge_means</code></pre>
-<pre><code>Variable extracted: ge_means</code></pre>
-<pre><code># A tibble: 140 x 4
-   ENV   GEN      GY    HM
-   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 E1    G1     2.37  46.5
- 2 E1    G10    1.97  46.9
- 3 E1    G2     2.9   45.3
- 4 E1    G3     2.89  45.9
- 5 E1    G4     2.59  48.3
- 6 E1    G5     2.19  49.9
- 7 E1    G6     2.3   48.2
- 8 E1    G7     2.77  47.4
- 9 E1    G8     2.9   48.0
-10 E1    G9     2.33  47.7
-# ... with 130 more rows</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Environment means</span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(mge, <span class="dt">what =</span> <span class="st">"env_means"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
-<pre><code>Class of the model: ge_means</code></pre>
-<pre><code>Variable extracted: env_means</code></pre>
-<pre><code># A tibble: 14 x 3
-   ENV      GY    HM
-   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 E1     2.52  47.4
- 2 E10    2.18  44.3
- 3 E11    1.37  54.2
- 4 E12    1.61  49.6
- 5 E13    2.91  46.6
- 6 E14    1.78  41.0
- 7 E2     3.18  44.1
- 8 E3     4.06  52.9
- 9 E4     3.68  50  
-10 E5     3.91  52.2
-11 E6     2.66  45.9
-12 E7     1.99  48.5
-13 E8     2.54  45.2
-14 E9     3.06  51.3</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Genotype means</span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(mge, <span class="dt">what =</span> <span class="st">"gen_means"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
-<pre><code>Class of the model: ge_means</code></pre>
-<pre><code>Variable extracted: gen_means</code></pre>
-<pre><code># A tibble: 10 x 3
-   GEN      GY    HM
-   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 G1     2.6   47.1
- 2 G10    2.47  48.5
- 3 G2     2.74  46.7
- 4 G3     2.96  47.6
- 5 G4     2.64  48.0
- 6 G5     2.54  49.3
- 7 G6     2.53  48.7
- 8 G7     2.74  48.0
- 9 G8     3     49.1
-10 G9     2.51  47.9</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">mge &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_means.html">ge_means</a></span>(data_ge,</a>
+<a class="sourceLine" id="cb4-2" title="2">                <span class="dt">env =</span> ENV,</a>
+<a class="sourceLine" id="cb4-3" title="3">                <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb4-4" title="4">                <span class="dt">resp =</span> <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co"># Genotype-environment means</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(mge) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co"># Class of the model: ge_means</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co"># Variable extracted: ge_means</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co"># # A tibble: 140 x 4</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#    ENV   GEN      GY    HM</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#    &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#  1 E1    G1     2.37  46.5</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#  2 E1    G10    1.97  46.9</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#  3 E1    G2     2.9   45.3</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#  4 E1    G3     2.89  45.9</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#  5 E1    G4     2.59  48.3</span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#  6 E1    G5     2.19  49.9</span></a>
+<a class="sourceLine" id="cb4-18" title="18"><span class="co">#  7 E1    G6     2.3   48.2</span></a>
+<a class="sourceLine" id="cb4-19" title="19"><span class="co">#  8 E1    G7     2.77  47.4</span></a>
+<a class="sourceLine" id="cb4-20" title="20"><span class="co">#  9 E1    G8     2.9   48.0</span></a>
+<a class="sourceLine" id="cb4-21" title="21"><span class="co"># 10 E1    G9     2.33  47.7</span></a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="co"># # ... with 130 more rows</span></a>
+<a class="sourceLine" id="cb4-23" title="23"><span class="co"># Environment means</span></a>
+<a class="sourceLine" id="cb4-24" title="24"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(mge, <span class="dt">what =</span> <span class="st">"env_means"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a>
+<a class="sourceLine" id="cb4-25" title="25"><span class="co"># Class of the model: ge_means</span></a>
+<a class="sourceLine" id="cb4-26" title="26"><span class="co"># Variable extracted: env_means</span></a>
+<a class="sourceLine" id="cb4-27" title="27"><span class="co"># # A tibble: 14 x 3</span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="co">#    ENV      GY    HM</span></a>
+<a class="sourceLine" id="cb4-29" title="29"><span class="co">#    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-30" title="30"><span class="co">#  1 E1     2.52  47.4</span></a>
+<a class="sourceLine" id="cb4-31" title="31"><span class="co">#  2 E10    2.18  44.3</span></a>
+<a class="sourceLine" id="cb4-32" title="32"><span class="co">#  3 E11    1.37  54.2</span></a>
+<a class="sourceLine" id="cb4-33" title="33"><span class="co">#  4 E12    1.61  49.6</span></a>
+<a class="sourceLine" id="cb4-34" title="34"><span class="co">#  5 E13    2.91  46.6</span></a>
+<a class="sourceLine" id="cb4-35" title="35"><span class="co">#  6 E14    1.78  41.0</span></a>
+<a class="sourceLine" id="cb4-36" title="36"><span class="co">#  7 E2     3.18  44.1</span></a>
+<a class="sourceLine" id="cb4-37" title="37"><span class="co">#  8 E3     4.06  52.9</span></a>
+<a class="sourceLine" id="cb4-38" title="38"><span class="co">#  9 E4     3.68  50  </span></a>
+<a class="sourceLine" id="cb4-39" title="39"><span class="co"># 10 E5     3.91  52.2</span></a>
+<a class="sourceLine" id="cb4-40" title="40"><span class="co"># 11 E6     2.66  45.9</span></a>
+<a class="sourceLine" id="cb4-41" title="41"><span class="co"># 12 E7     1.99  48.5</span></a>
+<a class="sourceLine" id="cb4-42" title="42"><span class="co"># 13 E8     2.54  45.2</span></a>
+<a class="sourceLine" id="cb4-43" title="43"><span class="co"># 14 E9     3.06  51.3</span></a>
+<a class="sourceLine" id="cb4-44" title="44"><span class="co"># Genotype means</span></a>
+<a class="sourceLine" id="cb4-45" title="45"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(mge, <span class="dt">what =</span> <span class="st">"gen_means"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a>
+<a class="sourceLine" id="cb4-46" title="46"><span class="co"># Class of the model: ge_means</span></a>
+<a class="sourceLine" id="cb4-47" title="47"><span class="co"># Variable extracted: gen_means</span></a>
+<a class="sourceLine" id="cb4-48" title="48"><span class="co"># # A tibble: 10 x 3</span></a>
+<a class="sourceLine" id="cb4-49" title="49"><span class="co">#    GEN      GY    HM</span></a>
+<a class="sourceLine" id="cb4-50" title="50"><span class="co">#    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-51" title="51"><span class="co">#  1 G1     2.6   47.1</span></a>
+<a class="sourceLine" id="cb4-52" title="52"><span class="co">#  2 G10    2.47  48.5</span></a>
+<a class="sourceLine" id="cb4-53" title="53"><span class="co">#  3 G2     2.74  46.7</span></a>
+<a class="sourceLine" id="cb4-54" title="54"><span class="co">#  4 G3     2.96  47.6</span></a>
+<a class="sourceLine" id="cb4-55" title="55"><span class="co">#  5 G4     2.64  48.0</span></a>
+<a class="sourceLine" id="cb4-56" title="56"><span class="co">#  6 G5     2.54  49.3</span></a>
+<a class="sourceLine" id="cb4-57" title="57"><span class="co">#  7 G6     2.53  48.7</span></a>
+<a class="sourceLine" id="cb4-58" title="58"><span class="co">#  8 G7     2.74  48.0</span></a>
+<a class="sourceLine" id="cb4-59" title="59"><span class="co">#  9 G8     3     49.1</span></a>
+<a class="sourceLine" id="cb4-60" title="60"><span class="co"># 10 G9     2.51  47.9</span></a></code></pre></div>
 </div>
 <div id="ammi-model" class="section level1">
 <h1 class="hasAnchor">
@@ -309,54 +309,54 @@
 <h2 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h2>
 <p>The AMMI model may be fitted with with both functions <code><a href="../reference/performs_ammi.html">performs_ammi()</a></code> and <code><a href="../reference/waas.html">waas()</a></code>, which is the acronym for the weighted average of absolute scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">ammi_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/performs_ammi.html">performs_ammi</a></span>(data_ge, ENV, GEN, REP, <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(GY, HM))</a></code></pre></div>
-<pre><code>variable GY 
----------------------------------------------------------------------------
-AMMI analysis table
----------------------------------------------------------------------------
-    Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
-       ENV  13 279.574 21.5057   62.33 0.00e+00       .       .
-  REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .
-       GEN   9  12.995  1.4439   14.93 2.19e-19       .       .
-   GEN:ENV 117  31.220  0.2668    2.76 1.01e-11       .       .
-       PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4
-       PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2
-       PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2
-       PC4  15   3.074  0.2049    2.12 9.60e-03     9.8      89
-       PC5  13   1.446  0.1113    1.15 3.18e-01     4.6    93.6
-       PC6  11   0.932  0.0848    0.88 5.61e-01       3    96.6
-       PC7   9   0.567  0.0630    0.65 7.53e-01     1.8    98.4
-       PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6
-       PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100
- Residuals 252  24.367  0.0967      NA       NA       .       .
-     Total 419 357.816  0.8540      NA       NA    &lt;NA&gt;    &lt;NA&gt;
----------------------------------------------------------------------------
-
-variable HM 
----------------------------------------------------------------------------
-AMMI analysis table
----------------------------------------------------------------------------
-    Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul
-       ENV  13 5710.32 439.255   57.22 1.11e-16       .       .
-  REP(ENV)  28  214.93   7.676    2.70 2.20e-05       .       .
-       GEN   9  269.81  29.979   10.56 7.41e-14       .       .
-   GEN:ENV 117 1100.73   9.408    3.31 1.06e-15       .       .
-       PC1  21  381.13  18.149    6.39 0.00e+00    34.6    34.6
-       PC2  19  319.43  16.812    5.92 0.00e+00      29    63.6
-       PC3  17  114.26   6.721    2.37 2.10e-03    10.4      74
-       PC4  15   81.96   5.464    1.92 2.18e-02     7.4    81.5
-       PC5  13   68.11   5.240    1.84 3.77e-02     6.2    87.7
-       PC6  11   59.07   5.370    1.89 4.10e-02     5.4      93
-       PC7   9   46.69   5.188    1.83 6.33e-02     4.2    97.3
-       PC8   7   26.65   3.808    1.34 2.32e-01     2.4    99.7
-       PC9   5    3.41   0.682    0.24 9.45e-01     0.3     100
- Residuals 252  715.69   2.840      NA       NA       .       .
-     Total 419 8011.48  19.120      NA       NA    &lt;NA&gt;    &lt;NA&gt;
----------------------------------------------------------------------------
-
-All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-Done!</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">waas_index &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">ammi_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/performs_ammi.html">performs_ammi</a></span>(data_ge, ENV, GEN, REP, <span class="dt">resp =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(GY, HM))</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co"># variable GY </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co"># AMMI analysis table</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#        GEN   9  12.995  1.4439   14.93 2.19e-19       .       .</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">#    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11       .       .</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">#        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4</span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co">#        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co">#        PC4  15   3.074  0.2049    2.12 9.60e-03     9.8      89</span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="co">#        PC5  13   1.446  0.1113    1.15 3.18e-01     4.6    93.6</span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co">#        PC6  11   0.932  0.0848    0.88 5.61e-01       3    96.6</span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="co">#        PC7   9   0.567  0.0630    0.65 7.53e-01     1.8    98.4</span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="co">#        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6</span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co">#        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100</span></a>
+<a class="sourceLine" id="cb5-20" title="20"><span class="co">#  Residuals 252  24.367  0.0967      NA       NA       .       .</span></a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="co">#      Total 419 357.816  0.8540      NA       NA    &lt;NA&gt;    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-22" title="22"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-23" title="23"><span class="co"># </span></a>
+<a class="sourceLine" id="cb5-24" title="24"><span class="co"># variable HM </span></a>
+<a class="sourceLine" id="cb5-25" title="25"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-26" title="26"><span class="co"># AMMI analysis table</span></a>
+<a class="sourceLine" id="cb5-27" title="27"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-28" title="28"><span class="co">#     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul</span></a>
+<a class="sourceLine" id="cb5-29" title="29"><span class="co">#        ENV  13 5710.32 439.255   57.22 1.11e-16       .       .</span></a>
+<a class="sourceLine" id="cb5-30" title="30"><span class="co">#   REP(ENV)  28  214.93   7.676    2.70 2.20e-05       .       .</span></a>
+<a class="sourceLine" id="cb5-31" title="31"><span class="co">#        GEN   9  269.81  29.979   10.56 7.41e-14       .       .</span></a>
+<a class="sourceLine" id="cb5-32" title="32"><span class="co">#    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15       .       .</span></a>
+<a class="sourceLine" id="cb5-33" title="33"><span class="co">#        PC1  21  381.13  18.149    6.39 0.00e+00    34.6    34.6</span></a>
+<a class="sourceLine" id="cb5-34" title="34"><span class="co">#        PC2  19  319.43  16.812    5.92 0.00e+00      29    63.6</span></a>
+<a class="sourceLine" id="cb5-35" title="35"><span class="co">#        PC3  17  114.26   6.721    2.37 2.10e-03    10.4      74</span></a>
+<a class="sourceLine" id="cb5-36" title="36"><span class="co">#        PC4  15   81.96   5.464    1.92 2.18e-02     7.4    81.5</span></a>
+<a class="sourceLine" id="cb5-37" title="37"><span class="co">#        PC5  13   68.11   5.240    1.84 3.77e-02     6.2    87.7</span></a>
+<a class="sourceLine" id="cb5-38" title="38"><span class="co">#        PC6  11   59.07   5.370    1.89 4.10e-02     5.4      93</span></a>
+<a class="sourceLine" id="cb5-39" title="39"><span class="co">#        PC7   9   46.69   5.188    1.83 6.33e-02     4.2    97.3</span></a>
+<a class="sourceLine" id="cb5-40" title="40"><span class="co">#        PC8   7   26.65   3.808    1.34 2.32e-01     2.4    99.7</span></a>
+<a class="sourceLine" id="cb5-41" title="41"><span class="co">#        PC9   5    3.41   0.682    0.24 9.45e-01     0.3     100</span></a>
+<a class="sourceLine" id="cb5-42" title="42"><span class="co">#  Residuals 252  715.69   2.840      NA       NA       .       .</span></a>
+<a class="sourceLine" id="cb5-43" title="43"><span class="co">#      Total 419 8011.48  19.120      NA       NA    &lt;NA&gt;    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-44" title="44"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-45" title="45"><span class="co"># </span></a>
+<a class="sourceLine" id="cb5-46" title="46"><span class="co"># All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span></a>
+<a class="sourceLine" id="cb5-47" title="47"><span class="co"># Done!</span></a>
+<a class="sourceLine" id="cb5-48" title="48">waas_index &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waas.html">waas</a></span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="cross-validation-procedures" class="section level2">
 <h2 class="hasAnchor">
@@ -367,160 +367,160 @@ Done!</code></pre>
 <h2 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h2>
 <p>The well-known AMMI2 biplot may be obtained using the function <code><a href="../reference/plot_scores.html">plot_scores()</a></code>. ggplot2-based graphics are obtained. Please, note that since <code><a href="../reference/performs_ammi.html">performs_ammi()</a></code> and , <code><a href="../reference/waas.html">waas()</a></code> functions allow analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>ammi_model</code> is a list that in this case has two elements, (GY and HM).</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(ammi_model, <span class="dt">axis.expand =</span> <span class="fl">1.2</span>)</a>
-<a class="sourceLine" id="cb21-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(ammi_model,</a>
-<a class="sourceLine" id="cb21-3" title="3">                 <span class="dt">type =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb21-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb21-5" title="5">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb21-6" title="6">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb21-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
-<a class="sourceLine" id="cb21-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb21-9" title="9"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(ammi_model, <span class="dt">axis.expand =</span> <span class="fl">1.2</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(ammi_model,</a>
+<a class="sourceLine" id="cb6-3" title="3">                 <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb6-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-5" title="5">                 <span class="dt">col.gen =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb6-6" title="6">                 <span class="dt">col.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb6-7" title="7">                 <span class="dt">col.segm.env =</span> <span class="st">"gray70"</span>,</a>
+<a class="sourceLine" id="cb6-8" title="8">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(a, b, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-6-1.png" width="480"></p>
 </div>
 <div id="predict-the-response-variable" class="section level2">
 <h2 class="hasAnchor">
 <a href="#predict-the-response-variable" class="anchor"></a>Predict the response variable</h2>
 <p>The S3 method <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> is implemented for objects of class <code>performs_ammi</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively). In addition, we will create a two way table with <code><a href="../reference/make_mat.html">make_mat()</a></code> to show the predicted values for the variable GY.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">predicted &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(ammi_model, <span class="dt">naxis =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">6</span>))</a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(predicted<span class="op">$</span>GY, GEN, ENV, YpredAMMI) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
-<pre><code>      E1  E10  E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9
-G1  2.52 2.15 1.30 1.60 3.05 1.62 3.01 4.06 3.53 4.02 2.63 1.87 2.39 2.71
-G10 1.96 1.52 0.89 1.04 1.83 1.90 3.13 4.16 4.21 3.34 2.54 2.18 2.75 3.15
-G2  2.88 2.28 1.48 1.93 3.02 1.48 3.23 4.62 3.62 3.84 2.69 1.90 2.05 3.39
-G3  2.76 2.46 1.71 1.84 3.28 2.07 3.62 4.22 4.05 4.21 2.94 2.09 2.88 3.24
-G4  2.54 2.24 1.41 1.66 2.70 1.78 3.16 3.88 3.38 3.61 2.51 2.06 2.40 3.65
-G5  2.31 2.09 1.32 1.44 2.64 1.77 3.21 3.62 3.47 3.55 2.44 1.83 2.49 3.34
-G6  2.30 2.17 1.40 1.43 2.88 1.77 3.26 3.40 3.41 3.68 2.43 1.67 2.56 3.12
-G7  2.75 2.48 1.36 1.88 3.12 1.88 2.63 4.05 3.05 4.20 2.70 2.57 2.50 3.19
-G8  2.84 2.57 1.72 1.92 3.62 2.10 3.43 4.26 3.97 4.59 3.06 2.19 2.97 2.79
-G9  2.34 1.79 1.10 1.34 2.96 1.43 3.11 4.38 4.06 4.07 2.69 1.53 2.37 1.99</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">predicted &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(ammi_model, <span class="dt">naxis =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>, <span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="../reference/make_mat.html">make_mat</a></span>(predicted<span class="op">$</span>GY, GEN, ENV, YpredAMMI) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co">#       E1  E10  E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9</span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co"># G1  2.52 2.15 1.30 1.60 3.05 1.62 3.01 4.06 3.53 4.02 2.63 1.87 2.39 2.71</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co"># G10 1.96 1.52 0.89 1.04 1.83 1.90 3.13 4.16 4.21 3.34 2.54 2.18 2.75 3.15</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co"># G2  2.88 2.28 1.48 1.93 3.02 1.48 3.23 4.62 3.62 3.84 2.69 1.90 2.05 3.39</span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="co"># G3  2.76 2.46 1.71 1.84 3.28 2.07 3.62 4.22 4.05 4.21 2.94 2.09 2.88 3.24</span></a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="co"># G4  2.54 2.24 1.41 1.66 2.70 1.78 3.16 3.88 3.38 3.61 2.51 2.06 2.40 3.65</span></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="co"># G5  2.31 2.09 1.32 1.44 2.64 1.77 3.21 3.62 3.47 3.55 2.44 1.83 2.49 3.34</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co"># G6  2.30 2.17 1.40 1.43 2.88 1.77 3.26 3.40 3.41 3.68 2.43 1.67 2.56 3.12</span></a>
+<a class="sourceLine" id="cb7-12" title="12"><span class="co"># G7  2.75 2.48 1.36 1.88 3.12 1.88 2.63 4.05 3.05 4.20 2.70 2.57 2.50 3.19</span></a>
+<a class="sourceLine" id="cb7-13" title="13"><span class="co"># G8  2.84 2.57 1.72 1.92 3.62 2.10 3.43 4.26 3.97 4.59 3.06 2.19 2.97 2.79</span></a>
+<a class="sourceLine" id="cb7-14" title="14"><span class="co"># G9  2.34 1.79 1.10 1.34 2.96 1.43 3.11 4.38 4.06 4.07 2.69 1.53 2.37 1.99</span></a></code></pre></div>
 </div>
 </div>
 <div id="blup-model" class="section level1">
 <h1 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h1>
 <p>The implementation of linear-mixed effect models to predict the response variable in MET is made with the function <code><a href="../reference/waasb.html">waasb()</a></code>. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument <code>random</code> to change this default. In the following example the model is fitted to all numeric variables in <code>data_ge2</code>.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(data_ge, ENV, GEN, REP, <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a></code></pre></div>
-<pre><code>Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
----------------------------------------------------------------------------
-P-values for Likelihood Ratio Test of the analyzed traits
----------------------------------------------------------------------------
-    model       GY       HM
- COMPLETE       NA       NA
-      GEN 1.11e-05 5.07e-03
-  GEN:ENV 2.15e-11 2.27e-15
----------------------------------------------------------------------------
-All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/waasb.html">waasb</a></span>(data_ge, ENV, GEN, REP, <span class="kw"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co"># Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) </span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co"># P-values for Likelihood Ratio Test of the analyzed traits</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">#     model       GY       HM</span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co">#  COMPLETE       NA       NA</span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co">#       GEN 1.11e-05 5.07e-03</span></a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="co">#   GEN:ENV 2.15e-11 2.27e-15</span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co"># ---------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="co"># All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span></a></code></pre></div>
 <div id="residual-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#residual-plots" class="anchor"></a>Residual plots</h2>
 <p>Several residual plots may be obtained applying the S3 generic function <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> to an object of class <code>waasb</code> (or <code>waas</code>).</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-9-1.png" width="384"></p>
 </div>
 <div id="distribution-of-random-effects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#distribution-of-random-effects" class="anchor"></a>Distribution of random effects</h2>
 <p>The distribution of the random effects may be obtained using the argument <code>type = "re"</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2, <span class="dt">type =</span> <span class="st">"re"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2, <span class="dt">type =</span> <span class="st">"re"</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-10-1.png" width="384"></p>
 </div>
 <div id="genetic-parameters-and-variance-components" class="section level2">
 <h2 class="hasAnchor">
 <a href="#genetic-parameters-and-variance-components" class="anchor"></a>Genetic parameters and variance components</h2>
 <p>We can get easily the model results such as the Likelihood Ration Test for random effects, the variance components, and the BLUPs for genotypes with <code><a href="../reference/get_model_data.html">get_model_data()</a></code>. By default for an object of class <code>waasb</code> the function returns the genetic parameters.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(model2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>(<span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
-<pre><code>Class of the model: waasb</code></pre>
-<pre><code>Variable extracted: genpar</code></pre>
-<pre><code># A tibble: 9 x 3
-  Parameters                GY    HM
-  &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt;
-1 Phenotypic variance    0.181 5.52 
-2 Heritability           0.154 0.089
-3 GEIr2                  0.313 0.397
-4 Heribatility of means  0.815 0.686
-5 Accuracy               0.903 0.828
-6 rge                    0.37  0.435
-7 CVg                    6.26  1.46 
-8 CVr                   11.6   3.50 
-9 CV ratio               0.538 0.415</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(model2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>(<span class="dt">digits =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="co"># Class of the model: waasb</span></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="co"># Variable extracted: genpar</span></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="co"># # A tibble: 9 x 3</span></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="co">#   Parameters                GY    HM</span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="co">#   &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb11-7" title="7"><span class="co"># 1 Phenotypic variance    0.181 5.52 </span></a>
+<a class="sourceLine" id="cb11-8" title="8"><span class="co"># 2 Heritability           0.154 0.089</span></a>
+<a class="sourceLine" id="cb11-9" title="9"><span class="co"># 3 GEIr2                  0.313 0.397</span></a>
+<a class="sourceLine" id="cb11-10" title="10"><span class="co"># 4 Heribatility of means  0.815 0.686</span></a>
+<a class="sourceLine" id="cb11-11" title="11"><span class="co"># 5 Accuracy               0.903 0.828</span></a>
+<a class="sourceLine" id="cb11-12" title="12"><span class="co"># 6 rge                    0.37  0.435</span></a>
+<a class="sourceLine" id="cb11-13" title="13"><span class="co"># 7 CVg                    6.26  1.46 </span></a>
+<a class="sourceLine" id="cb11-14" title="14"><span class="co"># 8 CVr                   11.6   3.50 </span></a>
+<a class="sourceLine" id="cb11-15" title="15"><span class="co"># 9 CV ratio               0.538 0.415</span></a></code></pre></div>
 </div>
 <div id="plotting-the-blups-for-genotypes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-the-blups-for-genotypes" class="anchor"></a>Plotting the BLUPs for genotypes</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb32-2" title="2">c &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2)</a>
-<a class="sourceLine" id="cb32-3" title="3">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2,</a>
-<a class="sourceLine" id="cb32-4" title="4">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb32-5" title="5">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-6" title="6"><span class="st">      </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb32-7" title="7"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(c, d,<span class="dt">labels =</span> letters[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb12-2" title="2">c &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2)</a>
+<a class="sourceLine" id="cb12-3" title="3">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_blup.html">plot_blup</a></span>(model2,</a>
+<a class="sourceLine" id="cb12-4" title="4">               <span class="dt">prob =</span> <span class="fl">0.1</span>,</a>
+<a class="sourceLine" id="cb12-5" title="5">               <span class="dt">col.shape  =</span>  <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="st">      </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(c, d,<span class="dt">labels =</span> letters[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-12-1.png" width="384"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blups-for-genotype-vs-environment-interaction" class="anchor"></a>BLUPS for genotype-vs-environment interaction</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(model2, <span class="dt">what =</span> <span class="st">"blupge"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb33-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
-<pre><code>Class of the model: waasb</code></pre>
-<pre><code>Variable extracted: blupge</code></pre>
-<pre><code># A tibble: 140 x 4
-   ENV   GEN      GY    HM
-   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 E1    G1     2.4   46.6
- 2 E1    G10    2.11  47.2
- 3 E1    G2     2.78  45.7
- 4 E1    G3     2.84  46.2
- 5 E1    G4     2.55  48.0
- 6 E1    G5     2.27  49.4
- 7 E1    G6     2.34  48.1
- 8 E1    G7     2.7   47.4
- 9 E1    G8     2.86  48.0
-10 E1    G9     2.35  47.6
-# ... with 130 more rows</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(model2, <span class="dt">what =</span> <span class="st">"blupge"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co"># Class of the model: waasb</span></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="co"># Variable extracted: blupge</span></a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="co"># # A tibble: 140 x 4</span></a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="co">#    ENV   GEN      GY    HM</span></a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="co">#    &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb13-8" title="8"><span class="co">#  1 E1    G1     2.4   46.6</span></a>
+<a class="sourceLine" id="cb13-9" title="9"><span class="co">#  2 E1    G10    2.11  47.2</span></a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="co">#  3 E1    G2     2.78  45.7</span></a>
+<a class="sourceLine" id="cb13-11" title="11"><span class="co">#  4 E1    G3     2.84  46.2</span></a>
+<a class="sourceLine" id="cb13-12" title="12"><span class="co">#  5 E1    G4     2.55  48.0</span></a>
+<a class="sourceLine" id="cb13-13" title="13"><span class="co">#  6 E1    G5     2.27  49.4</span></a>
+<a class="sourceLine" id="cb13-14" title="14"><span class="co">#  7 E1    G6     2.34  48.1</span></a>
+<a class="sourceLine" id="cb13-15" title="15"><span class="co">#  8 E1    G7     2.7   47.4</span></a>
+<a class="sourceLine" id="cb13-16" title="16"><span class="co">#  9 E1    G8     2.86  48.0</span></a>
+<a class="sourceLine" id="cb13-17" title="17"><span class="co"># 10 E1    G9     2.35  47.6</span></a>
+<a class="sourceLine" id="cb13-18" title="18"><span class="co"># # ... with 130 more rows</span></a></code></pre></div>
 </div>
 <div id="blup-based-stability-index" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blup-based-stability-index" class="anchor"></a>BLUP-based stability index</h2>
 <p>The WAASB index <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects. We can use the argument <code>what = "WAASB"</code> to get this statistic.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(model2, <span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
-<pre><code>Class of the model: waasb</code></pre>
-<pre><code>Variable extracted: WAASB</code></pre>
-<pre><code># A tibble: 10 x 3
-   gen      GY    HM
-   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 G1     0.13  0.38
- 2 G10    0.46  1.03
- 3 G2     0.21  0.79
- 4 G3     0.1   0.36
- 5 G4     0.25  0.6 
- 6 G5     0.22  0.88
- 7 G6     0.17  0.41
- 8 G7     0.32  0.68
- 9 G8     0.26  0.44
-10 G9     0.37  0.56</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(model2, <span class="dt">what =</span> <span class="st">"WAASB"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="co"># Class of the model: waasb</span></a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="co"># Variable extracted: WAASB</span></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="co"># # A tibble: 10 x 3</span></a>
+<a class="sourceLine" id="cb14-6" title="6"><span class="co">#    gen      GY    HM</span></a>
+<a class="sourceLine" id="cb14-7" title="7"><span class="co">#    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb14-8" title="8"><span class="co">#  1 G1     0.13  0.38</span></a>
+<a class="sourceLine" id="cb14-9" title="9"><span class="co">#  2 G10    0.46  1.03</span></a>
+<a class="sourceLine" id="cb14-10" title="10"><span class="co">#  3 G2     0.21  0.79</span></a>
+<a class="sourceLine" id="cb14-11" title="11"><span class="co">#  4 G3     0.1   0.36</span></a>
+<a class="sourceLine" id="cb14-12" title="12"><span class="co">#  5 G4     0.25  0.6 </span></a>
+<a class="sourceLine" id="cb14-13" title="13"><span class="co">#  6 G5     0.22  0.88</span></a>
+<a class="sourceLine" id="cb14-14" title="14"><span class="co">#  7 G6     0.17  0.41</span></a>
+<a class="sourceLine" id="cb14-15" title="15"><span class="co">#  8 G7     0.32  0.68</span></a>
+<a class="sourceLine" id="cb14-16" title="16"><span class="co">#  9 G8     0.26  0.44</span></a>
+<a class="sourceLine" id="cb14-17" title="17"><span class="co"># 10 G9     0.37  0.56</span></a></code></pre></div>
 <p>The function <code><a href="../reference/Resende_indexes.html">Resende_indexes()</a></code> may be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See <span class="citation">Alves et al. (<a href="#ref-Alves2018" role="doc-biblioref">2018</a>)</span> for more details. We use the function <code><a href="../reference/get_model_data.html">get_model_data()</a></code> to get the HMRPGV (default) for all analyzed variables.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">index &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>(model2)</a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(index, <span class="st">"HMRPGV"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
-<pre><code>Class of the model: Res_ind</code></pre>
-<pre><code>Variable extracted: HMRPGV</code></pre>
-<pre><code># A tibble: 10 x 3
-   gen      GY    HM
-   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 G1     0.97  0.98
- 2 G10    0.9   1.01
- 3 G2     1.02  0.97
- 4 G3     1.1   0.99
- 5 G4     0.99  1   
- 6 G5     0.95  1.02
- 7 G6     0.95  1.01
- 8 G7     1.03  1   
- 9 G8     1.12  1.02
-10 G9     0.92  1   </code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">index &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span>(model2)</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(index, <span class="st">"HMRPGV"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="co"># Class of the model: Res_ind</span></a>
+<a class="sourceLine" id="cb15-5" title="5"><span class="co"># Variable extracted: HMRPGV</span></a>
+<a class="sourceLine" id="cb15-6" title="6"><span class="co"># # A tibble: 10 x 3</span></a>
+<a class="sourceLine" id="cb15-7" title="7"><span class="co">#    gen      GY    HM</span></a>
+<a class="sourceLine" id="cb15-8" title="8"><span class="co">#    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb15-9" title="9"><span class="co">#  1 G1     0.97  0.98</span></a>
+<a class="sourceLine" id="cb15-10" title="10"><span class="co">#  2 G10    0.9   1.01</span></a>
+<a class="sourceLine" id="cb15-11" title="11"><span class="co">#  3 G2     1.02  0.97</span></a>
+<a class="sourceLine" id="cb15-12" title="12"><span class="co">#  4 G3     1.1   0.99</span></a>
+<a class="sourceLine" id="cb15-13" title="13"><span class="co">#  5 G4     0.99  1   </span></a>
+<a class="sourceLine" id="cb15-14" title="14"><span class="co">#  6 G5     0.95  1.02</span></a>
+<a class="sourceLine" id="cb15-15" title="15"><span class="co">#  7 G6     0.95  1.01</span></a>
+<a class="sourceLine" id="cb15-16" title="16"><span class="co">#  8 G7     1.03  1   </span></a>
+<a class="sourceLine" id="cb15-17" title="17"><span class="co">#  9 G8     1.12  1.02</span></a>
+<a class="sourceLine" id="cb15-18" title="18"><span class="co"># 10 G9     0.92  1</span></a></code></pre></div>
 </div>
 </div>
 <div id="gge-model" class="section level1">
@@ -530,7 +530,7 @@ All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 <h2 class="hasAnchor">
 <a href="#fitting-the-model-1" class="anchor"></a>Fitting the model</h2>
 <p>The GGE model is fitted with the function <code><a href="../reference/gge.html">gge()</a></code>. This function produces a GGE model based on both a two-way table (in our case the object <code>table</code>) with genotypes in the rows and environments in columns, or a data.frame containing at least the columns for genotypes, environments and the response variable(s).</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">gge_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gge.html">gge</a></span>(data_ge, ENV, GEN, GY)</a></code></pre></div>
 </div>
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">
@@ -558,9 +558,9 @@ All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 <li>
 <code>type =  10</code> Relationship among environments.</li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">e &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model)</a>
-<a class="sourceLine" id="cb46-2" title="2">f &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb46-3" title="3"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(e, f, <span class="dt">labels =</span> letters[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">e &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model)</a>
+<a class="sourceLine" id="cb17-2" title="2">f &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="kw"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(e, f, <span class="dt">labels =</span> letters[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-17-1.png" width="384"></p>
 </div>
 </div>
@@ -569,28 +569,28 @@ All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 <a href="#wrapper-function-ge_stats" class="anchor"></a>Wrapper function <code>ge_stats()</code>
 </h1>
 <p>To compute all the stability statistics at once, we can use the function <code><a href="../reference/ge_stats.html">ge_stats()</a></code>. Again we get the results with <code><a href="../reference/get_model_data.html">get_model_data()</a></code>.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">stat_ge &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb47-2" title="2"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(stat_ge) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a></code></pre></div>
-<pre><code>Class of the model: ge_stats</code></pre>
-<pre><code>Variable extracted: stats</code></pre>
-<pre><code># A tibble: 10 x 33
-   var   gen       Y    CV   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval   bij   Sij
-   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 GY    G1     2.6   35.2 10.9    0.03  84.4  89.2  81.1   1.22  1.06  0   
- 2 GY    G10    2.47  42.4 14.2    0.24  59.2  64.6  54.4   7.96  1.12  0.18
- 3 GY    G2     2.74  34.0 11.3    0.09  82.8  95.3  75.6   3.03  1.05  0.05
- 4 GY    G3     2.96  29.9 10.1    0.01 104.   99.7 107.    0.72  1.03 -0.01
- 5 GY    G4     2.64  31.4  8.93   0.06  85.9  79.6  91.9   2.34  0.94  0.03
- 6 GY    G5     2.54  30.6  7.82   0.05  82.7  82.2  82.4   1.84  0.89  0.01
- 7 GY    G6     2.53  29.6  7.34   0.05  83.0  83.7  81.8   1.81  0.86  0   
- 8 GY    G7     2.74  27.4  7.33   0.12  83.9  77.6  93.4   4.16  0.82  0.06
- 9 GY    G8     3     30.4 10.8    0.07  98.8  90.5 107.    2.57  1.03  0.04
-10 GY    G9     2.51  42.4 14.8    0.17  68.8  68.9  70.3   5.56  1.19  0.09
-# ... with 21 more variables: R2 &lt;dbl&gt;, ASV &lt;dbl&gt;, SIPC &lt;dbl&gt;, EV &lt;dbl&gt;,
-#   ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;,
-#   Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;, S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;,
-#   N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">stat_ge &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_stats.html">ge_stats</a></span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw"><a href="../reference/get_model_data.html">get_model_data</a></span>(stat_ge) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/utils_num_str.html">round_cols</a></span>()</a>
+<a class="sourceLine" id="cb18-4" title="4"><span class="co"># Class of the model: ge_stats</span></a>
+<a class="sourceLine" id="cb18-5" title="5"><span class="co"># Variable extracted: stats</span></a>
+<a class="sourceLine" id="cb18-6" title="6"><span class="co"># # A tibble: 10 x 33</span></a>
+<a class="sourceLine" id="cb18-7" title="7"><span class="co">#    var   gen       Y    CV   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval   bij   Sij</span></a>
+<a class="sourceLine" id="cb18-8" title="8"><span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb18-9" title="9"><span class="co">#  1 GY    G1     2.6   35.2 10.9    0.03  84.4  89.2  81.1   1.22  1.06  0   </span></a>
+<a class="sourceLine" id="cb18-10" title="10"><span class="co">#  2 GY    G10    2.47  42.4 14.2    0.24  59.2  64.6  54.4   7.96  1.12  0.18</span></a>
+<a class="sourceLine" id="cb18-11" title="11"><span class="co">#  3 GY    G2     2.74  34.0 11.3    0.09  82.8  95.3  75.6   3.03  1.05  0.05</span></a>
+<a class="sourceLine" id="cb18-12" title="12"><span class="co">#  4 GY    G3     2.96  29.9 10.1    0.01 104.   99.7 107.    0.72  1.03 -0.01</span></a>
+<a class="sourceLine" id="cb18-13" title="13"><span class="co">#  5 GY    G4     2.64  31.4  8.93   0.06  85.9  79.6  91.9   2.34  0.94  0.03</span></a>
+<a class="sourceLine" id="cb18-14" title="14"><span class="co">#  6 GY    G5     2.54  30.6  7.82   0.05  82.7  82.2  82.4   1.84  0.89  0.01</span></a>
+<a class="sourceLine" id="cb18-15" title="15"><span class="co">#  7 GY    G6     2.53  29.6  7.34   0.05  83.0  83.7  81.8   1.81  0.86  0   </span></a>
+<a class="sourceLine" id="cb18-16" title="16"><span class="co">#  8 GY    G7     2.74  27.4  7.33   0.12  83.9  77.6  93.4   4.16  0.82  0.06</span></a>
+<a class="sourceLine" id="cb18-17" title="17"><span class="co">#  9 GY    G8     3     30.4 10.8    0.07  98.8  90.5 107.    2.57  1.03  0.04</span></a>
+<a class="sourceLine" id="cb18-18" title="18"><span class="co"># 10 GY    G9     2.51  42.4 14.8    0.17  68.8  68.9  70.3   5.56  1.19  0.09</span></a>
+<a class="sourceLine" id="cb18-19" title="19"><span class="co"># # ... with 21 more variables: R2 &lt;dbl&gt;, ASV &lt;dbl&gt;, SIPC &lt;dbl&gt;, EV &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb18-20" title="20"><span class="co"># #   ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb18-21" title="21"><span class="co"># #   Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;, S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb18-22" title="22"><span class="co"># #   N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</span></a></code></pre></div>
 </div>
 <div id="selection-based-on-multiple-traits" class="section level1">
 <h1 class="hasAnchor">
