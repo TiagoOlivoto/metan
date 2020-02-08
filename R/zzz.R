@@ -160,8 +160,8 @@ NULL
   packageStartupMessage("[]=====================================================================[]")
   packageStartupMessage("[] Multi-Environment Trial Analysis (metan) ", metan_version, "        []")
   packageStartupMessage("[] Author: Tiago Olivoto                                               []")
-  packageStartupMessage("[] Type 'vignette('metan_start')' for a short tutorial                 []")
-  packageStartupMessage("[] Type 'citation('metan')' to know how to cite metan                  []")
+  packageStartupMessage("[] Type vignette('metan_start') for a short tutorial                   []")
+  packageStartupMessage("[] Type citation('metan') to know how to cite metan                    []")
   packageStartupMessage("[] For a complete tutorial visit https://tiagoolivoto.github.io/metan/ []")
   packageStartupMessage("[]=====================================================================[]")
 }
