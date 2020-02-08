@@ -306,7 +306,7 @@
 <div id="deprecated-arguments" class="section level2">
 <h2 class="hasAnchor">
 <a href="#deprecated-arguments" class="anchor"></a>Deprecated arguments</h2>
-<p>Argument <code>means_by</code> was deprecated in functions <code>can_cor()</code> and <code>clustering</code>. Use <code><a href="../reference/utils_stats.html">means_by()</a></code> to pass data based on means of factor to these function.</p>
+<p>Argument <code>means_by</code> was deprecated in functions <code><a href="../reference/can_corr.html">can_corr()</a></code> and <code><a href="../reference/clustering.html">clustering()</a></code>. Use <code><a href="../reference/utils_stats.html">means_by()</a></code> to pass data based on means of factor to these function.</p>
 </div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -327,9 +327,7 @@
 <li>
 <code><a href="../reference/inspect.html">inspect()</a></code>, <code><a href="../reference/cv_blup.html">cv_blup()</a></code>, <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code>, and <code><a href="../reference/cv_ammi.html">cv_ammi()</a></code> now generate a warning message saying that is not possible to compute cross-validation procedures in experiments with two replicates only. Thanks to <a href="https://www.researchgate.net/profile/Vlatko_Galic2">@Vlatko</a> for his email.</li>
 <li>
-<code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code> now returns heatmaps created with ggplot2 instead gplots <code><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html">gplots::heatmap.2()</a></code>
-</li>
-<li>Remove dependency on <code>gplots</code>.</li>
+<code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code> now returns heatmaps created with ggplot2. Thus, we removed dependency on <code>gplots</code>.</li>
 <li>Vignettes updated</li>
 </ul>
 </div>
@@ -424,7 +422,7 @@
 <li>New function <code><a href="../reference/corr_coef.html">corr_coef()</a></code> for computing correlation coefficients and p-values;</li>
 <li>New S3 method <code><a href="../reference/plot.corr_coef.html">plot.corr_coef()</a></code> for creating correlation heat maps;</li>
 <li>New S3 method <code><a href="../reference/print.corr_coef.html">print.corr_coef()</a></code> for printing correlation and p-values;</li>
-<li>New helper functions <code><a href="../reference/make_lower_tri.html">make_lower_tri()</a></code> and <code><a href="../reference/make_upper_tri.html">make_upper_tri()</a></code> for creating lower and upper triangular matrices, respectively.</li>
+<li>New helper functions <code><a href="../reference/utils_mat.html">make_lower_tri()</a></code> and <code><a href="../reference/utils_mat.html">make_upper_tri()</a></code> for creating lower and upper triangular matrices, respectively.</li>
 <li>New helper function <code><a href="../reference/reorder_cormat.html">reorder_cormat()</a></code> for reordering a correlation matrix according to the correlation coefficients;</li>
 <li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> by supporting new classes of models. Now, <code><a href="../reference/get_model_data.html">get_model_data()</a></code> can be used to get all statistics or ranks computed with the wrapper function <code><a href="../reference/ge_stats.html">ge_stats()</a></code>.</li>
 <li>
@@ -481,7 +479,7 @@
 <li><code>Annichiarico()</code></li>
 <li><code><a href="../reference/anova_ind.html">anova_ind()</a></code></li>
 <li><code><a href="../reference/as.lpcor.html">as.lpcor()</a></code></li>
-<li><code><a href="../reference/as.split_factors.html">as.split_factors()</a></code></li>
+<li><code><a href="../reference/split_factors.html">as.split_factors()</a></code></li>
 <li><code><a href="../reference/bind_cv.html">bind_cv()</a></code></li>
 <li><code>can_cor()</code></li>
 <li><code><a href="../reference/comb_vars.html">comb_vars()</a></code></li>
@@ -500,11 +498,11 @@
 <li><code><a href="../reference/ge_stats.html">ge_stats()</a></code></li>
 <li><code><a href="../reference/get_model_data.html">get_model_data()</a></code></li>
 <li><code>is.lpcorr()</code></li>
-<li><code><a href="../reference/is.split_factors.html">is.split_factors()</a></code></li>
+<li><code><a href="../reference/split_factors.html">is.split_factors()</a></code></li>
 <li><code><a href="../reference/mahala.html">mahala()</a></code></li>
 <li><code><a href="../reference/mahala_design.html">mahala_design()</a></code></li>
 <li><code><a href="../reference/make_mat.html">make_mat()</a></code></li>
-<li><code><a href="../reference/make_sym.html">make_sym()</a></code></li>
+<li><code><a href="../reference/utils_mat.html">make_sym()</a></code></li>
 <li><code><a href="../reference/mtsi.html">mtsi()</a></code></li>
 <li><code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code></li>
 <li>
@@ -569,7 +567,7 @@
 <li>
 <code><a href="../reference/make_mat.html">make_mat()</a></code> is used to create a two-way table using two columns (factors) and one response variable.</li>
 <li>
-<code><a href="../reference/make_sym.html">make_sym()</a></code> is used to create a symmetric matrix using a upper- or lower-diagonal matrix.</li>
+<code><a href="../reference/utils_mat.html">make_sym()</a></code> is used to create a symmetric matrix using a upper- or lower-diagonal matrix.</li>
 </ul>
 </li>
 <li>Minor improvements

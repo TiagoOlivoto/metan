@@ -43,7 +43,7 @@
    - argument `repel` included in `plot_scores()` to control wheater the labels are repelled or not to avoid overlapping.
 
 ## Deprecated arguments
-   Argument `means_by` was deprecated in functions `can_cor()` and `clustering`. Use `means_by()` to pass data based on means of factor to these function.
+   Argument `means_by` was deprecated in functions `can_corr()` and `clustering()`. Use `means_by()` to pass data based on means of factor to these function.
    
 ## Minor changes
 
@@ -55,8 +55,7 @@
    - `get_model_data()` now support models of class `anova_joint` and `gafem` and extract random effects of models fitted with `waasb()` and `gamem()`.
    - Update `plot.waasb()` and `plot.gamem()` to show distribution of random effects.
    - `inspect()`, `cv_blup()`, `cv_ammif()`, and `cv_ammi()` now generate a warning message saying that is not possible to compute cross-validation procedures in experiments with two replicates only. Thanks to [@Vlatko](https://www.researchgate.net/profile/Vlatko_Galic2) for his email.
-   - `plot.wsmp()` now returns heatmaps created with ggplot2 instead gplots `gplots::heatmap.2()`
-   - Remove dependency on `gplots`.
+   - `plot.wsmp()` now returns heatmaps created with ggplot2. Thus, we removed dependency on `gplots`.
    - Vignettes updated
 
 # metan 1.2.1
