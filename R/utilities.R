@@ -1388,25 +1388,46 @@ doo <- function(.data, .fun, ...){
   return(out)
 }
 
-#' Add a class to an object
-#'
+#' @title Utilities for handling with classes
+#' @name utils_class
 #' @param x An object
-#' @param class The class to add to the object.
-#'
-#' @return The object \code{x} that will inherit the class \code{class}.
+#' @param class The class to add or remove
+#' @details
+#' * \code{add_class()}: add a class to the object \code{x} keeping all the other class(es).
+#' * \code{set_class()}: set a class to the object \code{x}.
+#' * \code{remove_class()}: remove a class from the object \code{x}.
+#' @md
+#' @return The object \code{x} with the class added or removed.
 #' @export
 #'@examples
 #'\donttest{
 #'library(metan)
 #'df <-
-#'data_ge2 %>%
+#' data_ge2 %>%
 #' add_class("my_class")
 #'class(df)
+#'remove_class(df, "my_class") %>% class()
+#'set_class(df, "data_frame") %>% class()
 #'}
 #'
 add_class <- function(x, class){
   class(x) <- unique(c(class(x), class))
  return(x)
+}
+#' @name utils_class
+#' @export
+remove_class <- function(x, class){
+  if(!class %in% class(x)){
+    stop("Class not found in object ", match.call()[["x"]], call. = FALSE)
+  }
+  class(x) <- setdiff(class(x), class)
+  return(x)
+}
+#' @name utils_class
+#' @export
+set_class <- function(x, class){
+  class(x) <- class
+  return(x)
 }
 
 #' Generate significance stars from p-values
