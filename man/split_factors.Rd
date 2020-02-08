@@ -2,22 +2,26 @@
 % Please edit documentation in R/split_factors.R
 \name{split_factors}
 \alias{split_factors}
+\alias{as.split_factors}
+\alias{is.split_factors}
 \title{Split a data frame by factors}
 \usage{
-split_factors(.data, ..., keep_factors = FALSE, verbose = TRUE)
+split_factors(.data, ..., keep_factors = FALSE, verbose = "DEPRECATED")
+
+as.split_factors(x, keep_factors = FALSE, verbose = "DEPRECATED")
+
+is.split_factors(x)
 }
 \arguments{
 \item{.data}{The data that will be split. Must contain at least one grouping
 variable.}
 
 \item{...}{Comma-separated list of unquoted variable names that will be used
-to group the data.}
+to split the data.}
 
-\item{keep_factors}{If more than two factors are in the dataframe, should the
-columns of the non-grouping factors be kept?}
+\item{keep_factors}{Should the grouping columns be kept?}
 
-\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
-silently.}
+\item{verbose}{Deprecated argument. It will be retired in the next release.}
 }
 \value{
 A list where each element is a named level of the grouping factors.
@@ -28,11 +32,14 @@ A list where each element is a named level of the grouping factors.
 Split a data frame into subsets grouping by one or more factors.
 }
 \details{
-This function is used to split a data frame into a list where each element is
-a level of the grouping variable (or combination of grouping variables). By
-combining the function \code{split_factors} with the forward-pipe operator
-%>%, it is possible to apply some functions of the metan package to each
-element of the list.
+This function is used to split a data frame into a named list where each
+element is a level of the grouping variable (or combination of grouping
+variables).
+
+
+* \code{split_factors()} Split a data frame by factors.
+* \code{as.splict_factors()} coerce to an object of class split_factors
+* \code{is.splict_factors()} check if an object is of class split_factors
 }
 \examples{
 \donttest{
@@ -40,6 +47,10 @@ library(metan)
 
 g1 <- split_factors(iris, Species)
 g2 <- split_factors(data_ge, ENV, keep_factors = TRUE)
+
+spdata <- as.split_factors(iris)
+
+is.split_factors(spdata)
 }
 
 }
