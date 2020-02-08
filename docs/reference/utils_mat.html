@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Split a data frame by factors — split_factors • metan</title>
+<title>Utilities for handling with matrices — utils_mat • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,9 @@
 
 
 
-<meta property="og:title" content="Split a data frame by factors — split_factors" />
-<meta property="og:description" content="Split a data frame into subsets grouping by one or more factors." />
+<meta property="og:title" content="Utilities for handling with matrices — utils_mat" />
+<meta property="og:description" content="These functions help users to make upper, lower, or symmetric
+matrices easily." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -205,76 +206,124 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Split a data frame by factors</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/split_factors.R'><code>R/split_factors.R</code></a></small>
-    <div class="hidden name"><code>split_factors.Rd</code></div>
+    <h1>Utilities for handling with matrices</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/utilities.R'><code>R/utilities.R</code></a></small>
+    <div class="hidden name"><code>utils_mat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Split a data frame into subsets grouping by one or more factors.</p>
+    <p>These functions help users to make upper, lower, or symmetric
+matrices easily.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>split_factors</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='st'>"DEPRECATED"</span>)
+    <pre class="usage"><span class='fu'>make_upper_tri</span>(<span class='no'>x</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
 
-<span class='fu'>as.split_factors</span>(<span class='no'>.data</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='st'>"DEPRECATED"</span>)
+<span class='fu'>make_lower_tri</span>(<span class='no'>x</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
 
-<span class='fu'>is.split_factors</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>make_sym</span>(<span class='no'>x</span>, <span class='kw'>make</span> <span class='kw'>=</span> <span class='st'>"upper"</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
+
+<span class='fu'>tidy_sym</span>(<span class='no'>x</span>, <span class='kw'>keep_diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>The data that will be split. Must contain at least one grouping
-variable.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Comma-separated list of unquoted variable names that will be used
-to split the data.</p></td>
-    </tr>
-    <tr>
-      <th>keep_factors</th>
-      <td><p>Should the grouping columns be kept?</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Deprecated argument. It will be retired in the next release.</p></td>
-    </tr>
-    <tr>
       <th>x</th>
-      <td><p>An object to check for class <code>split_factors</code>.</p></td>
+      <td><p>A matrix to apply the function. It must be a symmetric (square)
+matrix in <code>make_upper_tri()</code> and <code>make_lower_tri()</code> or a
+triangular matrix in <code>make_sym()</code>. <code>tidy_sym()</code> accepts both
+symmetrical or triangular matrices.</p></td>
+    </tr>
+    <tr>
+      <th>diag</th>
+      <td><p>What show in the diagonal of the matrix. Default to <code>NA</code>.</p></td>
+    </tr>
+    <tr>
+      <th>make</th>
+      <td><p>The triangular to built. Default is <code>"upper"</code>. In this case,
+a symmetric matrix will be built based on the values of a lower triangular
+matrix.</p></td>
+    </tr>
+    <tr>
+      <th>keep_diag</th>
+      <td><p>Keep diagonal values in the tidy data frame? Defaults to
+<code>TRUE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list where each element is a named level of the grouping factors.
-If more than one grouping variable is used, then each element is the
-combination of the grouping variables.</p>
+    <p>An upper, lower, or symmetric matrix, or a tidy data frame.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function is used to split a data frame into a named list where each
-element is a level of the grouping variable (or combination of grouping
-variables).</p><ul>
-<li><p><code>split_factors()</code> Split a data frame by factors.</p></li>
-<li><p><code>as.splict_factors()</code> coerce to an object of class <code>split_factors</code></p></li>
-<li><p><code>is.splict_factors()</code> check if an object is of class <code>split_factors</code></p></li>
+    
+<ul>
+<li><p><code>make_upper_tri()</code> makes an upper triangular matrix using a symmetric
+matrix.</p></li>
+<li><p><code>make_lower_tri()</code> makes a lower triangular matrix using a symmetric
+matrix.</p></li>
+<li><p><code>make_sym()</code> makes a lower triangular matrix using a symmetric matrix.</p></li>
+<li><p><code>tidy_sym()</code> transform a symmetric matrix into tidy data frame.</p></li>
 </ul>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span>(<span class='no'>data_ge2</span>, <span class='fl'>5</span>:<span class='fl'>10</span>))
+<span class='fu'>make_upper_tri</span>(<span class='no'>m</span>)</div><div class='output co'>#&gt;    EH       EP        EL        ED        CL        CD
+#&gt; EH NA 0.869546 0.3626537 0.6302561 0.3971935 0.2805118
+#&gt; EP NA       NA 0.2634237 0.4580196 0.3908239 0.1750448
+#&gt; EL NA       NA        NA 0.3851451 0.2554068 0.9118653
+#&gt; ED NA       NA        NA        NA 0.6974629 0.3897128
+#&gt; CL NA       NA        NA        NA        NA 0.3003636
+#&gt; CD NA       NA        NA        NA        NA        NA</div><div class='input'><span class='fu'>make_lower_tri</span>(<span class='no'>m</span>)</div><div class='output co'>#&gt;           EH        EP        EL        ED        CL CD
+#&gt; EH        NA        NA        NA        NA        NA NA
+#&gt; EP 0.8695460        NA        NA        NA        NA NA
+#&gt; EL 0.3626537 0.2634237        NA        NA        NA NA
+#&gt; ED 0.6302561 0.4580196 0.3851451        NA        NA NA
+#&gt; CL 0.3971935 0.3908239 0.2554068 0.6974629        NA NA
+#&gt; CD 0.2805118 0.1750448 0.9118653 0.3897128 0.3003636 NA</div><div class='input'><span class='fu'>make_lower_tri</span>(<span class='no'>m</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>make_sym</span>(<span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;           EH        EP        EL        ED        CL        CD
+#&gt; EH 0.0000000 0.8695460 0.3626537 0.6302561 0.3971935 0.2805118
+#&gt; EP 0.8695460 0.0000000 0.2634237 0.4580196 0.3908239 0.1750448
+#&gt; EL 0.3626537 0.2634237 0.0000000 0.3851451 0.2554068 0.9118653
+#&gt; ED 0.6302561 0.4580196 0.3851451 0.0000000 0.6974629 0.3897128
+#&gt; CL 0.3971935 0.3908239 0.2554068 0.6974629 0.0000000 0.3003636
+#&gt; CD 0.2805118 0.1750448 0.9118653 0.3897128 0.3003636 0.0000000</div><div class='input'><span class='fu'>tidy_sym</span>(<span class='no'>m</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 36 x 3</span><span>
+#&gt;    group1 group2 value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> CD     EH     0.281
+#&gt; </span><span style='color: #555555;'> 2</span><span> CD     EP     0.175
+#&gt; </span><span style='color: #555555;'> 3</span><span> CD     EL     0.912
+#&gt; </span><span style='color: #555555;'> 4</span><span> CD     ED     0.390
+#&gt; </span><span style='color: #555555;'> 5</span><span> CD     CL     0.300
+#&gt; </span><span style='color: #555555;'> 6</span><span> CD     CD     1    
+#&gt; </span><span style='color: #555555;'> 7</span><span> CL     EH     0.397
+#&gt; </span><span style='color: #555555;'> 8</span><span> CL     EP     0.391
+#&gt; </span><span style='color: #555555;'> 9</span><span> CL     EL     0.255
+#&gt; </span><span style='color: #555555;'>10</span><span> CL     ED     0.697
+#&gt; </span><span style='color: #555555;'># ... with 26 more rows</span><span></div><div class='input'><span class='fu'>tidy_sym</span>(<span class='fu'>make_lower_tri</span>(<span class='no'>m</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 3</span><span>
+#&gt;    group1 group2 value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> CD     EH     0.281
+#&gt; </span><span style='color: #555555;'> 2</span><span> CD     EP     0.175
+#&gt; </span><span style='color: #555555;'> 3</span><span> CD     EL     0.912
+#&gt; </span><span style='color: #555555;'> 4</span><span> CD     ED     0.390
+#&gt; </span><span style='color: #555555;'> 5</span><span> CD     CL     0.300
+#&gt; </span><span style='color: #555555;'> 6</span><span> CL     EH     0.397
+#&gt; </span><span style='color: #555555;'> 7</span><span> CL     EP     0.391
+#&gt; </span><span style='color: #555555;'> 8</span><span> CL     EL     0.255
+#&gt; </span><span style='color: #555555;'> 9</span><span> CL     ED     0.697
+#&gt; </span><span style='color: #555555;'>10</span><span> ED     EH     0.630
+#&gt; </span><span style='color: #555555;'>11</span><span> ED     EP     0.458
+#&gt; </span><span style='color: #555555;'>12</span><span> ED     EL     0.385
+#&gt; </span><span style='color: #555555;'>13</span><span> EL     EH     0.363
+#&gt; </span><span style='color: #555555;'>14</span><span> EL     EP     0.263
+#&gt; </span><span style='color: #555555;'>15</span><span> EP     EH     0.870</div><div class='input'>
+# }
 
-<span class='no'>g1</span> <span class='kw'>&lt;-</span> <span class='fu'>split_factors</span>(<span class='no'>iris</span>, <span class='no'>Species</span>)
-<span class='no'>g2</span> <span class='kw'>&lt;-</span> <span class='fu'>split_factors</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='no'>spdata</span> <span class='kw'>&lt;-</span> <span class='fu'>as.split_factors</span>(<span class='no'>iris</span>)
-
-<span class='fu'>is.split_factors</span>(<span class='no'>spdata</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'># }
-
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

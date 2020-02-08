@@ -4,9 +4,6 @@
     <loc>https://tiagoolivoto.github.io/metan//index.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/add_class.html</loc>
-  </url>
-  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/AMMI_indexes.html</loc>
   </url>
   <url>
@@ -23,9 +20,6 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/as.lpcor.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/as.split_factors.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/bind_cv.html</loc>
@@ -157,9 +151,6 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/is.lpcor.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/is.split_factors.html</loc>
-  </url>
-  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/lpcor.html</loc>
   </url>
   <url>
@@ -172,16 +163,7 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/make_long.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/make_lower_tri.html</loc>
-  </url>
-  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/make_mat.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/make_sym.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/make_upper_tri.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/meansGxE.html</loc>
@@ -428,6 +410,12 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/tukey_hsd.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_class.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_mat.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_num_str.html</loc>

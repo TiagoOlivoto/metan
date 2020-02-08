@@ -151,7 +151,7 @@ is.split_factors(g1)
 ## Group data and keep all original variables
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 g2 <- split_factors(data_ge, ENV, GEN, keep_factors = TRUE)
-print_table(g2[[1]][[1]])
+print_table(g2[[1]])
 ```
 
 

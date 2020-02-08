@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Split a data frame by factors — split_factors • metan</title>
+<title>Utilities for handling with classes — utils_class • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
 
 
 
-<meta property="og:title" content="Split a data frame by factors — split_factors" />
-<meta property="og:description" content="Split a data frame into subsets grouping by one or more factors." />
+<meta property="og:title" content="Utilities for handling with classes — utils_class" />
+<meta property="og:description" content="Utilities for handling with classes" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -205,74 +205,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Split a data frame by factors</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/split_factors.R'><code>R/split_factors.R</code></a></small>
-    <div class="hidden name"><code>split_factors.Rd</code></div>
+    <h1>Utilities for handling with classes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/utilities.R'><code>R/utilities.R</code></a></small>
+    <div class="hidden name"><code>utils_class.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Split a data frame into subsets grouping by one or more factors.</p>
+    <p>Utilities for handling with classes</p>
     </div>
 
-    <pre class="usage"><span class='fu'>split_factors</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='st'>"DEPRECATED"</span>)
+    <pre class="usage"><span class='fu'>add_class</span>(<span class='no'>x</span>, <span class='no'>class</span>)
 
-<span class='fu'>as.split_factors</span>(<span class='no'>.data</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='st'>"DEPRECATED"</span>)
+<span class='fu'>remove_class</span>(<span class='no'>x</span>, <span class='no'>class</span>)
 
-<span class='fu'>is.split_factors</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>set_class</span>(<span class='no'>x</span>, <span class='no'>class</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>The data that will be split. Must contain at least one grouping
-variable.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Comma-separated list of unquoted variable names that will be used
-to split the data.</p></td>
-    </tr>
-    <tr>
-      <th>keep_factors</th>
-      <td><p>Should the grouping columns be kept?</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Deprecated argument. It will be retired in the next release.</p></td>
-    </tr>
-    <tr>
       <th>x</th>
-      <td><p>An object to check for class <code>split_factors</code>.</p></td>
+      <td><p>An object</p></td>
+    </tr>
+    <tr>
+      <th>class</th>
+      <td><p>The class to add or remove</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list where each element is a named level of the grouping factors.
-If more than one grouping variable is used, then each element is the
-combination of the grouping variables.</p>
+    <p>The object <code>x</code> with the class added or removed.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function is used to split a data frame into a named list where each
-element is a level of the grouping variable (or combination of grouping
-variables).</p><ul>
-<li><p><code>split_factors()</code> Split a data frame by factors.</p></li>
-<li><p><code>as.splict_factors()</code> coerce to an object of class <code>split_factors</code></p></li>
-<li><p><code>is.splict_factors()</code> check if an object is of class <code>split_factors</code></p></li>
+    
+<ul>
+<li><p><code>add_class()</code>: add a class to the object <code>x</code> keeping all the other class(es).</p></li>
+<li><p><code>set_class()</code>: set a class to the object <code>x</code>.</p></li>
+<li><p><code>remove_class()</code>: remove a class from the object <code>x</code>.</p></li>
 </ul>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-
-<span class='no'>g1</span> <span class='kw'>&lt;-</span> <span class='fu'>split_factors</span>(<span class='no'>iris</span>, <span class='no'>Species</span>)
-<span class='no'>g2</span> <span class='kw'>&lt;-</span> <span class='fu'>split_factors</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='kw'>keep_factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='no'>spdata</span> <span class='kw'>&lt;-</span> <span class='fu'>as.split_factors</span>(<span class='no'>iris</span>)
-
-<span class='fu'>is.split_factors</span>(<span class='no'>spdata</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'># }
+<span class='no'>df</span> <span class='kw'>&lt;-</span>
+<span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
+<span class='fu'>add_class</span>(<span class='st'>"my_class"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; [1] "tbl_df"     "tbl"        "data.frame" "my_class"  </div><div class='input'><span class='fu'>remove_class</span>(<span class='no'>df</span>, <span class='st'>"my_class"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>()</div><div class='output co'>#&gt; [1] "tbl_df"     "tbl"        "data.frame"</div><div class='input'><span class='fu'>set_class</span>(<span class='no'>df</span>, <span class='st'>"data_frame"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>()</div><div class='output co'>#&gt; [1] "data_frame"</div><div class='input'># }
 
 </div></pre>
   </div>
@@ -285,8 +265,6 @@ variables).</p><ul>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
   </div>
 </div>
 
