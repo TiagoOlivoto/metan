@@ -151,8 +151,8 @@ cv_blup <- function(.data,
             random == "all" ~ "BLUP_ge_RCBD"
         )
         for (b in 1:nboot) {
-            tmp <- metan::split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
-            modeling <- do.call(rbind, lapply(tmp[[1]], function(x) {
+            tmp <- split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
+            modeling <- do.call(rbind, lapply(tmp, function(x) {
                 X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
                 x %>%
                     group_by(GEN) %>%
@@ -214,7 +214,7 @@ cv_blup <- function(.data,
         )
         for (b in 1:nboot) {
             tmp <- split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
-            modeling <- do.call(rbind, lapply(tmp[[1]], function(x) {
+            modeling <- do.call(rbind, lapply(tmp, function(x) {
                 X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
                 x %>%
                     group_by(GEN) %>%

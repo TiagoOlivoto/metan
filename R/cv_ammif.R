@@ -121,7 +121,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
           rownames(modeling) <- modeling$rowid      }
         if (design == "RCBD") {
           tmp <- split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
-          modeling <- do.call(rbind, lapply(tmp[[1]], function(x) {
+          modeling <- do.call(rbind, lapply(tmp, function(x) {
             X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
             x %>% as.data.frame() %>%
               dplyr::group_by(GEN) %>%
@@ -132,12 +132,10 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
         testing <- anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "rowid")) %>%
           arrange(ENV, GEN) %>%
           as.data.frame()
-
         MEDIAS <- modeling %>%
           group_by(ENV, GEN) %>%
           summarise(Y = mean(Y)) %>%
           as.data.frame()
-
         residual <- modeling %>%
           group_by(ENV, GEN) %>%
           summarise(Y = mean(Y)) %>%
@@ -188,7 +186,6 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
         class = "cvalidation")
     )
   }
-
   if(!missing(block)){
     data <- .data %>%
       dplyr::select(ENV = {{env}},
@@ -230,7 +227,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
           rownames(modeling) <- modeling$rowid      }
         if (design == "RCBD") {
           tmp <- split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
-          modeling <- do.call(rbind, lapply(tmp[[1]], function(x) {
+          modeling <- do.call(rbind, lapply(tmp, function(x) {
             X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
             x %>% dplyr::group_by(GEN) %>% dplyr::filter(REP %in% X2)
           })) %>% as.data.frame()

@@ -93,7 +93,7 @@ anova_joint <- function(.data,
       split_factors(ENV, keep_factors = T)
     if(missing(block)){
       msr <- do.call(rbind,
-                     lapply(msr[[1]], function(x){
+                     lapply(msr, function(x){
                        summary(aov(mean ~ GEN + REP, data = x))[[1]][3,3]
                      }))
       model <- aov(mean ~ GEN + ENV + GEN:ENV + ENV/REP, data = data)
@@ -110,7 +110,7 @@ anova_joint <- function(.data,
       temp <- rbind_fill(anova, CV, msr, ovmean, fill = NA)
     } else{
       msr <- do.call(rbind,
-                     lapply(msr[[1]], function(x){
+                     lapply(msr, function(x){
                        summary(aov(mean ~ GEN + REP + REP:BLOCK, data = x))[[1]][4,3]
                      }))
       model <- aov(mean ~ GEN + ENV + GEN:ENV + ENV/REP/BLOCK, data = data)

@@ -8,6 +8,7 @@
 #' @name split_factors
 #' @param .data The data that will be split. Must contain at least one grouping
 #'   variable.
+#' @param x An object to check for class \code{split_factors}.
 #' @param ... Comma-separated list of unquoted variable names that will be used
 #'   to split the data.
 #' @param keep_factors Should the grouping columns be kept?
@@ -17,12 +18,13 @@
 #'   combination of the grouping variables.
 #' @details
 #' * \code{split_factors()} Split a data frame by factors.
-#' * \code{as.splict_factors()} coerce to an object of class split_factors
-#' * \code{is.splict_factors()} check if an object is of class split_factors
-#'
+#' * \code{as.splict_factors()} coerce to an object of class \code{split_factors}
+#' * \code{is.splict_factors()} check if an object is of class \code{split_factors}
+#' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @importFrom rlang  eval_bare  expr set_names
+#' @importFrom dplyr group_vars
 #' @examples
 #' \donttest{
 #' library(metan)
@@ -45,8 +47,8 @@ split_factors <- function(.data, ..., keep_factors = FALSE, verbose = "DEPRECATE
 }
 #' @name split_factors
 #' @export
-as.split_factors <- function(x, keep_factors = FALSE, verbose = "DEPRECATED") {
-  grouped <- group_by_if(x, is.factor)
+as.split_factors <- function(.data, keep_factors = FALSE, verbose = "DEPRECATED") {
+  grouped <- group_by_if(.data, is.factor)
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " | ")))
   gd <- grouped %>%
     group_split(keep = keep_factors) %>%

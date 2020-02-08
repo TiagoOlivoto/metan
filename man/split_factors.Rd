@@ -8,7 +8,7 @@
 \usage{
 split_factors(.data, ..., keep_factors = FALSE, verbose = "DEPRECATED")
 
-as.split_factors(x, keep_factors = FALSE, verbose = "DEPRECATED")
+as.split_factors(.data, keep_factors = FALSE, verbose = "DEPRECATED")
 
 is.split_factors(x)
 }
@@ -22,11 +22,13 @@ to split the data.}
 \item{keep_factors}{Should the grouping columns be kept?}
 
 \item{verbose}{Deprecated argument. It will be retired in the next release.}
+
+\item{x}{An object to check for class \code{split_factors}.}
 }
 \value{
 A list where each element is a named level of the grouping factors.
-  If more than one grouping variable is used, then each element is the
-  combination of the grouping variables.
+If more than one grouping variable is used, then each element is the
+combination of the grouping variables.
 }
 \description{
 Split a data frame into subsets grouping by one or more factors.
@@ -35,11 +37,11 @@ Split a data frame into subsets grouping by one or more factors.
 This function is used to split a data frame into a named list where each
 element is a level of the grouping variable (or combination of grouping
 variables).
-
-
-* \code{split_factors()} Split a data frame by factors.
-* \code{as.splict_factors()} coerce to an object of class split_factors
-* \code{is.splict_factors()} check if an object is of class split_factors
+\itemize{
+\item \code{split_factors()} Split a data frame by factors.
+\item \code{as.splict_factors()} coerce to an object of class \code{split_factors}
+\item \code{is.splict_factors()} check if an object is of class \code{split_factors}
+}
 }
 \examples{
 \donttest{

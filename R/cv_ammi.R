@@ -125,7 +125,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
       }
       if (design == "RCBD") {
         tmp <- split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
-        modeling <- do.call(rbind, lapply(tmp[[1]], function(x) {
+        modeling <- do.call(rbind, lapply(tmp, function(x) {
           X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
           x %>% dplyr::group_by(GEN) %>% dplyr::filter(REP %in% X2)
         })) %>% as.data.frame()
@@ -199,7 +199,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
     }
     for (b in 1:nboot) {
       tmp <- split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
-      modeling <- do.call(rbind, lapply(tmp[[1]], function(x) {
+      modeling <- do.call(rbind, lapply(tmp, function(x) {
         X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
         x %>% dplyr::group_by(GEN) %>% dplyr::filter(REP %in% X2)
       })) %>% as.data.frame()
