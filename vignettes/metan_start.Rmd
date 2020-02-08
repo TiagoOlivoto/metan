@@ -13,7 +13,7 @@ vignette: >
 ---
 
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(comment = "")
+knitr::opts_chunk$set(comment = "", collapse = TRUE)
 ```
 
 
@@ -41,7 +41,7 @@ Provides tools for computing several world-known stability statistics. In the la
    * Thennarasu's stability statistics [@Thennarasu1995] with [`Thennarasu()`](https://tiagoolivoto.github.io/metan/reference/Thennarasu.html).
    
 
-The easiest way to compute the above-mentioned stability indexes is by using the function [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html). This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like `plot()` and `print()`, I suggest computing that methods using their own function.
+The easiest way to compute the above-mentioned stability indexes is by using the function [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html). This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like `plot()` and `print()`, I'd suggest computing the methods using their own function.
 
 The complete functionality of the package is described at https://tiagoolivoto.github.io/metan/index.html. You're welcome to check it out!
 
@@ -144,8 +144,8 @@ plot(model2, which = c(1, 2, 7), ncol = 1)
 The distribution of the random effects may be obtained using the argument
 `type = "re"`.
 
-```{r,fig.height=8, fig.width=4}
-plot(model2, type = "re")
+```{r,fig.height=12, fig.width=4}
+plot(model2, type = "re", nrow = 3)
 ```
 
 ## Genetic parameters and variance components

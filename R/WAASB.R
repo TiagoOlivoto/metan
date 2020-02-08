@@ -876,7 +876,8 @@ plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
                   plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
         p7 <- ggplot(df, aes(.fitted, Y)) +
             geom_point(col = col.point, size = size.shape) +
-            facet_wrap(~GEN) + geom_abline(intercept = 0, slope = 1, col = col.line) +
+            facet_wrap(~GEN) +
+            geom_abline(intercept = 0, slope = 1, col = col.line) +
             labs(x = "Fitted values", y = "Observed values") +
             ggtitle("1:1 line plot") +
             plot_theme %+replace%
@@ -931,7 +932,10 @@ plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
             geom_ribbon(aes_(ymin = ~lower, ymax = ~upper),
                         alpha = 0.2) +
             labs(x = "Theoretical quantiles", y = "Sample quantiles")+
-            facet_wrap( ~var, scales = "free") +
+            facet_wrap( ~var,
+                        scales = "free",
+                        ncol = ncol,
+                        nrow = nrow) +
             plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
                   axis.title = element_text(size = size.tex.lab, colour = "black"),
