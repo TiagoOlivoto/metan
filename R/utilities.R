@@ -1335,8 +1335,87 @@ sem_by <- function(.data, ...){
     summarise_if(is.numeric, sem) %>%
     ungroup()
 }
-
-
+#' @title Utilities for handling with matrices
+#'
+#' @description These functions help users to make upper, lower, or symmetric
+#'   matrices easily.
+#'
+#' @name utils_mat
+#' @param x A matrix to apply the function. It must be a symmetric (square)
+#'   matrix in \code{make_upper_tri()} and \code{make_lower_tri()} or a
+#'   triangular matrix in \code{make_sym()}. \code{tidy_sym()} accepts both
+#'   symmetrical or triangular matrices.
+#' @param diag What show in the diagonal of the matrix. Default to \code{NA}.
+#' @param make The triangular to built. Default is \code{"upper"}. In this case,
+#'   a symmetric matrix will be built based on the values of a lower triangular
+#'   matrix.
+#' @param keep_diag Keep diagonal values in the tidy data frame? Defaults to
+#'   \code{TRUE}.
+#' @details
+#' * \code{make_upper_tri()} makes an upper triangular matrix using a symmetric
+#' matrix.
+#' * \code{make_lower_tri()} makes a lower triangular matrix using a symmetric
+#' matrix.
+#' * \code{make_sym()} makes a lower triangular matrix using a symmetric matrix.
+#' * \code{tidy_sym()} transform a symmetric matrix into tidy data frame.
+#' @md
+#' @return An upper, lower, or symmetric matrix, or a tidy data frame.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @export
+#' @examples
+#' \donttest{
+#' library(metan)
+#' m <- cor(select_cols(data_ge2, 5:10))
+#' make_upper_tri(m)
+#' make_lower_tri(m)
+#' make_lower_tri(m) %>%
+#' make_sym(diag = 0)
+#' tidy_sym(m)
+#' tidy_sym(make_lower_tri(m))
+#'
+#' }
+#'
+make_upper_tri<-function(x, diag = NA){
+  x[lower.tri(x)] <- NA
+  diag(x) <- diag
+  return(x)
+}
+#' @name utils_mat
+#' @export
+make_lower_tri<-function(x, diag = NA){
+  x[upper.tri(x)] <- NA
+  diag(x) <- diag
+  return(x)
+}
+#' @name utils_mat
+#' @export
+make_sym <- function(x, make = "upper", diag = NA) {
+  if(make == "upper"){
+    x[upper.tri(x)] <- t(x)[upper.tri(x)]
+    diag(x) <- diag
+  }
+  if (make == "lower"){
+    x[lower.tri(x)] <- t(x)[lower.tri(x)]
+    diag(x) <- diag
+  }
+  return(x)
+}
+#' @name utils_mat
+#' @export
+tidy_sym <- function(x, keep_diag = TRUE){
+  res <-
+    x %>%
+    as_tibble(rownames = "group1") %>%
+    pivot_longer(names_to = "group2",
+                 values_to = "value",
+                 -group1) %>%
+    remove_rows_na(verbose = FALSE) %>%
+    arrange(group1)
+  if(keep_diag == FALSE){
+    res %<>%  remove_rows(which(res[1] == res[2]))
+  }
+  return(res)
+}
 #'Alternative to dplyr::do for doing anything
 #'
 #'
