@@ -1,4 +1,4 @@
-# metan 1.2.1.9000
+# metan 1.3.0
 
 ## New functions
    - `alpha_color()` To get a semi-transparent color
