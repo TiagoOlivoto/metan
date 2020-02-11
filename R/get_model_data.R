@@ -843,6 +843,9 @@ get_model_data <- function(x,
     if (is.null(what)){
       what <- "WAAS"
     }
+    if (!what %in% c(check1, check2)) {
+      stop("Invalid value in 'what' for object of class '", class(x), "'. Allowed are ", paste(check1, collapse = ", "), call. = FALSE)
+    }
     if (what %in% check1 | what  %in% check2) {
       bind <- sapply(x, function(x) {
         x$model[[what]]
