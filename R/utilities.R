@@ -53,6 +53,7 @@
 #' \code{tidy_strings(str)}: the result will be then \code{c("ENV_1", "ENV_1",
 #' "ENV_1")}. See Examples section for more examples.
 #' @md
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #' \donttest{
 #' library(metan)
@@ -492,6 +493,7 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #'   end (for \code{select_last_col()}) of from the begin (for
 #'   \code{select_first_col()})
 #' @md
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @importFrom  tibble add_column add_row
 #' @export
 #' @examples
@@ -857,6 +859,7 @@ select_rows <- function(.data, ...){
 #'  * All other functions return a nammed integer if the input is a data frame
 #'  or a numeric value if the input is a numeric vector.
 #' @md
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #' \donttest{
 #' library(metan)
@@ -1431,6 +1434,7 @@ tidy_sym <- function(x, keep_diag = TRUE){
 #'@param .fun A function, formula, or atomic vector.
 #'@param ... Additional arguments passed on to \code{.fun}
 #' @export
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@return a data frame
 #'@importFrom purrr map
 #'@importFrom tidyr nest unnest
@@ -1478,6 +1482,7 @@ doo <- function(.data, .fun, ...){
 #' @md
 #' @return The object \code{x} with the class added or removed.
 #' @export
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@examples
 #'\donttest{
 #'library(metan)
@@ -1525,6 +1530,7 @@ set_class <- function(x, class){
 #' @return A character vector containing the same number of elements as p-value,
 #'   with an attribute "legend" providing the conversion pattern.
 #' @export
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #'\donttest{
 #' p_vals <- c(0.01, 0.043, 0.1, 0.0023, 0.000012)

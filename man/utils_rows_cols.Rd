@@ -244,3 +244,6 @@ select_numeric_cols(data_g)
 select_non_numeric_cols(data_g)
 }
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}

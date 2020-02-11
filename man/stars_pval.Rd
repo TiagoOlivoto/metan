@@ -33,3 +33,6 @@ stars_pval(p_vals)
 }
 
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}

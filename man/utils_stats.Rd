@@ -179,3 +179,6 @@ data_ge2 \%>\%
 }
 
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}

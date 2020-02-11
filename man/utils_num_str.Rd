@@ -230,3 +230,6 @@ df
 tidy_strings(df)
 }
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}

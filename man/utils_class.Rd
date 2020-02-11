@@ -43,3 +43,6 @@ set_class(df, "data_frame") \%>\% class()
 }
 
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}

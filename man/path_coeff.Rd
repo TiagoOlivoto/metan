@@ -118,23 +118,23 @@ pcoeff <- path_coeff(data_ge2, resp = KW)
 
 # Declaring the predictors
 pcoeff2 <- path_coeff(data_ge2,
-                     resp = KW,
-                     pred = c(PH, EH, NKE, TKW))
+                      resp = KW,
+                      pred = c(PH, EH, NKE, TKW))
 
 
 # Selecting variables to be excluded from the analysis
 pcoeff3 <- path_coeff(data_ge2,
-                    resp = KW,
-                    pred = c(NKR, PERK, KW, NKE),
-                    exclude = TRUE)
+                     resp = KW,
+                     pred = c(NKR, PERK, KW, NKE),
+                     exclude = TRUE)
 
 
 # Selecting a set of predictors with minimal multicollinearity
 # Maximum variance Inflation factor of 5
 pcoeff4 <- path_coeff(data_ge2,
-                    resp = KW,
-                    brutstep = TRUE,
-                    maxvif = 5)
+                     resp = KW,
+                     brutstep = TRUE,
+                     maxvif = 5)
 
 
 # When one analysis should be carried out for each environment

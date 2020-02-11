@@ -41,3 +41,6 @@ data_ge2 \%>\%
   doo(~gafem(., GEN, REP, PH, verbose = FALSE))
 }
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}
