@@ -4,7 +4,7 @@
 \alias{colindiag}
 \title{Collinearity Diagnostics}
 \usage{
-colindiag(.data, ..., by = NULL, n = NULL, verbose = TRUE)
+colindiag(.data, ..., by = NULL, n = NULL, verbose = "DEPRECATED")
 }
 \arguments{
 \item{.data}{The data to be analyzed. It must be a symmetric correlation
@@ -22,8 +22,7 @@ one grouping variable use that function.}
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
 
-\item{verbose}{If \code{verbose = TRUE} then some results are shown in the
-console.}
+\item{verbose}{\strong{Deprecated argument. It will be retired in the next release.}}
 }
 \value{
 If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
@@ -40,6 +39,7 @@ the inverse of the correlation matrix.
 \item \strong{CN} The Condition Number of the correlation matrix, given by the
 ratio between the largest and smallest eigenvalue.
 \item \strong{det} The determinant of the correlation matrix.
+\item \strong{ncorhigh} Number of correlation greather than |0.8|.
 \item \strong{largest_corr} The largest correlation (in absolute value) observed.
 \item \strong{smallest_corr} The smallest correlation (in absolute value)
 observed.

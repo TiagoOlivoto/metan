@@ -14,7 +14,5 @@ This is a minor release (v1.3.0) including new features and fixing some bugs. (s
 # R CMD check results
 0 errors | 0 warnings | 0 notes
 
-# Update
-
-This is an update version 1.3.0 (see NEWS.md).
-This is a update of the package `metan`. Please, see 
+# Reverse dependencies
+No reverse dependencies were found.

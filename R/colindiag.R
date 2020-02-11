@@ -15,8 +15,7 @@
 #'  one grouping variable use that function.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
 #'   objects used to compute the correlation coefficients.
-#' @param verbose If \code{verbose = TRUE} then some results are shown in the
-#'   console.
+#' @param verbose \strong{Deprecated argument. It will be retired in the next release.}
 #' @return
 #'
 #' If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
@@ -38,6 +37,8 @@
 #' ratio between the largest and smallest eigenvalue.
 #'
 #' * \strong{det} The determinant of the correlation matrix.
+#'
+#' * \strong{ncorhigh} Number of correlation greather than |0.8|.
 #'
 #' * \strong{largest_corr} The largest correlation (in absolute value) observed.
 #'
@@ -88,7 +89,7 @@ colindiag <- function(.data,
                       ...,
                       by = NULL,
                       n = NULL,
-                      verbose = TRUE) {
+                      verbose = "DEPRECATED") {
   if (!any(class(.data) %in% c("matrix", "data.frame", "split_factors",
                                "covcor_design", "tbl_df"))) {
     stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
@@ -111,7 +112,7 @@ colindiag <- function(.data,
           ...,
           n = n,
           verbose = verbose)
-    return(results)
+    return(results %>% set_class(c("tbl_df", "tbl",  "data.frame", "colingroup", "colindiag")))
   }
   internal <- function(x) {
     if (is.matrix(x)) {
@@ -146,21 +147,6 @@ colindiag <- function(.data,
                             " = ", round(results[which.min(abs(results$linear)),
                                                  1], 3))
     ncorhigh <- sum(results$linear >= abs(0.8))
-    if (verbose == TRUE) {
-      if (NC > 1000) {
-        cat(paste0("Severe multicollinearity in the matrix! Pay attention on the variables listed bellow\n",
-                   "CN = ", round(NC, 3), "\n"))
-      }
-      if (NC < 100) {
-        cat(paste0("Weak multicollinearity in the matrix\n",
-                   "NC = ", round(NC, 3), "\n"))
-      }
-      if (NC > 100 & NC < 1000) {
-        cat(paste0("The multicollinearity in the matrix should be investigated.\n",
-                   "NC = ", round(NC, 3), "\n", "Largest VIF = ",
-                   max(VIF), "\n"))
-      }
-    }
     ultimo <- data.frame(Peso = t(AvAvet[c(nrow(AvAvet)), ])[-c(1), ])
     abs <- data.frame(Peso = abs(ultimo[, "Peso"]))
     rownames(abs) <- rownames(ultimo)
@@ -172,17 +158,10 @@ colindiag <- function(.data,
                   VIF = VIF,
                   CN = NC,
                   det = Det,
+                  ncorhigh = ncorhigh,
                   largest_corr = largest_corr,
                   smallest_corr = smallest_corr,
                   weight_var = pesovarname)
-    if (verbose == TRUE) {
-      cat(paste0("Matrix determinant: ", round(Det, 7)), "\n")
-      cat(paste0("Largest correlation: ", largest_corr), "\n")
-      cat(paste0("Smallest correlation: ", smallest_corr), "\n")
-      cat(paste0("Number of VIFs > 10: ", length(which(VIF > 10))), "\n")
-      cat(paste0("Number of correlations with r >= |0.8|: ", ncorhigh), "\n")
-      cat(paste0("Variables with largest weight in the last eigenvalues: \n", pesovarname), "\n\n")
-    }
     invisible(final)
   }
   if (is.matrix(.data)) {
@@ -197,5 +176,94 @@ colindiag <- function(.data,
     }
     out <- internal(dfs)
   }
-  invisible(out)
+  invisible(out %>% set_class("colindiag"))
+}
+
+
+#' Print an object of class colindiag
+#'
+#' Print the \code{colindiag} object in two ways. By default, the results
+#' are shown in the R console. The results can also be exported to the directory
+#' into a *.txt file.
+#'
+#'
+#' @param x The object of class \code{colindiag}
+#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#'   the working directory.
+#' @param file.name The name of the file if \code{export = TRUE}
+#' @param digits The significant digits to be shown.
+#' @param ... Options used by the tibble package to format the output. See
+#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method print colindiag
+#' @export
+#' @examples
+#' \donttest{
+#' library(metan)
+#' col <- colindiag(data_ge2)
+#' print(col)
+#' }
+print.colindiag <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
+  if (export == TRUE) {
+    file.name <- ifelse(is.null(file.name) == TRUE, "colindiag print", file.name)
+    sink(paste0(file.name, ".txt"))
+  }
+  if(any(class(x) == "colingroup")){
+    for (i in 1:nrow(x)){
+      df <- x[i,]
+      names <-
+        select(df, -data) %>%
+        concatenate(everything(), pull = TRUE)
+      cat("Level:", names, "\n")
+      cat("---------------------------------------------------------------------------\n")
+      dat <- df[["data"]][[1]]
+      CN <- dat$CN
+      VIF <- dat$VIF
+    if (CN > 1000) {
+      cat(paste0("Severe multicollinearity in the matrix! Pay attention on the variables listed bellow\n",
+                 "CN = ", round(CN, digits), "\n"))
+    }
+    if (CN < 100) {
+      cat(paste0("Weak multicollinearity in the matrix\n",
+                 "CN = ", round(CN, digits), "\n"))
+    }
+    if (CN > 100 & CN < 1000) {
+      cat(paste0("The multicollinearity in the matrix should be investigated.\n",
+                 "CN = ", round(CN, digits), "\n", "Largest VIF = ",
+                 max(VIF), "\n"))
+    }
+      cat(paste0("Matrix determinant: ", round(dat$det, 7)), "\n")
+      cat(paste0("Largest correlation: ", dat$largest_corr), "\n")
+      cat(paste0("Smallest correlation: ", dat$smallest_corr), "\n")
+      cat(paste0("Number of VIFs > 10: ", length(which(VIF > 10))), "\n")
+      cat(paste0("Number of correlations with r >= |0.8|: ",dat$ncorhigh), "\n")
+      cat(paste0("Variables with largest weight in the last eigenvalues: \n", dat$weight_var), "\n")
+      cat("---------------------------------------------------------------------------\n")
+    }
+  } else{
+    CN <- x$CN
+    VIF <- x$VIF
+    if (CN > 1000) {
+      cat(paste0("Severe multicollinearity in the matrix! Pay attention on the variables listed bellow\n",
+                 "CN = ", round(CN, digits), "\n"))
+    }
+    if (CN < 100) {
+      cat(paste0("Weak multicollinearity in the matrix\n",
+                 "CN = ", round(CN, digits), "\n"))
+    }
+    if (CN > 100 & CN < 1000) {
+      cat(paste0("The multicollinearity in the matrix should be investigated.\n",
+                 "CN = ", round(CN, digits), "\n", "Largest VIF = ",
+                 max(VIF), "\n"))
+    }
+    cat(paste0("Matrix determinant: ", round(x$det, 7)), "\n")
+    cat(paste0("Largest correlation: ", x$largest_corr), "\n")
+    cat(paste0("Smallest correlation: ", x$smallest_corr), "\n")
+    cat(paste0("Number of VIFs > 10: ", length(which(VIF > 10))), "\n")
+    cat(paste0("Number of correlations with r >= |0.8|: ",x$ncorhigh), "\n")
+    cat(paste0("Variables with largest weight in the last eigenvalues: \n", x$weight_var), "\n")
+  }
+  if (export == TRUE) {
+    sink()
+  }
 }
