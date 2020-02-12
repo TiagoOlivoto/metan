@@ -5,13 +5,13 @@
    - `gafem()` To analyze genotypes using fixed-effect models.
    - `residual_plots()` A helper function to create residuals plots.
    - `stars_pval()` To generate significance stars from p-values
-   - `doo()` An lternative to `dplyr::do` for doing anything
+   - `doo()` An alternative to `dplyr::do` for doing anything
    
 ### utils_stats
    - `cv_by()` For computing coefficient of variation by levels of a factor.
    - `max_by()` For computing maximum values by levels of a factor.
    - `means_by()` For computing arithmetic means by levels of a factor.
-   - `min_by()` For compuing minimum values by levels of a factor.
+   - `min_by()` For computing minimum values by levels of a factor.
    - `n_by()` For getting the length.
    - `sd_by()` For computing sample standard deviation.
    - `sem_by()` For computing standard error of the mean by levels of a factor.
@@ -43,7 +43,7 @@
    - argument `repel` included in `plot_scores()` to control wheater the labels are repelled or not to avoid overlapping.
 
 ## Deprecated arguments
-   Argument `means_by` was deprecated in functions `can_corr()` and `clustering()`. Use `means_by()` to pass data based on means of factor to these function.
+   Argument `means_by` was deprecated in functions `can_corr()` and `clustering()`. Use `means_by()` to pass data based on means of factor to these functions.
    
 ## Minor changes
 

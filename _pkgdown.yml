@@ -194,6 +194,7 @@ reference:
       - plot.clustering
       - plot.resp_surf
       - plot.gafem
+      - print.colindiag
       - print.can_cor
       - print.corr_coef
       - print.path_coeff

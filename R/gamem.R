@@ -142,13 +142,14 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         format = "Evaluating the variable :what [:bar]:percent (:eta left )",
         clear = FALSE, total = nvar, width = 90)
     }
+    model_formula <- "Y ~ REP + (1 | GEN)"
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
       ovmean <- mean(data$Y)
-      Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ REP + (1 | GEN), data = data)))
+      Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(model_formula, data = data)))
       LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
         mutate(model = c("Complete", "Genotype")) %>%
         select(model, everything())
@@ -260,13 +261,14 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         format = "Evaluating the variable :what [:bar]:percent (:eta left )",
         clear = FALSE, total = nvar, width = 90)
     }
+    model_formula <- "Y ~ (1 | GEN) + REP + (1 | REP:BLOCK)"
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
       ovmean <- mean(data$Y)
-      Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(Y ~ (1 | GEN) + REP + (1 | REP:BLOCK), data = data)))
+      Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(model_formula, data = data)))
       LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
         mutate(model = c("Complete", "Genotype", "rep:block")) %>%
         select(model, everything())
@@ -374,7 +376,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
     }
   }
   if (verbose == TRUE) {
-    cat("Model: ", "model_formula", "\n")
+    cat("Model: ", model_formula, "\n")
     cat("---------------------------------------------------------------------------\n")
     cat("P-values for Likelihood Ratio Test of the analyzed traits\n")
     cat("---------------------------------------------------------------------------\n")

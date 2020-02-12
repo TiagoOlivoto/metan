@@ -7,12 +7,14 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/metan)](https://CRAN.R-project.org/package=metan)
+[![CRAN
+Checks](https://cranchecks.info/badges/summary/metan)](https://cran.r-project.org/web/checks/check_results_metan.html)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](https://cran.r-project.org/package=metan)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3608180.svg)](https://doi.org/10.5281/zenodo.3608180)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3663097.svg)](https://doi.org/10.5281/zenodo.3663097)
 <!-- badges: end -->
 
 The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package

@@ -323,7 +323,7 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 <span class='no'>rcbd</span> <span class='kw'>&lt;-</span> <span class='fu'>gamem</span>(<span class='no'>data_g</span>,
              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>EL</span>, <span class='no'>CL</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>))</div><div class='output co'>#&gt; Model:  model_formula 
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>EL</span>, <span class='no'>CL</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>))</div><div class='output co'>#&gt; Model:  Y ~ REP + (1 | GEN) 
 #&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
@@ -412,7 +412,7 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                <span class='kw'>block</span> <span class='kw'>=</span> <span class='no'>BLOCK</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>YIELD</span>)</div><div class='output co'>#&gt; Model:  model_formula 
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>YIELD</span>)</div><div class='output co'>#&gt; Model:  Y ~ (1 | GEN) + REP + (1 | REP:BLOCK) 
 #&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------

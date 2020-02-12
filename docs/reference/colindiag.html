@@ -216,7 +216,7 @@ variables using several indicators, as shown by Olivoto et al. (2017)." />
 variables using several indicators, as shown by Olivoto et al. (2017).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>colindiag</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>colindiag</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='st'>"DEPRECATED"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -246,8 +246,7 @@ objects used to compute the correlation coefficients.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>verbose = TRUE</code> then some results are shown in the
-console.</p></td>
+      <td><p><strong>Deprecated argument. It will be retired in the next release.</strong></p></td>
     </tr>
     </table>
 
@@ -266,6 +265,7 @@ the inverse of the correlation matrix.</p></li>
 <li><p><strong>CN</strong> The Condition Number of the correlation matrix, given by the
 ratio between the largest and smallest eigenvalue.</p></li>
 <li><p><strong>det</strong> The determinant of the correlation matrix.</p></li>
+<li><p><strong>ncorhigh</strong> Number of correlation greather than |0.8|.</p></li>
 <li><p><strong>largest_corr</strong> The largest correlation (in absolute value) observed.</p></li>
 <li><p><strong>smallest_corr</strong> The smallest correlation (in absolute value)
 observed.</p></li>
@@ -295,287 +295,20 @@ focus in maize breeding. African J. Agric. Res. 12:93-103.
 <span class='no'>cor_iris</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>iris</span>[,<span class='fl'>1</span>:<span class='fl'>4</span>])
 <span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>iris</span>)
 
-<span class='no'>col_diag</span> <span class='kw'>&lt;-</span> <span class='fu'>colindiag</span>(<span class='no'>cor_iris</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>)</div><div class='output co'>#&gt; The multicollinearity in the matrix should be investigated.
-#&gt; NC = 140.889
-#&gt; Largest VIF = 31.2614977749215
-#&gt; Matrix determinant: 0.0081096 
-#&gt; Largest correlation: Petal.Length x Petal.Width = 0.963 
-#&gt; Smallest correlation: Sepal.Length x Sepal.Width = -0.118 
-#&gt; Number of VIFs &gt; 10: 2 
-#&gt; Number of correlations with r &gt;= |0.8|: 3 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; Petal.Length &gt; Petal.Width &gt; Sepal.Length &gt; Sepal.Width 
-#&gt; </div><div class='input'>
+<span class='no'>col_diag</span> <span class='kw'>&lt;-</span> <span class='fu'>colindiag</span>(<span class='no'>cor_iris</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>)
+
 
 <span class='co'># Using a data frame</span>
 <span class='no'>col_diag_gen</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
                 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
-                <span class='fu'>colindiag</span>()</div><div class='output co'>#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -19711624781580504
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: CDED x PERK = -0.964 
-#&gt; Smallest correlation: PERK x TKW = 0.007 
-#&gt; Number of VIFs &gt; 10: 13 
-#&gt; Number of correlations with r &gt;= |0.8|: 8 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; EH &gt; CDED &gt; CL &gt; PH &gt; NKE &gt; EL &gt; EP &gt; KW &gt; PERK &gt; NKR &gt; CD &gt; CW &gt; NR &gt; ED &gt; TKW 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -49819780311919456
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: ED x CL = 0.94 
-#&gt; Smallest correlation: EP x PERK = 0.001 
-#&gt; Number of VIFs &gt; 10: 7 
-#&gt; Number of correlations with r &gt;= |0.8|: 13 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; EL &gt; ED &gt; CD &gt; PH &gt; CL &gt; PERK &gt; EP &gt; CW &gt; NKE &gt; TKW &gt; NR &gt; KW &gt; EH &gt; NKR &gt; CDED 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -17948962129147206
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: PH x EH = 0.953 
-#&gt; Smallest correlation: EP x NKR = 0.023 
-#&gt; Number of VIFs &gt; 10: 15 
-#&gt; Number of correlations with r &gt;= |0.8|: 5 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; CW &gt; PH &gt; EL &gt; NR &gt; KW &gt; TKW &gt; EP &gt; CL &gt; ED &gt; NKR &gt; EH &gt; CDED &gt; PERK &gt; CD 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -3960161670914828
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: EL x CD = 0.974 
-#&gt; Smallest correlation: EL x PERK = -0.007 
-#&gt; Number of VIFs &gt; 10: 12 
-#&gt; Number of correlations with r &gt;= |0.8|: 13 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; EH &gt; PH &gt; EP &gt; CW &gt; PERK &gt; NKE &gt; TKW &gt; KW &gt; CD &gt; CDED &gt; ED &gt; EL &gt; NKR &gt; CL &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -32183322396391852
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: CL x CW = 0.942 
-#&gt; Smallest correlation: EH x NR = -0.013 
-#&gt; Number of VIFs &gt; 10: 14 
-#&gt; Number of correlations with r &gt;= |0.8|: 7 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; PERK &gt; KW &gt; CL &gt; NR &gt; CW &gt; NKR &gt; CD &gt; EP &gt; NKE &gt; ED &gt; EL &gt; EH &gt; CDED &gt; TKW &gt; PH 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -97256891576118080
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: PH x EH = 0.897 
-#&gt; Smallest correlation: EP x NKR = 0.022 
-#&gt; Number of VIFs &gt; 10: 14 
-#&gt; Number of correlations with r &gt;= |0.8|: 10 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; CW &gt; PERK &gt; CL &gt; CDED &gt; ED &gt; EH &gt; KW &gt; CD &gt; EL &gt; NKE &gt; EP &gt; NR &gt; TKW &gt; NKR &gt; PH 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -89458046759948240
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: PH x EH = 0.909 
-#&gt; Smallest correlation: CL x CD = 0.002 
-#&gt; Number of VIFs &gt; 10: 13 
-#&gt; Number of correlations with r &gt;= |0.8|: 7 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; TKW &gt; CW &gt; PERK &gt; CD &gt; EH &gt; CDED &gt; KW &gt; EL &gt; EP &gt; CL &gt; ED &gt; NR &gt; NKR &gt; PH 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -6743433537859199
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: PH x EH = 0.979 
-#&gt; Smallest correlation: NKR x TKW = -0.011 
-#&gt; Number of VIFs &gt; 10: 10 
-#&gt; Number of correlations with r &gt;= |0.8|: 8 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; EH &gt; PH &gt; EP &gt; CL &gt; CW &gt; NKE &gt; NKR &gt; CDED &gt; ED &gt; NR &gt; PERK &gt; CD &gt; TKW &gt; EL &gt; KW 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -8468241968641812
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: PH x EH = 0.95 
-#&gt; Smallest correlation: NKR x PERK = 0.013 
-#&gt; Number of VIFs &gt; 10: 14 
-#&gt; Number of correlations with r &gt;= |0.8|: 4 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; PH &gt; EH &gt; KW &gt; EP &gt; PERK &gt; CW &gt; TKW &gt; CL &gt; EL &gt; CDED &gt; ED &gt; CD &gt; NR &gt; NKR &gt; NKE 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -9544826917169058
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: EL x CD = 0.961 
-#&gt; Smallest correlation: NR x TKW = -0.001 
-#&gt; Number of VIFs &gt; 10: 15 
-#&gt; Number of correlations with r &gt;= |0.8|: 23 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; EH &gt; PH &gt; EP &gt; CD &gt; NKE &gt; KW &gt; ED &gt; PERK &gt; CL &gt; CW &gt; EL &gt; TKW &gt; CDED &gt; NKR &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -59612499100712640
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: PH x EH = 0.968 
-#&gt; Smallest correlation: EL x NR = 0.009 
-#&gt; Number of VIFs &gt; 10: 8 
-#&gt; Number of correlations with r &gt;= |0.8|: 12 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; CW &gt; CD &gt; ED &gt; EL &gt; PERK &gt; EP &gt; EH &gt; KW &gt; NKR &gt; NKE &gt; TKW &gt; CL &gt; NR &gt; CDED &gt; PH 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -10560192828246224
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: PH x EH = 0.959 
-#&gt; Smallest correlation: NR x PERK = -0.043 
-#&gt; Number of VIFs &gt; 10: 13 
-#&gt; Number of correlations with r &gt;= |0.8|: 22 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; EH &gt; PH &gt; CW &gt; EP &gt; KW &gt; CL &gt; NR &gt; TKW &gt; EL &gt; ED &gt; CDED &gt; NKE &gt; CD &gt; PERK &gt; NKR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = -24787230690432888
-#&gt; Matrix determinant: 0 
-#&gt; Largest correlation: CW x KW = 0.966 
-#&gt; Smallest correlation: KW x CDED = -0.016 
-#&gt; Number of VIFs &gt; 10: 12 
-#&gt; Number of correlations with r &gt;= |0.8|: 18 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; PH &gt; EH &gt; CL &gt; ED &gt; KW &gt; NKE &gt; NKR &gt; EP &gt; CW &gt; CDED &gt; EL &gt; CD &gt; NR &gt; PERK &gt; TKW 
-#&gt; </div><div class='input'>
+                <span class='fu'>colindiag</span>()
+
 <span class='co'># Diagnostic by levels of a factor</span>
 <span class='co'># For variables with "N" in variable name</span>
 <span class='no'>col_diag_gen</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
                 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
-                <span class='fu'>colindiag</span>(<span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>contains</a></span>(<span class='st'>"N"</span>))</div><div class='output co'>#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 29.925
-#&gt; Matrix determinant: 0.1126898 
-#&gt; Largest correlation: NKR x NKE = 0.885 
-#&gt; Smallest correlation: NR x NKR = 0.379 
-#&gt; Number of VIFs &gt; 10: 0 
-#&gt; Number of correlations with r &gt;= |0.8|: 1 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NKR &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 5.825
-#&gt; Matrix determinant: 0.4941951 
-#&gt; Largest correlation: NR x NKR = -0.59 
-#&gt; Smallest correlation: NR x NKE = 0.182 
-#&gt; Number of VIFs &gt; 10: 0 
-#&gt; Number of correlations with r &gt;= |0.8|: 0 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKR &gt; NR &gt; NKE 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 35.813
-#&gt; Matrix determinant: 0.1034821 
-#&gt; Largest correlation: NKR x NKE = 0.683 
-#&gt; Smallest correlation: NR x NKE = 0.18 
-#&gt; Number of VIFs &gt; 10: 0 
-#&gt; Number of correlations with r &gt;= |0.8|: 0 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKR &gt; NKE &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 16.453
-#&gt; Matrix determinant: 0.2049328 
-#&gt; Largest correlation: NR x NKE = 0.819 
-#&gt; Smallest correlation: NR x NKR = 0.277 
-#&gt; Number of VIFs &gt; 10: 0 
-#&gt; Number of correlations with r &gt;= |0.8|: 1 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NR &gt; NKR 
-#&gt; 
-#&gt; The multicollinearity in the matrix should be investigated.
-#&gt; NC = 483.199
-#&gt; Largest VIF = 113.960479386239
-#&gt; Matrix determinant: 0.0050956 
-#&gt; Largest correlation: NR x NKE = 0.914 
-#&gt; Smallest correlation: NR x NKR = 0.648 
-#&gt; Number of VIFs &gt; 10: 3 
-#&gt; Number of correlations with r &gt;= |0.8|: 2 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NR &gt; NKR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 91.002
-#&gt; Matrix determinant: 0.0407597 
-#&gt; Largest correlation: NR x NKE = 0.886 
-#&gt; Smallest correlation: NR x NKR = 0.269 
-#&gt; Number of VIFs &gt; 10: 2 
-#&gt; Number of correlations with r &gt;= |0.8|: 1 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NR &gt; NKR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 43.111
-#&gt; Matrix determinant: 0.0757936 
-#&gt; Largest correlation: NKR x NKE = 0.803 
-#&gt; Smallest correlation: NR x NKR = 0.412 
-#&gt; Number of VIFs &gt; 10: 1 
-#&gt; Number of correlations with r &gt;= |0.8|: 1 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NKR &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 60.331
-#&gt; Matrix determinant: 0.0624676 
-#&gt; Largest correlation: NR x NKE = 0.719 
-#&gt; Smallest correlation: NR x NKR = -0.212 
-#&gt; Number of VIFs &gt; 10: 2 
-#&gt; Number of correlations with r &gt;= |0.8|: 0 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NR &gt; NKR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 19.403
-#&gt; Matrix determinant: 0.1695391 
-#&gt; Largest correlation: NKR x NKE = 0.523 
-#&gt; Smallest correlation: NR x NKR = -0.375 
-#&gt; Number of VIFs &gt; 10: 0 
-#&gt; Number of correlations with r &gt;= |0.8|: 0 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NKR &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 97.814
-#&gt; Matrix determinant: 0.0370602 
-#&gt; Largest correlation: NKR x NKE = 0.929 
-#&gt; Smallest correlation: NR x NKR = 0.336 
-#&gt; Number of VIFs &gt; 10: 2 
-#&gt; Number of correlations with r &gt;= |0.8|: 1 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NKR &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 27.928
-#&gt; Matrix determinant: 0.1331732 
-#&gt; Largest correlation: NKR x NKE = 0.802 
-#&gt; Smallest correlation: NR x NKR = 0.062 
-#&gt; Number of VIFs &gt; 10: 0 
-#&gt; Number of correlations with r &gt;= |0.8|: 1 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NKR &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 69.823
-#&gt; Matrix determinant: 0.0492349 
-#&gt; Largest correlation: NKR x NKE = 0.873 
-#&gt; Smallest correlation: NR x NKR = 0.379 
-#&gt; Number of VIFs &gt; 10: 1 
-#&gt; Number of correlations with r &gt;= |0.8|: 1 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NKR &gt; NR 
-#&gt; 
-#&gt; Weak multicollinearity in the matrix
-#&gt; NC = 26.565
-#&gt; Matrix determinant: 0.1385938 
-#&gt; Largest correlation: NKR x NKE = 0.717 
-#&gt; Smallest correlation: NR x NKR = -0.119 
-#&gt; Number of VIFs &gt; 10: 0 
-#&gt; Number of correlations with r &gt;= |0.8|: 0 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; NKE &gt; NKR &gt; NR 
-#&gt; </div><div class='input'># }
-</div></pre>
+                <span class='fu'>colindiag</span>(<span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>contains</a></span>(<span class='st'>"N"</span>))
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
