@@ -7,8 +7,6 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/metan)](https://CRAN.R-project.org/package=metan)
-[![CRAN
-Checks](https://cranchecks.info/badges/summary/metan)](https://cran.r-project.org/web/checks/check_results_metan.html)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
