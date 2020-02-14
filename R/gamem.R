@@ -129,12 +129,12 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
   # RCBD
   if (missing(block) == TRUE) {
     factors  <- .data %>%
-      select(GEN = {{gen}},
-             REP = {{rep}}) %>%
+      select({{gen}}, {{rep}}) %>%
       mutate_all(as.factor)
     vars <- .data %>% select({{resp}}, -names(factors))
     has_text_in_num(vars)
     vars %<>% select_numeric_cols()
+    factors %<>% set_names("GEN", "REP")
     listres <- list()
     nvar <- ncol(vars)
     if (verbose == TRUE) {
@@ -247,13 +247,12 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
   # ALPHA-LATTICE
   if (missing(block) == FALSE) {
     factors  <- .data %>%
-      select(GEN = {{gen}},
-             REP = {{rep}},
-             BLOCK = {{block}}) %>%
+      select({{gen}}, {{rep}}, {{block}}) %>%
       mutate_all(as.factor)
     vars <- .data %>% select({{resp}}, -names(factors))
     has_text_in_num(vars)
     vars %<>% select_numeric_cols()
+    factors %<>% set_names("GEN", "REP", "BLOCK")
     listres <- list()
     nvar <- ncol(vars)
     if (verbose == TRUE) {
