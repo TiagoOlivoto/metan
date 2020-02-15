@@ -156,14 +156,14 @@ NULL
 NULL
 
 .onAttach <- function(libname, pkgname) {
-  metan_version <-  "v1.2.1 (2019-01-14)"
-  packageStartupMessage("[]=====================================================================[]")
-  packageStartupMessage("[] Multi-Environment Trial Analysis (metan) ", metan_version, "        []")
-  packageStartupMessage("[] Author: Tiago Olivoto                                               []")
-  packageStartupMessage("[] Type vignette('metan_start') for a short tutorial                   []")
-  packageStartupMessage("[] Type citation('metan') to know how to cite metan                    []")
-  packageStartupMessage("[] For a complete tutorial visit https://tiagoolivoto.github.io/metan/ []")
-  packageStartupMessage("[]=====================================================================[]")
+  vers <-  "v1.3.0"
+  packageStartupMessage("[]===================================================[]")
+  packageStartupMessage("[] Multi-Environment Trial Analysis (metan) ", vers, "   []")
+  packageStartupMessage("[] Author: Tiago Olivoto                             []")
+  packageStartupMessage("[] Type citation('metan') to know how to cite metan  []")
+  packageStartupMessage("[] Type vignette('metan_start') for a short tutorial []")
+  packageStartupMessage("[] Or visit https://tiagoolivoto.github.io/metan/    []")
+  packageStartupMessage("[]===================================================[]")
 }
 
 if (getRversion() >= "2.15.1") {

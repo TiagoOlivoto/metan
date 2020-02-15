@@ -263,21 +263,26 @@ waasb <- function(.data,
     block_test <- missing(block)
     if(!missing(block)){
         factors  <- .data %>%
-            select(ENV = {{env}},
-                   GEN = {{gen}},
-                   REP = {{rep}},
-                   BLOCK = {{block}}) %>%
+            select({{env}},
+                   {{gen}},
+                   {{rep}},
+                   {{block}}) %>%
             mutate_all(as.factor)
     } else{
         factors  <- .data %>%
-            select(ENV = {{env}},
-                   GEN = {{gen}},
-                   REP = {{rep}}) %>%
+            select({{env}},
+                   {{gen}},
+                   {{rep}}) %>%
             mutate_all(as.factor)
     }
     vars <- .data %>% select({{resp}}, -names(factors))
     has_text_in_num(vars)
     vars %<>% select_numeric_cols()
+    if(!missing(block)){
+        factors %<>% set_names("ENV", "GEN", "REP", "BLOCK")
+    } else{
+        factors %<>% set_names("ENV", "GEN", "REP")
+    }
     model_formula <-
         case_when(
             random == "gen" & block_test ~ paste("Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV)"),
@@ -341,7 +346,7 @@ waasb <- function(.data,
     vin <- 0
     if (verbose == TRUE) {
         pb <- progress_bar$new(
-            format = "Evaluating the variable :what [:bar]:percent (:eta left )",
+            format = "Evaluating the variable :what [:bar]:percent",
             clear = FALSE, total = nvar, width = 90)
     }
     for (var in 1:nvar) {

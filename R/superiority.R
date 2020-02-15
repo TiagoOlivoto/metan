@@ -43,14 +43,14 @@
 #'}
 #'
 superiority <- function(.data, env, gen, rep, resp, verbose = TRUE) {
-  factors  <- .data %>%
-    select(ENV = {{env}},
-           GEN = {{gen}},
-           REP = {{rep}}) %>%
+  factors  <-
+    .data %>%
+    select({{env}}, {{gen}}, {{rep}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
   has_text_in_num(vars)
   vars %<>% select_numeric_cols()
+  factors %<>% set_names("ENV", "GEN", "REP")
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {

@@ -91,13 +91,14 @@ waas_means <- function(.data,
                        wresp = NULL,
                        min_expl_var = 85,
                        verbose = TRUE){
-  factors  <- .data %>%
-    select(ENV = {{env}},
-           GEN = {{gen}}) %>%
+  factors  <-
+    .data %>%
+    select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
   has_text_in_num(vars)
   vars %<>% select_numeric_cols()
+  factors %<>% set_names("ENV", "GEN")
   nvar <- ncol(vars)
   if (is.null(mresp)) {
     mresp <- replicate(nvar, 100)

@@ -257,7 +257,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
     nvar <- ncol(vars)
     if (verbose == TRUE) {
       pb <- progress_bar$new(
-        format = "Evaluating the variable :what [:bar]:percent (:eta left )",
+        format = "Evaluating the variable :what [:bar]:percent",
         clear = FALSE, total = nvar, width = 90)
     }
     model_formula <- "Y ~ (1 | GEN) + REP + (1 | REP:BLOCK)"

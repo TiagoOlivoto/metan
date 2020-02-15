@@ -1,3 +1,6 @@
+# metan 1.3.0.9000
+* Factor columns now can have different names than ENV, GEN, and REP.
+
 # metan 1.3.0
 
 ## New functions

@@ -45,13 +45,14 @@ ge_winners <- function(.data, env, gen, resp, type = "winners", better = NULL) {
   if(!type  %in% c("ranks", "winners")){
     stop("The argument 'type' must be one of the 'ranks' or 'winners'")
   }
-  factors  <- .data %>%
-    select(ENV = {{env}},
-           GEN = {{gen}}) %>%
+  factors  <-
+    .data %>%
+    select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
   has_text_in_num(vars)
   vars %<>% select_numeric_cols()
+  factors %<>% set_names("ENV", "GEN")
   listres <- list()
   nvar <- ncol(vars)
   if(!missing(better)){

@@ -92,13 +92,14 @@ gge <- function(.data,
                 centering = "environment",
                 scaling = "none",
                 svp = "environment") {
-  factors  <- .data %>%
-    select(ENV = {{env}},
-           GEN = {{gen}}) %>%
+  factors  <-
+    .data %>%
+    select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
   has_text_in_num(vars)
   vars %<>% select_numeric_cols()
+  factors %<>% set_names("ENV", "GEN")
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {

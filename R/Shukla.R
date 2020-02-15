@@ -45,22 +45,22 @@
 #'              resp = PH)
 #'}
 Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
-    factors  <- .data %>%
-      select(ENV = {{env}},
-             GEN = {{gen}},
-             REP = {{rep}}) %>%
-      mutate_all(as.factor)
-    g <- nlevels(factors$GEN)
-    e <- nlevels(factors$ENV)
-    r <- nlevels(factors$REP)
-    vars <- .data %>% select({{resp}}, -names(factors))
-    has_text_in_num(vars)
-    vars %<>% select_numeric_cols()
-    listres <- list()
-    nvar <- ncol(vars)
-    for (var in 1:nvar) {
-      data <- factors %>%
-        mutate(mean = vars[[var]])
+  factors  <-
+    .data %>%
+    select({{env}}, {{gen}}, {{rep}}) %>%
+    mutate_all(as.factor)
+  vars <- .data %>% select({{resp}}, -names(factors))
+  has_text_in_num(vars)
+  vars %<>% select_numeric_cols()
+  factors %<>% set_names("ENV", "GEN", "REP")
+  g <- nlevels(factors$GEN)
+  e <- nlevels(factors$ENV)
+  r <- nlevels(factors$REP)
+  listres <- list()
+  nvar <- ncol(vars)
+  for (var in 1:nvar) {
+    data <- factors %>%
+      mutate(mean = vars[[var]])
     g_means <- data %>%
       group_by(GEN) %>%
       summarise(Y = mean(mean))
