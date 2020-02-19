@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0.9000</span>
       </span>
     </div>
 
@@ -161,7 +161,7 @@
       <h1>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-02-11</h4>
+            <h4 class="date">2020-02-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/metan_start.Rmd"><code>vignettes/metan_start.Rmd</code></a></small>
       <div class="hidden name"><code>metan_start.Rmd</code></div>
@@ -170,7 +170,7 @@
 
     
     
-<p>Provides tools for computing several world-known stability statistics. In the latest version (v 1.2.1), the following stability methods are implemented in their respective functions.</p>
+<p><code>metan</code> provides tools for computing several world-known stability statistics. The following stability methods are implemented.</p>
 <ul>
 <li>Parametric methods
 <ul>
@@ -367,7 +367,7 @@
 <h2 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h2>
 <p>The well-known AMMI2 biplot may be obtained using the function <code><a href="../reference/plot_scores.html">plot_scores()</a></code>. ggplot2-based graphics are obtained. Please, note that since <code><a href="../reference/performs_ammi.html">performs_ammi()</a></code> and , <code><a href="../reference/waas.html">waas()</a></code> functions allow analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>ammi_model</code> is a list that in this case has two elements, (GY and HM).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(ammi_model, <span class="dt">axis.expand =</span> <span class="fl">1.2</span>)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">a &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(ammi_model)</a>
 <a class="sourceLine" id="cb6-2" title="2">b &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_scores.html">plot_scores</a></span>(ammi_model,</a>
 <a class="sourceLine" id="cb6-3" title="3">                 <span class="dt">type =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb6-4" title="4">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>

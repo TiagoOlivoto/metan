@@ -17,7 +17,7 @@ knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 ```
 
 
-Provides tools for computing several world-known stability statistics. In the latest version (v 1.2.1), the following stability methods are implemented in their respective functions.
+`metan` provides tools for computing several world-known stability statistics. The following stability methods are implemented.
 
 * Parametric methods
    * AMMI analysis with [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html).
@@ -105,7 +105,7 @@ The cross-validation procedures implemented in the `metan` are based on the spli
 The well-known AMMI2 biplot may be obtained using the function `plot_scores()`. ggplot2-based graphics are obtained. Please, note that since `performs_ammi()` and , `waas()` functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `ammi_model` is a list that in this case has two elements, (GY and HM).
 
 ```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
-a <- plot_scores(ammi_model, axis.expand = 1.2)
+a <- plot_scores(ammi_model)
 b <- plot_scores(ammi_model,
                  type = 2,
                  polygon = TRUE,
