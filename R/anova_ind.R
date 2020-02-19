@@ -75,21 +75,26 @@ anova_ind <- function(.data,
                       verbose = TRUE) {
   if(!missing(block)){
     factors  <- .data %>%
-      select(ENV = {{env}},
-             GEN = {{gen}},
-             REP = {{rep}},
-             BLOCK = {{block}}) %>%
+      select({{env}},
+             {{gen}},
+             {{rep}},
+             {{block}}) %>%
       mutate_all(as.factor)
   } else{
     factors  <- .data %>%
-      select(ENV = {{env}},
-             GEN = {{gen}},
-             REP = {{rep}}) %>%
+      select({{env}},
+             {{gen}},
+             {{rep}}) %>%
       mutate_all(as.factor)
   }
   vars <- .data %>% select({{resp}}, -names(factors))
   has_text_in_num(vars)
   vars %<>% select_numeric_cols()
+  if(!missing(block)){
+    factors %<>% set_names("ENV", "GEN", "REP", "BLOCK")
+  } else{
+    factors %<>% set_names("ENV", "GEN", "REP")
+  }
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {
