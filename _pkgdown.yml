@@ -183,6 +183,7 @@ reference:
       - lpcor
       - mahala
       - mahala_design
+      - non_collinear_vars
       - pairs_mantel
       - path_coeff
       - plot_ci
