@@ -19,8 +19,8 @@ path_coeff(
 )
 }
 \arguments{
-\item{.data}{The data. Must be a dataframe or an object of class
-\code{split_factors}.}
+\item{.data}{The data. Must be a data frame or a grouped data passed from
+\code{\link[dplyr]{group_by}()}}
 
 \item{resp}{The dependent variable.}
 

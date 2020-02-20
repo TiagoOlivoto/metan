@@ -18,12 +18,12 @@
 #' \code{Selectedpred}, a vector with the name of the selected variables in the
 #' iterative process.
 #'
-#' @param .data The data. Must be a dataframe or an object of class
-#'   \code{split_factors}.
+#' @param .data The data. Must be a data frame or a grouped data passed from
+#'   \code{\link[dplyr]{group_by}()}
 #' @param resp The dependent variable.
-#'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
-#'  one grouping variable use that function.
+#' @param by One variable (factor) to compute the function by. It is a shortcut
+#'   to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'   one grouping variable use that function.
 #' @param pred The predictor variables, set to \code{everything()}, i.e., the
 #'   predictor variables are all the numeric variables in the data except that
 #'   in \code{resp}.
