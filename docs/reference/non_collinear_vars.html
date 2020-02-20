@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Objects exported from other packages — reexports • metan</title>
+<title>Select a set of predictors with minimal multicollinearity — non_collinear_vars • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,17 +48,14 @@
 
 
 
-<meta property="og:title" content="Objects exported from other packages — reexports" />
-<meta property="og:description" content="These objects are imported from other packages. Follow the links
-below to see their documentation.
-
-  dplyrgroup_by, mutate, rename, select
-
-  tibblecolumn_to_rownames, rownames_to_column
-
-  tidyselectcontains, ends_with, everything, last_col, matches, num_range, one_of, starts_with
-
-" />
+<meta property="og:title" content="Select a set of predictors with minimal multicollinearity — non_collinear_vars" />
+<meta property="og:description" content="Select a set of predictors with minimal multicollinearity using the variance
+inflation factor (VIF) as criteria to remove collinear variables. The
+algorithm will: (i) compute the VIF value of the correlation matrix
+containing the variables selected in ...; (ii) arrange the
+VIF values and delete the variable with the highest VIF; and (iii)
+iterate step ii until VIF value is less than or equal to
+max_vif." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -214,31 +211,86 @@ below to see their documentation.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Objects exported from other packages</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/select_helpers.R'><code>R/select_helpers.R</code></a></small>
-    <div class="hidden name"><code>reexports.Rd</code></div>
+    <h1>Select a set of predictors with minimal multicollinearity</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/non_collinear_vars.R'><code>R/non_collinear_vars.R</code></a></small>
+    <div class="hidden name"><code>non_collinear_vars.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These objects are imported from other packages. Follow the links
-below to see their documentation.</p>
-<dl class='dl-horizontal'>
-  <dt>dplyr</dt><dd><p><code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/select.html'>rename</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></code></p></dd>
-
-  <dt>tibble</dt><dd><p><code><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></code>, <code><a href='https://tibble.tidyverse.org/reference/rownames.html'>rownames_to_column</a></code></p></dd>
-
-  <dt>tidyselect</dt><dd><p><code><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>contains</a></code>, <code><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>ends_with</a></code>, <code><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></code>, <code><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>last_col</a></code>, <code><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>matches</a></code>, <code><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>num_range</a></code>, <code><a href='https://tidyselect.r-lib.org/reference/one_of.html'>one_of</a></code>, <code><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>starts_with</a></code></p></dd>
-
-</dl>
+    <p>Select a set of predictors with minimal multicollinearity using the variance
+inflation factor (VIF) as criteria to remove collinear variables. The
+algorithm will: <strong>(i)</strong> compute the VIF value of the correlation matrix
+containing the variables selected in <code>...</code>; <strong>(ii)</strong> arrange the
+VIF values and delete the variable with the highest VIF; and <strong>(iii)</strong>
+iterate step <strong>ii</strong> until VIF value is less than or equal to
+<code>max_vif</code>.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>non_collinear_vars</span>(
+  <span class='no'>.data</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>max_vif</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>missingval</span> <span class='kw'>=</span> <span class='st'>"pairwise.complete.obs"</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>.data</th>
+      <td><p>The data set containing the variables.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Variables to be submitted to selection. If <code>...</code> is null then
+all the numeric variables from <code>.data</code> are used. It must be a single
+variable name or a comma-separated list of unquoted variables names.</p></td>
+    </tr>
+    <tr>
+      <th>max_vif</th>
+      <td><p>The maximum value for the Variance Inflation Factor
+(threshold) that will be accepted in the set of selected predictors.</p></td>
+    </tr>
+    <tr>
+      <th>missingval</th>
+      <td><p>How to deal with missing values. For more information,
+please see <code><a href='https://rdrr.io/r/stats/cor.html'>cor</a>()</code>.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A data frame showing the number of selected predictors, maximum VIF
+  value, condition number, determinant value, selected predictors and removed
+  predictors from the original set of variables.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='co'># All numeric variables</span>
+<span class='fu'>non_collinear_vars</span>(<span class='no'>data_ge2</span>)</div><div class='output co'>#&gt;          Parameter                                       values
+#&gt; 1       Predictors                                           10
+#&gt; 2              VIF                                         7.16
+#&gt; 3 Condition Number                                       56.797
+#&gt; 4      Determinant                                 0.0008810515
+#&gt; 5         Selected PERK, EP, CDED, NKR, PH, NR, TKW, EL, CD, ED
+#&gt; 6          Removed                          EH, CL, CW, KW, NKE</div><div class='input'>
+<span class='co'># Select variables and choose a VIF threshold to 5</span>
+<span class='fu'>non_collinear_vars</span>(<span class='no'>data_ge2</span>, <span class='no'>EH</span>, <span class='no'>CL</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NKE</span>, <span class='kw'>max_vif</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt;          Parameter          values
+#&gt; 1       Predictors               4
+#&gt; 2              VIF           2.934
+#&gt; 3 Condition Number          11.248
+#&gt; 4      Determinant    0.2400583901
+#&gt; 5         Selected NKE, EH, CL, CW
+#&gt; 6          Removed              KW</div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
