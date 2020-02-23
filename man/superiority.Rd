@@ -30,13 +30,13 @@ result of one variable and contains the following items:
 \itemize{
 \item \strong{environments} The mean for each environment, the environment index
 and classification as favorable and unfavorable environments.
-\item \strong{index} The superiority index computed for all, favorable and
-unfavorable environments.
+\item \strong{index} The superiority index computed for all (\code{Pi_a}),
+favorable (\code{Pi_f}) and unfavorable (\code{Pi_u}) environments.
 }
 }
 \description{
 Nonparametric stability analysis using the superiority index proposed by Lin
-& Binns, (1992).
+& Binns (1988).
 }
 \examples{
 \donttest{

@@ -1,7 +1,7 @@
 #' Lin e Binns' superiority index
 #'
 #' Nonparametric stability analysis using the superiority index proposed by Lin
-#' & Binns, (1992).
+#' & Binns (1988).
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments,
@@ -20,8 +20,8 @@
 #'
 #' * \strong{environments} The mean for each environment, the environment index
 #' and classification as favorable and unfavorable environments.
-#' * \strong{index} The superiority index computed for all, favorable and
-#' unfavorable environments.
+#' * \strong{index} The superiority index computed for all (\code{Pi_a}),
+#' favorable (\code{Pi_f}) and unfavorable (\code{Pi_u}) environments.
 #'
 #' @md
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
