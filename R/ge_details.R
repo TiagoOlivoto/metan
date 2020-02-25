@@ -70,9 +70,9 @@ ge_details <- function(.data, env, gen, resp){
     desc_st <- desc_stat(data, stats = c("mean, se, sd.pop, cv"), verbose = FALSE)
     temp <- tibble(Parameters = c("Mean", "SE", "SD", "CV", "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"),
                    Values = c(round(desc_st[1, 2], 2),
-                              round(desc_st[2, 2], 2),
-                              round(desc_st[3, 2], 2),
-                              round(desc_st[4, 2], 2),
+                              round(desc_st[1, 3], 2),
+                              round(desc_st[1, 4], 2),
+                              round(desc_st[1, 5], 2),
                               paste0(round(min[3], 2), " (", min$GEN, " in ", min$ENV,")"),
                               paste0(round(max$Y, 2), " (", max$GEN, " in ", max$ENV,")"),
                               paste0(min_group[1,2], " (", round(min_group[1,3], 2),")"),
