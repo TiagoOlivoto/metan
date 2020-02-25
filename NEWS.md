@@ -1,6 +1,6 @@
 # metan 1.3.0.9000
 ## Fix bug
-* Factor columns now can have different names than ENV, GEN, and REP.
+* Factor columns can now have custom names rather than ENV, GEN, and REP only ([#2](https://github.com/TiagoOlivoto/metan/issues/2))
 
 ## New functions
 * `non_collinear_vars()` for selecting a set of predictors with minimal multicollinearity.
