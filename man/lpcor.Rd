@@ -25,9 +25,6 @@ objects used to compute the correlation coefficients.}
 
 \item{method}{a character string indicating which correlation coefficient is
 to be computed. One of 'pearson' (default), 'kendall', or 'spearman'.}
-
-\item{verbose}{If \code{verbose = TRUE} then some results are shown in the
-console.}
 }
 \value{
 If \code{.data} is a grouped data passed from
