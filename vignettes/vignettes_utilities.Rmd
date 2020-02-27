@@ -197,7 +197,7 @@ tidy_strings(messy_int)
 ```
 
 
-`tidy_strings()` woks also to tidy a whole data frame or specific columns. Let's create a 'messy' data frame in the context of plant breeding trials.
+`tidy_strings()` works also to tidy a whole data frame or specific columns. Let's create a 'messy' data frame in the context of plant breeding trials.
 
 ```{r}
 library(tibble)

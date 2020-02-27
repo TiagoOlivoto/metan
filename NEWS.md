@@ -5,6 +5,9 @@
 ## New functions
 * `non_collinear_vars()` for selecting a set of predictors with minimal multicollinearity.
 
+## Minor changes
+* New argument `plot_res` in `path_coeff()` to create a residual plot of the multiple regression model.
+
 # metan 1.3.0
 
 ## New functions

@@ -45,8 +45,8 @@
 #'   that will be accepted. See the \bold{Details} section for more information.
 #' @param missingval How to deal with missing values. For more information,
 #'   please see \code{\link[stats]{cor}()}.
-#' @param plot_res If \code{TRUE} (default), create a scatter plot of residual
-#'   against predicted value and a normal Q-Q plot.
+#' @param plot_res If \code{TRUE}, create a scatter plot of residual against
+#'   predicted value and a normal Q-Q plot.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #'   console.
 #' @param ... Additional arguments passed on to \code{\link[stats]{plot.lm}}
@@ -129,7 +129,7 @@ path_coeff <- function(.data,
                        brutstep = FALSE,
                        maxvif = 10,
                        missingval = "pairwise.complete.obs",
-                       plot_res = TRUE,
+                       plot_res = FALSE,
                        verbose = TRUE,
                        ...) {
   if (missing(resp) == TRUE) {

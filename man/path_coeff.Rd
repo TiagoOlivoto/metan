@@ -15,7 +15,7 @@ path_coeff(
   brutstep = FALSE,
   maxvif = 10,
   missingval = "pairwise.complete.obs",
-  plot_res = TRUE,
+  plot_res = FALSE,
   verbose = TRUE,
   ...
 )
@@ -58,8 +58,8 @@ that will be accepted. See the \bold{Details} section for more information.}
 \item{missingval}{How to deal with missing values. For more information,
 please see \code{\link[stats]{cor}()}.}
 
-\item{plot_res}{If \code{TRUE} (default), create a scatter plot of residual
-against predicted value and a normal Q-Q plot.}
+\item{plot_res}{If \code{TRUE}, create a scatter plot of residual against
+predicted value and a normal Q-Q plot.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
