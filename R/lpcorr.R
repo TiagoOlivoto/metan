@@ -37,20 +37,18 @@
 #'
 #' # Using a correlation matrix
 #' partial3 <- cor(iris[1:4]) %>%
-#'             lpcor(n = nrow(iris),
-#'                   verbose = FALSE)
+#'             lpcor(n = nrow(iris))
 #'
 #' # Select all numeric variables and compute the partial correlation
-#' # For each level of \code{Species}
+#' # For each level of Species
 #'
-#' partial4 <- lpcor(iris, everithig(), by = Species)
+#' partial4 <- lpcor(iris, by = Species)
 #'}
 lpcor <- function(.data,
                   ...,
                   by = NULL,
                   n = NULL,
-                  method = "pearson",
-                  verbose = TRUE) {
+                  method = "pearson") {
   if (!missing(by)){
     if(length(as.list(substitute(by))[-1L]) != 0){
       stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
@@ -60,10 +58,8 @@ lpcor <- function(.data,
   if(is_grouped_df(.data)){
     results <- .data %>%
       doo(lpcor,
-          ...,
           n = n,
-          method = method,
-          verbose = verbose)
+          method = method)
     return(set_class(results, c("lpcor", "lpcor_group", "tbl_df", "tbl",  "data.frame")))
   }
   if (!is.matrix(.data) && !is.data.frame(.data)) {
@@ -151,8 +147,7 @@ lpcor <- function(.data,
 #' # Compute the correlations for each level of the factor ENV
 #' lpc2 <- lpcor(data_ge2,
 #'               NR, NKR, NKE,
-#'               by = ENV,
-#'               verbose = FALSE)
+#'               by = ENV)
 #' print(lpc2)
 #' }
 print.lpcor <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
@@ -164,10 +159,8 @@ print.lpcor <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   on.exit(options(opar))
   if(any(class(x) == "lpcor_group")){
     x %>%
-    mutate(af = map(data,
-                    ~.x %>%
-                      .[[3]])) %>%
-      unnest(cols = af) %>%
+    mutate(name = map(data, ~.x %>% .[[3]])) %>%
+      unnest(cols = name) %>%
       remove_cols(data) %>%
       print()
   } else{

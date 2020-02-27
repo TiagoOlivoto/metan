@@ -4,7 +4,7 @@
 \alias{lpcor}
 \title{Linear and Partial Correlation Coefficients}
 \usage{
-lpcor(.data, ..., by = NULL, n = NULL, method = "pearson", verbose = TRUE)
+lpcor(.data, ..., by = NULL, n = NULL, method = "pearson")
 }
 \arguments{
 \item{.data}{The data to be analyzed. It must be a symmetric correlation
@@ -50,13 +50,12 @@ partial2 <- iris \%>\% lpcor()
 
 # Using a correlation matrix
 partial3 <- cor(iris[1:4]) \%>\%
-            lpcor(n = nrow(iris),
-                  verbose = FALSE)
+            lpcor(n = nrow(iris))
 
 # Select all numeric variables and compute the partial correlation
-# For each level of \code{Species}
+# For each level of Species
 
-partial4 <- lpcor(iris, everithig(), by = Species)
+partial4 <- lpcor(iris, by = Species)
 }
 }
 \author{

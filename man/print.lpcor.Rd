@@ -33,8 +33,7 @@ print(pcor)
 # Compute the correlations for each level of the factor ENV
 lpc2 <- lpcor(data_ge2,
               NR, NKR, NKE,
-              by = ENV,
-              verbose = FALSE)
+              by = ENV)
 print(lpc2)
 }
 }
