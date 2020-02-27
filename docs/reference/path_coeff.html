@@ -229,7 +229,7 @@ is implemented.</p>
   <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>missingval</span> <span class='kw'>=</span> <span class='st'>"pairwise.complete.obs"</span>,
-  <span class='kw'>plot_res</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>plot_res</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
@@ -296,8 +296,8 @@ please see <code><a href='https://rdrr.io/r/stats/cor.html'>cor</a>()</code>.</p
     </tr>
     <tr>
       <th>plot_res</th>
-      <td><p>If <code>TRUE</code> (default), create a scatter plot of residual
-against predicted value and a normal Q-Q plot.</p></td>
+      <td><p>If <code>TRUE</code>, create a scatter plot of residual against
+predicted value and a normal Q-Q plot.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -366,14 +366,16 @@ path analysis: a simple method to reduce its effects. Agron. J.
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
 <span class='co'># Using KW as the response variable and all other ones as predictors</span>
-<span class='no'>pcoeff</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)</div><div class='img'><img src='path_coeff-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Severe multicollinearity. 
+<span class='no'>pcoeff</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)</div><div class='output co'>#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 7865.84
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'>
 
 <span class='co'># Declaring the predictors</span>
+<span class='co'># Create a residual plot with 'plot_res = TRUE'</span>
 <span class='no'>pcoeff2</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>,
                       <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
-                      <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>))</div><div class='img'><img src='path_coeff-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Weak multicollinearity. 
+                      <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>NKE</span>, <span class='no'>TKW</span>),
+                      <span class='kw'>plot_res</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='path_coeff-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Weak multicollinearity. 
 #&gt; Condition Number = 40.232
 #&gt; You will probably have path coefficients close to being unbiased. </div><div class='input'>
 
@@ -381,7 +383,7 @@ path analysis: a simple method to reduce its effects. Agron. J.
 <span class='no'>pcoeff3</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>,
                      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
                      <span class='kw'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>NKR</span>, <span class='no'>PERK</span>, <span class='no'>KW</span>, <span class='no'>NKE</span>),
-                     <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='path_coeff-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Severe multicollinearity. 
+                     <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 5827.719
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'>
 
@@ -417,13 +419,16 @@ path analysis: a simple method to reduce its effects. Agron. J.
 
 <span class='co'># When one analysis should be carried out for each environment</span>
 <span class='co'># Using the forward-pipe operator %&gt;%</span>
-<span class='no'>pcoeff5</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>)</div><div class='img'><img src='path_coeff-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Severe multicollinearity. 
+<span class='no'>pcoeff5</span> <span class='kw'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>)</div><div class='output co'>#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 13958.438
-#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='img'><img src='path_coeff-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Severe multicollinearity. 
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. 
+#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 8139.667
-#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='img'><img src='path_coeff-6.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Severe multicollinearity. 
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. 
+#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 11334.047
-#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='img'><img src='path_coeff-7.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Severe multicollinearity. 
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. 
+#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 12981.917
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'># }
 

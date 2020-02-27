@@ -93,9 +93,11 @@
 #'
 #'
 #' # Declaring the predictors
+#' # Create a residual plot with 'plot_res = TRUE'
 #' pcoeff2 <- path_coeff(data_ge2,
 #'                       resp = KW,
-#'                       pred = c(PH, EH, NKE, TKW))
+#'                       pred = c(PH, EH, NKE, TKW),
+#'                       plot_res = TRUE)
 #'
 #'
 #' # Selecting variables to be excluded from the analysis
