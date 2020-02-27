@@ -15,7 +15,9 @@ path_coeff(
   brutstep = FALSE,
   maxvif = 10,
   missingval = "pairwise.complete.obs",
-  verbose = TRUE
+  plot_res = TRUE,
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
@@ -56,8 +58,13 @@ that will be accepted. See the \bold{Details} section for more information.}
 \item{missingval}{How to deal with missing values. For more information,
 please see \code{\link[stats]{cor}()}.}
 
+\item{plot_res}{If \code{TRUE} (default), create a scatter plot of residual
+against predicted value and a normal Q-Q plot.}
+
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
+
+\item{...}{Additional arguments passed on to \code{\link[stats]{plot.lm}}}
 }
 \value{
 An object of class \code{path_coeff, group_path, or brute_path} with

@@ -45,8 +45,11 @@
 #'   that will be accepted. See the \bold{Details} section for more information.
 #' @param missingval How to deal with missing values. For more information,
 #'   please see \code{\link[stats]{cor}()}.
+#' @param plot_res If \code{TRUE} (default), create a scatter plot of residual
+#'   against predicted value and a normal Q-Q plot.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #'   console.
+#' @param ... Additional arguments passed on to \code{\link[stats]{plot.lm}}
 #' @return An object of class \code{path_coeff, group_path, or brute_path} with
 #'   the following items:
 #' * \strong{Corr.x} A correlation matrix between the predictor variables.
@@ -126,7 +129,9 @@ path_coeff <- function(.data,
                        brutstep = FALSE,
                        maxvif = 10,
                        missingval = "pairwise.complete.obs",
-                       verbose = TRUE) {
+                       plot_res = TRUE,
+                       verbose = TRUE,
+                       ...) {
   if (missing(resp) == TRUE) {
     stop("A response variable (dependent) must be declared.")
   }
@@ -151,7 +156,6 @@ path_coeff <- function(.data,
           verbose = verbose)
     return(results)
   }
-
   data <- select_numeric_cols(.data)
   nam <- names(.data)
   if (brutstep == FALSE) {
@@ -162,6 +166,14 @@ path_coeff <- function(.data,
     }
     names <- colnames(pr)
     y <- data %>% select({{resp}})
+    if(plot_res == TRUE){
+    dfs <- cbind(y, pr)
+    form <- as.formula(paste(names(y), "~ ."))
+    mod <- lm(form, data = dfs)
+    opar <- par(mfrow = c(1, 2))
+    on.exit(par(opar))
+    plot(mod, which = c(1, 2), ...)
+    }
     nam_resp <- names(y)
     cor.y <- cor(pr, y, use = missingval)
     cor.x <- cor(pr, use = missingval)
@@ -171,8 +183,7 @@ path_coeff <- function(.data,
       cor.x <- cor(pr, use = missingval)
     }
     if (is.null(correction) == TRUE) {
-      betas <- data.frame(matrix(nrow = knumber, ncol = length(pr) +
-                                   1))
+      betas <- data.frame(matrix(nrow = knumber, ncol = length(pr) + 1))
       cc <- 0
       nvar <- length(pr) + 1
       for (i in 1:knumber) {
