@@ -20,8 +20,7 @@
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
 #'   \strong{All effects, except the error, are assumed to be fixed.}
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
-#'   silently.
+#' @param verbose \strong{Deprecated argument. It will be retired in the next release.}
 #' @return A list where each element is the result for one variable containing:
 #'
 #' 1. \strong{individual}: A tidy tbl_df with the results of the individual
@@ -72,7 +71,7 @@ anova_ind <- function(.data,
                       rep,
                       resp,
                       block = NULL,
-                      verbose = TRUE) {
+                      verbose = "deprecated") {
   if(!missing(block)){
     factors  <- .data %>%
       select({{env}},
@@ -165,15 +164,6 @@ anova_ind <- function(.data,
     temp <- list(individual = as_tibble(rownames_to_column(individual, "ENV")),
                  MSRratio = max(individual$MSE) / min(individual$MSE))
       listres[[paste(names(vars[var]))]] <- temp
-      if (verbose == TRUE) {
-        cat("variable", paste(names(vars[var])),"\n")
-        cat("---------------------------------------------------------------------------\n")
-        cat("Within-environment ANOVA results\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(as.data.frame(temp$individual), digits = 3, row.names = FALSE)
-        cat("---------------------------------------------------------------------------\n\n")
-      }
-
   }
   invisible(structure(listres, class = "anova_ind"))
 }
@@ -219,6 +209,8 @@ print.anova_ind <- function(x, export = FALSE, file.name = NULL, digits = 3, ...
   for (i in 1:length(x)) {
     var <- x[[i]]
     cat("Variable", names(x)[i], "\n")
+    cat("---------------------------------------------------------------------------\n")
+    cat("Within-environment ANOVA results\n")
     cat("---------------------------------------------------------------------------\n")
     print(var[[1]])
     cat("---------------------------------------------------------------------------\n")

@@ -4,7 +4,7 @@
 \alias{anova_ind}
 \title{Within-environment analysis of variance}
 \usage{
-anova_ind(.data, env, gen, rep, resp, block = NULL, verbose = TRUE)
+anova_ind(.data, env, gen, rep, resp, block = NULL, verbose = "deprecated")
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -28,8 +28,7 @@ block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 \strong{All effects, except the error, are assumed to be fixed.}}
 
-\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
-silently.}
+\item{verbose}{\strong{Deprecated argument. It will be retired in the next release.}}
 }
 \value{
 A list where each element is the result for one variable containing:
