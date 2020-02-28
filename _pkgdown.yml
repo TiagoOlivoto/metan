@@ -198,6 +198,7 @@ reference:
       - print.colindiag
       - print.can_cor
       - print.corr_coef
+      - print.lpcor
       - print.path_coeff
       - resp_surf
   - title: "Descriptive"
