@@ -429,9 +429,9 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' rows in \code{.data} plus the rows declared in \code{...}.
 #' * \code{all_pairs()}: Get all the possible pairs between the levels of a
 #' factor.
-#' * \code{colnames_to_lower}: Translate all column names to lower case.
-#' * \code{colnames_to_upper}: Translate all column names to upper case.
-#' * \code{colnames_to_title}: Translate all column names to title case.
+#' * \code{colnames_to_lower()}: Translate all column names to lower case.
+#' * \code{colnames_to_upper()}: Translate all column names to upper case.
+#' * \code{colnames_to_title()}: Translate all column names to title case.
 #' * \code{column_exists()}: Checks if a column exists in a data frame. Return a
 #' logical value.
 #' * \code{columns_to_first()}: Move columns to first positions in \code{.data}.
@@ -439,7 +439,7 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' * \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
 #' TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
 #' concatenated variable is pull out to a vector. This is specially useful when
-#' using \code{concatenate} to add columns to a data frame with \code{add_cols}.
+#' using \code{concatenate} to add columns to a data frame with \code{add_cols()}.
 #' * \code{get_levels()}: Get the levels of a factor variable.
 #' * \code{get_level_size()}: Get the size of each level of a factor variable.
 #' * \code{remove_cols()}: Remove one or more columns from a data frame.

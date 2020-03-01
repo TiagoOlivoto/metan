@@ -138,9 +138,9 @@ appended at the end of the data. Return a data frame with all the original
 rows in \code{.data} plus the rows declared in \code{...}.
 \item \code{all_pairs()}: Get all the possible pairs between the levels of a
 factor.
-\item \code{colnames_to_lower}: Translate all column names to lower case.
-\item \code{colnames_to_upper}: Translate all column names to upper case.
-\item \code{colnames_to_title}: Translate all column names to title case.
+\item \code{colnames_to_lower()}: Translate all column names to lower case.
+\item \code{colnames_to_upper()}: Translate all column names to upper case.
+\item \code{colnames_to_title()}: Translate all column names to title case.
 \item \code{column_exists()}: Checks if a column exists in a data frame. Return a
 logical value.
 \item \code{columns_to_first()}: Move columns to first positions in \code{.data}.
@@ -148,7 +148,7 @@ logical value.
 \item \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
 TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
 concatenated variable is pull out to a vector. This is specially useful when
-using \code{concatenate} to add columns to a data frame with \code{add_cols}.
+using \code{concatenate} to add columns to a data frame with \code{add_cols()}.
 \item \code{get_levels()}: Get the levels of a factor variable.
 \item \code{get_level_size()}: Get the size of each level of a factor variable.
 \item \code{remove_cols()}: Remove one or more columns from a data frame.
