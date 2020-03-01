@@ -4,10 +4,14 @@
 \alias{print.AMMI_indexes}
 \title{Print an object of class AMMI_indexes}
 \usage{
-\method{print}{AMMI_indexes}(x, export = FALSE, file.name = NULL, digits = 3, ...)
+\method{print}{AMMI_indexes}(x, which = "stats", export = FALSE, file.name = NULL, digits = 3, ...)
 }
 \arguments{
 \item{x}{An object of class \code{AMMI_indexes}.}
+
+\item{which}{Which should be printed. Defaults to \code{"stats"}. Other
+possible values are \code{"ranks"} for genotype ranking and \code{"ssi"}
+for the simultaneous selection index.}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported to
 the working directory.}

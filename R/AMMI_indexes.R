@@ -225,6 +225,9 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
 #' *.txt file.
 #'
 #' @param x An object of class \code{AMMI_indexes}.
+#' @param which Which should be printed. Defaults to \code{"stats"}. Other
+#'   possible values are \code{"ranks"} for genotype ranking and \code{"ssi"}
+#'   for the simultaneous selection index.
 #' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
 #'   the working directory.
 #' @param file.name The name of the file if \code{export = TRUE}
@@ -241,7 +244,7 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
 #'          AMMI_indexes()
 #' print(model)
 #' }
-print.AMMI_indexes <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
+print.AMMI_indexes <- function(x, which = "stats", export = FALSE, file.name = NULL, digits = 3, ...) {
     if (!class(x) == "AMMI_indexes") {
         stop("The object must be of class 'AMMI_indexes'")
     }
@@ -251,22 +254,27 @@ print.AMMI_indexes <- function(x, export = FALSE, file.name = NULL, digits = 3, 
         file.name <- ifelse(is.null(file.name) == TRUE, "AMMI_indexes print", file.name)
         sink(paste0(file.name, ".txt"))
     }
+    if(!which %in% c("stats", "ssi", "ranks")){
+        stop("Argument 'which' must be one of 'stats', 'ranks', or 'ssi'", call. = FALSE)
+    }
     for (i in 1:length(x)) {
-        var <- x[[i]]
+        if(which == "stats"){
+            var <- x[[i]] %>%
+                select_cols(-contains("_R"), -contains("_SSI"))
+        }
+        if(which == "ranks"){
+            var <- x[[i]] %>%
+                select_cols(GEN, contains("_R"))
+        }
+        if(which == "ssi"){
+            var <- x[[i]] %>%
+                select_cols(GEN, contains("SSI"))
+        }
         cat("Variable", names(x)[i], "\n")
         cat("---------------------------------------------------------------------------\n")
         cat("AMMI-based stability indexes\n")
         cat("---------------------------------------------------------------------------\n")
-        print(var$statistics)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Ranks for stability indexes\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(var$ranks)
-        cat("---------------------------------------------------------------------------\n")
-        cat("Simultaneous selection indexes\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(var$ssi)
-        cat("\n\n\n")
+        print(var)
     }
     if (export == TRUE) {
         sink()
