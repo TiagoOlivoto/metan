@@ -140,7 +140,7 @@
 #' }
 #' @export
 all_upper_case <- function(.data, ...){
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     .data <- as.data.frame(.data)
     if(!missing(...)){
       mutate_at(.data, vars(...), toupper) %>%
@@ -156,7 +156,7 @@ all_upper_case <- function(.data, ...){
 #' @name utils_num_str
 #' @export
 all_lower_case <- function(.data, ...){
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     .data <- as.data.frame(.data)
     if(!missing(...)){
       mutate_at(.data, vars(...), tolower) %>%
@@ -177,7 +177,7 @@ all_title_case <- function(.data, ...){
     substr(x, 1, 1) <- toupper(substr(x, 1, 1))
     return(x)
   }
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     .data <- as.data.frame(.data)
     if(!missing(...)){
      mutate_at(.data, vars(...), to_title) %>%
@@ -200,7 +200,7 @@ extract_number <- function(.data,
                            pull = FALSE,
                            .before = NULL,
                            .after  = NULL){
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
       mutate({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
@@ -231,7 +231,7 @@ extract_string <- function(.data,
                            pull = FALSE,
                            .before = NULL,
                            .after  = NULL){
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
       mutate({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
@@ -277,7 +277,7 @@ has_text_in_num <- function(.data){
 #' @name utils_num_str
 #' @export
 remove_strings <- function(.data, ...){
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if(missing(...)){
     vars <- vars(everything())
   } else{
@@ -312,7 +312,7 @@ replace_number <- function(.data,
   } else{
     pattern <- pattern
   }
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
       mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
@@ -350,7 +350,7 @@ replace_string <- function(.data,
   } else {
     pattern <- pattern
   }
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
       mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
@@ -398,7 +398,7 @@ tidy_strings <- function(.data, ..., sep = "_"){
     str <- gsub("(?<=[A-Z])(?=[0-9])|(?<=[0-9])(?=[A-Z])", sep, str, perl = TRUE)
     return(str)
   }
-  if (any(class(.data) %in% c("data.frame","tbl_df", "data.table"))){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     if(missing(...)){
       results <-
         mutate_if(.data, ~!is.numeric(.x),  fstr)
@@ -1477,6 +1477,7 @@ doo <- function(.data, .fun, ...){
 #' @param class The class to add or remove
 #' @details
 #' * \code{add_class()}: add a class to the object \code{x} keeping all the other class(es).
+#' * \code{has_class()}: Check if a class exists in object \code{x} and returns a logical value.
 #' * \code{set_class()}: set a class to the object \code{x}.
 #' * \code{remove_class()}: remove a class from the object \code{x}.
 #' @md
@@ -1490,6 +1491,7 @@ doo <- function(.data, .fun, ...){
 #' data_ge2 %>%
 #' add_class("my_class")
 #'class(df)
+#'has_class(df, "my_class")
 #'remove_class(df, "my_class") %>% class()
 #'set_class(df, "data_frame") %>% class()
 #'}
@@ -1497,6 +1499,11 @@ doo <- function(.data, .fun, ...){
 add_class <- function(x, class){
   class(x) <- unique(c(class(x), class))
  return(x)
+}
+#' @name utils_class
+#' @export
+has_class <- function(x, class){
+  any(class(x)  %in%  class)
 }
 #' @name utils_class
 #' @export

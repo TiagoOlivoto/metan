@@ -44,7 +44,7 @@ plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
                     y.breaks = waiver(), shape = 21, col.shape = "black", fill.shape = "orange",
                     size.shape = 2.5, width.errbar = 0.5, main = TRUE, invert.axis = TRUE,
                     plot_theme = theme_metan()) {
-  if (!any(class(object) == "tbl_df")) {
+  if (!has_class(object, "tbl_df")) {
     stop("The object must be a 'data.frame' or a 'tbl_df'.")
   }
   if (!any(colnames(object) %in% c("Pair", "Corr"))) {

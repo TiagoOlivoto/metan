@@ -839,7 +839,7 @@ get_model_data <- function(x,
         column_to_first(PC, DF)
     }
   }
-  if (any(class(x) %in% c("waas", "waas_means"))){
+  if (has_class(x, c("waas", "waas_means"))){
     if (is.null(what)){
       what <- "WAAS"
     }

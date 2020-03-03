@@ -29,7 +29,7 @@
 #' }
 tukey_hsd <- function(model, ..., out = "long"){
   d <- match.call()
-  if(!any(class(model) %in% c("lm", "aov"))){
+  if(!has_class(model, c("lm", "aov"))){
     stop("object '", d[["model"]], "' must be of class 'lm' or 'aov'.", call. = FALSE)
   }
   mod <-

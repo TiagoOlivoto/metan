@@ -58,7 +58,7 @@ as.split_factors <- function(.data, keep_factors = FALSE, verbose = "DEPRECATED"
 #' @name split_factors
 #' @export
 is.split_factors <- function(x){
-  if(any(class(x) == "split_factors")){
+  if(has_class(x, "split_factors")){
     return(TRUE)
   } else{
     return(FALSE)

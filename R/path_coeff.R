@@ -156,7 +156,7 @@ path_coeff <- function(.data,
           maxvif = maxvif,
           missingval = missingval,
           verbose = verbose)
-    return(results)
+    return(set_class(results, c("group_path", "tbl_df", "tbl",  "data.frame")))
   }
   data <- select_numeric_cols(.data)
   nam <- names(.data)
@@ -436,7 +436,7 @@ path_coeff <- function(.data,
                       Residual = Residual,
                       Response = nam_resp,
                       weightvar = weightvarname)
-      ModelEstimates[[paste("Model", modelcode)]] <- Results
+      ModelEstimates[[paste("Model_", modelcode, sep = "")]] <- set_class(Results, "path_coeff")
       statistics[i, 1] <- paste("Model", modelcode, sep = "")
       statistics[i, 2] <- FDSel$Information_Criterion
       statistics[i, 3] <- npred
@@ -453,9 +453,13 @@ path_coeff <- function(.data,
       npred <- npred - 1
       modelcode <- modelcode + 1
     }
-    statistics <- statistics[-c(1), ]
-    names(statistics) <- c("Model", "AIC", "Numpred",
-                           "CN", "Determinant", "R2", "Residual", "maxVIF")
+    statistics %<>% remove_rows(1) %>%
+      set_names("Model", "AIC", "Numpred", "CN", "Determinant", "R2", "Residual", "maxVIF") %>%
+      arrange(Model) %>%
+      tidy_strings()
+    # arrange(statistics, Model) %>% tidy_strings()
+    # # statistics <- statistics[-c(1), ]
+    # # names(statistics) <- c("Model", "AIC", "Numpred", "CN", "Determinant", "R2", "Residual", "maxVIF")
     if (verbose == TRUE) {
       cat("Done!\n")
       cat("--------------------------------------------------------------------------\n")
@@ -464,9 +468,10 @@ path_coeff <- function(.data,
       print(statistics, digits = 3, row.names = FALSE)
       cat("--------------------------------------------------------------------------\n\n")
     }
-    temp <- list(Models = ModelEstimates, Summary = statistics,
+    temp <- list(Models = set_class(ModelEstimates, "path_coeff"),
+                 Summary = statistics,
                  Selectedpred = selectedpred)
-    return(structure(temp, class = "brute_path"))
+    return(set_class(temp, c("brute_path", "path_coeff")))
   }
 }
 
@@ -511,16 +516,22 @@ path_coeff <- function(.data,
 #' print(pcoeff2)
 #' }
 print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
+  args <- match.call()
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "path_coeff print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  if (!class(x) %in% c("path_coeff", "group_path")) {
+  if (!has_class(x, c("path_coeff", "brute_path"))) {
     stop("The object 'x' must be of class 'path_coeff' or 'group_path'.")
   }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
-  if (class(x) == "path_coeff") {
+  if (has_class(x, "brute_path")) {
+    df <- as_tibble(x[["Summary"]])
+    print(df)
+    message("Go to '", args[["x"]], " > s' to select a specific model", sep = "")
+
+  } else{
     cat("----------------------------------------------------------------------------------------------\n")
     cat("Correlation matrix between the predictor traits\n")
     cat("----------------------------------------------------------------------------------------------\n")
@@ -555,48 +566,6 @@ print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ..
     cat("----------------------------------------------------------------------------------------------\n")
     print(x$Coefficients)
     cat("----------------------------------------------------------------------------------------------\n")
-  }
-  if (any(class(x) == "group_path")) {
-    for (k in 1:length(x)) {
-      x <- x[[k]]
-      nam <- names(x[k])
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Level:", names(x)[[k]], "\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Correlation matrix between the predictor traits\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      print(x$Corr.x)
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Vector of correlations between dependent and each predictor\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      print(t(x$Corr.y))
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Multicollinearity diagnosis and goodness-of-fit\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Condition number: ", round(x$CN, 4), "\n")
-      cat("Determinant:      ", round(x$Det, 8), "\n")
-      cat("R-square:         ", round(x$R2, 4), "\n")
-      cat("Residual:         ", round(x$Residual, 4), "\n")
-      cat("Response:         ", paste(x$Response)[[2]], "\n")
-      cat("Predictors:       ", paste(x$Predictors), "\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Variance inflation factors\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      print(x$VIF)
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Eigenvalues and eigenvectors\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      print(x$Eigen)
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Variables with the largest weight in the eigenvalue of smallest magnitude\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat(x$weightvar, "\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      cat("Direct (diagonal) and indirect (off-diagonal) effects\n")
-      cat("----------------------------------------------------------------------------------------------\n")
-      print(x$Coefficients)
-      cat("----------------------------------------------------------------------------------------------\n\n\n")
-    }
   }
   if (export == TRUE) {
     sink()

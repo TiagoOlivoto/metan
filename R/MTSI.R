@@ -78,7 +78,7 @@ mtsi <- function(.data,
     ideotype.D <- rep(100, length(.data))
   }
 
-  if (any(class(.data) %in% c("waas", "waas_means"))){
+  if (has_class(.data, c("waas", "waas_means"))){
     if (index == "waasb") {
       bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
         val <- x[["model"]][["WAAS"]]

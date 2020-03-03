@@ -90,9 +90,9 @@ colindiag <- function(.data,
                       by = NULL,
                       n = NULL,
                       verbose = "DEPRECATED") {
-  if (!any(class(.data) %in% c("matrix", "data.frame", "split_factors",
-                               "covcor_design", "tbl_df"))) {
-    stop("The object 'x' must be a correlation matrix, a data.frame or an object of class split_factors")
+
+  if (!has_class(.data, c("matrix", "data.frame", "grouped_df", "covcor_design", "tbl_df"))) {
+    stop("The object 'x' must be a correlation matrix, a data.frame or a grouped data.frame")
   }
   if (is.matrix(.data) && is.null(n)) {
     stop("You have a matrix but the sample size used to compute the correlations (n) was not declared.")
@@ -208,7 +208,7 @@ print.colindiag <- function(x, export = FALSE, file.name = NULL, digits = 3, ...
     file.name <- ifelse(is.null(file.name) == TRUE, "colindiag print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-  if(any(class(x) == "colingroup")){
+  if(has_class(x, "colingroup")){
     for (i in 1:nrow(x)){
       df <- x[i,]
       names <-

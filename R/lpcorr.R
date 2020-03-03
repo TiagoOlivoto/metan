@@ -157,7 +157,7 @@ print.lpcor <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
-  if(any(class(x) == "lpcor_group")){
+  if(has_class(x, "lpcor_group")){
     x %>%
     mutate(name = map(data, ~.x %>% .[[3]])) %>%
       unnest(cols = name) %>%

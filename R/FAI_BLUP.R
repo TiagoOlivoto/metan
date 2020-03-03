@@ -59,7 +59,7 @@
 fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   ideotype.D <- unlist(strsplit(DI, split=", "))
   ideotype.U <- unlist(strsplit(UI, split=", "))
-  if (!any(class(.data) %in% c("data.frame", "tbl_df", "tbl", "waasb"))) {
+  if (!has_class(.data, c("data.frame", "tbl_df", "tbl", "waasb"))) {
     stop("The .data must be an object of class 'waasb' or a data.frame/tbl_df.")
   }
   if(class(.data) != "waasb" & any(sapply(.data, is.numeric)) == FALSE){

@@ -169,7 +169,7 @@ desc_stat <- function(.data = NULL,
   if (!any(stats %in% c("all", "main", "robust", "quantile", all))) {
     stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci, cv, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
   }
-  if(any(class(.data) == "numeric")){
+  if(has_class(.data, "numeric")){
     .data <- data.frame(val = .data)
   }
   opar <- options(pillar.sigfig = digits)
