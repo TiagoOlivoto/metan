@@ -219,7 +219,7 @@ in the R console. The results can also be exported to the directory into a
     </div>
 
     <pre class="usage"><span class='co'># S3 method for AMMI_indexes</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='st'>"stats"</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -227,6 +227,12 @@ in the R console. The results can also be exported to the directory into a
     <tr>
       <th>x</th>
       <td><p>An object of class <code>AMMI_indexes</code>.</p></td>
+    </tr>
+    <tr>
+      <th>which</th>
+      <td><p>Which should be printed. Defaults to <code>"stats"</code>. Other
+possible values are <code>"ranks"</code> for genotype ranking and <code>"ssi"</code>
+for the simultaneous selection index.</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -279,17 +285,21 @@ the working directory.</p></td>
 #&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI-based stability indexes
-#&gt; ---------------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown or uninitialised column: 'statistics'.</span></div><div class='output co'>#&gt; NULL
 #&gt; ---------------------------------------------------------------------------
-#&gt; Ranks for stability indexes
-#&gt; ---------------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown or uninitialised column: 'ranks'.</span></div><div class='output co'>#&gt; NULL
-#&gt; ---------------------------------------------------------------------------
-#&gt; Simultaneous selection indexes
-#&gt; ---------------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown or uninitialised column: 'ssi'.</span></div><div class='output co'>#&gt; NULL
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'># }
-</div></pre>
+#&gt; <span style='color: #949494;'># A tibble: 10 x 7</span><span>
+#&gt;    GEN       Y   ASV  SIPC     EV     ZA  WAAS
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1     2.60 0.346 0.463 0.014</span><span style='text-decoration: underline;'>9</span><span> 0.100  0.151
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10    2.47 1.23  2.07  0.210  0.437  0.652
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2     2.74 0.249 1.54  0.179  0.216  0.283
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3     2.96 0.113 0.552 0.020</span><span style='text-decoration: underline;'>7</span><span> 0.079</span><span style='text-decoration: underline;'>7</span><span> 0.106
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4     2.64 0.594 1.04  0.052</span><span style='text-decoration: underline;'>1</span><span> 0.219  0.326
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5     2.54 0.430 0.997 0.043</span><span style='text-decoration: underline;'>3</span><span> 0.186  0.270
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6     2.53 0.265 1.14  0.091</span><span style='text-decoration: underline;'>1</span><span> 0.172  0.233
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7     2.74 0.663 1.79  0.191  0.303  0.428
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8     3.00 0.574 1.18  0.066</span><span style='text-decoration: underline;'>9</span><span> 0.225  0.327
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9     2.51 0.983 1.50  0.131  0.336  0.507</div><div class='input'># }
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

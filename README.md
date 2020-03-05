@@ -410,22 +410,24 @@ get_model_data(stats, "ranks")
 ``` r
 citation("metan")
 
-Please, support the project metan by citing it in your publications:
+Please, support this project by citing it in your publications!
 
-  Olivoto, T., and Lúcio, A.D. (2020). "Metan: an R package for
-  multi-environment trial analysis." bioRxiv, 2020.01.14.906750.
-  doi:10.1101/2020.01.14.906750.
+  Olivoto, T., and Lúcio, A.D. (2020). metan: an R package for
+  multi-environment trial analysis. Methods Ecol Evol. Accepted Author
+  Manuscript doi:10.1111/2041-210X.13384
 
 A BibTeX entry for LaTeX users is
 
   @Article{Olivoto2020,
     author = {Tiago Olivoto and Alessandro Dal'Col L{'{u}}cio},
     title = {metan: an R package for multi-environment trial analysis},
-    pages = {2020.01.14.906750},
+    journal = {Methods in Ecology and Evolution},
+    volume = {n/a},
+    number = {n/a},
     year = {2020},
-    doi = {10.1101/2020.01.14.906750},
-    url = {https://www.biorxiv.org/content/early/2020/01/14/2020.01.14.906750},
-    journal = {bioRxiv},
+    doi = {10.1111/2041-210X.13384},
+    url = {https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.13384},
+    eprint = {https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210X.13384},
   }
 ```
 

@@ -4,9 +4,11 @@
 
 ## New functions
 * `non_collinear_vars()` for selecting a set of predictors with minimal multicollinearity.
+* `has_class()` to check if a class exists.
 
 ## Minor changes
 * New argument `plot_res` in `path_coeff()` to create a residual plot of the multiple regression model.
+* Update the citation file to include the [published official reference](https://doi.org/10.1111/2041-210X.13384)
 
 # metan 1.3.0
 
