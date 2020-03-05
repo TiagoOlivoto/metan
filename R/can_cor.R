@@ -13,7 +13,6 @@
 #'@param by One variable (factor) to compute the function by. It is a shortcut
 #'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 #'  one grouping variable use that function.
-#' @param means_by \strong{Deprecated argument. It will be retired in the next release.}
 #' @param use The matrix to be used. Must be one of 'cor' for analysis using the
 #'   correlation matrix (default) or 'cov' for analysis using the covariance
 #'   matrix.
@@ -87,7 +86,6 @@ can_corr <- function(.data,
                      FG,
                      SG,
                      by = NULL,
-                     means_by = "deprecated",
                      use = "cor",
                      test = "Bartlett",
                      prob = 0.05,
@@ -118,7 +116,6 @@ can_corr <- function(.data,
 
   FG <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
   SG <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
-
   if (nrow(FG) != nrow(SG)) {
     stop("The number of observations of 'FG', should be equal to 'SG'.")
   }
@@ -255,8 +252,8 @@ can_corr <- function(.data,
   names(results) <- c("Var", "Percent", "Sum", "Corr", "Lambda",
                       "Chisq", "DF", "p_val")
   if (collinearity == TRUE) {
-    colin <- list(FG = colindiag(FG, verbose = FALSE), SG = colindiag(SG,
-                                                                      verbose = FALSE))
+    colin <- list(FG = colindiag(FG),
+                  SG = colindiag(SG))
   } else {
     colin <- NULL
   }
@@ -306,11 +303,6 @@ can_corr <- function(.data,
     cat("---------------------------------------------------------------------------\n")
     print(Rvy)
   }
-  # if(!missing(means_by)){
-  # FG_SC = FG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
-  # SG_SC = SG_SC %>% as.data.frame() %>% mutate(fct = nam_fact) %>% column_to_rownames("fct")
-  # }
-
   invisible(structure(list(Matrix = MC, MFG = S11, MSG = S22,
                            MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
                            Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Crossload_FG = FG_CL,

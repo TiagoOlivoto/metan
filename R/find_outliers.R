@@ -9,8 +9,6 @@
 #'@param by One variable (factor) to compute the function by. It is a shortcut
 #'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 #'  one grouping variable use that function.
-#' @param values An alternative way to pass the data to the function. It must be
-#'  a numeric vector.
 #' @param plots If \code{TRUE}, then histograms and boxplots are shown.
 #' @param coef The multiplication coefficient, defaults to 1.5. For more details
 #'   see \code{?boxplot.stat}.
@@ -35,7 +33,6 @@
 find_outliers <- function(.data =  NULL,
                           var = NULL,
                           by = NULL,
-                          values = "deprecated",
                           plots = FALSE,
                           coef = 1.5,
                           verbose = TRUE,

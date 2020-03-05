@@ -28,7 +28,6 @@
 #'@param by One variable (factor) to compute the function by. It is a shortcut
 #'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 #'  one grouping variable use that function.
-#' @param means_by \strong{Deprecated argument. It will be retired in the next release.}
 #' @param scale Should the data be scaled before computing the distances? Set to
 #'   FALSE. If TRUE, then, each observation will be divided by the standard
 #'   deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}
@@ -111,7 +110,6 @@
 clustering <- function(.data,
                        ...,
                        by = NULL,
-                       means_by = "deprecated",
                        scale = FALSE,
                        selvar = FALSE,
                        verbose = TRUE,

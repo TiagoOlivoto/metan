@@ -4,7 +4,7 @@
 \alias{colindiag}
 \title{Collinearity Diagnostics}
 \usage{
-colindiag(.data, ..., by = NULL, n = NULL, verbose = "DEPRECATED")
+colindiag(.data, ..., by = NULL, n = NULL)
 }
 \arguments{
 \item{.data}{The data to be analyzed. It must be a symmetric correlation
@@ -21,8 +21,6 @@ one grouping variable use that function.}
 
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
-
-\item{verbose}{\strong{Deprecated argument. It will be retired in the next release.}}
 }
 \value{
 If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}

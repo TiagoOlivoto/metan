@@ -53,7 +53,7 @@ out <- superiority(data_ge2,
 Lin, C.S., and M.R. Binns. 1988. A superiority measure of
 cultivar performance for cultivar x location data. Can. J. Plant Sci.
 68:193-198.
-\href{http://pubs.aic.ca/doi/abs/10.4141/cjps88-018}{doi:10.4141/cjps88-018}
+\href{https://www.nrcresearchpress.com/doi/10.4141/cjps88-018#.XmEYwKhKgdU}{doi:10.4141/cjps88-018}
 }
 \seealso{
 \code{\link{Annicchiarico}, \link{ecovalence}, \link{ge_stats}}

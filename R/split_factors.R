@@ -12,7 +12,6 @@
 #' @param ... Comma-separated list of unquoted variable names that will be used
 #'   to split the data.
 #' @param keep_factors Should the grouping columns be kept?
-#' @param verbose Deprecated argument. It will be retired in the next release.
 #' @return A list where each element is a named level of the grouping factors.
 #'   If more than one grouping variable is used, then each element is the
 #'   combination of the grouping variables.
@@ -37,7 +36,7 @@
 #' is.split_factors(spdata)
 #' }
 #'
-split_factors <- function(.data, ..., keep_factors = FALSE, verbose = "DEPRECATED") {
+split_factors <- function(.data, ..., keep_factors = FALSE) {
   grouped <- group_by(.data, ...)
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " | ")))
   gd <- grouped %>%
@@ -47,7 +46,7 @@ split_factors <- function(.data, ..., keep_factors = FALSE, verbose = "DEPRECATE
 }
 #' @name split_factors
 #' @export
-as.split_factors <- function(.data, keep_factors = FALSE, verbose = "DEPRECATED") {
+as.split_factors <- function(.data, keep_factors = FALSE) {
   grouped <- group_by_if(.data, is.factor)
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " | ")))
   gd <- grouped %>%

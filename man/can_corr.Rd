@@ -9,7 +9,6 @@ can_corr(
   FG,
   SG,
   by = NULL,
-  means_by = "deprecated",
   use = "cor",
   test = "Bartlett",
   prob = 0.05,
@@ -30,8 +29,6 @@ analysis, respectively. Select helpers are also allowed.}
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
 to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 one grouping variable use that function.}
-
-\item{means_by}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{use}{The matrix to be used. Must be one of 'cor' for analysis using the
 correlation matrix (default) or 'cov' for analysis using the covariance

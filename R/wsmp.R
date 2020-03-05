@@ -391,14 +391,6 @@ wsmp <- function(model,
 #' @param y.lab The label of y axis. Default is 'Genotypes'.
 #' @param x.lab The label of x axis. Default is 'Number of axes'.
 #' @param size.lab The size of the
-#' @param export \strong{Deprecated argument. It will be retired in the next release.}
-#' @param file.type \strong{Deprecated argument. It will be retired in the next release.}
-#' @param file.name \strong{Deprecated argument. It will be retired in the next release.}
-#' @param width \strong{Deprecated argument. It will be retired in the next release.}
-#' @param height \strong{Deprecated argument. It will be retired in the next release.}
-#' @param margins \strong{Deprecated argument. It will be retired in the next release.}
-#' @param key.lab \strong{Deprecated argument. It will be retired in the next release.}
-#' @param resolution \strong{Deprecated argument. It will be retired in the next release.}
 #' @param ... Currently not used.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot wsmp
@@ -420,14 +412,6 @@ plot.wsmp <- function(x,
                       y.lab = NULL,
                       x.lab = NULL,
                       size.lab = 12,
-                      export = "deprecated",
-                      file.type = "deprecated",
-                      file.name = "deprecated",
-                      width = "deprecated",
-                      height = "deprecated",
-                      margins = "deprecated",
-                      key.lab = "deprecated",
-                      resolution = "deprecated",
                       ...) {
 
   nam_dat <- ifelse(type == 1, "hetdata", "hetcomb")

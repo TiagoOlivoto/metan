@@ -6,9 +6,9 @@
 \alias{is.split_factors}
 \title{Split a data frame by factors}
 \usage{
-split_factors(.data, ..., keep_factors = FALSE, verbose = "DEPRECATED")
+split_factors(.data, ..., keep_factors = FALSE)
 
-as.split_factors(.data, keep_factors = FALSE, verbose = "DEPRECATED")
+as.split_factors(.data, keep_factors = FALSE)
 
 is.split_factors(x)
 }
@@ -20,8 +20,6 @@ variable.}
 to split the data.}
 
 \item{keep_factors}{Should the grouping columns be kept?}
-
-\item{verbose}{Deprecated argument. It will be retired in the next release.}
 
 \item{x}{An object to check for class \code{split_factors}.}
 }

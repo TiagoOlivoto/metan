@@ -15,7 +15,6 @@
 #'  one grouping variable use that function.
 #' @param n If a correlation matrix is provided, then \code{n} is the number of
 #'   objects used to compute the correlation coefficients.
-#' @param verbose \strong{Deprecated argument. It will be retired in the next release.}
 #' @return
 #'
 #' If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
@@ -88,8 +87,7 @@
 colindiag <- function(.data,
                       ...,
                       by = NULL,
-                      n = NULL,
-                      verbose = "DEPRECATED") {
+                      n = NULL) {
 
   if (!has_class(.data, c("matrix", "data.frame", "grouped_df", "covcor_design", "tbl_df"))) {
     stop("The object 'x' must be a correlation matrix, a data.frame or a grouped data.frame")
@@ -110,8 +108,7 @@ colindiag <- function(.data,
     results <- .data %>%
       doo(colindiag,
           ...,
-          n = n,
-          verbose = verbose)
+          n = n)
     return(results %>% set_class(c("tbl_df", "tbl",  "data.frame", "colingroup", "colindiag")))
   }
   internal <- function(x) {

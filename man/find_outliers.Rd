@@ -8,7 +8,6 @@ find_outliers(
   .data = NULL,
   var = NULL,
   by = NULL,
-  values = "deprecated",
   plots = FALSE,
   coef = 1.5,
   verbose = TRUE,
@@ -24,9 +23,6 @@ class \code{split_factors}.}
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
 to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 one grouping variable use that function.}
-
-\item{values}{An alternative way to pass the data to the function. It must be
-a numeric vector.}
 
 \item{plots}{If \code{TRUE}, then histograms and boxplots are shown.}
 

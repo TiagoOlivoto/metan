@@ -4,23 +4,7 @@
 \alias{plot.wsmp}
 \title{Plot heat maps with genotype ranking}
 \usage{
-\method{plot}{wsmp}(
-  x,
-  var = 1,
-  type = 1,
-  y.lab = NULL,
-  x.lab = NULL,
-  size.lab = 12,
-  export = "deprecated",
-  file.type = "deprecated",
-  file.name = "deprecated",
-  width = "deprecated",
-  height = "deprecated",
-  margins = "deprecated",
-  key.lab = "deprecated",
-  resolution = "deprecated",
-  ...
-)
+\method{plot}{wsmp}(x, var = 1, type = 1, y.lab = NULL, x.lab = NULL, size.lab = 12, ...)
 }
 \arguments{
 \item{x}{The object returned by the function \code{wsmp}.}
@@ -39,22 +23,6 @@ WAASB/GY ratio.}
 \item{x.lab}{The label of x axis. Default is 'Number of axes'.}
 
 \item{size.lab}{The size of the}
-
-\item{export}{\strong{Deprecated argument. It will be retired in the next release.}}
-
-\item{file.type}{\strong{Deprecated argument. It will be retired in the next release.}}
-
-\item{file.name}{\strong{Deprecated argument. It will be retired in the next release.}}
-
-\item{width}{\strong{Deprecated argument. It will be retired in the next release.}}
-
-\item{height}{\strong{Deprecated argument. It will be retired in the next release.}}
-
-\item{margins}{\strong{Deprecated argument. It will be retired in the next release.}}
-
-\item{key.lab}{\strong{Deprecated argument. It will be retired in the next release.}}
-
-\item{resolution}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{...}{Currently not used.}
 }

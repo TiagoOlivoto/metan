@@ -17,7 +17,6 @@
 #'@param by One variable (factor) to compute the function by. It is a shortcut
 #'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 #'  one grouping variable use that function.
-#'@param values Deprecated argument. It will be retired in the next release.
 #'@param stats The descriptive statistics to show. This is used to filter the
 #'  output after computation. Defaults to \code{"main"} (cv, max, mean median,
 #'  min, sd.amo, se, ci ). Other allowed values are \code{"all"} to
@@ -63,7 +62,6 @@
 #' @param plot_theme The graphical theme of the plot. Default is
 #'   \code{plot_theme = theme_metan()}. For more details, see
 #'   \code{\link[ggplot2]{theme}}.
-#'@param var Deprecated argument. It will be retired in the next release.
 #'@param which A statistic to fill the table.
 #'@return
 #' * \code{desc_stats()} returns a tibble with the statistics in the columns and
@@ -130,7 +128,6 @@
 desc_stat <- function(.data = NULL,
                       ...,
                       by = NULL,
-                      values = "deprecated",
                       stats = "main",
                       hist = FALSE,
                       level = 0.95,
@@ -235,7 +232,7 @@ desc_stat <- function(.data = NULL,
 }
 #'@name desc_stat
 #'@export
-desc_wider <- function(.data, which, var = "deprecated") {
+desc_wider <- function(.data, which) {
   factors = .data %>% select_non_numeric_cols()
   numeric = .data %>% select({{which}})
   cbind(factors, numeric) %>%
