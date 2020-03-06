@@ -12,6 +12,7 @@ vignette: >
 ---
 
 ```{r warning = FALSE, message = FALSE, echo=FALSE}
+knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables

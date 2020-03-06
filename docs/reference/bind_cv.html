@@ -95,7 +95,7 @@ containing the RMSPD values of those cross-validation procedures." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -265,7 +265,7 @@ model.</p></td>
                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 <span class='no'>bind_data</span> <span class='kw'>=</span> <span class='fu'>bind_cv</span>(<span class='no'>AMMI</span>, <span class='no'>BLUP</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>bind_data</span>)</div><div class='img'><img src='bind_cv-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>bind_data</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `fun.y` is deprecated. Use `fun` instead.</span></div><div class='img'><img src='bind_cv-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'>bind_cv</span>(<span class='no'>AMMI</span>, <span class='no'>BLUP</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='st'>'means'</span>))</div><div class='output co'>#&gt; $RMSPD
 #&gt; <span style='color: #555555;'># A tibble: 11 x 6</span><span>
 #&gt;    MODEL        mean     sd      se  Q2.5 Q97.5

@@ -95,7 +95,7 @@ p-values, coefficient of variation, heritability, and accuracy of selection." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -299,41 +299,41 @@ resolvable incomplete block designs. Biometrika 63:83-92.
                     <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                     <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></span>())
 <span class='co'># mean for each environment</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>ind_an</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: MEAN</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 14 x 3</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>ind_an</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: MEAN</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 14 x 3</span><span>
 #&gt;    ENV      GY    HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1     2.52  47.4
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E10    2.18  44.3
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E11    1.37  54.2
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E12    1.61  49.6
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E13    2.91  46.6
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E14    1.78  41.0
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E2     3.18  44.1
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E3     4.06  52.9
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E4     3.68  50  
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E5     3.91  52.2
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> E6     2.66  45.9
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> E7     1.99  48.5
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> E8     2.54  45.2
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> E9     3.06  51.3</div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1     2.52  47.4
+#&gt; </span><span style='color: #555555;'> 2</span><span> E10    2.18  44.3
+#&gt; </span><span style='color: #555555;'> 3</span><span> E11    1.37  54.2
+#&gt; </span><span style='color: #555555;'> 4</span><span> E12    1.61  49.6
+#&gt; </span><span style='color: #555555;'> 5</span><span> E13    2.91  46.6
+#&gt; </span><span style='color: #555555;'> 6</span><span> E14    1.78  41.0
+#&gt; </span><span style='color: #555555;'> 7</span><span> E2     3.18  44.1
+#&gt; </span><span style='color: #555555;'> 8</span><span> E3     4.06  52.9
+#&gt; </span><span style='color: #555555;'> 9</span><span> E4     3.68  50  
+#&gt; </span><span style='color: #555555;'>10</span><span> E5     3.91  52.2
+#&gt; </span><span style='color: #555555;'>11</span><span> E6     2.66  45.9
+#&gt; </span><span style='color: #555555;'>12</span><span> E7     1.99  48.5
+#&gt; </span><span style='color: #555555;'>13</span><span> E8     2.54  45.2
+#&gt; </span><span style='color: #555555;'>14</span><span> E9     3.06  51.3</div><div class='input'>
 <span class='co'># P-value for genotype effect</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>ind_an</span>, <span class='st'>"PFG"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: PFG</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 14 x 3</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>ind_an</span>, <span class='st'>"PFG"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: PFG</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
 #&gt;    ENV          GY         HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    0.059</span><span style='text-decoration: underline;'>4</span><span>    0.029</span><span style='text-decoration: underline;'>3</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E10   0.000</span><span style='text-decoration: underline;'>011</span><span>0 0.000</span><span style='text-decoration: underline;'>003</span><span>02
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E11   0.244     0.107     
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E12   0.000</span><span style='text-decoration: underline;'>647</span><span>  0.108     
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E13   0.000</span><span style='text-decoration: underline;'>210</span><span>  0.000</span><span style='text-decoration: underline;'>018</span><span>0 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E14   0.153     0.003</span><span style='text-decoration: underline;'>93</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E2    0.376     0.004</span><span style='text-decoration: underline;'>02</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E3    0.123     0.026</span><span style='text-decoration: underline;'>9</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E4    0.007</span><span style='text-decoration: underline;'>12</span><span>   0.000</span><span style='text-decoration: underline;'>451</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E5    0.000</span><span style='text-decoration: underline;'>110</span><span>  0.126     
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> E6    0.063</span><span style='text-decoration: underline;'>5</span><span>    0.000</span><span style='text-decoration: underline;'>163</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> E7    0.008</span><span style='text-decoration: underline;'>73</span><span>   0.438     
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> E8    0.000</span><span style='text-decoration: underline;'>131</span><span>  0.001</span><span style='text-decoration: underline;'>27</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> E9    0.000</span><span style='text-decoration: underline;'>562</span><span>  0.005</span><span style='text-decoration: underline;'>41</span><span>   </div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    0.059</span><span style='text-decoration: underline;'>4</span><span>    0.029</span><span style='text-decoration: underline;'>3</span><span>    
+#&gt; </span><span style='color: #555555;'> 2</span><span> E10   0.000</span><span style='text-decoration: underline;'>011</span><span>0 0.000</span><span style='text-decoration: underline;'>003</span><span>02
+#&gt; </span><span style='color: #555555;'> 3</span><span> E11   0.244     0.107     
+#&gt; </span><span style='color: #555555;'> 4</span><span> E12   0.000</span><span style='text-decoration: underline;'>647</span><span>  0.108     
+#&gt; </span><span style='color: #555555;'> 5</span><span> E13   0.000</span><span style='text-decoration: underline;'>210</span><span>  0.000</span><span style='text-decoration: underline;'>018</span><span>0 
+#&gt; </span><span style='color: #555555;'> 6</span><span> E14   0.153     0.003</span><span style='text-decoration: underline;'>93</span><span>   
+#&gt; </span><span style='color: #555555;'> 7</span><span> E2    0.376     0.004</span><span style='text-decoration: underline;'>02</span><span>   
+#&gt; </span><span style='color: #555555;'> 8</span><span> E3    0.123     0.026</span><span style='text-decoration: underline;'>9</span><span>    
+#&gt; </span><span style='color: #555555;'> 9</span><span> E4    0.007</span><span style='text-decoration: underline;'>12</span><span>   0.000</span><span style='text-decoration: underline;'>451</span><span>  
+#&gt; </span><span style='color: #555555;'>10</span><span> E5    0.000</span><span style='text-decoration: underline;'>110</span><span>  0.126     
+#&gt; </span><span style='color: #555555;'>11</span><span> E6    0.063</span><span style='text-decoration: underline;'>5</span><span>    0.000</span><span style='text-decoration: underline;'>163</span><span>  
+#&gt; </span><span style='color: #555555;'>12</span><span> E7    0.008</span><span style='text-decoration: underline;'>73</span><span>   0.438     
+#&gt; </span><span style='color: #555555;'>13</span><span> E8    0.000</span><span style='text-decoration: underline;'>131</span><span>  0.001</span><span style='text-decoration: underline;'>27</span><span>   
+#&gt; </span><span style='color: #555555;'>14</span><span> E9    0.000</span><span style='text-decoration: underline;'>562</span><span>  0.005</span><span style='text-decoration: underline;'>41</span><span>   </div><div class='input'>
 # }
 </div></span></pre>
   </div>

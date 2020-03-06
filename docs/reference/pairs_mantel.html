@@ -96,7 +96,7 @@ permutations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -386,27 +386,8 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></td>
 <span class='no'>lpc</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='kw'>%&gt;%</span>
-       <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))</div><div class='output co'>#&gt;                         Pairs    linear     partial          t         prob
-#&gt; 1  Sepal.Length x Sepal.Width 0.7425467  0.72228639  7.0833236 6.834434e-09
-#&gt; 2 Sepal.Length x Petal.Length 0.2671758  0.16604293  1.1420107 2.593594e-01
-#&gt; 3  Sepal.Length x Petal.Width 0.2780984  0.10656131  0.7268727 4.709870e-01
-#&gt; 4  Sepal.Width x Petal.Length 0.1777000 -0.04521791 -0.3069968 7.602313e-01
-#&gt; 5   Sepal.Width x Petal.Width 0.2327520  0.05178061  0.3516649 7.266954e-01
-#&gt; 6  Petal.Length x Petal.Width 0.3316300  0.27968723  1.9757822 5.419574e-02
-#&gt;                         Pairs    linear    partial          t         prob
-#&gt; 1  Sepal.Length x Sepal.Width 0.5259107  0.2686100  1.8913091 6.488965e-02
-#&gt; 2 Sepal.Length x Petal.Length 0.7540490  0.6292137  5.4906811 1.666695e-06
-#&gt; 3  Sepal.Length x Petal.Width 0.5464611 -0.2241652 -1.5600639 1.255990e-01
-#&gt; 4  Sepal.Width x Petal.Length 0.5605221 -0.1071007 -0.7305949 4.687316e-01
-#&gt; 5   Sepal.Width x Petal.Width 0.6639987  0.4697561  3.6090336 7.555314e-04
-#&gt; 6  Petal.Length x Petal.Width 0.7866681  0.6480512  5.7711604 6.371049e-07
-#&gt;                         Pairs    linear     partial          t         prob
-#&gt; 1  Sepal.Length x Sepal.Width 0.4572278  0.26908423  1.8949086 6.439972e-02
-#&gt; 2 Sepal.Length x Petal.Length 0.8642247  0.83815645 10.4223360 1.074696e-13
-#&gt; 3  Sepal.Length x Petal.Width 0.2811077 -0.12536431 -0.8570233 3.958750e-01
-#&gt; 4  Sepal.Width x Petal.Length 0.4010446 -0.07558634 -0.5141223 6.096277e-01
-#&gt; 5   Sepal.Width x Petal.Width 0.5377280  0.48387140  3.7500043 4.933633e-04
-#&gt; 6  Petal.Length x Petal.Width 0.3221082  0.17966044  1.2386712 2.217511e-01</div><div class='input'>
+       <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))
+
 
 <span class='co'># mtcars dataset</span>
 <span class='no'>mt_num</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='utils_rows_cols.html'>select_numeric_cols</a></span>(<span class='no'>mtcars</span>)

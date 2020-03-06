@@ -8,11 +8,11 @@
 
 ## Minor changes
 * New argument `plot_res` in `path_coeff()` to create a residual plot of the multiple regression model.
-* Update the citation file to include the [published official reference](https://doi.org/10.1111/2041-210X.13384)
+* Update the citation file to include the [published official reference](https://doi.org/10.1111/2041-210X.13384).
 * Argument `verbose` deprecated in functions `anova_ind()` and `split_factors()`
 * Deprecated argument `means_by` removed in functions `can_corr()` and `clustering()`.
 * Deprecated argument `verbose` removed in functions `colindiag()` and `split_factors()`.
-* Deprecated argument `values` removed in functions `desc_stat()` and `find_outliers`.
+* Deprecated argument `values` removed in functions `desc_stat()` and `find_outliers()`.
 * Deprecated argument `var` removed in function `desc_wider()`.
 
 

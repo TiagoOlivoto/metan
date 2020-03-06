@@ -13,7 +13,7 @@ vignette: >
 
 
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(comment = "")
+knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 load("plots_corr.RData")
 
 ```
@@ -75,15 +75,15 @@ Where $t_{calc}$ is the calculated Student * t * statistic; $ r_{xy.m} $ is the 
 
 
 ```{r, message=FALSE }
-lpc1 <- data_ge2 %>% 
+lpc1 <- 
+  data_ge2 %>% 
   select(starts_with("N")) %>% 
-  lpcor(verbose = FALSE)
-print_table(lpc1$results)
+  lpcor()
+print_table(as.data.frame(lpc1))
 
 # Compute the correlations for each level of the factor ENV
-lpc2 <- lpcor(data_ge2,
-              by = ENV,
-              verbose = FALSE) # Don't show the result in the console
+lpc2 <- lpcor(data_ge2, by = ENV)
+print_table(lpc2)
 
     ```
 
@@ -178,11 +178,7 @@ corr_plot(data_ge2, CD, EL, PERK, NKR, CW, NKE,
           col.dia.panel = "black",
           pan.spacing = 0,
           lab.position = "tl")
-plots <- arrange_ggplot(a, b, c, d, labels = letters[1:4])
-```
-
-```{r fig.height = 12, fig.width = 12, fig.align = "center"}
-plots
+arrange_ggplot(a, b, c, d, labels = letters[1:4])
 ```
 
 
