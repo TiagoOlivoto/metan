@@ -196,7 +196,7 @@ plot_factbars <- function(.data, ..., resp, y.expand = 1, y.breaks = waiver(),
     labs(y = ylab, x = xlab) +
     scale_y_continuous(limits = y.lim,
                        breaks = y.breaks,
-                       expand = expand_scale(mult = c(0, 0)))
+                       expand = expansion(mult = c(0, 0)))
   if (verbose == TRUE) {
     print(datac)
   }

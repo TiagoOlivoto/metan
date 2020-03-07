@@ -702,7 +702,7 @@ plot_scores <- function(x,
             axis.title = element_text(size = size.tex.lab, colour = "black")) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks,
-                         expand = expand_scale(mult = c(0.003, 0.1))) +
+                         expand = expansion(mult = c(0.003, 0.1))) +
       labs(x = paste(x.lab), y = y.lab)
     if(title == TRUE){
       p4 <- p4 + ggtitle("Nominal yield plot")

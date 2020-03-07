@@ -456,8 +456,8 @@ plot.wsmp <- function(x,
       geom_tile()+
       theme_metan()+
       theme(legend.position = "right")+
-      scale_y_discrete(expand = expand_scale(mult = c(0,0)))+
-      scale_x_discrete(expand = expand_scale(mult = c(0,0)))+
+      scale_y_discrete(expand = expansion(mult = c(0,0)))+
+      scale_x_discrete(expand = expansion(mult = c(0,0)))+
       scale_fill_viridis_c()+
       guides(fill = guide_colourbar(label = TRUE,
                                     draw.ulim = TRUE,

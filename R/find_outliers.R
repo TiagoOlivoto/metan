@@ -150,7 +150,7 @@ find_outliers <- function(.data =  NULL,
                      na.rm = TRUE,
                      size = 0.2,
                      bins = nbins)+
-      scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+      scale_y_continuous(expand = expansion(mult = c(0, .1)))+
       plot_theme +
       labs(x = "Observed value",
            y = "Count")
@@ -163,7 +163,7 @@ find_outliers <- function(.data =  NULL,
                      na.rm = TRUE,
                      size = 0.2,
                      bins = nbins)+
-      scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+      scale_y_continuous(expand = expansion(mult = c(0, .1)))+
       plot_theme +
       labs(x = "Observed value",
            y = "Count")

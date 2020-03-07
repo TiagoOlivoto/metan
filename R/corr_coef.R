@@ -262,9 +262,9 @@ plot.corr_coef <- function(x,
     theme_bw() +
     xlab(NULL) +
     ylab(NULL) +
-    scale_y_discrete(expand = expand_scale(mult = c(0,0)),
+    scale_y_discrete(expand = expansion(mult = c(0,0)),
                      position = lab.y.position)+
-    scale_x_discrete(expand = expand_scale(mult = c(0,0)),
+    scale_x_discrete(expand = expansion(mult = c(0,0)),
                      position = lab.x.position) +
     coord_fixed() +
     theme(axis.ticks = element_blank(),

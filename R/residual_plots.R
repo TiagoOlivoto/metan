@@ -207,7 +207,7 @@ residual_plots <- function(x,
                   size = 1,
                   args = list(mean = mean(df$resid), sd = sd(df$resid))) +
     labs(x = "Raw residuals", y = "Density") +
-    scale_y_continuous(expand = expand_scale(mult = c(0, 0.1))) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
     ggtitle("Histogram of residuals") +
     plot_theme %+replace%
     theme(axis.text = element_text(size = size.tex.lab, colour = "black"),

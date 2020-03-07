@@ -190,7 +190,7 @@ desc_stat <- function(.data = NULL,
       facet_wrap(.~name, scales = "free")+
       labs(x = "Observed value",
            y = "Count")+
-      scale_y_continuous(expand = expand_scale(mult = c(0, .1)))+
+      scale_y_continuous(expand = expansion(mult = c(0, .1)))+
       plot_theme
     print(plt)
   }

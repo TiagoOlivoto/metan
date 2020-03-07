@@ -42,12 +42,12 @@ ge_details <- function(.data, env, gen, resp){
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(Y = vars[[var]])
-    env_data <- means_by(data, {{env}}) %>%
+    env_data <- means_by(data, ENV) %>%
       add_cols(TYPE = "Env") %>%
-      rename(CODE = {{env}})
-    gen_data <- means_by(data, {{gen}}) %>%
+      rename(CODE = "ENV")
+    gen_data <- means_by(data, GEN) %>%
       add_cols(TYPE = "Gen")%>%
-      rename(CODE = {{gen}})
+      rename(CODE = "GEN")
     df_bind <-
       rbind(env_data, gen_data) %>%
       column_to_first(TYPE, CODE)

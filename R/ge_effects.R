@@ -135,8 +135,8 @@ plot.ge_effects <- function(x, var = 1, plot_theme = theme_metan(), x.lab = NULL
   p <-
     ggplot(data, aes_string(names[2], names[1], fill= names[3])) +
     geom_tile()+
-    scale_y_discrete(expand = expand_scale(mult = c(0,0)))+
-    scale_x_discrete(expand = expand_scale(mult = c(0,0)))+
+    scale_y_discrete(expand = expansion(mult = c(0,0)))+
+    scale_x_discrete(expand = expansion(mult = c(0,0)))+
     scale_fill_gradient2()+
     guides(fill = guide_colourbar(label = TRUE,
                                   draw.ulim = TRUE,
