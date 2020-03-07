@@ -91,7 +91,7 @@ inspect(data_ge, plot = TRUE)
 # No issues detected while inspecting data.
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-INSPECT-1.png" style="display: block; margin: auto;" />
 
 No issues while inspecting the data. Let’s continue with the analyzes\!
 

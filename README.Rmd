@@ -81,7 +81,7 @@ library(metan)
 
 The first step is to inspect the data with the function [`inspect()`](https://tiagoolivoto.github.io/metan/reference/inspect.html).
 
-```{r, fig.width=7, fig.height=7, fig.align="center"}
+```{r INSPECT, fig.width=7, fig.height=7, fig.align="center"}
 inspect(data_ge, plot = TRUE)
 ```
 
