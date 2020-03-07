@@ -4,26 +4,38 @@
 \alias{plot.resp_surf}
 \title{Plot the response surface model}
 \usage{
-\method{plot}{resp_surf}(x, xlab = NULL, ylab = NULL, region = TRUE, resolution = 100, ...)
+\method{plot}{resp_surf}(
+  x,
+  xlab = NULL,
+  ylab = NULL,
+  region = "DEPRECATED",
+  resolution = 100,
+  bins = 10,
+  plot_theme = theme_metan(),
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{resp_surf}}
 
-\item{xlab}{The label for the x axis}
+\item{xlab, ylab}{The label for the x and y axis, respectively. Defaults to
+original variable names.}
 
-\item{ylab}{The label for the y axis}
-
-\item{region}{Logical argument indicating whether regions between contour
-lines should be colored.}
+\item{region}{Deprecated argument. It will be retired in the next release.}
 
 \item{resolution}{The resolution of the contour plot. Defaults to 100. higher
 values produce high-resolution plots but may increase the computation time.}
 
-\item{...}{Other arguments passed from \code{contourplot} function. See
-\code{\link[lattice]{contourplot}} for more details.}
+\item{bins}{The number of bins shown in the plot. Defaults to \code{10}.}
+
+\item{plot_theme}{The graphical theme of the plot. Default is
+\code{plot_theme = theme_metan()}. For more details, see
+\code{\link[ggplot2]{theme}}.}
+
+\item{...}{Currently not used}
 }
 \value{
-An object of class \code{trellis}.
+An object of class \code{gg, ggplot}.
 }
 \description{
 Plot the response surface model using a contour plot

@@ -194,16 +194,17 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
 #'
 #'
 #' @param x An object of class \code{resp_surf}
-#' @param xlab The label for the x axis
-#' @param ylab The label for the y axis
-#' @param region Logical argument indicating whether regions between contour
-#'   lines should be colored.
+#' @param xlab,ylab The label for the x and y axis, respectively. Defaults to
+#'   original variable names.
+#' @param region Deprecated argument. It will be retired in the next release.
 #' @param resolution The resolution of the contour plot. Defaults to 100. higher
 #'   values produce high-resolution plots but may increase the computation time.
-#' @param ... Other arguments passed from \code{contourplot} function. See
-#'   \code{\link[lattice]{contourplot}} for more details.
-#' @importFrom lattice contourplot
-#' @return An object of class \code{trellis}.
+#' @param bins The number of bins shown in the plot. Defaults to \code{10}.
+#' @param plot_theme The graphical theme of the plot. Default is
+#'   \code{plot_theme = theme_metan()}. For more details, see
+#'   \code{\link[ggplot2]{theme}}.
+#' @param ... Currently not used
+#' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot resp_surf
 #' @export
@@ -225,17 +226,36 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
 #' plot(mod)
 #' }
 #'
-plot.resp_surf <- function(x, xlab = NULL, ylab = NULL, region = TRUE,
-                           resolution = 100, ...) {
+plot.resp_surf <- function(x,
+                           xlab = NULL,
+                           ylab = NULL,
+                           region = "DEPRECATED",
+                           resolution = 100,
+                           bins = 10,
+                           plot_theme = theme_metan(),
+                           ...) {
   data <- x[["model"]][["model"]]
   mod = x$model
-  seq <- expand.grid(seq(min(unique(data[2])), max(unique(data[2])),
-                         length.out = resolution), seq(min(unique(data[3])), max(unique(data[3])),
-                                                       length.out = resolution))
+  seq <- expand.grid(seq(min(unique(data[2])),
+                         max(unique(data[2])),
+                         length.out = resolution),
+                     seq(min(unique(data[3])),
+                         max(unique(data[3])),
+                         length.out = resolution))
   names(seq) <- names(data[2:3])
-  seq <- mutate(seq, PRED = predict(mod, newdata = seq))
-  xlab <- ifelse(missing(xlab), names(seq[1]), xlab)
-  ylab <- ifelse(missing(ylab), names(seq[2]), ylab)
-  contourplot(seq[, 3] ~ seq[, 1] * seq[, 2], region = region,
-              xlab = xlab, ylab = ylab, ...)
+  seq <- mutate(seq, z = predict(mod, newdata = seq)) %>%
+    set_names("x", "y", "z")
+  xlab <- ifelse(is.null(xlab), names(data[2]), xlab)
+  ylab <- ifelse(is.null(ylab), names(data[3]), ylab)
+  p <-
+  ggplot(seq, aes(x, y, z = z)) +
+    geom_contour_filled(aes(fill = stat(level)),
+                        bins = bins)+
+    labs(x = xlab, y = ylab)+
+    guides(fill = guide_colorsteps(barheight = unit(10, "cm")))+
+    scale_x_continuous(expand = expansion(mult = 0))+
+    scale_y_continuous(expand = expansion(mult = 0))+
+    plot_theme+
+    theme(legend.position = "right")
+  return(p)
 }
