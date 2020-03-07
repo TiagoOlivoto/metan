@@ -133,16 +133,17 @@ The vectors ${\boldsymbol{\beta }}$ and **u** are estimated using the well-known
 where **G** and **R** are the variance-covariance matrices for random-effect vector **u** and residual vector ${\bf{\varepsilon }}$, respectively.
 
 
-The `waasb()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `data_ge`. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument. Please, see `?WAASB` for more details.  The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. The arguments (`env`, `gen`, and `rep`) are the name of the columns that contains the levels for environments, genotypes, and replications, respectively. The last argument (`verbose`) control if the code is run silently or not.
+The function `gamem_met()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `data_ge`. The arguments (`env`, `gen`, and `rep`) are the name of the columns that contains the levels for environments, genotypes, and replications, respectively.The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. Here, we will use `everything()` to analyse all numeric variables in the data. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument.  The last argument (`verbose`) control if the code is run silently or not.
 
 ```{r  echo = TRUE}
-WAASB_model <- waasb(data_ge,
-                     env = ENV,
-                     gen = GEN,
-                     rep = REP,
-                     resp = GY,
-                     random = "gen", #Default
-                     verbose = TRUE) #Default
+mixed_mod <- 
+  gamem_met(data_ge,
+            env = ENV,
+            gen = GEN,
+            rep = REP,
+            resp = everything(),
+            random = "gen", #Default
+            verbose = TRUE) #Default
 
     ```
 
@@ -151,13 +152,13 @@ WAASB_model <- waasb(data_ge,
 The S3 generic function `plot()` is used to generate diagnostic plots of residuals of the model. 
 
 ```{r  echo = TRUE, fig.width=7, fig.height=7, fig.align="center"}
-plot(WAASB_model)
+plot(mixed_mod)
     ```
 
 
 The normality of the random effects of genotype and interaction effects may be also obtained by using `type = "re"`.
 ```{r  echo = TRUE, fig.width=10, fig.height=3.33, fig.align="center"}
-plot(WAASB_model, type = "re")
+plot(mixed_mod, type = "re")
     ```
 
 
@@ -165,10 +166,10 @@ plot(WAASB_model, type = "re")
 
 ### Likelihood Ratio Tests
 
-The output `LRT` contains the Likelihood Ratio Tests for genotype and genotype-vs-environment random effects.
+The output `LRT` contains the Likelihood Ratio Tests for genotype and genotype-vs-environment random effects. We can get these values with `get_model_data()`
 
 ```{r  warning=F, message=F}
-data <- WAASB_model$GY$LRT
+data <- get_model_data(mixed_mod, "pval_lrt")
 print_table(data)
     ```
 
@@ -219,58 +220,23 @@ where $\mu$ is the grand mean.
 
 
 ```{r  }
-data <- WAASB_model$GY$ESTIMATES
+data <- get_model_data(mixed_mod)
 print_table(data)
     ```
 
-
-
-### Some useful information
-
-
-The following pieces of information are provided in `Details` output.  **Nenv**, the number of environments in the analysis; **Ngen** the number of genotypes in the analysis; **mresp** The value attributed to the highest value of the response variable after rescaling it; **wresp** The weight of the response variable for estimating the WAASBY index. **Mean** the grand mean; **SE** the standard error of the mean; **SD** the standard deviation. **CV** the coefficient of variation of the phenotypic means, estimating WAASB, **Min** the minimum value observed (returning the genotype and environment), **Max** the maximum value observed (returning the genotype and environment); **MinENV** the environment with the lower mean, **MaxENV** the environment with the larger mean observed, **MinGEN** the genotype with the lower mean, **MaxGEN** the genotype with the larger. 
-
-```{r  }
-data <- WAASB_model$GY$Details
-print_table(data)
-    ```
-
-
-
-### The WAASB object
-
-The `waasb()` function computes the Weighted Average of the Absolute Scores considering all possible IPCA from the Singular Value Decomposition of the BLUPs for genotype-vs-environment interaction effects obtained by an Linear Mixed-effect Model [@Olivoto2019], as follows:
-
-$$
-        WAASB_i  = 
-        \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
-$$
-
-where $WAASB_i$ is the weighted average of absolute scores of the *i*th genotype; $IPCA_{ik}$ is the scores of the *i*th genotype in the *k*th IPCA; and $EP_k$ is the explained variance of the *k*th PCA for $k = 1,2,..,p$, $p = min(g-1; e-1)$.
-
-
-```{r  }
-data <- WAASB_model$GY$model
-print_table(data)
-    ```
-
-The output generated by the `waasb()` function is very similar to those generated by the `waas()` function. The main difference here, is that the singular value decomposition is based on the BLUP for GEI effects matrix.
 
 ### BLUP for genotypes
 
 
 ```{r  }
-print_table(WAASB_model$GY$BLUPgen)
+print_table(mixed_mod$GY$BLUPgen)
 
 ```
 
-The function `get_model_data()` may be used to easily get the data from a model fitted with the function `waasb()`, especially when more than one variables are used. The following code return the predicted mean of each genotype for five variables of the data `data_ge2`.
+The function `get_model_data()` may be used to easily get the data from a model fitted with the function `gamem_met()`, especially when more than one variables are used. The following code return the predicted mean of each genotype for five variables of the data `data_ge2`.
 
 ```{r warning=FALSE }
-waasb(data_ge2, ENV, GEN, REP,
-      resp = c(PH, ED, TKW, NKR, CD)) %>% 
-  get_model_data(what = "blupg") %>% 
-  print_table()
+get_model_data(mixed_mod, what = "blupg")
 
 ```
 
@@ -280,8 +246,8 @@ waasb(data_ge2, ENV, GEN, REP,
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 library(ggplot2)
-a <- plot_blup(WAASB_model)
-b <- plot_blup(WAASB_model, 
+a <- plot_blup(mixed_mod)
+b <- plot_blup(mixed_mod, 
                col.shape  =  c("gray20", "gray80"),
                plot_theme = theme_metan(grid = "y")) +
   coord_flip()
@@ -315,7 +281,7 @@ where $t$ is the Student's *t* value for a two-tailed *t* test at a given probab
 ### BLUP for genotypes X environment combination
 
 ```{r  }
-print_table(WAASB_model$GY$BLUPint)
+print_table(mixed_mod$GY$BLUPint)
     ```
 
 This output shows the predicted means for each genotype and environment combination. **BLUPg** is the genotypic effect described above. **BLUPge** is the genotypic effect of the *i*th genotype in the *j*th environment $(\hat{g}_{ij})$, which considering balanced data and genotype as random effect is estimated by
@@ -325,17 +291,59 @@ $$
 \hat{y}_{ij} = \bar{y}_{.j}+BLUP_{g+ge}
 $$
 
+
+### Some useful information
+
+
+The following pieces of information are provided in `Details` output.  **Nenv**, the number of environments in the analysis; **Ngen** the number of genotypes in the analysis; **mresp** The value attributed to the highest value of the response variable after rescaling it; **wresp** The weight of the response variable for estimating the WAASBY index. **Mean** the grand mean; **SE** the standard error of the mean; **SD** the standard deviation. **CV** the coefficient of variation of the phenotypic means, estimating WAASB, **Min** the minimum value observed (returning the genotype and environment), **Max** the maximum value observed (returning the genotype and environment); **MinENV** the environment with the lower mean, **MaxENV** the environment with the larger mean observed, **MinGEN** the genotype with the lower mean, **MaxGEN** the genotype with the larger. 
+
+```{r  }
+data <- get_model_data(mixed_mod, "details")
+print_table(data)
+    ```
+
+
+
+## The WAASB object
+
+The function `waasb()` function computes the Weighted Average of the Absolute Scores considering all possible IPCA from the Singular Value Decomposition of the BLUPs for genotype-vs-environment interaction effects obtained by an Linear Mixed-effect Model [@Olivoto2019], as follows:
+
+$$
+        WAASB_i  = 
+        \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
+$$
+
+where $WAASB_i$ is the weighted average of absolute scores of the *i*th genotype; $IPCA_{ik}$ is the scores of the *i*th genotype in the *k*th IPCA; and $EP_k$ is the explained variance of the *k*th PCA for $k = 1,2,..,p$, $p = min(g-1; e-1)$.
+
+
+```{r  }
+waasb_model <- 
+  waasb(data_ge,
+        env = ENV,
+        gen = GEN,
+        rep = REP,
+        resp = everything(),
+        random = "gen", #Default
+        verbose = TRUE) #Default
+
+data <- waasb_model$GY$model
+print_table(data)
+    ```
+
+The output generated by the `waasb()` function is very similar to those generated by the `waas()` function. The main difference here, is that the singular value decomposition is based on the BLUP for GEI effects matrix.
+
+
 ## Eigenvalues of the BLUP_GEI matrix
 
 ```{r  }
-data <- WAASB_model$GY$PCA
+data <- waasb_model$GY$PCA
 print_table(data)
     ```
 
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
 
-plot_eigen(WAASB_model, size.lab = 14, size.tex.lab = 14)
+plot_eigen(waasb_model, size.lab = 14, size.tex.lab = 14)
 
 ```
 
@@ -344,7 +352,7 @@ The above output shows the eigenvalues and the proportion of variance explained 
 ### Phenotypic means
 
 ```{r  }
-data <- WAASB_model$GY$MeansGxE
+data <- waasb_model$GY$MeansGxE
 print_table(data)
     ```
 
@@ -358,8 +366,8 @@ Provided that an object of class `waasb` is available in the global environment,
 ### biplot type 1: PC1 x PC2
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
-c <- plot_scores(WAASB_model, type = 1)
-d <- plot_scores(WAASB_model,
+c <- plot_scores(waasb_model, type = 1)
+d <- plot_scores(waasb_model,
                  type = 1,
                  col.gen = "black",
                  col.env = "red",
@@ -373,8 +381,8 @@ arrange_ggplot(c, d, labels = letters[3:4])
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 
-e <- plot_scores(WAASB_model, type = 2)
-f <- plot_scores(WAASB_model,
+e <- plot_scores(waasb_model, type = 2)
+f <- plot_scores(waasb_model,
                  type = 2,
                  polygon = TRUE,
                  col.segm.env = "transparent",
@@ -388,8 +396,8 @@ The quadrants proposed by @Olivoto2019 in the following biplot represent four cl
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message=F, warning=F}
 
-g <- plot_scores(WAASB_model, type = 3)
-h <- plot_scores(WAASB_model, type = 3,
+g <- plot_scores(waasb_model, type = 3)
+h <- plot_scores(waasb_model, type = 3,
                  x.lab = "My customized x label",
                  size.shape = 3,
                  size.tex.pa = 2,
@@ -412,8 +420,8 @@ waasb(data_ge2, ENV, GEN, REP,
 ### biplot type 4 : nominal yield and environment IPCA1
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message=F, warning=F}
-i <- plot_scores(WAASB_model, type = 4)
-j <- plot_scores(WAASB_model,
+i <- plot_scores(waasb_model, type = 4)
+j <- plot_scores(waasb_model,
                  type = 4,
                  size.tex.pa = 1.5,
                  color = FALSE,
@@ -437,16 +445,16 @@ where $waasby_i$ is the superiority index for the *i*-th genotype; $rY_i$ and $r
 This index was also already computed and stored into AMMI_model>GY>model. An intuitively plot may be obtained by running
 
 ```{r  echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
-i <- plot_waasby(WAASB_model)
-j <- plot_waasby(WAASB_model, col.shape = c("gray20", "gray80"))
+i <- plot_waasby(waasb_model)
+j <- plot_waasby(waasb_model, col.shape = c("gray20", "gray80"))
 arrange_ggplot(i, j, labels = letters[9:10])
 
 ```
 
-In the following example, we will apply the function `wsmp()` to the previously fitted model **WAASB_model** aiming at planning different scenarios of **waasby** estimation by changing the weights assigned to the stability and the mean performance.vThe number of scenarios is defined by the arguments `increment`. By default, twenty-one different scenarios are computed. In this case, the the superiority index **waasby** is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
+In the following example, we will apply the function `wsmp()` to the previously fitted model **waasb_model** aiming at planning different scenarios of **waasby** estimation by changing the weights assigned to the stability and the mean performance.vThe number of scenarios is defined by the arguments `increment`. By default, twenty-one different scenarios are computed. In this case, the the superiority index **waasby** is computed considering the following weights: stability (waasb or waas) = 100; mean performance = 0. In other words, only stability is considered for genotype ranking. In the next iteration, the weights becomes 95/5 (since increment = 5). In the third scenario, the weights become 90/10, and so on up to these weights become 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY matches perfectly with the ranks of the response variable.
 
 ```{r  echo = TRUE}
-scenarios <- wsmp(WAASB_model)
+scenarios <- wsmp(waasb_model)
 
 ```
 
@@ -470,7 +478,7 @@ print_table(scenarios$GY$hetdata)
 
 ## Plotting the heat map graphics
 
-The first type of heatmap shows the genotype ranking depending on the number of principal component axes used for estimating the WAASB index. An euclidean distance-based dendrogram is used for grouping the genotype ranking for both genotypes and principal component axes. The second type of heatmap shows the genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a ratio of 100/0 considers exclusively the stability for genotype ranking. On the other hand, a ratio of 0/100 considers exclusively the productivity for genotype ranking. Four clusters are estimated (1) unproductive and unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but unproductive genotypes; and (4), productive and stable genotypes.
+The first type of heatmap shows the genotype ranking depending on the number of principal component axes used for estimating the WAASB index. An euclidean distance-based dendrogram is used for grouping the genotypes based on their ranks. The second type of heatmap shows the genotype ranking depending on the WAASB/GY ratio. The ranks obtained with a ratio of 100/0 considers exclusively the stability for genotype ranking. On the other hand, a ratio of 0/100 considers exclusively the productivity for genotype ranking. Four clusters are estimated (1) unproductive and unstable genotypes; (2) productive, but unstable genotypes; (3) stable, but unproductive genotypes; and (4), productive and stable genotypes [@Olivoto2019].
 
 
 
@@ -537,9 +545,12 @@ data_ge2 %>%
   plot()
     ```
 
-
+> 
+* **IMPORTANT**
+`fai_blup()` recognizes models fitted with both `gamem_met()` and `waasb()`. For balanced data (all genotypes in all environments) `waasb()` and `gamem_met` will return the same model. In case of unbalanced trials, the function `waasb()` will return an error since a complete two-way table is required to the singular value decomposition procedure.
 
 _______________________________________________________________________________________________
+
 **Rendering engine**
 
 This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.

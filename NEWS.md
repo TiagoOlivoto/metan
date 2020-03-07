@@ -3,8 +3,11 @@
 * Factor columns can now have custom names rather than ENV, GEN, and REP only ([#2](https://github.com/TiagoOlivoto/metan/issues/2))
 
 ## New functions
-* `non_collinear_vars()` for selecting a set of predictors with minimal multicollinearity.
+* `gamem_met` to analyze genotypes in multi-environment trials using mixed- or random-effect models.
 * `has_class()` to check if a class exists.
+* `non_collinear_vars()` for selecting a set of predictors with minimal multicollinearity.
+* `replace_na()` to replace `NA` values quicly.
+
 
 ## Minor changes
 * New argument `plot_res` in `path_coeff()` to create a residual plot of the multiple regression model.
@@ -14,6 +17,7 @@
 * Deprecated argument `verbose` removed in functions `colindiag()` and `split_factors()`.
 * Deprecated argument `values` removed in functions `desc_stat()` and `find_outliers()`.
 * Deprecated argument `var` removed in function `desc_wider()`.
+* Remove dependency on lattice by using ggplot2 in `plot.resp_surf()`.
 
 
 # metan 1.3.0
