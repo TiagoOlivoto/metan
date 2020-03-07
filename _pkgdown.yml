@@ -94,6 +94,7 @@ reference:
     contents:
       - cv_blup
       - gamem
+      - gamem_met
       - plot_blup
       - plot_eigen
       - plot_scores
@@ -140,6 +141,7 @@ reference:
       - ge_reg
       - ge_stats
       - ge_winners
+      - is_balanced_trial
       - Fox
       - gai
       - Huehn
