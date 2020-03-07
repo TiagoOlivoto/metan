@@ -18,6 +18,8 @@
 #' @param pattern A string to be matched. Regular Expression Syntax is also
 #'   allowed.
 #' @param replacement A string for replacement.
+#' @param ignore_case If \code{FALSE} (default), the pattern matching is case
+#'   sensitive and if \code{TRUE}, case is ignored during matching.
 #' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
 #'   assumption that's the column you've created most recently), as a vector.
 #' @param .before,.after For \code{replace_sting()}, \code{replace_number()},
@@ -38,6 +40,7 @@
 #' return the row index.
 #' * \code{has_text_in_num()}: Inspect columns looking for text in numeric
 #' sequence and return a warning if text is found.
+#' * \code{remove_space()}: Remove all blank spaces of a string.
 #' * \code{remove_strings()}: Remove all strings of a variable.
 #' * \code{replace_number()}: Replace numbers with a replacement.
 #' * \code{replace_string()}: Replace all strings with a replacement, ignoring
@@ -276,6 +279,27 @@ has_text_in_num <- function(.data){
 }
 #' @name utils_num_str
 #' @export
+remove_space <- function(.data, ...){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
+    if(missing(...)){
+      vars <- vars(everything())
+    } else{
+      vars <- vars(...)
+    }
+    results <-
+      mutate_at(.data,
+                .vars = vars,
+                .funs = gsub,
+                pattern = "[[:space:]]",
+                replacement = "")
+    return(results)
+  } else{
+    return(gsub(pattern = "[[:space:]]", replacement = "", .data))
+  }
+}
+
+#' @name utils_num_str
+#' @export
 remove_strings <- function(.data, ...){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if(missing(...)){
@@ -287,13 +311,15 @@ remove_strings <- function(.data, ...){
     mutate_at(.data,
               .vars = vars,
               .funs = gsub,
-              pattern = "[A-z]",
+              pattern = "[^0-9.-]",
               replacement = "") %>%
     mutate_at(.vars = vars,
               .funs = as.numeric)
   return(results)
   } else{
-    return(gsub(pattern, replacement, .data))
+    return(gsub(pattern = "[^0-9.-]", replacement = "", .data)) %>%
+      remove_space() %>%
+      as.numeric()
   }
 }
 #' @name utils_num_str
@@ -341,6 +367,7 @@ replace_string <- function(.data,
                            new_var = new_var,
                            pattern = NULL,
                            replacement = "",
+                           ignore_case = FALSE,
                            drop = FALSE,
                            pull = FALSE,
                            .before = NULL,
@@ -353,7 +380,7 @@ replace_string <- function(.data,
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if (drop == FALSE){
     results <- .data %>%
-      mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
+      mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}}), ignore.case = ignore_case))
     if(pull == TRUE){
       results <- pull(results)
     }
@@ -362,14 +389,14 @@ replace_string <- function(.data,
     }
   } else{
     results <- .data %>%
-      transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
+      transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}}), ignore.case = ignore_case))
     if(pull == TRUE){
       results <- pull(results)
     }
   }
   return(results)
   } else{
-    return(gsub(pattern, replacement, .data))
+    return(gsub(pattern, replacement, .data, ignore.case = ignore_case))
   }
 }
 #' @name utils_num_str
@@ -1554,4 +1581,46 @@ stars_pval <- function(p_value){
       symbols = c("****", "***", "**", "*",  "ns")
     )
   )
+}
+
+
+
+
+
+
+
+
+
+#' Check if a data set is balanced
+#'
+#' Check if a data set coming from multi-environment trials is balanced, i.e.,
+#' all genotypes are in all environments.
+#' @param .data The dataset containing the columns related to Environments,
+#'   Genotypes, replication/block and response variable(s).
+#' @param env The name of the column that contains the levels of the
+#'   environments.
+#' @param gen The name of the column that contains the levels of the genotypes.
+#' @param resp The response variable.
+#' @return A logical value
+#' @export
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @examples
+#'\donttest{
+#' unb <- data_ge %>%
+#'         remove_rows(1:3) %>%
+#'         droplevels()
+#' is_balanced_trial(data_ge, ENV, GEN, GY)
+#' is_balanced_trial(unb, ENV, GEN, GY)
+#' }
+#'
+
+is_balanced_trial <- function(.data, env, gen, resp){
+  mat <-
+    .data %>%
+    make_mat({{env}}, {{gen}}, {{resp}})
+  if(has_na(mat) == TRUE){
+    return(FALSE)
+  } else{
+    return(TRUE)
+  }
 }

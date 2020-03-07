@@ -9,6 +9,7 @@
 \alias{extract_string}
 \alias{find_text_in_num}
 \alias{has_text_in_num}
+\alias{remove_space}
 \alias{remove_strings}
 \alias{replace_number}
 \alias{replace_string}
@@ -46,6 +47,8 @@ find_text_in_num(.data, ...)
 
 has_text_in_num(.data)
 
+remove_space(.data, ...)
+
 remove_strings(.data, ...)
 
 replace_number(
@@ -66,6 +69,7 @@ replace_string(
   new_var = new_var,
   pattern = NULL,
   replacement = "",
+  ignore_case = FALSE,
   drop = FALSE,
   pull = FALSE,
   .before = NULL,
@@ -110,6 +114,9 @@ allowed.}
 
 \item{replacement}{A string for replacement.}
 
+\item{ignore_case}{If \code{FALSE} (default), the pattern matching is case
+sensitive and if \code{TRUE}, case is ignored during matching.}
+
 \item{digits}{The number of significant figures.}
 
 \item{sep}{A character string to separate the terms. Defaults to "_".}
@@ -129,6 +136,7 @@ to title case (e.g., \code{"ENV"} to \code{"Env"}).
 return the row index.
 \item \code{has_text_in_num()}: Inspect columns looking for text in numeric
 sequence and return a warning if text is found.
+\item \code{remove_space()}: Remove all blank spaces of a string.
 \item \code{remove_strings()}: Remove all strings of a variable.
 \item \code{replace_number()}: Replace numbers with a replacement.
 \item \code{replace_string()}: Replace all strings with a replacement, ignoring
