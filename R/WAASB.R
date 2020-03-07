@@ -352,6 +352,9 @@ waasb <- function(.data,
     for (var in 1:nvar) {
         data <- factors %>%
             mutate(Y = vars[[var]])
+        if(is_balanced_trial(data, ENV, GEN, Y) == FALSE){
+            stop("The WAASB index cannot be computed with unbalanced data", call. = FALSE)
+        }
         Nenv <- nlevels(data$ENV)
         Ngen <- nlevels(data$GEN)
         Nrep <- nlevels(data$REP)
