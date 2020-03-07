@@ -5,6 +5,7 @@
 \alias{remove_rows_na}
 \alias{remove_cols_na}
 \alias{has_na}
+\alias{replace_na}
 \title{Remove NA values}
 \usage{
 remove_rows_na(.data, verbose = TRUE)
@@ -12,12 +13,21 @@ remove_rows_na(.data, verbose = TRUE)
 remove_cols_na(.data, verbose = TRUE)
 
 has_na(.data)
+
+replace_na(.data, ..., replace = 0)
 }
 \arguments{
 \item{.data}{A data frame or tibble}
 
 \item{verbose}{Logical argument. If \code{TRUE} (default) shows in console
 the rows or columns deleted.}
+
+\item{...}{Variables to replace \code{NAs}. If \code{...} is null then all
+variables with \code{NA} will be replaced. It must be a single variable
+name or a comma-separated list of unquoted variables names. Select helpers
+are also allowed.}
+
+\item{replace}{The value used for replacement. Defaults to \code{0}.}
 }
 \value{
 A data frame with rows or columns with \code{NA} values deleted.
@@ -29,6 +39,7 @@ These functions allow you to remove rows or columns with
 \item \code{has_na()}: Check for \code{NA} values in the data and return a logical value.
 \item \code{remove_rows_na()}: Remove rows with \code{NA} values.
 \item \code{remove_cols_na()}: Remove columns with \code{NA} values.
+\item \code{replace_na()} Replace missing values
 }
 }
 \examples{
@@ -40,6 +51,6 @@ data_with_na
 has_na(data_with_na)
 remove_cols_na(data_with_na)
 remove_rows_na(data_with_na)
+replace_na(data_with_na)
 }
 }
-\keyword{internal}
