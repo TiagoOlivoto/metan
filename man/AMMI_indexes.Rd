@@ -99,7 +99,6 @@ Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
 Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
 Evaluation of genotype vs environment interaction in chickpea using measures
 of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
-\href{http://eprints.icrisat.ac.in/id/eprint/7173}{http://eprints.icrisat.ac.in/id/eprint/7173}
 
 Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in

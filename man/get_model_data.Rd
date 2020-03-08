@@ -359,7 +359,6 @@ Pflanzenzuchtg 52:127-138.
 Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
 Evaluation of genotype vs environment interaction in chickpea using measures
 of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
-\href{http://eprints.icrisat.ac.in/id/eprint/7173}{http://eprints.icrisat.ac.in/id/eprint/7173}
 }
 \seealso{
 \code{\link{AMMI_indexes}}, \code{\link{anova_ind}},
