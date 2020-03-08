@@ -45,8 +45,8 @@ following:
 \item \code{"ci"}: 95 percent confidence interval of the mean.
 \item \code{"cv"}: coefficient of variation.
 \item \code{"iqr"}: interquartile range.
-\item \code{"gm.mean"}: geometric mean.
-\item \code{"hm.mean"}: harmonic mean.
+\item \code{"gmean"}: geometric mean.
+\item \code{"hmean"}: harmonic mean.
 \item \code{"Kurt"}: kurtosis.
 \item \code{"mad"}: median absolute deviation.
 \item \code{"max"}: maximum value.

@@ -50,7 +50,7 @@ gai <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     data <- factors %>%
       mutate(Y = vars[[var]])
     temp <- make_mat(data, ENV, GEN, Y) %>%
-      gm_mean() %>%
+      gmean() %>%
       t() %>%
       as.data.frame() %>%
       rownames_to_column("GEN") %>%

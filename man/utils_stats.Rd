@@ -6,7 +6,9 @@
 \alias{ci_mean}
 \alias{cv}
 \alias{freq_table}
+\alias{hmean}
 \alias{hm_mean}
+\alias{gmean}
 \alias{gm_mean}
 \alias{kurt}
 \alias{range_data}
@@ -36,7 +38,11 @@ cv(.data, ..., na.rm = FALSE)
 
 freq_table(.data, ...)
 
+hmean(.data, ..., na.rm = FALSE)
+
 hm_mean(.data, ..., na.rm = FALSE)
+
+gmean(.data, ..., na.rm = FALSE)
 
 gm_mean(.data, ..., na.rm = FALSE)
 
@@ -127,10 +133,14 @@ numeric variables from \code{.data} by default).}
 \item \code{ci_mean()} computes the confidence interval for the mean.
 \item \code{cv()} computes the coefficient of variation.
 \item \code{freq_table()} Computes frequency fable. Handles grouped data.
-\item \code{hm_mean(), gm_mean()} computes the harmonic and geometric means,
+}
+}
+\itemize{
+\item \code{hmean(), gmean()} computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
 products.
+\itemize{
 \item \code{kurt()} computes the kurtosis like used in SAS and SPSS.
 \item \code{range_data()} Computes the range of the values.
 \item \code{sd_amo(), sd_pop()} Computes sample and populational standard

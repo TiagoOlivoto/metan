@@ -846,7 +846,7 @@ select_rows <- function(.data, ...){
 #'    - \code{ci_mean()} computes the confidence interval for the mean.
 #'    - \code{cv()} computes the coefficient of variation.
 #'    - \code{freq_table()} Computes frequency fable. Handles grouped data.
-#'    - \code{hm_mean(), gm_mean()} computes the harmonic and geometric means,
+#' - \code{hmean(), gmean()} computes the harmonic and geometric means,
 #' respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 #' the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
 #' products.
@@ -1002,7 +1002,32 @@ freq_table <- function(.data, ...){
 }
 #' @name utils_stats
 #' @export
+hmean <- function(.data, ..., na.rm = FALSE) {
+  funct <- function(df){
+    1 / mean(1 / df, na.rm = na.rm)
+  }
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise_if(is.numeric, funct) %>%
+        ungroup()
+    } else{
+      .data %>%
+        select_cols(group_vars(.), ...) %>%
+        summarise_if(is.numeric, funct) %>%
+        ungroup()
+    }
+  }
+}
+#' @name utils_stats
+#' @export
 hm_mean <- function(.data, ..., na.rm = FALSE) {
+  .Deprecated(msg = "`hm_mean()` is deprecated; use `hmean()` instead.")
   funct <- function(df){
     1 / mean(1 / df, na.rm = na.rm)
   }
@@ -1026,7 +1051,32 @@ hm_mean <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
+gmean <- function(.data, ..., na.rm = FALSE){
+  funct <- function(df){
+    exp(sum(log(df[df > 0]), na.rm = na.rm) / length(df))
+  }
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise_if(is.numeric, funct) %>%
+        ungroup()
+    } else{
+      .data %>%
+        select_cols(group_vars(.), ...) %>%
+        summarise_if(is.numeric, funct) %>%
+        ungroup()
+    }
+  }
+}
+#' @name utils_stats
+#' @export
 gm_mean <- function(.data, ..., na.rm = FALSE){
+  .Deprecated(msg = "`gm_mean()` is deprecated; use `gmean()` instead.")
   funct <- function(df){
     exp(sum(log(df[df > 0]), na.rm = na.rm) / length(df))
   }

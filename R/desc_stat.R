@@ -27,8 +27,8 @@
 #'  * \code{"ci"}: 95 percent confidence interval of the mean.
 #'  * \code{"cv"}: coefficient of variation.
 #'  * \code{"iqr"}: interquartile range.
-#'  * \code{"gm.mean"}: geometric mean.
-#'  * \code{"hm.mean"}: harmonic mean.
+#'  * \code{"gmean"}: geometric mean.
+#'  * \code{"hmean"}: harmonic mean.
 #'  * \code{"Kurt"}: kurtosis.
 #'  * \code{"mad"}: median absolute deviation.
 #'  * \code{"max"}: maximum value.
@@ -153,11 +153,11 @@ desc_stat <- function(.data = NULL,
           plot_theme = plot_theme)
     return(results)
   }
-  all <- c("av.dev", "ci", "cv", "gm.mean", "hm.mean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
+  all <- c("av.dev", "ci", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
   stats <- strsplit(
     case_when(
       all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci"),
-      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gm.mean, hm.mean, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, var.pop"),
+      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, var.pop"),
       all_lower_case(stats) == "robust" ~ c("n, median, iqr"),
       all_lower_case(stats) == "quantile" ~ c("n, min, q25, median, q75, max"),
       TRUE ~ all_lower_case(stats)
@@ -201,8 +201,8 @@ desc_stat <- function(.data = NULL,
     summarise_all(list(n = ~n(),
                        valid.n = ~valid_n(., na.rm = na.rm),
                        mean = ~mean(., na.rm = na.rm),
-                       gm.mean = ~gm_mean(., na.rm = na.rm),
-                       hm.mean = ~hm_mean(., na.rm = na.rm),
+                       gmean = ~gmean(., na.rm = na.rm),
+                       hmean = ~hmean(., na.rm = na.rm),
                        range = ~range_data(., na.rm = na.rm),
                        min = ~min(., na.rm = na.rm),
                        q2.5 = ~quantile(., 0.025, na.rm = na.rm),
