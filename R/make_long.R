@@ -47,13 +47,15 @@ make_long <- function(mat, gen_in = "rows") {
       mat %>%
       rownames_to_column("GEN") %>%
       pivot_longer(names_to = "ENV", values_to = "Y", -GEN)  %>%
-      arrange(GEN, ENV)
+      reorder_cols(ENV, .before = "GEN") %>%
+      arrange(ENV, GEN)
   }
   if (gen_in == "cols") {
     data <-
       mat %>%
       rownames_to_column("ENV") %>%
       pivot_longer(names_to = "GEN", values_to = "Y", -ENV) %>%
+      reorder_cols(ENV, .before = "GEN") %>%
       arrange(ENV, GEN)
   }
   return(as_tibble(data))
