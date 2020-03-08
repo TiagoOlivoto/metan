@@ -221,6 +221,7 @@ reference:
       - comb_vars
       - doo
       - get_model_data
+      - gmd
       - inspect
       - is.split_factors
       - lower_case_only
