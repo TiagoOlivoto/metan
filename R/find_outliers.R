@@ -81,7 +81,7 @@ find_outliers <- function(.data =  NULL,
   if ((na2 - na1) > 0) {
     if(verbose == TRUE){
       cat("Number of possible outliers:", na2 - na1, "\n")
-      cat("Lines:", names_out, "\n")
+      cat("Line(s):", names_out, "\n")
       cat("Proportion: ", round((na2 - na1)/sum(!is.na(var_name2)) *
                                   100, 1), "%\n", sep = "")
       cat("Mean of the outliers:", round(mo, 3), "\n")
