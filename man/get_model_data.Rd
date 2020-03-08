@@ -29,10 +29,13 @@ A tibble showing the values of the variable chosen in argument
 \code{what}.
 }
 \description{
-Easily get data from some objects generated in the \strong{metan} package
-such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
-variance components, details of AMMI models and AMMI-based stability
-statistics.
+\itemize{
+\item \code{get_model_data()} Easily get data from some objects generated in the
+\strong{metan} package such as the WAASB and WAASBY indexes  (Olivoto et al.,
+2019a, 2019b) BLUPs, variance components, details of AMMI models and
+AMMI-based stability statistics.
+\item \code{gmd()} Is a shortcut to \code{get_model_data}.
+}
 }
 \details{
 Bellow are listed the options allowed in the argument \code{what} depending

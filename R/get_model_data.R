@@ -1,9 +1,11 @@
 #' Get data from a model easily
 #'
-#' Easily get data from some objects generated in the \strong{metan} package
-#' such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
-#' variance components, details of AMMI models and AMMI-based stability
-#' statistics.
+#' * \code{get_model_data()} Easily get data from some objects generated in the
+#' \strong{metan} package such as the WAASB and WAASBY indexes  (Olivoto et al.,
+#' 2019a, 2019b) BLUPs, variance components, details of AMMI models and
+#' AMMI-based stability statistics.
+#' * \code{gmd()} Is a shortcut to \code{get_model_data}.
+#' @name get_model_data
 #'
 #' @param x An object created with the functions \code{\link{AMMI_indexes}},
 #'   \code{\link{anova_ind}}, \code{\link{anova_joint}},
@@ -871,4 +873,13 @@ get_model_data <- function(x,
     message("Variable extracted: ", what)
   }
   return(bind)
+}
+
+#' @get_model_data
+#' @export
+gmd <- function(x,
+                what = NULL,
+                type = "GEN",
+                verbose = TRUE){
+  get_model_data(x, what, type, verbose)
 }
