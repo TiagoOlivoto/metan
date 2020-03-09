@@ -229,11 +229,14 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
 plot.resp_surf <- function(x,
                            xlab = NULL,
                            ylab = NULL,
-                           region = "DEPRECATED",
+                           region = "deprecated",
                            resolution = 100,
                            bins = 10,
                            plot_theme = theme_metan(),
                            ...) {
+  if(region != "deprecated"){
+    warning("`region` is deprecated. It will be defunct in the new release.", call. = FALSE)
+  }
   data <- x[["model"]][["model"]]
   mod = x$model
   seq <- expand.grid(seq(min(unique(data[2])),

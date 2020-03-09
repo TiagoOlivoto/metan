@@ -10,8 +10,7 @@
 #'   environments. The analysis of variance is computed for each level of this
 #'   factor.
 #' @param gen The name of the column that contains the levels of the genotypes.
-#' @param rep The name of the column that contains the levels of the
-#'   replications/blocks.
+#' @param rep Deprecated argument. It will be retired in the next release.
 #' @param resp The response variable(s). To analyze multiple variables in a
 #'   single procedure a vector of variables may be used. For example \code{resp
 #'   = c(var1, var2, var3)}.
@@ -28,14 +27,23 @@
 #' @examples
 #' \donttest{
 #' library(metan)
-#' ge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY)
-#' gge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY, type = "gge")
+#' ge_eff <- ge_effects(data_ge, ENV, GEN, GY)
+#' gge_eff <- ge_effects(data_ge, ENV, GEN, GY, type = "gge")
 #' plot(ge_eff)
 #' }
 #'
-ge_effects <- function(.data, env, gen, rep, resp, type = "ge", verbose = TRUE) {
+ge_effects <- function(.data,
+                       env,
+                       gen,
+                       resp,
+                       rep = "deprecated",
+                       type = "ge",
+                       verbose = TRUE) {
   if(!type  %in% c("ge", "gge")){
     stop("Invalid value for the argument 'type': It must be either 'ge' or 'gge'", call. = FALSE)
+  }
+  if(rep != "deprecated"){
+    warning("`rep` is deprecated. It will be defunct in the new release.", call. = FALSE)
   }
   datain <- .data
   listres <- list()
@@ -51,8 +59,7 @@ ge_effects <- function(.data, env, gen, rep, resp, type = "ge", verbose = TRUE) 
     }
     data <- datain %>%
       select(ENV = {{env}},
-             GEN = {{gen}},
-             REP = {{rep}}) %>%
+             GEN = {{gen}}) %>%
       mutate(Y = Y) %>%
       group_by(ENV, GEN) %>%
       summarise(Y = mean(Y)) %>%
@@ -61,12 +68,14 @@ ge_effects <- function(.data, env, gen, rep, resp, type = "ge", verbose = TRUE) 
       effects <- data %>%
         mutate(ge = residuals(lm(Y ~ ENV + GEN, data = data))) %>%
         make_mat(GEN, ENV, ge) %>%
-        as_tibble(rownames = NA)
+        rownames_to_column("GEN") %>%
+        as_tibble()
     } else{
       effects <- data %>%
         mutate(gge = residuals(lm(Y ~ ENV, data = data))) %>%
         make_mat(GEN, ENV, gge)    %>%
-        as_tibble(rownames = NA)
+        rownames_to_column("GEN") %>%
+        as_tibble()
     }
     if (length(d$resp) > 1) {
       listres[[paste(d$resp[var])]] <- effects
@@ -114,13 +123,15 @@ ge_effects <- function(.data, env, gen, rep, resp, type = "ge", verbose = TRUE) 
 #' @examples
 #' \donttest{
 #' library(metan)
-#' ge_eff <- ge_effects(data_ge2, ENV, GEN, REP, PH)
+#' ge_eff <- ge_effects(data_ge2, ENV, GEN, PH)
 #' plot(ge_eff)
 #' }
 #'
 plot.ge_effects <- function(x, var = 1, plot_theme = theme_metan(), x.lab = NULL, y.lab = NULL,
                             leg.position = "right", size.text = 12, ...){
-  data <- make_long(x[[var]])
+  data <- x[[var]] %>%
+    column_to_rownames("GEN") %>%
+    make_long()
   names <- names(data)
   if (is.null(y.lab) == FALSE) {
     y.lab <- y.lab

@@ -72,6 +72,9 @@ anova_ind <- function(.data,
                       resp,
                       block = NULL,
                       verbose = "deprecated") {
+  if(verbose != "deprecated"){
+    warning("`verbose` is deprecated. It will be defunct in the new release.", call. = FALSE)
+  }
   if(!missing(block)){
     factors  <- .data %>%
       select({{env}},

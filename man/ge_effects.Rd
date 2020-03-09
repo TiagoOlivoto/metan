@@ -4,7 +4,15 @@
 \alias{ge_effects}
 \title{Genotype-environment effects}
 \usage{
-ge_effects(.data, env, gen, rep, resp, type = "ge", verbose = TRUE)
+ge_effects(
+  .data,
+  env,
+  gen,
+  resp,
+  rep = "deprecated",
+  type = "ge",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -16,12 +24,11 @@ factor.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
-\item{rep}{The name of the column that contains the levels of the
-replications/blocks.}
-
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure a vector of variables may be used. For example \code{resp
 = c(var1, var2, var3)}.}
+
+\item{rep}{Deprecated argument. It will be retired in the next release.}
 
 \item{type}{The type of effect to compute. Defaults to \code{"ge"}, i.e.,
 genotype-environment. To compute genotype plus genotype-environment effects
@@ -42,8 +49,8 @@ i.e., the residual effect of the additive model
 \examples{
 \donttest{
 library(metan)
-ge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY)
-gge_eff <- ge_effects(data_ge, ENV, GEN, REP, GY, type = "gge")
+ge_eff <- ge_effects(data_ge, ENV, GEN, GY)
+gge_eff <- ge_effects(data_ge, ENV, GEN, GY, type = "gge")
 plot(ge_eff)
 }
 

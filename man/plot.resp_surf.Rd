@@ -8,7 +8,7 @@
   x,
   xlab = NULL,
   ylab = NULL,
-  region = "DEPRECATED",
+  region = "deprecated",
   resolution = 100,
   bins = 10,
   plot_theme = theme_metan(),
