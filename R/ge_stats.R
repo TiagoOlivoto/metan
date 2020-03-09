@@ -130,8 +130,8 @@ ge_stats = function(.data,
     data <- factors %>%
       mutate(mean = vars[[var]])
 ge_mean = make_mat(data, GEN, ENV, mean)
-ge_effect = ge_effects(data, ENV, GEN, REP, mean)[[1]]
-gge_effect = ge_effects(data, ENV, GEN, REP, mean, type = "gge")[[1]]
+ge_effect = ge_effects(data, ENV, GEN, mean)[[1]]
+gge_effect = ge_effects(data, ENV, GEN, mean, type = "gge")[[1]]
 Mean = apply(ge_mean, 1, mean)
 Variance = rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
 CV <- apply(ge_mean, 1, function(x) (sd(x) / mean(x) * 100))
