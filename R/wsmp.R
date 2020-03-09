@@ -436,11 +436,11 @@ plot.wsmp <- function(x,
       pivot_longer(-GEN) %>%
       rowid_to_column()
     if(type == 1){
-      x.lab = ifelse(is.null(x.lab), paste0("WAASB/GY ratio"), x.lab)
+      x.lab = ifelse(is.null(x.lab), paste0("Number of IPCAs"), x.lab)
       y.lab = ifelse(is.null(y.lab), paste0("Genotypes"), y.lab)
     }
     if(type == 2){
-      x.lab = ifelse(is.null(x.lab), paste0("Number of IPCAs"), x.lab)
+      x.lab = ifelse(is.null(x.lab), paste0("WAASB/GY ratio"), x.lab)
       y.lab = ifelse(is.null(y.lab), paste0("Genotypes"), y.lab)
     }
 
