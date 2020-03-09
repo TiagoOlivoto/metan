@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_model_data.R
 \name{get_model_data}
 \alias{get_model_data}
+\alias{gmd}
 \title{Get data from a model easily}
 \usage{
 get_model_data(x, what = NULL, type = "GEN", verbose = TRUE)
+
+gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{AMMI_indexes}},

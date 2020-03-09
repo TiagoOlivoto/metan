@@ -875,7 +875,7 @@ get_model_data <- function(x,
   return(bind)
 }
 
-#' @get_model_data
+#' @name get_model_data
 #' @export
 gmd <- function(x,
                 what = NULL,

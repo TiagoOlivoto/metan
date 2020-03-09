@@ -1027,7 +1027,7 @@ hmean <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 hm_mean <- function(.data, ..., na.rm = FALSE) {
-  .Deprecated(msg = "`hm_mean()` is deprecated; use `hmean()` instead.")
+  .Deprecated(msg = "`hm_mean()` is deprecated. Use `hmean()` instead.")
   funct <- function(df){
     1 / mean(1 / df, na.rm = na.rm)
   }
@@ -1076,7 +1076,7 @@ gmean <- function(.data, ..., na.rm = FALSE){
 #' @name utils_stats
 #' @export
 gm_mean <- function(.data, ..., na.rm = FALSE){
-  .Deprecated(msg = "`gm_mean()` is deprecated; use `gmean()` instead.")
+  .Deprecated(msg = "`gm_mean()` is deprecated. Use `gmean()` instead.")
   funct <- function(df){
     exp(sum(log(df[df > 0]), na.rm = na.rm) / length(df))
   }
