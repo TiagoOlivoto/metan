@@ -6,8 +6,7 @@
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments, Genotypes
-#' and the response variable(s). It is also possible to use a two-way table with genotypes
-#' in lines and environments in columns as input. In this case you must use \code{table = TRUE}.
+#' and the response variable(s).
 #' @param env The name of the column that contains the levels of the environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
@@ -74,12 +73,12 @@
 #'
 #' # GGE model for all numeric variables
 #' mod2 <- gge(data_ge2, ENV, GEN, resp = everything())
-#' plot(mod2)
+#' plot(mod2, var = "ED")
 #'
 #' # If we have a two-way table with the mean values for
 #' # genotypes and environments
 #'
-#' table <- make_mat(data_ge, GEN, ENV, GY)
+#' table <- make_mat(data_ge, GEN, ENV, GY) %>% round(2)
 #' table
 #' make_long(table) %>%
 #' gge(ENV, GEN, Y) %>%
@@ -361,7 +360,8 @@ plot.gge <- function(x,
                xlim[2] + (diff(ylim) - diff(xlim))/2)
   }
   # Base plot
-  P1 <- ggplot(data = plotdata, aes(x = d1, y = d2, group = "type")) +
+  P1 <-
+    ggplot(data = plotdata, aes(x = d1, y = d2, group = "type")) +
     scale_color_manual(values = c(col.gen, col.env)) +
     scale_size_manual(values = c(size.text.gen, size.text.env)) +
     xlab(paste(labelaxes[1], " (", round(varexpl[1], 2), "%)", sep = "")) +
@@ -399,7 +399,11 @@ plot.gge <- function(x,
       theme(axis.text = element_text(size = size.text.lab, colour = "black"),
             axis.title = element_text(size = size.text.lab, colour = "black"))
     if (title == TRUE) {
-      ggt <- ggtitle("GGE Biplot")
+      if(any(class(x) == "gtb")){
+        ggt <- ggtitle("GT Biplot")
+      } else{
+        ggt <- ggtitle("GGE Biplot")
+      }
     }
   }
   # Mean vs. stability
@@ -872,7 +876,11 @@ plot.gge <- function(x,
                       col = col.env,
                       size = size.text.env)
     if (title == TRUE) {
+      if(any(class(x) == "gtb")){
+        ggt <- ggtitle("Relationship Among Traits")
+      } else{
       ggt <- ggtitle("Relationship Among Environments")
+    }
     }
   }
   if (title == T) {
@@ -880,14 +888,14 @@ plot.gge <- function(x,
     cent_text <-
       case_when(
         centering == 1 | centering == "global" ~ "Centering = 1",
-        centering == 2 | centering == "environment" ~ "Centering = 2",
+        centering == 2 | centering == "environment" | centering == "trait" ~ "Centering = 2",
         centering == 3 | centering == "double" ~ "Centering = 3",
         FALSE ~ "No Centering"
       )
     svp_text <-
       case_when(
         svp == 1 | svp == "genotype" ~ "SVP = 1",
-        svp == 2 | svp == "environment" ~ "SVP = 2",
+        svp == 2 | svp == "environment" | svp == "trait" ~ "SVP = 2",
         svp == 3 | svp == "symmetrical" ~ "SVP = 3"
       )
     annotationtxt <- paste(scal_text, ", ", cent_text, ", ", svp_text, sep = "")
@@ -938,7 +946,7 @@ plot.gge <- function(x,
 #' }
 #'
 predict.gge <- function(object, naxis = 2, output = "wide", ...) {
-  if (!class(object) == "gge") {
+  if (has_class(mod, "gtb")) {
     stop("The object must be of class 'gge'.")
   }
   listres <- list()

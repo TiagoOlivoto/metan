@@ -16,8 +16,7 @@ gge(
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments, Genotypes
-and the response variable(s). It is also possible to use a two-way table with genotypes
-in lines and environments in columns as input. In this case you must use \code{table = TRUE}.}
+and the response variable(s).}
 
 \item{env}{The name of the column that contains the levels of the environments.}
 
