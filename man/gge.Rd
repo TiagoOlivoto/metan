@@ -78,12 +78,12 @@ plot(mod)
 
 # GGE model for all numeric variables
 mod2 <- gge(data_ge2, ENV, GEN, resp = everything())
-plot(mod2)
+plot(mod2, var = "ED")
 
 # If we have a two-way table with the mean values for
 # genotypes and environments
 
-table <- make_mat(data_ge, GEN, ENV, GY)
+table <- make_mat(data_ge, GEN, ENV, GY) \%>\% round(2)
 table
 make_long(table) \%>\%
 gge(ENV, GEN, Y) \%>\%

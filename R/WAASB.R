@@ -367,9 +367,9 @@ waasb <- function(.data,
         }
         if(ind_anova == TRUE){
             if(missing(block)){
-                individual <- data %>% anova_ind(ENV, GEN, REP, Y, verbose = FALSE)
+                individual <- data %>% anova_ind(ENV, GEN, REP, Y)
             } else{
-                individual <- data %>% anova_ind(ENV, GEN, REP, Y, block = BLOCK, verbose = FALSE)
+                individual <- data %>% anova_ind(ENV, GEN, REP, Y, block = BLOCK)
             }
         } else{
             individual = NULL

@@ -75,7 +75,7 @@ env_dissimilarity <- function(.data,
     data <- factors %>%
       mutate(mean = vars[[var]])
     mat <- make_mat(data, GEN, ENV, mean)
-    ind_anova <- anova_ind(data, ENV, GEN, REP, mean, verbose = FALSE)
+    ind_anova <- anova_ind(data, ENV, GEN, REP, mean)
     NG <- nrow(mat)
     NE <- ncol(mat)
     NR <- nlevels(data$REP)

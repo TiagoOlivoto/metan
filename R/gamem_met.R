@@ -141,8 +141,7 @@
 #' library(metan)
 #' #===============================================================#
 #' # Example 1: Analyzing all numeric variables assuming genotypes #
-#' # as random effects with equal weights for mean performance and #
-#' # stability                                                     #
+#' # as random effects                                             #
 #' #===============================================================#
 #'model <- gamem_met(data_ge,
 #'                   env = ENV,
