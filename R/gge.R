@@ -946,7 +946,7 @@ plot.gge <- function(x,
 #' }
 #'
 predict.gge <- function(object, naxis = 2, output = "wide", ...) {
-  if (has_class(mod, "gtb")) {
+  if (has_class(object, "gtb")) {
     stop("The object must be of class 'gge'.")
   }
   listres <- list()
