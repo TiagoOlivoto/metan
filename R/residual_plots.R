@@ -106,6 +106,7 @@ residual_plots <- function(x,
                alpha = point.alpha) +
     geom_smooth(se = F,
                 method = "loess",
+                formula = y ~ x,
                 col = col.line) +
     geom_hline(yintercept = 0,
                linetype = 2,
@@ -158,6 +159,7 @@ residual_plots <- function(x,
                alpha = point.alpha) +
     geom_smooth(se = F,
                 method = "loess",
+                formula = y ~ x,
                 col = col.line) +
     labs(x = "Fitted values",
          y = expression(sqrt("|Standardized residuals|"))) +
