@@ -63,17 +63,17 @@ ge_plot <- function(.data,
     p <- p +
       stat_summary(aes(colour = {{gen}},
                        group = {{gen}}),
-                   fun.y = mean,
+                   fun = mean,
                    geom = "line")
   } else {
     p <- p +
       stat_summary(aes(group = {{gen}}),
-                   fun.y = mean,
+                   fun = mean,
                    geom = "line",
                    colour = "black")
   }
   p <- p + geom_point(stat = "summary",
-                      fun.y = mean,
+                      fun = mean,
                       size = 3,
                       shape = 18) +
     plot_theme %+replace%
