@@ -3,7 +3,9 @@
 * Factor columns can now have custom names rather than ENV, GEN, and REP only ([#2](https://github.com/TiagoOlivoto/metan/issues/2))
 
 ## New functions
-* `gamem_met` to analyze genotypes in multi-environment trials using mixed- or random-effect models.
+* `gmd()` a shortcut to `get_model_data()`
+* `gtb()` genotype-by-trait biplot.
+* `gamem_met` to analyze genotypes in multi-environment trials using mixed- or random-effect models allowing unbalanced data. Thanks to [@EderOliveira](https://www.embrapa.br/en/web/portal/team/-/empregado/321725/eder-jorge-de-oliveira) for his e-mail.
 * `has_class()` to check if a class exists.
 * `non_collinear_vars()` for selecting a set of predictors with minimal multicollinearity.
 * `replace_na()` to replace `NA` values quicly.
