@@ -365,19 +365,19 @@ to <code>NULL</code></p></td>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Default plot</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `expand_scale()` is deprecated; use `expansion()` instead.</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='residual_plots-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>)</div><div class='img'><img src='residual_plots-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Normal Q-Q plot</span>
 <span class='co'># Label possible outliers</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>,
      <span class='kw'>which</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-     <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `expand_scale()` is deprecated; use `expansion()` instead.</span></div><div class='img'><img src='residual_plots-2.png' alt='' width='700' height='433' /></div><div class='input'>
+     <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='residual_plots-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Residual vs fitted,</span>
 <span class='co'># Normal Q-Q plot</span>
 <span class='co'># Histogram of raw residuals</span>
 <span class='co'># All in one row</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>model</span>,
      <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>5</span>),
-     <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `expand_scale()` is deprecated; use `expansion()` instead.</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='residual_plots-3.png' alt='' width='700' height='433' /></div><div class='input'># }
+     <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='residual_plots-3.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

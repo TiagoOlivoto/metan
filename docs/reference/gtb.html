@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fast way to create a bar plot — plot_factbars • metan</title>
+<title>Genotype by trait biplot — gtb • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,9 +48,13 @@
 
 
 
-<meta property="og:title" content="Fast way to create a bar plot — plot_factbars" />
-<meta property="og:description" content="Create a bar plot based on categorical (one or two) variables
-  and one numeric variable." />
+<meta property="og:title" content="Genotype by trait biplot — gtb" />
+<meta property="og:description" content="Produces a genotype-by-trait biplot model. From a genotype by environment by
+trait three-way table, genotype-by-trait tables in any single environment,
+across all environments, or across a subset of the environments can be
+generated and visually studied using biplots. The model for biplot analysis
+of genotype by trait data is the singular value decomposition of
+trait-standardized two-way table." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -206,189 +210,103 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fast way to create a bar plot</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/plot_factbars.R'><code>R/plot_factbars.R</code></a></small>
-    <div class="hidden name"><code>plot_factbars.Rd</code></div>
+    <h1>Genotype by trait biplot</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/gtb.R'><code>R/gtb.R</code></a></small>
+    <div class="hidden name"><code>gtb.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a bar plot based on categorical (one or two) variables
-  and one numeric variable.</p>
+    <p>Produces a genotype-by-trait biplot model. From a genotype by environment by
+trait three-way table, genotype-by-trait tables in any single environment,
+across all environments, or across a subset of the environments can be
+generated and visually studied using biplots. The model for biplot analysis
+of genotype by trait data is the singular value decomposition of
+trait-standardized two-way table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_factbars</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>...</span>,
-  <span class='no'>resp</span>,
-  <span class='kw'>y.expand</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lab.bar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lab.bar.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>lab.bar.vjust</span> <span class='kw'>=</span> -<span class='fl'>0.5</span>,
-  <span class='kw'>lab.bar.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>size.text.bar</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>lab.x.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>lab.x.vjust</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>lab.x.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>errorbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stat.erbar</span> <span class='kw'>=</span> <span class='st'>"se"</span>,
-  <span class='kw'>width.erbar</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Spectral"</span>,
-  <span class='kw'>width.bar</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>fontfam</span> <span class='kw'>=</span> <span class='st'>"sans"</span>,
-  <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gtb</span>(<span class='no'>.data</span>, <span class='no'>gen</span>, <span class='no'>resp</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"trait"</span>, <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>svp</span> <span class='kw'>=</span> <span class='st'>"trait"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data set</p></td>
+      <td><p>The dataset containing the columns related to Genotypes and the
+response variable(s).</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>A comma-separated list of unquoted variable names. Must be up to
-two variables.</p></td>
+      <th>gen</th>
+      <td><p>The name of the column that contains the levels of the genotypes.</p></td>
     </tr>
     <tr>
       <th>resp</th>
-      <td><p>The response variable</p></td>
+      <td><p>The response variables, i.e., <code>resp = c(var1, var2, var3)</code>.
+Select helpers can also be used.</p></td>
     </tr>
     <tr>
-      <th>y.expand</th>
-      <td><p>A multiplication factor to expand the y axis.. Defaults to 1.</p></td>
+      <th>centering</th>
+      <td><p>The centering method. Must be one of the <code>'none | 0'</code>,
+for no centering; <code>'global | 1'</code>, for global centered (T+G+GT);
+<code>'trait | 2'</code> (default), for trait-centered (G+GT); or <code>'double |
+  3'</code>, for double centred (GT). A biplot cannot be produced with models
+produced without centering.</p></td>
     </tr>
     <tr>
-      <th>y.breaks</th>
-      <td><p>The breaks to be plotted in the y-axis. Defaults to waiver().
-<code>authomatic breaks</code>. The same arguments than <code>x.breaks</code> can be
-used.</p></td>
+      <th>scaling</th>
+      <td><p>The scaling method. Must be one of the <code>'none | 0'</code>, for
+no scaling; or <code>'sd | 1'</code> (default), where each value is divided by
+the standard deviation of its corresponding trait (column). This will put
+all traits roughly he same rang of values.</p></td>
     </tr>
     <tr>
-      <th>xlab</th>
-      <td><p>The x label</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>The y label</p></td>
-    </tr>
-    <tr>
-      <th>lab.bar</th>
-      <td><p>A vector of characters to show in each bar. Defaults to NULL.</p></td>
-    </tr>
-    <tr>
-      <th>lab.bar.hjust, lab.bar.vjust</th>
-      <td><p>The horizontal and vertical adjust for the
-labels in the bar. Defaults to 0.5 and -0.5, respectively.</p></td>
-    </tr>
-    <tr>
-      <th>lab.bar.angle</th>
-      <td><p>The angle for the labels in the plot. Defaults to 0. Use
-in combination with <code>lab.bar.hjust</code> and <code>lab.bar.vjust</code> to best
-fit the labels in the plot.</p></td>
-    </tr>
-    <tr>
-      <th>size.text.bar</th>
-      <td><p>The size of the text in the bar labels.</p></td>
-    </tr>
-    <tr>
-      <th>lab.x.hjust, lab.x.vjust</th>
-      <td><p>The horizontal and vertical adjust for the
-labels in the bar. Defaults to 0.5 and 1, respectively.</p></td>
-    </tr>
-    <tr>
-      <th>lab.x.angle</th>
-      <td><p>The angle for the labels in x axis. Defaults to 0. Use
-in combination with <code>lab.x.hjust</code> and <code>lab.x.vjust</code> to best
-fit the labels in the axis.</p></td>
-    </tr>
-    <tr>
-      <th>errorbar</th>
-      <td><p>Logical argument, set to TRUE. In this case, an error bar is
-shown.</p></td>
-    </tr>
-    <tr>
-      <th>stat.erbar</th>
-      <td><p>The statistic to be shown in the errorbar. Must be one of
-the <code>stat.erbar = "se"</code> (standard error, default), <code>stat.erbar =
-"sd"</code> (standard deviation), or <code>stat.erbar = "ci"</code> (confidence
-interval), based on the confidence level in the argument <code>level</code>.</p></td>
-    </tr>
-    <tr>
-      <th>width.erbar</th>
-      <td><p>The width of the error bar.</p></td>
-    </tr>
-    <tr>
-      <th>level</th>
-      <td><p>The confidence level</p></td>
-    </tr>
-    <tr>
-      <th>invert</th>
-      <td><p>Logical argument. If <code>TRUE</code>, the order of the factors
-entered in changes in the graph</p></td>
-    </tr>
-    <tr>
-      <th>col</th>
-      <td><p>Logical argument. If <code>FALSE</code>, a gray scale is used.</p></td>
-    </tr>
-    <tr>
-      <th>palette</th>
-      <td><p>The color palette to be used. For more details, see
-<code>?scale_colour_brewer</code></p></td>
-    </tr>
-    <tr>
-      <th>width.bar</th>
-      <td><p>The width of the bars in the graph. Defaults to 0.9 possible
-values [0-1].</p></td>
-    </tr>
-    <tr>
-      <th>legend.position</th>
-      <td><p>The position of the legend in the plot.</p></td>
-    </tr>
-    <tr>
-      <th>size.text</th>
-      <td><p>The size of the text</p></td>
-    </tr>
-    <tr>
-      <th>fontfam</th>
-      <td><p>The family of the font text</p></td>
-    </tr>
-    <tr>
-      <th>na.rm</th>
-      <td><p>Should 'NA' values be removed to compute the statistics?
-Defaults to true</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Logical argument. If TRUE a tibble containing the mean, N,
-standard deviation, standard error of mean and confidence interval is
-returned.</p></td>
+      <th>svp</th>
+      <td><p>The method for singular value partitioning. Must be one of the
+<code>'genotype | 1'</code>, (The singular value is entirely partitioned into the
+genotype eigenvectors, also called row metric preserving); <code>'trait |
+  2'</code>, default, (The singular value is entirely partitioned into the trait
+eigenvectors, also called column metric preserving); or <code>'symmetrical
+  | 3'</code> (The singular value is symmetrically partitioned into the genotype
+and the trait eigenvectors This SVP is most often used in AMMI analysis and
+other biplot analysis, but it is not ideal for visualizing either the
+relationship among genotypes or that among the traits).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>gg, ggplot</code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/graphics/plot.html'>plot()</a></code> used in <code><a href='gge.html'>gge</a>()</code>.</p><ul>
+<li><p><strong>coordgen</strong> The coordinates for genotypes for all components.</p></li>
+<li><p><strong>coordenv</strong> The coordinates for traits for all components.</p></li>
+<li><p><strong>eigenvalues</strong> The vector of eigenvalues.</p></li>
+<li><p><strong>totalvar</strong> The overall variance.</p></li>
+<li><p><strong>labelgen</strong> The name of the genotypes.</p></li>
+<li><p><strong>labelenv</strong> The names of the traits.</p></li>
+<li><p><strong>labelaxes</strong> The axes labels.</p></li>
+<li><p><strong>gt_mat</strong> The data used to produce the model (scaled and centered).</p></li>
+<li><p><strong>centering</strong> The centering method.</p></li>
+<li><p><strong>scaling</strong> The scaling method.</p></li>
+<li><p><strong>svp</strong> The singular value partitioning method.</p></li>
+<li><p><strong>d</strong> The factor used to generate in which the ranges of genotypes
+and traits are comparable when singular value partitioning is set to
+'genotype' or 'trait'.</p></li>
+<li><p><strong>grand_mean</strong> The grand mean of the trial.</p></li>
+<li><p><strong>mean_gen</strong> A vector with the means of the genotypes.</p></li>
+<li><p><strong>mean_env</strong> A vector with the means of the traits.</p></li>
+<li><p><strong>scale_var</strong> The scaling vector when the scaling method is <code>'sd'</code>.</p></li>
+</ul>
 
-    <div class='dont-index'><p><code><a href='plot_lines.html'>plot_lines</a></code>, <code><a href='plot_factlines.html'>plot_factlines</a></code></p></div>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
+geneticists, and agronomists. CRC Press.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'>plot_factbars</span>(<span class='no'>data_ge2</span>,
-              <span class='no'>GEN</span>,
-              <span class='no'>ENV</span>,
-              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div><div class='img'><img src='plot_factbars-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='co'># GT biplot for all numeric variables</span>
+<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>gtb</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='gtb-1.png' alt='' width='700' height='433' /></div><div class='input'>
+# }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -396,10 +314,12 @@ returned.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
+    <h2>Author</h2>
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
   </div>
 </div>
 

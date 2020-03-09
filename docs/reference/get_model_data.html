@@ -49,10 +49,15 @@
 
 
 <meta property="og:title" content="Get data from a model easily — get_model_data" />
-<meta property="og:description" content="Easily get data from some objects generated in the metan package
-such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
-variance components, details of AMMI models and AMMI-based stability
-statistics." />
+<meta property="og:description" content="
+
+get_model_data() Easily get data from some objects generated in the
+metan package such as the WAASB and WAASBY indexes  (Olivoto et al.,
+2019a, 2019b) BLUPs, variance components, details of AMMI models and
+AMMI-based stability statistics.
+gmd() Is a shortcut to get_model_data.
+
+" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -214,13 +219,20 @@ statistics." />
     </div>
 
     <div class="ref-description">
-    <p>Easily get data from some objects generated in the <strong>metan</strong> package
-such as the WAASB and WAASBY indexes  (Olivoto et al., 2019a, 2019b) BLUPs,
-variance components, details of AMMI models and AMMI-based stability
-statistics.</p>
+    
+<ul>
+<li><p><code>get_model_data()</code> Easily get data from some objects generated in the
+<strong>metan</strong> package such as the WAASB and WAASBY indexes  (Olivoto et al.,
+2019a, 2019b) BLUPs, variance components, details of AMMI models and
+AMMI-based stability statistics.</p></li>
+<li><p><code>gmd()</code> Is a shortcut to <code>get_model_data</code>.</p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='fu'>get_model_data</span>(<span class='no'>x</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"GEN"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_model_data</span>(<span class='no'>x</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"GEN"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='fu'>gmd</span>(<span class='no'>x</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"GEN"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -472,8 +484,7 @@ Hortic. (Amsterdam). 253:172-179.
 Pflanzenzuchtg 52:127-138.</p>
 <p>Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
 Evaluation of genotype vs environment interaction in chickpea using measures
-of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
-<a href='http://eprints.icrisat.ac.in/id/eprint/7173'>http://eprints.icrisat.ac.in/id/eprint/7173</a></p>
+of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='AMMI_indexes.html'>AMMI_indexes</a></code>, <code><a href='anova_ind.html'>anova_ind</a></code>,

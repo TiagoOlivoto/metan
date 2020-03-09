@@ -86,7 +86,7 @@ print_table(rownames = TRUE)
 # Genotype-by-environment interaction effects
 The function `ge_effects()` is used to compute the genotype-environment effects. 
 ```{r}
-ge_ef <- ge_effects(data_ge, ENV, GEN, REP, GY)
+ge_ef <- ge_effects(data_ge, ENV, GEN, GY)
 print_table(ge_ef$GY, rownames = TRUE)
 
 ```
@@ -96,7 +96,7 @@ print_table(ge_ef$GY, rownames = TRUE)
 # Genotype plus Genotype-by-environment effects
 To obtain the genotype plus genotype-environment effects, we can use the argument `type =  "gge"` in the function `ge_effects()`.
 ```{r }
-gge_ef <- ge_effects(data_ge, ENV, GEN, REP, GY, type = "gge")
+gge_ef <- ge_effects(data_ge, ENV, GEN, GY, type = "gge")
 print_table(gge_ef$GY, rownames = TRUE)
 ```
 

@@ -64,6 +64,7 @@ find_text_in_num(): Find text characters in a numeric sequence and
 return the row index.
 has_text_in_num(): Inspect columns looking for text in numeric
 sequence and return a warning if text is found.
+remove_space(): Remove all blank spaces of a string.
 remove_strings(): Remove all strings of a variable.
 replace_number(): Replace numbers with a replacement.
 replace_string(): Replace all strings with a replacement, ignoring
@@ -256,6 +257,7 @@ to title case (e.g., <code>"ENV"</code> to <code>"Env"</code>).</p></li>
 return the row index.</p></li>
 <li><p><code>has_text_in_num()</code>: Inspect columns looking for text in numeric
 sequence and return a warning if text is found.</p></li>
+<li><p><code>remove_space()</code>: Remove all blank spaces of a string.</p></li>
 <li><p><code>remove_strings()</code>: Remove all strings of a variable.</p></li>
 <li><p><code>replace_number()</code>: Replace numbers with a replacement.</p></li>
 <li><p><code>replace_string()</code>: Replace all strings with a replacement, ignoring
@@ -304,6 +306,8 @@ level in plant breeding trials, e.g., environment 1) is subjected to
 
 <span class='fu'>has_text_in_num</span>(<span class='no'>.data</span>)
 
+<span class='fu'>remove_space</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+
 <span class='fu'>remove_strings</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
 <span class='fu'>replace_number</span>(
@@ -324,6 +328,7 @@ level in plant breeding trials, e.g., environment 1) is subjected to
   <span class='kw'>new_var</span> <span class='kw'>=</span> <span class='no'>new_var</span>,
   <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>replacement</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>ignore_case</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>pull</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>.before</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -386,6 +391,11 @@ allowed.</p></td>
     <tr>
       <th>replacement</th>
       <td><p>A string for replacement.</p></td>
+    </tr>
+    <tr>
+      <th>ignore_case</th>
+      <td><p>If <code>FALSE</code> (default), the pattern matching is case
+sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
     </tr>
     <tr>
       <th>digits</th>

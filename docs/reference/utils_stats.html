@@ -68,7 +68,10 @@ av_dev() computes the average absolute deviation.
 ci_mean() computes the confidence interval for the mean.
 cv() computes the coefficient of variation.
 freq_table() Computes frequency fable. Handles grouped data.
-hm_mean(), gm_mean() computes the harmonic and geometric means,
+
+
+
+hmean(), gmean() computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the nth root of n
 products.
@@ -267,10 +270,13 @@ numeric variables from <code>.data</code> by default).</strong></p><ul>
 <li><p><code>ci_mean()</code> computes the confidence interval for the mean.</p></li>
 <li><p><code>cv()</code> computes the coefficient of variation.</p></li>
 <li><p><code>freq_table()</code> Computes frequency fable. Handles grouped data.</p></li>
-<li><p><code>hm_mean(), gm_mean()</code> computes the harmonic and geometric means,
+</ul></li>
+</ul>
+<ul>
+<li><p><code>hmean(), gmean()</code> computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the <em>n</em>th root of <em>n</em>
-products.</p></li>
+products.</p><ul>
 <li><p><code>kurt()</code> computes the kurtosis like used in SAS and SPSS.</p></li>
 <li><p><code>range_data()</code> Computes the range of the values.</p></li>
 <li><p><code>sd_amo(), sd_pop()</code> Computes sample and populational standard
@@ -296,7 +302,11 @@ used to compute quickly all these statistics at once.</p>
 
 <span class='fu'>freq_table</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
+<span class='fu'>hmean</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
 <span class='fu'>hm_mean</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>gmean</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>gm_mean</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 

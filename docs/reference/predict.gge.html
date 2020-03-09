@@ -266,46 +266,9 @@ For more details see Yan and Kang (2007).</p>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='gge.html'>gge</a></span>(<span class='no'>data_ge</span>, <span class='no'>GEN</span>, <span class='no'>ENV</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))
-<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>mod</span>)</div><div class='output co'>#&gt; $GY
-#&gt; <span style='color: #555555;'># A tibble: 14 x 10</span><span>
-#&gt;       G1   G10    G2    G3    G4    G5    G6    G7    G8    G9
-#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>  2.52 2.03   2.62  2.80  2.42  2.32  2.38  2.70  2.97 2.43 
-#&gt; </span><span style='color: #555555;'> 2</span><span>  2.14 1.65   2.24  2.44  2.09  2.01  2.08  2.40  2.59 2.00 
-#&gt; </span><span style='color: #555555;'> 3</span><span>  1.26 0.913  1.39  1.62  1.40  1.36  1.41  1.71  1.71 0.998
-#&gt; </span><span style='color: #555555;'> 4</span><span>  1.55 1.03   1.66  1.87  1.58  1.52  1.60  1.95  2.02 1.34 
-#&gt; </span><span style='color: #555555;'> 5</span><span>  3.07 1.97   3.09  3.22  2.64  2.51  2.67  3.16  3.59 3.09 
-#&gt; </span><span style='color: #555555;'> 6</span><span>  1.57 1.77   1.77  2.03  1.90  1.84  1.79  1.92  1.94 1.33 
-#&gt; </span><span style='color: #555555;'> 7</span><span>  3.07 3.30   3.24  3.47  3.19  3.06  2.99  3.08  3.41 3.02 
-#&gt; </span><span style='color: #555555;'> 8</span><span>  4.10 4.01   4.22  4.40  3.94  3.76  3.73  3.89  4.47 4.20 
-#&gt; </span><span style='color: #555555;'> 9</span><span>  3.58 4.01   3.77  4.00  3.71  3.56  3.45  3.46  3.88 3.58 
-#&gt; </span><span style='color: #555555;'>10</span><span>  4.06 3.34   4.11  4.24  3.64  3.47  3.55  3.90  4.52 4.19 
-#&gt; </span><span style='color: #555555;'>11</span><span>  2.62 2.42   2.75  2.96  2.63  2.52  2.53  2.76  3.03 2.53 
-#&gt; </span><span style='color: #555555;'>12</span><span>  1.80 1.96   1.98  2.24  2.08  2.01  1.96  2.10  2.17 1.58 
-#&gt; </span><span style='color: #555555;'>13</span><span>  2.37 2.60   2.56  2.80  2.60  2.50  2.44  2.54  2.73 2.23 
-#&gt; </span><span style='color: #555555;'>14</span><span>  2.75 3.59   3.01  3.29  3.18  3.07  2.89  2.80  3.02 2.63 
-#&gt; 
-#&gt; $HM
-#&gt; </span><span style='color: #555555;'># A tibble: 14 x 10</span><span>
-#&gt;       G1   G10    G2    G3    G4    G5    G6    G7    G8    G9
-#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>  46.4  47.6  46.0  46.9  47.4  48.7  48.0  47.3  48.4  47.1
-#&gt; </span><span style='color: #555555;'> 2</span><span>  44.5  42.2  47.3  44.4  41.9  50.6  45.9  40.9  43.9  41.4
-#&gt; </span><span style='color: #555555;'> 3</span><span>  52.9  56.5  51.7  53.6  53.7  53.4  54.8  54.0  55.0  55.6
-#&gt; </span><span style='color: #555555;'> 4</span><span>  48.2  50.9  46.8  48.9  50.2  49.2  50.0  50.4  51.0  50.3
-#&gt; </span><span style='color: #555555;'> 5</span><span>  45.1  47.3  43.4  45.8  48.0  46.2  46.7  48.2  48.4  46.9
-#&gt; </span><span style='color: #555555;'> 6</span><span>  39.8  40.2  38.5  40.4  43.0  42.2  41.1  43.0  43.1  40.1
-#&gt; </span><span style='color: #555555;'> 7</span><span>  43.3  43.2  43.4  43.7  44.2  46.6  44.7  43.9  45.2  42.8
-#&gt; </span><span style='color: #555555;'> 8</span><span>  51.8  54.8  50.9  52.4  52.4  52.8  53.6  52.6  53.8  53.9
-#&gt; </span><span style='color: #555555;'> 9</span><span>  48.9  51.1  48.2  49.5  49.9  50.5  50.7  50.0  51.0  50.4
-#&gt; </span><span style='color: #555555;'>10</span><span>  51.8  53.2  52.6  52.1  50.4  54.6  53.6  50.1  52.4  52.2
-#&gt; </span><span style='color: #555555;'>11</span><span>  44.7  45.6  44.2  45.2  46.1  47.2  46.2  46.0  47.0  45.1
-#&gt; </span><span style='color: #555555;'>12</span><span>  47.4  49.3  46.7  48.0  48.7  49.3  49.1  48.8  49.7  48.7
-#&gt; </span><span style='color: #555555;'>13</span><span>  43.9  44.8  43.3  44.5  45.7  46.4  45.5  45.7  46.4  44.4
-#&gt; </span><span style='color: #555555;'>14</span><span>  50.5  52.6  50.3  51.0  50.6  52.4  52.3  50.6  52.1  51.7
-#&gt; </div><div class='input'># }
+<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>mod</span>)</div><div class='output co'>#&gt; <span class='error'>Error in has_class(mod, "gtb"): objeto 'mod' não encontrado</span></div><div class='input'># }
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

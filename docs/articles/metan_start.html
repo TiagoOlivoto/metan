@@ -161,7 +161,7 @@
       <h1>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-03-06</h4>
+            <h4 class="date">2020-03-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/metan_start.Rmd"><code>vignettes/metan_start.Rmd</code></a></small>
       <div class="hidden name"><code>metan_start.Rmd</code></div>
@@ -238,10 +238,7 @@
 <span id="cb2-16"><a href="#cb2-16"></a><span class="co">#  9 MinGEN     "G10 (2.47) "       "G2 (46.66) "   </span></span>
 <span id="cb2-17"><a href="#cb2-17"></a><span class="co"># 10 MaxGEN     "G8 (3) "           "G5 (49.3) "</span></span></code></pre></div>
 <p>We can create a plot to show the performance of the genotypes across the environments with <code><a href="../reference/ge_plot.html">ge_plot()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, GEN, ENV, GY)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># Warning: `expand_scale()` is deprecated; use `expansion()` instead.</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># Warning: `expand_scale()` is deprecated; use `expansion()` instead.</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="../reference/ge_plot.html">ge_plot</a></span>(data_ge, GEN, ENV, GY)</span></code></pre></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-3-1.png" width="480"></p>
 <p>Or obtain the means for genotypes, environments or genotype-environment interaction with <code><a href="../reference/ge_means.html">ge_means()</a></code>. Note that the function <code><a href="../reference/utils_num_str.html">round_cols()</a></code> provided by <code>metan</code> round all numeric columns of a data frame to two (default) significant figures.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>mge &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge_means.html">ge_means</a></span>(data_ge,</span>
