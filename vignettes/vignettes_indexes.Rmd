@@ -34,13 +34,13 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 ```
 
 # FAI-BLUP index
-The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018]. The BLUPs from genotypes are obtained with the function `waasb()` and then the function `fai_blup()` is used to compute the FAI-BLUP index.
+The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018]. The BLUPs from genotypes are obtained with the function `gamem_met()` and then the function `fai_blup()` is used to compute the FAI-BLUP index.
 
 
 ```{r, eval=FALSE}
 library(metan)
 FAI <- data_ge2 %>%
-       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
+       gamem_met(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
        fai_blup(DI = c("max, max, max, min"),
                 UI = c("min, min, min, max"),
                 SI = 15)

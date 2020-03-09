@@ -538,7 +538,7 @@ The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design
 
 ```{r  fig.height = 5, fig.width = 5.5, fig.align = "center", warning=FALSE, message=FALSE}
 data_ge2 %>%
-  waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
+  gamem_met(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
   fai_blup(DI = c("max, max, max, min"),
            UI = c("min, min, min, max"),
            SI = 15) %>%
@@ -547,7 +547,7 @@ data_ge2 %>%
 
 > 
 * **IMPORTANT**
-`fai_blup()` recognizes models fitted with both `gamem_met()` and `waasb()`. For balanced data (all genotypes in all environments) `waasb()` and `gamem_met` will return the same model. In case of unbalanced trials, the function `waasb()` will return an error since a complete two-way table is required to the singular value decomposition procedure.
+`fai_blup()` recognizes models fitted with both `gamem_met()` and `waasb()`. For balanced data (all genotypes in all environments) `waasb()` and `gamem_met()` will return the same model. In case of unbalanced trials, the function `waasb()` will return an error since a complete two-way table is required to the singular value decomposition procedure.
 
 _______________________________________________________________________________________________
 
