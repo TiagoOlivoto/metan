@@ -113,6 +113,7 @@ reference:
     desc: "Functions for GGE analysis"
     contents:
       - gge
+      - gtb
       - plot.gge
       - predict.gge
   - title: "MTSI"

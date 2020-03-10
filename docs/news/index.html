@@ -224,9 +224,18 @@
 <a href="#new-functions" class="anchor"></a>New functions</h2>
 <ul>
 <li>
-<code><a href="../reference/non_collinear_vars.html">non_collinear_vars()</a></code> for selecting a set of predictors with minimal multicollinearity.</li>
+<code><a href="../reference/get_model_data.html">gmd()</a></code> a shortcut to <code><a href="../reference/get_model_data.html">get_model_data()</a></code>
+</li>
+<li>
+<code><a href="../reference/gtb.html">gtb()</a></code> genotype-by-trait biplot.</li>
+<li>
+<code>gamem_met</code> to analyze genotypes in multi-environment trials using mixed- or random-effect models allowing unbalanced data. Thanks to <a href="https://www.embrapa.br/en/web/portal/team/-/empregado/321725/eder-jorge-de-oliveira">@EderOliveira</a> for his e-mail.</li>
 <li>
 <code><a href="../reference/utils_class.html">has_class()</a></code> to check if a class exists.</li>
+<li>
+<code><a href="../reference/non_collinear_vars.html">non_collinear_vars()</a></code> for selecting a set of predictors with minimal multicollinearity.</li>
+<li>
+<code><a href="../reference/remove_na_values.html">replace_na()</a></code> to replace <code>NA</code> values quicly.</li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
@@ -241,6 +250,7 @@
 <li>Deprecated argument <code>verbose</code> removed in functions <code><a href="../reference/colindiag.html">colindiag()</a></code> and <code><a href="../reference/split_factors.html">split_factors()</a></code>.</li>
 <li>Deprecated argument <code>values</code> removed in functions <code><a href="../reference/desc_stat.html">desc_stat()</a></code> and <code><a href="../reference/find_outliers.html">find_outliers()</a></code>.</li>
 <li>Deprecated argument <code>var</code> removed in function <code><a href="../reference/desc_stat.html">desc_wider()</a></code>.</li>
+<li>Remove dependency on lattice by using ggplot2 in <code><a href="../reference/plot.resp_surf.html">plot.resp_surf()</a></code>.</li>
 </ul>
 </div>
 </div>
