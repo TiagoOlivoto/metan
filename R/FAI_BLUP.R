@@ -335,14 +335,19 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, arrange.label 
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
   cutpoint <- min(subset(data, sel == "Selected")$FAI)
   p <- ggplot(data = data, aes(x = reorder(Genotype, FAI),
-                               y = FAI)) + geom_hline(yintercept = cutpoint, col = "red") +
-    geom_path(colour = "black", group = 1) + geom_point(size = size.point,
-                                                        aes(fill = sel), shape = 21, colour = "black") + scale_x_discrete() +
-    theme_minimal() + theme(legend.position = "bottom", legend.title = element_blank(),
-                            axis.title.x = element_blank(), panel.border = element_blank(),
-                            axis.text = element_text(colour = "black"), text = element_text(size = size.text)) +
-    labs(x = "", y = "FAI-BLUP") + scale_fill_manual(values = c(col.nonsel,
-                                                                col.sel))
+                               y = FAI)) +
+    geom_hline(yintercept = cutpoint, col = "red") +
+    geom_path(colour = "black", group = 1) +
+    geom_point(size = size.point, aes(fill = sel), shape = 21, colour = "black") +
+    scale_x_discrete() +
+    theme_metan() +
+    theme(legend.title = element_blank(),
+          axis.title.x = element_blank(),
+          panel.border = element_blank(),
+          axis.text = element_text(colour = "black"),
+          text = element_text(size = size.text)) +
+    labs(x = "", y = "FAI-BLUP") +
+    scale_fill_manual(values = c(col.nonsel, col.sel))
   if (radar == TRUE) {
     if(arrange.label == TRUE){
       tot_gen <- length(unique(data$Genotype))
@@ -350,10 +355,19 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, arrange.label 
       sseq <- c((tot_gen/2 + 1):tot_gen)
       fang <- c(90 - 180/length(fseq) * fseq)
       sang <- c(-90 - 180/length(sseq) * sseq)
-      p <- p + coord_polar() + theme(axis.text.x = element_text(angle = c(fang,
-                                                                          sang)), legend.margin = margin(-120, 0, 0, 0), ...)
+      p <- p +
+        coord_polar() +
+        theme_minimal()+
+        theme(legend.position = "bottom",
+              legend.title = element_blank(),
+              axis.text.x = element_text(angle = c(fang, sang)),
+              legend.margin = margin(-120, 0, 0, 0), ...)
     } else{
-      p <- p + coord_polar()
+      p <- p +
+        coord_polar() +
+        theme_minimal() +
+        theme(legend.position = "bottom",
+              legend.title = element_blank(), ...)
     }
   }
   return(p)
