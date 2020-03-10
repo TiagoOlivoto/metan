@@ -196,8 +196,8 @@ plot_scores <- function(x,
                         height = 7,
                         color = TRUE,
                         ...) {
+  varname <- names(x)[var]
   x <- x[[var]]
-
   if (polygon == TRUE & type != 2) {
     stop("The polygon can be drawn with type 2 graphic only.", call. = FALSE)
   }
@@ -225,7 +225,7 @@ plot_scores <- function(x,
       }
     }
 
-    x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Grain yield"))
+    x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0(varname))
     if (is.null(x.lim) == FALSE) {
       x.lim <- x.lim
     } else {
@@ -488,7 +488,7 @@ plot_scores <- function(x,
 
   if (type == 3) {
     y.lab = ifelse(!is.null(y.lab), y.lab, paste0("Weighted average of the absolute scores"))
-    x.lab = ifelse(!is.null(x.lab), x.lab, paste0("Grain yield"))
+    x.lab = ifelse(!is.null(x.lab), x.lab, paste0(varname))
     if (class == "waasb") {
       if (is.null(x.lim) == FALSE) {
         x.lim <- x.lim
