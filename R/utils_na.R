@@ -1,11 +1,13 @@
 #' @title Remove NA values
-#' @name remove_na_values
+#' @name utils_na
 #' @param .data A data frame or tibble
 #' @param ... Variables to replace \code{NAs}. If \code{...} is null then all
 #'   variables with \code{NA} will be replaced. It must be a single variable
 #'   name or a comma-separated list of unquoted variables names. Select helpers
 #'   are also allowed.
-#' @param replace The value used for replacement. Defaults to \code{0}.
+#' @param prop The proportion (percentage) of \code{NA} values to generate in \code{.data}.
+#' @param replace The value used for replacement. Defaults to \code{0}. Use
+#'   \code{replace = "colmeans"} to replace missing values with colum means.
 #' @param verbose Logical argument. If \code{TRUE} (default) shows in console
 #'   the rows or columns deleted.
 #' @export
@@ -13,6 +15,8 @@
 #' @description These functions allow you to remove rows or columns with
 #'   \code{NA} values quickly.
 #' * \code{has_na()}: Check for \code{NA} values in the data and return a logical value.
+#' * \code{random_na()}: Generate random \code{NA} values in a two-way table
+#' based on a desired proportion.
 #' * \code{remove_rows_na()}: Remove rows with \code{NA} values.
 #' * \code{remove_cols_na()}: Remove columns with \code{NA} values.
 #' * \code{replace_na()} Replace missing values
@@ -36,7 +40,7 @@ warning("Row(s) ", paste(row_with_na, collapse = ", "), " with NA values deleted
 return(na.omit(.data))
 }
 
-#' @name remove_na_values
+#' @name utils_na
 #' @export
 remove_cols_na <- function(.data, verbose = TRUE){
   cols_with_na <- names(which(sapply(.data, anyNA)))
@@ -46,23 +50,40 @@ remove_cols_na <- function(.data, verbose = TRUE){
   return(select(.data, -cols_with_na))
 }
 
-#' @name remove_na_values
+#' @name utils_na
 #' @export
 has_na <- function(.data){
    any(complete.cases(.data) ==  FALSE)
 }
-#' @name remove_na_values
+#' @name utils_na
 #' @export
 replace_na <- function(.data, ..., replace = 0){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if(missing(...)){
     cols_with_na <- names(which(sapply(.data, anyNA)))
     df <- mutate_at(.data, vars(cols_with_na), ~replace(., is.na(.), replace))
+    if(replace == "colmeans"){
+    df <- mutate_at(.data, vars(cols_with_na), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x))
+    }
   } else{
     df <- mutate_at(.data, vars(...), ~replace(., is.na(.), replace))
+    df <- mutate_at(.data, vars(...), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x))
   }
   } else{
     df <- replace(.data, is.na(.data), replace)
   }
   return(df)
+}
+#' @name utils_na
+#' @export
+random_na <- function(.data, prop){
+  if(!prop %in% c(1:100)){
+    stop("Argument prob must have a 0-100 interval.")
+  }
+  .data <- as.matrix(.data)
+  cells <- length(.data)
+  miss <- (cells * (prop / 100))
+  coord_miss <- sample(1:cells, miss, replace = FALSE)
+  .data[coord_miss] <- NA
+  return(.data)
 }
