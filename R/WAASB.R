@@ -99,6 +99,10 @@
 #'   within-environment ANOVA is not performed.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
+#' @param ... Arguments passed to the function
+#'   \code{\link{impute_missing_val}()} for imputation of missing values in the
+#'   matrix of BLUPs for genotype-environment interaction, thus allowing the
+#'   computation of the WAASB index.
 #' @references
 #' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
 #' Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
@@ -256,7 +260,8 @@ waasb <- function(.data,
                   random = "gen",
                   prob = 0.05,
                   ind_anova = TRUE,
-                  verbose = TRUE) {
+                  verbose = TRUE,
+                  ...) {
     if (!random %in% c("env", "gen", "all")) {
         stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.")
     }
@@ -352,9 +357,9 @@ waasb <- function(.data,
     for (var in 1:nvar) {
         data <- factors %>%
             mutate(Y = vars[[var]])
-        if(is_balanced_trial(data, ENV, GEN, Y) == FALSE){
-            stop("The WAASB index cannot be computed with unbalanced data", call. = FALSE)
-        }
+        # if(is_balanced_trial(data, ENV, GEN, Y) == FALSE){
+        #     stop("The WAASB index cannot be computed with unbalanced data", call. = FALSE)
+        # }
         Nenv <- nlevels(data$ENV)
         Ngen <- nlevels(data$GEN)
         Nrep <- nlevels(data$REP)
@@ -414,8 +419,11 @@ waasb <- function(.data,
             separate(Names, into = c("GEN", "ENV")) %>%
             add_cols(BLUPge = bups[[1]][[1]]) %>%
             to_factor(1:2)
-        intmatrix <- make_mat(bINT, GEN, ENV, BLUPge)
-        intmatrix
+        intmatrix <- as.matrix(make_mat(bINT, GEN, ENV, BLUPge))
+        if(has_na(intmatrix)){
+            intmatrix <- impute_missing_val(intmatrix, verbose = verbose, ...)$.data
+            warning("Data imputation used to fill the GxE matrix", call. = FALSE)
+        }
         s <- svd(intmatrix)
         U <- s$u[, 1:minimo]
         LL <- diag(s$d[1:minimo])

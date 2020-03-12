@@ -7,11 +7,14 @@
 * `gtb()` genotype-by-trait biplot.
 * `gamem_met` to analyze genotypes in multi-environment trials using mixed- or random-effect models allowing unbalanced data. Thanks to [@EderOliveira](https://www.embrapa.br/en/web/portal/team/-/empregado/321725/eder-jorge-de-oliveira) for his e-mail.
 * `has_class()` to check if a class exists.
+* `impute_missing_val()` To impute missing values in a two-way table based on Expectation-Maximization algoritms. 
 * `non_collinear_vars()` for selecting a set of predictors with minimal multicollinearity.
 * `replace_na()` to replace `NA` values quicly.
+* `random_na()` Generate random `NA` values based on a desired proportion.
 
 
 ## Minor changes
+* `gge()` and `performs_ammi()` now handle with unbalanced data by matrix imputation using iterative algorithms. 
 * New argument `plot_res` in `path_coeff()` to create a residual plot of the multiple regression model.
 * Update the citation file to include the [published official reference](https://doi.org/10.1111/2041-210X.13384).
 * Argument `verbose` deprecated in functions `anova_ind()` and `split_factors()`
@@ -19,7 +22,9 @@
 * Deprecated argument `verbose` removed in functions `colindiag()` and `split_factors()`.
 * Deprecated argument `values` removed in functions `desc_stat()` and `find_outliers()`.
 * Deprecated argument `var` removed in function `desc_wider()`.
+* Deprecated argument `rep` removed in functions `Fox()`, `Huehn()`, `Superiority()`, and `Thennarasu()`.
 * Remove dependency on lattice by using ggplot2 in `plot.resp_surf()`.
+
 
 
 # metan 1.3.0

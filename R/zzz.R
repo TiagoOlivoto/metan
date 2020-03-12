@@ -190,5 +190,5 @@ if (getRversion() >= "2.15.1") {
       "BLUPge+e+re", "BLUPre", "Estimate", "HMRPGV", "RPGV", "Variance", "blup",
       "intercept", "lower", "upper", "pred_ols", "res_ammi", "res_ols", "pattern",
       "replacement", "comparison", "group1", "group2", "p.adj", "term", "rel_freq",
-      "variable", "Model", "level"))
+      "variable", "Model", "level", "RESIDUAL"))
   }

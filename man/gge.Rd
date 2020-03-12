@@ -11,7 +11,8 @@ gge(
   resp,
   centering = "environment",
   scaling = "none",
-  svp = "environment"
+  svp = "environment",
+  ...
 )
 }
 \arguments{
@@ -42,6 +43,10 @@ environment eigenvectors, also called column metric preserving); or \code{'symme
 (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 visualizing either the relationship among genotypes or that among the environments).}
+
+\item{...}{Arguments passed to the function
+\code{\link{impute_missing_val}()} for imputation of missing values in case
+of unbalanced data.}
 }
 \value{
 The function returns a list of class \code{gge} containing the following objects

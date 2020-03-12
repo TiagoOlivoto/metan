@@ -15,25 +15,25 @@
 #'  3. The adjusted means are calculated based on the AMMI model with
 #'  \code{naxis} principal components.
 #'  4. The missing cells are filled with the adjusted means.
-#'  5. If the maximum distance between the missing value estimations in the two
-#'  successive iteration steps ((\code{d0 - d1})) is greater than the assumed
-#'  \code{tol}, the steps 2 through 5 are repeated. Declare convergence if
-#'  \code{(d0 - d1) < tol}. If \code{max_iter} is achieved without convergence,
-#'  the algorithm will stop with a warning.
+#'  5. The root mean square error of the predicted values (\eqn{RMSE_p}) is
+#'  calculated with the two lasts iteration steps. If \code{RMSE_p > tol}, the
+#'  steps 2 through 5 are repeated. Declare convergence if \code{RMSE_p < tol}.
+#'  If \code{max_iter} is achieved without convergence, the algorithm will stop
+#'  with a warning.
 #'
 #' \strong{\code{EM-SVD} algorithm}
 #'
 #' The \code{EM-SVD} algorithm impute the missing entries using a low-rank Singular
 #' Value Decomposition approximation estimated by the Expectation-Maximization
-#' algorithm. The algorithm works as follows:
+#' algorithm. The algorithm works as follows (Troyanskaya et al. (2001)).
 #'  1. Initialize all \code{NA} values to the column means.
 #'  2. Compute the first \code{naxis} terms of the SVD of the completed matrix
 #'  3. Replace the previously missing values with their approximations from the SVD
-#'  4. If the maximum distance between the missing value estimations in the two
-#'  successive iteration steps ((\code{d0 - d1})) is greater than the assumed
-#'  \code{tol}, the steps 2 through 3 are repeated. Declare convergence if
-#'  \code{(d0 - d1) < tol}. If \code{max_iter} is achieved without convergence,
-#'  the algorithm will stop with a warning.
+#'  4. The root mean square error of the predicted values (\eqn{RMSE_p}) is
+#'  calculated with the two lasts iteration steps. If \code{RMSE_p > tol}, the
+#'  steps 2 through 3 are repeated. Declare convergence if \code{RMSE_p < tol}.
+#'  If \code{max_iter} is achieved without convergence, the algorithm will stop
+#'  with a warning.
 #'
 #' \strong{\code{colmeans} algorithm}
 #' The \code{colmeans} algorithm simply impute the missing entires using the
@@ -65,27 +65,37 @@
 #'  * \strong{pc_ss} The sum of squares representing variation explained by the
 #'  principal components
 #'  * \strong{iter} The final number of iterations.
-#'  * \strong{final_tol} The maximum change of the estimated values for missing cells in the last step of iteration.
+#'  * \strong{Final_RMSE} The maximum change of the estimated values for missing cells in the last step of iteration.
 #'  * \strong{final_axis} The final number of principal component axis.
 #'  * \strong{convergence} Logical value indicating whether the modern converged.
 #' @export
 #'
+#' @references
+#' Gauch, H. G., & Zobel, R. W. (1990). Imputing missing yield trial data. Theoretical and Applied Genetics, 79(6), 753-761.
+#' \href{https://link.springer.com/article/10.1007%2FBF00224240}{doi:10.1007/BF00224240}
+#'
+#' Troyanskaya, O., Cantor, M., Sherlock, G., Brown, P., Hastie, T., Tibshirani, R., . Altman, R. B. (2001). Missing value estimation methods for DNA microarrays. Bioinformatics, 17(6), 520-525.
+#' \href{https://academic.oup.com/bioinformatics/article/17/6/520/272365}{doi:10.1093/bioinformatics/17.6.520}
+#'
+#'
 #' @examples
 #' \donttest{
 #' library(metan)
-#' tb <- (1:10) %*% t(1:5) %>%
-#'   random_na(prop = 10)
-#' tb
-#' mod <- impute_miss_val(tb)
+#' mat <- (1:20) %*% t(1:10)
+#' mat
+#' # 10\% of missing values at random
+#' miss_mat <- random_na(mat, prop = 10)
+#' miss_mat
+#' mod <- impute_missing_val(miss_mat)
 #' mod$.data
 #' }
-impute_miss_val <- function(.data,
-                            naxis = 1,
-                            algorithm = "EM-SVD",
-                            tol = 1e-10,
-                            max_iter = 1000,
-                            simplified = FALSE,
-                            verbose = TRUE){
+impute_missing_val <- function(.data,
+                               naxis = 1,
+                               algorithm = "EM-SVD",
+                               tol = 1e-10,
+                               max_iter = 1000,
+                               simplified = FALSE,
+                               verbose = TRUE){
   if(!has_na(.data)){
     stop("No missing values found in data.")
   }
@@ -118,7 +128,7 @@ impute_miss_val <- function(.data,
       } else {
         int_mat <- new_data - grand_mean - row_eff - col_eff
       }
-      if (axis_used >=1){
+      if (axis_used >= 1){
         SVD <- La.svd(int_mat)
         diag_l <- diag(SVD$d, nrow = axis_used)
         d <- SVD$d[1:axis_used]
@@ -134,7 +144,7 @@ impute_miss_val <- function(.data,
       }
       new_data2 <- new_data
       new_data2[is.na(.data)] <- (grand_mean + row_eff + col_eff + adj_val)[is.na(.data)]
-      change <- max(abs(c((new_data2 - new_data)[is.na(.data)])))
+      change <- sqrt(mean((new_data2 - new_data)[is.na(.data)]^2))
       iter <- iter + 1
       new_data <- new_data2
     }
@@ -155,7 +165,7 @@ impute_miss_val <- function(.data,
       adj_val <- u %*% diag_l %*% v
       new_data2 <- new_data
       new_data2[is.na(.data)] <- adj_val[is.na(.data)]
-      change <- max(abs(c((new_data2 - new_data)[is.na(.data)])))
+      change <- sqrt(mean((new_data2 - new_data)[is.na(.data)]^2))
       iter <- iter + 1
       new_data <- new_data2
     }
@@ -184,7 +194,7 @@ impute_miss_val <- function(.data,
       cat("Convergence information\n")
       cat("----------------------------------------------\n")
       cat("Number of iterations:", iter)
-      cat("\nFinal tolerance:", change)
+      cat("\nFinal RMSE:", change)
       cat("\nNumber of axis:", axis_used)
       cat("\nConvergence:", converged)
       cat("\n----------------------------------------------\n")
@@ -197,7 +207,7 @@ impute_miss_val <- function(.data,
     .data = as.matrix(new_data),
     pc_ss = pc_ss,
     iter = iter,
-    final_tol = change,
+    Final_RMSE = change,
     final_naxis = axis_used,
     convergence = converged) %>% set_class("imv"))
 }

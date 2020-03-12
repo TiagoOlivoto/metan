@@ -4,18 +4,7 @@
 \alias{performs_ammi}
 \title{Additive Main effects and Multiplicative Interaction}
 \usage{
-performs_ammi(
-  .data,
-  env,
-  gen,
-  rep,
-  resp,
-  block = NULL,
-  algorithm = "EM-SVD",
-  naxis = 1,
-  tol = 1e-10,
-  verbose = TRUE
-)
+performs_ammi(.data, env, gen, rep, resp, block = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -30,20 +19,21 @@ environments}
 replications/blocks}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}.}
+single procedure, use comma-separated list of unquoted variable names,
+i.e., \code{resp = c(var1, var2, var3)}, or any select helper like
+\code{resp = contains("_PLA")}.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
 block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 \strong{All effects, except the error, are assumed to be fixed.}}
 
-\item{algorithm, naxis, tol}{Arguments passed to the function
-\code{\link{impute_missing_val}()} for imputation of missing values in case
-of unbalanced data.}
-
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
+
+\item{...}{Arguments passed to the function
+\code{\link{impute_missing_val}()} for imputation of missing values in case
+of unbalanced data.}
 }
 \value{
 \itemize{
@@ -69,8 +59,9 @@ the \pkg{metan} package such as \code{\link{waas}} and \code{\link{wsmp}}
 library(metan)
 model <- performs_ammi(data_ge, ENV, GEN, REP, resp = c(GY, HM))
 
-# GY x PC1 (variable GY)
-plot_scores(model)
+# PC1 x PC2 (variable GY)
+p1 <- plot_scores(model)
+p1
 
 # PC1 x PC2 (variable HM)
 plot_scores(model,
@@ -80,6 +71,15 @@ plot_scores(model,
 # Nominal yield plot (variable GY)
 # Draw a convex hull polygon
 plot_scores(model, type = 4)
+
+# Unbalanced data (GEN 1 in E1 missing)
+mod <-
+  data_ge \%>\%
+   remove_rows(4:6) \%>\%
+   droplevels() \%>\%
+   performs_ammi(ENV, GEN, REP, GY)
+p2 <- plot_scores(mod)
+arrange_ggplot(p1, p2, labels = c("Balanced data", "Unbalanced data"))
 
 }
 }

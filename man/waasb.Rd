@@ -16,7 +16,8 @@ waasb(
   random = "gen",
   prob = 0.05,
   ind_anova = TRUE,
-  verbose = TRUE
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
@@ -73,6 +74,11 @@ within-environment ANOVA is not performed.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
+
+\item{...}{Arguments passed to the function
+\code{\link{impute_missing_val}()} for imputation of missing values in the
+matrix of BLUPs for genotype-environment interaction, thus allowing the
+computation of the WAASB index.}
 }
 \value{
 An object of class \code{waasb} with the following items for each

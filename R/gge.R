@@ -28,6 +28,9 @@
 #'  This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 #'  visualizing either the relationship among genotypes or that among the environments).
 #'
+#' @param ... Arguments passed to the function
+#'   \code{\link{impute_missing_val}()} for imputation of missing values in case
+#'   of unbalanced data.
 #'
 #' @return The function returns a list of class \code{gge} containing the following objects
 #'
@@ -90,7 +93,8 @@ gge <- function(.data,
                 resp,
                 centering = "environment",
                 scaling = "none",
-                svp = "environment") {
+                svp = "environment",
+                ...) {
   factors  <-
     .data %>%
     select({{env}}, {{gen}}) %>%
@@ -102,13 +106,17 @@ gge <- function(.data,
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {
-    ge_mat <-  factors %>%
+    ge_mat <-
+      factors %>%
       mutate(mean = vars[[var]]) %>%
       make_mat(GEN, ENV, mean) %>%
       as.matrix()
+    if(has_na(ge_mat)){
+      ge_mat <- impute_missing_val(ge_mat, verbose = FALSE, ...)$.data
+      warning("Data imputation used to fill the GxE matrix", call. = FALSE)
+    }
     grand_mean <- mean(ge_mat)
     mean_env <- colMeans(ge_mat)
-
     mean_gen <- rowMeans(ge_mat)
     scale_val <- apply(ge_mat, 2, sd)
     labelgen <- rownames(ge_mat)
@@ -929,7 +937,7 @@ plot.gge <- function(x,
 #'   (ENV), genotypes (GEN) and response variable (Y); or \code{'wide'} to
 #'   return a two-way table with genotypes in the row, environments in the
 #'   columns, filled by the estimated values.
-#' @param ... Additional parameter for the function
+#' @param ... Currently not used.
 #' @return A two-way table with genotypes in rows and environments in columns if
 #'   \code{output = "wide"} or a long format (columns ENV, GEN and Y) if
 #'   \code{output = "long"} with the predicted values by the GGE model.

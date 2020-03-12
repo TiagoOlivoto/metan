@@ -12,17 +12,18 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}.
+#'   single procedure, use comma-separated list of unquoted variable names,
+#'   i.e., \code{resp = c(var1, var2, var3)}, or any select helper like
+#'   \code{resp = contains("_PLA")}.
 #' @param block Defaults to \code{NULL}. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
 #'   \strong{All effects, except the error, are assumed to be fixed.}
-#' @param algorithm,naxis,tol Arguments passed to the function
-#'   \code{\link{impute_missing_val}()} for imputation of missing values in case
-#'   of unbalanced data.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
+#' @param ... Arguments passed to the function
+#'   \code{\link{impute_missing_val}()} for imputation of missing values in case
+#'   of unbalanced data.
 #' @return
 #' * \strong{ANOVA}: The analysis of variance for the AMMI model.
 #'
@@ -49,8 +50,9 @@
 #' library(metan)
 #' model <- performs_ammi(data_ge, ENV, GEN, REP, resp = c(GY, HM))
 #'
-#' # GY x PC1 (variable GY)
-#' plot_scores(model)
+#' # PC1 x PC2 (variable GY)
+#' p1 <- plot_scores(model)
+#' p1
 #'
 #' # PC1 x PC2 (variable HM)
 #' plot_scores(model,
@@ -61,6 +63,15 @@
 #' # Draw a convex hull polygon
 #' plot_scores(model, type = 4)
 #'
+#' # Unbalanced data (GEN 1 in E1 missing)
+#' mod <-
+#'   data_ge %>%
+#'    remove_rows(4:6) %>%
+#'    droplevels() %>%
+#'    performs_ammi(ENV, GEN, REP, GY)
+#' p2 <- plot_scores(mod)
+#' arrange_ggplot(p1, p2, labels = c("Balanced data", "Unbalanced data"))
+#'
 #'}
 performs_ammi <- function(.data,
                           env,
@@ -68,10 +79,8 @@ performs_ammi <- function(.data,
                           rep,
                           resp,
                           block = NULL,
-                          algorithm = "EM-SVD",
-                          naxis = 1,
-                          tol = 1e-10,
-                          verbose = TRUE) {
+                          verbose = TRUE,
+                          ...) {
     if(!missing(block)){
         factors  <- .data %>%
             select({{env}},
@@ -115,6 +124,14 @@ performs_ammi <- function(.data,
                          se.fit = predict(model, se.fit = TRUE)$se.fit) %>%
                 add_cols(factors = concatenate(., GEN, REP, pull = TRUE)) %>%
                 column_to_first(ENV, GEN, REP)
+            anova <- anova(model) %>%
+                as.data.frame() %>%
+                rownames_to_column("Source") %>%
+                select_rows(2, 4, 1, 3, 5)
+            anova[2, 1] <- "REP(ENV)"
+            anova[1, 5] <- anova[1, 4] / anova[2, 4]
+            anova[1, 6] <- 1 - pf(anova[1, 5], anova[1, 2], anova[2, 2])
+            probint <- anova[4, 6]
         } else{
             model <- aov(mean ~ GEN + ENV + GEN:ENV + ENV/REP/BLOCK, data = data)
             influence <- lm.influence(model)
@@ -127,20 +144,6 @@ performs_ammi <- function(.data,
                          se.fit = predict(model, se.fit = TRUE)$se.fit) %>%
                 add_cols(factors = concatenate(., GEN, REP, BLOCK, pull = TRUE)) %>%
                 column_to_first(ENV, GEN, REP, BLOCK)
-        }
-        if (minimo < 2) {
-            stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
-        }
-        if(missing(block)){
-            anova <- anova(model) %>%
-                as.data.frame() %>%
-                rownames_to_column("Source") %>%
-                select_rows(2, 4, 1, 3, 5)
-            anova[2, 1] <- "REP(ENV)"
-            anova[1, 5] <- anova[1, 4] / anova[2, 4]
-            anova[1, 6] <- 1 - pf(anova[1, 5], anova[1, 2], anova[2, 2])
-            probint <- anova[4, 6]
-        } else{
             anova <- anova(model) %>%
                 as.data.frame() %>%
                 rownames_to_column("Source") %>%
@@ -149,17 +152,21 @@ performs_ammi <- function(.data,
             anova[3, 1] <- "BLOCK(REP*ENV)"
             probint <- anova[5, 6]
         }
+        if (minimo < 2) {
+            stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
+        }
+        # if(missing(block)){
+        #
+        # } else{
+        #
+        # }
         DFE <- df.residual(model)
         MSE <- deviance(model)/DFE
         MEANS <-
-            means_by(data, ENV, GEN) %>%
-            make_mat(ENV, GEN, mean)
+            means_by(data, GEN, ENV) %>%
+            make_mat(GEN, ENV, mean)
         if(has_na(MEANS)){
-            MEANS <- impute_miss_val(MEANS,
-                                     tol = tol,
-                                     naxis = naxis,
-                                     algorithm = algorithm,
-                                     verbose = verbose)$.data
+            MEANS <- impute_missing_val(MEANS, verbose = verbose, ...)$.data
             warning("Data imputation used to fill the GxE matrix", call. = FALSE)
         }
         MEANS %<>% make_long()
@@ -389,9 +396,17 @@ predict.performs_ammi <- function(object, naxis = 2, ...) {
     varin <- 1
     for (var in 1:length(object)) {
         objectin <- object[[var]]
-        MEDIAS <- objectin$MeansGxE %>% select(ENV, GEN, Y)
-        Nenv <- length(unique(MEDIAS$ENV))
-        Ngen <- length(unique(MEDIAS$GEN))
+        MEANS <-
+            objectin$MeansGxE %>%
+            select(ENV, GEN, Y) %>%
+            to_factor(1:2)
+        MEANS <-
+            MEANS %>%
+            mutate(RESIDUAL = residuals(lm(Y ~ ENV + GEN, data = MEANS)))
+        int_mat <- MEANS %>%
+            make_mat(GEN, ENV, RESIDUAL)
+        Nenv <- nlevels(MEANS$ENV)
+        Ngen <- length(unique(MEANS$GEN))
         minimo <- min(Nenv, Ngen) - 1
         if (naxis[var] > minimo) {
             stop("The number of axis to be used must be lesser than or equal to min(GEN-1;ENV-1), in this case, ",
@@ -400,13 +415,9 @@ predict.performs_ammi <- function(object, naxis = 2, ...) {
             if (naxis[var] == 0) {
                 stop("Invalid argument. The AMMI0 model is calculated automatically. Please, inform naxis > 0")
             } else {
-                ovmean <- mean(MEDIAS$Y)
-                x1 <- model.matrix(~factor(MEDIAS$ENV) - 1)
-                z1 <- model.matrix(~factor(MEDIAS$GEN) - 1)
-                modelo1 <- lm(Y ~ ENV + GEN, data = MEDIAS)
-                MEDIAS <- mutate(MEDIAS, resOLS = residuals(modelo1))
-                intmatrix <- t(matrix(MEDIAS$resOLS, Nenv, byrow = T))
-                s <- svd(intmatrix)
+                x1 <- model.matrix(~factor(MEANS$ENV) - 1)
+                z1 <- model.matrix(~factor(MEANS$GEN) - 1)
+                s <- svd(int_mat)
                 if (length(object) > 1) {
                     U <- s$u[, 1:naxis[var]]
                     LL <- s$d[1:naxis[var]]
@@ -416,8 +427,8 @@ predict.performs_ammi <- function(object, naxis = 2, ...) {
                     LL <- s$d[1:naxis]
                     V <- s$v[, 1:naxis]
                 }
-                temp <- mutate(MEDIAS,
-                               Ypred = Y - resOLS,
+                temp <- mutate(MEANS,
+                               Ypred = Y - RESIDUAL,
                                ResAMMI = ((z1 %*% U) * (x1 %*% V)) %*% LL,
                                YpredAMMI = Ypred + ResAMMI,
                                AMMI0 = Ypred) %>%

@@ -77,6 +77,7 @@ reference:
       - AMMI_indexes
       - cv_ammi
       - cv_ammif
+      - impute_missing_val
       - performs_ammi
       - plot.cvalidation
       - plot.performs_ammi
@@ -158,12 +159,14 @@ reference:
       - print.ecovalence
       - print.env_dissimilarity
       - print.Fox
+      - print.Huehn
       - print.ge_factanal
       - print.ge_reg
       - print.ge_stats
       - print.Shukla
       - print.superiority
       - print.Schmildt
+      - print.Thennarasu
       - Shukla
       - superiority
       - Schmildt
