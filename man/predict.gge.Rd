@@ -19,7 +19,7 @@ values will be those shown in the biplot.}
 return a two-way table with genotypes in the row, environments in the
 columns, filled by the estimated values.}
 
-\item{...}{Additional parameter for the function}
+\item{...}{Currently not used.}
 }
 \value{
 A two-way table with genotypes in rows and environments in columns if

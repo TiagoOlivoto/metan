@@ -123,7 +123,7 @@ superiority <- function(.data, env, gen, resp, rep = "deprecated", verbose = TRU
 #' @examples
 #' \donttest{
 #' library(metan)
-#' model <- superiority(data_ge2, ENV, GEN, REP, PH)
+#' model <- superiority(data_ge2, ENV, GEN, PH)
 #' print(model)
 #' }
 print.superiority <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {

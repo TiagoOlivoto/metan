@@ -27,12 +27,9 @@ into a *.txt file.
 \examples{
 \donttest{
 library(metan)
-fox <- Fox(data_ge2,
-           env = ENV,
-           gen = GEN,
-           rep = REP,
-           resp = PH)
-print(fox)
+library(metan)
+out <- Fox(data_ge2, ENV, GEN, PH)
+print(out)
 }
 }
 \author{

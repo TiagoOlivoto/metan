@@ -101,12 +101,9 @@ Fox <- function(.data, env, gen, resp, rep = "deprecated", verbose = TRUE) {
 #' @examples
 #' \donttest{
 #' library(metan)
-#' fox <- Fox(data_ge2,
-#'            env = ENV,
-#'            gen = GEN,
-#'            rep = REP,
-#'            resp = PH)
-#' print(fox)
+#' library(metan)
+#' out <- Fox(data_ge2, ENV, GEN, PH)
+#' print(out)
 #' }
 print.Fox <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
   if (!class(x) == "Fox") {
