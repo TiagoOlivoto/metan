@@ -74,11 +74,10 @@
 #' \donttest{
 #' library(metan)
 #' tb <- (1:10) %*% t(1:5) %>%
-#'   random_na(prop = 20)
+#'   random_na(prop = 10)
 #' tb
 #' mod <- impute_miss_val(tb)
 #' mod$.data
-#'
 #' }
 impute_miss_val <- function(.data,
                             naxis = 1,

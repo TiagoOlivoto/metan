@@ -99,10 +99,9 @@ column mean of the respective entire. Thus, there is no iteractive process.
 \donttest{
 library(metan)
 tb <- (1:10) \%*\% t(1:5) \%>\%
-  random_na(prop = 20)
+  random_na(prop = 10)
 tb
 mod <- impute_miss_val(tb)
 mod$.data
-
 }
 }
