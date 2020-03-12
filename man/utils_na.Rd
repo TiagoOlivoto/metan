@@ -7,7 +7,7 @@
 \alias{has_na}
 \alias{replace_na}
 \alias{random_na}
-\title{Remove NA values}
+\title{Utilities for handling with NA values}
 \usage{
 remove_rows_na(.data, verbose = TRUE)
 
@@ -39,8 +39,6 @@ are also allowed.}
 A data frame with rows or columns with \code{NA} values deleted.
 }
 \description{
-These functions allow you to remove rows or columns with
-\code{NA} values quickly.
 \itemize{
 \item \code{has_na()}: Check for \code{NA} values in the data and return a logical value.
 \item \code{random_na()}: Generate random \code{NA} values in a two-way table

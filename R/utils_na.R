@@ -1,4 +1,4 @@
-#' @title Remove NA values
+#' @title Utilities for handling with NA values
 #' @name utils_na
 #' @param .data A data frame or tibble
 #' @param ... Variables to replace \code{NAs}. If \code{...} is null then all
@@ -12,8 +12,7 @@
 #'   the rows or columns deleted.
 #' @export
 #' @return A data frame with rows or columns with \code{NA} values deleted.
-#' @description These functions allow you to remove rows or columns with
-#'   \code{NA} values quickly.
+#' @description
 #' * \code{has_na()}: Check for \code{NA} values in the data and return a logical value.
 #' * \code{random_na()}: Generate random \code{NA} values in a two-way table
 #' based on a desired proportion.
@@ -59,6 +58,9 @@ has_na <- function(.data){
 #' @export
 replace_na <- function(.data, ..., replace = 0){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
+    if(has_rownames(.data)){
+      rnames <- rownames(.data)
+    }
   if(missing(...)){
     cols_with_na <- names(which(sapply(.data, anyNA)))
     df <- mutate_at(.data, vars(cols_with_na), ~replace(., is.na(.), replace))
@@ -72,18 +74,21 @@ replace_na <- function(.data, ..., replace = 0){
   } else{
     df <- replace(.data, is.na(.data), replace)
   }
+  if(has_rownames(.data)){
+    rownames(df) <- rnames
+  }
   return(df)
 }
 #' @name utils_na
 #' @export
 random_na <- function(.data, prop){
-  if(!prop %in% c(1:100)){
-    stop("Argument prob must have a 0-100 interval.")
+  if( prop < 1 | prop > 100){
+    stop("Argument prob must have a 1-100 interval.")
   }
   .data <- as.matrix(.data)
   cells <- length(.data)
   miss <- (cells * (prop / 100))
   coord_miss <- sample(1:cells, miss, replace = FALSE)
   .data[coord_miss] <- NA
-  return(.data)
+  return(as.matrix(.data))
 }
