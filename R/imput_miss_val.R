@@ -25,7 +25,7 @@
 #'
 #' The \code{EM-SVD} algorithm impute the missing entries using a low-rank Singular
 #' Value Decomposition approximation estimated by the Expectation-Maximization
-#' algorithm. The algorithm works as follows (Troyanskaya et al. (2001)).
+#' algorithm. The algorithm works as follows (Troyanskaya et al., 2001).
 #'  1. Initialize all \code{NA} values to the column means.
 #'  2. Compute the first \code{naxis} terms of the SVD of the completed matrix
 #'  3. Replace the previously missing values with their approximations from the SVD
@@ -36,6 +36,7 @@
 #'  with a warning.
 #'
 #' \strong{\code{colmeans} algorithm}
+#'
 #' The \code{colmeans} algorithm simply impute the missing entires using the
 #' column mean of the respective entire. Thus, there is no iteractive process.
 #'
@@ -83,7 +84,7 @@
 #' library(metan)
 #' mat <- (1:20) %*% t(1:10)
 #' mat
-#' # 10\% of missing values at random
+#' # 10% of missing values at random
 #' miss_mat <- random_na(mat, prop = 10)
 #' miss_mat
 #' mod <- impute_missing_val(miss_mat)

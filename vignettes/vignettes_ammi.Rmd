@@ -358,6 +358,34 @@ print_table(stab_indexes$GY)
     ```
 
 
+# AMMI model for unbalanced data
+
+Singular Value Decomposition requires a complete two-way table (i.e., all genotypes in all environments). Sometimes (for several reasons), a complete two-way table cannot be obtained in a multi-environment trial. `metan` offers an option to impute the missing cells of the two-way table using Expectation-Maximization algorithms. If an incomplete two-way table is identified in `performs_ammi()` a warning is issued, `impute_missing_val()` is called internally and the missing value(s) is(are) imputed using a low-rank Singular Value Decomposition approximation estimated by the Expectation-Maximization algorithm. The algorithm will (i) initialize all NA values to the column means; (ii) compute the first axis terms of the SVD of the completed matrix; (iii) replace the previously missing values with their approximations from the SVD; (iv) iterate steps 2 through 3 until convergence or a maximum number of iterations be achieved.
+
+As an example we will run the AMMI model by omiting `H2` from `E1` in `data_ge2.
+
+```{r fig.width=10, fig.height=5}
+miss_val <- 
+  data_ge2 %>% 
+  remove_rows(4:6) %>% 
+  droplevels()
+
+mod_miss <- 
+  performs_ammi(miss_val, ENV, GEN, REP, PH)
+p1 <- plot_scores(mod_miss, type = 2)
+
+mod_comp <- 
+  data_ge2 %>% 
+  performs_ammi(ENV, GEN, REP, PH)
+p2 <- plot_scores(mod_comp, type = 2)  
+
+arrange_ggplot(p1, p2, labels = c("Missing data", "Complete data"))
+
+
+
+```
+
+
 _______________________________________________________________________________________________
 **Rendering engine**
 
