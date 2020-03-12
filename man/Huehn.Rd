@@ -4,7 +4,7 @@
 \alias{Huehn}
 \title{Huehn's stability statistics}
 \usage{
-Huehn(.data, env, gen, rep, resp, verbose = TRUE)
+Huehn(.data, env, gen, resp, rep = "deprecated", verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -15,11 +15,10 @@ environments.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
-\item{rep}{The name of the column that contains the levels of the
-replications/blocks.}
-
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
+
+\item{rep}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
@@ -47,7 +46,8 @@ S6 (relative sum of squares of rank for each genotype).
 \examples{
 \donttest{
 library(metan)
-out <- Huehn(data_ge2, ENV, GEN, REP, PH)
+out <- Huehn(data_ge2, ENV, GEN, PH)
+print(out)
 }
 
 }

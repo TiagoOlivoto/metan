@@ -4,7 +4,7 @@
 \alias{Fox}
 \title{Fox's stability function}
 \usage{
-Fox(.data, env, gen, rep, resp, verbose = TRUE)
+Fox(.data, env, gen, resp, rep = "deprecated", verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -15,11 +15,10 @@ environments.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
-\item{rep}{The name of the column that contains the levels of the
-replications/blocks.}
-
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
+
+\item{rep}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
@@ -43,11 +42,8 @@ genotype occurred in the top third are expressed in the output.
 \examples{
 \donttest{
 library(metan)
-out = Fox(data_ge2,
-          env = ENV,
-          gen = GEN,
-          rep = REP,
-          resp = PH)
+out <- Fox(data_ge2, ENV, GEN, PH)
+print(out)
 }
 
 }

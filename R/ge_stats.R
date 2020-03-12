@@ -144,11 +144,11 @@ er_mod <- ge_reg(data, ENV, GEN, REP, mean, verbose = FALSE)
 ec_mod <- ecovalence(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 an_mod <- Annicchiarico(data, ENV, GEN, REP, mean, verbose = FALSE, prob = prob)
 shu_mod <- Shukla(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-fox_mod <- Fox(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
+fox_mod <- Fox(data, ENV, GEN, mean, verbose = FALSE)[[1]]
 gai_mod <- gai(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-hue_mod <- Huehn(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-lb_mod <- superiority(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-then_mod <- Thennarasu(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
+hue_mod <- Huehn(data, ENV, GEN, mean, verbose = FALSE)[[1]]
+lb_mod <- superiority(data, ENV, GEN, mean, verbose = FALSE)[[1]]
+then_mod <- Thennarasu(data, ENV, GEN, mean, verbose = FALSE)[[1]]
 ammm_mod <- performs_ammi(data, ENV, GEN, REP, mean, verbose = FALSE)
 ammm_mod <- AMMI_indexes(ammm_mod)[[1]]
 blup_mod <- waasb(data, ENV, GEN, REP, mean, verbose = FALSE)

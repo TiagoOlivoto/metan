@@ -4,7 +4,7 @@
 \alias{Thennarasu}
 \title{Thennarasu's stability statistics}
 \usage{
-Thennarasu(.data, env, gen, rep, resp, verbose = TRUE)
+Thennarasu(.data, env, gen, resp, rep = "deprecated", verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -15,11 +15,10 @@ environments.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
-\item{rep}{The name of the column that contains the levels of the
-replications/blocks.}
-
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
+
+\item{rep}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
@@ -35,7 +34,8 @@ Performs a stability analysis based on Thennarasu (1995) statistics.
 \examples{
 \donttest{
 library(metan)
-out <- Thennarasu(data_ge, ENV, GEN, REP, GY)
+out <- Thennarasu(data_ge, ENV, GEN, GY)
+print(out)
 }
 
 }

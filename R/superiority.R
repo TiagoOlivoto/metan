@@ -9,10 +9,9 @@
 #' @param env The name of the column that contains the levels of the
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
-#' @param rep The name of the column that contains the levels of the
-#'   replications/blocks
 #' @param resp The response variable(s). To analyze multiple variables in a
 #'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
+#' @param rep \strong{Deprecated argument. It will be retired in the next release.}
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
 #' @return An object of class \code{superiority} where each element is the
@@ -35,22 +34,22 @@
 #' @examples
 #' \donttest{
 #' library(metan)
-#' out <- superiority(data_ge2,
-#'                    env = ENV,
-#'                    gen = GEN,
-#'                    rep = REP,
-#'                    resp = PH)
+#' out <- superiority(data_ge2, ENV, GEN, PH)
+#' print(out)
 #'}
 #'
-superiority <- function(.data, env, gen, rep, resp, verbose = TRUE) {
+superiority <- function(.data, env, gen, resp, rep = "deprecated", verbose = TRUE) {
+  if(rep != "deprecated"){
+    warning("`verbose` is deprecated. It will be defunct in the new release.", call. = FALSE)
+  }
   factors  <-
     .data %>%
-    select({{env}}, {{gen}}, {{rep}}) %>%
+    select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
   has_text_in_num(vars)
   vars %<>% select_numeric_cols()
-  factors %<>% set_names("ENV", "GEN", "REP")
+  factors %<>% set_names("ENV", "GEN")
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {
