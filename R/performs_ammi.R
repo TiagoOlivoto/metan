@@ -18,6 +18,9 @@
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
 #'   \strong{All effects, except the error, are assumed to be fixed.}
+#' @param algorithm,naxis,tol Arguments passed to the function
+#'   \code{\link{impute_missing_val}()} for imputation of missing values in case
+#'   of unbalanced data.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
 #' @return
@@ -65,6 +68,9 @@ performs_ammi <- function(.data,
                           rep,
                           resp,
                           block = NULL,
+                          algorithm = "EM-SVD",
+                          naxis = 1,
+                          tol = 1e-10,
                           verbose = TRUE) {
     if(!missing(block)){
         factors  <- .data %>%
@@ -145,13 +151,23 @@ performs_ammi <- function(.data,
         }
         DFE <- df.residual(model)
         MSE <- deviance(model)/DFE
-        MEANS <- data %>%
-            group_by(ENV, GEN) %>%
-            summarise(Y = mean(mean)) %>%
-            ungroup()
-        residual <- residuals(lm(Y ~ ENV + GEN, data = MEANS))
-        MEANS %<>% mutate(RESIDUAL = residual)
-        s <- svd(t(matrix(residual, nenv, byrow = T)))
+        MEANS <-
+            means_by(data, ENV, GEN) %>%
+            make_mat(ENV, GEN, mean)
+        if(has_na(MEANS)){
+            MEANS <- impute_miss_val(MEANS,
+                                     tol = tol,
+                                     naxis = naxis,
+                                     algorithm = algorithm,
+                                     verbose = verbose)$.data
+            warning("Data imputation used to fill the GxE matrix", call. = FALSE)
+        }
+        MEANS %<>% make_long()
+        int_mat <-
+            MEANS %>%
+            mutate(RESIDUAL = residuals(lm(Y ~ ENV + GEN, data = MEANS))) %>%
+            make_mat(GEN, ENV, RESIDUAL)
+        s <- svd(int_mat)
         U <- s$u[, 1:minimo]
         LL <- diag(s$d[1:minimo])
         V <- s$v[, 1:minimo]

@@ -4,7 +4,18 @@
 \alias{performs_ammi}
 \title{Additive Main effects and Multiplicative Interaction}
 \usage{
-performs_ammi(.data, env, gen, rep, resp, block = NULL, verbose = TRUE)
+performs_ammi(
+  .data,
+  env,
+  gen,
+  rep,
+  resp,
+  block = NULL,
+  algorithm = "EM-SVD",
+  naxis = 1,
+  tol = 1e-10,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -26,6 +37,10 @@ single procedure a vector of variables may be used. For example \code{resp
 block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 \strong{All effects, except the error, are assumed to be fixed.}}
+
+\item{algorithm, naxis, tol}{Arguments passed to the function
+\code{\link{impute_missing_val}()} for imputation of missing values in case
+of unbalanced data.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
