@@ -1,7 +1,7 @@
 #' Missing value imputation
 #'
-#' Given a matrix with missing values, impute the missing entries using
-#' different algorithms. See \strong{Details} section.
+#' Impute the missing entries of a matrix with missing values using different
+#' algorithms. See \strong{Details} section for more details
 #' @details
 #' \strong{\code{EM-AMMI} algorithm}
 #'
