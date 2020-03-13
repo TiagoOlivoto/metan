@@ -431,7 +431,7 @@ Agron. J. 111:2949-2960.
 <span class='co'># Get the WAAS index</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model</span>, <span class='st'>"WAAS"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAAS</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    gen      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> G1    0.151 0.455
 #&gt; </span><span style='color: #555555;'> 2</span><span> G10   0.652 1.33 
 #&gt; </span><span style='color: #555555;'> 3</span><span> G2    0.283 0.985
@@ -505,7 +505,7 @@ Agron. J. 111:2949-2960.
 #&gt; Done!</div><div class='input'><span class='co'># Get the WAAS index (it will be |PC1|)</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model2</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAAS</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    gen       GY     HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> G1    0.317  0.280 
 #&gt; </span><span style='color: #555555;'> 2</span><span> G10   1.00   1.78  
 #&gt; </span><span style='color: #555555;'> 3</span><span> G2    0.139  1.56  
@@ -519,7 +519,7 @@ Agron. J. 111:2949-2960.
 <span class='co'># Get values for IPCA1</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model2</span>, <span class='st'>"PC1"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: PC1</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    gen        GY      HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> G1     0.317   0.280 
 #&gt; </span><span style='color: #555555;'> 2</span><span> G10   -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;'>1.78</span><span>  
 #&gt; </span><span style='color: #555555;'> 3</span><span> G2     0.139   1.56  
@@ -594,7 +594,7 @@ Agron. J. 111:2949-2960.
 <span class='co'># Get the ranks for the WAASY index</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model3</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"OrWAASY"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAASY</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    gen      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> G1        4     1
 #&gt; </span><span style='color: #555555;'> 2</span><span> G10      10     9
 #&gt; </span><span style='color: #555555;'> 3</span><span> G2        3     4

@@ -230,7 +230,8 @@ environments using linear mixed-effect models.</p>
   <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"gen"</span>,
   <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>ind_anova</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -313,6 +314,13 @@ within-environment ANOVA is not performed.</p></td>
       <th>verbose</th>
       <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run
 silently.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments passed to the function
+<code><a href='impute_missing_val.html'>impute_missing_val</a>()</code> for imputation of missing values in the
+matrix of BLUPs for genotype-environment interaction, thus allowing the
+computation of the WAASB index.</p></td>
     </tr>
     </table>
 

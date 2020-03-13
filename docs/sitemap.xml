@@ -148,6 +148,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/Huehn.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/impute_missing_val.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/inspect.html</loc>
   </url>
   <url>
@@ -340,6 +343,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/print.ge_stats.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/print.Huehn.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.lpcor.html</loc>
   </url>
   <url>
@@ -361,6 +367,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/print.superiority.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/print.Thennarasu.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.waas.html</loc>
   </url>
   <url>
@@ -374,9 +383,6 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/remove_na_values.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/reorder_cormat.html</loc>
@@ -434,6 +440,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_mat.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_na.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_num_str.html</loc>

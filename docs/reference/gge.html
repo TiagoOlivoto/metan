@@ -225,7 +225,8 @@ response variable or a two-way table.</p>
   <span class='no'>resp</span>,
   <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"environment"</span>,
   <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>svp</span> <span class='kw'>=</span> <span class='st'>"environment"</span>
+  <span class='kw'>svp</span> <span class='kw'>=</span> <span class='st'>"environment"</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -272,6 +273,12 @@ environment eigenvectors, also called column metric preserving); or <code>'symme
 (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 visualizing either the relationship among genotypes or that among the environments).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments passed to the function
+<code><a href='impute_missing_val.html'>impute_missing_val</a>()</code> for imputation of missing values in case
+of unbalanced data.</p></td>
     </tr>
     </table>
 

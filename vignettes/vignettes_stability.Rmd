@@ -212,7 +212,7 @@ where *n* is the number of environments
 Similar then the genotypic confidence index, the superiority index is calculated by all environments, favorable, and unfavorable environments.
 
 ```{r}
-super <- superiority(data_ge, ENV, GEN, REP, GY)
+super <- superiority(data_ge, ENV, GEN, GY)
 print_table(super$GY$index)
 ```
 

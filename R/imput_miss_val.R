@@ -15,7 +15,7 @@
 #'  3. The adjusted means are calculated based on the AMMI model with
 #'  \code{naxis} principal components.
 #'  4. The missing cells are filled with the adjusted means.
-#'  5. The root mean square error of the predicted values (\eqn{RMSE_p}) is
+#'  5. The root mean square error of the predicted values (\code{RMSE_p}) is
 #'  calculated with the two lasts iteration steps. If \code{RMSE_p > tol}, the
 #'  steps 2 through 5 are repeated. Declare convergence if \code{RMSE_p < tol}.
 #'  If \code{max_iter} is achieved without convergence, the algorithm will stop
@@ -29,7 +29,7 @@
 #'  1. Initialize all \code{NA} values to the column means.
 #'  2. Compute the first \code{naxis} terms of the SVD of the completed matrix
 #'  3. Replace the previously missing values with their approximations from the SVD
-#'  4. The root mean square error of the predicted values (\eqn{RMSE_p}) is
+#'  4. The root mean square error of the predicted values (\code{RMSE_p}) is
 #'  calculated with the two lasts iteration steps. If \code{RMSE_p > tol}, the
 #'  steps 2 through 3 are repeated. Declare convergence if \code{RMSE_p < tol}.
 #'  If \code{max_iter} is achieved without convergence, the algorithm will stop
