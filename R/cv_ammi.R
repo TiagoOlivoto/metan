@@ -364,7 +364,7 @@ plot.cvalidation <- function(x, violin = FALSE, export = FALSE, order_box =  FAL
                    outlier.alpha = 0.75,
                    outlier.color = "black",
                    fill = col.boxplot.win) +
-      stat_summary(fun.y = mean,
+      stat_summary(fun = mean,
                    geom = "point",
                    shape = 23,
                    fill = "black") +
@@ -397,7 +397,7 @@ plot.cvalidation <- function(x, violin = FALSE, export = FALSE, order_box =  FAL
                    color = "black",
                    outlier.color = "black",
                    fill = col.boxplot.win) +
-      stat_summary(fun.y = mean,
+      stat_summary(fun = mean,
                    geom = "point",
                    shape = 23,
                    fill = "black") +
