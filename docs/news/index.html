@@ -216,7 +216,7 @@
 <h2 class="hasAnchor">
 <a href="#fix-bug" class="anchor"></a>Fix bug</h2>
 <ul>
-<li>Factor columns can now have custom names rather than ENV, GEN, and REP only (<a href="https://github.com/TiagoOlivoto/metan/issues/2"><a href='https://github.com/TiagoOlivoto/metan/issues/2'>#2</a></a>)</li>
+<li>Factor columns can now have custom names rather than <code>ENV</code>, <code>GEN</code>, and <code>REP</code> only (<a href="https://github.com/TiagoOlivoto/metan/issues/2"><a href='https://github.com/TiagoOlivoto/metan/issues/2'>#2</a></a>).</li>
 </ul>
 </div>
 <div id="new-functions" class="section level2">
@@ -227,19 +227,19 @@
 <code><a href="../reference/get_model_data.html">gmd()</a></code> a shortcut to <code><a href="../reference/get_model_data.html">get_model_data()</a></code>
 </li>
 <li>
-<code><a href="../reference/gtb.html">gtb()</a></code> genotype-by-trait biplot.</li>
+<code><a href="../reference/gtb.html">gtb()</a></code> to generate a genotype-by-trait biplot.</li>
 <li>
 <code><a href="../reference/gamem_met.html">gamem_met()</a></code> to analyze genotypes in multi-environment trials using mixed- or random-effect models allowing unbalanced data. Thanks to <a href="https://www.embrapa.br/en/web/portal/team/-/empregado/321725/eder-jorge-de-oliveira">@EderOliveira</a> for his e-mail.</li>
 <li>
 <code><a href="../reference/utils_class.html">has_class()</a></code> to check if a class exists.</li>
 <li>
-<code><a href="../reference/impute_missing_val.html">impute_missing_val()</a></code> To impute missing values in a two-way table based on Expectation-Maximization algoritms.</li>
+<code><a href="../reference/impute_missing_val.html">impute_missing_val()</a></code> to impute missing values in a two-way table based on Expectation-Maximization algoritms.</li>
 <li>
-<code><a href="../reference/non_collinear_vars.html">non_collinear_vars()</a></code> for selecting a set of predictors with minimal multicollinearity.</li>
+<code><a href="../reference/non_collinear_vars.html">non_collinear_vars()</a></code> to select a set of predictors with minimal multicollinearity.</li>
 <li>
 <code><a href="../reference/utils_na.html">replace_na()</a></code> to replace <code>NA</code> values quicly.</li>
 <li>
-<code><a href="../reference/utils_na.html">random_na()</a></code> Generate random <code>NA</code> values based on a desired proportion.</li>
+<code><a href="../reference/utils_na.html">random_na()</a></code> to generate random <code>NA</code> values based on a desired proportion.</li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
@@ -247,17 +247,18 @@
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>
-<code><a href="../reference/gge.html">gge()</a></code> and <code><a href="../reference/performs_ammi.html">performs_ammi()</a></code> now handle with unbalanced data by implementing a low-rank matrix approximation by using singular value decomposition to impute missing entires.</li>
+<code><a href="../reference/gge.html">gge()</a></code>, <code><a href="../reference/performs_ammi.html">performs_ammi()</a></code>, <code><a href="../reference/waas.html">waas()</a></code>, and <code><a href="../reference/waasb.html">waasb()</a></code> now handle with unbalanced data by implementing a low-rank matrix approximation using singular value decomposition to impute missing entires. Imputation generate a warning message.</li>
 <li>New argument <code>plot_res</code> in <code><a href="../reference/path_coeff.html">path_coeff()</a></code> to create a residual plot of the multiple regression model.</li>
 <li>Update the citation file to include the <a href="https://doi.org/10.1111/2041-210X.13384">published official reference</a>.</li>
 <li>Argument <code>verbose</code> deprecated in functions <code><a href="../reference/anova_ind.html">anova_ind()</a></code> and <code><a href="../reference/split_factors.html">split_factors()</a></code>
 </li>
+<li>Argument <code>rep</code> deprecated in functions <code><a href="../reference/Fox.html">Fox()</a></code>, <code><a href="../reference/Huehn.html">Huehn()</a></code>, <code><a href="../reference/superiority.html">superiority()</a></code>, and <code><a href="../reference/Thennarasu.html">Thennarasu()</a></code>.</li>
 <li>Deprecated argument <code>means_by</code> removed in functions <code><a href="../reference/can_corr.html">can_corr()</a></code> and <code><a href="../reference/clustering.html">clustering()</a></code>.</li>
 <li>Deprecated argument <code>verbose</code> removed in functions <code><a href="../reference/colindiag.html">colindiag()</a></code> and <code><a href="../reference/split_factors.html">split_factors()</a></code>.</li>
 <li>Deprecated argument <code>values</code> removed in functions <code><a href="../reference/desc_stat.html">desc_stat()</a></code> and <code><a href="../reference/find_outliers.html">find_outliers()</a></code>.</li>
 <li>Deprecated argument <code>var</code> removed in function <code><a href="../reference/desc_stat.html">desc_wider()</a></code>.</li>
-<li>Deprecated argument <code>rep</code> removed in functions <code><a href="../reference/Fox.html">Fox()</a></code>, <code><a href="../reference/Huehn.html">Huehn()</a></code>, <code>Superiority()</code>, and <code><a href="../reference/Thennarasu.html">Thennarasu()</a></code>.</li>
 <li>Remove dependency on lattice by using ggplot2 in <code><a href="../reference/plot.resp_surf.html">plot.resp_surf()</a></code>.</li>
+<li>An up-to-date cheat sheet was included.</li>
 </ul>
 </div>
 </div>

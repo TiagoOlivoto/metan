@@ -24,6 +24,7 @@
 * Deprecated argument `values` removed in functions `desc_stat()` and `find_outliers()`.
 * Deprecated argument `var` removed in function `desc_wider()`.
 * Remove dependency on lattice by using ggplot2 in `plot.resp_surf()`.
+* An up-to-date cheat sheet was included.
 
 
 

@@ -68,7 +68,7 @@ observations is pre-filled in.
 \item The adjusted means are calculated based on the AMMI model with
 \code{naxis} principal components.
 \item The missing cells are filled with the adjusted means.
-\item The root mean square error of the predicted values (\eqn{RMSE_p}) is
+\item The root mean square error of the predicted values (\code{RMSE_p}) is
 calculated with the two lasts iteration steps. If \code{RMSE_p > tol}, the
 steps 2 through 5 are repeated. Declare convergence if \code{RMSE_p < tol}.
 If \code{max_iter} is achieved without convergence, the algorithm will stop
@@ -84,7 +84,7 @@ algorithm. The algorithm works as follows (Troyanskaya et al., 2001).
 \item Initialize all \code{NA} values to the column means.
 \item Compute the first \code{naxis} terms of the SVD of the completed matrix
 \item Replace the previously missing values with their approximations from the SVD
-\item The root mean square error of the predicted values (\eqn{RMSE_p}) is
+\item The root mean square error of the predicted values (\code{RMSE_p}) is
 calculated with the two lasts iteration steps. If \code{RMSE_p > tol}, the
 steps 2 through 3 are repeated. Declare convergence if \code{RMSE_p < tol}.
 If \code{max_iter} is achieved without convergence, the algorithm will stop
