@@ -65,20 +65,21 @@ install the latest version of
 For the latest release notes on this development version, see the [NEWS
 file](https://tiagoolivoto.github.io/metan/news/index.html).
 
+## Cheatsheet
+
+<a href="https://github.com/TiagoOlivoto/metan/blob/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet-01.png" width="720" height="510"/></a>
+
 # Getting started
 
-Here, we will use the example dataset `data_ge` that contains data on
-two variables assessed in 10 genotypes growing in 14 environments. For
-more details see `?data_ge`.
+`metan` offers a set of functions that can be used to manipulate,
+summarize, analyze and plot typical multi-environment trial data. Maybe,
+one of the first functions users should use would be
+[`inspect()`](https://tiagoolivoto.github.io/metan/reference/inspect.html).
+Here, we will inspect the example dataset `data_ge` that contains data
+on two variables assessed in 10 genotypes growing in 14 environments.
 
 ``` r
 library(metan)
-```
-
-The first step is to inspect the data with the function
-[`inspect()`](https://tiagoolivoto.github.io/metan/reference/inspect.html).
-
-``` r
 inspect(data_ge, plot = TRUE)
 # # A tibble: 5 x 9
 #   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
@@ -88,19 +89,31 @@ inspect(data_ge, plot = TRUE)
 # 3 REP      factor  No      3          420 NA     NA    NA         NA
 # 4 GY       numeric No      -          420  0.67   2.61  5.09       0
 # 5 HM       numeric No      -          420 38     48    58          0
-# No issues detected while inspecting data.
 ```
 
 <img src="man/figures/README-INSPECT-1.png" style="display: block; margin: auto;" />
 
-No issues while inspecting the data. Let’s continue with the analyzes\!
+No issues while inspecting the data. If any issue is given here (like
+outliers, missing values, etc.) consider using
+[`find_outliers()`](https://tiagoolivoto.github.io/metan/reference/find_outliers.html)
+to find possible outliers in the data set or any `metan`’s data
+manipulation tool such as
+[`remove_na_rows()`](https://tiagoolivoto.github.io/metan/reference/utils_na.html)
+to remove rows with `NA` values,
+[`to_factor()`](https://tiagoolivoto.github.io/metan/reference/to_factor.html)
+to convert desired columns to factor,
+[`find_text_in_num()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html)
+to find text fragments in columns assumed to be numeric, or even
+[`tidy_strings()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html)
+to tidy up strings.
 
 # Descriptive statistics
 
 `metan` provides [a set of
 functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html)
 to compute descriptive statistics. The easiest way to do that is by
-using `desc_stat()`.
+using
+[`desc_stat()`](https://tiagoolivoto.github.io/metan/reference/desc_stat.html).
 
 ``` r
 desc_stat(data_ge2)
@@ -143,37 +156,22 @@ model <- performs_ammi(data_ge,
                        rep = REP,
                        resp = everything(),
                        verbose = FALSE)
-```
-
-## Predicting the response variable
-
-The S3 method
-[`predict()`](https://tiagoolivoto.github.io/metan/reference/predict.performs_ammi.html)
-is implemented for objects of class
-[`performs_ammi`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html)
-and may be used to estimate the response of each genotype in each
-environment considering different number of Interaction Principal
-Component Axis (IPCA). As a example, to predict the variables GY and HM
-we will use four and six IPCA (number of significant IPCAs,
-respectively).
-
-``` r
-pred <- predict(model, naxis = c(4, 6))
-pred$GY
-# # A tibble: 140 x 8
-#    ENV   GEN       Y  resOLS Ypred ResAMMI[,1] YpredAMMI[,1] AMMI0
-#    <fct> <fct> <dbl>   <dbl> <dbl>       <dbl>         <dbl> <dbl>
-#  1 E1    G1     2.37 -0.0843  2.45     0.0712           2.52  2.45
-#  2 E1    G10    1.97 -0.344   2.32    -0.354            1.96  2.32
-#  3 E1    G2     2.90  0.311   2.59     0.290            2.88  2.59
-#  4 E1    G3     2.89  0.0868  2.80    -0.0452           2.76  2.80
-#  5 E1    G4     2.59  0.100   2.49     0.0494           2.54  2.49
-#  6 E1    G5     2.19 -0.196   2.38    -0.0709           2.31  2.38
-#  7 E1    G6     2.30 -0.0797  2.38    -0.0829           2.30  2.38
-#  8 E1    G7     2.77  0.186   2.59     0.164            2.75  2.59
-#  9 E1    G8     2.90  0.0493  2.85    -0.00536          2.84  2.85
-# 10 E1    G9     2.33 -0.0307  2.36    -0.0170           2.34  2.36
-# # ... with 130 more rows
+# Significance of IPCAs
+get_model_data(model, "ipca_pval")
+# Class of the model: performs_ammi
+# Variable extracted: Pr(>F)
+# # A tibble: 9 x 4
+#   PC       DF      GY     HM
+#   <chr> <dbl>   <dbl>  <dbl>
+# 1 PC1      21 0       0     
+# 2 PC2      19 0       0     
+# 3 PC3      17 0.0014  0.0021
+# 4 PC4      15 0.00960 0.0218
+# 5 PC5      13 0.318   0.0377
+# 6 PC6      11 0.561   0.041 
+# 7 PC7       9 0.754   0.0633
+# 8 PC8       7 0.804   0.232 
+# 9 PC9       5 0.934   0.944
 ```
 
 ## Biplots
@@ -260,29 +258,12 @@ get_model_data(model2, what = "vcomp")
 # 1 GEN      0.0280 0.490
 # 2 GEN:ENV  0.0567 2.19 
 # 3 Residual 0.0967 2.84
-
-# Get the genetic parameters
-get_model_data(model2, what = "genpar")
-# Class of the model: waasb
-# Variable extracted: genpar
-# # A tibble: 9 x 3
-#   Parameters                GY     HM
-#   <chr>                  <dbl>  <dbl>
-# 1 Phenotypic variance    0.181 5.52  
-# 2 Heritability           0.154 0.0888
-# 3 GEIr2                  0.313 0.397 
-# 4 Heribatility of means  0.815 0.686 
-# 5 Accuracy               0.903 0.828 
-# 6 rge                    0.370 0.435 
-# 7 CVg                    6.26  1.46  
-# 8 CVr                   11.6   3.50  
-# 9 CV ratio               0.538 0.415
 ```
 
 ## Plotting the BLUPs for genotypes
 
 To produce a plot with the predicted means, use the function
-`plot_blup()`.
+[`plot_blup()`](https://tiagoolivoto.github.io/metan/reference/plot_blup.html).
 
 ``` r
 g <- plot_blup(model2)
@@ -294,71 +275,16 @@ arrange_ggplot(g, h, labels = letters[7:8])
 
 ![](man/figures/README-BLUP-1.png)<!-- -->
 
-## Random effects
-
-The object `BLUPint` contains the random effects of the model. We can
-get the values with:
-
-``` r
-get_model_data(model2, "ranef")
-# Class of the model: waasb
-# Variable extracted: ranef
-# $GEN
-# # A tibble: 10 x 3
-#    GEN        GY      HM
-#    <fct>   <dbl>   <dbl>
-#  1 G1    -0.0575 -0.692 
-#  2 G2     0.0570 -0.980 
-#  3 G3     0.229  -0.332 
-#  4 G4    -0.0264 -0.0387
-#  5 G5    -0.112   0.830 
-#  6 G6    -0.114   0.441 
-#  7 G7     0.0543 -0.0838
-#  8 G8     0.269   0.696 
-#  9 G9    -0.134  -0.127 
-# 10 G10   -0.166   0.287 
-# 
-# $ENV_GEN
-# # A tibble: 140 x 4
-#    ENV   GEN        GY       HM
-#    <fct> <fct>   <dbl>    <dbl>
-#  1 E1    G1    -0.120  -0.831  
-#  2 E1    G2     0.264  -1.75   
-#  3 E1    G3     0.318  -1.17   
-#  4 E1    G4     0.0337  0.599  
-#  5 E1    G5    -0.252   1.97   
-#  6 E1    G6    -0.182   0.714  
-#  7 E1    G7     0.181  -0.00319
-#  8 E1    G8     0.339   0.593  
-#  9 E1    G9    -0.173   0.147  
-# 10 E1    G10   -0.409  -0.266  
-# # ... with 130 more rows
-```
-
-When more than one variable is fitted, the predicted means for
-genotype-vs-environment combination may be obtained for all variables in
-the model using
-[`predict()`](https://tiagoolivoto.github.io/metan/reference/predict.waasb.html).
-
-``` r
-predict(model2)
-# # A tibble: 420 x 5
-#    ENV   GEN   REP      GY    HM
-#    <fct> <fct> <fct> <dbl> <dbl>
-#  1 E1    G1    1      2.46  46.6
-#  2 E1    G1    2      2.44  46.0
-#  3 E1    G1    3      2.31  47.1
-#  4 E1    G2    1      2.84  45.7
-#  5 E1    G2    2      2.82  45.1
-#  6 E1    G2    3      2.69  46.2
-#  7 E1    G3    1      2.89  46.3
-#  8 E1    G3    2      2.87  45.7
-#  9 E1    G3    3      2.75  46.8
-# 10 E1    G4    1      2.61  48.0
-# # ... with 410 more rows
-```
-
 # Computing parametric and non-parametric stability indexes
+
+The easiest way to compute parametric and non-parametric stability
+indexes in `metan` is by using the function
+[`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html).
+It is a wrapper function around a lot of specific functions for
+stability indexes. To get the results into a *“ready-to-read”* file, use
+[get\_model\_data()](https://tiagoolivoto.github.io/metan/reference/get_model_data.html)
+or its shortkut
+[`gmd()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html).
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
@@ -382,27 +308,6 @@ get_model_data(stats, "stats")
 # #   ZA <dbl>, WAAS <dbl>, HMGV <dbl>, RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>,
 # #   Pi_f <dbl>, Pi_u <dbl>, Gai <dbl>, S1 <dbl>, S2 <dbl>, S3 <dbl>, S6 <dbl>,
 # #   N1 <dbl>, N2 <dbl>, N3 <dbl>, N4 <dbl>
-get_model_data(stats, "ranks")
-# Class of the model: ge_stats
-# Variable extracted: ranks
-# # A tibble: 10 x 32
-#    var   gen     Y_R  CV_R Var_R Shukla_R Wi_g_R Wi_f_R Wi_u_R Ecoval_R Sij_R
-#    <chr> <chr> <dbl> <dbl> <dbl>    <dbl>  <dbl>  <dbl>  <dbl>    <dbl> <dbl>
-#  1 GY    G1        6     8     7        2      4      4      7        2     1
-#  2 GY    G10      10     9     9       10     10     10     10       10    10
-#  3 GY    G2        3     7     8        7      7      2      8        7     7
-#  4 GY    G3        2     3     5        1      1      1      2        1     4
-#  5 GY    G4        5     6     4        5      3      7      4        5     5
-#  6 GY    G5        7     5     3        4      8      6      5        4     3
-#  7 GY    G6        8     2     2        3      6      5      6        3     2
-#  8 GY    G7        4     1     1        8      5      8      3        8     8
-#  9 GY    G8        1     4     6        6      2      3      1        6     6
-# 10 GY    G9        9    10    10        9      9      9      9        9     9
-# # ... with 21 more variables: R2_R <dbl>, ASV_R <dbl>, SIPC_R <dbl>,
-# #   EV_R <dbl>, ZA_R <dbl>, WAAS_R <dbl>, HMGV_R <dbl>, RPGV_R <dbl>,
-# #   HMRPGV_R <dbl>, Pi_a_R <dbl>, Pi_f_R <dbl>, Pi_u_R <dbl>, Gai_R <dbl>,
-# #   S1_R <dbl>, S2_R <dbl>, S3_R <dbl>, S6_R <dbl>, N1_R <dbl>, N2_R <dbl>,
-# #   N3_R <dbl>, N4_R <dbl>
 ```
 
 # Citation

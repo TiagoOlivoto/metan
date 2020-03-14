@@ -69,30 +69,30 @@ devtools::install_github("TiagoOlivoto/metan", build_vignettes = TRUE)
 
 For the latest release notes on this development version, see the [NEWS file](https://tiagoolivoto.github.io/metan/news/index.html).
 
+## Cheatsheet
+
+<a href="https://github.com/TiagoOlivoto/metan/blob/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet-01.png" width="720" height="510"/></a>  
+
 
 # Getting started
 
-Here, we will use the example dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 14 environments. For more details see `?data_ge`.
+`metan` offers a set of functions that can be used to manipulate, summarize, analyze and plot typical multi-environment trial data. Maybe, one of the first functions users should use would be [`inspect()`](https://tiagoolivoto.github.io/metan/reference/inspect.html). Here, we will inspect the example dataset `data_ge` that contains data on two variables assessed in 10 genotypes growing in 14 environments.
 
-```{r, message=FALSE, warning=FALSE}
+
+```{r INSPECT, fig.width=7, fig.height=7, fig.align="center", message=FALSE, warning=FALSE}
 library(metan)
-
-```
-
-The first step is to inspect the data with the function [`inspect()`](https://tiagoolivoto.github.io/metan/reference/inspect.html).
-
-```{r INSPECT, fig.width=7, fig.height=7, fig.align="center"}
 inspect(data_ge, plot = TRUE)
 ```
 
-No issues while inspecting the data. Let's continue with the analyzes!
+No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using [`find_outliers()`](https://tiagoolivoto.github.io/metan/reference/find_outliers.html) to find possible outliers in the data set or any  `metan`'s data manipulation tool such as [`remove_na_rows()`](https://tiagoolivoto.github.io/metan/reference/utils_na.html) to remove rows with `NA` values, [`to_factor()`](https://tiagoolivoto.github.io/metan/reference/to_factor.html) to convert desired columns to factor, [`find_text_in_num()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) to find text fragments in columns assumed to be numeric, or even [`tidy_strings()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) to tidy up strings.
 
 # Descriptive statistics
-`metan` provides [a set of functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) to compute descriptive statistics. The easiest way to do that is by using `desc_stat()`.
+`metan` provides [a set of functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) to compute descriptive statistics. The easiest way to do that is by using [`desc_stat()`](https://tiagoolivoto.github.io/metan/reference/desc_stat.html).
 
 ```{r}
 desc_stat(data_ge2)
 ```
+
 
 # AMMI model
 ## Fitting the model
@@ -105,17 +105,10 @@ model <- performs_ammi(data_ge,
                        rep = REP,
                        resp = everything(),
                        verbose = FALSE)
+# Significance of IPCAs
+get_model_data(model, "ipca_pval")
 ```
 
-
-## Predicting the response variable
-The S3 method [`predict()`](https://tiagoolivoto.github.io/metan/reference/predict.performs_ammi.html) is implemented for objects of class [`performs_ammi`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively).
-
-```{r message=FALSE,warning=FALSE }
-pred <- predict(model, naxis = c(4, 6))
-pred$GY
-
-```
 
 
 ## Biplots
@@ -170,15 +163,12 @@ model2 <- waasb(data_ge,
 # Get the variance components
 get_model_data(model2, what = "vcomp")
 
-# Get the genetic parameters
-get_model_data(model2, what = "genpar")
-
 ```
 
 
 ## Plotting the BLUPs for genotypes
 
-To produce a plot with the predicted means, use the function `plot_blup()`.
+To produce a plot with the predicted means, use the function [`plot_blup()`](https://tiagoolivoto.github.io/metan/reference/plot_blup.html).
 
 ```{r BLUP, fig.width=10, fig.height=5, message=FALSE, warning=FALSE}
 g <- plot_blup(model2)
@@ -190,27 +180,12 @@ arrange_ggplot(g, h, labels = letters[7:8])
 ```
 
 
-## Random effects
-
-The object `BLUPint` contains the random effects of the model. We can get the values with:
-```{r }
-get_model_data(model2, "ranef")
-```
-
-When more than one variable is fitted, the predicted means for genotype-vs-environment combination may be obtained for all variables in the model using [`predict()`](https://tiagoolivoto.github.io/metan/reference/predict.waasb.html).
-
-```{r }
-predict(model2)
-
-```
-
-
 # Computing parametric and non-parametric stability indexes
+The easiest way to compute parametric and non-parametric stability indexes in `metan` is by using the function [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html). It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a *"ready-to-read"* file, use [get_model_data()](https://tiagoolivoto.github.io/metan/reference/get_model_data.html) or its shortkut [`gmd()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html).
 
 ```{r}
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
 get_model_data(stats, "stats")
-get_model_data(stats, "ranks")
 ```
 
 # Citation
