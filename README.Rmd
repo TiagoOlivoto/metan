@@ -71,7 +71,7 @@ For the latest release notes on this development version, see the [NEWS file](ht
 
 ## Cheatsheet
 
-<a href="https://github.com/TiagoOlivoto/metan/blob/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet-01.png" width="720" height="510"/></a>  
+<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet-01.png" width="720" height="510"/></a>  
 
 
 # Getting started
@@ -181,7 +181,7 @@ arrange_ggplot(g, h, labels = letters[7:8])
 
 
 # Computing parametric and non-parametric stability indexes
-The easiest way to compute parametric and non-parametric stability indexes in `metan` is by using the function [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html). It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a *"ready-to-read"* file, use [get_model_data()](https://tiagoolivoto.github.io/metan/reference/get_model_data.html) or its shortkut [`gmd()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html).
+The easiest way to compute parametric and non-parametric stability indexes in `metan` is by using the function [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html). It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a *"ready-to-read"* file, use [get_model_data()](https://tiagoolivoto.github.io/metan/reference/get_model_data.html) or its shortcut [`gmd()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html).
 
 ```{r}
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)

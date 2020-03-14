@@ -221,7 +221,7 @@
 <div id="cheatsheet" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cheatsheet" class="anchor"></a>Cheatsheet</h2>
-<p><a href="https://github.com/TiagoOlivoto/metan/blob/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet-01.png" width="720" height="510"></a></p>
+<p><a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet-01.png" width="720" height="510"></a></p>
 </div>
 </div>
 <div id="getting-started" class="section level1">
@@ -372,7 +372,7 @@
 <div id="computing-parametric-and-non-parametric-stability-indexes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#computing-parametric-and-non-parametric-stability-indexes" class="anchor"></a>Computing parametric and non-parametric stability indexes</h1>
-<p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="reference/ge_stats.html">ge_stats()</a></code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortkut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code><a href="reference/get_model_data.html">gmd()</a></code></a>.</p>
+<p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="reference/ge_stats.html">ge_stats()</a></code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code><a href="reference/get_model_data.html">gmd()</a></code></a>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">stats &lt;-<span class="st"> </span><span class="kw"><a href="reference/ge_stats.html">ge_stats</a></span>(data_ge, ENV, GEN, REP, GY)</a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="reference/get_model_data.html">get_model_data</a></span>(stats, <span class="st">"stats"</span>)</a>
 <a class="sourceLine" id="cb10-3" title="3"><span class="co"># Class of the model: ge_stats</span></a>
