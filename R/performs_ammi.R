@@ -63,7 +63,7 @@
 #' # Draw a convex hull polygon
 #' plot_scores(model, type = 4)
 #'
-#' # Unbalanced data (GEN 1 in E1 missing)
+#' # Unbalanced data (GEN 2 in E1 missing)
 #' mod <-
 #'   data_ge %>%
 #'    remove_rows(4:6) %>%
