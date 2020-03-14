@@ -185,7 +185,7 @@ The easiest way to compute parametric and non-parametric stability indexes in `m
 
 ```{r}
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-get_model_data(stats, "stats")
+get_model_data(stats)
 ```
 
 # Citation

@@ -288,7 +288,7 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-get_model_data(stats, "stats")
+get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats
 # # A tibble: 10 x 33
