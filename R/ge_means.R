@@ -40,7 +40,6 @@ ge_means <- function(.data, env, gen, resp) {
     select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   factors %<>% set_names("ENV", "GEN")
   listres <- list()
@@ -48,6 +47,10 @@ ge_means <- function(.data, env, gen, resp) {
   for (var in 1:nvar) {
     data <- factors %>%
       add_cols(Mean = vars[[var]])
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
     ge_m <- data %>%
       means_by(ENV, GEN)
     g_m <- means_by(data, GEN)

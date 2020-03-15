@@ -49,24 +49,22 @@
 #'
 ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
                         verbose = TRUE) {
-    datain <- .data
-    GEN <- factor(eval(substitute(gen), eval(datain)))
-    ENV <- factor(eval(substitute(env), eval(datain)))
-    REP <- factor(eval(substitute(rep), eval(datain)))
+    factors  <-
+        .data %>%
+        select({{env}}, {{gen}}, {{rep}}) %>%
+        mutate_all(as.factor)
+    vars <- .data %>% select({{resp}}, -names(factors))
+    vars %<>% select_numeric_cols()
+    factors %<>% set_names("ENV", "GEN", "REP")
     listres <- list()
-    d <- match.call()
-    nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) -
-                                  1, length(d$resp)))
-    for (var in 2:length(d$resp)) {
-        if (length(d$resp) > 1) {
-            Y <- eval(substitute(resp)[[var]], eval(datain))
-            varnam <- paste(d$resp[var])
-        } else {
-            Y <- eval(substitute(resp), eval(datain))
-            varnam <- paste(d$resp)
+    nvar <- ncol(vars)
+    for (var in 1:nvar) {
+        data <- factors %>%
+            mutate(mean = vars[[var]])
+        if(has_na(data)){
+            data <- remove_rows_na(data)
+            has_text_in_num(data)
         }
-        data <- data.frame(ENV, GEN, REP, Y)
-        names(data) <- c("ENV", "GEN", "REP", "mean")
         means <- make_mat(data, GEN, ENV, mean)
         cor.means <- cor(means)
         eigen.decomposition <- eigen(cor.means)
@@ -123,7 +121,7 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
         fa <- data.frame(Env = names(means), A, Communality,
                          Uniquenesses)
         z <- scale(means, center = FALSE, scale = apply(means, 2,
-                                                    sd))
+                                                        sd))
         canonical.loadings <- t(t(A) %*% solve_svd(cor.means))
         scores <- z %*% canonical.loadings
         colnames(scores) <- paste("FA", 1:ncol(scores), sep = "")
@@ -149,16 +147,7 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
                                                                                                                                     as_tibble(A))), canonical.loadings = as_tibble(cbind(Env = names(means),
                                                                                                                                                                                          as_tibble(canonical.loadings))), scores.gen = as_tibble(cbind(Gen = rownames(means),
                                                                                                                                                                                                                                                        as_tibble(scores)))), class = "ge_factanal"))
-        if (length(d$resp) > 1) {
-            listres[[paste(d$resp[var])]] <- temp
-            if (verbose == TRUE) {
-                cat("Evaluating variable", paste(d$resp[var]),
-                    round((var - 1)/(length(d$resp) - 1) * 100,
-                          1), "%", "\n")
-            }
-        } else {
-            listres[[paste(d$resp)]] <- temp
-        }
+        listres[[paste(names(vars[var]))]] <- temp
     }
     return(structure(listres, class = "ge_factanal"))
 }
@@ -357,7 +346,6 @@ print.ge_factanal <- function(x, export = FALSE, file.name = NULL, digits = 4, .
         print(var$env_strat)
         cat("------------------------------------------------------------------------------------\n")
         cat("Mean = mean; Min = minimum; Max = maximum; CV = coefficient of variation (%)\n")
-        cat("The print statistics are based on the men values of ", length(unique(var$data$REP)), "replicates\n")
         cat("------------------------------------------------------------------------------------\n")
         cat("\n\n\n")
     }

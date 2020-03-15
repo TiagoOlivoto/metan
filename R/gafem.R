@@ -107,7 +107,6 @@ gafem <- function(.data,
       select({{gen}}, {{rep}}) %>%
       mutate_all(as.factor)
     vars <- .data %>% select({{resp}}, -names(factors))
-    has_text_in_num(vars)
     vars %<>% select_numeric_cols()
     factors %<>% set_names("GEN", "REP")
     listres <- list()
@@ -115,6 +114,10 @@ gafem <- function(.data,
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(mean = vars[[var]])
+      if(has_na(data)){
+        data <- remove_rows_na(data)
+        has_text_in_num(data)
+      }
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
       ovmean <- mean(data$mean)
@@ -188,7 +191,6 @@ gafem <- function(.data,
       select({{gen}}, {{rep}}, {{block}}) %>%
       mutate_all(as.factor)
     vars <- .data %>% select({{resp}}, -names(factors))
-    has_text_in_num(vars)
     vars %<>% select_numeric_cols()
     factors %<>% set_names("GEN", "REP", "BLOCK")
     listres <- list()
@@ -196,6 +198,10 @@ gafem <- function(.data,
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(mean = vars[[var]])
+      if(has_na(data)){
+        data <- remove_rows_na(data)
+        has_text_in_num(data)
+      }
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
       ovmean <- mean(data$mean)

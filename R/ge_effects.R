@@ -45,25 +45,23 @@ ge_effects <- function(.data,
   if(rep != "deprecated"){
     warning("`rep` is deprecated. It will be defunct in the new release.", call. = FALSE)
   }
-  datain <- .data
+  factors  <-
+    .data %>%
+    select({{env}}, {{gen}}) %>%
+    mutate_all(as.factor)
+  vars <- .data %>% select({{resp}}, -names(factors))
+  vars %<>% select_numeric_cols()
+  factors %<>% set_names("ENV", "GEN")
   listres <- list()
-  d <- match.call()
-  nvar <- as.numeric(ifelse(length(d$resp) > 1, length(d$resp) - 1, length(d$resp)))
-  for (var in 2:length(d$resp)) {
-    if (length(d$resp) > 1) {
-      Y <- eval(substitute(resp)[[var]], eval(datain))
-      varnam <- paste(d$resp[var])
-    } else {
-      Y <- eval(substitute(resp), eval(datain))
-      varnam <- paste(d$resp)
+  nvar <- ncol(vars)
+  for (var in 1:nvar) {
+    data <- factors %>%
+      mutate(Y = vars[[var]])
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
     }
-    data <- datain %>%
-      select(ENV = {{env}},
-             GEN = {{gen}}) %>%
-      mutate(Y = Y) %>%
-      group_by(ENV, GEN) %>%
-      summarise(Y = mean(Y)) %>%
-      ungroup()
+    data <- means_by(data, ENV, GEN, na.rm = TRUE)
     if(type == "ge"){
       effects <- data %>%
         mutate(ge = residuals(lm(Y ~ ENV + GEN, data = data))) %>%
@@ -77,15 +75,7 @@ ge_effects <- function(.data,
         rownames_to_column("GEN") %>%
         as_tibble()
     }
-    if (length(d$resp) > 1) {
-      listres[[paste(d$resp[var])]] <- effects
-      if (verbose == TRUE) {
-        cat("Evaluating variable", paste(d$resp[var]),
-            round((var - 1)/(length(d$resp) - 1) * 100, 1), "%", "\n")
-      }
-    } else {
-      listres[[paste(d$resp)]] <- effects
-    }
+      listres[[paste(names(vars[var]))]] <- effects
   }
   return(structure(listres, class = "ge_effects"))
 }

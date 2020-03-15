@@ -36,7 +36,6 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     select({{env}}, {{gen}}, {{rep}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   factors %<>% set_names("ENV", "GEN", "REP")
   listres <- list()
@@ -44,6 +43,10 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(mean = vars[[var]])
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
     data2 <- data %>%
       group_by(ENV, GEN) %>%
       summarise(mean = mean(mean)) %>%

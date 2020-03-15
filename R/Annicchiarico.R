@@ -55,7 +55,6 @@ Annicchiarico <- function(.data,
     select({{env}}, {{gen}}, {{rep}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   factors %<>% set_names("ENV", "GEN", "REP")
   nvar <- ncol(vars)
@@ -63,6 +62,10 @@ Annicchiarico <- function(.data,
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(mean = vars[[var]])
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
     environments <- data %>% dplyr::group_by(ENV) %>% dplyr::summarise(Mean = mean(mean))
     environments <- mutate(environments,
                            index = Mean - mean(environments$Mean),

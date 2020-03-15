@@ -37,10 +37,17 @@ non_collinear_vars <- function(.data,
                               missingval = "pairwise.complete.obs"){
   if(!missing(...)){
     xxx <-  select_cols(.data, ...)
-    has_text_in_num(xxx)
     xxx %<>% select_numeric_cols()
+    if(has_na(xxx)){
+      xxx <- remove_rows_na(xxx)
+      has_text_in_num(xxx)
+    }
   } else{
     xxx <- select_numeric_cols(.data)
+    if(has_na(xxx)){
+      xxx <- remove_rows_na(xxx)
+      has_text_in_num(xxx)
+    }
   }
   varin <- xxx
   cor.xx <- cor(xxx, use = missingval)

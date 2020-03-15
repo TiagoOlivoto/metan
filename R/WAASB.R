@@ -281,7 +281,6 @@ waasb <- function(.data,
             mutate_all(as.factor)
     }
     vars <- .data %>% select({{resp}}, -names(factors))
-    has_text_in_num(vars)
     vars %<>% select_numeric_cols()
     if(!missing(block)){
         factors %<>% set_names("ENV", "GEN", "REP", "BLOCK")
@@ -357,9 +356,10 @@ waasb <- function(.data,
     for (var in 1:nvar) {
         data <- factors %>%
             mutate(Y = vars[[var]])
-        # if(is_balanced_trial(data, ENV, GEN, Y) == FALSE){
-        #     stop("The WAASB index cannot be computed with unbalanced data", call. = FALSE)
-        # }
+        if(has_na(data)){
+            data <- remove_rows_na(data)
+            has_text_in_num(data)
+        }
         Nenv <- nlevels(data$ENV)
         Ngen <- nlevels(data$GEN)
         Nrep <- nlevels(data$REP)

@@ -71,7 +71,7 @@ trait-standardized two-way table.
 \donttest{
 library(metan)
 # GT biplot for all numeric variables
-mod <- gtb(data_ge2, GEN, resp = everything())
+mod <- gtb(data_ge2, GEN, resp = contains("E"))
 plot(mod)
 
 }

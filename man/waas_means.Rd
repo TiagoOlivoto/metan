@@ -12,7 +12,8 @@ waas_means(
   mresp = NULL,
   wresp = NULL,
   min_expl_var = 85,
-  verbose = TRUE
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
@@ -48,6 +49,10 @@ cumulative proportion of \code{56,  77,  86,  92,  96, 99, 100}, then
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
 silently.}
+
+\item{...}{Arguments passed to the function
+\code{\link{impute_missing_val}()} for imputation of missing values in case
+of unbalanced data.}
 }
 \value{
 An object of class \code{waas_means} with the following items for each

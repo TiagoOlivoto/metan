@@ -98,10 +98,18 @@ corr_ci <- function(.data = NA,
     if (is.data.frame(.data)) {
       if (missing(...)) {
         data <- select_numeric_cols(.data)
+        if(has_na(data)){
+          data <- remove_rows_na(data)
+          has_text_in_num(data)
+        }
       }
       if (!missing(...)) {
         data <- select(.data, ...) %>%
           select_numeric_cols()
+        if(has_na(data)){
+          data <- remove_rows_na(data)
+          has_text_in_num(data)
+        }
       }
       out <- internal(data)
       if (verbose == TRUE) {

@@ -26,11 +26,7 @@
 #' matrix <- data_ge %>% make_mat(row = GEN, col = ENV, val = GY)
 #' matrix
 #'
-#' # An own function (sem, standart error of mean)
-#'
-#' sem <- function(data){
-#'return(sd(data) / sqrt(length(data)))
-#'}
+#' # standart error of mean
 #'
 #' data_ge %>% make_mat(GEN, ENV, GY, sem)
 #'}
@@ -41,7 +37,7 @@ make_mat <- function(.data, row, col, value, fun = mean) {
            {{col}},
            {{value}}) %>%
     group_by({{row}}, {{col}}) %>%
-    summarise_if(is.numeric, fun) %>%
+    summarise_if(is.numeric, fun, na.rm = TRUE) %>%
     pivot_wider(names_from = {{col}}, values_from = {{value}}) %>%
     ungroup()
   data %<>% column_to_rownames(var = names(data[1]))

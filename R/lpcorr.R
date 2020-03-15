@@ -111,9 +111,17 @@ lpcor <- function(.data,
   if (is.data.frame(.data)) {
     if (missing(...)){
       dfs <- select_numeric_cols(.data)
+      if(has_na(dfs)){
+        dfs <- remove_rows_na(dfs)
+        has_text_in_num(dfs)
+      }
     } else{
       dfs <- select(.data, ...) %>%
         select_numeric_cols()
+      if(has_na(dfs)){
+        dfs <- remove_rows_na(dfs)
+        has_text_in_num(dfs)
+      }
     }
     out <- internal(dfs)
   }

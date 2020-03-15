@@ -68,19 +68,19 @@ var_amo(.data, ..., na.rm = FALSE)
 
 valid_n(.data, ..., na.rm = FALSE)
 
-cv_by(.data, ...)
+cv_by(.data, ..., na.rm = FALSE)
 
-max_by(.data, ...)
+max_by(.data, ..., na.rm = FALSE)
 
-means_by(.data, ...)
+means_by(.data, ..., na.rm = FALSE)
 
-min_by(.data, ...)
+min_by(.data, ..., na.rm = FALSE)
 
-n_by(.data, ...)
+n_by(.data, ..., na.rm = FALSE)
 
-sd_by(.data, ...)
+sd_by(.data, ..., na.rm = FALSE)
 
-sem_by(.data, ...)
+sem_by(.data, ..., na.rm = FALSE)
 }
 \arguments{
 \item{.data}{A data frame or a numeric vector.}

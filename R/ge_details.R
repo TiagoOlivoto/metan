@@ -34,7 +34,6 @@ ge_details <- function(.data, env, gen, resp){
     select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   factors %<>% set_names("ENV", "GEN")
   listres <- list()
@@ -42,10 +41,14 @@ ge_details <- function(.data, env, gen, resp){
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(Y = vars[[var]])
-    env_data <- means_by(data, ENV) %>%
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
+    env_data <- means_by(data, ENV, na.rm = TRUE) %>%
       add_cols(TYPE = "Env") %>%
       rename(CODE = "ENV")
-    gen_data <- means_by(data, GEN) %>%
+    gen_data <- means_by(data, GEN, na.rm = TRUE) %>%
       add_cols(TYPE = "Gen")%>%
       rename(CODE = "GEN")
     df_bind <-
@@ -67,7 +70,7 @@ ge_details <- function(.data, env, gen, resp){
       as.data.frame()
     min <- data %>% top_n(1, -Y) %>% select(ENV, GEN, Y) %>% slice(1)
     max <- data %>% top_n(1, Y) %>% select(ENV, GEN, Y) %>% slice(1)
-    desc_st <- desc_stat(data, stats = c("mean, se, sd.pop, cv"), verbose = FALSE)
+    desc_st <- desc_stat(data, stats = c("mean, se, sd.pop, cv"), verbose = FALSE, na.rm = TRUE)
     temp <- tibble(Parameters = c("Mean", "SE", "SD", "CV", "Min", "Max", "MinENV", "MaxENV", "MinGEN", "MaxGEN"),
                    Values = c(round(desc_st[1, 2], 2),
                               round(desc_st[1, 3], 2),

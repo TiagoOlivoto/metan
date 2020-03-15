@@ -50,7 +50,6 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     select({{env}}, {{gen}}, {{rep}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   factors %<>% set_names("ENV", "GEN", "REP")
   g <- nlevels(factors$GEN)
@@ -60,16 +59,15 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   nvar <- ncol(vars)
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
-    g_means <- data %>%
-      group_by(GEN) %>%
-      summarise(Y = mean(mean))
-    ge_means <- data %>%
-      group_by(ENV, GEN) %>%
-      summarise(mean = mean(mean)) %>%
-      ungroup
+      mutate(Y = vars[[var]])
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
+    g_means <- means_by(data, GEN)
+    ge_means <- means_by(data, GEN, ENV)
     ge_effect <- ge_means %>%
-      mutate(ge = residuals(lm(mean ~ ENV + GEN, data = .))) %>%
+      mutate(ge = residuals(lm(Y ~ ENV + GEN, data = .))) %>%
       make_mat(GEN, ENV, ge) %>%
       as.matrix()
     Wi <- rowSums(ge_effect^2)

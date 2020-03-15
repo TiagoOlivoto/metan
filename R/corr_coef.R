@@ -58,10 +58,18 @@ NULL
 corr_coef <- function(data, ..., verbose = TRUE){
   if(missing(...)){
     x <- select_if(data, is.numeric)
+    if(has_na(x)){
+      x <- remove_rows_na(x)
+      has_text_in_num(x)
+    }
   }
   if(!missing(...)){
     x <- select(data, ...) %>%
       select_numeric_cols()
+    if(has_na(x)){
+      x <- remove_rows_na(x)
+      has_text_in_num(x)
+    }
   }
   if(has_na(data) ==  TRUE){
     x <- remove_rows_na(x, verbose = verbose)

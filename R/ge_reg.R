@@ -45,7 +45,6 @@ ge_reg = function(.data,
     select({{env}}, {{gen}}, {{rep}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   factors %<>% set_names("ENV", "GEN", "REP")
   listres <- list()
@@ -53,6 +52,10 @@ ge_reg = function(.data,
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(mean = vars[[var]])
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
     data2 =  data  %>%
       dplyr::group_by(ENV, GEN) %>%
       dplyr::summarise(mean = mean(mean)) %>%

@@ -37,11 +37,7 @@ library(metan)
 matrix <- data_ge \%>\% make_mat(row = GEN, col = ENV, val = GY)
 matrix
 
-# An own function (sem, standart error of mean)
-
-sem <- function(data){
-return(sd(data) / sqrt(length(data)))
-}
+# standart error of mean
 
 data_ge \%>\% make_mat(GEN, ENV, GY, sem)
 }

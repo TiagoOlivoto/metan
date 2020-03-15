@@ -4,7 +4,8 @@
 \name{data_g}
 \alias{data_g}
 \title{Single maize trial}
-\format{A tibble with 39 observations on the following 17 variables.
+\format{
+A tibble with 39 observations on the following 17 variables.
 \itemize{
 \item \strong{GEN} A factor with 13 levels; each level represents one maize hybrid.
 \item \strong{REP} A factor with 3 levels; each level represents one replication/block.
@@ -23,7 +24,8 @@
 \item \strong{PERK} Percentage of kernels.
 \item \strong{TKW} Thousand-kernel weight
 \item \strong{NKE} Number of kernels per row.
-}}
+}
+}
 \source{
 Personal data
 }

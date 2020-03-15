@@ -90,7 +90,6 @@ anova_ind <- function(.data,
       mutate_all(as.factor)
   }
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   if(!missing(block)){
     factors %<>% set_names("ENV", "GEN", "REP", "BLOCK")
@@ -102,6 +101,10 @@ anova_ind <- function(.data,
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(mean = vars[[var]])
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
     grouped <- data %>% split(dplyr::pull(., ENV))
     if(missing(block)){
       formula <- as.formula(paste0("mean ~ GEN + REP"))

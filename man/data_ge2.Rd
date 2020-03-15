@@ -4,7 +4,8 @@
 \name{data_ge2}
 \alias{data_ge2}
 \title{Multi-environment trial of maize}
-\format{A tibble with 156 observations on the following 18 variables.
+\format{
+A tibble with 156 observations on the following 18 variables.
 \itemize{
 \item \strong{ENV} A factor with 4 levels; each level represents one cultivation
 environment.
@@ -26,7 +27,8 @@ replication/block.
 \item \strong{PERK} Percentage of kernels.
 \item \strong{TKW} Thousand-kernel weight
 \item \strong{NKE} Number of kernels per row.
-}}
+}
+}
 \source{
 Personal data
 }

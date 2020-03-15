@@ -148,9 +148,17 @@ clustering <- function(.data,
   }
   if (missing(...)){
     data <- select_numeric_cols(.data)
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
   } else{
     data <- select(.data, ...) %>%
       select_numeric_cols()
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
   }
     if (scale == TRUE) {
       data <- data.frame(scale(data, center = FALSE, scale = apply(data, 2, sd, na.rm = TRUE)))

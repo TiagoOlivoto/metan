@@ -201,7 +201,6 @@ gamem_met <- function(.data,
       mutate_all(as.factor)
   }
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   if(!missing(block)){
     factors %<>% set_names("ENV", "GEN", "REP", "BLOCK")
@@ -244,6 +243,10 @@ gamem_met <- function(.data,
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(Y = vars[[var]])
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
     if(!is_balanced_trial(data, ENV, GEN, Y) && random == "env"){
       stop("A mixed-effect model with genotype as fixed cannot be fitted with unbalanced data.", call. = FALSE)
     }

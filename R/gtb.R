@@ -75,7 +75,7 @@
 #' library(metan)
 
 #' # GT biplot for all numeric variables
-#' mod <- gtb(data_ge2, GEN, resp = everything())
+#' mod <- gtb(data_ge2, GEN, resp = contains("E"))
 #' plot(mod)
 #'
 #'}
@@ -88,12 +88,18 @@ gtb <- function(.data,
   factors  <-
     .data %>%
     select({{gen}})
-  vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
-  vars %<>% select_numeric_cols()
+  vars <- .data %>%
+    select({{resp}}, -names(factors)) %>%
+    select_numeric_cols()
   factors %<>% set_names("GEN")
-  gt_mat <- cbind(factors, vars) %>%
-    means_by(GEN) %>%
+  data <-
+    cbind(factors, vars)
+  if(has_na(data)){
+    data <- remove_rows_na(data)
+    has_text_in_num(data)
+  }
+    gt_mat <-
+    means_by(data, GEN) %>%
     column_to_rownames("GEN") %>%
     as.matrix()
     grand_mean <- mean(gt_mat)

@@ -96,7 +96,6 @@ performs_ammi <- function(.data,
             mutate_all(as.factor)
     }
     vars <- .data %>% select({{resp}}, -names(factors))
-    has_text_in_num(vars)
     vars %<>% select_numeric_cols()
     if(!missing(block)){
         factors %<>% set_names("ENV", "GEN", "REP", "BLOCK")
@@ -108,6 +107,10 @@ performs_ammi <- function(.data,
     for (var in 1:nvar) {
         data <- factors %>%
             mutate(mean = vars[[var]])
+        if(has_na(data)){
+            data <- remove_rows_na(data)
+            has_text_in_num(data)
+        }
         nenv <- nlevels(data$ENV)
         ngen <- nlevels(data$GEN)
         nrep <- nlevels(data$REP)
@@ -155,11 +158,6 @@ performs_ammi <- function(.data,
         if (minimo < 2) {
             stop("The analysis AMMI is not possible. Both genotypes and environments must have more than two levels.")
         }
-        # if(missing(block)){
-        #
-        # } else{
-        #
-        # }
         DFE <- df.residual(model)
         MSE <- deviance(model)/DFE
         MEANS <-

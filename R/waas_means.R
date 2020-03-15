@@ -38,6 +38,9 @@
 #'   \code{p = 3}, i.e., three IPCAs will be used to compute the index WAAS.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
 #'   silently.
+#' @param ... Arguments passed to the function
+#'   \code{\link{impute_missing_val}()} for imputation of missing values in case
+#'   of unbalanced data.
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'   V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
 #'   multi-environment trials I: Combining features of AMMI and BLUP techniques.
@@ -90,13 +93,13 @@ waas_means <- function(.data,
                        mresp = NULL,
                        wresp = NULL,
                        min_expl_var = 85,
-                       verbose = TRUE){
+                       verbose = TRUE,
+                       ...){
   factors  <-
     .data %>%
     select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   factors %<>% set_names("ENV", "GEN")
   nvar <- ncol(vars)
@@ -130,8 +133,21 @@ waas_means <- function(.data,
   vin <- 0
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(Y = vars[[var]]) %>%
-      means_by(ENV, GEN)
+      mutate(Y = vars[[var]])
+
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+      has_text_in_num(data)
+    }
+    data <-
+      means_by(data, GEN, ENV) %>%
+      make_mat(GEN, ENV, Y)
+    if(has_na(data)){
+      data <- impute_missing_val(data, verbose = verbose, ...)$.data
+      warning("Data imputation used to fill the GxE matrix", call. = FALSE)
+    }
+    data %<>% make_long()
+
     vin <- vin + 1
     MGEN <-
       means_by(data, GEN) %>%
