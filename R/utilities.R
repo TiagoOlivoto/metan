@@ -1368,51 +1368,51 @@ valid_n <- function(.data, ..., na.rm = FALSE){
 # main statistics, possible by one or more factors
 #' @name utils_stats
 #' @export
-cv_by <- function(.data, ...){
+cv_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, cv) %>%
+    summarise_if(is.numeric, cv, na.rm = na.rm) %>%
     ungroup()
 }
 #' @name utils_stats
 #' @export
-max_by <- function(.data, ...){
+max_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, max) %>%
+    summarise_if(is.numeric, max, na.rm = na.rm) %>%
     ungroup()
 }
 #' @name utils_stats
 #' @export
-means_by <- function(.data, ...){
+means_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, mean) %>%
+    summarise_if(is.numeric, mean, na.rm = na.rm) %>%
     ungroup()
 }
 #' @name utils_stats
 #' @export
-min_by <- function(.data, ...){
+min_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, min) %>%
+    summarise_if(is.numeric, min, na.rm = na.rm) %>%
     ungroup()
 }
 #' @name utils_stats
 #' @export
-n_by <- function(.data, ...){
+n_by <- function(.data, ..., na.rm = FALSE){
     group_by(.data, ...) %>%
     summarise_all(list(~sum(!is.na(.)))) %>%
     ungroup()
 }
 #' @name utils_stats
 #' @export
-sd_by <- function(.data, ...){
+sd_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, sd) %>%
+    summarise_if(is.numeric, sd, na.rm = na.rm) %>%
     ungroup()
 }
 #' @name utils_stats
 #' @export
-sem_by <- function(.data, ...){
+sem_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, sem) %>%
+    summarise_if(is.numeric, sem, na.rm = na.rm) %>%
     ungroup()
 }
 #' @title Utilities for handling with matrices
