@@ -100,7 +100,6 @@ gge <- function(.data,
     select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
   vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
   vars %<>% select_numeric_cols()
   factors %<>% set_names("ENV", "GEN")
   listres <- list()
@@ -327,6 +326,10 @@ plot.gge <- function(x,
                      title = TRUE,
                      plot_theme = theme_metan(),
                      ...) {
+  if(any(class(x) == "gtb")){
+    if(all(leg.lab %in% c("Gen", "Env")))
+    leg.lab <- c("Gen", "Trait")
+  }
   model <- x[[var]]
   if (!class(model) == "gge") {
     stop("The model must be of class 'gge'")
