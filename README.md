@@ -67,7 +67,7 @@ file](https://tiagoolivoto.github.io/metan/news/index.html).
 
 ## Cheatsheet
 
-<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet-01.png" width="720" height="510"/></a>
+<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="720" height="510"/></a>
 
 # Getting started
 
