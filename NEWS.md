@@ -15,7 +15,7 @@
 
 ## Minor changes
 * `gge()`, `performs_ammi()`, `waas()`, and `waasb()` now handle with unbalanced data by implementing a low-rank matrix approximation using singular value decomposition to impute missing entires. Imputation generate a warning message.
-* `NA` values are checked and removed with a warning when computing stability indexes.
+* `NA` values are checked and removed with a warning when computing stability indexes. Thanks [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for alerting me.
 * New argument `plot_res` in `path_coeff()` to create a residual plot of the multiple regression model.
 * Update the citation file to include the [published official reference](https://doi.org/10.1111/2041-210X.13384).
 * Argument `verbose` deprecated in functions `anova_ind()` and `split_factors()`
