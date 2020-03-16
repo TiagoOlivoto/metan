@@ -44,11 +44,18 @@ ge_reg = function(.data,
     .data %>%
     select({{env}}, {{gen}}, {{rep}}) %>%
     mutate_all(as.factor)
-  vars <- .data %>% select({{resp}}, -names(factors))
-  vars %<>% select_numeric_cols()
+  vars <-
+    .data %>%
+    select({{resp}}, -names(factors)) %>%
+    select_numeric_cols()
   factors %<>% set_names("ENV", "GEN", "REP")
   listres <- list()
   nvar <- ncol(vars)
+  if (verbose == TRUE) {
+    pb <- progress_bar$new(
+      format = "Evaluating the variable :what [:bar]:percent",
+      clear = FALSE, total = nvar, width = 90)
+  }
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(mean = vars[[var]])
@@ -126,15 +133,10 @@ ge_reg = function(.data,
                                               RMSE = gof(pred, matx)$RMSE,
                                               R2 = gof(pred, matx)$R2)),
                      class = "ge_reg")
-    if (nvar > 1) {
-      listres[[paste(names(vars[var]))]] <- temp
-      if (verbose == TRUE) {
-        cat("Evaluating variable", paste(names(vars[var])),
-            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
-      }
-    } else {
-      listres[[paste(names(vars[var]))]] <- temp
+    if (verbose == TRUE) {
+      pb$tick(tokens = list(what = names(vars[var])))
     }
+    listres[[paste(names(vars[var]))]] <- temp
   }
   return(structure(listres, class = "ge_reg"))
 }

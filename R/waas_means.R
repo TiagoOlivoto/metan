@@ -99,10 +99,17 @@ waas_means <- function(.data,
     .data %>%
     select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
-  vars <- .data %>% select({{resp}}, -names(factors))
-  vars %<>% select_numeric_cols()
+  vars <-
+    .data %>%
+    select({{resp}}, -names(factors)) %>%
+    select_numeric_cols()
   factors %<>% set_names("ENV", "GEN")
   nvar <- ncol(vars)
+  if (verbose == TRUE) {
+    pb <- progress_bar$new(
+      format = "Evaluating the variable :what [:bar]:percent",
+      clear = FALSE, total = nvar, width = 90)
+  }
   if (is.null(mresp)) {
     mresp <- replicate(nvar, 100)
     minresp <- 100 - mresp
@@ -134,7 +141,6 @@ waas_means <- function(.data,
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(Y = vars[[var]])
-
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
@@ -228,15 +234,10 @@ waas_means <- function(.data,
                            proportion = weights,
                            cum_proportion = cumsum(weights)),
                       class = "waas_means")
-    if (nvar > 1) {
-      listres[[paste(names(vars[var]))]] <- temp
-      if (verbose == TRUE) {
-        cat("Evaluating variable", paste(names(vars[var])),
-            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
-      }
-    } else {
-      listres[[paste(names(vars[var]))]] <- temp
+    if (verbose == TRUE) {
+      pb$tick(tokens = list(what = names(vars[var])))
     }
+    listres[[paste(names(vars[var]))]] <- temp
   }
   return(structure(listres, class = "waas_means"))
 }

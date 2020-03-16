@@ -45,11 +45,18 @@ Fox <- function(.data, env, gen, resp, rep = "deprecated", verbose = TRUE) {
     .data %>%
     select({{env}}, {{gen}}) %>%
     mutate_all(as.factor)
-  vars <- .data %>% select({{resp}}, -names(factors))
-  vars %<>% select_numeric_cols()
+  vars <-
+    .data %>%
+    select({{resp}}, -names(factors)) %>%
+    select_numeric_cols()
   factors %<>% set_names("ENV", "GEN")
   listres <- list()
   nvar <- ncol(vars)
+  if (verbose == TRUE) {
+    pb <- progress_bar$new(
+      format = "Evaluating the variable :what [:bar]:percent",
+      clear = FALSE, total = nvar, width = 90)
+  }
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(Y = vars[[var]])
@@ -64,15 +71,10 @@ Fox <- function(.data, env, gen, resp, rep = "deprecated", verbose = TRUE) {
       summarise(Y = mean(Y),
                 TOP = sum(grank <= 3)) %>%
       as_tibble()
-    if (nvar > 1) {
-      listres[[paste(names(vars[var]))]] <- temp
-      if (verbose == TRUE) {
-        cat("Evaluating variable", paste(names(vars[var])),
-            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
-      }
-    } else {
-      listres[[paste(names(vars[var]))]] <- temp
+    if (verbose == TRUE) {
+      pb$tick(tokens = list(what = names(vars[var])))
     }
+    listres[[paste(names(vars[var]))]] <- temp
   }
   return(structure(listres, class = "Fox"))
 }

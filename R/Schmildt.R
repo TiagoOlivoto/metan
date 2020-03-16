@@ -57,23 +57,28 @@ Schmildt <- function(.data, env, gen, rep, resp, prob = 0.05,
     .data %>%
     select({{env}}, {{gen}}, {{rep}}) %>%
     mutate_all(as.factor)
-  vars <- .data %>% select({{resp}}, -names(factors))
-  has_text_in_num(vars)
-  vars %<>% select_numeric_cols()
+  vars <-
+    .data %>%
+    select({{resp}}, -names(factors)) %>%
+    select_numeric_cols()
   factors %<>% set_names("ENV", "GEN", "REP")
   listres <- list()
   nvar <- ncol(vars)
+  if (verbose == TRUE) {
+    pb <- progress_bar$new(
+      format = "Evaluating the variable :what [:bar]:percent",
+      clear = FALSE, total = nvar, width = 90)
+  }
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(mean = vars[[var]])
-    ge_mean <- data %>% dplyr::group_by(ENV, GEN) %>% dplyr::summarise(mean = mean(mean))
-    environments <- data %>% dplyr::group_by(ENV) %>% dplyr::summarise(Mean = mean(mean))
-    environments <- mutate(environments,
-                           index = Mean - mean(environments$Mean),
-                           class = ifelse(index < 0, "unfavorable", "favorable")) %>%
+    environments <-
+      data %>%
+      means_by(ENV, na.rm = TRUE) %>%
+      add_cols(index = mean - mean(mean),
+               class = ifelse(index < 0, "unfavorable", "favorable")) %>%
       as_tibble()
-    data <- suppressMessages(left_join(data, environments %>%
-                                         select(ENV, class)))
+    data <- left_join(data, environments %>% select(ENV, class), by = "ENV")
     mat_g <- make_mat(data, row = GEN, col = ENV, value = mean)
     rp_g <- sweep(mat_g, 2, colMeans(mat_g), "/") * 100
     Wi_g <- rowMeans(rp_g) - qnorm(1 - prob) * apply(rp_g, 1, sem)
@@ -107,15 +112,10 @@ Schmildt <- function(.data, env, gen, rep, resp, prob = 0.05,
                  general = general,
                  favorable = favorable,
                  unfavorable = unfavorable)
-    if (nvar > 1) {
-      listres[[paste(names(vars[var]))]] <- temp
-      if (verbose == TRUE) {
-        cat("Evaluating variable", paste(names(vars[var])),
-            round((var - 1)/(length(vars) - 1) * 100, 1), "%", "\n")
-      }
-    } else {
-      listres[[paste(names(vars[var]))]] <- temp
+    if (verbose == TRUE) {
+      pb$tick(tokens = list(what = names(vars[var])))
     }
+    listres[[paste(names(vars[var]))]] <- temp
   }
   return(structure(listres, class = "Schmildt"))
 }
