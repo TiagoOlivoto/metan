@@ -364,7 +364,7 @@ Singular Value Decomposition requires a complete two-way table (i.e., all genoty
 
 As an example we will run the AMMI model by omiting `H2` from `E1` in `data_ge2.
 
-```{r fig.width=10, fig.height=5}
+```{r fig.width=10, fig.height=5.3}
 miss_val <- 
   data_ge2 %>% 
   remove_rows(4:6) %>% 
@@ -372,12 +372,12 @@ miss_val <-
 
 mod_miss <- 
   performs_ammi(miss_val, ENV, GEN, REP, PH)
-p1 <- plot_scores(mod_miss, type = 2)
+p1 <- plot_scores(mod_miss, type = 2, title = FALSE)
 
 mod_comp <- 
   data_ge2 %>% 
   performs_ammi(ENV, GEN, REP, PH)
-p2 <- plot_scores(mod_comp, type = 2)  
+p2 <- plot_scores(mod_comp, type = 2, title = FALSE)  
 
 arrange_ggplot(p1, p2, labels = c("Missing data", "Complete data"))
 
