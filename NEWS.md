@@ -1,5 +1,5 @@
 # metan 1.4.0
-## Fix bug
+## Bug fixes
 * Factor columns can now have custom names rather than `ENV`, `GEN`, and `REP` only ([#2](https://github.com/TiagoOlivoto/metan/issues/2)).
 
 ## New functions
