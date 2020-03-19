@@ -12,7 +12,8 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](https://cran.r-project.org/package=metan)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3663097.svg)](https://doi.org/10.5281/zenodo.3663097)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3715542.svg)](https://doi.org/10.5281/zenodo.3715542)
+
 <!-- badges: end -->
 
 The metan (**m**ulti-**e**nvironment **t**rials **an**alysis) package
