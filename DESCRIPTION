@@ -1,7 +1,7 @@
 Type: Package
 Package: metan
 Title: Multi Environment Trials Analysis
-Version: 1.4.0
+Version: 1.4.0.9000
 Authors@R: 
     person(given = "Tiago",
            family = "Olivoto",
@@ -41,7 +41,6 @@ Depends:
     R (>= 3.5.0)
 Imports: 
     ade4,
-    dendextend,
     cowplot,
     dplyr,
     FWDselect,

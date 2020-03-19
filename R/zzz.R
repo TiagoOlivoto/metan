@@ -10,7 +10,6 @@
 #' @importFrom magrittr  %>% %<>%
 #' @importFrom GGally  ggally_text  eval_data_col  ggpairs
 #' @importFrom ade4  mantel.randtest
-#' @importFrom dendextend  set  rotate_DendSer
 #' @importFrom lme4  ranef  VarCorr  fortify.merMod
 #' @importFrom lmerTest  ranova  lmer
 #' @importFrom FWDselect  selection
