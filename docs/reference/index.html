@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -50,7 +54,6 @@
 
 <meta property="og:title" content="Function reference" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -78,7 +81,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -92,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0.9000</span>
       </span>
     </div>
 
@@ -113,6 +116,20 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/vignettes_helper.html">Helper functions</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_utilities.html">Utilities</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    </li>
+    <li>
+      <a href="../articles/vignettes_biometry.html">Biometry</a>
+    </li>
+    <li class="divider"></li>
+    <li>
       <a href="../articles/vignettes_cross-validation.html">Cross-validation</a>
     </li>
     <li>
@@ -122,25 +139,14 @@
       <a href="../articles/vignettes_blup.html">BLUP</a>
     </li>
     <li>
-      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
-    </li>
-    <li>
       <a href="../articles/vignettes_gge.html">GGE</a>
     </li>
     <li>
       <a href="../articles/vignettes_stability.html">Stability</a>
     </li>
+    <li class="divider"></li>
     <li>
       <a href="../articles/vignettes_indexes.html">Multivariate indexes</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_biometry.html">Biometry</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_helper.html">Helper</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_utilities.html">Utilities</a>
     </li>
   </ul>
 </li>
@@ -177,13 +183,25 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/TiagoOlivoto">Github</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
 </li>
 <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">ResearchGate</a>
+  <a href="https://github.com/TiagoOlivoto">
+    <span class="fa fa-github"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="https://www.mendeley.com/profiles/tiago-olivoto/">Mendeley</a>
+  <a href="https://twitter.com/tolivoto">
+    <span class="fab fa fab fa-twitter"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
+    <span class="fab fa fab fa-mendeley"></span>
+     
+  </a>
 </li>
       </ul>
       
@@ -218,17 +236,74 @@
     <tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-one-way-analysis" class="hasAnchor"><a href="#section-one-way-analysis" class="anchor"></a>One-way analysis</h2>
+          <p class="section-desc"><p>Analyze genotypes in single environment trials using fixed- or mixed-effect models</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="gafem.html">gafem()</a></code> </p>
+        </td>
+        <td><p>Genotype analysis by fixed-effect models</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gamem.html">gamem()</a></code> </p>
+        </td>
+        <td><p>Genotype analysis by mixed-effect models</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot.gafem.html">plot(<i>&lt;gafem&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Several types of residual plots</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot.gamem.html">plot(<i>&lt;gamem&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Several types of residual plots</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="predict.gamem.html">predict(<i>&lt;gamem&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Predict method for gamem fits</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.gamem.html">print(<i>&lt;gamem&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an object of class gamem</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-ammi" class="hasAnchor"><a href="#section-ammi" class="anchor"></a>AMMI</h2>
           <p class="section-desc"><p>Functions for AMMI analysis</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
       <tr>
-        
-        <td>
-          <p><code><a href="AMMI_indexes.html">AMMI_indexes()</a></code> </p>
-        </td>
-        <td><p>AMMI-based stability indexes</p></td>
-      </tr><tr>
+        <th colspan="2">
+          <h3 id="section-cross-validation" class="hasAnchor"><a href="#section-cross-validation" class="anchor"></a>Cross-validation</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="cv_ammi.html">cv_ammi()</a></code> </p>
@@ -240,6 +315,25 @@
           <p><code><a href="cv_ammif.html">cv_ammif()</a></code> </p>
         </td>
         <td><p>Cross-validation procedure</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-fit-models" class="hasAnchor"><a href="#section-fit-models" class="anchor"></a>Fit models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="AMMI_indexes.html">AMMI_indexes()</a></code> </p>
+        </td>
+        <td><p>AMMI-based stability indexes</p></td>
       </tr><tr>
         
         <td>
@@ -253,6 +347,31 @@
         </td>
         <td><p>Additive Main effects and Multiplicative Interaction</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="waas.html">waas()</a></code> </p>
+        </td>
+        <td><p>Weighted Average of Absolute Scores</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="waas_means.html">waas_means()</a></code> </p>
+        </td>
+        <td><p>Weighted Average of Absolute Scores</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-plot-models" class="hasAnchor"><a href="#section-plot-models" class="anchor"></a>Plot models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="plot.cvalidation.html">plot(<i>&lt;cvalidation&gt;</i>)</a></code> </p>
@@ -270,7 +389,20 @@
           <p><code><a href="plot.waas.html">plot(<i>&lt;waas&gt;</i>)</a></code> </p>
         </td>
         <td><p>Several types of residual plots</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-predict-models" class="hasAnchor"><a href="#section-predict-models" class="anchor"></a>Predict models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="predict.waas.html">predict(<i>&lt;waas&gt;</i>)</a></code> </p>
@@ -282,7 +414,20 @@
           <p><code><a href="predict.performs_ammi.html">predict(<i>&lt;performs_ammi&gt;</i>)</a></code> </p>
         </td>
         <td><p>Predict the means of a performs_ammi object</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-print-models" class="hasAnchor"><a href="#section-print-models" class="anchor"></a>Print models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="print.AMMI_indexes.html">print(<i>&lt;AMMI_indexes&gt;</i>)</a></code> </p>
@@ -306,45 +451,76 @@
           <p><code><a href="print.waas_means.html">print(<i>&lt;waas_means&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print an object of class waas_means</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="waas.html">waas()</a></code> </p>
-        </td>
-        <td><p>Weighted Average of Absolute Scores</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="waas_means.html">waas_means()</a></code> </p>
-        </td>
-        <td><p>Weighted Average of Absolute Scores</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
           <h2 id="section-blup" class="hasAnchor"><a href="#section-blup" class="anchor"></a>BLUP</h2>
-          <p class="section-desc"><p>Functions for BLUP prediction in multi-environment trial analysis</p></p>
+          <p class="section-desc"><p>Analyze genotypes in single- or multi-environment trials using mixed-effect models with variance components and genetic parameter estimation.</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
           <p><code><a href="cv_blup.html">cv_blup()</a></code> </p>
         </td>
         <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gamem.html">gamem()</a></code> </p>
-        </td>
-        <td><p>Genotype analysis by mixed-effect models</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-fit-models" class="hasAnchor"><a href="#section-fit-models" class="anchor"></a>Fit models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="gamem_met.html">gamem_met()</a></code> </p>
         </td>
         <td><p>Genotype-environment analysis by mixed-effect models</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="Resende_indexes.html">Resende_indexes()</a></code> </p>
+        </td>
+        <td><p>Stability indexes based on a mixed-effect model</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="waasb.html">waasb()</a></code> </p>
+        </td>
+        <td><p>Weighted Average of Absolute Scores</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wsmp.html">wsmp()</a></code> </p>
+        </td>
+        <td><p>Weighting between stability and mean performance</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-plot-models" class="hasAnchor"><a href="#section-plot-models" class="anchor"></a>Plot models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="plot_blup.html">plot_blup()</a></code> </p>
@@ -380,54 +556,44 @@
           <p><code><a href="plot.waasb.html">plot(<i>&lt;waasb&gt;</i>)</a></code> </p>
         </td>
         <td><p>Several types of residual plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.gamem.html">plot(<i>&lt;gamem&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Several types of residual plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict.gamem.html">predict(<i>&lt;gamem&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Predict method for gamem fits</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-predict-models" class="hasAnchor"><a href="#section-predict-models" class="anchor"></a>Predict models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="predict.waasb.html">predict(<i>&lt;waasb&gt;</i>)</a></code> </p>
         </td>
         <td><p>Predict method for waasb fits</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-print-models" class="hasAnchor"><a href="#section-print-models" class="anchor"></a>Print models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="print.waasb.html">print(<i>&lt;waasb&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print an object of class waasb</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.gamem.html">print(<i>&lt;gamem&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print an object of class gamem</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Resende_indexes.html">Resende_indexes()</a></code> </p>
-        </td>
-        <td><p>Stability indexes based on a mixed-effect model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="waasb.html">waasb()</a></code> </p>
-        </td>
-        <td><p>Weighted Average of Absolute Scores</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wsmp.html">wsmp()</a></code> </p>
-        </td>
-        <td><p>Weighting between stability and mean performance</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -436,6 +602,11 @@
           <p class="section-desc"><p>Functions for GGE analysis</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -464,10 +635,15 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-mtsi" class="hasAnchor"><a href="#section-mtsi" class="anchor"></a>MTSI</h2>
-          <p class="section-desc"><p>Multi-trait stability indexes</p></p>
+          <h2 id="section-selection-indexes" class="hasAnchor"><a href="#section-selection-indexes" class="anchor"></a>Selection indexes</h2>
+          <p class="section-desc"><p>Selection indexes and simultaneous selection for mean performance and stability</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -502,17 +678,29 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-stability" class="hasAnchor"><a href="#section-stability" class="anchor"></a>Stability</h2>
-          <p class="section-desc"><p>Useful functions for stability analysis</p></p>
+          <h2 id="section-genotype-environment-interaction" class="hasAnchor"><a href="#section-genotype-environment-interaction" class="anchor"></a>Genotype-environment interaction</h2>
+          <p class="section-desc"><p>Visualize genotype-environment interaction patterns, rank genotypes within environments, compute genotype, environment, and genotype-environment effects; cluster environments, and compute parametric and non-parametric stability indexes</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      
+    </tbody><tbody>
+      
       <tr>
-        
-        <td>
-          <p><code><a href="Annicchiarico.html">Annicchiarico()</a></code> </p>
-        </td>
-        <td><p>Annicchiarico's genotypic confidence index</p></td>
-      </tr><tr>
+        <th colspan="2">
+          <h3 id="section-initial-approaches" class="hasAnchor"><a href="#section-initial-approaches" class="anchor"></a>Initial approaches</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="anova_ind.html">anova_ind()</a></code> </p>
@@ -524,24 +712,6 @@
           <p><code><a href="anova_joint.html">anova_joint()</a></code> </p>
         </td>
         <td><p>Joint analysis of variance</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="corr_stab_ind.html">corr_stab_ind()</a></code> </p>
-        </td>
-        <td><p>Correlation between stability indexes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ecovalence.html">ecovalence()</a></code> </p>
-        </td>
-        <td><p>Stability analysis based on Wricke's model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="env_dissimilarity.html">env_dissimilarity()</a></code> </p>
-        </td>
-        <td><p>Dissimilarity between environments</p></td>
       </tr><tr>
         
         <td>
@@ -563,12 +733,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="ge_factanal.html">ge_factanal()</a></code> </p>
-        </td>
-        <td><p>Stability analysis and environment stratification</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="ge_means.html">ge_means()</a></code> </p>
         </td>
         <td><p>Genotype-environment means</p></td>
@@ -578,6 +742,61 @@
           <p><code><a href="ge_plot.html">ge_plot()</a></code> </p>
         </td>
         <td><p>Graphical analysis of genotype-vs-environment interaction</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ge_winners.html">ge_winners()</a></code> </p>
+        </td>
+        <td><p>Genotype-environment winners</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_balanced_trial.html">is_balanced_trial()</a></code> </p>
+        </td>
+        <td><p>Check if a data set is balanced</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-parametric-methods" class="hasAnchor"><a href="#section-parametric-methods" class="anchor"></a>Parametric methods</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="Annicchiarico.html">Annicchiarico()</a></code> </p>
+        </td>
+        <td><p>Annicchiarico's genotypic confidence index</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="corr_stab_ind.html">corr_stab_ind()</a></code> </p>
+        </td>
+        <td><p>Correlation between stability indexes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ecovalence.html">ecovalence()</a></code> </p>
+        </td>
+        <td><p>Stability analysis based on Wricke's model</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="env_dissimilarity.html">env_dissimilarity()</a></code> </p>
+        </td>
+        <td><p>Dissimilarity between environments</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ge_factanal.html">ge_factanal()</a></code> </p>
+        </td>
+        <td><p>Stability analysis and environment stratification</p></td>
       </tr><tr>
         
         <td>
@@ -593,33 +812,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="ge_winners.html">ge_winners()</a></code> </p>
-        </td>
-        <td><p>Genotype-environment winners</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="is_balanced_trial.html">is_balanced_trial()</a></code> </p>
-        </td>
-        <td><p>Check if a data set is balanced</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Fox.html">Fox()</a></code> </p>
-        </td>
-        <td><p>Fox's stability function</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="gai.html">gai()</a></code> </p>
         </td>
         <td><p>Geometric adaptability index</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Huehn.html">Huehn()</a></code> </p>
-        </td>
-        <td><p>Huehn's stability statistics</p></td>
       </tr><tr>
         
         <td>
@@ -689,18 +884,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="print.Fox.html">print(<i>&lt;Fox&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print an object of class Fox</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.Huehn.html">print(<i>&lt;Huehn&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print an object ofclass <code>Huehn</code></p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="print.ge_factanal.html">print(<i>&lt;ge_factanal&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print an object of class ge_factanal</p></td>
@@ -725,15 +908,58 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="print.superiority.html">print(<i>&lt;superiority&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print an object ofclass <code>superiority</code></p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="print.Schmildt.html">print(<i>&lt;Schmildt&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print an object of class Schmildt</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="Schmildt.html">Schmildt()</a></code> </p>
+        </td>
+        <td><p>Schmildt's genotypic confidence index</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-non-parametric-methods" class="hasAnchor"><a href="#section-non-parametric-methods" class="anchor"></a>Non-parametric methods</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="Fox.html">Fox()</a></code> </p>
+        </td>
+        <td><p>Fox's stability function</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="Huehn.html">Huehn()</a></code> </p>
+        </td>
+        <td><p>Huehn's stability statistics</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.Fox.html">print(<i>&lt;Fox&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an object of class Fox</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.Huehn.html">print(<i>&lt;Huehn&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an object ofclass <code>Huehn</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.superiority.html">print(<i>&lt;superiority&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an object ofclass <code>superiority</code></p></td>
       </tr><tr>
         
         <td>
@@ -755,12 +981,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="Schmildt.html">Schmildt()</a></code> </p>
-        </td>
-        <td><p>Schmildt's genotypic confidence index</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="Thennarasu.html">Thennarasu()</a></code> </p>
         </td>
         <td><p>Thennarasu's stability statistics</p></td>
@@ -772,30 +992,30 @@
           <p class="section-desc"><p>Useful functions for biometric models</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-correlation-coefficient" class="hasAnchor"><a href="#section-correlation-coefficient" class="anchor"></a>Correlation coefficient</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
           <p><code><a href="as.lpcor.html">as.lpcor()</a></code> </p>
         </td>
         <td><p>Coerce to an object of class lpcor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="can_corr.html">can_corr()</a></code> </p>
-        </td>
-        <td><p>Canonical correlation analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clustering.html">clustering()</a></code> </p>
-        </td>
-        <td><p>Clustering analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="colindiag.html">colindiag()</a></code> </p>
-        </td>
-        <td><p>Collinearity Diagnostics</p></td>
       </tr><tr>
         
         <td>
@@ -829,18 +1049,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="find_outliers.html">find_outliers()</a></code> </p>
-        </td>
-        <td><p>Find possible outliers in a dataset</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gafem.html">gafem()</a></code> </p>
-        </td>
-        <td><p>Genotype analysis by fixed-effect models</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="is.lpcor.html">is.lpcor()</a></code> </p>
         </td>
         <td><p>Coerce to an object of class lpcor</p></td>
@@ -850,6 +1058,86 @@
           <p><code><a href="lpcor.html">lpcor()</a></code> </p>
         </td>
         <td><p>Linear and Partial Correlation Coefficients</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pairs_mantel.html">pairs_mantel()</a></code> </p>
+        </td>
+        <td><p>Mantel test for a set of correlation matrices</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_ci.html">plot_ci()</a></code> </p>
+        </td>
+        <td><p>Plot the confidence interval for correlation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot.corr_coef.html">plot(<i>&lt;corr_coef&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Create a correlation heat map</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.corr_coef.html">print(<i>&lt;corr_coef&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an object of class corr_coef</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.lpcor.html">print(<i>&lt;lpcor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print the partial correlation coefficients</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-canonical-correlation-coefficient" class="hasAnchor"><a href="#section-canonical-correlation-coefficient" class="anchor"></a>Canonical correlation coefficient</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="can_corr.html">can_corr()</a></code> </p>
+        </td>
+        <td><p>Canonical correlation analysis</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot.can_cor.html">plot(<i>&lt;can_cor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plots an object of class can_cor</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.can_cor.html">print(<i>&lt;can_cor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an object of class can_cor</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-clustering-analysis" class="hasAnchor"><a href="#section-clustering-analysis" class="anchor"></a>Clustering analysis</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="clustering.html">clustering()</a></code> </p>
+        </td>
+        <td><p>Clustering analysis</p></td>
       </tr><tr>
         
         <td>
@@ -865,15 +1153,34 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="non_collinear_vars.html">non_collinear_vars()</a></code> </p>
+          <p><code><a href="plot.clustering.html">plot(<i>&lt;clustering&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Select a set of predictors with minimal multicollinearity</p></td>
+        <td><p>Plot an object of class clustering</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-path-analysis" class="hasAnchor"><a href="#section-path-analysis" class="anchor"></a>Path analysis</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="colindiag.html">colindiag()</a></code> </p>
+        </td>
+        <td><p>Collinearity Diagnostics</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="pairs_mantel.html">pairs_mantel()</a></code> </p>
+          <p><code><a href="non_collinear_vars.html">non_collinear_vars()</a></code> </p>
         </td>
-        <td><p>Mantel test for a set of correlation matrices</p></td>
+        <td><p>Select a set of predictors with minimal multicollinearity</p></td>
       </tr><tr>
         
         <td>
@@ -883,10 +1190,29 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="plot_ci.html">plot_ci()</a></code> </p>
+          <p><code><a href="print.colindiag.html">print(<i>&lt;colindiag&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Plot the confidence interval for correlation</p></td>
+        <td><p>Print an object of class colindiag</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="print.path_coeff.html">print(<i>&lt;path_coeff&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an object of class path_coeff</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-plot-two-way-data" class="hasAnchor"><a href="#section-plot-two-way-data" class="anchor"></a>Plot two-way data</h2>
+          <p class="section-desc"><p>Create bar or line plots for two-way data quickly</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="plot_factbars.html">plot_factbars()</a></code> </p>
@@ -907,63 +1233,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="plot.can_cor.html">plot(<i>&lt;can_cor&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plots an object of class can_cor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.corr_coef.html">plot(<i>&lt;corr_coef&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Create a correlation heat map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.clustering.html">plot(<i>&lt;clustering&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot an object of class clustering</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="plot.resp_surf.html">plot(<i>&lt;resp_surf&gt;</i>)</a></code> </p>
         </td>
         <td><p>Plot the response surface model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.gafem.html">plot(<i>&lt;gafem&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Several types of residual plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.colindiag.html">print(<i>&lt;colindiag&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print an object of class colindiag</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.can_cor.html">print(<i>&lt;can_cor&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print an object of class can_cor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.corr_coef.html">print(<i>&lt;corr_coef&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print an object of class corr_coef</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.lpcor.html">print(<i>&lt;lpcor&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print the partial correlation coefficients</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.path_coeff.html">print(<i>&lt;path_coeff&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print an object of class path_coeff</p></td>
       </tr><tr>
         
         <td>
@@ -978,6 +1250,11 @@
           <p class="section-desc"><p>Useful functions for computing descriptive statistics</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -987,23 +1264,153 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="utils_stats.html">av_dev()</a></code> <code><a href="utils_stats.html">ci_mean()</a></code> <code><a href="utils_stats.html">cv()</a></code> <code><a href="utils_stats.html">freq_table()</a></code> <code><a href="utils_stats.html">hmean()</a></code> <code><a href="utils_stats.html">hm_mean()</a></code> <code><a href="utils_stats.html">gmean()</a></code> <code><a href="utils_stats.html">gm_mean()</a></code> <code><a href="utils_stats.html">kurt()</a></code> <code><a href="utils_stats.html">range_data()</a></code> <code><a href="utils_stats.html">sd_amo()</a></code> <code><a href="utils_stats.html">sd_pop()</a></code> <code><a href="utils_stats.html">sem()</a></code> <code><a href="utils_stats.html">skew()</a></code> <code><a href="utils_stats.html">sum_dev()</a></code> <code><a href="utils_stats.html">sum_sq_dev()</a></code> <code><a href="utils_stats.html">var_pop()</a></code> <code><a href="utils_stats.html">var_amo()</a></code> <code><a href="utils_stats.html">valid_n()</a></code> <code><a href="utils_stats.html">cv_by()</a></code> <code><a href="utils_stats.html">max_by()</a></code> <code><a href="utils_stats.html">means_by()</a></code> <code><a href="utils_stats.html">min_by()</a></code> <code><a href="utils_stats.html">n_by()</a></code> <code><a href="utils_stats.html">sd_by()</a></code> <code><a href="utils_stats.html">sem_by()</a></code> </p>
+          <p><code><a href="find_outliers.html">find_outliers()</a></code> </p>
         </td>
-        <td><p>Useful functions for computing descriptive statistics</p></td>
+        <td><p>Find possible outliers in a dataset</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="inspect.html">inspect()</a></code> </p>
+        </td>
+        <td><p>Check for common erros in multi-environment trial data</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="utils_na.html">remove_rows_na()</a></code> <code><a href="utils_na.html">remove_cols_na()</a></code> <code><a href="utils_na.html">has_na()</a></code> <code><a href="utils_na.html">replace_na()</a></code> <code><a href="utils_na.html">random_na()</a></code> </p>
         </td>
         <td><p>Utilities for handling with NA values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="utils_stats.html">av_dev()</a></code> <code><a href="utils_stats.html">ci_mean()</a></code> <code><a href="utils_stats.html">cv()</a></code> <code><a href="utils_stats.html">freq_table()</a></code> <code><a href="utils_stats.html">hmean()</a></code> <code><a href="utils_stats.html">hm_mean()</a></code> <code><a href="utils_stats.html">gmean()</a></code> <code><a href="utils_stats.html">gm_mean()</a></code> <code><a href="utils_stats.html">kurt()</a></code> <code><a href="utils_stats.html">range_data()</a></code> <code><a href="utils_stats.html">sd_amo()</a></code> <code><a href="utils_stats.html">sd_pop()</a></code> <code><a href="utils_stats.html">sem()</a></code> <code><a href="utils_stats.html">skew()</a></code> <code><a href="utils_stats.html">sum_dev()</a></code> <code><a href="utils_stats.html">sum_sq_dev()</a></code> <code><a href="utils_stats.html">var_pop()</a></code> <code><a href="utils_stats.html">var_amo()</a></code> <code><a href="utils_stats.html">valid_n()</a></code> <code><a href="utils_stats.html">cv_by()</a></code> <code><a href="utils_stats.html">max_by()</a></code> <code><a href="utils_stats.html">means_by()</a></code> <code><a href="utils_stats.html">min_by()</a></code> <code><a href="utils_stats.html">n_by()</a></code> <code><a href="utils_stats.html">sd_by()</a></code> <code><a href="utils_stats.html">sem_by()</a></code> </p>
+        </td>
+        <td><p>Useful functions for computing descriptive statistics</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-helper" class="hasAnchor"><a href="#section-helper" class="anchor"></a>Helper</h2>
-          <p class="section-desc"><p>Helper functions for metan package</p></p>
+          <h2 id="section-data-manipulation" class="hasAnchor"><a href="#section-data-manipulation" class="anchor"></a>Data manipulation</h2>
+          <p class="section-desc"><p>Utilities for handling with columns, rows, numbers, strings, and matrices.</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-numbers-and-strings" class="hasAnchor"><a href="#section-numbers-and-strings" class="anchor"></a>Numbers and strings</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="utils_num_str.html">all_upper_case()</a></code> <code><a href="utils_num_str.html">all_lower_case()</a></code> <code><a href="utils_num_str.html">all_title_case()</a></code> <code><a href="utils_num_str.html">extract_number()</a></code> <code><a href="utils_num_str.html">extract_string()</a></code> <code><a href="utils_num_str.html">find_text_in_num()</a></code> <code><a href="utils_num_str.html">has_text_in_num()</a></code> <code><a href="utils_num_str.html">remove_space()</a></code> <code><a href="utils_num_str.html">remove_strings()</a></code> <code><a href="utils_num_str.html">replace_number()</a></code> <code><a href="utils_num_str.html">replace_string()</a></code> <code><a href="utils_num_str.html">round_cols()</a></code> <code><a href="utils_num_str.html">tidy_strings()</a></code> </p>
+        </td>
+        <td><p>Utilities for handling with numbers and strings</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-columns-and-rows" class="hasAnchor"><a href="#section-columns-and-rows" class="anchor"></a>Columns and rows</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="utils_rows_cols.html">add_cols()</a></code> <code><a href="utils_rows_cols.html">add_rows()</a></code> <code><a href="utils_rows_cols.html">all_pairs()</a></code> <code><a href="utils_rows_cols.html">colnames_to_lower()</a></code> <code><a href="utils_rows_cols.html">colnames_to_upper()</a></code> <code><a href="utils_rows_cols.html">colnames_to_title()</a></code> <code><a href="utils_rows_cols.html">column_to_first()</a></code> <code><a href="utils_rows_cols.html">column_to_last()</a></code> <code><a href="utils_rows_cols.html">column_exists()</a></code> <code><a href="utils_rows_cols.html">concatenate()</a></code> <code><a href="utils_rows_cols.html">get_levels()</a></code> <code><a href="utils_rows_cols.html">get_level_size()</a></code> <code><a href="utils_rows_cols.html">reorder_cols()</a></code> <code><a href="utils_rows_cols.html">remove_cols()</a></code> <code><a href="utils_rows_cols.html">remove_rows()</a></code> <code><a href="utils_rows_cols.html">select_first_col()</a></code> <code><a href="utils_rows_cols.html">select_last_col()</a></code> <code><a href="utils_rows_cols.html">select_numeric_cols()</a></code> <code><a href="utils_rows_cols.html">select_non_numeric_cols()</a></code> <code><a href="utils_rows_cols.html">select_cols()</a></code> <code><a href="utils_rows_cols.html">select_rows()</a></code> </p>
+        </td>
+        <td><p>Utilities for handling with rows and columns</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-matrices" class="hasAnchor"><a href="#section-matrices" class="anchor"></a>Matrices</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="utils_mat.html">make_upper_tri()</a></code> <code><a href="utils_mat.html">make_lower_tri()</a></code> <code><a href="utils_mat.html">make_sym()</a></code> <code><a href="utils_mat.html">tidy_sym()</a></code> </p>
+        </td>
+        <td><p>Utilities for handling with matrices</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="make_long.html">make_long()</a></code> </p>
+        </td>
+        <td><p>Two-way table to a 'long' format</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="make_mat.html">make_mat()</a></code> </p>
+        </td>
+        <td><p>Make a two-way table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reorder_cormat.html">reorder_cormat()</a></code> </p>
+        </td>
+        <td><p>Reorder a correlation matrix</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="solve_svd.html">solve_svd()</a></code> </p>
+        </td>
+        <td><p>Pseudoinverse of a square matrix</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-select-helpers" class="hasAnchor"><a href="#section-select-helpers" class="anchor"></a>Select helpers</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="Select_helper.html">difference_var()</a></code> <code><a href="Select_helper.html">intersect_var()</a></code> <code><a href="Select_helper.html">union_var()</a></code> <code><a href="Select_helper.html">width_of()</a></code> <code><a href="Select_helper.html">width_greater_than()</a></code> <code><a href="Select_helper.html">width_less_than()</a></code> <code><a href="Select_helper.html">lower_case_only()</a></code> <code><a href="Select_helper.html">upper_case_only()</a></code> <code><a href="Select_helper.html">title_case_only()</a></code> </p>
+        </td>
+        <td><p>Select helper</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-other-useful-functions" class="hasAnchor"><a href="#section-other-useful-functions" class="anchor"></a>Other useful functions</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -1049,45 +1456,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="inspect.html">inspect()</a></code> </p>
+          <p><code><a href="metan-package.html">metan-package</a></code> </p>
         </td>
-        <td><p>Check for common erros in multi-environment trial data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Select_helper.html">difference_var()</a></code> <code><a href="Select_helper.html">intersect_var()</a></code> <code><a href="Select_helper.html">union_var()</a></code> <code><a href="Select_helper.html">width_of()</a></code> <code><a href="Select_helper.html">width_greater_than()</a></code> <code><a href="Select_helper.html">width_less_than()</a></code> <code><a href="Select_helper.html">lower_case_only()</a></code> <code><a href="Select_helper.html">upper_case_only()</a></code> <code><a href="Select_helper.html">title_case_only()</a></code> </p>
-        </td>
-        <td><p>Select helper</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_long.html">make_long()</a></code> </p>
-        </td>
-        <td><p>Two-way table to a 'long' format</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="utils_mat.html">make_upper_tri()</a></code> <code><a href="utils_mat.html">make_lower_tri()</a></code> <code><a href="utils_mat.html">make_sym()</a></code> <code><a href="utils_mat.html">tidy_sym()</a></code> </p>
-        </td>
-        <td><p>Utilities for handling with matrices</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_mat.html">make_mat()</a></code> </p>
-        </td>
-        <td><p>Make a two-way table</p></td>
+        <td><p>Multi-Environment Trial Analysis</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="rbind_fill.html">rbind_fill()</a></code> </p>
         </td>
         <td><p>Combines data.frames by row filling missing values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="reorder_cormat.html">reorder_cormat()</a></code> </p>
-        </td>
-        <td><p>Reorder a correlation matrix</p></td>
       </tr><tr>
         
         <td>
@@ -1100,12 +1477,6 @@
           <p><code><a href="residual_plots.html">residual_plots()</a></code> </p>
         </td>
         <td><p>Several types of residual plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="solve_svd.html">solve_svd()</a></code> </p>
-        </td>
-        <td><p>Pseudoinverse of a square matrix</p></td>
       </tr><tr>
         
         <td>
@@ -1130,32 +1501,6 @@
           <p><code><a href="tukey_hsd.html">tukey_hsd()</a></code> </p>
         </td>
         <td><p>Tukey Honest Significant Differences</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="utils_num_str.html">all_upper_case()</a></code> <code><a href="utils_num_str.html">all_lower_case()</a></code> <code><a href="utils_num_str.html">all_title_case()</a></code> <code><a href="utils_num_str.html">extract_number()</a></code> <code><a href="utils_num_str.html">extract_string()</a></code> <code><a href="utils_num_str.html">find_text_in_num()</a></code> <code><a href="utils_num_str.html">has_text_in_num()</a></code> <code><a href="utils_num_str.html">remove_space()</a></code> <code><a href="utils_num_str.html">remove_strings()</a></code> <code><a href="utils_num_str.html">replace_number()</a></code> <code><a href="utils_num_str.html">replace_string()</a></code> <code><a href="utils_num_str.html">round_cols()</a></code> <code><a href="utils_num_str.html">tidy_strings()</a></code> </p>
-        </td>
-        <td><p>Utilities for handling with numbers and strings</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="utils_rows_cols.html">add_cols()</a></code> <code><a href="utils_rows_cols.html">add_rows()</a></code> <code><a href="utils_rows_cols.html">all_pairs()</a></code> <code><a href="utils_rows_cols.html">colnames_to_lower()</a></code> <code><a href="utils_rows_cols.html">colnames_to_upper()</a></code> <code><a href="utils_rows_cols.html">colnames_to_title()</a></code> <code><a href="utils_rows_cols.html">column_to_first()</a></code> <code><a href="utils_rows_cols.html">column_to_last()</a></code> <code><a href="utils_rows_cols.html">column_exists()</a></code> <code><a href="utils_rows_cols.html">concatenate()</a></code> <code><a href="utils_rows_cols.html">get_levels()</a></code> <code><a href="utils_rows_cols.html">get_level_size()</a></code> <code><a href="utils_rows_cols.html">reorder_cols()</a></code> <code><a href="utils_rows_cols.html">remove_cols()</a></code> <code><a href="utils_rows_cols.html">remove_rows()</a></code> <code><a href="utils_rows_cols.html">select_first_col()</a></code> <code><a href="utils_rows_cols.html">select_last_col()</a></code> <code><a href="utils_rows_cols.html">select_numeric_cols()</a></code> <code><a href="utils_rows_cols.html">select_non_numeric_cols()</a></code> <code><a href="utils_rows_cols.html">select_cols()</a></code> <code><a href="utils_rows_cols.html">select_rows()</a></code> </p>
-        </td>
-        <td><p>Utilities for handling with rows and columns</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-misc" class="hasAnchor"><a href="#section-misc" class="anchor"></a>Misc</h2>
-          <p class="section-desc"><p>Miscellaneous small functions</p></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="metan-package.html">metan-package</a></code> </p>
-        </td>
-        <td><p>Multi-Environment Trial Analysis</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -1164,6 +1509,11 @@
           <p class="section-desc"><p>Data for reproducible examples</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -1205,20 +1555,10 @@
     </table>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-ammi">AMMI</a></li>
-      <li><a href="#section-blup">BLUP</a></li>
-      <li><a href="#section-gge">GGE</a></li>
-      <li><a href="#section-mtsi">MTSI</a></li>
-      <li><a href="#section-stability">Stability</a></li>
-      <li><a href="#section-biometry">Biometry</a></li>
-      <li><a href="#section-descriptive">Descriptive</a></li>
-      <li><a href="#section-helper">Helper</a></li>
-      <li><a href="#section-misc">Misc</a></li>
-      <li><a href="#section-datasets">Datasets</a></li>
-    </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -1229,7 +1569,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

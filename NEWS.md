@@ -1,5 +1,9 @@
 # metan 1.4.0.9000
+## Minor changes
 * Remove dependency on dendextend
+* Update package site with [pkgdown v1.5.0](https://pkgdown.r-lib.org/news/index.html).
+
+
 
 # metan 1.4.0
 ## Bug fixes

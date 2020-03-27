@@ -1,9 +1,12 @@
 url: https://tiagoolivoto.github.io/metan/
 
-title: metan
+home:
+  title: metan
+  description: Performs stability analysis of multi-environment trial data using parametric and non-parametric methods
+
 template:
   params:
-    bootswatch: spacelab
+    bootswatch: cerulean
     ganalytics: UA-140429633-1
     docsearch:
       api_key: ef40e3bab94bb0e1d687fd3844052701
@@ -25,26 +28,30 @@ navbar:
       href: index.html
     - text: "Examples"
       menu:
+      - text: "Helper functions"
+        href: articles/vignettes_helper.html
+      - text: "Utilities"
+        href: articles/vignettes_utilities.html
+      - text: "--------------------"
+      - text: "Descriptive statistics"
+        href: articles/vignettes_descriptive.html
+      - text: "Biometry"
+        href: articles/vignettes_biometry.html
+      - text: "--------------------"
       - text: "Cross-validation"
         href: articles/vignettes_cross-validation.html
       - text: "AMMI"
         href: articles/vignettes_ammi.html
       - text: "BLUP"
         href: articles/vignettes_blup.html
-      - text: "Descriptive statistics"
-        href: articles/vignettes_descriptive.html
       - text: "GGE"
         href: articles/vignettes_gge.html
       - text: "Stability"
         href: articles/vignettes_stability.html
+      - text: "--------------------"
       - text: "Multivariate indexes"
         href: articles/vignettes_indexes.html
-      - text: "Biometry"
-        href: articles/vignettes_biometry.html
-      - text: "Helper"
-        href: articles/vignettes_helper.html
-      - text: "Utilities"
-        href: articles/vignettes_utilities.html
+
     - text: "Functions"
       href: reference/index.html
     - text: News
@@ -62,54 +69,83 @@ navbar:
       - text: Licence
         href: LICENSE.html
   right:
-    - text: "Github"
-      href: https://github.com/TiagoOlivoto
-    - text: "ResearchGate"
+    - text: "RG"
       href: https://www.researchgate.net/profile/Tiago_Olivoto2
-    - text: "Mendeley"
+    - icon: "fa-github"
+      href: https://github.com/TiagoOlivoto
+    - icon: "fab fa-twitter"
+      href: https://twitter.com/tolivoto
+    - icon: "fab fa-mendeley"
       href: https://www.mendeley.com/profiles/tiago-olivoto/
 
-
 reference:
+  - title: "One-way analysis"
+    desc: "Analyze genotypes in single environment trials using fixed- or mixed-effect models"
+    contents:
+      - gafem
+      - gamem
+      - plot.gafem
+      - plot.gamem
+      - predict.gamem
+      - print.gamem
+
+
   - title: "AMMI"
     desc: "Functions for AMMI analysis"
+  - subtitle: "Cross-validation"
     contents:
-      - AMMI_indexes
       - cv_ammi
       - cv_ammif
+  - subtitle: "Fit models"
+    contents:
+      - AMMI_indexes
       - impute_missing_val
       - performs_ammi
+      - waas
+      - waas_means
+  - subtitle: "Plot models"
+    contents:
       - plot.cvalidation
       - plot.performs_ammi
       - plot.waas
+  - subtitle: "Predict models"
+    contents:
       - predict.waas
       - predict.performs_ammi
+  - subtitle: "Print models"
+    contents:
       - print.AMMI_indexes
       - print.performs_ammi
       - print.waas
       - print.waas_means
-      - waas
-      - waas_means
+
+
   - title: "BLUP"
-    desc: "Functions for BLUP prediction in multi-environment trial analysis"
+    desc: "Analyze genotypes in single- or multi-environment trials using mixed-effect models with variance components and genetic parameter estimation."
     contents:
       - cv_blup
-      - gamem
+  - subtitle: "Fit models"
+    contents:
       - gamem_met
+      - Resende_indexes
+      - waasb
+      - wsmp
+  - subtitle: "Plot models"
+    contents:
       - plot_blup
       - plot_eigen
       - plot_scores
       - plot_waasby
       - plot.wsmp
       - plot.waasb
-      - plot.gamem
-      - predict.gamem
+  - subtitle: "Predict models"
+    contents:
       - predict.waasb
+  - subtitle: "Print models"
+    contents:
       - print.waasb
-      - print.gamem
-      - Resende_indexes
-      - waasb
-      - wsmp
+
+
   - title: "GGE"
     desc: "Functions for GGE analysis"
     contents:
@@ -117,36 +153,42 @@ reference:
       - gtb
       - plot.gge
       - predict.gge
-  - title: "MTSI"
-    desc: "Multi-trait stability indexes"
+
+
+  - title: "Selection indexes"
+    desc: "Selection indexes and simultaneous selection for mean performance and stability"
     contents:
       - fai_blup
       - mtsi
       - plot.fai_blup
       - plot.mtsi
       - print.mtsi
-  - title: "Stability"
-    desc: "Useful functions for stability analysis"
+
+
+  - title: "Genotype-environment interaction"
+    desc: "Visualize genotype-environment interaction patterns, rank genotypes within environments, compute genotype, environment, and genotype-environment effects; cluster environments, and compute parametric and non-parametric stability indexes"
     contents:
-      - Annicchiarico
+  - subtitle: "Initial approaches"
+    contents:
       - anova_ind
       - anova_joint
-      - corr_stab_ind
-      - ecovalence
-      - env_dissimilarity
       - ge_cluster
       - ge_details
       - ge_effects
-      - ge_factanal
       - ge_means
       - ge_plot
-      - ge_reg
-      - ge_stats
       - ge_winners
       - is_balanced_trial
-      - Fox
+  - subtitle: "Parametric methods"
+    contents:
+      - Annicchiarico
+      - corr_stab_ind
+      - ecovalence
+      - env_dissimilarity
+      - ge_factanal
+      - ge_reg
+      - ge_stats
       - gai
-      - Huehn
       - plot.anova_joint
       - plot.env_dissimilarity
       - plot.ge_cluster
@@ -158,65 +200,110 @@ reference:
       - print.anova_joint
       - print.ecovalence
       - print.env_dissimilarity
-      - print.Fox
-      - print.Huehn
       - print.ge_factanal
       - print.ge_reg
       - print.ge_stats
       - print.Shukla
-      - print.superiority
       - print.Schmildt
+      - Schmildt
+  - subtitle: "Non-parametric methods"
+    contents:
+      - Fox
+      - Huehn
+      - print.Fox
+      - print.Huehn
+      - print.superiority
       - print.Thennarasu
       - Shukla
       - superiority
-      - Schmildt
       - Thennarasu
+
+
+
   - title: "Biometry"
     desc: "Useful functions for biometric models"
     contents:
+  - subtitle: "Correlation coefficient"
+    contents:
       - as.lpcor
-      - can_corr
-      - clustering
-      - colindiag
       - corr_coef
       - corr_plot
       - corr_ci
       - corr_ss
       - covcor_design
-      - find_outliers
-      - gafem
       - is.lpcor
       - lpcor
+      - pairs_mantel
+      - plot_ci
+      - plot.corr_coef
+      - print.corr_coef
+      - print.lpcor
+  - subtitle: "Canonical correlation coefficient"
+    contents:
+      - can_corr
+      - plot.can_cor
+      - print.can_cor
+  - subtitle: "Clustering analysis"
+    contents:
+      - clustering
       - mahala
       - mahala_design
+      - plot.clustering
+  - subtitle: "Path analysis"
+    contents:
+      - colindiag
       - non_collinear_vars
-      - pairs_mantel
       - path_coeff
-      - plot_ci
+      - print.colindiag
+      - print.path_coeff
+
+
+  - title: "Plot two-way data"
+    desc: "Create bar or line plots for two-way data quickly"
+    contents:
       - plot_factbars
       - plot_factlines
       - plot_lines
-      - plot.can_cor
-      - plot.corr_coef
-      - plot.clustering
       - plot.resp_surf
-      - plot.gafem
-      - print.colindiag
-      - print.can_cor
-      - print.corr_coef
-      - print.lpcor
-      - print.path_coeff
       - resp_surf
+
   - title: "Descriptive"
     desc: "Useful functions for computing descriptive statistics"
     contents:
       - desc_stat
       - desc_wider
-      - gm_mean
-      - has_na
+      - find_outliers
+      - inspect
+      - utils_na
       - utils_stats
-  - title: "Helper"
-    desc: "Helper functions for metan package"
+
+
+  - title: "Data manipulation"
+    desc: "Utilities for handling with columns, rows, numbers, strings, and matrices."
+    contents:
+  - subtitle: "Numbers and strings"
+    contents:
+      - utils_num_str
+  - subtitle: "Columns and rows"
+    contents:
+      - utils_rows_cols
+  - subtitle: "Matrices"
+    contents:
+      - make_lower_tri
+      - make_long
+      - make_mat
+      - make_sym
+      - make_upper_tri
+      - reorder_cormat
+      - solve_svd
+
+
+  - subtitle: "Select helpers"
+    contents:
+      - Select_helper
+
+
+  - subtitle: "Other useful functions"
     contents:
       - add_class
       - arrange_ggplot
@@ -226,32 +313,18 @@ reference:
       - doo
       - get_model_data
       - gmd
-      - inspect
       - is.split_factors
-      - lower_case_only
-      - make_long
-      - make_lower_tri
-      - make_mat
-      - make_sym
-      - make_upper_tri
+      - metan-package
       - rbind_fill
-      - reorder_cormat
       - resca
       - residual_plots
       - split_factors
-      - solve_svd
       - stars_pval
       - to_factor
       - themes
       - tukey_hsd
-      - utils_num_str
-      - utils_rows_cols
 
 
-  - title: "Misc"
-    desc: "Miscellaneous small functions"
-    contents:
-      - metan-package
   - title: "Datasets"
     desc: "Data for reproducible examples"
     contents:
