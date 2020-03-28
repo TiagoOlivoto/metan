@@ -59,38 +59,32 @@
 fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   ideotype.D <- unlist(strsplit(DI, split=", "))
   ideotype.U <- unlist(strsplit(UI, split=", "))
-  if (!has_class(.data, c("data.frame", "tbl_df", "tbl", "waasb"))) {
-    stop("The .data must be an object of class 'waasb' or a data.frame/tbl_df.")
+  if (!has_class(.data, c("data.frame", "tbl_df", "tbl", "waasb", "gamem"))) {
+    stop("The .data must be an object of class 'waasb', 'gamem' or a data.frame/tbl_df.")
   }
-  if(class(.data) != "waasb" & any(sapply(.data, is.numeric)) == FALSE){
+  if(!has_class(.data, c("waasb", "gamem")) & any(sapply(.data, is.numeric)) == FALSE){
     stop("All columns in .data must be numeric.")
   }
-  if(class(.data) != "waasb" & has_rownames(.data) == FALSE){
-    stop("Please, provide rownames (with genotype's code).")
-  }
-  nvar <- ifelse(class(.data) == "waasb", length(.data), ncol(.data))
+  nvar <- ifelse(has_class(.data, c("waasb", "gamem")), length(.data), ncol(.data))
   if (nvar == 1) {
     stop("The multitrait stability index cannot be computed with one single variable.")
   }
   if (length(ideotype.D) != nvar || length(ideotype.U) != nvar) {
     stop("The length of DI and UI must be the same length of data.")
   }
-  if (class(.data) == "waasb") {
-    datt <- .data[[1]][["BLUPgen"]]
-    data <- data.frame(do.call(cbind, lapply(.data, function(x) {
-      val <- arrange(x[["BLUPgen"]], GEN)$Predicted
-    }))) %>% mutate(gen = datt %>% arrange(GEN) %>% pull(GEN)) %>%
-      select(gen, everything())
-    means <- data[, 2:ncol(data)]
-    rownames(means) <- data[, 1]
+  if(has_class(.data, c("gamem", "waasb"))){
+    means <- gmd(.data, "blupg") %>%
+      column_to_rownames("gen")
   } else {
-    data <- .data
+    if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
+      stop("Please, provide rownames (with genotype's code).")
+    }
     means <- .data
   }
   if (is.null(SI)) {
     ngs <- NULL
   } else {
-    ngs <- round(nrow(data) * (SI/100), 0)
+    ngs <- round(nrow(means) * (SI/100), 0)
   }
   if (any(apply(means, 2, function(x) sd(x) == 0) == TRUE)) {
     nam <- paste(names(means[, apply(means, 2, function(x) sd(x) ==
@@ -268,13 +262,13 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
       cat("\n-----------------------------------------------------------------------------------\n")
     }
   }
-  return(structure(list(data = data, FA = data.frame(fa), canonical.loadings = data.frame(canonical.loadings),
-                        FAI = ideotype.rank, selection.diferential = selection.diferential),
+  return(structure(list(data = means,
+                        FA = data.frame(fa),
+                        canonical.loadings = data.frame(canonical.loadings),
+                        FAI = ideotype.rank,
+                        selection.diferential = selection.diferential),
                    class = "fai_blup"))
 }
-
-
-
 
 
 
