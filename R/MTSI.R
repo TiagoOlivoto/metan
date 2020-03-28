@@ -188,7 +188,7 @@ mtsi <- function(.data,
   ideotypes.scores <- ideotypes.matrix %*% canonical.loadings
   gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
   MTSI <- sort(apply(gen_ide, 1, function(x) sqrt(sum(x^2))), decreasing = FALSE)
-  contr.factor <- data.frame((gen_ide^2/apply(gen_ide, 1, function(x) sum(x^2))) * 100) %>%
+  contr.factor <- data.frame((sqrt(gen_ide^2)/apply(gen_ide, 1, function(x) sum(sqrt(x^2)))) * 100) %>%
     rownames_to_column("Gen") %>%
     as_tibble()
   means.factor <- means[, names.pos.var.factor]
