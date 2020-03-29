@@ -2,6 +2,8 @@
 ## Minor changes
 * Remove dependency on dendextend
 * Update package site with [pkgdown v1.5.0](https://pkgdown.r-lib.org/news/index.html).
+* Update documentation in `ge_plot()`
+* Allow using `fai_blup()` with `gamem()`
 
 
 
