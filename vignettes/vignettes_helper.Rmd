@@ -207,11 +207,11 @@ reorder_cormat(cor_mat) %>% print_table(rownames = TRUE)
 # Compute harmonic and geometric means
 ```{r, message=FALSE }
 num <- c(1:20, 30, 50)
-hm_mean(num)
-gm_mean(num)
+hmean(num)
+gmean(num)
 
-hm_mean(data_ge2) %>% round(2)
-gm_mean(data_ge2, EP, EL, CL)
+hmean(data_ge2) %>% round(2)
+gmean(data_ge2, EP, EL, CL)
 ```
 
 

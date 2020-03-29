@@ -41,8 +41,7 @@ mean(data_ge2$PH)
 Consider that now we want to compute the mean value of PH for each level of the factor GEN. In other words, to compute the mean value of PH for each genotype. The solution using `stats::aggregate()` is then:
 
 ```{r}
-aggr <- 
-aggregate(data_ge2[, 4], list(data_ge2$GEN), mean)
+aggr <- aggregate(data_ge2[, 4], list(data_ge2$GEN), mean)
 print_table(aggr)
 ```
 

@@ -184,6 +184,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/metan-package.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/mgidi.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/mtsi.html</loc>
   </url>
   <url>
@@ -242,6 +245,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.gge.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/plot.mgidi.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.mtsi.html</loc>
@@ -347,6 +353,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.lpcor.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/print.mgidi.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.mtsi.html</loc>
