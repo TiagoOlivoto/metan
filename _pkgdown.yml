@@ -160,9 +160,13 @@ reference:
     contents:
       - fai_blup
       - mtsi
+      - mgidi
       - plot.fai_blup
+      - plot.mgidi
+      - print.mgidi
       - plot.mtsi
       - print.mtsi
+
 
 
   - title: "Genotype-environment interaction"
