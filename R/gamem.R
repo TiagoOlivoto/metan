@@ -132,7 +132,6 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       select({{gen}}, {{rep}}) %>%
       mutate_all(as.factor)
     vars <- .data %>% select({{resp}}, -names(factors))
-    has_text_in_num(vars)
     vars %<>% select_numeric_cols()
     factors %<>% set_names("GEN", "REP")
     listres <- list()
@@ -146,6 +145,9 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
+      if(has_na(data)){
+        data <- remove_rows_na(data, verbose = verbose) %>% droplevels()
+      }
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
       ovmean <- mean(data$Y)
@@ -250,7 +252,6 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       select({{gen}}, {{rep}}, {{block}}) %>%
       mutate_all(as.factor)
     vars <- .data %>% select({{resp}}, -names(factors))
-    has_text_in_num(vars)
     vars %<>% select_numeric_cols()
     factors %<>% set_names("GEN", "REP", "BLOCK")
     listres <- list()
@@ -264,6 +265,10 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
+      if(has_na(data)){
+        data <- remove_rows_na(data, verbose = verbose) %>% droplevels()
+        has_text_in_num(data)
+      }
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
       ovmean <- mean(data$Y)
