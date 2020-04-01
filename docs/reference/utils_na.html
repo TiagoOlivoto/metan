@@ -58,8 +58,10 @@
 has_na(): Check for NA values in the data and return a logical value.
 random_na(): Generate random NA values in a two-way table
 based on a desired proportion.
-remove_rows_na(): Remove rows with NA values.
 remove_cols_na(): Remove columns with NA values.
+remove_rows_na(): Remove rows with NA values.
+select_cols_na(): Select columns with NA values.
+select_rows_na(): Select rows with NA values.
 replace_na() Replace missing values
 
 " />
@@ -243,8 +245,10 @@ replace_na() Replace missing values
 <li><p><code>has_na()</code>: Check for <code>NA</code> values in the data and return a logical value.</p></li>
 <li><p><code>random_na()</code>: Generate random <code>NA</code> values in a two-way table
 based on a desired proportion.</p></li>
-<li><p><code>remove_rows_na()</code>: Remove rows with <code>NA</code> values.</p></li>
 <li><p><code>remove_cols_na()</code>: Remove columns with <code>NA</code> values.</p></li>
+<li><p><code>remove_rows_na()</code>: Remove rows with <code>NA</code> values.</p></li>
+<li><p><code>select_cols_na()</code>: Select columns with <code>NA</code> values.</p></li>
+<li><p><code>select_rows_na()</code>: Select rows with <code>NA</code> values.</p></li>
 <li><p><code>replace_na()</code> Replace missing values</p></li>
 </ul>
 
@@ -253,6 +257,10 @@ based on a desired proportion.</p></li>
     <pre class="usage"><span class='fu'>remove_rows_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>remove_cols_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='fu'>select_cols_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='fu'>select_rows_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>has_na</span>(<span class='no'>.data</span>)
 
@@ -340,7 +348,26 @@ are also allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 9</span><span> H12   3      2.00 0.782 0.386  13.7  47.5  25.3  14.3  18.9  139.  14.8  25.4
 #&gt; </span><span style='color: #555555;'>10</span><span> H13   1      2.52 1.09  0.434  16.1  51.7  28.2  16.6  23.9  199.  18    30.8
 #&gt; </span><span style='color: #555555;'># ... with 26 more rows, and 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>replace_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 17</span><span>
+#&gt; #   TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>select_cols_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with NAs: PH, EH, EP, CW, KW, NR, NKR, CDED, PERK</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 9</span><span>
+#&gt;       PH     EH     EP    CW    KW    NR   NKR   CDED  PERK
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>  
+#&gt; </span><span style='color: #555555;'> 2</span><span>  2.20  1.09   0.492  22.3  130.  16.4  24.8  0.619  85.2
+#&gt; </span><span style='color: #555555;'> 3</span><span>  2.29  1.15   0.502  29.6  176.  15.6  29.2  0.603  85.9
+#&gt; </span><span style='color: #555555;'> 4</span><span>  1.79  0.888  0.514  12.9  116.  14.8  33    0.596  89.8
+#&gt; </span><span style='color: #555555;'> 5</span><span> </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>  
+#&gt; </span><span style='color: #555555;'> 6</span><span>  2.27  1.11   0.491  12.5  128.  15.2  34.6  0.566  90.7
+#&gt; </span><span style='color: #555555;'> 7</span><span>  1.71  0.808  0.489  15.2  140.  15.6  36    0.552  90.3
+#&gt; </span><span style='color: #555555;'> 8</span><span>  2.09  1.06   0.509  13.5  114.  16.8  26.2  0.566  89.3
+#&gt; </span><span style='color: #555555;'> 9</span><span>  2.5   1.44   0.577  19.4  168.  16.4  35    0.562  89.6
+#&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>  
+#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>select_rows_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with NAs: 1, 5, 10</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 17</span><span>
+#&gt;   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> H1    1        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  15.7  49.9  30.5  16.6    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> H10   2        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  13.6  43.9  23.5  14.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> H12   1        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  14.4  49.2  28.4  15      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>replace_na</span>(<span class='no'>data_with_na</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 17</span><span>
 #&gt;    GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1      0    0     0      15.7  49.9  30.5  16.6   0      0    0     0  

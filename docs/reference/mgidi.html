@@ -255,10 +255,11 @@ factor analysis.</p></td>
     </tr>
     <tr>
       <th>ideotype</th>
-      <td><p>A vector of the same length of <code>.data</code> used to plan the
-ideotype. Use <code>'h'</code> to indicate the variables with increase in
-selction or <code>'l'</code> to indicate the variables with reduction in
-selection. For example, <code>order.y = c("h, h, l, h, l")</code>.</p></td>
+      <td><p>A vector of length <code>nvar</code> where <code>nvar</code> is the
+number of variables used to plan the ideotype. Use <code>'h'</code> to indicate
+the variables with increase in selction or <code>'l'</code> to indicate the
+variables with reduction in selection. For example, <code>ideotype = c("h,
+  h, l, h, l")</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -341,13 +342,6 @@ factor are.</p></li>
 #&gt; </span><span style='color: #555555;'>8</span><span> PH     0.019</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.879</span><span>          0.772       0.228 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.8713971 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Multi-trait genotype-ideotype distance index
-#&gt; -------------------------------------------------------------------------------
-#&gt;    H13     H5    H12     H2     H1     H7     H6    H11     H4     H8     H3 
-#&gt; 1.0162 1.7763 2.4402 2.4763 2.7679 2.7811 3.0251 3.1174 3.4399 3.4829 3.5435 
-#&gt;     H9    H10 
-#&gt; 4.0548 4.1596 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential 
 #&gt; -------------------------------------------------------------------------------

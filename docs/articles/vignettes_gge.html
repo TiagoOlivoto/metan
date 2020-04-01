@@ -176,7 +176,7 @@
       <h1 data-toc-skip>Analyzing multienvironment trials using GGE</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-03-28</h4>
+            <h4 class="date">2020-04-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_gge.Rmd"><code>vignettes/vignettes_gge.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_gge.Rmd</code></div>
@@ -310,8 +310,7 @@
 <a href="#biplot-type-3-which-won-where" class="anchor"></a>Biplot type 3: Which-won-where</h2>
 <p>In this biplot a polygon is drawn joining the genotypes (G7, G8, G9, G10, and G4) that are located farthest from the biplot origin so that all other genotypes are contained in the polygon. The vertex genotypes have the longest vectors, in their respective directions, which is a measure of responsiveness to environments. The vertex genotypes are, therefore, among the most responsive genotypes; all other genotypes are less responsive in their respective directions. A genotype located at the origin would rank the same in all environments and is not at all responsive to the environments.</p>
 <p>The perpendicular lines to the sides of the polygon divide the biplot into sectors. Each sector has a vertex genotype. For example, the sector with the vertex genotype G4 may be referred to as the G4 sector; and one environment (E9), fell in this sector. As a rule, the vertex genotype is the highest-yielding genotype in all environments that share the sector with it <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. In this case, G4 was the highest-yielding in E9, as shown in the two-way table above.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">gge_model = gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
-e </pre></body></html></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r">gge_model </pre></body></html></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-4-discriminativeness-vs--representativeness" class="section level2">

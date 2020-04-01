@@ -390,22 +390,34 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; </span><span style='color: #555555;'># ... with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># random effects</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"ranef"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $GEN
-#&gt; </span><span style='color: #555555;'># A tibble: 13 x 10</span><span>
-#&gt;    GEN         PH     ED       EL     CL     CW     KW      NR    TKW    NKE
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1     0.018</span><span style='text-decoration: underline;'>8</span><span>   2.36   0.020</span><span style='text-decoration: underline;'>8</span><span>   2.21   5.33    6.60  0.060</span><span style='text-decoration: underline;'>4</span><span>  36.4  -</span><span style='color: #BB0000;'>30.5</span><span> 
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10   -</span><span style='color: #BB0000;'>0.078</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>  -</span><span style='color: #BB0000;'>3.48</span><span>  -</span><span style='color: #BB0000;'>0.085</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>  -</span><span style='color: #BB0000;'>3.31</span><span>  -</span><span style='color: #BB0000;'>7.48</span><span>  -</span><span style='color: #BB0000;'>17.3</span><span>  -</span><span style='color: #BB0000;'>0.332</span><span>  -</span><span style='color: #BB0000;'>50.2</span><span>   14.9 
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11   -</span><span style='color: #BB0000;'>0.039</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>  -</span><span style='color: #BB0000;'>0.717</span><span> -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>  -</span><span style='color: #BB0000;'>1.89</span><span>  -</span><span style='color: #BB0000;'>4.20</span><span>   -</span><span style='color: #BB0000;'>4.02</span><span>  0.355  -</span><span style='color: #BB0000;'>20.7</span><span>   14.1 
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12    0.161   -</span><span style='color: #BB0000;'>0.115</span><span> -</span><span style='color: #BB0000;'>0.089</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>  -</span><span style='color: #BB0000;'>2.36</span><span>  -</span><span style='color: #BB0000;'>2.63</span><span>    1.02  0.355  -</span><span style='color: #BB0000;'>24.3</span><span>   34.9 
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13    0.264    2.44   0.090</span><span style='text-decoration: underline;'>5</span><span>  -</span><span style='color: #BB0000;'>1.05</span><span>   0.673  22.9   2.02     1.36  79.1 
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2    -</span><span style='color: #BB0000;'>0.007</span><span style='color: #BB0000;text-decoration: underline;'>67</span><span>  2.40   0.092</span><span style='text-decoration: underline;'>2</span><span>   1.53   1.12    8.90 -</span><span style='color: #BB0000;'>0.037</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>  20.1   -</span><span style='color: #BB0000;'>1.11</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3    -</span><span style='color: #BB0000;'>0.075</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span>  -</span><span style='color: #BB0000;'>0.696</span><span>  0.008</span><span style='text-decoration: underline;'>22</span><span>  0.109 -</span><span style='color: #BB0000;'>2.08</span><span>   -</span><span style='color: #BB0000;'>5.16</span><span> -</span><span style='color: #BB0000;'>0.725</span><span>   13.1  -</span><span style='color: #BB0000;'>33.4</span><span> 
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4    -</span><span style='color: #BB0000;'>0.071</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>  -</span><span style='color: #BB0000;'>1.78</span><span>   0.109   -</span><span style='color: #BB0000;'>0.693</span><span> -</span><span style='color: #BB0000;'>1.16</span><span>   -</span><span style='color: #BB0000;'>2.21</span><span> -</span><span style='color: #BB0000;'>1.41</span><span>    -</span><span style='color: #BB0000;'>7.83</span><span>   4.49
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5    -</span><span style='color: #BB0000;'>0.043</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>   1.96   0.003</span><span style='text-decoration: underline;'>19</span><span>  1.65   5.23    9.43  1.24    -</span><span style='color: #BB0000;'>8.71</span><span>  48.9 
-#&gt; </span><span style='color: #555555;'>10</span><span> H6    -</span><span style='color: #BB0000;'>0.008</span><span style='color: #BB0000;text-decoration: underline;'>07</span><span>  1.85  -</span><span style='color: #BB0000;'>0.143</span><span>    3.11   1.99   -</span><span style='color: #BB0000;'>6.43</span><span>  0.453    7.35 -</span><span style='color: #BB0000;'>34.5</span><span> 
-#&gt; </span><span style='color: #555555;'>11</span><span> H7     0.006</span><span style='text-decoration: underline;'>57</span><span>  0.809 -</span><span style='color: #BB0000;'>0.016</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>   1.60   5.74    5.83 -</span><span style='color: #BB0000;'>0.136</span><span>   28.7  -</span><span style='color: #BB0000;'>19.4</span><span> 
-#&gt; </span><span style='color: #555555;'>12</span><span> H8    -</span><span style='color: #BB0000;'>0.040</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  -</span><span style='color: #BB0000;'>1.53</span><span>   0.004</span><span style='text-decoration: underline;'>87</span><span>  0.527  1.11   -</span><span style='color: #BB0000;'>3.55</span><span> -</span><span style='color: #BB0000;'>0.921</span><span>   21.4  -</span><span style='color: #BB0000;'>43.2</span><span> 
-#&gt; </span><span style='color: #555555;'>13</span><span> H9    -</span><span style='color: #BB0000;'>0.084</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>  -</span><span style='color: #BB0000;'>3.49</span><span>   0.058</span><span style='text-decoration: underline;'>6</span><span>  -</span><span style='color: #BB0000;'>1.42</span><span>  -</span><span style='color: #BB0000;'>3.64</span><span>  -</span><span style='color: #BB0000;'>16.1</span><span>  -</span><span style='color: #BB0000;'>0.921</span><span>  -</span><span style='color: #BB0000;'>16.6</span><span>  -</span><span style='color: #BB0000;'>34.3</span><span> 
+#&gt;    GEN           PH         ED           EL         CL         CW         KW
+#&gt; 1   H1  0.018773415  2.3610811  0.020813727  2.2056450  5.3329446   6.597949
+#&gt; 2  H10 -0.078441587 -3.4773234 -0.085772697 -3.3060661 -7.4818222 -17.311524
+#&gt; 3  H11 -0.039799640 -0.7171292 -0.053041433 -1.8922681 -4.2006646  -4.019522
+#&gt; 4  H12  0.160731724 -0.1152736 -0.089465455 -2.3605324 -2.6282932   1.022669
+#&gt; 5  H13  0.263641328  2.4352270  0.090472571 -1.0499927  0.6731998  22.941732
+#&gt; 6   H2 -0.007665811  2.4004711  0.092151097  1.5266617  1.1173016   8.900057
+#&gt; 7   H3 -0.075187528 -0.6956964  0.008224779  0.1086613 -2.0755407  -5.159344
+#&gt; 8   H4 -0.071526712 -1.7847132  0.108936361 -0.6927910 -1.1569456  -2.213329
+#&gt; 9   H5 -0.043867214  1.9584925  0.003189200  1.6503315  5.2258697   9.434104
+#&gt; 10  H6 -0.008072569  1.8461152 -0.142842593  3.1109560  1.9916310  -6.425132
+#&gt; 11  H7  0.006570695  0.8086529 -0.016113853  1.5969014  5.7354170   5.832276
+#&gt; 12  H8 -0.040613155 -1.5286784  0.004867726  0.5270975  1.1054194  -3.547764
+#&gt; 13  H9 -0.084542947 -3.4912257  0.058580570 -1.4246041 -3.6385167 -16.052173
+#&gt;             NR        TKW        NKE
+#&gt; 1   0.06038462  36.368389 -30.472599
+#&gt; 2  -0.33211539 -50.194254  14.894629
+#&gt; 3   0.35475962 -20.721892  14.134550
+#&gt; 4   0.35475962 -24.282196  34.894214
+#&gt; 5   2.02288464   1.360088  79.073819
+#&gt; 6  -0.03774039  20.096643  -1.114539
+#&gt; 7  -0.72461539  13.062513 -33.417906
+#&gt; 8  -1.41149040  -7.828821   4.491045
+#&gt; 9   1.23788463  -8.706006  48.860670
+#&gt; 10  0.45288462   7.352279 -34.463015
+#&gt; 11 -0.13586539  28.730081 -19.403946
+#&gt; 12 -0.92086539  21.404122 -43.156422
+#&gt; 13 -0.92086539 -16.640945 -34.320501
 #&gt; </div><div class='input'>
 <span class='co'># Predicted values</span>
 <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>rcbd</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 11</span><span>
@@ -458,59 +470,127 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; </span><span style='color: #555555;'>13</span><span> CV ratio       1.32  </div><div class='input'>
 <span class='co'># Random effects</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>alpha</span>, <span class='st'>"ranef"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $GEN
-#&gt; </span><span style='color: #555555;'># A tibble: 24 x 2</span><span>
-#&gt;    GEN      YIELD
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> G11   -</span><span style='color: #BB0000;'>0.196</span><span>  
-#&gt; </span><span style='color: #555555;'> 2</span><span> G04    0.006</span><span style='text-decoration: underline;'>13</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> G05    0.475  
-#&gt; </span><span style='color: #555555;'> 4</span><span> G22    0.024</span><span style='text-decoration: underline;'>1</span><span> 
-#&gt; </span><span style='color: #555555;'> 5</span><span> G21    0.256  
-#&gt; </span><span style='color: #555555;'> 6</span><span> G10   -</span><span style='color: #BB0000;'>0.089</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> 
-#&gt; </span><span style='color: #555555;'> 7</span><span> G20   -</span><span style='color: #BB0000;'>0.339</span><span>  
-#&gt; </span><span style='color: #555555;'> 8</span><span> G02    0.004</span><span style='text-decoration: underline;'>96</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> G23   -</span><span style='color: #BB0000;'>0.177</span><span>  
-#&gt; </span><span style='color: #555555;'>10</span><span> G14    0.243  
-#&gt; </span><span style='color: #555555;'># ... with 14 more rows</span><span>
+#&gt;    GEN        YIELD
+#&gt; 1  G01  0.501183769
+#&gt; 2  G02  0.004962705
+#&gt; 3  G03 -0.784562783
+#&gt; 4  G04  0.006125660
+#&gt; 5  G05  0.474950041
+#&gt; 6  G06  0.044640383
+#&gt; 7  G07 -0.308947691
+#&gt; 8  G08  0.062229524
+#&gt; 9  G09 -0.809931603
+#&gt; 10 G10 -0.089373059
+#&gt; 11 G11 -0.196434546
+#&gt; 12 G12  0.225758446
+#&gt; 13 G13  0.231664921
+#&gt; 14 G14  0.243399964
+#&gt; 15 G15  0.424699859
+#&gt; 16 G16  0.200964673
+#&gt; 17 G17  0.078077967
+#&gt; 18 G18 -0.110180929
+#&gt; 19 G19  0.289576067
+#&gt; 20 G20 -0.338969056
+#&gt; 21 G21  0.256132122
+#&gt; 22 G22  0.024088815
+#&gt; 23 G23 -0.176997620
+#&gt; 24 G24 -0.253057630
 #&gt; 
 #&gt; $REP_BLOCK
-#&gt; </span><span style='color: #555555;'># A tibble: 18 x 3</span><span>
-#&gt;    REP   BLOCK    YIELD
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> R1    B1     0.123  
-#&gt; </span><span style='color: #555555;'> 2</span><span> R1    B2    -</span><span style='color: #BB0000;'>0.141</span><span>  
-#&gt; </span><span style='color: #555555;'> 3</span><span> R1    B3    -</span><span style='color: #BB0000;'>0.150</span><span>  
-#&gt; </span><span style='color: #555555;'> 4</span><span> R1    B4    -</span><span style='color: #BB0000;'>0.107</span><span>  
-#&gt; </span><span style='color: #555555;'> 5</span><span> R1    B5     0.073</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #555555;'> 6</span><span> R1    B6     0.202  
-#&gt; </span><span style='color: #555555;'> 7</span><span> R2    B1    -</span><span style='color: #BB0000;'>0.533</span><span>  
-#&gt; </span><span style='color: #555555;'> 8</span><span> R2    B2    -</span><span style='color: #BB0000;'>0.301</span><span>  
-#&gt; </span><span style='color: #555555;'> 9</span><span> R2    B3     0.243  
-#&gt; </span><span style='color: #555555;'>10</span><span> R2    B4     0.135  
-#&gt; </span><span style='color: #555555;'>11</span><span> R2    B5     0.275  
-#&gt; </span><span style='color: #555555;'>12</span><span> R2    B6     0.180  
-#&gt; </span><span style='color: #555555;'>13</span><span> R3    B1     0.050</span><span style='text-decoration: underline;'>6</span><span> 
-#&gt; </span><span style='color: #555555;'>14</span><span> R3    B2    -</span><span style='color: #BB0000;'>0.047</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span> 
-#&gt; </span><span style='color: #555555;'>15</span><span> R3    B3     0.151  
-#&gt; </span><span style='color: #555555;'>16</span><span> R3    B4     0.053</span><span style='text-decoration: underline;'>8</span><span> 
-#&gt; </span><span style='color: #555555;'>17</span><span> R3    B5    -</span><span style='color: #BB0000;'>0.008</span><span style='color: #BB0000;text-decoration: underline;'>05</span><span>
-#&gt; </span><span style='color: #555555;'>18</span><span> R3    B6    -</span><span style='color: #BB0000;'>0.200</span><span>  
+#&gt;    REP BLOCK        YIELD
+#&gt; 1   R1    B1  0.123136175
+#&gt; 2   R1    B2 -0.141225413
+#&gt; 3   R1    B3 -0.150394401
+#&gt; 4   R1    B4 -0.106755541
+#&gt; 5   R1    B5  0.073704281
+#&gt; 6   R1    B6  0.201534899
+#&gt; 7   R2    B1 -0.532640774
+#&gt; 8   R2    B2 -0.301232978
+#&gt; 9   R2    B3  0.243239346
+#&gt; 10  R2    B4  0.134878440
+#&gt; 11  R2    B5  0.275336937
+#&gt; 12  R2    B6  0.180419028
+#&gt; 13  R3    B1  0.050569780
+#&gt; 14  R3    B2 -0.047784038
+#&gt; 15  R3    B3  0.151079007
+#&gt; 16  R3    B4  0.053760694
+#&gt; 17  R3    B5 -0.008047649
+#&gt; 18  R3    B6 -0.199577794
 #&gt; 
 #&gt; $GEN_REP_BLOCK
-#&gt; </span><span style='color: #555555;'># A tibble: 72 x 4</span><span>
-#&gt;    GEN   REP   BLOCK   YIELD
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> G11   R1    B1    -</span><span style='color: #BB0000;'>0.073</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> G04   R1    B1     0.129 
-#&gt; </span><span style='color: #555555;'> 3</span><span> G05   R1    B1     0.598 
-#&gt; </span><span style='color: #555555;'> 4</span><span> G22   R1    B1     0.147 
-#&gt; </span><span style='color: #555555;'> 5</span><span> G21   R1    B2     0.115 
-#&gt; </span><span style='color: #555555;'> 6</span><span> G10   R1    B2    -</span><span style='color: #BB0000;'>0.231</span><span> 
-#&gt; </span><span style='color: #555555;'> 7</span><span> G20   R1    B2    -</span><span style='color: #BB0000;'>0.480</span><span> 
-#&gt; </span><span style='color: #555555;'> 8</span><span> G02   R1    B2    -</span><span style='color: #BB0000;'>0.136</span><span> 
-#&gt; </span><span style='color: #555555;'> 9</span><span> G23   R1    B3    -</span><span style='color: #BB0000;'>0.327</span><span> 
-#&gt; </span><span style='color: #555555;'>10</span><span> G14   R1    B3     0.093</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 62 more rows</span><span>
+#&gt;    GEN REP BLOCK       YIELD
+#&gt; 1  G01  R1    B5  0.57488805
+#&gt; 2  G01  R2    B4  0.63606221
+#&gt; 3  G01  R3    B1  0.55175355
+#&gt; 4  G02  R1    B2 -0.13626271
+#&gt; 5  G02  R2    B5  0.28029964
+#&gt; 6  G02  R3    B2 -0.04282133
+#&gt; 7  G03  R1    B4 -0.89131832
+#&gt; 8  G03  R2    B2 -1.08579576
+#&gt; 9  G03  R3    B6 -0.98414058
+#&gt; 10 G04  R1    B1  0.12926184
+#&gt; 11 G04  R2    B1 -0.52651511
+#&gt; 12 G04  R3    B3  0.15720467
+#&gt; 13 G05  R1    B1  0.59808622
+#&gt; 14 G05  R2    B4  0.60982848
+#&gt; 15 G05  R3    B6  0.27537225
+#&gt; 16 G06  R1    B6  0.24617528
+#&gt; 17 G06  R2    B6  0.22505941
+#&gt; 18 G06  R3    B3  0.19571939
+#&gt; 19 G07  R1    B5 -0.23524341
+#&gt; 20 G07  R2    B6 -0.12852866
+#&gt; 21 G07  R3    B6 -0.50852549
+#&gt; 22 G08  R1    B4 -0.04452602
+#&gt; 23 G08  R2    B1 -0.47041125
+#&gt; 24 G08  R3    B2  0.01444549
+#&gt; 25 G09  R1    B6 -0.60839670
+#&gt; 26 G09  R2    B4 -0.67505316
+#&gt; 27 G09  R3    B2 -0.85771564
+#&gt; 28 G10  R1    B2 -0.23059847
+#&gt; 29 G10  R2    B4  0.04550538
+#&gt; 30 G10  R3    B4 -0.03561236
+#&gt; 31 G11  R1    B1 -0.07329837
+#&gt; 32 G11  R2    B3  0.04680480
+#&gt; 33 G11  R3    B1 -0.14586477
+#&gt; 34 G12  R1    B6  0.42729335
+#&gt; 35 G12  R2    B3  0.46899779
+#&gt; 36 G12  R3    B4  0.27951914
+#&gt; 37 G13  R1    B4  0.12490938
+#&gt; 38 G13  R2    B5  0.50700186
+#&gt; 39 G13  R3    B4  0.28542562
+#&gt; 40 G14  R1    B3  0.09300556
+#&gt; 41 G14  R2    B1 -0.28924081
+#&gt; 42 G14  R3    B1  0.29396974
+#&gt; 43 G15  R1    B5  0.49840414
+#&gt; 44 G15  R2    B2  0.12346688
+#&gt; 45 G15  R3    B2  0.37691582
+#&gt; 46 G16  R1    B3  0.05057027
+#&gt; 47 G16  R2    B6  0.38138370
+#&gt; 48 G16  R3    B5  0.19291702
+#&gt; 49 G17  R1    B5  0.15178225
+#&gt; 50 G17  R2    B3  0.32131731
+#&gt; 51 G17  R3    B3  0.22915697
+#&gt; 52 G18  R1    B3 -0.26057533
+#&gt; 53 G18  R2    B5  0.16515601
+#&gt; 54 G18  R3    B3  0.04089808
+#&gt; 55 G19  R1    B4  0.18282053
+#&gt; 56 G19  R2    B6  0.46999510
+#&gt; 57 G19  R3    B1  0.34014585
+#&gt; 58 G20  R1    B2 -0.48019447
+#&gt; 59 G20  R2    B1 -0.87160983
+#&gt; 60 G20  R3    B6 -0.53854685
+#&gt; 61 G21  R1    B2  0.11490671
+#&gt; 62 G21  R2    B3  0.49937147
+#&gt; 63 G21  R3    B5  0.24808447
+#&gt; 64 G22  R1    B1  0.14722499
+#&gt; 65 G22  R2    B5  0.29942575
+#&gt; 66 G22  R3    B5  0.01604117
+#&gt; 67 G23  R1    B3 -0.32739202
+#&gt; 68 G23  R2    B2 -0.47823060
+#&gt; 69 G23  R3    B4 -0.12323693
+#&gt; 70 G24  R1    B6 -0.05152273
+#&gt; 71 G24  R2    B2 -0.55429061
+#&gt; 72 G24  R3    B5 -0.26110528
 #&gt; </div><div class='input'># }
 
 </div></span></pre>

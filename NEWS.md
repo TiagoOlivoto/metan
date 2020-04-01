@@ -1,11 +1,18 @@
 # metan 1.4.0.9000
+# New functions
+* `select_rows_na()` and `select_cols_na()` to select rows or columns with with `NA` values
+* `mgidi()` to compute the multi-trait genotype-ideotype distance index
+
 ## Minor changes
 * Remove dependency on dendextend
 * Update package site with [pkgdown v1.5.0](https://pkgdown.r-lib.org/news/index.html).
 * Update documentation in `ge_plot()`
 * Allow using `fai_blup()` with `gamem()`
+* Improve checking process with `inspect()`
 
-
+## Bug fixes
+* `get_model_data()` now fills rows that don't matches across columns with `NA`
+*
 
 # metan 1.4.0
 ## Bug fixes

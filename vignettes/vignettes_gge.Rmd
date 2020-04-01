@@ -143,7 +143,7 @@ In this biplot a polygon is drawn joining the genotypes (G7, G8, G9, G10, and G4
 The perpendicular lines to the sides of the polygon divide the biplot into sectors. Each sector has a vertex genotype. For example, the sector with the vertex genotype G4 may be referred to as the G4 sector; and one environment (E9), fell in this sector. As a rule, the vertex genotype is the highest-yielding genotype in all environments that share the sector with it [@Yan2007]. In this case, G4 was the highest-yielding in E9, as shown in the two-way table above.
 
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
+gge_model <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
 e <- plot(gge_model, type = 3)
 f <- plot(gge_model,
           type = 3,
