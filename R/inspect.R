@@ -52,13 +52,13 @@ inspect <- function (.data,
   df <-
     data.frame(
       Class = sapply(.data, class),
-      Missing= sapply(.data, function(x) ifelse(any(is.na(x)), "Yes", "No")),
-      Levels = sapply(.data, function(x) ifelse(!is.numeric(x), nlevels(x), "-")),
-      Valid_n = sapply(.data, function(x) length(which(!is.na(x)))),
-      Min = sapply(.data, function(x) ifelse(is.numeric(x), round(min(x, na.rm = TRUE),2), NA)),
-      Median = sapply(.data, function(x) ifelse(is.numeric(x), round(median(x, na.rm = TRUE),2), NA)),
-      Max = sapply(.data, function(x) ifelse(is.numeric(x), round(max(x, na.rm = TRUE),2), NA)),
-      Outlier = sapply(.data, function(x) ifelse(is.numeric(x), find_outliers(x, verbose = F), NA))
+      Missing= sapply(.data, function(x){ifelse(any(is.na(x)), "Yes", "No")}),
+      Levels = sapply(.data, function(x){ifelse(!is.numeric(x), nlevels(x), "-")}),
+      Valid_n = sapply(.data, function(x){length(which(!is.na(x)))}),
+      Min = sapply(.data, function(x){ifelse(is.numeric(x), round(min(x, na.rm = TRUE),2), NA)}),
+      Median = sapply(.data, function(x){ifelse(is.numeric(x), round(median(x, na.rm = TRUE),2), NA)}),
+      Max = sapply(.data, function(x){ifelse(is.numeric(x), round(max(x, na.rm = TRUE),2), NA)}),
+      Outlier = sapply(.data, function(x){ifelse(is.numeric(x), find_outliers(x, verbose = F), NA)})
     ) %>%
     rownames_to_column("Variable") %>%
     as_tibble()
@@ -71,14 +71,15 @@ inspect <- function (.data,
               esp_nrows, " rows, but it has ", nrow(.data),
               ". Use 'to_factor()' for coercing a variable to a factor.", call. = F)
     }
+    if(any(sapply(.data, grepl, pattern = ":"))){
+      warning("Using ':' in labels can result an error in some functions. Use '_' instead.", call. = FALSE)
+    }
     if (nfactors < 3){
       warning("Expected three or more factor variables. The data has only ", nfactors, ".", call. = F)
     }
     if(any(df$Missing == "Yes")){
       warning("Missing values in variable(s) ",
-              paste(df$Variable[c(which(df$Missing == "Yes"))], collapse = ", "),
-              ".",
-              call. = F)
+              paste(df$Variable[c(which(df$Missing == "Yes"))], collapse = ", "), ".", call. = F)
     }
     if(any(df$Outlier[!is.na(df$Outlier)] != 0)){
       warning("Possible outliers in variable(s) ",
