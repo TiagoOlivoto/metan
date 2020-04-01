@@ -1674,3 +1674,10 @@ is_balanced_trial <- function(.data, env, gen, resp){
     return(TRUE)
   }
 }
+
+# For internal use only
+check_labels <- function(.data){
+  if(any(sapply(.data, grepl, pattern = ":"))){
+    stop("Using ':' in genotype or environment labels is not allowed. Use '_' instead.\ne.g., replace_string(data, ENV, pattern = ':', replacement = '_', new_var = ENV)", call. = FALSE)
+  }
+}

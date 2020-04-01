@@ -145,6 +145,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
+      check_labels(data)
       if(has_na(data)){
         data <- remove_rows_na(data, verbose = verbose) %>% droplevels()
       }
@@ -267,6 +268,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
+      check_labels(data)
       if(has_na(data)){
         data <- remove_rows_na(data, verbose = verbose) %>% droplevels()
         has_text_in_num(data)

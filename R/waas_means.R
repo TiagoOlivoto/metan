@@ -141,6 +141,7 @@ waas_means <- function(.data,
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(Y = vars[[var]])
+    check_labels(data)
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
