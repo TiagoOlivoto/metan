@@ -81,32 +81,32 @@ Annicchiarico <- function(.data,
       as_tibble()
     data <- left_join(data, environments %>% select(ENV, class), by = "ENV")
     mat_g <- make_mat(data, row = GEN, col = ENV, value = mean)
-    rp_g <- sweep(mat_g, 2, colMeans(mat_g), "/") * 100
-    Wi_g <- rowMeans(rp_g) - qnorm(1 - prob) * apply(rp_g, 1, sd)
+    rp_g <- sweep(mat_g, 2, colMeans(mat_g, na.rm = TRUE), "/") * 100
+    Wi_g <- rowMeans(rp_g, na.rm = TRUE) - qnorm(1 - prob) * apply(rp_g, 1, sd, na.rm = TRUE)
     general <- tibble(GEN = rownames(mat_g),
-                      Y = rowMeans(mat_g),
-                      Mean_rp = rowMeans(rp_g),
-                      Sd_rp = apply(rp_g, 1, sd),
+                      Y = rowMeans(mat_g, na.rm = TRUE),
+                      Mean_rp = rowMeans(rp_g, na.rm = TRUE),
+                      Sd_rp = apply(rp_g, 1, sd, na.rm = TRUE),
                       Wi = Wi_g,
                       rank = rank(-Wi_g))
     ge_mf <- subset(data, class == "favorable")
     mat_f <- dplyr::select_if(make_mat(ge_mf, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
-    rp_f <- sweep(mat_f, 2, colMeans(mat_f), "/") * 100
-    Wi_f <- rowMeans(rp_f) - qnorm(1 - prob) * apply(rp_f, 1, sd)
+    rp_f <- sweep(mat_f, 2, colMeans(mat_f, na.rm = TRUE), "/") * 100
+    Wi_f <- rowMeans(rp_f, na.rm = TRUE) - qnorm(1 - prob) * apply(rp_f, 1, sd)
     favorable <- tibble(GEN = rownames(mat_f),
-                        Y = rowMeans(mat_f),
-                        Mean_rp = rowMeans(rp_f),
-                        Sd_rp = apply(rp_f, 1,sd),
+                        Y = rowMeans(mat_f, na.rm = TRUE),
+                        Mean_rp = rowMeans(rp_f, na.rm = TRUE),
+                        Sd_rp = apply(rp_f, 1, sd, na.rm = TRUE),
                         Wi = Wi_f,
                         rank = rank(-Wi_f))
     ge_mu <- subset(data, class == "unfavorable")
     mat_u <- dplyr::select_if(make_mat(ge_mu, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
-    rp_u <- sweep(mat_u, 2, colMeans(mat_u), "/") * 100
-    Wi_u <- rowMeans(rp_u) - qnorm(1 - prob) * apply(rp_u, 1, sd)
+    rp_u <- sweep(mat_u, 2, colMeans(mat_u, na.rm = TRUE), "/") * 100
+    Wi_u <- rowMeans(rp_u, na.rm = TRUE) - qnorm(1 - prob) * apply(rp_u, 1, sd, na.rm = TRUE)
     unfavorable <- tibble(GEN = rownames(mat_u),
-                          Y = rowMeans(mat_u),
-                          Mean_rp = rowMeans(rp_u),
-                          Sd_rp = apply(rp_u, 1, sd),
+                          Y = rowMeans(mat_u, na.rm = TRUE),
+                          Mean_rp = rowMeans(rp_u, na.rm = TRUE),
+                          Sd_rp = apply(rp_u, 1, sd, na.rm = TRUE),
                           Wi = Wi_u,
                           rank = rank(-Wi_u))
     temp <- list(environments = environments,
