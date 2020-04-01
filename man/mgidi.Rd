@@ -17,10 +17,11 @@ total number of genotypes.}
 \item{mineval}{The minimum value so that an eigenvector is retained in the
 factor analysis.}
 
-\item{ideotype}{A vector of the same length of \code{.data} used to plan the
-ideotype. Use \code{'h'} to indicate the variables with increase in
-selction or \code{'l'} to indicate the variables with reduction in
-selection. For example, \code{order.y = c("h, h, l, h, l")}.}
+\item{ideotype}{A vector of length \code{nvar} where \code{nvar} is the
+number of variables used to plan the ideotype. Use \code{'h'} to indicate
+the variables with increase in selction or \code{'l'} to indicate the
+variables with reduction in selection. For example, \code{ideotype = c("h,
+  h, l, h, l")}.}
 
 \item{verbose}{If \code{verbose = TRUE} (Default) then some results are
 shown in the console.}

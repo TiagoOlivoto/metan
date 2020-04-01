@@ -195,9 +195,11 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
                  UL = Predicted + Limits) %>%
         column_to_first(Rank)
       ranef <-
-        left_join(data_factors, BLUPgen, by = "GEN") %>%
-        select_cols(GEN, REP, BLUPg) %>%
-        add_cols(Predicted = BLUPg + left_join(data_factors, means_by(data, REP), by = "REP")$Y)
+        suppressWarnings(
+          left_join(data_factors, BLUPgen, by = "GEN") %>%
+            select_cols(GEN, REP, BLUPg) %>%
+            add_cols(Predicted = BLUPg + left_join(data_factors, means_by(data, REP), by = "REP")$Y)
+        )
       min_gen <- data %>%
         group_by(GEN) %>%
         summarise(Y = mean(Y)) %>%
@@ -321,15 +323,17 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
                  UL = Predicted + Limits) %>%
         column_to_first(Rank)
       blupBWR <- data.frame(Names = rownames(regen$`REP:BLOCK`)) %>%
-        separate(Names, into = c("REP", "BLOCK")) %>%
+        separate(Names, into = c("REP", "BLOCK"), sep = ":") %>%
         add_cols(BLUPbre = regen$`REP:BLOCK`[[1]]) %>%
         to_factor(1:2)
       ranef <-
-        left_join(data_factors, BLUPgen, by = "GEN") %>%
-        left_join(blupBWR, by = c("REP", "BLOCK")) %>%
-        select_cols(GEN, REP, BLOCK, BLUPg, BLUPbre) %>%
-        add_cols(`BLUPg+bre` =  BLUPg + BLUPbre,
-                 Predicted = `BLUPg+bre` + left_join(data_factors, means_by(data, REP), by = "REP")$Y)
+        suppressWarnings(
+          left_join(data_factors, BLUPgen, by = "GEN") %>%
+            left_join(blupBWR, by = c("REP", "BLOCK")) %>%
+            select_cols(GEN, REP, BLOCK, BLUPg, BLUPbre) %>%
+            add_cols(`BLUPg+bre` =  BLUPg + BLUPbre,
+                     Predicted = `BLUPg+bre` + left_join(data_factors, means_by(data, REP), by = "REP")$Y)
+        )
       min_gen <- data %>%
         group_by(GEN) %>%
         summarise(Y = mean(Y)) %>%

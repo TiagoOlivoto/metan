@@ -60,7 +60,7 @@ mgidi <- function(.data,
   d <- match.call()
   if(has_class(.data, c("gamem", "waasb"))){
     data <- gmd(.data, "blupg", verbose = FALSE) %>%
-      column_to_rownames("gen")
+      column_to_rownames("GEN")
   } else{
   if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
     stop("object '", d[[".data"]], "' must have rownames.", call. = FALSE)

@@ -360,6 +360,9 @@ waasb <- function(.data,
             data <- remove_rows_na(data)
             has_text_in_num(data)
         }
+        if(!is_balanced_trial(data, ENV, GEN, Y) && random == "env"){
+            warning("Fitting a model with unbalanced data considering genotype as fixed effect is not suggested.", call. = FALSE)
+        }
         Nenv <- nlevels(data$ENV)
         Ngen <- nlevels(data$GEN)
         Nrep <- nlevels(data$REP)
@@ -416,7 +419,7 @@ waasb <- function(.data,
         bups <- lme4::ranef(Complete)
         bINT <-
             data.frame(Names = rownames(bups$`GEN:ENV`)) %>%
-            separate(Names, into = c("GEN", "ENV")) %>%
+            separate(Names, into = c("GEN", "ENV"), sep = ":") %>%
             add_cols(BLUPge = bups[[1]][[1]]) %>%
             to_factor(1:2)
         intmatrix <- as.matrix(make_mat(bINT, GEN, ENV, BLUPge))
@@ -486,11 +489,13 @@ waasb <- function(.data,
                          UL = Predicted + Limits) %>%
                 column_to_first(Rank)
             BLUPint <-
-                left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
-                left_join(BLUPgen, by = "GEN") %>%
-                select(ENV, GEN, REP, BLUPg, BLUPge) %>%
-                add_cols(`BLUPg+ge` = BLUPge + BLUPg,
-                         Predicted = predict(Complete))
+                suppressWarnings(
+                    left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
+                        left_join(BLUPgen, by = "GEN") %>%
+                        select(ENV, GEN, REP, BLUPg, BLUPge) %>%
+                        add_cols(`BLUPg+ge` = BLUPge + BLUPg,
+                                 Predicted = predict(Complete))
+                )
             BLUPenv <- NULL
         } else if(mod2){
             data_factors <- data %>% select_non_numeric_cols()
@@ -505,16 +510,18 @@ waasb <- function(.data,
                 column_to_first(Rank)
             blupBRE <-
                 data.frame(Names = rownames(bups$`BLOCK:(REP:ENV)`)) %>%
-                separate(Names, into = c("BLOCK", "REP", "ENV")) %>%
+                separate(Names, into = c("BLOCK", "REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPbre = bups$`BLOCK:(REP:ENV)`[[1]]) %>%
                 to_factor(1:3)
             BLUPint <-
-                left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
-                left_join(BLUPgen, by = "GEN") %>%
-                left_join(blupBRE, by = c("ENV", "REP", "BLOCK")) %>%
-                select(ENV, REP, BLOCK, GEN, BLUPg, BLUPge, BLUPbre) %>%
-                add_cols(`BLUPg+ge+bre` = BLUPge + BLUPg + BLUPbre,
-                         Predicted = `BLUPg+ge+bre` + left_join(data_factors, data %>% means_by(ENV, REP), by = c("ENV", "REP"))$Y)
+                suppressWarnings(
+                    left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
+                        left_join(BLUPgen, by = "GEN") %>%
+                        left_join(blupBRE, by = c("ENV", "REP", "BLOCK")) %>%
+                        select(ENV, REP, BLOCK, GEN, BLUPg, BLUPge, BLUPbre) %>%
+                        add_cols(`BLUPg+ge+bre` = BLUPge + BLUPg + BLUPbre,
+                                 Predicted = `BLUPg+ge+bre` + left_join(data_factors, data %>% means_by(ENV, REP), by = c("ENV", "REP"))$Y)
+                )
             BLUPenv <- NULL
         } else if (mod3){
             data_factors <- data %>% select_non_numeric_cols()
@@ -527,16 +534,18 @@ waasb <- function(.data,
                 column_to_first(Rank)
             blupRWE <-
                 data.frame(Names = rownames(bups$`REP:ENV`)) %>%
-                separate(Names, into = c("REP", "ENV")) %>%
+                separate(Names, into = c("REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPre = bups$`REP:ENV`[[1]]) %>%
                 to_factor(1:2)
             BLUPint <-
-                left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
-                left_join(BLUPenv, by = "ENV") %>%
-                left_join(blupRWE, by = c("ENV", "REP")) %>%
-                select(ENV, GEN, REP, BLUPe, BLUPge, BLUPre) %>%
-                add_cols(`BLUPge+e+re` = BLUPge + BLUPe + BLUPre,
-                         Predicted = `BLUPge+e+re` + left_join(data_factors, MGEN %>% select(Code, Y), by = c("GEN" = "Code"))$Y)
+                suppressWarnings(
+                    left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
+                        left_join(BLUPenv, by = "ENV") %>%
+                        left_join(blupRWE, by = c("ENV", "REP")) %>%
+                        select(ENV, GEN, REP, BLUPe, BLUPge, BLUPre) %>%
+                        add_cols(`BLUPge+e+re` = BLUPge + BLUPe + BLUPre,
+                                 Predicted = `BLUPge+e+re` + left_join(data_factors, MGEN %>% select(Code, Y), by = c("GEN" = "Code"))$Y)
+                )
         } else if (mod4){
             data_factors <- data %>% select_non_numeric_cols()
             BLUPgen <- NULL
@@ -549,7 +558,7 @@ waasb <- function(.data,
                 column_to_first(Rank)
             blupRWE <-
                 data.frame(Names = rownames(bups$`REP:ENV`)) %>%
-                separate(Names, into = c("REP", "ENV")) %>%
+                separate(Names, into = c("REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPre = bups$`REP:ENV`[[1]]) %>%
                 to_factor(1:2)
             blupBRE <-
@@ -564,13 +573,15 @@ waasb <- function(.data,
                 rename(Y = Estimate) %>%
                 to_factor(1)
             BLUPint <-
-                left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
-                left_join(BLUPenv, by = "ENV") %>%
-                left_join(blupRWE, by = c("ENV", "REP")) %>%
-                left_join(blupBRE, by = c("ENV", "REP", "BLOCK")) %>%
-                select(ENV, REP, BLOCK, GEN, BLUPe, BLUPge, BLUPre, BLUPbre) %>%
-                add_cols(`BLUPe+ge+re+bre` = BLUPge + BLUPe + BLUPre + BLUPbre,
-                         Predicted = `BLUPe+ge+re+bre` + left_join(data_factors, genCOEF, by = "GEN")$Y)
+                suppressWarnings(
+                    left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
+                        left_join(BLUPenv, by = "ENV") %>%
+                        left_join(blupRWE, by = c("ENV", "REP")) %>%
+                        left_join(blupBRE, by = c("ENV", "REP", "BLOCK")) %>%
+                        select(ENV, REP, BLOCK, GEN, BLUPe, BLUPge, BLUPre, BLUPbre) %>%
+                        add_cols(`BLUPe+ge+re+bre` = BLUPge + BLUPe + BLUPre + BLUPbre,
+                                 Predicted = `BLUPe+ge+re+bre` + left_join(data_factors, genCOEF, by = "GEN")$Y)
+                )
         } else if (mod5){
             data_factors <- data %>% select_non_numeric_cols()
             BLUPgen <-
@@ -589,18 +600,20 @@ waasb <- function(.data,
                 add_cols(Rank = rank(-Predicted)) %>%
                 column_to_first(Rank)
             blupRWE <- data.frame(Names = rownames(bups$`REP:ENV`)) %>%
-                separate(Names, into = c("REP", "ENV")) %>%
+                separate(Names, into = c("REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPre = bups$`REP:ENV`[[1]]) %>%
                 arrange(ENV) %>%
                 to_factor(1:2)
             BLUPint <-
-                left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
-                left_join(BLUPgen, by = "GEN") %>%
-                left_join(BLUPenv, by = "ENV") %>%
-                left_join(blupRWE, by = c("ENV", "REP")) %>%
-                select(GEN, ENV, REP, BLUPe, BLUPg, BLUPge, BLUPre) %>%
-                add_cols(`BLUPg+e+ge+re` = BLUPge + BLUPe + BLUPg + BLUPre,
-                         Predicted = `BLUPg+e+ge+re` + ovmean)
+                suppressWarnings(
+                    left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
+                        left_join(BLUPgen, by = "GEN") %>%
+                        left_join(BLUPenv, by = "ENV") %>%
+                        left_join(blupRWE, by = c("ENV", "REP")) %>%
+                        select(GEN, ENV, REP, BLUPe, BLUPg, BLUPge, BLUPre) %>%
+                        add_cols(`BLUPg+e+ge+re` = BLUPge + BLUPe + BLUPg + BLUPre,
+                                 Predicted = `BLUPg+e+ge+re` + ovmean)
+                )
         } else if (mod6){
             data_factors <- data %>% select_non_numeric_cols()
             BLUPgen <-
@@ -619,24 +632,26 @@ waasb <- function(.data,
                 add_cols(Rank = rank(-Predicted)) %>%
                 column_to_first(Rank)
             blupRWE <- data.frame(Names = rownames(bups$`REP:ENV`)) %>%
-                separate(Names, into = c("REP", "ENV")) %>%
+                separate(Names, into = c("REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPre = bups$`REP:ENV`[[1]]) %>%
                 arrange(ENV) %>%
                 to_factor(1:2)
             blupBRE <-
                 data.frame(Names = rownames(bups$`BLOCK:(REP:ENV)`)) %>%
-                separate(Names, into = c("BLOCK", "REP", "ENV")) %>%
+                separate(Names, into = c("BLOCK", "REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPbre = bups$`BLOCK:(REP:ENV)`[[1]]) %>%
                 to_factor(1:3)
             BLUPint <-
-                left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
-                left_join(BLUPgen, by = "GEN") %>%
-                left_join(BLUPenv, by = "ENV") %>%
-                left_join(blupRWE, by = c("ENV", "REP")) %>%
-                left_join(blupBRE, by = c("ENV", "REP", "BLOCK")) %>%
-                select(GEN, ENV, REP, BLOCK, BLUPg, BLUPe, BLUPge, BLUPre, BLUPbre) %>%
-                add_cols(`BLUPg+e+ge+re+bre` = BLUPg + BLUPge + BLUPe + BLUPre + BLUPbre,
-                         Predicted = `BLUPg+e+ge+re+bre` + ovmean)
+                suppressWarnings(
+                    left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
+                        left_join(BLUPgen, by = "GEN") %>%
+                        left_join(BLUPenv, by = "ENV") %>%
+                        left_join(blupRWE, by = c("ENV", "REP")) %>%
+                        left_join(blupBRE, by = c("ENV", "REP", "BLOCK")) %>%
+                        select(GEN, ENV, REP, BLOCK, BLUPg, BLUPe, BLUPge, BLUPre, BLUPbre) %>%
+                        add_cols(`BLUPg+e+ge+re+bre` = BLUPg + BLUPge + BLUPe + BLUPre + BLUPbre,
+                                 Predicted = `BLUPg+e+ge+re+bre` + ovmean)
+                )
         }
         residuals <- data.frame(fortify.merMod(Complete))
         residuals$reff <- BLUPint$BLUPge

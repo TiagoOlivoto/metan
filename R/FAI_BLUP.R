@@ -74,7 +74,7 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   }
   if(has_class(.data, c("gamem", "waasb"))){
     means <- gmd(.data, "blupg") %>%
-      column_to_rownames("gen")
+      column_to_rownames("GEN")
   } else {
     if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
       stop("Please, provide rownames (with genotype's code).")
