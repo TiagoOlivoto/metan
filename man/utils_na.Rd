@@ -4,6 +4,8 @@
 \alias{utils_na}
 \alias{remove_rows_na}
 \alias{remove_cols_na}
+\alias{select_cols_na}
+\alias{select_rows_na}
 \alias{has_na}
 \alias{replace_na}
 \alias{random_na}
@@ -12,6 +14,10 @@
 remove_rows_na(.data, verbose = TRUE)
 
 remove_cols_na(.data, verbose = TRUE)
+
+select_cols_na(.data, verbose = TRUE)
+
+select_rows_na(.data, verbose = TRUE)
 
 has_na(.data)
 
@@ -43,8 +49,10 @@ A data frame with rows or columns with \code{NA} values deleted.
 \item \code{has_na()}: Check for \code{NA} values in the data and return a logical value.
 \item \code{random_na()}: Generate random \code{NA} values in a two-way table
 based on a desired proportion.
-\item \code{remove_rows_na()}: Remove rows with \code{NA} values.
 \item \code{remove_cols_na()}: Remove columns with \code{NA} values.
+\item \code{remove_rows_na()}: Remove rows with \code{NA} values.
+\item \code{select_cols_na()}: Select columns with \code{NA} values.
+\item \code{select_rows_na()}: Select rows with \code{NA} values.
 \item \code{replace_na()} Replace missing values
 }
 }
@@ -57,6 +65,8 @@ data_with_na
 has_na(data_with_na)
 remove_cols_na(data_with_na)
 remove_rows_na(data_with_na)
+select_cols_na(data_with_na)
+select_rows_na(data_with_na)
 replace_na(data_with_na)
 }
 }

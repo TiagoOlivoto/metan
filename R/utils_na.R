@@ -16,8 +16,10 @@
 #' * \code{has_na()}: Check for \code{NA} values in the data and return a logical value.
 #' * \code{random_na()}: Generate random \code{NA} values in a two-way table
 #' based on a desired proportion.
-#' * \code{remove_rows_na()}: Remove rows with \code{NA} values.
 #' * \code{remove_cols_na()}: Remove columns with \code{NA} values.
+#' * \code{remove_rows_na()}: Remove rows with \code{NA} values.
+#' * \code{select_cols_na()}: Select columns with \code{NA} values.
+#' * \code{select_rows_na()}: Select rows with \code{NA} values.
 #' * \code{replace_na()} Replace missing values
 #' @md
 #' @examples
@@ -29,6 +31,8 @@
 #' has_na(data_with_na)
 #' remove_cols_na(data_with_na)
 #' remove_rows_na(data_with_na)
+#' select_cols_na(data_with_na)
+#' select_rows_na(data_with_na)
 #' replace_na(data_with_na)
 #' }
 remove_rows_na <- function(.data, verbose = TRUE){
@@ -48,7 +52,24 @@ remove_cols_na <- function(.data, verbose = TRUE){
   }
   return(select(.data, -cols_with_na))
 }
-
+#' @name utils_na
+#' @export
+select_cols_na <- function(.data, verbose = TRUE){
+  cols_with_na <- names(which(sapply(.data, anyNA)))
+  if(verbose == TRUE){
+    warning("Column(s) with NAs: ", paste(cols_with_na, collapse = ", "), call. = FALSE)
+  }
+  return(select(.data, cols_with_na))
+}
+#' @name utils_na
+#' @export
+select_rows_na <- function(.data, verbose = TRUE){
+  rows_with_na <- which(complete.cases(.data) == FALSE)
+  if(verbose == TRUE){
+    warning("Rows(s) with NAs: ", paste(rows_with_na, collapse = ", "), call. = FALSE)
+  }
+  return(.data[rows_with_na, ])
+}
 #' @name utils_na
 #' @export
 has_na <- function(.data){
