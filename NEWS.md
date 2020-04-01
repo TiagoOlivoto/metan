@@ -1,5 +1,5 @@
 # metan 1.4.0.9000
-# New functions
+## New functions
 * `select_rows_na()` and `select_cols_na()` to select rows or columns with with `NA` values
 * `mgidi()` to compute the multi-trait genotype-ideotype distance index
 
