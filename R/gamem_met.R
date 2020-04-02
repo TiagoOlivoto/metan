@@ -301,11 +301,16 @@ gamem_met <- function(.data,
       separate(Names, into = c("GEN", "ENV"), sep = ":") %>%
       add_cols(BLUPge = bups[[1]][[1]]) %>%
       to_factor(1:2)
-    Details <- ge_details(data, ENV, GEN, Y) %>%
-      add_rows(Parameters = "Ngen", Y = Ngen, .before = 1) %>%
-      add_rows(Parameters = "Nenv", Y = Nenv, .before = 1) %>%
+    Details <-
+      rbind(ge_details(data, ENV, GEN, Y),
+            tribble(~Parameters,  ~Y,
+                    "Ngen", Ngen,
+                    "Nenv", Nenv)) %>%
       rename(Values = Y)
     if(mod1){
+      ran_ef <- c("GEN, GEN:ENV")
+      fix_ef <- c("ENV, REP(ENV)")
+      rand_ef <-
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <-
         means_by(data, GEN) %>%
@@ -326,6 +331,8 @@ gamem_met <- function(.data,
         )
       BLUPenv <- NULL
     } else if(mod2){
+      ran_ef <- c("GEN, BLOCK(ENV:REP), GEN:ENV")
+      fix_ef <- c("ENV, REP(ENV)")
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <-
         means_by(data, GEN) %>%
@@ -352,6 +359,8 @@ gamem_met <- function(.data,
         )
       BLUPenv <- NULL
     } else if (mod3){
+      ran_ef <- c("REP(ENV), ENV, GEN:ENV")
+      fix_ef <- c("GEN")
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <- NULL
       BLUPenv <-
@@ -376,6 +385,8 @@ gamem_met <- function(.data,
                      Predicted = `BLUPge+e+re` + left_join(data_factors, means_by(data, GEN), by = c("GEN"))$Y)
         )
     } else if (mod4){
+      ran_ef <- c("BLOCK(ENV:REP), REP(ENV), ENV, GEN:ENV")
+      fix_ef <- c("GEN")
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <- NULL
       BLUPenv <-
@@ -412,6 +423,8 @@ gamem_met <- function(.data,
                      Predicted = `BLUPe+ge+re+bre` + left_join(data_factors, genCOEF, by = "GEN")$Y)
         )
     } else if (mod5){
+      ran_ef <- c("GEN, REP(ENV), ENV, GEN:ENV")
+      fix_ef <- c("-")
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <-
         means_by(data, GEN) %>%
@@ -445,6 +458,8 @@ gamem_met <- function(.data,
                      Predicted = `BLUPg+e+ge+re` + ovmean)
         )
     } else if (mod6){
+      ran_ef <- c("GEN, BLOCK(ENV:REP), REP(ENV), ENV, GEN:ENV")
+      fix_ef <- c("-")
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <-
         means_by(data, GEN) %>%
@@ -503,7 +518,10 @@ gamem_met <- function(.data,
     listres[[paste(names(vars[var]))]] <- temp
   }
   if (verbose == TRUE) {
-    cat("Model: ", model_formula, "\n")
+    message("Method: REML/BLUP\n", appendLF = FALSE)
+    message("Random effects: ", ran_ef, "\n", appendLF = FALSE)
+    message("Fixed effects: ", fix_ef, "\n", appendLF = FALSE)
+    message("Denominador DF: Satterthwaite's method\n", appendLF = FALSE)
     cat("---------------------------------------------------------------------------\n")
     cat("P-values for Likelihood Ratio Test of the analyzed traits\n")
     cat("---------------------------------------------------------------------------\n")

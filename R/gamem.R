@@ -142,6 +142,8 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         clear = FALSE, total = nvar, width = 90)
     }
     model_formula <- "Y ~ REP + (1 | GEN)"
+    ran_ef <- c("GEN")
+    fix_ef <- c("REP")
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
@@ -265,6 +267,8 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         clear = FALSE, total = nvar, width = 90)
     }
     model_formula <- "Y ~ (1 | GEN) + REP + (1 | REP:BLOCK)"
+    ran_ef <- c("GEN, BLOCK(REP)")
+    fix_ef <- c("REP")
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
@@ -386,7 +390,10 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
     }
   }
   if (verbose == TRUE) {
-    cat("Model: ", model_formula, "\n")
+    message("Method: REML/BLUP\n", appendLF = FALSE)
+    message("Random effects: ", ran_ef, "\n", appendLF = FALSE)
+    message("Fixed effects: ", fix_ef, "\n", appendLF = FALSE)
+    message("Denominador DF: Satterthwaite's method\n", appendLF = FALSE)
     cat("---------------------------------------------------------------------------\n")
     cat("P-values for Likelihood Ratio Test of the analyzed traits\n")
     cat("---------------------------------------------------------------------------\n")
