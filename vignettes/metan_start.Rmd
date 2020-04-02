@@ -129,7 +129,7 @@ make_mat(predicted$GY, GEN, ENV, YpredAMMI) %>%
 # BLUP model
 The implementation of linear-mixed effect models to predict the response variable in MET is made with the function [`gamem_met()`](https://tiagoolivoto.github.io/metan/reference/gamem_met.html). By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument `random` to change this default. In the following example the model is fitted to all numeric variables in [`data_ge`](https://tiagoolivoto.github.io/metan/reference/data_ge.html).
 
-```{r warning=FALSE, message=FALSE}
+```{r warning=FALSE}
 model2 <- gamem_met(data_ge, ENV, GEN, REP, everything())
 ```
 

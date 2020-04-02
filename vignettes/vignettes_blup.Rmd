@@ -136,6 +136,7 @@ where **G** and **R** are the variance-covariance matrices for random-effect vec
 The function `gamem_met()` is used to fit the linear mixed-effect model. The first argument is the data, in our example `data_ge`. The arguments (`env`, `gen`, and `rep`) are the name of the columns that contains the levels for environments, genotypes, and replications, respectively.The argument (`resp`) is the response variable to be analyzed. The function allow a single variable (in this case GY) or a vector of response variables. Here, we will use `everything()` to analyse all numeric variables in the data. By default, genotype and genotype-vs-environment interaction are assumed to be random effects. Other effects may be considered using the `random` argument.  The last argument (`verbose`) control if the code is run silently or not.
 
 ```{r  echo = TRUE}
+library(metan)
 mixed_mod <- 
   gamem_met(data_ge,
             env = ENV,
