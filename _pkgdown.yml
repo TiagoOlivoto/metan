@@ -92,28 +92,29 @@ reference:
 
   - title: "AMMI"
     desc: "Functions for AMMI analysis"
-  - subtitle: "Cross-validation"
     contents:
+#  - subtitle: "Cross-validation"
+#    contents:
       - cv_ammi
       - cv_ammif
-  - subtitle: "Fit models"
-    contents:
+#  - subtitle: "Fit models"
+#    contents:
       - AMMI_indexes
       - impute_missing_val
       - performs_ammi
       - waas
       - waas_means
-  - subtitle: "Plot models"
-    contents:
+#  - subtitle: "Plot models"
+#    contents:
       - plot.cvalidation
       - plot.performs_ammi
       - plot.waas
-  - subtitle: "Predict models"
-    contents:
+#  - subtitle: "Predict models"
+#    contents:
       - predict.waas
       - predict.performs_ammi
-  - subtitle: "Print models"
-    contents:
+#  - subtitle: "Print models"
+#    contents:
       - print.AMMI_indexes
       - print.performs_ammi
       - print.waas
@@ -124,25 +125,25 @@ reference:
     desc: "Analyze genotypes in single- or multi-environment trials using mixed-effect models with variance components and genetic parameter estimation."
     contents:
       - cv_blup
-  - subtitle: "Fit models"
-    contents:
+#  - subtitle: "Fit models"
+#    contents:
       - gamem_met
       - Resende_indexes
       - waasb
       - wsmp
-  - subtitle: "Plot models"
-    contents:
+#  - subtitle: "Plot models"
+#    contents:
       - plot_blup
       - plot_eigen
       - plot_scores
       - plot_waasby
       - plot.wsmp
       - plot.waasb
-  - subtitle: "Predict models"
-    contents:
+#  - subtitle: "Predict models"
+#    contents:
       - predict.waasb
-  - subtitle: "Print models"
-    contents:
+#  - subtitle: "Print models"
+#    contents:
       - print.waasb
 
 
@@ -172,8 +173,8 @@ reference:
   - title: "Genotype-environment interaction"
     desc: "Visualize genotype-environment interaction patterns, rank genotypes within environments, compute genotype, environment, and genotype-environment effects; cluster environments, and compute parametric and non-parametric stability indexes"
     contents:
-  - subtitle: "Initial approaches"
-    contents:
+#  - subtitle: "Initial approaches"
+#    contents:
       - anova_ind
       - anova_joint
       - ge_cluster
@@ -183,8 +184,8 @@ reference:
       - ge_plot
       - ge_winners
       - is_balanced_trial
-  - subtitle: "Parametric methods"
-    contents:
+#  - subtitle: "Parametric methods"
+#    contents:
       - Annicchiarico
       - corr_stab_ind
       - ecovalence
@@ -210,8 +211,8 @@ reference:
       - print.Shukla
       - print.Schmildt
       - Schmildt
-  - subtitle: "Non-parametric methods"
-    contents:
+#  - subtitle: "Non-parametric methods"
+#    contents:
       - Fox
       - Huehn
       - print.Fox
@@ -227,8 +228,8 @@ reference:
   - title: "Biometry"
     desc: "Useful functions for biometric models"
     contents:
-  - subtitle: "Correlation coefficient"
-    contents:
+#  - subtitle: "Correlation coefficient"
+#    contents:
       - as.lpcor
       - corr_coef
       - corr_plot
@@ -242,19 +243,19 @@ reference:
       - plot.corr_coef
       - print.corr_coef
       - print.lpcor
-  - subtitle: "Canonical correlation coefficient"
-    contents:
+#  - subtitle: "Canonical correlation coefficient"
+#    contents:
       - can_corr
       - plot.can_cor
       - print.can_cor
-  - subtitle: "Clustering analysis"
-    contents:
+#  - subtitle: "Clustering analysis"
+#    contents:
       - clustering
       - mahala
       - mahala_design
       - plot.clustering
-  - subtitle: "Path analysis"
-    contents:
+#  - subtitle: "Path analysis"
+#    contents:
       - colindiag
       - non_collinear_vars
       - path_coeff
@@ -285,14 +286,14 @@ reference:
   - title: "Data manipulation"
     desc: "Utilities for handling with columns, rows, numbers, strings, and matrices."
     contents:
-  - subtitle: "Numbers and strings"
-    contents:
+#  - subtitle: "Numbers and strings"
+#    contents:
       - utils_num_str
-  - subtitle: "Columns and rows"
-    contents:
+#  - subtitle: "Columns and rows"
+#    contents:
       - utils_rows_cols
-  - subtitle: "Matrices"
-    contents:
+#  - subtitle: "Matrices"
+#    contents:
       - make_lower_tri
       - make_long
       - make_mat
@@ -302,13 +303,13 @@ reference:
       - solve_svd
 
 
-  - subtitle: "Select helpers"
-    contents:
+#  - subtitle: "Select helpers"
+#    contents:
       - Select_helper
 
 
-  - subtitle: "Other useful functions"
-    contents:
+#  - subtitle: "Other useful functions"
+#    contents:
       - add_class
       - arrange_ggplot
       - as.split_factors
