@@ -107,7 +107,7 @@
 #'
 #'
 #' ############ Find text in numeric sequences ###########
-#' mixed_text <- data_ge
+#' mixed_text <- data.frame(data_ge)
 #' mixed_text[2, 4] <- "2..503"
 #' mixed_text[3, 4] <- "3.2o75"
 #' find_text_in_num(mixed_text, GY)
@@ -132,8 +132,8 @@
 #' messy_int <- c("EnvGen", "Env_Gen", "env gen", "Env Gen", "ENV.GEN", "ENV_GEN")
 #' tidy_strings(messy_int)
 #'
-#' # Or a whole data frame
 #' library(tibble)
+#' # Or a whole data frame
 #' df <- tibble(Env = messy_env,
 #'              gen = messy_gen,
 #'              Env_GEN = interaction(Env, gen),
@@ -581,10 +581,7 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #'
 #' ################### Adding rows ##################
 #' data_ge %>%
-#'   add_rows(ENV = "E_TEST",
-#'            GEN = "G_TEST",
-#'            REP = 3,
-#'            GY = 10.3,
+#'   add_rows(GY = 10.3,
 #'            HM = 100.11,
 #'            .after = 1)
 #'

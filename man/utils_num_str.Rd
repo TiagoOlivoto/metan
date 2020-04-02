@@ -203,7 +203,7 @@ remove_strings(data_ge, ENV)
 
 
 ############ Find text in numeric sequences ###########
-mixed_text <- data_ge
+mixed_text <- data.frame(data_ge)
 mixed_text[2, 4] <- "2..503"
 mixed_text[3, 4] <- "3.2o75"
 find_text_in_num(mixed_text, GY)
@@ -228,8 +228,8 @@ tidy_strings(messy_gen)
 messy_int <- c("EnvGen", "Env_Gen", "env gen", "Env Gen", "ENV.GEN", "ENV_GEN")
 tidy_strings(messy_int)
 
-# Or a whole data frame
 library(tibble)
+# Or a whole data frame
 df <- tibble(Env = messy_env,
              gen = messy_gen,
              Env_GEN = interaction(Env, gen),

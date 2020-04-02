@@ -222,10 +222,7 @@ colnames_to_title(df)
 
 ################### Adding rows ##################
 data_ge \%>\%
-  add_rows(ENV = "E_TEST",
-           GEN = "G_TEST",
-           REP = 3,
-           GY = 10.3,
+  add_rows(GY = 10.3,
            HM = 100.11,
            .after = 1)
 

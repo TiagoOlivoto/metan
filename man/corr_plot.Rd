@@ -170,7 +170,7 @@ Graphical and numerical visualization of a correlation matrix
 \examples{
 \donttest{
 library(metan)
-dataset = data_ge2
+dataset <- data_ge2
 
 # Default plot setting
 corr_plot(dataset)
