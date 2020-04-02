@@ -29,7 +29,7 @@ library(DT) # Used to make the tables
 # Function to make HTML tables
 print_table <- function(table, rownames = FALSE, ...){
 datatable(table, rownames = rownames, extensions = 'Buttons',
-          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+          options = list(scrollX = TRUE, dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
     formatSignif(columns = c(1:ncol(table)), digits = 3)}
 
 ```
@@ -396,7 +396,7 @@ library(DT) # Used to make the tables
 # Function to make HTML tables
 print_table <- function(table, rownames = FALSE, ...){
 datatable(table, rownames = rownames, extensions = 'Buttons',
-          options = list(dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+          options = list(scrollX = TRUE, dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
     formatSignif(columns = c(1:ncol(table)), digits = 3)}
 
 ```
