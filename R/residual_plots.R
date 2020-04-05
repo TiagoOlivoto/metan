@@ -36,6 +36,9 @@
 #' c(1:4)} that means that the first four graphics will be plotted.
 #' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
 #'   to \code{NULL}
+#' @param align Specifies whether graphs in the grid should be horizontally
+#'   (\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
+#'   align in both directions, \code{"none"} do not align the plot.
 #' @param ... Additional arguments passed on to the function
 #'   \code{\link[cowplot]{plot_grid}}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -81,7 +84,17 @@ residual_plots <- function(x,
                            bins = 30,
                            which = c(1:4),
                            ncol = NULL,
-                           nrow = NULL, ...) {
+                           nrow = NULL,
+                           align = "hv",
+                           ...) {
+  if(is.numeric(var)){
+    var_name <- names(x)[var]
+  } else{
+    var_name <- var
+  }
+  if(!var_name %in% names(x)){
+    stop("Variable not found in ", match.call()[["x"]] , call. = FALSE)
+  }
   x <- x[[var]]
   df <- x$augment %>%
     rowid_to_column(var = "id") %>%
@@ -250,9 +263,21 @@ residual_plots <- function(x,
           plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
           panel.spacing = unit(0, "cm"))
   plots <- list(p1, p2, p3, p4, p5, p6, p7)
-  plot_grid(plotlist = plots[c(which)],
-            ncol = ncol,
-            nrow = nrow,
-            ...)
-}
+
+  p1 <-
+    plot_grid(plotlist = plots[c(which)],
+              ncol = ncol,
+              nrow = nrow,
+              align = align,
+              ...)
+  title <- ggdraw() +
+    draw_label(var_name,
+               fontface = 'bold',
+               x = 0,
+               hjust = 0) +
+    theme(plot.margin = margin(0, 0, 0, 7))
+  plot_grid(title, p1,
+            ncol = 1,
+            rel_heights = c(0.05, 1))
+  }
 

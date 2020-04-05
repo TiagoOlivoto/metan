@@ -10,6 +10,8 @@
   type = "res",
   conf = 0.95,
   out = "print",
+  n.dodge = 1,
+  check.overlap = FALSE,
   labels = FALSE,
   plot_theme = theme_metan(),
   alpha = 0.2,
@@ -25,6 +27,7 @@
   which = c(1:4),
   ncol = NULL,
   nrow = NULL,
+  align = "hv",
   ...
 )
 }
@@ -42,6 +45,12 @@ default).}
 
 \item{out}{How the output is returned. Must be one of the 'print' (default)
 or 'return'.}
+
+\item{n.dodge}{The number of rows that should be used to render the x labels.
+This is useful for displaying labels that would otherwise overlap.}
+
+\item{check.overlap}{Silently remove overlapping labels, (recursively)
+prioritizing the first, last, and middle labels.}
 
 \item{labels}{Logical argument. If \code{TRUE} labels the points outside
 confidence interval limits.}
@@ -77,6 +86,10 @@ c(1:4)} that means that the first four graphics will be plotted.}
 
 \item{ncol, nrow}{The number of columns and rows of the plot pannel. Defaults
 to \code{NULL}}
+
+\item{align}{Specifies whether graphs in the grid should be horizontally
+(\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
+align in both directions, \code{"none"} do not align the plot.}
 
 \item{...}{Additional arguments passed on to the function
 \code{\link[cowplot]{plot_grid}}}

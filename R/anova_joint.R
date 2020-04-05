@@ -205,8 +205,7 @@ anova_joint <- function(.data,
 #'      which = c(3, 5),
 #'      nrow = 2,
 #'      labels = TRUE,
-#'      size.lab.out = 4,
-#'      align = "v")
+#'      size.lab.out = 4)
 #' }
 #'
 plot.anova_joint <- function(x, ...) {

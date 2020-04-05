@@ -747,6 +747,10 @@ waasb <- function(.data,
 #' default).
 #' @param out How the output is returned. Must be one of the 'print' (default)
 #' or 'return'.
+#' @param n.dodge The number of rows that should be used to render the x labels.
+#'   This is useful for displaying labels that would otherwise overlap.
+#' @param check.overlap Silently remove overlapping labels, (recursively)
+#'   prioritizing the first, last, and middle labels.
 #' @param labels Logical argument. If \code{TRUE} labels the points outside
 #' confidence interval limits.
 #' @param plot_theme The graphical theme of the plot. Default is
@@ -768,6 +772,9 @@ waasb <- function(.data,
 #' c(1:4)} that means that the first four graphics will be plotted.
 #' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
 #'   to \code{NULL}
+#' @param align Specifies whether graphs in the grid should be horizontally
+#'   (\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
+#'   align in both directions, \code{"none"} do not align the plot.
 #' @param ... Additional arguments passed on to the function
 #'   \code{\link[cowplot]{plot_grid}}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -787,17 +794,75 @@ waasb <- function(.data,
 #' plot(model2)
 #'}
 #'
-plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
-                       labels = FALSE, plot_theme = theme_metan(), alpha = 0.2, fill.hist = "gray",
-                       col.hist = "black", col.point = "black", col.line = "red",
-                       col.lab.out = "red", size.lab.out = 2.5, size.tex.lab = 10,
-                       size.shape = 1.5, bins = 30, which = c(1:4), ncol = NULL,
-                       nrow = NULL, ...) {
-    x <- x[[var]]
+plot.waasb <- function(x,
+                       var = 1,
+                       type = "res",
+                       conf = 0.95,
+                       out = "print",
+                       n.dodge = 1,
+                       check.overlap = FALSE,
+                       labels = FALSE,
+                       plot_theme = theme_metan(),
+                       alpha = 0.2,
+                       fill.hist = "gray",
+                       col.hist = "black",
+                       col.point = "black",
+                       col.line = "red",
+                       col.lab.out = "red",
+                       size.lab.out = 2.5,
+                       size.tex.lab = 10,
+                       size.shape = 1.5,
+                       bins = 30,
+                       which = c(1:4),
+                       ncol = NULL,
+                       nrow = NULL,
+                       align = "hv",
+                       ...) {
+    if(!type  %in% c("res", 're', "vcomp")){
+        stop("Argument type = '", match.call()[["type"]], "' invalid. Use one of 'res', 're', or 'vcomp'", call. = FALSE)
+    }
+    if(type %in% c("vcomp", "re") && !class(x)  %in% c("waasb", "gamem")){
+        stop("Arguments 're' and 'vcomp' valid for objects of class 'waasb' or 'gamem'. ")
+    }
+    if(is.numeric(var)){
+        var_name <- names(x)[var]
+    } else{
+        var_name <- var
+    }
+    if(!var_name %in% names(x)){
+        stop("Variable not found in ", match.call()[["x"]] , call. = FALSE)
+    }
     if (type == "re" & max(which) >= 5) {
         stop("When type =\"re\", 'which' must be a value between 1 and 4")
     }
+    if(type == "vcomp"){
+        list <- lapply(x, function(x){
+            x[["random"]] %>% select(Group, Variance)
+        })
+        vcomp <- suppressWarnings(
+            lapply(seq_along(list),
+                   function(i){
+                       set_names(list[[i]], "Group", names(list)[i])
+                   }) %>%
+                reduce(full_join, by = "Group") %>%
+                pivot_longer(-Group))
+        p1 <-
+            ggplot(vcomp, aes(x = name, y = value, fill = Group)) +
+            geom_bar(stat = "identity",
+                     position = "fill",
+                     col = "black")  +
+            theme_bw()+
+            theme(legend.position = "bottom",
+                  panel.grid = element_blank(),
+                  legend.title = element_blank(),
+                  strip.background = element_rect(fill = NA),
+                  axis.text = element_text(colour = "black")) +
+            scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
+            labs(x = "Traits", y = "Proportion of phenotypic variance")
+        return(p1)
+    }
     if (type == "res") {
+        x <- x[[var]]
         df <- data.frame(x$residuals)
         df$id <- rownames(df)
         df <- data.frame(df[order(df$.scresid), ])
@@ -938,8 +1003,26 @@ plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
                   plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
                   panel.spacing = unit(0, "cm"))
         plots <- list(p1, p2, p3, p4, p5, p6, p7)
+        p1 <-
+            plot_grid(plotlist = plots[c(which)],
+                      ncol = ncol,
+                      nrow = nrow,
+                      align = align,
+                      ...)
+        title <- ggdraw() +
+            draw_label(var_name,
+                       fontface = 'bold',
+                       x = 0,
+                       hjust = 0) +
+            theme(plot.margin = margin(0, 0, 0, 7))
+        p1 <-
+            plot_grid(title, p1,
+                      ncol = 1,
+                      rel_heights = c(0.05, 1))
+        return(p1)
     }
     if (type == "re") {
+        x <- x[[var]]
         blups <-
             x$BLUPint %>%
             select_cols(contains("BLUP"))
@@ -989,28 +1072,19 @@ plot.waasb <- function(x, var = 1, type = "res", conf = 0.95, out = "print",
             plot_theme %+replace%
             theme(axis.text = element_text(size = size.tex.lab, colour = "black"),
                   axis.title = element_text(size = size.tex.lab, colour = "black"),
-                  plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1))
+                  plot.title.position = "plot",
+                  plot.title = element_text(size = size.tex.lab + 1, hjust = 0, vjust = 1, face = "bold"))
         if (labels != FALSE) {
             p1 <- p1 + ggrepel::geom_text_repel(aes(z, blup, label = (label)),
                                                 color = col.lab.out,
-                                                size = size.lab.out)
+                                                size = size.lab.out)+
+                labs(title = var_name)
         } else {
-            p1 <- p1
+            p1 <- p1 + labs(title = var_name)
         }
-    }
-    if(!type == "re"){
-        plot_grid(plotlist = plots[c(which)],
-                  ncol = ncol,
-                  nrow = nrow,
-                  ...)
-    } else{
-        print(p1)
+        return(p1)
     }
 }
-
-
-
-
 
 
 

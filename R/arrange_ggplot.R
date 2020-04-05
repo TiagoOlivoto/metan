@@ -10,6 +10,9 @@
 #'   and rows heights, respectively.
 #' @param labels List of labels to be added to the plots.
 #' @param hjust,vjust Adjusts the horizontal and vertical position of each label.
+#' @param align Specifies whether graphs in the grid should be horizontally
+#'   (\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
+#'   align in both directions, \code{"none"} do not align the plot.
 #' @return None.
 #' @importFrom GGally ggmatrix_gtable
 #' @export
@@ -35,7 +38,8 @@ arrange_ggplot <- function(...,
                            rel_heights = 1,
                            labels = NULL,
                            hjust = -0.5,
-                           vjust = 1.5) {
+                           vjust = 1.5,
+                           align = "hv") {
 if(any(sapply(list(...), function(x) class(x) == "ggmatrix") == TRUE)) {
   plotlist <-  lapply(list(...), function(x) ggmatrix_gtable(x))
   plot_grid(plotlist = plotlist,
@@ -45,7 +49,8 @@ if(any(sapply(list(...), function(x) class(x) == "ggmatrix") == TRUE)) {
             rel_heights = rel_heights,
             labels = labels,
             hjust = hjust,
-            vjust = vjust)
+            vjust = vjust,
+            align = align)
 } else{
 plot_grid(plotlist = ...,
           plotlist = plotlist,
@@ -55,6 +60,7 @@ plot_grid(plotlist = ...,
           rel_heights = rel_heights,
           labels = labels,
           hjust = hjust,
-          vjust = vjust)
+          vjust = vjust,
+          align = align)
 }
 }

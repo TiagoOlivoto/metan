@@ -13,7 +13,8 @@ arrange_ggplot(
   rel_heights = 1,
   labels = NULL,
   hjust = -0.5,
-  vjust = 1.5
+  vjust = 1.5,
+  align = "hv"
 )
 }
 \arguments{
@@ -29,6 +30,10 @@ and rows heights, respectively.}
 \item{labels}{List of labels to be added to the plots.}
 
 \item{hjust, vjust}{Adjusts the horizontal and vertical position of each label.}
+
+\item{align}{Specifies whether graphs in the grid should be horizontally
+(\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
+align in both directions, \code{"none"} do not align the plot.}
 }
 \value{
 None.
