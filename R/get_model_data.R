@@ -39,8 +39,9 @@
 #' * \code{"MSG", "FCG", "PFG"} The mean square, F-calculated and P-values for
 #' genotype effect, respectively.
 #' * \code{"MSB", "FCB", "PFB"} The mean square, F-calculated and P-values for
-#' block effect (in randomized complete block design) or complete replicate (in
-#' alpha lattice design), respectively.
+#' block effect in randomized complete block design.
+#' * \code{"MSCR", "FCR", "PFCR"} The mean square, F-calculated and P-values for
+#' complete replicates in alpha lattice design.
 #' * \code{"MSIB_R", "FCIB_R", "PFIB_R"} The mean square, F-calculated and
 #' P-values for incomplete blocks within complete replicates, respectively (for
 #' alpha lattice design only).
@@ -372,7 +373,7 @@ get_model_data <- function(x,
   check18 <- c("Mean_rp", "Sem_rp", "Wi", "rank")
   check19 <- c("ge_means", "env_means", "gen_means")
   check20 <- c("Sum Sq", "Mean Sq", "F value", "Pr(>F)", "fitted", "resid", "stdres", "se.fit", "details")
-  check21 <- c("MEAN", "MSG", "FCG", "PFG", "MSB", "FCB", "PFB", "MSIB_R", "FCIB_R", "PFIB_R", "MSE", "CV", "h2", "AS")
+  check21 <- c("MEAN", "MSG", "FCG", "PFG", "MSB", "FCB", "PFB", "MSCR", "FCR", "PFCR", "MSIB_R", "FCIB_R", "PFIB_R", "MSE", "CV", "h2", "AS")
 
   if (!is.null(what) && !what %in% c(check, check1, check2, check5, check6, check7, check8, check9,
                                      check10, check11, check12, check13, check14, check15, check16,
@@ -380,7 +381,7 @@ get_model_data <- function(x,
     stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
   }
   if (!is.null(what) && what %in% check3 && !class(x) %in% c("waasb", "gamem", "gafem", "anova_joint")) {
-    stop("Invalid argument 'what'. It can only be used with an object of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
+    stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")

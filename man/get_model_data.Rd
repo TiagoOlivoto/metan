@@ -60,8 +60,9 @@ interaction.
 \item \code{"MSG", "FCG", "PFG"} The mean square, F-calculated and P-values for
 genotype effect, respectively.
 \item \code{"MSB", "FCB", "PFB"} The mean square, F-calculated and P-values for
-block effect (in randomized complete block design) or complete replicate (in
-alpha lattice design), respectively.
+block effect in randomized complete block design.
+\item \code{"MSCR", "FCR", "PFCR"} The mean square, F-calculated and P-values for
+complete replicates in alpha lattice design.
 \item \code{"MSIB_R", "FCIB_R", "PFIB_R"} The mean square, F-calculated and
 P-values for incomplete blocks within complete replicates, respectively (for
 alpha lattice design only).
