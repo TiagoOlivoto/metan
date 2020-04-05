@@ -255,7 +255,7 @@ mtsi <- function(.data,
                         canonical.loadings = data.frame(canonical.loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
                         scores.gen = data.frame(scores) %>% rownames_to_column("GEN") %>% as_tibble(),
                         scores.ide = data.frame(ideotypes.scores) %>% rownames_to_column("GEN") %>% as_tibble(),
-                        MTSI = MTSI,
+                        MTSI = as_tibble(MTSI, rownames = NA) %>% rownames_to_column("Genotype") %>% rename(MTSI = value),
                         contri.fac = contr.factor,
                         sel.dif = sel.dif,
                         mean.sd = mean_sd_ind,
@@ -310,7 +310,8 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.poin
   if (!class(x) == "mtsi") {
     stop("The object 'x' is not of class 'mtsi'")
   }
-  data <- tibble(MTSI = x$MTSI, Genotype = names(x$MTSI), sel = "Selected")
+  data <- x$MTSI %>%
+    add_cols(sel = "Selected")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
   cutpoint <- max(subset(data, sel == "Selected")$MTSI)
   p <- ggplot(data = data, aes(x = reorder(Genotype, -MTSI),
@@ -337,9 +338,6 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.poin
   }
   return(p)
 }
-
-
-
 
 
 

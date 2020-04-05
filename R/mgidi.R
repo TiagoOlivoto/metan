@@ -209,7 +209,7 @@ mgidi <- function(.data,
                         canonical.loadings = data.frame(canonical.loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
                         scores.gen = data.frame(scores) %>% rownames_to_column("GEN") %>% as_tibble(),
                         scores.ide = data.frame(ideotypes.scores) %>% rownames_to_column("GEN") %>% as_tibble(),
-                        MGIDI = MGIDI,
+                        MGIDI = as_tibble(MGIDI, rownames = NA) %>% rownames_to_column("Genotype") %>% rename(MGIDI = value),
                         contri.fac = contr.factor,
                         sel.dif = sel.dif.mean,
                         Selected = names(MGIDI)[1:ngs]),
@@ -263,7 +263,8 @@ plot.mgidi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.poi
   if (!class(x) == "mgidi") {
     stop("The object 'x' is not of class 'mgidi'")
   }
-  data <- tibble(MGIDI = x$MGIDI, Genotype = names(x$MGIDI), sel = "Selected")
+  data <- x$MGIDI %>%
+    add_cols(sel = "Selected")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
   cutpoint <- max(subset(data, sel == "Selected")$MGIDI)
   p <- ggplot(data = data, aes(x = reorder(Genotype, -MGIDI),

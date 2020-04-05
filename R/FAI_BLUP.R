@@ -260,7 +260,7 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   return(structure(list(data = means,
                         FA = data.frame(fa),
                         canonical.loadings = data.frame(canonical.loadings),
-                        FAI = ideotype.rank,
+                        FAI = data.frame(ideotype.rank) %>% rownames_to_column("Genotype"),
                         selection.diferential = selection.diferential),
                    class = "fai_blup"))
 }
@@ -319,8 +319,10 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, arrange.label 
   if (!class(x) == "fai_blup") {
     stop("The object 'x' is not of class 'fai_blup'")
   }
-  data <- tibble(FAI = x$FAI[[ideotype]], Genotype = names(x$FAI[[ideotype]]),
-                 sel = "Selected")
+  data <- x$FAI %>%
+    select_cols(Genotype, paste("ID", ideotype, sep = "")) %>%
+  add_cols(sel = "Selected") %>%
+    set_names("Genotype", "FAI", "sel")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
   cutpoint <- min(subset(data, sel == "Selected")$FAI)
   p <- ggplot(data = data, aes(x = reorder(Genotype, FAI),
