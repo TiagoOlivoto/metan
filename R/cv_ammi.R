@@ -15,6 +15,11 @@
 #' Axis are compared with the 'validation' data. The Root Mean Square Prediction
 #' Difference (RMSPD) is computed. At the end of boots, a list is returned.
 #'
+#' \strong{IMPORTANT:} If the data set is unbalanced (i.e., any genotype missing
+#' in any environment) the function will return an error. An error is also
+#' observed if any combination of genotype-environment has a different number of
+#' replications than observed in the trial.
+#'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
 #' @param env The name of the column that contains the levels of the
@@ -112,6 +117,26 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
         format = "Validating :current of :total sets [:bar] :percent (:elapsedfull -:eta left)",
         clear = FALSE, total = nboot, width = 80)
     }
+    test <-
+      data %>%
+      n_by(ENV, GEN) %>%
+      mutate(test =
+               case_when(Y > 0 & Y != Nbloc ~ TRUE,
+                         TRUE ~ FALSE)
+      )
+    if(any(test$test == TRUE)){
+      df_test <-
+        data.frame(
+          test[which(test$test == TRUE),] %>%
+            remove_cols(rowid,REP, test) %>%
+            rename(n = Y)
+        )
+      message(paste0(capture.output(df_test), collapse = "\n"))
+      stop("Combinations of genotype and environment with different number of replication than observed in the trial (", Nbloc, ")", call. = FALSE)
+    }
+    if(!is_balanced_trial(data, ENV, GEN, Y)){
+      stop("AMMI analysis cannot be computed with unbalanced data.", call. = FALSE)
+    }
     for (b in 1:nboot) {
       if (design == "CRD") {
         X <- sample(1:10000, 1)
@@ -191,6 +216,26 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
     if (naxis > minimo) {
       stop("The number of axis to be used must be lesser than or equal to ",
            minimo, " [min(GEN-1;ENV-1)]")
+    }
+    test <-
+      data %>%
+      n_by(ENV, GEN) %>%
+      mutate(test =
+               case_when(Y > 0 & Y != Nbloc ~ TRUE,
+                         TRUE ~ FALSE)
+      )
+    if(any(test$test == TRUE)){
+      df_test <-
+        data.frame(
+          test[which(test$test == TRUE),] %>%
+            remove_cols(rowid,REP, test) %>%
+            rename(n = Y)
+        )
+      message(paste0(capture.output(df_test), collapse = "\n"))
+      stop("Combinations of genotype and environment with different number of replication than observed in the trial (", Nbloc, ")", call. = FALSE)
+    }
+    if(!is_balanced_trial(data, ENV, GEN, Y)){
+      stop("AMMI analysis cannot be computed with unbalanced data.", call. = FALSE)
     }
     if (verbose == TRUE) {
       pb <- progress_bar$new(

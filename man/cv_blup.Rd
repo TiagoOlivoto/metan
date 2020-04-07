@@ -99,6 +99,10 @@ to be random factors.
   "all"}. This model considers an alpha-lattice design in each environment
 assuming all effects, except the intercept, as random factors.
 }
+
+\strong{IMPORTANT:}  An error is returned if any combination of
+genotype-environment has a different number of replications than observed in
+the trial.
 }
 \examples{
 

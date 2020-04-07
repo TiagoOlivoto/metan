@@ -77,6 +77,11 @@ made for each genotype-by-environment combination (Olivoto et al. 2019). The
 estimated values for each member of the AMMI-family model are compared with
 the 'validation' data. The Root Mean Square Prediction Difference (RMSPD) is
 computed. At the end of boots, a list is returned.
+
+\strong{IMPORTANT:} If the data set is unbalanced (i.e., any genotype missing
+in any environment) the function will return an error. An error is also
+observed if any combination of genotype-environment has a different number of
+replications than observed in the trial.
 }
 \examples{
 

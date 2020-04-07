@@ -69,6 +69,9 @@
 #'   "all"}. This model considers an alpha-lattice design in each environment
 #'   assuming all effects, except the intercept, as random factors.
 #'
+#' \strong{IMPORTANT:}  An error is returned if any combination of
+#' genotype-environment has a different number of replications than observed in
+#' the trial.
 #'
 #' @return An object of class \code{cv_blup} with the following items: *
 #' \strong{RMSPD}: A vector with nboot-estimates of the root mean squared
@@ -95,6 +98,7 @@
 #' @seealso \code{\link{cv_ammi}}, \code{\link{cv_ammif}}
 #' @export
 #' @importFrom tibble rowid_to_column
+#' @importFrom utils capture.output
 #' @examples
 #'
 #' \donttest{
@@ -129,10 +133,29 @@ cv_blup <- function(.data,
             mutate_at(1:3, as.factor)
         data <- tibble::rowid_to_column(data)
         Nbloc <- nlevels(data$REP)
-        if (Nbloc <= 2) {
-            stop("At least three replicates are required to perform the cross-validation.")
-        }
         nrepval <- Nbloc - 1
+        if (Nbloc <= 2) {
+            stop("At least three replicates are required to perform the cross-validation.", call. = FALSE)
+        }
+        test <-
+            data %>%
+            n_by(ENV, GEN) %>%
+        mutate(test =
+            case_when(Y == 0  ~ FALSE,
+                      Y > 0 & Y != Nbloc ~ TRUE,
+                      TRUE ~ FALSE)
+        )
+        if(any(test$test == TRUE)){
+            df_test <-
+                data.frame(
+                    test[which(test$test == TRUE),] %>%
+                        remove_cols(rowid,REP, test) %>%
+                        rename(n = Y)
+                )
+            message(paste0(capture.output(df_test), collapse = "\n"))
+            stop("Combinations of genotype and environment with different number of replication than observed in the trial (", Nbloc, ")", call. = FALSE)
+        }
+        data <- remove_rows_na(data, verbose = FALSE)
         if (verbose == TRUE) {
             pb <- progress_bar$new(
                 format = "Validating :current of :total sets [:bar]:percent (:elapsedfull -:eta left)",
@@ -189,12 +212,31 @@ cv_blup <- function(.data,
                                  REP = {{rep}},
                                  BLOCK = {{block}},
                                  Y = {{resp}})
-        data <- rowid_to_column(data)
+        data <- tibble::rowid_to_column(data)
         Nbloc <- nlevels(data$REP)
-        if (Nbloc <= 2) {
-            stop("At least three replicates are required to perform the cross-validation.")
-        }
         nrepval <- Nbloc - 1
+        if (Nbloc <= 2) {
+            stop("At least three replicates are required to perform the cross-validation.", call. = FALSE)
+        }
+        test <-
+            data %>%
+            n_by(ENV, GEN) %>%
+            mutate(test =
+                       case_when(Y == 0  ~ FALSE,
+                                 Y > 0 & Y != Nbloc ~ TRUE,
+                                 TRUE ~ FALSE)
+            )
+        if(any(test$test == TRUE)){
+            df_test <-
+                data.frame(
+                    test[which(test$test == TRUE),] %>%
+                        remove_cols(rowid,REP, test) %>%
+                        rename(n = Y)
+                )
+            message(paste0(capture.output(df_test), collapse = "\n"))
+            stop("Combinations of genotype and environment with different number of replication than observed in the trial (", Nbloc, ")", call. = FALSE)
+        }
+        data <- remove_rows_na(data, verbose = FALSE)
         if (verbose == TRUE) {
             pb <- progress_bar$new(
                 format = "Validating :current of :total sets [:bar]:percent (:elapsedfull -:eta left)",
