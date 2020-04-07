@@ -10,10 +10,13 @@
 * Allow using `fai_blup()` with `gamem()`
 * Improve checking process with `inspect()`
 * Improve feedback for results, indicating random and fixed effects. Thanks to [@NelsonJunior](https://scholar.google.com.br/citations?user=i2F6X04AAAAJ&hl=pt-BR) for his suggestion.
+* `plot()` call on objects of class `gamem`, `waasb` and `waas` now returns the variable names automatically. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for suggesting me this change.
+* `plot.gamem()` and `plot.waasb()` have a new argument (`type = "vcomp"`) to produce a plot showing the contribution of the variance components to the phenotypic variance
+
 
 ## Bug fixes
-* `get_model_data()` now fills rows that don't matches across columns with `NA`
-*
+* `get_model_data()` now fills rows that don't matches across columns with `NA`. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for his report.
+* `ge_mode_data()` now report mean squares, F-calculated and P-values for blocks within replicates.
 
 # metan 1.4.0
 ## Bug fixes

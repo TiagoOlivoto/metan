@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -50,7 +54,6 @@
 
 <meta property="og:title" content="Changelog" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -78,7 +81,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -219,12 +222,12 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
     <div id="metan-1409000" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.4.0.9000">
 <a href="#metan-1409000" class="anchor"></a>metan 1.4.0.9000<small> Unreleased </small>
 </h1>
 <div id="new-functions" class="section level2">
@@ -250,6 +253,10 @@
 <li>Improve checking process with <code><a href="../reference/inspect.html">inspect()</a></code>
 </li>
 <li>Improve feedback for results, indicating random and fixed effects. Thanks to <a href="https://scholar.google.com.br/citations?user=i2F6X04AAAAJ&amp;hl=pt-BR">@NelsonJunior</a> for his suggestion.</li>
+<li>
+<code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> call on objects of class <code>gamem</code>, <code>waasb</code> and <code>waas</code> now returns the variable names automatically. Thanks to <a href="https://www.researchgate.net/profile/Md_Farhad">@MdFarhad</a> for suggesting me this change.</li>
+<li>
+<code><a href="../reference/plot.gamem.html">plot.gamem()</a></code> and <code><a href="../reference/plot.waasb.html">plot.waasb()</a></code> have a new argument (<code>type = "vcomp"</code>) to produce a plot showing the contribution of the variance components to the phenotypic variance</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
@@ -257,15 +264,14 @@
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>
-<code><a href="../reference/get_model_data.html">get_model_data()</a></code> now fills rows that don’t matches across columns with <code>NA</code>
-</li>
+<code><a href="../reference/get_model_data.html">get_model_data()</a></code> now fills rows that donât matches across columns with <code>NA</code>. Thanks to <a href="https://www.researchgate.net/profile/Md_Farhad">@MdFarhad</a> for his report.</li>
 <li>
-</li>
+<code>ge_mode_data()</code> now report mean squares, F-calculated and P-values for blocks within replicates.</li>
 </ul>
 </div>
 </div>
     <div id="metan-140" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.4.0">
 <a href="#metan-140" class="anchor"></a>metan 1.4.0<small> 2020-03-17 </small>
 </h1>
 <div id="bug-fixes-1" class="section level2">
@@ -321,7 +327,7 @@
 </div>
 </div>
     <div id="metan-130" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.3.0">
 <a href="#metan-130" class="anchor"></a>metan 1.3.0<small> 2020-02-11 </small>
 </h1>
 <div id="new-functions-2" class="section level2">
@@ -424,7 +430,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>Change “<a href='https://github.com/TiagoOlivoto/metan/issues/000000'>#000000</a>FF” with “#FFFFFF00” in <code><a href="../reference/themes.html">transparent_color()</a></code>
+<li>Change â<a href='https://github.com/TiagoOlivoto/metan/issues/000000'>#000000</a>FFâ with â#FFFFFF00â in <code><a href="../reference/themes.html">transparent_color()</a></code>
 </li>
 <li>
 <code><a href="../reference/desc_stat.html">desc_stat()</a></code> now handles grouped data passed from <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by()</a></code>
@@ -432,7 +438,7 @@
 <li>
 <code><a href="../reference/plot_scores.html">plot_scores()</a></code> now support objects of class <code>waas_mean</code>.</li>
 <li>Include inst/CITATION to return a reference paper with <code><a href="https://rdrr.io/r/utils/citation.html">citation("metan")</a></code>.</li>
-<li>Change ‘PC2’ with ‘PC1’ in y-axis of <code><a href="../reference/plot_scores.html">plot_scores(type = 2)</a></code> (<a href="https://github.com/TiagoOlivoto/metan/issues/1"><a href='https://github.com/TiagoOlivoto/metan/issues/1'>#1</a></a>)</li>
+<li>Change âPC2â with âPC1â in y-axis of <code><a href="../reference/plot_scores.html">plot_scores(type = 2)</a></code> (<a href="https://github.com/TiagoOlivoto/metan/issues/1"><a href='https://github.com/TiagoOlivoto/metan/issues/1'>#1</a></a>)</li>
 <li>
 <code><a href="../reference/get_model_data.html">get_model_data()</a></code> now support models of class <code>anova_joint</code> and <code>gafem</code> and extract random effects of models fitted with <code><a href="../reference/waasb.html">waasb()</a></code> and <code><a href="../reference/gamem.html">gamem()</a></code>.</li>
 <li>Update <code><a href="../reference/plot.waasb.html">plot.waasb()</a></code> and <code><a href="../reference/plot.gamem.html">plot.gamem()</a></code> to show distribution of random effects.</li>
@@ -445,7 +451,7 @@
 </div>
 </div>
     <div id="metan-121" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.2.1">
 <a href="#metan-121" class="anchor"></a>metan 1.2.1<small> 2020-01-14 </small>
 </h1>
 <ul>
@@ -453,14 +459,14 @@
 </ul>
 </div>
     <div id="metan-120" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.2.0">
 <a href="#metan-120" class="anchor"></a>metan 1.2.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>Minor changes
 <ul>
 <li>
-<code><a href="../reference/corr_plot.html">corr_plot()</a></code> now don’t write a warning message to the console by default.</li>
+<code><a href="../reference/corr_plot.html">corr_plot()</a></code> now donât write a warning message to the console by default.</li>
 <li>
 <code><a href="../reference/utils_rows_cols.html">select_numeric_cols()</a></code> now is used as a helper function in <code>metan</code>.</li>
 <li>
@@ -501,7 +507,7 @@
 </ul>
 </div>
     <div id="metan-112" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.1.2">
 <a href="#metan-112" class="anchor"></a>metan 1.1.2<small> Unreleased </small>
 </h1>
 <ul>
@@ -516,7 +522,7 @@
 </ul>
 </div>
     <div id="metan-111" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.1.1">
 <a href="#metan-111" class="anchor"></a>metan 1.1.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -525,12 +531,12 @@
 </ul>
 </div>
     <div id="metan-110" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.1.0">
 <a href="#metan-110" class="anchor"></a>metan 1.1.0<small> Unreleased </small>
 </h1>
-<p>I’m very pleased to announce the release of <code>metan</code> 1.1.0, This is a minor release with bug fixes and new functions. The most important changes are described below.</p>
+<p>Iâm very pleased to announce the release of <code>metan</code> 1.1.0, This is a minor release with bug fixes and new functions. The most important changes are described below.</p>
 <ul>
-<li>New function <code><a href="../reference/corr_stab_ind.html">corr_stab_ind()</a></code> for computing Spearman’s rank correlation between stability indexes;</li>
+<li>New function <code><a href="../reference/corr_stab_ind.html">corr_stab_ind()</a></code> for computing Spearmanâs rank correlation between stability indexes;</li>
 <li>New function <code><a href="../reference/corr_coef.html">corr_coef()</a></code> for computing correlation coefficients and p-values;</li>
 <li>New S3 method <code><a href="../reference/plot.corr_coef.html">plot.corr_coef()</a></code> for creating correlation heat maps;</li>
 <li>New S3 method <code><a href="../reference/print.corr_coef.html">print.corr_coef()</a></code> for printing correlation and p-values;</li>
@@ -541,12 +547,12 @@
 <code><a href="../reference/arrange_ggplot.html">arrange_ggplot()</a></code> now support objects of class <code>ggmatrix</code>.</li>
 <li>Change the default plot theme to <code><a href="../reference/themes.html">theme_metan()</a></code>
 </li>
-<li>Update function’s documentation;</li>
+<li>Update functionâs documentation;</li>
 <li>Update vignettes.</li>
 </ul>
 </div>
     <div id="metan-102" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.0.2">
 <a href="#metan-102" class="anchor"></a>metan 1.0.2<small> Unreleased </small>
 </h1>
 <ul>
@@ -555,30 +561,30 @@
 <li>New function <code><a href="../reference/gai.html">gai()</a></code> for computing the geometric adaptability index;</li>
 <li>New helper function <code><a href="../reference/utils_stats.html">gm_mean()</a></code> for computing geometric mean;</li>
 <li>New helper function <code><a href="../reference/utils_stats.html">hm_mean()</a></code> for computing harmonic mean;</li>
-<li>New helper function <code><a href="../reference/Huehn.html">Huehn()</a></code> for computing Huehn’s stability statistic;</li>
-<li>New helper function <code>Thennasaru()</code> for computing Thennasaru’s stability statistic;</li>
+<li>New helper function <code><a href="../reference/Huehn.html">Huehn()</a></code> for computing Huehnâs stability statistic;</li>
+<li>New helper function <code>Thennasaru()</code> for computing Thennasaruâs stability statistic;</li>
 <li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> by supporting new classes of models;</li>
-<li>Update function’s documentation;</li>
+<li>Update functionâs documentation;</li>
 <li>Update vignettes;</li>
 </ul>
 </div>
     <div id="metan-101" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.0.1">
 <a href="#metan-101" class="anchor"></a>metan 1.0.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>New function <code><a href="../reference/gamem.html">gamem()</a></code> for analyzing genotypes in one-way trials using mixed-effect models;</li>
-<li>New function <code><a href="../reference/desc_stat.html">desc_wider()</a></code> to convert an output of the function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> to a ‘wide’ format;</li>
+<li>New function <code><a href="../reference/desc_stat.html">desc_wider()</a></code> to convert an output of the function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> to a âwideâ format;</li>
 <li>New function <code><a href="../reference/Fox.html">Fox()</a></code> for Stability analysis;</li>
 <li>New function <code><a href="../reference/Shukla.html">Shukla()</a></code> for stability analysis;</li>
 <li>New function <code><a href="../reference/to_factor.html">to_factor()</a></code> to quickly convert variables to factors;</li>
 <li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> function;</li>
-<li>Update function’s documentation;</li>
+<li>Update functionâs documentation;</li>
 <li>Update vignettes;</li>
 </ul>
 </div>
     <div id="metan-100" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.0.0">
 <a href="#metan-100" class="anchor"></a>metan 1.0.0<small> Unreleased </small>
 </h1>
 <p>The changes in this version were made based on suggestions received when metan was submitted to CRAN for the first time.</p>
@@ -657,7 +663,7 @@
 </div>
 </div>
     <div id="metan-020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.2.0">
 <a href="#metan-020" class="anchor"></a>metan 0.2.0<small> Unreleased </small>
 </h1>
 <p>This is the first version that will be submitted to CRAN. In this version, deprecated functions in the last versions were defunct. Some new features were implemented.</p>
@@ -691,7 +697,7 @@
 </ul>
 </div>
     <div id="metan-015" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.5">
 <a href="#metan-015" class="anchor"></a>metan 0.1.5<small> Unreleased </small>
 </h1>
 <p>In the latest development version, the package <strong>METAAB</strong> was renamed to <strong>metan</strong> (<strong>m</strong>ulti-<strong>e</strong>nvironment <strong>t</strong>rials <strong>an</strong>alysis). Aiming at a cleaner coding, in this version, some functions were deprecated and will be defunct in the near future. Alternative functions were implemented.</p>
@@ -711,7 +717,7 @@
 <li>
 <code><a href="../reference/Annicchiarico.html">Annicchiarico()</a></code> to compute the genotypic confidence index.</li>
 <li>
-<code><a href="../reference/ecovalence.html">ecovalence()</a></code> to compute the Wricke’s ecovalence.</li>
+<code><a href="../reference/ecovalence.html">ecovalence()</a></code> to compute the Wrickeâs ecovalence.</li>
 <li>
 <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code> to compute to compute the stability and environmental.</li>
 <li>
@@ -721,7 +727,7 @@
 </ul>
 </div>
     <div id="metaab-014" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.4">
 <a href="#metaab-014" class="anchor"></a>METAAB 0.1.4<small> Unreleased </small>
 </h1>
 <p>In the latest development version, some useful functions were included. One of the most interesting features included in this version was allowing the functions to receive data from the forward-pipe operator %&gt;%. Bellow are the functions included in this version.</p>
@@ -737,7 +743,7 @@
 <li>
 <code><a href="../reference/lpcor.html">lpcor()</a></code> to compute linear and partial correlation coefficients.</li>
 <li>
-<code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> to compute a graphic pairwise Mantel’s test using a set of correlation matrices;</li>
+<code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> to compute a graphic pairwise Mantelâs test using a set of correlation matrices;</li>
 <li>
 <code><a href="../reference/path_coeff.html">path_coeff()</a></code> to compute path coefficients with minimal multicollinearity;</li>
 </ul>
@@ -750,7 +756,7 @@
 </ul>
 </div>
     <div id="metaab-013" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.3">
 <a href="#metaab-013" class="anchor"></a>METAAB 0.1.3<small> Unreleased </small>
 </h1>
 <ul>
@@ -760,7 +766,7 @@
 </ul>
 </div>
     <div id="metaab-012" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.2">
 <a href="#metaab-012" class="anchor"></a>METAAB 0.1.2<small> Unreleased </small>
 </h1>
 <ul>
@@ -769,7 +775,7 @@
 </ul>
 </div>
     <div id="metaab-011" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.1">
 <a href="#metaab-011" class="anchor"></a>METAAB 0.1.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -778,29 +784,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#metan-1409000">1.4.0.9000</a></li>
-        <li><a href="#metan-140">1.4.0</a></li>
-        <li><a href="#metan-130">1.3.0</a></li>
-        <li><a href="#metan-121">1.2.1</a></li>
-        <li><a href="#metan-120">1.2.0</a></li>
-        <li><a href="#metan-112">1.1.2</a></li>
-        <li><a href="#metan-111">1.1.1</a></li>
-        <li><a href="#metan-110">1.1.0</a></li>
-        <li><a href="#metan-102">1.0.2</a></li>
-        <li><a href="#metan-101">1.0.1</a></li>
-        <li><a href="#metan-100">1.0.0</a></li>
-        <li><a href="#metan-020">0.2.0</a></li>
-        <li><a href="#metan-015">0.1.5</a></li>
-        <li><a href="#metaab-014">0.1.4</a></li>
-        <li><a href="#metaab-013">0.1.3</a></li>
-        <li><a href="#metaab-012">0.1.2</a></li>
-        <li><a href="#metaab-011">0.1.1</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -812,7 +799,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>

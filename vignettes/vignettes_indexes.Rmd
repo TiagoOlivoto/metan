@@ -15,6 +15,7 @@ vignette: >
 ```{r global_options, include = FALSE}
 knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 load("indexes.RData")
+
 ```
 
 
@@ -26,10 +27,12 @@ In this section we will use the data examples `data_ge` and `data_ge2`  provided
 library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table <- function(table, rownames = FALSE, ...){
+print_table <- function(table, rownames = FALSE, digits = 3, ...){
 datatable(table, rownames = rownames, extensions = 'Buttons',
-          options = list(scrollX = TRUE, dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
-    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+          options = list(scrollX = TRUE, 
+                         dom = '<<t>Bp>',
+                         buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(as.numeric(which(sapply(table, class) == "numeric"))), digits = digits)}
 
 ```
 
@@ -135,10 +138,12 @@ This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables w
 
 library(DT) # Used to make the tables
 # Function to make HTML tables
-print_table <- function(table, rownames = FALSE, ...){
+print_table <- function(table, rownames = FALSE, digits = 3, ...){
 datatable(table, rownames = rownames, extensions = 'Buttons',
-          options = list(scrollX = TRUE, dom = '<<t>Bp>', buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
-    formatSignif(columns = c(1:ncol(table)), digits = 3)}
+          options = list(scrollX = TRUE, 
+                         dom = '<<t>Bp>',
+                         buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
+    formatSignif(columns = c(as.numeric(which(sapply(table, class) == "numeric"))), digits = digits)}
 
 ```
 

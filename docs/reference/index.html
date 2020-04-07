@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -50,7 +54,6 @@
 
 <meta property="og:title" content="Function reference" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -78,7 +81,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -237,6 +240,11 @@
           <p class="section-desc"><p>Analyze genotypes in single environment trials using fixed- or mixed-effect models</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -281,6 +289,24 @@
           <p class="section-desc"><p>Functions for AMMI analysis</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-cross-validation" class="hasAnchor"><a href="#section-cross-validation" class="anchor"></a>Cross-validation</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -293,7 +319,20 @@
           <p><code><a href="cv_ammif.html">cv_ammif()</a></code> </p>
         </td>
         <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-fit-models" class="hasAnchor"><a href="#section-fit-models" class="anchor"></a>Fit models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="AMMI_indexes.html">AMMI_indexes()</a></code> </p>
@@ -323,7 +362,20 @@
           <p><code><a href="waas_means.html">waas_means()</a></code> </p>
         </td>
         <td><p>Weighted Average of Absolute Scores</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-plot-models" class="hasAnchor"><a href="#section-plot-models" class="anchor"></a>Plot models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="plot.cvalidation.html">plot(<i>&lt;cvalidation&gt;</i>)</a></code> </p>
@@ -341,7 +393,20 @@
           <p><code><a href="plot.waas.html">plot(<i>&lt;waas&gt;</i>)</a></code> </p>
         </td>
         <td><p>Several types of residual plots</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-predict-models" class="hasAnchor"><a href="#section-predict-models" class="anchor"></a>Predict models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="predict.waas.html">predict(<i>&lt;waas&gt;</i>)</a></code> </p>
@@ -353,7 +418,20 @@
           <p><code><a href="predict.performs_ammi.html">predict(<i>&lt;performs_ammi&gt;</i>)</a></code> </p>
         </td>
         <td><p>Predict the means of a performs_ammi object</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-print-models" class="hasAnchor"><a href="#section-print-models" class="anchor"></a>Print models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="print.AMMI_indexes.html">print(<i>&lt;AMMI_indexes&gt;</i>)</a></code> </p>
@@ -385,13 +463,31 @@
           <p class="section-desc"><p>Analyze genotypes in single- or multi-environment trials using mixed-effect models with variance components and genetic parameter estimation.</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
           <p><code><a href="cv_blup.html">cv_blup()</a></code> </p>
         </td>
         <td><p>Cross-validation procedure</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-fit-models" class="hasAnchor"><a href="#section-fit-models" class="anchor"></a>Fit models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="gamem_met.html">gamem_met()</a></code> </p>
@@ -415,7 +511,20 @@
           <p><code><a href="wsmp.html">wsmp()</a></code> </p>
         </td>
         <td><p>Weighting between stability and mean performance</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-plot-models" class="hasAnchor"><a href="#section-plot-models" class="anchor"></a>Plot models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="plot_blup.html">plot_blup()</a></code> </p>
@@ -451,13 +560,39 @@
           <p><code><a href="plot.waasb.html">plot(<i>&lt;waasb&gt;</i>)</a></code> </p>
         </td>
         <td><p>Several types of residual plots</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-predict-models" class="hasAnchor"><a href="#section-predict-models" class="anchor"></a>Predict models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="predict.waasb.html">predict(<i>&lt;waasb&gt;</i>)</a></code> </p>
         </td>
         <td><p>Predict method for waasb fits</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-print-models" class="hasAnchor"><a href="#section-print-models" class="anchor"></a>Print models</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="print.waasb.html">print(<i>&lt;waasb&gt;</i>)</a></code> </p>
@@ -471,6 +606,11 @@
           <p class="section-desc"><p>Functions for GGE analysis</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -503,6 +643,11 @@
           <p class="section-desc"><p>Selection indexes and simultaneous selection for mean performance and stability</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -561,6 +706,24 @@ the R console. The results can also be exported to the directory.</p></td>
           <p class="section-desc"><p>Visualize genotype-environment interaction patterns, rank genotypes within environments, compute genotype, environment, and genotype-environment effects; cluster environments, and compute parametric and non-parametric stability indexes</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-initial-approaches" class="hasAnchor"><a href="#section-initial-approaches" class="anchor"></a>Initial approaches</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -615,7 +778,20 @@ the R console. The results can also be exported to the directory.</p></td>
           <p><code><a href="is_balanced_trial.html">is_balanced_trial()</a></code> </p>
         </td>
         <td><p>Check if a data set is balanced</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-parametric-methods" class="hasAnchor"><a href="#section-parametric-methods" class="anchor"></a>Parametric methods</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="Annicchiarico.html">Annicchiarico()</a></code> </p>
@@ -765,7 +941,20 @@ the R console. The results can also be exported to the directory.</p></td>
           <p><code><a href="Schmildt.html">Schmildt()</a></code> </p>
         </td>
         <td><p>Schmildt's genotypic confidence index</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-non-parametric-methods" class="hasAnchor"><a href="#section-non-parametric-methods" class="anchor"></a>Non-parametric methods</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="Fox.html">Fox()</a></code> </p>
@@ -827,6 +1016,24 @@ the R console. The results can also be exported to the directory.</p></td>
           <p class="section-desc"><p>Useful functions for biometric models</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-correlation-coefficient" class="hasAnchor"><a href="#section-correlation-coefficient" class="anchor"></a>Correlation coefficient</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -905,7 +1112,20 @@ the R console. The results can also be exported to the directory.</p></td>
           <p><code><a href="print.lpcor.html">print(<i>&lt;lpcor&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print the partial correlation coefficients</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-canonical-correlation-coefficient" class="hasAnchor"><a href="#section-canonical-correlation-coefficient" class="anchor"></a>Canonical correlation coefficient</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="can_corr.html">can_corr()</a></code> </p>
@@ -923,7 +1143,20 @@ the R console. The results can also be exported to the directory.</p></td>
           <p><code><a href="print.can_cor.html">print(<i>&lt;can_cor&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print an object of class can_cor</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-clustering-analysis" class="hasAnchor"><a href="#section-clustering-analysis" class="anchor"></a>Clustering analysis</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="clustering.html">clustering()</a></code> </p>
@@ -947,7 +1180,20 @@ the R console. The results can also be exported to the directory.</p></td>
           <p><code><a href="plot.clustering.html">plot(<i>&lt;clustering&gt;</i>)</a></code> </p>
         </td>
         <td><p>Plot an object of class clustering</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-path-analysis" class="hasAnchor"><a href="#section-path-analysis" class="anchor"></a>Path analysis</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="colindiag.html">colindiag()</a></code> </p>
@@ -985,6 +1231,11 @@ the R console. The results can also be exported to the directory.</p></td>
           <p class="section-desc"><p>Create bar or line plots for two-way data quickly</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -1023,6 +1274,11 @@ the R console. The results can also be exported to the directory.</p></td>
           <p class="section-desc"><p>Useful functions for computing descriptive statistics</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -1061,19 +1317,63 @@ the R console. The results can also be exported to the directory.</p></td>
           <p class="section-desc"><p>Utilities for handling with columns, rows, numbers, strings, and matrices.</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-numbers-and-strings" class="hasAnchor"><a href="#section-numbers-and-strings" class="anchor"></a>Numbers and strings</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
           <p><code><a href="utils_num_str.html">all_upper_case()</a></code> <code><a href="utils_num_str.html">all_lower_case()</a></code> <code><a href="utils_num_str.html">all_title_case()</a></code> <code><a href="utils_num_str.html">extract_number()</a></code> <code><a href="utils_num_str.html">extract_string()</a></code> <code><a href="utils_num_str.html">find_text_in_num()</a></code> <code><a href="utils_num_str.html">has_text_in_num()</a></code> <code><a href="utils_num_str.html">remove_space()</a></code> <code><a href="utils_num_str.html">remove_strings()</a></code> <code><a href="utils_num_str.html">replace_number()</a></code> <code><a href="utils_num_str.html">replace_string()</a></code> <code><a href="utils_num_str.html">round_cols()</a></code> <code><a href="utils_num_str.html">tidy_strings()</a></code> </p>
         </td>
         <td><p>Utilities for handling with numbers and strings</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-columns-and-rows" class="hasAnchor"><a href="#section-columns-and-rows" class="anchor"></a>Columns and rows</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="utils_rows_cols.html">add_cols()</a></code> <code><a href="utils_rows_cols.html">add_rows()</a></code> <code><a href="utils_rows_cols.html">all_pairs()</a></code> <code><a href="utils_rows_cols.html">colnames_to_lower()</a></code> <code><a href="utils_rows_cols.html">colnames_to_upper()</a></code> <code><a href="utils_rows_cols.html">colnames_to_title()</a></code> <code><a href="utils_rows_cols.html">column_to_first()</a></code> <code><a href="utils_rows_cols.html">column_to_last()</a></code> <code><a href="utils_rows_cols.html">column_exists()</a></code> <code><a href="utils_rows_cols.html">concatenate()</a></code> <code><a href="utils_rows_cols.html">get_levels()</a></code> <code><a href="utils_rows_cols.html">get_level_size()</a></code> <code><a href="utils_rows_cols.html">reorder_cols()</a></code> <code><a href="utils_rows_cols.html">remove_cols()</a></code> <code><a href="utils_rows_cols.html">remove_rows()</a></code> <code><a href="utils_rows_cols.html">select_first_col()</a></code> <code><a href="utils_rows_cols.html">select_last_col()</a></code> <code><a href="utils_rows_cols.html">select_numeric_cols()</a></code> <code><a href="utils_rows_cols.html">select_non_numeric_cols()</a></code> <code><a href="utils_rows_cols.html">select_cols()</a></code> <code><a href="utils_rows_cols.html">select_rows()</a></code> </p>
         </td>
         <td><p>Utilities for handling with rows and columns</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-matrices" class="hasAnchor"><a href="#section-matrices" class="anchor"></a>Matrices</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="utils_mat.html">make_upper_tri()</a></code> <code><a href="utils_mat.html">make_lower_tri()</a></code> <code><a href="utils_mat.html">make_sym()</a></code> <code><a href="utils_mat.html">tidy_sym()</a></code> </p>
@@ -1103,13 +1403,39 @@ the R console. The results can also be exported to the directory.</p></td>
           <p><code><a href="solve_svd.html">solve_svd()</a></code> </p>
         </td>
         <td><p>Pseudoinverse of a square matrix</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-select-helpers" class="hasAnchor"><a href="#section-select-helpers" class="anchor"></a>Select helpers</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="Select_helper.html">difference_var()</a></code> <code><a href="Select_helper.html">intersect_var()</a></code> <code><a href="Select_helper.html">union_var()</a></code> <code><a href="Select_helper.html">width_of()</a></code> <code><a href="Select_helper.html">width_greater_than()</a></code> <code><a href="Select_helper.html">width_less_than()</a></code> <code><a href="Select_helper.html">lower_case_only()</a></code> <code><a href="Select_helper.html">upper_case_only()</a></code> <code><a href="Select_helper.html">title_case_only()</a></code> </p>
         </td>
         <td><p>Select helper</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-other-useful-functions" class="hasAnchor"><a href="#section-other-useful-functions" class="anchor"></a>Other useful functions</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="utils_class.html">add_class()</a></code> <code><a href="utils_class.html">has_class()</a></code> <code><a href="utils_class.html">remove_class()</a></code> <code><a href="utils_class.html">set_class()</a></code> </p>
@@ -1207,6 +1533,11 @@ the R console. The results can also be exported to the directory.</p></td>
           <p class="section-desc"><p>Data for reproducible examples</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -1248,21 +1579,10 @@ the R console. The results can also be exported to the directory.</p></td>
     </table>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-one-way-analysis">One-way analysis</a></li>
-      <li><a href="#section-ammi">AMMI</a></li>
-      <li><a href="#section-blup">BLUP</a></li>
-      <li><a href="#section-gge">GGE</a></li>
-      <li><a href="#section-selection-indexes">Selection indexes</a></li>
-      <li><a href="#section-genotype-environment-interaction">Genotype-environment interaction</a></li>
-      <li><a href="#section-biometry">Biometry</a></li>
-      <li><a href="#section-plot-two-way-data">Plot two-way data</a></li>
-      <li><a href="#section-descriptive">Descriptive</a></li>
-      <li><a href="#section-data-manipulation">Data manipulation</a></li>
-      <li><a href="#section-datasets">Datasets</a></li>
-    </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -1273,7 +1593,7 @@ the R console. The results can also be exported to the directory.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>
