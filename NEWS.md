@@ -4,7 +4,7 @@
 * `mgidi()` to compute the multi-trait genotype-ideotype distance index
 
 ## Minor changes
-* Remove dependency on dendextend
+* Remove dependency on dendextend by using ggplot2-based graphics in `plot.wsmp()`.
 * Update package site with [pkgdown v1.5.0](https://pkgdown.r-lib.org/news/index.html).
 * Update documentation in `ge_plot()`
 * Allow using `fai_blup()` with `gamem()`
@@ -16,8 +16,10 @@
 
 
 ## Bug fixes
+* Fix problems from a recent upgrade of package `tibble` to version 3.0.0.
 * `get_model_data()` now fills rows that don't matches across columns with `NA`. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for his report.
 * `get_model_data()` called now report mean squares, F-calculated and P-values for blocks within replicates in `anova_ind()`.
+
 
 # metan 1.4.0
 ## Bug fixes

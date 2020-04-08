@@ -51,7 +51,9 @@ factor are.
 }
 }
 \description{
-Computes the multi-trait genotype-ideotype distance index
+Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
+be seen as the multi-trait stability index (Olivoto et al., 2019) computed
+with weight for mean performance equals to 100.
 }
 \examples{
 \donttest{
@@ -65,6 +67,12 @@ model <- gamem(data_g,
 mgidi_model <- mgidi(model)
 
 }
+}
+\references{
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and
+M.I. Diel. 2019. Mean performance and stability in multi-environment trials
+II: Selection based on multiple traits. Agron. J. 111:2961-2969.
+doi:10.2134/agronj2019.03.0221.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
