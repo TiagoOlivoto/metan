@@ -257,6 +257,8 @@
 <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> call on objects of class <code>gamem</code>, <code>waasb</code> and <code>waas</code> now returns the variable names automatically. Thanks to <a href="https://www.researchgate.net/profile/Md_Farhad">@MdFarhad</a> for suggesting me this change.</li>
 <li>
 <code><a href="../reference/plot.gamem.html">plot.gamem()</a></code> and <code><a href="../reference/plot.waasb.html">plot.waasb()</a></code> have a new argument (<code>type = "vcomp"</code>) to produce a plot showing the contribution of the variance components to the phenotypic variance</li>
+<li>
+<code><a href="../reference/cv_ammi.html">cv_ammi()</a></code>, <code><a href="../reference/cv_ammif.html">cv_ammif()</a></code>, and <code><a href="../reference/cv_blup.html">cv_blup()</a></code> now check for missing values and unbalanced data before computing the cross-validation. (<a href="https://github.com/TiagoOlivoto/metan/issues/3"><a href='https://github.com/TiagoOlivoto/metan/issues/3'>#3</a></a>)</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
@@ -264,9 +266,9 @@
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>
-<code><a href="../reference/get_model_data.html">get_model_data()</a></code> now fills rows that donât matches across columns with <code>NA</code>. Thanks to <a href="https://www.researchgate.net/profile/Md_Farhad">@MdFarhad</a> for his report.</li>
+<code><a href="../reference/get_model_data.html">get_model_data()</a></code> now fills rows that don’t matches across columns with <code>NA</code>. Thanks to <a href="https://www.researchgate.net/profile/Md_Farhad">@MdFarhad</a> for his report.</li>
 <li>
-<code>ge_mode_data()</code> now report mean squares, F-calculated and P-values for blocks within replicates.</li>
+<code><a href="../reference/get_model_data.html">get_model_data()</a></code> called now report mean squares, F-calculated and P-values for blocks within replicates in <code><a href="../reference/anova_ind.html">anova_ind()</a></code>.</li>
 </ul>
 </div>
 </div>
@@ -430,7 +432,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>Change â<a href='https://github.com/TiagoOlivoto/metan/issues/000000'>#000000</a>FFâ with â#FFFFFF00â in <code><a href="../reference/themes.html">transparent_color()</a></code>
+<li>Change “<a href='https://github.com/TiagoOlivoto/metan/issues/000000'>#000000</a>FF” with “#FFFFFF00” in <code><a href="../reference/themes.html">transparent_color()</a></code>
 </li>
 <li>
 <code><a href="../reference/desc_stat.html">desc_stat()</a></code> now handles grouped data passed from <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by()</a></code>
@@ -438,7 +440,7 @@
 <li>
 <code><a href="../reference/plot_scores.html">plot_scores()</a></code> now support objects of class <code>waas_mean</code>.</li>
 <li>Include inst/CITATION to return a reference paper with <code><a href="https://rdrr.io/r/utils/citation.html">citation("metan")</a></code>.</li>
-<li>Change âPC2â with âPC1â in y-axis of <code><a href="../reference/plot_scores.html">plot_scores(type = 2)</a></code> (<a href="https://github.com/TiagoOlivoto/metan/issues/1"><a href='https://github.com/TiagoOlivoto/metan/issues/1'>#1</a></a>)</li>
+<li>Change ‘PC2’ with ‘PC1’ in y-axis of <code><a href="../reference/plot_scores.html">plot_scores(type = 2)</a></code> (<a href="https://github.com/TiagoOlivoto/metan/issues/1"><a href='https://github.com/TiagoOlivoto/metan/issues/1'>#1</a></a>)</li>
 <li>
 <code><a href="../reference/get_model_data.html">get_model_data()</a></code> now support models of class <code>anova_joint</code> and <code>gafem</code> and extract random effects of models fitted with <code><a href="../reference/waasb.html">waasb()</a></code> and <code><a href="../reference/gamem.html">gamem()</a></code>.</li>
 <li>Update <code><a href="../reference/plot.waasb.html">plot.waasb()</a></code> and <code><a href="../reference/plot.gamem.html">plot.gamem()</a></code> to show distribution of random effects.</li>
@@ -466,7 +468,7 @@
 <li>Minor changes
 <ul>
 <li>
-<code><a href="../reference/corr_plot.html">corr_plot()</a></code> now donât write a warning message to the console by default.</li>
+<code><a href="../reference/corr_plot.html">corr_plot()</a></code> now don’t write a warning message to the console by default.</li>
 <li>
 <code><a href="../reference/utils_rows_cols.html">select_numeric_cols()</a></code> now is used as a helper function in <code>metan</code>.</li>
 <li>
@@ -534,9 +536,9 @@
 <h1 class="page-header" data-toc-text="1.1.0">
 <a href="#metan-110" class="anchor"></a>metan 1.1.0<small> Unreleased </small>
 </h1>
-<p>Iâm very pleased to announce the release of <code>metan</code> 1.1.0, This is a minor release with bug fixes and new functions. The most important changes are described below.</p>
+<p>I’m very pleased to announce the release of <code>metan</code> 1.1.0, This is a minor release with bug fixes and new functions. The most important changes are described below.</p>
 <ul>
-<li>New function <code><a href="../reference/corr_stab_ind.html">corr_stab_ind()</a></code> for computing Spearmanâs rank correlation between stability indexes;</li>
+<li>New function <code><a href="../reference/corr_stab_ind.html">corr_stab_ind()</a></code> for computing Spearman’s rank correlation between stability indexes;</li>
 <li>New function <code><a href="../reference/corr_coef.html">corr_coef()</a></code> for computing correlation coefficients and p-values;</li>
 <li>New S3 method <code><a href="../reference/plot.corr_coef.html">plot.corr_coef()</a></code> for creating correlation heat maps;</li>
 <li>New S3 method <code><a href="../reference/print.corr_coef.html">print.corr_coef()</a></code> for printing correlation and p-values;</li>
@@ -547,7 +549,7 @@
 <code><a href="../reference/arrange_ggplot.html">arrange_ggplot()</a></code> now support objects of class <code>ggmatrix</code>.</li>
 <li>Change the default plot theme to <code><a href="../reference/themes.html">theme_metan()</a></code>
 </li>
-<li>Update functionâs documentation;</li>
+<li>Update function’s documentation;</li>
 <li>Update vignettes.</li>
 </ul>
 </div>
@@ -561,10 +563,10 @@
 <li>New function <code><a href="../reference/gai.html">gai()</a></code> for computing the geometric adaptability index;</li>
 <li>New helper function <code><a href="../reference/utils_stats.html">gm_mean()</a></code> for computing geometric mean;</li>
 <li>New helper function <code><a href="../reference/utils_stats.html">hm_mean()</a></code> for computing harmonic mean;</li>
-<li>New helper function <code><a href="../reference/Huehn.html">Huehn()</a></code> for computing Huehnâs stability statistic;</li>
-<li>New helper function <code>Thennasaru()</code> for computing Thennasaruâs stability statistic;</li>
+<li>New helper function <code><a href="../reference/Huehn.html">Huehn()</a></code> for computing Huehn’s stability statistic;</li>
+<li>New helper function <code>Thennasaru()</code> for computing Thennasaru’s stability statistic;</li>
 <li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> by supporting new classes of models;</li>
-<li>Update functionâs documentation;</li>
+<li>Update function’s documentation;</li>
 <li>Update vignettes;</li>
 </ul>
 </div>
@@ -574,12 +576,12 @@
 </h1>
 <ul>
 <li>New function <code><a href="../reference/gamem.html">gamem()</a></code> for analyzing genotypes in one-way trials using mixed-effect models;</li>
-<li>New function <code><a href="../reference/desc_stat.html">desc_wider()</a></code> to convert an output of the function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> to a âwideâ format;</li>
+<li>New function <code><a href="../reference/desc_stat.html">desc_wider()</a></code> to convert an output of the function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> to a ‘wide’ format;</li>
 <li>New function <code><a href="../reference/Fox.html">Fox()</a></code> for Stability analysis;</li>
 <li>New function <code><a href="../reference/Shukla.html">Shukla()</a></code> for stability analysis;</li>
 <li>New function <code><a href="../reference/to_factor.html">to_factor()</a></code> to quickly convert variables to factors;</li>
 <li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> function;</li>
-<li>Update functionâs documentation;</li>
+<li>Update function’s documentation;</li>
 <li>Update vignettes;</li>
 </ul>
 </div>
@@ -717,7 +719,7 @@
 <li>
 <code><a href="../reference/Annicchiarico.html">Annicchiarico()</a></code> to compute the genotypic confidence index.</li>
 <li>
-<code><a href="../reference/ecovalence.html">ecovalence()</a></code> to compute the Wrickeâs ecovalence.</li>
+<code><a href="../reference/ecovalence.html">ecovalence()</a></code> to compute the Wricke’s ecovalence.</li>
 <li>
 <code><a href="../reference/ge_factanal.html">ge_factanal()</a></code> to compute to compute the stability and environmental.</li>
 <li>
@@ -743,7 +745,7 @@
 <li>
 <code><a href="../reference/lpcor.html">lpcor()</a></code> to compute linear and partial correlation coefficients.</li>
 <li>
-<code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> to compute a graphic pairwise Mantelâs test using a set of correlation matrices;</li>
+<code><a href="../reference/pairs_mantel.html">pairs_mantel()</a></code> to compute a graphic pairwise Mantel’s test using a set of correlation matrices;</li>
 <li>
 <code><a href="../reference/path_coeff.html">path_coeff()</a></code> to compute path coefficients with minimal multicollinearity;</li>
 </ul>

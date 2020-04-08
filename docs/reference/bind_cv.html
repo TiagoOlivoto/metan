@@ -281,7 +281,8 @@ model.</p></td>
                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-               <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s)  with NA values deleted.</span></div><div class='input'><span class='no'>bind_data</span> <span class='kw'>=</span> <span class='fu'>bind_cv</span>(<span class='no'>AMMI</span>, <span class='no'>BLUP</span>)
+               <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+<span class='no'>bind_data</span> <span class='kw'>=</span> <span class='fu'>bind_cv</span>(<span class='no'>AMMI</span>, <span class='no'>BLUP</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>bind_data</span>)</div><div class='img'><img src='bind_cv-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'>bind_cv</span>(<span class='no'>AMMI</span>, <span class='no'>BLUP</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='st'>'means'</span>))</div><div class='output co'>#&gt; $RMSPD
 #&gt; <span style='color: #555555;'># A tibble: 11 x 6</span><span>

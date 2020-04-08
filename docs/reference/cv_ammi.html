@@ -328,6 +328,10 @@ made for each genotype-by-environment combination (Olivoto et al. 2019). The
 estimated values considering <code>naxis</code>-Interaction Principal Component
 Axis are compared with the 'validation' data. The Root Mean Square Prediction
 Difference (RMSPD) is computed. At the end of boots, a list is returned.</p>
+<p><strong>IMPORTANT:</strong> If the data set is unbalanced (i.e., any genotype missing
+in any environment) the function will return an error. An error is also
+observed if any combination of genotype-environment has a different number of
+replications than observed in the trial.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,

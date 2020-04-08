@@ -12,11 +12,12 @@
 * Improve feedback for results, indicating random and fixed effects. Thanks to [@NelsonJunior](https://scholar.google.com.br/citations?user=i2F6X04AAAAJ&hl=pt-BR) for his suggestion.
 * `plot()` call on objects of class `gamem`, `waasb` and `waas` now returns the variable names automatically. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for suggesting me this change.
 * `plot.gamem()` and `plot.waasb()` have a new argument (`type = "vcomp"`) to produce a plot showing the contribution of the variance components to the phenotypic variance
+* `cv_ammi()`, `cv_ammif()`, and `cv_blup()` now check for missing values and unbalanced data before computing the cross-validation. ([#3](https://github.com/TiagoOlivoto/metan/issues/3))
 
 
 ## Bug fixes
 * `get_model_data()` now fills rows that don't matches across columns with `NA`. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for his report.
-* `ge_mode_data()` now report mean squares, F-calculated and P-values for blocks within replicates.
+* `get_model_data()` called now report mean squares, F-calculated and P-values for blocks within replicates in `anova_ind()`.
 
 # metan 1.4.0
 ## Bug fixes

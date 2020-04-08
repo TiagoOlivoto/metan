@@ -346,6 +346,9 @@ to be random factors.</p></li>
 assuming all effects, except the intercept, as random factors.</p></li>
 </ul>
 
+<p><strong>IMPORTANT:</strong>  An error is returned if any combination of
+genotype-environment has a different number of replications than observed in
+the trial.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
@@ -373,12 +376,12 @@ information: to recover or not to recover it? TAG. Theor. Appl. Genet.
                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                 <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s)  with NA values deleted.</span></div><div class='input'>
+                 <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+
 <span class='co'># Alternatively using the pipe operator %&gt;%</span>
 <span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-         <span class='fu'>cv_blup</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s)  with NA values deleted.</span></div><div class='input'># }
-
-</div></pre>
+         <span class='fu'>cv_blup</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
