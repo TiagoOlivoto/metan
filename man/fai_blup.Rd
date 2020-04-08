@@ -54,14 +54,6 @@ FAI <- fai_blup(mod,
                 SI = 15,
                 DI = c('max, max'),
                 UI = c('min, min'))
-
-# Or using the pipe operator \%>\%
-
-FAI <- data_ge2 \%>\%
-       waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
-       fai_blup(DI = c('max, max, max, min'),
-                UI = c('min, min, min, max'),
-                SI = 15)
 }
 }
 \references{

@@ -47,14 +47,6 @@
 #'                 SI = 15,
 #'                 DI = c('max, max'),
 #'                 UI = c('min, min'))
-#'
-#' # Or using the pipe operator %>%
-#'
-#' FAI <- data_ge2 %>%
-#'        waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-#'        fai_blup(DI = c('max, max, max, min'),
-#'                 UI = c('min, min, min, max'),
-#'                 SI = 15)
 #'}
 fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   ideotype.D <- unlist(strsplit(DI, split=", "))
