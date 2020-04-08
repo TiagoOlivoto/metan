@@ -1,4 +1,4 @@
-#' Check for common erros in multi-environment trial data
+#' Check for common errors in multi-environment trial data
 #'
 #' \code{inspect()} scans a data.frame object for errors that may affect the use
 #' of functions in \code{metan}. By default, all variables are checked regarding

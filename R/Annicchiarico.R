@@ -23,7 +23,7 @@
 #' A list where each element is the result for one variable and contains the
 #' following data frames:
 #' * \strong{environments} Contains the mean, environmental index and
-#' classification as favorables and unfavorables environments.
+#' classification as favorable and unfavorable environments.
 #' * \strong{general} Contains the genotypic confidence index considering all
 #' environments.
 #' * \strong{favorable} Contains the genotypic confidence index considering

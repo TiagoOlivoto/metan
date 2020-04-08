@@ -31,7 +31,7 @@ A list where each element is the result for one variable and contains the
 following data frames:
 \itemize{
 \item \strong{environments} Contains the mean, environmental index and
-classification as favorables and unfavorables environments.
+classification as favorable and unfavorable environments.
 \item \strong{general} Contains the genotypic confidence index considering all
 environments.
 \item \strong{favorable} Contains the genotypic confidence index considering

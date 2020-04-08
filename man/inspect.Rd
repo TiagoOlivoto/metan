@@ -2,7 +2,7 @@
 % Please edit documentation in R/inspect.R
 \name{inspect}
 \alias{inspect}
-\title{Check for common erros in multi-environment trial data}
+\title{Check for common errors in multi-environment trial data}
 \usage{
 inspect(.data, ..., plot = FALSE, threshold = 15, verbose = TRUE)
 }
