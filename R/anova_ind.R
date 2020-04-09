@@ -20,7 +20,6 @@
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
 #'   \strong{All effects, except the error, are assumed to be fixed.}
-#' @param verbose \strong{Deprecated argument. It will be retired in the next release.}
 #' @return A list where each element is the result for one variable containing:
 #'
 #' 1. \strong{individual}: A tidy tbl_df with the results of the individual
@@ -70,11 +69,7 @@ anova_ind <- function(.data,
                       gen,
                       rep,
                       resp,
-                      block = NULL,
-                      verbose = "deprecated") {
-  if(verbose != "deprecated"){
-    warning("`verbose` is deprecated. It will be defunct in the new release.", call. = FALSE)
-  }
+                      block = NULL) {
   if(!missing(block)){
     factors  <- .data %>%
       select({{env}},

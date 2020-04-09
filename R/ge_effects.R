@@ -10,7 +10,6 @@
 #'   environments. The analysis of variance is computed for each level of this
 #'   factor.
 #' @param gen The name of the column that contains the levels of the genotypes.
-#' @param rep Deprecated argument. It will be retired in the next release.
 #' @param resp The response variable(s). To analyze multiple variables in a
 #'   single procedure a vector of variables may be used. For example \code{resp
 #'   = c(var1, var2, var3)}.
@@ -36,14 +35,10 @@ ge_effects <- function(.data,
                        env,
                        gen,
                        resp,
-                       rep = "deprecated",
                        type = "ge",
                        verbose = TRUE) {
   if(!type  %in% c("ge", "gge")){
     stop("Invalid value for the argument 'type': It must be either 'ge' or 'gge'", call. = FALSE)
-  }
-  if(rep != "deprecated"){
-    warning("`rep` is deprecated. It will be defunct in the new release.", call. = FALSE)
   }
   factors  <-
     .data %>%

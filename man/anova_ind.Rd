@@ -4,7 +4,7 @@
 \alias{anova_ind}
 \title{Within-environment analysis of variance}
 \usage{
-anova_ind(.data, env, gen, rep, resp, block = NULL, verbose = "deprecated")
+anova_ind(.data, env, gen, rep, resp, block = NULL)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -27,8 +27,6 @@ single procedure a vector of variables may be used. For example \code{resp
 block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 \strong{All effects, except the error, are assumed to be fixed.}}
-
-\item{verbose}{\strong{Deprecated argument. It will be retired in the next release.}}
 }
 \value{
 A list where each element is the result for one variable containing:

@@ -4,6 +4,10 @@
 * `mgidi()` to compute the multi-trait genotype-ideotype distance index
 
 ## Minor changes
+* Deprecated functions `hm_mean()` and `gm_mean()` removed in favour of `hmean()` and `gmean()`, respectively.
+* Deprecated argument `rep` retired in `Fox()`, `ge_effects()`, `Huehn()`, `resp_surf()`, `superiority()`, and `Thennarasu()`
+* Deprecated argument `verbose` retired in `anova_ind()`
+* Deprecated argument `region` retired in `resp_surf()`
 * Remove dependency on dendextend by using ggplot2-based graphics in `plot.wsmp()`.
 * Update package site with [pkgdown v1.5.0](https://pkgdown.r-lib.org/news/index.html).
 * Update documentation in `ge_plot()`

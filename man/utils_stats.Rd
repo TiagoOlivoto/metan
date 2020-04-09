@@ -7,9 +7,7 @@
 \alias{cv}
 \alias{freq_table}
 \alias{hmean}
-\alias{hm_mean}
 \alias{gmean}
-\alias{gm_mean}
 \alias{kurt}
 \alias{range_data}
 \alias{sd_amo}
@@ -40,11 +38,7 @@ freq_table(.data, ...)
 
 hmean(.data, ..., na.rm = FALSE)
 
-hm_mean(.data, ..., na.rm = FALSE)
-
 gmean(.data, ..., na.rm = FALSE)
-
-gm_mean(.data, ..., na.rm = FALSE)
 
 kurt(.data, ..., na.rm = FALSE)
 

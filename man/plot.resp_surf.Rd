@@ -8,7 +8,6 @@
   x,
   xlab = NULL,
   ylab = NULL,
-  region = "deprecated",
   resolution = 100,
   bins = 10,
   plot_theme = theme_metan(),
@@ -20,8 +19,6 @@
 
 \item{xlab, ylab}{The label for the x and y axis, respectively. Defaults to
 original variable names.}
-
-\item{region}{Deprecated argument. It will be retired in the next release.}
 
 \item{resolution}{The resolution of the contour plot. Defaults to 100. higher
 values produce high-resolution plots but may increase the computation time.}

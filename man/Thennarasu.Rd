@@ -4,7 +4,7 @@
 \alias{Thennarasu}
 \title{Thennarasu's stability statistics}
 \usage{
-Thennarasu(.data, env, gen, resp, rep = "deprecated", verbose = TRUE)
+Thennarasu(.data, env, gen, resp, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -17,8 +17,6 @@ environments.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
-
-\item{rep}{\strong{Deprecated argument. It will be retired in the next release.}}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}

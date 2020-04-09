@@ -196,7 +196,6 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
 #' @param x An object of class \code{resp_surf}
 #' @param xlab,ylab The label for the x and y axis, respectively. Defaults to
 #'   original variable names.
-#' @param region Deprecated argument. It will be retired in the next release.
 #' @param resolution The resolution of the contour plot. Defaults to 100. higher
 #'   values produce high-resolution plots but may increase the computation time.
 #' @param bins The number of bins shown in the plot. Defaults to \code{10}.
@@ -229,14 +228,10 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
 plot.resp_surf <- function(x,
                            xlab = NULL,
                            ylab = NULL,
-                           region = "deprecated",
                            resolution = 100,
                            bins = 10,
                            plot_theme = theme_metan(),
                            ...) {
-  if(region != "deprecated"){
-    warning("`region` is deprecated. It will be defunct in the new release.", call. = FALSE)
-  }
   data <- x[["model"]][["model"]]
   mod = x$model
   seq <- expand.grid(seq(min(unique(data[2])),
