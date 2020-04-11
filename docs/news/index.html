@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -235,16 +235,25 @@
 <a href="#new-functions" class="anchor"></a>New functions</h2>
 <ul>
 <li>
-<code><a href="../reference/utils_na.html">select_rows_na()</a></code> and <code><a href="../reference/utils_na.html">select_cols_na()</a></code> to select rows or columns with with <code>NA</code> values</li>
+<code><a href="../reference/utils_na.html">select_rows_na()</a></code> and <code><a href="../reference/utils_na.html">select_cols_na()</a></code> to select rows or columns with with <code>NA</code> values.</li>
 <li>
-<code><a href="../reference/mgidi.html">mgidi()</a></code> to compute the multi-trait genotype-ideotype distance index</li>
+<code><a href="../reference/mgidi.html">mgidi()</a></code> to compute the multi-trait genotype-ideotype distance index.</li>
+<li>
+<code><a href="../reference/barplots.html">plot_bars()</a></code> to create bar plots quickly.</li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>Remove dependency on dendextend</li>
+<li>Deprecated functions <code>hm_mean()</code> and <code>gm_mean()</code> removed in favour of <code><a href="../reference/utils_stats.html">hmean()</a></code> and <code><a href="../reference/utils_stats.html">gmean()</a></code>, respectively.</li>
+<li>Deprecated argument <code>rep</code> retired in <code><a href="../reference/Fox.html">Fox()</a></code>, <code><a href="../reference/ge_effects.html">ge_effects()</a></code>, <code><a href="../reference/Huehn.html">Huehn()</a></code>, <code><a href="../reference/resp_surf.html">resp_surf()</a></code>, <code><a href="../reference/superiority.html">superiority()</a></code>, and <code><a href="../reference/Thennarasu.html">Thennarasu()</a></code>
+</li>
+<li>Deprecated argument <code>verbose</code> retired in <code><a href="../reference/anova_ind.html">anova_ind()</a></code>
+</li>
+<li>Deprecated argument <code>region</code> retired in <code><a href="../reference/resp_surf.html">resp_surf()</a></code>
+</li>
+<li>Remove dependency on dendextend by using ggplot2-based graphics in <code><a href="../reference/plot.wsmp.html">plot.wsmp()</a></code>.</li>
 <li>Update package site with <a href="https://pkgdown.r-lib.org/news/index.html">pkgdown v1.5.0</a>.</li>
 <li>Update documentation in <code><a href="../reference/ge_plot.html">ge_plot()</a></code>
 </li>
@@ -265,6 +274,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
+<li>Fix problems from a recent upgrade of package <code>tibble</code> to version 3.0.0.</li>
 <li>
 <code><a href="../reference/get_model_data.html">get_model_data()</a></code> now fills rows that don’t matches across columns with <code>NA</code>. Thanks to <a href="https://www.researchgate.net/profile/Md_Farhad">@MdFarhad</a> for his report.</li>
 <li>
@@ -372,7 +382,7 @@
 <li>
 <code><a href="../reference/utils_stats.html">cv()</a></code> computes the coefficient of variation.</li>
 <li>
-<code><a href="../reference/utils_stats.html">hm_mean()</a></code>, <code><a href="../reference/utils_stats.html">gm_mean()</a></code> computes the harmonic and geometric means, respectively. The harmonic mean is the reciprocal of the arithmetic mean of the reciprocals. The geometric mean is the nth root of n products.</li>
+<code>hm_mean()</code>, <code>gm_mean()</code> computes the harmonic and geometric means, respectively. The harmonic mean is the reciprocal of the arithmetic mean of the reciprocals. The geometric mean is the nth root of n products.</li>
 <li>
 <code><a href="../reference/utils_stats.html">kurt()</a></code> computes the kurtosis like used in SAS and SPSS.</li>
 <li>
@@ -561,8 +571,8 @@
 <li>New function <code><a href="../reference/arrange_ggplot.html">arrange_ggplot()</a></code> for arranging ggplot2 graphics;</li>
 <li>New function <code><a href="../reference/ge_effects.html">ge_effects()</a></code> for computing genotype-environment effects;</li>
 <li>New function <code><a href="../reference/gai.html">gai()</a></code> for computing the geometric adaptability index;</li>
-<li>New helper function <code><a href="../reference/utils_stats.html">gm_mean()</a></code> for computing geometric mean;</li>
-<li>New helper function <code><a href="../reference/utils_stats.html">hm_mean()</a></code> for computing harmonic mean;</li>
+<li>New helper function <code>gm_mean()</code> for computing geometric mean;</li>
+<li>New helper function <code>hm_mean()</code> for computing harmonic mean;</li>
 <li>New helper function <code><a href="../reference/Huehn.html">Huehn()</a></code> for computing Huehn’s stability statistic;</li>
 <li>New helper function <code>Thennasaru()</code> for computing Thennasaru’s stability statistic;</li>
 <li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> by supporting new classes of models;</li>
@@ -677,7 +687,7 @@
 <li>
 <code><a href="../reference/gge.html">gge()</a></code> computes the genotype plus genotype-vs-environment model.</li>
 <li>
-<code><a href="../reference/plot_factbars.html">plot_factbars()</a></code> and <code><a href="../reference/plot_factlines.html">plot_factlines()</a></code> are used to create bar and line plots, respectively, considering an one- or two-way experimental design.</li>
+<code><a href="../reference/barplots.html">plot_factbars()</a></code> and <code><a href="../reference/lineplots.html">plot_factlines()</a></code> are used to create bar and line plots, respectively, considering an one- or two-way experimental design.</li>
 <li>
 <code><a href="../reference/desc_stat.html">desc_stat()</a></code> computes several descriptive statistics.</li>
 <li>

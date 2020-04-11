@@ -53,7 +53,7 @@ It is suggested to check if genotype-vs-environment interaction is significant b
 
 
 ```{r }
-indiv <- anova_ind(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
+indiv <- anova_ind(data_ge, ENV, GEN, REP, GY)
 print_table(indiv$GY$individual)
 
 ```

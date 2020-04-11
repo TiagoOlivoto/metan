@@ -53,7 +53,9 @@
 
 
 <meta property="og:title" content="Genotype-Ideotype Distance Index — mgidi" />
-<meta property="og:description" content="Computes the multi-trait genotype-ideotype distance index" />
+<meta property="og:description" content="Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
+be seen as the multi-trait stability index (Olivoto et al., 2019) computed
+with weight for mean performance equals to 100." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +98,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -229,7 +231,9 @@
     </div>
 
     <div class="ref-description">
-    <p>Computes the multi-trait genotype-ideotype distance index</p>
+    <p>Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
+be seen as the multi-trait stability index (Olivoto et al., 2019) computed
+with weight for mean performance equals to 100.</p>
     </div>
 
     <pre class="usage"><span class='fu'>mgidi</span>(<span class='no'>.data</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ideotype</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -292,6 +296,12 @@ factor are.</p></li>
 <li><p><strong>Selected</strong> The selected genotypes.</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, B.G. Sari, and
+M.I. Diel. 2019. Mean performance and stability in multi-environment trials
+II: Selection based on multiple traits. Agron. J. 111:2961-2969.
+doi:10.2134/agronj2019.03.0221.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

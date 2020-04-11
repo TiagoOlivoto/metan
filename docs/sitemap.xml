@@ -22,6 +22,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/as.lpcor.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/barplots.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/bind_cv.html</loc>
   </url>
   <url>
@@ -163,6 +166,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/is_balanced_trial.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/lineplots.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/lpcor.html</loc>
   </url>
   <url>
@@ -275,15 +281,6 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot_eigen.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot_factbars.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot_factlines.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot_lines.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot_scores.html</loc>

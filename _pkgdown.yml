@@ -266,9 +266,8 @@ reference:
   - title: "Plot two-way data"
     desc: "Create bar or line plots for two-way data quickly"
     contents:
-      - plot_factbars
-      - plot_factlines
-      - plot_lines
+      - barplots
+      - lineplots
       - plot.resp_surf
       - resp_surf
 
