@@ -200,7 +200,16 @@ plot_factbars(data_ge2,
               resp = PH)
 
 # one categorical variable
-plot_bars(data_ge, GEN, GY)
+p1 <- plot_bars(data_g, GEN, PH)
+p2 <- plot_bars(data_g, GEN, PH,
+                n.dodge = 2, # two rows for x labels
+                y.expand = 0.1, # expand y scale
+                errorbar = FALSE, # remove errorbar
+                color.bar = "red", # color of bars
+                fill.bar = alpha_color("cyan", 75), # create a transparent color
+                lab.bar = letters[1:13], # add labels
+                plot_theme = ggplot2::theme_gray()) #change plot themes
+arrange_ggplot(p1, p2)
 }
 }
 \seealso{
