@@ -1,5 +1,5 @@
 # Release summary
-This is a minor release (v1.4.0) including new features and fixing some bugs. (see NEWS.md for a complete note on the changes in this version).
+This is a minor release (v1.5.0) including new features and fixing some bugs. (see NEWS.md for a complete note on the changes in this version).
 
 # Test environments
 
