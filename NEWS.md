@@ -1,8 +1,8 @@
-# metan 1.4.0.9000
+# metan 1.5.0
 ## New functions
 * `select_rows_na()` and `select_cols_na()` to select rows or columns with with `NA` values.
 * `mgidi()` to compute the multi-trait genotype-ideotype distance index.
-* `plot_bars()` to create bar plots quickly.
+* `plot_bars()` to create bar plots quickly. Thanks to [@MariaDiel](https://www.researchgate.net/profile/Maria_Diel) for her suggestion. 
 
 ## Minor changes
 * Deprecated functions `hm_mean()` and `gm_mean()` removed in favour of `hmean()` and `gmean()`, respectively.
