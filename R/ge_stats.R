@@ -138,17 +138,17 @@ ge_stats = function(.data,
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-ge_mean = make_mat(data, GEN, ENV, mean)
-ge_effect = ge_effects(data, ENV, GEN, mean)[[1]]
-gge_effect = ge_effects(data, ENV, GEN, mean, type = "gge")[[1]]
-Mean = apply(ge_mean, 1, mean)
-Variance = rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
+ge_mean <- make_mat(data, GEN, ENV, mean)
+ge_effect <- ge_effects(data, ENV, GEN, mean)[[1]]
+gge_effect <- ge_effects(data, ENV, GEN, mean, type = "gge")[[1]]
+Mean <- apply(ge_mean, 1, mean)
+Variance <- rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
 CV <- apply(ge_mean, 1, function(x) (sd(x) / mean(x) * 100))
-GENSS = (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/nlevels(data$ENV))*nlevels(data$REP)
-mod = anova(lm(mean ~ REP/ENV + ENV * GEN, data = data))
-GENMS = GENSS / mod[2, 1]
-Fcal =  GENMS / mod[6, 3]
-pval = pf(Fcal, mod[2, 1], mod[6, 1], lower.tail = FALSE)
+GENSS <- (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/nlevels(data$ENV))*nlevels(data$REP)
+mod <- anova(lm(mean ~ REP/ENV + ENV * GEN, data = data))
+GENMS <- GENSS / mod[2, 1]
+Fcal <- GENMS / mod[6, 3]
+pval <- pf(Fcal, mod[2, 1], mod[6, 1], lower.tail = FALSE)
 er_mod <- ge_reg(data, ENV, GEN, REP, mean, verbose = FALSE)
 ec_mod <- ecovalence(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
 an_mod <- Annicchiarico(data, ENV, GEN, REP, mean, verbose = FALSE, prob = prob)
