@@ -240,16 +240,16 @@ performs_ammi <- function(.data,
                    Percent = percent,
                    Accumul = acum)
         resid <- anova[nrow(anova), ]
-        anova <- rbind_fill(anova[-nrow(anova), ], PC, resid) %>%
-            add_rows(Source = "Total",
-                     Df = sum(anova$Df),
-                     `Sum Sq` = sum(anova$`Sum Sq`),
-                     `Mean Sq` = `Sum Sq` / Df,
-                     `F value` = NA,
-                     `Pr(>F)` = NA,
-                     Percent = NA,
-                     Accumul = NA) %>%
-            as_tibble()
+        anova <- rbind_fill(anova[-nrow(anova), ], PC, resid)
+        anova2 <- tibble(Source = "Total",
+                         Df = sum(anova$Df),
+                         `Sum Sq` = sum(anova$`Sum Sq`),
+                         `Mean Sq` = `Sum Sq` / Df,
+                         `F value` = NA,
+                         `Pr(>F)` = NA,
+                         Percent = NA,
+                         Accumul = NA)
+        anova <- rbind(anova, anova2)
         MeansGxE <- MEANS[, 1:3]
         EscGEN <- subset(bplot, type == "GEN")
         names(EscGEN)[2] <- "GEN"
