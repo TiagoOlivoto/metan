@@ -270,6 +270,10 @@
                        <span class="kw">rep</span> <span class="kw">=</span> <span class="no">REP</span>,
                        <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>(),
                        <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<span class="co"># New names:</span>
+<span class="co"># * `` -&gt; ...15</span>
+<span class="co"># New names:</span>
+<span class="co"># * `` -&gt; ...15</span>
 <span class="co"># Significance of IPCAs</span>
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span>(<span class="no">model</span>, <span class="st">"ipca_pval"</span>)
 <span class="co"># Class of the model: performs_ammi</span>
@@ -329,7 +333,10 @@
                 <span class="kw">gen</span> <span class="kw">=</span> <span class="no">GEN</span>,
                 <span class="kw">rep</span> <span class="kw">=</span> <span class="no">REP</span>,
                 <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())
-<span class="co"># Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) </span>
+<span class="co"># Method: REML/BLUP</span>
+<span class="co"># Random effects: GEN, GEN:ENV</span>
+<span class="co"># Fixed effects: ENV, REP(ENV)</span>
+<span class="co"># Denominador DF: Satterthwaite's method</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># P-values for Likelihood Ratio Test of the analyzed traits</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
@@ -366,6 +373,8 @@
 <a href="#computing-parametric-and-non-parametric-stability-indexes" class="anchor"></a>Computing parametric and non-parametric stability indexes</h1>
 <p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="reference/ge_stats.html">ge_stats()</a></code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code><a href="reference/get_model_data.html">gmd()</a></code></a>.</p>
 <div class="sourceCode" id="cb10"><pre class="r"><span class="no">stats</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/ge_stats.html">ge_stats</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="no">GY</span>)
+<span class="co"># New names:</span>
+<span class="co"># * `` -&gt; ...15</span>
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span>(<span class="no">stats</span>)
 <span class="co"># Class of the model: ge_stats</span>
 <span class="co"># Variable extracted: stats</span>
@@ -470,7 +479,7 @@ A BibTeX entry for LaTeX users is
 <li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://CRAN.R-project.org/package=metan"><img src="http://cranlogs.r-pkg.org/badges/metan" alt="Downloads"></a></li>
 <li><a href="https://cran.r-project.org/package=metan"><img src="https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange" alt="Total Downloads"></a></li>
-<li><a href="https://doi.org/10.5281/zenodo.3715542"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3715542.svg" alt="DOI"></a></li>
+<li><a href="https://doi.org/10.5281/zenodo.3749405"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3749405.svg" alt="DOI"></a></li>
 </ul>
 </div>
 </div>

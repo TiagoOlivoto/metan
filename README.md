@@ -12,7 +12,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](https://cran.r-project.org/package=metan)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3715542.svg)](https://doi.org/10.5281/zenodo.3715542)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3749405.svg)](https://doi.org/10.5281/zenodo.3749405)
 
 <!-- badges: end -->
 
@@ -156,6 +156,10 @@ model <- performs_ammi(data_ge,
                        rep = REP,
                        resp = everything(),
                        verbose = FALSE)
+# New names:
+# * `` -> ...15
+# New names:
+# * `` -> ...15
 # Significance of IPCAs
 get_model_data(model, "ipca_pval")
 # Class of the model: performs_ammi
@@ -238,7 +242,10 @@ model2 <- waasb(data_ge,
                 gen = GEN,
                 rep = REP,
                 resp = everything())
-# Model:  Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV) 
+# Method: REML/BLUP
+# Random effects: GEN, GEN:ENV
+# Fixed effects: ENV, REP(ENV)
+# Denominador DF: Satterthwaite's method
 # ---------------------------------------------------------------------------
 # P-values for Likelihood Ratio Test of the analyzed traits
 # ---------------------------------------------------------------------------
@@ -288,6 +295,8 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
+# New names:
+# * `` -> ...15
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats
