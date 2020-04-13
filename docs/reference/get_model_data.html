@@ -556,8 +556,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class='co'># Fit an AMMI model for 7 variables.</span>
 <span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>CW</span>))</div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable PH 
+               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>CW</span>))</div><div class='output co'>#&gt; variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -570,10 +569,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  0.653  0.0545   2.430 8.40e-03    12.1    94.9
 #&gt;        PC3  10  0.277  0.0277   1.240 2.76e-01     5.1     100
 #&gt;  Residuals  96  2.153  0.0224      NA       NA       .       .
-#&gt;      Total 155 17.294  0.1116      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 22.692  0.1188      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable ED 
+#&gt; 
+#&gt; variable ED 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -586,10 +585,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  134.7   11.23   4.330 0.00e+00    33.8    87.1
 #&gt;        PC3  10   51.3    5.13   1.980 4.38e-02    12.9     100
 #&gt;  Residuals  96  249.1    2.59      NA       NA       .       .
-#&gt;      Total 155 1185.0    7.64      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 1583.2    8.29      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable TKW 
+#&gt; 
+#&gt; variable TKW 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -602,10 +601,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  33361    2780    3.03 1.20e-03    20.3    83.6
 #&gt;        PC3  10  26935    2694    2.93 3.00e-03    16.4     100
 #&gt;  Residuals  96  88171     918      NA       NA       .       .
-#&gt;      Total 155 343257    2215      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 507829    2659      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable NKR 
+#&gt; 
+#&gt; variable NKR 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -618,10 +617,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  192.2   16.02   2.040 0.028500    31.9    87.9
 #&gt;        PC3  10   73.1    7.31   0.930 0.509500    12.1     100
 #&gt;  Residuals  96  753.7    7.85      NA       NA       .       .
-#&gt;      Total 155 1861.1   12.01      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 2463.8   12.90      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable CD 
+#&gt; 
+#&gt; variable CD 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -634,10 +633,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  20.72   1.727   1.910 0.042300    25.4    84.5
 #&gt;        PC3  10  12.62   1.262   1.400 0.192000    15.5     100
 #&gt;  Residuals  96  86.66   0.903      NA       NA       .       .
-#&gt;      Total 155 213.12   1.375      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 294.71   1.543      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable CL 
+#&gt; 
+#&gt; variable CL 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -650,10 +649,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  129.1   10.76    6.51 0.00e+00    24.5    85.3
 #&gt;        PC3  10   77.5    7.75    4.69 0.00e+00    14.7     100
 #&gt;  Residuals  96  158.6    1.65      NA       NA       .       .
-#&gt;      Total 155  825.0    5.32      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 1352.2    7.08      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable CW 
+#&gt; 
+#&gt; variable CW 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -666,7 +665,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  502.5   41.88   3.480 3.00e-04    16.4    89.2
 #&gt;        PC3  10  329.7   32.97   2.740 5.20e-03    10.8     100
 #&gt;  Residuals  96 1153.7   12.02      NA       NA       .       .
-#&gt;      Total 155 6073.7   39.19      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 9129.7   47.80      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
@@ -730,8 +729,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class='co'>#################### WAASB model #####################</span>
 <span class='co'># Fitting the WAAS index</span>
 <span class='no'>AMMI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable PH 
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>TKW</span>, <span class='no'>NKR</span>))</div><div class='output co'>#&gt; variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -744,10 +742,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  0.653  0.0545   2.430 8.40e-03    12.1    94.9
 #&gt;        PC3  10  0.277  0.0277   1.240 2.76e-01     5.1     100
 #&gt;  Residuals  96  2.153  0.0224      NA       NA       .       .
-#&gt;      Total 155 17.294  0.1116      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 22.692  0.1188      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable ED 
+#&gt; 
+#&gt; variable ED 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -760,10 +758,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  134.7   11.23   4.330 0.00e+00    33.8    87.1
 #&gt;        PC3  10   51.3    5.13   1.980 4.38e-02    12.9     100
 #&gt;  Residuals  96  249.1    2.59      NA       NA       .       .
-#&gt;      Total 155 1185.0    7.64      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 1583.2    8.29      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable TKW 
+#&gt; 
+#&gt; variable TKW 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -776,10 +774,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  33361    2780    3.03 1.20e-03    20.3    83.6
 #&gt;        PC3  10  26935    2694    2.93 3.00e-03    16.4     100
 #&gt;  Residuals  96  88171     918      NA       NA       .       .
-#&gt;      Total 155 343257    2215      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 507829    2659      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...9</span></div><div class='output co'>#&gt; variable NKR 
+#&gt; 
+#&gt; variable NKR 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -792,7 +790,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt;        PC2  12  192.2   16.02   2.040 0.028500    31.9    87.9
 #&gt;        PC3  10   73.1    7.31   0.930 0.509500    12.1     100
 #&gt;  Residuals  96  753.7    7.85      NA       NA       .       .
-#&gt;      Total 155 1861.1   12.01      NA       NA    &lt;NA&gt;    &lt;NA&gt;
+#&gt;      Total 191 2463.8   12.90      NA       NA    &lt;NA&gt;    &lt;NA&gt;
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
@@ -892,9 +890,8 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>13</span><span> H9    0.953 0.965 0.916 1.00 </div><div class='input'>
 
 <span class='co'>#################### Stability indexes #####################</span>
-<span class='no'>stats_ge</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></span>())</div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...15</span></div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* `` -&gt; ...15</span></div><div class='input'><span class='fu'>get_model_data</span>(<span class='no'>stats_ge</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_stats</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: stats</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 20 x 33</span><span>
+<span class='no'>stats_ge</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></span>())
+<span class='fu'>get_model_data</span>(<span class='no'>stats_ge</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_stats</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: stats</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 20 x 33</span><span>
 #&gt;    var   gen       Y    CV    Var Shukla  Wi_g  Wi_f  Wi_u  Ecoval   bij
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> GY    G1     2.60 35.2   10.9  0.028</span><span style='text-decoration: underline;'>0</span><span>  84.4  89.2  81.1   1.22  1.06 

@@ -176,7 +176,7 @@
       <h1 data-toc-skip>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-04-12</h4>
+            <h4 class="date">2020-04-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/metan_start.Rmd"><code>vignettes/metan_start.Rmd</code></a></small>
       <div class="hidden name"><code>metan_start.Rmd</code></div>
@@ -325,8 +325,6 @@
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h2>
 <p>The AMMI model may be fitted with with both functions <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code><a href="../reference/performs_ammi.html">performs_ammi()</a></code></a> and <a href="https://tiagoolivoto.github.io/metan/reference/waas.html"><code><a href="../reference/waas.html">waas()</a></code></a>, which is the acronym for the weighted average of absolute scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span>.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">ammi_model</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/performs_ammi.html">performs_ammi</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">GY</span>, <span class="no">HM</span>))
-<span class="co"># New names:</span>
-<span class="co"># * `` -&gt; ...15</span>
 <span class="co"># variable GY </span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># AMMI analysis table</span>
@@ -346,10 +344,9 @@
 <span class="co">#        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6</span>
 <span class="co">#        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100</span>
 <span class="co">#  Residuals 252  24.367  0.0967      NA       NA       .       .</span>
-<span class="co">#      Total 419 357.816  0.8540      NA       NA    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#      Total 536 389.036  0.7258      NA       NA    &lt;NA&gt;    &lt;NA&gt;</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
-<span class="co"># New names:</span>
-<span class="co"># * `` -&gt; ...15</span>
+<span class="co"># </span>
 <span class="co"># variable HM </span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># AMMI analysis table</span>
@@ -369,14 +366,12 @@
 <span class="co">#        PC8   7   26.65   3.808    1.34 2.32e-01     2.4    99.7</span>
 <span class="co">#        PC9   5    3.41   0.682    0.24 9.45e-01     0.3     100</span>
 <span class="co">#  Residuals 252  715.69   2.840      NA       NA       .       .</span>
-<span class="co">#      Total 419 8011.48  19.120      NA       NA    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#      Total 536 9112.21  17.000      NA       NA    &lt;NA&gt;    &lt;NA&gt;</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># </span>
 <span class="co"># All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
 <span class="co"># Done!</span>
-<span class="no">waas_index</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/waas.html">waas</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="no">GY</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="co"># New names:</span>
-<span class="co"># * `` -&gt; ...15</span></pre></body></html></div>
+<span class="no">waas_index</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/waas.html">waas</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="no">GY</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
 </div>
 <div id="cross-validation-procedures" class="section level2">
 <h2 class="hasAnchor">
@@ -593,8 +588,6 @@
 </h1>
 <p>To compute all the stability statistics at once, we can use the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="../reference/ge_stats.html">ge_stats()</a></code></a>. Again we get the results with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code><a href="../reference/get_model_data.html">get_model_data()</a></code></a>.</p>
 <div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">stat_ge</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/ge_stats.html">ge_stats</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="no">GY</span>)
-<span class="co"># New names:</span>
-<span class="co"># * `` -&gt; ...15</span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="no">stat_ge</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span>()
 <span class="co"># Class of the model: ge_stats</span>
