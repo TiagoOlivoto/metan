@@ -70,22 +70,15 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
         eigen.decomposition <- eigen(cor.means)
         eigen.values <- eigen.decomposition$values
         eigen.vectors <- eigen.decomposition$vectors
-        colnames(eigen.vectors) <- paste("PC", 1:ncol(cor.means),
-                                         sep = "")
+        colnames(eigen.vectors) <- paste("PC", 1:ncol(cor.means), sep = "")
         rownames(eigen.vectors) <- colnames(means)
-        if (length(eigen.values[eigen.values >= mineval]) ==
-            1) {
-            eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >=
-                                                                                mineval]))))
-            initial.loadings <- cbind(eigen.vectors[, eigen.values >=
-                                                        mineval] * eigen.values.factors)
+        if (length(eigen.values[eigen.values >= mineval]) == 1) {
+            eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >= mineval]))))
+            initial.loadings <- cbind(eigen.vectors[, eigen.values >= mineval] * eigen.values.factors)
             A <- initial.loadings
         } else {
-            eigen.values.factors <- t(replicate(ncol(cor.means),
-                                                c(as.matrix(sqrt(eigen.values[eigen.values >=
-                                                                                  mineval])))))
-            initial.loadings <- eigen.vectors[, eigen.values >=
-                                                  mineval] * eigen.values.factors
+            eigen.values.factors <- t(replicate(ncol(cor.means), c(as.matrix(sqrt(eigen.values[eigen.values >= mineval])))))
+            initial.loadings <- eigen.vectors[, eigen.values >= mineval] * eigen.values.factors
             A <- varimax(initial.loadings)[[1]][]
         }
         partial <- solve_svd(cor.means)
@@ -108,8 +101,7 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
                                            sum((partial[i, -i])^2))
         }))
         names(MSA) <- colnames(means)
-        colnames(A) <- paste("FA", 1:ncol(initial.loadings),
-                             sep = "")
+        colnames(A) <- paste("FA", 1:ncol(initial.loadings), sep = "")
         variance <- (eigen.values/sum(eigen.values)) * 100
         cumulative.var <- cumsum(eigen.values/sum(eigen.values)) *
             100
@@ -134,19 +126,30 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
         names(var.factor) <- paste("FA", 1:ncol(A), sep = "")
         names.pos.var.factor <- rownames(pos.var.factor)
         means.factor <- means[, names.pos.var.factor]
-        genv <- data.frame(Env = names(means.factor), Factor = paste("FA",
-                                                                     pos.var.factor[, 2], sep = ""), Mean = colMeans(means.factor),
-                           Min = apply(means.factor, 2, min), Max = apply(means.factor,
-                                                                          2, max), CV = (apply(means.factor, 2, sd)/apply(means.factor,
-                                                                                                                          2, mean)) * 100)
-        temp <- (structure(list(data = as_tibble(data), cormat = as.matrix(cor.means),
-                                PCA = as_tibble(pca), FA = as_tibble(fa), env_strat = as_tibble(genv),
-                                KMO = KMO, MSA = MSA, communalities = Communality, communalities.mean = mean(Communality),
-                                initial.loadings = as_tibble(cbind(Env = names(means),
-                                                                   as_tibble(initial.loadings))), finish.loadings = as_tibble(cbind(Env = names(means),
-                                                                                                                                    as_tibble(A))), canonical.loadings = as_tibble(cbind(Env = names(means),
-                                                                                                                                                                                         as_tibble(canonical.loadings))), scores.gen = as_tibble(cbind(Gen = rownames(means),
-                                                                                                                                                                                                                                                       as_tibble(scores)))), class = "ge_factanal"))
+        genv <- data.frame(Env = names(means.factor),
+                           Factor = paste("FA", pos.var.factor[, 2], sep = ""),
+                           Mean = colMeans(means.factor),
+                           Min = apply(means.factor, 2, min),
+                           Max = apply(means.factor, 2, max),
+                           CV = (apply(means.factor, 2, sd)/apply(means.factor, 2, mean)) * 100)
+        colnames(initial.loadings) <- paste("FA", 1:ncol(initial.loadings), sep = "")
+        if(ncol(scores) < 2){
+            warning("The number of retained factors is ",ncol(scores),
+                    ".\nA plot with the scores cannot be obtained.\nUse 'mineval' to increase the number of factors retained", call. = FALSE)
+        }
+        temp <- (structure(list(data = as_tibble(data),
+                                cormat = as.matrix(cor.means),
+                                PCA = as_tibble(pca),
+                                FA = as_tibble(fa),
+                                env_strat = as_tibble(genv),
+                                KMO = KMO,
+                                MSA = MSA,
+                                communalities = Communality,
+                                communalities.mean = mean(Communality),
+                                initial.loadings = as_tibble(cbind(Env = names(means), as_tibble(initial.loadings))),
+                                finish.loadings = as_tibble(cbind(Env = names(means), as_tibble(A))),
+                                canonical.loadings = as_tibble(cbind(Env = names(means), as_tibble(canonical.loadings))),
+                                scores.gen = as_tibble(cbind(Gen = rownames(means), as_tibble(scores)))), class = "ge_factanal"))
         listres[[paste(names(vars[var]))]] <- temp
     }
     return(structure(listres, class = "ge_factanal"))
@@ -250,8 +253,10 @@ plot.ge_factanal <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NUL
     if (!class(x) == "ge_factanal") {
         stop("The object 'x' is not of class 'ge_factanal'")
     }
-    data <- data.frame(x$scores.gen)
-
+    data <- data.frame(scores.gen)
+    if(ncol(data) == 2){
+        stop("A plot cannot be generated with only one factor. \nUse 'mineval' argument in 'ge_factanal()' to increase the number of factors retained.", call. = FALSE)
+    }
     if (is.null(y.lab) == FALSE) {
         y.lab <- y.lab
     } else {
