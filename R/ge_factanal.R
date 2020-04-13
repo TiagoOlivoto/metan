@@ -253,7 +253,7 @@ plot.ge_factanal <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NUL
     if (!class(x) == "ge_factanal") {
         stop("The object 'x' is not of class 'ge_factanal'")
     }
-    data <- data.frame(scores.gen)
+    data <- data.frame(x$scores.gen)
     if(ncol(data) == 2){
         stop("A plot cannot be generated with only one factor. \nUse 'mineval' argument in 'ge_factanal()' to increase the number of factors retained.", call. = FALSE)
     }
