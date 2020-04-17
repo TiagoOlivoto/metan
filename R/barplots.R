@@ -52,8 +52,9 @@
 #' @param width.erbar The width of the error bar. Defaults to 30% of
 #'   \code{width.bar}.
 #' @param level The confidence level
-#' @param invert Logical argument. If \code{TRUE}, the order of the factors
-#'   entered in changes in the graph
+#' @param invert Logical argument. If \code{TRUE}, rotate the plot in
+#'   \code{plot_bars()} and invert the order of the factors in
+#'   \code{plot_factbars()}.
 #' @param color.bar,fill.bar Argument valid for \code{plot_bars()}. The color and
 #'   fill values of the bars.
 #' @param col Logical argument valid for \code{plot_factbars()}. If
@@ -127,7 +128,6 @@ plot_bars <- function(.data,
                       level = 0.95,
                       invert = FALSE,
                       width.bar = 0.9,
-                      legend.position = "bottom",
                       size.line = 0.5,
                       size.text = 12,
                       fontfam = "sans",
@@ -140,7 +140,7 @@ plot_bars <- function(.data,
   width.erbar <- ifelse(missing(width.erbar), width.bar/3, width.erbar)
   cl <- match.call()
   datac <- .data %>%
-  to_factor({{x}}) %>%
+    to_factor({{x}}) %>%
     select({{x}}, {{y}}) %>%
     group_by({{x}}) %>%
     desc_stat({{y}}, stats = c("n, mean, sd.amo, ci, se"), level = level) %>%
@@ -158,11 +158,11 @@ plot_bars <- function(.data,
     p <- ggplot(datac, aes(x = {{x}}, y = mean))
   }
   p <- p +
-      geom_bar(stat = "identity",
-               width = width.bar,
-               color = color.bar,
-               size = size.line,
-               fill = fill.bar)
+    geom_bar(stat = "identity",
+             width = width.bar,
+             color = color.bar,
+             size = size.line,
+             fill = fill.bar)
   if (errorbar == TRUE) {
     if (stat.erbar == "ci") {
       p <- p + geom_errorbar(aes(ymin = mean - ci,
@@ -209,6 +209,9 @@ plot_bars <- function(.data,
 
   if (verbose == TRUE) {
     print(datac)
+  }
+  if(invert == TRUE){
+    return(p + coord_flip())
   }
   return(p)
 }
