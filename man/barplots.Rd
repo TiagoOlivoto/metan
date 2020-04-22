@@ -11,8 +11,9 @@ plot_bars(
   x,
   y,
   order = NULL,
-  y.expand = 0.05,
+  y.lim = NULL,
   y.breaks = waiver(),
+  y.expand = 0.05,
   xlab = NULL,
   ylab = NULL,
   n.dodge = 1,
@@ -33,7 +34,6 @@ plot_bars(
   level = 0.95,
   invert = FALSE,
   width.bar = 0.9,
-  legend.position = "bottom",
   size.line = 0.5,
   size.text = 12,
   fontfam = "sans",
@@ -46,8 +46,9 @@ plot_factbars(
   .data,
   ...,
   resp,
-  y.expand = 0.05,
+  y.lim = NULL,
   y.breaks = waiver(),
+  y.expand = 0.05,
   xlab = NULL,
   ylab = NULL,
   n.dodge = 1,
@@ -89,12 +90,16 @@ factor in the \code{x} axis. Defaults to the order of the factors in
 the labels to ascending or descending order, respectively, based on the
 values of the variable \code{y}.}
 
-\item{y.expand}{A multiplication range expansion factor. Defaults to
-\code{0.05}.}
+\item{y.lim}{The range of y axis. Defaults to \code{NULL} (maximum and
+minimum values of the data set). New values can be inserted as \code{y.lim
+  = c(y.min, y.max)}.}
 
 \item{y.breaks}{The breaks to be plotted in the y-axis. Defaults to waiver().
 \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
 used.}
+
+\item{y.expand}{A multiplication range expansion factor. Defaults to
+\code{0.05}.}
 
 \item{xlab, ylab}{The labels of the axes x and y, respectively. Defaults to
 \code{NULL}.}
@@ -139,13 +144,12 @@ interval), based on the confidence level in the argument \code{level}.}
 
 \item{level}{The confidence level}
 
-\item{invert}{Logical argument. If \code{TRUE}, the order of the factors
-entered in changes in the graph}
+\item{invert}{Logical argument. If \code{TRUE}, rotate the plot in
+\code{plot_bars()} and invert the order of the factors in
+\code{plot_factbars()}.}
 
 \item{width.bar}{The width of the bars in the graph. Defaults to 0.9.
 Possible values are in the range 0-1.}
-
-\item{legend.position}{The position of the legend in the plot.}
 
 \item{size.line}{The size of the line in the bars. Default to \code{0.5}.}
 
@@ -176,6 +180,8 @@ to be mapped to the y axis.}
 
 \item{palette}{Argument valid for \code{plot_factbars()} The color palette to
 be used. For more details, see \code{?scale_colour_brewer}}
+
+\item{legend.position}{The position of the legend in the plot.}
 }
 \value{
 An object of class \code{gg, ggplot}.

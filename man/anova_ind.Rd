@@ -33,6 +33,7 @@ A list where each element is the result for one variable containing:
 \enumerate{
 \item \strong{individual}: A tidy tbl_df with the results of the individual
 analysis of variance with the following column names:
+}
 \itemize{
 \item \strong{For analysis in alpha-lattice designs}: \strong{ENV}: The
 environment code; \strong{MEAN}: The grand mean; \strong{MSG, MSCR, MSIB_R}:
@@ -41,11 +42,18 @@ replicates, respectively. \strong{FCG, FCR, FCIB_R}: The F-calculated for
 genotype, replicates and incomplete blocks within replicates,
 respectively.\strong{PFG, PFCR, PFIB_R}: The P-values for genotype,
 replicates and incomplete blocks within replicates, respectively.
+\strong{MSE}: The mean square error. \strong{CV}: coefficient of variation.
+\strong{h2}: broad-sense heritability. \strong{AS}: accuracy of selection
+(square root of \strong{h2})
 \item \strong{For analysis in randomized complete block design}: \strong{MSG,
 MSB}: The mean squares for genotype and blocks, respectively. \strong{FCG,
 FCB}: The F-calculated for genotype and blocks, respectively. \strong{PFG,
-PFB}: The P-values for genotype and blocks, respectively.
+PFB}: The P-values for genotype and blocks, respectively. \strong{MSE}: The
+mean square error. \strong{CV}: coefficient of variation. \strong{h2}:
+broad-sense heritability. \strong{AS}: accuracy of selection (square root of
+\strong{h2})
 }
+\enumerate{
 \item \strong{MSRatio} The ratio between the higher and lower residual mean
 square.
 }

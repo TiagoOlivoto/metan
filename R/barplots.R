@@ -20,11 +20,14 @@
 #'   \code{.data}. Use \code{order = "asce"} or \code{order = "desc"} to reorder
 #'   the labels to ascending or descending order, respectively, based on the
 #'   values of the variable \code{y}.
-#' @param y.expand A multiplication range expansion factor. Defaults to
-#'   \code{0.05}.
+#' @param y.lim The range of y axis. Defaults to \code{NULL} (maximum and
+#'   minimum values of the data set). New values can be inserted as \code{y.lim
+#'   = c(y.min, y.max)}.
 #' @param y.breaks The breaks to be plotted in the y-axis. Defaults to waiver().
 #'   \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
 #'   used.
+#' @param y.expand A multiplication range expansion factor. Defaults to
+#'   \code{0.05}.
 #' @param xlab,ylab The labels of the axes x and y, respectively. Defaults to
 #'   \code{NULL}.
 #' @param n.dodge The number of rows that should be used to render the x labels.
@@ -106,8 +109,9 @@ plot_bars <- function(.data,
                       x,
                       y,
                       order = NULL,
-                      y.expand = 0.05,
+                      y.lim = NULL,
                       y.breaks = waiver(),
+                      y.expand = 0.05,
                       xlab = NULL,
                       ylab = NULL,
                       n.dodge = 1,
@@ -217,7 +221,8 @@ plot_bars <- function(.data,
           axis.ticks = element_line(colour = "black"),
           plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm")) +
     labs(y = ylab, x = xlab) +
-    scale_y_continuous(breaks = y.breaks,
+    scale_y_continuous(limits = y.lim,
+                       breaks = y.breaks,
                        expand = expansion(mult = c(0, y.expand))) +
     scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))
 
@@ -237,8 +242,9 @@ plot_bars <- function(.data,
 plot_factbars <- function(.data,
                           ...,
                           resp,
-                          y.expand = 0.05,
+                          y.lim = NULL,
                           y.breaks = waiver(),
+                          y.expand = 0.05,
                           xlab = NULL,
                           ylab = NULL,
                           n.dodge = 1,
@@ -395,7 +401,8 @@ plot_factbars <- function(.data,
           legend.position = legend.position,
           legend.text = element_text(size = size.text, family = fontfam)) +
     labs(y = ylab, x = xlab) +
-    scale_y_continuous(breaks = y.breaks,
+    scale_y_continuous(limits = y.lim,
+                       breaks = y.breaks,
                        expand = expansion(mult = c(0, y.expand))) +
     scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))
   if (verbose == TRUE) {
