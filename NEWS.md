@@ -1,3 +1,9 @@
+# metan 1.5.1
+## Minor changes
+* `plot_bars()` and `plot_factbars()` now align vertically the labels to the error bars.
+* `fai_blup()` now returns the eigenvalues and explained variance for each axis and variables into columns instead row names.
+* Fixes the error with `donttest{}` examples. Now, the correct data set is used in the example of `fai_blup()`
+
 # metan 1.5.0
 ## New functions
 * `select_rows_na()` and `select_cols_na()` to select rows or columns with with `NA` values.
@@ -56,9 +62,7 @@
 * An up-to-date cheat sheet was included.
 
 
-
 # metan 1.3.0
-
 ## New functions
    - `alpha_color()` To get a semi-transparent color
    - `gafem()` To analyze genotypes using fixed-effect models.
