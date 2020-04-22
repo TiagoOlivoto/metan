@@ -251,10 +251,10 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     }
   }
   return(structure(list(data = means,
-                        eigen = pca,
-                        FA = data.frame(fa),
-                        canonical.loadings = data.frame(canonical.loadings),
-                        FAI = data.frame(ideotype.rank) %>% rownames_to_column("Genotype"),
+                        eigen = data.frame(pca) %>% rownames_to_column("PC") %>% as_tibble(),
+                        FA = data.frame(fa) %>% rownames_to_column("Variable") %>% as_tibble(),
+                        canonical.loadings = data.frame(canonical.loadings) %>% rownames_to_column("Variable") %>% as_tibble(),
+                        FAI = data.frame(ideotype.rank) %>% rownames_to_column("Genotype") %>% as_tibble(),
                         selection.diferential = selection.diferential),
                    class = "fai_blup"))
 }
