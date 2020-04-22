@@ -218,7 +218,7 @@
 #' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel.
 #' 2019b. Mean performance and stability in multi-environment trials II:
 #' Selection based on multiple traits. Agron. J. 111:2961-2969.
-#' \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0221}{doi:10.2134/agronj2019.03.0221}
+#' \href{https://acsess.onlinelibrary.wiley.com/doi/full/10.2134/agronj2019.03.0221}{doi:10.2134/agronj2019.03.0221}
 #'
 #' Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
 #' Genotype vs environment interaction of winter wheat (Triticum aestivum L.)
