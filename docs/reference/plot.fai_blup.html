@@ -97,7 +97,7 @@ proposed by Rocha et al. (2018)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -312,51 +312,38 @@ genotypes is large, say, more than 30.</p></td>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 
-<span class='no'>FAI</span> <span class='kw'>=</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>KW</span>, <span class='no'>NKE</span>, <span class='no'>PH</span>, <span class='no'>EH</span>)) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='fai_blup.html'>fai_blup</a></span>(<span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'max, max, max, min'</span>),
-               <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min, min, max'</span>),
-               <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
+             <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
+             <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
+             <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
+             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
-#&gt;     model       KW     NKE       PH       EH
-#&gt;  COMPLETE       NA      NA       NA       NA
-#&gt;       GEN 6.21e-01 1.00000 9.39e-01 1.00e+00
-#&gt;   GEN:ENV 4.92e-07 0.00101 1.09e-13 8.12e-12
+#&gt;     model       GY       HM
+#&gt;  COMPLETE       NA       NA
+#&gt;       GEN 1.11e-05 5.07e-03
+#&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: blupg</span></div><div class='output co'>#&gt; 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
+<span class='no'>FAI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fai_blup.html'>fai_blup</a></span>(<span class='no'>mod</span>,
+                <span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'max, max'</span>),
+                <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min'</span>))</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: blupg</span></div><div class='output co'>#&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -----------------------------------------------------------------------------------
 #&gt;     eigen.values cumulative.var
-#&gt; PC1    3.1441417       78.60354
-#&gt; PC2    0.6604119       95.11384
-#&gt; PC3    0.1385777       98.57828
-#&gt; PC4    0.0568688      100.00000
+#&gt; PC1    1.1046076       55.23038
+#&gt; PC2    0.8953924      100.00000
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Factor Analysis
 #&gt; -----------------------------------------------------------------------------------
 #&gt;           FA1 comunalits
-#&gt; KW  0.9474560  0.8976729
-#&gt; NKE 0.7429933  0.5520391
-#&gt; PH  0.9429971  0.8892436
-#&gt; EH  0.8973216  0.8051860
+#&gt; GY -0.7431714  0.5523038
+#&gt; HM  0.7431714  0.5523038
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.7860354 
-#&gt; Selection differential
-#&gt; -----------------------------------------------------------------------------------
-#&gt;     Factor         Xo         Xs           SD       SDperc
-#&gt; KW       1 172.938867 175.182040 2.243173e+00 1.297090e+00
-#&gt; NKE      1 511.643590 511.643590 2.819513e-07 5.510697e-08
-#&gt; PH       1   2.484813   2.487051 2.238030e-03 9.006835e-02
-#&gt; EH       1   1.343326   1.343326 3.234133e-10 2.407557e-08
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Selected genotypes
-#&gt; H13 H6
-#&gt; -----------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>FAI</span>)</div><div class='img'><img src='plot.fai_blup-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; Comunalit Mean: 0.5523038 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>FAI</span>)</div><div class='img'><img src='plot.fai_blup-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

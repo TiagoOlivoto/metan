@@ -98,7 +98,7 @@ p-values, coefficient of variation, heritability, and accuracy of selection." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -280,19 +280,28 @@ alpha-lattice design (Patterson and Williams, 1976) is employed.
 
     <p>A list where each element is the result for one variable containing:</p><ol>
 <li><p><strong>individual</strong>: A tidy tbl_df with the results of the individual
-analysis of variance with the following column names:</p><ul>
+analysis of variance with the following column names:</p></li>
+</ol>
+<ul>
 <li><p><strong>For analysis in alpha-lattice designs</strong>: <strong>ENV</strong>: The
 environment code; <strong>MEAN</strong>: The grand mean; <strong>MSG, MSCR, MSIB_R</strong>:
 The mean squares for genotype, replicates and incomplete blocks within
 replicates, respectively. <strong>FCG, FCR, FCIB_R</strong>: The F-calculated for
 genotype, replicates and incomplete blocks within replicates,
 respectively.<strong>PFG, PFCR, PFIB_R</strong>: The P-values for genotype,
-replicates and incomplete blocks within replicates, respectively.</p></li>
+replicates and incomplete blocks within replicates, respectively.
+<strong>MSE</strong>: The mean square error. <strong>CV</strong>: coefficient of variation.
+<strong>h2</strong>: broad-sense heritability. <strong>AS</strong>: accuracy of selection
+(square root of <strong>h2</strong>)</p></li>
 <li><p><strong>For analysis in randomized complete block design</strong>: <strong>MSG,
 MSB</strong>: The mean squares for genotype and blocks, respectively. <strong>FCG,
 FCB</strong>: The F-calculated for genotype and blocks, respectively. <strong>PFG,
-PFB</strong>: The P-values for genotype and blocks, respectively.</p></li>
-</ul></li>
+PFB</strong>: The P-values for genotype and blocks, respectively. <strong>MSE</strong>: The
+mean square error. <strong>CV</strong>: coefficient of variation. <strong>h2</strong>:
+broad-sense heritability. <strong>AS</strong>: accuracy of selection (square root of
+<strong>h2</strong>)</p></li>
+</ul>
+<ol>
 <li><p><strong>MSRatio</strong> The ratio between the higher and lower residual mean
 square.</p></li>
 </ol>

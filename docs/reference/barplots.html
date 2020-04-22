@@ -105,7 +105,7 @@ two-way trial with qualitative-qualitative treatment structure.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -255,8 +255,9 @@ two-way trial with <strong>qualitative-qualitative treatment structure</strong>.
   <span class='no'>x</span>,
   <span class='no'>y</span>,
   <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>y.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
+  <span class='kw'>y.expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -277,7 +278,6 @@ two-way trial with <strong>qualitative-qualitative treatment structure</strong>.
   <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>width.bar</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
   <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>12</span>,
   <span class='kw'>fontfam</span> <span class='kw'>=</span> <span class='st'>"sans"</span>,
@@ -290,8 +290,9 @@ two-way trial with <strong>qualitative-qualitative treatment structure</strong>.
   <span class='no'>.data</span>,
   <span class='no'>...</span>,
   <span class='no'>resp</span>,
-  <span class='kw'>y.expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>y.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
+  <span class='kw'>y.expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -342,15 +343,21 @@ the labels to ascending or descending order, respectively, based on the
 values of the variable <code>y</code>.</p></td>
     </tr>
     <tr>
-      <th>y.expand</th>
-      <td><p>A multiplication range expansion factor. Defaults to
-<code>0.05</code>.</p></td>
+      <th>y.lim</th>
+      <td><p>The range of y axis. Defaults to <code>NULL</code> (maximum and
+minimum values of the data set). New values can be inserted as <code>y.lim
+  = c(y.min, y.max)</code>.</p></td>
     </tr>
     <tr>
       <th>y.breaks</th>
       <td><p>The breaks to be plotted in the y-axis. Defaults to waiver().
 <code>authomatic breaks</code>. The same arguments than <code>x.breaks</code> can be
 used.</p></td>
+    </tr>
+    <tr>
+      <th>y.expand</th>
+      <td><p>A multiplication range expansion factor. Defaults to
+<code>0.05</code>.</p></td>
     </tr>
     <tr>
       <th>xlab, ylab</th>
@@ -425,17 +432,14 @@ interval), based on the confidence level in the argument <code>level</code>.</p>
     </tr>
     <tr>
       <th>invert</th>
-      <td><p>Logical argument. If <code>TRUE</code>, the order of the factors
-entered in changes in the graph</p></td>
+      <td><p>Logical argument. If <code>TRUE</code>, rotate the plot in
+<code>plot_bars()</code> and invert the order of the factors in
+<code>plot_factbars()</code>.</p></td>
     </tr>
     <tr>
       <th>width.bar</th>
       <td><p>The width of the bars in the graph. Defaults to 0.9.
 Possible values are in the range 0-1.</p></td>
-    </tr>
-    <tr>
-      <th>legend.position</th>
-      <td><p>The position of the legend in the plot.</p></td>
     </tr>
     <tr>
       <th>size.line</th>
@@ -486,6 +490,10 @@ to be mapped to the y axis.</p></td>
       <th>palette</th>
       <td><p>Argument valid for <code>plot_factbars()</code> The color palette to
 be used. For more details, see <code>?scale_colour_brewer</code></p></td>
+    </tr>
+    <tr>
+      <th>legend.position</th>
+      <td><p>The position of the legend in the plot.</p></td>
     </tr>
     </table>
 
