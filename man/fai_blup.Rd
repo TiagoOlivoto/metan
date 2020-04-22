@@ -30,6 +30,7 @@ console.}
 An object of class \code{fai_blup} with the following items:
 \itemize{
 \item \strong{data} The data (BLUPS) used to compute the index.
+\item \strong{eigen} The eigenvalues and explained variance for each axis.
 \item \strong{FA} The results of the factor analysis.
 \item \strong{canonical.loadings} The canonical loadings for each factor retained.
 \item \strong{FAI} A list with the FAI-BLUP index for each ideotype design.

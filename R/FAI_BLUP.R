@@ -20,6 +20,7 @@
 #'   console.
 #' @return An object of class \code{fai_blup} with the following items:
 #' * \strong{data} The data (BLUPS) used to compute the index.
+#' * \strong{eigen} The eigenvalues and explained variance for each axis.
 #' * \strong{FA} The results of the factor analysis.
 #' * \strong{canonical.loadings} The canonical loadings for each factor retained.
 #' * \strong{FAI} A list with the FAI-BLUP index for each ideotype design.
@@ -250,6 +251,7 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     }
   }
   return(structure(list(data = means,
+                        eigen = pca,
                         FA = data.frame(fa),
                         canonical.loadings = data.frame(canonical.loadings),
                         FAI = data.frame(ideotype.rank) %>% rownames_to_column("Genotype"),
