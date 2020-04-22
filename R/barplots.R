@@ -139,12 +139,25 @@ plot_bars <- function(.data,
   }
   width.erbar <- ifelse(missing(width.erbar), width.bar/3, width.erbar)
   cl <- match.call()
-  datac <- .data %>%
+  datac <-
+    .data %>%
     to_factor({{x}}) %>%
     select({{x}}, {{y}}) %>%
     group_by({{x}}) %>%
-    desc_stat({{y}}, stats = c("n, mean, sd.amo, ci, se"), level = level) %>%
-    add_cols(max = mean + ci)
+    desc_stat({{y}}, stats = c("n, mean, sd.amo, ci, se"), level = level)
+  if(errorbar == TRUE){
+    if(stat.erbar == "ci"){
+      datac %<>% add_cols(max = mean + ci)
+    }
+    if(stat.erbar == "sd"){
+      datac %<>% add_cols(max = mean + sd.amo)
+    }
+    if(stat.erbar == "se"){
+      datac %<>% add_cols(max = mean + se)
+    }
+  } else{
+    datac %<>% add_cols(max = mean)
+  }
   ylab <- ifelse(is.null(ylab), cl$y, ylab)
   xlab <- ifelse(is.null(xlab), cl$x, xlab)
   if(!missing(order)){
@@ -188,7 +201,7 @@ plot_bars <- function(.data,
       stop("The labels must be either length 1 or the same as the levels of ",
            paste(xlab), " (", nrow(datac), ")", call. = FALSE)
     }
-    p <- p + geom_text(aes(label = lab.bar),
+    p <- p + geom_text(aes(label = lab.bar, y = max),
                        vjust = lab.bar.vjust,
                        hjust = lab.bar.hjust,
                        size = size.text.bar,
@@ -199,6 +212,7 @@ plot_bars <- function(.data,
     plot_theme %+replace%
     theme(axis.ticks.length = unit(0.2, "cm"),
           axis.text = element_text(size = size.text, family = fontfam, colour = "black"),
+          axis.text.x = element_text(angle = lab.x.angle, vjust = lab.x.vjust, hjust = lab.x.hjust),
           axis.title = element_text(size = size.text, family = fontfam, colour = "black"),
           axis.ticks = element_line(colour = "black"),
           plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm")) +
@@ -254,16 +268,29 @@ plot_factbars <- function(.data,
                           plot_theme = theme_metan()) {
   width.erbar <- ifelse(missing(width.erbar), width.bar/3, width.erbar)
   cl <- match.call()
-  datac <- .data %>%
+  datac <-
+    .data %>%
     mutate_at(quos(...), as.factor) %>%
     select(..., Y = {{resp}}) %>%
     group_by(...) %>%
     summarise(N = n(),
               mean_var = mean(Y, na.rm = na.rm),
               sd = sd(Y, na.rm = na.rm), se = sd/sqrt(n()),
-              ci = se * qt(level/2 + 0.5, n() - 1),
-              max = mean_var + ci)
+              ci = se * qt(level/2 + 0.5, n() - 1))
   nam <- names(select(.data, ...))
+  if(errorbar == TRUE){
+    if(stat.erbar == "ci"){
+      datac %<>% add_cols(max = mean_var + ci)
+    }
+    if(stat.erbar == "sd"){
+      datac %<>% add_cols(max = mean_var + sd.amo)
+    }
+    if(stat.erbar == "se"){
+      datac %<>% add_cols(max = mean_var + se)
+    }
+  } else{
+    datac %<>% add_cols(max = mean_var)
+  }
   if (length(nam) > 1) {
     names(datac) <- c("x", "y", "N", "mean_var", "sd", "se", "ci", "max")
   } else {
@@ -348,7 +375,7 @@ plot_factbars <- function(.data,
       stop("The labels must be either length 1 or the same as the levels of ",
            paste(quos(...)), " (", nrow(datac), ")")
     }
-    p <- p + geom_text(aes(label = lab.bar),
+    p <- p + geom_text(aes(label = lab.bar, y = max),
                        position = pd,
                        vjust = lab.bar.vjust,
                        hjust = lab.bar.hjust,
@@ -360,6 +387,7 @@ plot_factbars <- function(.data,
     plot_theme %+replace%
     theme(axis.ticks.length = unit(0.2, "cm"),
           axis.text = element_text(size = size.text, family = fontfam, colour = "black"),
+          axis.text.x = element_text(angle = lab.x.angle, vjust = lab.x.vjust, hjust = lab.x.hjust),
           axis.title = element_text(size = size.text, family = fontfam, colour = "black"),
           axis.ticks = element_line(colour = "black"),
           plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"),
