@@ -53,11 +53,15 @@ proposed by Rocha et al. (2018).
 \donttest{
 library(metan)
 
-FAI = data_ge2 \%>\%
-      waasb(ENV, GEN, REP, c(KW, NKE, PH, EH)) \%>\%
-      fai_blup(DI = c('max, max, max, min'),
-               UI = c('min, min, min, max'),
-               SI = 15)
+mod <- waasb(data_ge,
+             env = ENV,
+             gen = GEN,
+             rep = REP,
+             resp = c(GY, HM))
+
+FAI <- fai_blup(mod,
+                DI = c('max, max'),
+                UI = c('min, min'))
 plot(FAI)
 }
 
