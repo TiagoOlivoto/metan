@@ -46,7 +46,7 @@ Imports:
     FWDselect,
     GGally,
     ggforce,
-    ggplot2,
+    ggplot2 (>= 3.3.0),
     ggrepel,
     grid,
     lme4,
