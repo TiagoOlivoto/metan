@@ -39,7 +39,7 @@
 #'   V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 #'   multi-environment trials I: Combining features of AMMI and BLUP techniques.
 #'   Agron. J.
-#'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/0/0/agronj2019.03.0220?access=0&view=pdf}{doi:10.2134/agronj2019.03.0220}
+#' \href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
 #'
 #' @return An object of class \code{wsmp} with the following items for each
 #'   variable:
