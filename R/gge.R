@@ -328,7 +328,7 @@ plot.gge <- function(x,
                      ...) {
   if(any(class(x) == "gtb")){
     if(all(leg.lab %in% c("Gen", "Env")))
-    leg.lab <- c("Gen", "Trait")
+      leg.lab <- c("Gen", "Trait")
   }
   model <- x[[var]]
   if (!class(model) == "gge") {
@@ -495,13 +495,15 @@ plot.gge <- function(x,
     colnames(segs) <- NULL
     segs <- data.frame(segs)
     colnames(polign) <- c("X1", "X2")
-    winners <- plotdata[plotdata$type == "genotype", ][indice[-1], ]
-    others <- plotdata[!rownames(plotdata) %in% rownames(winners), ]
-    P2 <- P1 + geom_polygon(data = polign,
-                            aes(x = X1, y = X2),
-                            fill = NA,
-                            col = col.gen,
-                            size = size.line) +
+    winners <- plotdata[plotdata$type == "genotype", ][indice[-1], ] %>% add_cols(win = "yes")
+    others <- anti_join(plotdata, winners, by = "label") %>% add_cols(win = "no")
+    df_winners <- rbind(winners, others)
+    P2 <- P1 +
+      geom_polygon(data = polign,
+                   aes(x = X1, y = X2),
+                   fill = NA,
+                   col = col.gen,
+                   size = size.line) +
       geom_segment(data = segs,
                    aes(x = X1, y = X2),
                    xend = 0,
@@ -509,28 +511,40 @@ plot.gge <- function(x,
                    linetype = 2,
                    color = col.gen,
                    size = size.line) +
-      geom_point(data = others,
+      geom_point(data = subset(df_winners, win == "no"),
                  aes(d1, d2, fill = type, shape = type),
                  size = size.shape,
                  stroke = size.bor.tick,
-                 alpha = col.alpha) +
-      geom_text_repel(data = others,
+                 alpha = col.alpha,
+                 show.legend = FALSE) +
+      geom_text_repel(data = subset(df_winners, win == "no"),
                       aes(col = type, label = label, size = type),
                       show.legend = FALSE) +
-      geom_point(data = winners,
+      geom_point(data = subset(df_winners, win == "yes"),
                  aes(d1, d2, fill = type, shape = type),
                  size = size.shape.win,
                  stroke = size.bor.tick,
                  alpha = col.alpha) +
-      geom_text_repel(data = winners,
+      geom_text_repel(data = subset(df_winners, win == "yes"),
                       aes(col = type, label = label),
                       show.legend = FALSE,
                       fontface = "bold",
-                      size = large_label) +
-      scale_shape_manual(labels = leg.lab,
-                         values = c(shape.gen, shape.env)) +
-      scale_fill_manual(labels = leg.lab,
-                        values = c(col.gen, col.env))
+                      size = large_label)
+    if("genotype" %in% others$type){
+      P2 <-
+        P2 +
+        scale_shape_manual(labels = leg.lab, values = c(shape.gen, shape.env)) +
+        scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env))
+    } else{
+      P2 <-
+        suppressMessages(
+          P2 +
+            scale_shape_manual(labels = leg.lab[c(2,1)], values = c(shape.env, shape.gen)) +
+            scale_fill_manual(labels = leg.lab[c(2,1)], values = c(col.env, col.gen)) +
+            scale_color_manual(labels = leg.lab[c(2,1)], values = c(col.env, col.gen)) +
+            scale_size_manual(labels = leg.lab[c(2,1)], values = c(size.text.env, size.text.gen))
+        )
+    }
     if (title == TRUE) {
       ggt <- ggtitle("Which-won-where pattern")
     }
@@ -890,8 +904,8 @@ plot.gge <- function(x,
       if(any(class(x) == "gtb")){
         ggt <- ggtitle("Relationship Among Traits")
       } else{
-      ggt <- ggtitle("Relationship Among Environments")
-    }
+        ggt <- ggtitle("Relationship Among Environments")
+      }
     }
   }
   if (title == T) {
