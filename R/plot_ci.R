@@ -25,6 +25,8 @@
 #'   plot title.
 #' @param invert.axis Should the names of the pairwise correlation appear in the
 #'   y-axis?
+#' @param reorder Logical argument. If \code{TRUE} (default) the pairwise
+#'   combinations are reordered according to the correlation coefficient.
 #' @param plot_theme The graphical theme of the plot. Default is
 #'   \code{plot_theme = theme_metan()}. For more details, see
 #'   \code{\link[ggplot2]{theme}}.
@@ -43,7 +45,7 @@
 plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
                     y.breaks = waiver(), shape = 21, col.shape = "black", fill.shape = "orange",
                     size.shape = 2.5, width.errbar = 0.5, main = TRUE, invert.axis = TRUE,
-                    plot_theme = theme_metan()) {
+                    reorder = TRUE, plot_theme = theme_metan()) {
   if (!has_class(object, "tbl_df")) {
     stop("The object must be a 'data.frame' or a 'tbl_df'.")
   }
@@ -54,7 +56,13 @@ plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
              0)
   x.lab <- ifelse(is.null(x.lab) == F, x.lab, paste0("Pairwise combinations"))
   y.lab <- ifelse(is.null(y.lab) == F, y.lab, paste0("Pearson's correlation coefficient"))
-  p <- ggplot(object, aes(x = reorder(Pair, Corr), y = Corr)) +
+  if(reorder == TRUE){
+  p <- ggplot(object, aes(x = reorder(Pair, Corr), y = Corr))
+  } else{
+  p <- ggplot(object, aes(x = Pair, y = Corr))
+  }
+  p <-
+    p +
     geom_hline(yintercept = 0, linetype = "dashed") + geom_errorbar(aes(ymax = UL,
                                                                         ymin = LL, width = width.errbar)) + geom_point(col = col.shape,
                                                                                                                        fill = fill.shape, size = size.shape, shape = shape)

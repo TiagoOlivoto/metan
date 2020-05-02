@@ -17,6 +17,7 @@ plot_ci(
   width.errbar = 0.5,
   main = TRUE,
   invert.axis = TRUE,
+  reorder = TRUE,
   plot_theme = theme_metan()
 )
 }
@@ -54,6 +55,9 @@ plot title.}
 
 \item{invert.axis}{Should the names of the pairwise correlation appear in the
 y-axis?}
+
+\item{reorder}{Logical argument. If \code{TRUE} (default) the pairwise
+combinations are reordered according to the correlation coefficient.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
