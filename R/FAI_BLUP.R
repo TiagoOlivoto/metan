@@ -66,7 +66,7 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
     stop("The length of DI and UI must be the same length of data.")
   }
   if(has_class(.data, c("gamem", "waasb"))){
-    means <- gmd(.data, "blupg", verbose = verbose) %>%
+    means <- gmd(.data, "blupg", verbose = FALSE) %>%
       column_to_rownames("GEN")
   } else {
     if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
@@ -116,7 +116,7 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
   pca <- cbind(eigen.values, cumulative.var)
   rownames(pca) <- paste("PC", 1:ncol(means), sep = "")
   fa <- cbind(finish.loadings, comunalits)
-  canonical.loadings <- t(t(finish.loadings) %*% solve(cor.means))
+  canonical.loadings <- t(t(finish.loadings) %*% solve_svd(cor.means))
   rownames(canonical.loadings) <- colnames(means)
   scores <- t(t(canonical.loadings) %*% t(normalize.means))
   colnames(scores) <- paste("SC", 1:ncol(scores), sep = "")
@@ -255,7 +255,7 @@ fai_blup <- function(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE) {
                         FA = data.frame(fa) %>% rownames_to_column("Variable") %>% as_tibble(),
                         canonical.loadings = data.frame(canonical.loadings) %>% rownames_to_column("Variable") %>% as_tibble(),
                         FAI = data.frame(ideotype.rank) %>% rownames_to_column("Genotype") %>% as_tibble(),
-                        selection.diferential = selection.diferential),
+                        selection.diferential = lapply(selection.diferential, function(x){x %>% rownames_to_column("VAR")})),
                    class = "fai_blup"))
 }
 
