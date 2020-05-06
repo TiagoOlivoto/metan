@@ -4,7 +4,7 @@
 \alias{fai_blup}
 \title{Multi-trait selection index}
 \usage{
-fai_blup(.data, DI, UI, SI = NULL, mineval = 1, verbose = TRUE)
+fai_blup(.data, DI, UI, SI = 15, mineval = 1, verbose = TRUE)
 }
 \arguments{
 \item{.data}{An object of class \code{waasb} or a two-way table with
@@ -18,7 +18,7 @@ numeric value. Use a comma-separated vector of text. For example, \code{DI
   = c("max, max, min, min")}.}
 
 \item{SI}{An integer (0-100). The selection intensity in percentage of the
-total number of genotypes.}
+total number of genotypes. Defaults to 15.}
 
 \item{mineval}{The minimum value so that an eigenvector is retained in the
 factor analysis.}
@@ -35,6 +35,8 @@ An object of class \code{fai_blup} with the following items:
 \item \strong{canonical.loadings} The canonical loadings for each factor retained.
 \item \strong{FAI} A list with the FAI-BLUP index for each ideotype design.
 \item \strong{selection.diferential} A list with the selection differential for each ideotype design.
+\item \strong{ideotype.construction} A list with the construction of the ideotypes.
+\item \strong{total_gain} A list with the total gain for variables to be increased or decreased.
 }
 }
 \description{
