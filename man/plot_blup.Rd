@@ -23,7 +23,7 @@ plot_blup(
   x.breaks = waiver(),
   col.shape = c("blue", "red"),
   y.lab = "Genotypes",
-  x.lab = "Predicted Grain Yield",
+  x.lab = NULL,
   panel.spacing = 0.15,
   resolution = 300,
   ...
@@ -83,8 +83,8 @@ genotypes above and below of the mean, respectively. Default is
 \item{y.lab}{The label of the y-axis in the plot. Default is
 \code{"Genotypes"}.}
 
-\item{x.lab}{The label of the x-axis in the plot. Default is \code{"Predicted
-Grain Yield"}.}
+\item{x.lab}{The label of the x-axis in the plot. Default is \code{NULL},
+i.e., the name of the selected variable.}
 
 \item{panel.spacing}{Defines the spacing between panels when \code{which =
 "ge"}.}

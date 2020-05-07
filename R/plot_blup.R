@@ -36,8 +36,8 @@
 #' @param col.shape A vector of length 2 that contains the color of shapes for
 #'   genotypes above and below of the mean, respectively. Default is
 #'   \code{c("blue", "red")}.
-#' @param x.lab The label of the x-axis in the plot. Default is \code{"Predicted
-#'   Grain Yield"}.
+#' @param x.lab The label of the x-axis in the plot. Default is \code{NULL},
+#'   i.e., the name of the selected variable.
 #' @param y.lab The label of the y-axis in the plot. Default is
 #'   \code{"Genotypes"}.
 #' @param panel.spacing Defines the spacing between panels when \code{which =
@@ -81,9 +81,10 @@ plot_blup <- function(x,
                       x.breaks = waiver(),
                       col.shape = c("blue", "red"),
                       y.lab = "Genotypes",
-                      x.lab = "Predicted Grain Yield",
+                      x.lab = NULL,
                       panel.spacing = 0.15,
                       resolution = 300, ...) {
+    x.lab <- ifelse(missing(x.lab), names(x[var]), x.lab)
     if(!which %in% c("gen", "ge")){
         stop("Argument 'which' must be one of 'gen' or 'ge'.", call. = FALSE)
     }
