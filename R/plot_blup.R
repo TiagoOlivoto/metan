@@ -6,6 +6,9 @@
 #' @param x The \code{waasb object}
 #' @param var The variable to plot. Defaults to \code{var = 1} the first
 #'   variable of \code{x}.
+#' @param which Which plot to shown. If \code{which = "gen"} (default) plots the
+#'   BLUPs for genotypes. To create a plot showing the BLUPs for
+#'   genotype-environment combinations, used \code{which = "ge"}.
 #' @param prob The probability error for constructing confidence interval.
 #' @param export Export (or not) the plot. Default is \code{TRUE}.
 #' @param file.type If \code{export = TRUE}, define the type of file to be
@@ -37,6 +40,8 @@
 #'   Grain Yield"}.
 #' @param y.lab The label of the y-axis in the plot. Default is
 #'   \code{"Genotypes"}.
+#' @param panel.spacing Defines the spacing between panels when \code{which =
+#'   "ge"}.
 #' @param resolution The resolution of the plot. Parameter valid if
 #'   \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
 #' @param ... Currently not used.
@@ -47,21 +52,41 @@
 #' @examples
 #'\donttest{
 #' library(metan)
-#' BLUP <- waasb(data_ge,
-#'               resp = c(GY, HM),
+#' BLUP <- waasb(data_ge2,
+#'               resp = PH,
 #'               gen = GEN,
 #'               env = ENV,
 #'               rep = REP)
 #' plot_blup(BLUP)
+#' plot_blup(BLUP, which = "ge")
 #'
 #'}
 #'
 #'
-plot_blup <- function(x, var = 1, prob = 0.05, export = FALSE, file.type = "pdf", file.name = NULL,
-                      plot_theme = theme_metan(), width = 6, height = 6, size.err.bar = 0.5, size.shape = 3.5,
-                      size.tex.lab = 12, height.err.bar = 0.3, x.lim = NULL, x.breaks = waiver(),
-                      col.shape = c("blue", "red"), y.lab = "Genotypes", x.lab = "Predicted Grain Yield",
+plot_blup <- function(x,
+                      var = 1,
+                      which = "gen",
+                      prob = 0.05,
+                      export = FALSE,
+                      file.type = "pdf",
+                      file.name = NULL,
+                      plot_theme = theme_metan(),
+                      width = 6,
+                      height = 6,
+                      size.err.bar = 0.5,
+                      size.shape = 3.5,
+                      size.tex.lab = 12,
+                      height.err.bar = 0.3,
+                      x.lim = NULL,
+                      x.breaks = waiver(),
+                      col.shape = c("blue", "red"),
+                      y.lab = "Genotypes",
+                      x.lab = "Predicted Grain Yield",
+                      panel.spacing = 0.15,
                       resolution = 300, ...) {
+    if(!which %in% c("gen", "ge")){
+        stop("Argument 'which' must be one of 'gen' or 'ge'.", call. = FALSE)
+    }
     x <- x[[var]]
     if(!class(x)  %in% c("waasb", "gamem")){
         stop("The object 'x' must be of class 'waasb' or 'gamem'.")
@@ -84,14 +109,25 @@ plot_blup <- function(x, var = 1, prob = 0.05, export = FALSE, file.type = "pdf"
         GV <- as.numeric(x$random[which(x$random$Group == "GEN"), 2])
         AccuGen <- as.numeric(x$ESTIMATES[which(x$ESTIMATES$Parameters == "Accuracy"), 2])
         Limits <- t * sqrt(((1 - AccuGen) * GV))
-        blup <- x$BLUPgen %>%
+        if(which == "gen"){
+        blup <-
+            x$BLUPgen %>%
             mutate(LL = Predicted - Limits,
                    UL = Predicted + Limits,
                    Mean = ifelse(Predicted < mean(Predicted), "below", "above")) %>%
             arrange(Predicted)
+        } else{
+            blup <-
+                x$BLUPint %>%
+                means_by(ENV, GEN) %>%
+                mutate(LL = Predicted - Limits,
+                       UL = Predicted + Limits,
+                       Mean = ifelse(Predicted < mean(Predicted), "below", "above"))
+        }
     }
-    p1 <-ggplot(blup, aes(x = Predicted, y = reorder(GEN, Predicted))) +
-        geom_vline(xintercept = mean(blup$Predicted)) +
+    p1 <-
+        ggplot(blup, aes(x = Predicted, y = reorder(GEN, Predicted))) +
+        geom_vline(xintercept = mean(blup$Predicted), linetype = 2) +
         geom_errorbarh(aes(xmin = LL, xmax = UL), size = size.err.bar, height = height.err.bar) +
         geom_point(stat = "identity", aes(fill = Mean), shape = 21, size = size.shape) +
         scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
@@ -100,6 +136,12 @@ plot_blup <- function(x, var = 1, prob = 0.05, export = FALSE, file.type = "pdf"
         plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,colour = "black"),
                                axis.title = element_text(size = size.tex.lab, colour = "black"))
 
+    if(which == "ge"){
+    p1 <- p1 +
+        facet_wrap(~ENV) +
+        theme(panel.spacing = unit(panel.spacing, "cm"),
+              legend.position = "bottom")
+    }
 
     if (export == FALSE) {
         return(p1)

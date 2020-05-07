@@ -7,6 +7,7 @@
 plot_blup(
   x,
   var = 1,
+  which = "gen",
   prob = 0.05,
   export = FALSE,
   file.type = "pdf",
@@ -23,6 +24,7 @@ plot_blup(
   col.shape = c("blue", "red"),
   y.lab = "Genotypes",
   x.lab = "Predicted Grain Yield",
+  panel.spacing = 0.15,
   resolution = 300,
   ...
 )
@@ -32,6 +34,10 @@ plot_blup(
 
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
+
+\item{which}{Which plot to shown. If \code{which = "gen"} (default) plots the
+BLUPs for genotypes. To create a plot showing the BLUPs for
+genotype-environment combinations, used \code{which = "ge"}.}
 
 \item{prob}{The probability error for constructing confidence interval.}
 
@@ -80,6 +86,9 @@ genotypes above and below of the mean, respectively. Default is
 \item{x.lab}{The label of the x-axis in the plot. Default is \code{"Predicted
 Grain Yield"}.}
 
+\item{panel.spacing}{Defines the spacing between panels when \code{which =
+"ge"}.}
+
 \item{resolution}{The resolution of the plot. Parameter valid if
 \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
 
@@ -94,12 +103,13 @@ Plot the predicted BLUP of the genotypes.
 \examples{
 \donttest{
 library(metan)
-BLUP <- waasb(data_ge,
-              resp = c(GY, HM),
+BLUP <- waasb(data_ge2,
+              resp = PH,
               gen = GEN,
               env = ENV,
               rep = REP)
 plot_blup(BLUP)
+plot_blup(BLUP, which = "ge")
 
 }
 
