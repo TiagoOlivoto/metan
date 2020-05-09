@@ -176,6 +176,8 @@
 #' genotypic and residual coefficient of variation.
 #'
 #'  * \strong{residuals} The residuals of the model.
+#'
+#'  * \strong{formula} The formula used to fit the model.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{mtsi}} \code{\link{waas}}
@@ -239,8 +241,8 @@
 #'                 mresp = c(100, 0),
 #'                 wresp = c(60, 40))
 #'
-#' # Get P-values for Likelihood-ratio test
-#' get_model_data(model3, "pval_lrt")
+#' # Get Likelihood-ratio test
+#' get_model_data(model3, "lrt")
 #'
 #' # Get the random effects
 #' get_model_data(model3, what = "ranef")
@@ -409,7 +411,7 @@ waasb <- function(.data,
             CVr <- (sqrt(RV)/ovmean) * 100
             CVratio <- CVg/CVr
             PROB <- ((1 - (1 - prob))/2) + (1 - prob)
-            t <- qt(PROB, 100)
+            t <- qt(PROB, Nrep)
             Limits <- t * sqrt(((1 - AccuGen) * GV))
             genpar <- tibble(Parameters = c("Phenotypic variance", "Heritability", "GEIr2", "Heribatility of means",
                                             "Accuracy", "rge", "CVg", "CVr", "CV ratio"),
@@ -683,7 +685,8 @@ waasb <- function(.data,
                                MeansGxE = as_tibble(MEDIAS),
                                Details = as_tibble(Details),
                                ESTIMATES = genpar,
-                               residuals = as_tibble(residuals)), class = "waasb")
+                               residuals = as_tibble(residuals),
+                               formula = model_formula), class = "waasb")
         if (verbose == TRUE) {
             pb$tick(tokens = list(what = names(vars[var])))
         }

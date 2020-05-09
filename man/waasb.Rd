@@ -126,6 +126,7 @@ correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr}
 the residual coefficient of variation; \code{CV ratio} the ratio between
 genotypic and residual coefficient of variation.
 \item \strong{residuals} The residuals of the model.
+\item \strong{formula} The formula used to fit the model.
 }
 }
 \description{
@@ -242,8 +243,8 @@ model3 <- waasb(data_ge,
                 mresp = c(100, 0),
                 wresp = c(60, 40))
 
-# Get P-values for Likelihood-ratio test
-get_model_data(model3, "pval_lrt")
+# Get Likelihood-ratio test
+get_model_data(model3, "lrt")
 
 # Get the random effects
 get_model_data(model3, what = "ranef")

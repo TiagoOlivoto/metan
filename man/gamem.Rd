@@ -55,6 +55,7 @@ heritability on the entry-mean basis, genotypic coefficient of variation
 residual coefficient of variation and ratio between genotypic and residual
 coefficient of variation.
 \item \strong{residuals:} The residuals of the model.
+\item \strong{formula} The formula used to fit the model.
 }
 }
 \description{
@@ -93,11 +94,8 @@ rcbd <- gamem(data_g,
              resp = c(PH, ED, EL, CL, CW, KW, NR, TKW, NKE))
 
 # Likelihood ratio test for random effects
-## Statistic
 get_model_data(rcbd, "lrt")
 
-## P-value
-get_model_data(rcbd, "pval_lrt")
 
 # Variance components
 get_model_data(rcbd, "vcomp")

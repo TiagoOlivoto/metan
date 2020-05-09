@@ -55,6 +55,8 @@
 #'
 #'  * \strong{residuals:} The residuals of the model.
 #'
+#'  * \strong{formula} The formula used to fit the model.
+#'
 #' @details \code{gamem} analyses data from a one-way genotype testing experiment.
 #' By default, a randomized complete block design is used according to the following model:
 #' \deqn{Y_{ij} = m + g_i + r_j + e_{ij}}
@@ -92,11 +94,8 @@
 #'              resp = c(PH, ED, EL, CL, CW, KW, NR, TKW, NKE))
 #'
 #' # Likelihood ratio test for random effects
-#' ## Statistic
 #' get_model_data(rcbd, "lrt")
 #'
-#' ## P-value
-#' get_model_data(rcbd, "pval_lrt")
 #'
 #' # Variance components
 #' get_model_data(rcbd, "vcomp")
@@ -242,7 +241,8 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         ranef = ranef,
         Details = as_tibble(Details),
         ESTIMATES = as_tibble(ESTIMATES),
-        residuals = as_tibble(residuals)
+        residuals = as_tibble(residuals),
+        formula = model_formula
       ),
       class = "gamem"
       )
@@ -379,7 +379,8 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
         ranef = ranef,
         Details = as_tibble(Details),
         ESTIMATES = as_tibble(ESTIMATES),
-        residuals = as_tibble(residuals)
+        residuals = as_tibble(residuals),
+        formula = model_formula
       ),
       class = "gamem"
       )
@@ -650,13 +651,10 @@ plot.gamem <- function(x,
       geom_bar(stat = "identity",
                position = "fill",
                col = "black")  +
-      theme_bw()+
-      theme(legend.position = "bottom",
-            panel.grid = element_blank(),
-            legend.title = element_blank(),
-            strip.background = element_rect(fill = NA),
-            axis.text = element_text(colour = "black")) +
+      scale_y_continuous(expand = expansion(c(0, 0.05)))+
       scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
+      theme_metan()+
+      theme(legend.position = "bottom")+
       labs(x = "Traits", y = "Proportion of phenotypic variance")
     return(p1)
   }
