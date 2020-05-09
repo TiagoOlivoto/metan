@@ -158,8 +158,7 @@
 #' * \code{"blupg"} For genotype's predicted mean.
 #' * \code{"blupge"} for genotype-vs-environment's predicted mean.
 #' * \code{"genpar"} Genetic parameters (default).
-#' * \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
-#' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
+#' * \code{"lrt"} The likelihood-ratio test for random effects.
 #' * \code{"vcomp"} The variance components for random effects.
 #' * \code{"ranef"} Random effects.
 #' * \code{"fixed"} The fixed effects.
@@ -167,8 +166,7 @@
 #'  \strong{Objects of class \code{gamem}:}
 #' * \code{"blupg"} For genotype's predicted mean.
 #' * \code{"genpar"} Genetic parameters (default).
-#' * \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
-#' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
+#' * \code{"lrt"} The likelihood-ratio test for random effects.
 #' * \code{"vcomp"} The variance components for random effects.
 #' * \code{"ranef"} Random effects.
 #' * \code{"fixed"} The fixed effects.
@@ -310,7 +308,7 @@
 #'               resp = c(PH, ED, TKW, NKR))
 #'
 #' # Getting p-values for likelihood-ratio test
-#' get_model_data(blup, what = "pval_lrt")
+#' get_model_data(blup, what = "lrt")
 #'
 #' # Getting the variance components
 #' get_model_data(blup, what = "vcomp")
@@ -352,11 +350,11 @@ get_model_data <- function(x,
   }
   check <- c(
     "blupg", "blupge", "Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB", "OrResp", "OrWAASB",
-    "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "pval_lrt", "ranef", "data", "gcov", "pcov", "fixed")
+    "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "ranef", "data", "gcov", "pcov", "fixed")
   check1 <- c("Y", "WAAS", "PctResp", "PctWAAS", "wRes", "wWAAS", "OrResp", "OrWAAS", "OrPC1", "WAASY", "OrWAASY")
   check2 <- paste("PC", 1:200, sep = "")
-  check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt", "details", "ranef")
-  check3.1 <- c("blupg", "vcomp", "lrt", "genpar", "pval_lrt", "details", "ranef", "data", "gcov", "pcov", "fixed")
+  check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "details", "ranef")
+  check3.1 <- c("blupg", "vcomp", "lrt", "genpar", "details", "ranef", "data", "gcov", "pcov", "fixed")
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
   check5 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
@@ -507,21 +505,15 @@ get_model_data <- function(x,
         mutate(Parameters = x[[1]][["Details"]][["Parameters"]]) %>%
         column_to_first(Parameters)
     }
-    if (what == "pval_lrt") {
-      bind <- sapply(x, function(x) {
-        val <- x[["LRT"]][["Pr(>Chisq)"]]
-      }) %>%
-        as_tibble() %>%
-        mutate(model = x[[1]][["LRT"]][["model"]]) %>%
-        column_to_first(model)
-    }
     if (what == "lrt") {
-      bind <- sapply(x, function(x) {
-        val <- x[["LRT"]][["LRT"]]
-      }) %>%
-        as_tibble() %>%
-        mutate(model = x[[1]][["LRT"]][["model"]]) %>%
-        column_to_first(model)
+      temps <- lapply(seq_along(x), function(i) {
+        x[[i]][["LRT"]] %>%
+          remove_rows_na() %>%
+          add_cols(VAR = names(x)[i]) %>%
+          column_to_first(VAR)
+      })
+      names(temps) <- names(x)
+      bind <- temps %>% reduce(full_join, by = names(temps[[1]]))
     }
     if (what %in% c("blupg", "blupge")) {
       if (what == "blupg") {

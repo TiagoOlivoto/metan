@@ -205,8 +205,7 @@ objects of class \code{waas}).
 \item \code{"blupg"} For genotype's predicted mean.
 \item \code{"blupge"} for genotype-vs-environment's predicted mean.
 \item \code{"genpar"} Genetic parameters (default).
-\item \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
-\item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
+\item \code{"lrt"} The likelihood-ratio test for random effects.
 \item \code{"vcomp"} The variance components for random effects.
 \item \code{"ranef"} Random effects.
 \item \code{"fixed"} The fixed effects.
@@ -216,8 +215,7 @@ objects of class \code{waas}).
 \itemize{
 \item \code{"blupg"} For genotype's predicted mean.
 \item \code{"genpar"} Genetic parameters (default).
-\item \code{"lrt"} The statistic for the likelihood-ratio test for random effects.
-\item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
+\item \code{"lrt"} The likelihood-ratio test for random effects.
 \item \code{"vcomp"} The variance components for random effects.
 \item \code{"ranef"} Random effects.
 \item \code{"fixed"} The fixed effects.
@@ -287,7 +285,7 @@ blup <- waasb(data_ge2, ENV, GEN, REP,
               resp = c(PH, ED, TKW, NKR))
 
 # Getting p-values for likelihood-ratio test
-get_model_data(blup, what = "pval_lrt")
+get_model_data(blup, what = "lrt")
 
 # Getting the variance components
 get_model_data(blup, what = "vcomp")
