@@ -113,7 +113,6 @@ can_corr <- function(.data,
           collinearity = collinearity)
     return(results)
   }
-
   FG <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
   SG <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
   if (nrow(FG) != nrow(SG)) {
@@ -266,7 +265,7 @@ can_corr <- function(.data,
       cat("---------------------------------------------------------------------------\n")
       cat("Collinearity within first group \n")
       cat("---------------------------------------------------------------------------\n")
-      colindiag(FG)
+      print(colindiag(FG))
     }
     cat("---------------------------------------------------------------------------\n")
     cat("Matrix (correlation/covariance) between variables of second group (SG)\n")
@@ -276,7 +275,7 @@ can_corr <- function(.data,
       cat("---------------------------------------------------------------------------\n")
       cat("Collinearity within second group \n")
       cat("---------------------------------------------------------------------------\n")
-      colindiag(SG)
+      print(colindiag(SG))
     }
     cat("---------------------------------------------------------------------------\n")
     cat("Matrix (correlation/covariance) between FG and SG\n")
@@ -387,7 +386,8 @@ can_corr <- function(.data,
 #'
 #'}
 #'
-plot.can_cor <- function(x, type = 1,
+plot.can_cor <- function(x,
+                         type = 1,
                          plot_theme = theme_metan(),
                          size.tex.lab = 12,
                          size.tex.pa = 3.5,
@@ -595,7 +595,7 @@ print.can_cor <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) 
   cat("\n---------------------------------------------------------------------------\n")
   cat("Collinearity diagnostic between first group\n")
   cat("---------------------------------------------------------------------------\n")
-  colindiag(x$MFG, n = nrow(x$Score_FG))
+  print(colindiag(x$MFG, n = nrow(x$Score_FG)))
   cat("\n---------------------------------------------------------------------------\n")
   cat("Matrix (correlation/covariance) between variables of second group (SG)\n")
   cat("---------------------------------------------------------------------------\n")
@@ -603,7 +603,7 @@ print.can_cor <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) 
   cat("\n---------------------------------------------------------------------------\n")
   cat("Collinearity diagnostic between second group\n")
   cat("---------------------------------------------------------------------------\n")
-  colindiag(x$MSG, n = nrow(x$Score_SG))
+  print(colindiag(x$MSG, n = nrow(x$Score_SG)))
   cat("\n---------------------------------------------------------------------------\n")
   cat("Matrix (correlation/covariance) between FG and SG)\n")
   cat("---------------------------------------------------------------------------\n")
