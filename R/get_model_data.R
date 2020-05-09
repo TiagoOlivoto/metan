@@ -162,6 +162,7 @@
 #' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
 #' * \code{"vcomp"} The variance components for random effects.
 #' * \code{"ranef"} Random effects.
+#' * \code{"fixed"} The fixed effects.
 #'
 #'  \strong{Objects of class \code{gamem}:}
 #' * \code{"blupg"} For genotype's predicted mean.
@@ -170,6 +171,7 @@
 #' * \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
 #' * \code{"vcomp"} The variance components for random effects.
 #' * \code{"ranef"} Random effects.
+#' * \code{"fixed"} The fixed effects.
 #'
 #'  \strong{Objects of class \code{Res_ind}}
 #' * \code{"HMGV"} For harmonic mean of genotypic values.
@@ -350,11 +352,11 @@ get_model_data <- function(x,
   }
   check <- c(
     "blupg", "blupge", "Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB", "OrResp", "OrWAASB",
-    "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "pval_lrt", "ranef")
+    "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "pval_lrt", "ranef", "data", "gcov", "pcov", "fixed")
   check1 <- c("Y", "WAAS", "PctResp", "PctWAAS", "wRes", "wWAAS", "OrResp", "OrWAAS", "OrPC1", "WAASY", "OrWAASY")
   check2 <- paste("PC", 1:200, sep = "")
   check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "pval_lrt", "details", "ranef")
-  check3.1 <- c("blupg", "vcomp", "lrt", "genpar", "pval_lrt", "details", "ranef")
+  check3.1 <- c("blupg", "vcomp", "lrt", "genpar", "pval_lrt", "details", "ranef", "data", "gcov", "pcov", "fixed")
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
   check5 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
@@ -407,6 +409,79 @@ get_model_data <- function(x,
         dplyr::filter(type == {{type}}) %>%
         remove_cols(type) %>%
         column_to_first(gen)
+    }
+    if (what == "data") {
+      factors <- x[[1]][["residuals"]] %>% select_non_numeric_cols()
+      vars <- sapply(x, function(x) {
+        val <- x[["residuals"]][["Y"]]
+      }) %>%
+        as_tibble()
+      bind <- as_tibble(cbind(factors, vars))
+    }
+    if (what == "gcov") {
+      data <- gmd(x, "data", verbose = FALSE)
+      if(ncol(select_numeric_cols(data)) < 2){
+        stop("nly one numeric variable. No matrix generated.", call. = FALSE)
+      }
+      fctrs <- names(select_non_numeric_cols(data))
+      formula <-
+        x[[1]][["formula"]] %>%
+        replace_string(pattern = "Y", replacement = "value") %>%
+        as.formula()
+      gvar <-
+        data %>%
+        pivot_longer(-all_of(fctrs)) %>%
+        group_by(name) %>%
+        doo(~lmer(formula, data = .) %>% VarCorr() %>% as.numeric()) %>%
+        unnest(data)
+      factors <- select_non_numeric_cols(data)
+      combined_vars <- comb_vars(data, verbose = FALSE)
+      gcov <-
+        cbind(factors, combined_vars) %>%
+        pivot_longer(-all_of(fctrs)) %>%
+        group_by(name) %>%
+        doo(~lmer(formula, data = .) %>% VarCorr() %>% as.numeric()) %>%
+        unnest(data) %>%
+        separate(name, into = c("v1", "v2"), sep = "x") %>%
+        left_join(gvar, by = c("v1" = "name")) %>%
+        left_join(gvar, by = c("v2" = "name")) %>%
+        mutate(gcov = (data.x - data.y - data) / 2)
+      gcov_mat <- diag(gvar$data, nrow = length(gvar$data), ncol = length(gvar$data))
+      colnames(gcov_mat) <- rownames(gcov_mat) <- gvar$name
+      for (i in 1:nrow(gcov)){
+        gcov_mat[which(rownames(gcov_mat) == as.character(gcov[i, 1])),
+                 which(colnames(gcov_mat) == as.character(gcov[i, 2]))] <- pull(gcov[i, 6])
+      }
+      for(i in 1:nrow(gcov_mat)){
+        for(j in 1:ncol(gcov_mat)){
+          if(gcov_mat[i, j] == 0){
+            gcov_mat[i, j] <- gcov_mat[j, i]
+          } else{
+            gcov_mat[i, j] <- gcov_mat[i, j]
+          }
+        }
+      }
+      bind <- make_sym(gcov_mat, diag = diag(gcov_mat), make = "lower")
+    }
+    if (what == "pcov") {
+      data <- gmd(x, "data", verbose = FALSE)
+      if(ncol(select_numeric_cols(data)) < 2){
+        stop("nly one numeric variable. No matrix generated.", call. = FALSE)
+      }
+      bind <-
+        data %>%
+        means_by(GEN) %>%
+        remove_cols(GEN) %>%
+        cov()
+    }
+    if (what == "fixed"){
+      temps <- lapply(seq_along(x), function(i) {
+        x[[i]][["fixed"]] %>%
+          add_cols(VAR = names(x)[i]) %>%
+          column_to_first(VAR)
+      })
+      names(temps) <- names(x)
+      bind <- temps %>% reduce(full_join, by = names(temps[[1]]))
     }
     if (what == "vcomp") {
       bind <- sapply(x, function(x) {

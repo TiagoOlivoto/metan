@@ -209,6 +209,7 @@ objects of class \code{waas}).
 \item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
 \item \code{"vcomp"} The variance components for random effects.
 \item \code{"ranef"} Random effects.
+\item \code{"fixed"} The fixed effects.
 }
 
 \strong{Objects of class \code{gamem}:}
@@ -219,6 +220,7 @@ objects of class \code{waas}).
 \item \code{"pval_lrt"}  The p-values for the likelihood-ratio test.
 \item \code{"vcomp"} The variance components for random effects.
 \item \code{"ranef"} Random effects.
+\item \code{"fixed"} The fixed effects.
 }
 
 \strong{Objects of class \code{Res_ind}}
