@@ -508,7 +508,7 @@ get_model_data <- function(x,
     if (what == "lrt") {
       temps <- lapply(seq_along(x), function(i) {
         x[[i]][["LRT"]] %>%
-          remove_rows_na() %>%
+          remove_rows_na(verbose = FALSE) %>%
           add_cols(VAR = names(x)[i]) %>%
           column_to_first(VAR)
       })
