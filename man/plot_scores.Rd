@@ -72,9 +72,9 @@ produces a biplot showing the GY x WAASB.
 }}
 
 \item{first, second}{The IPCA to be shown in the first (x) and second (y)
-axis. By default, IPCA1 is shown in the \code{x }axis and IPCA2 in the
+axis. By default, IPCA1 is shown in the \code{x} axis and IPCA2 in the
 \code{y} axis. For example, use \code{second = "PC3"} to shown the IPCA3 in
-the \code{}y axis.}
+the \code{y} axis.}
 
 \item{repel}{If \code{TRUE} (default), the text labels repel away from each
 other and away from the data points.}
