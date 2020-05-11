@@ -22,10 +22,15 @@
 #' * \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences
 #' related to stability and productivity.
 #' * \code{type = 2} The default, produces an AMMI2 biplot (PC1 x PC2) to make
-#' inferences related to the interaction effects.
+#' inferences related to the interaction effects. Use the arguments \code{first}
+#' or \code{second} to change the default IPCA shown in the plot.
 #' * \code{type = 3} Valid for objects of class \code{waas} or \code{waasb},
 #' produces a biplot showing the GY x WAASB.
 #' * \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
+#' @param first,second The IPCA to be shown in the first (x) and second (y)
+#'   axis. By default, IPCA1 is shown in the \code{x} axis and IPCA2 in the
+#'   \code{y} axis. For example, use \code{second = "PC3"} to shown the IPCA3 in
+#'   the \code{y} axis.
 #' @param repel If \code{TRUE} (default), the text labels repel away from each
 #'   other and away from the data points.
 #' @param polygon Logical argument. If \code{TRUE}, a polygon is drawn when
@@ -131,12 +136,15 @@
 #'             var = "HM",     # or var = 2 to select variable
 #'             type = 2)       # type of biplot
 #'
-#' # PC1 x PC2 (variable HM)
+#' # PC3 x PC4 (variable HM)
+#' #
 #' # Change size of plot fonts and colors
 #' # Minimal theme
 #'plot_scores(model,
 #'            var = "HM",
 #'            type = 2,
+#'            first = "PC3",
+#'            second = "PC4",
 #'            col.gen = "black",
 #'            col.env = "gray",
 #'            col.segm.env = "gray",
@@ -156,6 +164,8 @@
 plot_scores <- function(x,
                         var = 1,
                         type = 1,
+                        first = "PC1",
+                        second = "PC2",
                         repel = TRUE,
                         polygon = FALSE,
                         title = TRUE,
@@ -318,44 +328,54 @@ plot_scores <- function(x,
   }
 
   if (type == 2) {
-    if(!is.null(y.lab)){
-      y.lab <- y.lab
+    first <- tidy_strings(first, sep = "")
+    second <- tidy_strings(second, sep = "")
+    if(class %in% c("waas", "performs_ammi", "waasb")){
+      PCA <- x$PCA %>% select_cols(PC, Proportion, Accumulated)
+      if(!extract_string(first) == "PC"){
+        stop("Argument 'first' invalid. Please, use 'PC1', 'PC2', ..., 'PCn'.", call. = FALSE)
+      }
+      if(!extract_string(second) == "PC"){
+        stop("Argument 'second' invalid. Please, use 'PC1', 'PC2', ..., 'PCn'.", call. = FALSE)
+      }
+      if(extract_number(first) > nrow(PCA)){
+        stop("The number of principal components in 'first' is greater than those in model (", nrow(PCA), ").", call. = FALSE)
+      }
+      if(extract_number(second) > nrow(PCA)){
+        stop("The number of principal components in 'second' is greater than those in model (", nrow(PCA), ").", call. = FALSE)
+      }
+      PCA <- subset(PCA, PC %in% c(first, second))
+      if(!is.null(y.lab)){
+        y.lab <- y.lab
+      } else{
+        if(class %in% c("waas", "performs_ammi", "waasb")){
+          y.lab <- paste0(second, " (", round(PCA[which(PCA[, 1] == second), 2], 2), "%)")
+        }
+      }
+      if(!is.null(x.lab)){
+        x.lab <- x.lab
+      } else{
+        if(class %in% c("waas", "performs_ammi", "waasb")){
+          x.lab <- paste0(first, " (", round(PCA[which(PCA[, 1] == first), 2], 2), "%)")
+        }
+      }
     } else{
-      if(class %in% c("waas", "performs_ammi")){
-        y.lab <- paste0("PC2 (", round(x$PCA[2, 7], 2), "%)")
-      }
-      if(class == "waasb"){
-        y.lab <- paste0("PC2 (", round(x$PCA[2, 3], 2), "%)")
-      }
-      if(class == "waas_means"){
-        y.lab <- paste0("PC2 (", round(x$proportion[2], 2), "%)")
-      }
+      y.lab <- paste0(second, " (", round(x$proportion[as.numeric(substr(second, 3, nchar(second)))], 2), "%)")
+      x.lab <- paste0(first, " (", round(x$proportion[as.numeric(substr(first, 3, nchar(first)))], 2), "%)")
     }
-    if(!is.null(x.lab)){
-      x.lab <- x.lab
-    } else{
-      if(class %in% c("waas", "performs_ammi")){
-        x.lab <- paste0("PC1 (", round(x$PCA[1, 7], 2), "%)")
-      }
-      if(class == "waasb"){
-        x.lab <- paste0("PC1 (", round(x$PCA[1, 3], 2), "%)")
-      }
-      if(class == "waas_means"){
-        x.lab <- paste0("PC1 (", round(x$proportion[1], 2), "%)")
-      }
-    }
+    data <- x$model %>% select_cols(type, Code, all_of(first), all_of(second))
     if (is.null(x.lim) == FALSE) {
       x.lim <- x.lim
     } else {
-      x.lim <- c(min(x$model$PC1 * axis.expand), max(x$model$PC1 * axis.expand))
+      x.lim <- c(min(data[[first]] * axis.expand), max(data[[first]] * axis.expand))
     }
     if (is.null(y.lim) == FALSE) {
       y.lim <- y.lim
     } else {
-      y.lim <- c(min(x$model$PC2 * axis.expand), max(x$model$PC2 * axis.expand))
+      y.lim <- c(min(data[[second]] * axis.expand), max(data[[second]] * axis.expand))
     }
-
-    p2 <- ggplot(x$model, aes(PC1, PC2, shape = type, fill = type)) +
+    p2 <-
+      ggplot(data, aes(!!sym(first), !!sym(second), shape = type, fill = type)) +
       geom_vline(xintercept = 0,
                  linetype = line.type,
                  color = col.line,
@@ -365,12 +385,12 @@ plot_scores <- function(x,
                  linetype = line.type,
                  color = col.line, size = size.line,
                  alpha = line.alpha) +
-      geom_segment(data = x$model,
+      geom_segment(data = data,
                    show.legend = FALSE,
                    aes(x = 0,
                        y = 0,
-                       xend = PC1,
-                       yend = PC2,
+                       xend = !!sym(first),
+                       yend = !!sym(second),
                        size = type,
                        color = type,
                        group = type)) +
@@ -393,13 +413,13 @@ plot_scores <- function(x,
       scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
       scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen))
     if(repel == TRUE){
-      p2 <- p2 + geom_text_repel(aes(PC1, PC2, label = (Code)),
+      p2 <- p2 + geom_text_repel(aes(!!sym(first), !!sym(second), label = (Code)),
                                  size = size.tex.pa,
                                  col = c(rep(col.gen, ngen), rep(col.env, nenv)),
                                  force = repulsion,
                                  alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)))
     } else{
-      p2 <- p2 + geom_text(aes(PC1, PC2, label = (Code)),
+      p2 <- p2 + geom_text(aes(!!sym(first), !!sym(second), label = (Code)),
                            size = size.tex.pa,
                            col = c(rep(col.gen, ngen), rep(col.env, nenv)),
                            alpha = c(rep(col.alpha.gen, ngen), rep(col.alpha.env, nenv)),
@@ -407,10 +427,10 @@ plot_scores <- function(x,
                            vjust = "outward")
     }
     if (polygon == TRUE) {
-      gen <- data.frame(subset(x$model, type == "GEN"))
-      coordgenotype <- data.frame(subset(x$model, type == "GEN"))[, 4:5]
-      coordenviroment <- data.frame(subset(x$model, type == "ENV"))[, 4:5]
-      hull <- chull(gen[, 4:5])
+      gen <- data.frame(subset(data, type == "GEN"))
+      coordgenotype <- data.frame(subset(data, type == "GEN"))[, 3:4]
+      coordenviroment <- data.frame(subset(data, type == "ENV"))[, 3:4]
+      hull <- chull(gen[, 3:4])
       indice <- c(hull, hull[1])
       segs <- NULL
       limx <- x.lim

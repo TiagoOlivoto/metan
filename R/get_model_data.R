@@ -419,7 +419,7 @@ get_model_data <- function(x,
     if (what == "gcov") {
       data <- gmd(x, "data", verbose = FALSE)
       if(ncol(select_numeric_cols(data)) < 2){
-        stop("nly one numeric variable. No matrix generated.", call. = FALSE)
+        stop("Only one numeric variable. No matrix generated.", call. = FALSE)
       }
       fctrs <- names(select_non_numeric_cols(data))
       formula <-
@@ -903,8 +903,8 @@ get_model_data <- function(x,
         what == "ipca_ms" ~ "Mean Sq",
         what == "ipca_fval" ~ "F value",
         what == "ipca_pval" ~ "Pr(>F)",
-        what == "ipca_expl" ~ "Percent",
-        what == "ipca_accum" ~ "Accumul"
+        what == "ipca_expl" ~ "Proportion",
+        what == "ipca_accum" ~ "Accumulated"
       )
       bind <- sapply(x, function(x) {
         val <- x[["PCA"]][[what]]

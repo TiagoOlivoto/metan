@@ -123,7 +123,7 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
         ge <- array(ge, dim(ge), dimnames(ge))
         svdge <- svd(ge)
         gamma.n <- svdge$u[, 1:n]
-        theta.n <- model$PCA$Percent[1:n]/100
+        theta.n <- model$PCA$Proportion[1:n]/100
         # sum of absolute scores
         PCA <- data.frame(model$model)
         SCOR <- PCA[PCA[, 1] == "GEN", c(seq(4, n + 3))]
@@ -184,7 +184,7 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
             abs() %>%
             t() %>%
             as.data.frame()
-        WAAS <- sapply(WAAS, weighted.mean, w = explan$Percent)
+        WAAS <- sapply(WAAS, weighted.mean, w = explan$Proportion)
         rWAAS <- rank(WAAS)
         ssiWAAS <- rWAAS + rY
         temp <- tibble(

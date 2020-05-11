@@ -230,15 +230,16 @@ performs_ammi <- function(.data,
                       rename(Code = ENV) %>%
                       cbind(., SCOREE)) %>%
             column_to_first(type, Code)
-        PC <- SSAMMI %>%
+        PC <-
+            SSAMMI %>%
             column_to_last(percent, acum) %>%
             rownames_to_column("Source") %>%
             rename(`Sum Sq` = Sum.Sq,
                    `Mean Sq` = Mean.Sq,
                    `F value` = F.value,
                    `Pr(>F)` = Pr.F,
-                   Percent = percent,
-                   Accumul = acum)
+                   Proportion = percent,
+                   Accumulated = acum)
         resid <- anova[nrow(anova), ]
         anova <- rbind_fill(anova[-nrow(anova), ], PC, resid)
         anova2 <- tibble(Source = "Total",
@@ -247,8 +248,8 @@ performs_ammi <- function(.data,
                          `Mean Sq` = `Sum Sq` / Df,
                          `F value` = NA,
                          `Pr(>F)` = NA,
-                         Percent = NA,
-                         Accumul = NA)
+                         Proportion = NA,
+                         Accumulated = NA)
         anova <- rbind(anova, anova2)
         MeansGxE <- MEANS[, 1:3]
         EscGEN <- subset(bplot, type == "GEN")

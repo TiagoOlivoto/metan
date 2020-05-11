@@ -279,13 +279,14 @@ waas <- function(.data,
                  minimo, " [min(GEN-1;ENV-1)]")
         } else {
             Pesos <- slice(model$PCA[7], 1:SigPC1)
-            WAAS <- Escores %>%
+            WAAS <-
+                Escores %>%
                 select(contains("PC")) %>%
                 abs() %>%
                 t() %>%
                 as.data.frame() %>%
                 slice(1:SigPC1) %>%
-                mutate(Percent = Pesos$Percent)
+                mutate(Percent = Pesos$Proportion)
             WAASAbs <- mutate(Escores, WAAS = sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = WAAS$Percent))
             if (nvar > 1) {
                 WAASAbs %<>%

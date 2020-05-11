@@ -8,6 +8,8 @@ plot_scores(
   x,
   var = 1,
   type = 1,
+  first = "PC1",
+  second = "PC2",
   repel = TRUE,
   polygon = FALSE,
   title = TRUE,
@@ -62,11 +64,17 @@ variable of \code{x}.}
 \item \code{type = 1} Produces an AMMI1 biplot (Y x PC1) to make inferences
 related to stability and productivity.
 \item \code{type = 2} The default, produces an AMMI2 biplot (PC1 x PC2) to make
-inferences related to the interaction effects.
+inferences related to the interaction effects. Use the arguments \code{first}
+or \code{second} to change the default IPCA shown in the plot.
 \item \code{type = 3} Valid for objects of class \code{waas} or \code{waasb},
 produces a biplot showing the GY x WAASB.
 \item \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
 }}
+
+\item{first, second}{The IPCA to be shown in the first (x) and second (y)
+axis. By default, IPCA1 is shown in the \code{x }axis and IPCA2 in the
+\code{y} axis. For example, use \code{second = "PC3"} to shown the IPCA3 in
+the \code{}y axis.}
 
 \item{repel}{If \code{TRUE} (default), the text labels repel away from each
 other and away from the data points.}
@@ -211,12 +219,15 @@ plot_scores(model,
             var = "HM",     # or var = 2 to select variable
             type = 2)       # type of biplot
 
-# PC1 x PC2 (variable HM)
+# PC3 x PC4 (variable HM)
+#
 # Change size of plot fonts and colors
 # Minimal theme
 plot_scores(model,
            var = "HM",
            type = 2,
+           first = "PC3",
+           second = "PC4",
            col.gen = "black",
            col.env = "gray",
            col.segm.env = "gray",
