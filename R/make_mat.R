@@ -38,8 +38,8 @@ make_mat <- function(.data, row, col, value, fun = mean) {
            {{value}}) %>%
     group_by({{row}}, {{col}}) %>%
     summarise_if(is.numeric, fun, na.rm = TRUE) %>%
-    pivot_wider(names_from = {{col}}, values_from = {{value}}) %>%
-    ungroup()
+    ungroup() %>%
+    pivot_wider(names_from = {{col}}, values_from = {{value}})
   data %<>% column_to_rownames(var = names(data[1]))
   return(data)
 }
