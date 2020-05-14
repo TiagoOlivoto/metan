@@ -7,9 +7,10 @@
 mgidi(.data, SI = 15, mineval = 1, ideotype = NULL, verbose = TRUE)
 }
 \arguments{
-\item{.data}{An object fitted with \code{\link{gamem}}, \code{\link{gamem_met}}, or a two-way
-table with BLUPs for genotypes in each trait (genotypes in rows and traits
-in columns). In the last case, row names must contain the genotypes names.}
+\item{.data}{An object fitted with the function \code{\link{gamem}} or a
+two-way table with BLUPs for genotypes in each trait (genotypes in rows and
+traits in columns). In the last case, row names must contain the genotypes
+names.}
 
 \item{SI}{An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.}
@@ -19,9 +20,12 @@ factor analysis.}
 
 \item{ideotype}{A vector of length \code{nvar} where \code{nvar} is the
 number of variables used to plan the ideotype. Use \code{'h'} to indicate
-the variables with increase in selction or \code{'l'} to indicate the
-variables with reduction in selection. For example, \code{ideotype = c("h,
-  h, l, h, l")}.}
+the traits in which higher values are desired or \code{'l'} to indicate the
+variables in which lower values are desired. For example, \code{ideotype =
+  c("h, h, h, h, l")} will consider that the ideotype has higher values for
+the first four traits and lower values for the last trait. If \code{.data}
+is a model fitted with the function \code{\link{gamem}}, the order of the
+traits will be the declared in the argument \code{resp} in that function.}
 
 \item{verbose}{If \code{verbose = TRUE} (Default) then some results are
 shown in the console.}
@@ -36,24 +40,37 @@ An object of class \code{mgidi} with the following items:
 \item \strong{KMO} The result for the Kaiser-Meyer-Olkin test.
 \item \strong{MSA} The measure of sampling adequacy for individual variable.
 \item \strong{communalities} The communalities.
-\item \strong{communalities.mean} The communalities' mean.
-\item \strong{initial.loadings} The initial loadings.
-\item \strong{finish.loadings} The final loadings after varimax rotation.
-\item \strong{canonical.loadings} The canonical loadings.
-\item \strong{scores.gen} The scores for genotypes in all retained factors.
-\item \strong{scores.ide} The scores for the ideotype in all retained factors.
-\item \strong{MGIDI} The multi-trait stability index.
-\item \strong{contri.fac} The relative contribution of each factor on the MGIDI value.
+\item \strong{communalities_mean} The communalities' mean.
+\item \strong{initial_loadings} The initial loadings.
+\item \strong{finish_loadings} The final loadings after varimax rotation.
+\item \strong{canonical_loadings} The canonical loadings.
+\item \strong{scores_gen} The scores for genotypes in all retained factors.
+\item \strong{scores_ide} The scores for the ideotype in all retained factors.
+\item \strong{gen_ide} The distance between the scores of each genotype with the ideotype.
+\item \strong{MGIDI} The multi-trait genotype-ideotype distance index.
+\item \strong{contri_fac} The relative contribution of each factor on the MGIDI value.
 The lower the contribution of a factor, the close of the ideotype the variables in such
 factor are.
-\item \strong{sel.dif} The selection differential for the variables.
+\item \strong{sel_dif} The selection differential for the variables.
+\item \strong{total_gain} The selection differential for the variables.
 \item \strong{Selected} The selected genotypes.
 }
 }
 \description{
 Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
 be seen as the multi-trait stability index (Olivoto et al., 2019) computed
-with weight for mean performance equals to 100.
+with weight for mean performance equals to 100. The MGIDI indes is computed
+as follows:
+\loadmathjax
+\mjsdeqn{MGIDI_i = \sqrt{\sum\limits_{j = 1}^f(F_{ij} - {F_j})^2}}
+
+where \mjseqn{MGIDI_i} is the multi-trait genotype-ideotype distance index
+for the \emph{i}th genotype; \mjseqn{F_{ij}} is the score of the \emph{i}th
+genotype in the \emph{j}th factor (\emph{i = 1, 2, ..., g; j = 1, 2, ...,
+f}), being \emph{g} and \emph{f} the number of genotypes and factors,
+respectively, and \mjseqn{F_j} is the \emph{j}th score of the ideotype. The
+genotype with the lowest MGIDI is then closer to the ideotype and therefore
+presents desired values for all the analyzed traits.
 }
 \examples{
 \donttest{
@@ -63,8 +80,14 @@ model <- gamem(data_g,
                gen = GEN,
                rep = REP,
                resp = c(NR, KW, CW, CL, NKE, TKW, PERK, PH))
+
 # Selection for increase all variables
 mgidi_model <- mgidi(model)
+
+
+
+# plot the contribution of each factor on the MGIDI index
+plot(mgidi_model, type = "contribution")
 
 }
 }

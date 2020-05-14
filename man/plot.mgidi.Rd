@@ -8,11 +8,16 @@
   x,
   SI = 15,
   radar = TRUE,
+  type = "index",
+  x.lab = NULL,
+  y.lab = NULL,
   arrange.label = FALSE,
   size.point = 2.5,
+  size.line = 0.7,
+  size.text = 10,
+  width.bar = 0.75,
   col.sel = "red",
   col.nonsel = "black",
-  size.text = 10,
   ...
 )
 }
@@ -25,17 +30,29 @@ total number of genotypes.}
 \item{radar}{Logical argument. If true (default) a radar plot is generated
 after using \code{coord_polar()}.}
 
+\item{type}{The type of the plot. Defaults to \code{"index"}. Use \code{type
+= "contribution"} to show the contribution of each factor to the MGIDI
+index of the selected genotypes.}
+
+\item{x.lab, y.lab}{The labels for the axes x and y, respectively. x label is
+set to null when a radar plot is produced.}
+
 \item{arrange.label}{Logical argument. If \code{TRUE}, the labels are
 arranged to avoid text overlapping. This becomes useful when the number of
 genotypes is large, say, more than 30.}
 
 \item{size.point}{The size of the point in graphic. Defaults to 2.5.}
 
-\item{col.sel}{The colour for selected genotypes.}
-
-\item{col.nonsel}{The colour for nonselected genotypes.}
+\item{size.line}{The size of the line in graphic. Defaults to 0.7.}
 
 \item{size.text}{The size for the text in the plot. Defaults to 10.}
+
+\item{width.bar}{The width of the bars if \code{type = "contribution"}.
+Defaults to 0.75.}
+
+\item{col.sel}{The colour for selected genotypes. Defaults to \code{"red"}.}
+
+\item{col.nonsel}{The colour for nonselected genotypes. Defaults to \code{"black"}.}
 
 \item{...}{Other arguments to be passed from ggplot2::theme().}
 }
