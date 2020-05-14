@@ -4,9 +4,11 @@
 #' the nonparametric method proposed by Olivoto et al. (2018).
 #'
 #' The half-width confidence interval is computed according to the following
-#' equation: \deqn{CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}}
+#' equation:
+#' \loadmathjax
+#' \mjsdeqn{CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}}
 #'
-#' where \eqn{n} is the sample size and \code{r} is the correlation coefficient.
+#' where \mjseqn{n} is the sample size and \mjseqn{r} is the correlation coefficient.
 #'
 #'@param .data The data to be analyzed. It can be a data frame (possible with
 #'  grouped data passed from \code{\link[dplyr]{group_by}()}) or a symmetric correlation

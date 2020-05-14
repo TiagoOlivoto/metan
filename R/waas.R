@@ -5,13 +5,13 @@
 #'
 #' This function compute the weighted average of absolute scores, estimated as
 #' follows:
+#'\loadmathjax
+#'\mjsdeqn{WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
+#'1}^{p}EP_k}
 #'
-#' \deqn{ WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
-#' 1}^{p}EP_k}
-#'
-#' where \eqn{WAAS_i} is the weighted average of absolute scores of the
-#' \emph{i}th genotype; \eqn{IPCA_{ik}} is the score of the \emph{i}th genotype
-#' in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the *k*th
+#' where \mjseqn{WAAS_i} is the weighted average of absolute scores of the
+#' \emph{i}th genotype; \mjseqn{IPCA_{ik}} is the score of the \emph{i}th genotype
+#' in the \emph{k}th IPCA; and \mjseqn{EP_k} is the explained variance of the *k*th
 #' IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant
 #' PCAs, or a declared number of PCAs. For example if \code{prob = 0.05}, all
 #' axis that are significant considering this probability level are used. The

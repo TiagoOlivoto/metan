@@ -1,8 +1,21 @@
 #' Additive Main effects and Multiplicative Interaction
 #'
-#' Compute the Additive Main effects and Multiplicative interaction. This
-#' function also serves as a helper function for other procedures performed in
-#' the \pkg{metan} package such as \code{\link{waas}} and \code{\link{wsmp}}
+#' @description
+#' Compute the Additive Main effects and Multiplicative interaction (AMMI)
+#' model. The estimate of the response variable for the *i*th genotype in the
+#' *j*th environment (\mjseqn{y_{ij}}) using the AMMI model, is given as follows:
+#'\loadmathjax
+#'\mjsdeqn{{y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^p
+#'{{\lambda_k}{a_{ik}}} {t_{jk}} + {\rho_{ij}} + {\varepsilon _{ij}}}
+#'
+#' where \mjseqn{\lambda_k} is the singular value for the *k*-th interaction
+#' principal component axis (IPCA); \mjseqn{a_{ik}} is the *i*-th element of the
+#' *k*-th eigenvector; \mjseqn{t_{jk}} is the *j*th element of the *k*th
+#' eigenvector. A residual \mjseqn{\rho _{ij}} remains, if not all *p* IPCA are
+#' used, where \mjseqn{p \le min(g - 1; e - 1)}.
+#'
+#' This function also serves as a helper function for other procedures performed
+#' in the \pkg{metan} package such as \code{\link{waas}} and \code{\link{wsmp}}
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).

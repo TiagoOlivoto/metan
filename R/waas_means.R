@@ -2,13 +2,13 @@
 #'
 #' Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) based
 #' on means for genotype-environment data as follows:
-#'
-#' \deqn{ WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
+#'\loadmathjax
+#'\mjsdeqn{WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
 #' 1}^{p}EP_k}
 #'
-#' where \eqn{WAAS_i} is the weighted average of absolute scores of the
-#' \emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype
-#' in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the *k*th
+#' where \mjseqn{WAAS_i} is the weighted average of absolute scores of the
+#' \emph{i}th genotype; \mjseqn{PCA_{ik}} is the score of the \emph{i}th genotype
+#' in the \emph{k}th IPCA; and \mjseqn{EP_k} is the explained variance of the *k*th
 #' IPCA for \emph{k = 1,2,..,p}, where \emph{p} is the number of IPCAs that
 #' explain at least an amount of the genotype-interaction variance declared in
 #' the argument \code{min_expl_var}.
