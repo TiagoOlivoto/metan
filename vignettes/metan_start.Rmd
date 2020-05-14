@@ -102,18 +102,21 @@ The cross-validation procedures implemented in the `metan` are based on the spli
 
 ## Biplots
 
-The well-known AMMI2 biplot may be obtained using the function [`plot_scores()`](https://tiagoolivoto.github.io/metan/reference/plot_scores.html). ggplot2-based graphics are obtained. Please, note that since [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) and , [`waas()`](https://tiagoolivoto.github.io/metan/reference/waas.html) functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `ammi_model` is a list that in this case has two elements, (GY and HM).
+The well-known AMMI2 biplot may be obtained using the function [`plot_scores()`](https://tiagoolivoto.github.io/metan/reference/plot_scores.html). ggplot2-based graphics are obtained. Please, note that since [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) and , [`waas()`](https://tiagoolivoto.github.io/metan/reference/waas.html) functions allow analyzing multiple variables at the same time, e.g., `resp = c(v1, v2, ...)`, the output `ammi_model` is a list that in this case has two elements, (GY and HM). To produce an AMMI2 biplot with IPCA1 and IPCA3, for example, we use the argument `second` to change the default value of the y axis.
 
-```{r, fig.height=8, fig.width=5,  message=FALSE, warning=FALSE}
+```{r, fig.height=12, fig.width=5,  message=FALSE, warning=FALSE}
 a <- plot_scores(ammi_model)
 b <- plot_scores(ammi_model,
+                 type = 2,
+                 second = "PC3")
+c <- plot_scores(ammi_model,
                  type = 2,
                  polygon = TRUE,
                  col.gen = "black",
                  col.env = "gray70",
                  col.segm.env = "gray70",
                  axis.expand = 1.5)
-arrange_ggplot(a, b, labels = letters[1:2], ncol = 1)
+arrange_ggplot(a, b, c, labels = letters[1:3], ncol = 1)
 ```
 
 
@@ -161,12 +164,12 @@ get_model_data(model2) %>% round_cols(digits = 3)
 
 ```{r, fig.height=8, fig.width=4}
 library(ggplot2)
-c <- plot_blup(model2)
-d <- plot_blup(model2,
+d <- plot_blup(model2)
+e <- plot_blup(model2,
                prob = 0.1,
                col.shape  =  c("gray20", "gray80")) +
       coord_flip()
-arrange_ggplot(c, d,labels = letters[3:4], ncol = 1)
+arrange_ggplot(d, e, labels = letters[4:5], ncol = 1)
 ```
 
 
@@ -220,9 +223,9 @@ The generic function [`plot()`](https://tiagoolivoto.github.io/metan/reference/p
 * `type =  10` Relationship among environments.
 
 ```{r echo = TRUE, fig.width = 4, fig.height=8, message=F, warning=F}
-e <- plot(gge_model)
-f <- plot(gge_model, type = 2)
-arrange_ggplot(e, f, labels = letters[5:6], ncol = 1)
+f <- plot(gge_model)
+g <- plot(gge_model, type = 2)
+arrange_ggplot(e, f, labels = letters[6:7], ncol = 1)
 ```
 
 
