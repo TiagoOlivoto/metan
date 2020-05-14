@@ -244,7 +244,7 @@ mtsi <- function(.data,
       cat("\n-------------------------------------------------------------------------------\n")
     }
   }
-  return(structure(list(data = as_tibble(data),
+  return(structure(list(data = rownames_to_column(data, "GEN"),
                         cormat = as.matrix(cor.means),
                         PCA = pca,
                         FA = fa,
