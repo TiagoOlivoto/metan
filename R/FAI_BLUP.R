@@ -11,7 +11,8 @@
 #'   desirable (DI) and undesirable (UI) ideotypes. For each element of the
 #'   vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
 #'   numeric value. Use a comma-separated vector of text. For example, \code{DI
-#'   = c("max, max, min, min")}.
+#'   = c("max, max, min, min")}. By default, DI is set to \code{"max"} for all
+#'   traits and UI is set to \code{"min"} for all traits.
 #' @param SI An integer (0-100). The selection intensity in percentage of the
 #'   total number of genotypes. Defaults to 15.
 #' @param mineval The minimum value so that an eigenvector is retained in the
@@ -22,10 +23,11 @@
 #' * \strong{data} The data (BLUPS) used to compute the index.
 #' * \strong{eigen} The eigenvalues and explained variance for each axis.
 #' * \strong{FA} The results of the factor analysis.
-#' * \strong{canonical.loadings} The canonical loadings for each factor retained.
+#' * \strong{canonical_loadings} The canonical loadings for each factor retained.
 #' * \strong{FAI} A list with the FAI-BLUP index for each ideotype design.
-#' * \strong{selection.diferential} A list with the selection differential for each ideotype design.
-#' * \strong{ideotype.construction} A list with the construction of the ideotypes.
+#' * \strong{selection_diferential} A list with the selection differential for each ideotype design.
+#' * \strong{sel_gen} The selected genotypes.
+#' * \strong{ideotype_construction} A list with the construction of the ideotypes.
 #' * \strong{total_gain} A list with the total gain for variables to be increased or decreased.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -51,14 +53,12 @@
 #'                 DI = c('max, max'),
 #'                 UI = c('min, min'))
 #'}
-fai_blup <- function(.data, DI, UI, SI = 15, mineval = 1, verbose = TRUE) {
-  if(is.character(DI)){
-  ideotype.D <- unlist(strsplit(DI, split=", "))
-  ideotype.U <- unlist(strsplit(UI, split=", "))
-  } else{
-    ideotype.D <- DI
-    ideotype.U <- UI
-  }
+fai_blup <- function(.data,
+                     DI = NULL,
+                     UI = NULL,
+                     SI = 15,
+                     mineval = 1,
+                     verbose = TRUE) {
   if (!has_class(.data, c("data.frame", "tbl_df", "tbl", "waasb", "gamem"))) {
     stop("The .data must be an object of class 'waasb', 'gamem' or a data.frame/tbl_df.")
   }
@@ -69,6 +69,16 @@ fai_blup <- function(.data, DI, UI, SI = 15, mineval = 1, verbose = TRUE) {
   if (nvar == 1) {
     stop("The multitrait stability index cannot be computed with one single variable.")
   }
+  ifelse(missing(DI),
+         ideotype.D <- rep("max", nvar),
+         ifelse(is.character(DI),
+                ideotype.D <- unlist(strsplit(DI, split=", ")),
+                ideotype.D <- DI))
+  ifelse(missing(UI),
+         ideotype.U <- rep("min", nvar),
+         ifelse(is.character(UI),
+                ideotype.U <- unlist(strsplit(UI, split=", ")),
+                ideotype.U <- UI))
   if (length(ideotype.D) != nvar || length(ideotype.U) != nvar) {
     stop("The length of DI and UI must be the same length of data.")
   }
@@ -286,10 +296,11 @@ fai_blup <- function(.data, DI, UI, SI = 15, mineval = 1, verbose = TRUE) {
   return(structure(list(data = means,
                         eigen = data.frame(pca) %>% rownames_to_column("PC") %>% as_tibble(),
                         FA = data.frame(fa) %>% rownames_to_column("Variable") %>% as_tibble(),
-                        canonical.loadings = data.frame(canonical.loadings) %>% rownames_to_column("Variable") %>% as_tibble(),
+                        canonical_loadings = data.frame(canonical.loadings) %>% rownames_to_column("Variable") %>% as_tibble(),
                         FAI = data.frame(ideotype.rank) %>% rownames_to_column("Genotype") %>% as_tibble(),
-                        selection.diferential = selection.diferential,
-                        construction.ideotypes = construction.ideotypes,
+                        selection_diferential = selection.diferential,
+                        sel_gen = names(ideotype.rank[[1]])[1:ngs],
+                        construction_ideotypes = construction.ideotypes,
                         total_gain = total_gain),
                    class = "fai_blup"))
 }
@@ -314,10 +325,11 @@ fai_blup <- function(.data, DI, UI, SI = 15, mineval = 1, verbose = TRUE) {
 #' @param arrange.label Logical argument. If \code{TRUE}, the labels are
 #'   arranged to avoid text overlapping. This becomes useful when the number of
 #'   genotypes is large, say, more than 30.
-#' @param size.point The size of the point in graphic.
-#' @param col.sel The colour for selected genotypes.
-#' @param col.nonsel The colour for nonselected genotypes.
+#' @param size.point The size of the point in graphic. Defaults to 2.5.
+#' @param size.line The size of the line in graphic. Defaults to 0.7.
 #' @param size.text The size for the text in the plot. Defaults to 10.
+#' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
+#' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
 #' @param ... Other arguments to be passed from ggplot2::theme().
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
@@ -345,8 +357,16 @@ fai_blup <- function(.data, DI, UI, SI = 15, mineval = 1, verbose = TRUE) {
 #' plot(FAI)
 #' }
 #'
-plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, arrange.label = FALSE,
-                          size.point = 2, col.sel = "red", col.nonsel = "black", size.text = 10,
+plot.fai_blup <- function(x,
+                          ideotype = 1,
+                          SI = 15,
+                          radar = TRUE,
+                          arrange.label = FALSE,
+                          size.point = 2.5,
+                          size.line = 0.7,
+                          size.text = 10,
+                          col.sel = "red",
+                          col.nonsel = "black",
                           ...) {
 
   if (!class(x) == "fai_blup") {
@@ -358,18 +378,19 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, arrange.label 
     set_names("Genotype", "FAI", "sel")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
   cutpoint <- min(subset(data, sel == "Selected")$FAI)
-  p <- ggplot(data = data, aes(x = reorder(Genotype, FAI),
-                               y = FAI)) +
-    geom_hline(yintercept = cutpoint, col = "red") +
-    geom_path(colour = "black", group = 1) +
-    geom_point(size = size.point, aes(fill = sel), shape = 21, colour = "black") +
+  p <- ggplot(data = data, aes(x = reorder(Genotype, FAI), y = FAI)) +
+    geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
+    geom_path(colour = "black", group = 1, size = size.line) +
+    geom_point(size = size.point, aes(fill = sel), shape = 21, colour = "black", stroke  = size.point / 10) +
     scale_x_discrete() +
-    theme_metan() +
-    theme(legend.title = element_blank(),
+    theme_minimal() +
+    theme(legend.position = "bottom",
+          legend.title = element_blank(),
           axis.title.x = element_blank(),
           panel.border = element_blank(),
           axis.text = element_text(colour = "black"),
-          text = element_text(size = size.text)) +
+          text = element_text(size = size.text),
+          ...) +
     labs(x = "", y = "FAI-BLUP") +
     scale_fill_manual(values = c(col.nonsel, col.sel))
   if (radar == TRUE) {
@@ -381,17 +402,10 @@ plot.fai_blup <- function(x, ideotype = 1, SI = 15, radar = TRUE, arrange.label 
       sang <- c(-90 - 180/length(sseq) * sseq)
       p <- p +
         coord_polar() +
-        theme_minimal()+
-        theme(legend.position = "bottom",
-              legend.title = element_blank(),
-              axis.text.x = element_text(angle = c(fang, sang)),
+        theme(axis.text.x = element_text(angle = c(fang, sang)),
               legend.margin = margin(-120, 0, 0, 0), ...)
     } else{
-      p <- p +
-        coord_polar() +
-        theme_minimal() +
-        theme(legend.position = "bottom",
-              legend.title = element_blank(), ...)
+      p <- p + coord_polar()
     }
   }
   return(p)
