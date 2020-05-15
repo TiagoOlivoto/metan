@@ -10,10 +10,11 @@
   SI = 15,
   radar = TRUE,
   arrange.label = FALSE,
-  size.point = 2,
+  size.point = 2.5,
+  size.line = 0.7,
+  size.text = 10,
   col.sel = "red",
   col.nonsel = "black",
-  size.text = 10,
   ...
 )
 }
@@ -32,13 +33,15 @@ after using \code{coord_polar()}.}
 arranged to avoid text overlapping. This becomes useful when the number of
 genotypes is large, say, more than 30.}
 
-\item{size.point}{The size of the point in graphic.}
+\item{size.point}{The size of the point in graphic. Defaults to 2.5.}
 
-\item{col.sel}{The colour for selected genotypes.}
-
-\item{col.nonsel}{The colour for nonselected genotypes.}
+\item{size.line}{The size of the line in graphic. Defaults to 0.7.}
 
 \item{size.text}{The size for the text in the plot. Defaults to 10.}
+
+\item{col.sel}{The colour for selected genotypes. Defaults to \code{"red"}.}
+
+\item{col.nonsel}{The colour for nonselected genotypes. Defaults to \code{"black"}.}
 
 \item{...}{Other arguments to be passed from ggplot2::theme().}
 }
