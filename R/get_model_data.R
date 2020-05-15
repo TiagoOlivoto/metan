@@ -430,16 +430,16 @@ get_model_data <- function(x,
         data %>%
         pivot_longer(-all_of(fctrs)) %>%
         group_by(name) %>%
-        doo(~lmer(formula, data = .) %>% VarCorr() %>% as.numeric()) %>%
-        unnest(data)
+        doo(~lmer(formula, data = .) %>% VarCorr()) %>%
+        mutate(data = as.numeric(map(data, ~ .[["GEN"]])))
       factors <- select_non_numeric_cols(data)
       combined_vars <- comb_vars(data, verbose = FALSE)
       gcov <-
         cbind(factors, combined_vars) %>%
         pivot_longer(-all_of(fctrs)) %>%
         group_by(name) %>%
-        doo(~lmer(formula, data = .) %>% VarCorr() %>% as.numeric()) %>%
-        unnest(data) %>%
+        doo(~lmer(formula, data = .) %>% VarCorr()) %>%
+        mutate(data = as.numeric(map(data, ~ .[["GEN"]]))) %>%
         separate(name, into = c("v1", "v2"), sep = "x") %>%
         left_join(gvar, by = c("v1" = "name")) %>%
         left_join(gvar, by = c("v2" = "name")) %>%
