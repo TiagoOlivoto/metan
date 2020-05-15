@@ -55,7 +55,7 @@
 #' factor are.
 #' * \strong{sel_dif} The selection differential for the variables.
 #' * \strong{total_gain} The selection differential for the variables.
-#' * \strong{Selected} The selected genotypes.
+#' * \strong{sel_gen} The selected genotypes.
 #' @md
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and
 #'   M.I. Diel. 2019. Mean performance and stability in multi-environment trials
@@ -269,7 +269,7 @@ mgidi <- function(.data,
                         contri_fac = contr.factor,
                         sel_dif = sel_dif_mean,
                         total_gain = total_gain,
-                        Selected = names(MGIDI)[1:ngs]),
+                        sel_gen = names(MGIDI)[1:ngs]),
                    class = "mgidi"))
 }
 

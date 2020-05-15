@@ -53,7 +53,7 @@ The lower the contribution of a factor, the close of the ideotype the variables 
 factor are.
 \item \strong{sel_dif} The selection differential for the variables.
 \item \strong{total_gain} The selection differential for the variables.
-\item \strong{Selected} The selected genotypes.
+\item \strong{sel_gen} The selected genotypes.
 }
 }
 \description{
