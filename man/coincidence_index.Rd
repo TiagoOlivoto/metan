@@ -27,8 +27,7 @@ the insersection of the selected genotypes of all models
 }
 \description{
 Computes the coincidence index (Hamblin and Zimmermann, 1986) as follows:
-}
-\details{
+
 \loadmathjax
 \mjsdeqn{CI = \frac{A-C}{M-C}\times 100}
 where \emph{A} is the number of selected genotypes common to different

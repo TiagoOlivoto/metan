@@ -1,5 +1,6 @@
 #' Computes the coincidence index of genotype selection
 #'
+#' @description
 #' Computes the coincidence index (Hamblin and Zimmermann, 1986) as follows:
 #'
 #' \loadmathjax
