@@ -124,7 +124,8 @@ covcor_design <- function(.data,
     }
     colnames(covdata)[[vin]] <- paste(names(vars[var]))
   }
-  ms <- data.frame(mst = mst, msr = msr) %>%
+  ms <-
+    data.frame(mst = mst, msr = msr) %>%
     dplyr::mutate(tr = mst - msr)
   vres <- diag(ms[, 2])
   vfen <- diag(ms[, 1]/3)

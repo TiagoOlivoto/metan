@@ -131,6 +131,8 @@
 #' genotypic and residual coefficient of variation.
 #'
 #'  * \strong{residuals} The residuals of the model.
+#'
+#'  * \strong{formula} The formula used to fit the model.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{mtsi}} \code{\link{waas}}
@@ -511,7 +513,8 @@ gamem_met <- function(.data,
                            modellme = Complete,
                            Details = as_tibble(Details),
                            ESTIMATES = genpar,
-                           residuals = as_tibble(residuals)), class = "waasb")
+                           residuals = as_tibble(residuals),
+                           formula = model_formula), class = "waasb")
     if (verbose == TRUE) {
       pb$tick(tokens = list(what = names(vars[var])))
     }

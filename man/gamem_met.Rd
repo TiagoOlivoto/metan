@@ -84,6 +84,7 @@ correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr}
 the residual coefficient of variation; \code{CV ratio} the ratio between
 genotypic and residual coefficient of variation.
 \item \strong{residuals} The residuals of the model.
+\item \strong{formula} The formula used to fit the model.
 }
 }
 \description{
