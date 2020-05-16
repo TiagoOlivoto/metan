@@ -51,21 +51,15 @@ coincidence_index <- function(..., total, sel1 = NULL, sel2 = NULL){
           rlang::quo_get_expr(x)
         })
       )
-    if(names < 2){
-      stop("The coincidence index cannot be computed with only one model.")
+    if(length(names)  < 2){
+      stop("The coincidence index cannot be computed with only one model.", call. = FALSE)
     }
     models <- list(...)
     if(any(sapply(models, class) %in% c("mgidi", "fai_blup", "sh") == FALSE)){
       stop("Only objects of class 'mgidi', 'fai_blup', and 'sh' are accepted.")
     }
     selected <- lapply(models, function(x){
-      if(class(x) == "fai_blup"){
-        x[["sel_gen"]]
-      } else if (class(x) == "mgidi"){
-        x[["sel_gen"]]
-      } else if (class(x) == "sh"){
-        x[["sel_gen"]]
-      }
+      x[["sel_gen"]]
     })
     names(selected) <- names
     ngsel <- sapply(selected, length)
