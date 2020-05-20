@@ -80,10 +80,11 @@ on two variables assessed in 10 genotypes growing in 14 environments.
 
 ``` r
 library(metan)
+
 inspect(data_ge, plot = TRUE)
 # # A tibble: 5 x 9
 #   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
-#   <chr>    <fct>   <fct>   <fct>    <int> <dbl>  <dbl> <dbl>   <dbl>
+#   <chr>    <chr>   <chr>   <chr>    <int> <dbl>  <dbl> <dbl>   <dbl>
 # 1 ENV      factor  No      14         420 NA     NA    NA         NA
 # 2 GEN      factor  No      10         420 NA     NA    NA         NA
 # 3 REP      factor  No      3          420 NA     NA    NA         NA
@@ -156,10 +157,6 @@ model <- performs_ammi(data_ge,
                        rep = REP,
                        resp = everything(),
                        verbose = FALSE)
-# New names:
-# * `` -> ...15
-# New names:
-# * `` -> ...15
 # Significance of IPCAs
 get_model_data(model, "ipca_pval")
 # Class of the model: performs_ammi
@@ -295,8 +292,6 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-# New names:
-# * `` -> ...15
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats

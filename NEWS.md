@@ -1,14 +1,29 @@
+# metan 1.6.0
+## New functions
+* `Smith_Hazel()` and `print.sh()` and `plot.sh()` for computing the Smith and Hazel selection index.
+* `coincidence_index()` for computing the coincidence index.
+
+## Minor improvements
+* `get_model_data()` now extracts the genotypic and phenotypic variance-covariance matrix from objects of class `gamem` and `waasb`.
+* `fai_blup()` now returns the total genetic gain and the list with the ideotypes' construction.
+* `mgidi()` now computes the genetic gain when a mixed-model is used as input data.
+* The S3 method [`plot()`](https://tiagoolivoto.github.io/metan/reference/plot.mgidi.html) for objects of class `mgidi` has a new argument `type = "contribution"` to plot the contribution of each factor in the MGIDI index.
+* `plot_scores()` now can produce a biplot showing other axes besides PC1 and PC2. To change the default IPCA in each axis use the new arguments `first` and `second`.
+
+
 # metan 1.5.1
 ## Minor changes
 * `plot_bars()` and `plot_factbars()` now align vertically the labels to the error bars.
 * `fai_blup()` now returns the eigenvalues and explained variance for each axis and variables into columns instead row names.
 * Fixes the error with `donttest{}` examples. Now, the correct data set is used in the example of `fai_blup()`
 
+
 # metan 1.5.0
 ## New functions
 * `select_rows_na()` and `select_cols_na()` to select rows or columns with with `NA` values.
 * `mgidi()` to compute the multi-trait genotype-ideotype distance index.
 * `plot_bars()` to create bar plots quickly. Thanks to [@MariaDiel](https://www.researchgate.net/profile/Maria_Diel) for her suggestion. 
+
 
 ## Minor changes
 * Deprecated functions `hm_mean()` and `gm_mean()` removed in favour of `hmean()` and `gmean()`, respectively.
