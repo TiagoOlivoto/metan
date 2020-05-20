@@ -101,3 +101,49 @@ coincidence_index <- function(..., total, sel1 = NULL, sel2 = NULL){
     return(comp_coinc(sel1, sel2, total))
   }
 }
+
+
+
+
+#' Print an object of class coincidence
+#'
+#' Print a \code{coincidence} object in two ways. By default, the results are shown in
+#' the R console. The results can also be exported to the directory.
+#'
+#'
+#' @param x An object of class \code{coincidence}.
+#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
+#'   to the working directory
+#' @param file.name The name of the file if \code{export = TRUE}
+#' @param digits The significant digits to be shown.
+#' @param ... Options used by the tibble package to format the output. See
+#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method print coincidence
+#' @export
+#' @examples
+#'\donttest{
+#' library(metan)
+#' sel1 <- paste("G", 1:30, sep = "")
+#' sel2 <- paste("G", 16:45, sep = "")
+#' coinc <- coincidence_index(sel1 = sel1, sel2 = sel2, total = 150)
+#' print(coinc)
+#' }
+print.coincidence <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
+  if (!class(x) == "coincidence") {
+    stop("The object must be of class 'coincidence'")
+  }
+  if (export == TRUE) {
+    file.name <- ifelse(is.null(file.name) == TRUE, "waasb print", file.name)
+    sink(paste0(file.name, ".txt"))
+  }
+  opar <- options(pillar.sigfig = digits)
+  on.exit(options(opar))
+  cat("---------------------------------------------------------------------------\n")
+  cat("Coincidence index and common genotypes\n")
+  cat("---------------------------------------------------------------------------\n")
+  print(x$coincidence)
+  if (export == TRUE) {
+    sink()
+  }
+}
