@@ -382,9 +382,9 @@ plot.mgidi <- function(x,
     y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
     data <-
       x$contri_fac %>%
-      subset(Gen %in% x$Selected)
+      subset(Gen %in% x$sel_gen)
     data$Gen <-
-      factor(data$Gen, levels = x$Selected)
+      factor(data$Gen, levels = x$sel_gen)
     data <-
       data %>%
       pivot_longer(-Gen)
@@ -472,7 +472,7 @@ print.mgidi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   cat("-------------------------------------------------------------------------------\n")
   cat("Selected genotypes \n")
   cat("-------------------------------------------------------------------------------\n")
-  cat(x$Selected)
+  cat(x$sel_gen)
   if (export == TRUE) {
     sink()
   }
