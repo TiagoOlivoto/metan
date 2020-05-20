@@ -74,7 +74,7 @@ get_model_data(gen_mod, "details") %>% print_table()
 
 * Likelihood ratio test for genotype effect
 ```{r}
-get_model_data(gen_mod, "pval_lrt") %>% print_table()
+get_model_data(gen_mod, "lrt") %>% print_table()
 ```
 
 * Variance components and genetic parameters
@@ -102,7 +102,7 @@ where $y_{ijk}$ is the observed value of the *i*th genotype in the *k*th block o
 
 ```{r}
 gen_alpha <- gamem(data_alpha, GEN, REP, YIELD, block = BLOCK)
-get_model_data(gen_alpha, "pval_lrt") %>% print_table()
+get_model_data(gen_alpha, "lrt") %>% print_table()
 get_model_data(gen_alpha, "details") %>% print_table()
 get_model_data(gen_alpha, "genpar") %>% print_table()
 
@@ -172,7 +172,7 @@ plot(mixed_mod, type = "re")
 The output `LRT` contains the Likelihood Ratio Tests for genotype and genotype-vs-environment random effects. We can get these values with `get_model_data()`
 
 ```{r  warning=F, message=F}
-data <- get_model_data(mixed_mod, "pval_lrt")
+data <- get_model_data(mixed_mod, "lrt")
 print_table(data)
     ```
 
@@ -537,14 +537,12 @@ print_table(Res_ind$GY)
 
 # FAI-BLUP selection index
 
-The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018].
+The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recentely proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking. Here we will use the mixed-model `mod` as inpute data. By default, the selection is made to increase the value of all traits. Change this default with the arguments `DI` and `UI`.
 
 ```{r  fig.height = 5, fig.width = 5.5, fig.align = "center", warning=FALSE, message=FALSE}
-data_ge2 %>%
-  gamem_met(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-  fai_blup(DI = c("max, max, max, min"),
-           UI = c("min, min, min, max"),
-           SI = 15) %>%
+data_g %>%
+  gamem(GEN, REP, everything()) %>%
+  fai_blup() %>%
   plot()
     ```
 

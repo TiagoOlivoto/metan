@@ -176,7 +176,7 @@
       <h1 data-toc-skip>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-04-22</h4>
+            <h4 class="date">2020-05-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/metan_start.Rmd"><code>vignettes/metan_start.Rmd</code></a></small>
       <div class="hidden name"><code>metan_start.Rmd</code></div>
@@ -213,7 +213,7 @@
 </ul>
 </li>
 </ul>
-<p>The easiest way to compute the above-mentioned stability indexes is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="../reference/ge_stats.html">ge_stats()</a></code></a>. This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, I’d suggest computing the methods using their own function.</p>
+<p>The easiest way to compute the above-mentioned stability indexes is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="../reference/ge_stats.html">ge_stats()</a></code></a>. This is a wrapper that basically returns a summary of each method. If you are looking for more details from each method like <code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code> and <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, I’d suggest computing the methods using their own function.</p>
 <p>The complete functionality of the package is described at <a href="https://tiagoolivoto.github.io/metan/index.html" class="uri">https://tiagoolivoto.github.io/metan/index.html</a>. You’re welcome to check it out!</p>
 <div id="brief-examples" class="section level1">
 <h1 class="hasAnchor">
@@ -228,17 +228,17 @@
 <span class="fu"><a href="../reference/inspect.html">inspect</a></span>(<span class="no">data_ge</span>)
 <span class="co"># # A tibble: 5 x 9</span>
 <span class="co">#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier</span>
-<span class="co">#   &lt;chr&gt;    &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span>
 <span class="co"># 1 ENV      factor  No      14         420 NA     NA    NA         NA</span>
 <span class="co"># 2 GEN      factor  No      10         420 NA     NA    NA         NA</span>
 <span class="co"># 3 REP      factor  No      3          420 NA     NA    NA         NA</span>
 <span class="co"># 4 GY       numeric No      -          420  0.67   2.61  5.09       0</span>
 <span class="co"># 5 HM       numeric No      -          420 38     48    58          0</span></pre></body></html></div>
-<p>Then, the details of the multi-environment trial can be obtained with the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_details.html"><code><a href="../reference/ge_details.html">ge_details()</a></code></a>. Note that to apply the function to all numeric variables quickly, we can use the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers">select helper</a> <code><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything()</a></code> in the argument <code>resp</code>.</p>
+<p>Then, the details of the multi-environment trial can be obtained with the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_details.html"><code><a href="../reference/ge_details.html">ge_details()</a></code></a>. Note that to apply the function to all numeric variables quickly, we can use the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers">select helper</a> <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> in the argument <code>resp</code>.</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/ge_details.html">ge_details</a></span>(<span class="no">data_ge</span>,
            <span class="kw">env</span> <span class="kw">=</span> <span class="no">ENV</span>,
            <span class="kw">gen</span> <span class="kw">=</span> <span class="no">GEN</span>,
-           <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())
+           <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span>())
 <span class="co"># # A tibble: 10 x 3</span>
 <span class="co">#    Parameters GY                  HM              </span>
 <span class="co">#    &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;           </span>
@@ -259,7 +259,7 @@
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">mge</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/ge_means.html">ge_means</a></span>(<span class="no">data_ge</span>,
                 <span class="kw">env</span> <span class="kw">=</span> <span class="no">ENV</span>,
                 <span class="kw">gen</span> <span class="kw">=</span> <span class="no">GEN</span>,
-                <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())
+                <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span>())
 <span class="co"># Genotype-environment means</span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="no">mge</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span>()
 <span class="co"># Class of the model: ge_means</span>
@@ -329,44 +329,44 @@
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># AMMI analysis table</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
-<span class="co">#     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul</span>
-<span class="co">#        ENV  13 279.574 21.5057   62.33 0.00e+00       .       .</span>
-<span class="co">#   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08       .       .</span>
-<span class="co">#        GEN   9  12.995  1.4439   14.93 2.19e-19       .       .</span>
-<span class="co">#    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11       .       .</span>
-<span class="co">#        PC1  21  10.749  0.5119    5.29 0.00e+00    34.4    34.4</span>
-<span class="co">#        PC2  19   9.924  0.5223    5.40 0.00e+00    31.8    66.2</span>
-<span class="co">#        PC3  17   4.039  0.2376    2.46 1.40e-03    12.9    79.2</span>
-<span class="co">#        PC4  15   3.074  0.2049    2.12 9.60e-03     9.8      89</span>
-<span class="co">#        PC5  13   1.446  0.1113    1.15 3.18e-01     4.6    93.6</span>
-<span class="co">#        PC6  11   0.932  0.0848    0.88 5.61e-01       3    96.6</span>
-<span class="co">#        PC7   9   0.567  0.0630    0.65 7.53e-01     1.8    98.4</span>
-<span class="co">#        PC8   7   0.362  0.0518    0.54 8.04e-01     1.2    99.6</span>
-<span class="co">#        PC9   5   0.126  0.0252    0.26 9.34e-01     0.4     100</span>
-<span class="co">#  Residuals 252  24.367  0.0967      NA       NA       .       .</span>
-<span class="co">#      Total 536 389.036  0.7258      NA       NA    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class="co">#        ENV  13 279.574 21.5057   62.33 0.00e+00          .           .</span>
+<span class="co">#   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08          .           .</span>
+<span class="co">#        GEN   9  12.995  1.4439   14.93 2.19e-19          .           .</span>
+<span class="co">#    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11          .           .</span>
+<span class="co">#        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4</span>
+<span class="co">#        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2</span>
+<span class="co">#        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2</span>
+<span class="co">#        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8          89</span>
+<span class="co">#        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6</span>
+<span class="co">#        PC6  11   0.932  0.0848    0.88 5.61e-01          3        96.6</span>
+<span class="co">#        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4</span>
+<span class="co">#        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6</span>
+<span class="co">#        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4         100</span>
+<span class="co">#  Residuals 252  24.367  0.0967      NA       NA          .           .</span>
+<span class="co">#      Total 536 389.036  0.7258      NA       NA       &lt;NA&gt;        &lt;NA&gt;</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># </span>
 <span class="co"># variable HM </span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># AMMI analysis table</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
-<span class="co">#     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Percent Accumul</span>
-<span class="co">#        ENV  13 5710.32 439.255   57.22 1.11e-16       .       .</span>
-<span class="co">#   REP(ENV)  28  214.93   7.676    2.70 2.20e-05       .       .</span>
-<span class="co">#        GEN   9  269.81  29.979   10.56 7.41e-14       .       .</span>
-<span class="co">#    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15       .       .</span>
-<span class="co">#        PC1  21  381.13  18.149    6.39 0.00e+00    34.6    34.6</span>
-<span class="co">#        PC2  19  319.43  16.812    5.92 0.00e+00      29    63.6</span>
-<span class="co">#        PC3  17  114.26   6.721    2.37 2.10e-03    10.4      74</span>
-<span class="co">#        PC4  15   81.96   5.464    1.92 2.18e-02     7.4    81.5</span>
-<span class="co">#        PC5  13   68.11   5.240    1.84 3.77e-02     6.2    87.7</span>
-<span class="co">#        PC6  11   59.07   5.370    1.89 4.10e-02     5.4      93</span>
-<span class="co">#        PC7   9   46.69   5.188    1.83 6.33e-02     4.2    97.3</span>
-<span class="co">#        PC8   7   26.65   3.808    1.34 2.32e-01     2.4    99.7</span>
-<span class="co">#        PC9   5    3.41   0.682    0.24 9.45e-01     0.3     100</span>
-<span class="co">#  Residuals 252  715.69   2.840      NA       NA       .       .</span>
-<span class="co">#      Total 536 9112.21  17.000      NA       NA    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class="co">#        ENV  13 5710.32 439.255   57.22 1.11e-16          .           .</span>
+<span class="co">#   REP(ENV)  28  214.93   7.676    2.70 2.20e-05          .           .</span>
+<span class="co">#        GEN   9  269.81  29.979   10.56 7.41e-14          .           .</span>
+<span class="co">#    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15          .           .</span>
+<span class="co">#        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6</span>
+<span class="co">#        PC2  19  319.43  16.812    5.92 0.00e+00         29        63.6</span>
+<span class="co">#        PC3  17  114.26   6.721    2.37 2.10e-03       10.4          74</span>
+<span class="co">#        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5</span>
+<span class="co">#        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7</span>
+<span class="co">#        PC6  11   59.07   5.370    1.89 4.10e-02        5.4          93</span>
+<span class="co">#        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3</span>
+<span class="co">#        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7</span>
+<span class="co">#        PC9   5    3.41   0.682    0.24 9.45e-01        0.3         100</span>
+<span class="co">#  Residuals 252  715.69   2.840      NA       NA          .           .</span>
+<span class="co">#      Total 536 9112.21  17.000      NA       NA       &lt;NA&gt;        &lt;NA&gt;</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># </span>
 <span class="co"># All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
@@ -381,16 +381,19 @@
 <div id="biplots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h2>
-<p>The well-known AMMI2 biplot may be obtained using the function <a href="https://tiagoolivoto.github.io/metan/reference/plot_scores.html"><code><a href="../reference/plot_scores.html">plot_scores()</a></code></a>. ggplot2-based graphics are obtained. Please, note that since <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code><a href="../reference/performs_ammi.html">performs_ammi()</a></code></a> and , <a href="https://tiagoolivoto.github.io/metan/reference/waas.html"><code><a href="../reference/waas.html">waas()</a></code></a> functions allow analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>ammi_model</code> is a list that in this case has two elements, (GY and HM).</p>
+<p>The well-known AMMI2 biplot may be obtained using the function <a href="https://tiagoolivoto.github.io/metan/reference/plot_scores.html"><code><a href="../reference/plot_scores.html">plot_scores()</a></code></a>. ggplot2-based graphics are obtained. Please, note that since <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code><a href="../reference/performs_ammi.html">performs_ammi()</a></code></a> and , <a href="https://tiagoolivoto.github.io/metan/reference/waas.html"><code><a href="../reference/waas.html">waas()</a></code></a> functions allow analyzing multiple variables at the same time, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>ammi_model</code> is a list that in this case has two elements, (GY and HM). To produce an AMMI2 biplot with IPCA1 and IPCA3, for example, we use the argument <code>second</code> to change the default value of the y axis.</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/plot_scores.html">plot_scores</a></span>(<span class="no">ammi_model</span>)
 <span class="no">b</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/plot_scores.html">plot_scores</a></span>(<span class="no">ammi_model</span>,
+                 <span class="kw">type</span> <span class="kw">=</span> <span class="fl">2</span>,
+                 <span class="kw">second</span> <span class="kw">=</span> <span class="st">"PC3"</span>)
+<span class="no">c</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/plot_scores.html">plot_scores</a></span>(<span class="no">ammi_model</span>,
                  <span class="kw">type</span> <span class="kw">=</span> <span class="fl">2</span>,
                  <span class="kw">polygon</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
                  <span class="kw">col.gen</span> <span class="kw">=</span> <span class="st">"black"</span>,
                  <span class="kw">col.env</span> <span class="kw">=</span> <span class="st">"gray70"</span>,
                  <span class="kw">col.segm.env</span> <span class="kw">=</span> <span class="st">"gray70"</span>,
                  <span class="kw">axis.expand</span> <span class="kw">=</span> <span class="fl">1.5</span>)
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(<span class="no">a</span>, <span class="no">b</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="no">letters</span>[<span class="fl">1</span>:<span class="fl">2</span>], <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(<span class="no">a</span>, <span class="no">b</span>, <span class="no">c</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="no">letters</span>[<span class="fl">1</span>:<span class="fl">3</span>], <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-6-1.png" width="480"></p>
 </div>
 <div id="predict-the-response-variable" class="section level2">
@@ -417,7 +420,7 @@
 <h1 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h1>
 <p>The implementation of linear-mixed effect models to predict the response variable in MET is made with the function <a href="https://tiagoolivoto.github.io/metan/reference/gamem_met.html"><code><a href="../reference/gamem_met.html">gamem_met()</a></code></a>. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument <code>random</code> to change this default. In the following example the model is fitted to all numeric variables in <a href="https://tiagoolivoto.github.io/metan/reference/data_ge.html"><code>data_ge</code></a>.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">model2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gamem_met.html">gamem_met</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>())
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">model2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gamem_met.html">gamem_met</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span>())
 <span class="co"># Method: REML/BLUP</span>
 <span class="co"># Random effects: GEN, GEN:ENV</span>
 <span class="co"># Fixed effects: ENV, REP(ENV)</span>
@@ -434,15 +437,15 @@
 <div id="residual-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#residual-plots" class="anchor"></a>Residual plots</h2>
-<p>Several residual plots may be obtained using the S3 generic function <a href="https://tiagoolivoto.github.io/metan/reference/plot.waasb.html"><code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code></a>..</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">model2</span>, <span class="kw">which</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<p>Several residual plots may be obtained using the S3 generic function <a href="https://tiagoolivoto.github.io/metan/reference/plot.waasb.html"><code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code></a>..</p>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">model2</span>, <span class="kw">which</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-9-1.png" width="384"></p>
 </div>
 <div id="distribution-of-random-effects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#distribution-of-random-effects" class="anchor"></a>Distribution of random effects</h2>
 <p>The distribution of the random effects may be obtained using the argument <code>type = "re"</code>.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">model2</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"re"</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">model2</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"re"</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">3</span>)</pre></body></html></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-10-1.png" width="384"></p>
 </div>
 <div id="genetic-parameters-and-variance-components" class="section level2">
@@ -469,12 +472,12 @@
 <h2 class="hasAnchor">
 <a href="#plotting-the-blups-for-genotypes" class="anchor"></a>Plotting the BLUPs for genotypes</h2>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="no">c</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/plot_blup.html">plot_blup</a></span>(<span class="no">model2</span>)
-<span class="no">d</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/plot_blup.html">plot_blup</a></span>(<span class="no">model2</span>,
+<span class="no">d</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/plot_blup.html">plot_blup</a></span>(<span class="no">model2</span>)
+<span class="no">e</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/plot_blup.html">plot_blup</a></span>(<span class="no">model2</span>,
                <span class="kw">prob</span> <span class="kw">=</span> <span class="fl">0.1</span>,
                <span class="kw">col.shape</span>  <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"gray20"</span>, <span class="st">"gray80"</span>)) +
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>()
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(<span class="no">c</span>, <span class="no">d</span>,<span class="kw">labels</span> <span class="kw">=</span> <span class="no">letters</span>[<span class="fl">3</span>:<span class="fl">4</span>], <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(<span class="no">d</span>, <span class="no">e</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="no">letters</span>[<span class="fl">4</span>:<span class="fl">5</span>], <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-12-1.png" width="384"></p>
 </div>
 <div id="blups-for-genotype-vs-environment-interaction" class="section level2">
@@ -503,7 +506,7 @@
 <h2 class="hasAnchor">
 <a href="#blup-based-stability-index" class="anchor"></a>BLUP-based stability index</h2>
 <p>The WAASB index <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects. We can obtain this statistic with the function <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code><a href="../reference/waasb.html">waasb()</a></code></a> combined with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code><a href="../reference/get_model_data.html">get_model_data()</a></code></a> using <code>what = "WAASB"</code>.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">model3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/waasb.html">waasb</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/select_helpers.html">everything</a></span>(), <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">model3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/waasb.html">waasb</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span>(), <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="no">model3</span>, <span class="kw">what</span> <span class="kw">=</span> <span class="st">"WAASB"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span>()
 <span class="co"># Class of the model: waasb</span>
@@ -553,7 +556,7 @@
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualizing-the-biplot" class="anchor"></a>Visualizing the Biplot</h2>
-<p>The generic function <a href="https://tiagoolivoto.github.io/metan/reference/plot.gge.html"><code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code></a> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation">Yan and Kang (<a href="#ref-Yan2003" role="doc-biblioref">2003</a>)</span>}.</p>
+<p>The generic function <a href="https://tiagoolivoto.github.io/metan/reference/plot.gge.html"><code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code></a> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation">Yan and Kang (<a href="#ref-Yan2003" role="doc-biblioref">2003</a>)</span>}.</p>
 <ul>
 <li>
 <code>type = 1</code> A basic biplot.</li>
@@ -576,9 +579,9 @@
 <li>
 <code>type =  10</code> Relationship among environments.</li>
 </ul>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">e</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">gge_model</span>)
-<span class="no">f</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">gge_model</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="fl">2</span>)
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(<span class="no">e</span>, <span class="no">f</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="no">letters</span>[<span class="fl">5</span>:<span class="fl">6</span>], <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">f</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">gge_model</span>)
+<span class="no">g</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">gge_model</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span>(<span class="no">e</span>, <span class="no">f</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="no">letters</span>[<span class="fl">6</span>:<span class="fl">7</span>], <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
 <p><img src="metan_start_files/figure-html/unnamed-chunk-17-1.png" width="384"></p>
 </div>
 </div>

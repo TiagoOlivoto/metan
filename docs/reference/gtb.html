@@ -292,7 +292,7 @@ relationship among genotypes or that among the traits).</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/graphics/plot.html'>plot()</a></code> used in <code><a href='gge.html'>gge</a>()</code>.</p><ul>
+    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/base/plot.html'>plot()</a></code> used in <code><a href='gge.html'>gge</a>()</code>.</p><ul>
 <li><p><strong>coordgen</strong> The coordinates for genotypes for all components.</p></li>
 <li><p><strong>coordenv</strong> The coordinates for traits for all components.</p></li>
 <li><p><strong>eigenvalues</strong> The vector of eigenvalues.</p></li>
@@ -322,8 +322,8 @@ geneticists, and agronomists. CRC Press.</p>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='co'># GT biplot for all numeric variables</span>
-<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>gtb</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>contains</a></span>(<span class='st'>"E"</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='gtb-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>gtb</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>contains</a></span>(<span class='st'>"E"</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='gtb-1.png' alt='' width='700' height='433' /></div><div class='input'>
 # }
 </div></pre>
   </div>

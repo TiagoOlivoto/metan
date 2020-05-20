@@ -15,6 +15,7 @@ vignette: >
 ```{r global_options, include = FALSE}
 knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 load("indexes.RData")
+save(fai, mgidi_index, MTSI_index, MTSI_index2, smith, file = "indexes.RData")
 
 ```
 
@@ -36,31 +37,6 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 
 ```
 
-# FAI-BLUP index
-The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018]. The BLUPs from genotypes are obtained with the function `gamem_met()` and then the function `fai_blup()` is used to compute the FAI-BLUP index.
-
-
-```{r, eval=FALSE}
-library(metan)
-FAI <- data_ge2 %>%
-       gamem_met(ENV, GEN, REP, c(KW, NKE, PH, EH)) %>%
-       fai_blup(DI = c("max, max, max, min"),
-                UI = c("min, min, min, max"),
-                SI = 15)
-
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(metan)
-```
-
-```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=FALSE}
-plot(FAI)
-    ```
-
-
-
-
 # Multi-trait stability index
 The function `mtsi()` is used to compute the multi-trait stability index (*MTSI*) proposed by @Olivoto2019a. The first argument is a model of the class `waasb` or `waas`. It is possible to compute the *MTSI* for both *WAASB* -stability only- and *WAASBY* -simultaneous selection for mean performance and stability.
 
@@ -69,6 +45,7 @@ The function `mtsi()` is used to compute the multi-trait stability index (*MTSI*
 In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function `waasb()` is passed to the function `mtsi()` by the forward-pipe operator `%>%`. Finally, the MTSI index is plotted using the function `plot()`.
 
 ```{r eval=FALSE}
+library(metan)
 MTSI_index <- data_ge2 %>%
               waasb(ENV, GEN, REP,
                     resp = c(KW, NKE, PH, EH, TKW)) %>%
@@ -128,6 +105,58 @@ print_table(MTSI_index2$sel.dif.var)
 plot(MTSI_index2)
     ```
 
+# MGIDI index
+The MGIDI index can be seen as the MTSI index with a weigth of 100 for mean performance. This index is computed with the function `mgidi()`. Here, we will use the example data `data_g()`. By default, all traits are assumed to be increased. To change this default, use the argument `ideotype`. For example, if for three traits, the first one is assumed to be decreased and the last two are assumed to be increased, use `ideotype = c("l, h, h")`.
+
+```{r,   eval=FALSE}
+mod <- gamem(data_g, GEN, REP, everything())
+mgidi_index <- mgidi(mod)
+
+```
+
+```{r fig.width=8, fig.height=4}
+p1 <- plot(mgidi_index)
+p2 <- plot(mgidi_index, type = "contribution")
+arrange_ggplot(p1, p2)
+```
+
+# Smith-Hazel index
+The Smith-Hazel index ([@Smith1936; @Hazel1943]) is computed with the function `Smith_Hazel()`. Users can compute the index either by declaring known genetic and phenotypic variance-covariance matrices or by using as inpute data, a model fitted with the function `gamem()`. In this case, the variance-covariance are extracted internally. The economic weights in the argument `weights` are set by default to 1 for all traits.
+
+```{r  eval=FALSE}
+smith <- Smith_Hazel(mod)
+
+```
+
+
+
+
+# FAI-BLUP index
+The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by @Rocha2018. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking [@Rocha2018]. Here we will use the mixed-model `mod` as inpute data. By default, the selection is made to increase the value of all traits. Change this default with the arguments `DI` and `UI`.
+
+
+```{r, eval=FALSE}
+
+fai <- fai_blup(mod)
+
+```
+
+```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=FALSE}
+plot(fai)
+    ```
+
+
+# Comparing the indexes
+
+The function `coincidence_indexes()` can be used to compute the coincidence index described by @Hamblin1986, among the multi-trait indexes implemented in `metan`. To do that, just use a comma-separated list of indexes as inpute data and inform the total number of genotypes.
+
+```{r}
+coincidence <- coincidence_index(mgidi_index, fai, smith, total = 13)
+```
+
+
+
+
 
 _______________________________________________________________________________________________
 **Rendering engine**
@@ -146,6 +175,8 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
     formatSignif(columns = c(as.numeric(which(sapply(table, class) == "numeric"))), digits = digits)}
 
 ```
+
+
 
 
 # References

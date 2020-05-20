@@ -55,7 +55,10 @@
 <meta property="og:title" content="Sample size planning for a desired Pearson's correlation confidence interval — corr_ss" />
 <meta property="og:description" content="Find the required (sufficient) sample size for computing a Pearson
 correlation coefficient with a desired confidence interval (Olivoto et al.,
-2018)." />
+2018).
+
+
+\[n = \sqrt[\leftroot{-3}\uproot{3}-0.50089]{\tfrac{CI_w}{0.45304^r \times 2.25152}}\]" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -233,7 +236,10 @@ correlation coefficient with a desired confidence interval (Olivoto et al.,
     <div class="ref-description">
     <p>Find the required (sufficient) sample size for computing a Pearson
 correlation coefficient with a desired confidence interval (Olivoto et al.,
-2018).</p>
+2018).
+<script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
+
+\[n = \sqrt[\leftroot{-3}\uproot{3}-0.50089]{\tfrac{CI_w}{0.45304^r \times 2.25152}}\]</p>
     </div>
 
     <pre class="usage"><span class='fu'>corr_ss</span>(<span class='no'>r</span>, <span class='no'>CI</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -258,9 +264,7 @@ silently.</p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The required (sufficient) sample size is computed as follows: $$n =
-[CI_w/ 0.45304^r \times 2.25152]^{-0.50089}$$</p>
-<p>where \(CI_w\) is desired confidence interval and <code>r</code> is the
+    <p>where \(CI_w\) is desired confidence interval and \(r\) is the
 correlation coefficient.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 

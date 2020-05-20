@@ -234,7 +234,7 @@ Rocha et al. (2018)." />
 Rocha et al. (2018).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fai_blup</span>(<span class='no'>.data</span>, <span class='no'>DI</span>, <span class='no'>UI</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>fai_blup</span>(<span class='no'>.data</span>, <span class='kw'>DI</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>UI</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -251,12 +251,13 @@ must contain the genotypes names.</p></td>
 desirable (DI) and undesirable (UI) ideotypes. For each element of the
 vector, allowed values are <code>'max'</code>, <code>'min'</code>, <code>'mean'</code>, or a
 numeric value. Use a comma-separated vector of text. For example, <code>DI
-  = c("max, max, min, min")</code>.</p></td>
+  = c("max, max, min, min")</code>. By default, DI is set to <code>"max"</code> for all
+traits and UI is set to <code>"min"</code> for all traits.</p></td>
     </tr>
     <tr>
       <th>SI</th>
       <td><p>An integer (0-100). The selection intensity in percentage of the
-total number of genotypes.</p></td>
+total number of genotypes. Defaults to 15.</p></td>
     </tr>
     <tr>
       <th>mineval</th>
@@ -276,9 +277,12 @@ console.</p></td>
 <li><p><strong>data</strong> The data (BLUPS) used to compute the index.</p></li>
 <li><p><strong>eigen</strong> The eigenvalues and explained variance for each axis.</p></li>
 <li><p><strong>FA</strong> The results of the factor analysis.</p></li>
-<li><p><strong>canonical.loadings</strong> The canonical loadings for each factor retained.</p></li>
+<li><p><strong>canonical_loadings</strong> The canonical loadings for each factor retained.</p></li>
 <li><p><strong>FAI</strong> A list with the FAI-BLUP index for each ideotype design.</p></li>
-<li><p><strong>selection.diferential</strong> A list with the selection differential for each ideotype design.</p></li>
+<li><p><strong>selection_diferential</strong> A list with the selection differential for each ideotype design.</p></li>
+<li><p><strong>sel_gen</strong> The selected genotypes.</p></li>
+<li><p><strong>ideotype_construction</strong> A list with the construction of the ideotypes.</p></li>
+<li><p><strong>total_gain</strong> A list with the total gain for variables to be increased or decreased.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -309,7 +313,7 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
 <span class='no'>FAI</span> <span class='kw'>&lt;-</span> <span class='fu'>fai_blup</span>(<span class='no'>mod</span>,
                 <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
                 <span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'max, max'</span>),
-                <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min'</span>))</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: blupg</span></div><div class='output co'>#&gt; 
+                <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min'</span>))</div><div class='output co'>#&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -----------------------------------------------------------------------------------
@@ -328,9 +332,9 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
 #&gt; Comunalit Mean: 0.5523038 
 #&gt; Selection differential
 #&gt; -----------------------------------------------------------------------------------
-#&gt;    Factor        Xo        Xs          SD    SDperc
-#&gt; GY      1  2.674242  2.594199 -0.08004274 -2.993100
-#&gt; HM      1 48.088286 48.005561 -0.08272485 -0.172027
+#&gt;   VAR Factor        Xo        Xs          SD     SDperc sense
+#&gt; 1  GY      1  2.674242  2.594199 -0.08004274 -2.9931005  none
+#&gt; 2  HM      1 48.088286 48.005568 -0.08271774 -0.1720122  none
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Selected genotypes

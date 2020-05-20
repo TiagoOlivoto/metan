@@ -157,8 +157,9 @@ reference:
 
 
   - title: "Selection indexes"
-    desc: "Selection indexes and simultaneous selection for mean performance and stability"
+    desc: "Indexes for simultaneous selection for mean performance and stability"
     contents:
+      - coincidence_index
       - fai_blup
       - mtsi
       - mgidi
@@ -166,7 +167,11 @@ reference:
       - plot.mgidi
       - print.mgidi
       - plot.mtsi
+      - plot.sh
+      - print.coincidence
       - print.mtsi
+      - print.sh
+      - Smith_Hazel
 
 
 

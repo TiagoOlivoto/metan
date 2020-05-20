@@ -233,15 +233,20 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mgidi</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
   <span class='no'>x</span>,
   <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
   <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"index"</span>,
+  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
+  <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>width.bar</span> <span class='kw'>=</span> <span class='fl'>0.75</span>,
   <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
   <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -263,6 +268,17 @@ total number of genotypes.</p></td>
 after using <code>coord_polar()</code>.</p></td>
     </tr>
     <tr>
+      <th>type</th>
+      <td><p>The type of the plot. Defaults to <code>"index"</code>. Use <code>type
+= "contribution"</code> to show the contribution of each factor to the MGIDI
+index of the selected genotypes.</p></td>
+    </tr>
+    <tr>
+      <th>x.lab, y.lab</th>
+      <td><p>The labels for the axes x and y, respectively. x label is
+set to null when a radar plot is produced.</p></td>
+    </tr>
+    <tr>
       <th>arrange.label</th>
       <td><p>Logical argument. If <code>TRUE</code>, the labels are
 arranged to avoid text overlapping. This becomes useful when the number of
@@ -273,16 +289,25 @@ genotypes is large, say, more than 30.</p></td>
       <td><p>The size of the point in graphic. Defaults to 2.5.</p></td>
     </tr>
     <tr>
-      <th>col.sel</th>
-      <td><p>The colour for selected genotypes.</p></td>
-    </tr>
-    <tr>
-      <th>col.nonsel</th>
-      <td><p>The colour for nonselected genotypes.</p></td>
+      <th>size.line</th>
+      <td><p>The size of the line in graphic. Defaults to 0.7.</p></td>
     </tr>
     <tr>
       <th>size.text</th>
       <td><p>The size for the text in the plot. Defaults to 10.</p></td>
+    </tr>
+    <tr>
+      <th>width.bar</th>
+      <td><p>The width of the bars if <code>type = "contribution"</code>.
+Defaults to 0.75.</p></td>
+    </tr>
+    <tr>
+      <th>col.sel</th>
+      <td><p>The colour for selected genotypes. Defaults to <code>"red"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>col.nonsel</th>
+      <td><p>The colour for nonselected genotypes. Defaults to <code>"black"</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -335,18 +360,18 @@ genotypes is large, say, more than 30.</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential 
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 4 x 6</span><span>
-#&gt;   VAR   Factor    xo    Xs     SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> KW    FA 1   147.  163.  16.2    11.0 
-#&gt; </span><span style='color: #555555;'>2</span><span> NR    FA 1    15.8  17.4  1.63   10.3 
-#&gt; </span><span style='color: #555555;'>3</span><span> NKE   FA 1   468.  532.  64.0    13.7 
-#&gt; </span><span style='color: #555555;'>4</span><span> NKR   FA 2    30.4  31.2  0.814   2.68
+#&gt; </span><span style='color: #555555;'># A tibble: 4 x 10</span><span>
+#&gt;   VAR   Factor    Xo    Xs     SD SDperc    h2     SG SGperc sense   
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'>1</span><span> KW    FA 1   147.  163.  16.2    11.0  0.659 10.7     7.27 increase
+#&gt; </span><span style='color: #555555;'>2</span><span> NR    FA 1    15.8  17.4  1.63   10.3  0.736  1.20    7.60 increase
+#&gt; </span><span style='color: #555555;'>3</span><span> NKE   FA 1   468.  532.  64.0    13.7  0.713 45.6     9.74 increase
+#&gt; </span><span style='color: #555555;'>4</span><span> NKR   FA 2    30.4  31.2  0.814   2.68 0.452  0.368   1.21 increase
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
 #&gt; H13 H5
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mgidi_index</span>)</div><div class='img'><img src='plot.mgidi-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mgidi_index</span>)</div><div class='img'><img src='plot.mgidi-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 
 </div></span></pre>

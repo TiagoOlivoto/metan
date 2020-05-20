@@ -303,6 +303,7 @@ heritability on the entry-mean basis, genotypic coefficient of variation
 residual coefficient of variation and ratio between genotypic and residual
 coefficient of variation.</p></li>
 <li><p><strong>residuals:</strong> The residuals of the model.</p></li>
+<li><p><strong>formula</strong> The formula used to fit the model.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -352,19 +353,19 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; PH EL 
 #&gt; ---------------------------------------------------------------------------</div><div class='input'>
 <span class='co'># Likelihood ratio test for random effects</span>
-<span class='co'>## Statistic</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"lrt"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: lrt</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2 x 10</span><span>
-#&gt;   model       PH    ED      EL    CL    CW    KW    NR   TKW   NKE
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Complete </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   
-#&gt; </span><span style='color: #555555;'>2</span><span> Genotype  3.81  17.6  0.073</span><span style='text-decoration: underline;'>5</span><span>  22.4  19.1  5.00  7.67  6.72  6.72</div><div class='input'>
-<span class='co'>## P-value</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"pval_lrt"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: pval_lrt</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 10</span><span>
-#&gt;   model      PH       ED     EL       CL       CW      KW       NR      TKW
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Comp~ </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #555555;'> </span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>      
-#&gt; </span><span style='color: #555555;'>2</span><span> Geno~  0.051</span><span style='text-decoration: underline;'>0</span><span>  2.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>  0.786  2.25</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-6</span><span>  1.24</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>  0.025</span><span style='text-decoration: underline;'>3</span><span>  0.005</span><span style='text-decoration: underline;'>60</span><span>  0.009</span><span style='text-decoration: underline;'>55</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"lrt"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: lrt</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 8</span><span>
+#&gt;   VAR   model     npar   logLik    AIC     LRT    Df `Pr(&gt;Chisq)`
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> PH    Genotype     4   -</span><span style='color: #BB0000;'>0.947</span><span>   9.89  3.81       1   0.051</span><span style='text-decoration: underline;'>0</span><span>    
+#&gt; </span><span style='color: #555555;'>2</span><span> ED    Genotype     4  -</span><span style='color: #BB0000;'>91.9</span><span>   192.   17.6        1   0.000</span><span style='text-decoration: underline;'>027</span><span>3 
+#&gt; </span><span style='color: #555555;'>3</span><span> EL    Genotype     4  -</span><span style='color: #BB0000;'>55.5</span><span>   119.    0.073</span><span style='text-decoration: underline;'>5</span><span>     1   0.786     
+#&gt; </span><span style='color: #555555;'>4</span><span> CL    Genotype     4  -</span><span style='color: #BB0000;'>86.2</span><span>   180.   22.4        1   0.000</span><span style='text-decoration: underline;'>002</span><span>25
+#&gt; </span><span style='color: #555555;'>5</span><span> CW    Genotype     4 -</span><span style='color: #BB0000;'>114.</span><span>    235.   19.1        1   0.000</span><span style='text-decoration: underline;'>012</span><span>4 
+#&gt; </span><span style='color: #555555;'>6</span><span> KW    Genotype     4 -</span><span style='color: #BB0000;'>165.</span><span>    339.    5.00       1   0.025</span><span style='text-decoration: underline;'>3</span><span>    
+#&gt; </span><span style='color: #555555;'>7</span><span> NR    Genotype     4  -</span><span style='color: #BB0000;'>71.1</span><span>   150.    7.67       1   0.005</span><span style='text-decoration: underline;'>60</span><span>   
+#&gt; </span><span style='color: #555555;'>8</span><span> TKW   Genotype     4 -</span><span style='color: #BB0000;'>190.</span><span>    389.    6.72       1   0.009</span><span style='text-decoration: underline;'>55</span><span>   
+#&gt; </span><span style='color: #555555;'>9</span><span> NKE   Genotype     4 -</span><span style='color: #BB0000;'>206.</span><span>    420.    6.72       1   0.009</span><span style='text-decoration: underline;'>52</span><span>   </div><div class='input'>
+
 <span class='co'># Variance components</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"vcomp"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: vcomp</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 10</span><span>
 #&gt;   Group        PH    ED     EL    CL    CW    KW    NR   TKW   NKE
@@ -390,19 +391,19 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 <span class='co'># random effects</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"ranef"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $GEN
 #&gt;    GEN           PH         ED           EL         CL         CW         KW
-#&gt; 1   H1  0.018773415  2.3610811  0.020813727  2.2056450  5.3329446   6.597949
-#&gt; 2  H10 -0.078441587 -3.4773234 -0.085772697 -3.3060661 -7.4818222 -17.311524
-#&gt; 3  H11 -0.039799640 -0.7171292 -0.053041433 -1.8922681 -4.2006646  -4.019522
-#&gt; 4  H12  0.160731724 -0.1152736 -0.089465455 -2.3605324 -2.6282932   1.022669
-#&gt; 5  H13  0.263641328  2.4352270  0.090472571 -1.0499927  0.6731998  22.941732
-#&gt; 6   H2 -0.007665811  2.4004711  0.092151097  1.5266617  1.1173016   8.900057
-#&gt; 7   H3 -0.075187528 -0.6956964  0.008224779  0.1086613 -2.0755407  -5.159344
-#&gt; 8   H4 -0.071526712 -1.7847132  0.108936361 -0.6927910 -1.1569456  -2.213329
-#&gt; 9   H5 -0.043867214  1.9584925  0.003189200  1.6503315  5.2258697   9.434104
-#&gt; 10  H6 -0.008072569  1.8461152 -0.142842593  3.1109560  1.9916310  -6.425132
-#&gt; 11  H7  0.006570695  0.8086529 -0.016113853  1.5969014  5.7354170   5.832276
-#&gt; 12  H8 -0.040613155 -1.5286784  0.004867726  0.5270975  1.1054194  -3.547764
-#&gt; 13  H9 -0.084542947 -3.4912257  0.058580570 -1.4246041 -3.6385167 -16.052173
+#&gt; 1   H1  0.018773415  2.3610811  0.020813796  2.2056449  5.3329442   6.597949
+#&gt; 2  H10 -0.078441587 -3.4773234 -0.085772984 -3.3060659 -7.4818217 -17.311524
+#&gt; 3  H11 -0.039799640 -0.7171292 -0.053041610 -1.8922680 -4.2006643  -4.019522
+#&gt; 4  H12  0.160731724 -0.1152736 -0.089465754 -2.3605323 -2.6282930   1.022669
+#&gt; 5  H13  0.263641328  2.4352270  0.090472873 -1.0499926  0.6731997  22.941732
+#&gt; 6   H2 -0.007665811  2.4004711  0.092151405  1.5266616  1.1173015   8.900057
+#&gt; 7   H3 -0.075187528 -0.6956964  0.008224807  0.1086613 -2.0755405  -5.159344
+#&gt; 8   H4 -0.071526712 -1.7847132  0.108936725 -0.6927910 -1.1569455  -2.213329
+#&gt; 9   H5 -0.043867214  1.9584925  0.003189211  1.6503314  5.2258693   9.434104
+#&gt; 10  H6 -0.008072569  1.8461152 -0.142843071  3.1109558  1.9916308  -6.425132
+#&gt; 11  H7  0.006570695  0.8086529 -0.016113907  1.5969013  5.7354166   5.832276
+#&gt; 12  H8 -0.040613155 -1.5286784  0.004867743  0.5270975  1.1054193  -3.547764
+#&gt; 13  H9 -0.084542947 -3.4912257  0.058580766 -1.4246040 -3.6385165 -16.052173
 #&gt;             NR        TKW        NKE
 #&gt; 1   0.06038462  36.368389 -30.472599
 #&gt; 2  -0.33211539 -50.194254  14.894629
@@ -421,7 +422,7 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 <span class='co'># Predicted values</span>
 <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>rcbd</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 11</span><span>
 #&gt;    GEN   REP      PH    ED    EL    CL    CW    KW    NR   TKW   NKE
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1      2.12  50.5  14.9  31.5  26.9  156.  15.8  360.  436.
 #&gt; </span><span style='color: #555555;'> 2</span><span> H1    2      2.20  49.5  14.5  29.9  24.4  146.  16.1  343.  428.
 #&gt; </span><span style='color: #555555;'> 3</span><span> H1    3      2.24  50.7  14.6  30.6  27.1  159.  15.7  359.  449.

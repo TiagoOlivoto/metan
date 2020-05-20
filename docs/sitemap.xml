@@ -34,6 +34,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/clustering.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/coincidence_index.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/colindiag.html</loc>
   </url>
   <url>
@@ -265,6 +268,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.resp_surf.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/plot.sh.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.waas.html</loc>
   </url>
   <url>
@@ -319,6 +325,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/print.can_cor.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/print.coincidence.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.colindiag.html</loc>
   </url>
   <url>
@@ -367,6 +376,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/print.Schmildt.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/print.sh.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.Shukla.html</loc>
   </url>
   <url>
@@ -413,6 +425,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/Shukla.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/Smith_Hazel.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/solve_svd.html</loc>

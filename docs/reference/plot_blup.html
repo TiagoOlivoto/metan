@@ -235,6 +235,7 @@
     <pre class="usage"><span class='fu'>plot_blup</span>(
   <span class='no'>x</span>,
   <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>which</span> <span class='kw'>=</span> <span class='st'>"gen"</span>,
   <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
@@ -250,7 +251,8 @@
   <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
   <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>),
   <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='st'>"Genotypes"</span>,
-  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='st'>"Predicted Grain Yield"</span>,
+  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>panel.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
   <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
   <span class='no'>...</span>
 )</pre>
@@ -266,6 +268,12 @@
       <th>var</th>
       <td><p>The variable to plot. Defaults to <code>var = 1</code> the first
 variable of <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>which</th>
+      <td><p>Which plot to shown. If <code>which = "gen"</code> (default) plots the
+BLUPs for genotypes. To create a plot showing the BLUPs for
+genotype-environment combinations, used <code>which = "ge"</code>.</p></td>
     </tr>
     <tr>
       <th>prob</th>
@@ -343,8 +351,13 @@ genotypes above and below of the mean, respectively. Default is
     </tr>
     <tr>
       <th>x.lab</th>
-      <td><p>The label of the x-axis in the plot. Default is <code>"Predicted
-Grain Yield"</code>.</p></td>
+      <td><p>The label of the x-axis in the plot. Default is <code>NULL</code>,
+i.e., the name of the selected variable.</p></td>
+    </tr>
+    <tr>
+      <th>panel.spacing</th>
+      <td><p>Defines the spacing between panels when <code>which =
+"ge"</code>.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -367,19 +380,19 @@ Grain Yield"</code>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>BLUP</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
-              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
+<span class='no'>BLUP</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge2</span>,
+              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>,
               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
               <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
-#&gt;     model       GY       HM
-#&gt;  COMPLETE       NA       NA
-#&gt;       GEN 1.11e-05 5.07e-03
-#&gt;   GEN:ENV 2.15e-11 2.27e-15
+#&gt;     model       PH
+#&gt;  COMPLETE       NA
+#&gt;       GEN 9.39e-01
+#&gt;   GEN:ENV 1.09e-13
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'>plot_blup</span>(<span class='no'>BLUP</span>)</div><div class='img'><img src='plot_blup-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'>plot_blup</span>(<span class='no'>BLUP</span>)</div><div class='img'><img src='plot_blup-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plot_blup</span>(<span class='no'>BLUP</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='st'>"ge"</span>)</div><div class='img'><img src='plot_blup-2.png' alt='' width='700' height='433' /></div><div class='input'>
 # }
 
 

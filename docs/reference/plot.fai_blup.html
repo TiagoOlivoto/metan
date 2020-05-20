@@ -235,16 +235,17 @@ proposed by Rocha et al. (2018).</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for fai_blup</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
   <span class='no'>x</span>,
   <span class='kw'>ideotype</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
   <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
+  <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
   <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -277,19 +278,23 @@ genotypes is large, say, more than 30.</p></td>
     </tr>
     <tr>
       <th>size.point</th>
-      <td><p>The size of the point in graphic.</p></td>
+      <td><p>The size of the point in graphic. Defaults to 2.5.</p></td>
     </tr>
     <tr>
-      <th>col.sel</th>
-      <td><p>The colour for selected genotypes.</p></td>
-    </tr>
-    <tr>
-      <th>col.nonsel</th>
-      <td><p>The colour for nonselected genotypes.</p></td>
+      <th>size.line</th>
+      <td><p>The size of the line in graphic. Defaults to 0.7.</p></td>
     </tr>
     <tr>
       <th>size.text</th>
       <td><p>The size for the text in the plot. Defaults to 10.</p></td>
+    </tr>
+    <tr>
+      <th>col.sel</th>
+      <td><p>The colour for selected genotypes. Defaults to <code>"red"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>col.nonsel</th>
+      <td><p>The colour for nonselected genotypes. Defaults to <code>"black"</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -327,7 +332,7 @@ genotypes is large, say, more than 30.</p></td>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
 <span class='no'>FAI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fai_blup.html'>fai_blup</a></span>(<span class='no'>mod</span>,
                 <span class='kw'>DI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'max, max'</span>),
-                <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min'</span>))</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: blupg</span></div><div class='output co'>#&gt; 
+                <span class='kw'>UI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min'</span>))</div><div class='output co'>#&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -----------------------------------------------------------------------------------
@@ -343,7 +348,17 @@ genotypes is large, say, more than 30.</p></td>
 #&gt; HM  0.7431714  0.5523038
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.5523038 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>FAI</span>)</div><div class='img'><img src='plot.fai_blup-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; Comunalit Mean: 0.5523038 
+#&gt; Selection differential
+#&gt; -----------------------------------------------------------------------------------
+#&gt;   VAR Factor        Xo        Xs          SD     SDperc sense
+#&gt; 1  GY      1  2.674242  2.594199 -0.08004274 -2.9931005  none
+#&gt; 2  HM      1 48.088286 48.005568 -0.08271774 -0.1720122  none
+#&gt; 
+#&gt; -----------------------------------------------------------------------------------
+#&gt; Selected genotypes
+#&gt; G4 G9
+#&gt; -----------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>FAI</span>)</div><div class='img'><img src='plot.fai_blup-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

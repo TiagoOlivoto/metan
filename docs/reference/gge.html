@@ -331,10 +331,10 @@ geneticists, and agronomists. CRC Press.</p>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>gge</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>GY</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='gge-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='gge-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># GGE model for all numeric variables</span>
-<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='fu'>gge</span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod2</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"ED"</span>)</div><div class='img'><img src='gge-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='fu'>gge</span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mod2</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"ED"</span>)</div><div class='img'><img src='gge-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># If we have a two-way table with the mean values for</span>
 <span class='co'># genotypes and environments</span>
 
@@ -351,7 +351,7 @@ geneticists, and agronomists. CRC Press.</p>
 #&gt; G8  2.90 2.57 1.68 2.00 3.52 1.99 3.44 4.11 4.14 4.81 2.91 2.26 2.88 2.83
 #&gt; G9  2.33 1.74 1.13 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</div><div class='input'><span class='fu'><a href='make_long.html'>make_long</a></span>(<span class='no'>table</span>) <span class='kw'>%&gt;%</span>
 <span class='fu'>gge</span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>Y</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>()</div><div class='img'><img src='gge-3.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>()</div><div class='img'><img src='gge-3.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

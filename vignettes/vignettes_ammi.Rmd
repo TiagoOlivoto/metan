@@ -189,7 +189,10 @@ arrange_ggplot(a, b, labels = letters[1:2])
 ```
 
 
-### biplot type 2: PC1 x PC2
+### biplot type 2:
+
+* PC1 x PC2
+By default, IPCA1 is shown in the x axis and IPCA2 in the y axis.
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 c <- plot_scores(AMMI_model, type = 2)
@@ -201,6 +204,10 @@ d <- plot_scores(AMMI_model,
 arrange_ggplot(c, d, labels = letters[3:4])
 
 ```
+
+* Change the default option
+To create a biplot showin other IPCAs use the arguments `first` and `second`. For example to produce a PC1 x PC3 biplot, use `second = "PC3`. A PC3 x PC4 biplot can be produced (provided that the model has at least four IPCAs) with `first = "PC3"` and `second = "PC4"`..
+
 
 ### biplot type 3: GY x WAAS
 
@@ -226,7 +233,7 @@ arrange_ggplot(e, f, labels = letters[5:6])
 
 
 
-### biplot type 4 : nominal yield and environment IPCA1
+### biplot type 4: nominal yield and environment IPCA1
 
 ```{r echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message=F, warning=F}
 g <- plot_scores(AMMI_model, type = 4)

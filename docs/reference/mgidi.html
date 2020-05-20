@@ -55,7 +55,18 @@
 <meta property="og:title" content="Genotype-Ideotype Distance Index — mgidi" />
 <meta property="og:description" content="Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
 be seen as the multi-trait stability index (Olivoto et al., 2019) computed
-with weight for mean performance equals to 100." />
+with weight for mean performance equals to 100. The MGIDI indes is computed
+as follows:
+
+
+\[MGIDI_i = \sqrt{\sum\limits_{j = 1}^f(F_{ij} - {F_j})^2}\]
+where \(MGIDI_i\) is the multi-trait genotype-ideotype distance index
+for the ith genotype; \(F_{ij}\) is the score of the ith
+genotype in the jth factor (i = 1, 2, ..., g; j = 1, 2, ...,
+f), being g and f the number of genotypes and factors,
+respectively, and \(F_j\) is the jth score of the ideotype. The
+genotype with the lowest MGIDI is then closer to the ideotype and therefore
+presents desired values for all the analyzed traits." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -233,7 +244,18 @@ with weight for mean performance equals to 100." />
     <div class="ref-description">
     <p>Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
 be seen as the multi-trait stability index (Olivoto et al., 2019) computed
-with weight for mean performance equals to 100.</p>
+with weight for mean performance equals to 100. The MGIDI indes is computed
+as follows:
+<script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
+
+\[MGIDI_i = \sqrt{\sum\limits_{j = 1}^f(F_{ij} - {F_j})^2}\]</p>
+<p>where \(MGIDI_i\) is the multi-trait genotype-ideotype distance index
+for the <em>i</em>th genotype; \(F_{ij}\) is the score of the <em>i</em>th
+genotype in the <em>j</em>th factor (<em>i = 1, 2, ..., g; j = 1, 2, ...,
+f</em>), being <em>g</em> and <em>f</em> the number of genotypes and factors,
+respectively, and \(F_j\) is the <em>j</em>th score of the ideotype. The
+genotype with the lowest MGIDI is then closer to the ideotype and therefore
+presents desired values for all the analyzed traits.</p>
     </div>
 
     <pre class="usage"><span class='fu'>mgidi</span>(<span class='no'>.data</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ideotype</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -243,9 +265,10 @@ with weight for mean performance equals to 100.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>An object fitted with <code><a href='gamem.html'>gamem</a></code>, <code><a href='gamem_met.html'>gamem_met</a></code>, or a two-way
-table with BLUPs for genotypes in each trait (genotypes in rows and traits
-in columns). In the last case, row names must contain the genotypes names.</p></td>
+      <td><p>An object fitted with the function <code><a href='gamem.html'>gamem</a></code> or a
+two-way table with BLUPs for genotypes in each trait (genotypes in rows and
+traits in columns). In the last case, row names must contain the genotypes
+names.</p></td>
     </tr>
     <tr>
       <th>SI</th>
@@ -261,9 +284,12 @@ factor analysis.</p></td>
       <th>ideotype</th>
       <td><p>A vector of length <code>nvar</code> where <code>nvar</code> is the
 number of variables used to plan the ideotype. Use <code>'h'</code> to indicate
-the variables with increase in selction or <code>'l'</code> to indicate the
-variables with reduction in selection. For example, <code>ideotype = c("h,
-  h, l, h, l")</code>.</p></td>
+the traits in which higher values are desired or <code>'l'</code> to indicate the
+variables in which lower values are desired. For example, <code>ideotype =
+  c("h, h, h, h, l")</code> will consider that the ideotype has higher values for
+the first four traits and lower values for the last trait. If <code>.data</code>
+is a model fitted with the function <code><a href='gamem.html'>gamem</a></code>, the order of the
+traits will be the declared in the argument <code>resp</code> in that function.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -282,18 +308,20 @@ shown in the console.</p></td>
 <li><p><strong>KMO</strong> The result for the Kaiser-Meyer-Olkin test.</p></li>
 <li><p><strong>MSA</strong> The measure of sampling adequacy for individual variable.</p></li>
 <li><p><strong>communalities</strong> The communalities.</p></li>
-<li><p><strong>communalities.mean</strong> The communalities' mean.</p></li>
-<li><p><strong>initial.loadings</strong> The initial loadings.</p></li>
-<li><p><strong>finish.loadings</strong> The final loadings after varimax rotation.</p></li>
-<li><p><strong>canonical.loadings</strong> The canonical loadings.</p></li>
-<li><p><strong>scores.gen</strong> The scores for genotypes in all retained factors.</p></li>
-<li><p><strong>scores.ide</strong> The scores for the ideotype in all retained factors.</p></li>
-<li><p><strong>MGIDI</strong> The multi-trait stability index.</p></li>
-<li><p><strong>contri.fac</strong> The relative contribution of each factor on the MGIDI value.
+<li><p><strong>communalities_mean</strong> The communalities' mean.</p></li>
+<li><p><strong>initial_loadings</strong> The initial loadings.</p></li>
+<li><p><strong>finish_loadings</strong> The final loadings after varimax rotation.</p></li>
+<li><p><strong>canonical_loadings</strong> The canonical loadings.</p></li>
+<li><p><strong>scores_gen</strong> The scores for genotypes in all retained factors.</p></li>
+<li><p><strong>scores_ide</strong> The scores for the ideotype in all retained factors.</p></li>
+<li><p><strong>gen_ide</strong> The distance between the scores of each genotype with the ideotype.</p></li>
+<li><p><strong>MGIDI</strong> The multi-trait genotype-ideotype distance index.</p></li>
+<li><p><strong>contri_fac</strong> The relative contribution of each factor on the MGIDI value.
 The lower the contribution of a factor, the close of the ideotype the variables in such
 factor are.</p></li>
-<li><p><strong>sel.dif</strong> The selection differential for the variables.</p></li>
-<li><p><strong>Selected</strong> The selected genotypes.</p></li>
+<li><p><strong>sel_dif</strong> The selection differential for the variables.</p></li>
+<li><p><strong>total_gain</strong> The selection differential for the variables.</p></li>
+<li><p><strong>sel_gen</strong> The selected genotypes.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -319,7 +347,8 @@ II: Selection based on multiple traits. Agron. J. 111:2961-2969.
 #&gt; ---------------------------------------------------------------------------
 #&gt; Variables with nonsignificant Genotype effect
 #&gt; PH 
-#&gt; ---------------------------------------------------------------------------</div><div class='input'><span class='co'># Selection for increase all variables</span>
+#&gt; ---------------------------------------------------------------------------</div><div class='input'>
+<span class='co'># Selection for increase all variables</span>
 <span class='no'>mgidi_model</span> <span class='kw'>&lt;-</span> <span class='fu'>mgidi</span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
@@ -354,22 +383,26 @@ II: Selection based on multiple traits. Agron. J. 111:2961-2969.
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential 
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 8 x 6</span><span>
-#&gt;   VAR   Factor     xo     Xs      SD  SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> CW    FA 1    20.8   23.7   2.95   14.2   
-#&gt; </span><span style='color: #555555;'>2</span><span> CL    FA 1    28.4   28.7   0.300   1.06  
-#&gt; </span><span style='color: #555555;'>3</span><span> TKW   FA 1   318.   314.   -</span><span style='color: #BB0000;'>3.67</span><span>   -</span><span style='color: #BB0000;'>1.16</span><span>  
-#&gt; </span><span style='color: #555555;'>4</span><span> PERK  FA 1    87.6   87.6  -</span><span style='color: #BB0000;'>0.058</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.067</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span>
-#&gt; </span><span style='color: #555555;'>5</span><span> NR    FA 2    15.8   17.4   1.63   10.3   
-#&gt; </span><span style='color: #555555;'>6</span><span> KW    FA 2   147.   163.   16.2    11.0   
-#&gt; </span><span style='color: #555555;'>7</span><span> NKE   FA 2   468.   532.   64.0    13.7   
-#&gt; </span><span style='color: #555555;'>8</span><span> PH    FA 2     2.17   2.28  0.110   5.07  
+#&gt; </span><span style='color: #555555;'># A tibble: 8 x 10</span><span>
+#&gt;   VAR   Factor     Xo     Xs      SD  SDperc    h2      SG  SGperc sense   
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'>1</span><span> CW    FA 1    20.8   23.7   2.95   14.2    0.880  2.60   12.5    increase
+#&gt; </span><span style='color: #555555;'>2</span><span> CL    FA 1    28.4   28.7   0.300   1.06   0.901  0.270   0.950  increase
+#&gt; </span><span style='color: #555555;'>3</span><span> TKW   FA 1   318.   314.   -</span><span style='color: #BB0000;'>3.67</span><span>   -</span><span style='color: #BB0000;'>1.16</span><span>   0.712 -</span><span style='color: #BB0000;'>2.62</span><span>   -</span><span style='color: #BB0000;'>0.824</span><span>  increase
+#&gt; </span><span style='color: #555555;'>4</span><span> PERK  FA 1    87.6   87.6  -</span><span style='color: #BB0000;'>0.058</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.067</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> 0.916 -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.061</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> increase
+#&gt; </span><span style='color: #555555;'>5</span><span> NR    FA 2    15.8   17.4   1.63   10.3    0.736  1.20    7.60   increase
+#&gt; </span><span style='color: #555555;'>6</span><span> KW    FA 2   147.   163.   16.2    11.0    0.659 10.7     7.27   increase
+#&gt; </span><span style='color: #555555;'>7</span><span> NKE   FA 2   468.   532.   64.0    13.7    0.713 45.6     9.74   increase
+#&gt; </span><span style='color: #555555;'>8</span><span> PH    FA 2     2.17   2.28  0.110   5.07   0.610  0.067</span><span style='text-decoration: underline;'>0</span><span>  3.09   increase
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
 #&gt; H13 H5
 #&gt; -------------------------------------------------------------------------------</div><div class='input'>
+
+
+<span class='co'># plot the contribution of each factor on the MGIDI index</span>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mgidi_model</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"contribution"</span>)</div><div class='img'><img src='mgidi-1.png' alt='' width='700' height='433' /></div><div class='input'>
 # }
 </div></span></pre>
   </div>

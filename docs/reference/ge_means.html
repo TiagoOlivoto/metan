@@ -272,7 +272,7 @@ environments (columns).</p></li>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>means_ge</span> <span class='kw'>&lt;-</span> <span class='fu'>ge_means</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>everything</a></span>())
+<span class='no'>means_ge</span> <span class='kw'>&lt;-</span> <span class='fu'>ge_means</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
 
 <span class='co'># Genotype-environment interaction means</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>means_ge</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ge_means</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 140 x 4</span><span>
