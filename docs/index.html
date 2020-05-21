@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
@@ -221,10 +221,11 @@
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
 <p><code>metan</code> offers a set of functions that can be used to manipulate, summarize, analyze and plot typical multi-environment trial data. Maybe, one of the first functions users should use would be <a href="https://tiagoolivoto.github.io/metan/reference/inspect.html"><code><a href="reference/inspect.html">inspect()</a></code></a>. Here, we will inspect the example dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 14 environments.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metan</span>)
+
 <span class="fu"><a href="reference/inspect.html">inspect</a></span>(<span class="no">data_ge</span>, <span class="kw">plot</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="co"># # A tibble: 5 x 9</span>
 <span class="co">#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier</span>
-<span class="co">#   &lt;chr&gt;    &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span>
 <span class="co"># 1 ENV      factor  No      14         420 NA     NA    NA         NA</span>
 <span class="co"># 2 GEN      factor  No      10         420 NA     NA    NA         NA</span>
 <span class="co"># 3 REP      factor  No      3          420 NA     NA    NA         NA</span>

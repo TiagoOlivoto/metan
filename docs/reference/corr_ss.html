@@ -55,10 +55,12 @@
 <meta property="og:title" content="Sample size planning for a desired Pearson's correlation confidence interval — corr_ss" />
 <meta property="og:description" content="Find the required (sufficient) sample size for computing a Pearson
 correlation coefficient with a desired confidence interval (Olivoto et al.,
-2018).
+2018) as follows
 
 
-\[n = \sqrt[\leftroot{-3}\uproot{3}-0.50089]{\tfrac{CI_w}{0.45304^r \times 2.25152}}\]" />
+\[n = {\left[ {\frac{{C{I_w}}}{{{{0.45304}^r} \times 2.25152}}} \right]^{{\rm{ - 0}}{\rm{.50089}}}}\]
+where \(CI_w\) is desired confidence interval and \(r\) is the
+correlation coefficient." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -101,7 +103,7 @@ correlation coefficient with a desired confidence interval (Olivoto et al.,
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
@@ -236,10 +238,12 @@ correlation coefficient with a desired confidence interval (Olivoto et al.,
     <div class="ref-description">
     <p>Find the required (sufficient) sample size for computing a Pearson
 correlation coefficient with a desired confidence interval (Olivoto et al.,
-2018).
+2018) as follows
 <script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
 
-\[n = \sqrt[\leftroot{-3}\uproot{3}-0.50089]{\tfrac{CI_w}{0.45304^r \times 2.25152}}\]</p>
+\[n = {\left[ {\frac{{C{I_w}}}{{{{0.45304}^r} \times 2.25152}}} \right]^{{\rm{ - 0}}{\rm{.50089}}}}\]</p>
+<p>where \(CI_w\) is desired confidence interval and \(r\) is the
+correlation coefficient.</p>
     </div>
 
     <pre class="usage"><span class='fu'>corr_ss</span>(<span class='no'>r</span>, <span class='no'>CI</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -262,10 +266,6 @@ silently.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>where \(CI_w\) is desired confidence interval and \(r\) is the
-correlation coefficient.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
