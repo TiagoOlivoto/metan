@@ -10,6 +10,7 @@ resca(
   values = NULL,
   new_min = 0,
   new_max = 100,
+  na.rm = TRUE,
   keep = TRUE
 )
 }
@@ -24,6 +25,8 @@ rescaled.}
 \item{new_min}{The minimum value of the new scale. Default is 0.}
 
 \item{new_max}{The maximum value of the new scale. Default is 100}
+
+\item{na.rm}{Remove \code{NA} values? Default to \code{TRUE}.}
 
 \item{keep}{Should all variables be kept after rescaling? If false, only
 rescaled variables will be kept.}

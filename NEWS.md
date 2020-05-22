@@ -1,3 +1,5 @@
+# metan (development version)
+
 # metan 1.6.0
 ## New functions
 * `Smith_Hazel()` and `print.sh()` and `plot.sh()` for computing the Smith and Hazel selection index.

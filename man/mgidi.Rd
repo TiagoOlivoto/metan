@@ -4,7 +4,14 @@
 \alias{mgidi}
 \title{Genotype-Ideotype Distance Index}
 \usage{
-mgidi(.data, SI = 15, mineval = 1, ideotype = NULL, verbose = TRUE)
+mgidi(
+  .data,
+  SI = 15,
+  mineval = 1,
+  ideotype = NULL,
+  use = "complete.obs",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{An object fitted with the function \code{\link{gamem}} or a
@@ -26,6 +33,10 @@ variables in which lower values are desired. For example, \code{ideotype =
 the first four traits and lower values for the last trait. If \code{.data}
 is a model fitted with the function \code{\link{gamem}}, the order of the
 traits will be the declared in the argument \code{resp} in that function.}
+
+\item{use}{The method for computing covariances in the presence of missing
+values. Defaults to \code{complete.obs}, i.e., missing values are handled
+by casewise deletion.}
 
 \item{verbose}{If \code{verbose = TRUE} (Default) then some results are
 shown in the console.}

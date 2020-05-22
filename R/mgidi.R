@@ -20,6 +20,10 @@
 #'   two-way table with BLUPs for genotypes in each trait (genotypes in rows and
 #'   traits in columns). In the last case, row names must contain the genotypes
 #'   names.
+#' @param SI An integer (0-100). The selection intensity in percentage of the
+#' total number of genotypes.
+#' @param mineval The minimum value so that an eigenvector is retained in the
+#' factor analysis.
 #' @param ideotype A vector of length \code{nvar} where \code{nvar} is the
 #'   number of variables used to plan the ideotype. Use \code{'h'} to indicate
 #'   the traits in which higher values are desired or \code{'l'} to indicate the
@@ -28,10 +32,9 @@
 #'   the first four traits and lower values for the last trait. If \code{.data}
 #'   is a model fitted with the function \code{\link{gamem}}, the order of the
 #'   traits will be the declared in the argument \code{resp} in that function.
-#' @param SI An integer (0-100). The selection intensity in percentage of the
-#' total number of genotypes.
-#' @param mineval The minimum value so that an eigenvector is retained in the
-#' factor analysis.
+#' @param use The method for computing covariances in the presence of missing
+#'   values. Defaults to \code{complete.obs}, i.e., missing values are handled
+#'   by casewise deletion.
 #' @param verbose If \code{verbose = TRUE} (Default) then some results are
 #' shown in the console.
 #' @return An object of class \code{mgidi} with the following items:
@@ -86,6 +89,7 @@ mgidi <- function(.data,
                   SI = 15,
                   mineval = 1,
                   ideotype = NULL,
+                  use = "complete.obs",
                   verbose = TRUE) {
   d <- match.call()
   if(has_class(.data, c("gamem", "waasb"))){
@@ -129,10 +133,13 @@ mgidi <- function(.data,
                  sense = rescaled) %>%
     mutate(sense = ifelse(sense == 0, "decrease", "increase"))
   for (i in 1:ncol(data)) {
-    means[i] <- resca(values = data[i], new_max = rescaled[i], new_min = 100 - rescaled[i])
+     means[i] <- resca(values = data[i], new_max = rescaled[i], new_min = 100 - rescaled[i])
     colnames(means) <- colnames(data)
   }
-  cor.means <- cor(means)
+  if(has_na(means)){
+    warning("Missing values observed in the table of means. Using complete observations to compute the correlation matrix.", call. = FALSE)
+  }
+  cor.means <- cor(means, use = use)
   eigen.decomposition <- eigen(cor.means)
   eigen.values <- eigen.decomposition$values
   eigen.vectors <- eigen.decomposition$vectors
@@ -173,7 +180,7 @@ mgidi <- function(.data,
   Communality <- diag(A %*% t(A))
   Uniquenesses <- 1 - Communality
   fa <- cbind(A, Communality, Uniquenesses) %>% as_tibble(rownames = NA) %>%  rownames_to_column("VAR")
-  z <- scale(means, center = FALSE, scale = apply(means, 2, sd))
+  z <- scale(means, center = FALSE, scale = apply(means, 2, sd, na.rm = TRUE))
   canonical_loadings <- t(t(A) %*% solve_svd(cor.means))
   scores <- z %*% canonical_loadings
   colnames(scores) <- paste("FA", 1:ncol(scores), sep = "")
@@ -184,7 +191,7 @@ mgidi <- function(.data,
   })
   names(var.factor) <- paste("FA", 1:ncol(A), sep = "")
   names.pos.var.factor <- rownames(pos.var.factor)
-  ideotypes.matrix <- t(as.matrix(ideotype.D))/apply(means, 2, sd)
+  ideotypes.matrix <- t(as.matrix(ideotype.D))/apply(means, 2, sd, na.rm = TRUE)
   rownames(ideotypes.matrix) <- "ID1"
   ideotypes.scores <- ideotypes.matrix %*% canonical_loadings
   gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
@@ -196,12 +203,14 @@ mgidi <- function(.data,
   observed <- means[, names.pos.var.factor]
   if (!is.null(ngs)) {
     data_order <- data[colnames(observed)]
-    sel_dif_mean <- tibble(VAR = names(pos.var.factor[, 2]),
-                           Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
-                           Xo = colMeans(data_order),
-                           Xs = colMeans(data_order[names(MGIDI)[1:ngs], ]),
-                           SD = Xs - colMeans(data_order),
-                           SDperc = (Xs - colMeans(data_order)) / colMeans(data_order) * 100)
+    sel_dif_mean <-
+      tibble(VAR = names(pos.var.factor[, 2]),
+             Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
+             Xo = colMeans(data_order, na.rm = TRUE),
+             Xs = colMeans(data_order[names(MGIDI)[1:ngs], ], na.rm = TRUE),
+             SD = Xs - colMeans(data_order, na.rm = TRUE),
+             SDperc = (Xs - colMeans(data_order, na.rm = TRUE)) / colMeans(data_order, na.rm = TRUE) * 100)
+
     if(has_class(.data, "gamem")){
       h2 <-
         gmd(.data, verbose = FALSE) %>%

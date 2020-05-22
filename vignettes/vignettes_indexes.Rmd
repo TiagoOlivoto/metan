@@ -15,7 +15,6 @@ vignette: >
 ```{r global_options, include = FALSE}
 knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 load("indexes.RData")
-save(fai, mgidi_index, MTSI_index, MTSI_index2, smith, file = "indexes.RData")
 
 ```
 

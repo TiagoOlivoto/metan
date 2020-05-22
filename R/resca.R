@@ -26,6 +26,7 @@
 #' @param values Optional vector of values to rescale
 #' @param new_min The minimum value of the new scale. Default is 0.
 #' @param new_max The maximum value of the new scale. Default is 100
+#' @param na.rm Remove \code{NA} values? Default to \code{TRUE}.
 #' @param keep Should all variables be kept after rescaling? If false, only
 #'   rescaled variables will be kept.
 #' @return A numeric vector if \code{values} is used as input data or a tibble
@@ -57,13 +58,13 @@
 #'   head(n = 13)
 #'}
 #'
-resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, keep = TRUE) {
+resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, na.rm = TRUE, keep = TRUE) {
   if(!missing(.data) && !missing(values)){
     stop("You cannot inform a vector of values if a data frame is used as input.")
   }
   if(!missing(.data)){
     rescc <- function(x){
-      (new_max - new_min)/(max(x) - min(x)) * (x - max(x)) + new_max
+      (new_max - new_min)/(max(x, na.rm = na.rm) - min(x, na.rm = na.rm)) * (x - max(x, na.rm = na.rm)) + new_max
     }
     if(is_grouped_df(.data)){
       dplyr::do(.data, resca(., ...))
@@ -76,7 +77,7 @@ resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, 
     }
   } else {
     new_v <- function(v) {
-      (new_max - new_min)/(max(values) - min(values)) * (v - max(values)) + new_max
+      (new_max - new_min)/(max(values, na.rm = na.rm) - min(values, na.rm = na.rm)) * (v - max(values, na.rm = na.rm)) + new_max
     }
     sapply(values, new_v)
   }
