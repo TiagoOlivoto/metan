@@ -420,14 +420,15 @@ plot.mgidi <- function(x,
       geom_bar(stat = "identity",
                position = "fill",
                color = "black",
-               size = 0.3,
+               size = size.line,
                width = width.bar) +
         scale_y_continuous(expand = expansion(c(0, 0.05)))+
         theme_metan()+
-        theme(legend.position = "bottom")+
+        theme(legend.position = "bottom",
+              axis.ticks = element_line(size = size.line),
+              panel.border = element_rect(size = size.line))+
         scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
-        labs(x = x.lab,
-             y = y.lab)+
+        labs(x = x.lab, y = y.lab)+
         guides(guide_legend(nrow = 1)) +
         ggtitle("Contribution of each factor to the MGIDI index")
     if(invert == TRUE){
