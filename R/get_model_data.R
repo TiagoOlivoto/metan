@@ -154,22 +154,17 @@
 #' * \code{"WAASBY"} The superiority index WAASBY.
 #' * \code{"OrWAASBY"} The ranking regarding the superiority index.
 #'
-#'  \strong{Objects of class \code{waasb}:}
+#'  \strong{Objects of class \code{gamem} and \code{waasb}:}
+#' * \code{"blupge"} for genotype-vs-environment's predicted mean (class waasb).
 #' * \code{"blupg"} For genotype's predicted mean.
-#' * \code{"blupge"} for genotype-vs-environment's predicted mean.
+#' * \code{"data"} The data used.
+#' * \code{"details"} The details of the trial.
 #' * \code{"genpar"} Genetic parameters (default).
+#' * \code{"gcov"} The genotypic variance-covariance matrix.
 #' * \code{"lrt"} The likelihood-ratio test for random effects.
+#' * \code{"pcov"} The phenotypic variance-covariance matrix.
 #' * \code{"vcomp"} The variance components for random effects.
 #' * \code{"ranef"} Random effects.
-#' * \code{"fixed"} The fixed effects.
-#'
-#'  \strong{Objects of class \code{gamem}:}
-#' * \code{"blupg"} For genotype's predicted mean.
-#' * \code{"genpar"} Genetic parameters (default).
-#' * \code{"lrt"} The likelihood-ratio test for random effects.
-#' * \code{"vcomp"} The variance components for random effects.
-#' * \code{"ranef"} Random effects.
-#' * \code{"fixed"} The fixed effects.
 #'
 #'  \strong{Objects of class \code{Res_ind}}
 #' * \code{"HMGV"} For harmonic mean of genotypic values.
@@ -353,7 +348,7 @@ get_model_data <- function(x,
     "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "ranef", "data", "gcov", "pcov", "fixed")
   check1 <- c("Y", "WAAS", "PctResp", "PctWAAS", "wRes", "wWAAS", "OrResp", "OrWAAS", "OrPC1", "WAASY", "OrWAASY")
   check2 <- paste("PC", 1:200, sep = "")
-  check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "details", "ranef")
+  check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "details", "ranef", "data", "gcov", "pcov", "fixed")
   check3.1 <- c("blupg", "vcomp", "lrt", "genpar", "details", "ranef", "data", "gcov", "pcov", "fixed")
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
@@ -374,12 +369,6 @@ get_model_data <- function(x,
   check19 <- c("ge_means", "env_means", "gen_means")
   check20 <- c("Sum Sq", "Mean Sq", "F value", "Pr(>F)", "fitted", "resid", "stdres", "se.fit", "details")
   check21 <- c("MEAN", "MSG", "FCG", "PFG", "MSB", "FCB", "PFB", "MSCR", "FCR", "PFCR", "MSIB_R", "FCIB_R", "PFIB_R", "MSE", "CV", "h2", "AS")
-
-  if (!is.null(what) && !what %in% c(check, check1, check2, check5, check6, check7, check8, check9,
-                                     check10, check11, check12, check13, check14, check15, check16,
-                                     check17, check18, check19, check20, check21)) {
-    stop("The argument 'what' is invalid. Please, check the function help (?get_model_data) for more details.")
-  }
   if (!is.null(what) && what %in% check3 && !class(x) %in% c("waasb", "gamem", "gafem", "anova_joint")) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
@@ -394,8 +383,11 @@ get_model_data <- function(x,
       warning("Using what = 'genpar' is only possible for models fitted with random = 'gen' or random = 'all'\nSetting what to 'vcomp'.", call. = FALSE)
       what <- "vcomp"
     }
-    if(class(x) == "gamem" & !what %in% check3.1){
+    if(class(x) == "gamem" && !what %in% check3.1){
       stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check3.1, collapse = ", "), call. = FALSE)
+    }
+    if(class(x) == "waasb" && !what %in% check3){
+      stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check3, collapse = ", "), call. = FALSE)
     }
     if (class(x) == "waasb" & what %in% check4) {
       bind <- sapply(x, function(x) {

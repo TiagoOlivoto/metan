@@ -200,25 +200,18 @@ objects of class \code{waas}).
 \item \code{"OrWAASBY"} The ranking regarding the superiority index.
 }
 
-\strong{Objects of class \code{waasb}:}
+\strong{Objects of class \code{gamem} and \code{waasb}:}
 \itemize{
+\item \code{"blupge"} for genotype-vs-environment's predicted mean (class waasb).
 \item \code{"blupg"} For genotype's predicted mean.
-\item \code{"blupge"} for genotype-vs-environment's predicted mean.
+\item \code{"data"} The data used.
+\item \code{"details"} The details of the trial.
 \item \code{"genpar"} Genetic parameters (default).
+\item \code{"gcov"} The genotypic variance-covariance matrix.
 \item \code{"lrt"} The likelihood-ratio test for random effects.
+\item \code{"pcov"} The phenotypic variance-covariance matrix.
 \item \code{"vcomp"} The variance components for random effects.
 \item \code{"ranef"} Random effects.
-\item \code{"fixed"} The fixed effects.
-}
-
-\strong{Objects of class \code{gamem}:}
-\itemize{
-\item \code{"blupg"} For genotype's predicted mean.
-\item \code{"genpar"} Genetic parameters (default).
-\item \code{"lrt"} The likelihood-ratio test for random effects.
-\item \code{"vcomp"} The variance components for random effects.
-\item \code{"ranef"} Random effects.
-\item \code{"fixed"} The fixed effects.
 }
 
 \strong{Objects of class \code{Res_ind}}
