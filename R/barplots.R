@@ -218,8 +218,9 @@ plot_bars <- function(.data,
           axis.text = element_text(size = size.text, family = fontfam, colour = "black"),
           axis.text.x = element_text(angle = lab.x.angle, vjust = lab.x.vjust, hjust = lab.x.hjust),
           axis.title = element_text(size = size.text, family = fontfam, colour = "black"),
-          axis.ticks = element_line(colour = "black"),
+          axis.ticks = element_line(colour = "black", size = size.line),
           plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm")) +
+    theme(panel.border = element_rect(size = size.line)) +
     labs(y = ylab, x = xlab) +
     scale_y_continuous(limits = y.lim,
                        breaks = y.breaks,
@@ -234,6 +235,7 @@ plot_bars <- function(.data,
   }
   return(p)
 }
+
 
 
 #' @name barplots
@@ -395,11 +397,12 @@ plot_factbars <- function(.data,
           axis.text = element_text(size = size.text, family = fontfam, colour = "black"),
           axis.text.x = element_text(angle = lab.x.angle, vjust = lab.x.vjust, hjust = lab.x.hjust),
           axis.title = element_text(size = size.text, family = fontfam, colour = "black"),
-          axis.ticks = element_line(colour = "black"),
+          axis.ticks = element_line(colour = "black", size = size.line),
           plot.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"),
           legend.title = element_blank(),
           legend.position = legend.position,
           legend.text = element_text(size = size.text, family = fontfam)) +
+    theme(panel.border = element_rect(size = size.line)) +
     labs(y = ylab, x = xlab) +
     scale_y_continuous(limits = y.lim,
                        breaks = y.breaks,
