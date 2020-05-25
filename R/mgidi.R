@@ -297,6 +297,15 @@ mgidi <- function(.data,
 #' @param type The type of the plot. Defaults to \code{"index"}. Use \code{type
 #'   = "contribution"} to show the contribution of each factor to the MGIDI
 #'   index of the selected genotypes.
+#' @param genotypes When \code{type = "contribution"} defines the genotypes to
+#'   be shown in the plot. By default (\code{genotypes = "selected"} only
+#'   selected genotypes are shown. Use \code{genotypes = "all"} to plot the
+#'   contribution for all genotypes.)
+#' @param n.dodge The number of rows that should be used to render the x labels.
+#'   This is useful for displaying labels that would otherwise overlap.
+#' @param check.overlap Silently remove overlapping labels, (recursively)
+#'   prioritizing the first, last, and middle labels.
+#' @param invert Logical argument. If \code{TRUE}, rotate the plot.
 #' @param x.lab,y.lab The labels for the axes x and y, respectively. x label is
 #'   set to null when a radar plot is produced.
 #' @param arrange.label Logical argument. If \code{TRUE}, the labels are
@@ -330,6 +339,10 @@ plot.mgidi <- function(x,
                        SI = 15,
                        radar = TRUE,
                        type = "index",
+                       genotypes = "selected",
+                       n.dodge = 1,
+                       check.overlap = FALSE,
+                       invert = FALSE,
                        x.lab = NULL,
                        y.lab = NULL,
                        arrange.label = FALSE,
@@ -342,6 +355,9 @@ plot.mgidi <- function(x,
                        ...) {
   if(!type %in% c("index", "contribution")){
     stop("The argument index must be one of the 'index' or 'contribution'", call. = FALSE)
+  }
+  if(!genotypes %in% c("selected", "all")){
+    stop("The argument 'genotypes' must be one of the 'selected' or 'all'", call. = FALSE)
   }
   if(type == "index"){
   if (!class(x) == "mgidi") {
@@ -389,14 +405,16 @@ plot.mgidi <- function(x,
   } else{
     x.lab <- ifelse(!missing(x.lab), x.lab, "Selected genotypes")
     y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
+    if(genotypes == "selected"){
     data <-
       x$contri_fac %>%
       subset(Gen %in% x$sel_gen)
     data$Gen <-
       factor(data$Gen, levels = x$sel_gen)
-    data <-
-      data %>%
-      pivot_longer(-Gen)
+    } else{
+      data <- x$contri_fac
+    }
+    data %<>% pivot_longer(-Gen)
     p <-
       ggplot(data, aes(Gen, value, fill = name))+
       geom_bar(stat = "identity",
@@ -407,10 +425,14 @@ plot.mgidi <- function(x,
         scale_y_continuous(expand = expansion(c(0, 0.05)))+
         theme_metan()+
         theme(legend.position = "bottom")+
+        scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
         labs(x = x.lab,
              y = y.lab)+
         guides(guide_legend(nrow = 1)) +
         ggtitle("Contribution of each factor to the MGIDI index")
+    if(invert == TRUE){
+      p <- p + coord_flip()
+    }
   }
   return(p)
 }
@@ -440,7 +462,11 @@ plot.mgidi <- function(x,
 #' mgidi_index <- mgidi(model)
 #' print(mgidi_index)
 #' }
-print.mgidi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
+print.mgidi <- function(x,
+                        export = FALSE,
+                        file.name = NULL,
+                        digits = 4,
+                        ...) {
   if (!class(x) == "mgidi") {
     stop("The object must be of class 'mgidi'")
   }

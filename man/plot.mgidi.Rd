@@ -9,6 +9,10 @@
   SI = 15,
   radar = TRUE,
   type = "index",
+  genotypes = "selected",
+  n.dodge = 1,
+  check.overlap = FALSE,
+  invert = FALSE,
   x.lab = NULL,
   y.lab = NULL,
   arrange.label = FALSE,
@@ -33,6 +37,19 @@ after using \code{coord_polar()}.}
 \item{type}{The type of the plot. Defaults to \code{"index"}. Use \code{type
 = "contribution"} to show the contribution of each factor to the MGIDI
 index of the selected genotypes.}
+
+\item{genotypes}{When \code{type = "contribution"} defines the genotypes to
+be shown in the plot. By default (\code{genotypes = "selected"} only
+selected genotypes are shown. Use \code{genotypes = "all"} to plot the
+contribution for all genotypes.)}
+
+\item{n.dodge}{The number of rows that should be used to render the x labels.
+This is useful for displaying labels that would otherwise overlap.}
+
+\item{check.overlap}{Silently remove overlapping labels, (recursively)
+prioritizing the first, last, and middle labels.}
+
+\item{invert}{Logical argument. If \code{TRUE}, rotate the plot.}
 
 \item{x.lab, y.lab}{The labels for the axes x and y, respectively. x label is
 set to null when a radar plot is produced.}
