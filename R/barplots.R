@@ -64,7 +64,7 @@
 #'   the \code{stat.erbar = "se"} (standard error, default), \code{stat.erbar =
 #'   "sd"} (standard deviation), or \code{stat.erbar = "ci"} (confidence
 #'   interval), based on the confidence level in the argument \code{level}.
-#' @param width.erbar The width of the error bar. Defaults to 30% of
+#' @param width.erbar The width of the error bar. Defaults to 25% of
 #'   \code{width.bar}.
 #' @param level The confidence level
 #' @param invert Logical argument. If \code{TRUE}, rotate the plot in
@@ -159,7 +159,7 @@ plot_bars <- function(.data,
   if(!missing(order) && !order %in% c("asce", "desc")){
     stop("Argument order must be one of 'asce' or 'desc'", call. = FALSE)
   }
-  width.erbar <- ifelse(missing(width.erbar), width.bar/3, width.erbar)
+  width.erbar <- ifelse(missing(width.erbar), width.bar/4, width.erbar)
   cl <- match.call()
   datac <-
     .data %>%
@@ -310,7 +310,7 @@ plot_factbars <- function(.data,
                           na.rm = TRUE,
                           verbose = FALSE,
                           plot_theme = theme_metan()) {
-  width.erbar <- ifelse(missing(width.erbar), width.bar/3, width.erbar)
+  width.erbar <- ifelse(missing(width.erbar), width.bar/4, width.erbar)
   cl <- match.call()
   datac <-
     .data %>%
