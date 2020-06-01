@@ -45,8 +45,13 @@ unproductive genotypes; and (green), productive and stable genotypes.
 \examples{
 \donttest{
 library(metan)
-model <- waasb(data_ge, ENV, GEN, REP, GY) \%>\%
+model <- waasb(data_ge2,
+               env = ENV,
+               gen = GEN,
+               rep = REP,
+               resp = PH) \%>\%
          wsmp()
+
 p1 <- plot(model)
 p2 <- plot(model, type = 2)
 arrange_ggplot(p1, p2, ncol = 1)
