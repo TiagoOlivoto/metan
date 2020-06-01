@@ -41,6 +41,18 @@
 #'   in combination with \code{lab.bar.hjust} and \code{lab.bar.vjust} to best
 #'   fit the labels in the plot.
 #' @param size.text.bar The size of the text in the bar labels.
+#' @param values Logical argument. Shows the values in the plot bar?
+#'   Defaults to \code{FALSE}
+#' @param values.hjust,values.vjust The horizontal and vertical adjust
+#'   for the values in the bar. Defaults to 0.5 and 1.5, respectively. If
+#'   \code{values = TRUE} the values are shown bellow the error bar.
+#' @param values.angle The angle for the labels in the plot. Defaults to 0.
+#'   Use in combination with \code{values.hjust} and \code{values.vjust}
+#'   to best fit the values in the plot bar.
+#' @param values.digits The significant digits to show if \code{values
+#'   = TRUE}. Defaults to \code{2}.
+#' @param values.size The size of the text for values shown in the bars.
+#'   Defaults to \code{3}.
 #' @param lab.x.hjust,lab.x.vjust The horizontal and vertical adjust for the
 #'   labels in the bar. Defaults to 0.5 and 1, respectively.
 #' @param lab.x.angle The angle for the labels in x axis. Defaults to 0. Use
@@ -123,6 +135,12 @@ plot_bars <- function(.data,
                       lab.bar.vjust = -0.5,
                       lab.bar.angle = 0,
                       size.text.bar = 5,
+                      values = FALSE,
+                      values.hjust = 0.5,
+                      values.vjust = 1.5,
+                      values.angle = 0,
+                      values.digits = 2,
+                      values.size = 4,
                       lab.x.hjust = 0.5,
                       lab.x.vjust = 1,
                       lab.x.angle = 0,
@@ -151,16 +169,20 @@ plot_bars <- function(.data,
     desc_stat({{y}}, stats = c("n, mean, sd.amo, ci, se"), level = level)
   if(errorbar == TRUE){
     if(stat.erbar == "ci"){
-      datac %<>% add_cols(max = mean + ci)
+      datac %<>% add_cols(max = mean + ci,
+                          min = mean - ci)
     }
     if(stat.erbar == "sd"){
-      datac %<>% add_cols(max = mean + sd.amo)
+      datac %<>% add_cols(max = mean + sd.amo,
+                          min = mean - sd.amo)
     }
     if(stat.erbar == "se"){
-      datac %<>% add_cols(max = mean + se)
+      datac %<>% add_cols(max = mean + se,
+                          min = mean - se)
     }
   } else{
-    datac %<>% add_cols(max = mean)
+    datac %<>% add_cols(max = mean,
+                        min = mean)
   }
   ylab <- ifelse(is.null(ylab), cl$y, ylab)
   xlab <- ifelse(is.null(xlab), cl$x, xlab)
@@ -212,6 +234,14 @@ plot_bars <- function(.data,
                        family = fontfam,
                        angle = lab.bar.angle)
   }
+  if(values == TRUE){
+    p <- p + geom_text(aes(label = round(mean, values.digits), y = min),
+                       vjust = values.vjust,
+                       hjust = values.hjust,
+                       size = values.size,
+                       family = fontfam,
+                       angle = values.angle)
+  }
   p <- p +
     plot_theme %+replace%
     theme(axis.ticks.length = unit(0.2, "cm"),
@@ -256,6 +286,12 @@ plot_factbars <- function(.data,
                           lab.bar.vjust = -0.5,
                           lab.bar.angle = 0,
                           size.text.bar = 5,
+                          values = FALSE,
+                          values.hjust = 0.5,
+                          values.vjust = 1.5,
+                          values.angle = 0,
+                          values.digits = 2,
+                          values.size = 4,
                           lab.x.hjust = 0.5,
                           lab.x.vjust = 1,
                           lab.x.angle = 0,
@@ -288,21 +324,25 @@ plot_factbars <- function(.data,
   nam <- names(select(.data, ...))
   if(errorbar == TRUE){
     if(stat.erbar == "ci"){
-      datac %<>% add_cols(max = mean_var + ci)
+      datac %<>% add_cols(max = mean_var + ci,
+                          min = mean_var - ci)
     }
     if(stat.erbar == "sd"){
-      datac %<>% add_cols(max = mean_var + sd.amo)
+      datac %<>% add_cols(max = mean_var + sd.amo,
+                          min = mean_var - sd.amo)
     }
     if(stat.erbar == "se"){
-      datac %<>% add_cols(max = mean_var + se)
+      datac %<>% add_cols(max = mean_var + se,
+                          min = mean_var - se)
     }
   } else{
-    datac %<>% add_cols(max = mean_var)
+    datac %<>% add_cols(max = mean_var,
+                        min = mean_var)
   }
   if (length(nam) > 1) {
-    names(datac) <- c("x", "y", "N", "mean_var", "sd", "se", "ci", "max")
+    names(datac) <- c("x", "y", "N", "mean_var", "sd", "se", "ci", "max", "min")
   } else {
-    names(datac) <- c("x", "N", "mean_var", "sd", "se", "ci", "max")
+    names(datac) <- c("x", "N", "mean_var", "sd", "se", "ci", "max", "min")
   }
   if (is.null(ylab) == TRUE) {
     ylab <- cl$resp
@@ -390,6 +430,15 @@ plot_factbars <- function(.data,
                        size = size.text.bar,
                        family = fontfam,
                        angle = lab.bar.angle)
+  }
+  if(values == TRUE){
+    p <- p + geom_text(aes(label = round(mean_var, values.digits), y = min),
+                       position = pd,
+                       vjust = values.vjust,
+                       hjust = values.hjust,
+                       size = values.size,
+                       family = fontfam,
+                       angle = values.angle)
   }
   p <- p +
     plot_theme %+replace%
