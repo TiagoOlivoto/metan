@@ -212,9 +212,12 @@ wsmp <- function(model,
       }
       Rank <- final[, -(SigPC2)]
       Names <- WAASAbsInicial %>% select(type, Code, OrResp, OrPC1, OrWAASB)
-      Rank <- cbind(Names, Rank) %>% as_tibble(rownames = NA)
-      hetdata <- Rank %>% dplyr::filter(type == "GEN") %>%
-        column_to_rownames("Code") %>% select(contains("PCA")) %>%
+      Rank <- cbind(Names, Rank) %>% as_tibble()
+      hetdata <-
+        Rank %>%
+        dplyr::filter(type == "GEN") %>%
+        column_to_rownames("Code") %>%
+        select(contains("PCA")) %>%
         as_tibble(rownames = NA)
       CombWAASY %<>%
         select(-type) %>%
@@ -336,8 +339,9 @@ wsmp <- function(model,
       Rank <- final[, -(SigPC2)]
       Names <- WAASAbsInicial %>%
         select(type, Code, OrResp, OrPC1, OrWAAS)
-      Rank <- cbind(Names, Rank) %>% as_tibble(rownames = NA)
-      hetdata <- Rank %>%
+      Rank <- cbind(Names, Rank) %>% as_tibble()
+      hetdata <-
+        Rank %>%
         dplyr::filter(type == "GEN") %>%
         column_to_rownames("Code") %>%
         select(contains("PCA")) %>%
@@ -399,8 +403,13 @@ wsmp <- function(model,
 #' @examples
 #' \donttest{
 #' library(metan)
-#' model <- waasb(data_ge, ENV, GEN, REP, GY) %>%
+#' model <- waasb(data_ge2,
+#'                env = ENV,
+#'                gen = GEN,
+#'                rep = REP,
+#'                resp = PH) %>%
 #'          wsmp()
+#'
 #' p1 <- plot(model)
 #' p2 <- plot(model, type = 2)
 #' arrange_ggplot(p1, p2, ncol = 1)
