@@ -386,8 +386,8 @@ get_model_data <- function(x,
     if(class(x) == "gamem" && !what %in% check3.1){
       stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check3.1, collapse = ", "), call. = FALSE)
     }
-    if(class(x) == "waasb" && !what %in% check3){
-      stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check3, collapse = ", "), call. = FALSE)
+    if(class(x) == "waasb" && !what %in% check){
+      stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check, collapse = ", "), call. = FALSE)
     }
     if (class(x) == "waasb" & what %in% check4) {
       bind <- sapply(x, function(x) {
