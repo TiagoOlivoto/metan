@@ -107,8 +107,8 @@ gge <- function(.data,
   for (var in 1:nvar) {
     ge_mat <-
       factors %>%
-      mutate(mean = vars[[var]]) %>%
-      make_mat(GEN, ENV, mean) %>%
+      mutate(Y = vars[[var]]) %>%
+      make_mat(GEN, ENV, Y) %>%
       as.matrix()
     if(has_na(ge_mat)){
       ge_mat <- impute_missing_val(ge_mat, verbose = FALSE, ...)$.data

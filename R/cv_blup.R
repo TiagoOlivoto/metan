@@ -186,18 +186,17 @@ cv_blup <- function(.data,
             testing <- suppressWarnings(anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "rowid"))) %>%
                 arrange(ENV, GEN, REP) %>%
                 base::as.data.frame()
-            MEDIAS <- modeling %>%
-                group_by(ENV, GEN) %>%
-                summarise(Y = mean(Y)) %>%
+            MEDIAS <-
+                modeling %>%
+                means_by(ENV, GEN) %>%
                 as.data.frame()
 
             model <- suppressWarnings(suppressMessages(lme4::lmer(model_formula, data = modeling)))
 
-            validation <- modeling %>%
+            validation <-
+                modeling %>%
                 mutate(pred = predict(model)) %>%
-                group_by(ENV, GEN) %>%
-                summarise(pred = mean(pred)) %>%
-                ungroup() %>%
+                means_by(ENV, GEN) %>%
                 mutate(error = pred - testing$Y)
             RMSPD <- sqrt(sum(validation$error^2)/length(validation$error))
             RMSPDres[, 1][b] <- RMSPD
@@ -271,11 +270,10 @@ cv_blup <- function(.data,
 
             model <- suppressWarnings(suppressMessages(lme4::lmer(model_formula, data = modeling)))
 
-            validation <- modeling %>%
+            validation <-
+                modeling %>%
                 mutate(pred = predict(model)) %>%
-                group_by(ENV, GEN) %>%
-                summarise(pred = mean(pred)) %>%
-                ungroup() %>%
+                means_by(ENV, GEN) %>%
                 mutate(error = pred - testing$Y,
                        code = testing$GEN)
             RMSPD <- sqrt(sum(validation$error^2)/length(validation$error))
@@ -295,7 +293,8 @@ cv_blup <- function(.data,
                   sd = sd(RMSPD),
                   se = sd(RMSPD)/sqrt(n()),
                   Q2.5 = quantile(RMSPD, 0.025),
-                  Q97.5 = quantile(RMSPD, 0.975))
+                  Q97.5 = quantile(RMSPD, 0.975),
+                  .groups = "drop")
     return(structure(list(RMSPD = RMSPDres, RMSPDmean = RMSPDmean),
                      class = "cvalidation"))
 }

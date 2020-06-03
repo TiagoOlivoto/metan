@@ -101,14 +101,14 @@ anova_ind <- function(.data,
   nvar <- ncol(vars)
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
     grouped <- data %>% split(dplyr::pull(., ENV))
     if(missing(block)){
-      formula <- as.formula(paste0("mean ~ GEN + REP"))
+      formula <- as.formula(paste0("Y ~ GEN + REP"))
       individual <- do.call(rbind, lapply(grouped, function(x) {
         anova <- aov(formula, data = x) %>%
           anova() %>%
@@ -123,7 +123,7 @@ anova_ind <- function(.data,
         } else {
           AS <- sqrt(h2)
         }
-        final <- tibble(MEAN = mean(x$mean),
+        final <- tibble(MEAN = mean(x$Y),
                         MSG = MSG,
                         FCG = anova[1, 4],
                         PFG = anova[1, 5],
@@ -131,12 +131,12 @@ anova_ind <- function(.data,
                         FCB = anova[2, 4],
                         PFB = anova[2, 5],
                         MSE = MSE,
-                        CV = sqrt(MSE) / mean(x$mean) * 100,
+                        CV = sqrt(MSE) / mean(x$Y) * 100,
                         h2 = h2,
                         AS = AS)
       }))
     } else{
-      formula <- as.formula(paste0("mean ~ GEN + REP + REP:BLOCK"))
+      formula <- as.formula(paste0("Y ~ GEN + REP + REP:BLOCK"))
       individual <- do.call(rbind, lapply(grouped, function(x) {
         anova <- aov(formula, data = x) %>%
           anova() %>%
@@ -152,7 +152,7 @@ anova_ind <- function(.data,
         } else {
           AS <- sqrt(h2)
         }
-        final <- tibble(MEAN = mean(x$mean),
+        final <- tibble(MEAN = mean(x$Y),
                         MSG = MSG,
                         FCG = anova[1, 4],
                         PFG = anova[1, 5],
@@ -163,7 +163,7 @@ anova_ind <- function(.data,
                         FCIB_R = anova[3, 4],
                         PFIB_R = anova[3, 5],
                         MSE = MSE,
-                        CV = sqrt(MSE) / mean(x$mean) * 100,
+                        CV = sqrt(MSE) / mean(x$Y) * 100,
                         h2 = h2,
                         AS = AS)
       }))

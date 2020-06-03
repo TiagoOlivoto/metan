@@ -133,34 +133,34 @@ ge_stats = function(.data,
   }
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-ge_mean <- make_mat(data, GEN, ENV, mean)
-ge_effect <- ge_effects(data, ENV, GEN, mean)[[1]]
-gge_effect <- ge_effects(data, ENV, GEN, mean, type = "gge")[[1]]
+ge_mean <- make_mat(data, GEN, ENV, Y)
+ge_effect <- ge_effects(data, ENV, GEN, Y)[[1]]
+gge_effect <- ge_effects(data, ENV, GEN, Y, type = "gge")[[1]]
 Mean <- apply(ge_mean, 1, mean)
 Variance <- rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
 CV <- apply(ge_mean, 1, function(x) (sd(x) / mean(x) * 100))
 GENSS <- (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/nlevels(data$ENV))*nlevels(data$REP)
-mod <- anova(lm(mean ~ REP/ENV + ENV * GEN, data = data))
+mod <- anova(lm(Y ~ REP/ENV + ENV * GEN, data = data))
 GENMS <- GENSS / mod[2, 1]
 Fcal <- GENMS / mod[6, 3]
 pval <- pf(Fcal, mod[2, 1], mod[6, 1], lower.tail = FALSE)
-er_mod <- ge_reg(data, ENV, GEN, REP, mean, verbose = FALSE)
-ec_mod <- ecovalence(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-an_mod <- Annicchiarico(data, ENV, GEN, REP, mean, verbose = FALSE, prob = prob)
-shu_mod <- Shukla(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-fox_mod <- Fox(data, ENV, GEN, mean, verbose = FALSE)[[1]]
-gai_mod <- gai(data, ENV, GEN, REP, mean, verbose = FALSE)[[1]]
-hue_mod <- Huehn(data, ENV, GEN, mean, verbose = FALSE)[[1]]
-lb_mod <- superiority(data, ENV, GEN, mean, verbose = FALSE)[[1]]
-then_mod <- Thennarasu(data, ENV, GEN, mean, verbose = FALSE)[[1]]
-ammm_mod <- performs_ammi(data, ENV, GEN, REP, mean, verbose = FALSE)
+er_mod <- ge_reg(data, ENV, GEN, REP, Y, verbose = FALSE)
+ec_mod <- ecovalence(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+an_mod <- Annicchiarico(data, ENV, GEN, REP, Y, verbose = FALSE, prob = prob)
+shu_mod <- Shukla(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+fox_mod <- Fox(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+gai_mod <- gai(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+hue_mod <- Huehn(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+lb_mod <- superiority(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+then_mod <- Thennarasu(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+ammm_mod <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)
 ammm_mod <- AMMI_indexes(ammm_mod)[[1]]
-blup_mod <- waasb(data, ENV, GEN, REP, mean, verbose = FALSE)
+blup_mod <- waasb(data, ENV, GEN, REP, Y, verbose = FALSE)
 blup_mod <- Resende_indexes(blup_mod)[[1]]
 temp <- tibble(GEN = an_mod[[1]]$general$GEN,
                Y = Mean,

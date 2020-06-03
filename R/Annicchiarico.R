@@ -68,7 +68,7 @@ Annicchiarico <- function(.data,
   }
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
@@ -76,11 +76,11 @@ Annicchiarico <- function(.data,
     environments <-
       data %>%
       means_by(ENV, na.rm = TRUE) %>%
-      add_cols(index = mean - mean(mean),
+      add_cols(index = Y - mean(Y),
                class = ifelse(index < 0, "unfavorable", "favorable")) %>%
       as_tibble()
     data <- left_join(data, environments %>% select(ENV, class), by = "ENV")
-    mat_g <- make_mat(data, row = GEN, col = ENV, value = mean)
+    mat_g <- make_mat(data, row = GEN, col = ENV, value = Y)
     rp_g <- sweep(mat_g, 2, colMeans(mat_g, na.rm = TRUE), "/") * 100
     Wi_g <- rowMeans(rp_g, na.rm = TRUE) - qnorm(1 - prob) * apply(rp_g, 1, sd, na.rm = TRUE)
     general <- tibble(GEN = rownames(mat_g),
@@ -90,7 +90,7 @@ Annicchiarico <- function(.data,
                       Wi = Wi_g,
                       rank = rank(-Wi_g))
     ge_mf <- subset(data, class == "favorable")
-    mat_f <- dplyr::select_if(make_mat(ge_mf, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
+    mat_f <- dplyr::select_if(make_mat(ge_mf, row = GEN, col = ENV, value = Y), function(x) !any(is.na(x)))
     rp_f <- sweep(mat_f, 2, colMeans(mat_f, na.rm = TRUE), "/") * 100
     Wi_f <- rowMeans(rp_f, na.rm = TRUE) - qnorm(1 - prob) * apply(rp_f, 1, sd)
     favorable <- tibble(GEN = rownames(mat_f),
@@ -100,7 +100,7 @@ Annicchiarico <- function(.data,
                         Wi = Wi_f,
                         rank = rank(-Wi_f))
     ge_mu <- subset(data, class == "unfavorable")
-    mat_u <- dplyr::select_if(make_mat(ge_mu, row = GEN, col = ENV, value = mean), function(x) !any(is.na(x)))
+    mat_u <- dplyr::select_if(make_mat(ge_mu, row = GEN, col = ENV, value = Y), function(x) !any(is.na(x)))
     rp_u <- sweep(mat_u, 2, colMeans(mat_u, na.rm = TRUE), "/") * 100
     Wi_u <- rowMeans(rp_u, na.rm = TRUE) - qnorm(1 - prob) * apply(rp_u, 1, sd, na.rm = TRUE)
     unfavorable <- tibble(GEN = rownames(mat_u),

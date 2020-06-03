@@ -41,10 +41,10 @@ tukey_hsd <- function(model, ..., out = "long"){
                           as.data.frame() %>%
                           rownames_to_column("comparison") %>%
                           separate(comparison, into= c("group2", "group1"), sep = "-") %>%
-                          add_cols(term = names(mod)[i], .before = "group2") %>%
+                          add_cols(term = names(mod)[i], .before = group2) %>%
                           set_names("term", "group2", "group1", "estimate", "conf.low", "conf.high", "p.adj") %>%
                           add_cols(sign = stars_pval(p.adj)) %>%
-                          reorder_cols(group1, .before = "group2")
+                          reorder_cols(group1, .before = group2)
                       })
   )
   if(out == "wide"){

@@ -56,7 +56,7 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
   }
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
@@ -64,7 +64,7 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
     environments <-
       data %>%
       means_by(ENV, na.rm = TRUE) %>%
-      add_cols(index = mean - mean(mean),
+      add_cols(index = Y - mean(Y),
                class = ifelse(index < 0, "unfavorable", "favorable")) %>%
       as_tibble()
     data <- left_join(data, environments %>% select(ENV, class), by = "ENV")
@@ -74,13 +74,13 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
       })
       return(P)
     }
-    mat_g <- make_mat(data, row = GEN, col = ENV, value = mean)
+    mat_g <- make_mat(data, row = GEN, col = ENV, value = Y)
     ge_mf <- subset(data, class == "favorable")
     mat_f <- dplyr::select_if(make_mat(ge_mf, row = GEN,
-                                       col = ENV, value = mean), function(x) !any(is.na(x)))
+                                       col = ENV, value = Y), function(x) !any(is.na(x)))
     ge_mu <- subset(data, class == "unfavorable")
     mat_u <- dplyr::select_if(make_mat(ge_mu, row = GEN,
-                                       col = ENV, value = mean), function(x) !any(is.na(x)))
+                                       col = ENV, value = Y), function(x) !any(is.na(x)))
     temp <- list(environments = environments,
                  index = tibble(GEN = rownames(mat_g),
                                 Y = apply(mat_g, 1, mean),

@@ -49,17 +49,16 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   }
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
     data2 <- data %>%
-      group_by(ENV, GEN) %>%
-      summarise(mean = mean(mean)) %>%
+      means_by(ENV, GEN) %>%
       as.data.frame()
     data3 <- mutate(data2,
-                    ge = residuals(lm(mean ~ ENV + GEN, data = data2)))
+                    ge = residuals(lm(Y ~ ENV + GEN, data = data2)))
     ge_effect <- make_mat(data3, GEN, ENV, ge)
     Ecoval <- rowSums(ge_effect^2 * nlevels(data$REP))
     Ecov_perc <- (Ecoval/sum(Ecoval)) * 100

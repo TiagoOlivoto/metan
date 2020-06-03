@@ -67,7 +67,7 @@ ge_winners <- function(.data, env, gen, resp, type = "winners", better = NULL) {
   }
   for (var in 1:nvar) {
     temp <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(temp)){
       temp <- remove_rows_na(temp)
       has_text_in_num(temp)
@@ -78,14 +78,14 @@ ge_winners <- function(.data, env, gen, resp, type = "winners", better = NULL) {
           temp %>%
           means_by(ENV, GEN) %>%
           group_by(ENV) %>%
-          arrange(desc(mean), .by_group = TRUE)
+          arrange(desc(Y), .by_group = TRUE)
       }
       if (better == "l") {
         temp <-
           temp %>%
           means_by(ENV, GEN) %>%
           group_by(ENV) %>%
-          arrange(mean, .by_group = TRUE)
+          arrange(Y, .by_group = TRUE)
       }
     } else {
       if (better[[var]] == "h") {
@@ -93,14 +93,14 @@ ge_winners <- function(.data, env, gen, resp, type = "winners", better = NULL) {
           temp %>%
           means_by(ENV, GEN) %>%
           group_by(ENV) %>%
-          arrange(desc(mean), .by_group = TRUE)
+          arrange(desc(Y), .by_group = TRUE)
       }
       if (better[[var]] == "l") {
         temp <-
           temp %>%
           means_by(ENV, GEN) %>%
           group_by(ENV) %>%
-          arrange(mean, .by_group = TRUE)
+          arrange(Y, .by_group = TRUE)
       }
     }
     listres[[paste(names(vars[var]))]] <- temp

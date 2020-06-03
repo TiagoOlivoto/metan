@@ -113,43 +113,45 @@ gafem <- function(.data,
     nvar <- ncol(vars)
     for (var in 1:nvar) {
       data <- factors %>%
-        mutate(mean = vars[[var]])
+        mutate(Y = vars[[var]])
       if(has_na(data)){
         data <- remove_rows_na(data)
         has_text_in_num(data)
       }
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
-      ovmean <- mean(data$mean)
-      model <- aov(mean ~ REP + GEN, data = data)
+      ovmean <- mean(data$Y)
+      model <- aov(Y ~ REP + GEN, data = data)
       anova <- anova(model) %>%
         rownames_to_column("Source") %>%
         as_tibble()
-      min_gen <- data %>%
-        group_by(GEN) %>%
-        summarise(Y = mean(mean)) %>%
+      min_gen <-
+        data %>%
+        means_by(GEN) %>%
         top_n(1, -Y) %>%
         select(GEN, Y) %>%
         slice(1)
-      max_gen <- data %>%
-        group_by(GEN) %>%
-        summarise(Y = mean(mean)) %>%
+      max_gen <-
+        data %>%
+        means_by(GEN) %>%
         top_n(1, Y) %>%
         select(GEN, Y) %>%
         slice(1)
-      max <- data %>%
-        top_n(1, mean) %>%
+      max <-
+        data %>%
+        top_n(1, Y) %>%
         slice(1)
-      min <- data %>%
-        top_n(1, -mean) %>%
+      min <-
+        data %>%
+        top_n(1, -Y) %>%
         slice(1)
       Details <- tibble(
         Parameters = c("Ngen", "OVmean", "Min", "Max", "MinGEN", "MaxGEN"),
         Values = c(
           Ngen,
-          round(mean(data$mean), 4),
-          paste0(round(min$mean, 4), " (", min$GEN, " in ", min$REP, ")"),
-          paste0(round(max$mean, 4), " (", max$GEN, " in ", max$REP, ")"),
+          round(mean(data$Y), 4),
+          paste0(round(min$Y, 4), " (", min$GEN, " in ", min$REP, ")"),
+          paste0(round(max$Y, 4), " (", max$GEN, " in ", max$REP, ")"),
           paste0(round(min_gen[1, 2], 4), " (", min_gen$GEN, ")"),
           paste0(round(max_gen[1, 2], 4), " (", max_gen$GEN, ")")
         )
@@ -197,44 +199,45 @@ gafem <- function(.data,
     nvar <- ncol(vars)
     for (var in 1:nvar) {
       data <- factors %>%
-        mutate(mean = vars[[var]])
+        mutate(Y = vars[[var]])
       if(has_na(data)){
         data <- remove_rows_na(data)
         has_text_in_num(data)
       }
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
-      ovmean <- mean(data$mean)
-      model <- aov(mean ~ REP + GEN + REP:BLOCK, data = data)
+      ovmean <- mean(data$Y)
+      model <- aov(Y ~ REP + GEN + REP:BLOCK, data = data)
       anova <- anova(model) %>%
         rownames_to_column("Source") %>%
         as_tibble()
       anova[3, 1] <- "BLOCK(REP)"
-      min_gen <- data %>%
-        group_by(GEN) %>%
-        summarise(Y = mean(mean)) %>%
+      min_gen <-
+        data %>%
+        means_by(GEN) %>%
         top_n(1, -Y) %>%
         select(GEN, Y) %>%
         slice(1)
-      max_gen <- data %>%
-        group_by(GEN) %>%
-        summarise(Y = mean(mean)) %>%
+      max_gen <-
+        data %>%
+        means_by(GEN) %>%
         top_n(1, Y) %>%
         select(GEN, Y) %>%
         slice(1)
-      max <- data %>%
-        top_n(1, mean) %>%
+      max <-
+        data %>%
+        top_n(1, Y) %>%
         slice(1)
       min <- data %>%
-        top_n(1, -mean) %>%
+        top_n(1, -Y) %>%
         slice(1)
       Details <- tibble(
         Parameters = c("Ngen", "OVmean", "Min", "Max", "MinGEN", "MaxGEN"),
         Values = c(
           Ngen,
-          round(mean(data$mean), 4),
-          paste0(round(min$mean, 4), " (", min$GEN, " in ", min$BLOCK, " of ", min$REP, ")"),
-          paste0(round(max$mean, 4), " (", max$GEN, " in ", max$BLOCK, " of ", max$REP, ")"),
+          round(mean(data$Y), 4),
+          paste0(round(min$Y, 4), " (", min$GEN, " in ", min$BLOCK, " of ", min$REP, ")"),
+          paste0(round(max$Y, 4), " (", max$GEN, " in ", max$BLOCK, " of ", max$REP, ")"),
           paste0(round(min_gen[1, 2], 4), " (", min_gen$GEN, ")"),
           paste0(round(max_gen[1, 2], 4), " (", max_gen$GEN, ")")
         )

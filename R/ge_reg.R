@@ -58,26 +58,26 @@ ge_reg = function(.data,
   }
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-    data2 =  data  %>%
-      dplyr::group_by(ENV, GEN) %>%
-      dplyr::summarise(mean = mean(mean)) %>%
+    data2 <-
+      data %>%
+      means_by(ENV, GEN) %>%
       as.data.frame()
-    model1 <- lm(mean ~ GEN + ENV + ENV/REP + ENV * GEN, data = data)
+    model1 <- lm(Y ~ GEN + ENV + ENV/REP + ENV * GEN, data = data)
     modav <- anova(model1)
-    mydf = data.frame(aggregate(mean ~ GEN + ENV, data = data, mean))
-    myAgg = aggregate(mean ~ GEN, mydf, "c")
-    iamb = data.frame(aggregate(mean ~ ENV, data = data, mean))
-    iamb = dplyr::mutate(iamb, IndAmb = mean - mean(mean))
-    iamb2 = data.frame(aggregate(mean ~ ENV + GEN, data = data, mean))
+    mydf = data.frame(aggregate(Y ~ GEN + ENV, data = data, mean))
+    myAgg = aggregate(Y ~ GEN, mydf, "c")
+    iamb = data.frame(aggregate(Y ~ ENV, data = data, mean))
+    iamb = dplyr::mutate(iamb, IndAmb = Y - mean(Y))
+    iamb2 = data.frame(aggregate(Y ~ ENV + GEN, data = data, mean))
     iamb2 = suppressMessages(dplyr::mutate(iamb2,
                                            IndAmb = dplyr::left_join(iamb2, iamb %>% select(ENV, IndAmb))$IndAmb))
-    matx <- myAgg$mean
-    meandf = data.frame(GEN = myAgg$GEN, myAgg$mean)
+    matx <- myAgg$Y
+    meandf = data.frame(GEN = myAgg$GEN, myAgg$Y)
     names(meandf) = c("GEN", levels(mydf$ENV))
     iij = apply(matx, 2, mean) - mean(matx)
     YiIj = matx %*% iij
@@ -100,7 +100,7 @@ ge_reg = function(.data,
     en = length(levels(data$ENV))
     S2di = (dij/(en - 2)) - (S2e/rps)
     data2 = data2
-    model2 <- lm(mean ~ GEN + ENV, data = data2)
+    model2 <- lm(Y ~ GEN + ENV, data = data2)
     amod2 <- anova(model2)
     SSL = amod2$"Sum Sq"[2]
     SSGxL = amod2$"Sum Sq"[3]
@@ -218,9 +218,9 @@ plot.ge_reg <- function(x,
     y.lab <- ifelse(missing(y.lab), "Response variable", y.lab)
     x.lab <- ifelse(missing(x.lab), "Environmental index", x.lab)
     p <-
-      ggplot(x$data, aes(x = IndAmb, y = mean))+
+      ggplot(x$data, aes(x = IndAmb, y = Y))+
       geom_point(aes(colour = GEN), size = 1.5)+
-      geom_smooth(aes(colour = GEN), method = "lm", se = FALSE)+
+      geom_smooth(aes(colour = GEN), method = "lm", formula = y ~ x, se = FALSE)+
       theme_bw()+
       labs(x = x.lab, y = y.lab)+
       plot_theme %+replace%

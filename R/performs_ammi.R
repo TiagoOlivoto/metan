@@ -119,7 +119,7 @@ performs_ammi <- function(.data,
     nvar <- ncol(vars)
     for (var in 1:nvar) {
         data <- factors %>%
-            mutate(mean = vars[[var]])
+            mutate(Y = vars[[var]])
         if(has_na(data)){
             data <- remove_rows_na(data)
             has_text_in_num(data)
@@ -129,7 +129,7 @@ performs_ammi <- function(.data,
         nrep <- nlevels(data$REP)
         minimo <- min(ngen, nenv) - 1
         if(missing(block)){
-            model <- aov(mean ~ GEN + ENV + GEN:ENV + ENV/REP, data = data)
+            model <- aov(Y ~ GEN + ENV + GEN:ENV + ENV/REP, data = data)
             influence <- lm.influence(model)
             augment <- model$model %>%
                 add_cols(hat = influence$hat,
@@ -149,7 +149,7 @@ performs_ammi <- function(.data,
             anova[1, 6] <- 1 - pf(anova[1, 5], anova[1, 2], anova[2, 2])
             probint <- anova[4, 6]
         } else{
-            model <- aov(mean ~ GEN + ENV + GEN:ENV + ENV/REP/BLOCK, data = data)
+            model <- aov(Y ~ GEN + ENV + GEN:ENV + ENV/REP/BLOCK, data = data)
             influence <- lm.influence(model)
             augment <- model$model %>%
                 add_cols(hat = influence$hat,
@@ -175,7 +175,7 @@ performs_ammi <- function(.data,
         MSE <- deviance(model)/DFE
         MEANS <-
             means_by(data, GEN, ENV) %>%
-            make_mat(GEN, ENV, mean)
+            make_mat(GEN, ENV, Y)
         if(has_na(MEANS)){
             MEANS <- impute_missing_val(MEANS, verbose = verbose, ...)$.data
             warning("Data imputation used to fill the GxE matrix", call. = FALSE)
@@ -230,15 +230,14 @@ performs_ammi <- function(.data,
         SCOREG <- U %*% LL^0.5
         SCOREE <- V %*% LL^0.5
         colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
-        bplot <- MEANS %>%
-            group_by(GEN) %>%
-            summarise(Y = mean(Y)) %>%
+        bplot <-
+            MEANS %>%
+            means_by(GEN) %>%
             mutate(type = "GEN") %>%
             rename(Code = GEN) %>%
             cbind(., SCOREG) %>%
             rbind(., MEANS %>%
-                      group_by(ENV) %>%
-                      summarise(Y = mean(Y)) %>%
+                      means_by(ENV) %>%
                       mutate(type = "ENV") %>%
                       rename(Code = ENV) %>%
                       cbind(., SCOREE)) %>%

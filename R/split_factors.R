@@ -40,7 +40,7 @@ split_factors <- function(.data, ..., keep_factors = FALSE) {
   grouped <- group_by(.data, ...)
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " | ")))
   gd <- grouped %>%
-    group_split(keep = keep_factors) %>%
+    group_split(.keep = keep_factors) %>%
     set_names(names)
   return(gd %>% set_class("split_factors"))
 }
@@ -50,7 +50,7 @@ as.split_factors <- function(.data, keep_factors = FALSE) {
   grouped <- group_by_if(.data, is.factor)
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " | ")))
   gd <- grouped %>%
-    group_split(keep = keep_factors) %>%
+    group_split(.keep = keep_factors) %>%
     set_names(names)
   return(gd %>% set_class("split_factors"))
 }

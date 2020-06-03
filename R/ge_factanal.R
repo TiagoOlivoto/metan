@@ -60,12 +60,12 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
     nvar <- ncol(vars)
     for (var in 1:nvar) {
         data <- factors %>%
-            mutate(mean = vars[[var]])
+            mutate(Y = vars[[var]])
         if(has_na(data)){
             data <- remove_rows_na(data)
             has_text_in_num(data)
         }
-        means <- make_mat(data, GEN, ENV, mean)
+        means <- make_mat(data, GEN, ENV, Y)
         cor.means <- cor(means)
         eigen.decomposition <- eigen(cor.means)
         eigen.values <- eigen.decomposition$values

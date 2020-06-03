@@ -73,13 +73,13 @@ env_dissimilarity <- function(.data,
   nvar <- ncol(vars)
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-    mat <- make_mat(data, GEN, ENV, mean)
-    ind_anova <- anova_ind(data, ENV, GEN, REP, mean)
+    mat <- make_mat(data, GEN, ENV, Y)
+    ind_anova <- anova_ind(data, ENV, GEN, REP, Y)
     NG <- nrow(mat)
     NE <- ncol(mat)
     NR <- nlevels(data$REP)
@@ -97,7 +97,7 @@ env_dissimilarity <- function(.data,
     MSGE[lower.tri(MSGE, diag = F)] <- SQGA / (NG - 1)
     cmat <- cor(mat)
     dist_r <- as.vector(t(cor(mat))[lower.tri(cor(mat), diag = F)])
-    MS_GEN <- ind_anova[["mean"]][["individual"]][["MSG"]] / NR
+    MS_GEN <- ind_anova[["Y"]][["individual"]][["MSG"]] / NR
     C <- 0
     R <- 0
     CPARTCC <- matrix(NA, NE, NE)

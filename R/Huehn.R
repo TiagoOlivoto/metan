@@ -57,12 +57,12 @@ Huehn <- function(.data, env, gen, resp, verbose = TRUE) {
   }
   for (var in 1:nvar) {
     data <- factors %>%
-      mutate(mean = vars[[var]])
+      mutate(Y = vars[[var]])
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-    data <- make_mat(data, GEN, ENV, mean)
+    data <- make_mat(data, GEN, ENV, Y)
     nr <- nrow(data)
     nc <- ncol(data)
     data_m <- as.matrix(data)
