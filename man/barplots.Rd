@@ -168,7 +168,7 @@ the \code{stat.erbar = "se"} (standard error, default), \code{stat.erbar =
   "sd"} (standard deviation), or \code{stat.erbar = "ci"} (confidence
 interval), based on the confidence level in the argument \code{level}.}
 
-\item{width.erbar}{The width of the error bar. Defaults to 30\% of
+\item{width.erbar}{The width of the error bar. Defaults to 25\% of
 \code{width.bar}.}
 
 \item{level}{The confidence level}
