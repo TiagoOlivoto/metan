@@ -78,12 +78,8 @@
 #'                 gen = GEN,
 #'                 rep = REP,
 #'                 resp = GY,
-#'                 nboot = 10,
+#'                 nboot = 5,
 #'                 naxis = 2)
-#'
-#' # Alternatively using the pipe operator %>%
-#' model <- data_ge %>%
-#'          cv_ammi(ENV, GEN, REP, GY)
 #' }
 #'
 #'

@@ -92,11 +92,8 @@ model <- cv_ammif(data_ge,
                   gen = GEN,
                   rep = REP,
                   resp = GY,
-                  nboot = 10)
-
-# Alternatively (and more intuitively) using the pipe operator \%>\%
-model <- data_ge \%>\%
-         cv_ammif(ENV, GEN, REP, GY, 10)
+                  nboot = 5)
+plot(model)
 }
 
 }

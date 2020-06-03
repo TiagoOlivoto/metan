@@ -113,11 +113,8 @@ model <- cv_blup(data_ge,
                  gen = GEN,
                  rep = REP,
                  resp = GY,
-                 nboot = 10)
+                 nboot = 5)
 
-# Alternatively using the pipe operator \%>\%
-model <- data_ge \%>\%
-         cv_blup(ENV, GEN, REP, GY, nboot = 10)
 }
 
 }
