@@ -43,7 +43,7 @@ RdMacros: mathjaxr
 Imports: 
     ade4,
     cowplot,
-    dplyr,
+    dplyr (>= 1.0.0),
     FWDselect,
     GGally,
     ggforce,
