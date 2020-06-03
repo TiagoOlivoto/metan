@@ -105,7 +105,7 @@ two-way trial with qualitative-qualitative treatment structure.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1</span>
       </span>
     </div>
 
@@ -269,6 +269,12 @@ two-way trial with <strong>qualitative-qualitative treatment structure</strong>.
   <span class='kw'>lab.bar.vjust</span> <span class='kw'>=</span> -<span class='fl'>0.5</span>,
   <span class='kw'>lab.bar.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>size.text.bar</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>values.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>values.vjust</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
+  <span class='kw'>values.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>values.digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>values.size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>lab.x.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>lab.x.vjust</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>lab.x.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -302,6 +308,12 @@ two-way trial with <strong>qualitative-qualitative treatment structure</strong>.
   <span class='kw'>lab.bar.vjust</span> <span class='kw'>=</span> -<span class='fl'>0.5</span>,
   <span class='kw'>lab.bar.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>size.text.bar</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>values.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>values.vjust</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
+  <span class='kw'>values.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>values.digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>values.size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>lab.x.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>lab.x.vjust</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>lab.x.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -399,6 +411,33 @@ fit the labels in the plot.</p></td>
       <td><p>The size of the text in the bar labels.</p></td>
     </tr>
     <tr>
+      <th>values</th>
+      <td><p>Logical argument. Shows the values in the plot bar?
+Defaults to <code>FALSE</code></p></td>
+    </tr>
+    <tr>
+      <th>values.hjust, values.vjust</th>
+      <td><p>The horizontal and vertical adjust
+for the values in the bar. Defaults to 0.5 and 1.5, respectively. If
+<code>values = TRUE</code> the values are shown bellow the error bar.</p></td>
+    </tr>
+    <tr>
+      <th>values.angle</th>
+      <td><p>The angle for the labels in the plot. Defaults to 0.
+Use in combination with <code>values.hjust</code> and <code>values.vjust</code>
+to best fit the values in the plot bar.</p></td>
+    </tr>
+    <tr>
+      <th>values.digits</th>
+      <td><p>The significant digits to show if <code>values
+= TRUE</code>. Defaults to <code>2</code>.</p></td>
+    </tr>
+    <tr>
+      <th>values.size</th>
+      <td><p>The size of the text for values shown in the bars.
+Defaults to <code>3</code>.</p></td>
+    </tr>
+    <tr>
       <th>lab.x.hjust, lab.x.vjust</th>
       <td><p>The horizontal and vertical adjust for the
 labels in the bar. Defaults to 0.5 and 1, respectively.</p></td>
@@ -423,7 +462,7 @@ interval), based on the confidence level in the argument <code>level</code>.</p>
     </tr>
     <tr>
       <th>width.erbar</th>
-      <td><p>The width of the error bar. Defaults to 30% of
+      <td><p>The width of the error bar. Defaults to 25% of
 <code>width.bar</code>.</p></td>
     </tr>
     <tr>

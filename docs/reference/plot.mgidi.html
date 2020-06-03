@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1</span>
       </span>
     </div>
 
@@ -238,6 +238,10 @@
   <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
   <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"index"</span>,
+  <span class='kw'>genotypes</span> <span class='kw'>=</span> <span class='st'>"selected"</span>,
+  <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>check.overlap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -272,6 +276,27 @@ after using <code>coord_polar()</code>.</p></td>
       <td><p>The type of the plot. Defaults to <code>"index"</code>. Use <code>type
 = "contribution"</code> to show the contribution of each factor to the MGIDI
 index of the selected genotypes.</p></td>
+    </tr>
+    <tr>
+      <th>genotypes</th>
+      <td><p>When <code>type = "contribution"</code> defines the genotypes to
+be shown in the plot. By default (<code>genotypes = "selected"</code> only
+selected genotypes are shown. Use <code>genotypes = "all"</code> to plot the
+contribution for all genotypes.)</p></td>
+    </tr>
+    <tr>
+      <th>n.dodge</th>
+      <td><p>The number of rows that should be used to render the x labels.
+This is useful for displaying labels that would otherwise overlap.</p></td>
+    </tr>
+    <tr>
+      <th>check.overlap</th>
+      <td><p>Silently remove overlapping labels, (recursively)
+prioritizing the first, last, and middle labels.</p></td>
+    </tr>
+    <tr>
+      <th>invert</th>
+      <td><p>Logical argument. If <code>TRUE</code>, rotate the plot.</p></td>
     </tr>
     <tr>
       <th>x.lab, y.lab</th>

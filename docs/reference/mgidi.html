@@ -109,7 +109,7 @@ presents desired values for all the analyzed traits." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1</span>
       </span>
     </div>
 
@@ -258,7 +258,14 @@ genotype with the lowest MGIDI is then closer to the ideotype and therefore
 presents desired values for all the analyzed traits.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mgidi</span>(<span class='no'>.data</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ideotype</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>mgidi</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>ideotype</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>use</span> <span class='kw'>=</span> <span class='st'>"complete.obs"</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -290,6 +297,12 @@ variables in which lower values are desired. For example, <code>ideotype =
 the first four traits and lower values for the last trait. If <code>.data</code>
 is a model fitted with the function <code><a href='gamem.html'>gamem</a></code>, the order of the
 traits will be the declared in the argument <code>resp</code> in that function.</p></td>
+    </tr>
+    <tr>
+      <th>use</th>
+      <td><p>The method for computing covariances in the presence of missing
+values. Defaults to <code>complete.obs</code>, i.e., missing values are handled
+by casewise deletion.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
