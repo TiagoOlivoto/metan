@@ -177,17 +177,17 @@ data_ge \%>\%
 data_ge \%>\%
   add_cols(x = 10,
            y = 30,
-           .before = "GEN")
+           .before = GEN)
 
 # Creating a new variable based on the existing ones.
 data_ge \%>\%
   add_cols(GY2 = GY^2,
            GY2_HM = GY2 + HM,
-           .after = "GY")
+           .after = GY)
 
 ############### Reordering columns ###############
-reorder_cols(data_ge2, NKR, .before = "ENV")
-reorder_cols(data_ge2, ENV, GEN, .after = "ED")
+reorder_cols(data_ge2, NKR, .before = ENV)
+reorder_cols(data_ge2, where(is.factor), .after = last_col())
 
 ######## Selecting and removing columns ##########
 select_cols(data_ge2, GEN, REP)
@@ -204,11 +204,11 @@ concatenate(data_ge, ENV, GEN, REP, drop = TRUE)
 # Combine with add_cols() and replace_string()
 data_ge2 \%>\%
  add_cols(ENV_GEN = concatenate(., ENV, GEN, pull = TRUE),
-          .after = "GEN") \%>\%
+          .after = GEN) \%>\%
  replace_string(ENV_GEN,
                 pattern = "H",
                 replacement = "HYB_",
-                .after = "ENV_GEN")
+                .after = ENV_GEN)
 
 ########### formating column names ###############
 # Creating data with messy column names

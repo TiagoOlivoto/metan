@@ -146,10 +146,10 @@ all_upper_case <- function(.data, ...){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     .data <- as.data.frame(.data)
     if(!missing(...)){
-      mutate_at(.data, vars(...), toupper) %>%
+      mutate(.data, across(c(...), toupper)) %>%
         as_tibble(rownames = NA)
     } else{
-      mutate_if(.data, ~!is.numeric(.x), toupper) %>%
+      mutate(.data, across(where(~!is.numeric(.x)), toupper)) %>%
         as_tibble(rownames = NA)
     }
   } else{
@@ -162,10 +162,10 @@ all_lower_case <- function(.data, ...){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     .data <- as.data.frame(.data)
     if(!missing(...)){
-      mutate_at(.data, vars(...), tolower) %>%
+      mutate(.data, across(c(...), tolower)) %>%
         as_tibble(rownames = NA)
     } else{
-    mutate_if(.data, ~!is.numeric(.x), tolower) %>%
+      mutate(.data, across(where(~!is.numeric(.x)), tolower)) %>%
       as_tibble(rownames = NA)
     }
   } else{
@@ -183,10 +183,10 @@ all_title_case <- function(.data, ...){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     .data <- as.data.frame(.data)
     if(!missing(...)){
-     mutate_at(.data, vars(...), to_title) %>%
+      mutate(.data, across(c(...), to_title)) %>%
       as_tibble(rownames = NA)
     } else{
-      mutate_if(.data, ~!is.numeric(.x), to_title) %>%
+      mutate(.data, across(where(~!is.numeric(.x)), to_title)) %>%
         as_tibble(rownames = NA)
     }
   } else{
@@ -210,8 +210,8 @@ extract_number <- function(.data,
     if (pull == TRUE){
       results <- pull(results)
     }
-    if (!is.null(.before) | !is.null(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
+    if (!missing(.before) | !missing(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
     }
   } else{
     results <- .data %>%
@@ -241,8 +241,8 @@ extract_string <- function(.data,
     if(pull == TRUE){
       results <- pull(results)
     }
-    if (!is.null(.before) | !is.null(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
+    if (!missing(.before) | !missing(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
     }
   } else{
     results <- .data %>%
@@ -282,16 +282,15 @@ has_text_in_num <- function(.data){
 remove_space <- function(.data, ...){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     if(missing(...)){
-      vars <- vars(everything())
+      results <-
+        mutate(.data,
+               across(where(~!is.numeric(.x)), gsub, pattern = "[[:space:]]", replacement = ""))
     } else{
-      vars <- vars(...)
+      results <-
+        mutate(.data,
+               across(c(...), gsub, pattern = "[[:space:]]", replacement = ""))
     }
-    results <-
-      mutate_at(.data,
-                .vars = vars,
-                .funs = gsub,
-                pattern = "[[:space:]]",
-                replacement = "")
+
     return(results)
   } else{
     return(gsub(pattern = "[[:space:]]", replacement = "", .data))
@@ -303,18 +302,14 @@ remove_space <- function(.data, ...){
 remove_strings <- function(.data, ...){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
   if(missing(...)){
-    vars <- vars(everything())
+    results <-
+      mutate(.data, across(everything(), gsub, pattern = "[^0-9.-]", replacement = "")) %>%
+      mutate(across(everything(), as.numeric))
   } else{
-    vars <- vars(...)
+    results <-
+      mutate(.data, across(c(...), gsub, pattern = "[^0-9.-]", replacement = "")) %>%
+      mutate(across(c(...), as.numeric))
   }
-  results <-
-    mutate_at(.data,
-              .vars = vars,
-              .funs = gsub,
-              pattern = "[^0-9.-]",
-              replacement = "") %>%
-    mutate_at(.vars = vars,
-              .funs = as.numeric)
   return(results)
   } else{
     return(gsub(pattern = "[^0-9.-]", replacement = "", .data)) %>%
@@ -345,8 +340,8 @@ replace_number <- function(.data,
     if(pull == TRUE){
       results <- pull(results)
     }
-    if (!is.null(.before) | !is.null(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
+    if (!missing(.before) | !missing(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
     }
   } else{
     results <- .data %>%
@@ -384,8 +379,8 @@ replace_string <- function(.data,
     if(pull == TRUE){
       results <- pull(results)
     }
-    if (!is.null(.before) | !is.null(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
+    if (!missing(.before) | !missing(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
     }
   } else{
     results <- .data %>%
@@ -408,9 +403,9 @@ round_cols <- function(.data, ...,  digits = 2){
     rnames <- rownames(.data)
   }
   if (missing(...)){
-    .data %<>% mutate_if(is.numeric, round, digits = digits)
+    .data %<>% mutate(across(where(is.numeric), round, digits = digits))
   } else{
-    .data %<>% mutate_at(vars(...), round, digits = digits)
+    .data %<>% mutate(across(c(...), round, digits = digits))
   }
   if(rn_test == TRUE){
     rownames(.data) <- rnames
@@ -428,10 +423,10 @@ tidy_strings <- function(.data, ..., sep = "_"){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     if(missing(...)){
       results <-
-        mutate_if(.data, ~!is.numeric(.x),  fstr)
+        mutate(.data, across(where(~!is.numeric(.x)),  fstr))
     } else{
       results <-
-        mutate_at(.data, vars(...), fstr)
+        mutate(.data, across(c(...), fstr))
     }
     return(results)
   } else{
@@ -522,6 +517,7 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @importFrom  tibble add_column add_row
+#' @importFrom dplyr relocate across
 #' @export
 #' @examples
 #' \donttest{
@@ -536,17 +532,17 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' data_ge %>%
 #'   add_cols(x = 10,
 #'            y = 30,
-#'            .before = "GEN")
+#'            .before = GEN)
 #'
 #' # Creating a new variable based on the existing ones.
 #' data_ge %>%
 #'   add_cols(GY2 = GY^2,
 #'            GY2_HM = GY2 + HM,
-#'            .after = "GY")
+#'            .after = GY)
 #'
 #' ############### Reordering columns ###############
-#' reorder_cols(data_ge2, NKR, .before = "ENV")
-#' reorder_cols(data_ge2, ENV, GEN, .after = "ED")
+#' reorder_cols(data_ge2, NKR, .before = ENV)
+#' reorder_cols(data_ge2, where(is.factor), .after = last_col())
 #'
 #' ######## Selecting and removing columns ##########
 #' select_cols(data_ge2, GEN, REP)
@@ -563,11 +559,11 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' # Combine with add_cols() and replace_string()
 #'data_ge2 %>%
 #'  add_cols(ENV_GEN = concatenate(., ENV, GEN, pull = TRUE),
-#'           .after = "GEN") %>%
+#'           .after = GEN) %>%
 #'  replace_string(ENV_GEN,
 #'                 pattern = "H",
 #'                 replacement = "HYB_",
-#'                 .after = "ENV_GEN")
+#'                 .after = ENV_GEN)
 #'
 #' ########### formating column names ###############
 #' # Creating data with messy column names
@@ -602,11 +598,11 @@ tidy_strings <- function(.data, ..., sep = "_"){
 add_cols <- function(.data, ..., .before = NULL, .after = NULL){
   results <- mutate(.data, ...)
   pos_dots <- (ncol(results)) - ((ncol(results) - ncol(.data)) - 1)
-  if (!is.null(.before) | !is.null(.after)){
+  if (!missing(.before) | !missing(.after)){
     results <- reorder_cols(results,
-                            pos_dots:ncol(results),
-                            .before = .before,
-                            .after = .after)
+                            all_of(pos_dots):ncol(results),
+                            .before = {{.before}},
+                            .after = {{.after}})
   }
   return(as_tibble(results, rownames = NA))
 }
@@ -687,8 +683,8 @@ concatenate <- function(.data,
     if (pull == TRUE){
       results <- pull(results)
     }
-    if (!is.null(.before) | !is.null(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = .before, .after = .after)
+    if (!missing(.before) | !missing(.after)){
+      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
     }
   } else{
     conc <- select(.data, ...)
@@ -703,7 +699,7 @@ concatenate <- function(.data,
 #' @export
 get_levels <- function(.data, group){
   .data %>%
-    mutate_if(~!is.numeric(.x), as.factor) %>%
+    mutate(across(where(~!is.numeric(.x)), as.factor)) %>%
     pull({{group}}) %>%
     levels()
 }
@@ -722,50 +718,7 @@ get_level_size <- function(.data, group){
 #' @importFrom rlang quos
 #' @export
 reorder_cols <- function(.data, ..., .before = NULL, .after = NULL){
-  args <- match.call()
-  if (is.null(.after) && is.null(.before)){
-    stop("At least '.before' or '.after' must be informed", call. = FALSE)
-  }
-  if (!is.null(.after) && !is.null(.before)){
-    stop("'.before' and '.after' cannot be evaluated together.", call. = FALSE)
-  }
-  if (!is.null(.before)){
-    if(is.character(.before)){
-      if(!(.before %in% colnames(.data))){
-        stop(paste("Column", args[[".before"]], "not present in .data"), call. = FALSE)
-      }
-    } else{
-      .before <- colnames(.data[.before])
-    }
-    sel <- select(.data, ...)
-    bfr <- .data[,1:which(colnames(.data) ==  .before)-1]
-    if(any(colnames(sel) %in% colnames(bfr))){
-      bfr <- bfr[, -which(names(bfr)  %in% names(sel))]
-    }
-    aft <- select(.data, -!!colnames(bfr), -!!colnames(sel))
-    results <- cbind(bfr, sel, aft)
-  }
-  if(!is.null(.after)) {
-    if(is.character(.after)){
-      if(!(.after %in% colnames(.data))){
-        stop(paste("Column", args[[".after"]], "not present in .data"), call. = FALSE)
-      }
-    } else{
-      .after <- colnames(.data[.after])
-    }
-    if(which(colnames(.data) ==  .after)+1 > ncol(.data)){
-      results <- select(.data, -c(!!!quos(...)), everything())
-    } else{
-      sel <- select(.data, ...)
-      aft <- .data[,(which(colnames(.data) ==  .after)+1):ncol(.data)]
-      if(any(colnames(sel) %in% colnames(aft))){
-        aft <- aft[, -which(names(aft)  %in% names(sel))]
-      }
-      bfr <- select(.data, -!!colnames(aft), -!!colnames(sel))
-      results <- cbind(bfr, sel, aft)
-    }
-  }
-  return(as_tibble(results))
+  return(relocate(.data, ..., .before = {{.before}}, .after = {{.after}}))
 }
 #' @name utils_rows_cols
 #' @export
@@ -928,12 +881,12 @@ av_dev <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -952,12 +905,12 @@ ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -976,12 +929,12 @@ cv <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1011,12 +964,12 @@ hmean <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
         select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1035,12 +988,12 @@ gmean <- function(.data, ..., na.rm = FALSE){
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
         select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1061,12 +1014,12 @@ kurt <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1085,12 +1038,12 @@ range_data <- function(.data, ..., na.rm = FALSE){
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1109,12 +1062,12 @@ sd_amo <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1133,12 +1086,12 @@ sd_pop <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1157,12 +1110,12 @@ sem <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1182,12 +1135,12 @@ skew <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1206,12 +1159,12 @@ sum_dev <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1230,12 +1183,12 @@ sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1254,12 +1207,12 @@ var_pop <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1278,12 +1231,12 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1302,12 +1255,12 @@ valid_n <- function(.data, ..., na.rm = FALSE){
   } else{
     if(missing(...)){
       .data %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     } else{
       .data %>%
        select_cols(group_vars(.), ...) %>%
-        summarise_if(is.numeric, funct) %>%
+        summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
   }
@@ -1317,50 +1270,43 @@ valid_n <- function(.data, ..., na.rm = FALSE){
 #' @export
 cv_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, cv, na.rm = na.rm) %>%
-    ungroup()
+    summarise(across(where(is.numeric), cv, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 max_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, max, na.rm = na.rm) %>%
-    ungroup()
+    summarise(across(where(is.numeric), max, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 means_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, mean, na.rm = na.rm) %>%
-    ungroup()
+    summarise(across(where(is.numeric), mean, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 min_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, min, na.rm = na.rm) %>%
-    ungroup()
+    summarise(across(where(is.numeric), min, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 n_by <- function(.data, ..., na.rm = FALSE){
     group_by(.data, ...) %>%
-    summarise_all(list(~sum(!is.na(.)))) %>%
-    ungroup()
+    summarise(across(everything(), ~sum(!is.na(.))), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 sd_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, sd, na.rm = na.rm) %>%
-    ungroup()
+    summarise(across(where(is.numeric), sd, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 sem_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
-    summarise_if(is.numeric, sem, na.rm = na.rm) %>%
-    ungroup()
+    summarise(across(where(is.numeric), sem, na.rm = na.rm), .groups = "drop")
 }
 #' @title Utilities for handling with matrices
 #'
