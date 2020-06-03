@@ -1,4 +1,4 @@
-# metan (development version)
+# metan 1.6.1
 * `plot.mgidi()` can now plot the contribution for all genotypes.
 * `plot_bars()` and `plot_factbars()` now shows the values with `values = TRUE`
 * Update the functions by using the new `dplyr::across()`
