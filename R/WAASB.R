@@ -422,9 +422,9 @@ waasb <- function(.data,
         }
         bups <- lme4::ranef(Complete)
         bINT <-
-            data.frame(Names = rownames(bups$`GEN:ENV`)) %>%
+            data.frame(Names = rownames(bups[["GEN:ENV"]])) %>%
             separate(Names, into = c("GEN", "ENV"), sep = ":") %>%
-            add_cols(BLUPge = bups[[1]][[1]]) %>%
+            add_cols(BLUPge = bups[["GEN:ENV"]][[1]]) %>%
             to_factor(1:2)
         intmatrix <- as.matrix(make_mat(bINT, GEN, ENV, BLUPge))
         if(has_na(intmatrix)){
