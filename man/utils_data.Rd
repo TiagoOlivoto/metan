@@ -32,8 +32,8 @@ Nothing
 }
 \description{
 \itemize{
-\item \code{from_clipboard()} read data from the clipboard.
-\item \code{to_clipboard()} write data to the clipboard.
+\item \code{clip_read()} read data from the clipboard.
+\item \code{clip_write()} write data to the clipboard.
 }
 }
 \author{

@@ -1567,8 +1567,8 @@ is_balanced_trial <- function(.data, env, gen, resp){
 #' Utilities for data Copy-Pasta
 #' @name utils_data
 #' @description
-#' * \code{from_clipboard()} read data from the clipboard.
-#' * \code{to_clipboard()} write data to the clipboard.
+#' * \code{clip_read()} read data from the clipboard.
+#' * \code{clip_write()} write data to the clipboard.
 #'
 #' @param .data The The data that should be copied to the clipboard.
 #' @param header If the copied data has a header row for dataFrame, defaults to
