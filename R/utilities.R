@@ -1528,12 +1528,6 @@ stars_pval <- function(p_value){
 
 
 
-
-
-
-
-
-
 #' Check if a data set is balanced
 #'
 #' Check if a data set coming from multi-environment trials is balanced, i.e.,
@@ -1567,6 +1561,55 @@ is_balanced_trial <- function(.data, env, gen, resp){
     return(TRUE)
   }
 }
+
+
+
+#' Utilities for data Copy-Pasta
+#' @name utils_data
+#' @description
+#' * \code{from_clipboard()} read data from the clipboard.
+#' * \code{to_clipboard()} write data to the clipboard.
+#'
+#' @param .data The The data that should be copied to the clipboard.
+#' @param header If the copied data has a header row for dataFrame, defaults to
+#'   \code{TRUE}.
+#' @param sep The separator which should be used in the copied output, defaults
+#'   to \code{"\t"}.
+#' @param row_names Decides if the output should keep row names or not, defaults
+#'   to FALSE
+#' @param col_names Decides if the output should keep column names or not,
+#'   defaults to TRUE
+#' @md
+#' @param ... Further arguments to be passed to \code{\link[utils]{read.table}()}.
+#' @export
+#' @importFrom utils read.table write.table writeClipboard
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @return Nothing
+#'
+clip_read <- function(header = TRUE, sep = "\t", ...){
+  read.table("clipboard", sep = sep, header = header, ...)
+}
+#' @name utils_data
+#' @export
+clip_write <- function(.data, sep = "\t", row_names = FALSE, col_names = TRUE, ...){
+  if(is.data.frame(.data)){
+    write.table(.data,
+                "clipboard",
+                sep = sep,
+                row.names = row_names,
+                col.names = col_names,
+                ...)
+    message("Object '", match.call()[".data"], "' copied to the clipboard")
+  } else {
+    tryCatch({
+      writeClipboard(as.character(.data))
+    }, error = function(err){
+      stop("argument must be a character vector or a raw vector")
+    })
+  }
+}
+
+
 
 # For internal use only
 check_labels <- function(.data){
