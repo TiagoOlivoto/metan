@@ -12,7 +12,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](https://cran.r-project.org/package=metan)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3837359.svg)](https://doi.org/10.5281/zenodo.3837359)
+[![DOI](https://zenodo.org/badge/130062661.svg)](https://zenodo.org/badge/latestdoi/130062661)
 
 <!-- badges: end -->
 
@@ -67,7 +67,7 @@ file](https://tiagoolivoto.github.io/metan/news/index.html).
 
 ## Cheatsheet
 
-<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="720" height="510"/></a>
+<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="740" height="520"/></a>
 
 # Getting started
 
@@ -322,8 +322,8 @@ citation("metan")
 Please, support this project by citing it in your publications!
 
   Olivoto, T., and Lúcio, A.D. (2020). metan: an R package for
-  multi-environment trial analysis. Methods Ecol Evol. Accepted Author
-  Manuscript doi:10.1111/2041-210X.13384
+  multi-environment trial analysis. Methods Ecol Evol. 11:783-789
+  doi:10.1111/2041-210X.13384
 
 A BibTeX entry for LaTeX users is
 
@@ -331,8 +331,9 @@ A BibTeX entry for LaTeX users is
     author = {Tiago Olivoto and Alessandro Dal'Col L{'{u}}cio},
     title = {metan: an R package for multi-environment trial analysis},
     journal = {Methods in Ecology and Evolution},
-    volume = {n/a},
-    number = {n/a},
+    volume = {11},
+    number = {6},
+    pages = {783-789},
     year = {2020},
     doi = {10.1111/2041-210X.13384},
     url = {https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.13384},

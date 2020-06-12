@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
 [![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](https://cran.r-project.org/package=metan)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3837359.svg)](https://doi.org/10.5281/zenodo.3837359)
+[![DOI](https://zenodo.org/badge/130062661.svg)](https://zenodo.org/badge/latestdoi/130062661)
 
 <!-- badges: end -->
 
@@ -71,7 +71,7 @@ For the latest release notes on this development version, see the [NEWS file](ht
 
 ## Cheatsheet
 
-<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="720" height="510"/></a>  
+<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="740" height="520"/></a>  
 
 
 # Getting started
