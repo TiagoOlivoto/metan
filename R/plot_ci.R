@@ -52,8 +52,7 @@ plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
   if (!any(colnames(object) %in% c("Pair", "Corr"))) {
     stop("It appers that the object was not generate by the function 'coor_ci()'.")
   }
-  n <- round((object[1, 3]/(0.45304^object[1, 2] * 2.25152))^(1/-0.50089),
-             0)
+  n <- object[1, 3]
   x.lab <- ifelse(is.null(x.lab) == F, x.lab, paste0("Pairwise combinations"))
   y.lab <- ifelse(is.null(y.lab) == F, y.lab, paste0("Pearson's correlation coefficient"))
   if(reorder == TRUE){
@@ -63,15 +62,21 @@ plot_ci <- function(object, x.lab = NULL, y.lab = NULL, y.lim = NULL,
   }
   p <-
     p +
-    geom_hline(yintercept = 0, linetype = "dashed") + geom_errorbar(aes(ymax = UL,
-                                                                        ymin = LL, width = width.errbar)) + geom_point(col = col.shape,
-                                                                                                                       fill = fill.shape, size = size.shape, shape = shape)
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    geom_errorbar(aes(ymax = UL,
+                      ymin = LL,
+                      width = width.errbar)) +
+    geom_point(col = col.shape,
+               fill = fill.shape,
+               size = size.shape,
+               shape = shape)
   if (invert.axis == TRUE) {
     p <- p + coord_flip()
   } else {
     p <- p
   }
-  p <- p + plot_theme %+replace% theme(axis.text = element_text(colour = "black")) +
+  p <- p + plot_theme %+replace%
+    theme(axis.text = element_text(colour = "black")) +
     labs(x = x.lab, y = y.lab)
   if (main == TRUE) {
     p <- p + ggtitle("95% CI for Pearson's correlation coefficient",
