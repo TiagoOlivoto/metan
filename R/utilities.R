@@ -1567,32 +1567,54 @@ is_balanced_trial <- function(.data, env, gen, resp){
 #' Utilities for data Copy-Pasta
 #' @name utils_data
 #' @description
+#' These functions allows interacting with the system clipboard. It is possible
+#' read from the clipboard or write a data frame or matrix to the clipboard.
 #' * \code{clip_read()} read data from the clipboard.
 #' * \code{clip_write()} write data to the clipboard.
 #'
-#' @param .data The The data that should be copied to the clipboard.
+#' @param .data The data that should be copied to the clipboard. Only data frames and matrices are allowed
 #' @param header If the copied data has a header row for dataFrame, defaults to
 #'   \code{TRUE}.
 #' @param sep The separator which should be used in the copied output, defaults
 #'   to \code{"\t"}.
 #' @param row_names Decides if the output should keep row names or not, defaults
-#'   to FALSE
+#'   to \code{FALSE}.
 #' @param col_names Decides if the output should keep column names or not,
-#'   defaults to TRUE
+#'   defaults to \code{TRUE}.
 #' @md
 #' @param ... Further arguments to be passed to \code{\link[utils]{read.table}()}.
 #' @export
-#' @importFrom utils read.table write.table writeClipboard
+#' @importFrom utils read.table write.table
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @return Nothing
 #'
 clip_read <- function(header = TRUE, sep = "\t", ...){
-  read.table("clipboard", sep = sep, header = header, ...)
+  os <- get_os()
+  if(os == "windows"){
+    df <- read.table("clipboard", sep = sep, header = header, ...)
+  }
+  if(os == "osx"){
+    df <- read.table(pipe("pbpaste"), sep = sep, header = header, ...)
+  }
+  if(os == "linux"){
+    if (!file.exists(Sys.which("xclip")[1L])){
+      stop("Cannot find xclip. Try installing it with 'sudo apt-get install xclip'")
+    }
+    df <- read.table(pipe("xclip -selection clipboard -o", open = "r"), ...)
+  }
+  return(df)
 }
 #' @name utils_data
 #' @export
-clip_write <- function(.data, sep = "\t", row_names = FALSE, col_names = TRUE, ...){
-  if(is.data.frame(.data)){
+clip_write <- function(.data,
+                       sep = "\t",
+                       row_names = FALSE,
+                       col_names = TRUE, ...){
+  os <- get_os()
+  if(os == "windows"){
+    if(!has_class(.data , c("data.frame", "matrix"))){
+      stop("Only data frames/tibbles/matrices allowed.")
+    }
     write.table(.data,
                 "clipboard",
                 sep = sep,
@@ -1600,20 +1622,59 @@ clip_write <- function(.data, sep = "\t", row_names = FALSE, col_names = TRUE, .
                 col.names = col_names,
                 ...)
     message("Object '", match.call()[".data"], "' copied to the clipboard")
-  } else {
-    tryCatch({
-      writeClipboard(as.character(.data))
-    }, error = function(err){
-      stop("argument must be a character vector or a raw vector")
-    })
+  }
+  if(os == "osx"){
+    if(!has_class(.data , c("data.frame", "matrix"))){
+      stop("Only data frames/tibbles/matrices allowed.")
+    }
+    write.table(.data,
+                file = pipe("pbcopy"),
+                sep = sep,
+                row.names = row_names,
+                col.names = col_names,
+                ...)
+    message("Object '", match.call()[".data"], "' copied to the clipboard")
+  }
+  if(os == "linux"){
+    if(!has_class(.data , c("data.frame", "matrix"))){
+      stop("Only data frames/tibbles/matrices allowed.")
+    }
+    if (!file.exists(Sys.which("xclip")[1L])){
+      stop("Cannot find xclip. Try installing it with 'sudo apt-get install xclip'")
+    }
+    write.table(.data,
+                file = pipe("xclip -selection clipboard -i", open="w"),
+                sep = sep,
+                row.names = row_names,
+                col.names = col_names,
+                ...)
   }
 }
 
 
 
-# For internal use only
+### For internal use only ##
+# Check labels
 check_labels <- function(.data){
   if(any(sapply(.data, grepl, pattern = ":"))){
     stop("Using ':' in genotype or environment labels is not allowed. Use '_' instead.\ne.g., replace_string(data, ENV, pattern = ':', replacement = '_', new_var = ENV)", call. = FALSE)
   }
+}
+# Get the OS
+get_os <- function(){
+  sysinf <- Sys.info()
+  if (!is.null(sysinf)){
+    os <- sysinf['sysname']
+    if (os == 'Darwin')
+      os <- "osx"
+  } else {
+    os <- .Platform$OS.type
+    if (grepl("^darwin", R.version$os)){
+      os <- "osx"
+    }
+    if (grepl("linux-gnu", R.version$os)){
+      os <- "linux"
+    }
+  }
+  return(all_lower_case(os))
 }

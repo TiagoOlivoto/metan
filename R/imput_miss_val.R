@@ -72,11 +72,13 @@
 #' @export
 #'
 #' @references
-#' Gauch, H. G., & Zobel, R. W. (1990). Imputing missing yield trial data. Theoretical and Applied Genetics, 79(6), 753-761.
+#' Gauch, H. G., & Zobel, R. W. (1990). Imputing missing yield trial data.
+#' Theoretical and Applied Genetics, 79(6), 753-761.
 #' \href{https://link.springer.com/article/10.1007%2FBF00224240}{doi:10.1007/BF00224240}
 #'
-#' Troyanskaya, O., Cantor, M., Sherlock, G., Brown, P., Hastie, T., Tibshirani, R., . Altman, R. B. (2001). Missing value estimation methods for DNA microarrays. Bioinformatics, 17(6), 520-525.
-#' \href{https://academic.oup.com/bioinformatics/article/17/6/520/272365}{doi:10.1093/bioinformatics/17.6.520}
+#' Troyanskaya, O., Cantor, M., Sherlock, G., Brown, P., Hastie, T., Tibshirani,
+#' R., . Altman, R. B. (2001). Missing value estimation methods for DNA
+#' microarrays. Bioinformatics, 17(6), 520-525.
 #'
 #'
 #' @examples

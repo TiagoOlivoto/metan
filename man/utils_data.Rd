@@ -19,18 +19,20 @@ to \code{"\t"}.}
 
 \item{...}{Further arguments to be passed to \code{\link[utils]{read.table}()}.}
 
-\item{.data}{The The data that should be copied to the clipboard.}
+\item{.data}{The data that should be copied to the clipboard. Only data frames and matrices are allowed}
 
 \item{row_names}{Decides if the output should keep row names or not, defaults
-to FALSE}
+to \code{FALSE}.}
 
 \item{col_names}{Decides if the output should keep column names or not,
-defaults to TRUE}
+defaults to \code{TRUE}.}
 }
 \value{
 Nothing
 }
 \description{
+These functions allows interacting with the system clipboard. It is possible
+read from the clipboard or write a data frame or matrix to the clipboard.
 \itemize{
 \item \code{clip_read()} read data from the clipboard.
 \item \code{clip_write()} write data to the clipboard.

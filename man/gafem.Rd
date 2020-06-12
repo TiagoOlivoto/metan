@@ -106,7 +106,6 @@ get_model_data(alpha)
 \references{
 Patterson, H.D., and E.R. Williams. 1976. A new class of
 resolvable incomplete block designs. Biometrika 63:83-92.
-\href{https://doi.org/10.1093/biomet/63.1.83}{doi:10.1093/biomet/63.1.83}
 }
 \seealso{
 \code{\link{get_model_data}} \code{\link{gamem}}
