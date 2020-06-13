@@ -258,10 +258,6 @@ gamem_met <- function(.data,
     minimo <- min(Nenv, Ngen) - 1
     vin <- vin + 1
     ovmean <- mean(data$Y)
-    if (minimo < 2) {
-      cat("\nWarning. The analysis is not possible.")
-      cat("\nThe number of environments and number of genotypes must be greater than 2\n")
-    }
     Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(model_formula, data = data)))
     LRT <- suppressWarnings(suppressMessages(lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
                                                mutate(model = lrt_groups) %>%
