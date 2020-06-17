@@ -1,3 +1,8 @@
+# metan (development version)
+
+* New functions `clip_read()` and `clip_write()` to read from the clipboard and write to the clipboard, respectively.
+
+
 # metan 1.6.1
 * `plot.mgidi()` can now plot the contribution for all genotypes.
 * `plot_bars()` and `plot_factbars()` now shows the values with `values = TRUE`

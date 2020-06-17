@@ -26,8 +26,11 @@
 #' @param y.breaks The breaks to be plotted in the y-axis. Defaults to waiver().
 #'   \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
 #'   used.
-#' @param y.expand A multiplication range expansion factor. Defaults to
-#'   \code{0.05}.
+#' @param y.expand,y.contract A multiplication range expansion/contraction
+#'   factor. \code{y.expand} expands the upper limit of the y escale, while
+#'   \code{y.contract} contracts the lower limit of the y scale. By default
+#'   \code{y.expand = 0.05} and \code{y.contract = 0} produces a plot without
+#'   spacing in the lower y limit and an expansion in the upper y limit.
 #' @param xlab,ylab The labels of the axes x and y, respectively. Defaults to
 #'   \code{NULL}.
 #' @param n.dodge The number of rows that should be used to render the x labels.
@@ -110,11 +113,11 @@
 #' p2 <- plot_bars(data_g, GEN, PH,
 #'                 n.dodge = 2, # two rows for x labels
 #'                 y.expand = 0.1, # expand y scale
+#'                 y.contract = -0.75, # contract the lower limit
 #'                 errorbar = FALSE, # remove errorbar
 #'                 color.bar = "red", # color of bars
 #'                 fill.bar = alpha_color("cyan", 75), # create a transparent color
-#'                 lab.bar = letters[1:13], # add labels
-#'                 plot_theme = ggplot2::theme_gray()) #change plot themes
+#'                 lab.bar = letters[1:13]) # add labels
 #' arrange_ggplot(p1, p2)
 #'}
 plot_bars <- function(.data,
@@ -124,6 +127,7 @@ plot_bars <- function(.data,
                       y.lim = NULL,
                       y.breaks = waiver(),
                       y.expand = 0.05,
+                      y.contract = 0,
                       xlab = NULL,
                       ylab = NULL,
                       n.dodge = 1,
@@ -254,7 +258,7 @@ plot_bars <- function(.data,
     labs(y = ylab, x = xlab) +
     scale_y_continuous(limits = y.lim,
                        breaks = y.breaks,
-                       expand = expansion(mult = c(0, y.expand))) +
+                       expand = expansion(mult = c(y.contract, y.expand))) +
     scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))
 
   if (verbose == TRUE) {
@@ -277,6 +281,7 @@ plot_factbars <- function(.data,
                           y.lim = NULL,
                           y.breaks = waiver(),
                           y.expand = 0.05,
+                          y.contract = 0,
                           xlab = NULL,
                           ylab = NULL,
                           n.dodge = 1,
@@ -455,7 +460,7 @@ plot_factbars <- function(.data,
     labs(y = ylab, x = xlab) +
     scale_y_continuous(limits = y.lim,
                        breaks = y.breaks,
-                       expand = expansion(mult = c(0, y.expand))) +
+                       expand = expansion(mult = c(y.contract, y.expand))) +
     scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))
   if (verbose == TRUE) {
     print(datac)

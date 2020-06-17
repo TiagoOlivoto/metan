@@ -14,6 +14,7 @@ plot_bars(
   y.lim = NULL,
   y.breaks = waiver(),
   y.expand = 0.05,
+  y.contract = 0,
   xlab = NULL,
   ylab = NULL,
   n.dodge = 1,
@@ -55,6 +56,7 @@ plot_factbars(
   y.lim = NULL,
   y.breaks = waiver(),
   y.expand = 0.05,
+  y.contract = 0,
   xlab = NULL,
   ylab = NULL,
   n.dodge = 1,
@@ -110,8 +112,11 @@ minimum values of the data set). New values can be inserted as \code{y.lim
 \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
 used.}
 
-\item{y.expand}{A multiplication range expansion factor. Defaults to
-\code{0.05}.}
+\item{y.expand, y.contract}{A multiplication range expansion/contraction
+factor. \code{y.expand} expands the upper limit of the y escale, while
+\code{y.contract} contracts the lower limit of the y scale. By default
+\code{y.expand = 0.05} and \code{y.contract = 0} produces a plot without
+spacing in the lower y limit and an expansion in the upper y limit.}
 
 \item{xlab, ylab}{The labels of the axes x and y, respectively. Defaults to
 \code{NULL}.}
@@ -239,11 +244,11 @@ p1 <- plot_bars(data_g, GEN, PH)
 p2 <- plot_bars(data_g, GEN, PH,
                 n.dodge = 2, # two rows for x labels
                 y.expand = 0.1, # expand y scale
+                y.contract = -0.75, # contract the lower limit
                 errorbar = FALSE, # remove errorbar
                 color.bar = "red", # color of bars
                 fill.bar = alpha_color("cyan", 75), # create a transparent color
-                lab.bar = letters[1:13], # add labels
-                plot_theme = ggplot2::theme_gray()) #change plot themes
+                lab.bar = letters[1:13]) # add labels
 arrange_ggplot(p1, p2)
 }
 }
