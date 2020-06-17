@@ -245,8 +245,7 @@ wsmp <- function(model,
       PesoResp <- 0
       minresp <- 100 - mresp
       data <- datain[[k]][["augment"]] %>%
-        select(ENV, GEN, REP, mean) %>%
-        rename(Y = mean)
+        select(ENV, GEN, REP, Y)
       nam <- names(datain[k])
       Nenv <- length(unique(data$ENV))
       Ngen <- length(unique(data$GEN))
