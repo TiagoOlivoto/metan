@@ -93,7 +93,11 @@ mgidi <- function(.data,
                   verbose = TRUE) {
   d <- match.call()
   if(has_class(.data, c("gamem", "waasb"))){
-    data <- gmd(.data, "blupg", verbose = FALSE) %>%
+    data <- gmd(.data, "blupg", verbose = FALSE) %>% column_to_rownames("GEN")
+  } else if(has_class(.data, "gafem")){
+    data <-
+      gmd(.data, "Y", verbose = FALSE) %>%
+      means_by(GEN) %>%
       column_to_rownames("GEN")
   } else{
     if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
@@ -211,15 +215,8 @@ mgidi <- function(.data,
              SD = Xs - colMeans(data_order, na.rm = TRUE),
              SDperc = (Xs - colMeans(data_order, na.rm = TRUE)) / colMeans(data_order, na.rm = TRUE) * 100)
 
-    if(has_class(.data, "gamem")){
-      h2 <-
-        gmd(.data, verbose = FALSE) %>%
-        subset(Parameters == "H2mg") %>%
-        remove_cols(1) %>%
-        t() %>%
-        as.data.frame() %>%
-        rownames_to_column("VAR") %>%
-        set_names("VAR", "h2")
+    if(has_class(.data, c("gamem", "gafem"))){
+      h2 <- gmd(.data, "h2", verbose = FALSE)
       sel_dif_mean <-
         left_join(sel_dif_mean, h2, by = "VAR") %>%
         add_cols(SG = SD * h2,
@@ -233,7 +230,6 @@ mgidi <- function(.data,
                 by = sense,
                 any_of(c("SDperc", "SGperc")),
                 stats = c("min, mean, max, sum"))
-
   } else{
     sel_dif_mean <- NULL
   }

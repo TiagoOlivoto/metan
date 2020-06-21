@@ -86,14 +86,7 @@ Smith_Hazel <- function(.data,
       cov()
     gcov <- gmd(.data, "gcov", verbose = FALSE)
     gcov <- gcov[rownames(pcov), rownames(pcov)]
-    h2 <-
-      gmd(.data, verbose = FALSE) %>%
-      subset(Parameters == "H2mg") %>%
-      remove_cols(1) %>%
-      t() %>%
-      as.data.frame() %>%
-      rownames_to_column("VAR") %>%
-      set_names("VAR", "h2")
+    h2 <- gmd(.data, "h2", verbose = FALSE)
   } else{
     ifelse(missing(weights), weights <- rep(1, ncol(.data)), weights <- weights)
     if(missing(pcov) || missing(gcov)){

@@ -182,7 +182,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       ESTIMATES <- tibble(
         Parameters = c(
           "Gen_var", "Gen (%)", "Res_var",
-          "Res (%)", "Phen_var", "H2", "H2mg",
+          "Res (%)", "Phen_var", "H2", "h2mg",
           "Accuracy", "CVg", "CVr", "CV ratio"
         ),
         Values = c(GV, GVper, RV, RVper, FV, h2g, h2mg, AccuGen, CVg, CVr, CVratio)
@@ -315,7 +315,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
       ESTIMATES <- tibble(
         Parameters = c(
           "Gen_var", "Gen (%)", "rep:block_var", "rep:block (%)", "Res_var",
-          "Res (%)", "Phen_var", "H2", "H2mg", "Accuracy", "CVg", "CVr", "CV ratio"
+          "Res (%)", "Phen_var", "H2", "h2mg", "Accuracy", "CVg", "CVr", "CV ratio"
         ),
         Values = c(GV, GVper, BRV, BRper, RV, RVper, FV, h2g, h2mg, AccuGen, CVg, CVr, CVratio)
       )

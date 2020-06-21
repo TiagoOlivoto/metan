@@ -169,7 +169,7 @@
 #' "gen"} or \code{random = "all"}) with the following columns: \code{Phenotypic
 #' variance} the phenotypic variance; \code{Heritability} the broad-sense
 #' heritability; \code{GEr2} the coefficient of determination of the interaction
-#' effects; \code{Heribatility of means} the heritability on the mean basis;
+#' effects; \code{h2mg} the heritability on the mean basis;
 #' \code{Accuracy} the selective accuracy; \code{rge} the genotype-environment
 #' correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr}
 #' the residual coefficient of variation; \code{CV ratio} the ratio between
@@ -413,7 +413,7 @@ waasb <- function(.data,
             PROB <- ((1 - (1 - prob))/2) + (1 - prob)
             t <- qt(PROB, Nrep)
             Limits <- t * sqrt(((1 - AccuGen) * GV))
-            genpar <- tibble(Parameters = c("Phenotypic variance", "Heritability", "GEIr2", "Heribatility of means",
+            genpar <- tibble(Parameters = c("Phenotypic variance", "Heritability", "GEIr2", "h2mg",
                                             "Accuracy", "rge", "CVg", "CVr", "CV ratio"),
                              Values = c(FV, h2g, GEr2, h2mg, AccuGen, rge, CVg, CVr, CVratio))
         } else{

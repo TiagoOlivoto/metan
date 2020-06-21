@@ -74,6 +74,8 @@ alpha lattice design only).
 
 \strong{Objects of class \code{anova_joint} or \code{gafem}:}
 \itemize{
+\item \code{"Y"} The observed values.
+\item \code{"h2"} The broad-sense heritability.
 \item \code{"Sum Sq"} Sum of squares.
 \item \code{"Mean Sq"} Mean Squares.
 \item \code{"F value"} F-values.
@@ -208,6 +210,7 @@ objects of class \code{waas}).
 \item \code{"details"} The details of the trial.
 \item \code{"genpar"} Genetic parameters (default).
 \item \code{"gcov"} The genotypic variance-covariance matrix.
+\item \code{"h2"} The broad-sense heritability.
 \item \code{"lrt"} The likelihood-ratio test for random effects.
 \item \code{"pcov"} The phenotypic variance-covariance matrix.
 \item \code{"vcomp"} The variance components for random effects.
