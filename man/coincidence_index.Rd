@@ -21,7 +21,7 @@ A list with the following elements:
 \item \strong{coincidence}: A data frame with the coincidence index, number of
 common genotypes and the list of common genotypes for each model combination.
 \item \strong{coincidence_mat}: A matrix-like containing the coincidence index.
-\item \strong{common_gen}: The number of common genotypes for all models, i.e.,
+\item \strong{genotypes}: The number of common genotypes for all models, i.e.,
 the insersection of the selected genotypes of all models
 }
 }

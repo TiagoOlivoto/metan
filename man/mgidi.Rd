@@ -14,10 +14,10 @@ mgidi(
 )
 }
 \arguments{
-\item{.data}{An object fitted with the function \code{\link{gamem}} or a
-two-way table with BLUPs for genotypes in each trait (genotypes in rows and
-traits in columns). In the last case, row names must contain the genotypes
-names.}
+\item{.data}{An object fitted with the function \code{\link{gafem}()},
+\code{\link{gamem}()} or a two-way table with BLUPs for genotypes in each
+trait (genotypes in rows and traits in columns). In the last case, row
+names must contain the genotypes names.}
 
 \item{SI}{An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.}
@@ -31,8 +31,9 @@ the traits in which higher values are desired or \code{'l'} to indicate the
 variables in which lower values are desired. For example, \code{ideotype =
   c("h, h, h, h, l")} will consider that the ideotype has higher values for
 the first four traits and lower values for the last trait. If \code{.data}
-is a model fitted with the function \code{\link{gamem}}, the order of the
-traits will be the declared in the argument \code{resp} in that function.}
+is a model fitted with the functions \code{\link{gafem}()} or
+\code{\link{gamem}()}, the order of the traits will be the declared in the
+argument \code{resp} in those functions.}
 
 \item{use}{The method for computing covariances in the presence of missing
 values. Defaults to \code{complete.obs}, i.e., missing values are handled

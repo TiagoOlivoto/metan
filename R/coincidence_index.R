@@ -20,7 +20,7 @@
 #' * \strong{coincidence}: A data frame with the coincidence index, number of
 #' common genotypes and the list of common genotypes for each model combination.
 #' * \strong{coincidence_mat}: A matrix-like containing the coincidence index.
-#' * \strong{common_gen}: The number of common genotypes for all models, i.e.,
+#' * \strong{genotypes}: The number of common genotypes for all models, i.e.,
 #' the insersection of the selected genotypes of all models
 #'
 #' @export
@@ -73,26 +73,26 @@ coincidence_index <- function(..., total, sel1 = NULL, sel2 = NULL){
       data.frame(Model = combn(names(selected), 2, paste, collapse = "_::_")) %>%
       separate(Model, into = c("V1", "V2"), sep = "_::_")
     values <- NULL
-    ncommon_gen <- NULL
-    common_gen <- NULL
+    common <- NULL
+    genotypes <- NULL
     common_gen_pairs <- NULL
     for (i in 1:ncomb) {
       V1 <- selected[[index[1, i]]]
       V2 <- selected[[index[2, i]]]
       values[i] <- comp_coinc(V1, V2, total)
-      ncommon_gen[i] <- length(intersect(V1, V2))
-      common_gen[i] <- list(intersect(sel1, sel2))
+      common[i] <- length(intersect(V1, V2))
+      genotypes[i] <- list(intersect(sel1, sel2))
       common_gen_pairs[i] <- paste(intersect(V1, V2), collapse = ",")
     }
     results <-
       add_cols(results,
                index = values,
-               ncommon_gen = ncommon_gen,
-               common_gen = common_gen_pairs)
+               common = common,
+               genotypes = common_gen_pairs)
     final <-
       list(coincidence = results,
            coincidence_mat = make_mat(results, V1, V2, index),
-           common_gen = Reduce(intersect, common_gen))
+           genotypes = Reduce(intersect, genotypes))
     return(final %>% set_class("coincidence"))
   } else{
     if(length(sel1) != length(sel2)){

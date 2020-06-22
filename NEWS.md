@@ -2,6 +2,7 @@
 
 * New functions `clip_read()` and `clip_write()` to read from the clipboard and write to the clipboard, respectively.
 * Update wsmp.R ([#7](https://github.com/TiagoOlivoto/metan/pull/7)). Thank you @[BartoszKozak](https://github.com/bartosz-kozak) for your contribution.
+* `mgidi()` now allows using a fixed-effect model fitted with `gafem()` as input data.
 
 
 # metan 1.6.1
