@@ -25,7 +25,6 @@
 #' * \strong{S3} Sum of the absolute deviations.
 #' * \strong{S6} Relative sum of squares of rank for each genotype.
 #' @md
-#' @importFrom dplyr mutate_all
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Huehn, V.M. 1979. Beitrage zur erfassung der phanotypischen
 #'   stabilitat. EDV Med. Biol. 10:112.
@@ -42,7 +41,7 @@ Huehn <- function(.data, env, gen, resp, verbose = TRUE) {
   factors  <-
     .data %>%
     select({{env}}, {{gen}}) %>%
-    mutate_all(as.factor)
+    mutate(across(everything(), as.factor))
   vars <-
     .data %>%
     select({{resp}}, -names(factors)) %>%

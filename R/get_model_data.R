@@ -579,7 +579,7 @@ get_model_data <- function(x,
                                   " ")[[1]]
             temp <-
               temp %>%
-              select(var_names, last_col()) %>%
+              select(all_of(var_names), last_col()) %>%
               distinct_all(.keep_all = TRUE)
             fact_nam <- sapply(colnames(temp %>% select_non_numeric_cols()), paste) %>%
               paste(., collapse = '_')
@@ -599,7 +599,8 @@ get_model_data <- function(x,
                    set_names(dfs[[j]][[i]], var_names, names(dfs)[j])
                  }) %>%
           reduce(full_join, by = var_names) %>%
-          arrange_if(~!is.numeric(.x))
+          arrange(across(where(~!is.numeric(.x))))
+          # arrange_if(~!is.numeric(.x))
         bind[[names(dfs[[1]])[i]]] <- num
       }
     }

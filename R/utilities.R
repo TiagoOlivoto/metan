@@ -396,7 +396,7 @@ replace_string <- function(.data,
 }
 #' @name utils_num_str
 #' @export
-#' @importFrom dplyr mutate_if transmute
+#' @importFrom dplyr transmute
 round_cols <- function(.data, ...,  digits = 2){
   rn_test <- has_rownames(.data)
   if(rn_test == TRUE){
@@ -1308,6 +1308,13 @@ sem_by <- function(.data, ..., na.rm = FALSE){
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), sem, na.rm = na.rm), .groups = "drop")
 }
+#' @name utils_stats
+#' @export
+sum_by <- function(.data, ..., na.rm = FALSE){
+  group_by(.data, ...) %>%
+    summarise(across(where(is.numeric), sum, na.rm = na.rm), .groups = "drop")
+}
+
 #' @title Utilities for handling with matrices
 #'
 #' @description These functions help users to make upper, lower, or symmetric
@@ -1602,7 +1609,7 @@ clip_read <- function(header = TRUE, sep = "\t", ...){
     }
     df <- read.table(pipe("xclip -selection clipboard -o", open = "r"), ...)
   }
-  return(df)
+  return(as_tibble(df))
 }
 #' @name utils_data
 #' @export

@@ -76,7 +76,6 @@
 #'  corresponding to \eqn{y_{ijk}}.
 #'
 #' @md
-#' @importFrom dplyr summarise_at
 #' @importFrom cowplot draw_label ggdraw
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{get_model_data}} \code{\link{waasb}}
@@ -130,7 +129,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
   if (missing(block) == TRUE) {
     factors  <- .data %>%
       select({{gen}}, {{rep}}) %>%
-      mutate_all(as.factor)
+      mutate(across(everything(), as.factor))
     vars <- .data %>% select({{resp}}, -names(factors))
     vars %<>% select_numeric_cols()
     factors %<>% set_names("GEN", "REP")
@@ -256,7 +255,7 @@ gamem <- function(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TR
   if (missing(block) == FALSE) {
     factors  <- .data %>%
       select({{gen}}, {{rep}}, {{block}}) %>%
-      mutate_all(as.factor)
+      mutate(across(everything(), as.factor))
     vars <- .data %>% select({{resp}}, -names(factors))
     vars %<>% select_numeric_cols()
     factors %<>% set_names("GEN", "REP", "BLOCK")
@@ -829,7 +828,7 @@ plot.gamem <- function(x,
         data.frame(blups[i]) %>%
         distinct_all() %>%
         rowid_to_column(var = "id") %>%
-        arrange_at(2)
+        arrange(across(2))
       P <- ppoints(nrow(df))
       df$z <- qnorm(P)
       n <- nrow(df)

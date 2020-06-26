@@ -15,7 +15,7 @@ waasb(
   wresp = NULL,
   random = "gen",
   prob = 0.05,
-  ind_anova = TRUE,
+  ind_anova = FALSE,
   verbose = TRUE,
   ...
 )
@@ -69,8 +69,8 @@ assumed depending on the experimental design of the trials.}
 \item{prob}{The probability for estimating confidence interval for BLUP's
 prediction.}
 
-\item{ind_anova}{Logical argument set to \code{TRUE}. If \code{FALSE} the
-within-environment ANOVA is not performed.}
+\item{ind_anova}{Logical argument set to \code{FALSE}. If \code{TRUE} an
+within-environment ANOVA is performed.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}

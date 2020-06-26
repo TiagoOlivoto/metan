@@ -132,8 +132,7 @@ covcor_design <- function(.data,
   vgen <- (diag(ms[, 1]) - diag(ms[, 2]))/3
   means <- data.frame(cbind(GEN, covdata)) %>%
     group_by(GEN) %>%
-    summarise_all(mean) %>%
-    ungroup() %>%
+    summarise(across(everything(), mean), .groups = "drop") %>%
     column_to_rownames("GEN")
   covdata2 <- comb_vars(data.frame(covdata), order = "first")
   index <- data.frame(t(combn(nvar, 2)))

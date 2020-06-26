@@ -104,7 +104,7 @@ gafem <- function(.data,
     factors  <-
       .data %>%
       select({{gen}}, {{rep}}) %>%
-      mutate_all(as.factor)
+      mutate(across(everything(), as.factor))
     vars <- .data %>% select({{resp}}, -names(factors))
     vars %<>% select_numeric_cols()
     factors %<>% set_names("GEN", "REP")
@@ -190,7 +190,7 @@ gafem <- function(.data,
     factors  <-
       .data %>%
       select({{gen}}, {{rep}}, {{block}}) %>%
-      mutate_all(as.factor)
+      mutate(across(everything(), as.factor))
     vars <- .data %>% select({{resp}}, -names(factors))
     vars %<>% select_numeric_cols()
     factors %<>% set_names("GEN", "REP", "BLOCK")

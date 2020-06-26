@@ -56,8 +56,8 @@
 #'   informed, the number of IPCAS will be used independently on its
 #'   significance. Note that if two or more variables are included in
 #'   \code{resp}, then \code{naxis} must be a vector.
-#' @param ind_anova Logical argument set to \code{TRUE}. If \code{FALSE} the
-#'   within-environment ANOVA is not performed.
+#' @param ind_anova Logical argument set to \code{FALSE}. If \code{TRUE} an
+#'   within-environment ANOVA is performed.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
 #'   silently.
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
@@ -174,7 +174,7 @@ waas <- function(.data,
                  wresp = NULL,
                  prob = 0.05,
                  naxis = NULL,
-                 ind_anova = TRUE,
+                 ind_anova = FALSE,
                  verbose = TRUE) {
     if(!missing(block)){
         factors  <- .data %>%
@@ -182,13 +182,13 @@ waas <- function(.data,
                    {{gen}},
                    {{rep}},
                    {{block}}) %>%
-            mutate_all(as.factor)
+            mutate(across(everything(), as.factor))
     } else{
         factors  <- .data %>%
             select({{env}},
                    {{gen}},
                    {{rep}}) %>%
-            mutate_all(as.factor)
+            mutate(across(everything(), as.factor))
     }
     vars <- .data %>% select({{resp}}, -names(factors))
     vars %<>% select_numeric_cols()

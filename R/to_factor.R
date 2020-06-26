@@ -17,5 +17,5 @@
 #' }
 #'
 to_factor <- function(.data, ...){
-return(mutate_at(.data, vars(...), as.factor))
+return(mutate(.data, across(c(...), as.factor)))
 }

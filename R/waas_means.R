@@ -98,7 +98,7 @@ waas_means <- function(.data,
   factors  <-
     .data %>%
     select({{env}}, {{gen}}) %>%
-    mutate_all(as.factor)
+    mutate(across(everything(), as.factor))
   vars <-
     .data %>%
     select({{resp}}, -names(factors)) %>%

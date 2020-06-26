@@ -40,7 +40,7 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
   if (!missing(rep)) {
     data <- .data %>% dplyr::select(!!dplyr::enquo(factor1),
                                     !!dplyr::enquo(factor2), !!dplyr::enquo(rep), !!dplyr::enquo(resp)) %>%
-      mutate_at(c(1:3), as.factor)
+      mutate(across(1:3, as.factor))
     names <- colnames(data)
     A <- names[1]
     D <- names[2]
@@ -52,7 +52,7 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
   } else {
     data <- .data %>% dplyr::select(!!dplyr::enquo(factor1),
                                     !!dplyr::enquo(factor2), !!dplyr::enquo(resp)) %>%
-      mutate_at(c(1:2), as.factor)
+      mutate(across(1:2, as.factor))
     names <- colnames(data)
     A <- names[1]
     D <- names[2]

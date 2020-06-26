@@ -101,9 +101,9 @@ mahala_design <- function(.data,
       }
       colnames(covdata)[[vin]] <- paste(names(vars[var]))
     }
-    means <- data.frame(cbind(GEN, covdata)) %>%
-      dplyr::group_by(GEN) %>%
-      dplyr::summarise_all(mean) %>%
+    means <-
+      data.frame(cbind(GEN, covdata)) %>%
+      means_by(GEN) %>%
       column_to_rownames("GEN")
     covdata2 <- comb_vars(data.frame(covdata), order = "first")
     index <- data.frame(t(combn(ncol(mat), 2)))

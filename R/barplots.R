@@ -319,13 +319,14 @@ plot_factbars <- function(.data,
   cl <- match.call()
   datac <-
     .data %>%
-    mutate_at(quos(...), as.factor) %>%
+    mutate(across(c(...), as.factor)) %>%
     select(..., Y = {{resp}}) %>%
     group_by(...) %>%
     summarise(N = n(),
               mean_var = mean(Y, na.rm = na.rm),
               sd = sd(Y, na.rm = na.rm), se = sd/sqrt(n()),
-              ci = se * qt(level/2 + 0.5, n() - 1))
+              ci = se * qt(level/2 + 0.5, n() - 1),
+              .groups = "drop")
   nam <- names(select(.data, ...))
   if(errorbar == TRUE){
     if(stat.erbar == "ci"){

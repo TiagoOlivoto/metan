@@ -65,7 +65,7 @@ env_dissimilarity <- function(.data,
     select(ENV = {{env}},
            GEN = {{gen}},
            REP = {{rep}}) %>%
-    mutate_all(as.factor)
+    mutate(across(everything(), as.factor))
   vars <- .data %>%
     select({{resp}}, -!!colnames(factors)) %>%
     select_numeric_cols()

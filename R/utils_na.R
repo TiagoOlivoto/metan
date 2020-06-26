@@ -84,13 +84,13 @@ replace_na <- function(.data, ..., replace = 0){
     }
   if(missing(...)){
     cols_with_na <- names(which(sapply(.data, anyNA)))
-    df <- mutate_at(.data, vars(cols_with_na), ~replace(., is.na(.), replace))
+    df <- mutate(.data, across(all_of(cols_with_na), ~replace(., is.na(.), replace)))
     if(replace == "colmeans"){
-    df <- mutate_at(.data, vars(cols_with_na), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x))
+    df <- mutate(.data, across(all_of(cols_with_na), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x)))
     }
   } else{
-    df <- mutate_at(.data, vars(...), ~replace(., is.na(.), replace))
-    df <- mutate_at(.data, vars(...), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x))
+    df <- mutate(.data, across(c(...), ~replace(., is.na(.), replace)))
+    df <- mutate(.data, across(c(...), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x)))
   }
   } else{
     df <- replace(.data, is.na(.data), replace)

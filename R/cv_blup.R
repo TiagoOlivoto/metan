@@ -126,7 +126,7 @@ cv_blup <- function(.data,
                           GEN = {{gen}},
                           REP = {{rep}},
                           Y = {{resp}}) %>%
-            mutate_at(1:3, as.factor)
+            mutate(across(1:3, as.factor))
         data <- tibble::rowid_to_column(data)
         Nbloc <- nlevels(data$REP)
         nrepval <- Nbloc - 1

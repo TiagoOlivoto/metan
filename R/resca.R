@@ -51,8 +51,7 @@
 #' # Rescale the variables that ends with 'L' whithin ENV;
 #' data_ge2 %>%
 #'   select(ENV, GEN, starts_with("N"), ends_with("L")) %>%
-#'   group_by(ENV, GEN) %>%
-#'   summarise_all(mean) %>%
+#'   means_by(ENV, GEN) %>%
 #'   group_by(ENV) %>%
 #'   resca(ends_with("L")) %>%
 #'   head(n = 13)
@@ -70,10 +69,11 @@ resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, 
       dplyr::do(.data, resca(., ...))
     }
     if (keep == TRUE){
-    .data %>% mutate_at(.vars = vars(...), .funs = list(res = rescc)) %>% ungroup()
+    .data %>% mutate(across(c(...), list(res = rescc)))
     } else {
-      .data %<>% mutate_at(.vars = vars(...), .funs = list(res = rescc))  %>% ungroup()
-        return(suppressMessages(select(.data, contains("res"))))
+      .data %>%
+        mutate(across(c(...), list(res = rescc))) %>%
+        select(contains("res"))
     }
   } else {
     new_v <- function(v) {

@@ -96,8 +96,8 @@
 #'   assumed depending on the experimental design of the trials.
 #' @param prob The probability for estimating confidence interval for BLUP's
 #'   prediction.
-#' @param ind_anova Logical argument set to \code{TRUE}. If \code{FALSE} the
-#'   within-environment ANOVA is not performed.
+#' @param ind_anova Logical argument set to \code{FALSE}. If \code{TRUE} an
+#'   within-environment ANOVA is performed.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
 #' @param ... Arguments passed to the function
@@ -261,7 +261,7 @@ waasb <- function(.data,
                   wresp = NULL,
                   random = "gen",
                   prob = 0.05,
-                  ind_anova = TRUE,
+                  ind_anova = FALSE,
                   verbose = TRUE,
                   ...) {
     if (!random %in% c("env", "gen", "all")) {
@@ -274,13 +274,13 @@ waasb <- function(.data,
                    {{gen}},
                    {{rep}},
                    {{block}}) %>%
-            mutate_all(as.factor)
+            mutate(across(everything(), as.factor))
     } else{
         factors  <- .data %>%
             select({{env}},
                    {{gen}},
                    {{rep}}) %>%
-            mutate_all(as.factor)
+            mutate(across(everything(), as.factor))
     }
     vars <- .data %>% select({{resp}}, -names(factors))
     vars %<>% select_numeric_cols()
@@ -782,7 +782,7 @@ waasb <- function(.data,
 #'   \code{\link[cowplot]{plot_grid}}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @importFrom cowplot plot_grid
-#' @importFrom dplyr distinct_all arrange_at
+#' @importFrom dplyr distinct_all
 #' @importFrom tibble tribble
 #' @method plot waasb
 #' @export
@@ -1036,7 +1036,7 @@ plot.waasb <- function(x,
                 data.frame(blups[i]) %>%
                 distinct_all() %>%
                 rowid_to_column(var = "id") %>%
-                arrange_at(2)
+                arrange(across(2))
             P <- ppoints(nrow(df))
             df$z <- qnorm(P)
             n <- nrow(df)

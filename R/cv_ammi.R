@@ -92,7 +92,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
                     GEN = {{gen}},
                     REP = {{rep}},
                     Y = {{resp}})%>%
-      mutate_at(1:3, as.factor)
+      mutate(across(1:3, as.factor))
     RMSPDres <- data.frame(RMSPD = matrix(0, nboot, 1))
     data <- tibble::rowid_to_column(data)
     Nenv <- length(unique(data$ENV))
