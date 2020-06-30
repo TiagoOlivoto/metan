@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 
 
 
-`metan` (**m**ulti-**e**nvironment **t**rials **an**alysis) provides useful functions for analyzing multi-environment trial data using parametric and nonparametric methods. The package will help you to:
+`metan` (**m**ulti-**e**nvironment **t**rials **an**alysis) provides useful functions for analyzing multi-environment trial data using parametric and non-parametric methods. The package will help you to:
 
 * Inspect data for possible common errors;
 * Manipulate rows and columns;
@@ -195,7 +195,6 @@ get_model_data(stats)
 citation("metan")
 ```
 
-  
 # Getting help
 
 * If you encounter a clear bug, please file a minimal reproducible example on [github](https://github.com/TiagoOlivoto/metan/issues)

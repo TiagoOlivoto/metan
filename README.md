@@ -18,7 +18,7 @@ Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](ht
 
 `metan` (**m**ulti-**e**nvironment **t**rials **an**alysis) provides
 useful functions for analyzing multi-environment trial data using
-parametric and nonparametric methods. The package will help you to:
+parametric and non-parametric methods. The package will help you to:
 
   - Inspect data for possible common errors;
   - Manipulate rows and columns;
