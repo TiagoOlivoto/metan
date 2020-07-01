@@ -398,6 +398,13 @@ replace_string <- function(.data,
 #' @export
 #' @importFrom dplyr transmute
 round_cols <- function(.data, ...,  digits = 2){
+  is_mat <- is.matrix(.data)
+  if(is_mat ==  TRUE){
+    .data <-
+      .data %>%
+      as.data.frame() %>%
+      rownames_to_column()
+  }
   rn_test <- has_rownames(.data)
   if(rn_test == TRUE){
     rnames <- rownames(.data)
@@ -409,6 +416,12 @@ round_cols <- function(.data, ...,  digits = 2){
   }
   if(rn_test == TRUE){
     rownames(.data) <- rnames
+  }
+  if(is_mat ==  TRUE){
+    .data <-
+      .data %>%
+      column_to_rownames() %>%
+      as.matrix()
   }
   return(.data)
 }
