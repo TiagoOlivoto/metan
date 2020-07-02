@@ -419,12 +419,14 @@ plot.mgidi <- function(x,
                color = "black",
                size = size.line,
                width = width.bar) +
-        scale_y_continuous(expand = expansion(c(0, 0.05)))+
+        scale_y_continuous(expand = expansion(0))+
         theme_metan()+
         theme(legend.position = "bottom",
               axis.ticks = element_line(size = size.line),
+              plot.margin = margin(0.5, 0.5, 0, 0, "cm"),
               panel.border = element_rect(size = size.line))+
-        scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
+        scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap),
+                         expand = expansion(0))+
         labs(x = x.lab, y = y.lab)+
         guides(guide_legend(nrow = 1)) +
         ggtitle("Contribution of each factor to the MGIDI index")
