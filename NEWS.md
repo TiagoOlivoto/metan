@@ -5,6 +5,8 @@
 * Update wsmp.R ([#7](https://github.com/TiagoOlivoto/metan/pull/7)). Thank you @[BartoszKozak](https://github.com/bartosz-kozak) for your contribution.
 * `mgidi()` now allows using a fixed-effect model fitted with `gafem()` as input data.
 
+## Minor improvements
+* `round_cols()` now can be used to round whole matrices.
 
 # metan 1.6.1
 * `plot.mgidi()` can now plot the contribution for all genotypes.
