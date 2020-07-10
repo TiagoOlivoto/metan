@@ -54,6 +54,7 @@ following:
 \item \code{"median"}: median.
 \item \code{"min"}: minimum value.
 \item \code{"n"}: the length of the data.
+\item \code{"ps"}: the pseudo-sigma (iqr / 1.35).
 \item \code{"q2.5", "q25", "q75", "q97.5"}: the percentile 2.5\\%, first
 quartile, third quartile, and percentile 97.5\\%, respectively.
 \item \code{range}: The range of data).

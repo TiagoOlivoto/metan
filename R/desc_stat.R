@@ -36,6 +36,7 @@
 #'  * \code{"median"}: median.
 #'  * \code{"min"}: minimum value.
 #'  * \code{"n"}: the length of the data.
+#'  * \code{"ps"}: the pseudo-sigma (iqr / 1.35).
 #'  * \code{"q2.5", "q25", "q75", "q97.5"}: the percentile 2.5\%, first
 #'  quartile, third quartile, and percentile 97.5\%, respectively.
 #'  * \code{range}: The range of data).
@@ -153,12 +154,12 @@ desc_stat <- function(.data = NULL,
           plot_theme = plot_theme)
     return(results)
   }
-  all <- c("av.dev", "ci", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
+  all <- c("av.dev", "ci", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "ps", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
   stats <- strsplit(
     case_when(
       all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci"),
-      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, var.pop"),
-      all_lower_case(stats) == "robust" ~ c("n, median, iqr"),
+      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, ps, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, var.pop"),
+      all_lower_case(stats) == "robust" ~ c("n, median, iqr, ps"),
       all_lower_case(stats) == "quantile" ~ c("n, min, q25, median, q75, max"),
       TRUE ~ all_lower_case(stats)
     ), "\\s*(\\s|,)\\s*")[[1]]
@@ -215,6 +216,7 @@ desc_stat <- function(.data = NULL,
                           iqr = ~IQR(., na.rm = na.rm),
                           av.dev = ~av_dev(., na.rm = na.rm),
                           mad = ~mad(., na.rm = na.rm),
+                          ps = ~pseudo_sigma(., na.rm = na.rm),
                           var.pop = ~var_pop(., na.rm = na.rm),
                           var.amo = ~var_amo(., na.rm = na.rm),
                           sd.pop = ~sd_pop(., na.rm = na.rm),

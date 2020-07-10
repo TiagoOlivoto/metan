@@ -1039,6 +1039,30 @@ kurt <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
+pseudo_sigma <- function(.data, ..., na.rm = FALSE) {
+  funct <- function(df){
+    IQR(df, na.rm = na.rm) / 1.35
+  }
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    } else{
+      .data %>%
+        select_cols(group_vars(.), ...) %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    }
+  }
+}
+#' @name utils_stats
+#' @export
 range_data <- function(.data, ..., na.rm = FALSE){
   funct <- function(df){
     max(df, na.rm = na.rm) - min(df, na.rm = na.rm)

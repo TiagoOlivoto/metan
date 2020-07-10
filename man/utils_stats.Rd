@@ -9,6 +9,7 @@
 \alias{hmean}
 \alias{gmean}
 \alias{kurt}
+\alias{pseudo_sigma}
 \alias{range_data}
 \alias{sd_amo}
 \alias{sd_pop}
@@ -42,6 +43,8 @@ hmean(.data, ..., na.rm = FALSE)
 gmean(.data, ..., na.rm = FALSE)
 
 kurt(.data, ..., na.rm = FALSE)
+
+pseudo_sigma(.data, ..., na.rm = FALSE)
 
 range_data(.data, ..., na.rm = FALSE)
 
