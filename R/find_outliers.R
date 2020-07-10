@@ -55,7 +55,7 @@ find_outliers <- function(.data =  NULL,
       names(results)[[which(names(results) == "data")]] <- "outliers"
     return(results)
   }
-  if(has_class(.data, "numeric")){
+  if(has_class(.data, c("numeric", "integer"))){
     var_name <- as.numeric(.data)
     dd <- data.frame(.data)
   } else {
