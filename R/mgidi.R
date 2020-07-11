@@ -52,11 +52,13 @@
 #' * \strong{canonical_loadings} The canonical loadings.
 #' * \strong{scores_gen} The scores for genotypes in all retained factors.
 #' * \strong{scores_ide} The scores for the ideotype in all retained factors.
-#' * \strong{gen_ide} The distance between the scores of each genotype with the ideotype.
+#' * \strong{gen_ide} The distance between the scores of each genotype with the
+#' ideotype.|
 #' * \strong{MGIDI} The multi-trait genotype-ideotype distance index.
-#' * \strong{contri_fac} The relative contribution of each factor on the MGIDI value.
-#' The lower the contribution of a factor, the close of the ideotype the variables in such
-#' factor are.
+#' * \strong{contri_fac} The relative contribution of each factor on the MGIDI
+#' value.
+#' The lower the contribution of a factor, the close of the ideotype the
+#' variables in such factor are.
 #' * \strong{sel_dif} The selection differential for the variables.
 #' * \strong{total_gain} The selection differential for the variables.
 #' * \strong{sel_gen} The selected genotypes.
@@ -238,11 +240,11 @@ mgidi <- function(.data,
     cat("\n-------------------------------------------------------------------------------\n")
     cat("Principal Component Analysis\n")
     cat("-------------------------------------------------------------------------------\n")
-    print(pca)
+    print(round_cols(pca))
     cat("-------------------------------------------------------------------------------\n")
     cat("Factor Analysis - factorial loadings after rotation-\n")
     cat("-------------------------------------------------------------------------------\n")
-    print(fa)
+    print(round_cols(fa))
     cat("-------------------------------------------------------------------------------\n")
     cat("Comunalit Mean:", mean(Communality), "\n")
     cat("-------------------------------------------------------------------------------\n")
