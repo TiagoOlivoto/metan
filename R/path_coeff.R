@@ -81,7 +81,7 @@
 #'   A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in
 #'   path analysis: a simple method to reduce its effects. Agron. J.
 #'   109:131-142. doi:10.2134/agronj2016.04.0196.
-#'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/109/1/131}{10.2134/agronj2016.04.0196}.
+#'   \href{https://doi.org/10.2134/agronj2016.04.0196}{10.2134/agronj2016.04.0196}.
 #'
 #' @export
 #' @examples

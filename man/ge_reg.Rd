@@ -47,7 +47,7 @@ plot(reg)
 }
 \references{
 Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for comparing Varieties.
-Crop Sci. 6:36-40. \href{https://www.crops.org/publications/cs/abstracts/6/1/CS0060010036}{doi:10.2135/cropsci1966.0011183X000600010011x}.
+Crop Sci. 6:36-40. \href{https://doi.org/10.2135/cropsci1966.0011183X000600010011x}{doi:10.2135/cropsci1966.0011183X000600010011x}.
 }
 \seealso{
 \code{\link{superiority}, \link{ecovalence}, \link{ge_stats}}
